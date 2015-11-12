@@ -348,7 +348,7 @@ void CardGui::Render()
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),216,191,216));//thistle powered down
         else if(!card->wasDealtDamage && card->pbonus >= 3)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,0));//yellow buff
-        else if(card->hasType("legendary") && card->hasType("eldrazi"))
+        else if(card->hasType("legendary") && card->hasType("eldrazi") && !card->has(Constants::CHANGELING))
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),238,130,238));//violet legendary eldrazi
         else
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
@@ -365,9 +365,9 @@ void CardGui::Render()
         buff = "CT";
     if(!card->isToken && card->isACopier)
         buff = "C";
-    if(game && card->has(Constants::PAYZERO) && ((card->currentZone == card->controller()->game->hand) || (card->has(Constants::CANPLAYFROMGRAVEYARD) && card->currentZone == card->controller()->game->graveyard) || (card->has(Constants::CANPLAYFROMEXILE) && card->currentZone == card->controller()->game->exile)))
+    if(card->has(Constants::PAYZERO))
         buff += "Z";
-    if(card->alias == 0000)
+    if(card->alias == 1000)
     {
         if(card->chooseacolor == 1)
             buff += "\n-Green";
@@ -385,7 +385,7 @@ void CardGui::Render()
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
         sprintf(buffer, "%s", buff.c_str());
-        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,182,193));//Light Pink indicator
+        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,215,0));//Gold indicator
         mFont->SetScale(0.8f);
         mFont->DrawString(buffer, actX - 10 * actZ, actY - (16 * actZ));
         mFont->SetScale(1);

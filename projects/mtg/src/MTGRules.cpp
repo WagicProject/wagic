@@ -627,7 +627,7 @@ PermanentAbility(observer, _id)
 
 int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    if (card->alias == 110000)
+    if (card->alias == 11000)
         return 0;//overload has its own rule
     ManaCost * alternateCost = card->getManaCost()->getAlternative();
     if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card))
@@ -1165,6 +1165,8 @@ MTGAlternativeCostRule(observer, _id)
 
 int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
+    if(!card->has(Constants::PAYZERO))
+        return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
     if(card->getIncreasedManaCost()->getConvertedCost())
@@ -1173,8 +1175,6 @@ int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         cost->remove(card->getReducedManaCost());
 
     if(card->isLand())
-        return 0;
-    if(!card->has(Constants::PAYZERO))
         return 0;
     if (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
         return 0;
@@ -1225,7 +1225,7 @@ MTGAlternativeCostRule(observer, _id)
 
 int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    if (card->alias != 110000)
+    if (card->alias != 11000)
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getAlternative());
@@ -2255,9 +2255,9 @@ MTGDredgeRule::MTGDredgeRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
 {
     tcb = NULL;
-    //dredgeAbility = NULL;
-    //targetAbility = NULL;
-    //mod = NULL;
+    dredgeAbility = NULL;
+    targetAbility = NULL;
+    mod = NULL;
 }
 ;
 
@@ -2314,26 +2314,26 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
                     }
 
                     //there is a memleak here that i have no idea what causes it.
-                    dredgeCard *dc = NEW dredgeCard(game, game->mLayers->actionLayer()->getMaxId(), card,NULL);
-                    dc->oneShot = true;
-                    GenericTargetAbility *gta = NEW GenericTargetAbility(game, "Dredge A Card","",game->mLayers->actionLayer()->getMaxId(), card,tcb->clone(),dc->clone());
-                    gta->oneShot = true;
-                    //SAFE_DELETE(dredgeAbility);
+                    dredgeAbility = NEW dredgeCard(game, game->mLayers->actionLayer()->getMaxId(), card,NULL);
+                    dredgeAbility->oneShot = true;
+                    targetAbility = NEW GenericTargetAbility(game, "Dredge A Card","",game->mLayers->actionLayer()->getMaxId(), card,tcb->clone(),dredgeAbility->clone());
+                    targetAbility->oneShot = true;
+                    SAFE_DELETE(dredgeAbility);
 
-                    GenericAddToGame *gatg = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,gta->clone());
-                    gatg->oneShot = true;
-                    //SAFE_DELETE(targetAbility);
-                    //MTGAbility * setDredge = targetAbilityAdder->clone();
-                    //SAFE_DELETE(targetAbilityAdder);
-                    //setDredge->oneShot = true;
+                    targetAbilityAdder = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,targetAbility->clone());
+                    targetAbilityAdder->oneShot = true;
+                    SAFE_DELETE(targetAbility);
+                    MTGAbility * setDredge = targetAbilityAdder->clone();
+                    SAFE_DELETE(targetAbilityAdder);
+                    setDredge->oneShot = true;
 
-                    selection.push_back(gatg);
-                    AADrawer *ad = NEW AADrawer(game, game->mLayers->actionLayer()->getMaxId(), card,card,NULL, "1",TargetChooser::CONTROLLER,true);
-                    selection.push_back(ad);
-                    MenuAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Dredge or Draw");
+                    selection.push_back(setDredge);
+                    targetAbility1 = NEW AADrawer(game, this->GetId(), card,card,NULL, "1",TargetChooser::CONTROLLER,true);
+                    selection.push_back(targetAbility1);
+                    MTGAbility * menuChoice = NEW MenuAbility(game, this->GetId(), card, card,true,selection,card->controller(),"Dredge or Draw");
 
                     menuChoice->addToGame();
-                    //SAFE_DELETE(tcb);
+                    SAFE_DELETE(tcb);
                 }
                 
                 SAFE_DELETE(event);
