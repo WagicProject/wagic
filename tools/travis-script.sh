@@ -77,7 +77,7 @@ if [ "$BUILD_TYPE" = "SDL" ]; then
     mkdir build_SDL
     cd build_SDL
     cmake -Dbackend_sdl=ON ..
-    make -j4
+    make -j4 wagic
     cd ..
 fi
 
