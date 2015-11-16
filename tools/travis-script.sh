@@ -56,14 +56,14 @@ if [ "$BUILD_TYPE" = "Qt" ]; then
     mkdir build_qt_widget
     cd build_qt_widget
     cmake -Dbackend_qt_widget=ON -Dbackend_qt_console=OFF ..
-    make -j4
+    make -j4 wagic
     cd ..
 
     # let's try an Intel linux binary in debug text-mode-only
     mkdir build_qt_console
     cd build_qt_console
     cmake -Dbackend_qt_console=ON ..
-    make -j4
+    make -j4 wagic
     cd ..
 
     # Now we run the testsuite (Res needs to be in the working directory)
