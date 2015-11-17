@@ -17,7 +17,7 @@ skip_tags: true
 #---------------------------------#
 
 environment:
-  DXSDK_DIR: "C:/Program Files (x86)/Microsoft DirectX SDK/
+  DXSDK_DIR: "C:/Program Files (x86)/Microsoft DirectX SDK/"
   GH_TOKEN:
     secure: dYnBDQkiY5oVjIlswzBX9BJigNtBGXgGlp1tK3XbHzrDEDrs2vaKD5m+Oz5OSz1C
 
