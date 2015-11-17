@@ -29,7 +29,7 @@ install:
   - "C:/Python27/Scripts/pip.exe install github3.py"
   - git submodule update --init --recursive
   - cd thirdparty/SDL2
-  - git checkout release-2.0.3
+#  - git checkout release-2.0.3
   - cd ../..
 
 #---------------------------------#
