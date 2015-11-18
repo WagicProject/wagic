@@ -78,7 +78,8 @@ install:
       tar -x --xz -f sdk.lzma;
     fi
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
-      tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2;
+      tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
+      export ANDROID_NDK=`pwd`/android-ndk-r9;
     fi
   - sudo pip install pyjavaproperties
   - sudo pip install github3.py
