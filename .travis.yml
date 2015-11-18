@@ -1,7 +1,28 @@
 language: cpp
-os:
-  - linux
-  - osx
+
+matrix:
+  include:
+    - os: linux
+      env: BUILD_TYPE=PSP
+    - os: linux
+      env: BUILD_TYPE=SDL
+    - os: linux
+      env: BUILD_TYPE=Qt
+    - os: osx
+      env: BUILD_TYPE=SDL
+    - os: osx
+      env: BUILD_TYPE=Qt
+    - os: osx
+      env: BUILD_TYPE=iOS
+    - os: android
+      language: android
+      env: BUILD_TYPE=ANDROID
+
+android:
+  components:
+    - platform-tools
+    - build-tools-23.0.1
+    - android-10
 
 branches:
   except:
@@ -36,10 +57,9 @@ before_install:
     fi
 # Building for Android here
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
-      export ANDROID="android-sdk-linux/tools/android" &&
+      export ANDROID="/usr/local/android-sdk-linux/tools/android" &&
       if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch jq; fi &&
-      wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
-      wget http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz -nv;
+      wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv;
     fi
 # Building for Qt here
   - if [ "$BUILD_TYPE" == "Qt" ]; then
@@ -59,37 +79,16 @@ install:
       tar -x --xz -f sdk.lzma;
     fi
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
-      tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
-      tar -zxf android-sdk_r24.3.4-linux.tgz &&
-      $ANDROID list sdk --extended -a &&
-      echo yes | $ANDROID update sdk -a -t platform-tools --no-ui --force --no-https &&
-      echo yes | $ANDROID update sdk -a -t android-10 --no-ui --force --no-https &&
-      echo yes | $ANDROID update sdk -a -t tools --no-ui --force --no-https;
-      echo yes | $ANDROID update sdk -a -t build-tools-23.0.1 --no-ui --force --no-https;
+      tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2;
     fi
   - sudo pip install pyjavaproperties
   - sudo pip install github3.py
 
 env:
-  matrix:
-  - BUILD_TYPE=PSP
-  - BUILD_TYPE=ANDROID
-  - BUILD_TYPE=SDL
-  - BUILD_TYPE=Qt
-  - BUILD_TYPE=iOS
   global:
   - secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
   - secure: "X5dTQfofqAutnXxmu11Ep2MQ5QYnMN8m0AITRtwymhEF2UclcOudI1+skPtuhAGbWQnSO+lhunV3cvMfw2/Ml3k/VDz6VdFSKFrzAu7ja1VLJfcxr7chi0s8q30pVBb66tGydjIBac3B+RQyqgmZQW1frbRrhC/kPFQ6wPWOJdQ="
   - secure: "T97NUPnxCpVZ/c5HH0zfo0FO3DPSRMSmze58ubW5EUTZOjAMtEt+OFdsrNZvUTCugUj2M1agtonZbAbczpaAL+lgZcHDgXgWMkfO0pMnsWX1yyCNqMuE/iTMpJr/xsLQeyWlftWjJLsseQU45abZsd1XVmda/G+ZhrDLF1y55SA="
-
-matrix:
-  exclude:
-    - os: osx
-      env: BUILD_TYPE=PSP
-    - os: osx
-      env: BUILD_TYPE=ANDROID
-    - os: linux
-      env: BUILD_TYPE=iOS
 
 script: "tools/travis-script.sh"
 
