@@ -58,7 +58,6 @@ before_install:
 # Building for Android here
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
       export ANDROID="/usr/local/android-sdk-linux/tools/android" &&
-      if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch jq; fi &&
       wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv;
     fi
 # Building for Qt here
