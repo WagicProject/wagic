@@ -46,7 +46,7 @@ fi
 if [ "$BUILD_TYPE" = "ANDROID" ]; then
     mkdir build_android
     cd build_android
-    cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/android.toolchain.cmake -DANDROID_NATIVE_API_LEVEL=android-10
+    cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/android.toolchain.cmake -DANDROID_NATIVE_API_LEVEL=android-10 ..
     make -j8
     cd ..
 fi
