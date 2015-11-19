@@ -130,9 +130,7 @@ set(MTG_sdl_src
         src/SDLmain.cpp)
         
 set(MTG_android_sdl_src
-        src/SDLmain.cpp
-        src/SDL_android_main.cpp)
-
+        src/SDLmain.cpp)
 
 set(MTG_INCLUDE_DIRS include include/qt)
 set(JGE_INCLUDE_DIRS ../../JGE/include ../../JGE/include/hge)
@@ -168,7 +166,7 @@ elseif(backend_qt_widget)
 elseif(backend_sdl)
     if((UNIX OR EMSCRIPTEN) AND NOT ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-        add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src})
+        add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
         target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
     elseif(ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
