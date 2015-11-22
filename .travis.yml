@@ -58,7 +58,8 @@ before_install:
 # Building for Android here
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
       export ANDROID="/usr/local/android-sdk-linux/tools/android" &&
-      wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv;
+      wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
+      wget https://bitbucket.org/ewing/sdl_androidcmake/get/4e9e88c03f04.zip -nv;
     fi
 # Building for Qt here
   - if [ "$BUILD_TYPE" == "Qt" ]; then
@@ -80,6 +81,9 @@ install:
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
       tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
       export ANDROID_NDK=`pwd`/android-ndk-r9;
+      unzip 4e9e88c03f04.zip &&
+      rm -rf thirdparty/SDL2/* &&
+      mv ewing-sdl_androidcmake-4e9e88c03f04/* thirdparty/SDL2/;
     fi
   - sudo pip install pyjavaproperties
   - sudo pip install github3.py
