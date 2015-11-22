@@ -660,8 +660,8 @@ bool SdlApp::OnInit()
 	DebugTrace("Video Display : h " << currentDisplayMode.h << ", w " << currentDisplayMode.w);
 
 #if (defined ANDROID) || (defined IOS)
-	window_w = pVideoInfo->current_w;
-	window_h = pVideoInfo->current_h;
+	window_w = currentDisplayMode.w;
+	window_h = currentDisplayMode.h;
 #else
 	window_w = ACTUAL_SCREEN_WIDTH;
 	window_h = ACTUAL_SCREEN_HEIGHT;

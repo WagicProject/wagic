@@ -1,2 +1,3 @@
 add_definitions(-DANDROID -DLINUX)
-add_definitions(-D_STLP_USE_SIMPLE_NODE_ALLOC -D__arm__ -D_REENTRANT -D_GLIBCXX__PTHREADS)  
+add_definitions(-D_STLP_USE_SIMPLE_NODE_ALLOC -D__arm__ -D_REENTRANT -D_GLIBCXX__PTHREADS)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
