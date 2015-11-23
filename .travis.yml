@@ -80,7 +80,7 @@ install:
     fi
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
       tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
-      export ANDROID_NDK=`pwd`/android-ndk-r9;
+      export ANDROID_NDK=`pwd`/android-ndk-r9 &&
       unzip 4e9e88c03f04.zip &&
       rm -rf thirdparty/SDL2/* &&
       mv ewing-sdl_androidcmake-4e9e88c03f04/* thirdparty/SDL2/;
