@@ -159,7 +159,7 @@ elseif(backend_qt_widget)
             ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default)
         add_executable(wagic ${MTG_generic_src} ${MTG_qt_graphic_src})
         target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES}
-            ${HGE_LIBRARY})# ${X11_LIBRARIES} ${ZLIB_LIBRARIES})
+            ${HGE_LIBRARY} ${ZLIB_LIBRARIES})# ${X11_LIBRARIES})
     else()
         message(FATAL_ERROR "qt-widget builds are only supported on unix platforms")
     endif()
