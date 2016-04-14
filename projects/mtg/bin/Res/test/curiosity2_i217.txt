@@ -2,6 +2,15 @@
 #DESC: Tests whether Curiosity works correctly
 #DESC: when cast on an opponent's creature
 #DESC: http://code.google.com/p/wagic/issues/detail?id=217
+#
+#revised...10-22-2015...kevlahnota
+#2/1/2007	You draw one card each time the enchanted creature damages the opponent. This is not one card per point of damage.
+#2/1/2007	If put on your opponent's creature, you do not draw a card when that creature damages you. The creature has to damage your opponent in order to have this work.
+#2/1/2007	Drawing a card is optional. If you forget, you can't go back later and do it, even if it is something you normally do.
+#9/22/2011	"You" refers to the controller of Curiosity, which may be different from the controller of the enchanted creature."An opponent" refers to an opponent of Curiosity's controller.
+#9/22/2011	Any damage dealt by the enchanted creature to an opponent will cause Curiosity to trigger, not just combat damage.
+#9/22/2011	Curiosity doesn't trigger if the enchanted creature deals damage to a planeswalker controlled by an opponent.
+#
 [INIT]
 firstmain
 [PLAYER1]
@@ -29,7 +38,7 @@ next
 combatend
 [PLAYER1]
 inplay:Curiosity
-hand:Island
+library:Island
 life:14
 [PLAYER2]
 inplay:Craw Wurm

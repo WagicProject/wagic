@@ -39,6 +39,7 @@ bool GameApp::HasMusic = true;
 JMusic * GameApp::music = NULL;
 string GameApp::currentMusicFile = "";
 string GameApp::systemError = "";
+char GameApp::mynbcardsStr[512] = {0};
 
 vector<JQuadPtr > manaIcons;
 
@@ -76,7 +77,7 @@ GameApp::GameApp() :
 
     mCurrentState = NULL;
     mNextState = NULL;
-	rules = 0;
+    rules = 0;
     music = NULL;
 }
 
@@ -155,7 +156,7 @@ void GameApp::Create()
 
 
     //Setup Cache before calling any gfx/sfx functions
-	WResourceManager::Instance()->ResetCacheLimits();
+    WResourceManager::Instance()->ResetCacheLimits();
 
 
     LOG("Checking for music files");
@@ -173,6 +174,9 @@ void GameApp::Create()
     LOG("Loading Textures");
     LOG("--Loading menuicons.png");
     WResourceManager::Instance()->RetrieveTexture("menuicons.png", RETRIEVE_MANAGE);
+#if !defined (PSP)
+    WResourceManager::Instance()->RetrieveTexture("miconslarge.png", RETRIEVE_MANAGE);
+#endif
     LOG("---Gettings menuicons.png quads");
    
     //Load all icons from gModRules and save in manaIcons -> todo. Change the icons positions on menuicons.png to avoid use item->mColorId

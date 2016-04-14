@@ -33,8 +33,9 @@ public:
     MTGCardInstance * target;
     Counters(MTGCardInstance * _target);
     ~Counters();
-    int addCounter(const char * _name, int _power = 0, int _toughness = 0);
+    int addCounter(const char * _name, int _power = 0, int _toughness = 0, bool _noevent = false);
     int addCounter(int _power, int _toughness);
+    int addCounter(int _power, int _toughness, bool _noevent);
     int removeCounter(const char * _name, int _power = 0, int _toughness = 0);
     int removeCounter(int _power, int _toughness);
     Counter * hasCounter(const char * _name, int _power = 0, int _toughness = 0);

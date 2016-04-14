@@ -22,7 +22,7 @@ private:
     InOutQuadEasing zoomFactorEasing;
     DuelLayers* mpDuelLayers;
 
-    void DrawGlyph(JQuad *inQuad, int phaseId, float x, float y, float scale);
+    void DrawGlyph(JQuad *inQuad, int phaseId, float x, float y, float scale, float z);
 public:
     GuiPhaseBar(DuelLayers* duelLayers);
     ~GuiPhaseBar();

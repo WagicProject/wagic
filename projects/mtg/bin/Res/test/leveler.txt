@@ -11,6 +11,7 @@ leveler
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
+exile:swamp,mountain
 inplay:leveler
 [PLAYER2]
 [END]

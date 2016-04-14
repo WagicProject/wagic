@@ -20,14 +20,11 @@ namespace DeckMenuConst
     const float kLineHeight = 25;
     const float kDescriptionVerticalBoxPadding = -5;
     const float kDescriptionHorizontalBoxPadding = 5;
-	
-    const float kDefaultFontScale = 1.0f;
+    
     const float kVerticalScrollSpeed = 7.0f;
 
     const int DETAILED_INFO_THRESHOLD = 20;
     const int kDetailedInfoButtonId = 10000;
-
-    const PIXEL_TYPE kRedColor = ARGB(0xFF, 0xFF, 0x00, 0x00);
 }
 
 hgeParticleSystem* DeckMenu::stars = NULL;
@@ -72,7 +69,7 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     menuInitialized = false;
 
     float scrollerWidth = 200.0f;
-	float scrollerHeight = 28.0f;
+    float scrollerHeight = 28.0f;
     mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, scrollerHeight, DeckMenuConst::kVerticalScrollSpeed);
 
     mAutoTranslate = true;
@@ -97,7 +94,7 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     mSelectionTargetY = selectionY = DeckMenuConst::kVerticalMargin;
 
     if (NULL == stars)
-		stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
+        stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
     stars->FireAt(mX, mY);
     
     const string detailedInfoString = _("Detailed Info");
@@ -218,7 +215,7 @@ void DeckMenu::selectRandomDeck(bool isAi)
 {
     DeckManager *deckManager = DeckManager::GetInstance();
     vector<DeckMetaData *> *deckList = isAi ? deckManager->getAIDeckOrderList() : deckManager->getPlayerDeckOrderList();
-    int random = (WRand() * 1000) % deckList->size();
+    int random = rand() % (int)deckList->size();
     selectDeck( random, isAi );
 }
 
@@ -251,11 +248,11 @@ void DeckMenu::Render()
         if (currentMenuItem->getY() - DeckMenuConst::kLineHeight * startId < mY + height - DeckMenuConst::kLineHeight + 7)
         {
             // only load stats for visible items in the list
-			DeckMetaData* metaData = currentMenuItem->getMetaData();
+            DeckMetaData* metaData = currentMenuItem->getMetaData();
             if (metaData && !metaData->mStatsLoaded)
             {
                 metaData->LoadStats();
-			}
+            }
 
             if (currentMenuItem->hasFocus())
             {
@@ -279,6 +276,8 @@ void DeckMenu::Render()
                     JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad(currentAvatarImageName, TEXTURE_SUB_AVATAR);
                     if(quad.get())
                     {
+                        quad->mWidth = 35.f;
+                        quad->mHeight = 50.f;
                         if (currentMenuItem->getText() == "Evil Twin")
                         {
                             JQuad * evil = quad.get();
@@ -292,7 +291,7 @@ void DeckMenu::Render()
                 }
                 
                 // fill in the description part of the screen
-				string text = wordWrap(_(currentMenuItem->getDescription()), descWidth, descriptionFont->mFontID );
+                string text = wordWrap(_(currentMenuItem->getDescription()), descWidth, descriptionFont->mFontID );
                 descriptionFont->SetColor(ARGB(255,255,255,255));
                 descriptionFont->DrawString(text.c_str(), descX, descY);
                 
@@ -315,19 +314,19 @@ void DeckMenu::Render()
         }
     }
     
-	if (!title.empty())
+    if (!title.empty())
     {
         mFont->SetColor(ARGB(255,255,255,255));
         mFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
     }
 
     mScroller->Render();
-	RenderBackground();
+    RenderBackground();
     RenderDeckManaColors();
     
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
-	stars->Render();
-	renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+    stars->Render();
+    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
 
 }
 
@@ -404,13 +403,13 @@ void DeckMenu::updateScroller()
 
     for (vector<Task*>::iterator it = taskList.tasks.begin(); it != taskList.tasks.end(); it++)
     {
-		ostringstream taskDescription;
-		taskDescription << "Credits: " << setw(4) << (*it)->getReward() << " / "
-			<< "Days Left: " << (*it)->getExpiration() << endl 
+        ostringstream taskDescription;
+        taskDescription << "Credits: " << setw(4) << (*it)->getReward() << " / "
+            << "Days Left: " << (*it)->getExpiration() << endl 
             << (*it)->getDesc() << endl << endl;
-		mScroller->Add(taskDescription.str());
+        mScroller->Add(taskDescription.str());
     }
-	
+    
 }
 
 void DeckMenu::Close()

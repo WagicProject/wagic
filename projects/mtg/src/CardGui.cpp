@@ -43,11 +43,11 @@ namespace
 }
 
 CardGui::CardGui(MTGCardInstance* card, float x, float y)
-	: PlayGuiObject(Height, x, y, 0, false), card(card)
+    : PlayGuiObject(Height, x, y, 0, false), card(card)
 {
 }
 CardGui::CardGui(MTGCardInstance* card, const Pos& ref)
-	: PlayGuiObject(Height, ref, 0, false), card(card)
+    : PlayGuiObject(Height, ref, 0, false), card(card)
 {
 }
 
@@ -69,7 +69,7 @@ float CardView::GetCenterY()
 
 
 CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, float y)
-	: CardGui(card, x, y), owner(owner)
+    : CardGui(card, x, y), owner(owner)
 {
     const Pos* ref = card->view;
     while (card)
@@ -81,7 +81,7 @@ CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, flo
 }
 
 CardView::CardView(const SelectorZone owner, MTGCardInstance* card, const Pos& ref)
-	: CardGui(card, ref), owner(owner)
+    : CardGui(card, ref), owner(owner)
 {
     const Pos* r = card->view;
     while (card)
@@ -111,17 +111,17 @@ void CardGui::Update(float dt)
     PlayGuiObject::Update(dt);
 }
 
-void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb)
+void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder)
 {
-    DrawCard(card, inPosition, inMode, thumb);
+    DrawCard(card, inPosition, inMode, thumb, noborder);
 }
 
-void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb)
+void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder)
 {
     switch (inMode)
     {
     case DrawMode::kNormal:
-        RenderBig(inCard, inPosition, thumb);
+        RenderBig(inCard, inPosition, thumb, noborder);
         break;
     case DrawMode::kText:
         AlternateRender(inCard, inPosition);
@@ -237,6 +237,31 @@ void CardGui::Render()
     if (quad)
     {
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+        //fake border...
+        JQuadPtr fakeborder;
+        JQuadPtr highlightborder;
+        fakeborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
+        highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
+        if(fakeborder)
+        {
+            fakeborder->SetColor(ARGB((int)(actA),15,15,15));
+            renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
+        }
+        //draw border for highlighting
+        if (game)
+        {
+            if (card && card->isTargetted() && highlightborder)
+            {
+                highlightborder->SetColor(ARGB(95,255,0,0));
+                renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+            }
+            if (card && card->isTargetter() && highlightborder)
+            {
+                highlightborder->SetColor(ARGB(95,0,245,0));
+                renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+            }
+        }
+        //draw the card image
         renderer->RenderQuad(quad.get(), actX, actY, actT, scale, scale);
     }
 
@@ -267,7 +292,7 @@ void CardGui::Render()
 
     }
     JQuadPtr mor;
-    if(card->isMorphed && !alternate)
+    if((card->isMorphed||(card->name == "Morph" && card->isACopier)) && !alternate)
     {
         mor = card->getObserver()->getResourceManager()->RetrieveTempQuad("morph.jpg");
         if (mor &&  mor->mTex) {
@@ -277,17 +302,92 @@ void CardGui::Render()
         }
     }
 
+    //draw line
+    if (game)
+    {
+        if (card && card->isTargetted())
+        {
+            if(card->isTapped())
+            {
+                if(mHasFocus)
+                    renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,255,0,0));
+                else
+                    renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,255,0,0));
+            }
+            else
+                renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(250,255,0,0));
+        }
+        if (card && card->isTargetter())
+        {
+            if(card->isTapped())
+            {
+                if(mHasFocus)
+                    renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,0,255,0));
+                else
+                    renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,0,255,0));
+            }
+            else
+                renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(250,0,255,0));
+       }
+    }
+
     //draws the numbers power/toughness
     if (card->isCreature())
     {
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
         sprintf(buffer, "%i/%i", card->power, card->life);
-        renderer->FillRect(actX - (12 * actZ), actY + 6 * actZ, 25 * actZ, 12 * actZ,
+        renderer->FillRect(actX - (13 * actZ), actY + 4 * actZ, 25.5f * actZ, 14 * actZ,
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
-        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+        renderer->DrawRect(actX - (13 * actZ), actY + 4 * actZ, 25.5f * actZ, 14 * actZ,
+            ARGB(((static_cast<unsigned char>(actA))),20,20,20));
+        //damaged or buffed or powered down        
+        if(card->wasDealtDamage && card->life <= 2)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));//red critical and damaged
+        else if(!card->wasDealtDamage && card->pbonus < 0)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),216,191,216));//thistle powered down
+        else if(!card->wasDealtDamage && card->pbonus >= 3)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,0));//yellow buff
+        else if(card->hasType("legendary") && card->hasType("eldrazi") && !card->has(Constants::CHANGELING))
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),238,130,238));//violet legendary eldrazi
+        else
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
         mFont->SetScale(actZ);
-        mFont->DrawString(buffer, actX - 10 * actZ, actY + 8 * actZ);
+        mFont->SetScale(actZ);
+        mFont->DrawString(buffer, actX - 10 * actZ, actY + 7 * actZ);
+        mFont->SetScale(1);
+    }
+
+    string buff = "";
+    if(card->isToken && !card->isACopier)
+        buff = "T";
+    if(card->isToken && card->isACopier)
+        buff = "CT";
+    if(!card->isToken && card->isACopier)
+        buff = "C";
+    if(card->has(Constants::PAYZERO))
+        buff += "Z";
+    if(card->alias == 1000)
+    {
+        if(card->chooseacolor == 1)
+            buff += "\n-Green";
+        else if(card->chooseacolor == 2)
+            buff += "\n-Blue";
+        else if(card->chooseacolor == 3)
+            buff += "\n-Red";
+        else if(card->chooseacolor == 4)
+            buff += "\n-Black";
+        else if(card->chooseacolor == 5)
+            buff += "\n-White";
+    }
+    if(!alternate && buff != "" && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
+    {
+        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+        char buffer[200];
+        sprintf(buffer, "%s", buff.c_str());
+        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,215,0));//Gold indicator
+        mFont->SetScale(0.8f);
+        mFont->DrawString(buffer, actX - 10 * actZ, actY - (16 * actZ));
         mFont->SetScale(1);
     }
 
@@ -958,7 +1058,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
-void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb)
+void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder)
 {
     JRenderer * renderer = JRenderer::GetInstance();
     //GameObserver * game = GameObserver::GetInstance();
@@ -983,7 +1083,30 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb)
         }
         quad->SetColor(ARGB(255,255,255,255));
         float scale = pos.actZ * 250.f / quad->mHeight;
-        renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+        //init setname
+        string cardsetname = setlist[card->setId].c_str();
+        if(!noborder)
+        {
+            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR")
+            {
+                //like white border
+                renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,248,248,255));
+                //black thin line to simulate card edge
+                renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(150,20,20,20));
+            }
+            else
+            {
+                //like black border
+                renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,10,10,10));
+                //white thin line to simulate card edge
+                renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(50,240,240,240));
+            }
+            //render card image
+            renderer->RenderQuad(quad.get(), x, pos.actY-2, pos.actT, scale-0.02f, scale-0.02f);
+        }
+        else
+            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+
         RenderCountersBig(card, pos);
         return;
     }
@@ -1242,6 +1365,9 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     if (minus)
                     {
                         cd.setisMultiColored(-1);
+                        cd.SetExclusionColor(0);//not multicolored is monocolored not colorless, use iscolorless attribute
+                        cd.SetExclusionColor(6);//restriction... green, red, blue, black or white colored only
+                        cd.mode = CardDescriptor::CD_OR;
                     }
                     else
                     {

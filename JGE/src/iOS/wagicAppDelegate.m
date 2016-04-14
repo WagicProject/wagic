@@ -337,7 +337,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [self.glViewController.view destroyGame];
+    [(id)self.glViewController.view destroyGame];
 }
 
 - (void)initializeKeyboard: (id) initialState

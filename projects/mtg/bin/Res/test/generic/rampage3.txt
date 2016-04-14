@@ -26,6 +26,7 @@ secondmain
 [PLAYER1]
 inplay:Plains
 graveyard:Swords to Plowshares
+exile:Frost Giant
 life:28
 [PLAYER2]
 graveyard:Suntail Hawk,Scryb Sprites,Raging Goblin

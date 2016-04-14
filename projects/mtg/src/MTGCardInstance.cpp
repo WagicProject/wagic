@@ -36,7 +36,11 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     attacker = 0;
     lifeOrig = life;
     origpower = power;
+    basepower = origpower;
+    pbonus = 0;
     origtoughness = toughness;
+    basetoughness = origtoughness;
+    tbonus = 0;
     belongs_to = arg_belongs_to;
     owner = NULL;
     if (arg_belongs_to)
@@ -49,6 +53,19 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     thatmuch = 0;
     flanked = 0;
     castMethod = Constants::NOT_CAST;
+    isSettingBase = 0;
+    isCDA = false;
+    isSwitchedPT = false;
+    isACopier = false;
+    bypassTC = false;
+    discarded = false;
+    copiedID = getId();
+    modifiedbAbi = 0;
+    LKIpower = power;
+    LKItoughness = toughness;
+    cardistargetted = 0;
+    cardistargetter = 0;
+    myconvertedcost = getManaCost()->getConvertedCost();
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -66,6 +83,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     CardPrimitive * data = source->data;
 
     basicAbilities = card->basicAbilities;
+    origbasicAbilities = card->origbasicAbilities;
+    modifiedbAbi = card->modifiedbAbi;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -565,11 +584,13 @@ Player * MTGCardInstance::controller()
 
 int MTGCardInstance::canAttack()
 {
+    if (basicAbilities[(int)Constants::CANTATTACK])
+        return 0;
     if (tapped)
         return 0;
     if (hasSummoningSickness())
         return 0;
-    if ((basicAbilities[(int)Constants::DEFENSER] || basicAbilities[(int)Constants::CANTATTACK]) && !basicAbilities[(int)Constants::CANATTACK])
+    if (basicAbilities[(int)Constants::DEFENSER] && !basicAbilities[(int)Constants::CANATTACK])
         return 0;
     if (!isCreature())
         return 0;
@@ -592,6 +613,199 @@ int MTGCardInstance::setToughness(int value)
     life = value;
     doDamageTest = 1;
     return 1;
+}
+
+void MTGCardInstance::stripPTbonus()
+{
+    power -= pbonus;
+    addToToughness(-tbonus);
+}
+
+void MTGCardInstance::plusPTbonus(int p, int t)
+{
+    pbonus += p;
+    tbonus += t;
+}
+
+void MTGCardInstance::minusPTbonus(int p, int t)
+{
+    pbonus -= p;
+    tbonus -= t;
+}
+
+void MTGCardInstance::applyPTbonus()
+{
+    power += pbonus;
+    addToToughness(tbonus);
+}
+
+void MTGCardInstance::addcounter(int p, int t)
+{
+    stripPTbonus();
+    plusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::addptbonus(int p, int t)
+{
+    stripPTbonus();
+    plusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::removecounter(int p, int t)
+{
+    stripPTbonus();
+    minusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::removeptbonus(int p, int t)
+{
+    stripPTbonus();
+    minusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::addbaseP(int p)
+{
+    basepower = p;
+    power -= pbonus;
+    power = p;
+    power += pbonus;
+}
+
+void MTGCardInstance::addbaseT(int t)
+{
+    basetoughness = t;
+    addToToughness(-tbonus);
+    addToToughness(t - toughness);
+    addToToughness(tbonus);
+}
+
+void MTGCardInstance::revertbaseP()
+{
+    power -= pbonus;
+    power += origpower;
+    power -= basepower;
+    power += pbonus;
+    basepower = origpower;
+}
+
+void MTGCardInstance::revertbaseT()
+{
+    addToToughness(-tbonus);
+    addToToughness(origtoughness);
+    addToToughness(-basetoughness);
+    addToToughness(tbonus);
+    basetoughness = origtoughness;
+}
+
+void MTGCardInstance::cdaPT(int p, int t)
+{
+    origpower = p;
+    origtoughness = t;
+    setPower(p);
+    setToughness(t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::switchPT(bool apply)
+{
+    stripPTbonus();
+    swapP = power;
+    swapT = toughness;
+    power += origpower;
+    power -= swapP;
+    addToToughness(origtoughness);
+    addToToughness(-swapT);
+    applyPTbonus();
+    if(apply)
+    {
+        swapP = toughness;
+        swapT = power;
+        addToToughness(swapT);
+        addToToughness(-swapP);
+        setPower(swapP);
+    }
+}
+
+int MTGCardInstance::getCurrentPower()
+{
+    if(!isInPlay(observer))
+        return LKIpower;
+    return power;
+}
+
+int MTGCardInstance::getCurrentToughness()
+{
+    if(!isInPlay(observer))
+        return LKItoughness;
+    return toughness;
+}
+
+//check stack
+bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
+{
+    if((getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0) &&
+        (getObserver()->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN ||
+        getObserver()->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN) &&
+        controller() == getObserver()->currentPlayer &&
+        !getObserver()->isInterrupting)
+    {
+        return true;
+    }
+    return false;
+}
+
+//check targetted?
+bool MTGCardInstance::isTargetted()
+{
+    if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+    {
+        ActionStack * stack = observer->mLayers->stackLayer();
+        for (int i = stack->mObjects.size() - 1; i >= 0; i--)
+        {
+            Interruptible * current = ((Interruptible *) stack->mObjects[i]);
+            if ((current->type == ACTION_SPELL || current->type == ACTION_ABILITY) && current->state == NOT_RESOLVED)
+            {
+                if(current->type == ACTION_SPELL)
+                {
+                    Spell * spell = (Spell *) current;
+                    if(spell->getNextTarget() && spell->getNextTarget() == (Targetable*)this)
+                        return true;
+                }
+            }
+        }
+    }        
+    if(cardistargetted)
+        return true;
+    return false;
+}
+
+//check targetter?
+bool MTGCardInstance::isTargetter()
+{
+    if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+    {
+        ActionStack * stack = observer->mLayers->stackLayer();
+        for (int i = stack->mObjects.size() - 1; i >= 0; i--)
+        {
+            Interruptible * current = ((Interruptible *) stack->mObjects[i]);
+            if ((current->type == ACTION_SPELL || current->type == ACTION_ABILITY) && current->state == NOT_RESOLVED)
+            {
+                if(current->type == ACTION_SPELL)
+                {
+                    Spell * spell = (Spell *) current;
+                    if(spell && spell->source == this)
+                        return true;
+                }
+            }
+        }
+    }        
+    if(cardistargetter)
+        return true;
+    return false;
 }
 
 int MTGCardInstance::canBlock()
@@ -627,6 +841,8 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
     if (opponent->basicAbilities[(int)Constants::UNBLOCKABLE])
         return 0;
     if (opponent->basicAbilities[(int)Constants::ONEBLOCKER] && opponent->blocked)
+        return 0;
+    if(opponent->basicAbilities[(int)Constants::EVADEBIGGER] && power > opponent->power)
         return 0;
     if(opponent->basicAbilities[(int)Constants::STRONG] && power < opponent->power)
         return 0;
@@ -700,6 +916,25 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
 JQuadPtr MTGCardInstance::getIcon()
 {
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
+}
+
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * oldCost)
+{
+    if(card->isLand())
+        return oldCost;
+
+    if(!card)
+        return oldCost;
+        //use forcedalive//
+        //pay zero costs//
+        //kicker???...//
+        //morph cost todo//
+        //trinisphere must be here below//
+    if(card->has(Constants::TRINISPHERE))
+        for(int jj = oldCost->getConvertedCost(); jj < 3; jj++)
+            oldCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+
+    return oldCost;
 }
 
 MTGCardInstance * MTGCardInstance::getNextPartner()

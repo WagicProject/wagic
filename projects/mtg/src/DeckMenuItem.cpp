@@ -16,33 +16,33 @@ float DeckMenuItem::mYOffset = 0;
 DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
                         : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
-	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     mMetaData = deckMetaData;
-	mText = trim(text);
+    mText = trim(text);
     mIsValidSelection = false;
     
-	if (autoTranslate)
-		mText = _(mText);	
+    if (autoTranslate)
+        mText = _(mText);    
     
 
     mHasFocus = hasFocus;
-	float newImageWidth = 0.0f;
+    float newImageWidth = 0.0f;
     if (mMetaData && !mMetaData->getGamesPlayed())
     {
         JTexture * tex = WResourceManager::Instance()->RetrieveTexture("new.png");
         if (tex)
         {
             JQuadPtr quad = WResourceManager::Instance()->RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle around the texture because of bilinear filtering
-			newImageWidth = quad->mWidth;
-		}
-	}
+            newImageWidth = quad->mWidth;
+        }
+    }
 
-	float titleStringWidth = mFont->GetStringWidth( mText.c_str() );
-	mTitleResetWidth = (titleStringWidth - newImageWidth )/ 2; 
-	mScrollEnabled = titleStringWidth  > ( ITEM_PX_WIDTH - newImageWidth );
-	mScrollerOffset = 0.0f;
+    float titleStringWidth = mFont->GetStringWidth( mText.c_str() );
+    mTitleResetWidth = (titleStringWidth - newImageWidth )/ 2; 
+    mScrollEnabled = titleStringWidth  > ( ITEM_PX_WIDTH - newImageWidth );
+    mScrollerOffset = 0.0f;
 
-	if (hasFocus)
+    if (hasFocus)
     {
         mIsValidSelection = true;
         Entering();
@@ -67,7 +67,7 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
                     break;
                 }
             default:
-				 mImageFilename = "noavatar.jpg";
+                 mImageFilename = "noavatar.jpg";
                 // do nothing.  
                 break;
         }
@@ -75,15 +75,15 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
     }
     
     
-	mDisplayInitialized = false;
+    mDisplayInitialized = false;
 
 }
 
 void DeckMenuItem::Update(float dt)
 {
-	mScrollerOffset += kHorizontalScrollSpeed * dt;
-	if ( (mScrollerOffset) > mTitleResetWidth )
-		mScrollerOffset = -ITEM_PX_WIDTH;
+    mScrollerOffset += kHorizontalScrollSpeed * dt;
+    if ( (mScrollerOffset) > mTitleResetWidth )
+        mScrollerOffset = -ITEM_PX_WIDTH;
 }
 
 
@@ -92,12 +92,12 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
   mYOffset = yOffset;
 
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-	
-	if (!( mHasFocus && mScrollEnabled ))
-		mScrollerOffset = 0;
-	if (!mHasFocus && mScrollEnabled)
-		mScrollerOffset = -1 * ( getWidth() - ITEM_PX_WIDTH )/2;
-	float offSet = mScrollerOffset;
+    
+    if (!( mHasFocus && mScrollEnabled ))
+        mScrollerOffset = 0;
+    if (!mHasFocus && mScrollEnabled)
+        mScrollerOffset = -1 * ( getWidth() - ITEM_PX_WIDTH )/2;
+    float offSet = mScrollerOffset;
 
     if (mHasFocus)
         mFont->SetScale(SCALE_SELECTED);
@@ -105,8 +105,8 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
         mFont->SetScale(SCALE_NORMAL);
     
     mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER, offSet, ITEM_PX_WIDTH);
-	mDisplayInitialized = true;
-	//Render a "new" icon for decks that have never been played yet
+    mDisplayInitialized = true;
+    //Render a "new" icon for decks that have never been played yet
     if (mMetaData && !mMetaData->getGamesPlayed())
     {
         JTexture * tex = WResourceManager::Instance()->RetrieveTexture("new.png");
@@ -128,7 +128,7 @@ void DeckMenuItem::Render()
 
 void DeckMenuItem::checkUserClick()
 {
-	int x1 = -1, y1 = -1;
+    int x1 = -1, y1 = -1;
     if (mEngine->GetLeftClickCoordinates(x1, y1))
     {   
         mIsValidSelection = false;
@@ -136,8 +136,8 @@ void DeckMenuItem::checkUserClick()
         if ( (x1 >= x2) && (x1 <= (x2 + ITEM_PX_WIDTH)) && (y1 >= y2) && (y1 < (y2 + kItemYHeight)))
             mIsValidSelection = true;
     }
-	else
-		mIsValidSelection = true;
+    else
+        mIsValidSelection = true;
 }
 
 
@@ -175,14 +175,14 @@ float DeckMenuItem::getWidth() const
 
 string DeckMenuItem::getDeckName() const
 {
-	if (mMetaData)
-		return mMetaData->getName();
+    if (mMetaData)
+        return mMetaData->getName();
 
-	std::string s;
-	std::stringstream out;
-	out << mMetaData->getDeckId();
-	s = out.str();
-	return "[deck" + s + "]";
+    std::string s;
+    std::stringstream out;
+    out << mMetaData->getDeckId();
+    s = out.str();
+    return "[deck" + s + "]";
 }
 
 ostream& DeckMenuItem::toString(ostream& out) const

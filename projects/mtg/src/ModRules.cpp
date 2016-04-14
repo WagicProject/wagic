@@ -301,12 +301,12 @@ ModRulesRenderCardGuiItem::ModRulesRenderCardGuiItem(string name, int posX, int 
     mFormattedData = formattedData;
     mFilter = filter;
     mFontSize = fontSize;
-	mFont = font;
+    mFont = font;
     mFontColor = fontColor;
     mSizeIcon = SizeIcon;
-	mIconPosX = IconPosX;
-	mIconPosY = IconPosY;
-	mFileName = FileName;
+    mIconPosX = IconPosX;
+    mIconPosY = IconPosY;
+    mFileName = FileName;
 
 }
 
@@ -318,12 +318,12 @@ void ModRulesCardGui::parse(TiXmlElement* element)
     string _FormattedText;
     string _Filter;
     int _FontSize;
-	bool _Font;
-	PIXEL_TYPE _FontColor;
-	int _SizeIcon;
-	int _IconPosX;
-	int _IconPosY;
-	string _FileName;
+    bool _Font;
+    PIXEL_TYPE _FontColor;
+    int _SizeIcon;
+    int _IconPosX;
+    int _IconPosY;
+    string _FileName;
     
 
 
@@ -353,12 +353,12 @@ void ModRulesCardGui::parse(TiXmlElement* element)
             _FormattedText = "";
             _Filter = "";
             _FontSize = 0;
-			_Font = false;
+            _Font = false;
             _FontColor = 0;
             _SizeIcon = 0;
-			_IconPosX = 0;
-			_IconPosY = 0 ;
-			_FileName = "";
+            _IconPosX = 0;
+            _IconPosY = 0 ;
+            _FileName = "";
 
 
             TiXmlElement* ItemElement = node->ToElement();
@@ -379,11 +379,11 @@ void ModRulesCardGui::parse(TiXmlElement* element)
             }
 
             ChildNode = ItemElement->FirstChild("font");
-			if (ChildNode) {
-			   _Font = true;
-			   _FontSize = atoi(ChildNode->ToElement()->Attribute("size"));
-			   vector<string> argb = split( ChildNode->ToElement()->Attribute("color"), ',');
-			   _FontColor = ARGB(
+            if (ChildNode) {
+               _Font = true;
+               _FontSize = atoi(ChildNode->ToElement()->Attribute("size"));
+               vector<string> argb = split( ChildNode->ToElement()->Attribute("color"), ',');
+               _FontColor = ARGB(
                                 atoi(argb[0].c_str()),
                                 atoi(argb[1].c_str()),
                                 atoi(argb[2].c_str()),
@@ -392,7 +392,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
 
             }
             ChildNode = ItemElement->FirstChild("iconposition");
-			if (ChildNode) {
+            if (ChildNode) {
                  _IconPosX = atoi(ChildNode->ToElement()->Attribute("x"));
                  _IconPosY = atoi(ChildNode->ToElement()->Attribute("y"));
             }
@@ -408,7 +408,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
 
             }
                
-		
+        
             renderbig.push_back(NEW ModRulesRenderCardGuiItem( _Name, _Posx, _Posy, _FormattedText, _Filter,_Font, _FontSize, _FontColor,_SizeIcon,_IconPosX,_IconPosY,_FileName ));
         }
     }
@@ -423,12 +423,12 @@ void ModRulesCardGui::parse(TiXmlElement* element)
             _FormattedText = "";
             _Filter = "";
             _FontSize = 0;
-			_Font = false;
+            _Font = false;
             _FontColor = 0;
             _SizeIcon = 0;
-			_IconPosX = 0;
-			_IconPosY = 0 ;
-			_FileName = "";
+            _IconPosX = 0;
+            _IconPosY = 0 ;
+            _FileName = "";
 
 
             TiXmlElement* ItemElement = node->ToElement();
@@ -449,11 +449,11 @@ void ModRulesCardGui::parse(TiXmlElement* element)
             }
 
             ChildNode = ItemElement->FirstChild("font");
-			if (ChildNode) {
-			   _Font = true;
-			   _FontSize = atoi(ChildNode->ToElement()->Attribute("size"));
-			   vector<string> argb = split( ChildNode->ToElement()->Attribute("color"), ',');
-			   _FontColor = ARGB(
+            if (ChildNode) {
+               _Font = true;
+               _FontSize = atoi(ChildNode->ToElement()->Attribute("size"));
+               vector<string> argb = split( ChildNode->ToElement()->Attribute("color"), ',');
+               _FontColor = ARGB(
                                 atoi(argb[0].c_str()),
                                 atoi(argb[1].c_str()),
                                 atoi(argb[2].c_str()),
@@ -462,7 +462,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
 
             }
             ChildNode = ItemElement->FirstChild("iconposition");
-			if (ChildNode) {
+            if (ChildNode) {
                  _IconPosX = atoi(ChildNode->ToElement()->Attribute("x"));
                  _IconPosY = atoi(ChildNode->ToElement()->Attribute("y"));
             }
@@ -478,7 +478,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
 
             }
                
-		
+        
             rendertinycrop.push_back(NEW ModRulesRenderCardGuiItem( _Name, _Posx, _Posy, _FormattedText, _Filter,_Font, _FontSize, _FontColor,_SizeIcon,_IconPosX,_IconPosY,_FileName ));
         }
     }

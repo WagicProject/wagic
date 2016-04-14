@@ -169,7 +169,7 @@ public:
 class MillExileCost : public MillCost
 {
 public:
-	MillExileCost(TargetChooser *_tc = NULL);
+    MillExileCost(TargetChooser *_tc = NULL);
   virtual int doPay();
 };
 
@@ -252,6 +252,17 @@ public:
   virtual int isPaymentSet();
   virtual int doPay();
   virtual Ninja * clone() const;
+};
+
+//offering cost
+class Offering : public ExtraCost
+{
+public:
+  Offering(TargetChooser *_tc = NULL);
+  virtual int canPay();
+  virtual int isPaymentSet();
+  virtual int doPay();
+  virtual Offering * clone() const;
 };
 
 class CounterCost : public ExtraCost

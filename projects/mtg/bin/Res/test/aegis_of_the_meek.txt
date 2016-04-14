@@ -23,6 +23,7 @@ firstmain
 [PLAYER1]
 inplay:Aegis of the Meek,Steppe Lynx,Savannah Lions,Courier Hawk
 graveyard:Swords to Plowshares
+exile:Raging Goblin
 life:22
 [PLAYER2]
 [END]

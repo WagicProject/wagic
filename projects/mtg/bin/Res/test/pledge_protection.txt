@@ -1,0 +1,46 @@
+#Testing Protection
+#702.16c A permanent or player with protection can’t be enchanted by Auras that have the stated
+#quality. Such Auras attached to the permanent or player with protection will be put into their
+#owners’ graveyards as a state-based action.
+#
+#702.16d A permanent with protection can’t be equipped by Equipment that have the stated quality
+#or fortified by Fortifications that have the stated quality. Such Equipment or Fortifications
+#become unattached from that permanent as a state-based action, but remain on the battlefield.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Pledge of Loyalty, Shuko, Holy Strength, Shifting Sky
+inplay:Crimson Acolyte
+manapool:{W}{W}{W}{W}{U}{U}{U}
+[PLAYER2]
+[DO]
+Holy Strength
+Crimson Acolyte
+#crimson acolyte becomes 2/3
+Shuko
+Shuko
+Crimson Acolyte
+#crimson acolyte becomes 3/3
+Pledge of Loyalty
+Crimson Acolyte
+#crimson acolyte becomes 2/1 since you have white permanents, pledge of loyalty grants protection from white
+#holy strength is put into the graveyard as state based action :)
+Shifting Sky
+choice 0
+choice 2
+#after casting shifting sky, choose the color red, and all nonland permanents becomes red
+#since shuko becomes red and crimson has protection from red, it will be unattached
+#as state based action, pledge of loyalty stays on the creature :) 
+next
+next
+Crimson Acolyte
+next
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Crimson Acolyte, Pledge of Loyalty, Shuko, Shifting Sky
+graveyard:Holy Strength
+[PLAYER2]
+life:19
+[END] 

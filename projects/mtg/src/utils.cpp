@@ -98,6 +98,17 @@ bool FileExists(const string & filename)
     return JFileSystem::GetInstance()->FileExists(filename);
 }
 
+std::string cReplaceString(string subject, const string& search, const string& replace)
+{
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != string::npos)
+    {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
+    return subject;
+}
+
 /*
 #ifdef LINUX
 
@@ -317,13 +328,13 @@ std::string wordWrap(const std::string& sentence, float width, int fontId)
             string currentSentence = sentence.substr(breakIdx, idx - breakIdx);
             float stringLength = mFont->GetStringWidth( currentSentence.c_str() );
             if (stringLength >= width)
-            {				
+            {                
                 if ( stringLength > width )
                 {
                     while ( sentence[idx-1] != ' ' )
                         idx--;
                 }
-                retVal[idx-1] = '\n';				
+                retVal[idx-1] = '\n';                
                 breakIdx = idx;
                 numLines++;
             }
@@ -333,12 +344,12 @@ std::string wordWrap(const std::string& sentence, float width, int fontId)
             string currentSentence = sentence.substr(breakIdx, idx - breakIdx);
             float stringLength = mFont->GetStringWidth( currentSentence.c_str() );
             if (stringLength >= width)
-            {				
+            {                
                 if ( stringLength > width )
                 {
                     while ( sentence[idx-1] != ' ' )
                         idx--;
-                    retVal[idx-1] = '\n';				
+                    retVal[idx-1] = '\n';                
                 }
                 numLines++;
             }

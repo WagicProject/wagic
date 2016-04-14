@@ -202,8 +202,8 @@ public:
 #endif
 
 private:
-    bool bThemedCards;		//Does the theme have a "sets" directory for overwriting cards?
-    void FlattenTimes();	//To prevent bad cache timing on int overflow
+    bool bThemedCards;      //Does the theme have a "sets" directory for overwriting cards?
+    void FlattenTimes();    //To prevent bad cache timing on int overflow
 
     //For cached stuff
     WCache<WCachedTexture,JTexture> textureWCache;

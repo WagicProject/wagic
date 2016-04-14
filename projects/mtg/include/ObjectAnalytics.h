@@ -1,7 +1,7 @@
 #ifndef OBJECTANALYTICS_H
 #define OBJECTANALYTICS_H
 
-#include <boost/cstdint.hpp>
+#include <stdint.h>
 
 #ifdef _DEBUG
 #define TRACK_OBJECT_USAGE

@@ -46,8 +46,8 @@ MTGCardInstance * TestSuiteAI::getCard(string action)
     for (int i = 0; i < 2; i++)
     {
         Player * p = observer->players[i];
-        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard };
-        for (int j = 0; j < 4; j++)
+        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->removedFromGame };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = zones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -347,7 +347,7 @@ void TestSuiteGame::assertGame()
     int error = 0;
     bool wasAI = false;
 
-	if (observer->getCurrentGamePhase() != endState.phase)
+    if (observer->getCurrentGamePhase() != endState.phase)
     {
         sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
             Constants::MTGPhaseNames[endState.phase].c_str(),endState.phase,
@@ -394,12 +394,13 @@ void TestSuiteGame::assertGame()
             error++;
 
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->removedFromGame };
         MTGGameZone * endstateZones[] = { endState.players[i]->game->graveyard,
                                          endState.players[i]->game->library,
                                          endState.players[i]->game->hand,
-                                         endState.players[i]->game->inPlay };
-        for (int j = 0; j < 4; j++)
+                                         endState.players[i]->game->inPlay,
+                                         endState.players[i]->game->removedFromGame };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
             if (zone->nb_cards != endstateZones[j]->nb_cards)
@@ -576,7 +577,7 @@ int TestSuite::loadNext()
 #elif defined(IOS)
         thread_count = 6;
 #else
-		thread_count = 4;
+        thread_count = 4;
 #endif
         for(size_t i = 0; i < (thread_count-1); i++)
             mWorkerThread.push_back(new boost::thread(ThreadProc, this));
@@ -853,12 +854,13 @@ void TestSuiteGame::initGame()
         stringstream stream;
         stream << initState.players[i]->getRandomGenerator()->saveLoadedRandValues(stream);
         p->getRandomGenerator()->loadRandValues(stream.str());
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->removedFromGame };
         MTGGameZone * loadedPlayerZones[] = { initState.players[i]->game->graveyard,
                                               initState.players[i]->game->library,
                                               initState.players[i]->game->hand,
-                                              initState.players[i]->game->inPlay };
-        for (int j = 0; j < 4; j++)
+                                              initState.players[i]->game->inPlay,
+                                              initState.players[i]->game->removedFromGame };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
             for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
@@ -910,9 +912,10 @@ MTGPlayerCards * TestSuiteGame::buildDeck(Player* player, int playerId)
         MTGGameZone * loadedPlayerZones[] = { initState.players[playerId]->game->graveyard,
             initState.players[playerId]->game->library,
             initState.players[playerId]->game->hand,
+            initState.players[playerId]->game->removedFromGame,
             initState.players[playerId]->game->inPlay };
 
-        for (int j = 0; j < 4; j++)
+        for (int j = 0; j < 5; j++)
         {
             for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
             {

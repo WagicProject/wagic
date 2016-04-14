@@ -13,6 +13,8 @@ Token::Token(string _name, MTGCardInstance * source, int _power, int _toughness)
     lifeOrig = life;
     origpower = _power;
     origtoughness = _toughness;
+    basepower = power;
+    basetoughness = toughness;
     rarity = Constants::RARITY_T;
     name = _name;
     if (name.size() && name[0] >= 97 && name[0] <= 122) name[0] -= 32; //Poor man's camelcase. We assume strings we get are either Camelcased or lowercase
@@ -25,6 +27,9 @@ Token::Token(string _name, MTGCardInstance * source, int _power, int _toughness)
     attacker = 0;
     defenser = NULL;
     banding = NULL;
+    pbonus = 0;
+    tbonus = 0;
+    isSettingBase = 0;
 }
 
 Token::Token(int id) :
@@ -45,7 +50,11 @@ Token::Token(const Token& source) :
     life = source.life;
     lifeOrig = source.life;
     origpower = source.origpower;
-    origtoughness = source.origpower;
+    origtoughness = source.origtoughness;
+    basepower = source.origpower;
+    basetoughness = source.origtoughness;
+    pbonus = source.pbonus;
+    tbonus = source.tbonus;
     rarity = source.rarity;
     name = source.name;
     setId = source.setId;
@@ -56,6 +65,7 @@ Token::Token(const Token& source) :
     attacker = source.attacker;
     defenser = source.defenser;
     banding = source.banding;
+    isSettingBase = source.isSettingBase;
 }
 
 

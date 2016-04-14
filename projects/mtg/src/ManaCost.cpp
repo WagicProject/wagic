@@ -94,7 +94,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     }
 
                     //switch on the first letter. If two costs share their first letter, add an "if" within the switch
-					std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                    std::transform(value.begin(), value.end(), value.begin(), ::tolower);
                     switch (value[0])
                     {
                     case 'x':
@@ -191,6 +191,33 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             TargetChooserFactory tcf(g);
                             tc = tcf.createTargetChooser("creature|myBattlefield", c);
                             manaCost->addExtraCost(NEW Ninja(tc));
+                            break;
+                        }
+                    case 'k': //kill offering
+                        {
+                            TargetChooserFactory tcf(g);
+                            if (value == "kgoblin")
+                            {
+                                tc = tcf.createTargetChooser("creature[goblin]|myBattlefield", c);
+                            }
+                            else if (value == "kfox")
+                            {
+                                tc = tcf.createTargetChooser("creature[fox]|myBattlefield", c);
+                            }
+                            else if (value == "kmoonfolk")
+                            {
+                                tc = tcf.createTargetChooser("creature[moonfolk]|myBattlefield", c);
+                            }
+                            else if (value == "krat")
+                            {
+                                tc = tcf.createTargetChooser("creature[rat]|myBattlefield", c);
+                            }
+                            else if (value == "ksnake")
+                            {
+                                tc = tcf.createTargetChooser("creature[snake]|myBattlefield", c);
+                            }
+                            //TODO iterate subtypes of creatures
+                            manaCost->addExtraCost(NEW Offering(tc));
                             break;
                         }
                     case 'p' :
@@ -668,7 +695,7 @@ ManaCostHybrid * ManaCost::getHybridCost(unsigned int i)
 ExtraCost * ManaCost::getExtraCost(unsigned int i)
 {
     if(extraCosts && extraCosts->costs.size())
-	{
+    {
         if (extraCosts->costs.size() <= i)
             return NULL;
         return extraCosts->costs[i];
@@ -1028,7 +1055,7 @@ ostream& operator<<(ostream& out, ManaCost m)
 
 void ManaPool::Empty()
 {
-	SAFE_DELETE(extraCosts);
+    SAFE_DELETE(extraCosts);
     SAFE_DELETE(kicker);
     SAFE_DELETE(alternative);
     SAFE_DELETE(BuyBack);

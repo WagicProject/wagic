@@ -1,6 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "GameStateOptions.h"
+#include "GameStateMenu.h"
 #include "GameApp.h"
 #include "OptionItem.h"
 #include "SimpleMenu.h"
@@ -80,8 +81,8 @@ void GameStateOptions::Start()
     optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"), -102, GameStateOptionsConst::kNewProfileID, this));
 
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable Cheat Mode")));
-		optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::OPTIMIZE_HAND, "Optimize Starting Hand")));
-		optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODEAIDECK, "Unlock All Ai Decks")));
+        optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::OPTIMIZE_HAND, "Optimize Starting Hand")));
+        optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODEAIDECK, "Unlock All Ai Decks")));
 
     optionsTabs->Add(optionsList);
 
@@ -167,6 +168,7 @@ void GameStateOptions::Update(float dt)
                 JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
                 mParent->DoTransition(TRANSITION_FADE, GAME_STATE_MENU);
                 mState = SHOW_OPTIONS;
+                GameStateMenu::genNbCardsStr();
                 break;
             case WGuiBase::CONFIRM_NEED:
                 optionsTabs->yieldFocus();
@@ -236,8 +238,8 @@ void GameStateOptions::Render()
         "Nakano, Niegen, Kaioshin, Psyringe, r1c47, Superhiro,",
         "Szei, Thanatos02, Whismer, Wololo",
         "",
-        "Thanks also go to Dr.Watson, Orine, Raphael, Sakya, Tyranid",
-        "for their help.",
+        "Thanks also go to Dr.Watson, KF1, Orine, Raphael, Sakya,",
+        "Tacoghandi, Tyranid for their help.",
         "",
         "Thanks to everyone who contributes code/content on the forums!",
         "",

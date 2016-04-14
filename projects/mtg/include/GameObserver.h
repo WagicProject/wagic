@@ -151,6 +151,7 @@ class GameObserver{
   bool undo();
   bool isLoading(){ return mLoading; };
   void Mulligan(Player* player = NULL);
+  void serumMulligan(Player* player = NULL);
   Player* getPlayer(size_t index) { return players[index];};
   bool isStarted() { return (mLayers!=NULL);};
   RandomGenerator* getRandomGenerator() { return &randomGenerator; };
@@ -189,23 +190,23 @@ class GameObserver{
 class NetworkGameObserver : public GameObserver
 {
 protected:
-	JNetwork* mpNetworkSession;
-	bool mSynchronized;
-	bool mForwardAction;
-	virtual void logAction(const string& s);
+    JNetwork* mpNetworkSession;
+    bool mSynchronized;
+    bool mForwardAction;
+    virtual void logAction(const string& s);
 public:
-	// no serverIp means a server is being instantiated, otherwise a client
-	NetworkGameObserver(JNetwork* pNetwork, WResourceManager* output = 0, JGE* input = 0);
-	virtual ~NetworkGameObserver();
-	virtual void loadPlayer(int playerId, Player* player);
-	virtual void Update(float dt);
-	void synchronize();
-	static void loadPlayer(void*pThis, stringstream& in, stringstream& out);
-	static void sendAction(void*pThis, stringstream& in, stringstream& out);
-	static void synchronize(void*pThis, stringstream& in, stringstream& out);
-	static void checkSynchro(void*pxThis, stringstream& in, stringstream& out);
+    // no serverIp means a server is being instantiated, otherwise a client
+    NetworkGameObserver(JNetwork* pNetwork, WResourceManager* output = 0, JGE* input = 0);
+    virtual ~NetworkGameObserver();
+    virtual void loadPlayer(int playerId, Player* player);
+    virtual void Update(float dt);
+    void synchronize();
+    static void loadPlayer(void*pThis, stringstream& in, stringstream& out);
+    static void sendAction(void*pThis, stringstream& in, stringstream& out);
+    static void synchronize(void*pThis, stringstream& in, stringstream& out);
+    static void checkSynchro(void*pxThis, stringstream& in, stringstream& out);
     static void ignoreResponse(void*, stringstream&, stringstream&){};
-	static void disconnect(void*pxThis, stringstream& in, stringstream& out);
+    static void disconnect(void*pxThis, stringstream& in, stringstream& out);
 };
 #endif
 

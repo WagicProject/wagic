@@ -18,9 +18,9 @@ vector<Rules *> Rules::RulesList = vector<Rules *>();
 
 //Sorting by displayName
 struct RulesMenuCmp{
-	bool operator()(const Rules * a,const Rules * b) const{
+    bool operator()(const Rules * a,const Rules * b) const{
         return a->displayName < b->displayName;
-	}
+    }
 } RulesMenuCmp_;
 
 Rules * Rules::getRulesByFilename(string _filename)
@@ -79,8 +79,8 @@ MTGCardInstance * Rules::getCardByMTGId(GameObserver* g, int mtgid)
     for (int i = 0; i < 2; i++)
     {
         Player * p = g->players[i];
-        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard };
-        for (int j = 0; j < 4; j++)
+        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->exile };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = zones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -340,9 +340,10 @@ MTGDeck * Rules::buildDeck(int playerId)
     MTGGameZone * loadedPlayerZones[] = { initState.playerData[playerId].player->game->graveyard,
                                           initState.playerData[playerId].player->game->library,
                                           initState.playerData[playerId].player->game->hand,
-                                          initState.playerData[playerId].player->game->inPlay };
+                                          initState.playerData[playerId].player->game->inPlay,
+                                          initState.playerData[playerId].player->game->exile };
 
-    for (int j = 0; j < 4; j++)
+    for (int j = 0; j < 5; j++)
     {
         for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
         {
@@ -390,12 +391,12 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         if(OptionWhosFirst::WHO_O == options[Options::FIRSTPLAYER].number)
             initState.player = 1;
     }
-	if(!currentPlayerSet)
-	{
-		g->currentPlayerId = initState.player;
-	}
-	g->currentPlayer =  g->players[g->currentPlayerId];
-	g->currentActionPlayer = g->currentPlayer;
+    if(!currentPlayerSet)
+    {
+        g->currentPlayerId = initState.player;
+    }
+    g->currentPlayer =  g->players[g->currentPlayerId];
+    g->currentActionPlayer = g->currentPlayer;
     g->phaseRing->goToPhase(0, g->currentPlayer, false);
     g->phaseRing->goToPhase(initState.phase, g->currentPlayer);
     g->setCurrentGamePhase(initState.phase);
@@ -404,6 +405,7 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
     {
         Player * p = g->players[i];
         p->life = initState.playerData[i].player->life;
+        p->initLife = initState.playerData[i].player->life;
         p->poisonCount = initState.playerData[i].player->poisonCount;
         p->damageCount = initState.playerData[i].player->damageCount;
         p->preventable = initState.playerData[i].player->preventable;
@@ -411,12 +413,13 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile };
         MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
                                               initState.playerData[i].player->game->library,
                                               initState.playerData[i].player->game->hand,
-                                              initState.playerData[i].player->game->inPlay };
-        for (int j = 0; j < 4; j++)
+                                              initState.playerData[i].player->game->inPlay,
+                                              initState.playerData[i].player->game->exile };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
             for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
@@ -620,7 +623,7 @@ GameType Rules::strToGameMode(string s)
     if (s.compare("random1") == 0) return GAME_TYPE_RANDOM1;
     if (s.compare("random2") == 0) return GAME_TYPE_RANDOM2;
     if (s.compare("story") == 0) return GAME_TYPE_STORY;
-	if (s.compare("stonehewer") == 0) return GAME_TYPE_STONEHEWER;
-	if (s.compare("hermit") == 0) return GAME_TYPE_HERMIT;
+    if (s.compare("stonehewer") == 0) return GAME_TYPE_STONEHEWER;
+    if (s.compare("hermit") == 0) return GAME_TYPE_HERMIT;
     return GAME_TYPE_CLASSIC;
 }

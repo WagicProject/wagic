@@ -19,12 +19,6 @@
 		12059D7214980B7200DAC43B /* zfs.vcxproj.filters in Resources */ = {isa = PBXBuildFile; fileRef = 12B8122C1404B9E10092E303 /* zfs.vcxproj.filters */; };
 		12059D7314980B7200DAC43B /* modrules.xml in Resources */ = {isa = PBXBuildFile; fileRef = 129654D5148AA2390031100B /* modrules.xml */; };
 		12059D7414980B7200DAC43B /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 128ED37A148BAE7B00C58E83 /* README.txt */; };
-		12059D7914980B7200DAC43B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECA1494811D00641703 /* Default.png */; };
-		12059D7A14980B7200DAC43B /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECC149481B600641703 /* Default-Landscape~ipad.png */; };
-		12059D7B14980B7200DAC43B /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECE149481C300641703 /* Default-Portrait~ipad.png */; };
-		12059D7C14980B7200DAC43B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED01494823E00641703 /* Default@2x.png */; };
-		12059D7D14980B7200DAC43B /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED21494916D00641703 /* Default-Landscape.png */; };
-		12059D7E14980B7200DAC43B /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED31494916D00641703 /* Default-Portrait.png */; };
 		12059D8014980B7200DAC43B /* Encoding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B1128A01F400C34032 /* Encoding.cpp */; };
 		12059D8114980B7200DAC43B /* hgecolor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B4128A01F400C34032 /* hgecolor.cpp */; };
 		12059D8214980B7200DAC43B /* hgedistort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B5128A01F400C34032 /* hgedistort.cpp */; };
@@ -186,10 +180,6 @@
 		12059E3F14980B7300DAC43B /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3314931CBB00641703 /* ASIHTTPRequest.m */; };
 		12059E4014980B7300DAC43B /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3714931CBB00641703 /* ASIInputStream.m */; };
 		12059E4114980B7300DAC43B /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3914931CBB00641703 /* ASINetworkQueue.m */; };
-		12059E4214980B7300DAC43B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA214933D4A00641703 /* ioapi.c */; };
-		12059E4314980B7300DAC43B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA414933D4A00641703 /* mztools.c */; };
-		12059E4414980B7300DAC43B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA614933D4A00641703 /* unzip.c */; };
-		12059E4514980B7300DAC43B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA814933D4A00641703 /* zip.c */; };
 		12059E4614980B7300DAC43B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 12211EAE14933D6600641703 /* ZipArchive.mm */; };
 		12059E4714980B7300DAC43B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EB61493483C00641703 /* Reachability.m */; };
 		12059E4814980B7300DAC43B /* WagicDownloadProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */; };
@@ -222,21 +212,11 @@
 		12211E7E14931CBB00641703 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3314931CBB00641703 /* ASIHTTPRequest.m */; };
 		12211E7F14931CBB00641703 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3714931CBB00641703 /* ASIInputStream.m */; };
 		12211E8014931CBB00641703 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3914931CBB00641703 /* ASINetworkQueue.m */; };
-		12211EAA14933D4A00641703 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA214933D4A00641703 /* ioapi.c */; };
-		12211EAB14933D4A00641703 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA414933D4A00641703 /* mztools.c */; };
-		12211EAC14933D4A00641703 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA614933D4A00641703 /* unzip.c */; };
-		12211EAD14933D4A00641703 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA814933D4A00641703 /* zip.c */; };
 		12211EAF14933D6600641703 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 12211EAE14933D6600641703 /* ZipArchive.mm */; };
 		12211EB71493483C00641703 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EB61493483C00641703 /* Reachability.m */; };
 		12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EB814934A1800641703 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		12211EBB14934A2C00641703 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EBA14934A2C00641703 /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		12211EC91494360C00641703 /* WagicDownloadProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */; };
-		12211ECB1494811D00641703 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECA1494811D00641703 /* Default.png */; };
-		12211ECD149481B600641703 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECC149481B600641703 /* Default-Landscape~ipad.png */; };
-		12211ECF149481C400641703 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECE149481C300641703 /* Default-Portrait~ipad.png */; };
-		12211ED11494823F00641703 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED01494823E00641703 /* Default@2x.png */; };
-		12211ED41494916D00641703 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED21494916D00641703 /* Default-Landscape.png */; };
-		12211ED51494916D00641703 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED31494916D00641703 /* Default-Portrait.png */; };
 		12272FC414CD57CF00192DC7 /* SimpleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12272FC314CD57CF00192DC7 /* SimpleButton.cpp */; };
 		12272FC514CD57CF00192DC7 /* SimpleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12272FC314CD57CF00192DC7 /* SimpleButton.cpp */; };
 		12272FC814CD6A3900192DC7 /* InteractiveButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */; };
@@ -277,6 +257,17 @@
 		12DCD02E14DBE1F90023B966 /* JSfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD02C14DBE1F90023B966 /* JSfx.cpp */; };
 		12DCD03414DBECC50023B966 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DCD03114DBECC50023B966 /* CoreAudio.framework */; };
 		12DCD03514DBECC50023B966 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DCD03214DBECC50023B966 /* OpenAL.framework */; };
+		180633481BA5F82D003FB092 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 180633411BA5F82D003FB092 /* Default-568h@2x.png */; };
+		180633491BA5F82D003FB092 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 180633421BA5F82D003FB092 /* Default-Landscape.png */; };
+		1806334A1BA5F82D003FB092 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 180633431BA5F82D003FB092 /* Default-Landscape~ipad.png */; };
+		1806334B1BA5F82D003FB092 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 180633441BA5F82D003FB092 /* Default-Portrait.png */; };
+		1806334C1BA5F82D003FB092 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 180633451BA5F82D003FB092 /* Default-Portrait~ipad.png */; };
+		1806334D1BA5F82D003FB092 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 180633461BA5F82D003FB092 /* Default.png */; };
+		1806334E1BA5F82D003FB092 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 180633471BA5F82D003FB092 /* Default@2x.png */; };
+		188B71D01B9B9F9400D5522B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 188B71C41B9B9F9400D5522B /* ioapi.c */; };
+		188B71D11B9B9F9400D5522B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 188B71C51B9B9F9400D5522B /* unzip.c */; };
+		188B71D21B9B9F9400D5522B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 188B71C61B9B9F9400D5522B /* zip.c */; };
+		188B71D61B9B9F9400D5522B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 188B71CC1B9B9F9400D5522B /* mztools.c */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
@@ -284,7 +275,6 @@
 		751E1F1518FAE53E001B1E16 /* CarouselDeckView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751E1F1218FAE53E001B1E16 /* CarouselDeckView.cpp */; };
 		751E1F1618FAE53E001B1E16 /* DeckView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751E1F1318FAE53E001B1E16 /* DeckView.cpp */; };
 		751E1F1718FAE53E001B1E16 /* GridDeckView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751E1F1418FAE53E001B1E16 /* GridDeckView.cpp */; };
-		75D209D3181D54FD009916AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D209D1181D54FD009916AC /* Default-568h@2x.png */; };
 		75D209D4181D54FD009916AC /* wagic-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D209D2181D54FD009916AC /* wagic-80x80.png */; };
 		CE97CD1E1295AB4300FDFD3B /* SimplePopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE97CD1D1295AB4300FDFD3B /* SimplePopup.cpp */; };
 		CE9A478512B514BA00C9F38A /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477612B514BA00C9F38A /* EAGLView.m */; };
@@ -474,28 +464,13 @@
 		12211E3914931CBB00641703 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
 		12211E3A14931CBB00641703 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		12211E9F14933D0600641703 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipArchive.h; path = iOS/ZipArchive/ZipArchive.h; sourceTree = "<group>"; };
-		12211EA114933D4A00641703 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		12211EA214933D4A00641703 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		12211EA314933D4A00641703 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		12211EA414933D4A00641703 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
-		12211EA514933D4A00641703 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
-		12211EA614933D4A00641703 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		12211EA714933D4A00641703 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		12211EA814933D4A00641703 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
-		12211EA914933D4A00641703 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
-		12211EAE14933D6600641703 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
-		12211EB51493483C00641703 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "iOS/Reachability/Reachability 2.0.4ddg/Reachability/Reachability.h"; sourceTree = "<group>"; };
-		12211EB61493483C00641703 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "iOS/Reachability/Reachability 2.0.4ddg/Reachability/Reachability.m"; sourceTree = "<group>"; };
+		12211EAE14933D6600641703 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ZipArchive.mm; path = iOS/ZipArchive/ZipArchive.mm; sourceTree = "<group>"; };
+		12211EB51493483C00641703 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = iOS/Reachability/Reachability/Reachability.h; sourceTree = "<group>"; };
+		12211EB61493483C00641703 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = iOS/Reachability/Reachability/Reachability.m; sourceTree = "<group>"; };
 		12211EB814934A1800641703 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		12211EBA14934A2C00641703 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		12211EC71494360C00641703 /* WagicDownloadProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WagicDownloadProgressViewController.h; path = UI/WagicDownloadProgressViewController.h; sourceTree = "<group>"; };
 		12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WagicDownloadProgressViewController.m; path = UI/WagicDownloadProgressViewController.m; sourceTree = "<group>"; };
-		12211ECA1494811D00641703 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		12211ECC149481B600641703 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		12211ECE149481C300641703 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		12211ED01494823E00641703 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		12211ED21494916D00641703 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "../Default-Landscape.png"; sourceTree = "<group>"; };
-		12211ED31494916D00641703 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "../Default-Portrait.png"; sourceTree = "<group>"; };
 		12272FC114CD558C00192DC7 /* SimpleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleButton.h; sourceTree = "<group>"; };
 		12272FC314CD57CF00192DC7 /* SimpleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleButton.cpp; sourceTree = "<group>"; };
 		12272FC614CD68FB00192DC7 /* InteractiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveButton.h; sourceTree = "<group>"; };
@@ -570,6 +545,22 @@
 		12DCD03014DBECC40023B966 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		12DCD03114DBECC50023B966 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		12DCD03214DBECC50023B966 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		180633411BA5F82D003FB092 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
+		180633421BA5F82D003FB092 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources/Default-Landscape.png"; sourceTree = "<group>"; };
+		180633431BA5F82D003FB092 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		180633441BA5F82D003FB092 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "Resources/Default-Portrait.png"; sourceTree = "<group>"; };
+		180633451BA5F82D003FB092 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "Resources/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		180633461BA5F82D003FB092 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		180633471BA5F82D003FB092 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
+		188B71C31B9B9F9400D5522B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = unzip/crypt.h; sourceTree = "<group>"; };
+		188B71C41B9B9F9400D5522B /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = unzip/ioapi.c; sourceTree = "<group>"; };
+		188B71C51B9B9F9400D5522B /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = unzip.c; path = unzip/unzip.c; sourceTree = "<group>"; };
+		188B71C61B9B9F9400D5522B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = unzip/zip.c; sourceTree = "<group>"; };
+		188B71C71B9B9F9400D5522B /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = unzip/ioapi.h; sourceTree = "<group>"; };
+		188B71CC1B9B9F9400D5522B /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mztools.c; path = unzip/mztools.c; sourceTree = "<group>"; };
+		188B71CD1B9B9F9400D5522B /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mztools.h; path = unzip/mztools.h; sourceTree = "<group>"; };
+		188B71CE1B9B9F9400D5522B /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = unzip/unzip.h; sourceTree = "<group>"; };
+		188B71CF1B9B9F9400D5522B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = unzip/zip.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* wagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -582,7 +573,6 @@
 		751E1F1218FAE53E001B1E16 /* CarouselDeckView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarouselDeckView.cpp; sourceTree = "<group>"; };
 		751E1F1318FAE53E001B1E16 /* DeckView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeckView.cpp; sourceTree = "<group>"; };
 		751E1F1418FAE53E001B1E16 /* GridDeckView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GridDeckView.cpp; sourceTree = "<group>"; };
-		75D209D1181D54FD009916AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		75D209D2181D54FD009916AC /* wagic-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wagic-80x80.png"; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* wagic-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wagic-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		CE8B8A231299C22900A3CDEF /* DebugRoutines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugRoutines.h; sourceTree = "<group>"; };
@@ -976,22 +966,6 @@
 			name = ZipArchive;
 			sourceTree = "<group>";
 		};
-		12211EA014933D4A00641703 /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				12211EA114933D4A00641703 /* crypt.h */,
-				12211EA214933D4A00641703 /* ioapi.c */,
-				12211EA314933D4A00641703 /* ioapi.h */,
-				12211EA414933D4A00641703 /* mztools.c */,
-				12211EA514933D4A00641703 /* mztools.h */,
-				12211EA614933D4A00641703 /* unzip.c */,
-				12211EA714933D4A00641703 /* unzip.h */,
-				12211EA814933D4A00641703 /* zip.c */,
-				12211EA914933D4A00641703 /* zip.h */,
-			);
-			path = minizip;
-			sourceTree = "<group>";
-		};
 		12211EB01493449A00641703 /* Networking Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1053,7 +1027,6 @@
 			isa = PBXGroup;
 			children = (
 				128ED372148BAE7B00C58E83 /* GoogleAdMobAdsSDKiOS-5.0.5 */,
-				12211EA014933D4A00641703 /* minizip */,
 				12211E9E14933CC200641703 /* ZipArchive */,
 			);
 			name = Tools;
@@ -1078,14 +1051,14 @@
 		128FB96A149537A600ED4EE6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				75D209D1181D54FD009916AC /* Default-568h@2x.png */,
+				180633411BA5F82D003FB092 /* Default-568h@2x.png */,
+				180633421BA5F82D003FB092 /* Default-Landscape.png */,
+				180633431BA5F82D003FB092 /* Default-Landscape~ipad.png */,
+				180633441BA5F82D003FB092 /* Default-Portrait.png */,
+				180633451BA5F82D003FB092 /* Default-Portrait~ipad.png */,
+				180633461BA5F82D003FB092 /* Default.png */,
+				180633471BA5F82D003FB092 /* Default@2x.png */,
 				75D209D2181D54FD009916AC /* wagic-80x80.png */,
-				12211ED21494916D00641703 /* Default-Landscape.png */,
-				12211ED31494916D00641703 /* Default-Portrait.png */,
-				12211ED01494823E00641703 /* Default@2x.png */,
-				12211ECE149481C300641703 /* Default-Portrait~ipad.png */,
-				12211ECC149481B600641703 /* Default-Landscape~ipad.png */,
-				12211ECA1494811D00641703 /* Default.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1188,6 +1161,22 @@
 				12DCD02C14DBE1F90023B966 /* JSfx.cpp */,
 			);
 			name = ios;
+			sourceTree = "<group>";
+		};
+		188B71C21B9B9F0100D5522B /* unzip */ = {
+			isa = PBXGroup;
+			children = (
+				188B71C31B9B9F9400D5522B /* crypt.h */,
+				188B71C41B9B9F9400D5522B /* ioapi.c */,
+				188B71C51B9B9F9400D5522B /* unzip.c */,
+				188B71C61B9B9F9400D5522B /* zip.c */,
+				188B71C71B9B9F9400D5522B /* ioapi.h */,
+				188B71CC1B9B9F9400D5522B /* mztools.c */,
+				188B71CD1B9B9F9400D5522B /* mztools.h */,
+				188B71CE1B9B9F9400D5522B /* unzip.h */,
+				188B71CF1B9B9F9400D5522B /* zip.h */,
+			);
+			name = unzip;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -1591,6 +1580,7 @@
 		CEE232AF128A01F400C34032 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				188B71C21B9B9F0100D5522B /* unzip */,
 				1235D03F14DEAC6A00B02B42 /* psp */,
 				1235D03D14DE397200B02B42 /* android */,
 				12DCD02B14DBE1AF0023B966 /* ios */,
@@ -1743,12 +1733,6 @@
 				12059D7214980B7200DAC43B /* zfs.vcxproj.filters in Resources */,
 				12059D7314980B7200DAC43B /* modrules.xml in Resources */,
 				12059D7414980B7200DAC43B /* README.txt in Resources */,
-				12059D7914980B7200DAC43B /* Default.png in Resources */,
-				12059D7A14980B7200DAC43B /* Default-Landscape~ipad.png in Resources */,
-				12059D7B14980B7200DAC43B /* Default-Portrait~ipad.png in Resources */,
-				12059D7C14980B7200DAC43B /* Default@2x.png in Resources */,
-				12059D7D14980B7200DAC43B /* Default-Landscape.png in Resources */,
-				12059D7E14980B7200DAC43B /* Default-Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1757,25 +1741,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				F233DC3812A111EB008594F2 /* wagic-64x64.png in Resources */,
+				1806334B1BA5F82D003FB092 /* Default-Portrait.png in Resources */,
 				F2CDD5E312A6F7A2007B35AF /* EAGLViewController.xib in Resources */,
 				CECB67E112B517C000321D5A /* MainWindow.xib in Resources */,
 				127D4C6F1376B33200109AB4 /* mtg.txt in Resources */,
+				1806334C1BA5F82D003FB092 /* Default-Portrait~ipad.png in Resources */,
 				12B812341404B9E20092E303 /* !Pak0.cpk in Resources */,
+				180633481BA5F82D003FB092 /* Default-568h@2x.png in Resources */,
+				1806334A1BA5F82D003FB092 /* Default-Landscape~ipad.png in Resources */,
 				12B812351404B9E20092E303 /* !Pak1.cpk in Resources */,
 				12B812391404B9E20092E303 /* zfs.sln in Resources */,
+				1806334D1BA5F82D003FB092 /* Default.png in Resources */,
+				1806334E1BA5F82D003FB092 /* Default@2x.png in Resources */,
+				180633491BA5F82D003FB092 /* Default-Landscape.png in Resources */,
 				12B8123A1404B9E20092E303 /* zfs.vcproj in Resources */,
 				12B8123B1404B9E20092E303 /* zfs.vcxproj in Resources */,
 				12B8123C1404B9E20092E303 /* zfs.vcxproj.filters in Resources */,
 				129654D6148AA23A0031100B /* modrules.xml in Resources */,
 				128ED37C148BAE7B00C58E83 /* README.txt in Resources */,
-				75D209D3181D54FD009916AC /* Default-568h@2x.png in Resources */,
-				12211ECB1494811D00641703 /* Default.png in Resources */,
 				75D209D4181D54FD009916AC /* wagic-80x80.png in Resources */,
-				12211ECD149481B600641703 /* Default-Landscape~ipad.png in Resources */,
-				12211ECF149481C400641703 /* Default-Portrait~ipad.png in Resources */,
-				12211ED11494823F00641703 /* Default@2x.png in Resources */,
-				12211ED41494916D00641703 /* Default-Landscape.png in Resources */,
-				12211ED51494916D00641703 /* Default-Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1947,10 +1931,6 @@
 				12059E3F14980B7300DAC43B /* ASIHTTPRequest.m in Sources */,
 				12059E4014980B7300DAC43B /* ASIInputStream.m in Sources */,
 				12059E4114980B7300DAC43B /* ASINetworkQueue.m in Sources */,
-				12059E4214980B7300DAC43B /* ioapi.c in Sources */,
-				12059E4314980B7300DAC43B /* mztools.c in Sources */,
-				12059E4414980B7300DAC43B /* unzip.c in Sources */,
-				12059E4514980B7300DAC43B /* zip.c in Sources */,
 				12059E4614980B7300DAC43B /* ZipArchive.mm in Sources */,
 				12059E4714980B7300DAC43B /* Reachability.m in Sources */,
 				12059E4814980B7300DAC43B /* WagicDownloadProgressViewController.m in Sources */,
@@ -1996,6 +1976,7 @@
 				CEE23323128A01F400C34032 /* tinystr.cpp in Sources */,
 				CEE23324128A01F400C34032 /* tinyxml.cpp in Sources */,
 				CEE23325128A01F400C34032 /* tinyxmlerror.cpp in Sources */,
+				188B71D01B9B9F9400D5522B /* ioapi.c in Sources */,
 				CEE23326128A01F400C34032 /* tinyxmlparser.cpp in Sources */,
 				CEE23330128A01F400C34032 /* Vector2D.cpp in Sources */,
 				CEE23331128A01F400C34032 /* vram.c in Sources */,
@@ -2018,6 +1999,7 @@
 				CEA377691291C60500B9016A /* Damage.cpp in Sources */,
 				CEA3776A1291C60500B9016A /* DamagerDamaged.cpp in Sources */,
 				CEA3776B1291C60500B9016A /* DeckDataWrapper.cpp in Sources */,
+				188B71D61B9B9F9400D5522B /* mztools.c in Sources */,
 				CEA3776C1291C60500B9016A /* DeckEditorMenu.cpp in Sources */,
 				CEA3776D1291C60500B9016A /* DeckManager.cpp in Sources */,
 				CEA3776E1291C60500B9016A /* DeckMenu.cpp in Sources */,
@@ -2087,6 +2069,7 @@
 				CEA377B41291C60500B9016A /* TextScroller.cpp in Sources */,
 				CEA377B51291C60500B9016A /* ThisDescriptor.cpp in Sources */,
 				CEA377B61291C60500B9016A /* Token.cpp in Sources */,
+				188B71D11B9B9F9400D5522B /* unzip.c in Sources */,
 				CEA377B71291C60500B9016A /* Translate.cpp in Sources */,
 				CEA377B81291C60500B9016A /* TranslateKeys.cpp in Sources */,
 				CEA377B91291C60500B9016A /* Trash.cpp in Sources */,
@@ -2123,6 +2106,7 @@
 				12769488144127380088F6D3 /* TestSuiteAI.cpp in Sources */,
 				12CCA030144A05D100E343A0 /* AbilityParser.cpp in Sources */,
 				12211E7914931CBB00641703 /* ASIAuthenticationDialog.m in Sources */,
+				188B71D21B9B9F9400D5522B /* zip.c in Sources */,
 				12211E7A14931CBB00641703 /* ASIDataCompressor.m in Sources */,
 				12211E7B14931CBB00641703 /* ASIDataDecompressor.m in Sources */,
 				12211E7C14931CBB00641703 /* ASIDownloadCache.m in Sources */,
@@ -2130,10 +2114,6 @@
 				12211E7E14931CBB00641703 /* ASIHTTPRequest.m in Sources */,
 				12211E7F14931CBB00641703 /* ASIInputStream.m in Sources */,
 				12211E8014931CBB00641703 /* ASINetworkQueue.m in Sources */,
-				12211EAA14933D4A00641703 /* ioapi.c in Sources */,
-				12211EAB14933D4A00641703 /* mztools.c in Sources */,
-				12211EAC14933D4A00641703 /* unzip.c in Sources */,
-				12211EAD14933D4A00641703 /* zip.c in Sources */,
 				12211EAF14933D6600641703 /* ZipArchive.mm in Sources */,
 				12211EB71493483C00641703 /* Reachability.m in Sources */,
 				12211EC91494360C00641703 /* WagicDownloadProgressViewController.m in Sources */,
@@ -2273,7 +2253,7 @@
 					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
 				);
 				INFOPLIST_FILE = "wagic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../admobsdk/iOS/GoogleAdMobAdsSDKiOS-5.0.5\"",
@@ -2315,7 +2295,7 @@
 					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
 				);
 				INFOPLIST_FILE = "wagic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../admobsdk/iOS/GoogleAdMobAdsSDKiOS-5.0.5\"",

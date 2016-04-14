@@ -55,7 +55,7 @@ public:
     Pos* view;
     int X;
     int castX;
-    int alternateCostPaid[ManaCost::MANA_PAID_WITH_SUSPEND + 1]; 
+    int alternateCostPaid[ManaCost::MANA_PAID_WITH_BESTOW + 1]; 
     int paymenttype;
     int castMethod; /* Tells if the card reached its current zone by being cast or not (brought into the zone by an effect). non 0 == cast, 0 == not cast */
     int frozen;
@@ -72,7 +72,11 @@ public:
     int regenerateTokens;
     int isToken;
     int origpower;
+    int basepower;//to keep origpower intact
+    int pbonus;
     int origtoughness;
+    int basetoughness;//to keep origtoughness intact
+    int tbonus;
     int isMultiColored;
     int isLeveler;
     bool enchanted;
@@ -182,6 +186,7 @@ public:
 
     int addToToughness(int value);
     int setToughness(int value);
+    int isSettingBase;
 
     vector<TargetChooser *>protections;
     int addProtection(TargetChooser * tc);
@@ -214,6 +219,42 @@ public:
     void untap();
     void tap();
     void attemptUntap();
+
+    //cda and other func
+    void stripPTbonus();
+    void minusPTbonus(int p = 0, int t = 0);
+    void plusPTbonus(int p = 0, int t = 0);
+    void applyPTbonus();
+    void addcounter(int p = 0, int t = 0);
+    void removecounter(int p = 0, int t = 0);
+    void addptbonus(int p = 0, int t = 0);
+    void removeptbonus(int p = 0, int t = 0);
+    void addbaseP(int p = 0);
+    void addbaseT(int t = 0);
+    void revertbaseP();
+    void revertbaseT();
+    int getCurrentPower();
+    int getCurrentToughness();
+    int LKIpower;
+    int LKItoughness;
+    void cdaPT(int p = 0, int t = 0);
+    bool isCDA;
+    void switchPT(bool apply = false);
+    int swapP;
+    int swapT;
+    bool isSwitchedPT;
+    bool isACopier;
+    bool bypassTC;
+    bool discarded;
+    int copiedID;
+    int modifiedbAbi;
+    bool StackIsEmptyandSorcerySpeed();
+    bool isTargetted();
+    int cardistargetted;
+    bool isTargetter();
+    int cardistargetter;
+    int myconvertedcost;
+    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost);
 
     void eventattacked();
     void eventattackedAlone();

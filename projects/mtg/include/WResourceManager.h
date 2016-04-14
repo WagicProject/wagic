@@ -21,7 +21,7 @@ enum ENUM_WRES_INFO
 
 enum ENUM_RETRIEVE_STYLE
 {
-	RETRIEVE_EXISTING, 	//Only returns a resource if it already exists. Does not lock or unlock.
+    RETRIEVE_EXISTING,  //Only returns a resource if it already exists. Does not lock or unlock.
     RETRIEVE_NORMAL,    //Returns or creates a resource. Does not change lock status.
     RETRIEVE_LOCK,      //As above, locks cached resource. Not for quads.
     RETRIEVE_UNLOCK,    //As above, unlocks cached resource. Not for quads.
@@ -33,7 +33,7 @@ enum ENUM_RETRIEVE_STYLE
 
 enum ENUM_CACHE_SUBTYPE
 {
-    CACHE_NORMAL =  (1<<0),    //Use default values. Not really a flag.
+    CACHE_NORMAL =  (1<<0),      //Use default values. Not really a flag.
     //CACHE_EXISTING = (1<<1),   //Retrieve it only if it already exists
 
     //Because these bits only modify how a cached resource's Attempt() is called,
@@ -51,8 +51,8 @@ enum ENUM_CACHE_ERROR
     CACHE_ERROR_NONE = 0,
     CACHE_ERROR_NOT_CACHED = CACHE_ERROR_NONE,
     CACHE_ERROR_404,
-    CACHE_ERROR_BAD, 		//Something went wrong with item->attempt()
-    CACHE_ERROR_BAD_ALLOC, 	//Couldn't allocate item
+    CACHE_ERROR_BAD,         //Something went wrong with item->attempt()
+    CACHE_ERROR_BAD_ALLOC,     //Couldn't allocate item
     CACHE_ERROR_LOST,
     CACHE_ERROR_NOT_MANAGED,
 };
@@ -69,16 +69,16 @@ public:
     static void Terminate();
 
     virtual ~WResourceManager()
-	{
-	}
+    {
+    }
 
     virtual bool IsThreaded() = 0;
-	void PlaySample(const string& fileName) {
-		JSample*sample = RetrieveSample(fileName);
-		if(sample) {
-            JSoundSystem::GetInstance()->PlaySample(sample);			
-		}
-	};
+    void PlaySample(const string& fileName) {
+        JSample*sample = RetrieveSample(fileName);
+        if(sample) {
+            JSoundSystem::GetInstance()->PlaySample(sample);            
+        }
+    };
     virtual JQuadPtr RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL) = 0;
     virtual JSample * RetrieveSample(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;
     virtual JTexture * RetrieveTexture(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;
@@ -90,7 +90,7 @@ public:
     virtual void Release(JTexture * tex) = 0;
     virtual void Release(JSample * sample) = 0;
 
-	//Refreshes all files in cache, for when mode/profile changes.
+    //Refreshes all files in cache, for when mode/profile changes.
     virtual void Refresh() = 0;
 
     //Manual clear of the cache
@@ -132,8 +132,8 @@ protected:
     ** Singleton object only accessibly via Instance(), constructor is private
     */
     WResourceManager()
-	{
-	}
+    {
+    }
 
     static WResourceManager* sInstance;
 };

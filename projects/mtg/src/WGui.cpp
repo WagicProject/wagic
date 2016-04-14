@@ -2308,8 +2308,10 @@ void WGuiKeyBinder::setData()
     j->ResetInput();
 }
 
+#if (!defined IOS)
 static const JButton btnToCheck[] = { JGE_BTN_MENU, JGE_BTN_CTRL, JGE_BTN_RIGHT, JGE_BTN_LEFT, JGE_BTN_UP, JGE_BTN_DOWN,
                 JGE_BTN_OK, JGE_BTN_CANCEL, JGE_BTN_PRI, JGE_BTN_SEC, JGE_BTN_PREV, JGE_BTN_NEXT };
+#endif
 
 #define C(o) (static_cast<OptionKey*>(o))
 WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm()

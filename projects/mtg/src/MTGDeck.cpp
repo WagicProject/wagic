@@ -93,6 +93,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 }
             }
         }
+        if (key == "anyzone")
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            primitive->addMagicText(val,"hand");
+            primitive->addMagicText(val,"library");
+            primitive->addMagicText(val,"graveyard");
+            primitive->addMagicText(val,"stack");
+            primitive->addMagicText(val,"exile");
+            primitive->addMagicText(val);
+        }
         break;
 
     case 'b': //buyback
@@ -271,7 +281,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 {
                     string value = val;
                     std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-					cost->setSuspend(ManaCost::parseManaCost(value));
+                    cost->setSuspend(ManaCost::parseManaCost(value));
                     primitive->suspendedTime = suspendTime;
                 }
                 

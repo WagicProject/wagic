@@ -24,6 +24,7 @@ next
 [ASSERT]
 CLEANUP
 [PLAYER1]
+exile:Dregscape Zombie
 inplay:129754
 [PLAYER2]
 graveyard:Grizzly Bears

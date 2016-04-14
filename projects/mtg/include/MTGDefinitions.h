@@ -219,7 +219,26 @@ class Constants
       LURE = 101,
       NOLEGEND = 102,
       CANPLAYFROMGRAVEYARD = 103,
-      NB_BASIC_ABILITIES = 104,
+      TOKENIZER = 104,
+      MYGRAVEEXILER = 105,
+      OPPGRAVEEXILER = 106,
+      LIBRARYDEATH = 107,
+      SHUFFLELIBRARYDEATH = 108,
+      OFFERING = 109,
+      EVADEBIGGER = 110,
+      SPELLMASTERY = 111,
+      NOLIFEGAIN = 112,
+      NOLIFEGAINOPPONENT = 113,
+      AURAWARD = 114,
+      MADNESS = 115,
+      PROTECTIONFROMCOLOREDSPELLS = 116,
+      MYGCREATUREEXILER = 117,
+      OPPGCREATUREEXILER = 118,
+      PAYZERO = 119,
+      TRINISPHERE = 120,
+      CANPLAYFROMEXILE = 121,
+      LIBRARYEATER = 122,
+      NB_BASIC_ABILITIES = 123,
 
 
     RARITY_S = 'S',   //Special Rarity
@@ -257,21 +276,21 @@ class Constants
     GRADE_UNSUPPORTED = 4,
     GRADE_DANGEROUS = 5,
 
-	ASKIP_NONE=0,
-	ASKIP_SAFE=1,
-	ASKIP_FULL=2,
-	
-	WHO_P=0,
-	WHO_O=1,
-	WHO_R=2,
-	
-	KICKER_ALWAYS=0,
-	KICKER_CHOICE=1,
-	
+    ASKIP_NONE=0,
+    ASKIP_SAFE=1,
+    ASKIP_FULL=2,
+    
+    WHO_P=0,
+    WHO_O=1,
+    WHO_R=2,
+    
+    KICKER_ALWAYS=0,
+    KICKER_CHOICE=1,
+    
   };
 
     enum
-	{
+    {
         NOT_CAST = 0,
         CAST_NORMALLY = 1,
         CAST_WITH_KICKER = 2,

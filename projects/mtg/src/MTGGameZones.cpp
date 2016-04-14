@@ -321,11 +321,52 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         return card; //Error check
 
     int doCopy = 1;
+    bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+    bool inplaytoinplay = false;
+    bool ripToken = false;
+    if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
+        ripToken = true;
+    //Madness or Put in Play...
+    for(int i = 0; i < 2; ++i)
+    {
+        if (card->discarded && (to == g->players[i]->game->graveyard) && (from == g->players[i]->game->hand))
+        {
+            if(card->basicAbilities[(int)Constants::MADNESS])
+                to = g->players[i]->game->exile;
+        }
+    }
+    //Darksteel Colossus, Legacy Weapon ... top priority since we replace destination directly automatically...
+    for(int i = 0; i < 2; ++i)
+    {
+        if ((to == g->players[i]->game->graveyard) && (
+        card->basicAbilities[(int)Constants::LIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH]))
+        {
+            to = g->players[i]->game->library;
+        }
+    }
+    //Leyline of the Void, Yawgmoth's Agenda... effect...
+    for(int i = 0; i < 2; ++i)
+    {
+        if ((to == g->players[i]->game->graveyard) && (
+        (g->players[i]->game->battlefield->hasAbility(Constants::MYGCREATUREEXILER) && card->isCreature()) ||
+        (g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGCREATUREEXILER) && card->isCreature())||
+        g->players[i]->game->battlefield->hasAbility(Constants::MYGRAVEEXILER) ||
+        g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGRAVEEXILER)))
+        {
+            if ((card->isToken && ripToken))
+                to = g->players[i]->game->exile;
+            if (!card->isToken)
+                to = g->players[i]->game->exile;
+        }
+    }
     //When a card is moved from inPlay to inPlay (controller change, for example), it is still the same object
     if ((to == g->players[0]->game->inPlay || to == g->players[1]->game->inPlay) && (from == g->players[0]->game->inPlay || from
                     == g->players[1]->game->inPlay))
     {
         doCopy = 0;
+        asCopy = true;//don't send zone change event so it will not destroy the GUI when multiple switching of control...
+        inplaytoinplay = true;//try sending different event...
     }
 
     if (!(copy = from->removeCard(card, doCopy)))
@@ -333,6 +374,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (card->miracle)
     {
         copy->miracle = true;
+    }
+    if (card->discarded)
+    {//set discarded for madness...
+        if(from == g->players[0]->game->hand || from == g->players[1]->game->hand)
+            copy->discarded = true;
+        else//turn off discarded if its previous zone is not in hand...
+            copy->discarded = false;
     }
     if (options[Options::SFXVOLUME].number > 0)
     {
@@ -384,8 +432,16 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
     if(!asCopy)
     {
+        if(shufflelibrary)
+            copy->owner->game->library->shuffle();
+
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
+    }
+    if(inplaytoinplay)
+    {
+    WEvent * ep = NEW WEventCardControllerChange(copy);
+    g->receiveEvent(ep);
     }
     return ret;
 
@@ -490,7 +546,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->kicked = card->kicked;
                 copy->storedCard = card->storedCard;
                 copy->storedSourceCard = card->storedSourceCard;
-                for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
+                for (int i = 0; i < ManaCost::MANA_PAID_WITH_OVERLOAD +1; i++)
                     copy->alternateCostPaid[i] = card->alternateCostPaid[i];
 
                 //stupid bug with tokens...
@@ -686,7 +742,7 @@ bool MTGGameZone::hasColor(int value)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
-			if (cards[i]->getManaCost()->hasColor(value) && cards[i]->getManaCost()->getConvertedCost() > 0)
+            if (cards[i]->getManaCost()->hasColor(value) && cards[i]->getManaCost()->getConvertedCost() > 0)
         {
             return true;
         }
@@ -711,6 +767,18 @@ bool MTGGameZone::hasAbility(int ability)
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->basicAbilities[ability])
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool MTGGameZone::hasAlias(int alias)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->alias == alias)
         {
             return true;
         }
@@ -1221,6 +1289,10 @@ ostream& operator<<(ostream& out, const MTGPlayerCards& z)
         out << "hand=";
         out << *(z.hand) << endl;
     }
+    if(z.removedFromGame->cards.size()) {
+        out << "exile=";
+        out << *(z.hand) << endl;
+    }
 
     return out;
 }
@@ -1251,6 +1323,11 @@ bool MTGPlayerCards::parseLine(const string& s)
         else if (areaS.compare("inplay") == 0 || areaS.compare("battlefield") == 0)
         {
             battlefield->parseLine(s.substr(limiter+1));
+            return true;
+        }
+        else if (areaS.compare("removedfromgame") == 0 || areaS.compare("exile") == 0)
+        {
+            removedFromGame->parseLine(s.substr(limiter+1));
             return true;
         }
     }

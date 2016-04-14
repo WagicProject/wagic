@@ -598,8 +598,6 @@ private:
   GLint     prog2_positionLoc;
   GLint     prog2_texCoordLoc;
   GLint     prog2_colorLoc;
-  // MVP matrix
-  ESMatrix  prog2_mvpMatrix;
   // Uniform locations
   GLint     prog2_mvpLoc;
 
@@ -612,13 +610,11 @@ private:
   int mCurrentTextureFormat;
 #endif
 
+#ifdef PSP
 	bool mVsync;
-
+    int mTexCounter;
+#endif
 	int mSwizzle;
-	int mTexCounter;
-  
-
-
 	int mCurrentTextureFilter;
 
 	int mCurrTexBlendSrc;

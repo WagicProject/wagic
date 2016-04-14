@@ -42,7 +42,7 @@ JGuiObject(id), mX(x), mY(y), parent(_parent), mFontId(fontId)
     
     mXOffset = mX;
     
-	if (hasFocus)
+    if (hasFocus)
     {
         setIsSelectionValid(true);
         Entering();

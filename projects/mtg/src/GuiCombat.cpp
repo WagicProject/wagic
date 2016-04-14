@@ -483,6 +483,8 @@ void GuiCombat::Render()
             }
             else
             {
+                observer->opponent()->getIcon()->mHeight = 50.f;
+                observer->opponent()->getIcon()->mWidth = 35.f;
                 observer->opponent()->getIcon()->SetHotSpot(18, 25);
                 enemy_avatar.Render(observer->opponent()->getIcon().get());
             }
@@ -502,7 +504,7 @@ void GuiCombat::Render()
         ok_quad->SetHotSpot(28, 22);
         ok.Render(ok_quad.get());
     }
-    renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
+    renderer->DrawLine(0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2, ARGB(255, 255, 64, 0));
     if (FIRST_STRIKE == step)
     {
         WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);

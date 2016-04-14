@@ -1,0 +1,26 @@
+#Testing Leyline of the Void vs Darksteel Colossus and Black Sun's Zenith
+#Darksteel Colossus must be on owners library
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Leyline of the Void, Forbidden Orchard
+hand:Black Sun's Zenith
+manapool:{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}
+[PLAYER2]
+inplay:Darksteel Colossus
+library:Mountain
+[DO]
+Forbidden Orchard
+choice 2
+Black Sun's Zenith
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Leyline of the Void, Forbidden Orchard
+library:Black Sun's Zenith
+manapool:{0}
+life:20
+[PLAYER2]
+library:Mountain, Darksteel Colossus
+life:20
+[END]

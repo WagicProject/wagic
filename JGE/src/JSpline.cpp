@@ -71,7 +71,7 @@ bool JSpline::Load(const char *filename, float xscale, float yscale)
 		element->QueryFloatAttribute("x", &xx);
 		element->QueryFloatAttribute("y", &yy);
 
-		Point pt(xx*xscale, yy*yscale);
+        JPoint pt(xx*xscale, yy*yscale);
 		AddControlPoint(pt);
 		
 	}
@@ -84,7 +84,7 @@ bool JSpline::Load(const char *filename, float xscale, float yscale)
 
 
 
-void JSpline::PointOnCurve(Point &out, float t, const Point &p0, const Point &p1, const Point &p2, const Point &p3)
+void JSpline::PointOnCurve(JPoint &out, float t, const JPoint &p0, const JPoint &p1, const JPoint &p2, const JPoint &p3)
 {
 	float t2 = t * t;
 	float t3 = t2 * t;
@@ -113,8 +113,8 @@ void JSpline::GeneratePixels()
 	x = mMidPoints[1].x;
 	y = mMidPoints[1].y;
 
-	Point newPt(x, y);
-	Point extraPt;
+    JPoint newPt(x, y);
+    JPoint extraPt;
 
 	mPixels.push_back(newPt);
 
@@ -151,13 +151,13 @@ void JSpline::GeneratePixels()
 }
 
 
-void JSpline::AddControlPoint(const Point &pt)
+void JSpline::AddControlPoint(const JPoint &pt)
 {
 	mMidPoints.push_back(pt);
 }
 
 
-void JSpline::GetControlPoint(Point &point, int index)
+void JSpline::GetControlPoint(JPoint &point, int index)
 {
 	if (index < (int)mMidPoints.size())
 	{
@@ -167,7 +167,7 @@ void JSpline::GetControlPoint(Point &point, int index)
 }
 
 
-void JSpline::GetPixel(Point &point, int index)
+void JSpline::GetPixel(JPoint &point, int index)
 {
 	if (index < (int)mPixels.size())
 	{

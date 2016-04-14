@@ -76,8 +76,13 @@ int Damage::resolve()
         MTGCardInstance * _target = (MTGCardInstance *) target;
         if ((_target)->protectedAgainst(source))
             damage = 0;
-        //rulings = 10/4/2004	The damage prevention ability works even if it has no counters, as long as some effect keeps its toughness above zero.
+        //rulings = 10/4/2004    The damage prevention ability works even if it has no counters, as long as some effect keeps its toughness above zero.
         //these creature are essentially immune to damage. however 0/-1 effects applied through lords or counters can kill them.
+        if ((_target)->has(Constants::PROTECTIONFROMCOLOREDSPELLS))
+        {//damage is prevented as long as the damage source is a spell on the stack...
+            if((source->currentZone == source->controller()->opponent()->game->stack||source->currentZone == source->controller()->game->stack) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
+                damage = 0;
+        }
         if ((_target)->has(Constants::PHANTOM))
         {
             damage = 0;
@@ -121,7 +126,35 @@ int Damage::resolve()
         }
         _target->doDamageTest = 1;
     }
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+    {
+        if(source->has(Constants::LIBRARYEATER) && typeOfDamage == 1)
+        {
+            for (int j = damage; j > 0; j--)
+            {
+                if(((Player*)target)->game->library->nb_cards)
+                    ((Player*)target)->game->putInZone(((Player*)target)->game->library->cards[((Player*)target)->game->library->nb_cards - 1], ((Player*)target)->game->library, ((Player*)target)->game->graveyard);
+            }
+            damage = 0;
+        }
+        if(source->alias == 89092 && typeOfDamage == 1)//Szadek Lord of Secrets
+        {
+            for (int j = damage; j > 0; j--)
+            {
+                if(((Player*)target)->game->library->nb_cards)
+                    ((Player*)target)->game->putInZone(((Player*)target)->game->library->cards[((Player*)target)->game->library->nb_cards - 1], ((Player*)target)->game->library, ((Player*)target)->game->graveyard);
 
+                source->counters->addCounter(1, 1);
+            }
+            damage = 0;
+        }
+        if (!damage)
+        {
+            state = RESOLVED_NOK;
+            delete (e);
+            return 0;
+        }
+    }
     int a = damage;
 
     if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (source->has(Constants::WITHER) || source->has(

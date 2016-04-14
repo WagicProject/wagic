@@ -311,9 +311,7 @@ namespace boost
 
 #include <QMutex>
 #include <QThread>
-
-#include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 #include "../include/JLogger.h"
 
@@ -420,23 +418,25 @@ namespace boost
             virtual void run() = 0;
         };
 
-        typedef boost::shared_ptr<detail::thread_data_base> thread_data_ptr;
 
-        template<typename F>
+        typedef QSharedPointer<detail::thread_data_base> thread_data_ptr;
+
+        template<typename F, typename A1>
         class thread_data : public detail::thread_data_base
         {
         public:
-            thread_data(F f_) : f(f_)
+            thread_data(F f_, A1 a1_) : f(f_), a1(a1_)
             {
             }
 
             void run()
             {
-                f();
+                f(a1);
             }
 
         private:
             F f;
+            A1 a1;
 
             void operator=(thread_data&);
             thread_data(thread_data&);
@@ -493,7 +493,7 @@ namespace boost
         }
 
         template <class F,class A1>
-        thread(F f, A1 a1) : mThreadInfo(make_thread_info(boost::bind(boost::type<void>(), f, a1)))
+        thread(F f, A1 a1) : mThreadInfo(make_thread_info(f, a1))
         {
             mpThread = new threadImpl(mThreadInfo);
             LOG("Calling start func");
@@ -510,10 +510,10 @@ namespace boost
         }
 
     private:
-        template<typename F>
-        static inline detail::thread_data_ptr make_thread_info(F f)
+        template<typename F, typename A1>
+        static inline detail::thread_data_ptr make_thread_info(F f, A1 a1)
         {
-            return detail::thread_data_ptr(new detail::thread_data<F>(f));
+            return detail::thread_data_ptr(new detail::thread_data<F, A1>(f, a1));
         }
 
         detail::thread_data_ptr mThreadInfo;

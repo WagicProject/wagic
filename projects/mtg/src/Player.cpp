@@ -33,6 +33,9 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     skippingTurn = 0;
     extraTurn = 0;
     drawCounter = 0;
+    epic = 0;
+    raidcount = 0;
+    handmodifier = 0;
     prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();
@@ -88,7 +91,7 @@ bool Player::loadAvatar(string file, string resName)
     }
     mAvatarTex = rm->RetrieveTexture(file, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
     if (mAvatarTex) {
-        mAvatar = rm->RetrieveQuad(file, 0, 0, 35, 50, resName, RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
+        mAvatar = rm->RetrieveQuad(file, 0, 0, 0, 0, resName, RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
         return true;
     }
 
@@ -146,6 +149,8 @@ int Player::gainOrLoseLife(int value)
 {
     if (!value)
         return 0; //Don't do anything if there's no actual life change
+    if (value>0 && (opponent()->game->battlefield->hasAbility(Constants::NOLIFEGAINOPPONENT)||game->battlefield->hasAbility(Constants::NOLIFEGAIN)))//nolifegain
+        return 0;
 
     thatmuch = abs(value); //the value that much is a variable to be used with triggered abilities.
     //ie:when ever you gain life, draw that many cards. when used in a trigger draw:thatmuch, will return the value
@@ -217,6 +222,70 @@ void Player::takeMulligan()
          //Draw hand with 1 less card penalty //almhum
 }
 
+void Player::serumMulligan()
+{
+    MTGPlayerCards * currentPlayerZones = game;
+    int cardsinhand = currentPlayerZones->hand->nb_cards;
+    for (int i = 0; i < cardsinhand; i++) //Exile
+        currentPlayerZones->putInZone(currentPlayerZones->hand->cards[0],
+        currentPlayerZones->hand,
+        currentPlayerZones->exile);
+
+    currentPlayerZones->library->shuffle(); //Shuffle
+    
+    for (int i = 0; i < (cardsinhand); i++)
+        game->drawFromLibrary();
+         //Draw hand no penalty
+}
+
+bool Player::DeadLifeState(bool check)
+{
+    if ((life <= 0)||(poisonCount >= 10))
+    {
+        int cantlosers = 0;
+        MTGGameZone * z = game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int j = 0; j < nbcards; ++j)
+        {
+            MTGCardInstance * c = z->cards[j];
+            if (c->has(Constants::CANTLOSE) || (c->has(Constants::CANTLIFELOSE) && poisonCount < 10))
+            {
+                cantlosers++;
+            }
+        }
+        MTGGameZone * k = opponent()->game->inPlay;
+        int onbcards = k->nb_cards;
+        for (int m = 0; m < onbcards; ++m)
+        {
+            MTGCardInstance * e = k->cards[m];
+            if (e->has(Constants::CANTWIN))
+            {
+            cantlosers++;
+            }
+        }
+        if (cantlosers < 1)
+        {
+            if(!check)
+            {
+                ActionStack * stack = getObserver()->mLayers->stackLayer();
+                for (int i = stack->mObjects.size() - 1; i >= 0; i--)
+                {
+                    Interruptible * current = ((Interruptible *) stack->mObjects[i]);
+                    Spell * spell = (Spell *) current;
+                    if (current->type == ACTION_SPELL)
+                        spell->source->controller()->game->putInGraveyard(spell->source);
+
+                    current->state = RESOLVED_NOK;
+                }
+            }
+            if(check)
+                game->owner->getObserver()->setLoser(this);
+            return true;
+        }
+    }
+    return false;
+}
+
 //Cleanup phase at the end of a turn
 void Player::cleanupPhase()
 {
@@ -251,7 +320,7 @@ bool Player::parseLine(const string& s)
         }
         else if (areaS.compare("mode") == 0)
         {
-			this->playMode = (Player::Mode)atoi(s.substr(limiter + 1).c_str());
+            this->playMode = (Player::Mode)atoi(s.substr(limiter + 1).c_str());
             return true;
         }
         else if (areaS.compare("avatar") == 0)
@@ -337,12 +406,12 @@ ostream& operator<<(ostream& out, const Player& p)
 {
     out << "mode=" << p.playMode << endl;
     out << *(Damageable*)&p;
-	if(p.manaPool)
-	{
-		string manapoolstring = p.manaPool->toString();
-		if(manapoolstring != "")
-			out << "manapool=" << manapoolstring << endl;
-	}
+    if(p.manaPool)
+    {
+        string manapoolstring = p.manaPool->toString();
+        if(manapoolstring != "")
+            out << "manapool=" << manapoolstring << endl;
+    }
     if(p.mAvatarName != "")
         out << "avatar=" << p.mAvatarName << endl;
     if(p.phaseRing != "")

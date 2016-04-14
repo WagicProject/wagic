@@ -85,10 +85,19 @@ void GameStateMenu::Create()
     {
         for (int j = 0; j < 2; j++)
         {
+#if defined (PSP)
             sprintf(buf, "menuicons%d%d", i, j);
             mIcons[n] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + i * 36.0f, 2.0f + j * 36.0f, 32.0f, 32.0f, buf);
+#else
+            sprintf(buf, "miconslarge%d%d", i, j);
+            mIcons[n] = WResourceManager::Instance()->RetrieveQuad("miconslarge.png", 4 + i * 72.0f, 4.0f + j * 72.0f, 72.0f, 72.0f, buf);
+#endif
             if (mIcons[n])
+            {
+                mIcons[n]->mHeight = 36.f;
+                mIcons[n]->mWidth = 36.f;
                 mIcons[n]->SetHotSpot(16, 16);
+            }
             n++;
         }
     }
@@ -141,10 +150,10 @@ void GameStateMenu::Start()
     WResourceManager::Instance()->ClearUnlocked();
 
     bgTexture = WResourceManager::Instance()->RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
-    mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 256, 166); // Create background quad for rendering.
+    mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 0, 0); // Create background quad for rendering.
 
     if (mBg)
-        mBg->SetHotSpot(128, 50);
+        mBg->SetHotSpot(0, 0);
 
     if (MENU_STATE_MAJOR_MAINMENU == currentState)
         currentState = currentState | MENU_STATE_MINOR_FADEIN;
@@ -160,22 +169,22 @@ void GameStateMenu::genNbCardsStr()
     PlayerData * playerdata = NEW PlayerData(MTGCollection());
     size_t totalUnique =  MTGCollection()->primitives.size();
     size_t totalPrints = MTGCollection()->totalCards();
-
+    
     if (totalUnique != totalPrints)
     {
         if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-            sprintf(nbcardsStr, _("%s: %i cards (%i) (%i unique)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
+            sprintf(GameApp::mynbcardsStr, _("%s: %i cards (%i) (%i unique)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
                             playerdata->collection->totalCards(), totalPrints,totalUnique);
         else
-            sprintf(nbcardsStr, _("%i cards (%i unique)").c_str(),totalPrints,totalUnique);
+            sprintf(GameApp::mynbcardsStr, _("%i cards (%i unique)").c_str(),totalPrints,totalUnique);
     }
     else
     {
         if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-            sprintf(nbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
+            sprintf(GameApp::mynbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
                             playerdata->collection->totalCards(), totalPrints);
         else
-            sprintf(nbcardsStr, _("%i cards").c_str(),totalPrints);
+            sprintf(GameApp::mynbcardsStr, _("%i cards").c_str(),totalPrints);
     }
 
     SAFE_DELETE(playerdata);
@@ -472,7 +481,7 @@ void GameStateMenu::Update(float dt)
                 mParent->mpNetwork->connect(mParent->mServerAddress);
                 // we let the server choose the game mode
                 mParent->gameType = GAME_TYPE_SLAVE;
-			          // just to select one, the HOST is in control here.
+                      // just to select one, the HOST is in control here.
                 mParent->rules = Rules::getRulesByFilename("classic.txt");
                 hasChosenGameType = true;
                 subMenuController->Close();
@@ -590,16 +599,16 @@ void GameStateMenu::Update(float dt)
     case MENU_STATE_NETWORK_DEFINE:
         if(MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
         {
-			currentState = MENU_STATE_MAJOR_SUBMENU;
+            currentState = MENU_STATE_MAJOR_SUBMENU;
             subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
-			if (subMenuController)
-			{
-				subMenuController->Add(SUBMENUITEM_HOST_GAME, "Host a game");
-				subMenuController->Add(SUBMENUITEM_JOIN_GAME, "Join a game");
-				subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
-			}
-		}
-		break;
+            if (subMenuController)
+            {
+                subMenuController->Add(SUBMENUITEM_HOST_GAME, "Host a game");
+                subMenuController->Add(SUBMENUITEM_JOIN_GAME, "Join a game");
+                subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+            }
+        }
+        break;
     case MENU_STATE_NETWORK_WAIT:
         if(MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
         {
@@ -610,9 +619,9 @@ void GameStateMenu::Update(float dt)
             }
             else if(!subMenuController)
             {
-				string aString;
-				mParent->mpNetwork->getServerIp(aString);
-				aString = "Waiting for connection to " + aString;
+                string aString;
+                mParent->mpNetwork->getServerIp(aString);
+                aString = "Waiting for connection to " + aString;
 
                 subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60, aString.c_str());
                 if (subMenuController)
@@ -726,7 +735,7 @@ void GameStateMenu::RenderTopMenu()
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(GAME_VERSION, rightTextPos, 5, JGETEXT_RIGHT);
-    mFont->DrawString(nbcardsStr, leftTextPos, 5);
+    mFont->DrawString(GameApp::mynbcardsStr, leftTextPos, 5);
     renderer->FillRect(leftTextPos, 26, 104, 8, ARGB(255, 100, 90, 60));
     renderer->FillRect(leftTextPos + 2, 28, (float)(gamePercentComplete()), 4, ARGB(255,220,200, 125));
     char buf[512];
@@ -790,7 +799,7 @@ void GameStateMenu::Render()
         scroller->Render();
 
         if (mBg.get())
-            renderer->RenderQuad(mBg.get(), SCREEN_WIDTH / 2, 50);
+            renderer->RenderQuad(mBg.get(), (SCREEN_WIDTH/4)-6, 2, 0, 256 / mBg->mWidth, 166 / mBg->mHeight);
 
         RenderTopMenu();
 
@@ -909,7 +918,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
                 subMenuController->Close();
             }
 #ifdef NETWORK_SUPPORT
-			SAFE_DELETE(mParent->mpNetwork);
+            SAFE_DELETE(mParent->mpNetwork);
 #endif //NETWORK_SUPPORT
             currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
@@ -960,7 +969,6 @@ ostream& GameStateMenu::toString(ostream& out) const
                  << " ; mCreditsYPos : " << mCreditsYPos
                  << " ; currentState : " << currentState
                  << " ; mVolume : " << mVolume
-                 << " ; nbcardsStr : " << nbcardsStr
                  << " ; mCurrentSetName : " << mCurrentSetName
                  << " ; mCurrentSetFileName : " << mCurrentSetFileName
                  << " ; mReadConf : " << mReadConf

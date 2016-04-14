@@ -28,9 +28,6 @@
 #include <time.h>
 #endif
 
-const float MENU_FONT_SCALE = 1.0f;
-
-
 enum ENUM_DUEL_STATE
 {
     DUEL_STATE_UNSET = 0,
@@ -1098,7 +1095,7 @@ void GameStateDuel::Render()
                 char buf[4096];
                 mFont->SetColor(ARGB(255,255,255,255));
 
-				int elapsedTime = testSuite->getElapsedTime();
+                int elapsedTime = testSuite->getElapsedTime();
                 sprintf(buf, "Time to run the tests: %is", elapsedTime/1000);
                 mFont->DrawString(buf,0,SCREEN_HEIGHT/2 - 20);
 

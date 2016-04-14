@@ -16,8 +16,6 @@
 
 int AIPlayer::totalAIDecks = -1;
 
-const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountain", "swamp", "plains", "other lands" };
-
 AIAction::AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t)
     : owner(owner), ability(NULL), player(NULL), click(c), target(t)
 {

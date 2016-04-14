@@ -29,7 +29,7 @@ protected:
     GuiAvatars * avatars;
     GameObserver* observer;
     MTGGamePhase* phaseHandler;
-	int mPlayerViewIndex;
+    int mPlayerViewIndex;
     CardSelectorBase* mCardSelector;
 
 public:
@@ -48,11 +48,11 @@ public:
     void Remove();
     int receiveEvent(WEvent * e);
     float RightBoundary();
-	int getPlayerViewIndex(){ return mPlayerViewIndex; };
-	Player* getRenderedPlayer();
-	Player* getRenderedPlayerOpponent();
-	CardSelectorBase* getCardSelector() { return mCardSelector; };
-	GameObserver* getObserver(){ return observer; };
+    int getPlayerViewIndex(){ return mPlayerViewIndex; };
+    Player* getRenderedPlayer();
+    Player* getRenderedPlayerOpponent();
+    CardSelectorBase* getCardSelector() { return mCardSelector; };
+    GameObserver* getObserver(){ return observer; };
 };
 
 #include "ActionLayer.h"

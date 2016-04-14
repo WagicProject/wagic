@@ -258,7 +258,9 @@ private:
 #endif
 
     int mVolume;
+#ifndef IOS
     int mMusicVolume;
+#endif
     int mSampleVolume;
 
 

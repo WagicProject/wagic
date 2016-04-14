@@ -1,0 +1,33 @@
+#Testing Atarka Beastbreaker,Stampeding Elk Herd -- Formidable
+#Atarka Beastbreaker will become 6/6, and then attacks along with Stampeding Elk Herd, trample effect will trigger
+#then p2 will block with Steel Wall, p2 must have 13 life...
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Atarka Beastbreaker,Krosan Tusker,Stampeding Elk Herd
+manapool:{4}{G}
+[PLAYER2]
+inplay:Steel Wall
+life:20
+[DO]
+Atarka Beastbreaker
+choice 1
+Atarka Beastbreaker
+Stampeding Elk Herd
+next
+Steel Wall
+#blockers 
+next
+#combatdamage 2
+next
+next
+#endofcombat 2
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Atarka Beastbreaker,Krosan Tusker,Stampeding Elk Herd
+manapool:{0}
+[PLAYER2]
+graveyard:Steel Wall
+life:13
+[END]
