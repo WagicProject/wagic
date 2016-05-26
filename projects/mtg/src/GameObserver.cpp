@@ -1157,6 +1157,11 @@ void GameObserver::Affinity()
                         }
                     }
                 SAFE_DELETE(original);
+
+                SAFE_DELETE(alternate);
+                SAFE_DELETE(buyback);
+                SAFE_DELETE(flashback);
+                SAFE_DELETE(retrace);
             }//end
         }
     }
