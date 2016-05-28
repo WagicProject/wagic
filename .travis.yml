@@ -25,7 +25,6 @@ before_install:
     fi
 # Building for Qt here
   - if [ "$BUILD_Qt" == "YES" ]; then
-#      sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa &&
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
       sudo apt-get update -qq &&
