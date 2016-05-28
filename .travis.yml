@@ -27,8 +27,8 @@ before_install:
   - if [ "$BUILD_Qt" == "YES" ]; then
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
-      sudo apt-get update -qq &&
-      sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
+      sudo apt-get -qq update &&
+      sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
 
