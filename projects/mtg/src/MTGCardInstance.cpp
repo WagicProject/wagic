@@ -573,7 +573,7 @@ MTGCardInstance * MTGCardInstance::changeController(Player * newController,bool 
     }
     Player * originalOwner = controller();
     MTGCardInstance * copy = originalOwner->game->putInZone(this, this->currentZone, newController->game->inPlay);
-    copy->summoningSickness = 1;
+    //copy->summoningSickness = 1;
     return copy;
 }
 
