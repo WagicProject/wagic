@@ -1503,8 +1503,8 @@ color=white
 [card]
 name=Ajani Steadfast
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: add 1 loyalty) donothing restriction{compare(cantargetmycre)~lessthan~2}
-auto={C(0/0,1,Loyalty)}:name(+1: multi transform) target(creature) transforms((,newability[1/1],newability[vigilance],newability[first strike],newability[lifelink])) ueot restriction{compare(cantargetmycre)~morethan~0}
+auto={C(0/0,1,Loyalty)}:name(+1: add 1 loyalty) donothing restriction{compare(cantargetcre)~lessthan~1}
+auto={C(0/0,1,Loyalty)}:name(+1: multi transform) target(creature) transforms((,newability[1/1],newability[vigilance],newability[first strike],newability[lifelink])) ueot restriction{compare(cantargetcre)~morethan~0}
 auto={C(0/0,-2,Loyalty)}:name(-2: 1/1 counters) all(creature|mybattlefield) counter(1/1,1) && all(other planeswalker|mybattlefield) counter(0/0,1,Loyalty)
 auto={C(0/0,-7,Loyalty)}:name(-7: emblem) emblem transforms((,newability[forcefield controller])) forever dontremove
 text=+1: Until end of turn, up to one target creature gets +1/+1 and gains first strike, vigilance, and lifelink. -- -2: Put a +1/+1 counter on each creature you control and a loyalty counter on each other planeswalker you control. -- -7: You get an emblem with "If a source would deal damage to you or a planeswalker you control, prevent all but 1 of that damage."
@@ -1515,9 +1515,9 @@ subtype=Ajani
 [card]
 name=Ajani Vengeant
 auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:frozen target(*)
-auto={C(0/0,-2,Loyalty)}:damage:3 target(creature,player) && life:3 controller
-auto={C(0/0,-7,Loyalty)}:target(player) destroy all(land|targetedpersonsbattlefield)
+auto={C(0/0,1,Loyalty)}:name(+1: tap and hold) frozen target(*)
+auto={C(0/0,-2,Loyalty)}:name(-2: damage and gain life) damage:3 target(creature,player) && life:3 controller
+auto={C(0/0,-7,Loyalty)}:name(-7: ultimate) target(player) destroy all(land|targetedpersonsbattlefield)
 text=+1: Target permanent doesn't untap during its controller's next untap step. -- -2: Ajani Vengeant deals 3 damage to target creature or player and you gain 3 life. -- -7: Destroy all lands target player controls.
 mana={2}{R}{W}
 type=Planeswalker
@@ -1526,9 +1526,10 @@ subtype=Ajani
 [card]
 name=Ajani, Caller of the Pride
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(add counter) ability$!target(creature|battlefield) counter(1/1,1)!$ controller
-auto={C(0/0,-3,Loyalty)}:name(gain ability) flying && double strike target(creature|battlefield) ueot
-auto={C(0/0,-8,Loyalty)}:token(Cat,Creature Cat,2/2,white)*lifetotal
+auto={C(0/0,1,Loyalty)}:name(+1: add 1 loyalty) donothing restriction{compare(cantargetcre)~lessthan~1}
+auto={C(0/0,1,Loyalty)}:name(+1: +1/+1 counter) target(creature|battlefield) counter(1/1,1) restriction{compare(cantargetcre)~morethan~0}
+auto={C(0/0,-3,Loyalty)}:name(-3: double strike and flying) flying && double strike target(creature|battlefield) ueot
+auto={C(0/0,-8,Loyalty)}:name(-8: ultimate) token(Cat,Creature Cat,2/2,white)*lifetotal
 text=+1: Put a +1/+1 counter on up to one target creature. -- -3: Target creature gains flying and double strike until end of turn. -- -8: Put X 2/2 white Cat creature tokens onto the battlefield, where X is your life total.
 mana={1}{W}{W}
 type=Planeswalker

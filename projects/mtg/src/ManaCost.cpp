@@ -80,6 +80,11 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     manaCost->add(Constants::MTG_COLOR_RED, 1);
 
                 }
+                else if (value == "c")
+                {
+                    manaCost->add(Constants::MTG_COLOR_LAND, 1);
+
+                }
                 else
                 {
                     //Parse target for extraCosts
