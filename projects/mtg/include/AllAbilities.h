@@ -778,6 +778,28 @@ private:
                     intValue = 1;
             }//end
         }
+        else if (s == "cantargetmycre")// can target my creature
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->battlefield->cards[j]->hasType("creature") && !card->controller()->game->battlefield->cards[j]->protectedAgainst(card))
+                {
+                    intValue += 1;
+                }
+            }
+        }
+        else if (s == "cantargetoppocre")// can target opponent creature
+        {
+            intValue = 0;
+            for (int j = card->controller()->opponent()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->opponent()->game->battlefield->cards[j]->hasType("creature") && !card->controller()->opponent()->game->battlefield->cards[j]->protectedAgainst(card))
+                {
+                    intValue += 1;
+                }
+            }
+        }
         else if (s == "controllerturn")//intvalue = 1 if its your turn this(variable{controllerturn})
         {
             intValue = 0;

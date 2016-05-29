@@ -1503,11 +1503,11 @@ color=white
 [card]
 name=Ajani Steadfast
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: add 1 loyalty) donothing
-auto={C(0/0,1,Loyalty)}:name(+1: multi transform) target(creature) transforms((,newability[1/1],newability[vigilance],newability[first strike],newability[lifelink])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: add 1 loyalty) donothing restriction{compare(cantargetmycre)~lessthan~2}
+auto={C(0/0,1,Loyalty)}:name(+1: multi transform) target(creature) transforms((,newability[1/1],newability[vigilance],newability[first strike],newability[lifelink])) ueot restriction{compare(cantargetmycre)~morethan~0}
 auto={C(0/0,-2,Loyalty)}:name(-2: 1/1 counters) all(creature|mybattlefield) counter(1/1,1) && all(other planeswalker|mybattlefield) counter(0/0,1,Loyalty)
 auto={C(0/0,-7,Loyalty)}:name(-7: emblem) emblem transforms((,newability[forcefield controller])) forever dontremove
-text=+1: target creature gets first strike, vigilance, lifelink, and +1/+1 until end of turn -- -2:put a +1/+1 counter on each other creature you control and a loyalty counter on each other planeswalker you control -- -7: you get an emblem with whenever a source would deal damage to you or a planeswalker you control prevent all but 1 damage
+text=+1: Until end of turn, up to one target creature gets +1/+1 and gains first strike, vigilance, and lifelink. -- -2: Put a +1/+1 counter on each creature you control and a loyalty counter on each other planeswalker you control. -- -7: You get an emblem with "If a source would deal damage to you or a planeswalker you control, prevent all but 1 of that damage."
 mana={3}{W}
 type=Planeswalker
 subtype=Ajani
