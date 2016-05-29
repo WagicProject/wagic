@@ -43,6 +43,7 @@ public:
     int extraTurn;
     int drawCounter;
     int epic;
+    int forcefield;
     int initLife;
     int raidcount;
     int handmodifier;

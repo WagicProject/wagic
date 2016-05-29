@@ -71,6 +71,9 @@ int Damage::resolve()
     }
 
     //-------------------------------------------------
+    //Ajani Steadfast ---
+    if(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->controller()->forcefield)
+        damage = 1;
     if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
@@ -127,7 +130,9 @@ int Damage::resolve()
         _target->doDamageTest = 1;
     }
     if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
-    {
+    {//Ajani Steadfast
+        if(((Player*)target)->forcefield)
+            damage = 1;
         if(source->has(Constants::LIBRARYEATER) && typeOfDamage == 1)
         {
             for (int j = damage; j > 0; j--)

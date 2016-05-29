@@ -1698,7 +1698,8 @@ class AAEPIC: public ActivatedAbility
 {
 public:
     string named;
-    AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL);
+    bool FField;
+    AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL, bool ffield = false );
     int resolve();
     const string getMenuText();
     AAEPIC * clone() const;

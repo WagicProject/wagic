@@ -2561,6 +2561,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+        //Forcefield
+    found = s.find("forcefield");
+    if (found != string::npos)
+    {
+        
+        MTGAbility * a = NEW AAEPIC(observer, id, card, target,"Forcefield",NULL,true);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Damage
     vector<string> splitDamage = parseBetween(s, "damage:", " ", false);
     if (splitDamage.size())

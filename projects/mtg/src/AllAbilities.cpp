@@ -1386,15 +1386,18 @@ AAFakeAbility * AAFakeAbility::clone() const
 }
 
 //EPIC
- AAEPIC::AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, string _named,ManaCost * cost):
-    ActivatedAbility(observer, id, source, cost, 0),named(_named)
+ AAEPIC::AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, string _named,ManaCost * cost, bool _ffield):
+    ActivatedAbility(observer, id, source, cost, 0),named(_named),FField(_ffield)
 {
     this->target = _target;
 }
 int AAEPIC::resolve()
 {  
     MTGCardInstance * _target =  (MTGCardInstance *)target;
-    _target->controller()->epic = 1;
+    if(FField)
+        _target->controller()->forcefield = 1;
+	else
+        _target->controller()->epic = 1;
     return 1;
 }
 
