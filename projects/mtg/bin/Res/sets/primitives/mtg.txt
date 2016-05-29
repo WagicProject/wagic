@@ -77358,6 +77358,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ral Zarek
+auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:tap target(*) && ability$!untap target(*)!$ controller
 auto={C(0/0,-2,Loyalty)}:damage:3 target(creature,player)
 auto={C(0/0,-7,Loyalty)}:flipacoin winability turns:+1 controller winabilityend flipend && flipacoin winability turns:+1 controller winabilityend flipend && flipacoin winability turns:+1 controller winabilityend flipend && flipacoin winability turns:+1 controller winabilityend flipend && flipacoin winability turns:+1 controller winabilityend flipend
