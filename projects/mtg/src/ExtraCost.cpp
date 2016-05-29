@@ -391,6 +391,35 @@ int ToLibraryCost::doPay()
     return 0;
 }
 
+//to graveyard cost
+ToGraveCost * ToGraveCost::clone() const
+{
+    ToGraveCost * ec = NEW ToGraveCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+ToGraveCost::ToGraveCost(TargetChooser *_tc)
+    : ExtraCost("Move a card to Graveyard", _tc)
+{
+}
+
+int ToGraveCost::doPay()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (target)
+    {
+        source->storedCard = target->createSnapShot();
+        _target->controller()->game->putInGraveyard(target);
+        target = NULL;
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+
 //Mill yourself as a cost
 MillCost * MillCost::clone() const
 {

@@ -139,9 +139,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         }
                         break;
                     case 's':
-                        if (value == "s2l")
+                        if (value.find("s2l") != string::npos)
                         { //Send To Library Cost (move from anywhere to Library)
                             manaCost->addExtraCost(NEW ToLibraryCost(tc));
+                        }
+                        else if (value.find("s2g") != string::npos)
+                        { //Send to Graveyard Cost (move from anywhere to Graveyard)
+                            manaCost->addExtraCost(NEW ToGraveCost(tc));
                         }
                         else
                         { //Sacrifice

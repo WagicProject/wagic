@@ -155,6 +155,15 @@ public:
   virtual ToLibraryCost * clone() const;
 };
 
+//toGraveyard cost 
+class ToGraveCost : public ExtraCost
+{
+public:
+  ToGraveCost(TargetChooser *_tc = NULL);
+  virtual int doPay();
+  virtual ToGraveCost * clone() const;
+};
+
 //Millyourself cost 
 class MillCost : public ExtraCost
 {
