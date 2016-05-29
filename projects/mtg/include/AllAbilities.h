@@ -800,6 +800,24 @@ private:
                 }
             }
         }
+        else if (s == "cantargetcre")// can target any creature
+        {
+            intValue = 0;
+            for (int j = card->controller()->opponent()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->opponent()->game->battlefield->cards[j]->hasType("creature") && !card->controller()->opponent()->game->battlefield->cards[j]->protectedAgainst(card))
+                {
+                    intValue += 1;
+                }
+            }
+            for (int k = card->controller()->game->battlefield->nb_cards - 1; k >= 0; --k)
+            {
+                if (card->controller()->game->battlefield->cards[k]->hasType("creature") && !card->controller()->game->battlefield->cards[k]->protectedAgainst(card))
+                {
+                    intValue += 1;
+                }
+            }
+        }
         else if (s == "controllerturn")//intvalue = 1 if its your turn this(variable{controllerturn})
         {
             intValue = 0;
