@@ -244,7 +244,10 @@ void CardGui::Render()
         highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
         if(fakeborder)
         {
-            fakeborder->SetColor(ARGB((int)(actA),15,15,15));
+            if(card->has(Constants::CANPLAYFROMGRAVEYARD)||card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))
+                fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
+            else
+                fakeborder->SetColor(ARGB((int)(actA),15,15,15));
             renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
         }
         //draw border for highlighting
@@ -365,8 +368,8 @@ void CardGui::Render()
         buff = "CT";
     if(!card->isToken && card->isACopier)
         buff = "C";
-    if(card->has(Constants::PAYZERO))
-        buff += "Z";
+    //if(card->has(Constants::PAYZERO))
+        //buff += "Z";
     if(card->alias == 1000)
     {
         if(card->chooseacolor == 1)
