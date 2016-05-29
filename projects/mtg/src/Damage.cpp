@@ -72,7 +72,7 @@ int Damage::resolve()
 
     //-------------------------------------------------
     //Ajani Steadfast ---
-    if(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->controller()->forcefield)
+    if(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType("planeswalker") && ((MTGCardInstance*)target)->controller()->forcefield)
         damage = 1;
     if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
