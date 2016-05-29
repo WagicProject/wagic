@@ -124,7 +124,7 @@ void GuiPlay::BattleField::reset(float x, float y)
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
     card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
-	card->y = baseY + (card->card->getObserver()->getView()->getRenderedPlayer() == card->card->controller() ? 20 + y : -20 - y);
+    card->y = baseY + (card->card->getObserver()->getView()->getRenderedPlayer() == card->card->controller() ? 20 + y : -20 - y);
     ++currentAttacker;
     //  JRenderer::GetInstance()->RenderQuad(WResourceManager::Instance()->GetQuad("BattleIcon"), card->actX, card->actY, 0, 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()), 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()));
 }
@@ -197,7 +197,7 @@ void GuiPlay::Replace()
         {
             if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
-				if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
+                if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                     ++selfSpellsN;
                 else
                     ++opponentSpellsN;
@@ -398,7 +398,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
         }
         else
         {
-			// this should never happen, if you have a consistent repro case, ping Wil please
+            // this should never happen, if you have a consistent repro case, ping Wil please
             assert(false);
         }
         return 1;

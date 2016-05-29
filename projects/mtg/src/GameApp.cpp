@@ -77,7 +77,7 @@ GameApp::GameApp() :
 
     mCurrentState = NULL;
     mNextState = NULL;
-	rules = 0;
+    rules = 0;
     music = NULL;
 }
 
@@ -156,7 +156,7 @@ void GameApp::Create()
 
 
     //Setup Cache before calling any gfx/sfx functions
-	WResourceManager::Instance()->ResetCacheLimits();
+    WResourceManager::Instance()->ResetCacheLimits();
 
 
     LOG("Checking for music files");

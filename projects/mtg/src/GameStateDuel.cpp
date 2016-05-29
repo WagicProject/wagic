@@ -1095,7 +1095,7 @@ void GameStateDuel::Render()
                 char buf[4096];
                 mFont->SetColor(ARGB(255,255,255,255));
 
-				int elapsedTime = testSuite->getElapsedTime();
+                int elapsedTime = testSuite->getElapsedTime();
                 sprintf(buf, "Time to run the tests: %is", elapsedTime/1000);
                 mFont->DrawString(buf,0,SCREEN_HEIGHT/2 - 20);
 

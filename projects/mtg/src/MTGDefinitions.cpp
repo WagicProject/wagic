@@ -14,9 +14,9 @@ const string Constants::kManaRed            = "red";
 const string Constants::kManaBlack          = "black";
 const string Constants::kManaWhite          = "white";
 
-int Constants::_r[7] = {75,	20,		20,	200,50,255,128};
-int Constants::_g[7] = {30,	140,	30,	15,	50,255,128};
-int Constants::_b[7] = {20,	0,		140,15,	50,255,128};
+int Constants::_r[7] = {75,20,20,200,50,255,128};
+int Constants::_g[7] = {30,140,30,15,50,255,128};
+int Constants::_b[7] = {20,0,140,15,50,255,128};
 
 
 const string Constants::kAlternativeKeyword = "alternative";
@@ -148,8 +148,10 @@ const char* Constants::MTGBasicAbilities[] = {
     "protectionfromcoloredspells",
     "mygcreatureexiler",
     "oppgcreatureexiler",
-    "payzero",
-    "trinisphere"
+    "zerocast",
+    "trinisphere",
+    "canplayfromexile",
+    "libraryeater"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
@@ -182,36 +184,36 @@ int Constants::GetColorStringIndex(string mtgColor)
 
 const string Constants::MTGPhaseNames[] =
 {
-	"---",
-	"Untap",
-	"Upkeep",
-	"Draw",
-	"Main phase 1",
-	"Combat begins",
-	"Attackers",
-	"Blockers",
-	"Combat damage",
-	"Combat ends",
-	"Main phase 2",
-	"End",
-	"Cleanup",
-	"---"
+    "---",
+    "Untap",
+    "Upkeep",
+    "Draw",
+    "Main phase 1",
+    "Combat begins",
+    "Attackers",
+    "Blockers",
+    "Combat damage",
+    "Combat ends",
+    "Main phase 2",
+    "End",
+    "Cleanup",
+    "---"
 };
 
 const char* Constants::MTGPhaseCodeNames[] =
 {
-	"beginofturn",
-	"untap",
-	"upkeep",
-	"draw",
-	"firstmain",
-	"combatbegins",
-	"attackers",
-	"blockers",
-	"combatdamage",
-	"combatends",
-	"secondmain",
-	"end",
-	"cleanup",
-	"beforenextturn"
+    "beginofturn",
+    "untap",
+    "upkeep",
+    "draw",
+    "firstmain",
+    "combatbegins",
+    "attackers",
+    "blockers",
+    "combatdamage",
+    "combatends",
+    "secondmain",
+    "end",
+    "cleanup",
+    "beforenextturn"
 };

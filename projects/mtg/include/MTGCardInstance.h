@@ -55,7 +55,7 @@ public:
     Pos* view;
     int X;
     int castX;
-    int alternateCostPaid[ManaCost::MANA_PAID_WITH_SUSPEND + 1]; 
+    int alternateCostPaid[ManaCost::MANA_PAID_WITH_BESTOW + 1]; 
     int paymenttype;
     int castMethod; /* Tells if the card reached its current zone by being cast or not (brought into the zone by an effect). non 0 == cast, 0 == not cast */
     int frozen;
@@ -253,9 +253,8 @@ public:
     int cardistargetted;
     bool isTargetter();
     int cardistargetter;
-    int tmodifier;
-    int tmodifierb;
     int myconvertedcost;
+    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost);
 
     void eventattacked();
     void eventattackedAlone();

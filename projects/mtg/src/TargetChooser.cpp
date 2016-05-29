@@ -1094,13 +1094,13 @@ bool TypeTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 
                 return true;
             }
-			if(card->getLCName().size())
-			{
+            if(card->getLCName().size())
+            {
             if (MTGAllCards::findType(card->getLCName()) == types[i]) 
                 return true;
             if (MTGAllCards::findType(card->getName()) == types[i]) 
                 return true;
-			}
+            }
         }
         return false;
     }

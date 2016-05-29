@@ -23,7 +23,7 @@ environment:
 
 # scripts that run after cloning repository
 install:
-  - ps: (new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')
+  - ps: (new-object net.webclient).DownloadFile('https://bootstrap.pypa.io/get-pip.py', 'C:/get-pip.py')
   - "C:/Python27/python.exe C:/get-pip.py"
   - "C:/Python27/Scripts/pip.exe install pyjavaproperties"
   - "C:/Python27/Scripts/pip.exe install github3.py"

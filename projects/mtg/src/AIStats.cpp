@@ -107,8 +107,8 @@ int AIStats::receiveEvent(WEvent * event)
 //the following tells ai if a creature should be blocked or targeted
 bool AIStats::isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue)
 {
-	//return true; 
-	//uncomment the above return to make Ai always multiblock your creatures.
+    //return true; 
+    //uncomment the above return to make Ai always multiblock your creatures.
     if (stats.size() < max)
         return tooSmallCountsForTrue;
     unsigned int n = 0;

@@ -98,13 +98,13 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     if (!targetQuad)
     {
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI() && !alt2.size() && _(action).c_str() == source->name)
-			mFont->DrawString("You play ", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
+            mFont->DrawString("You play ", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
         else if(source->controller()->isAI() && source->controller()->opponent()->isHuman() && !alt2.size() && _(action).c_str() == source->name)
-			mFont->DrawString("Opponent plays ", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);*/
+            mFont->DrawString("Opponent plays ", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);*/
         mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
     }
     else
-	{
+    {
         renderer->FillRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(235,10,10,10));
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI())
             renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,0,255,0));
@@ -301,7 +301,13 @@ bool Spell::FullfilledAlternateCost(const int &costType)
         hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
         break;
     case ManaCost::MANA_PAID_WITH_SUSPEND:
-        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
+        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_SUSPEND);
+        break;
+    case ManaCost::MANA_PAID_WITH_OVERLOAD:
+        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_OVERLOAD);
+        break;
+    case ManaCost::MANA_PAID_WITH_BESTOW:
+        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_BESTOW);
         break;
     }
 
@@ -345,13 +351,13 @@ int Spell::resolve()
     if (options[Options::SFXVOLUME].number > 0)
     {
 
-		if(observer->getResourceManager())
-			observer->getResourceManager()->PlaySample(source->getSample());
+        if(observer->getResourceManager())
+            observer->getResourceManager()->PlaySample(source->getSample());
     }
     if(this->cost)
-	{
-		source->getManaCost()->setManaUsedToCast(NEW ManaCost(this->cost));
-	}
+    {
+        source->getManaCost()->setManaUsedToCast(NEW ManaCost(this->cost));
+    }
     AbilityFactory af(observer);
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), this);
     return 1;
@@ -751,7 +757,7 @@ int ActionStack::resolve()
     {
         for (int i = 0; i < 2; i++)
         {
-					if (interruptDecision[i] != 2)
+                    if (interruptDecision[i] != 2)
             interruptDecision[i] = NOT_DECIDED;
         }
     }
@@ -815,7 +821,7 @@ int ActionStack::count(int type, int state, int display)
 Interruptible * ActionStack::getActionElementFromCard(MTGCardInstance * card)
 {
 
-	if(!card)
+    if(!card)
     return 0;
     for (size_t i = 0; i < mObjects.size(); i++)
     {
@@ -999,7 +1005,7 @@ void ActionStack::Update(float dt)
             //and set the timer to 4 secs. BUG FIX //http://code.google.com/p/wagic/issues/detail?id=464
             extraTime = count(0, NOT_RESOLVED, 0);
             if (extraTime == 0)
-	            extraTime = 1;//we never want this int to be 0.
+                extraTime = 1;//we never want this int to be 0.
 
             if (timer < 0)
                 timer = static_cast<float>(options[Options::INTERRUPT_SECONDS].number * extraTime);
@@ -1247,7 +1253,7 @@ void ActionStack::Render()
         renderer->DrawRect(x0 - 6, y0+33, width + 15, height - 18, ARGB(255,89,89,89));
         //stack border
         renderer->DrawRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(255,240,240,240));
-		
+        
         std::ostringstream stream;
         // WALDORF - changed "interrupt ?" to "Interrupt?". Don't display count down
         // seconds if the user disables auto progressing interrupts by setting the seconds

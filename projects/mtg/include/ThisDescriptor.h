@@ -114,7 +114,7 @@ class ThisAttacked:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);
 
-	ThisAttacked(int attack);
+    ThisAttacked(int attack);
     ThisAttacked * clone() const;
 };
 
@@ -122,7 +122,7 @@ class ThisBlocked:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);
 
-	ThisBlocked(int block);
+    ThisBlocked(int block);
     ThisBlocked * clone() const;
 };
 
@@ -130,7 +130,7 @@ class ThisNotBlocked:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);
 
-	ThisNotBlocked(int unblocked);
+    ThisNotBlocked(int unblocked);
     ThisNotBlocked * clone() const;
 };
 
@@ -138,7 +138,7 @@ class ThisDamaged:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);
 
-	ThisDamaged(int wasDealtDamage);
+    ThisDamaged(int wasDealtDamage);
     ThisDamaged * clone() const;
 };
 
@@ -146,7 +146,7 @@ class ThisDualWield:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);
 
-	ThisDualWield(int dualWield);
+    ThisDualWield(int dualWield);
     ThisDualWield * clone() const;
 };
 

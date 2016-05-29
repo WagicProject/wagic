@@ -169,7 +169,7 @@ public:
 class MillExileCost : public MillCost
 {
 public:
-	MillExileCost(TargetChooser *_tc = NULL);
+    MillExileCost(TargetChooser *_tc = NULL);
   virtual int doPay();
 };
 

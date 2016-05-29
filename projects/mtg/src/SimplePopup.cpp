@@ -19,7 +19,7 @@ SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const
 {
     mX = 19;
     mY = 66;
-	mWidth = 180.0f;
+    mWidth = 180.0f;
     mTitle = _title;
     mMaxLines = 12;
 
@@ -41,11 +41,11 @@ void SimplePopup::Render()
     const float textHeight = mTextFont->GetHeight() * mMaxLines;
     r->FillRoundRect(mX, mY + 2, mWidth + 11, textHeight - 12, 2.0f, ARGB( 255, 0, 0, 0 ) );
 
-	// currently causes a crash on the PSP when drawing the corners.
-	// TODO: clean up the image ot make it loook cleaner. Find solution to load gfx to not crash PSP
+    // currently causes a crash on the PSP when drawing the corners.
+    // TODO: clean up the image ot make it loook cleaner. Find solution to load gfx to not crash PSP
 #if 0
     r->DrawRoundRect(mX, mY + 2, mWidth + 11, textHeight - 12, 2.0f, ARGB( 255, 125, 255, 0) );
-	drawBoundingBox( mX-3, mY, mWidth + 3, textHeight );
+    drawBoundingBox( mX-3, mY, mWidth + 3, textHeight );
 #endif
     mTextFont->DrawString(detailedInformation.c_str(), mX + 9 , mY + 10);
 
@@ -58,22 +58,22 @@ void SimplePopup::drawBoundingBox( float x, float y, float width, float height )
     //draw the corners
     string topCornerImageName = "top_corner.png";
     string bottomCornerImageName = "bottom_corner.png";
-	string verticalBarImageName = "vert_bar.png";
+    string verticalBarImageName = "vert_bar.png";
     string horizontalBarImageName = "top_bar.png";
 
-	const float boxWidth	= ( width + 15 ) / 3.0f;
-	const float boxHeight = ( height + 15 ) / 3.0f;
+    const float boxWidth    = ( width + 15 ) / 3.0f;
+    const float boxHeight = ( height + 15 ) / 3.0f;
 
-	drawHorzPole( horizontalBarImageName, false, false, x, y, boxWidth );
-	drawHorzPole( horizontalBarImageName, false, true, x, y + height, boxWidth );
-	
-	drawVertPole( verticalBarImageName, false, false, x, y, boxHeight );
-	drawVertPole( verticalBarImageName, true, false, x + width, y, boxHeight );
+    drawHorzPole( horizontalBarImageName, false, false, x, y, boxWidth );
+    drawHorzPole( horizontalBarImageName, false, true, x, y + height, boxWidth );
+    
+    drawVertPole( verticalBarImageName, false, false, x, y, boxHeight );
+    drawVertPole( verticalBarImageName, true, false, x + width, y, boxHeight );
 
-	drawCorner( topCornerImageName, false, false, x, y );
-	drawCorner( topCornerImageName, true, false, x + width, y );
-	drawCorner( bottomCornerImageName, false, false, x, y + height );
-	drawCorner( bottomCornerImageName, true, false, x + width, y + height );
+    drawCorner( topCornerImageName, false, false, x, y );
+    drawCorner( topCornerImageName, true, false, x + width, y );
+    drawCorner( bottomCornerImageName, false, false, x, y + height );
+    drawCorner( bottomCornerImageName, true, false, x + width, y + height );
 }
 
 void SimplePopup::Update(DeckMetaData* selectedDeck)
@@ -130,52 +130,52 @@ void SimplePopup::Update(float)
 // drawing routines
 void SimplePopup::drawCorner(string imageName, bool flipX, bool flipY, float x, float y)
 {
-	LOG(" Drawing a Corner! ");
+    LOG(" Drawing a Corner! ");
     JRenderer* r = JRenderer::GetInstance();
     JQuadPtr horizontalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
-	horizontalBarImage->SetHFlip(flipX);
-	horizontalBarImage->SetVFlip(flipY);
+    horizontalBarImage->SetHFlip(flipX);
+    horizontalBarImage->SetVFlip(flipY);
 
-	r->RenderQuad(horizontalBarImage.get(), x, y);
-	LOG(" Done Drawing a Corner! ");
+    r->RenderQuad(horizontalBarImage.get(), x, y);
+    LOG(" Done Drawing a Corner! ");
 }
 
 void SimplePopup::drawHorzPole(string imageName, bool flipX = false, bool flipY = false, float x = 0, float y = 0, float width = SCREEN_WIDTH_F)
 {
-	LOG(" Drawing a horizontal border! ");
+    LOG(" Drawing a horizontal border! ");
     JRenderer* r = JRenderer::GetInstance();
     JQuadPtr horizontalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
-	if ( horizontalBarImage != NULL )
-	{
-	horizontalBarImage->SetHFlip(flipX);
-	horizontalBarImage->SetVFlip(flipY);
+    if ( horizontalBarImage != NULL )
+    {
+    horizontalBarImage->SetHFlip(flipX);
+    horizontalBarImage->SetVFlip(flipY);
 
-	r->RenderQuad(horizontalBarImage.get(), x, y, 0, width);
-	}
-	else
-	{
-		LOG ( "ERROR: Error trying to render horizontal edge! ");
-	}
-	LOG(" Done Drawing a horizontal border! ");
+    r->RenderQuad(horizontalBarImage.get(), x, y, 0, width);
+    }
+    else
+    {
+        LOG ( "ERROR: Error trying to render horizontal edge! ");
+    }
+    LOG(" Done Drawing a horizontal border! ");
 }
 
 void SimplePopup::drawVertPole(string imageName, bool flipX = false, bool flipY = false, float x = 0, float y = 0, float height = SCREEN_HEIGHT_F)
 {
-	LOG(" Drawing a Vertical border! ");
+    LOG(" Drawing a Vertical border! ");
     JRenderer* r = JRenderer::GetInstance();
     JQuadPtr verticalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
-	if ( verticalBarImage != NULL )
-	{
-		verticalBarImage->SetHFlip(flipX);
-		verticalBarImage->SetVFlip(flipY);
+    if ( verticalBarImage != NULL )
+    {
+        verticalBarImage->SetHFlip(flipX);
+        verticalBarImage->SetVFlip(flipY);
 
-		r->RenderQuad(verticalBarImage.get(), x, y, 0, 1.0f, height);
-	}
-	else
-	{
-		LOG ( "ERROR: Error trying to render vertical edge! ");
-	}
-	LOG(" DONE Drawing a horizontal border! ");
+        r->RenderQuad(verticalBarImage.get(), x, y, 0, 1.0f, height);
+    }
+    else
+    {
+        LOG ( "ERROR: Error trying to render vertical edge! ");
+    }
+    LOG(" DONE Drawing a horizontal border! ");
 }
 
 

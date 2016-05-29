@@ -28,7 +28,7 @@ int MTGPackEntryRandom::addCard(WSrcCards *pool, MTGDeck *to)
 }
 int MTGPackEntrySpecific::addCard(WSrcCards *, MTGDeck *to)
 {
-	if (!card)
+    if (!card)
         return copies;
     for (int i = 0; i < copies; i++)
         to->add(card);

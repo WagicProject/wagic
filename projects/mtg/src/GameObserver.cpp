@@ -165,18 +165,18 @@ void GameObserver::nextGamePhase()
 {
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
     if (cPhaseOld->id == MTG_PHASE_COMBATDAMAGE)
-    	if ((FIRST_STRIKE == combatStep) || (END_FIRST_STRIKE == combatStep) || (DAMAGE == combatStep))
-    	{
-        	nextCombatStep();
-        	return;
-    	}
+        if ((FIRST_STRIKE == combatStep) || (END_FIRST_STRIKE == combatStep) || (DAMAGE == combatStep))
+        {
+            nextCombatStep();
+            return;
+        }
 
     if (cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS)
-    	if (BLOCKERS == combatStep || TRIGGERS == combatStep)
-    	{
-        	nextCombatStep();
-        	return;
-    	}
+        if (BLOCKERS == combatStep || TRIGGERS == combatStep)
+        {
+            nextCombatStep();
+            return;
+        }
 
     phaseRing->forward();
 
@@ -191,12 +191,12 @@ void GameObserver::nextGamePhase()
     mCurrentGamePhase = cPhase->id;
 
     if (MTG_PHASE_COMBATDAMAGE == mCurrentGamePhase)
-    	nextCombatStep();
+        nextCombatStep();
     if (MTG_PHASE_COMBATEND == mCurrentGamePhase)
         combatStep = BLOCKERS;
 
     //if (currentPlayer != cPhase->player)
-    //	nextPlayer();//depreciated; we call this at EOT step now. unsure what the purpose of this was originally.fix for a bug?
+    //    nextPlayer();//depreciated; we call this at EOT step now. unsure what the purpose of this was originally.fix for a bug?
 
     //init begin of turn
     if (mCurrentGamePhase == MTG_PHASE_BEFORE_BEGIN)
@@ -229,8 +229,8 @@ void GameObserver::nextGamePhase()
         handmodified = currentPlayer->handsize+currentPlayer->handmodifier;
         //Auto Hand cleaning, in case the player didn't do it himself
         if(handmodified < 0)
-			handmodified = 0;
-		while (currentPlayer->game->hand->nb_cards > handmodified && currentPlayer->nomaxhandsize == false)
+            handmodified = 0;
+        while (currentPlayer->game->hand->nb_cards > handmodified && currentPlayer->nomaxhandsize == false)
         {
             WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
             receiveEvent(e);
@@ -312,16 +312,16 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
             cardClick(getCurrentTargetChooser()->source, 0, false);
     }
     if (allowInterrupt && mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
-    	return;
+        return;
     if (getCurrentTargetChooser())
-    	return;
+        return;
     //if (mLayers->actionLayer()->isWaitingForAnswer())
-    //	return;
+    //    return;
     // Wil 12/5/10: additional check, not quite understanding why TargetChooser doesn't seem active at this point.
     // If we deem that an extra cost payment needs to be made, don't allow the next game phase to proceed.
     // Here's what I find weird - if the extra cost is something like a sacrifice, doesn't that imply a TargetChooser?
     if (WaitForExtraPayment(NULL)) 
-    	return;
+        return;
 
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
     if (allowInterrupt && ((cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER)
@@ -329,7 +329,7 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
         || (cPhaseOld->id == MTG_PHASE_COMBATDAMAGE)
         || opponent()->isAI() 
         || options[Options::optionInterrupt(mCurrentGamePhase)].number
-		|| currentPlayer->offerInterruptOnPhase - 1 == mCurrentGamePhase
+        || currentPlayer->offerInterruptOnPhase - 1 == mCurrentGamePhase
     ))
     {
         mLayers->stackLayer()->AddNextGamePhase();
@@ -577,7 +577,7 @@ void GameObserver::Update(float dt)
     }
     currentActionPlayer = player;
     if (isInterrupting) 
-    	player = isInterrupting;
+        player = isInterrupting;
     if(mLayers)
     {
         mLayers->Update(dt, player);
@@ -597,7 +597,7 @@ void GameObserver::gameStateBasedEffects()
 {
     if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets)
         getCurrentTargetChooser()->done = true;
-	/////////////////////////////////////
+    /////////////////////////////////////
     for (int d = 0; d < 2; d++)
     {
         MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile };
@@ -608,8 +608,8 @@ void GameObserver::gameStateBasedEffects()
             {
                 for (int c = zone->nb_cards - 1; c >= 0; c--)
                 {
-    	            zone->cards[c]->cardistargetted = 0;
-    	            zone->cards[c]->cardistargetter = 0;
+                    zone->cards[c]->cardistargetted = 0;
+                    zone->cards[c]->cardistargetter = 0;
                 }
             }
         }//check for losers if its GAMEOVER clear the stack to allow gamestateeffects to continue
@@ -885,9 +885,6 @@ void GameObserver::gameStateBasedEffects()
         //    plus modify costs    //
         /////////////////////////////
         Affinity();
-        //trinisphere? buggy...
-        //ComputeTrinisphere();
-        //end trinisphere
         /////////////////////////////////////
         // Check colored statuses on cards //
         /////////////////////////////////////
@@ -979,10 +976,14 @@ void GameObserver::Affinity()
                 //only do any of the following if a card with the stated ability is in your hand.
                 ManaCost * original = NEW ManaCost();
                 ManaCost * alternate = NEW ManaCost();
+                ManaCost * buyback = NEW ManaCost();
+                ManaCost * flashback = NEW ManaCost();
+                ManaCost * retrace = NEW ManaCost();
                 original->copy(card->model->data->getManaCost());
                 alternate->copy(card->model->data->getManaCost()->getAlternative());
-                if (card->has(Constants::PAYZERO))
-                    original = ManaCost::parseManaCost("{0}",NULL,card);//can't figure out 2 or more alternative...
+                buyback->copy(card->model->data->getManaCost()->getBuyback());
+                flashback->copy(card->model->data->getManaCost()->getFlashback());
+                retrace->copy(card->model->data->getManaCost()->getRetrace());
                 //have to run alter cost before affinity or the 2 cancel each other out.
                 if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
                 {
@@ -995,10 +996,22 @@ void GameObserver::Affinity()
                             {
                                 alternate->add(kc,card->getIncreasedManaCost()->getCost(kc));
                             }
+                            if (card->getManaCost()->getBuyback())
+                            {
+                                buyback->add(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                            if (card->getManaCost()->getFlashback())
+                            {
+                                flashback->add(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                            if (card->getManaCost()->getRetrace())
+                            {
+                                retrace->add(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
                         }
                     }
                     if(card->getReducedManaCost()->getConvertedCost())
-					{
+                    {
                         original->remove(card->getReducedManaCost());
                         for(int kc = Constants::MTG_COLOR_ARTIFACT; kc < Constants::NB_Colors;kc++)
                         {
@@ -1006,12 +1019,30 @@ void GameObserver::Affinity()
                             {
                                 alternate->remove(kc,card->getReducedManaCost()->getCost(kc));
                             }
+                            if (card->getManaCost()->getBuyback())
+                            {
+                                buyback->remove(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                            if (card->getManaCost()->getFlashback())
+                            {
+                                flashback->remove(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                            if (card->getManaCost()->getRetrace())
+                            {
+                                retrace->remove(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
                         }
                     }
                     if(card->getManaCost())
                         card->getManaCost()->copy(original);
                     if(card->getManaCost()->getAlternative())
-						card->getManaCost()->setAlternative(alternate);
+                        card->getManaCost()->setAlternative(alternate);
+                    if(card->getManaCost()->getBuyback())
+                        card->getManaCost()->setBuyback(buyback);
+                    if(card->getManaCost()->getFlashback())
+                        card->getManaCost()->setFlashback(flashback);
+                    if(card->getManaCost()->getRetrace())
+                        card->getManaCost()->setRetrace(retrace);
                     if(card->getManaCost()->extraCosts)
                     {
                         for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
@@ -1068,7 +1099,8 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYISLAND)||
                     card->has(Constants::AFFINITYMOUNTAIN)||
                     card->has(Constants::AFFINITYPLAINS)||
-                    card->has(Constants::AFFINITYSWAMP)){
+                    card->has(Constants::AFFINITYSWAMP))
+                    {
                         if (card->has(Constants::AFFINITYARTIFACTS))
                         {
                             type = "artifact";
@@ -1123,94 +1155,26 @@ void GameObserver::Affinity()
                             if(card->getManaCost()->getCost(color) > 0)
                                 card->getManaCost()->remove(color,1);
                         }
-
-                }
+                    }
                 SAFE_DELETE(original);
+
+                SAFE_DELETE(alternate);
+                SAFE_DELETE(buyback);
+                SAFE_DELETE(flashback);
+                SAFE_DELETE(retrace);
             }//end
         }
     }
 }
 
-void GameObserver::ComputeTrinisphere()
-{
-    for (int td = 0; td < 2; td++)
-    {
-        MTGGameZone * dzones[] = { players[td]->game->graveyard, players[td]->game->hand, players[td]->game->library, players[td]->game->exile };
-        for (int tk = 0; tk < 4; tk++)
-        {
-            MTGGameZone * zone = dzones[tk];
-            for (int ct = zone->nb_cards - 1; ct >= 0; ct--)
-            {
-                if(zone->cards[ct]->has(Constants::TRINISPHERE))
-                {
-                    if(zone->cards[ct]->getManaCost()->getConvertedCost() == 2)
-                    {
-                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                        zone->cards[ct]->tmodifier = 1;
-                    }
-                    else if(zone->cards[ct]->getManaCost()->getConvertedCost() == 1)
-                    {
-                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 2);
-                        zone->cards[ct]->tmodifier = 2;
-                    }
-                    else if(zone->cards[ct]->getManaCost()->getConvertedCost() < 1)
-                    {
-                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 3);
-                        zone->cards[ct]->tmodifier = 3;
-                    }
-                    if(zone->cards[ct]->getManaCost()->getAlternative())
-                    {
-                        ManaCost * currentAlternate = NEW ManaCost();
-                        currentAlternate->copy(zone->cards[ct]->getManaCost()->getAlternative());
-                        if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() ==  2)
-                             zone->cards[ct]->tmodifierb = 1;
-                        else if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() ==  1)
-                             zone->cards[ct]->tmodifierb = 2;
-                        else if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() <  1)
-                             zone->cards[ct]->tmodifierb = 3;
-                        currentAlternate->add(Constants::MTG_COLOR_ARTIFACT, zone->cards[ct]->tmodifierb);
-                        zone->cards[ct]->getManaCost()->setAlternative(currentAlternate);
-                    }
-                }
-                else
-                    RemoveTrinisphere(zone->cards[ct]);
-                if(zone->cards[ct]->getManaCost()->extraCosts)
-                {
-                    for(unsigned int i = 0; i < zone->cards[ct]->getManaCost()->extraCosts->costs.size();i++)
-                    {
-                        zone->cards[ct]->getManaCost()->extraCosts->costs[i]->setSource(zone->cards[ct]);
-                    }
-                }
-            }
-        }
-    }
-}
-void GameObserver::RemoveTrinisphere(MTGCardInstance * card)
-{
-    if(card->has(Constants::TRINISPHERE))
-        return;
-    if(card->tmodifier)
-    {
-        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->tmodifier);
-        card->tmodifier = 0;
-    }
-    if(card->getManaCost()->getAlternative() && card->tmodifierb)
-    {
-        ManaCost * newalternate = NEW ManaCost();
-        newalternate->copy(card->getManaCost()->getAlternative());
-        newalternate->remove(Constants::MTG_COLOR_ARTIFACT, card->tmodifierb);
-        card->getManaCost()->setAlternative(newalternate);
-        card->tmodifierb = 0;
-    }
-}
 void GameObserver::Render()
 {
     if(mLayers)
         mLayers->Render();
     if (targetChooser || (mLayers && mLayers->actionLayer()->isWaitingForAnswer()))
-	    JRenderer::GetInstance()->DrawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(255,255,0,0));
+        JRenderer::GetInstance()->DrawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(255,255,0,0));
     if (mExtraPayment) 
-    	mExtraPayment->Render();
+        mExtraPayment->Render();
     
     for (size_t i = 0; i < players.size(); ++i)
     {
@@ -1294,7 +1258,7 @@ void GameObserver::stackObjectClicked(Interruptible * action)
     {
         int reaction = mLayers->actionLayer()->isReactingToTargetClick(action);
         if (reaction == -1) 
-        	mLayers->actionLayer()->reactToTargetClick(action);
+            mLayers->actionLayer()->reactToTargetClick(action);
     }
 }
 
@@ -1374,7 +1338,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool lo
     MTGCardInstance* backup = NULL;
 
     if (!card) {
-    	clickedPlayer = ((Player *) object);
+        clickedPlayer = ((Player *) object);
     } else {
         backup = card;
         zone = card->currentZone;
@@ -1488,7 +1452,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool lo
         //Current player's hand
         handmodified = currentPlayer->handsize+currentPlayer->handmodifier;
         if(handmodified < 0)
-			handmodified = 0;
+            handmodified = 0;
         if (currentPlayer->game->hand->hasCard(card) && mCurrentGamePhase == MTG_PHASE_CLEANUP
                     && currentPlayer->game->hand->nb_cards > handmodified && currentPlayer->nomaxhandsize == false)
         {
@@ -1528,9 +1492,9 @@ int GameObserver::untap(MTGCardInstance * card)
         return 0;
     }
     if (card->has(Constants::DOESNOTUNTAP))
-    	return 0;
+        return 0;
     if (card->frozen > 0) 
-    	return 0;
+        return 0;
     card->attemptUntap();
     return 1;
 }
@@ -1552,7 +1516,7 @@ int GameObserver::isInPlay(MTGCardInstance * card)
     for (int i = 0; i < 2; i++)
     {
         if (players[i]->game->isInPlay(card)) 
-        	return 1;
+            return 1;
     }
     return 0;
 }
@@ -1593,10 +1557,10 @@ void GameObserver::untapPhase()
 int GameObserver::receiveEvent(WEvent * e)
 {
     if (!e) 
-    	return 0;
+        return 0;
     eventsQueue.push(e);
     if (eventsQueue.size() > 1) 
-    	return -1; //resolving events can generate more events
+        return -1; //resolving events can generate more events
     int result = 0;
     while (eventsQueue.size())
     {
@@ -1615,7 +1579,7 @@ int GameObserver::receiveEvent(WEvent * e)
 Player * GameObserver::currentlyActing()
 {
     if (isInterrupting) 
-    	return isInterrupting;
+        return isInterrupting;
     return currentActionPlayer;
 }
 
@@ -1708,7 +1672,7 @@ bool GameObserver::load(const string& ss, bool undo, int controlledPlayerIndex
                         )
 {
     bool currentPlayerSet = false;
-	int state = -1;
+    int state = -1;
     string s;
     stringstream stream(ss);
 
@@ -1727,7 +1691,7 @@ bool GameObserver::load(const string& ss, bool undo, int controlledPlayerIndex
         if (s.find("seed ") == 0)
         {
             mSeed = atoi(s.substr(5).c_str());
-			randomGenerator.setSeed(mSeed);
+            randomGenerator.setSeed(mSeed);
             continue;
         }
         if (s.find("rvalues:") == 0)
@@ -1796,7 +1760,7 @@ bool GameObserver::load(const string& ss, bool undo, int controlledPlayerIndex
         case 3:
             if (s.compare("[end]") == 0)
             {
-				turn = 0;
+                turn = 0;
                 mLayers = NEW DuelLayers(this, controlledPlayerIndex);
                 currentPlayer = players[currentPlayerId];
                 phaseRing = NEW PhaseRing(this);
@@ -1885,7 +1849,7 @@ bool GameObserver::processAction(const string& s)
         DebugTrace("no clue about: " + s);
     }
 
-	return true;
+    return true;
 }
 
 bool GameObserver::processActions(bool undo
@@ -1926,7 +1890,7 @@ bool GameObserver::processActions(bool undo
 
     for(loadingite = loadingList.begin(); loadingite != loadingList.end(); loadingite++, cmdIndex++)
     {
-		processAction(*loadingite);
+        processAction(*loadingite);
 
         size_t nb = actionsList.size();
 
@@ -2006,7 +1970,7 @@ Player* GameObserver::createPlayer(const string& playerMode
                                 )
 {
     Player::Mode aMode = (Player::Mode)atoi(playerMode.c_str());
-	Player* pPlayer = 0;
+    Player* pPlayer = 0;
 
     switch(aMode)
     {
@@ -2030,12 +1994,12 @@ Player* GameObserver::createPlayer(const string& playerMode
         break;
     }
 
-	if(pPlayer)
-	{
-		players.push_back(pPlayer);
-	}
+    if(pPlayer)
+    {
+        players.push_back(pPlayer);
+    }
 
-	return pPlayer;
+    return pPlayer;
 }
 
 #ifdef TESTSUITE
@@ -2081,7 +2045,7 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
 
                 loadPlayer(playerId, NEW HumanPlayer(this, deckFile, deckFileSmall, premadeDeck));
             }
-		}
+        }
         else
         { //AI Player, chooses deck
             AIPlayerFactory playerCreator;
@@ -2117,43 +2081,43 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
 
 #ifdef NETWORK_SUPPORT
 NetworkGameObserver::NetworkGameObserver(JNetwork* pNetwork, WResourceManager* output, JGE* input)
-	: GameObserver(output, input), mpNetworkSession(pNetwork), 	mSynchronized(false)
+    : GameObserver(output, input), mpNetworkSession(pNetwork),     mSynchronized(false)
 {
-	mpNetworkSession->registerCommand("loadPlayer", this, loadPlayer, ignoreResponse);
-	mpNetworkSession->registerCommand("synchronize", this, synchronize, checkSynchro);
-	mpNetworkSession->registerCommand("sendAction", this, sendAction, checkSynchro);
-	mpNetworkSession->registerCommand("disconnect", this, disconnect, ignoreResponse);
+    mpNetworkSession->registerCommand("loadPlayer", this, loadPlayer, ignoreResponse);
+    mpNetworkSession->registerCommand("synchronize", this, synchronize, checkSynchro);
+    mpNetworkSession->registerCommand("sendAction", this, sendAction, checkSynchro);
+    mpNetworkSession->registerCommand("disconnect", this, disconnect, ignoreResponse);
 }
 
 NetworkGameObserver::~NetworkGameObserver()
 {
-	mpNetworkSession->sendCommand("disconnect", "");
+    mpNetworkSession->sendCommand("disconnect", "");
 }
 
 void NetworkGameObserver::disconnect(void*pxThis, stringstream&, stringstream&)
 {
-	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
-	pThis->setLoser(pThis->getView()->getRenderedPlayerOpponent());
+    NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
+    pThis->setLoser(pThis->getView()->getRenderedPlayerOpponent());
 }
 
 void NetworkGameObserver::Update(float dt)
 {
-	mpNetworkSession->Update();
-	::GameObserver::Update(dt);
+    mpNetworkSession->Update();
+    ::GameObserver::Update(dt);
 }
 
 void NetworkGameObserver::loadPlayer(int playerId, Player* player)
 {
-	GameObserver::loadPlayer(playerId, player);
-	stringstream out;
-	out << *player;
-	mpNetworkSession->sendCommand("loadPlayer", out.str());
+    GameObserver::loadPlayer(playerId, player);
+    stringstream out;
+    out << *player;
+    mpNetworkSession->sendCommand("loadPlayer", out.str());
 }
 
 void NetworkGameObserver::loadPlayer(void*pxThis, stringstream& in, stringstream&)
 {
-	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
-	Player* pPlayer = 0;
+    NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
+    Player* pPlayer = 0;
     string s;
 
     while(std::getline(in, s))
@@ -2176,50 +2140,50 @@ void NetworkGameObserver::loadPlayer(void*pxThis, stringstream& in, stringstream
 
 void NetworkGameObserver::synchronize()
 {
-	if(!mSynchronized && mpNetworkSession->isServer())
-	{
-		stringstream out;
-		out << *this;
-		mpNetworkSession->sendCommand("synchronize", out.str());
-		mSynchronized = true;
-	}
+    if(!mSynchronized && mpNetworkSession->isServer())
+    {
+        stringstream out;
+        out << *this;
+        mpNetworkSession->sendCommand("synchronize", out.str());
+        mSynchronized = true;
+    }
 }
 
 void NetworkGameObserver::synchronize(void*pxThis, stringstream& in, stringstream& out)
 {
-	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
-	// now, we need to load the game from player 2's perspective
-	pThis->load(in.str(), false, 1);
-	out << *pThis;
+    NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
+    // now, we need to load the game from player 2's perspective
+    pThis->load(in.str(), false, 1);
+    out << *pThis;
 }
 
 
 void NetworkGameObserver::checkSynchro(void*pxThis, stringstream& in, stringstream&)
 {
-	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
-	
-	GameObserver aGame;
-	aGame.mRules = pThis->mRules;
-	aGame.load(in.str());
+    NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
+    
+    GameObserver aGame;
+    aGame.mRules = pThis->mRules;
+    aGame.load(in.str());
 
-	assert(aGame == *pThis);
+    assert(aGame == *pThis);
 }
 
 void NetworkGameObserver::sendAction(void*pxThis, stringstream& in, stringstream&)
 {
-	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
+    NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
 
     pThis->mForwardAction = false;
-	pThis->processAction(in.str());
+    pThis->processAction(in.str());
     pThis->mForwardAction = true;
-	//out << *pThis;
+    //out << *pThis;
 }
 
 void NetworkGameObserver::logAction(const string& s)
 {
-	GameObserver::logAction(s);
-	if(mForwardAction)
-		mpNetworkSession->sendCommand("sendAction", s);
+    GameObserver::logAction(s);
+    if(mForwardAction)
+        mpNetworkSession->sendCommand("sendAction", s);
 }
 
 #endif

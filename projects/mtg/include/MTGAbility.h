@@ -211,8 +211,11 @@ public:
         MORPH_COST = 28,
         SUSPEND_COST = 29,
         COUNTERS = 30,
-		PUT_INTO_PLAY_WITH_KICKER = 31,
-		STANDARD_FIZZLER = 32,
+        PUT_INTO_PLAY_WITH_KICKER = 31,
+        STANDARD_FIZZLER = 32,
+        PAYZERO_COST = 33,
+        OVERLOAD_COST = 34,
+        BESTOW_COST = 35,
     };
 };
 
@@ -460,7 +463,7 @@ public:
     int parseRestriction(string s);
     int parseCastRestrictions(MTGCardInstance * card, Player * player, string restrictions);
     Counter * parseCounter(string s, MTGCardInstance * target, Spell * spell = NULL);
-    int parsePowerToughness(string s, int *power, int *toughness);	
+    int parsePowerToughness(string s, int *power, int *toughness);    
     int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0, MTGGameZone * dest = NULL);
     MTGAbility* parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, bool activated = false, bool forceUEOT = false, MTGGameZone * dest = NULL);
     int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY, TargetChooser * tc = NULL,Targetable * target = NULL);

@@ -351,7 +351,7 @@ void TestSuiteGame::assertGame()
     int error = 0;
     bool wasAI = false;
 
-	if (observer->getCurrentGamePhase() != endState.phase)
+    if (observer->getCurrentGamePhase() != endState.phase)
     {
         sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
             Constants::MTGPhaseNames[endState.phase].c_str(),endState.phase,
@@ -581,7 +581,7 @@ int TestSuite::loadNext()
 #elif defined(IOS)
         thread_count = 6;
 #else
-		thread_count = 4;
+        thread_count = 4;
 #endif
         for(size_t i = 0; i < (thread_count-1); i++)
             mWorkerThread.push_back(new boost::thread(ThreadProc, this));

@@ -224,12 +224,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Aluren
-text=Any player may play creature cards with converted mana cost 3 or less without paying their mana cost and as though they had flash.
-mana={2}{G}{G}
-type=Enchantment
-[/card]
-[card]
 name=Amber Prison
 text=You may choose not to untap Amber Prison during your untap step. -- {4}, {T}: Tap target artifact, creature, or land. That permanent doesn't untap during its controller's untap step for as long as Amber Prison remains tapped.
 mana={4}
@@ -1223,6 +1217,7 @@ text=Blazing Salvo deals 3 damage to target creature unless that creature's cont
 mana={R}
 type=Instant
 [/card]
+#blazing torch is source of damage but the equipped creature has the activated ability... weird
 [card]
 name=Blazing Torch
 text=Equipped creature can't be blocked by Vampires or Zombies. -- Equipped creature has "{T}, Sacrifice Blazing Torch: Blazing Torch deals 2 damage to target creature or player." -- Equip {1}
@@ -1307,12 +1302,6 @@ name=Bludgeon Brawl
 mana={2}{R}
 type=Enchantment
 text=Each noncreature, non-Equipment artifact is an Equipment with equip {X} and "Equipped creature gets +X/+0," where X is that artifact's converted mana cost.
-[/card]
-[card]
-name=Blustersquall
-text=Tap target creature you don't control. -- Overload {3}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Boar Umbra
@@ -2385,12 +2374,6 @@ type=Enchantment
 text=Whenever any spell is played, counter that spell if each player, other than the caster and his or her teammates, agrees to choose and discard a card. Those players must discard those cards after agreeing. Checks and Balances may be played only in a game with three or more players.
 [/card]
 [card]
-name=Chemister's Trick
-text=Target creature you don't control gets -2/-0 until end of turn and attacks this turn if able. -- Overload {3}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}{R}
-type=Instant
-[/card]
-[card]
 name=Chicken Egg
 mana={1}{R}
 type=Summon — Egg
@@ -3000,12 +2983,6 @@ mana={U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Counterflux
-text=Counterflux can't be countered by spells or abilities. -- Counter target spell you don't control. -- Overload {1}{U}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}{U}{R}
-type=Instant
-[/card]
-[card]
 name=Countryside Crusher
 text=At the beginning of your upkeep, reveal the top card of your library. If it's a land card, put it into your graveyard and repeat this process. -- Whenever a land card is put into your graveyard from anywhere, put a +1/+1 counter on Countryside Crusher.
 mana={1}{R}{R}
@@ -3303,12 +3280,6 @@ name=Cyclone
 text=At the beginning of your upkeep, put a wind counter on Cyclone, then sacrifice Cyclone unless you pay {G} for each wind counter on it. If you pay, Cyclone deals damage equal to the number of wind counters on it to each creature and each player.
 mana={2}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Cyclonic Rift
-text=Return target nonland permanent you don't control to its owner's hand. -- Overload {6}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={1}{U}
-type=Instant
 [/card]
 [card]
 name=Cyclopean Giant
@@ -3954,6 +3925,7 @@ subtype=Djinn
 power=3
 toughness=5
 [/card]
+#needs alias borderline
 [card]
 name=Djinn of Wishes
 text=Flying -- Djinn of Wishes enters the battlefield with three wish counters on it. -- {2}{U}{U}, Remove a wish counter from Djinn of Wishes: Reveal the top card of your library. You may play that card without paying its mana cost. If you don't, exile it.
@@ -4073,12 +4045,6 @@ name=Down // Dirty
 text=Target player discards two cards. --  //  -- Return target card from your graveyard to your hand. --  -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={3}{B} // {2}{G}
 type=Sorcery // Sorcery
-[/card]
-[card]
-name=Downsize
-text=Target creature you don't control gets -4/-0 until end of turn. -- Overload {2}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Draco
@@ -4282,12 +4248,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Dynacharge
-text=Target creature you control gets +2/+0 until end of turn. -- Overload {2}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Echo Chamber
 text={4}, {T}: An opponent chooses target creature he or she controls. Put a token that's a copy of that creature onto the battlefield. That token gains haste until end of turn. Exile the token at the beginning of the next end step. Activate this ability only any time you could cast a sorcery.
 mana={4}
@@ -4336,12 +4296,6 @@ toughness=4
 name=Eldrazi Temple
 type=Land
 text={T}: Add {1} to your mana pool. {T}: Add {2} to your mana pool. Spend this mana only to cast colorless Eldrazi spells or activate abilities of colorless Eldrazi.
-[/card]
-[card]
-name=Electrickery
-text=Electrickery deals 1 damage to target creature you don't control. -- Overload {1}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={R}
-type=Instant
 [/card]
 [card]
 name=Electropotence
@@ -4768,11 +4722,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Exotic Orchard
-text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
-type=Land
-[/card]
-[card]
 name=Experiment Kraj
 text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. -- {T}: Put a +1/+1 counter on target creature.
 mana={2}{G}{G}{U}{U}
@@ -4989,12 +4938,6 @@ text=Enchant creature -- Enchanted creature has lifelink. -- {1}{W}: Attach Feli
 mana={1}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Fellwar Stone
-text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Feral Contest
@@ -6866,15 +6809,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Harvester Druid
-text={T}: Add to your mana pool one mana of any color that a land you control could produce.
-mana={1}{G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
-[/card]
-[card]
 name=Hatred
 text=As an additional cost to cast Hatred, pay X life. -- Target creature gets +X/+0 until end of turn.
 mana={3}{B}{B}
@@ -8742,6 +8676,7 @@ text=Look at the top five cards of your library. You may reveal any number of cr
 mana={2}{G}
 type=Sorcery
 [/card]
+#needs alias borderline
 [card]
 name=Leaf-Crowned Elder
 text=Kinship - At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Leaf-Crowned Elder, you may reveal it. If you do, you may play that card without paying its mana cost.
@@ -9863,6 +9798,7 @@ text=Each opponent reveals cards from the top of his or her library until he or 
 mana={X}{U}{B}
 type=Sorcery
 [/card]
+#needs alias
 [card]
 name=Mind's Desire
 text=Shuffle your library. Then exile the top card of your library. Until end of turn, you may play that card without paying its mana cost. (If it has X in its mana cost, X is 0.) -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
@@ -10095,18 +10031,6 @@ name=Mitotic Manipulation
 text=Look at the top seven cards of your library. You may put one of those cards onto the battlefield if it has the same name as a permanent. Put the rest on the bottom of your library in any order.
 mana={1}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Mizzium Mortars
-text=Mizzium Mortars deals 4 damage to target creature you don't control. -- Overload {3}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={1}{R}
-type=Sorcery
-[/card]
-[card]
-name=Mizzium Skin
-text=Target creature you control gets +0/+1 and gains hexproof until end of turn. -- Overload {1}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Mizzium Transreliquat
@@ -11075,6 +10999,7 @@ text=Look at the top three cards of your library, then put them back in any orde
 mana={1}{U}
 type=Sorcery
 [/card]
+#needs alias
 [card]
 name=Omen Machine
 mana={6}
@@ -12498,6 +12423,7 @@ text=Pyrotechnics deals 4 damage divided as you choose among any number of targe
 mana={4}{R}
 type=Sorcery
 [/card]
+#anyzone is basic for now and used for cdaactive
 [card]
 name=Qasali Ambusher
 text=Reach -- If a creature is attacking you and you control a Forest and a Plains, you may cast Qasali Ambusher without paying its mana cost and as though it had flash.
@@ -12613,15 +12539,6 @@ name=Quiet Speculation
 text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
 mana={1}{U}
 type=Sorcery
-[/card]
-[card]
-name=Quirion Explorer
-text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
-mana={1}{G}
-type=Creature
-subtype=Elf Druid Scout
-power=1
-toughness=1
 [/card]
 [card]
 name=R&D's Secret Lair
@@ -12812,6 +12729,7 @@ mana={2}{U}
 type=Enchantment
 subtype=Aura
 [/card]
+#needs suspend ability not suspend activated ability
 [card]
 name=Reality Strobe
 text=Return target permanent to its owner's hand. Exile Reality Strobe with three time counters on it. -- Suspend 3 - {2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
@@ -12921,11 +12839,6 @@ name=Reflecting Mirror
 text={X}, {T}: Change the target of target spell with a single target if that target is you. The new target must be a player. X is twice the converted mana cost of that spell.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Reflecting Pool
-text={T}: Add to your mana pool one mana of any type that a land you control could produce.
-type=Land
 [/card]
 [card]
 name=Refraction Trap
@@ -13490,6 +13403,7 @@ subtype=Elemental
 power=3
 toughness=2
 [/card]
+#seems possible
 [card]
 name=Roiling Horror
 text=Roiling Horror's power and toughness are each equal to your life total minus the life total of an opponent with the most life. -- Suspend X - {X}{B}{B}{B}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{B}{B}{B} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Roiling Horror while it's exiled, target player loses 1 life and you gain 1 life.
@@ -13939,6 +13853,7 @@ subtype=Giant Warrior
 power=4
 toughness=5
 [/card]
+#modded ingest
 [card]
 name=Scalpelexis
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Scalpelexis deals combat damage to a player, that player exiles the top four cards of his or her library. If two or more of those cards have the same name, repeat this process.
@@ -14093,6 +14008,7 @@ text=Look at the top X cards of target opponent's library. Exile one of those ca
 mana={X}{U}{B}
 type=Sorcery
 [/card]
+#moverandom?
 [card]
 name=Search for Survivors
 text=Reorder your graveyard at random. An opponent chooses a card at random in your graveyard. If it's a creature card, put it onto the battlefield. Otherwise, exile it.
@@ -14480,6 +14396,7 @@ mana={3}{U}
 type=Instant
 subtype=Arcane
 [/card]
+#phaseactionmulti?
 [card]
 name=Shifty Doppelganger
 text={3}{U}, Exile Shifty Doppelganger: You may put a creature card from your hand onto the battlefield. If you do, that creature gains haste until end of turn. At the beginning of the next end step, sacrifice that creature. If you do, return Shifty Doppelganger to the battlefield.
@@ -14944,6 +14861,7 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +1/+1 and has "Whenever this creature deals damage to an opponent, you may draw a card." Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 [/card]
+#manaflashback rule
 [card]
 name=Snapcaster Mage
 abilities=flash
@@ -15565,6 +15483,7 @@ subtype=Monger
 power=3
 toughness=3
 [/card]
+#needs alias
 [card]
 name=Squandered Resources
 text=Sacrifice a land: Add to your mana pool one mana of any type the sacrificed land could produce.
@@ -15906,12 +15825,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Street Spasm
-text=Street Spasm deals X damage to target creature without flying you don't control. -- Overload {X}{X}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={X}{R}
-type=Instant
-[/card]
-[card]
 name=Strength of the Tajuru
 text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature, then choose another target creature for each time Strength of the Tajuru was kicked. Put X +1/+1 counters on each of them.
 mana={X}{G}{G}
@@ -16209,25 +16122,10 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Sylvok Explorer
-text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
-mana={1}{G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
-[/card]
-[card]
 name=Symbol Status
 mana={2}{G}{G}
 type=Sorcery
 text=Put a 1/1 colorless Expansion-Symbol creature token into play for each different expansion symbol among permanents you control.
-[/card]
-[card]
-name=Syncopate
-text=Counter target spell unless its controller pays {X}. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
-mana={X}{U}
-type=Instant
 [/card]
 [card]
 name=Synod Artificer
@@ -16410,12 +16308,6 @@ mana={U}
 type=Enchantment
 [/card]
 [card]
-name=Teleportal
-text=Target creature you control gets +1/+0 until end of turn and is unblockable this turn. -- Overload {3}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}{R}
-type=Sorcery
-[/card]
-[card]
 name=Telling Time
 text=Look at the top three cards of your library. Put one of those cards into your hand, one on top of your library, and one on the bottom of your library.
 mana={1}{U}
@@ -16488,15 +16380,6 @@ text=+1: Look at the top five cards of your library. You may reveal an artifact 
 mana={2}{U}{B}
 type=Planeswalker
 subtype=Tezzeret
-[/card]
-[card]
-name=Thada Adel, Acquisitor
-text=Islandwalk -- Whenever Thada Adel, Acquisitor deals combat damage to a player, search that player's library for an artifact card and exile it. Then that player shuffles his or her library. Until end of turn, you may play that card.
-mana={1}{U}{U}
-type=Legendary Creature
-subtype=Merfolk Rogue
-power=2
-toughness=2
 [/card]
 [card]
 name=Thalakos Dreamsower
@@ -17284,17 +17167,6 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
-name=Undead Alchemist
-auto=@combatdamaged(player) from(zombie|mybattlefield):deplete:thatmuch opponent && life:thatmuch opponent
-auto=@movedTo(creature|opponentgraveyard) from(opponentlibrary):token(Zombie,Creature Zombie,2/2,black)
-text=If a Zombie you control would deal combat damage to a player, instead that player puts that many cards from the top of his or her library into his or her graveyard. -- Whenever a creature card is put into an opponent's graveyard from his or her library, exile that card and put a 2/2 black Zombie creature token onto the battlefield.
-mana={3}{U}
-type=Creature
-subtype=Zombie
-power=4
-toughness=2
-[/card]
-[card]
 name=Undercity Informer
 text={1}, Sacrifice a creature: Target player reveals cards from the top of his or her library until he or she reveals a land card, then puts those cards into his or her graveyard.
 mana={2}{B}
@@ -17454,12 +17326,6 @@ type=Creature
 subtype=Vampire
 power=3
 toughness=3
-[/card]
-[card]
-name=Vandalblast
-text=Destroy target artifact you don't control. -- Overload {4}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Vanguard's Shield

@@ -65,8 +65,6 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     LKItoughness = toughness;
     cardistargetted = 0;
     cardistargetter = 0;
-    tmodifier = 0;
-    tmodifierb = 0;
     myconvertedcost = getManaCost()->getConvertedCost();
 }
 
@@ -575,7 +573,7 @@ MTGCardInstance * MTGCardInstance::changeController(Player * newController,bool 
     }
     Player * originalOwner = controller();
     MTGCardInstance * copy = originalOwner->game->putInZone(this, this->currentZone, newController->game->inPlay);
-    copy->summoningSickness = 1;
+    //copy->summoningSickness = 1;
     return copy;
 }
 
@@ -755,7 +753,7 @@ bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
         controller() == getObserver()->currentPlayer &&
         !getObserver()->isInterrupting)
     {
-		return true;
+        return true;
     }
     return false;
 }
@@ -779,10 +777,10 @@ bool MTGCardInstance::isTargetted()
                 }
             }
         }
-    }		
+    }        
     if(cardistargetted)
         return true;
-	return false;
+    return false;
 }
 
 //check targetter?
@@ -804,10 +802,10 @@ bool MTGCardInstance::isTargetter()
                 }
             }
         }
-    }		
+    }        
     if(cardistargetter)
         return true;
-	return false;
+    return false;
 }
 
 int MTGCardInstance::canBlock()
@@ -918,6 +916,25 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
 JQuadPtr MTGCardInstance::getIcon()
 {
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
+}
+
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * oldCost)
+{
+    if(card->isLand())
+        return oldCost;
+
+    if(!card)
+        return oldCost;
+        //use forcedalive//
+        //pay zero costs//
+        //kicker???...//
+        //morph cost todo//
+        //trinisphere must be here below//
+    if(card->has(Constants::TRINISPHERE))
+        for(int jj = oldCost->getConvertedCost(); jj < 3; jj++)
+            oldCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+
+    return oldCost;
 }
 
 MTGCardInstance * MTGCardInstance::getNextPartner()

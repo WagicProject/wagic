@@ -266,7 +266,7 @@ bool Player::DeadLifeState(bool check)
         if (cantlosers < 1)
         {
             if(!check)
-			{
+            {
                 ActionStack * stack = getObserver()->mLayers->stackLayer();
                 for (int i = stack->mObjects.size() - 1; i >= 0; i--)
                 {
@@ -320,7 +320,7 @@ bool Player::parseLine(const string& s)
         }
         else if (areaS.compare("mode") == 0)
         {
-			this->playMode = (Player::Mode)atoi(s.substr(limiter + 1).c_str());
+            this->playMode = (Player::Mode)atoi(s.substr(limiter + 1).c_str());
             return true;
         }
         else if (areaS.compare("avatar") == 0)
@@ -406,12 +406,12 @@ ostream& operator<<(ostream& out, const Player& p)
 {
     out << "mode=" << p.playMode << endl;
     out << *(Damageable*)&p;
-	if(p.manaPool)
-	{
-		string manapoolstring = p.manaPool->toString();
-		if(manapoolstring != "")
-			out << "manapool=" << manapoolstring << endl;
-	}
+    if(p.manaPool)
+    {
+        string manapoolstring = p.manaPool->toString();
+        if(manapoolstring != "")
+            out << "manapool=" << manapoolstring << endl;
+    }
     if(p.mAvatarName != "")
         out << "avatar=" << p.mAvatarName << endl;
     if(p.phaseRing != "")
