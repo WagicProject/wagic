@@ -4,7 +4,7 @@ using std::string;
 
 #include "MTGDefinitions.h"
 
-char Constants::MTGColorChars[] = {'x','g','u','r','b','w','l'};
+char Constants::MTGColorChars[] = {'x','g','u','r','b','w','c','l'};
 vector <const char*> Constants::MTGColorStrings;
 
 const string Constants::kManaColorless      = "colorless";
@@ -13,6 +13,7 @@ const string Constants::kManaBlue           = "blue";
 const string Constants::kManaRed            = "red";
 const string Constants::kManaBlack          = "black";
 const string Constants::kManaWhite          = "white";
+const string Constants::kManaWaste          = "waste";
 
 int Constants::_r[7] = {75,20,20,200,50,255,128};
 int Constants::_g[7] = {30,140,30,15,50,255,128};

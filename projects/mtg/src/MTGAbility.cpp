@@ -5762,7 +5762,7 @@ const string AManaProducer::getMenuText()
     menutext = _("Add ");
     char buffer[128];
     int alreadyHasOne = 0;
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 8; i++)
     {
         int value = output->getCost(i);
         if (value)
@@ -5771,10 +5771,11 @@ const string AManaProducer::getMenuText()
                 menutext.append(",");
             sprintf(buffer, "%i ", value);
             menutext.append(buffer);
-            if (i >= Constants::MTG_COLOR_GREEN && i <= Constants::MTG_COLOR_WHITE)
+			if (i == Constants::MTG_COLOR_WASTE)
+                menutext.append(_(" colorless"));
+            else if (i >= Constants::MTG_COLOR_GREEN && i <= Constants::MTG_COLOR_WASTE)
                 menutext.append(_(Constants::MTGColorStrings[i]));
-            //if (i == Constants::MTG_COLOR_LAND)
-                //menutext.append(_(" colorless"));
+            
             alreadyHasOne = 1;
         }
     }

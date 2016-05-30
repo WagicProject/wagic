@@ -80,11 +80,6 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     manaCost->add(Constants::MTG_COLOR_RED, 1);
 
                 }
-                else if (value == "c")
-                {
-                    manaCost->add(Constants::MTG_COLOR_LAND, 1);
-
-                }
                 else
                 {
                     //Parse target for extraCosts
@@ -295,6 +290,12 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             manaCost->addExtraCost(NEW UnattachCost(c));
                             break;
                         }
+					    if (value == "waste")
+						{
+							manaCost->add(Constants::MTG_COLOR_WASTE, 1);
+							break;
+
+						}
                         int intvalue = atoi(value.c_str());
                         int colors[2];
                         int values[2];
@@ -870,6 +871,7 @@ int ManaCost::pay(ManaCost * _cost)
     ManaCost * diff = Diff(toPay);
     for (int i = 0; i < Constants::NB_Colors; i++)
     {
+
         cost[i] = diff->getCost(i);
     }
     delete diff;
