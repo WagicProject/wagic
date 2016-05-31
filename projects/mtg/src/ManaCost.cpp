@@ -254,35 +254,43 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             {
                                 manaCost->addExtraCost(NEW CycleCost(tc));
                             }
-                            else
-                            {
-                                size_t counter_start = value.find("(");
-                                size_t counter_end = value.find(")", counter_start);
-                                AbilityFactory abf(g);
-                                string counterString = value.substr(counter_start + 1, counter_end - counter_start - 1);
-                                Counter * counter = abf.parseCounter(counterString, c);
-                                size_t separator = value.find(",", counter_start);
-                                size_t separator2 = string::npos;
-                                if (separator != string::npos)
-                                {
-                                    separator2 = value.find(",", counter_end + 1);
-                                }
-                                SAFE_DELETE(tc);
-                                size_t target_start = string::npos;
-                                if (separator2 != string::npos)
-                                {
-                                    target_start = value.find(",", counter_end + 1);
-                                }
-                                size_t target_end = value.length();
-                                if (target_start != string::npos && target_end != string::npos)
-                                {
-                                    string target = value.substr(target_start + 1, target_end - 1 - target_start);
-                                    tc = tcf.createTargetChooser(target, c);
-                                }
-                                manaCost->addExtraCost(NEW CounterCost(counter, tc));
-                            }
-                            break;
-                        }
+							else if(size_t counterCheck = value.find("(") != string::npos)
+							{
+								size_t counter_start = value.find("(");
+								size_t counter_end = value.find(")", counter_start);
+								AbilityFactory abf(g);
+								string counterString = value.substr(counter_start + 1, counter_end - counter_start - 1);
+								Counter * counter = abf.parseCounter(counterString, c);
+								size_t separator = value.find(",", counter_start);
+								size_t separator2 = string::npos;
+								if (separator != string::npos)
+								{
+									separator2 = value.find(",", counter_end + 1);
+								}
+								SAFE_DELETE(tc);
+								size_t target_start = string::npos;
+								if (separator2 != string::npos)
+								{
+									target_start = value.find(",", counter_end + 1);
+								}
+								size_t target_end = value.length();
+								if (target_start != string::npos && target_end != string::npos)
+								{
+									string target = value.substr(target_start + 1, target_end - 1 - target_start);
+									tc = tcf.createTargetChooser(target, c);
+								}
+								manaCost->addExtraCost(NEW CounterCost(counter, tc));
+								break;
+							}
+							else if (value == "c")
+							{
+								manaCost->add(Constants::MTG_COLOR_WASTE, 1);
+								break;
+
+							}
+							
+						break;
+					}
                     default: //uncolored cost and hybrid costs and special cost
                     {
                         if(value == "unattach")
@@ -290,12 +298,6 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             manaCost->addExtraCost(NEW UnattachCost(c));
                             break;
                         }
-					    if (value == "waste")
-						{
-							manaCost->add(Constants::MTG_COLOR_WASTE, 1);
-							break;
-
-						}
                         int intvalue = atoi(value.c_str());
                         int colors[2];
                         int values[2];
@@ -1103,6 +1105,8 @@ int ManaPool::remove(int color, int value)
 
 int ManaPool::add(int color, int value, MTGCardInstance * source)
 {
+	if (color == Constants::MTG_COLOR_ARTIFACT)
+		color = Constants::MTG_COLOR_WASTE;
     int result = ManaCost::add(color, value);
     for (int i = 0; i < value; ++i)
     {
@@ -1116,6 +1120,15 @@ int ManaPool::add(ManaCost * _cost, MTGCardInstance * source)
 {
     if (!_cost)
         return 0;
+	//while colorless is still exactly the same, there are now cards that require 
+	//true colorless mana, ei:eldrazi. so whenever we add mana, we now replace it with the
+	//new type. keeping the old type intact for payment methods {1}{c} ....
+	int replaceArtifact = _cost->getCost(Constants::MTG_COLOR_ARTIFACT);
+	if (replaceArtifact)
+	{
+		_cost->add(Constants::MTG_COLOR_WASTE, replaceArtifact);
+		_cost->remove(Constants::MTG_COLOR_ARTIFACT, replaceArtifact);
+	}
     int result = ManaCost::add(_cost);
     for (int i = 0; i < Constants::NB_Colors; i++)
     {
