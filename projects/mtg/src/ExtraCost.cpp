@@ -150,7 +150,19 @@ int SnowCost::isPaymentSet()
         result += source->controller()->snowManaB;
         result += source->controller()->snowManaW;
         result += source->controller()->snowManaC;
-        return result;
+        if (result)
+        {
+            if ((source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source))) ||
+               (source->controller()->snowManaG && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{g}",NULL,source))) ||
+               (source->controller()->snowManaU && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{u}",NULL,source))) ||
+               (source->controller()->snowManaR && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{r}",NULL,source))) ||
+               (source->controller()->snowManaB && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{b}",NULL,source))) ||
+               (source->controller()->snowManaW && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{w}",NULL,source))) ||
+               (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{c}",NULL,source))))
+                return 1;
+            else
+                return 0;
+		}
     }
     return 0;
 }

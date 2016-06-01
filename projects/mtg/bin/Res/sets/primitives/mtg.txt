@@ -937,6 +937,17 @@ text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. A
 type=Land
 [/card]
 [card]
+name=Adarkar Windform
+abilities=flying
+auto={1}{i}:-flying target(creature)
+text=Flying -- {1}{S}i}: Target creature loses flying until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={4}{U}
+type=Snow Creature
+subtype=Illusion
+power=3
+toughness=3
+[/card]
+[card]
 name=Addle
 target=player
 auto=chooseacolor target(*[chosencolor]|targetedpersonshand) reject chooseend
@@ -11725,6 +11736,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Boreal Centaur
+auto={i}:1/1 limit:1
+text={S}i}: Boreal Centaur gets +1/+1 until end of turn. Activate this ability only once each turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={1}{G}
+type=Snow Creature
+subtype=Centaur Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Boreal Druid
 auto={T}:Add{1}
 text={T}: Add {1} to your mana pool.
@@ -11733,6 +11754,17 @@ type=Snow Creature
 subtype=Elf Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Boreal Griffin
+abilities=flying
+auto={i}:first strike
+text=Flying -- {S}i}: Boreal Griffin gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={3}{W}{W}
+type=Snow Creature
+subtype=Griffin
+power=3
+toughness=2
 [/card]
 [card]
 name=Boreal Shelf
@@ -16429,6 +16461,17 @@ text={B}: Regenerate Chilling Apparition. -- Whenever Chilling Apparition deals 
 mana={2}{B}
 type=Creature
 subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Chilling Shade
+abilities=flying
+auto={i}:1/1
+text=Flying -- {S}i}: Chilling Shade gets +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={2}{B}
+type=Snow Creature
+subtype=Shade
 power=1
 toughness=1
 [/card]
@@ -24702,6 +24745,17 @@ type=Legendary Creature
 subtype=Human Advisor
 power=1
 toughness=1
+[/card]
+[card]
+name=Diamond Faerie
+abilities=flying
+auto={1}{i}:all(creature[snow]|mybattlefield) 1/1 ueot
+text=Flying -- {1}{S}i}: Snow creatures you control get +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={2}{G}{W}{U}
+type=Snow Creature
+subtype=Faerie
+power=3
+toughness=3
 [/card]
 [card]
 name=Diamond Kaleidoscope
@@ -36785,6 +36839,17 @@ power=5
 toughness=3
 [/card]
 [card]
+name=Frost Raptor
+abilities=flying
+auto={i}:shroud
+text=Flying -- {S}i{S}i}: Frost Raptor gains shroud until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={2}{U}
+type=Snow Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
 name=Frost Walker
 auto=@targeted(this):sacrifice
 text=When Frost Walker becomes the target of a spell or ability, sacrifice it.
@@ -37964,6 +38029,17 @@ type=Creature
 subtype=Weird
 power=0
 toughness=1
+[/card]
+[card]
+name=Gelid Shackles
+target=creature
+auto=cantblock
+auto=noactivatedability
+auto={i}:defender
+text=Enchant creature -- Enchanted creature can't block and its activated abilities can't be activated. -- {S}i}: Enchanted creature gains defender until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={W}
+type=Snow Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Gemini Engine
@@ -40515,6 +40591,17 @@ text={3}{R}, Sacrifice Goblin Replica: Destroy target artifact.
 mana={3}
 type=Artifact Creature
 subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
+name=Goblin Rimerunner
+auto={T}:cantblock target(creature)
+auto={i}:haste
+text={T}: Target creature can't block this turn. -- {S}i}: Goblin Rimerunner gains haste until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={2}{R}
+type=Snow Creature
+subtype=Goblin Warrior
 power=2
 toughness=2
 [/card]
@@ -69114,6 +69201,16 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Ohran Yeti
+auto={2}{i}:first strike target(creature[snow])
+text={2}{S}i}: Target snow creature gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={3}{R}
+type=Snow Creature
+subtype=Yeti
+power=3
+toughness=3
+[/card]
+[card]
 name=Ojutai, Soul of Winter
 abilities=flying,vigilance
 auto=@combat(attacking) source(dragon|mybattlefield):name(tap & Freeze) target(*[-land]|opponentbattlefield) transforms((,newability[tap],newability[frozen])) uynt
@@ -72825,6 +72922,17 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Phyrexian Ironfoot
+auto=doesnotuntap
+auto={1}{i}:untap
+text=Phyrexian Ironfoot doesn't untap during your untap step. -- {1}{S}i}: Untap Phyrexian Ironfoot. ({S}i} can be paid with one mana from a snow permanent.)
+mana={3}
+type=Snow Artifact Creature
+subtype=Construct
+power=3
+toughness=4
+[/card]
+[card]
 name=Phyrexian Lens
 auto={L}{T}:Add{W}
 auto={L}{T}:Add{U}
@@ -72965,6 +73073,17 @@ type=Creature
 subtype=Minion
 power=2
 toughness=2
+[/card]
+[card]
+name=Phyrexian Snowcrusher
+abilities=mustattack
+auto={1}{i}:1/0
+text=Phyrexian Snowcrusher attacks each turn if able. -- {1}{S}i}: Phyrexian Snowcrusher gets +1/+0 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
+mana={6}
+type=Snow Artifact Creature
+subtype=Juggernaut
+power=6
+toughness=5
 [/card]
 [card]
 name=Phyrexian Soulgorger
@@ -80560,6 +80679,51 @@ type=Creature
 subtype=Dryad
 power=1
 toughness=2
+[/card]
+[card]
+name=Rime Transfusion
+target=creature
+auto=2/1
+auto=teach(creature) {i}:cantbeblockedby(creature[-snow]) ueot
+text=Enchant creature -- Enchanted creature gets +2/+1 and has "{S}i}: This creature can't be blocked this turn except by snow creatures." ({S}i} can be paid with one mana from a snow permanent.)
+mana={1}{B}
+type=Snow Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Rimebound Dead
+auto={i}:regenerate
+text={S}i}: Regenerate Rimebound Dead. ({S}i} can be paid with one mana from a snow permanent.)
+mana={B}
+type=Snow Creature
+subtype=Skeleton
+power=1
+toughness=1
+[/card]
+[card]
+name=Rimefeather Owl
+abilities=flying
+anyzone=type:snow:battlefield/type:snow:battlefield cdaactive
+auto={1}{i}:counter(0/0,1,Ice) target(*)
+auto=lord(*[counter{0/0.1.Ice}]) transforms((snow))
+text=Flying -- Rimefeather Owl's power and toughness are each equal to the number of snow permanents on the battlefield. -- {1}{S}i}: Put an ice counter on target permanent. -- Permanents with ice counters on them are snow.
+mana={5}{U}{U}
+type=Snow Creature
+subtype=Bird
+power=*
+toughness=*
+[/card]
+[card]
+name=Rimescale Dragon
+abilities=flying
+auto={2}{i}:name(tap) target(creature) transforms((,newability[counter(0/0.1.Ice)])) 
+auto=lord(creature[counter{0/0.1.Ice}]) doesnotuntap
+text=Flying -- {2}{S}i}: Tap target creature and put an ice counter on it. ({S}i} can be paid with one mana from a snow permanent.) -- Creatures with ice counters on them don't untap during their controllers' untap steps.
+mana={5}{R}{R}
+type=Snow Creature
+subtype=Dragon
+power=5
+toughness=5
 [/card]
 [card]
 name=Rimewind Taskmage
@@ -95459,6 +95623,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Stalking Yeti
+auto=target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
+auto={2}{i}:moveTo(ownerhand) asSorcery
+text=When Stalking Yeti enters the battlefield, if it's on the battlefield, it deals damage equal to its power to target creature an opponent controls and that creature deals damage equal to its power to Stalking Yeti. -- {2}{S}i}: Return Stalking Yeti to its owner's hand. Activate this ability only any time you could cast a sorcery. ({S}i} can be paid with one mana from a snow permanent.)
+mana={2}{R}{R}
+type=Snow Creature
+subtype=Yeti
+power=3
+toughness=3
+[/card]
+[card]
 name=Stalwart Aven
 abilities=flying
 auto=this(cantargetcard(*[-renown]) transforms((,newability[@combatdamaged(player) from(this):counter(1/1) && becomes(renown) forever]))
@@ -101625,6 +101800,17 @@ auto=destroy
 text=Destroy target land. If that land was a snow land, you gain 1 life.
 mana={1}{G}{G}
 type=Sorcery
+[/card]
+[card]
+name=Thermopod
+auto={i}:haste
+auto={S(creature|myBattlefield)}:Add{R}
+text={S}i}: Thermopod gains haste until end of turn. ({S}i} can be paid with one mana from a snow permanent.) -- Sacrifice a creature: Add {R} to your mana pool.
+mana={4}{R}
+type=Snow Creature
+subtype=Slug
+power=4
+toughness=3
 [/card]
 [card]
 name=Thicket Basilisk
@@ -116497,6 +116683,17 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=0
+[/card]
+[card]
+name=Zombie Musher
+abilities=snowforestlandwalk,snowplainslandwalk,snowmountainlandwalk,snowislandlandwalk,snowswamplandwalk
+auto={i}:regenerate
+text=Snow landwalk -- {S}i}: Regenerate Zombie Musher. ({S}i} can be paid with one mana from a snow permanent.)
+mana={3}{B}
+type=Snow Creature
+subtype=Zombie
+power=2
+toughness=3
 [/card]
 [card]
 name=Zombie Outlander

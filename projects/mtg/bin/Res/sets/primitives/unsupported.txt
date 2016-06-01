@@ -103,15 +103,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Adarkar Windform
-text=Flying -- {1}{S}i}: Target creature loses flying until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={4}{U}
-type=Snow Creature
-subtype=Illusion
-power=3
-toughness=3
-[/card]
-[card]
 name=Adder-Staff Boggart
 text=When Adder-Staff Boggart enters the battlefield, clash with an opponent. If you win, put a +1/+1 counter on Adder-Staff Boggart. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{R}
@@ -1413,25 +1404,6 @@ power=7
 toughness=6
 [/card]
 [card]
-name=Boreal Centaur
-auto={0}:tap target(land[snow]|myBattlefield) && 1/1 limit:1
-text={S}i}: Boreal Centaur gets +1/+1 until end of turn. Activate this ability only once each turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={1}{G}
-type=Snow Creature
-subtype=Centaur Warrior
-power=2
-toughness=2
-[/card]
-[card]
-name=Boreal Griffin
-text=Flying -- {S}i}: Boreal Griffin gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={3}{W}{W}
-type=Snow Creature
-subtype=Griffin
-power=3
-toughness=2
-[/card]
-[card]
 name=Boros Battleshaper
 text=At the beginning of each combat, up to one target creature attacks or blocks this combat if able and up to one target creature can't attack or block this combat.
 mana={5}{R}{W}
@@ -2394,15 +2366,6 @@ name=Chill Haunting
 text=As an additional cost to cast Chill Haunting, exile X creature cards from your graveyard. -- Target creature gets -X/-X until end of turn.
 mana={1}{B}
 type=Instant
-[/card]
-[card]
-name=Chilling Shade
-text=Flying -- {S}i}: Chilling Shade gets +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={2}{B}
-type=Snow Creature
-subtype=Shade
-power=1
-toughness=1
 [/card]
 [card]
 name=Chisei, Heart of Oceans
@@ -3756,15 +3719,6 @@ name=Diabolic Vision
 text=Look at the top five cards of your library. Put one of them into your hand and the rest on top of your library in any order.
 mana={U}{B}
 type=Sorcery
-[/card]
-[card]
-name=Diamond Faerie
-text=Flying -- {1}{S}i}: Snow creatures you control get +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={2}{G}{W}{U}
-type=Snow Creature
-subtype=Faerie
-power=3
-toughness=3
 [/card]
 [card]
 name=Dichotomancy
@@ -5488,15 +5442,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Frost Raptor
-text=Flying -- {S}i{S}i}: Frost Raptor gains shroud until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={2}{U}
-type=Snow Creature
-subtype=Bird
-power=2
-toughness=2
-[/card]
-[card]
 name=Frost Titan
 text=Whenever Frost Titan becomes the target of a spell or ability and opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. That permanent doesn't untap during its controller's next untap step.
 mana={4}{U}{U}
@@ -5668,13 +5613,6 @@ name=Gaze of the Gorgon
 text=({(b/g)} can be paid with either {B} or {G}.) -- Regenerate target creature. At end of combat, destroy all creatures that blocked or were blocked by that creature this turn.
 mana={3}{BG}
 type=Instant
-[/card]
-[card]
-name=Gelid Shackles
-text=Enchant creature -- Enchanted creature can't block and its activated abilities can't be activated. -- {S}i}: Enchanted creature gains defender until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={W}
-type=Snow Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Gem of Becoming
@@ -6193,15 +6131,6 @@ type=Creature
 subtype=Goblin Mutant
 power=5
 toughness=5
-[/card]
-[card]
-name=Goblin Rimerunner
-text={T}: Target creature can't block this turn. -- {S}i}: Goblin Rimerunner gains haste until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={2}{R}
-type=Snow Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
 [/card]
 [card]
 name=Goblin Ringleader
@@ -10950,15 +10879,6 @@ toughness=4
 text=Whenever Ogre Geargrabber attacks, gain control of target Equipment an opponent controls until end of turn. Attach it to Ogre Geargrabber. When you lose control of that Equipment, unattach it.
 [/card]
 [card]
-name=Ohran Yeti
-text={2}{S}i}: Target snow creature gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={3}{R}
-type=Snow Creature
-subtype=Yeti
-power=3
-toughness=3
-[/card]
-[card]
 name=Okina Nightwatch
 text=As long as you have more cards in hand than each opponent, Okina Nightwatch gets +3/+3.
 mana={4}{G}
@@ -11650,16 +11570,6 @@ toughness=3
 text=Imprint — When Phyrexian Ingester enters the battlefield, you may exile target nontoken creature. Phyrexian Ingester gets +X/+Y, where X is the exiled creature card's power and Y is its toughness.
 [/card]
 [card]
-name=Phyrexian Ironfoot
-auto=doesnotuntap
-text=Phyrexian Ironfoot doesn't untap during your untap step. -- {1}{S}i}: Untap Phyrexian Ironfoot. ({S}i} can be paid with one mana from a snow permanent.)
-mana={3}
-type=Snow Artifact Creature
-subtype=Construct
-power=3
-toughness=4
-[/card]
-[card]
 name=Phyrexian Librarian
 mana={3}{B}
 type=Creature — Horror
@@ -11708,15 +11618,6 @@ type=Artifact Creature
 subtype=Horror
 power=2
 toughness=1
-[/card]
-[card]
-name=Phyrexian Snowcrusher
-text=Phyrexian Snowcrusher attacks each turn if able. -- {1}{S}i}: Phyrexian Snowcrusher gets +1/+0 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
-mana={6}
-type=Snow Artifact Creature
-subtype=Juggernaut
-power=6
-toughness=5
 [/card]
 [card]
 name=Phyrexian Splicer
@@ -13163,47 +13064,15 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-name=Rime Transfusion
-text=Enchant creature -- Enchanted creature gets +2/+1 and has "{S}i}: This creature can't be blocked this turn except by snow creatures." ({S}i} can be paid with one mana from a snow permanent.)
-mana={1}{B}
-type=Snow Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Rimebound Dead
-text={S}i}: Regenerate Rimebound Dead. ({S}i} can be paid with one mana from a snow permanent.)
-mana={B}
-type=Snow Creature
-subtype=Skeleton
-power=1
-toughness=1
-[/card]
-[card]
-name=Rimefeather Owl
-text=Flying -- Rimefeather Owl's power and toughness are each equal to the number of snow permanents on the battlefield. -- {1}{S}i}: Put an ice counter on target permanent. -- Permanents with ice counters on them are snow.
-mana={5}{U}{U}
-type=Snow Creature
-subtype=Bird
-power=*
-toughness=*
-[/card]
-[card]
 name=Rimehorn Aurochs
+abilities=trample
+auto=@combat(attacking) source(this):all(this) foreach(other aurochs[attacking]) 1/0 ueot
 text=Trample -- Whenever Rimehorn Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs. -- {2}{S}i}: Target creature blocks target creature this turn if able. ({S}i} can be paid with one mana from a snow permanent.)
 mana={4}{G}
 type=Snow Creature
 subtype=Aurochs
 power=3
 toughness=3
-[/card]
-[card]
-name=Rimescale Dragon
-text=Flying -- {2}{S}i}: Tap target creature and put an ice counter on it. ({S}i} can be paid with one mana from a snow permanent.) -- Creatures with ice counters on them don't untap during their controllers' untap steps.
-mana={5}{R}{R}
-type=Snow Creature
-subtype=Dragon
-power=5
-toughness=5
 [/card]
 [card]
 name=Rimewind Cryomancer
@@ -15548,15 +15417,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Stalking Yeti
-text=When Stalking Yeti enters the battlefield, if it's on the battlefield, it deals damage equal to its power to target creature an opponent controls and that creature deals damage equal to its power to Stalking Yeti. -- {2}{S}i}: Return Stalking Yeti to its owner's hand. Activate this ability only any time you could cast a sorcery. ({S}i} can be paid with one mana from a snow permanent.)
-mana={2}{R}{R}
-type=Snow Creature
-subtype=Yeti
-power=3
-toughness=3
-[/card]
-[card]
 name=Stand // Deliver (Deliver)
 text=Return target permanent to its owner's hand.
 mana={2}{U}
@@ -16433,15 +16293,6 @@ name=Thermal Flux
 text=Choose one - Target nonsnow permanent becomes snow until end of turn; or target snow permanent isn't snow until end of turn. -- Draw a card at the beginning of the next turn's upkeep.
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Thermopod
-text={S}i}: Thermopod gains haste until end of turn. ({S}i} can be paid with one mana from a snow permanent.) -- Sacrifice a creature: Add {R} to your mana pool.
-mana={4}{R}
-type=Snow Creature
-subtype=Slug
-power=4
-toughness=3
 [/card]
 [card]
 name=Thespian's Stage
@@ -18610,15 +18461,6 @@ type=Creature — Zombie Gamer
 power=1
 toughness=1
 text=As Zombie Fanboy comes into play, choose an artist. Whenever a permanent by the chosen artist is put into a graveyard, put two +1/+1 counters on Zombie Fanboy.
-[/card]
-[card]
-name=Zombie Musher
-text=Snow landwalk -- {S}i}: Regenerate Zombie Musher. ({S}i} can be paid with one mana from a snow permanent.)
-mana={3}{B}
-type=Snow Creature
-subtype=Zombie
-power=2
-toughness=3
 [/card]
 [card]
 name=Zombie Scavengers

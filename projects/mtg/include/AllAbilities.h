@@ -653,7 +653,7 @@ private:
             intValue = target->controller()->epic;
         }
         else if (s == "snowcount")
-        {
+        {//this is just to count the number of snow mana produced ... just for debugging purposes...
             intValue = target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
         }
         else if (s == "p" || s == "power")

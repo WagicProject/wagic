@@ -236,6 +236,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     case 'i' :
                         {
                             SAFE_DELETE(tc);
+                            manaCost->add(0,1);
                             manaCost->addExtraCost(NEW SnowCost);
                             break;
                         }
