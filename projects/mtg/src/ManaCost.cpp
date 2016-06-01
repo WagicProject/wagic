@@ -260,12 +260,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             {
                                 manaCost->addExtraCost(NEW CycleCost(tc));
                             }
-							else if(value == "c")
-							{
-                                manaCost->add(Constants::MTG_COLOR_WASTE, 1);
-                                break;
-                            }
-                            else
+                            else if(value.find("(") != string::npos)
                             {
                                 size_t counter_start = value.find("(");
                                 size_t counter_end = value.find(")", counter_start);
@@ -292,9 +287,14 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                 }
                                 manaCost->addExtraCost(NEW CounterCost(counter, tc));
                                 break;
-							}
-						break;
-					}
+                            }
+							else if(value == "c")
+							{
+                                manaCost->add(Constants::MTG_COLOR_WASTE, 1);
+                                break;
+                            }
+                        break;
+                    }
                     default: //uncolored cost and hybrid costs and special cost
                     {
                         if(value == "unattach")
