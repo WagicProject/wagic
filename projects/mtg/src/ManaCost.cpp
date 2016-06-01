@@ -288,8 +288,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                 manaCost->addExtraCost(NEW CounterCost(counter, tc));
                                 break;
                             }
-							else if(value == "c")
-							{
+                            else if(value == "c")
+                            {
                                 manaCost->add(Constants::MTG_COLOR_WASTE, 1);
                                 break;
                             }
