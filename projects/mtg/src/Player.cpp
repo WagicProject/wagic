@@ -245,6 +245,24 @@ void Player::serumMulligan()
          //Draw hand no penalty
 }
 
+bool Player::hasPossibleAttackers()
+{
+    MTGGameZone * z = game->inPlay;
+    int nbcards = z->nb_cards;
+    for (int j = 0; j < nbcards; ++j)
+    {
+        MTGCardInstance * c = z->cards[j];
+        if (c->canAttack())
+            return true;
+    }
+    return false;
+}
+
+bool Player::noPossibleAttackers()
+{
+    return !hasPossibleAttackers();
+}
+
 bool Player::DeadLifeState(bool check)
 {
     if ((life <= 0)||(poisonCount >= 10))

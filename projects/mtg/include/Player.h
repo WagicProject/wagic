@@ -80,6 +80,8 @@ public:
     ManaPool * getManaPool();
     void takeMulligan();
     void serumMulligan();
+    bool hasPossibleAttackers();
+    bool noPossibleAttackers();
     bool DeadLifeState(bool check = false);
     ManaCost * doesntEmpty;
     ManaCost * poolDoesntEmpty;

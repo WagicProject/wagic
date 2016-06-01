@@ -938,13 +938,12 @@ void GameObserver::gameStateBasedEffects()
     //Auto skip Phases
     int skipLevel = (currentPlayer->playMode == Player::MODE_TEST_SUITE || mLoading) ? Constants::ASKIP_NONE
         : options[Options::ASPHASES].number;
-    int nrCreatures = currentPlayer->game->inPlay->hasType("creature")?1:0;
 
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
         if ((opponent()->isAI() && !(isInterrupting)) && ((mCurrentGamePhase == MTG_PHASE_UNTAP)
             || (mCurrentGamePhase == MTG_PHASE_DRAW) || (mCurrentGamePhase == MTG_PHASE_COMBATBEGIN)
-            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0))
+            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (currentPlayer->noPossibleAttackers()))
             || mCurrentGamePhase == MTG_PHASE_COMBATEND || mCurrentGamePhase == MTG_PHASE_ENDOFTURN
             || ((mCurrentGamePhase == MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
             userRequestNextGamePhase();
