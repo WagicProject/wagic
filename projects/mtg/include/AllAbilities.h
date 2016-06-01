@@ -652,6 +652,10 @@ private:
         {
             intValue = target->controller()->epic;
         }
+        else if (s == "snowcount")
+        {
+            intValue = target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
+        }
         else if (s == "p" || s == "power")
         {
             intValue = target->getCurrentPower();

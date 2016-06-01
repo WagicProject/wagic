@@ -233,6 +233,12 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             manaCost->addExtraCost(NEW LifeorManaCost(NULL,manaType));
                             break;
                         }
+                    case 'i' :
+                        {
+                            SAFE_DELETE(tc);
+                            manaCost->addExtraCost(NEW SnowCost);
+                            break;
+                        }
                     case 'q':
                         if(value == "q")
                         {
@@ -753,6 +759,10 @@ int ManaCost::getConvertedCost()
         {
             ExtraCost * pMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
             if (pMana)
+                result++;
+            //snow cost???
+            ExtraCost * sMana = dynamic_cast<SnowCost*>(extraCosts->costs[i]);
+            if (sMana)
                 result++;
         }
     }

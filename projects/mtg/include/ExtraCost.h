@@ -204,6 +204,17 @@ public:
     virtual TapCost * clone() const;
 };
 
+//Snow  cost
+class SnowCost : public ExtraCost
+{
+public:
+    SnowCost();
+    virtual int isPaymentSet();
+    virtual int canPay();
+    virtual int doPay();
+    virtual SnowCost * clone() const;
+};
+
 //untap  cost
 class UnTapCost : public ExtraCost
 {

@@ -37,6 +37,12 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     forcefield = 0;
     raidcount = 0;
     handmodifier = 0;
+    snowManaG = 0;
+    snowManaR = 0;
+    snowManaB = 0;
+    snowManaU = 0;
+    snowManaW = 0;
+    snowManaC = 0;
     prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();

@@ -47,6 +47,12 @@ public:
     int initLife;
     int raidcount;
     int handmodifier;
+    int snowManaG;
+    int snowManaR;
+    int snowManaB;
+    int snowManaU;
+    int snowManaW;
+    int snowManaC;
     vector<string> prowledTypes;
     vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);

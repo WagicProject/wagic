@@ -600,6 +600,32 @@ void GameObserver::gameStateBasedEffects()
     /////////////////////////////////////
     for (int d = 0; d < 2; d++)
     {
+        ////check snow count
+        if (players[d]->snowManaC > players[d]->getManaPool()->getCost(0) + players[d]->getManaPool()->getCost(6))
+            players[d]->snowManaC = players[d]->getManaPool()->getCost(0) + players[d]->getManaPool()->getCost(6);
+        if (players[d]->snowManaC < 0)
+            players[d]->snowManaC = 0;
+        if (players[d]->snowManaG > players[d]->getManaPool()->getCost(1))
+            players[d]->snowManaG = players[d]->getManaPool()->getCost(1);
+        if (players[d]->snowManaG < 0)
+            players[d]->snowManaG = 0;
+        if (players[d]->snowManaU > players[d]->getManaPool()->getCost(2))
+            players[d]->snowManaU = players[d]->getManaPool()->getCost(2);
+        if (players[d]->snowManaU < 0)
+            players[d]->snowManaU = 0;
+        if (players[d]->snowManaR > players[d]->getManaPool()->getCost(3))
+            players[d]->snowManaR = players[d]->getManaPool()->getCost(3);
+        if (players[d]->snowManaR < 0)
+            players[d]->snowManaR = 0;
+        if (players[d]->snowManaB > players[d]->getManaPool()->getCost(4))
+            players[d]->snowManaB = players[d]->getManaPool()->getCost(4);
+        if (players[d]->snowManaB < 0)
+            players[d]->snowManaB = 0;
+        if (players[d]->snowManaW > players[d]->getManaPool()->getCost(5))
+            players[d]->snowManaW = players[d]->getManaPool()->getCost(5);
+        if (players[d]->snowManaW < 0)
+            players[d]->snowManaW = 0;
+
         MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile };
         for (int k = 0; k < 5; k++)
         {
