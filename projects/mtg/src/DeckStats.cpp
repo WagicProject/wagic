@@ -394,7 +394,7 @@ void StatsWrapper::updateStats(string filename, MTGAllCards *collection)
 
 void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
 {
-	if(!this) return;
+    if(!this) return;
     if (!this->needUpdate || !myDeck) return;
 
     this->needUpdate = false;

@@ -125,7 +125,7 @@ void DeckMenu::RenderDeckManaColors()
         if (deckManaColors.size() == 6)
         {   
             // due to space constraints don't display icons for colorless mana.
-            for( int colorIdx = Constants::MTG_COLOR_GREEN; colorIdx < Constants::MTG_COLOR_LAND; ++colorIdx )
+            for( int colorIdx = Constants::MTG_COLOR_GREEN; colorIdx < Constants::MTG_COLOR_WASTE; ++colorIdx )
             {               
                 if ( (deckManaColors.at(colorIdx) == '1') != 0)
                 {
