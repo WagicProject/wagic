@@ -260,41 +260,39 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             {
                                 manaCost->addExtraCost(NEW CycleCost(tc));
                             }
-							else if(size_t counterCheck = value.find("(") != string::npos)
+							else if(value == "c")
 							{
-								size_t counter_start = value.find("(");
-								size_t counter_end = value.find(")", counter_start);
-								AbilityFactory abf(g);
-								string counterString = value.substr(counter_start + 1, counter_end - counter_start - 1);
-								Counter * counter = abf.parseCounter(counterString, c);
-								size_t separator = value.find(",", counter_start);
-								size_t separator2 = string::npos;
-								if (separator != string::npos)
-								{
-									separator2 = value.find(",", counter_end + 1);
-								}
-								SAFE_DELETE(tc);
-								size_t target_start = string::npos;
-								if (separator2 != string::npos)
-								{
-									target_start = value.find(",", counter_end + 1);
-								}
-								size_t target_end = value.length();
-								if (target_start != string::npos && target_end != string::npos)
-								{
-									string target = value.substr(target_start + 1, target_end - 1 - target_start);
-									tc = tcf.createTargetChooser(target, c);
-								}
-								manaCost->addExtraCost(NEW CounterCost(counter, tc));
-								break;
+                                manaCost->add(Constants::MTG_COLOR_WASTE, 1);
+                                break;
+                            }
+                            else
+                            {
+                                size_t counter_start = value.find("(");
+                                size_t counter_end = value.find(")", counter_start);
+                                AbilityFactory abf(g);
+                                string counterString = value.substr(counter_start + 1, counter_end - counter_start - 1);
+                                Counter * counter = abf.parseCounter(counterString, c);
+                                size_t separator = value.find(",", counter_start);
+                                size_t separator2 = string::npos;
+                                if (separator != string::npos)
+                                {
+                                    separator2 = value.find(",", counter_end + 1);
+                                }
+                                SAFE_DELETE(tc);
+                                size_t target_start = string::npos;
+                                if (separator2 != string::npos)
+                                {
+                                    target_start = value.find(",", counter_end + 1);
+                                }
+                                size_t target_end = value.length();
+                                if (target_start != string::npos && target_end != string::npos)
+                                {
+                                    string target = value.substr(target_start + 1, target_end - 1 - target_start);
+                                    tc = tcf.createTargetChooser(target, c);
+                                }
+                                manaCost->addExtraCost(NEW CounterCost(counter, tc));
+                                break;
 							}
-							else if (value == "c")
-							{
-								manaCost->add(Constants::MTG_COLOR_WASTE, 1);
-								break;
-
-							}
-							
 						break;
 					}
                     default: //uncolored cost and hybrid costs and special cost
