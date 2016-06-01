@@ -12,6 +12,7 @@ Urza's Mine
 FIRSTMAIN
 [PLAYER1]
 inplay:Urza's Mine,1090,Urza's Power Plant,1091
-manapool:{2}
+#changed to {c} since all colorless produced are now {c}
+manapool:{c}{c}
 [PLAYER2]
 [END]

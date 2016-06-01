@@ -17,5 +17,6 @@ graveyard:lightning bolt
 manapool:{0}
 [PLAYER2]
 graveyard:cathodion
-manapool:{3}
+#changed to {c} since all colorless produced are now {c}
+manapool:{c}{c}{c}
 [END]

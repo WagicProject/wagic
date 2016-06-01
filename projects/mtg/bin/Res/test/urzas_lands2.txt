@@ -18,6 +18,7 @@ Urza's Tower
 firstmain
 [PLAYER1]
 inplay:Urza's Mine,Urza's Power Plant,Urza's Tower,Deserted Temple
-manapool:{5}
+#changed to {c} since all colorless produced are now {c}
+manapool:{c}{c}{c}{c}{c}
 [PLAYER2]
 [END]

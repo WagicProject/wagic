@@ -18,6 +18,7 @@ FIRSTMAIN
 hand:Elvish Berserker,White Knight,Llanowar Elves,Rancor,Tranquility,Lotus Petal
 inplay:Library of Alexandria
 library:Soul Warden
-manapool:{1}
+#changed to {c} since all colorless produced are now {c}
+manapool:{c}
 [PLAYER2]
 [END]
