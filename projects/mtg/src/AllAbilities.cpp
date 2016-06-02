@@ -4623,6 +4623,8 @@ int AAExchangeLife::resolve()
     Damageable * _target = (Damageable *) getTarget();
     if (_target)
     {
+        if(_target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && ((Player*)_target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            return 0;
         Player *player = source->controller();
         int oldlife = player->getLife();
         int targetOldLife = _target->getLife();

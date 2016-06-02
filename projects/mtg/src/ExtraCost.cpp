@@ -245,7 +245,7 @@ LifeCost::LifeCost(TargetChooser *_tc)
 int LifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(_target->controller()->life <= 0)
+    if(_target->controller()->life <= 0 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
     {
         return 0;
     }
@@ -283,7 +283,7 @@ SpecificLifeCost::SpecificLifeCost(TargetChooser *_tc, int slc)
 int SpecificLifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(_target->controller()->life >= slc)
+    if(_target->controller()->life >= slc && !_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
     {
         return 1;
     }

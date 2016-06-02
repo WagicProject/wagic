@@ -153,7 +153,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "trinisphere",
     "canplayfromexile",
     "libraryeater",
-    "devoid"
+    "devoid",
+    "cantchangelife"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

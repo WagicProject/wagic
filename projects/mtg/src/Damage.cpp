@@ -196,7 +196,8 @@ int Damage::resolve()
     {
         //Damage + 1, 2, or 3 poison counters on player
         Player * _target = (Player *) target;
-        a = target->dealDamage(damage);
+        if(!_target->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            a = target->dealDamage(damage);
         target->damageCount += damage;
         if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
         {
@@ -228,7 +229,10 @@ int Damage::resolve()
     {
         // "Normal" case,
         //return the left over amount after effects have been applied to them.
-        a = target->dealDamage(damage);
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && !((Player *)target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            a = target->dealDamage(damage);
+        else
+            a = target->dealDamage(damage);
         target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
         if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE){
             ((MTGCardInstance*)target)->wasDealtDamage = true;
