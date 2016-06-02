@@ -261,24 +261,72 @@ AADamager * AADamager::clone() const
 
 
 //AADepleter
-AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who, bool toexile) :
-    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr),toexile(toexile)
+AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who, bool toexile, bool cascade) :
+    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr),toexile(toexile),cascade(cascade)
 {
-
+    Cascade = "Cascade";
 }
     int AADepleter::resolve()
     {
         Player * player = getPlayerFromTarget(getTarget());
-        
         if (player)
         {
             WParsedInt numCards(nbcardsStr, NULL, source);
             MTGLibrary * library = player->game->library;
+            MTGRemovedFromGame * exile = player->game->exile;
+            MTGCardInstance * viable = NULL;
+            int counter = 0;
             for (int i = 0; i < numCards.getValue(); i++)
             {
                 if (library->nb_cards)
                 {
-                    if(toexile)
+                    if(cascade)
+                    {
+                        for(int z = library->nb_cards; z >= 0; z--)
+                        {
+                            if(!library->cards[z]->isLand() && (library->cards[z]->getManaCost()->getConvertedCost() < source->getManaCost()->getConvertedCost()))
+                            {
+                                viable = library->cards[z];
+                                player->game->putInZone(viable, library, exile);
+                                {
+                                    vector<MTGCardInstance*>selectedCards;
+                                    for(int j=0; j < library->nb_cards; j++)
+                                    {
+                                         if(library->cards[j]->isCascaded)
+                                         {
+                                             library->cards[j]->isCascaded = false;
+                                             selectedCards.push_back(library->cards[j]);
+                                         }
+                                    }
+                                    if(selectedCards.size())
+                                    {
+                                        std::random_shuffle ( selectedCards.begin(), selectedCards.end() );
+                                        for(unsigned int i = 0; i < selectedCards.size();++i)
+                                        {
+                                            vector<MTGCardInstance *>oldOrder = library->cards;
+                                            vector<MTGCardInstance *>newOrder;
+                                            newOrder.push_back(selectedCards[i]);
+                                            for(unsigned int k = 0;k < oldOrder.size();++k)
+                                            {
+                                                MTGCardInstance * rearranged = oldOrder[k];
+                                                if(rearranged != selectedCards[i])
+                                                    newOrder.push_back(rearranged);
+                                            }
+                                            library->cards = newOrder;
+                                        }
+                                    }
+                                }
+                                toCastCard(viable->next);
+                                return 1;
+                            }
+                            else
+                            {
+                                library->cards[library->nb_cards - 1]->isCascaded=true;
+                                counter++;
+                            }
+                        }
+                    }
+                    else if(toexile)
                         player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->exile);
                     else
                         player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
@@ -288,9 +336,22 @@ AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, 
         return 1;
     }
 
+void AADepleter::toCastCard(MTGCardInstance * thisCard)
+{
+    MTGAbility *ac = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), thisCard, thisCard,false,false,true,"","",false,false);
+    //ac->oneShot=true;
+    //ac->addToGame();
+    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac, thisCard,true);
+    MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), thisCard,NULL,ma1);
+    ga1->resolve();
+    return;
+}
+
 const string AADepleter::getMenuText()
 {
-    if(toexile)
+    if(cascade)
+        return Cascade;
+    else if(toexile)
         return "Ingest";
     return "Deplete";
 }

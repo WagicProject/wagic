@@ -584,6 +584,18 @@ private:
             if (target->controller()->life >= target->controller()->initLife)
                 intValue = 1;
         }
+        else if (s == "plibrarycount")
+        {
+            intValue = 0;
+            if (target->controller()->game->library->nb_cards)
+                intValue = target->controller()->game->library->nb_cards;
+        }
+        else if (s == "olibrarycount")
+        {
+            intValue = 0;
+            if (target->controller()->opponent()->game->library->nb_cards)
+                intValue = target->controller()->opponent()->game->library->nb_cards;
+        }
         else if (s == "highestlifetotal")
         {
             intValue = target->controller()->life <= target->controller()->opponent()->life? target->controller()->opponent()->life:target->controller()->life;
@@ -6064,9 +6076,12 @@ class AADepleter: public ActivatedAbilityTP
 public:
     string nbcardsStr;
     bool toexile;
+    bool cascade;
     AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
-            int who = TargetChooser::UNSET, bool toexile = false);
+            int who = TargetChooser::UNSET, bool toexile = false, bool cascade = false);
     int resolve();
+    string Cascade;
+    void toCastCard(MTGCardInstance * card);
     const string getMenuText();
     AADepleter * clone() const;
 };
