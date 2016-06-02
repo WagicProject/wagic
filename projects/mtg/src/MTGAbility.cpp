@@ -2684,6 +2684,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //Cascade
+    vector<string> splitCascade = parseBetween(s, "cascade:", " ", false);
+    if (splitCascade.size())
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitCascade[1], NULL, who, false,true);
+        a->oneShot = 1;
+        return a;
+    }
+
     //modify turns
     vector<string> splitModTurn = parseBetween(s, "turns:", " ", false);
     if (splitModTurn.size())

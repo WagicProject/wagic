@@ -89,6 +89,7 @@ public:
     bool isMorphed;
     bool isFlipped;
     bool isPhased;
+    bool isCascaded;
     int phasedTurn;
     bool graveEffects;
     bool exileEffects;
