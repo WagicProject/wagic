@@ -3010,7 +3010,7 @@ public:
     {
         if (newPhase != currentPhase && newPhase == phase && game->currentPlayer == ((MTGCardInstance *) target)->controller())
         {
-            if (!onlyIfTargetTapped || ((MTGCardInstance *) target)->isTapped() && !game->currentPlayer->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            if ((!onlyIfTargetTapped || ((MTGCardInstance *) target)->isTapped()) && (!game->currentPlayer->inPlay()->hasAbility(Constants::CANTCHANGELIFE)))
             {
                 if (life > 0)
                 {
