@@ -241,7 +241,8 @@ class Constants
       TRINISPHERE = 120,
       CANPLAYFROMEXILE = 121,
       LIBRARYEATER = 122,
-      NB_BASIC_ABILITIES = 123,
+	  DEVOID = 123,
+      NB_BASIC_ABILITIES = 124,
 
 
     RARITY_S = 'S',   //Special Rarity
