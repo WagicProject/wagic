@@ -11748,15 +11748,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Platinum Emperion
-mana={8}
-type=Artifact Creature
-subtype=Golem
-power=8
-toughness=8
-text=Your life total can't change. (You can't gain or lose life. You can't pay any amount of life except 0.)
-[/card]
-[card]
 name=Plow Through Reito
 text=Sweep - Return any number of Plains you control to their owner's hand. Target creature gets +1/+1 until end of turn for each Plains returned this way.
 mana={1}{W}

@@ -73994,6 +73994,16 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Platinum Emperion
+abilities=cantchangelife
+mana={8}
+type=Artifact Creature
+subtype=Golem
+power=8
+toughness=8
+text=Your life total can't change. (You can't gain or lose life. You can't pay any amount of life except 0.)
+[/card]
+[card]
 name=Plaxcaster Frogling
 auto=counter(1/1,3)
 auto={2}:shroud target(creature[counter{1/1.1}])

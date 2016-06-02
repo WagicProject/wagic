@@ -882,7 +882,6 @@ int ManaCost::pay(ManaCost * _cost)
     ManaCost * diff = Diff(toPay);
     for (int i = 0; i < Constants::NB_Colors; i++)
     {
-
         cost[i] = diff->getCost(i);
     }
     delete diff;

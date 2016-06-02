@@ -4389,8 +4389,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     case 130553:// Beacon of Immortality
     {
         Player * player = spell->getNextPlayerTarget();
-        if (player->life < (INT_MAX / 4))
-            player->life += player->life;
+        if (!player->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+        {
+            if (player->life < (INT_MAX / 4))
+                player->life += player->life;
+        }
         zones->putInZone(card, spell->from, zones->library);
         zones->library->shuffle();
         break;
@@ -5771,7 +5774,7 @@ const string AManaProducer::getMenuText()
                 menutext.append(",");
             sprintf(buffer, "%i ", value);
             menutext.append(buffer);
-			if (i == Constants::MTG_COLOR_WASTE)
+            if (i == Constants::MTG_COLOR_WASTE)
                 menutext.append(_(" colorless"));
             else if (i >= Constants::MTG_COLOR_GREEN && i <= Constants::MTG_COLOR_WASTE)
                 menutext.append(_(Constants::MTGColorStrings[i]));

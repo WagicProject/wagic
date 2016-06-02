@@ -2401,7 +2401,8 @@ public:
     {
         if (!isReactingToClick(_card)) return 0;
         game->currentlyActing()->getManaPool()->pay(cost);
-        game->currentlyActing()->life += life;
+        if(!game->currentlyActing()->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            game->currentlyActing()->life += life;
         lastUsedOn = lastChecked;
         return 1;
     }
@@ -3009,7 +3010,7 @@ public:
     {
         if (newPhase != currentPhase && newPhase == phase && game->currentPlayer == ((MTGCardInstance *) target)->controller())
         {
-            if (!onlyIfTargetTapped || ((MTGCardInstance *) target)->isTapped())
+            if ((!onlyIfTargetTapped || ((MTGCardInstance *) target)->isTapped()) && (!game->currentPlayer->inPlay()->hasAbility(Constants::CANTCHANGELIFE)))
             {
                 if (life > 0)
                 {
@@ -4592,7 +4593,7 @@ public:
 
     void Update(float)
     {
-        if (newPhase != currentPhase && newPhase == phase)
+        if (newPhase != currentPhase && newPhase == phase && !game->currentPlayer->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
         {
             if ((controller && game->currentPlayer == source->controller()) || (!controller && game->currentPlayer
                     != source->controller()))
@@ -6238,7 +6239,7 @@ public:
             {
                 Player * p = (Player *) isDamaged->damage->target;
                 WParsedInt lifetoset(life_s, NULL, source);
-                if(p && p == source->controller() && p->life <= lifetoset.getValue())
+                if(p && p == source->controller() && p->life <= lifetoset.getValue() && !p->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
                     p->life = lifetoset.getValue();
             }
         }
