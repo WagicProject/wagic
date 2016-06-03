@@ -4169,19 +4169,8 @@ int AAlterCost::destroy()
 
 int AAlterCost::testDestroy()
 {
-    MTGCardInstance * _target = (MTGCardInstance *)target;
     if(!this->manaReducer->isInPlay(game))
     {
-        if (amount > 0)
-        {
-            _target->getIncreasedManaCost()->remove(type,amount);
-            refreshCost(_target);//special case for 0 cost.
-        }
-        else
-        {
-            _target->getReducedManaCost()->remove(type,abs(amount));
-            refreshCost(_target);//special case for 0 cost.
-        }
         return MTGAbility::testDestroy();
     }
     return 0;
@@ -4190,8 +4179,10 @@ void AAlterCost::refreshCost(MTGCardInstance * card)
 {
     ManaCost * original = NEW ManaCost();
     original->copy(card->model->data->getManaCost());
-    original->add(card->getIncreasedManaCost());
-    original->remove(card->getReducedManaCost());
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        original->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        original->remove(card->getReducedManaCost());
     card->getManaCost()->copy(original);
     delete original;
         return;
@@ -4203,14 +4194,6 @@ void AAlterCost::increaseTheCost(MTGCardInstance * card)
         for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
         {
             card->getManaCost()->add(k,card->getIncreasedManaCost()->getCost(k));
-            if (card->getManaCost()->getAlternative())
-            {
-                card->getManaCost()->getAlternative()->add(k,card->getIncreasedManaCost()->getCost(k));
-            }
-            if (card->getManaCost()->getBuyback())
-            {
-                card->getManaCost()->getBuyback()->add(k,card->getIncreasedManaCost()->getCost(k));
-            }
         }
     }
     return;
@@ -4223,14 +4206,6 @@ void AAlterCost::decreaseTheCost(MTGCardInstance * card)
         for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
         {
             card->getManaCost()->remove(k,card->getReducedManaCost()->getCost(k));
-            if (card->getManaCost()->getAlternative())
-            {
-                card->getManaCost()->getAlternative()->remove(k,card->getReducedManaCost()->getCost(k));
-            }
-            if (card->getManaCost()->getBuyback())
-            {
-                card->getManaCost()->getBuyback()->remove(k,card->getReducedManaCost()->getCost(k));
-            }
         }
     }
     return;

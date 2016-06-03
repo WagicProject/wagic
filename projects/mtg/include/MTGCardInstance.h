@@ -255,7 +255,7 @@ public:
     bool isTargetter();
     int cardistargetter;
     int myconvertedcost;
-    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost);
+    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost);
 
     void eventattacked();
     void eventattackedAlone();
