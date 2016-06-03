@@ -4169,17 +4169,8 @@ int AAlterCost::destroy()
 
 int AAlterCost::testDestroy()
 {
-    MTGCardInstance * _target = (MTGCardInstance *)target;
     if(!this->manaReducer->isInPlay(game))
     {
-        if (amount > 0)
-        {
-            ;
-        }
-        else
-        {
-            ;
-        }
         return MTGAbility::testDestroy();
     }
     return 0;
