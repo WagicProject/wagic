@@ -2689,7 +2689,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitCascade.size())
     {
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitCascade[1], NULL, who, false,true);
+        MTGAbility * a = NEW AACascade(observer, id, card, t , splitCascade[1], NULL, who);
         a->oneShot = 1;
         return a;
     }
