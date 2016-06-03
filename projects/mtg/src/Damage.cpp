@@ -229,8 +229,8 @@ int Damage::resolve()
     {
         // "Normal" case,
         //return the left over amount after effects have been applied to them.
-        if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && !((Player *)target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
-            a = target->dealDamage(damage);
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && ((Player *)target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            ;//do nothing
         else
             a = target->dealDamage(damage);
         target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount

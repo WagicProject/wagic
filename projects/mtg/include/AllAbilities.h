@@ -6076,14 +6076,25 @@ class AADepleter: public ActivatedAbilityTP
 public:
     string nbcardsStr;
     bool toexile;
-    bool cascade;
     AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
-            int who = TargetChooser::UNSET, bool toexile = false, bool cascade = false);
+    int who = TargetChooser::UNSET, bool toexile = false);
     int resolve();
-    string Cascade;
-    void toCastCard(MTGCardInstance * card);
     const string getMenuText();
     AADepleter * clone() const;
+};
+
+
+//AACascade
+class AACascade: public ActivatedAbilityTP
+{
+public:
+    string nbcardsStr;
+    AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
+    int who = TargetChooser::UNSET);
+    int resolve();
+    void toCastCard(MTGCardInstance * card);
+    const string getMenuText();
+    AACascade * clone() const;
 };
 
 //Generic skip turn/extra turn
