@@ -272,7 +272,6 @@ AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, 
         {
             WParsedInt numCards(nbcardsStr, NULL, source);
             MTGLibrary * library = player->game->library;
-            int counter = 0;
             for (int i = 0; i < numCards.getValue(); i++)
             {
                 if (library->nb_cards)
