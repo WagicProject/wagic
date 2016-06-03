@@ -1015,74 +1015,15 @@ void GameObserver::Affinity()
                 string type = "";
                 //only do any of the following if a card with the stated ability is in your hand.
                 ManaCost * original = NEW ManaCost();
-                ManaCost * alternate = NEW ManaCost();
-                ManaCost * buyback = NEW ManaCost();
-                ManaCost * flashback = NEW ManaCost();
-                ManaCost * retrace = NEW ManaCost();
                 original->copy(card->model->data->getManaCost());
-                alternate->copy(card->model->data->getManaCost()->getAlternative());
-                buyback->copy(card->model->data->getManaCost()->getBuyback());
-                flashback->copy(card->model->data->getManaCost()->getFlashback());
-                retrace->copy(card->model->data->getManaCost()->getRetrace());
-                //have to run alter cost before affinity or the 2 cancel each other out.
                 if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
                 {
                     if(card->getIncreasedManaCost()->getConvertedCost())
-                    {
                         original->add(card->getIncreasedManaCost());
-                        for(int kc = Constants::MTG_COLOR_ARTIFACT; kc < Constants::NB_Colors;kc++)
-                        {
-                            if (card->getManaCost()->getAlternative())
-                            {
-                                alternate->add(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getBuyback())
-                            {
-                                buyback->add(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getFlashback())
-                            {
-                                flashback->add(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getRetrace())
-                            {
-                                retrace->add(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                        }
-                    }
                     if(card->getReducedManaCost()->getConvertedCost())
-                    {
                         original->remove(card->getReducedManaCost());
-                        for(int kc = Constants::MTG_COLOR_ARTIFACT; kc < Constants::NB_Colors;kc++)
-                        {
-                            if (card->getManaCost()->getAlternative())
-                            {
-                                alternate->remove(kc,card->getReducedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getBuyback())
-                            {
-                                buyback->remove(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getFlashback())
-                            {
-                                flashback->remove(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getRetrace())
-                            {
-                                retrace->remove(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                        }
-                    }
                     if(card->getManaCost())
                         card->getManaCost()->copy(original);
-                    if(card->getManaCost()->getAlternative())
-                        card->getManaCost()->setAlternative(alternate);
-                    if(card->getManaCost()->getBuyback())
-                        card->getManaCost()->setBuyback(buyback);
-                    if(card->getManaCost()->getFlashback())
-                        card->getManaCost()->setFlashback(flashback);
-                    if(card->getManaCost()->getRetrace())
-                        card->getManaCost()->setRetrace(retrace);
                     if(card->getManaCost()->extraCosts)
                     {
                         for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
@@ -1197,11 +1138,6 @@ void GameObserver::Affinity()
                         }
                     }
                 SAFE_DELETE(original);
-
-                SAFE_DELETE(alternate);
-                SAFE_DELETE(buyback);
-                SAFE_DELETE(flashback);
-                SAFE_DELETE(retrace);
             }//end
         }
     }

@@ -629,7 +629,14 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
 {
     if (card->alias == 11000)
         return 0;//overload has its own rule
-    ManaCost * alternateCost = card->getManaCost()->getAlternative();
+    if(!card->getManaCost()->getAlternative())
+        return 0;
+    ManaCost * alternateCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()->getAlternative()),card->getManaCost()->getAlternative());
+    if(alternateCost->extraCosts)
+        for(unsigned int i = 0; i < alternateCost->extraCosts->costs.size();i++)
+        {
+            alternateCost->extraCosts->costs[i]->setSource(card);
+        }
     if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card))
          return 0;
     if ((game->currentlyActing()->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (game->currentlyActing()->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
@@ -689,9 +696,13 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
     if ( !isReactingToClick(card))
         return 0;
 
-    ManaCost *alternateCost = card->getManaCost()->getAlternative();
+    ManaCost * alternateCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()->getAlternative()),card->getManaCost()->getAlternative());
     card->paymenttype = MTGAbility::ALTERNATIVE_COST;
-
+    if(alternateCost->extraCosts)
+        for(unsigned int i = 0; i < alternateCost->extraCosts->costs.size();i++)
+        {
+            alternateCost->extraCosts->costs[i]->setSource(card);
+        }
     return reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_ALTERNATIVE);
 }
 
@@ -795,7 +806,15 @@ int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
          return 0;
     if(!allowedToCast(card,player))
         return 0;
-    return MTGAlternativeCostRule::isReactingToClick( card, mana, card->getManaCost()->getBuyback() );
+    if(!card->getManaCost()->getBuyback())
+        return 0;
+    ManaCost * buybackCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()->getBuyback()),card->getManaCost()->getBuyback());
+    if(buybackCost->extraCosts)
+        for(unsigned int i = 0; i < buybackCost->extraCosts->costs.size();i++)
+        {
+            buybackCost->extraCosts->costs[i]->setSource(card);
+        }
+    return MTGAlternativeCostRule::isReactingToClick( card, mana, buybackCost );
 }
 
 int MTGBuyBackRule::reactToClick(MTGCardInstance * card) 
@@ -803,11 +822,15 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
 
-    ManaCost * alternateCost = card->getManaCost()->getBuyback();
-    
+    ManaCost * buybackCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()->getBuyback()),card->getManaCost()->getBuyback());
+    if(buybackCost->extraCosts)
+        for(unsigned int i = 0; i < buybackCost->extraCosts->costs.size();i++)
+        {
+            buybackCost->extraCosts->costs[i]->setSource(card);
+        }
     card->paymenttype = MTGAbility::BUYBACK_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_BUYBACK);
+    return MTGAlternativeCostRule::reactToClick(card, buybackCost, ManaCost::MANA_PAID_WITH_BUYBACK);
 
 }
 
@@ -837,19 +860,31 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     Player * player = game->currentlyActing();
     if (!player->game->graveyard->hasCard(card))
         return 0;
-    return MTGAlternativeCostRule::isReactingToClick(card, mana, card->getManaCost()->getFlashback() );
+    if(!card->getManaCost()->getFlashback())
+        return 0;
+    ManaCost * flashbackCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()->getFlashback()),card->getManaCost()->getFlashback());
+    if(flashbackCost->extraCosts)
+        for(unsigned int i = 0; i < flashbackCost->extraCosts->costs.size();i++)
+        {
+            flashbackCost->extraCosts->costs[i]->setSource(card);
+        }
+    return MTGAlternativeCostRule::isReactingToClick(card, mana, flashbackCost );
 }
 
 int MTGFlashBackRule::reactToClick(MTGCardInstance * card) 
 {
-    ManaCost * alternateCost = card->getManaCost()->getFlashback();
-    
+    ManaCost * flashbackCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()->getFlashback()),card->getManaCost()->getFlashback());
+    if(flashbackCost->extraCosts)
+        for(unsigned int i = 0; i < flashbackCost->extraCosts->costs.size();i++)
+        {
+            flashbackCost->extraCosts->costs[i]->setSource(card);
+        }
     if (!isReactingToClick(card))
         return 0;
 
     card->paymenttype = MTGAbility::FLASHBACK_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_FLASHBACK);
+    return MTGAlternativeCostRule::reactToClick(card, flashbackCost, ManaCost::MANA_PAID_WITH_FLASHBACK);
 
 }
 
@@ -878,12 +913,19 @@ MTGAlternativeCostRule(observer, _id)
 int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     Player * player = game->currentlyActing();
-    ManaCost * alternateManaCost = card->getManaCost()->getRetrace();
+    if(!card->getManaCost()->getRetrace())
+        return 0;
+    ManaCost * retraceCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()->getRetrace()),card->getManaCost()->getRetrace());
+    if(retraceCost->extraCosts)
+        for(unsigned int i = 0; i < retraceCost->extraCosts->costs.size();i++)
+        {
+            retraceCost->extraCosts->costs[i]->setSource(card);
+        }
 
     if (!player->game->graveyard->hasCard(card))
         return 0;
         
-    return MTGAlternativeCostRule::isReactingToClick( card, mana, alternateManaCost  );
+    return MTGAlternativeCostRule::isReactingToClick( card, mana, retraceCost  );
 }
 
 
@@ -891,12 +933,17 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
 {
     if (!isReactingToClick(card))
         return 0;
-    
-    ManaCost * alternateCost = card->getManaCost()->getRetrace();
+
+    ManaCost * retraceCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()->getRetrace()),card->getManaCost()->getRetrace());
+    if(retraceCost->extraCosts)
+        for(unsigned int i = 0; i < retraceCost->extraCosts->costs.size();i++)
+        {
+            retraceCost->extraCosts->costs[i]->setSource(card);
+        }
     
     card->paymenttype = MTGAbility::RETRACE_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_RETRACE);
+    return MTGAlternativeCostRule::reactToClick(card, retraceCost, ManaCost::MANA_PAID_WITH_RETRACE);
 }
 
 ostream& MTGRetraceRule::toString(ostream& out) const
