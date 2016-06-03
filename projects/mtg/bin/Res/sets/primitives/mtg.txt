@@ -4586,6 +4586,14 @@ power=2
 toughness=5
 [/card]
 [card]
+name=Ardent Plea
+abilities=exalted
+autostack=if casted(this) then cascade:plibrarycount
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={1}{W}{U}
+type=Enchantment
+[/card]
+[card]
 name=Ardent Recruit
 auto=aslongas(artifact|mybattlefield) 2/2 >2
 text=Metalcraft - Ardent Recruit gets +2/+2 as long as you control three or more artifacts.
@@ -10388,6 +10396,17 @@ mana={2}{B}{G}
 type=Enchantment
 [/card]
 [card]
+name=Bloodbraid Elf
+abilities=haste
+autostack=if casted(this) then cascade:plibrarycount
+text=Haste -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={2}{R}{G}
+type=Creature
+subtype=Elf Berserker
+power=3
+toughness=2
+[/card]
+[card]
 name=Bloodchief Ascension
 auto=@each endofturn foelost(2):may counter(0/0,1,Quest)
 auto=@movedTo(*|opponentgraveyard):this(counter{0/0.3.Quest}) life:-2 opponent && this(counter{0/0.3.Quest}) life:2 controller
@@ -14357,6 +14376,14 @@ name=Capture of Jingzhou
 auto=turns:+1 controller
 text=Take an extra turn after this one.
 mana={3}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Captured Sunlight
+autostack=if casted(this) then cascade:plibrarycount
+auto=life:4 controller
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- You gain 4 life.
+mana={2}{G}{W}
 type=Sorcery
 [/card]
 [card]
@@ -24029,6 +24056,15 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Demonic Dread
+target=creature|battlefield
+auto=cantblock
+autostack=if casted(this) then cascade:plibrarycount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- Target creature can't block this turn.
+mana={1}{B}{R}
+type=Sorcery
+[/card]
+[card]
 name=Demonic Hordes
 auto={T}:destroy target(land)
 auto=upcostmulti[{B}{B}{B}] tap && ability$!name(sacrifice land) notatarget(land|opponentbattlefield) sacrifice!$ opponent
@@ -24141,6 +24177,15 @@ auto=lord(creature[flying]) cloud
 text=Creatures with flying can block only creatures with flying.
 mana={1}{G}
 type=Enchantment
+[/card]
+[card]
+name=Deny Reality
+target=*|battlefield
+auto=moveTo(ownerhand)
+autostack=if casted(this) then cascade:plibrarycount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- Return target permanent to its owner's hand.
+mana={3}{U}{B}
+type=Sorcery
 [/card]
 [card]
 name=Denying Wind
@@ -30603,6 +30648,16 @@ mana={W}
 type=Instant
 [/card]
 [card]
+name=Enlisted Wurm
+autostack=if casted(this) then cascade:plibrarycount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={4}{G}{W}
+type=Creature
+subtype=Wurm
+power=5
+toughness=5
+[/card]
+[card]
 name=Enormous Baloth
 mana={6}{G}
 type=Creature
@@ -31482,6 +31537,17 @@ type=Creature
 subtype=Elemental
 power=4
 toughness=3
+[/card]
+[card]
+name=Etherium-Horn Sorcerer
+auto={1}{U}{R}:moveto(ownerhand)
+autostack=if casted(this) then cascade:plibrarycount
+text={1}{U}{R}: Return Etherium-Horn Sorcerer to its owner's hand. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={4}{U}{R}
+type=Artifact Creature
+subtype=Minotaur Wizard
+power=3
+toughness=6
 [/card]
 [card]
 name=Etherium Abomination
@@ -52174,6 +52240,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Kathari Remnant
+abilities=flying
+auto={B}:regenerate
+autostack=if casted(this) then cascade:plibrarycount
+text=Flying -- {B}: Regenerate Kathari Remnant. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={2}{U}{B}
+type=Creature
+subtype=Bird Skeleton
+power=0
+toughness=1
+[/card]
+[card]
 name=Kathari Screecher
 abilities=flying
 autograveyard={2}{U}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
@@ -58695,6 +58773,13 @@ type=Creature
 subtype=Djinn
 power=5
 toughness=6
+[/card]
+[card]
+name=Maelstrom Nexus
+auto=@movedto(*|mystack) restriction{thisturn(*|mystack)~lessthan~2}:all(trigger[to]) transforms((,newability[cascade:plibrarycount])) ueot
+text=The first spell you cast each turn has cascade. (When you cast your first spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={W}{U}{B}{R}{G}
+type=Enchantment
 [/card]
 [card]
 name=Maelstrom Pulse
@@ -87750,6 +87835,16 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Shardless Agent
+autostack=if casted(this) then cascade:plibrarycount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={1}{G}{U}
+type=Artifact Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+[card]
 name=Shared Discovery
 auto=draw:3
 text=As an additional cost to cast Shared Discovery, tap four untapped creatures you control. -- Draw three cards.
@@ -96941,6 +97036,14 @@ type=Creature
 subtype=Dragon
 power=4
 toughness=4
+[/card]
+[card]
+name=Stormcaller's Boon
+auto={S}:lord(creature|myBattlefield) flying ueot
+autostack=if casted(this) then cascade:plibrarycount
+text=Sacrifice Stormcaller's Boon: Creatures you control gain flying until end of turn. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={2}{W}{U}
+type=Enchantment
 [/card]
 [card]
 name=Stormcloud Djinn
@@ -109701,6 +109804,14 @@ type=Creature
 subtype=Turtle
 power=2
 toughness=2
+[/card]
+[card]
+name=Violent Outburst
+autostack=if casted(this) then cascade:plibrarycount
+auto=lord(creature|myBattlefield) 1/0
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- Creatures you control get +1/+0 until end of turn.
+mana={1}{R}{G}
+type=Instant
 [/card]
 [card]
 name=Violent Ultimatum

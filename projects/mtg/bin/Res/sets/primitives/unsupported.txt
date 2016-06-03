@@ -429,12 +429,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Ardent Plea
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={1}{W}{U}
-type=Enchantment
-[/card]
-[card]
 name=Arena
 text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Each of those creatures deals damage equal to its power to the other.
 type=Land
@@ -1263,15 +1257,6 @@ mana={W}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Bloodbraid Elf
-text=Haste -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={2}{R}{G}
-type=Creature
-subtype=Elf Berserker
-power=3
-toughness=2
-[/card]
-[card]
 name=Bloodletter
 mana={2}{B}
 type=Creature — Zombie
@@ -1921,12 +1906,6 @@ text=Enchant creature -- At the beginning of your end step, clash with an oppone
 mana={2}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Captured Sunlight
-text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- You gain 4 life.
-mana={2}{G}{W}
-type=Sorcery
 [/card]
 [card]
 name=Cardboard Carapace
@@ -3548,12 +3527,6 @@ mana={B}
 type=Instant
 [/card]
 [card]
-name=Demonic Dread
-text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- Target creature can't block this turn.
-mana={1}{B}{R}
-type=Sorcery
-[/card]
-[card]
 name=Demoralize
 text=Each creature can't be blocked this turn except by two or more creatures. -- Threshold - If seven or more cards are in your graveyard, creatures can't block this turn.
 mana={2}{R}
@@ -3570,12 +3543,6 @@ name=Dense Foliage
 text=Creatures can't be the targets of spells.
 mana={2}{G}
 type=Enchantment
-[/card]
-[card]
-name=Deny Reality
-text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- Return target permanent to its owner's hand.
-mana={3}{U}{B}
-type=Sorcery
 [/card]
 [card]
 name=Dermoplasm
@@ -4390,6 +4357,7 @@ text=As Energy Vortex enters the battlefield, choose an opponent. -- At the begi
 mana={3}{U}{U}
 type=Enchantment
 [/card]
+#third from the top???
 [card]
 name=Enigma Sphinx
 text=Flying -- When Enigma Sphinx is put into your graveyard from the battlefield, put it into your library third from the top. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
@@ -4398,15 +4366,6 @@ type=Artifact Creature
 subtype=Sphinx
 power=5
 toughness=4
-[/card]
-[card]
-name=Enlisted Wurm
-text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={4}{G}{W}
-type=Creature
-subtype=Wurm
-power=5
-toughness=5
 [/card]
 [card]
 name=Enlistment Officer
@@ -4557,15 +4516,6 @@ text=Enchant permanent -- If enchanted permanent is red or green, it has "At the
 mana={U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Etherium-Horn Sorcerer
-text={1}{U}{R}: Return Etherium-Horn Sorcerer to its owner's hand. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={4}{U}{R}
-type=Artifact Creature
-subtype=Minotaur Wizard
-power=3
-toughness=6
 [/card]
 [card]
 name=Etherwrought Page
@@ -8000,15 +7950,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Kathari Remnant
-text=Flying -- {B}: Regenerate Kathari Remnant. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={2}{U}{B}
-type=Creature
-subtype=Bird Skeleton
-power=0
-toughness=1
-[/card]
-[card]
 name=Kavu Howler
 text=When Kavu Howler enters the battlefield, reveal the top four cards of your library. Put all Kavu cards revealed this way into your hand and the rest on the bottom of your library.
 mana={4}{G}{G}
@@ -9126,11 +9067,15 @@ subtype=Imp
 power=1
 toughness=1
 [/card]
+#Cascade - Cascade not yet supported...
 [card]
-name=Maelstrom Nexus
-text=The first spell you cast each turn has cascade. (When you cast your first spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={W}{U}{B}{R}{G}
-type=Enchantment
+name=Maelstrom Wanderer
+text=Creatures you control have haste. Cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order. Then do it again.)
+mana={5}{U}{R}{G}
+type=Legendary Creature
+subtype=Elemental
+power=7
+toughness=5
 [/card]
 [card]
 name=Mages' Contest
@@ -14165,15 +14110,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=Shardless Agent
-text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={1}{G}{U}
-type=Artifact Creature
-subtype=Human Rogue
-power=2
-toughness=2
-[/card]
-[card]
 name=Shared Animosity
 text=Whenever a creature you control attacks, it gets +1/+0 until end of turn for each other attacking creature that shares a creature type with it.
 mana={2}{R}
@@ -15596,12 +15532,6 @@ subtype=Human Berserker
 power=1
 toughness=1
 text=Bloodthirst 2 (If an opponent was dealt damage this turn, this creature enters the battlefield with two +1/+1 counters on it.) Stormblood Berserker can't be blocked except by two or more creatures.
-[/card]
-[card]
-name=Stormcaller's Boon
-text=Sacrifice Stormcaller's Boon: Creatures you control gain flying until end of turn. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={2}{W}{U}
-type=Enchantment
 [/card]
 [card]
 name=Stormscale Anarch
@@ -17412,12 +17342,6 @@ toughness=3
 name=Violent Eruption
 text=Violent Eruption deals 4 damage divided as you choose among any number of target creatures and/or players. -- Madness {1}{R}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={1}{R}{R}{R}
-type=Instant
-[/card]
-[card]
-name=Violent Outburst
-text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- Creatures you control get +1/+0 until end of turn.
-mana={1}{R}{G}
 type=Instant
 [/card]
 [card]
