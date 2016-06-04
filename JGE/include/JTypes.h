@@ -27,7 +27,11 @@
 
 #else
 //#define __STDC_LIMIT_MACROS
+#ifdef IOS
+#include <tr1/cstdint>
+#else
 #include <cstdint>
+#endif
 //#include <stdint.h>
 //the MSC version might only define _MSC_STDINT_H_
 //and that might cause redefinition of standard types

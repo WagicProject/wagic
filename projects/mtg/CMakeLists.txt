@@ -109,8 +109,9 @@ set(MTG_generic_src
         src/WFont.cpp
         src/WGui.cpp
         src/WResourceManager.cpp
-        src/NetworkPlayer.cpp
         )
+
+set(MTG_network_src src/NetworkPlayer.cpp)
 
 #the sources we need if we compile a graphical qt version
 #TODO: add declarative version since this only works with QWidget right now
@@ -132,6 +133,24 @@ set(MTG_sdl_src
 set(MTG_android_sdl_src
         src/SDLmain.cpp)
 
+set(MTG_iOS_src
+        iOS/UI/WagicDownloadProgressViewController.m
+        iOS/asi-http-request/ASIAuthenticationDialog.m
+        iOS/asi-http-request/ASIDataCompressor.m
+        iOS/asi-http-request/ASIDataDecompressor.m
+        iOS/asi-http-request/ASIDownloadCache.m
+        iOS/asi-http-request/ASIFormDataRequest.m
+        iOS/asi-http-request/ASIHTTPRequest.m
+        iOS/asi-http-request/ASIInputStream.m
+        iOS/asi-http-request/ASINetworkQueue.m
+        iOS/SoundManager/SoundManager.m
+        iOS/SoundManager/MyOpenALSupport.c
+        iOS/Reachability/Reachability/Reachability.m
+        iOS/ZipArchive/ZipArchive.mm)
+
+
+set(MTG_iOS_INCLUDE_DIRS iOS/UI iOS/Reachability/Reachability iOS/asi-http-request iOS/ZipArchive iOS/SoundManager)
+
 set(MTG_INCLUDE_DIRS include include/qt)
 set(JGE_INCLUDE_DIRS ../../JGE/include ../../JGE/include/hge)
 set(JGE_LIBRARY jge)
@@ -147,7 +166,7 @@ if(backend_qt_console)
     if(UNIX AND NOT ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS}
             ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default)
-        add_executable(wagic ${MTG_generic_src} ${MTG_qt_console_src})
+        add_executable(wagic ${MTG_generic_src} ${MTG_qt_console_src} ${MTG_network_src})
         target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS} ${TINYXML_LIBRARIES}
             ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
     else()
@@ -157,7 +176,7 @@ elseif(backend_qt_widget)
     if(UNIX AND NOT ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS}
             ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default)
-        add_executable(wagic ${MTG_generic_src} ${MTG_qt_graphic_src})
+        add_executable(wagic ${MTG_generic_src} ${MTG_qt_graphic_src} ${MTG_network_src})
         target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES}
             ${HGE_LIBRARY} ${ZLIB_LIBRARIES})# ${X11_LIBRARIES})
     else()
@@ -166,18 +185,18 @@ elseif(backend_qt_widget)
 elseif(backend_sdl)
     if((UNIX OR EMSCRIPTEN) AND NOT ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-        add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
+        add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} ${MTG_network_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
         target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
     elseif(ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
         #we should try to get rid of this hack
-        add_library(wagic SHARED ${MTG_generic_src} ${MTG_android_sdl_src} src/TestSuiteAI.cpp)
+        add_library(wagic SHARED ${MTG_generic_src} ${MTG_network_src} ${MTG_android_sdl_src} src/TestSuiteAI.cpp)
         target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
     elseif(WIN32)
         include_directories(${EXTRA_INCLUDE_DIR} ${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
             ${Boost_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR}
             ${ZLIB_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
-        add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
+        add_executable(wagic ${MTG_generic_src} ${MTG_network_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
         link_directories(${Boost_LIBRARY_DIR} ${SDL2_LIBRARY_DIR})
         target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${BOOST_date_time} ${HGE_LIBRARY} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/lib/fmodvc.lib ${ZLIB_LIBRARIES})
     endif()
@@ -186,7 +205,7 @@ elseif(backend_psp)
         #${PSPSDK_PATH}/include
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
             ${UNZIP_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${GIF_INCLUDE_DIR} ${HGETOOLS_INCLUDE_DIRS})
-        add_executable(wagic ${MTG_generic_src})
+        add_executable(wagic ${MTG_generic_src} ${MTG_network_src})
         target_link_libraries(wagic ${JGE_LIBRARY} ${PSPSDK_LIB} ${HGETOOLS_LIBRARY} ${FREETYPE_LIB} ${JPEG_LIBRARY} 
             ${GIF_LIBRARIES} ${PNG_LIBRARIES} z m ${MIKMOD_LIBRARY} ${TINYXML_LIBRARIES} 
             stdc++ ${PSPSDK_REQUIRED_LIB})
@@ -207,4 +226,9 @@ elseif(backend_psp)
     else()
         message(FATAL_ERROR "use the cross-compile toolchain to build as the psp target")
     endif()
+endif()
+if(IOS)
+    set(MTG_generic_src ${MTG_generic_src} ${MTG_iOS_src} PARENT_SCOPE)
+    set(MTG_INCLUDE_DIRS ${MTG_INCLUDE_DIRS} ${MTG_iOS_INCLUDE_DIRS} PARENT_SCOPE)
+
 endif()
