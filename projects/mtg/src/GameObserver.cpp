@@ -1017,7 +1017,7 @@ void GameObserver::Affinity()
                 ManaCost * original = NEW ManaCost();
                 original->copy(card->model->data->getManaCost());
                 if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
-                {
+                {//start1
                     if(card->getIncreasedManaCost()->getConvertedCost())
                         original->add(card->getIncreasedManaCost());
                     if(card->getReducedManaCost()->getConvertedCost())
@@ -1031,11 +1031,11 @@ void GameObserver::Affinity()
                             card->getManaCost()->extraCosts->costs[i]->setSource(card);
                         }
                     }
-                }
+                }//end1
                 int reducem = 0;
                 bool resetCost = false;
                 for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
-                {
+                {//start2
                     ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
                     if(newAff)
                     {
@@ -1073,7 +1073,7 @@ void GameObserver::Affinity()
                             card->getManaCost()->remove(removingCost);
                         SAFE_DELETE(removingCost);
                     }
-                }
+                }//end2
                 if(card->has(Constants::AFFINITYARTIFACTS)||
                     card->has(Constants::AFFINITYFOREST)||
                     card->has(Constants::AFFINITYGREENCREATURES)||
@@ -1081,7 +1081,7 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYMOUNTAIN)||
                     card->has(Constants::AFFINITYPLAINS)||
                     card->has(Constants::AFFINITYSWAMP))
-                    {
+                    {//start3
                         if (card->has(Constants::AFFINITYARTIFACTS))
                         {
                             type = "artifact";
@@ -1136,7 +1136,7 @@ void GameObserver::Affinity()
                             if(card->getManaCost()->getCost(color) > 0)
                                 card->getManaCost()->remove(color,1);
                         }
-                    }
+                    }//end3
                 SAFE_DELETE(original);
             }//end
         }

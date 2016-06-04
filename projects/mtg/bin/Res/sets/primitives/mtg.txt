@@ -1932,7 +1932,7 @@ toughness=3
 [/card]
 [card]
 name=Alabaster Leech
-auto=lord(*[white]|myhand,mygraveyard,myexile) altercost(white, +1)
+auto=lord(*[white]|myhand,mylibrary,mygraveyard,myexile) altercost(white, +1)
 text=White spells you cast cost {W} more to cast.
 mana={W}
 type=Creature
@@ -3021,7 +3021,7 @@ type=Land
 [/card]
 [card]
 name=Andradite Leech
-auto=lord(*[black]|myhand,mygraveyard,myexile) altercost(black,+1)
+auto=lord(*[black]|myhand,mylibrary,mygraveyard,myexile) altercost(black,+1)
 auto={B}:1/1
 text=Black spells you cast cost {B} more to cast. -- {B}: Andradite Leech gets +1/+1 until end of turn.
 mana={2}{B}
@@ -3399,7 +3399,7 @@ subtype=Aura
 name=Animar, Soul of Elements
 abilities=protection from white,protection from black
 auto=@movedTo(creature|mystack):counter(1/1,1)
-auto=thisforeach(counter{1/1,1}) lord(creature|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=thisforeach(counter{1/1,1}) lord(creature|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Protection from white and from black -- Whenever you cast a creature spell, put a +1/+1 counter on Animar, Soul of Elements. -- Creature spells you cast cost 1 less to cast for each +1/+1 counter on Animar.
 mana={U}{R}{G}
 type=Legendary Creature
@@ -4062,8 +4062,8 @@ type=Enchantment
 [/card]
 [card]
 name=Arcane Melee
-auto=lord(instant|hand,graveyard,exile) altercost(colorless,-2)
-auto=lord(sorcery|hand,graveyard,exile) altercost(colorless,-2)
+auto=lord(instant|hand,library,graveyard,exile) altercost(colorless,-2)
+auto=lord(sorcery|hand,library,graveyard,exile) altercost(colorless,-2)
 text=Instant and sorcery spells cost {2} less to cast.
 mana={4}{U}
 type=Enchantment
@@ -5849,8 +5849,8 @@ subtype=Aura
 [/card]
 [card]
 name=Aura of Silence
-auto=lord(artifact|opponenthand,opponentgraveyard,opponentexile) altercost(colorless, +2)
-auto=lord(enchantment|opponenthand,opponentgraveyard,opponentexile) altercost(colorless, +2)
+auto=lord(artifact|opponenthand,opponentlibrary,opponentgraveyard,opponentexile) altercost(colorless, +2)
+auto=lord(enchantment|opponenthand,opponentlibrary,opponentgraveyard,opponentexile) altercost(colorless, +2)
 auto={S}:destroy target(artifact,enchantment)
 text=Artifact and enchantment spells your opponents cast cost {2} more to cast. -- Sacrifice Aura of Silence: Destroy target artifact or enchantment.
 mana={1}{W}{W}
@@ -7193,7 +7193,7 @@ toughness=2
 [/card]
 [card]
 name=Ballyrush Banneret
-auto=lord(*[soldier;kithkin]|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(*[soldier;kithkin]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Kithkin spells and Soldier spells you cast cost {1} less to cast.
 mana={1}{W}
 type=Creature
@@ -11953,7 +11953,7 @@ toughness=7
 [/card]
 [card]
 name=Bosk Banneret
-auto=lord(*[treefolk;shaman]|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(*[treefolk;shaman]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Treefolk spells and Shaman spells you cast cost {1} less to cast.
 mana={1}{G}
 type=Creature
@@ -12667,7 +12667,7 @@ type=Enchantment
 [/card]
 [card]
 name=Brighthearth Banneret
-auto=lord(*[elemental;warrior]|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(*[elemental;warrior]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 autohand={1}{R}{discard}:counter(1/1,1) target(creature)
 text=Elemental spells and Warrior spells you cast cost {1} less to cast. -- Reinforce 1 - {1}{R} ({1}{R}, Discard this card: Put a +1/+1 counter on target creature.)
 mana={1}{R}
@@ -15406,7 +15406,7 @@ toughness=3
 [/card]
 [card]
 name=Centaur Omenreader
-auto=this(tapped) lord(*|myhand,mygraveyard,myexile) altercost(colorless, -2) ueot
+auto=this(tapped) lord(*|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -2) ueot
 auto=@untapped(this):all(*|myhand) moveto(myhand)
 text=As long as Centaur Omenreader is tapped, creature spells you cast cost {2} less to cast.
 mana={3}{G}
@@ -16456,8 +16456,8 @@ toughness=1
 [/card]
 [card]
 name=Chill
-auto=lord(*[red]|myhand,mygraveyard,myexile) altercost(colorless, +2)
-auto=lord(*[red]|opponenthand,opponentgraveyard,opponentexile) altercost(colorless, +2)
+auto=lord(*[red]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, +2)
+auto=lord(*[red]|opponenthand,opponentlibrary,opponentgraveyard,opponentexile) altercost(colorless, +2)
 text=Red spells cost {2} more to cast.
 mana={1}{U}
 type=Enchantment
@@ -17744,11 +17744,11 @@ auto=choice name(Creature) counter(0/0,1,CloudKeyC) all(this)
 auto=choice name(Enchantment) counter(0/0,1,CloudKeyE) all(this)
 auto=choice name(Instant) counter(0/0,1,CloudKeyI) all(this)
 auto=choice name(Sorcery) counter(0/0,1,CloudKeyS) all(this)
-auto=this(counter{0/0.1.CloudKeyA}) lord(Artifact|myhand,mygraveyard,myexile) altercost(colorless,-1)
-auto=this(counter{0/0.1.CloudKeyC}) lord(Creature|myhand,mygraveyard,myexile) altercost(colorless,-1)
-auto=this(counter{0/0.1.CloudKeyE}) lord(Enchantment|myhand,mygraveyard,myexile) altercost(colorless,-1)
-auto=this(counter{0/0.1.CloudKeyI}) lord(Instant|myhand,mygraveyard,myexile) altercost(colorless,-1)
-auto=this(counter{0/0.1.CloudKeyS}) lord(Sorcery|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyA}) lord(Artifact|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyC}) lord(Creature|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyE}) lord(Enchantment|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyI}) lord(Instant|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyS}) lord(Sorcery|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=As Cloud Key enters the battlefield, choose artifact, creature, enchantment, instant, or sorcery. -- Spells you cast of the chosen type cost {1} less to cast.
 mana={3}
 type=Artifact
@@ -22233,7 +22233,7 @@ toughness=1
 [/card]
 [card]
 name=Daru Warchief
-auto=lord(soldier|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(soldier|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 auto=lord(soldier|myBattlefield) 1/2
 text=Soldier spells you cast cost {1} less to cast. -- Soldier creatures you control get +1/+2.
 mana={2}{W}{W}
@@ -24248,7 +24248,7 @@ toughness=1
 [/card]
 [card]
 name=Derelor
-auto=lord(*[black]|myhand,mygraveyard,myexile) altercost(black, +1)
+auto=lord(*[black]|myhand,mylibrary,mygraveyard,myexile) altercost(black, +1)
 text=Black spells you cast cost {B} more to cast.
 mana={3}{B}
 type=Creature
@@ -26509,7 +26509,7 @@ toughness=5
 [/card]
 [card]
 name=Dragonlord's Servant
-auto=lord(dragon|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(dragon|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Dragon spells you cast cost {1} less to cast.
 mana={1}{R}
 type=Creature
@@ -26576,7 +26576,7 @@ toughness=2
 [/card]
 [card]
 name=Dragonspeaker Shaman
-auto=lord(dragon|myhand,mygraveyard,myexile) altercost(colorless,-2)
+auto=lord(dragon|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
 text=Dragon spells you cast cost {2} less to cast.
 mana={1}{R}{R}
 type=Creature
@@ -28818,8 +28818,8 @@ type=Instant
 [/card]
 [card]
 name=Edgewalker
-auto=lord(cleric|myhand,mygraveyard,myexile) altercost(white,-1)
-auto=lord(cleric|myhand,mygraveyard,myexile) altercost(black, -1)
+auto=lord(cleric|myhand,mylibrary,mygraveyard,myexile) altercost(white,-1)
+auto=lord(cleric|myhand,mylibrary,mygraveyard,myexile) altercost(black, -1)
 text=Cleric spells you cast cost {W}{B} less to cast. This effect reduces only the amount of colored mana you pay. (For example, if you cast a Cleric spell with mana cost {1}{W}, it costs {1} to cast.)
 mana={1}{W}{B}
 type=Creature
@@ -30062,7 +30062,7 @@ toughness=1
 [/card]
 [card]
 name=Emerald Medallion
-auto=lord(*[green]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[green]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Green spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -31569,7 +31569,7 @@ type=Artifact
 [/card]
 [card]
 name=Etherium Sculptor
-auto=lord(artifact|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(artifact|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Artifact spells you cast cost {1} less to cast.
 mana={1}{U}
 type=Artifact Creature
@@ -32228,7 +32228,7 @@ mana={3}{W}
 [/card]
 [card]
 name=Eye of Ugin
-auto=lord(eldrazi[iscolorless]|myhand,mygraveyard,myexile) altercost(colorless,-2)
+auto=lord(eldrazi[iscolorless]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
 auto={7}{T}:moveTo(myhand) target(creature[iscolorless]|myLibrary)
 text=Colorless Eldrazi spells you cast cost {2} less to cast. -- {7}, {T}: Search your library for a colorless creature card, reveal it, and put it into your hand. Then shuffle your library.
 type=Legendary Land
@@ -33653,7 +33653,7 @@ subtype=Aura
 [/card]
 [card]
 name=Feroz's Ban
-auto=lord(creature|hand,graveyard,exile) altercost(colorless,+2)
+auto=lord(creature|hand,library,graveyard,exile) altercost(colorless,+2)
 text=Creature spells cost {2} more to cast.
 mana={6}
 type=Artifact
@@ -36799,7 +36799,7 @@ toughness=2
 [card]
 name=Frogtosser Banneret
 abilities=haste
-auto=lord(*[goblin;rogue]|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(*[goblin;rogue]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Haste -- Goblin spells and Rogue spells you cast cost {1} less to cast.
 mana={1}{B}
 type=Creature
@@ -39817,8 +39817,8 @@ toughness=3
 [/card]
 [card]
 name=Glowrider
-auto=lord(*[-creature]|myhand,mygraveyard,myexile) altercost(colorless,+1)
-auto=lord(*[-creature]|opponenthand,opponentgraveyard,opponentexile) altercost(colorless, +1)
+auto=lord(*[-creature]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,+1)
+auto=lord(*[-creature]|opponenthand,opponentlibrary,opponentgraveyard,opponentexile) altercost(colorless, +1)
 text=Noncreature spells cost {1} more to cast.
 mana={2}{W}
 type=Creature
@@ -40262,7 +40262,7 @@ toughness=4
 [/card]
 [card]
 name=Goblin Electromancer
-auto=lord(*[instant;sorcery]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[instant;sorcery]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Instant and sorcery spells you cast cost {1} less to cast.
 mana={U}{R}
 type=Creature
@@ -40944,7 +40944,7 @@ toughness=3
 [/card]
 [card]
 name=Goblin Warchief
-auto=lord(goblin|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(goblin|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 auto=lord(goblin|myBattlefield) haste
 text=Goblin spells you cast cost {1} less to cast. -- Goblin creatures you control have haste.
 mana={1}{R}{R}
@@ -41631,9 +41631,9 @@ toughness=2
 [/card]
 [card]
 name=Grand Arbiter Augustin IV
-auto=lord(*[white]|myhand,mygraveyard,myexile) altercost(colorless,-1)
-auto=lord(*[blue]|myhand,mygraveyard,myexile) altercost(colorless,-1)
-auto=lord(*|opponenthand,opponentgraveyard,opponentexile) altercost( colorless,+1)
+auto=lord(*[white]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[blue]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*|opponenthand,opponentlibrary,opponentgraveyard,opponentexile) altercost( colorless,+1)
 text=White spells you cast cost {1} less to cast. -- Blue spells you cast cost {1} less to cast. -- Spells your opponents cast cost {1} more to cast.
 mana={2}{W}{U}
 type=Legendary Creature
@@ -44972,7 +44972,7 @@ toughness=3
 [card]
 name=Heartless Summoning
 auto=lord(creature|myBattlefield) -1/-1
-auto=lord(creature|myhand,mygraveyard,myexile) altercost( colorless,-2)
+auto=lord(creature|myhand,mylibrary,mygraveyard,myexile) altercost( colorless,-2)
 text=Creature spells you cast cost {2} less to cast. -- Creatures you control get -1/-1
 mana={1}{B}
 type=Enchantment
@@ -45537,7 +45537,7 @@ toughness=1
 [/card]
 [card]
 name=Helm of Awakening
-auto=lord(*|hand,graveyard,exile) altercost(colorless,-1)
+auto=lord(*|hand,library,graveyard,exile) altercost(colorless,-1)
 text=Spells cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -45650,7 +45650,7 @@ toughness=4
 name=Herald of War
 abilities=flying
 auto=@combat(attacking) source(this):counter(1/1,1)
-auto=thisforeach(counter{1/1,1}) lord(*[angel;human]|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=thisforeach(counter{1/1,1}) lord(*[angel;human]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Flying -- Whenever Herald of War attacks, put a +1/+1 counter on it.  -- Angel spells and Human spells you cast cost {1} less to cast for each +1/+1 counter on Herald of War.
 mana={3}{W}{W}
 type=Creature
@@ -45688,7 +45688,7 @@ toughness=2
 [/card]
 [card]
 name=Herald of the Pantheon
-auto=lord(enchantment|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(enchantment|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 auto=@movedto(enchantment|mystack):choice life:1 controller
 text=Enchantment spells you cast cost {1} less to cast. -- Whenever you cast an enchantment spell, you gain 1 life.
 mana={1}{G}
@@ -45743,7 +45743,7 @@ toughness=4
 [/card]
 [card]
 name=Hero of Iroas
-auto=lord(aura|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(aura|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):counter(1/1,1)
 text=Aura spells you cast cost 1 less to cast. -- Heroic -- Whenever you cast a spell that targets Hero of Iroas, put a +1/+1 counter on Hero of Iroas.
 mana={1}{W}
@@ -46009,7 +46009,7 @@ toughness=1
 [/card]
 [card]
 name=High Seas
-auto=lord(creature[red;green]|hand,graveyard,exile) altercost(colorless,+1)
+auto=lord(creature[red;green]|hand,library,graveyard,exile) altercost(colorless,+1)
 text=Red creature spells and green creature spells cost {1} more to cast.
 mana={2}{U}
 type=Enchantment
@@ -49728,7 +49728,7 @@ toughness=2
 [/card]
 [card]
 name=Irini Sengir
-auto=lord(enchantment[white;green]|hand,graveyard,exile) altercost(colorless,+1)
+auto=lord(enchantment[white;green]|hand,library,graveyard,exile) altercost(colorless,+1)
 text=White enchantment spells and green enchantment spells cost {2} more to cast.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -50329,7 +50329,7 @@ toughness=8
 [/card]
 [card]
 name=Jade Leech
-auto=lord(*[green]|myhand,mygraveyard,myexile) altercost(green,+1)
+auto=lord(*[green]|myhand,mylibrary,mygraveyard,myexile) altercost(green,+1)
 text=Green spells you cast cost {G} more to cast.
 mana={2}{G}{G}
 type=Creature
@@ -50684,7 +50684,7 @@ type=Artifact
 [/card]
 [card]
 name=Jet Medallion
-auto=lord(*[black]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[black]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Black spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -54656,7 +54656,7 @@ toughness=2
 [/card]
 [card]
 name=Krosan Drover
-auto=lord(creature[manacost>=6]|myhand,mygraveyard,myexile) altercost(colorless,-2)
+auto=lord(creature[manacost>=6]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
 text=Creature spells you cast with converted mana cost 6 or more cost {2} less to cast.
 mana={3}{G}
 type=Creature
@@ -54716,7 +54716,7 @@ toughness=5
 [card]
 name=Krosan Warchief
 auto={1}{G}:regenerate target(beast)
-auto=lord(beast|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(beast|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Beast spells you cast cost {1} less to cast. -- {1}{G}: Regenerate target Beast.
 mana={2}{G}
 type=Creature
@@ -57634,7 +57634,7 @@ type=Artifact
 [/card]
 [card]
 name=Lodestone Golem
-auto=lord(*[-artifact]|hand,graveyard,exile) altercost(colorless,+1)
+auto=lord(*[-artifact]|hand,library,graveyard,exile) altercost(colorless,+1)
 text=Nonartifact spells cost {1} more to cast.
 mana={4}
 type=Artifact Creature
@@ -57693,7 +57693,7 @@ toughness=2
 [/card]
 [card]
 name=Long-Forgotten Gohei
-auto=lord(arcane|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(arcane|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 auto=lord(spirit|myBattlefield) 1/1
 text=Arcane spells you cast cost {1} less to cast. -- Spirit creatures you control get +1/+1.
 mana={3}
@@ -59575,8 +59575,8 @@ type=Instant
 [/card]
 [card]
 name=Mana Matrix
-auto=lord(instant|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=lord(enchantment|myhand,mygraveyard,myexile) altercost(colorless,-2)
+auto=lord(instant|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=lord(enchantment|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
 text=Instant and enchantment spells you cast cost up to {2} less to cast.
 mana={6}
 type=Artifact
@@ -63578,7 +63578,7 @@ toughness=4
 [/card]
 [card]
 name=Mistform Warchief
-auto=lord(creature[share!types!]|myhand,mygraveyard,myexile) altercost(colorless,-1) chooseend
+auto=lord(creature[share!types!]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1) chooseend
 auto={T}:activatechooseatype all(this) becomes(removecreaturesubtypes) && becomes(chosentype) ueot activatechooseend
 text=Creature spells you cast that share a creature type with Mistform Warchief cost {1} less to cast. -- {T}: Mistform Warchief becomes the creature type of your choice until end of turn.
 mana={2}{U}
@@ -67652,7 +67652,7 @@ toughness=1
 [/card]
 [card]
 name=Nightscape Familiar
-auto=lord(*[blue;red]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[blue;red]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 auto={1}{B}:regenerate
 text=Blue spells and red spells you cast cost {1} less to cast. -- {1}{B}: Regenerate Nightscape Familiar.
 mana={1}{B}
@@ -71789,7 +71789,7 @@ toughness=7
 [/card]
 [card]
 name=Pearl Medallion
-auto=lord(*[white]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[white]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=White spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -73946,7 +73946,7 @@ type=Sorcery
 [/card]
 [card]
 name=Planar Gate
-auto=lord(creature|myhand,mygraveyard,myexile) altercost(colorless,-2)
+auto=lord(creature|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
 text=Creature spells you cast cost up to {2} less to cast.
 mana={6}
 type=Artifact
@@ -77152,8 +77152,8 @@ toughness=3
 [/card]
 [card]
 name=Ragemonger
-auto=lord(minotaur|myhand,mygraveyard,myexile) altercost(black,-1)
-auto=lord(minotaur|myhand,mygraveyard,myexile) altercost(red,-1)
+auto=lord(minotaur|myhand,mylibrary,mygraveyard,myexile) altercost(black,-1)
+auto=lord(minotaur|myhand,mylibrary,mygraveyard,myexile) altercost(red,-1)
 text=Minotaur spells you cast cost BlackRed less to cast. This effect reduces only the amount of colored mana you pay. (For example, if you cast a Minotaur spell with mana cost 2Red, it costs 2 to cast.)
 mana={1}{B}{R}
 type=Creature
@@ -82319,7 +82319,7 @@ toughness=*
 [card]
 name=Ruby Leech
 abilities=first strike
-auto=lord(*[red]|myhand,mygraveyard,myexile) altercost(red,+1)
+auto=lord(*[red]|myhand,mylibrary,mygraveyard,myexile) altercost(red,+1)
 text=First strike -- Red spells you cast cost {R} more to cast.
 mana={1}{R}
 type=Creature
@@ -82329,7 +82329,7 @@ toughness=2
 [/card]
 [card]
 name=Ruby Medallion
-auto=lord(*[red]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[red]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Red spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -83896,7 +83896,7 @@ toughness=4
 [card]
 name=Sapphire Leech
 abilities=flying
-auto=lord(*[blue]|myhand,mygraveyard,myexile) altercost(blue,+1)
+auto=lord(*[blue]|myhand,mylibrary,mygraveyard,myexile) altercost(blue,+1)
 text=Flying -- Blue spells you cast cost {U} more to cast.
 mana={1}{U}
 type=Creature
@@ -83906,7 +83906,7 @@ toughness=2
 [/card]
 [card]
 name=Sapphire Medallion
-auto=lord(*[blue]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[blue]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Blue spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -86683,20 +86683,20 @@ auto=choice name(Sorcery) moveTo(myexile) notatarget(sorcery|myhand) && counter(
 auto=choice name(Tribal Instant) moveTo(myexile) notatarget(instant[tribal]|myhand) && counter(0/0,1,TribalInstant) all(this)
 auto=choice name(Tribal Sorcery) moveTo(myexile) notatarget(sorcery[tribal]|myhand) && counter(0/0,1,TribalSorcery) all(this)
 auto=choice name(cancel) donothing
-auto=this(counter{0/0.1.Artifact}) lord(artifact|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.ArtifactCreature}) lord(artifact[-creature]|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[-artifact]|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[artifact]|myhand,mygraveyard,myexile) altercost(colorless,-2 )
-auto=this(counter{0/0.1.Creature}) lord(creature|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.Enchantment}) lord(enchantment|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.Instant}) lord(instant|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.Sorcery}) lord(sorcery|myhand,mygraveyard,myexile) altercost( colorless, -2 )
-auto=this(counter{0/0.1.TribalInstant}) lord(tribal[-instant]|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.TribalInstant}) lord(instant[-tribal]|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.TribalInstant}) lord(instant[tribal]|myhand,mygraveyard,myexile) altercost(colorless,-2 )
-auto=this(counter{0/0.1.TribalSorcery}) lord(tribal[-sorcery]|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[-tribal]|myhand,mygraveyard,myexile) altercost(colorless,-2)
-auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[tribal]|myhand,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.Artifact}) lord(artifact|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.ArtifactCreature}) lord(artifact[-creature]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[-artifact]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[artifact]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2 )
+auto=this(counter{0/0.1.Creature}) lord(creature|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.Enchantment}) lord(enchantment|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.Instant}) lord(instant|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.Sorcery}) lord(sorcery|myhand,mylibrary,mygraveyard,myexile) altercost( colorless, -2 )
+auto=this(counter{0/0.1.TribalInstant}) lord(tribal[-instant]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.TribalInstant}) lord(instant[-tribal]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.TribalInstant}) lord(instant[tribal]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2 )
+auto=this(counter{0/0.1.TribalSorcery}) lord(tribal[-sorcery]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[-tribal]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
+auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[tribal]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
 text=Imprint - When Semblance Anvil enters the battlefield, you may exile a nonland card from your hand. -- Spells you cast that share a card type with the exiled card cost {2} less to cast.
 mana={3}
 type=Artifact
@@ -94156,7 +94156,7 @@ toughness=3
 [/card]
 [card]
 name=Sphere of Resistance
-auto=lord(*|hand,graveyard,exile) altercost(colorless,+1)
+auto=lord(*|hand,library,graveyard,exile) altercost(colorless,+1)
 text=Spells cost {1} more to cast.
 mana={2}
 type=Artifact
@@ -95510,7 +95510,7 @@ type=Artifact
 [card]
 name=Squeeze
 text=Sorcery spells cost {3} more to cast.
-auto=lord(sorcery|hand,graveyard,exile) altercost(colorless,+3)
+auto=lord(sorcery|hand,library,graveyard,exile) altercost(colorless,+3)
 mana={3}{U}
 type=Enchantment
 [/card]
@@ -96508,7 +96508,7 @@ toughness=1
 [/card]
 [card]
 name=Stinkdrinker Daredevil
-auto=lord(giant|myhand,mygraveyard,myexile) altercost(colorless,-2)
+auto=lord(giant|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2)
 text=Giant spells you cast cost {2} less to cast.
 mana={2}{R}
 type=Creature
@@ -96649,7 +96649,7 @@ subtype=Mountain Forest
 [/card]
 [card]
 name=Stone Calendar
-auto=lord(*|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Spells you cast cost up to {1} less to cast.
 mana={5}
 type=Artifact
@@ -96920,7 +96920,7 @@ toughness=2
 [card]
 name=Stonybrook Banneret
 abilities=islandwalk
-auto=lord(*[merfolk;wizard]|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(*[merfolk;wizard]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Islandwalk -- Merfolk spells and Wizard spells you cast cost {1} less to cast.
 mana={1}{U}
 type=Creature
@@ -97115,7 +97115,7 @@ toughness=1
 [card]
 name=Stormscape Familiar
 abilities=flying
-auto=lord(*[white;black]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[white;black]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Flying -- White spells and black spells you cast cost {1} less to cast.
 mana={1}{U}
 type=Creature
@@ -98380,7 +98380,7 @@ toughness=1
 [card]
 name=Sunscape Familiar
 abilities=defender
-auto=lord(*[green;blue]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[green;blue]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Defender (This creature can't attack.) -- Green spells and blue spells you cast cost {1} less to cast.
 mana={1}{W}
 type=Creature
@@ -101596,8 +101596,8 @@ toughness=2
 [card]
 name=Thalia, Guardian of Thraben
 abilities=first strike
-auto=lord(*[-creature]|myhand,mygraveyard,myexile) altercost(colorless,+1)
-auto=lord(*[-creature]|opponenthand,opponentgraveyard,opponentexile) altercost(colorless, +1)
+auto=lord(*[-creature]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,+1)
+auto=lord(*[-creature]|opponenthand,opponentlibrary,opponentgraveyard,opponentexile) altercost(colorless, +1)
 text=First Strike -- Noncreature spells cost {1} more to cast.
 mana={1}{W}
 type=Legendary Creature
@@ -102072,7 +102072,7 @@ toughness=7
 [/card]
 [card]
 name=Thorn of Amethyst
-auto=lord(*[-creature]|hand,graveyard,exile) altercost(colorless,+1)
+auto=lord(*[-creature]|hand,library,graveyard,exile) altercost(colorless,+1)
 text=Noncreature spells cost {1} more to cast.
 mana={2}
 type=Artifact
@@ -102146,7 +102146,7 @@ toughness=1
 [/card]
 [card]
 name=Thornscape Familiar
-auto=lord(*[red;white]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[red;white]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=Red spells and white spells you cast cost {1} less to cast.
 mana={1}{G}
 type=Creature
@@ -103026,7 +103026,7 @@ toughness=1
 [card]
 name=Thunderscape Familiar
 abilities=first strike
-auto=lord(*[black;green]|myhand,mygraveyard,myexile) altercost(colorless,-1)
+auto=lord(*[black;green]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-1)
 text=First strike -- Black spells and green spells you cast cost {1} less to cast.
 mana={1}{R}
 type=Creature
@@ -106741,7 +106741,7 @@ toughness=2
 [card]
 name=Undead Warchief
 auto=lord(zombie|myBattlefield) 2/1
-auto=lord(zombie|myhand,mygraveyard,myexile) altercost( colorless,-1)
+auto=lord(zombie|myhand,mylibrary,mygraveyard,myexile) altercost( colorless,-1)
 text=Zombie spells you cast cost {1} less to cast. -- Zombie creatures you control get +2/+1.
 mana={2}{B}{B}
 type=Creature
@@ -107623,7 +107623,7 @@ subtype=Urza's
 [/card]
 [card]
 name=Urza's Filter
-auto=lord(*[multicolor]|hand,graveyard,exile) altercost(colorless,-2)
+auto=lord(*[multicolor]|hand,library,graveyard,exile) altercost(colorless,-2)
 text=Multicolored spells cost up to {2} less to cast.
 mana={4}
 type=Artifact
@@ -107637,7 +107637,7 @@ type=Sorcery
 [/card]
 [card]
 name=Urza's Incubator
-auto=chooseatype lord(creature[chosentype]|myhand,mygraveyard,myexile) altercost(colorless,-2) chooseend
+auto=chooseatype lord(creature[chosentype]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless,-2) chooseend
 text=As Urza's Incubator enters the battlefield, choose a creature type. -- Creature spells of the chosen type cost {2} less to cast.
 mana={3}
 type=Artifact
@@ -111013,7 +111013,7 @@ color=black
 [card]
 name=Vryn Wingmare
 abilities=flying
-auto=lord(*[-creature]|hand,graveyard,exile) altercost(colorless, +1)
+auto=lord(*[-creature]|hand,library,graveyard,exile) altercost(colorless, +1)
 text=Flying -- Noncreature spells cost {1} more to cast.
 mana={2}{W}
 type=Creature
@@ -112232,7 +112232,7 @@ toughness=2
 [card]
 name=Warden of Evos Isle
 abilities=flying
-auto=lord(creature[flying]|myhand,mygraveyard,myexile) altercost(colorless, -1)
+auto=lord(creature[flying]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Flying. -- Creature spells with flying you cast cost 1 less to cast.
 mana={2}{U}
 type=Creature
