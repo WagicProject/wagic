@@ -1,0 +1,25 @@
+#Testing Sphere of Resistance
+#It must not crash with buyback
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Sphere of Resistance,Swamp
+hand:Capsize
+manapool:{6}{U}{U}{U}{U}
+[PLAYER2]
+[DO]
+Capsize
+# pay buyback
+choice 1
+Sphere of Resistance
+Capsize
+Swamp
+
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Capsize
+hand:Sphere of Resistance,Swamp
+manapool{0}
+[PLAYER2]
+[END]
