@@ -1216,10 +1216,12 @@ int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
-    if(card->getIncreasedManaCost()->getConvertedCost())
-        cost->add(card->getIncreasedManaCost());
-    if(card->getReducedManaCost()->getConvertedCost())
-        cost->remove(card->getReducedManaCost());
+    ManaCost * newCost = card->computeNewCost(card,cost,cost);
+    if(newCost->extraCosts)
+        for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
+        {
+            newCost->extraCosts->costs[i]->setSource(card);
+        }
 
     if(card->isLand())
         return 0;
@@ -1234,7 +1236,7 @@ int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     else
         CustomName = "Zero Cast From Anywhere";
     
-    return MTGAlternativeCostRule::isReactingToClick(card, mana, cost);
+    return MTGAlternativeCostRule::isReactingToClick(card, mana, newCost);
 }
 
 int MTGPayZeroRule::reactToClick(MTGCardInstance * card)
@@ -1243,14 +1245,16 @@ int MTGPayZeroRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
-    if(card->getIncreasedManaCost()->getConvertedCost())
-        cost->add(card->getIncreasedManaCost());
-    if(card->getReducedManaCost()->getConvertedCost())
-        cost->remove(card->getReducedManaCost());
+    ManaCost * newCost = card->computeNewCost(card,cost,cost);
+    if(newCost->extraCosts)
+        for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
+        {
+            newCost->extraCosts->costs[i]->setSource(card);
+        }
 
     card->paymenttype = MTGAbility::PAYZERO_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID);
+    return MTGAlternativeCostRule::reactToClick(card, newCost, ManaCost::MANA_PAID);
 }
 
 ostream& MTGPayZeroRule::toString(ostream& out) const
@@ -1276,10 +1280,12 @@ int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getAlternative());
-    if(card->getIncreasedManaCost()->getConvertedCost())
-        cost->add(card->getIncreasedManaCost());
-    if(card->getReducedManaCost()->getConvertedCost())
-        cost->remove(card->getReducedManaCost());
+    ManaCost * newCost = card->computeNewCost(card,cost,cost);
+    if(newCost->extraCosts)
+        for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
+        {
+            newCost->extraCosts->costs[i]->setSource(card);
+        }
 
     if (card->isLand())
         return 0;
@@ -1288,7 +1294,7 @@ int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
         return 0;
     
-    return MTGAlternativeCostRule::isReactingToClick(card, mana, cost);
+    return MTGAlternativeCostRule::isReactingToClick(card, mana, newCost);
 }
 
 int MTGOverloadRule::reactToClick(MTGCardInstance * card)
@@ -1297,14 +1303,16 @@ int MTGOverloadRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getAlternative());
-    if(card->getIncreasedManaCost()->getConvertedCost())
-        cost->add(card->getIncreasedManaCost());
-    if(card->getReducedManaCost()->getConvertedCost())
-        cost->remove(card->getReducedManaCost());
+    ManaCost * newCost = card->computeNewCost(card,cost,cost);
+    if(newCost->extraCosts)
+        for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
+        {
+            newCost->extraCosts->costs[i]->setSource(card);
+        }
 
     card->paymenttype = MTGAbility::OVERLOAD_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID_WITH_OVERLOAD, true);
+    return MTGAlternativeCostRule::reactToClick(card, newCost, ManaCost::MANA_PAID_WITH_OVERLOAD, true);
 }
 
 ostream& MTGOverloadRule::toString(ostream& out) const
