@@ -255,7 +255,8 @@ public:
     bool isTargetter();
     int cardistargetter;
     int myconvertedcost;
-    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool onlyTrinisphere = false);
+    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false);
+    int countTrini;
 
     void eventattacked();
     void eventattackedAlone();

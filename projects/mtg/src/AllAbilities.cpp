@@ -1305,25 +1305,15 @@ int GenericPaidAbility::resolve()
         {
             must = true;
             //cost increase - reduce + trinisphere effect ability todo...
-            if(((MTGCardInstance *)target)->getIncreasedManaCost()->getConvertedCost())
-                optionalCost->add(((MTGCardInstance *)target)->getIncreasedManaCost());
-            if(((MTGCardInstance *)target)->getReducedManaCost()->getConvertedCost())
-                optionalCost->remove(((MTGCardInstance *)target)->getReducedManaCost());
-            //trinisphere effect must be hardcoded...here..
-            /*if(((MTGCardInstance *)target)->has(Constants::TRINISPHERE))
+            optionalCost = ((MTGCardInstance *)target)->computeNewCost(((MTGCardInstance *)target),optionalCost,optionalCost);
+            if(optionalCost->extraCosts)
             {
-                if(optionalCost->getConvertedCost() == 2)
-                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                else if(optionalCost->getConvertedCost() == 1)
-                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 2);
-                else if(optionalCost->getConvertedCost() < 1)
-                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 3);
-            }*/
+                for(unsigned int i = 0; i < optionalCost->extraCosts->costs.size();i++)
+                    optionalCost->extraCosts->costs[i]->setSource(((MTGCardInstance *)target));
+            }
         }
         if(asAlternate && nomenu && optionalCost->getConvertedCost() < 1)
-        {
             nomenuAbility->resolve();
-        }
         else
         {
             MenuAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source, must, selection, NULL, newName);
