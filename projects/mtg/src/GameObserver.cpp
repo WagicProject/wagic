@@ -1137,6 +1137,25 @@ void GameObserver::Affinity()
                                 card->getManaCost()->remove(color,1);
                         }
                     }//end3
+                //trinisphere... now how to implement kicker recomputation
+                
+                if(card->has(Constants::TRINISPHERE))
+                {
+                    for(int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
+                    {
+                        card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                        card->countTrini++;
+                    }
+                }
+                else
+                {
+                    if(card->countTrini)
+                    {
+                        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+                        card->countTrini=0;
+                    }
+                }
+                
                 SAFE_DELETE(original);
             }//end
         }

@@ -198,6 +198,7 @@ void MTGCardInstance::initMTGCI()
     storedSourceCard = NULL;
     myPair = NULL;
     miracle = false;
+    countTrini = 0;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;
@@ -922,12 +923,11 @@ JQuadPtr MTGCardInstance::getIcon()
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }
 
-ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * newCost, ManaCost * refCost, bool onlyTrinisphere)
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * newCost, ManaCost * refCost, bool noTrinisphere)
 {
     if(!card)
         return NULL;
-    if(!onlyTrinisphere)
-    {
+    
         if(card->getIncreasedManaCost()->getConvertedCost())
             newCost->add(card->getIncreasedManaCost());
         if(card->getReducedManaCost()->getConvertedCost())
@@ -1013,11 +1013,27 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
                         newCost->remove(color,1);
             }//end3
         SAFE_DELETE(original);
+    
+    if(!noTrinisphere)
+    {
+        //trinisphere... now how to implement kicker recomputation
+        if(card->has(Constants::TRINISPHERE))
+        {
+            for(int jj = newCost->getConvertedCost(); jj < 3; jj++)
+            {
+                newCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                card->countTrini++;
+            }
+        }
+        else
+        {
+            if(card->countTrini)
+            {
+                newCost->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+                card->countTrini=0;
+            }
+        }
     }
-        /*//trinisphere must be here below//
-    if(card->has(Constants::TRINISPHERE))
-        for(int jj = newCost->getConvertedCost(); jj < 3; jj++)
-            newCost->add(Constants::MTG_COLOR_ARTIFACT, 1);*/
 
     return newCost;
 }
