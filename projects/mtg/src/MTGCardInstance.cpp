@@ -118,9 +118,14 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     AbilityFactory af(observer);
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
     delete spell;
-    mtgid = card->getMTGId();   ///////////////////////////////////////////////////
-    setId = card->setId;        // Copier/Cloner cards produces the same token...//
-    rarity = card->getRarity(); ///////////////////////////////////////////////////
+    if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
+        mtgid = backupid; // there must be a way to get the token id...
+    else
+    {
+        mtgid = card->getMTGId();   ///////////////////////////////////////////////////
+        setId = card->setId;        // Copier/Cloner cards produces the same token...//
+        rarity = card->getRarity(); ///////////////////////////////////////////////////
+    }
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
     storedCard = oldStored;
