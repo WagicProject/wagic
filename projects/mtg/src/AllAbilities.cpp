@@ -479,7 +479,7 @@ int AACopier::resolve()
         MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
         source->copy(myClone);
         source->isACopier = true;
-        source->copiedID = _target->copiedID;
+        source->copiedID = _target->getMTGId();
         source->modifiedbAbi = _target->modifiedbAbi;
         source->origbasicAbilities = _target->origbasicAbilities;
         if(_target->isMorphed)

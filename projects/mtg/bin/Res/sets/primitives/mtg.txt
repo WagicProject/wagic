@@ -3665,8 +3665,8 @@ text=Multikicker (You may pay an additional  any number of times as you cast thi
 type=Creature
 subtype=Bird
 mana={2}{W}
-power=1
-toughness=1
+power=2
+toughness=2
 [/card]
 [card]
 name=Aphetto Alchemist
