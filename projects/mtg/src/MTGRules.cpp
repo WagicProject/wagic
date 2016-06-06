@@ -477,93 +477,90 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
         return 0;
     Player * player = game->currentlyActing();
-    if(!player->game->hand->hasCard(card))
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
+         return 0;
+    if ((player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
+         return 0;
+    if(!allowedToCast(card,player))
         return 0;
     if(!card->getManaCost()->getKicker())
         return 0;
 
-    ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
-    withKickerCost->add(card->getManaCost()->getKicker());
-    if(withKickerCost->extraCosts)
-        for(unsigned int i = 0; i < withKickerCost->extraCosts->costs.size();i++)
-        {
-            withKickerCost->extraCosts->costs[i]->setSource(card);
-        }
-    if(!player->getManaPool()->canAfford(withKickerCost))
+    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
-        SAFE_DELETE(withKickerCost);
-        return 0;
+        if(card->controller()->epic)
+            return 0;
+
+        if (card->controller()->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+            return 0;
+        ManaCost * playerMana = player->getManaPool();
+        ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
+        withKickerCost->add(card->getManaCost()->getKicker());
+        //cost reduction/recalculation must be here or outside somehow...
+#ifdef WIN32
+        withKickerCost->Dump();
+#endif
+        if (playerMana->canAfford(withKickerCost))
+            return 1;
     }
-    SAFE_DELETE(withKickerCost);
-    return 1;
+    return 0;
 }
 
 int MTGKickerRule::reactToClick(MTGCardInstance * card)
 {
-    if(!isReactingToClick(card))
+    if (!isReactingToClick(card))
         return 0;
-        
     Player * player = game->currentlyActing();
-    ManaCost * withKickerCost= card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()),card->getManaCost(), true);
-    withKickerCost->add(withKickerCost->getKicker());//after getting base cost add the kicker cost... todo reduction...
-    if(withKickerCost->extraCosts)
-        for(unsigned int i = 0; i < withKickerCost->extraCosts->costs.size();i++)
-        {
-            withKickerCost->extraCosts->costs[i]->setSource(card);
-        }
+    ManaCost * cost = card->getManaCost();
 
-    if (card->getManaCost()->getKicker()->isMulti)
-    {
-        int possiblemana = player->getManaPool()->getConvertedCost();
-        int kickercost = card->getManaCost()->getKicker()->getConvertedCost();
-        int counter = possiblemana/kickercost;
-        //excess cost reducer must be here... TODO.... revised because using while loop has a bug... check the everflowing chalice test...
-        if(counter)
-        {
-            for(int i = 0; i < counter; i++)
-            {
-                if(player->getManaPool()->canAfford(withKickerCost))
-                {
-                    card->kicked++;
-                    withKickerCost->add(withKickerCost->getKicker());
-                }
-            }
-            card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
-        }
-    }
-    else
-    {
-        withKickerCost->add(withKickerCost->getKicker());
-        card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
-    }
+    //this handles extra cost payments at the moment a card is played.
 
-    if (withKickerCost->isExtraPaymentSet())
+    if (cost->isExtraPaymentSet())
     {
         if (!game->targetListIsSet(card))
         {
-            SAFE_DELETE(withKickerCost);
             return 0;
         }
     }
     else
     {
-        withKickerCost->setExtraCostsAction(this, card);
-        game->mExtraPayment = withKickerCost->extraCosts;
-        SAFE_DELETE(withKickerCost);
+        cost->setExtraCostsAction(this, card);
+        game->mExtraPayment = cost->extraCosts;
         return 0;
     }
 
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-    player->getManaPool()->pay(withKickerCost);
-    withKickerCost->doPayExtra();
+    int payResult = player->getManaPool()->pay(card->getManaCost());
+    if (card->getManaCost()->getKicker())
+    {  //cost reduction/recalculation must be here or outside somehow...
+        ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
+        withKickerCost->add(withKickerCost->getKicker());
+        if (card->getManaCost()->getKicker()->isMulti)
+        {
+            while(previousManaPool->canAfford(withKickerCost))
+            {
+                withKickerCost->add(withKickerCost->getKicker());
+                card->kicked += 1;
+            }
+            for(int i = 0;i < card->kicked;i++)
+                player->getManaPool()->pay(card->getManaCost()->getKicker());
+            payResult = ManaCost::MANA_PAID_WITH_KICKER;
+        }
+        else if (previousManaPool->canAfford(withKickerCost))
+        {
+            player->getManaPool()->pay(card->getManaCost()->getKicker());
+            payResult = ManaCost::MANA_PAID_WITH_KICKER;
+        }
+        delete withKickerCost;
+    }
+    card->getManaCost()->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
-    delete withKickerCost;
 
     delete previousManaPool;
     if (card->isLand())
     {
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
-        Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, ManaCost::MANA_PAID_WITH_KICKER);
+        Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, payResult);
         spell->resolve();
         delete spellCost;
         delete spell;
@@ -574,21 +571,21 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         if (game->targetChooser)
         {
-            spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, ManaCost::MANA_PAID_WITH_KICKER, 0);
+            spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, payResult, 0);
             game->targetChooser = NULL;
         }
         else
         {
-            spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, ManaCost::MANA_PAID_WITH_KICKER, 0);
+            spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
         }
 
         if (card->has(Constants::STORM))
         {
             int storm = player->game->stack->seenThisTurn("*", Constants::CAST_ALL) + player->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
-            ManaCost * stormSpellCost = player->getManaPool();
+            ManaCost * spellCost = player->getManaPool();
             for (int i = storm; i > 1; i--)
             {
-                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, stormSpellCost, ManaCost::MANA_PAID_WITH_KICKER, 1);
+                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 1);
 
             }
         }//end of storm
