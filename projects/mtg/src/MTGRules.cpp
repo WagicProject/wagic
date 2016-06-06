@@ -477,138 +477,88 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
         return 0;
     Player * player = game->currentlyActing();
-    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
-         return 0;
-    if ((player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
-         return 0;
-    ManaCost * kicker = card->getManaCost()->getKicker();
-    if(!kicker)
-    {
-        SAFE_DELETE(kicker);
+    if(!player->game->hand->hasCard(card))
         return 0;
-    }
-    ManaCost * playerMana = player->getManaPool();
-    ManaCost * mainCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()),card->getManaCost());
-    if(mainCost->extraCosts)
-        for(unsigned int i = 0; i < mainCost->extraCosts->costs.size();i++)
-        {
-            mainCost->extraCosts->costs[i]->setSource(card);
-        }
-    //compute leftover/unused reducer cost (todo affinity)
-        int leftoverC = ((card->getReducedManaCost()->getCost(0) + card->getReducedManaCost()->getCost(6)) - (card->getManaCost()->getCost(0) + card->getManaCost()->getCost(6) + card->getIncreasedManaCost()->getCost(0) + card->getIncreasedManaCost()->getCost(6)));
-        int leftoverG = (card->getReducedManaCost()->getCost(1)) - (card->getManaCost()->getCost(1) + card->getIncreasedManaCost()->getCost(1));
-        int leftoverU = (card->getReducedManaCost()->getCost(2)) - (card->getManaCost()->getCost(2) + card->getIncreasedManaCost()->getCost(2));
-        int leftoverR = (card->getReducedManaCost()->getCost(3)) - (card->getManaCost()->getCost(3) + card->getIncreasedManaCost()->getCost(3));
-        int leftoverB = (card->getReducedManaCost()->getCost(4)) - (card->getManaCost()->getCost(4) + card->getIncreasedManaCost()->getCost(4));
-        int leftoverW = (card->getReducedManaCost()->getCost(5)) - (card->getManaCost()->getCost(5) + card->getIncreasedManaCost()->getCost(5));
-        
-    ManaCost * withKickerCost= NEW ManaCost(card->model->data->getManaCost()->getKicker());
+    if(!card->getManaCost()->getKicker())
+        return 0;
 
-    if (leftoverC)
-        withKickerCost->remove(0,leftoverC);
-    if (leftoverG)
-        withKickerCost->remove(1,leftoverG);
-    if (leftoverU)
-        withKickerCost->remove(2,leftoverU);
-    if (leftoverR)
-        withKickerCost->remove(3,leftoverR);
-    if (leftoverB)
-        withKickerCost->remove(4,leftoverB);
-    if (leftoverW)
-        withKickerCost->remove(5,leftoverW);
-    
-    mainCost->add(withKickerCost);
-    if(!playerMana->canAfford(mainCost))
+    ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
+    withKickerCost->add(card->getManaCost()->getKicker());
+    if(withKickerCost->extraCosts)
+        for(unsigned int i = 0; i < withKickerCost->extraCosts->costs.size();i++)
+        {
+            withKickerCost->extraCosts->costs[i]->setSource(card);
+        }
+    if(!player->getManaPool()->canAfford(withKickerCost))
     {
-        delete withKickerCost;
-        delete mainCost;
+        SAFE_DELETE(withKickerCost);
         return 0;
     }
-    delete withKickerCost;
-    delete mainCost;
-    
-    
+    SAFE_DELETE(withKickerCost);
     return 1;
 }
 
 int MTGKickerRule::reactToClick(MTGCardInstance * card)
 {
-    if(!isReactingToClick(card, NULL))
+    if(!isReactingToClick(card))
         return 0;
         
     Player * player = game->currentlyActing();
-    ManaCost * mainCost = card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()),card->getManaCost());
-    if(mainCost->extraCosts)
-        for(unsigned int i = 0; i < mainCost->extraCosts->costs.size();i++)
+    ManaCost * withKickerCost= card->computeNewCost(card,NEW ManaCost(card->model->data->getManaCost()),card->getManaCost(), true);
+    withKickerCost->add(withKickerCost->getKicker());//after getting base cost add the kicker cost... todo reduction...
+    if(withKickerCost->extraCosts)
+        for(unsigned int i = 0; i < withKickerCost->extraCosts->costs.size();i++)
         {
-            mainCost->extraCosts->costs[i]->setSource(card);
+            withKickerCost->extraCosts->costs[i]->setSource(card);
         }
-    //compute leftover/unused reducer cost (todo affinity)
-        int leftoverC = ((card->getReducedManaCost()->getCost(0) + card->getReducedManaCost()->getCost(6)) - (card->getManaCost()->getCost(0) + card->getManaCost()->getCost(6) + card->getIncreasedManaCost()->getCost(0) + card->getIncreasedManaCost()->getCost(6)));
-        int leftoverG = (card->getReducedManaCost()->getCost(1)) - (card->getManaCost()->getCost(1) + card->getIncreasedManaCost()->getCost(1));
-        int leftoverU = (card->getReducedManaCost()->getCost(2)) - (card->getManaCost()->getCost(2) + card->getIncreasedManaCost()->getCost(2));
-        int leftoverR = (card->getReducedManaCost()->getCost(3)) - (card->getManaCost()->getCost(3) + card->getIncreasedManaCost()->getCost(3));
-        int leftoverB = (card->getReducedManaCost()->getCost(4)) - (card->getManaCost()->getCost(4) + card->getIncreasedManaCost()->getCost(4));
-        int leftoverW = (card->getReducedManaCost()->getCost(5)) - (card->getManaCost()->getCost(5) + card->getIncreasedManaCost()->getCost(5));
-        
-    ManaCost * withKickerCost= NEW ManaCost(card->model->data->getManaCost()->getKicker());
 
-    if (leftoverC)
-        withKickerCost->remove(0,leftoverC);
-    if (leftoverG)
-        withKickerCost->remove(1,leftoverG);
-    if (leftoverU)
-        withKickerCost->remove(2,leftoverU);
-    if (leftoverR)
-        withKickerCost->remove(3,leftoverR);
-    if (leftoverB)
-        withKickerCost->remove(4,leftoverB);
-    if (leftoverW)
-        withKickerCost->remove(5,leftoverW);
-    
-
-    if (card->model->data->getManaCost()->getKicker()->isMulti)
+    if (card->getManaCost()->getKicker()->isMulti)
     {
-        mainCost->add(withKickerCost);
-        while(player->getManaPool()->canAfford(mainCost))
+        int possiblemana = player->getManaPool()->getConvertedCost();
+        int kickercost = card->getManaCost()->getKicker()->getConvertedCost();
+        int counter = possiblemana/kickercost;
+        //excess cost reducer must be here... TODO.... revised because using while loop has a bug... check the everflowing chalice test...
+        if(counter)
         {
-            mainCost->add(withKickerCost);
-            card->kicked += 1;
+            for(int i = 0; i < counter; i++)
+            {
+                if(player->getManaPool()->canAfford(withKickerCost))
+                {
+                    card->kicked++;
+                    withKickerCost->add(withKickerCost->getKicker());
+                }
+            }
+            card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
         }
-        card->kicked -= 1;
-        //for(int i = 0;i < card->kicked;i++)
-            //player->getManaPool()->pay(card->getManaCost()->kicker);
-        card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
     }
     else
     {
-        mainCost->add(withKickerCost);
+        withKickerCost->add(withKickerCost->getKicker());
         card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
     }
-    if (mainCost->isExtraPaymentSet())
+
+    if (withKickerCost->isExtraPaymentSet())
     {
         if (!game->targetListIsSet(card))
         {
-            delete mainCost;
-            delete withKickerCost;
+            SAFE_DELETE(withKickerCost);
             return 0;
         }
     }
     else
     {
-        mainCost->setExtraCostsAction(this, card);
-        game->mExtraPayment = mainCost->extraCosts;
-        delete mainCost;
-        delete withKickerCost;
+        withKickerCost->setExtraCostsAction(this, card);
+        game->mExtraPayment = withKickerCost->extraCosts;
+        SAFE_DELETE(withKickerCost);
         return 0;
     }
 
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-    player->getManaPool()->pay(mainCost);
-    mainCost->doPayExtra();
+    player->getManaPool()->pay(withKickerCost);
+    withKickerCost->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
-    delete mainCost;
     delete withKickerCost;
+
     delete previousManaPool;
     if (card->isLand())
     {
