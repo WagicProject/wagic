@@ -639,18 +639,18 @@ void GameObserver::gameStateBasedEffects()
                 }
             }
 
-			///while checking all these zones, lets also strip devoid cards of thier colors
-			for (int w = 0; w < zone->nb_cards; w++)
-			{
-				MTGCardInstance * card = zone->cards[w];
-				for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
-				{
-					if (card->has(Constants::DEVOID))
-					{
-						card->removeColor(i);
-					}
-				}
-			}
+            ///while checking all these zones, lets also strip devoid cards of thier colors
+            for (int w = 0; w < zone->nb_cards; w++)
+            {
+                MTGCardInstance * card = zone->cards[w];
+                for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+                {
+                    if (card->has(Constants::DEVOID))
+                    {
+                        card->removeColor(i);
+                    }
+                }
+            }
 
 
         }//check for losers if its GAMEOVER clear the stack to allow gamestateeffects to continue
