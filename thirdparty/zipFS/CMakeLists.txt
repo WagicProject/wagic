@@ -1,6 +1,4 @@
 set(SOURCES
-    stdafx.cpp
-    zfs.cpp
     zfsystem.cpp
     zstream.cpp
     ziphdr.cpp)
