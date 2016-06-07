@@ -584,6 +584,18 @@ private:
             if (target->controller()->life >= target->controller()->initLife)
                 intValue = 1;
         }
+        else if (s == "plibrarycount")
+        {
+            intValue = 0;
+            if (target->controller()->game->library->nb_cards)
+                intValue = target->controller()->game->library->nb_cards;
+        }
+        else if (s == "olibrarycount")
+        {
+            intValue = 0;
+            if (target->controller()->opponent()->game->library->nb_cards)
+                intValue = target->controller()->opponent()->game->library->nb_cards;
+        }
         else if (s == "highestlifetotal")
         {
             intValue = target->controller()->life <= target->controller()->opponent()->life? target->controller()->opponent()->life:target->controller()->life;
@@ -651,6 +663,10 @@ private:
         else if (s == "epicactivated")
         {
             intValue = target->controller()->epic;
+        }
+        else if (s == "snowcount")
+        {//this is just to count the number of snow mana produced ... just for debugging purposes...
+            intValue = target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
         }
         else if (s == "p" || s == "power")
         {
@@ -777,6 +793,46 @@ private:
                 if (amp && amp->source->isLand() && amp->source->controller() == target->controller() && amp->output->hasColor(5))
                     intValue = 1;
             }//end
+        }
+        else if (s == "cantargetmycre")// can target my creature
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->battlefield->cards[j]->hasType("creature") && !card->controller()->game->battlefield->cards[j]->protectedAgainst(card))
+                {
+                    intValue += 1;
+                }
+            }
+        }
+        else if (s == "cantargetoppocre")// can target opponent creature
+        {
+            intValue = 0;
+            for (int j = card->controller()->opponent()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->opponent()->game->battlefield->cards[j]->hasType("creature") && !card->controller()->opponent()->game->battlefield->cards[j]->protectedAgainst(card))
+                {
+                    intValue += 1;
+                }
+            }
+        }
+        else if (s == "cantargetcre")// can target any creature
+        {
+            intValue = 0;
+            for (int j = card->controller()->opponent()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->opponent()->game->battlefield->cards[j]->hasType("creature") && !card->controller()->opponent()->game->battlefield->cards[j]->protectedAgainst(card))
+                {
+                    intValue += 1;
+                }
+            }
+            for (int k = card->controller()->game->battlefield->nb_cards - 1; k >= 0; --k)
+            {
+                if (card->controller()->game->battlefield->cards[k]->hasType("creature") && !card->controller()->game->battlefield->cards[k]->protectedAgainst(card))
+                {
+                    intValue += 1;
+                }
+            }
         }
         else if (s == "controllerturn")//intvalue = 1 if its your turn this(variable{controllerturn})
         {
@@ -1698,7 +1754,8 @@ class AAEPIC: public ActivatedAbility
 {
 public:
     string named;
-    AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL);
+    bool FField;
+    AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL, bool ffield = false );
     int resolve();
     const string getMenuText();
     AAEPIC * clone() const;
@@ -2356,7 +2413,8 @@ public:
     {
         if (!isReactingToClick(_card)) return 0;
         game->currentlyActing()->getManaPool()->pay(cost);
-        game->currentlyActing()->life += life;
+        if(!game->currentlyActing()->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            game->currentlyActing()->life += life;
         lastUsedOn = lastChecked;
         return 1;
     }
@@ -2964,7 +3022,7 @@ public:
     {
         if (newPhase != currentPhase && newPhase == phase && game->currentPlayer == ((MTGCardInstance *) target)->controller())
         {
-            if (!onlyIfTargetTapped || ((MTGCardInstance *) target)->isTapped())
+            if ((!onlyIfTargetTapped || ((MTGCardInstance *) target)->isTapped()) && (!game->currentPlayer->inPlay()->hasAbility(Constants::CANTCHANGELIFE)))
             {
                 if (life > 0)
                 {
@@ -4547,7 +4605,7 @@ public:
 
     void Update(float)
     {
-        if (newPhase != currentPhase && newPhase == phase)
+        if (newPhase != currentPhase && newPhase == phase && !game->currentPlayer->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
         {
             if ((controller && game->currentPlayer == source->controller()) || (!controller && game->currentPlayer
                     != source->controller()))
@@ -6019,10 +6077,24 @@ public:
     string nbcardsStr;
     bool toexile;
     AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
-            int who = TargetChooser::UNSET, bool toexile = false);
+    int who = TargetChooser::UNSET, bool toexile = false);
     int resolve();
     const string getMenuText();
     AADepleter * clone() const;
+};
+
+
+//AACascade
+class AACascade: public ActivatedAbilityTP
+{
+public:
+    string nbcardsStr;
+    AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
+    int who = TargetChooser::UNSET);
+    int resolve();
+    void toCastCard(MTGCardInstance * card);
+    const string getMenuText();
+    AACascade * clone() const;
 };
 
 //Generic skip turn/extra turn
@@ -6193,7 +6265,7 @@ public:
             {
                 Player * p = (Player *) isDamaged->damage->target;
                 WParsedInt lifetoset(life_s, NULL, source);
-                if(p && p == source->controller() && p->life <= lifetoset.getValue())
+                if(p && p == source->controller() && p->life <= lifetoset.getValue() && !p->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
                     p->life = lifetoset.getValue();
             }
         }

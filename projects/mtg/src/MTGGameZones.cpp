@@ -375,6 +375,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     {
         copy->miracle = true;
     }
+    if(from == g->players[0]->game->battlefield || from == g->players[1]->game->battlefield)
+        if(to != g->players[0]->game->battlefield || to != g->players[1]->game->battlefield)
+        {
+            card->kicked = 0;
+            copy->kicked = 0;//kicked reset everflowing chalice...
+        }
     if (card->discarded)
     {//set discarded for madness...
         if(from == g->players[0]->game->hand || from == g->players[1]->game->hand)

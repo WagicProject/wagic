@@ -635,6 +635,7 @@ spark_elemental.txt
 spectral_shield_CANTBETARGETOF.txt
 spell_rupture.txt
 spell_rupture_2.txt
+Sphere_of_Resistance.txt
 sphinx_summoner.txt
 spirit_link.txt
 spirit_link_i173.txt

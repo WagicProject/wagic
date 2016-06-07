@@ -600,6 +600,32 @@ void GameObserver::gameStateBasedEffects()
     /////////////////////////////////////
     for (int d = 0; d < 2; d++)
     {
+        ////check snow count
+        if (players[d]->snowManaC > players[d]->getManaPool()->getCost(0) + players[d]->getManaPool()->getCost(6))
+            players[d]->snowManaC = players[d]->getManaPool()->getCost(0) + players[d]->getManaPool()->getCost(6);
+        if (players[d]->snowManaC < 0)
+            players[d]->snowManaC = 0;
+        if (players[d]->snowManaG > players[d]->getManaPool()->getCost(1))
+            players[d]->snowManaG = players[d]->getManaPool()->getCost(1);
+        if (players[d]->snowManaG < 0)
+            players[d]->snowManaG = 0;
+        if (players[d]->snowManaU > players[d]->getManaPool()->getCost(2))
+            players[d]->snowManaU = players[d]->getManaPool()->getCost(2);
+        if (players[d]->snowManaU < 0)
+            players[d]->snowManaU = 0;
+        if (players[d]->snowManaR > players[d]->getManaPool()->getCost(3))
+            players[d]->snowManaR = players[d]->getManaPool()->getCost(3);
+        if (players[d]->snowManaR < 0)
+            players[d]->snowManaR = 0;
+        if (players[d]->snowManaB > players[d]->getManaPool()->getCost(4))
+            players[d]->snowManaB = players[d]->getManaPool()->getCost(4);
+        if (players[d]->snowManaB < 0)
+            players[d]->snowManaB = 0;
+        if (players[d]->snowManaW > players[d]->getManaPool()->getCost(5))
+            players[d]->snowManaW = players[d]->getManaPool()->getCost(5);
+        if (players[d]->snowManaW < 0)
+            players[d]->snowManaW = 0;
+
         MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile };
         for (int k = 0; k < 5; k++)
         {
@@ -612,6 +638,21 @@ void GameObserver::gameStateBasedEffects()
                     zone->cards[c]->cardistargetter = 0;
                 }
             }
+
+            ///while checking all these zones, lets also strip devoid cards of thier colors
+            for (int w = 0; w < zone->nb_cards; w++)
+            {
+                MTGCardInstance * card = zone->cards[w];
+                for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+                {
+                    if (card->has(Constants::DEVOID))
+                    {
+                        card->removeColor(i);
+                    }
+                }
+            }
+
+
         }//check for losers if its GAMEOVER clear the stack to allow gamestateeffects to continue
         players[d]->DeadLifeState();
     }
@@ -912,13 +953,12 @@ void GameObserver::gameStateBasedEffects()
     //Auto skip Phases
     int skipLevel = (currentPlayer->playMode == Player::MODE_TEST_SUITE || mLoading) ? Constants::ASKIP_NONE
         : options[Options::ASPHASES].number;
-    int nrCreatures = currentPlayer->game->inPlay->hasType("creature")?1:0;
 
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
         if ((opponent()->isAI() && !(isInterrupting)) && ((mCurrentGamePhase == MTG_PHASE_UNTAP)
             || (mCurrentGamePhase == MTG_PHASE_DRAW) || (mCurrentGamePhase == MTG_PHASE_COMBATBEGIN)
-            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0))
+            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (currentPlayer->noPossibleAttackers()))
             || mCurrentGamePhase == MTG_PHASE_COMBATEND || mCurrentGamePhase == MTG_PHASE_ENDOFTURN
             || ((mCurrentGamePhase == MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
             userRequestNextGamePhase();
@@ -975,74 +1015,15 @@ void GameObserver::Affinity()
                 string type = "";
                 //only do any of the following if a card with the stated ability is in your hand.
                 ManaCost * original = NEW ManaCost();
-                ManaCost * alternate = NEW ManaCost();
-                ManaCost * buyback = NEW ManaCost();
-                ManaCost * flashback = NEW ManaCost();
-                ManaCost * retrace = NEW ManaCost();
                 original->copy(card->model->data->getManaCost());
-                alternate->copy(card->model->data->getManaCost()->getAlternative());
-                buyback->copy(card->model->data->getManaCost()->getBuyback());
-                flashback->copy(card->model->data->getManaCost()->getFlashback());
-                retrace->copy(card->model->data->getManaCost()->getRetrace());
-                //have to run alter cost before affinity or the 2 cancel each other out.
                 if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
-                {
+                {//start1
                     if(card->getIncreasedManaCost()->getConvertedCost())
-                    {
                         original->add(card->getIncreasedManaCost());
-                        for(int kc = Constants::MTG_COLOR_ARTIFACT; kc < Constants::NB_Colors;kc++)
-                        {
-                            if (card->getManaCost()->getAlternative())
-                            {
-                                alternate->add(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getBuyback())
-                            {
-                                buyback->add(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getFlashback())
-                            {
-                                flashback->add(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getRetrace())
-                            {
-                                retrace->add(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                        }
-                    }
                     if(card->getReducedManaCost()->getConvertedCost())
-                    {
                         original->remove(card->getReducedManaCost());
-                        for(int kc = Constants::MTG_COLOR_ARTIFACT; kc < Constants::NB_Colors;kc++)
-                        {
-                            if (card->getManaCost()->getAlternative())
-                            {
-                                alternate->remove(kc,card->getReducedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getBuyback())
-                            {
-                                buyback->remove(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getFlashback())
-                            {
-                                flashback->remove(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                            if (card->getManaCost()->getRetrace())
-                            {
-                                retrace->remove(kc,card->getIncreasedManaCost()->getCost(kc));
-                            }
-                        }
-                    }
                     if(card->getManaCost())
                         card->getManaCost()->copy(original);
-                    if(card->getManaCost()->getAlternative())
-                        card->getManaCost()->setAlternative(alternate);
-                    if(card->getManaCost()->getBuyback())
-                        card->getManaCost()->setBuyback(buyback);
-                    if(card->getManaCost()->getFlashback())
-                        card->getManaCost()->setFlashback(flashback);
-                    if(card->getManaCost()->getRetrace())
-                        card->getManaCost()->setRetrace(retrace);
                     if(card->getManaCost()->extraCosts)
                     {
                         for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
@@ -1050,11 +1031,11 @@ void GameObserver::Affinity()
                             card->getManaCost()->extraCosts->costs[i]->setSource(card);
                         }
                     }
-                }
+                }//end1
                 int reducem = 0;
                 bool resetCost = false;
                 for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
-                {
+                {//start2
                     ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
                     if(newAff)
                     {
@@ -1092,7 +1073,7 @@ void GameObserver::Affinity()
                             card->getManaCost()->remove(removingCost);
                         SAFE_DELETE(removingCost);
                     }
-                }
+                }//end2
                 if(card->has(Constants::AFFINITYARTIFACTS)||
                     card->has(Constants::AFFINITYFOREST)||
                     card->has(Constants::AFFINITYGREENCREATURES)||
@@ -1100,7 +1081,7 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYMOUNTAIN)||
                     card->has(Constants::AFFINITYPLAINS)||
                     card->has(Constants::AFFINITYSWAMP))
-                    {
+                    {//start3
                         if (card->has(Constants::AFFINITYARTIFACTS))
                         {
                             type = "artifact";
@@ -1155,13 +1136,27 @@ void GameObserver::Affinity()
                             if(card->getManaCost()->getCost(color) > 0)
                                 card->getManaCost()->remove(color,1);
                         }
+                    }//end3
+                //trinisphere... now how to implement kicker recomputation
+                
+                if(card->has(Constants::TRINISPHERE))
+                {
+                    for(int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
+                    {
+                        card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                        card->countTrini++;
                     }
+                }
+                else
+                {
+                    if(card->countTrini)
+                    {
+                        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+                        card->countTrini=0;
+                    }
+                }
+                
                 SAFE_DELETE(original);
-
-                SAFE_DELETE(alternate);
-                SAFE_DELETE(buyback);
-                SAFE_DELETE(flashback);
-                SAFE_DELETE(retrace);
             }//end
         }
     }

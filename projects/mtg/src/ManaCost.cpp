@@ -139,9 +139,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         }
                         break;
                     case 's':
-                        if (value == "s2l")
+                        if (value.find("s2l") != string::npos)
                         { //Send To Library Cost (move from anywhere to Library)
                             manaCost->addExtraCost(NEW ToLibraryCost(tc));
+                        }
+                        else if (value.find("s2g") != string::npos)
+                        { //Send to Graveyard Cost (move from anywhere to Graveyard)
+                            manaCost->addExtraCost(NEW ToGraveCost(tc));
                         }
                         else
                         { //Sacrifice
@@ -229,6 +233,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             manaCost->addExtraCost(NEW LifeorManaCost(NULL,manaType));
                             break;
                         }
+                    case 'i' :
+                        {
+                            SAFE_DELETE(tc);
+                            manaCost->add(0,1);
+                            manaCost->addExtraCost(NEW SnowCost);
+                            break;
+                        }
                     case 'q':
                         if(value == "q")
                         {
@@ -250,7 +261,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             {
                                 manaCost->addExtraCost(NEW CycleCost(tc));
                             }
-                            else
+                            else if(value.find("(") != string::npos)
                             {
                                 size_t counter_start = value.find("(");
                                 size_t counter_end = value.find(")", counter_start);
@@ -276,9 +287,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                     tc = tcf.createTargetChooser(target, c);
                                 }
                                 manaCost->addExtraCost(NEW CounterCost(counter, tc));
+                                break;
                             }
-                            break;
-                        }
+                            else if(value == "c")
+                            {
+                                manaCost->add(Constants::MTG_COLOR_WASTE, 1);
+                                break;
+                            }
+                        break;
+                    }
                     default: //uncolored cost and hybrid costs and special cost
                     {
                         if(value == "unattach")
@@ -742,6 +759,10 @@ int ManaCost::getConvertedCost()
             ExtraCost * pMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
             if (pMana)
                 result++;
+            //snow cost???
+            ExtraCost * sMana = dynamic_cast<SnowCost*>(extraCosts->costs[i]);
+            if (sMana)
+                result++;
         }
     }
 
@@ -1092,6 +1113,8 @@ int ManaPool::remove(int color, int value)
 
 int ManaPool::add(int color, int value, MTGCardInstance * source)
 {
+	if (color == Constants::MTG_COLOR_ARTIFACT)
+		color = Constants::MTG_COLOR_WASTE;
     int result = ManaCost::add(color, value);
     for (int i = 0; i < value; ++i)
     {
@@ -1105,6 +1128,15 @@ int ManaPool::add(ManaCost * _cost, MTGCardInstance * source)
 {
     if (!_cost)
         return 0;
+	//while colorless is still exactly the same, there are now cards that require 
+	//true colorless mana, ei:eldrazi. so whenever we add mana, we now replace it with the
+	//new type. keeping the old type intact for payment methods {1}{c} ....
+	int replaceArtifact = _cost->getCost(Constants::MTG_COLOR_ARTIFACT);
+	if (replaceArtifact)
+	{
+		_cost->add(Constants::MTG_COLOR_WASTE, replaceArtifact);
+		_cost->remove(Constants::MTG_COLOR_ARTIFACT, replaceArtifact);
+	}
     int result = ManaCost::add(_cost);
     for (int i = 0; i < Constants::NB_Colors; i++)
     {

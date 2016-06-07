@@ -72,6 +72,7 @@ class Constants
   static const string kManaRed;     
   static const string kManaBlack;   
   static const string kManaWhite;
+  static const string kManaWaste;
 
   // alternative costs constants
 
@@ -94,9 +95,11 @@ class Constants
       MTG_COLOR_RED = 3,
       MTG_COLOR_BLACK = 4,
       MTG_COLOR_WHITE = 5,
-      MTG_COLOR_LAND = 6,
+      MTG_COLOR_WASTE = 6,
+      MTG_COLOR_LAND = 7,
+	  
 
-      MTG_NB_COLORS = 7,
+      MTG_NB_COLORS = 8,
 
 
       MTG_UNCOLORED = 0,
@@ -238,7 +241,9 @@ class Constants
       TRINISPHERE = 120,
       CANPLAYFROMEXILE = 121,
       LIBRARYEATER = 122,
-      NB_BASIC_ABILITIES = 123,
+      DEVOID = 123,
+      CANTCHANGELIFE = 124,
+      NB_BASIC_ABILITIES = 125,
 
 
     RARITY_S = 'S',   //Special Rarity

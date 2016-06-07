@@ -264,12 +264,10 @@ AADamager * AADamager::clone() const
 AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who, bool toexile) :
     ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr),toexile(toexile)
 {
-
 }
     int AADepleter::resolve()
     {
         Player * player = getPlayerFromTarget(getTarget());
-        
         if (player)
         {
             WParsedInt numCards(nbcardsStr, NULL, source);
@@ -298,6 +296,93 @@ const string AADepleter::getMenuText()
 AADepleter * AADepleter::clone() const
 {
     return NEW AADepleter(*this);
+}
+
+//AACascade
+AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who) :
+    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr)
+{
+}
+    int AACascade::resolve()
+    {
+        Player * player = getPlayerFromTarget(getTarget());
+        if (player)
+        {
+            WParsedInt numCards(nbcardsStr, NULL, source);
+            MTGLibrary * library = player->game->library;
+            MTGRemovedFromGame * exile = player->game->exile;
+            MTGCardInstance * viable = NULL;
+            int counter = 0;
+            for (int i = 0; i < numCards.getValue(); i++)
+            {
+                if (library->nb_cards)
+                {
+                    for(int z = library->nb_cards; z >= 0; z--)
+                    {
+                        if(!library->cards[z]->isLand() && (library->cards[z]->getManaCost()->getConvertedCost() < source->getManaCost()->getConvertedCost()))
+                        {
+                            viable = library->cards[z];
+                            player->game->putInZone(viable, library, exile);
+                            {
+                                vector<MTGCardInstance*>selectedCards;
+                                for(int j=0; j < library->nb_cards; j++)
+                                {
+                                     if(library->cards[j]->isCascaded)
+                                     {
+                                         library->cards[j]->isCascaded = false;
+                                         selectedCards.push_back(library->cards[j]);
+                                     }
+                                }
+                                if(selectedCards.size())
+                                {
+                                    std::random_shuffle ( selectedCards.begin(), selectedCards.end() );
+                                    for(unsigned int i = 0; i < selectedCards.size();++i)
+                                    {
+                                        vector<MTGCardInstance *>oldOrder = library->cards;
+                                        vector<MTGCardInstance *>newOrder;
+                                        newOrder.push_back(selectedCards[i]);
+                                        for(unsigned int k = 0;k < oldOrder.size();++k)
+                                        {
+                                            MTGCardInstance * rearranged = oldOrder[k];
+                                            if(rearranged != selectedCards[i])
+                                                newOrder.push_back(rearranged);
+                                        }
+                                        library->cards = newOrder;
+                                    }
+                                }
+                            }
+                            toCastCard(viable->next);
+                            return 1;
+                        }
+                        else
+                        {
+                            library->cards[library->nb_cards - 1]->isCascaded=true;
+                            counter++;
+                        }
+                    }
+                }
+            }
+        }
+        return 1;
+    }
+
+void AACascade::toCastCard(MTGCardInstance * thisCard)
+{
+    MTGAbility *ac = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), thisCard, thisCard,false,false,true,"","",false,false);
+    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac, thisCard->clone(),true);
+    MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), thisCard,NULL,ma1);
+    ga1->resolve();
+    return;
+}
+
+const string AACascade::getMenuText()
+{
+    return "Cascade";
+}
+
+AACascade * AACascade::clone() const
+{
+    return NEW AACascade(*this);
 }
 
 //take extra turns or skip turns, values in the negitive will make you skip.
@@ -394,7 +479,7 @@ int AACopier::resolve()
         MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
         source->copy(myClone);
         source->isACopier = true;
-        source->copiedID = _target->copiedID;
+        source->copiedID = _target->getMTGId();
         source->modifiedbAbi = _target->modifiedbAbi;
         source->origbasicAbilities = _target->origbasicAbilities;
         if(_target->isMorphed)
@@ -1220,25 +1305,15 @@ int GenericPaidAbility::resolve()
         {
             must = true;
             //cost increase - reduce + trinisphere effect ability todo...
-            if(((MTGCardInstance *)target)->getIncreasedManaCost()->getConvertedCost())
-                optionalCost->add(((MTGCardInstance *)target)->getIncreasedManaCost());
-            if(((MTGCardInstance *)target)->getReducedManaCost()->getConvertedCost())
-                optionalCost->remove(((MTGCardInstance *)target)->getReducedManaCost());
-            //trinisphere effect must be hardcoded...here..
-            /*if(((MTGCardInstance *)target)->has(Constants::TRINISPHERE))
+            optionalCost = ((MTGCardInstance *)target)->computeNewCost(((MTGCardInstance *)target),optionalCost,optionalCost);
+            if(optionalCost->extraCosts)
             {
-                if(optionalCost->getConvertedCost() == 2)
-                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                else if(optionalCost->getConvertedCost() == 1)
-                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 2);
-                else if(optionalCost->getConvertedCost() < 1)
-                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 3);
-            }*/
+                for(unsigned int i = 0; i < optionalCost->extraCosts->costs.size();i++)
+                    optionalCost->extraCosts->costs[i]->setSource(((MTGCardInstance *)target));
+            }
         }
         if(asAlternate && nomenu && optionalCost->getConvertedCost() < 1)
-        {
             nomenuAbility->resolve();
-        }
         else
         {
             MenuAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source, must, selection, NULL, newName);
@@ -1386,15 +1461,18 @@ AAFakeAbility * AAFakeAbility::clone() const
 }
 
 //EPIC
- AAEPIC::AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, string _named,ManaCost * cost):
-    ActivatedAbility(observer, id, source, cost, 0),named(_named)
+ AAEPIC::AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, string _named,ManaCost * cost, bool _ffield):
+    ActivatedAbility(observer, id, source, cost, 0),named(_named),FField(_ffield)
 {
     this->target = _target;
 }
 int AAEPIC::resolve()
 {  
     MTGCardInstance * _target =  (MTGCardInstance *)target;
-    _target->controller()->epic = 1;
+    if(FField)
+        _target->controller()->forcefield = 1;
+	else
+        _target->controller()->epic = 1;
     return 1;
 }
 
@@ -4081,19 +4159,8 @@ int AAlterCost::destroy()
 
 int AAlterCost::testDestroy()
 {
-    MTGCardInstance * _target = (MTGCardInstance *)target;
     if(!this->manaReducer->isInPlay(game))
     {
-        if (amount > 0)
-        {
-            _target->getIncreasedManaCost()->remove(type,amount);
-            refreshCost(_target);//special case for 0 cost.
-        }
-        else
-        {
-            _target->getReducedManaCost()->remove(type,abs(amount));
-            refreshCost(_target);//special case for 0 cost.
-        }
         return MTGAbility::testDestroy();
     }
     return 0;
@@ -4102,8 +4169,10 @@ void AAlterCost::refreshCost(MTGCardInstance * card)
 {
     ManaCost * original = NEW ManaCost();
     original->copy(card->model->data->getManaCost());
-    original->add(card->getIncreasedManaCost());
-    original->remove(card->getReducedManaCost());
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        original->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        original->remove(card->getReducedManaCost());
     card->getManaCost()->copy(original);
     delete original;
         return;
@@ -4115,14 +4184,6 @@ void AAlterCost::increaseTheCost(MTGCardInstance * card)
         for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
         {
             card->getManaCost()->add(k,card->getIncreasedManaCost()->getCost(k));
-            if (card->getManaCost()->getAlternative())
-            {
-                card->getManaCost()->getAlternative()->add(k,card->getIncreasedManaCost()->getCost(k));
-            }
-            if (card->getManaCost()->getBuyback())
-            {
-                card->getManaCost()->getBuyback()->add(k,card->getIncreasedManaCost()->getCost(k));
-            }
         }
     }
     return;
@@ -4135,14 +4196,6 @@ void AAlterCost::decreaseTheCost(MTGCardInstance * card)
         for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
         {
             card->getManaCost()->remove(k,card->getReducedManaCost()->getCost(k));
-            if (card->getManaCost()->getAlternative())
-            {
-                card->getManaCost()->getAlternative()->remove(k,card->getReducedManaCost()->getCost(k));
-            }
-            if (card->getManaCost()->getBuyback())
-            {
-                card->getManaCost()->getBuyback()->remove(k,card->getReducedManaCost()->getCost(k));
-            }
         }
     }
     return;
@@ -4620,6 +4673,8 @@ int AAExchangeLife::resolve()
     Damageable * _target = (Damageable *) getTarget();
     if (_target)
     {
+        if(_target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && ((Player*)_target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            return 0;
         Player *player = source->controller();
         int oldlife = player->getLife();
         int targetOldLife = _target->getLife();

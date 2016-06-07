@@ -155,6 +155,15 @@ public:
   virtual ToLibraryCost * clone() const;
 };
 
+//toGraveyard cost 
+class ToGraveCost : public ExtraCost
+{
+public:
+  ToGraveCost(TargetChooser *_tc = NULL);
+  virtual int doPay();
+  virtual ToGraveCost * clone() const;
+};
+
 //Millyourself cost 
 class MillCost : public ExtraCost
 {
@@ -193,6 +202,17 @@ public:
     virtual int canPay();
     virtual int doPay();
     virtual TapCost * clone() const;
+};
+
+//Snow  cost
+class SnowCost : public ExtraCost
+{
+public:
+    SnowCost();
+    virtual int isPaymentSet();
+    virtual int canPay();
+    virtual int doPay();
+    virtual SnowCost * clone() const;
 };
 
 //untap  cost

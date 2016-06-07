@@ -2561,6 +2561,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+        //Forcefield
+    found = s.find("forcefield");
+    if (found != string::npos)
+    {
+        
+        MTGAbility * a = NEW AAEPIC(observer, id, card, target,"Forcefield",NULL,true);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Damage
     vector<string> splitDamage = parseBetween(s, "damage:", " ", false);
     if (splitDamage.size())
@@ -2670,6 +2680,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AADepleter(observer, id, card, t , splitIngest[1], NULL, who, true);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //Cascade
+    vector<string> splitCascade = parseBetween(s, "cascade:", " ", false);
+    if (splitCascade.size())
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AACascade(observer, id, card, t , splitCascade[1], NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -4379,8 +4399,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     case 130553:// Beacon of Immortality
     {
         Player * player = spell->getNextPlayerTarget();
-        if (player->life < (INT_MAX / 4))
-            player->life += player->life;
+        if (!player->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+        {
+            if (player->life < (INT_MAX / 4))
+                player->life += player->life;
+        }
         zones->putInZone(card, spell->from, zones->library);
         zones->library->shuffle();
         break;
@@ -5752,7 +5775,7 @@ const string AManaProducer::getMenuText()
     menutext = _("Add ");
     char buffer[128];
     int alreadyHasOne = 0;
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 8; i++)
     {
         int value = output->getCost(i);
         if (value)
@@ -5761,8 +5784,11 @@ const string AManaProducer::getMenuText()
                 menutext.append(",");
             sprintf(buffer, "%i ", value);
             menutext.append(buffer);
-            if (i >= Constants::MTG_COLOR_GREEN && i <= Constants::MTG_COLOR_WHITE)
+            if (i == Constants::MTG_COLOR_WASTE)
+                menutext.append(_(" colorless"));
+            else if (i >= Constants::MTG_COLOR_GREEN && i <= Constants::MTG_COLOR_WASTE)
                 menutext.append(_(Constants::MTGColorStrings[i]));
+            
             alreadyHasOne = 1;
         }
     }

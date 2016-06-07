@@ -714,6 +714,9 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
 
     if(!cost->getConvertedCost())
     {
+        DebugTrace("AIPlayerBaka: Card was a land and ai cant play any more lands this turn.  ");
+        if (target && target->isLand() && game->playRestrictions->canPutIntoZone(target, game->battlefield) == PlayRestriction::CANT_PLAY)
+            return false;
         DebugTrace("AIPlayerBaka: Card or Ability was free to play.  ");
         if(!cost->hasX())//don't return true if it contains {x} but no cost, locks ai in a loop. ie oorchi hatchery cost {x}{x} to play.
             return true;

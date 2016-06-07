@@ -89,6 +89,7 @@ public:
     bool isMorphed;
     bool isFlipped;
     bool isPhased;
+    bool isCascaded;
     int phasedTurn;
     bool graveEffects;
     bool exileEffects;
@@ -254,7 +255,8 @@ public:
     bool isTargetter();
     int cardistargetter;
     int myconvertedcost;
-    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost);
+    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false);
+    int countTrini;
 
     void eventattacked();
     void eventattackedAlone();

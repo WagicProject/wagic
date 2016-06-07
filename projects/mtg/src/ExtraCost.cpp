@@ -130,6 +130,107 @@ int ExtraManaCost::doPay()
     return 1;
 }
 
+//Snow cost
+SnowCost * SnowCost::clone() const
+{
+    SnowCost * ec = NEW SnowCost(*this);
+    return ec;
+}
+
+SnowCost::SnowCost() :
+ExtraCost("Snow Mana")
+{
+}
+
+int SnowCost::isPaymentSet()
+{
+    if (source->controller()->getManaPool()->getConvertedCost())
+    {
+        int result = 0;
+        result += source->controller()->snowManaG;
+        result += source->controller()->snowManaU;
+        result += source->controller()->snowManaR;
+        result += source->controller()->snowManaB;
+        result += source->controller()->snowManaW;
+        result += source->controller()->snowManaC;
+        if (result)
+        {
+            if ((source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source))) ||
+               (source->controller()->snowManaG && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{g}",NULL,source))) ||
+               (source->controller()->snowManaU && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{u}",NULL,source))) ||
+               (source->controller()->snowManaR && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{r}",NULL,source))) ||
+               (source->controller()->snowManaB && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{b}",NULL,source))) ||
+               (source->controller()->snowManaW && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{w}",NULL,source))) ||
+               (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{c}",NULL,source))))
+                return 1;
+            else
+                return 0;
+		}
+    }
+    return 0;
+}
+
+int SnowCost::canPay()
+{
+    return isPaymentSet();
+}
+
+int SnowCost::doPay()
+{
+    if (source->controller()->getManaPool()->getConvertedCost())
+    {
+        int result = 0;
+        result += source->controller()->snowManaG;
+        result += source->controller()->snowManaU;
+        result += source->controller()->snowManaR;
+        result += source->controller()->snowManaB;
+        result += source->controller()->snowManaW;
+        result += source->controller()->snowManaC;
+        if (result)
+        {
+            if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source)))
+            {
+                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{1}",NULL,source));
+                source->controller()->snowManaC -= 1;
+            }
+            else if (source->controller()->snowManaG && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{g}",NULL,source)))
+            {
+                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{g}",NULL,source));
+                source->controller()->snowManaG -= 1;
+            }
+            else if (source->controller()->snowManaU && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{u}",NULL,source)))
+            {
+                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{u}",NULL,source));
+                source->controller()->snowManaU -= 1;
+            }
+            else if (source->controller()->snowManaR && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{r}",NULL,source)))
+            {
+                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{r}",NULL,source));
+                source->controller()->snowManaR -= 1;
+            }
+            else if (source->controller()->snowManaB && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{b}",NULL,source)))
+            {
+                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{b}",NULL,source));
+                source->controller()->snowManaB -= 1;
+            }
+            else if (source->controller()->snowManaW && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{w}",NULL,source)))
+            {
+                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{w}",NULL,source));
+                source->controller()->snowManaW -= 1;
+            }
+            else if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{c}",NULL,source)))
+            {
+                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{c}",NULL,source));
+                source->controller()->snowManaC -= 1;
+            }
+            else
+                return 0;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 //life cost
 LifeCost * LifeCost::clone() const
 {
@@ -147,7 +248,7 @@ LifeCost::LifeCost(TargetChooser *_tc)
 int LifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(_target->controller()->life <= 0)
+    if(_target->controller()->life <= 0 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
     {
         return 0;
     }
@@ -185,7 +286,7 @@ SpecificLifeCost::SpecificLifeCost(TargetChooser *_tc, int slc)
 int SpecificLifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(_target->controller()->life >= slc)
+    if(_target->controller()->life >= slc && !_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
     {
         return 1;
     }
@@ -386,6 +487,35 @@ int ToLibraryCost::doPay()
     {
         source->storedCard = target->createSnapShot();
         _target->controller()->game->putInLibrary(target);
+        target = NULL;
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+
+//to graveyard cost
+ToGraveCost * ToGraveCost::clone() const
+{
+    ToGraveCost * ec = NEW ToGraveCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+ToGraveCost::ToGraveCost(TargetChooser *_tc)
+    : ExtraCost("Move a card to Graveyard", _tc)
+{
+}
+
+int ToGraveCost::doPay()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (target)
+    {
+        source->storedCard = target->createSnapShot();
+        _target->controller()->game->putInGraveyard(target);
         target = NULL;
         if (tc)
             tc->initTargets();
