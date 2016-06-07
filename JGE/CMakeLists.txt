@@ -69,6 +69,7 @@ set(JGE_psp_src
         src/vram.cpp)
 
 set(JGE_ios_src
+	src/iOS/main.m
 	src/iOS/wagicAppDelegate.m
 	src/iOS/ES2Renderer.m
 	src/iOS/EAGLView.m
