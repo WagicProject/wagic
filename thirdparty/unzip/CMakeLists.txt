@@ -2,9 +2,10 @@
 
 SET(SOURCE
     ioapi.c
-    miniunz.c
+    zip.c
     unzip.c)
 
+SET(UNZIP_SRC ${SOURCE} PARENT_SCOPE)
 include_directories(${ZLIB_INCLUDE_DIRS} ${EXTRA_INCLUDES})
 
 add_library(unzip ${SOURCE})

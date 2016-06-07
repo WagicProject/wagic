@@ -5,7 +5,7 @@ endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/CMakeModules)
 
-#this block wil fix install prefixes to install everything in a subdirectory
+#this block will fix install prefixes to install everything in a subdirectory
 #of cmake_binary_dir if we are on windows/android to make packaging more easy
 if(NOT CMAKE_TOOLCHAIN_FILE)
   if(WIN32)
@@ -59,7 +59,7 @@ if(UNIX AND NOT ANDROID)
   endif()
 endif()
 
-if(ANDROID OR PSP)
+if(ANDROID OR PSP OR IOS)
     #to allow finding of pathes/headers/libs within the source tree
     #even if only search for target platform libs
     set(CMAKE_FIND_ROOT_PATH ${CMAKE_SOURCE_DIR} ${CMAKE_FIND_ROOT_PATH})
@@ -87,7 +87,7 @@ endif()
 if(WIN32 OR ANDROID OR UNIX)
     WAGIC_OPTION(backend_sdl         "build for sdl"          (WIN32 OR ANDROID OR EMSCRIPTEN))
 endif()
-if(NOT backend_sdl AND UNIX AND NOT ANDROID)
+if(NOT backend_sdl AND UNIX AND NOT ANDROID AND NOT IOS)
     WAGIC_OPTION(backend_qt_console  "build qt-console version with testsuit" ON)
     WAGIC_OPTION(backend_qt_widget   "build qt-widget version"                OFF)
 endif()
@@ -97,9 +97,9 @@ WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    WIN32 OR APPLE OR EMSCRIP
 WAGIC_OPTION(BUILD_JPEG    "build jpeg from source"    (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_PNG     "build png from source"     (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_UNZIP   "build unzip from source"   ON)
-WAGIC_OPTION(BUILD_TINYXML "build tinyxml from source" (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
+WAGIC_OPTION(BUILD_TINYXML "build tinyxml from source" (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN OR IOS))
 WAGIC_OPTION(BUILD_ZIPFS   "build zipfs from source"   ON)
-WAGIC_OPTION(BUILD_SDL2    "build SDL2 from source"    (backend_sdl AND (UNIX OR WIN32 OR ANDROID) AND (NOT EMSCRIPTEN)))
+WAGIC_OPTION(BUILD_SDL2    "build SDL2 from source"    (backend_sdl AND (UNIX OR WIN32 OR ANDROID) AND (NOT EMSCRIPTEN AND NOT IOS)))
 
 #project options
 if(ANDROID)
@@ -205,4 +205,35 @@ endif()
 
 if(EMSCRIPTEN)
   set(CMAKE_EXECUTABLE_SUFFIX ".html")
+endif()
+
+if(IOS)
+  list_add_prefix(JGE_SOURCES " JGE/")
+  list_add_prefix(MTG_generic_src " projects/mtg/")
+  list_add_prefix(JGE_INCLUDE_DIRS " -IJGE/")
+  list_add_prefix(MTG_INCLUDE_DIRS " -Iprojects/mtg/")
+  list_add_prefix(TINYXML_SRC " thirdparty/tinyxml/")
+  list_add_prefix(UNZIP_SRC " thirdparty/unzip/")
+  list_add_prefix(ZIPFS_SRC " thirdparty/zipFS/")
+
+  file(WRITE makefile.ios
+     "ARCHS= armv7 armv7s \n"
+     "include ${THEOS_PATH}/makefiles/common.mk\n"
+     "TARGET= iphone:clang:latest:8.0 \n"
+     "APPLICATION_NAME = " ${PROJECT_NAME} "\n"
+     ${PROJECT_NAME} "_FILES =" ${ZIPFS_SRC} ${UNZIP_SRC} ${TINYXML_SRC} ${JGE_SOURCES} ${MTG_generic_src} " thirdparty/Boost/lib/pthread/once.cpp thirdparty/Boost/lib/pthread/thread.cpp\n"
+     ${PROJECT_NAME} "_LDFLAGS = -lz\n"
+     ${PROJECT_NAME} "_FRAMEWORKS = UIKit CoreGraphics OpenGLES Foundation CFNetwork MobileCoreServices AVFoundation OpenAL AudioToolbox QuartzCore SystemConfiguration\n"
+     "include ${THEOS_PATH}/makefiles/application.mk\n"
+     "ADDITIONAL_CFLAGS = " ${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} " -I" ${ZIPFS_INCLUDE_DIR} " -I" ${UNZIP_INCLUDE_DIR} " -I" ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} " -I" ${ZLIB_INCLUDE_DIRS} ${BOOST_INCLUDE_DIRS} " "
+         "-DIOS -D__arm__ -DTIXML_USE_STL -DVERSION=\"$(GIT_VERSION)\" "
+         "-Wno-parentheses-equality -Wno-delete-non-virtual-dtor "
+         "-Wno-tautological-undefined-compare -Wno-undefined-bool-conversion "
+         "-Wno-visibility -Wno-deprecated-declarations -Wno-non-literal-null-conversion "
+         "-Wno-format -Wno-distributed-object-modifiers -Wno-missing-braces -Wno-uninitialized "
+         "-Wno-unused-const-variable -Wno-unused-function -Wno-unknown-warning-option -Wno-unused-local-typedef "
+         "-x objective-c++ \n"
+
+     "_THEOS_TARGET_ONLY_OBJCFLAGS :=\"\"\n"
+     )
 endif()

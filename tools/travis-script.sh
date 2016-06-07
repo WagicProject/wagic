@@ -83,7 +83,7 @@ fi
 
 # Let's launch de iOS cross-compilation
 if [ "$BUILD_TYPE" = "iOS" ]; then
-    cd projects/mtg/iOS
-    make -j 4 package
-    cd ../../..
+    cmake -DCMAKE_TOOLCHAIN_FILE=CMakeModules/ios-theos.toolchain.cmake -DTHEOS_PATH=theos .
+    cp projects/mtg/iOS/control .
+    make -j4 -f makefile.ios package
 fi

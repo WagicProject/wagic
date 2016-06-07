@@ -57,7 +57,7 @@ macro(FindOrBuildUNZIP)
 endmacro()
 
 macro(FindOrBuildBoost)
-    if(PSP OR UNIX OR WIN32)
+    if(PSP OR UNIX OR WIN32 OR IOS)
         #the psp build does not need more than a few headers
         #todo: remove from the repository
         set(BOOST_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/thirdparty/Boost)    

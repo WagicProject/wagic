@@ -315,7 +315,7 @@ public:
 
     int loadMatches(WSrcCards* src, bool all = false)
     {
-        return loadMatches(src, all);
+        return active->loadMatches(src, all);
     }
 
     int addRandomCards(MTGDeck * i, int howmany = 1)

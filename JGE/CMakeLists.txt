@@ -17,7 +17,6 @@ set(JGE_generic_src
         src/JParticleSystem.cpp
         src/JResourceManager.cpp
         src/JSpline.cpp
-        src/JNetwork.cpp
         src/JSprite.cpp
         src/Vector2D.cpp)
 
@@ -45,11 +44,13 @@ set(JGE_console_src
 
 #the sources we need on linux
 set(JGE_linux_src
+        src/JNetwork.cpp
         src/pc/JSocket.cpp
         src/pc/JSfx.cpp)
         
 set(JGE_android_src
-        src/JSocket.cpp 
+        src/JNetwork.cpp
+        src/JSocket.cpp
         src/android/JSfx.cpp)
 
 #the sources we need if we compile for psp
@@ -57,7 +58,8 @@ set(JGE_android_src
 #the other main functions reside in projects/mtg to reduce cross-library dependencies.
 #there may be a way to get all main-functions into the same project
 set(JGE_psp_src
-        src/JSocket.cpp 
+        src/JNetwork.cpp
+        src/JSocket.cpp
         src/JGfx.cpp
         src/JSfx.cpp
         src/JAudio.cpp
@@ -65,6 +67,14 @@ set(JGE_psp_src
         src/decoder_prx.cpp
         src/main.cpp
         src/vram.cpp)
+
+set(JGE_ios_src
+	src/iOS/wagicAppDelegate.m
+	src/iOS/ES2Renderer.m
+	src/iOS/EAGLView.m
+	src/iOS/EAGLViewController.m
+	src/iOS/JSfx.cpp)
+
 
 set(JGE_INCLUDE_DIRS include include/hge)
 set(EXTRA_INCLUDE_DIR ../projects/mtg/extra)
@@ -133,6 +143,13 @@ if(backend_psp)
     else()
         message(FATAL_ERROR "use the cross-compile toolchain to build as the psp target")
     endif()
+endif()
+
+if(IOS)
+    set(JGE_SOURCES ${JGE_generic_src} ${JGE_ios_src} ${JGE_hge_src} src/pc/JGfx.cpp)
+    set(JGE_SOURCES ${JGE_SOURCES} PARENT_SCOPE)
+    set(JGE_INCLUDE_DIRS ${JGE_INCLUDE_DIRS} src/iOS PARENT_SCOPE)
+    set(JGE_LINK_LIBRARIES ${TINYXML_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY})
 endif()
 
 add_library(jge STATIC ${JGE_SOURCES})
