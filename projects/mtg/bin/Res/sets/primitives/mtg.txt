@@ -5122,6 +5122,17 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Arrogant Wurm
+abilities=trample,madness
+autoexile=restriction{discarded} pay({2}{G}) name(pay 2G to cast) activate name(pay 2G to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Trample -- Madness {2}{G} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{G}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
+[/card]
+[card]
 name=Arrows of Justice
 target=creature[attacking;blocking]
 auto=damage:4
@@ -7900,6 +7911,18 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Basking Rootwalla
+abilities=madness
+autoexile=restriction{discarded} pay({0}) name(pay 0 to cast) activate name(pay 0 to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto={1}{G}:2/2 limit:1
+text={1}{G}: Basking Rootwalla gets +2/+2 until end of turn. Activate this ability only once each turn. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={G}
+type=Creature
+subtype=Lizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Bassara Tower Archer
 abilities=opponentshroud,reach
 text=Hexproof, reach
@@ -9000,6 +9023,18 @@ auto=moveTo(mybattlefield) notatarget(*[share!name!]|mylibrary)
 text=Search your library for a permanent card with the same name as target nontoken creature and put that card onto the battlefield. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
+[/card]
+[card]
+name=Big Game Hunter
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=bury target(creature[power>=4])
+text=When Big Game Hunter enters the battlefield, destroy target creature with power 4 or greater. It can't be regenerated. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{B}{B}
+type=Creature
+subtype=Human Rebel Assassin
+power=1
+toughness=1
 [/card]
 [card]
 name=Bile Blight
@@ -14036,6 +14071,16 @@ type=Creature
 subtype=Human
 power=*
 toughness=*
+[/card]
+[card]
+name=Call to the Netherworld
+abilities=madness
+autoexile=restriction{discarded} pay({0}) name(pay 0 to cast) activate name(pay 0 to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature[black]|myGraveyard
+auto=moveTo(myHand)
+text=Return target black creature card from your graveyard to your hand. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={B}
+type=Sorcery
 [/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
@@ -21905,6 +21950,16 @@ auto=aslongas(*[black]|myBattlefield) destroy
 auto=damage:2
 text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
 mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Dark Withering
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature[-black]
+auto=destroy
+text=Destroy target nonblack creature. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={4}{B}{B}
 type=Instant
 [/card]
 [card]
@@ -34020,6 +34075,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Fiery Temper
+abilities=madness
+autoexile=restriction{discarded} pay({R}) name(pay R to cast) activate name(pay R to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature,player
+auto=damage:3
+text=Fiery Temper deals 3 damage to target creature or player. -- Madness {R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Fight to the Death
 auto=destroy all(creature[blocking;blocked])
 text=Destroy all blocking creatures and all blocked creatures.
@@ -36574,6 +36639,16 @@ auto=@movedto(artifact,enchantment|graveyard):life:2
 auto=destroy all(artifact,enchantment)
 text=Destroy all artifacts and enchantments. You gain 2 life for each permanent destroyed this way.
 mana={2}{GW}{GW}{GW}
+type=Instant
+[/card]
+[card]
+name=Frantic Purification
+abilities=madness
+autoexile=restriction{discarded} pay({W}) name(pay W to cast) activate name(pay W to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=enchantment
+auto=destroy
+text=Destroy target enchantment. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{W}
 type=Instant
 [/card]
 [card]
@@ -41494,6 +41569,18 @@ text=Equipped creature has deathtouch. -- Equip {2}
 mana={1}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Gorgon Recluse
+abilities=madness
+autoexile=restriction{discarded} pay({B}{B}) name(pay BB to cast) activate name(pay BB to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=@combat(blocked,blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] destroy
+text=Whenever Gorgon Recluse blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat. -- Madness {B}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{B}{B}
+type=Creature
+subtype=Gorgon
+power=2
+toughness=4
 [/card]
 [card]
 name=Gorilla Chieftain
@@ -48052,6 +48139,17 @@ type=Creature
 subtype=Rat
 power=2
 toughness=1
+[/card]
+[card]
+name=Ichor Slick
+abilities=madness
+autoexile=restriction{discarded} pay({3}{B}) name(pay 3B to cast) activate name(pay 3B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=-3/-3
+autohand=__CYCLING__({2})
+text=Target creature gets -3/-3 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Madness {3}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Ichor Wellspring
@@ -65596,6 +65694,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Mycosynth Golem
+abilities=affinityartifacts
+auto=lord(creature[artifact]|myhand,mylibrary,mygraveyard,myexile) affinityartifacts forcedalive
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Artifact creature spells you cast have affinity for artifacts. (They cost {1} less to cast for each artifact you control.)
+mana={11}
+type=Artifact Creature
+subtype=Golem
+power=4
+toughness=5
+[/card]
+[card]
 name=Mycosynth Wellspring
 auto=may moveTo(myhand) notatarget(land[basic]|mylibrary)
 auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myhand) notatarget(land[basic]|mylibrary)
@@ -68953,6 +69062,15 @@ auto={T}:Add{U}
 auto={1}:moveto(ownerhand)
 text={T}: Add {U} to your mana pool. -- {1}: Return Oboro, Palace in the Clouds to its owner's hand.
 type=Legendary Land
+[/card]
+[card]
+name=Obsessive Search
+abilities=madness
+autoexile=restriction{discarded} pay({U}) name(pay U to cast) activate name(pay U to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=draw:1 controller
+text=Draw a card. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Obsianus Golem
@@ -75746,6 +75864,15 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Psychotic Haze
+abilities=madness
+autoexile=restriction{discarded} pay({1}{B}) name(pay 1B to cast) activate name(pay 1B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=damage:1 all(creature,player)
+text=Psychotic Haze deals 1 damage to each creature and each player. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{B}{B}
+type=Instant
+[/card]
+[card]
 name=Psychotrope Thallid
 text=At the beginning of your upkeep, put a spore counter on Psychotrope Thallid. -- Remove three spore counters from Psychotrope Thallid: Put a 1/1 green Saproling creature token onto the battlefield. -- {1}, Sacrifice a Saproling: Draw a card.
 mana={2}{G}
@@ -78864,6 +78991,17 @@ power=3
 toughness=2
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
+[card]
+name=Reckless Wurm
+abilities=trample,madness
+autoexile=restriction{discarded} pay({2}{R}) name(pay 2R to cast) activate name(pay 2R to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Trample -- Madness {2}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{R}{R}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
+[/card]
 [card]
 name=Reclaim
 target=*|mygraveyard
@@ -97404,6 +97542,30 @@ text=Target creature gets +X/+X until end of turn, where X is the number of land
 mana={4}{G}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+name=Strength of Isolation
+abilities=madness
+autoexile=restriction{discarded} pay({W}) name(pay W to cast) activate name(pay W to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=1/2
+auto=protection from black
+text=Enchant creature -- Enchanted creature gets +1/+2 and has protection from black. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Strength of Lunacy
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=2/1
+auto=protection from white
+text=Enchant creature -- Enchanted creature gets +2/+1 and has protection from white. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Strength of Night
