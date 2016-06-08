@@ -76,6 +76,10 @@ set(JGE_ios_src
 	src/iOS/EAGLViewController.m
 	src/iOS/JSfx.cpp)
 
+set(JGE_windows_src
+        src/JNetwork.cpp
+        src/pc/JSocket.cpp
+	src/windows/JSfx.cpp)
 
 set(JGE_INCLUDE_DIRS include include/hge)
 set(EXTRA_INCLUDE_DIR ../projects/mtg/extra)
@@ -128,7 +132,7 @@ if(backend_sdl)
     elseif(WIN32)
         set(JGE_INTERNAL_INCLUDE_DIRS ${EXTRA_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} 
             ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
-        set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
+        set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_windows_src} ${JGE_hge_src})
         set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARY} ${PNG_LIBRARIES})
         set(JGE_LINK_DIRECTORIES ${Boost_LIBRARY_DIR})
     endif()

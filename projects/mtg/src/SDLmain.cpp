@@ -1,3 +1,4 @@
+#define SDL_MAIN_HANDLED
 #include <SDL.h>
 #if (defined ANDROID)
 #include <SDL_opengles.h>
@@ -762,7 +763,7 @@ bool SdlApp::OnInit()
 	return true;
 };
 
-#if (defined ANDROID) || (defined WIN32)
+#if (defined ANDROID)
 int SDL_main(int argc, char * argv[])
 #else
 int main(int argc, char* argv[])

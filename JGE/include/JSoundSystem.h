@@ -18,20 +18,20 @@
 
 #include "JTypes.h"
 
+
 #ifdef ANDROID
 #include <SLES/OpenSLES.h>
 #include "SLES/OpenSLES_Android.h"
-
-#elif defined USE_PHONON
+#elif defined(USE_PHONON)
 #include <phonon/AudioOutput>
 #include <phonon/MediaObject>
-#elif (defined QT_CONFIG)
+#elif defined (QT_CONFIG)
 #include "QMediaPlayer"
 #include "QMediaPlaylist"
 #include "QSoundEffect"
-#elif defined WIN32
+#elif defined(WIN32)
 #include <windows.h>
-#define WITH_FMOD
+//#define WITH_FMOD
 #elif defined (PSP)
 #include <pspgu.h>
 #include <pspkernel.h>
@@ -90,9 +90,11 @@ public slots:
     QMediaPlaylist* playlist;
     QMediaPlayer* player;
     string fullpath;
-#else
+#elif (defined WIN32)
+	std::string filename;
+#endif
     void* mTrack;
-#endif  //WITH_FMOD
+//#endif  //WITH_FMOD
 
 };
 
@@ -107,29 +109,23 @@ public:
     unsigned long fileSize();
 #if (defined QT_CONFIG) && (!defined USE_PHONON)
     QMediaPlayer* effect;
-    void* mSample;
-#elif defined (PSP)
-    WAVDATA *mSample;
 #elif defined (IOS)
     std::string filename;
     std::string key;
     std::string ext;
-    
-    void* mSample;
 #elif defined  (WITH_FMOD)
     FSOUND_SAMPLE *mSample;
 #elif defined (USE_PHONON)
     Phonon::AudioOutput* mOutput;
     Phonon::MediaObject* mMediaObject;
-    void* mSample;
 #elif defined ANDROID
     SLObjectItf playerObject;
     SLPlayItf playInterface;
     SLVolumeItf sampleVolumeInterface;
-    void* mSample;
-#else
-    void* mSample;
+#elif (defined WIN32)
+	std::string filename;
 #endif
+	void* mSample;
 };
 
 

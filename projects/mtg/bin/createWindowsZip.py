@@ -4,15 +4,14 @@ import zipfile
 from pyjavaproperties import Properties
 from optparse import OptionParser
 
-def createWindowsZipFile(filename):
+def createWindowsZipFile(filename, buildpath):
     utilities = ZipUtilities()
     zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_STORED)
     zip_file.write('../../../LICENSE')
     zip_file.write('libpng13.dll')
-    zip_file.write('SDL.dll')
-    zip_file.write('fmod.dll')
-    zip_file.write('zlib1.dll')
-    zip_file.write('Wagic.exe')
+    zip_file.write(buildpath + 'lib/Release/SDL2.dll')
+    zip_file.write(buildpath + 'lib/Release/zlib.dll')
+    zip_file.write(buildpath + 'bin/Release/Wagic.exe')
     zip_file.write('Res/' + getFilename('core') + '.zip')
     zip_file.close()
 
@@ -25,7 +24,7 @@ def getFilename(filename):
     filename = filename + '-' + major + minor + point
     return filename
 
-def createStandardResFile():
+def createStandardResFile(buildpath):
     print "Creating Resource File"
     cmd = 'python createResourceZip.py -n ' + getFilename('core') + '.zip'
     os.chdir("Res")
@@ -33,7 +32,7 @@ def createStandardResFile():
     os.chdir("..")
     print "Creating Windows Package File"
     filename = 'Wagic-windows.zip'
-    createWindowsZipFile( filename )
+    createWindowsZipFile( filename, buildpath )
     print >> sys.stderr, 'Created Windows Package: {0}'.format( filename)
 
 class ZipUtilities:
@@ -63,11 +62,11 @@ def main():
 ## using optparse instead of argParse for now since python 2.7 may not be installed.
 
     parser = OptionParser()
-    parser.add_option("-p", "--platform", help="PLATFORM: specify custom build. (eg ios, android, etc)", metavar="PLATFORM", dest="platform")
+    parser.add_option("-b", "--build", help="BUILD: specify the build directory", metavar="BUILD", dest="build")
 
     (options, args) = parser.parse_args()
 	
-    createStandardResFile()
+    createStandardResFile(options.build)
 
 if __name__ == "__main__":
 	main()

@@ -74,7 +74,7 @@ artifacts:
 # scripts to run before deployment
 before_deploy:
   - cd projects/mtg/bin
-  - "C:/Python27/python.exe createWindowsZip.py"
+  - "C:/Python27/python.exe createWindowsZip.py -b ../../../build"
   - cd ../../..
 
 # scripts to run after deployment
