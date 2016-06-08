@@ -1312,6 +1312,16 @@ int GenericPaidAbility::resolve()
                     optionalCost->extraCosts->costs[i]->setSource(((MTGCardInstance *)target));
             }
         }
+        if (source && source->previous && source->basicAbilities[(int)Constants::MADNESS])
+        {
+            must = true;
+            optionalCost = source->computeNewCost(source->previous,optionalCost,optionalCost);
+            if(optionalCost->extraCosts)
+            {
+                for(unsigned int i = 0; i < optionalCost->extraCosts->costs.size();i++)
+                    optionalCost->extraCosts->costs[i]->setSource(source);
+            }
+        }
         if(asAlternate && nomenu && optionalCost->getConvertedCost() < 1)
             nomenuAbility->resolve();
         else
