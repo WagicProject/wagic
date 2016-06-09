@@ -276,6 +276,7 @@ dingus_staff_i153.txt
 Distorting_Wake.txt
 Distorting_Wake2.txt
 divergent_growth.txt
+Doran.txt
 doomed_necromancer.txt
 double_strike_i145.txt
 double_strike2_i145.txt
