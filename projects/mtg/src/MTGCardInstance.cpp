@@ -100,8 +100,10 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     setText(""); //The text is retrieved from the data anyways
     setName(data->name);
 
-    power = data->power;
-    toughness = data->toughness;
+    power = data->power;//layer 7a
+    toughness = data->toughness;//layer 7a
+    power += pbonus;//layer 7b
+    toughness += tbonus;//layer 7b
     life = toughness;
     lifeOrig = life;
     magicText = data->magicText;
