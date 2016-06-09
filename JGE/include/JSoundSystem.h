@@ -79,21 +79,25 @@ public slots:
     std::string filename;
     std::string key;
     std::string ext;
+	void* mTrack;
 #elif defined WITH_FMOD
     FSOUND_SAMPLE* mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
+	void* mTrack;
 #elif defined ANDROID
     SLObjectItf playerObject;
     SLPlayItf playInterface;
     SLSeekItf seekInterface;
     SLVolumeItf musicVolumeInterface;
+	void* mTrack;
 #elif (defined QT_CONFIG)
     QMediaPlaylist* playlist;
     QMediaPlayer* player;
     string fullpath;
+	void* mTrack;
 #elif (defined WIN32)
 	std::string filename;
+	void* mTrack;
 #endif
-    void* mTrack;
 //#endif  //WITH_FMOD
 
 };

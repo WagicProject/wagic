@@ -9,9 +9,9 @@ def createWindowsZipFile(filename, buildpath):
     zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_STORED)
     zip_file.write('../../../LICENSE')
     zip_file.write('libpng13.dll')
-    zip_file.write(buildpath + 'lib/Release/SDL2.dll')
-    zip_file.write(buildpath + 'lib/Release/zlib.dll')
-    zip_file.write(buildpath + 'bin/Release/Wagic.exe')
+    zip_file.write(buildpath + '/lib/Release/SDL2.dll')
+    zip_file.write(buildpath + '/lib/Release/zlib.dll')
+    zip_file.write(buildpath + '/bin/Release/Wagic.exe')
     zip_file.write('Res/' + getFilename('core') + '.zip')
     zip_file.close()
 
