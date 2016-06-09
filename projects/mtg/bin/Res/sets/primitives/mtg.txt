@@ -16791,6 +16791,18 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Chrome Mox
+auto=may imprint notatarget(*[-land;-artifact]|myhand)
+auto=this(variable{evictg}>0) {t}:add{g}
+auto=this(variable{evictu}>0) {t}:add{u}
+auto=this(variable{evictr}>0) {t}:add{r}
+auto=this(variable{evictb}>0) {t}:add{b}
+auto=this(variable{evictw}>0) {t}:add{w}
+text=Imprint - When Chrome Mox enters the battlefield, you may exile a nonartifact, nonland card from your hand. -- {T}: Add one mana of any of the exiled card's colors to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
 name=Chrome Steed
 auto=aslongas(artifact|mybattlefield) 2/2 >2
 text=Metalcraft - Chrome Steed gets +2/+2 as long as you control three or more artifacts.
@@ -17068,6 +17080,16 @@ auto=chooseatype transforms((,newability[{1}{W}:notatarget(creature[chosentype]|
 text=As Circle of Solace enters the battlefield, choose a creature type. -- {1}{W}: The next time a creature of the chosen type would deal damage to you this turn, prevent that damage.
 mana={3}{W}
 type=Enchantment
+[/card]
+[card]
+name=Circular Logic
+abilities=madness
+target=*|stack
+auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{value:type:*:opponentgraveyard}]] name(pay {value} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{value:type:*:mygraveyard}]] name(pay {value} mana) donothing?fizzle])) forever
+autoexile=restriction{discarded} pay({U}) name(pay U to cast) activate name(pay U to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Counter target spell unless its controller pays {1} for each card in your graveyard. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 name=Citadel Castellan

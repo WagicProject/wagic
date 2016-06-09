@@ -3862,12 +3862,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Circular Logic
-text=Counter target spell unless its controller pays {1} for each card in your graveyard. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={2}{U}
-type=Instant
-[/card]
-[card]
 name=City in a Bottle
 text=Whenever a nontoken permanent from the Arabian Nights expansion other than City in a Bottle is on the battlefield, its controller sacrifices it.  -- Players can't play cards from the Arabian Nights expansion.
 mana={2}
