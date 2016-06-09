@@ -482,6 +482,7 @@ int AACopier::resolve()
         source->copiedID = _target->getMTGId();
         source->modifiedbAbi = _target->modifiedbAbi;
         source->origbasicAbilities = _target->origbasicAbilities;
+        source->basicAbilities = _target->basicAbilities;
         if(_target->isMorphed)
         {
             source->power = 2;
