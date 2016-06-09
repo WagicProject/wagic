@@ -956,12 +956,6 @@ mana={R} // {3}{G}
 type=Sorcery // Sorcery
 [/card]
 [card]
-name=Assault Formation
-text=Each creature you control assigns combat damage equal to its toughness rather than its power. -- {G}: Target creature with defender can attack this turn as though it didn't have defender. -- {2}{G}: Creatures you control get +0/+1 until end of turn.
-mana={1}{G}
-type=Enchantment
-[/card]
-[card]
 name=Astral Cornucopia
 text=Astral Cornucopia enters the battlefield with X charge counters on it. -- {T}: Choose a color. Add one mana of that color to your mana pool for each charge counter on Astral Cornucopia.
 mana={X}{X}{X}
@@ -5632,15 +5626,6 @@ name=Doomsday
 text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
 mana={B}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Doran, the Siege Tower
-text=Each creature assigns combat damage equal to its toughness rather than its power.
-mana={W}{B}{G}
-type=Legendary Creature
-subtype=Treefolk Shaman
-power=0
-toughness=5
 [/card]
 [card]
 name=Dormant Gomazoa
