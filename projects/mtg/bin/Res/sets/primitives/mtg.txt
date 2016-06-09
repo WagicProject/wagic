@@ -5552,6 +5552,15 @@ mana={4}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Assault Formation
+auto=lord(creature|mybattlefield) combattoughness
+auto={G}:target(creature[defender]) canattack
+auto={2}{G}:lord(creature|myBattlefield) 0/1 ueot
+text=Each creature you control assigns combat damage equal to its toughness rather than its power. -- {G}: Target creature with defender can attack this turn as though it didn't have defender. -- {2}{G}: Creatures you control get +0/+1 until end of turn.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 name=Assault Griffin
 abilities=flying
 text=Flying
@@ -26024,6 +26033,16 @@ type=Creature
 subtype=Homunculus
 power=0
 toughness=4
+[/card]
+[card]
+name=Doran, the Siege Tower
+auto=lord(creature) combattoughness
+text=Each creature assigns combat damage equal to its toughness rather than its power.
+mana={W}{B}{G}
+type=Legendary Creature
+subtype=Treefolk Shaman
+power=0
+toughness=5
 [/card]
 [card]
 name=Dormant Sliver
@@ -115669,7 +115688,7 @@ toughness=5
 [card]
 name=Wrench Mind
 target=player
-auto=ability$!choice name(discard 2 cards) target(<2>*|myhand) reject _ choice name(discard artifact) target(artifact|myhand) reject !$ targetedplayer
+auto=ability$! name(discard 2 cards) choice name(discard 2 cards) target(<2>*|myhand) reject _ if type(artifact|myhand)~morethan~0 then name(discard artifact) choice name(discard artifact) target(artifact|myhand) reject !$ targetedplayer
 text=Target player discards two cards unless he or she discards an artifact card.
 mana={B}{B}
 type=Sorcery
