@@ -223,6 +223,7 @@ civic_wayfinder.txt
 clone.txt
 clone2.txt
 clone3.txt
+clone4.txt
 cockatrice.txt
 cockatrice_i228.txt
 colossus_of_sardia1.txt

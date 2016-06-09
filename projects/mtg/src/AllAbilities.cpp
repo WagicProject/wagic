@@ -2927,8 +2927,8 @@ AInstantCastRestrictionUEOT::~AInstantCastRestrictionUEOT()
 
 
 //AAMover
-AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost, bool undying, bool persist) :
-    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName),undying(undying),persist(persist)
+AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost, bool undying, bool persist, bool imprint) :
+    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName),undying(undying),persist(persist),imprint(imprint)
 {
     if (_target)
         target = _target;
@@ -2986,6 +2986,8 @@ int AAMover::resolve()
             p->game->putInZone(_target, fromZone, destZone);
             while(_target->next)
                 _target = _target->next;
+            if (imprint)
+                source->imprintedCards.push_back(_target);
             if(andAbility)
             {
                 MTGAbility * andAbilityClone = andAbility->clone();
@@ -3062,6 +3064,8 @@ const char* AAMover::getMenuText(TargetChooser * tc)
         // move card into exile
         else if (dest == game->players[i]->game->exile)
         {
+            if(imprint)
+                return "Imprint";
             return "Exile";
         }
 

@@ -565,6 +565,26 @@ private:
                     intValue +=1;
             }
         }
+        else if (s == "evictg")
+        {
+            intValue = card->imprintG;
+        }
+        else if (s == "evictu")
+        {
+            intValue = card->imprintU;
+        }
+        else if (s == "evictr")
+        {
+            intValue = card->imprintR;
+        }
+        else if (s == "evictb")
+        {
+            intValue = card->imprintB;
+        }
+        else if (s == "evictw")
+        {
+            intValue = card->imprintW;
+        }
         else if (s == "targetedcurses")
         {
             if(card->playerTarget)
@@ -1963,7 +1983,8 @@ public:
     string named;
     bool undying;
     bool persist;
-    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL, bool undying = false, bool persist = false);
+    bool imprint;
+    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL, bool undying = false, bool persist = false, bool imprint = false);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const string getMenuText();

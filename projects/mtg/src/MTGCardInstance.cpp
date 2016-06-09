@@ -100,8 +100,10 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     setText(""); //The text is retrieved from the data anyways
     setName(data->name);
 
-    power = data->power;
-    toughness = data->toughness;
+    power = data->power;//layer 7a
+    toughness = data->toughness;//layer 7a
+    power += pbonus;//layer 7b
+    toughness += tbonus;//layer 7b
     life = toughness;
     lifeOrig = life;
     magicText = data->magicText;
@@ -206,6 +208,14 @@ void MTGCardInstance::initMTGCI()
     myPair = NULL;
     miracle = false;
     countTrini = 0;
+    imprintedCards.clear();
+    imprintG = 0;
+    imprintU = 0;
+    imprintR = 0;
+    imprintB = 0;
+    imprintW = 0;
+    currentimprintName = "";
+    imprintedNames.clear();
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;
