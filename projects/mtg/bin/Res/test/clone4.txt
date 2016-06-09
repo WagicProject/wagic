@@ -1,0 +1,52 @@
+#Testing Clone with Thistledown Liege Fix issue #448
+#we have p/t layers
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:129501
+inplay:Thistledown Liege
+manapool:{3}{U}
+[PLAYER2]
+life:20
+[DO]
+129501
+choice 0
+Thistledown Liege
+next
+#begin
+next
+#attackers
+Thistledown Liege
+129501
+next
+#blockers
+next
+#damage
+next
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main1
+next
+#combat begin
+next
+#attackers
+129501
+next
+#blockers
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Thistledown Liege, 129501
+[PLAYER2]
+life:14
+[END]
