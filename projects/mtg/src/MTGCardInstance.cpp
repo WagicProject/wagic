@@ -1535,15 +1535,13 @@ const string& MTGCardInstance::getSample()
 
 int MTGCardInstance::stepPower(CombatStep step)
 {
+    int damage = has(Constants::COMBATTOUGHNESS) ? toughness : power;
     switch (step)
     {
     case FIRST_STRIKE:
     case END_FIRST_STRIKE:
         if (has(Constants::FIRSTSTRIKE) || has(Constants::DOUBLESTRIKE))
-            if(has(Constants::COMBATTOUGHNESS))
-                return MAX(0, toughness);
-            else
-                return MAX(0, power);
+            return MAX(0, damage);
         else
             return 0;
     case DAMAGE:
@@ -1552,10 +1550,7 @@ int MTGCardInstance::stepPower(CombatStep step)
         if (has(Constants::FIRSTSTRIKE) && !has(Constants::DOUBLESTRIKE))
             return 0;
         else
-            if(has(Constants::COMBATTOUGHNESS))
-                return MAX(0, toughness);
-            else
-                return MAX(0, power);
+            return MAX(0, damage);
     }
 }
 
