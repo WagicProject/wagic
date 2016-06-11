@@ -703,12 +703,10 @@ private:
         else if (s == "morethanfourcards")
         {
             intValue = 0;
-            if(card->playerTarget)//blackvise
-                if ((card->playerTarget->game->hand->nb_cards - 4)>0)
-                    intValue = (card->playerTarget->game->hand->nb_cards - 4);
-            else//viseling
-                if ((card->controller()->opponent()->game->hand->nb_cards - 4)>0)
-                    intValue = (card->controller()->opponent()->game->hand->nb_cards - 4);
+            if ((card->playerTarget) && (card->playerTarget->game->hand->nb_cards - 4)>0)
+                intValue = (card->playerTarget->game->hand->nb_cards - 4);
+            else if ((card->controller()->opponent()->game->hand->nb_cards - 4)>0)
+                intValue = (card->controller()->opponent()->game->hand->nb_cards - 4);
         }
         else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
         {
