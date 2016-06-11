@@ -103,6 +103,7 @@ public:
     int getCost(int color);
     int getManaSymbols(int color);
     int getManaSymbolsHybridMerged(int color);
+    int countHybridsNoPhyrexian();
 
     //Returns NULL if i is greater than nbhybrids
     ManaCostHybrid * getHybridCost(unsigned int i);

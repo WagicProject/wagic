@@ -667,7 +667,7 @@ int ManaCost::getManaSymbolsHybridMerged(int color)
     int result = cost[color];
     for (size_t i = 0; i < hybrids.size(); ++i)
     {
-        result = hybrids[i].getManaSymbolsHybridMerged(color);//removed +
+        result += hybrids[i].getManaSymbolsHybridMerged(color);
     }
     if (extraCosts && extraCosts->costs.size())
     {
@@ -680,6 +680,14 @@ int ManaCost::getManaSymbolsHybridMerged(int color)
             }
         }
     }
+    return result;
+}
+
+int ManaCost::countHybridsNoPhyrexian()
+{
+    int result = 0;
+    for (size_t i = 0; i < hybrids.size(); i++)
+        result ++;
     return result;
 }
 
