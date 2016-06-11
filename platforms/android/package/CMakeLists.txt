@@ -95,9 +95,9 @@ add_custom_command(
          COMMAND ${CMAKE_COMMAND} -E remove ${android_proj_target_files}
          COMMAND ${CMAKE_COMMAND} -E make_directory "${PACKAGE_DIR}/src"
          COMMAND ${CMAKE_COMMAND} -E make_directory "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
-         COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_LIBRARY}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
-         COMMAND ${CMAKE_COMMAND} -E copy "${ZLIB_LIBRARY}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
-         COMMAND ${CMAKE_COMMAND} -E copy "${OPENSL_LIBRARY}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
+#         COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_LIBRARY}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
+#         COMMAND ${CMAKE_COMMAND} -E copy "${ZLIB_LIBRARY}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
+#         COMMAND ${CMAKE_COMMAND} -E copy "${OPENSL_LIBRARY}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
          COMMAND ${CMAKE_COMMAND} -E copy "${wagic_location}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
          COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PACKAGE_DIR}/src"
          COMMAND ${ANDROID_EXECUTABLE} --silent update project --path "${PACKAGE_DIR}" --target "android-${ANDROID_NATIVE_API_LEVEL}" --name "${target_name}"
