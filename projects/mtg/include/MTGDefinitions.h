@@ -244,7 +244,8 @@ class Constants
       DEVOID = 123,
       CANTCHANGELIFE = 124,
       COMBATTOUGHNESS = 125,
-      NB_BASIC_ABILITIES = 126,
+      CANTPAYLIFEORSACCREATURES = 126,
+      NB_BASIC_ABILITIES = 127,
 
 
     RARITY_S = 'S',   //Special Rarity

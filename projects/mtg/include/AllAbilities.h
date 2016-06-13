@@ -634,25 +634,25 @@ private:
         {
             intValue = 0;
             for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
-            {
                 if (card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE) && card->controller()->game->inPlay->cards[j] != card)
                     intValue += card->controller()->game->inPlay->cards[j]->getManaCost()->getConvertedCost();
-            }
         }
         else if (s == "pdauntless")//Dauntless Dourbark
         {
+            MTGGameZone * checkZone = card->controller()->inPlay();
             intValue =
-                countCardTypeinZone("forest",card->controller()->inPlay()) +
-                countCardTypeinZone("treefolk",card->controller()->inPlay());
+                countCardTypeinZone("forest",checkZone) +
+                countCardTypeinZone("treefolk",checkZone);
         }
         else if (s == "pbasiclandtypes")//Basic Land types
         {
+            MTGGameZone * checkZone = card->controller()->inPlay();
             intValue = 
-                    cardHasTypeinZone("forest",card->controller()->inPlay()) +
-                    cardHasTypeinZone("plains",card->controller()->inPlay()) +
-                    cardHasTypeinZone("swamp",card->controller()->inPlay()) +
-                    cardHasTypeinZone("island",card->controller()->inPlay()) +
-                    cardHasTypeinZone("mountain",card->controller()->inPlay());
+                    cardHasTypeinZone("forest",checkZone) +
+                    cardHasTypeinZone("plains",checkZone) +
+                    cardHasTypeinZone("swamp",checkZone) +
+                    cardHasTypeinZone("island",checkZone) +
+                    cardHasTypeinZone("mountain",checkZone);
         }
         else if (s == "myname")//Name of the card you control
         {
@@ -662,9 +662,7 @@ private:
         {
             intValue = 0;
             for (int i = 0; i < 2; i++)
-            {
                 intValue += countCardNameinZone(card->name,card->getObserver()->players[i]->game->battlefield);
-            }
         }
         else if (s == "pgbzombie")//Soulless One
         {
@@ -689,24 +687,24 @@ private:
         {
             for (int i = 0; i < 2; i++)
             {
+                MTGGameZone * checkZone = card->getObserver()->players[i]->game->graveyard;
                 intValue = 
-                    cardHasTypeinZone("planeswalker",card->getObserver()->players[i]->game->graveyard) +
-                    cardHasTypeinZone("tribal",card->getObserver()->players[i]->game->graveyard) +
-                    cardHasTypeinZone("sorcery",card->getObserver()->players[i]->game->graveyard) +
-                    cardHasTypeinZone("land",card->getObserver()->players[i]->game->graveyard) +
-                    cardHasTypeinZone("instant",card->getObserver()->players[i]->game->graveyard) +
-                    cardHasTypeinZone("enchantment",card->getObserver()->players[i]->game->graveyard) +
-                    cardHasTypeinZone("creature",card->getObserver()->players[i]->game->graveyard) +
-                    cardHasTypeinZone("artifact",card->getObserver()->players[i]->game->graveyard);
+                    cardHasTypeinZone("planeswalker",checkZone) +
+                    cardHasTypeinZone("tribal",checkZone) +
+                    cardHasTypeinZone("sorcery",checkZone) +
+                    cardHasTypeinZone("land",checkZone) +
+                    cardHasTypeinZone("instant",checkZone) +
+                    cardHasTypeinZone("enchantment",checkZone) +
+                    cardHasTypeinZone("creature",checkZone) +
+                    cardHasTypeinZone("artifact",checkZone);
             }
         }
         else if (s == "morethanfourcards")
         {
             intValue = 0;
-            if ((card->playerTarget) && (card->playerTarget->game->hand->nb_cards - 4)>0)
-                intValue = (card->playerTarget->game->hand->nb_cards - 4);
-            else if ((card->controller()->opponent()->game->hand->nb_cards - 4)>0)
-                intValue = (card->controller()->opponent()->game->hand->nb_cards - 4);
+            int damage = card->playerTarget ? card->playerTarget->game->hand->nb_cards - 4 : card->controller()->opponent()->game->hand->nb_cards - 4;
+            if ( damage > 0 )
+                intValue = damage;
         }
         else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
         {

@@ -527,15 +527,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Angel of Jubilation
-text=Flying -- Other nonblack creatures you control get +1/+1. -- Players can't pay life or sacrifice creatures to cast spells or activate abilities.
-mana={1}{W}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=3
-[/card]
-[card]
 name=Angel of Renewal
 text=Flying -- When Angel of Renewal enters the battlefield, you gain 1 life for each creature you control.
 mana={5}{W}
