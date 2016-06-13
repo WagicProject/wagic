@@ -253,7 +253,9 @@ bool Player::hasPossibleAttackers()
     for (int j = 0; j < nbcards; ++j)
     {
         MTGCardInstance * c = z->cards[j];
-        if (c->canAttack())
+        if (!c->isTapped() &&
+            !c->hasSummoningSickness() &&
+            c->isCreature())
             return true;
     }
     return false;
