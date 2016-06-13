@@ -3075,6 +3075,17 @@ power=4
 toughness=6
 [/card]
 [card]
+name=Angel of Jubilation
+abilities=flying,cantpaylifeorsaccreatures
+auto=lord(other creature[-black]|mybattlefield) 1/1
+text=Flying -- Other nonblack creatures you control get +1/+1. -- Players can't pay life or sacrifice creatures to cast spells or activate abilities.
+mana={1}{W}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+[card]
 name=Angel of Light
 abilities=flying,vigilance
 text=Flying, vigilance

@@ -76,6 +76,7 @@ class SacrificeCost : public ExtraCost
 {
 public:
   SacrificeCost(TargetChooser *_tc = NULL);
+  virtual int canPay();
   virtual int doPay();
   virtual SacrificeCost * clone() const;
 };
