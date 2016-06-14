@@ -219,6 +219,18 @@ public:
     virtual MTGSuspendRule * clone() const;
 };
 
+class MTGAttackCostRule: public PermanentAbility
+{
+public:
+    string scost;
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGAttackCostRule(GameObserver* observer, int _id);
+    const string getMenuText();
+    virtual MTGAttackCostRule * clone() const;
+};
+
 class MTGAttackRule: public PermanentAbility, public Limitor
 {
 public:

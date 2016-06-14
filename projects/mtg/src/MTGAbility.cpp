@@ -1179,6 +1179,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGAttackRule(observer, -1));
         return NULL;
     }
+    //this rule handles attacking cost ability during attacker phase
+    found = s.find("attackcostrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGAttackCostRule(observer, -1));
+        return NULL;
+    }
     //this rule handles blocking ability during blocker phase
     found = s.find("blockrule");
     if(found != string::npos)
@@ -2827,6 +2834,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (s.find("reduceto:") != string::npos)
     {
         return NEW AReduceToAbility(observer, id, card,s.substr(9));
+    }
+
+    //attack cost
+    if (s.find("attackcost:") != string::npos)
+    {
+        return NEW AAttackSetCost(observer, id, card, s.substr(11));
     }
 
     //flanking

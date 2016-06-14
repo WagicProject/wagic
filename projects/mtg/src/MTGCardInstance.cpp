@@ -209,6 +209,9 @@ void MTGCardInstance::initMTGCI()
     miracle = false;
     countTrini = 0;
     imprintedCards.clear();
+    attackCost = 0;
+    attackCostBackup = 0;
+    attackPlaneswalkerCost = 0;
     imprintG = 0;
     imprintU = 0;
     imprintR = 0;

@@ -246,8 +246,8 @@ int LifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target->controller()->life <= 0 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) ||
-        _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES) ||
-        _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES))
+        _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) ||
+        _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
     {
         return 0;
     }
@@ -286,8 +286,8 @@ int SpecificLifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if(_target->controller()->life >= slc && !_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
-       !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES) &&
-       !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES))
+       !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
+       !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
     {
         return 1;
     }
@@ -336,15 +336,15 @@ int LifeorManaCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if ( _target->controller()->life <= 1 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) ||
-       _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES) ||
-       _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES))
+       _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) ||
+       _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
     {
         return _target->controller()->getManaPool()->canAfford(getManaCost());
     }
     else if((_target->controller()->life > 1 || _target->controller()->getManaPool()->canAfford(getManaCost())) && 
         (!_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
-        !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES) &&
-        !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES)))
+        !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
+        !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE)))
     {
         return 1;
     }
@@ -936,11 +936,8 @@ ExtraCost("Select creature to offer", _tc)
 
 int Offering::canPay()
 {
-    if(source->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES) ||
-        source->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES))
-    {
+    if (target && target->has(Constants::CANTBESACRIFIED))
         return 0;
-    }
 
     if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
     {
@@ -1001,13 +998,8 @@ SacrificeCost::SacrificeCost(TargetChooser *_tc)
 
 int SacrificeCost::canPay()
 {
-    if(source->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES) ||
-        source->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFEORSACCREATURES))
-    {
-        if (target && target->isCreature())
-            return 0;
-    }
-
+    if (target && target->has(Constants::CANTBESACRIFIED))
+        return 0;
     return 1;
 }
 

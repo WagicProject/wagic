@@ -156,7 +156,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "devoid",
     "cantchangelife",
     "combattoughness",
-    "cantpaylifeorsaccreatures"
+    "cantpaylife",
+    "cantbesacrified"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

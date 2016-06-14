@@ -258,6 +258,9 @@ public:
     ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false);
     int countTrini;
     vector<MTGCardInstance*>imprintedCards;
+    int attackCost;
+    int attackCostBackup;
+    int attackPlaneswalkerCost;
     int imprintG;
     int imprintU;
     int imprintR;

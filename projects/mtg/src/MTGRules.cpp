@@ -1348,12 +1348,74 @@ MTGOverloadRule * MTGOverloadRule::clone() const
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+MTGAttackCostRule::MTGAttackCostRule(GameObserver* observer, int _id) :
+    PermanentAbility(observer, _id)
+{
+    aType = MTGAbility::ATTACK_COST;
+    scost = "Pay to attack";
+}
+
+int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
+{
+
+    if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
+    {
+        if(card->isPhased)
+            return 0;
+        if(card->attackCost < 1)
+            return 0;
+        ManaCost * playerMana = card->controller()->getManaPool();
+        ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
+        attackcost->add(0,card->attackCostBackup);
+        if(attackcost->extraCosts)
+            for(unsigned int i = 0; i < attackcost->extraCosts->costs.size();i++)
+            {
+                attackcost->extraCosts->costs[i]->setSource(card);
+            }
+        scost = attackcost->getConvertedCost();
+        if (playerMana->canAfford(attackcost))
+            return 1;
+    }
+    return 0;
+}
+
+int MTGAttackCostRule::reactToClick(MTGCardInstance * card)
+{
+    if (!isReactingToClick(card))
+        return 0;
+    Player * player = game->currentlyActing();
+    ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
+    attackcost->add(0,card->attackCostBackup);
+    ManaCost * playerMana = player->getManaPool();
+    playerMana->pay(attackcost);
+    card->attackCost = 0;
+    return 1;
+}
+
+ostream& MTGAttackCostRule::toString(ostream& out) const
+{
+    out << "MTGAttackCostRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+const string MTGAttackCostRule::getMenuText()
+{
+    sprintf(menuText, "Pay to attack");
+    return menuText;
+}
+
+MTGAttackCostRule * MTGAttackCostRule::clone() const
+{
+    return NEW MTGAttackCostRule(*this);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 bool MTGAttackRule::select(Target* t)
 {
     if (CardView* c = dynamic_cast<CardView*>(t))
     {
         MTGCardInstance * card = c->getCard();
-        if (card->canAttack() && !card->isPhased)
+        if (card->canAttack() && !card->isPhased && card->attackCost < 1)
             return true;
     }
     return false;
@@ -1377,7 +1439,7 @@ int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
             return 0;
         if (card->isAttacker())
             return 1;
-        if (card->canAttack())
+        if (card->canAttack() && card->attackCost < 1)
             return 1;
     }
     return 0;
@@ -1453,7 +1515,7 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
             return 0;
         if (card->isAttacker())
             return 1;
-        if (card->canAttack())
+        if (card->canAttack() && card->attackPlaneswalkerCost < 1)
             return 1;
     }
     return 0;

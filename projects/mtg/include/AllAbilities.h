@@ -4863,6 +4863,19 @@ public:
 
 };
 
+//AAttackSetCost
+class AAttackSetCost: public MTGAbility
+{
+public:
+    string number;
+    AAttackSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number);
+    void Update(float dt);
+    int addToGame();
+    int destroy();
+    const string getMenuText();
+    AAttackSetCost * clone() const;
+};
+
 //ABlink
 class ABlink: public MTGAbility
 {
