@@ -16,6 +16,7 @@ auto=morphrule
 auto=payzerorule
 auto=overloadrule
 auto=attackrule
+auto=attackcostrule
 auto=blockrule
 auto=combattriggerrule
 auto=legendrule

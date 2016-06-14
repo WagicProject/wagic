@@ -12123,12 +12123,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Koskun Falls
-text=At the beginning of your upkeep, sacrifice Koskun Falls unless you tap an untapped creature you control. -- Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
-mana={2}{B}{B}
-type=World Enchantment
-[/card]
-[card]
 name=Kozilek's Channeler
 text={T}: Add {C}{C} to your mana pool.
 mana={5}

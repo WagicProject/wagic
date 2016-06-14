@@ -5371,6 +5371,51 @@ APhaseActionGeneric::~APhaseActionGeneric()
     SAFE_DELETE(ability);
 }
 
+//AAttackSetCost
+AAttackSetCost::AAttackSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number) :
+    MTGAbility(observer, _id, _source), number(number)
+{
+}
+
+void AAttackSetCost::Update(float dt)
+{
+    if(game->getCurrentGamePhase() != MTG_PHASE_COMBATATTACKERS)
+    {
+        source->attackCost = source->attackCostBackup;
+        MTGAbility::Update(dt);
+    }
+}
+
+int AAttackSetCost::addToGame()
+{
+    WParsedInt attackcost(number, NULL, source);
+    source->attackCost += attackcost.getValue();
+    source->attackCostBackup += attackcost.getValue();
+
+    return MTGAbility::addToGame();
+}
+
+int AAttackSetCost::destroy()
+{
+    
+    WParsedInt attackcost(number, NULL, source);
+    source->attackCost -= attackcost.getValue();
+    source->attackCostBackup -= attackcost.getValue();
+
+    return 1;
+}
+
+const string AAttackSetCost::getMenuText()
+{
+    return "Attack Cost";
+}
+
+AAttackSetCost * AAttackSetCost::clone() const
+{
+    return NEW AAttackSetCost(*this);
+}
+
+
 //a blink
 ABlink::ABlink(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, bool blinkueot, bool blinkForSource, bool blinkhand, MTGAbility * stored) :
 MTGAbility(observer, _id, card),blinkueot(blinkueot),blinkForSource(blinkForSource),blinkhand(blinkhand),stored(stored)
