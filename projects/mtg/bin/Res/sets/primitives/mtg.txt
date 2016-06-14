@@ -4301,18 +4301,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Archangel of Tithes
-abilities=flying
-auto=this(untapped) lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{1}]] name(pay 1 mana) donothing?cantattack all(this)]))
-auto=@combat(attacking) source(this):all(creature|opponentbattlefield) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?cantblock all(this)]))
-text=Flying -- As long as Archangel of Tithes is untapped, creatures can't attack you or a planeswalker you control unless their controller pays {1} for each of those creatures. -- As long as Archangel of Tithes is attacking, creatures can't block unless their controller pays {1} for each of those creatures.
-mana={1}{W}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=5
-[/card]
-[card]
 name=Archangel's Light
 auto=life:twicetype:*:mygraveyard
 auto=moveto(myLibrary) all(*|myGraveyard) && shuffle
@@ -29330,7 +29318,7 @@ type=Instant
 name=Elephant Grass
 auto=cumulativeupcost[{1}] sacrifice
 auto=lord(creature[black]|opponentbattlefield) cantattack
-auto=lord(creature[-black]|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Black creatures can't attack you. -- Nonblack creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={G}
 type=Enchantment
@@ -38882,7 +38870,7 @@ subtype=Aura
 [/card]
 [card]
 name=Ghostly Prison
-auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
 text=Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={2}{W}
 type=Enchantment
@@ -54503,6 +54491,15 @@ type=Creature
 subtype=Lizard
 power=3
 toughness=3
+[/card]
+[card]
+name=Koskun Falls
+auto=upcost[{T(creature|mybattlefield)}] sacrifice
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
+text=At the beginning of your upkeep, sacrifice Koskun Falls unless you tap an untapped creature you control. -- Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+mana={2}{B}{B}
+type=World Enchantment
 [/card]
 [card]
 name=Koskun Keep
@@ -75631,7 +75628,7 @@ toughness=1
 [/card]
 [card]
 name=Propaganda
-auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
 text=Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={2}{U}
 type=Enchantment
@@ -114261,7 +114258,7 @@ subtype=Aura
 [card]
 name=Windborn Muse
 abilities=flying
-auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={3}{W}
 type=Creature
