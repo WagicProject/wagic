@@ -1387,7 +1387,7 @@ int MTGAttackCostRule::reactToClick(MTGCardInstance * card)
     ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
     attackcost->add(0,card->attackCostBackup);
     ManaCost * playerMana = player->getManaPool();
-    player->getManaPool()->pay(attackcost);
+    playerMana->pay(attackcost);
     card->attackCost = 0;
     return 1;
 }
