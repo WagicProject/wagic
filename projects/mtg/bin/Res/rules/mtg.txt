@@ -21,6 +21,7 @@ auto=overloadrule
 auto=attackrule
 auto=attackcostrule
 auto=blockrule
+auto=blockcostrule
 auto=combattriggerrule
 auto=legendrule
 auto=planeswalkerrule

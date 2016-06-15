@@ -212,6 +212,9 @@ void MTGCardInstance::initMTGCI()
     attackCost = 0;
     attackCostBackup = 0;
     attackPlaneswalkerCost = 0;
+    attackPlaneswalkerCostBackup = 0;
+    blockCost = 0;
+    blockCostBackup = 0;
     imprintG = 0;
     imprintU = 0;
     imprintR = 0;

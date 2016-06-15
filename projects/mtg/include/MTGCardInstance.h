@@ -261,6 +261,9 @@ public:
     int attackCost;
     int attackCostBackup;
     int attackPlaneswalkerCost;
+    int attackPlaneswalkerCostBackup;
+    int blockCost;
+    int blockCostBackup;
     int imprintG;
     int imprintU;
     int imprintR;

@@ -4290,6 +4290,18 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Archangel of Tithes
+abilities=flying
+auto=this(untapped) lord(creature|opponentbattlefield) transforms((,newability[attackpwcost:1]))
+auto=this(attacking) lord(creature|opponentbattlefield) transforms((,newability[blockcost:1]))
+text=Flying -- As long as Archangel of Tithes is untapped, creatures can't attack you or a planeswalker you control unless their controller pays {1} for each of those creatures. -- As long as Archangel of Tithes is attacking, creatures can't block unless their controller pays {1} for each of those creatures.
+mana={1}{W}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=5
+[/card]
+[card]
 name=Archangel of Thune
 abilities=flying,lifelink
 auto=@lifeof(player):all(creature|mybattlefield) counter(1/1,1) 
@@ -18356,6 +18368,17 @@ name=Collective Blessing
 auto=lord(creature|mybattlefield) 3/3
 text=Creatures you control get +3/+3.
 mana={3}{G}{G}{W}
+type=Enchantment
+[/card]
+[card]
+name=Collective Restraint
+auto=aslongas(forest|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+auto=aslongas(island|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+auto=aslongas(mountain|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+auto=aslongas(swamp|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+auto=aslongas(plains|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+text=Domain — Creatures can't attack you unless their controller pays {X} for each creature he or she controls that's attacking you, where X is the number of basic land types among lands you control.
+mana={3}{U}
 type=Enchantment
 [/card]
 [card]
@@ -112257,11 +112280,10 @@ power=3
 toughness=6
 [/card]
 [card]
-name=War Dance
-auto=@each my upkeep:may counter(0/0,1,Verse)
-auto={S}:thisforeach(counter{0/0.1.Verse}) 1/1 target(creature)
-text=At the beginning of your upkeep, you may put a verse counter on War Dance. -- Sacrifice War Dance: Target creature gets +X/+X until end of turn, where X is the number of verse counters on War Dance.
-mana={G}
+name=War Cadence
+auto={X}{U}:name(Block X Cost) thisforeach(X) all(creature) transforms((,newability[blockcost:1])) ueot
+text={X}{R}: This turn, creatures can't block unless their controller pays {X} for each blocking creature he or she controls.
+mana={2}{R}
 type=Enchantment
 [/card]
 [card]
@@ -112270,6 +112292,14 @@ auto={3}{T}:trample target(creature)
 text={3}, {T}: Target creature gains trample until end of turn.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=War Dance
+auto=@each my upkeep:may counter(0/0,1,Verse)
+auto={S}:thisforeach(counter{0/0.1.Verse}) 1/1 target(creature)
+text=At the beginning of your upkeep, you may put a verse counter on War Dance. -- Sacrifice War Dance: Target creature gets +X/+X until end of turn, where X is the number of verse counters on War Dance.
+mana={G}
+type=Enchantment
 [/card]
 [card]
 name=War Elemental
@@ -112346,6 +112376,13 @@ auto=life:type:creature:battlefield controller
 text=You gain life equal to the number of creatures on the battlefield plus the number of artifacts on the battlefield.
 mana={3}{W}
 type=Instant
+[/card]
+[card]
+name=War Tax
+auto={X}{U}:name(Attack X Cost) thisforeach(X) all(creature) transforms((,newability[attackcost:1])) ueot
+text={X}{U}: This turn, creatures can't attack unless their controller pays {X} for each attacking creature he or she controls.
+mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 name=War-Name Aspirant

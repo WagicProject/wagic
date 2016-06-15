@@ -1193,6 +1193,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGBlockRule(observer, -1));
         return NULL;
     }
+    //this rule handles blocking cost ability during blocker phase
+    found = s.find("blockcostrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGBlockCostRule(observer, -1));
+        return NULL;
+    }
     //this rule handles cards that have soulbond
     found = s.find("soulbondrule");
     if(found != string::npos)
@@ -2840,6 +2847,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (s.find("attackcost:") != string::npos)
     {
         return NEW AAttackSetCost(observer, id, card, s.substr(11));
+    }
+
+    //attack cost + planeswalker
+    if (s.find("attackpwcost:") != string::npos)
+    {
+        return NEW AAttackSetCost(observer, id, card, s.substr(13),true);
+    }
+
+    //block cost
+    if (s.find("blockcost:") != string::npos)
+    {
+        return NEW ABlockSetCost(observer, id, card, s.substr(10));
     }
 
     //flanking
