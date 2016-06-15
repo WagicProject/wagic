@@ -3770,12 +3770,6 @@ mana={3}{G}
 type=Instant
 [/card]
 [card]
-name=Collective Restraint
-text=Domain — Creatures can't attack you unless their controller pays {X} for each creature he or she controls that's attacking you, where X is the number of basic land types among lands you control.
-mana={3}{U}
-type=Enchantment
-[/card]
-[card]
 name=Collective Voyage
 text=Join forces — Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
 mana={G}
@@ -25525,12 +25519,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=War Cadence
-text={X}{R}: This turn, creatures can't block unless their controller pays {X} for each blocking creature he or she controls.
-mana={2}{R}
-type=Enchantment
-[/card]
-[card]
 name=War Elephant
 text=Trample; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={3}{W}
@@ -25538,12 +25526,6 @@ type=Creature
 subtype=Elephant
 power=2
 toughness=2
-[/card]
-[card]
-name=War Tax
-text={X}{U}: This turn, creatures can't attack unless their controller pays {X} for each attacking creature he or she controls.
-mana={2}{U}
-type=Enchantment
 [/card]
 [card]
 name=Warbringer

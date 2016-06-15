@@ -286,6 +286,18 @@ public:
     virtual MTGCombatTriggersRule * clone() const;
 };
 
+class MTGBlockCostRule: public PermanentAbility
+{
+public:
+    string scost;
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGBlockCostRule(GameObserver* observer, int _id);
+    const string getMenuText();
+    virtual MTGBlockCostRule * clone() const;
+};
+
 class MTGBlockRule: public PermanentAbility
 {
 public:

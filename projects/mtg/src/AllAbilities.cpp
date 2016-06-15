@@ -5372,8 +5372,8 @@ APhaseActionGeneric::~APhaseActionGeneric()
 }
 
 //AAttackSetCost
-AAttackSetCost::AAttackSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number) :
-    MTGAbility(observer, _id, _source), number(number)
+AAttackSetCost::AAttackSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number, bool pw) :
+    MTGAbility(observer, _id, _source), number(number), pw(pw)
 {
 }
 
@@ -5382,6 +5382,8 @@ void AAttackSetCost::Update(float dt)
     if(game->getCurrentGamePhase() != MTG_PHASE_COMBATATTACKERS)
     {
         source->attackCost = source->attackCostBackup;
+        if(pw)
+            source->attackPlaneswalkerCost = source->attackPlaneswalkerCostBackup;
         MTGAbility::Update(dt);
     }
 }
@@ -5391,6 +5393,11 @@ int AAttackSetCost::addToGame()
     WParsedInt attackcost(number, NULL, source);
     source->attackCost += attackcost.getValue();
     source->attackCostBackup += attackcost.getValue();
+    if(pw)
+    {
+        source->attackPlaneswalkerCost += attackcost.getValue();
+        source->attackPlaneswalkerCostBackup += attackcost.getValue();
+    }
 
     return MTGAbility::addToGame();
 }
@@ -5401,6 +5408,11 @@ int AAttackSetCost::destroy()
     WParsedInt attackcost(number, NULL, source);
     source->attackCost -= attackcost.getValue();
     source->attackCostBackup -= attackcost.getValue();
+    if(pw)
+    {
+        source->attackPlaneswalkerCost -= attackcost.getValue();
+        source->attackPlaneswalkerCostBackup -= attackcost.getValue();
+    }
 
     return 1;
 }
@@ -5415,6 +5427,49 @@ AAttackSetCost * AAttackSetCost::clone() const
     return NEW AAttackSetCost(*this);
 }
 
+//ABlockSetCost
+ABlockSetCost::ABlockSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number) :
+    MTGAbility(observer, _id, _source), number(number)
+{
+}
+
+void ABlockSetCost::Update(float dt)
+{
+    if(game->getCurrentGamePhase() != MTG_PHASE_COMBATBLOCKERS)
+    {
+        source->blockCost = source->blockCostBackup;
+        MTGAbility::Update(dt);
+    }
+}
+
+int ABlockSetCost::addToGame()
+{
+    WParsedInt blockCost(number, NULL, source);
+    source->blockCost += blockCost.getValue();
+    source->blockCostBackup += blockCost.getValue();
+
+    return MTGAbility::addToGame();
+}
+
+int ABlockSetCost::destroy()
+{
+    
+    WParsedInt blockCost(number, NULL, source);
+    source->blockCost -= blockCost.getValue();
+    source->blockCostBackup -= blockCost.getValue();
+
+    return 1;
+}
+
+const string ABlockSetCost::getMenuText()
+{
+    return "Block Cost";
+}
+
+ABlockSetCost * ABlockSetCost::clone() const
+{
+    return NEW ABlockSetCost(*this);
+}
 
 //a blink
 ABlink::ABlink(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, bool blinkueot, bool blinkForSource, bool blinkhand, MTGAbility * stored) :

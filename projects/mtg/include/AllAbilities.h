@@ -4868,12 +4868,26 @@ class AAttackSetCost: public MTGAbility
 {
 public:
     string number;
-    AAttackSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number);
+    bool pw;
+    AAttackSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number, bool pw = false);
     void Update(float dt);
     int addToGame();
     int destroy();
     const string getMenuText();
     AAttackSetCost * clone() const;
+};
+
+//ABlockSetCost
+class ABlockSetCost: public MTGAbility
+{
+public:
+    string number;
+    ABlockSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number);
+    void Update(float dt);
+    int addToGame();
+    int destroy();
+    const string getMenuText();
+    ABlockSetCost * clone() const;
 };
 
 //ABlink

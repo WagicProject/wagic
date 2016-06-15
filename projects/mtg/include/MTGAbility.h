@@ -217,7 +217,7 @@ public:
         OVERLOAD_COST = 34,
         BESTOW_COST = 35,
         ATTACK_COST = 36,
-        ATTACKPLANESWALKER_COST = 37,
+        BLOCK_COST = 37,
     };
 };
 
