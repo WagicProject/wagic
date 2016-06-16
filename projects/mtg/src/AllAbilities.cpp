@@ -511,7 +511,7 @@ AACopier * AACopier::clone() const
     return NEW AACopier(*this);
 }
 
-//phaser
+//phaseout
 AAPhaseOut::AAPhaseOut(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
     ActivatedAbility(observer, _id, _source, _cost, 0)
 {
@@ -542,6 +542,60 @@ const string AAPhaseOut::getMenuText()
 AAPhaseOut * AAPhaseOut::clone() const
 {
     return NEW AAPhaseOut(*this);
+}
+
+//AAImprint
+AAImprint::AAImprint(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+}
+
+int AAImprint::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        Player * p = _target->controller();
+        if(p)
+            p->game->putInExile(_target);
+
+        while(_target->next)
+            _target = _target->next;
+
+        source->imprintedCards.push_back(_target);
+
+        if (source->imprintedCards.size())
+        {
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_GREEN))
+                source->imprintG += 1;
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_BLUE))
+                source->imprintU += 1;
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_RED))
+                source->imprintR += 1;
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_BLACK))
+                source->imprintB += 1;
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_WHITE))
+                source->imprintW += 1;
+            if (source->imprintedCards.back()->getName().size())
+            {
+                source->currentimprintName = source->imprintedCards.back()->getName();
+                source->imprintedNames.push_back(source->imprintedCards.back()->getName());
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const string AAImprint::getMenuText()
+{
+    return "Imprint";
+}
+
+AAImprint * AAImprint::clone() const
+{
+    return NEW AAImprint(*this);
 }
 
 //Counters
@@ -2928,8 +2982,8 @@ AInstantCastRestrictionUEOT::~AInstantCastRestrictionUEOT()
 
 
 //AAMover
-AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost, bool undying, bool persist, bool imprint) :
-    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName),undying(undying),persist(persist),imprint(imprint)
+AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost, bool undying, bool persist) :
+    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName),undying(undying),persist(persist)
 {
     if (_target)
         target = _target;
@@ -2987,8 +3041,6 @@ int AAMover::resolve()
             p->game->putInZone(_target, fromZone, destZone);
             while(_target->next)
                 _target = _target->next;
-            if (imprint)
-                source->imprintedCards.push_back(_target);
             if(andAbility)
             {
                 MTGAbility * andAbilityClone = andAbility->clone();
@@ -3065,8 +3117,6 @@ const char* AAMover::getMenuText(TargetChooser * tc)
         // move card into exile
         else if (dest == game->players[i]->game->exile)
         {
-            if(imprint)
-                return "Imprint";
             return "Exile";
         }
 

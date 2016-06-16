@@ -1665,7 +1665,7 @@ public:
     const string getMenuText();
     AACopier * clone() const;
 };
-//imprint
+//phaseout
 class AAPhaseOut: public ActivatedAbility
 {
 public:
@@ -1673,6 +1673,15 @@ public:
     int resolve();
     const string getMenuText();
     AAPhaseOut * clone() const;
+};
+//AAImprint
+class AAImprint: public ActivatedAbility
+{
+public:
+    AAImprint(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    int resolve();
+    const string getMenuText();
+    AAImprint * clone() const;
 };
 //cloning...this makes a token thats a copy of the target.
 class AACloner: public ActivatedAbility
@@ -1703,8 +1712,7 @@ public:
     string named;
     bool undying;
     bool persist;
-    bool imprint;
-    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL, bool undying = false, bool persist = false, bool imprint = false);
+    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL, bool undying = false, bool persist = false);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const string getMenuText();

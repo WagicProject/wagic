@@ -693,37 +693,15 @@ void GameObserver::gameStateBasedEffects()
                 for(size_t ic = 0; ic < card->imprintedCards.size(); ic++)
                 {
                     if(!isInExile(card->imprintedCards[ic])) 
-                        card->imprintedCards.erase(card->imprintedCards.begin() + ic);
-                }
-            }
-            //reset imprints
-            if(isInPlay(card))
-            {
-                card->imprintG = 0;
-                card->imprintU = 0;
-                card->imprintR = 0;
-                card->imprintB = 0;
-                card->imprintW = 0;
-                card->currentimprintName = "";
-                if (card->imprintedCards.size())
-                {
-                    for(size_t i = 0; i < card->imprintedCards.size(); i++)
                     {
-                        if (card->imprintedCards[i]->hasColor(Constants::MTG_COLOR_GREEN))
-                            card->imprintG += 1;
-                        if (card->imprintedCards[i]->hasColor(Constants::MTG_COLOR_BLUE))
-                            card->imprintU += 1;
-                        if (card->imprintedCards[i]->hasColor(Constants::MTG_COLOR_RED))
-                            card->imprintR += 1;
-                        if (card->imprintedCards[i]->hasColor(Constants::MTG_COLOR_BLACK))
-                            card->imprintB += 1;
-                        if (card->imprintedCards[i]->hasColor(Constants::MTG_COLOR_WHITE))
-                            card->imprintW += 1;
-                        if (card->imprintedCards[i]->getName().size())
-                        {
-                            card->currentimprintName = card->imprintedCards[i]->getName();
-                            card->imprintedNames.push_back(card->imprintedCards[i]->getName());
-                        }
+                        card->imprintG = 0;
+                        card->imprintU = 0;
+                        card->imprintR = 0;
+                        card->imprintB = 0;
+                        card->imprintW = 0;
+                        card->currentimprintName = "";
+                        card->imprintedNames.clear();
+                        card->imprintedCards.erase(card->imprintedCards.begin() + ic);
                     }
                 }
             }

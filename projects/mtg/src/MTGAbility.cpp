@@ -2378,7 +2378,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("imprint");
     if (found != string::npos)
     {
-        MTGAbility * a = NEW AAMover(observer, id, card, target, "exile",newName,NULL,false,false,true);
+        MTGAbility * a = NEW AAImprint(observer, id, card, target);
         a->oneShot = 1;
         return a;
     }
