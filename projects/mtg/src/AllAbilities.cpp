@@ -565,6 +565,27 @@ int AAImprint::resolve()
 
         source->imprintedCards.push_back(_target);
 
+        if (source->imprintedCards.size())
+        {
+            for(size_t i = 0; i < source->imprintedCards.size(); i++)
+            {
+                if (source->imprintedCards[i]->hasColor(Constants::MTG_COLOR_GREEN))
+                    source->imprintG += 1;
+                if (source->imprintedCards[i]->hasColor(Constants::MTG_COLOR_BLUE))
+                    source->imprintU += 1;
+                if (source->imprintedCards[i]->hasColor(Constants::MTG_COLOR_RED))
+                    source->imprintR += 1;
+                if (source->imprintedCards[i]->hasColor(Constants::MTG_COLOR_BLACK))
+                    source->imprintB += 1;
+                if (source->imprintedCards[i]->hasColor(Constants::MTG_COLOR_WHITE))
+                    source->imprintW += 1;
+                if (source->imprintedCards[i]->getName().size())
+                {
+                    source->currentimprintName = source->imprintedCards[i]->getName();
+                    source->imprintedNames.push_back(source->imprintedCards[i]->getName());
+                }
+            }
+        }
         return 1;
     }
     return 0;
