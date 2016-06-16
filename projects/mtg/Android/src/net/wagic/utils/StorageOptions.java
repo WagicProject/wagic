@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.util.HashSet;
+import java.util.Set;
+import android.os.Build;
+
 import android.os.Environment;
 import android.util.Log;
 
@@ -21,8 +25,10 @@ public class StorageOptions
     public static void determineStorageOptions()
     {
         initializeMountPoints();
+        readMountsFileTest();
         readMountsFile();
         readVoldFile();
+        removeDuplicates(mMounts);
         compareMountsWithVold();
         testAndCleanMountsList();
         setProperties();
@@ -37,6 +43,42 @@ public class StorageOptions
         {
             // an error occurred trying to get the canonical path, use '/mnt/sdcard' instead
             defaultMountPoint = "/mnt/sdcard";
+        }
+    }
+
+    private static void readMountsFileTest()
+    {
+        /*
+         * Test mountpoints storage -kevlahnota
+         */
+
+        try
+        {
+            Scanner scanner = new Scanner(new File("/proc/mounts"));
+            while (scanner.hasNext())
+            {
+                String line = scanner.nextLine();
+                if (line.startsWith("/"))
+                {
+                    String[] lineElements = line.split("\\s+");
+                    if ("vfat".equals(lineElements[2]) || "fuse".equals(lineElements[2])) 
+                    {
+                        File mountPoint = new File(lineElements[1]);
+                        if (!lineElements[1].equals(defaultMountPoint))
+                            if (mountPoint.isDirectory() && mountPoint.canRead())
+                                mMounts.add(lineElements[1]);
+                    }
+                }
+            }
+        } catch (FileNotFoundException fnfex)
+        {
+            // if proc/mount doesn't exist we just use
+            Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+            mMounts.add(defaultMountPoint);
+        } catch (Exception e)
+        {
+            Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+            mMounts.add(defaultMountPoint);
         }
     }
 
@@ -106,6 +148,23 @@ public class StorageOptions
             mMounts.add(defaultMountPoint);
         }
     }
+    
+    private static ArrayList<String> removeDuplicates(ArrayList<String> list) 
+    {
+        ArrayList<String> result = new ArrayList<String>();
+
+        HashSet<String> set = new HashSet<String>();
+
+        for (String item : list) 
+        {
+            if (!set.contains(item)) 
+            {
+                result.add(item);
+                set.add(item);
+            }
+        }
+        return result;
+    }
 
     private static void compareMountsWithVold()
     {
@@ -132,13 +191,23 @@ public class StorageOptions
         /*
          * Now that we have a cleaned list of mount paths Test each one to make sure it's a valid and available path. If it is not, remove it from the list.
          */
-
+        int t = 0;
         for (int i = 0; i < mMounts.size(); i++)
         {
+            t++;
             String mount = mMounts.get(i);
             File root = new File(mount);
             if (!root.exists() || !root.isDirectory() || !root.canWrite())
                 mMounts.remove(i--);
+        }
+        
+        if (t == 0 && Build.VERSION.SDK_INT >= 19)
+        {//If none is found and build version is kitkat or higher 
+            File root = new File("/storage/sdcard0");
+            if (root.exists() && root.isDirectory() && root.canWrite())
+                mMounts.add("/storage/sdcard0");
+            if (isExternalStorageAvailable() && !isExternalStorageReadOnly())
+                mMounts.add("/storage/sdcard1");
         }
     }
 
@@ -153,10 +222,10 @@ public class StorageOptions
         int i = 1;
         for (String path : mMounts)
         { // TODO: /mnt/sdcard is assumed to always mean internal storage. Use this comparison until there is a better way to do this
-            if ("/mnt/sdcard".equalsIgnoreCase(path))
-                mLabels.add("Built-in Storage");
+            if ("/mnt/sdcard".equalsIgnoreCase(path) || "/storage/sdcard0".equalsIgnoreCase(path))
+                mLabels.add("Internal SD " + "[" + path + "]");
             else
-                mLabels.add("External SD Card " + i++);
+                mLabels.add("External SD " + " [" + path + "]");
         }
 
         labels = new String[mLabels.size()];
@@ -170,5 +239,21 @@ public class StorageOptions
         // don't need this anymore, clear the mounts list to reduce memory
         // use and to prepare it for the next time it's needed.
         mMounts.clear();
+    }
+    
+    private static boolean isExternalStorageReadOnly() {
+        String extStorageState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)) {
+            return true;
+        }
+        return false;
+    }
+ 
+    private static boolean isExternalStorageAvailable() {
+        String extStorageState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(extStorageState)) {
+            return true;
+        }
+        return false;
     }
 }
