@@ -8873,15 +8873,6 @@ type=Legendary Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Goham Djinn
-text={1}{B}: Regenerate Goham Djinn. -- Goham Djinn gets -2/-2 as long as black is the most common color among all permanents or is tied for most common.
-mana={5}{B}
-type=Creature
-subtype=Djinn
-power=5
-toughness=5
-[/card]
-[card]
 name=Golden Wish
 text=You may choose an artifact or enchantment card you own from outside the game, reveal that card, and put it into your hand. Exile Golden Wish.
 mana={3}{W}{W}
@@ -9456,15 +9447,6 @@ type=Legendary Creature
 subtype=Human Wizard
 power=2
 toughness=4
-[/card]
-[card]
-name=Halam Djinn
-text=Haste -- Halam Djinn gets -2/-2 as long as red is the most common color among all permanents or is tied for most common.
-mana={5}{R}
-type=Creature
-subtype=Djinn
-power=6
-toughness=5
 [/card]
 [card]
 name=Halfdane
@@ -19004,15 +18986,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Ruham Djinn
-text=First strike --  -- Ruham Djinn gets -2/-2 as long as white is the most common color among all permanents or is tied for most common.
-mana={5}{W}
-type=Creature
-subtype=Djinn
-power=5
-toughness=5
-[/card]
-[card]
 name=Ruin Processor
 text=When you cast Ruin Processor, you may put a card an opponent owns from exile into that player's graveyard. If you do, you gain 5 life.
 mana={7}
@@ -22537,15 +22510,6 @@ name=Suffocation
 text=Cast Suffocation only if you were dealt damage this turn by a red instant or sorcery spell. -- Suffocation deals 4 damage to the controller of the last red instant or sorcery spell that dealt damage to you this turn. -- Draw a card at the beginning of the next turn's upkeep.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Sulam Djinn
-text=Trample -- Sulam Djinn gets -2/-2 as long as green is the most common color among all permanents or is tied for most common.
-mana={5}{G}
-type=Creature
-subtype=Djinn
-power=6
-toughness=6
 [/card]
 [card]
 name=Sulfuric Vapors
@@ -26496,15 +26460,6 @@ type=Creature
 subtype=Elf Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Zanam Djinn
-text=Flying -- Zanam Djinn gets -2/-2 as long as blue is the most common color among all permanents or is tied for most common.
-mana={5}{U}
-type=Creature
-subtype=Djinn
-power=5
-toughness=6
 [/card]
 [card]
 name=Zealous Inquisitor

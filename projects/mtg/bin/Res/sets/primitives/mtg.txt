@@ -41250,6 +41250,17 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Goham Djinn
+auto={1}{B}:regenerate
+auto=this(variable{commonblack}>0) -2/-2
+text={1}{B}: Regenerate Goham Djinn. -- Goham Djinn gets -2/-2 as long as black is the most common color among all permanents or is tied for most common.
+mana={5}{B}
+type=Creature
+subtype=Djinn
+power=5
+toughness=5
+[/card]
+[card]
 name=Gold Myr
 auto={T}:Add{W}
 text={T}: Add {W} to your mana pool.
@@ -43934,6 +43945,17 @@ auto={T(creature|mybattlefield)}:deplete:1 target(player)
 text=Tap an untapped creature you control: Target player puts the top card of his or her library into his or her graveyard.
 mana={6}
 type=Artifact
+[/card]
+[card]
+name=Halam Djinn
+abilities=haste
+auto=this(variable{commonred}>0) -2/-2
+text=Haste -- Halam Djinn gets -2/-2 as long as red is the most common color among all permanents or is tied for most common.
+mana={5}{R}
+type=Creature
+subtype=Djinn
+power=6
+toughness=5
 [/card]
 [card]
 name=Halberdier
@@ -82616,6 +82638,17 @@ text=Ruins of Trokair enters the battlefield tapped. -- {T}: Add {W} to your man
 type=Land
 [/card]
 [card]
+name=Ruham Djinn
+abilities=first strike
+auto=this(variable{commonwhite}>0) -2/-2
+text=First strike --  -- Ruham Djinn gets -2/-2 as long as white is the most common color among all permanents or is tied for most common.
+mana={5}{W}
+type=Creature
+subtype=Djinn
+power=5
+toughness=5
+[/card]
+[card]
 name=Ruhan of the Fomori
 abilities=mustattack
 text=At the beginning of combat on your turn, choose an opponent at random. Ruhan of the Fomori attacks that player this combat if able.
@@ -98156,6 +98189,17 @@ auto={S}:lord(creature|opponentBattlefield) -1/-1  && lord(creature|opponentBatt
 text=Sacrifice Suicidal Charge: Creatures your opponents control get -1/-1 until end of turn. Those creatures attack this turn if able.
 mana={3}{B}{R}
 type=Enchantment
+[/card]
+[card]
+name=Sulam Djinn
+abilities=trample
+auto=this(variable{commongreen}>0) -2/-2
+text=Trample -- Sulam Djinn gets -2/-2 as long as green is the most common color among all permanents or is tied for most common.
+mana={5}{G}
+type=Creature
+subtype=Djinn
+power=6
+toughness=6
 [/card]
 [card]
 name=Suleiman's Legacy
@@ -116488,6 +116532,17 @@ type=Legendary Creature
 subtype=Demon Spirit
 power=5
 toughness=5
+[/card]
+[card]
+name=Zanam Djinn
+abilities=flying
+auto=this(variable{commonblue}>0) -2/-2
+text=Flying -- Zanam Djinn gets -2/-2 as long as blue is the most common color among all permanents or is tied for most common.
+mana={5}{U}
+type=Creature
+subtype=Djinn
+power=5
+toughness=6
 [/card]
 [card]
 name=Zanikev Locust

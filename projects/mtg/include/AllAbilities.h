@@ -425,6 +425,26 @@ private:
         {
             intValue = card->imprintW;
         }
+        else if (s == "commongreen")
+        {
+            intValue = mostCommonColor(Constants::MTG_COLOR_GREEN, card);
+        }
+        else if (s == "commonblue")
+        {
+            intValue = mostCommonColor(Constants::MTG_COLOR_BLUE, card);
+        }
+        else if (s == "commonred")
+        {
+            intValue = mostCommonColor(Constants::MTG_COLOR_RED, card);
+        }
+        else if (s == "commonblack")
+        {
+            intValue = mostCommonColor(Constants::MTG_COLOR_BLACK, card);
+        }
+        else if (s == "commonwhite")
+        {
+            intValue = mostCommonColor(Constants::MTG_COLOR_WHITE, card);
+        }
         else if (s == "targetedcurses")
         {
             if(card->playerTarget)
@@ -773,6 +793,36 @@ public:
             if(zone->cards[i]->name == name)
                 count += 1;
         return count;
+    }
+
+    int countCardsInPlaybyColor(int color, GameObserver * observer)
+    {
+        int count = 0;
+        for (int i = 0; i < 2; i++)
+        {
+            for( int j= 0; j < observer->players[i]->inPlay()->nb_cards; j++)
+                if(observer->players[i]->inPlay()->cards[j]->hasColor(color))
+                    count += 1;
+        }
+        return count;
+    }
+
+    int mostCommonColor(int color, MTGCardInstance * card)
+    {
+        int maxColor = 0;
+        vector<int> colors;
+
+        for(int i = 1; i < 6; i++)
+            colors.push_back( countCardsInPlaybyColor(i, card->getObserver()) );
+        
+        for(int j = 0; j < 5; j++)
+            if ( colors[j] > maxColor )
+                maxColor = colors[j];
+
+        if (countCardsInPlaybyColor(color, card->getObserver()) >= maxColor && maxColor > 0)
+            return 1;
+
+        return 0;
     }
 
     int countCardTypeinZone(string type, MTGGameZone * zone)
