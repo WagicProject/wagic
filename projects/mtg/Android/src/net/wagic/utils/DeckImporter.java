@@ -157,6 +157,8 @@ public class DeckImporter
     
     private static String renameSet(String set)
     {
+        if (set == "")
+            return "*";
         if (set == "AL")
             return "ALL";
         if (set == "AQ")
