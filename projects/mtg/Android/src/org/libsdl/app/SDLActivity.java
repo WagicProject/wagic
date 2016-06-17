@@ -215,10 +215,9 @@ public class SDLActivity extends Activity implements OnKeyListener
     
     private void importDeckOptions()
     {
-        AlertDialog.Builder importDeck = new AlertDialog.Builder(this);        
-        int index=internalPath.lastIndexOf('/');
+        AlertDialog.Builder importDeck = new AlertDialog.Builder(this);
         importDeck.setTitle("Choose Deck to Import:");
-        File root = new File(internalPath.substring(0,index)+"/Download");
+        File root = new File(System.getenv("EXTERNAL_STORAGE")+"/Download");
         File[] files = root.listFiles();
         for( File f : files) 
         {
