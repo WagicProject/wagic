@@ -577,6 +577,7 @@ regal_force.txt
 reinforcements_1.txt
 Rending_Vines.txt
 Rending_Vines2.txt
+Replenish.txt
 resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
@@ -623,6 +624,7 @@ shimmer_myr_FORCEDALIVE.txt
 shivan_hellkite.txt
 shock.txt
 shock2.txt
+Show_and_Tell.txt
 siege_gang_commander.txt
 simic_initiate.txt
 slate_of_ancestry.txt
