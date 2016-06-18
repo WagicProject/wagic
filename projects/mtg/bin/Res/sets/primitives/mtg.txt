@@ -37416,7 +37416,7 @@ subtype=Aura
 [card]
 name=Fury Charm
 auto=may destroy target(artifact)
-auto=may 1/1 && trample target(creature)
+auto=may name(1/1 & trample) target(creature) transforms((,newability[1/1],newability[trample])) ueot
 auto=may counter(0/0,-2,Time) target(*)
 text=Choose one - Destroy target artifact; or target creature gets +1/+1 and gains trample until end of turn; or remove two time counters from target permanent or suspended card.
 mana={1}{R}
@@ -79332,6 +79332,7 @@ auto=this(variable{plandu}>0) {t}:add{u}
 auto=this(variable{plandr}>0) {t}:add{r}
 auto=this(variable{plandb}>0) {t}:add{b}
 auto=this(variable{plandw}>0) {t}:add{w}
+auto=this(variable{plandc}>0) {t}:add{1}
 text={T}: Add to your mana pool one mana of any type that a land you control could produce.
 type=Land
 [/card]
@@ -86780,7 +86781,7 @@ type=Artifact
 [/card]
 [card]
 name=Selesnya Charm
-auto=choice target(creature) 2/2 && trample  ueot
+auto=choice name(2/2 & trample) target(creature) transforms((,newability[2/2],newability[trample])) ueot
 auto=choice moveTo(exile) target(creature[power>=5])
 auto=choice token(Knight,Creature Knight,2/2,white,vigilance)
 text=Choose one — Target creature gets +2/+2 and gains trample until end of turn; or exile target creature with power 5 or greater; or put a 2/2 white Knight creature token with vigilance onto the battlefield.
@@ -110430,7 +110431,7 @@ toughness=1
 [card]
 name=Vitality Charm
 auto=choice token(Insect,creature insect, 1/1,green)
-auto=aslongas(creature|battlefield) choice 1/1 && trample target(creature)
+auto=aslongas(creature|battlefield) choice name(1/1 & trample) target(creature) transforms((,newability[1/1],newability[trample])) ueot
 auto=aslongas(beast|battlefield) choice regenerate target(beast)
 text=Choose one - Put a 1/1 green Insect creature token onto the battlefield; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
 mana={G}
