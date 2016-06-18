@@ -11,6 +11,7 @@ manapool:{3}{W}
 life:20
 [DO]
 Replenish
+#Fists of Ironwood remains on graveyard since there are no valid targets
 Swamp
 4683
 Forest
@@ -18,6 +19,7 @@ Island
 Plains
 Mountain
 Replenish
+#Fists of Ironwood attach on Zombie Token created by Sarcomancy, Then produces 2 Saproling Tokens
 -4683
 next
 next
