@@ -3013,7 +3013,7 @@ int AAMover::resolve()
                 if (destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
                         != game->players[i]->opponent()->game->inPlay)
                 {
-                    if(_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay)
+                    if(_target->hasSubtype(Subtypes::TYPE_AURA))
                     {//put into play aura if there is no valid targets then it will be in its current zone
                         MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), _target, _target,false,false,false,"","Put in play",false,true);
                         a->oneShot = false;
@@ -3033,6 +3033,7 @@ int AAMover::resolve()
                                 andAbilityClone->addToGame();
                             }
                         }
+                        return 1;
                     }
                     else
                     {
