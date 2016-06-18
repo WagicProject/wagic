@@ -1,0 +1,22 @@
+#Put in play Fists of Ironwood via Replenish
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+life:20
+hand:Replenish
+graveyard:Fists of Ironwood, Opalescence, Opalescence
+manapool:{3}{W}
+[PLAYER2]
+life:20
+[DO]
+Replenish
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+graveyard:Replenish, Fists of Ironwood
+inplay:Opalescence, Opalescence
+life:20
+[PLAYER2]
+life:20
+[END]
