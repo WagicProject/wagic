@@ -3,20 +3,33 @@
 FIRSTMAIN
 [PLAYER1]
 life:20
-hand:Replenish
-graveyard:Fists of Ironwood, Opalescence, Opalescence
+hand:Replenish, 4683, Replenish
+graveyard:83672, Mass Hysteria
+inplay:Swamp, Forest, Island, Mountain, Plains
 manapool:{3}{W}
 [PLAYER2]
 life:20
 [DO]
 Replenish
+Swamp
+4683
+Forest
+Island
+Plains
+Mountain
+Replenish
+-4683
+next
+next
+-83672
+-4683
 eot
 [ASSERT]
 UNTAP
 [PLAYER1]
-graveyard:Replenish, Fists of Ironwood
-inplay:Opalescence, Opalescence
+graveyard:Replenish, Replenish
+inplay:Sarcomancy, Mass Hysteria, Swamp, Forest, Island, Mountain, Plains, -4683, -83672, -83672, 83672
 life:20
 [PLAYER2]
-life:20
+life:17
 [END]
