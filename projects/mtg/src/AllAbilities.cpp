@@ -3010,73 +3010,73 @@ int AAMover::resolve()
             //inplay is a special zone !
             for (int i = 0; i < 2; i++)
             {
-                if (destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
+                if (!_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
                         != game->players[i]->opponent()->game->inPlay)
                 {
-                    if(_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay)
-                    {//put into play aura if there is no valid targets then it will be in its current zone
-                        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), _target, _target,false,false,false,"","Put in play",false,true);
-                        a->oneShot = false;
-                        a->canBeInterrupted = false;
-                        a->addToGame();
-                        if(andAbility)
-                        {
-                            MTGAbility * andAbilityClone = andAbility->clone();
-                            andAbilityClone->target = _target->next;
-                            if(andAbility->oneShot)
-                            {
-                                andAbilityClone->resolve();
-                                SAFE_DELETE(andAbilityClone);
-                            }
-                            else
-                            {
-                                andAbilityClone->addToGame();
-                            }
-                        }
-                    }
-                    else
+                    MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
+                    Spell * spell = NEW Spell(game, copy);
+                    spell->resolve();
+                    if(andAbility)
                     {
-                        MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
-                        Spell * spell = NEW Spell(game, copy);
-                        spell->resolve();
-                        if(andAbility)
+                        MTGAbility * andAbilityClone = andAbility->clone();
+                        andAbilityClone->target = spell->source;
+                        if(andAbility->oneShot)
                         {
-                            MTGAbility * andAbilityClone = andAbility->clone();
-                            andAbilityClone->target = spell->source;
-                            if(andAbility->oneShot)
-                            {
-                                andAbilityClone->resolve();
-                                SAFE_DELETE(andAbilityClone);
-                            }
-                            else
-                            {
-                                andAbilityClone->addToGame();
-                            }
+                            andAbilityClone->resolve();
+                            SAFE_DELETE(andAbilityClone);
                         }
-                        if(persist)
-                            spell->source->counters->addCounter(-1,-1);
-                        if(undying)
-                            spell->source->counters->addCounter(1,1);
-                        delete spell;
+                        else
+                        {
+                            andAbilityClone->addToGame();
+                        }
                     }
+                    if(persist)
+                        spell->source->counters->addCounter(-1,-1);
+                    if(undying)
+                        spell->source->counters->addCounter(1,1);
+                    delete spell;
                     return 1;
                 }
             }
-            p->game->putInZone(_target, fromZone, destZone);
-            while(_target->next)
-                _target = _target->next;
-            if(andAbility)
-            {
-                MTGAbility * andAbilityClone = andAbility->clone();
-                andAbilityClone->target = _target;
-                if(andAbility->oneShot)
-                {
-                    andAbilityClone->resolve();
-                    SAFE_DELETE(andAbilityClone);
+            if(_target->hasSubtype(Subtypes::TYPE_AURA) && (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
+            {//put into play aura if there is no valid targets then it will be in its current zone
+                MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), _target, _target,false,false,false,"","Put in play",false,true);
+                a->oneShot = false;
+                a->canBeInterrupted = false;
+                a->addToGame();
+                if(andAbility && _target->next)
+                {//if successful target->next should be valid
+                    MTGAbility * andAbilityClone = andAbility->clone();
+                    andAbilityClone->target = _target->next;
+                    if(andAbility->oneShot)
+                    {
+                        andAbilityClone->resolve();
+                        SAFE_DELETE(andAbilityClone);
+                    }
+                    else
+                    {
+                        andAbilityClone->addToGame();
+                    }
                 }
-                else
+            }
+            else
+            {
+                p->game->putInZone(_target, fromZone, destZone);
+                while(_target->next)
+                    _target = _target->next;
+                if(andAbility)
                 {
-                    andAbilityClone->addToGame();
+                    MTGAbility * andAbilityClone = andAbility->clone();
+                    andAbilityClone->target = _target;
+                    if(andAbility->oneShot)
+                    {
+                        andAbilityClone->resolve();
+                        SAFE_DELETE(andAbilityClone);
+                    }
+                    else
+                    {
+                        andAbilityClone->addToGame();
+                    }
                 }
             }
             return 1;
