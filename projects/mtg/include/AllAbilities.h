@@ -584,6 +584,11 @@ private:
         {
             intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller()->opponent());
         }
+        else if (s == "olandc")
+        {
+            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()->opponent()) +
+                countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller()->opponent());
+        }
         else if (s == "plandg")
         {
             intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller());
@@ -603,6 +608,11 @@ private:
         else if (s == "plandw")
         {
             intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller());
+        }
+        else if (s == "plandc")
+        {
+            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()) +
+                countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller());
         }
         else if (s == "cantargetmycre")// can target my creature
         {
