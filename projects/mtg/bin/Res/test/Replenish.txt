@@ -10,6 +10,7 @@ manapool:{3}{W}
 life:20
 [DO]
 Replenish
+choice 0
 eot
 [ASSERT]
 UNTAP
