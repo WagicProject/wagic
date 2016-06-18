@@ -1,5 +1,6 @@
-set(CMAKE_CXX_FLAGS "-s USE_SDL=2 -std=c++11")
+set(CMAKE_CXX_FLAGS "-s USE_SDL=2 -s FULL_ES2=1 -std=c++11 -g4 -s TOTAL_MEMORY=500000000 -s ALLOW_MEMORY_GROWTH=1")
 set(CMAKE_EXECUTABLE_SUFFIX ".html")
 add_definitions(-DLINUX)
+add_definitions(-D_DEBUG)
 add_definitions(-DUSERDIR=".wagic") 
 add_definitions(-DRESDIR="Res")

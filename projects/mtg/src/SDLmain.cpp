@@ -16,6 +16,7 @@
 #include "../include/JRenderer.h"
 #include "../include/JGameLauncher.h"
 #include "DebugRoutines.h"
+#include "Downloader.h"
 #include <stdexcept>
 #include <iostream>
 #include <math.h>
@@ -127,6 +128,7 @@ public:
 
     static void OneIter()
     {
+        DebugTrace("OneIter");
         SDL_Event Event;
         if (g_engine)
         {
@@ -148,14 +150,14 @@ public:
         }
 
 #ifdef __EMSCRIPTEN__
-        emscripten_set_main_loop(OneIter, 60, 1);
+        emscripten_set_main_loop(SdlApp::OneIter, 60, 1);
 #else
         while(Running)
         {
             OneIter();
         }
-#endif
         OnCleanup();
+#endif
 
         return 0;
     }
@@ -290,8 +292,8 @@ public:
 
     void OnCleanup()
     {
-		SDL_GL_DeleteContext(gl_context);
-        SDL_Quit();
+      SDL_GL_DeleteContext(gl_context);
+      SDL_Quit();
     }
 };
 SdlApp*  SdlApp::sInstance = 0;
@@ -651,8 +653,13 @@ bool SdlApp::OnInit()
 {
 	int window_w, window_h;
 
-	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) 
-	{
+  DebugTrace("I R in da OnInit()");
+#ifndef __EMSCRIPTEN__
+  if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
+#else
+  if(SDL_Init(SDL_INIT_VIDEO) < 0)
+#endif //__EMSCRIPTEN__
+  {
 		return false;
 	}
 
@@ -660,7 +667,7 @@ bool SdlApp::OnInit()
 	SDL_GetCurrentDisplayMode(0, &currentDisplayMode);
 	DebugTrace("Video Display : h " << currentDisplayMode.h << ", w " << currentDisplayMode.w);
 
-#if (defined ANDROID) || (defined IOS)
+#if (defined ANDROID) || (defined IOS)|| (defined __EMSCRIPTEN__)
 	window_w = currentDisplayMode.w;
 	window_h = currentDisplayMode.h;
 #else
@@ -668,7 +675,9 @@ bool SdlApp::OnInit()
 	window_h = ACTUAL_SCREEN_HEIGHT;
 #endif
 
-	SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    	    8);
+#ifndef __EMSCRIPTEN__
+  int buffers, samples;
+  SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    	    8);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,  	    8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,   	    8);
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,  	    8);
@@ -682,9 +691,8 @@ bool SdlApp::OnInit()
 	SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,	8);
 
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
-	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  2);
+  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
 
-	int buffers, samples;
 	SDL_GL_GetAttribute(SDL_GL_MULTISAMPLEBUFFERS, &buffers);
 	SDL_GL_GetAttribute(SDL_GL_MULTISAMPLESAMPLES, &samples);
 	if (buffers == 0 || samples == 0)
@@ -693,10 +701,20 @@ bool SdlApp::OnInit()
 		SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
 	}
 
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+#else
+  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+  SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+  SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+  SDL_DisplayMode current;
+  SDL_GetCurrentDisplayMode(0, &current);
+#endif
 
-#ifdef ANDROID
+#if (defined ANDROID)
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS;
 #else
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
@@ -714,7 +732,10 @@ bool SdlApp::OnInit()
 
 	gl_context = SDL_GL_CreateContext(window);
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
+
+
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
+
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 #if (defined GL_ES_VERSION_2_0)
 	glClearDepthf(1.0f);					// Depth Buffer Setup
@@ -780,6 +801,15 @@ int main(int argc, char* argv[])
 
 	DebugTrace("I R in da native");
 
+    DownloadRequest* downloadRequest = NULL;
+    Downloader*downloader = Downloader::GetInstance();
+    downloadRequest = downloader->Get(
+                "core.zip",
+                "file:///C:/Users/bieber/Documents/GitHub/wagic-cmake/build-emscripten/bin/Wagic-core.zip"
+//                "http://127.0.0.1:8000/Wagic-core.zip"
+              );
+    downloadRequest->waitUntilCompleted();
+
 	g_launcher = new JGameLauncher();
 
 	u32 flags = g_launcher->GetInitFlags();
@@ -793,7 +823,8 @@ int main(int argc, char* argv[])
 
 	int result = g_SdlApp->OnExecute();
 
-	if (g_launcher)
+#ifndef __EMSCRIPTEN__
+  if (g_launcher)
 		delete g_launcher;
 
 	if(g_SdlApp)
@@ -801,6 +832,7 @@ int main(int argc, char* argv[])
 
 	// Shutdown
 	DestroyGame();
+#endif //__EMSCRIPTEN__
 
 	return result;
 }

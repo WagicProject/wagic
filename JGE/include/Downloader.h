@@ -72,7 +72,13 @@ protected:
     QNetworkReply* mNetworkReply;
     static QNetworkAccessManager networkAccessManager;
 #endif
-
+#ifdef __EMSCRIPTEN__
+  static void onLoadCb(unsigned int handle, DownloadRequest* req, const char *buffer, unsigned int size);
+  static void onErrorCb(unsigned int handle, DownloadRequest* req, int errorCode, const char* errorText);
+  static void onProgressCb(unsigned int handle, DownloadRequest* req, int bytesReceived, int bytesTotal);
+#endif
+  void processError(int errorCode, const char* errorText);
+  void processBufferDownloaded(unsigned int size, const char*buffer);
 
 public:
     DownloadRequest(string localPath="",
@@ -96,6 +102,7 @@ public:
         totalSize = mTotalSize;
         currentSize = mCurrentSize;
     };
+    void waitUntilCompleted();
 
     friend ostream& operator<<(ostream& out, const DownloadRequest& d);
     friend istream& operator>>(istream&, DownloadRequest&);

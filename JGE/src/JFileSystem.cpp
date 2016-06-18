@@ -406,7 +406,6 @@ bool JFileSystem::OpenFile(const string &filename)
     mCurrentFileInZip = &(it2->second);
     mFileSize = it2->second.m_Size;
     return true;
-
 }
 
 

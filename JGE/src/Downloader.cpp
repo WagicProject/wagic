@@ -7,6 +7,9 @@
 #ifdef QT_CONFIG
 QNetworkAccessManager DownloadRequest::networkAccessManager;
 #endif
+#ifdef __EMSCRIPTEN__
+#include "emscripten.h"
+#endif
 
 DownloadRequest::DownloadRequest(string localPath,
                     string remoteResourceURL,
@@ -52,12 +55,80 @@ void DownloadRequest::startGet()
                 SLOT(downloadProgress(int64_t, int64_t)));
     connect(mNetworkReply, SIGNAL(finished()), SLOT(fileDownloaded()));
 #endif
+
+#ifdef __EMSCRIPTEN__
+     emscripten_async_wget2_data(mRemoteResourceURL.c_str(), "GET", 0, this, 1,
+                                 (em_async_wget2_data_onload_func)DownloadRequest::onLoadCb,
+                                 (em_async_wget2_data_onerror_func)DownloadRequest::onErrorCb,
+                                 (em_async_wget2_data_onprogress_func)DownloadRequest::onProgressCb);
+
+#endif
+}
+
+
+#ifdef __EMSCRIPTEN__
+void DownloadRequest::onLoadCb(unsigned int handle, DownloadRequest* req, const char *buffer, unsigned int size)
+{
+
+    DebugTrace("DownloadRequest::onLoadCb: " << size);
+    req->processBufferDownloaded(size, buffer);
+    Downloader::GetInstance()->Update();
+}
+
+void DownloadRequest::onErrorCb(unsigned int handle, DownloadRequest* req, int errorCode, const char* errorText)
+{
+    DebugTrace("DownloadRequest::onErrorCb");
+    req->processError(errorCode, errorText);
+    Downloader::GetInstance()->Update();
+}
+
+void DownloadRequest::onProgressCb(unsigned int handle, DownloadRequest* req, int bytesReceived, int bytesTotal)
+{
+    DebugTrace("DownloadRequest::onProgressCb");
+    req->DownloadRequest::downloadProgress(bytesReceived, bytesTotal);
+}
+#endif
+
+void DownloadRequest::waitUntilCompleted()
+{
+    while(mDownloadStatus != DownloadRequest::DOWNLOAD_ERROR && mDownloadStatus != DownloadRequest::DOWNLOADED )
+    {
+#ifdef __EMSCRIPTERN
+        emscripten_sleep_with_yield(100)
+#else
+        sleep(100);
+#endif
+        DebugTrace("DownloadRequest::waitUntilCompleted");
+    }
+}
+
+void DownloadRequest::processError(int errorCode, const char* errorText)
+{
+  DebugTrace(errorText);
+  mDownloadStatus = DownloadRequest::DOWNLOAD_ERROR;
+  mFile.close();
+  JFileSystem::GetInstance()->Remove(getTempLocalPath());
+}
+
+void DownloadRequest::processBufferDownloaded(unsigned int size, const char*buffer)
+{
+  if(mFile.is_open())
+  {
+      mTotalSize = size;
+      mFile.write(buffer, size);
+      mFile.close();
+      if(!JFileSystem::GetInstance()->Rename(getTempLocalPath(), mLocalPath)) {
+          mDownloadStatus = DownloadRequest::DOWNLOAD_ERROR;
+          return;
+      }
+  }
+  mDownloadStatus = DownloadRequest::DOWNLOADED;
 }
 
 void DownloadRequest::fileDownloaded()
 {
 #ifdef QT_CONFIG
-	do {
+  do {
         QByteArray eTagByteArray = mNetworkReply->rawHeader("ETag");
         if(!eTagByteArray.isEmpty()) {
             string oldETag = mETag;
@@ -68,10 +139,7 @@ void DownloadRequest::fileDownloaded()
 
         // let's check some error
         if(mNetworkReply->error() != QNetworkReply::NoError) {
-            DebugTrace(mNetworkReply->errorString().toStdString());
-            mDownloadStatus = DownloadRequest::DOWNLOAD_ERROR;
-            mFile.close();
-            JFileSystem::GetInstance()->Remove(getTempLocalPath());
+            processError(NetworkReply->error(), mNetworkReply->errorString().toStdString());
             break;
         }
 
@@ -90,25 +158,15 @@ void DownloadRequest::fileDownloaded()
             return;
         }
 
-        if(mFile.is_open())
-        {
-            QByteArray byteArray = mNetworkReply->readAll();
-            mFile.write(byteArray.constData(), byteArray.size());
-            mFile.close();
-            if(!JFileSystem::GetInstance()->Rename(getTempLocalPath(), mLocalPath)) {
-                mDownloadStatus = DownloadRequest::DOWNLOAD_ERROR;
-                break;
-            }
-        }
-        mDownloadStatus = DownloadRequest::DOWNLOADED;
+        QByteArray byteArray = mNetworkReply->readAll();
+        processBufferDownloaded(byteArray.size(), byteArray.constData());
     } while(0);
 
     Downloader::GetInstance()->Update();
-    mNetworkReply->deleteLater();
 
+    mNetworkReply->deleteLater();
     emit statusChanged((int)mDownloadStatus);
 #endif 
-
 }
 
 void DownloadRequest::downloadProgress(int64_t bytesReceived, int64_t bytesTotal)
@@ -116,11 +174,13 @@ void DownloadRequest::downloadProgress(int64_t bytesReceived, int64_t bytesTotal
 #ifdef QT_CONFIG
 	QByteArray byteArray = mNetworkReply->readAll();
     mFile.write(byteArray.constData(), byteArray.size());
+#endif
     mCurrentSize = bytesReceived;
     mTotalSize = bytesTotal;
     int percent = 0;
     if(bytesTotal)
         percent = (bytesReceived/bytesTotal)*100;
+#ifdef QT_CONFIG
     emit percentChanged(percent);
 #endif
 }

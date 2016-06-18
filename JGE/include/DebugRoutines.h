@@ -25,6 +25,7 @@ std::string ToHex(T* pointer)
 
 #ifdef LINUX
 #define OutputDebugString(val) (std::cerr << val);
+#define OutputDebugStringA(val) (std::cerr << val);
 #endif
 
 #ifdef _DEBUG
