@@ -124,6 +124,10 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     userPath = [[documentsDirectory  stringByAppendingString: @"/User/"] cStringUsingEncoding:1];
     systemPath = [[documentsDirectory  stringByAppendingString: @"/Res/"] cStringUsingEncoding:1];
 
+#elif defined (__EMSCRIPTEN__)
+    systemPath = "/";
+	DebugTrace("User path " << userPath);
+	DebugTrace("System path " << systemPath);
 #elif defined (ANDROID)
     userPath = JGE::GetInstance()->getFileSystemLocation();
     systemPath = "";
@@ -296,6 +300,7 @@ void JFileSystem::DetachZipFile()
 
 bool JFileSystem::openForRead(izfstream & File, const string & FilePath) {
 
+    DebugTrace("JFileSystem::openForRead " << FilePath);
     File.open(FilePath.c_str(), mUserFS);
     if (File)
         return true;

@@ -206,7 +206,7 @@ ResourceManagerImpl::ResourceManagerImpl()
 
     LOG("Calling CacheEngine::Create");
 
-#ifdef PSP
+#if (defined PSP) ||  (defined __EMSCRIPTEN__)
     CacheEngine::Create<UnthreadedCardRetriever>(textureWCache);
 #else
     CacheEngine::Create<ThreadedCardRetriever>(textureWCache);

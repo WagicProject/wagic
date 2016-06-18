@@ -113,23 +113,29 @@ public:
     unsigned long fileSize();
 #if (defined QT_CONFIG) && (!defined USE_PHONON)
     QMediaPlayer* effect;
+	void* mSample;
+#elif defined (PSP)
+	WAVDATA* mSample;
 #elif defined (IOS)
     std::string filename;
     std::string key;
     std::string ext;
+	void* mSample;
 #elif defined  (WITH_FMOD)
     FSOUND_SAMPLE *mSample;
 #elif defined (USE_PHONON)
     Phonon::AudioOutput* mOutput;
     Phonon::MediaObject* mMediaObject;
+	void* mSample;
 #elif defined ANDROID
     SLObjectItf playerObject;
     SLPlayItf playInterface;
     SLVolumeItf sampleVolumeInterface;
+	void* mSample;
 #elif (defined WIN32)
 	std::string filename;
-#endif
 	void* mSample;
+#endif
 };
 
 

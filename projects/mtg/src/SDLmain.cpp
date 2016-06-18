@@ -128,7 +128,6 @@ public:
 
     static void OneIter()
     {
-        DebugTrace("OneIter");
         SDL_Event Event;
         if (g_engine)
         {
@@ -675,9 +674,9 @@ bool SdlApp::OnInit()
 	window_h = ACTUAL_SCREEN_HEIGHT;
 #endif
 
-#ifndef __EMSCRIPTEN__
-  int buffers, samples;
-  SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    	    8);
+    int buffers, samples;
+
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    	    8);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,  	    8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,   	    8);
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,  	    8);
@@ -691,7 +690,7 @@ bool SdlApp::OnInit()
 	SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,	8);
 
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
-  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
 
 	SDL_GL_GetAttribute(SDL_GL_MULTISAMPLEBUFFERS, &buffers);
 	SDL_GL_GetAttribute(SDL_GL_MULTISAMPLESAMPLES, &samples);
@@ -701,20 +700,20 @@ bool SdlApp::OnInit()
 		SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
 	}
 
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+#ifndef __EMSCRIPTEN__
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 #else
-  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-  SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-  SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
-  SDL_DisplayMode current;
-  SDL_GetCurrentDisplayMode(0, &current);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+
+    SDL_DisplayMode current;
+    SDL_GetCurrentDisplayMode(0, &current);
 #endif
 
 #if (defined ANDROID)
+	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS;
+#elif defined __EMSCRIPTEN__
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS;
 #else
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
@@ -737,7 +736,7 @@ bool SdlApp::OnInit()
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-#if (defined GL_ES_VERSION_2_0)
+#if (defined GL_ES_VERSION_2_0) && (!defined __EMSCRIPTEN__)
 	glClearDepthf(1.0f);					// Depth Buffer Setup
 #else
 	glClearDepth(1.0f);					// Depth Buffer Setup
@@ -800,16 +799,16 @@ int main(int argc, char* argv[])
 #endif		
 
 	DebugTrace("I R in da native");
-
+/*
     DownloadRequest* downloadRequest = NULL;
     Downloader*downloader = Downloader::GetInstance();
     downloadRequest = downloader->Get(
                 "core.zip",
-                "file:///C:/Users/bieber/Documents/GitHub/wagic-cmake/build-emscripten/bin/Wagic-core.zip"
+                "file:///C:/Users/xawot_000/Documents/GitHub/wagic-master/build-emscripten/bin/Wagic-core.zip"
 //                "http://127.0.0.1:8000/Wagic-core.zip"
               );
     downloadRequest->waitUntilCompleted();
-
+*/
 	g_launcher = new JGameLauncher();
 
 	u32 flags = g_launcher->GetInitFlags();
