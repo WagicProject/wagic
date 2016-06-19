@@ -2322,8 +2322,6 @@ void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
             // Pay attention when doing texture mapping!!!
 
             glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
             /* NOT USED
             if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps

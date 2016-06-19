@@ -100,7 +100,8 @@ add_custom_command(
 #         COMMAND ${CMAKE_COMMAND} -E copy "${OPENSL_LIBRARY}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
          COMMAND ${CMAKE_COMMAND} -E copy "${wagic_location}" "${PACKAGE_DIR}/libs/${ANDROID_NDK_ABI_NAME}/"
          COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PACKAGE_DIR}/src"
-         COMMAND ${ANDROID_EXECUTABLE} --silent update project --path "${PACKAGE_DIR}" --target "android-${ANDROID_NATIVE_API_LEVEL}" --name "${target_name}"
+#         COMMAND ${ANDROID_EXECUTABLE} --silent update project --path "${PACKAGE_DIR}" --target "android-${ANDROID_NATIVE_API_LEVEL}" --name "${target_name}"
+         COMMAND ${ANDROID_EXECUTABLE} --silent update project --path "${PACKAGE_DIR}" --target "android-10" --name "${target_name}"
          COMMAND ${ANT_EXECUTABLE} -noinput -k ${android_build_type}
          COMMAND ${CMAKE_COMMAND} -E touch "${APK_NAME}"
          WORKING_DIRECTORY "${PACKAGE_DIR}"
