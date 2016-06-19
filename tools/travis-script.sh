@@ -51,6 +51,15 @@ if [ "$BUILD_TYPE" = "ANDROID" ]; then
     cd ..
 fi
 
+# we're building an Emscripten HTML here
+if [ "$BUILD_TYPE" = "Emscripten" ]; then
+    mkdir build_emscripten
+    cd build_emscripten
+    emcmake cmake -DCMAKE_BUILD_TYPE=Release ..
+    emmake make -j4
+    cd ..
+fi
+
 # we're building a Qt version with GUI here
 if [ "$BUILD_TYPE" = "Qt" ]; then
     mkdir build_qt_widget

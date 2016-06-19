@@ -17,6 +17,8 @@ matrix:
     - os: android
       language: android
       env: BUILD_TYPE=ANDROID
+    - os: osx
+      env: BUILD_TYPE=Emscripten
 
 android:
   components:
@@ -68,6 +70,10 @@ before_install:
 # Building for SDL here
   - if [ "$BUILD_TYPE" == "SDL" ]; then
       export SDL2DIR="$TRAVIS_BUILD_DIR/thirdparty/SDL2";
+    fi
+# Building for Emscripten here
+  - if [ "$BUILD_TYPE" == "Emscripten" ]; then
+      brew install emscripten && export LLVM=/usr/local/opt/emscripten/libexec/llvm/bin && emcc;
     fi
 
 install:

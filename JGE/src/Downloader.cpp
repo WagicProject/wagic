@@ -139,7 +139,7 @@ void DownloadRequest::fileDownloaded()
 
         // let's check some error
         if(mNetworkReply->error() != QNetworkReply::NoError) {
-            processError(mNetworkReply->error(), mNetworkReply->errorString().toStdString());
+            processError((int)mNetworkReply->error(), mNetworkReply->errorString().toStdString().c_str());
             break;
         }
 

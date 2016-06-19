@@ -135,6 +135,8 @@ public:
 #elif (defined WIN32)
 	std::string filename;
 	void* mSample;
+#else
+	void* mSample;
 #endif
 };
 
