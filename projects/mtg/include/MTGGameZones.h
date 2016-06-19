@@ -98,7 +98,7 @@ class MTGGameZone {
    unsigned int countByType(const string &value);
    unsigned int countByCanTarget(TargetChooser * tc);
    unsigned int countTotalManaSymbols(TargetChooser * tc, int color);
-   unsigned int countDevotion(TargetChooser * tc, int color); //devotion for gods
+   unsigned int countDevotion(TargetChooser * tc, int color1, int color2); //devotion for gods
    MTGCardInstance * findByName(string name);
 
     //returns true if one of the cards in the zone has the ability

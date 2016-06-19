@@ -482,6 +482,7 @@ int AACopier::resolve()
         source->copiedID = _target->getMTGId();
         source->modifiedbAbi = _target->modifiedbAbi;
         source->origbasicAbilities = _target->origbasicAbilities;
+        source->basicAbilities = _target->basicAbilities;
         if(_target->isMorphed)
         {
             source->power = 2;
@@ -510,7 +511,7 @@ AACopier * AACopier::clone() const
     return NEW AACopier(*this);
 }
 
-//phaser
+//phaseout
 AAPhaseOut::AAPhaseOut(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
     ActivatedAbility(observer, _id, _source, _cost, 0)
 {
@@ -541,6 +542,60 @@ const string AAPhaseOut::getMenuText()
 AAPhaseOut * AAPhaseOut::clone() const
 {
     return NEW AAPhaseOut(*this);
+}
+
+//AAImprint
+AAImprint::AAImprint(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+}
+
+int AAImprint::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        Player * p = _target->controller();
+        if(p)
+            p->game->putInExile(_target);
+
+        while(_target->next)
+            _target = _target->next;
+
+        source->imprintedCards.push_back(_target);
+
+        if (source->imprintedCards.size())
+        {
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_GREEN))
+                source->imprintG += 1;
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_BLUE))
+                source->imprintU += 1;
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_RED))
+                source->imprintR += 1;
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_BLACK))
+                source->imprintB += 1;
+            if (source->imprintedCards.back()->hasColor(Constants::MTG_COLOR_WHITE))
+                source->imprintW += 1;
+            if (source->imprintedCards.back()->getName().size())
+            {
+                source->currentimprintName = source->imprintedCards.back()->getName();
+                source->imprintedNames.push_back(source->imprintedCards.back()->getName());
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const string AAImprint::getMenuText()
+{
+    return "Imprint";
+}
+
+AAImprint * AAImprint::clone() const
+{
+    return NEW AAImprint(*this);
 }
 
 //Counters
@@ -1310,6 +1365,16 @@ int GenericPaidAbility::resolve()
             {
                 for(unsigned int i = 0; i < optionalCost->extraCosts->costs.size();i++)
                     optionalCost->extraCosts->costs[i]->setSource(((MTGCardInstance *)target));
+            }
+        }
+        if (source && source->previous && source->basicAbilities[(int)Constants::MADNESS])
+        {
+            must = true;
+            optionalCost = source->computeNewCost(source->previous,optionalCost,optionalCost);
+            if(optionalCost->extraCosts)
+            {
+                for(unsigned int i = 0; i < optionalCost->extraCosts->costs.size();i++)
+                    optionalCost->extraCosts->costs[i]->setSource(source);
             }
         }
         if(asAlternate && nomenu && optionalCost->getConvertedCost() < 1)
@@ -2945,7 +3010,7 @@ int AAMover::resolve()
             //inplay is a special zone !
             for (int i = 0; i < 2; i++)
             {
-                if (destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
+                if (!_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
                         != game->players[i]->opponent()->game->inPlay)
                 {
                     MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
@@ -2973,21 +3038,45 @@ int AAMover::resolve()
                     return 1;
                 }
             }
-            p->game->putInZone(_target, fromZone, destZone);
-            while(_target->next)
-                _target = _target->next;
-            if(andAbility)
-            {
-                MTGAbility * andAbilityClone = andAbility->clone();
-                andAbilityClone->target = _target;
-                if(andAbility->oneShot)
-                {
-                    andAbilityClone->resolve();
-                    SAFE_DELETE(andAbilityClone);
+            if(_target->hasSubtype(Subtypes::TYPE_AURA) && (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
+            {//put into play aura if there is no valid targets then it will be in its current zone
+                MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), _target, _target,false,false,false,"","Put in play",false,true);
+                a->oneShot = false;
+                a->canBeInterrupted = false;
+                a->addToGame();
+                if(andAbility && _target->next)
+                {//if successful target->next should be valid
+                    MTGAbility * andAbilityClone = andAbility->clone();
+                    andAbilityClone->target = _target->next;
+                    if(andAbility->oneShot)
+                    {
+                        andAbilityClone->resolve();
+                        SAFE_DELETE(andAbilityClone);
+                    }
+                    else
+                    {
+                        andAbilityClone->addToGame();
+                    }
                 }
-                else
+            }
+            else
+            {
+                p->game->putInZone(_target, fromZone, destZone);
+                while(_target->next)
+                    _target = _target->next;
+                if(andAbility)
                 {
-                    andAbilityClone->addToGame();
+                    MTGAbility * andAbilityClone = andAbility->clone();
+                    andAbilityClone->target = _target;
+                    if(andAbility->oneShot)
+                    {
+                        andAbilityClone->resolve();
+                        SAFE_DELETE(andAbilityClone);
+                    }
+                    else
+                    {
+                        andAbilityClone->addToGame();
+                    }
                 }
             }
             return 1;
@@ -5354,6 +5443,106 @@ APhaseActionGeneric * APhaseActionGeneric::clone() const
 APhaseActionGeneric::~APhaseActionGeneric()
 {
     SAFE_DELETE(ability);
+}
+
+//AAttackSetCost
+AAttackSetCost::AAttackSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number, bool pw) :
+    MTGAbility(observer, _id, _source), number(number), pw(pw)
+{
+}
+
+void AAttackSetCost::Update(float dt)
+{
+    if(game->getCurrentGamePhase() != MTG_PHASE_COMBATATTACKERS)
+    {
+        source->attackCost = source->attackCostBackup;
+        if(pw)
+            source->attackPlaneswalkerCost = source->attackPlaneswalkerCostBackup;
+        MTGAbility::Update(dt);
+    }
+}
+
+int AAttackSetCost::addToGame()
+{
+    WParsedInt attackcost(number, NULL, source);
+    source->attackCost += attackcost.getValue();
+    source->attackCostBackup += attackcost.getValue();
+    if(pw)
+    {
+        source->attackPlaneswalkerCost += attackcost.getValue();
+        source->attackPlaneswalkerCostBackup += attackcost.getValue();
+    }
+
+    return MTGAbility::addToGame();
+}
+
+int AAttackSetCost::destroy()
+{
+    
+    WParsedInt attackcost(number, NULL, source);
+    source->attackCost -= attackcost.getValue();
+    source->attackCostBackup -= attackcost.getValue();
+    if(pw)
+    {
+        source->attackPlaneswalkerCost -= attackcost.getValue();
+        source->attackPlaneswalkerCostBackup -= attackcost.getValue();
+    }
+
+    return 1;
+}
+
+const string AAttackSetCost::getMenuText()
+{
+    return "Attack Cost";
+}
+
+AAttackSetCost * AAttackSetCost::clone() const
+{
+    return NEW AAttackSetCost(*this);
+}
+
+//ABlockSetCost
+ABlockSetCost::ABlockSetCost(GameObserver* observer, int _id, MTGCardInstance * _source, string number) :
+    MTGAbility(observer, _id, _source), number(number)
+{
+}
+
+void ABlockSetCost::Update(float dt)
+{
+    if(game->getCurrentGamePhase() != MTG_PHASE_COMBATBLOCKERS)
+    {
+        source->blockCost = source->blockCostBackup;
+        MTGAbility::Update(dt);
+    }
+}
+
+int ABlockSetCost::addToGame()
+{
+    WParsedInt blockCost(number, NULL, source);
+    source->blockCost += blockCost.getValue();
+    source->blockCostBackup += blockCost.getValue();
+
+    return MTGAbility::addToGame();
+}
+
+int ABlockSetCost::destroy()
+{
+    
+    WParsedInt blockCost(number, NULL, source);
+    source->blockCost -= blockCost.getValue();
+    source->blockCostBackup -= blockCost.getValue();
+
+    return 1;
+}
+
+const string ABlockSetCost::getMenuText()
+{
+    return "Block Cost";
+}
+
+ABlockSetCost * ABlockSetCost::clone() const
+{
+    return NEW ABlockSetCost(*this);
 }
 
 //a blink

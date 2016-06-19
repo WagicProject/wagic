@@ -248,7 +248,9 @@ LifeCost::LifeCost(TargetChooser *_tc)
 int LifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(_target->controller()->life <= 0 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+    if (_target->controller()->life <= 0 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) ||
+        _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) ||
+        _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
     {
         return 0;
     }
@@ -286,7 +288,9 @@ SpecificLifeCost::SpecificLifeCost(TargetChooser *_tc, int slc)
 int SpecificLifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(_target->controller()->life >= slc && !_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+    if(_target->controller()->life >= slc && !_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
+       !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
+       !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
     {
         return 1;
     }
@@ -334,7 +338,16 @@ LifeorManaCost::LifeorManaCost(TargetChooser *_tc, string manaType)
 int LifeorManaCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (_target->controller()->getManaPool()->canAfford(getManaCost()) || _target->controller()->life > 1)
+    if ( _target->controller()->life <= 1 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) ||
+       _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) ||
+       _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
+    {
+        return _target->controller()->getManaPool()->canAfford(getManaCost());
+    }
+    else if((_target->controller()->life > 1 || _target->controller()->getManaPool()->canAfford(getManaCost())) && 
+        (!_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
+        !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
+        !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE)))
     {
         return 1;
     }
@@ -926,6 +939,9 @@ ExtraCost("Select creature to offer", _tc)
 
 int Offering::canPay()
 {
+    if (target && target->has(Constants::CANTBESACRIFIED))
+        return 0;
+
     if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
     {
         tc->removeTarget(target);
@@ -981,6 +997,13 @@ SacrificeCost * SacrificeCost::clone() const
 SacrificeCost::SacrificeCost(TargetChooser *_tc)
     : ExtraCost("Sacrifice", _tc)
 {
+}
+
+int SacrificeCost::canPay()
+{
+    if (target && target->has(Constants::CANTBESACRIFIED))
+        return 0;
+    return 1;
 }
 
 int SacrificeCost::doPay()

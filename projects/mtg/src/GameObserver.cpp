@@ -687,6 +687,24 @@ void GameObserver::gameStateBasedEffects()
                 card->myPair->myPair = NULL;
                 card->myPair = NULL;
             }
+            ///clear imprints
+            if(isInPlay(card) && card->imprintedCards.size())
+            {
+                for(size_t ic = 0; ic < card->imprintedCards.size(); ic++)
+                {
+                    if(!isInExile(card->imprintedCards[ic])) 
+                    {
+                        card->imprintG = 0;
+                        card->imprintU = 0;
+                        card->imprintR = 0;
+                        card->imprintB = 0;
+                        card->imprintW = 0;
+                        card->currentimprintName = "";
+                        card->imprintedNames.clear();
+                        card->imprintedCards.erase(card->imprintedCards.begin() + ic);
+                    }
+                }
+            }
             card->bypassTC = false; //turn off bypass
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//

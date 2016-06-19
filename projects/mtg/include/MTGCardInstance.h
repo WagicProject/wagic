@@ -257,6 +257,20 @@ public:
     int myconvertedcost;
     ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false);
     int countTrini;
+    vector<MTGCardInstance*>imprintedCards;
+    int attackCost;
+    int attackCostBackup;
+    int attackPlaneswalkerCost;
+    int attackPlaneswalkerCostBackup;
+    int blockCost;
+    int blockCostBackup;
+    int imprintG;
+    int imprintU;
+    int imprintR;
+    int imprintB;
+    int imprintW;
+    string currentimprintName;
+    vector<string>imprintedNames;
 
     void eventattacked();
     void eventattackedAlone();

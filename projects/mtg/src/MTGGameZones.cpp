@@ -642,7 +642,7 @@ unsigned int MTGGameZone::countTotalManaSymbols(TargetChooser * tc, int color)
     return result;
 }
 
-unsigned int MTGGameZone::countDevotion(TargetChooser * tc, int color)
+unsigned int MTGGameZone::countDevotion(TargetChooser * tc, int color1, int color2)
 {
     if (!tc) {
         return 0;
@@ -654,8 +654,13 @@ unsigned int MTGGameZone::countDevotion(TargetChooser * tc, int color)
     {
         if (tc->canTarget(cards[i], withoutProtections))
         {
-            result += cards[i]->getManaCost()->getManaSymbolsHybridMerged(color);
+            result += cards[i]->getManaCost()->getManaSymbolsHybridMerged(color1);
         }
+        if (tc->canTarget(cards[i], withoutProtections))
+        {
+            result += cards[i]->getManaCost()->getManaSymbolsHybridMerged(color2);
+        }
+        result -= cards[i]->getManaCost()->countHybridsNoPhyrexian();
     }
     return result;
 }

@@ -1,12 +1,20 @@
 package org.libsdl.app;
 
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -16,6 +24,7 @@ import javax.microedition.khronos.egl.EGLSurface;
 
 import net.wagic.app.R;
 import net.wagic.utils.StorageOptions;
+import net.wagic.utils.DeckImporter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -59,7 +68,10 @@ import android.widget.FrameLayout.LayoutParams;
  */
 public class SDLActivity extends Activity implements OnKeyListener
 {
-
+    //import deck globals
+    public ArrayList<String> myresult = new ArrayList<String>();
+    public String myclickedItem = "";
+        
     // TAG used for debugging in DDMS
     public static String       TAG                                   = Activity.class.getCanonicalName();
 
@@ -200,7 +212,60 @@ public class SDLActivity extends Activity implements OnKeyListener
 
         setStorage.create().show();
     }
+    
+    private void importDeckOptions()
+    {
+        AlertDialog.Builder importDeck = new AlertDialog.Builder(this);
+        importDeck.setTitle("Choose Deck to Import:");
+        File root = new File(System.getenv("EXTERNAL_STORAGE")+"/Download");
+        File[] files = root.listFiles();
+        for( File f : files) 
+        {
+            if( !myresult.contains(f.toString()) && (f.toString().contains(".txt")||f.toString().contains(".dec")))
+                myresult.add(f.toString());
+        }
+        
+        //get first item?
+        if(!myresult.isEmpty())
+            myclickedItem = myresult.get(0).toString();
+        
+        importDeck.setSingleChoiceItems(myresult.toArray(new String[myresult.size()]), 0, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int item)
+            {
+                myclickedItem = myresult.get(item).toString();
+            }
+        });
 
+        importDeck.setPositiveButton("Import Deck", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int which)
+            {
+                processSelectedDeck( myclickedItem );
+                if (mSurface == null)
+                    mSingleton.initializeGame();
+            }
+        });
+
+        importDeck.create().show();
+    }
+    
+    private void processSelectedDeck(String mypath)
+    {
+        AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+        infoDialog.setTitle("Imported Deck:");
+        String activePath = sdcardPath;
+        if(activePath == ""){
+            activePath = internalPath;
+        }
+            
+        File f = new File(mypath);
+        //Call the deck importer....
+        String state = DeckImporter.importDeck(f, mypath, activePath);
+        infoDialog.setMessage(state);
+        infoDialog.show();
+    }
+  
     private void checkStorageLocationPreference()
     {
         SharedPreferences settings = getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE);
@@ -334,7 +399,8 @@ public class SDLActivity extends Activity implements OnKeyListener
     public boolean onCreateOptionsMenu(Menu menu)
     {
         SubMenu settingsMenu = menu.addSubMenu(Menu.NONE, 1, 1, "Settings");
-        menu.add(Menu.NONE, 2, 2, "About");
+        menu.add(Menu.NONE, 2, 2, "Import");
+        menu.add(Menu.NONE, 3, 3, "About");
         settingsMenu.add(kStorageDataOptionsMenuId, kStorageDataOptionsMenuId, Menu.NONE, "Storage Data Options");
         // buildStorageOptionsMenu(settingsMenu);
 
@@ -350,6 +416,9 @@ public class SDLActivity extends Activity implements OnKeyListener
         {
             displayStorageOptions();
         } else if (itemId == 2)
+        {
+            importDeckOptions();
+        } else if (itemId == 3)
         {
             // display some info about the app
             AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);

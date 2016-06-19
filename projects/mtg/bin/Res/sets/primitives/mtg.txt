@@ -3075,6 +3075,18 @@ power=4
 toughness=6
 [/card]
 [card]
+name=Angel of Jubilation
+abilities=flying,cantpaylife
+auto=lord(other creature[-black]|mybattlefield) 1/1
+auto=lord(creature) cantbesacrified
+text=Flying -- Other nonblack creatures you control get +1/+1. -- Players can't pay life or sacrifice creatures to cast spells or activate abilities.
+mana={1}{W}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+[card]
 name=Angel of Light
 abilities=flying,vigilance
 text=Flying, vigilance
@@ -4278,6 +4290,18 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Archangel of Tithes
+abilities=flying
+auto=this(untapped) lord(creature|opponentbattlefield) transforms((,newability[attackpwcost:1]))
+auto=this(attacking) lord(creature|opponentbattlefield) transforms((,newability[blockcost:1]))
+text=Flying -- As long as Archangel of Tithes is untapped, creatures can't attack you or a planeswalker you control unless their controller pays {1} for each of those creatures. -- As long as Archangel of Tithes is attacking, creatures can't block unless their controller pays {1} for each of those creatures.
+mana={1}{W}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=5
+[/card]
+[card]
 name=Archangel of Thune
 abilities=flying,lifelink
 auto=@lifeof(player):all(creature|mybattlefield) counter(1/1,1) 
@@ -4287,18 +4311,6 @@ type=Creature
 subtype=Angel
 power=3
 toughness=4
-[/card]
-[card]
-name=Archangel of Tithes
-abilities=flying
-auto=this(untapped) lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{1}]] name(pay 1 mana) donothing?cantattack all(this)]))
-auto=@combat(attacking) source(this):all(creature|opponentbattlefield) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?cantblock all(this)]))
-text=Flying -- As long as Archangel of Tithes is untapped, creatures can't attack you or a planeswalker you control unless their controller pays {1} for each of those creatures. -- As long as Archangel of Tithes is attacking, creatures can't block unless their controller pays {1} for each of those creatures.
-mana={1}{W}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=5
 [/card]
 [card]
 name=Archangel's Light
@@ -5122,6 +5134,17 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Arrogant Wurm
+abilities=trample,madness
+autoexile=restriction{discarded} pay({2}{G}) name(pay 2G to cast) activate name(pay 2G to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Trample -- Madness {2}{G} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{G}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
+[/card]
+[card]
 name=Arrows of Justice
 target=creature[attacking;blocking]
 auto=damage:4
@@ -5539,6 +5562,15 @@ auto=destroy
 text=Destroy target creature. Its controller discards a card.
 mana={4}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Assault Formation
+auto=lord(creature|mybattlefield) combattoughness
+auto={G}:target(creature[defender]) canattack
+auto={2}{G}:lord(creature|myBattlefield) 0/1 ueot
+text=Each creature you control assigns combat damage equal to its toughness rather than its power. -- {G}: Target creature with defender can attack this turn as though it didn't have defender. -- {2}{G}: Creatures you control get +0/+1 until end of turn.
+mana={1}{G}
+type=Enchantment
 [/card]
 [card]
 name=Assault Griffin
@@ -7900,6 +7932,18 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Basking Rootwalla
+abilities=madness
+autoexile=restriction{discarded} pay({0}) name(pay 0 to cast) activate name(pay 0 to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto={1}{G}:2/2 limit:1
+text={1}{G}: Basking Rootwalla gets +2/+2 until end of turn. Activate this ability only once each turn. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={G}
+type=Creature
+subtype=Lizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Bassara Tower Archer
 abilities=opponentshroud,reach
 text=Hexproof, reach
@@ -9000,6 +9044,18 @@ auto=moveTo(mybattlefield) notatarget(*[share!name!]|mylibrary)
 text=Search your library for a permanent card with the same name as target nontoken creature and put that card onto the battlefield. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
+[/card]
+[card]
+name=Big Game Hunter
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=bury target(creature[power>=4])
+text=When Big Game Hunter enters the battlefield, destroy target creature with power 4 or greater. It can't be regenerated. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{B}{B}
+type=Creature
+subtype=Human Rebel Assassin
+power=1
+toughness=1
 [/card]
 [card]
 name=Bile Blight
@@ -14037,6 +14093,16 @@ subtype=Human
 power=*
 toughness=*
 [/card]
+[card]
+name=Call to the Netherworld
+abilities=madness
+autoexile=restriction{discarded} pay({0}) name(pay 0 to cast) activate name(pay 0 to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature[black]|myGraveyard
+auto=moveTo(myHand)
+text=Return target black creature card from your graveyard to your hand. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={B}
+type=Sorcery
+[/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Callow Jushi
@@ -16746,6 +16812,18 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Chrome Mox
+auto=may imprint notatarget(*[-land;-artifact]|myhand)
+auto=this(variable{evictg}>0) {t}:add{g}
+auto=this(variable{evictu}>0) {t}:add{u}
+auto=this(variable{evictr}>0) {t}:add{r}
+auto=this(variable{evictb}>0) {t}:add{b}
+auto=this(variable{evictw}>0) {t}:add{w}
+text=Imprint - When Chrome Mox enters the battlefield, you may exile a nonartifact, nonland card from your hand. -- {T}: Add one mana of any of the exiled card's colors to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
 name=Chrome Steed
 auto=aslongas(artifact|mybattlefield) 2/2 >2
 text=Metalcraft - Chrome Steed gets +2/+2 as long as you control three or more artifacts.
@@ -17023,6 +17101,16 @@ auto=chooseatype transforms((,newability[{1}{W}:notatarget(creature[chosentype]|
 text=As Circle of Solace enters the battlefield, choose a creature type. -- {1}{W}: The next time a creature of the chosen type would deal damage to you this turn, prevent that damage.
 mana={3}{W}
 type=Enchantment
+[/card]
+[card]
+name=Circular Logic
+abilities=madness
+target=*|stack
+auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{value:type:*:opponentgraveyard}]] name(pay {value} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{value:type:*:mygraveyard}]] name(pay {value} mana) donothing?fizzle])) forever
+autoexile=restriction{discarded} pay({U}) name(pay U to cast) activate name(pay U to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Counter target spell unless its controller pays {1} for each card in your graveyard. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 name=Citadel Castellan
@@ -18280,6 +18368,17 @@ name=Collective Blessing
 auto=lord(creature|mybattlefield) 3/3
 text=Creatures you control get +3/+3.
 mana={3}{G}{G}{W}
+type=Enchantment
+[/card]
+[card]
+name=Collective Restraint
+auto=aslongas(forest|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+auto=aslongas(island|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+auto=aslongas(mountain|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+auto=aslongas(swamp|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+auto=aslongas(plains|mybattlefield) lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+text=Domain — Creatures can't attack you unless their controller pays {X} for each creature he or she controls that's attacking you, where X is the number of basic land types among lands you control.
+mana={3}{U}
 type=Enchantment
 [/card]
 [card]
@@ -21905,6 +22004,16 @@ auto=aslongas(*[black]|myBattlefield) destroy
 auto=damage:2
 text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
 mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Dark Withering
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature[-black]
+auto=destroy
+text=Destroy target nonblack creature. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={4}{B}{B}
 type=Instant
 [/card]
 [card]
@@ -25949,6 +26058,16 @@ power=0
 toughness=4
 [/card]
 [card]
+name=Doran, the Siege Tower
+auto=lord(creature) combattoughness
+text=Each creature assigns combat damage equal to its toughness rather than its power.
+mana={W}{B}{G}
+type=Legendary Creature
+subtype=Treefolk Shaman
+power=0
+toughness=5
+[/card]
+[card]
 name=Dormant Sliver
 auto=lord(sliver) defender
 auto=@movedTo(sliver|myBattlefield):draw:1 controller
@@ -29222,7 +29341,7 @@ type=Instant
 name=Elephant Grass
 auto=cumulativeupcost[{1}] sacrifice
 auto=lord(creature[black]|opponentbattlefield) cantattack
-auto=lord(creature[-black]|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Black creatures can't attack you. -- Nonblack creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={G}
 type=Enchantment
@@ -34020,6 +34139,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Fiery Temper
+abilities=madness
+autoexile=restriction{discarded} pay({R}) name(pay R to cast) activate name(pay R to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature,player
+auto=damage:3
+text=Fiery Temper deals 3 damage to target creature or player. -- Madness {R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Fight to the Death
 auto=destroy all(creature[blocking;blocked])
 text=Destroy all blocking creatures and all blocked creatures.
@@ -36577,6 +36706,16 @@ mana={2}{GW}{GW}{GW}
 type=Instant
 [/card]
 [card]
+name=Frantic Purification
+abilities=madness
+autoexile=restriction{discarded} pay({W}) name(pay W to cast) activate name(pay W to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=enchantment
+auto=destroy
+text=Destroy target enchantment. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 name=Frantic Salvage
 target=<anyamount>artifact|mygraveyard
 auto=moveTo(mylibrary)
@@ -37277,7 +37416,7 @@ subtype=Aura
 [card]
 name=Fury Charm
 auto=may destroy target(artifact)
-auto=may 1/1 && trample target(creature)
+auto=may name(1/1 & trample) target(creature) transforms((,newability[1/1],newability[trample])) ueot
 auto=may counter(0/0,-2,Time) target(*)
 text=Choose one - Destroy target artifact; or target creature gets +1/+1 and gains trample until end of turn; or remove two time counters from target permanent or suspended card.
 mana={1}{R}
@@ -38754,7 +38893,7 @@ subtype=Aura
 [/card]
 [card]
 name=Ghostly Prison
-auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
 text=Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={2}{W}
 type=Enchantment
@@ -41111,6 +41250,17 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Goham Djinn
+auto={1}{B}:regenerate
+auto=this(variable{commonblack}>0) -2/-2
+text={1}{B}: Regenerate Goham Djinn. -- Goham Djinn gets -2/-2 as long as black is the most common color among all permanents or is tied for most common.
+mana={5}{B}
+type=Creature
+subtype=Djinn
+power=5
+toughness=5
+[/card]
+[card]
 name=Gold Myr
 auto={T}:Add{W}
 text={T}: Add {W} to your mana pool.
@@ -41494,6 +41644,18 @@ text=Equipped creature has deathtouch. -- Equip {2}
 mana={1}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Gorgon Recluse
+abilities=madness
+autoexile=restriction{discarded} pay({B}{B}) name(pay BB to cast) activate name(pay BB to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=@combat(blocked,blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] destroy
+text=Whenever Gorgon Recluse blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat. -- Madness {B}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{B}{B}
+type=Creature
+subtype=Gorgon
+power=2
+toughness=4
 [/card]
 [card]
 name=Gorilla Chieftain
@@ -43783,6 +43945,17 @@ auto={T(creature|mybattlefield)}:deplete:1 target(player)
 text=Tap an untapped creature you control: Target player puts the top card of his or her library into his or her graveyard.
 mana={6}
 type=Artifact
+[/card]
+[card]
+name=Halam Djinn
+abilities=haste
+auto=this(variable{commonred}>0) -2/-2
+text=Haste -- Halam Djinn gets -2/-2 as long as red is the most common color among all permanents or is tied for most common.
+mana={5}{R}
+type=Creature
+subtype=Djinn
+power=6
+toughness=5
 [/card]
 [card]
 name=Halberdier
@@ -48052,6 +48225,17 @@ type=Creature
 subtype=Rat
 power=2
 toughness=1
+[/card]
+[card]
+name=Ichor Slick
+abilities=madness
+autoexile=restriction{discarded} pay({3}{B}) name(pay 3B to cast) activate name(pay 3B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=-3/-3
+autohand=__CYCLING__({2})
+text=Target creature gets -3/-3 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Madness {3}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Ichor Wellspring
@@ -54352,6 +54536,15 @@ type=Creature
 subtype=Lizard
 power=3
 toughness=3
+[/card]
+[card]
+name=Koskun Falls
+auto=upcost[{T(creature|mybattlefield)}] sacrifice
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
+text=At the beginning of your upkeep, sacrifice Koskun Falls unless you tap an untapped creature you control. -- Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+mana={2}{B}{B}
+type=World Enchantment
 [/card]
 [card]
 name=Koskun Keep
@@ -65596,6 +65789,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Mycosynth Golem
+abilities=affinityartifacts
+auto=lord(creature[artifact]|myhand,mylibrary,mygraveyard,myexile) affinityartifacts forcedalive
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Artifact creature spells you cast have affinity for artifacts. (They cost {1} less to cast for each artifact you control.)
+mana={11}
+type=Artifact Creature
+subtype=Golem
+power=4
+toughness=5
+[/card]
+[card]
 name=Mycosynth Wellspring
 auto=may moveTo(myhand) notatarget(land[basic]|mylibrary)
 auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myhand) notatarget(land[basic]|mylibrary)
@@ -68953,6 +69157,15 @@ auto={T}:Add{U}
 auto={1}:moveto(ownerhand)
 text={T}: Add {U} to your mana pool. -- {1}: Return Oboro, Palace in the Clouds to its owner's hand.
 type=Legendary Land
+[/card]
+[card]
+name=Obsessive Search
+abilities=madness
+autoexile=restriction{discarded} pay({U}) name(pay U to cast) activate name(pay U to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=draw:1 controller
+text=Draw a card. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Obsianus Golem
@@ -75460,7 +75673,7 @@ toughness=1
 [/card]
 [card]
 name=Propaganda
-auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
 text=Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={2}{U}
 type=Enchantment
@@ -75743,6 +75956,15 @@ auto=double strike
 auto=draw:1 controller
 text=Target multicolored creature gains double strike until end of turn. -- Draw a card.
 mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Psychotic Haze
+abilities=madness
+autoexile=restriction{discarded} pay({1}{B}) name(pay 1B to cast) activate name(pay 1B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=damage:1 all(creature,player)
+text=Psychotic Haze deals 1 damage to each creature and each player. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{B}{B}
 type=Instant
 [/card]
 [card]
@@ -78865,6 +79087,17 @@ toughness=2
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
 [card]
+name=Reckless Wurm
+abilities=trample,madness
+autoexile=restriction{discarded} pay({2}{R}) name(pay 2R to cast) activate name(pay 2R to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Trample -- Madness {2}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{R}{R}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
+[/card]
+[card]
 name=Reclaim
 target=*|mygraveyard
 auto=moveTo(myLibrary)
@@ -79099,6 +79332,7 @@ auto=this(variable{plandu}>0) {t}:add{u}
 auto=this(variable{plandr}>0) {t}:add{r}
 auto=this(variable{plandb}>0) {t}:add{b}
 auto=this(variable{plandw}>0) {t}:add{w}
+auto=this(variable{plandc}>0) {t}:add{1}
 text={T}: Add to your mana pool one mana of any type that a land you control could produce.
 type=Land
 [/card]
@@ -82403,6 +82637,17 @@ auto={T}:Add{W}
 auto={T}{S}:Add{W}{W}
 text=Ruins of Trokair enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- {T}, Sacrifice Ruins of Trokair: Add {W}{W} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Ruham Djinn
+abilities=first strike
+auto=this(variable{commonwhite}>0) -2/-2
+text=First strike --  -- Ruham Djinn gets -2/-2 as long as white is the most common color among all permanents or is tied for most common.
+mana={5}{W}
+type=Creature
+subtype=Djinn
+power=5
+toughness=5
 [/card]
 [card]
 name=Ruhan of the Fomori
@@ -86536,7 +86781,7 @@ type=Artifact
 [/card]
 [card]
 name=Selesnya Charm
-auto=choice target(creature) 2/2 && trample  ueot
+auto=choice name(2/2 & trample) target(creature) transforms((,newability[2/2],newability[trample])) ueot
 auto=choice moveTo(exile) target(creature[power>=5])
 auto=choice token(Knight,Creature Knight,2/2,white,vigilance)
 text=Choose one â€” Target creature gets +2/+2 and gains trample until end of turn; or exile target creature with power 5 or greater; or put a 2/2 white Knight creature token with vigilance onto the battlefield.
@@ -97406,6 +97651,30 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
+name=Strength of Isolation
+abilities=madness
+autoexile=restriction{discarded} pay({W}) name(pay W to cast) activate name(pay W to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=1/2
+auto=protection from black
+text=Enchant creature -- Enchanted creature gets +1/+2 and has protection from black. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Strength of Lunacy
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=2/1
+auto=protection from white
+text=Enchant creature -- Enchanted creature gets +2/+1 and has protection from white. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Strength of Night
 kicker={B}
 auto=all(creature|myBattlefield) 1/1 ueot
@@ -97921,6 +98190,17 @@ auto={S}:lord(creature|opponentBattlefield) -1/-1  && lord(creature|opponentBatt
 text=Sacrifice Suicidal Charge: Creatures your opponents control get -1/-1 until end of turn. Those creatures attack this turn if able.
 mana={3}{B}{R}
 type=Enchantment
+[/card]
+[card]
+name=Sulam Djinn
+abilities=trample
+auto=this(variable{commongreen}>0) -2/-2
+text=Trample -- Sulam Djinn gets -2/-2 as long as green is the most common color among all permanents or is tied for most common.
+mana={5}{G}
+type=Creature
+subtype=Djinn
+power=6
+toughness=6
 [/card]
 [card]
 name=Suleiman's Legacy
@@ -110151,7 +110431,7 @@ toughness=1
 [card]
 name=Vitality Charm
 auto=choice token(Insect,creature insect, 1/1,green)
-auto=aslongas(creature|battlefield) choice 1/1 && trample target(creature)
+auto=aslongas(creature|battlefield) choice name(1/1 & trample) target(creature) transforms((,newability[1/1],newability[trample])) ueot
 auto=aslongas(beast|battlefield) choice regenerate target(beast)
 text=Choose one - Put a 1/1 green Insect creature token onto the battlefield; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
 mana={G}
@@ -112045,11 +112325,10 @@ power=3
 toughness=6
 [/card]
 [card]
-name=War Dance
-auto=@each my upkeep:may counter(0/0,1,Verse)
-auto={S}:thisforeach(counter{0/0.1.Verse}) 1/1 target(creature)
-text=At the beginning of your upkeep, you may put a verse counter on War Dance. -- Sacrifice War Dance: Target creature gets +X/+X until end of turn, where X is the number of verse counters on War Dance.
-mana={G}
+name=War Cadence
+auto={X}{U}:name(Block X Cost) thisforeach(X) all(creature) transforms((,newability[blockcost:1])) ueot
+text={X}{R}: This turn, creatures can't block unless their controller pays {X} for each blocking creature he or she controls.
+mana={2}{R}
 type=Enchantment
 [/card]
 [card]
@@ -112058,6 +112337,14 @@ auto={3}{T}:trample target(creature)
 text={3}, {T}: Target creature gains trample until end of turn.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=War Dance
+auto=@each my upkeep:may counter(0/0,1,Verse)
+auto={S}:thisforeach(counter{0/0.1.Verse}) 1/1 target(creature)
+text=At the beginning of your upkeep, you may put a verse counter on War Dance. -- Sacrifice War Dance: Target creature gets +X/+X until end of turn, where X is the number of verse counters on War Dance.
+mana={G}
+type=Enchantment
 [/card]
 [card]
 name=War Elemental
@@ -112134,6 +112421,13 @@ auto=life:type:creature:battlefield controller
 text=You gain life equal to the number of creatures on the battlefield plus the number of artifacts on the battlefield.
 mana={3}{W}
 type=Instant
+[/card]
+[card]
+name=War Tax
+auto={X}{U}:name(Attack X Cost) thisforeach(X) all(creature) transforms((,newability[attackcost:1])) ueot
+text={X}{U}: This turn, creatures can't attack unless their controller pays {X} for each attacking creature he or she controls.
+mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 name=War-Name Aspirant
@@ -114046,7 +114340,7 @@ subtype=Aura
 [card]
 name=Windborn Muse
 abilities=flying
-auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:2]))
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={3}{W}
 type=Creature
@@ -115485,7 +115779,7 @@ toughness=5
 [card]
 name=Wrench Mind
 target=player
-auto=ability$!choice name(discard 2 cards) target(<2>*|myhand) reject _ choice name(discard artifact) target(artifact|myhand) reject !$ targetedplayer
+auto=ability$! name(discard 2 cards) choice name(discard 2 cards) target(<2>*|myhand) reject _ if type(artifact|myhand)~morethan~0 then name(discard artifact) choice name(discard artifact) target(artifact|myhand) reject !$ targetedplayer
 text=Target player discards two cards unless he or she discards an artifact card.
 mana={B}{B}
 type=Sorcery
@@ -116239,6 +116533,17 @@ type=Legendary Creature
 subtype=Demon Spirit
 power=5
 toughness=5
+[/card]
+[card]
+name=Zanam Djinn
+abilities=flying
+auto=this(variable{commonblue}>0) -2/-2
+text=Flying -- Zanam Djinn gets -2/-2 as long as blue is the most common color among all permanents or is tied for most common.
+mana={5}{U}
+type=Creature
+subtype=Djinn
+power=5
+toughness=6
 [/card]
 [card]
 name=Zanikev Locust

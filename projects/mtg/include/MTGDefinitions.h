@@ -243,7 +243,10 @@ class Constants
       LIBRARYEATER = 122,
       DEVOID = 123,
       CANTCHANGELIFE = 124,
-      NB_BASIC_ABILITIES = 125,
+      COMBATTOUGHNESS = 125,
+      CANTPAYLIFE = 126,
+      CANTBESACRIFIED = 127,
+      NB_BASIC_ABILITIES = 128,
 
 
     RARITY_S = 'S',   //Special Rarity

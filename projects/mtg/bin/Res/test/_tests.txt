@@ -223,6 +223,7 @@ civic_wayfinder.txt
 clone.txt
 clone2.txt
 clone3.txt
+clone4.txt
 cockatrice.txt
 cockatrice_i228.txt
 colossus_of_sardia1.txt
@@ -275,6 +276,7 @@ dingus_staff_i153.txt
 Distorting_Wake.txt
 Distorting_Wake2.txt
 divergent_growth.txt
+Doran.txt
 doomed_necromancer.txt
 double_strike_i145.txt
 double_strike2_i145.txt
@@ -575,6 +577,7 @@ regal_force.txt
 reinforcements_1.txt
 Rending_Vines.txt
 Rending_Vines2.txt
+Replenish.txt
 resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
@@ -621,6 +624,7 @@ shimmer_myr_FORCEDALIVE.txt
 shivan_hellkite.txt
 shock.txt
 shock2.txt
+Show_and_Tell.txt
 siege_gang_commander.txt
 simic_initiate.txt
 slate_of_ancestry.txt

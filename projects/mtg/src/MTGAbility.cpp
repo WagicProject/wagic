@@ -1179,11 +1179,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGAttackRule(observer, -1));
         return NULL;
     }
+    //this rule handles attacking cost ability during attacker phase
+    found = s.find("attackcostrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGAttackCostRule(observer, -1));
+        return NULL;
+    }
     //this rule handles blocking ability during blocker phase
     found = s.find("blockrule");
     if(found != string::npos)
     {
         observer->addObserver(NEW MTGBlockRule(observer, -1));
+        return NULL;
+    }
+    //this rule handles blocking cost ability during blocker phase
+    found = s.find("blockcostrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGBlockCostRule(observer, -1));
         return NULL;
     }
     //this rule handles cards that have soulbond
@@ -2361,6 +2375,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //imprint
+    found = s.find("imprint");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AAImprint(observer, id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //phaseout
     found = s.find("phaseout");
     if (found != string::npos)
     {
@@ -2818,6 +2841,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (s.find("reduceto:") != string::npos)
     {
         return NEW AReduceToAbility(observer, id, card,s.substr(9));
+    }
+
+    //attack cost
+    if (s.find("attackcost:") != string::npos)
+    {
+        return NEW AAttackSetCost(observer, id, card, s.substr(11));
+    }
+
+    //attack cost + planeswalker
+    if (s.find("attackpwcost:") != string::npos)
+    {
+        return NEW AAttackSetCost(observer, id, card, s.substr(13),true);
+    }
+
+    //block cost
+    if (s.find("blockcost:") != string::npos)
+    {
+        return NEW ABlockSetCost(observer, id, card, s.substr(10));
     }
 
     //flanking

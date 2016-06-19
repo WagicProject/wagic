@@ -1348,12 +1348,154 @@ MTGOverloadRule * MTGOverloadRule::clone() const
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+//ATTACK COST
+MTGAttackCostRule::MTGAttackCostRule(GameObserver* observer, int _id) :
+    PermanentAbility(observer, _id)
+{
+    aType = MTGAbility::ATTACK_COST;
+    scost = "Pay to attack";
+}
+
+int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
+{
+
+    if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
+    {
+        if(card->isPhased)
+            return 0;
+        if(card->attackCost < 1)
+            return 0;
+        ManaCost * playerMana = card->controller()->getManaPool();
+        ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
+        attackcost->add(0,card->attackCostBackup);
+        if(attackcost->extraCosts)
+            for(unsigned int i = 0; i < attackcost->extraCosts->costs.size();i++)
+            {
+                attackcost->extraCosts->costs[i]->setSource(card);
+            }
+        scost = attackcost->getConvertedCost();
+        if (playerMana->canAfford(attackcost))
+            return 1;
+    }
+    return 0;
+}
+
+int MTGAttackCostRule::reactToClick(MTGCardInstance * card)
+{
+    if (!isReactingToClick(card))
+        return 0;
+    Player * player = game->currentlyActing();
+    ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
+    attackcost->add(0,card->attackCostBackup);
+    ManaCost * playerMana = player->getManaPool();
+    playerMana->pay(attackcost);//I think you can't pay partial cost to attack cost so you pay full (508.1i)
+    card->attackCost = 0;
+    card->attackPlaneswalkerCost = 0; 
+    return 1;
+    /*
+    508.1g: If any of the chosen creatures require paying costs to attack, the active player determines the total cost to attack.
+            Costs may include paying mana, tapping permanents, sacrificing permanents, discarding cards, and so on. Once the total cost is determined, it becomes “locked in.” 
+            If effects would change the total cost after this time, ignore this change.
+    508.1h: If any of the costs require mana, the active player then has a chance to activate mana abilities (see rule 605, “Mana Abilities”).
+    508.1i: Once the player has enough mana in his or her mana pool, he or she pays all costs in any order. Partial payments are not allowed.
+    */
+}
+
+ostream& MTGAttackCostRule::toString(ostream& out) const
+{
+    out << "MTGAttackCostRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+const string MTGAttackCostRule::getMenuText()
+{
+    sprintf(menuText, "Pay to attack");
+    return menuText;
+}
+
+MTGAttackCostRule * MTGAttackCostRule::clone() const
+{
+    return NEW MTGAttackCostRule(*this);
+}
+
+//BLOCK COST
+MTGBlockCostRule::MTGBlockCostRule(GameObserver* observer, int _id) :
+    PermanentAbility(observer, _id)
+{
+    aType = MTGAbility::BLOCK_COST;
+    scost = "Pay to block";
+}
+
+int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
+{
+    if (currentPhase == MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting
+        && card->controller() != game->currentPlayer
+        )
+    {
+        if(card->isPhased)
+            return 0;
+        if(card->blockCost < 1)
+            return 0;
+        
+        ManaCost * playerMana = card->controller()->getManaPool();
+        ManaCost * blockcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
+        blockcost->add(0,card->blockCostBackup);
+        if(blockcost->extraCosts)
+            for(unsigned int i = 0; i < blockcost->extraCosts->costs.size();i++)
+            {
+                blockcost->extraCosts->costs[i]->setSource(card);
+            }
+        scost = blockcost->getConvertedCost();
+        if (playerMana->canAfford(blockcost))
+            return 1;
+    }
+    return 0;
+}
+
+int MTGBlockCostRule::reactToClick(MTGCardInstance * card)
+{
+    if (!isReactingToClick(card))
+        return 0;
+    Player * player = game->currentlyActing();
+    ManaCost * blockcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
+    blockcost->add(0,card->blockCostBackup);
+    ManaCost * playerMana = player->getManaPool();
+    playerMana->pay(blockcost);//I think you can't pay partial cost to block cost so you pay full (509.1f)
+    card->blockCost = 0;
+    return 1;
+    /*
+    509.1d: If any of the chosen creatures require paying costs to block, the defending player determines the total cost to block. 
+    Costs may include paying mana, tapping permanents, sacrificing permanents, discarding cards, and so on. 
+    Once the total cost is determined, it becomes “locked in.” If effects would change the total cost after this time, ignore this change.
+    509.1e: If any of the costs require mana, the defending player then has a chance to activate mana abilities (see rule 605, “Mana Abilities”).
+    509.1f: Once the player has enough mana in his or her mana pool, he or she pays all costs in any order. Partial payments are not allowed.
+    */
+}
+
+ostream& MTGBlockCostRule::toString(ostream& out) const
+{
+    out << "MTGBlockCostRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+const string MTGBlockCostRule::getMenuText()
+{
+    sprintf(menuText, "Pay to block");
+    return menuText;
+}
+
+MTGBlockCostRule * MTGBlockCostRule::clone() const
+{
+    return NEW MTGBlockCostRule(*this);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 bool MTGAttackRule::select(Target* t)
 {
     if (CardView* c = dynamic_cast<CardView*>(t))
     {
         MTGCardInstance * card = c->getCard();
-        if (card->canAttack() && !card->isPhased)
+        if (card->canAttack() && !card->isPhased && card->attackCost < 1)
             return true;
     }
     return false;
@@ -1377,7 +1519,7 @@ int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
             return 0;
         if (card->isAttacker())
             return 1;
-        if (card->canAttack())
+        if (card->canAttack() && card->attackCost < 1)
             return 1;
     }
     return 0;
@@ -1453,7 +1595,7 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
             return 0;
         if (card->isAttacker())
             return 1;
-        if (card->canAttack())
+        if (card->canAttack() && card->attackPlaneswalkerCost < 1)
             return 1;
     }
     return 0;
@@ -1718,7 +1860,7 @@ int MTGBlockRule::receiveEvent(WEvent *e)
             {
                 MTGCardInstance * card = z->cards[i];
                 if ((card->defenser && !card->defenser->has(Constants::LURE))||!card->defenser)
-                    if(card->canBlock(lurer))
+                    if(card->canBlock(lurer) && card->blockCost < 1)
                         card->setDefenser(lurer);
                 //force a block on a lurer, the player has a chance to set his own choice on multiple lures
                 //but this action can not be ignored.
@@ -1736,7 +1878,7 @@ int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         && card->controller() != game->currentPlayer
         )
     {
-        if (card->canBlock() && !card->isPhased)
+        if (card->canBlock() && !card->isPhased && card->blockCost < 1)
         {
             if(card->isDefenser())
                 blockmenu = "Remove Blocker";
