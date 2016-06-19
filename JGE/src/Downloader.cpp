@@ -89,19 +89,6 @@ void DownloadRequest::onProgressCb(unsigned int handle, DownloadRequest* req, in
 }
 #endif
 
-void DownloadRequest::waitUntilCompleted()
-{
-    while(mDownloadStatus != DownloadRequest::DOWNLOAD_ERROR && mDownloadStatus != DownloadRequest::DOWNLOADED )
-    {
-#ifdef __EMSCRIPTERN
-        emscripten_sleep_with_yield(100)
-#else
-        sleep(100);
-#endif
-        DebugTrace("DownloadRequest::waitUntilCompleted");
-    }
-}
-
 void DownloadRequest::processError(int errorCode, const char* errorText)
 {
   DebugTrace(errorText);

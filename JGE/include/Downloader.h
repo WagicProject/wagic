@@ -102,7 +102,6 @@ public:
         totalSize = mTotalSize;
         currentSize = mCurrentSize;
     };
-    void waitUntilCompleted();
 
     friend ostream& operator<<(ostream& out, const DownloadRequest& d);
     friend istream& operator>>(istream&, DownloadRequest&);
