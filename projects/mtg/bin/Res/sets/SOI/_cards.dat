@@ -209,6 +209,11 @@ id=409955
 rarity=C
 [/card]
 [card]
+primitive=Clue
+rarity=T
+id=-410067
+[/card]
+[card]
 primitive=Compelling Deterrence
 id=409794
 rarity=U
@@ -302,6 +307,11 @@ rarity=C
 primitive=Descend upon the Sinful
 id=409751
 rarity=M
+[/card]
+[card]
+primitive=Devil
+rarity=T
+id=-410068
 [/card]
 [card]
 primitive=Devils' Playground
