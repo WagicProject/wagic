@@ -1,5 +1,11 @@
 #NAME:Kill by Numbers
 #DESC:They just keep multiplying.
+#HINT:castpriority(enchantment,instant,sorcery,artifact,creature)
+#HINT:dontattackwith(Rhys the Redeemed)
+#HINT:dontblockwith(Rhys the Redeemed)
+#HINT:dontattackwith(Kazandu Tuskcaller)
+#HINT:dontblockwith(Kazandu Tuskcaller)
+
 Mox Emerald	 (LEA) *2
 Mox Pearl	 (LEA) *2
 Forest	 (LEA) *15
