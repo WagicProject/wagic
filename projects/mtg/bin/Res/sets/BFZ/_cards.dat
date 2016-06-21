@@ -364,11 +364,6 @@ rarity=T
 id=-402046
 [/card]
 [card]
-primitive=Eldrazi Scion
-rarity=T
-id=-402092
-[/card]
-[card]
 primitive=Eldrazi Skyspawner
 id=401868
 rarity=C
@@ -1017,6 +1012,11 @@ rarity=C
 primitive=Planar Outburst
 id=401995
 rarity=R
+[/card]
+[card]
+primitive=Plant
+rarity=T
+id=-401904
 [/card]
 [card]
 primitive=Plated Crusher
