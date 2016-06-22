@@ -39,6 +39,11 @@ id=409952
 rarity=U
 [/card]
 [card]
+primitive=Angel
+id=-409751
+rarity=T
+[/card]
+[card]
 primitive=Angel of Deliverance
 id=409738
 rarity=R
@@ -684,6 +689,16 @@ id=409919
 rarity=C
 [/card]
 [card]
+primitive=Human Soldier
+id=-409780
+rarity=T
+[/card]
+[card]
+primitive=Human Cleric
+id=-410049
+rarity=T
+[/card]
+[card]
 primitive=Humble the Brute
 id=409762
 rarity=U
@@ -722,6 +737,11 @@ rarity=U
 primitive=Inquisitor's Ox
 id=409763
 rarity=C
+[/card]
+[card]
+primitive=Insect
+id=-409957
+rarity=T
 [/card]
 [card]
 primitive=Insidious Mist
@@ -1024,6 +1044,11 @@ id=409820
 rarity=U
 [/card]
 [card]
+primitive=Ooze
+id=-409973
+rarity=T
+[/card]
+[card]
 primitive=Open the Armory
 id=409771
 rarity=U
@@ -1324,6 +1349,11 @@ id=409778
 rarity=U
 [/card]
 [card]
+primitive=Spirit
+id=-410031
+rarity=T
+[/card]
+[card]
 primitive=Spiteful Motives
 id=409939
 rarity=U
@@ -1554,6 +1584,11 @@ id=409788
 rarity=C
 [/card]
 [card]
+primitive=Vampire Knight
+id=-410016t
+rarity=T
+[/card]
+[card]
 primitive=Vampire Noble
 id=409893
 rarity=C
@@ -1654,6 +1689,11 @@ id=410037
 rarity=U
 [/card]
 [card]
+primitive=Wolf
+id=-409983
+rarity=T
+[/card]
+[card]
 primitive=Wolf of Devil's Breach
 id=409949
 rarity=M
@@ -1662,4 +1702,9 @@ rarity=M
 primitive=Woodland Stream
 id=410051
 rarity=U
+[/card]
+[card]
+primitive=Zombie
+id=-409884
+rarity=T
 [/card]
