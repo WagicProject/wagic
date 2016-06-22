@@ -214,7 +214,7 @@ public class StorageOptions
                 {
                     if(!isRooted())
                     {
-                        File folder = new File(System.getenv("EXTERNAL_STORAGE")+"/Android/data/net.wagic.app");
+                        File folder = new File(System.getenv("EXTERNAL_STORAGE")+"/Android/data/net.wagic.app/files");
                         folder.mkdirs();
                         mMounts.add(folder.toString());
                     }
@@ -232,7 +232,7 @@ public class StorageOptions
                 {
                     if(!isRooted())
                     {
-                        File folder = new File(System.getenv("SECONDARY_STORAGE")+"/Android/data/net.wagic.app");
+                        File folder = new File(System.getenv("SECONDARY_STORAGE")+"/Android/data/net.wagic.app/files");
                         folder.mkdirs();
                         mMounts.add(folder.toString());
                     }
