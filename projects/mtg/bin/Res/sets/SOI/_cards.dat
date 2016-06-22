@@ -481,17 +481,17 @@ rarity=R
 [card]
 primitive=Forest
 id=410064
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=410065
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=410066
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Forgotten Creation
@@ -776,17 +776,17 @@ rarity=R
 [card]
 primitive=Island
 id=410055
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=410056
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=410057
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Jace's Scrutiny
@@ -946,17 +946,17 @@ rarity=U
 [card]
 primitive=Mountain
 id=410061
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=410062
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=410063
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Murderer's Axe
@@ -1101,17 +1101,17 @@ rarity=U
 [card]
 primitive=Plains
 id=410052
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Plains
 id=410053
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Plains
 id=410054
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Pore Over the Pages
@@ -1431,17 +1431,17 @@ rarity=C
 [card]
 primitive=Swamp
 id=410058
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=410059
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=410060
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Tamiyo's Journal
