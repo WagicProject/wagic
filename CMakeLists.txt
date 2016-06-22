@@ -93,7 +93,7 @@ if(NOT backend_sdl AND UNIX AND NOT ANDROID AND NOT IOS)
 endif()
 
 #third party build options
-WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    WIN32 OR APPLE OR EMSCRIPTEN)
+WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    WIN32 OR APPLE)
 WAGIC_OPTION(BUILD_JPEG    "build jpeg from source"    (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_PNG     "build png from source"     (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_UNZIP   "build unzip from source"   ON)
