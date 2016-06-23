@@ -9,8 +9,6 @@ matrix:
     - os: linux
       env: BUILD_TYPE=Qt
     - os: osx
-      env: BUILD_TYPE=SDL
-    - os: osx
       env: BUILD_TYPE=Qt
     - os: osx
       env: BUILD_TYPE=iOS
@@ -18,8 +16,6 @@ matrix:
       language: android
       env: BUILD_TYPE=ANDROID
     - os: osx
-      env: BUILD_TYPE=Emscripten
-    - os: linux
       env: BUILD_TYPE=Emscripten
 
 android:
@@ -76,10 +72,6 @@ before_install:
 # Building for Emscripten here
   - if [ "$BUILD_TYPE" == "Emscripten" ] && [ "$TRAVIS_OS_NAME" == "osx" ]; then
       brew install emscripten && export LLVM=/usr/local/opt/emscripten/libexec/llvm/bin && emcc;
-    fi
-  - if [ "$BUILD_TYPE" == "Emscripten" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      git clone --depth 1 https://github.com/urho3d/emscripten-sdk.git && emscripten-sdk/emsdk activate --build=Release sdk-master-64bit && source emscripten-sdk/emsdk_env.sh &&
-      export PATH=$(whereis -b ccache |grep -o '\S*lib\S*'):$PATH; for f in $EMSCRIPTEN/{emcc,em++}; do touch -d "2015-09-01 00:00:00 +0800" $f; done;
     fi
 
 install:
