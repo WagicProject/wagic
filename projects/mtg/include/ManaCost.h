@@ -150,7 +150,7 @@ public:
     ManaPool(Player * player);
     ManaPool(ManaCost * _manaCost, Player * player);
     int remove (int color, int value);
-    int add(int color, int value, MTGCardInstance * source = NULL);
+    int add(int color, int value, MTGCardInstance * source = NULL, bool extra = false);
     int add(ManaCost * _cost, MTGCardInstance * source = NULL);
     int pay (ManaCost * _cost);
 };
