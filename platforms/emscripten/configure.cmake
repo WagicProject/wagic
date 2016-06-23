@@ -1,4 +1,4 @@
-set(CMAKE_CXX_FLAGS "-s USE_SDL=2 -s USE_ZLIB=1 -s FULL_ES2=1 -std=c++11 -O0 -s ALLOW_MEMORY_GROWTH=1 --preload-file ../../../projects/mtg/bin/Res@/")
+set(CMAKE_CXX_FLAGS "-s USE_SDL=2 -s USE_ZLIB=1 -s FULL_ES2=1 -std=c++11 -s TOTAL_MEMORY=200000000 -O0 --preload-file ../../../projects/mtg/bin/Res@/")
 #set(CMAKE_CXX_FLAGS "-s USE_SDL=2 -s FULL_ES2=1 -std=c++11 -g4 -s ALLOW_MEMORY_GROWTH=1 --preload-file ../../../projects/mtg/bin/Res@/")
 set(CMAKE_EXECUTABLE_SUFFIX ".html")
 add_definitions(-DLINUX)

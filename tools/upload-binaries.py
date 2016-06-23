@@ -5,24 +5,24 @@ from pyjavaproperties import Properties
 from optparse import OptionParser
 from github3 import login
 
-def checkRelease(repository, remote):
+def checkRelease(repository, remote, branch):
     release = None
     for r in repository.iter_releases():
-        if r.name == 'latest-master' :
+        if r.name == ('latest-' + branch) :
             release = r
             for a in r.assets :
                 if a.name == remote :
                     # need to delete the old release
                     r.delete()
                     # need also to delete the tag (reference)
-                    ref = repository.ref('tags/latest-master')
+                    ref = repository.ref('tags/latest-' + branch)
                     ref.delete()
                     release = None
 
     if release is None:
         # now, we recreate a new one
-        release = repository.create_release('latest-master', 'master', 'latest-master',
-            'Latest successful builds of the master branch automatically uploaded by Travis or AppVeyor CI.',
+        release = repository.create_release('latest-' + branch, branch, 'latest-' + branch,
+            'Latest successful builds of the ' + branch + ' branch automatically uploaded by Travis or AppVeyor CI.',
             False,
             True)
 
@@ -49,14 +49,18 @@ def main():
 
     (options, args) = parser.parse_args()
 
-    if (options.token and options.sha and options.local and options.remote and (options.branch == 'master' or options.branch == 'travis_mac_osx')):
+    if (options.token and options.sha and options.local and options.remote and (options.branch == 'master' or options.branch == 'travis_mac_osx' or options.branch == 'cmake' )):
         gh = login(token = options.token)
     else:
         parser.print_help()
         return
 
     repository = gh.repository('WagicProject', 'wagic')
-    r = checkRelease(repository, options.remote)
+	if(options.branch == 'master' or options.branch == 'travis_mac_osx'):
+		r = checkRelease(repository, options.remote, 'master')
+	else:
+		r = checkRelease(repository, options.remote, 'cmake')
+
     filename = options.remote
     with open(options.local, 'rb') as fd:
         asset = r.upload_asset('application/zip', filename , fd)
