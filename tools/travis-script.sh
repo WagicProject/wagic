@@ -55,7 +55,7 @@ fi
 if [ "$BUILD_TYPE" = "Emscripten" ]; then
     mkdir build_emscripten
     cd build_emscripten
-    emcmake cmake -DCMAKE_BUILD_TYPE=Release ..
+    emcmake cmake -DCMAKE_BUILD_TYPE=Debug ..
     emmake make -j4
     cd ..
 fi
