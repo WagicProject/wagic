@@ -56,10 +56,10 @@ def main():
         return
 
     repository = gh.repository('WagicProject', 'wagic')
-	if(options.branch == 'master' or options.branch == 'travis_mac_osx'):
-		r = checkRelease(repository, options.remote, 'master')
-	else:
-		r = checkRelease(repository, options.remote, 'cmake')
+    if(options.branch == 'master' or options.branch == 'travis_mac_osx'):
+    	r = checkRelease(repository, options.remote, 'master')
+    else:
+	r = checkRelease(repository, options.remote, 'cmake')
 
     filename = options.remote
     with open(options.local, 'rb') as fd:
