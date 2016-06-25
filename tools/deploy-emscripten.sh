@@ -7,6 +7,7 @@ TARGET_BRANCH=gh_pages
 (test "$TRAVIS_BRANCH" != "master" && test "$TRAVIS_BRANCH" != "cmake") && exit 0
 
 ## Configure Git to use OAuth token
+REPO=`git config remote.origin.url`
 git config credential.helper "store --file=.git/credentials"
 echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.name $GH_USER
