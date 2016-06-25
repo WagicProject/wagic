@@ -120,3 +120,6 @@ after_success:
 - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$BUILD_TYPE" == "Qt" ]; then
     python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l build_qt_widget/wagic.dmg -r Wagic-macosx.dmg -b $TRAVIS_BRANCH;
   fi
+- if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$BUILD_TYPE" == "Emscripten" ]; then
+    ./tools/deploy-emscripten.sh;
+  fi
