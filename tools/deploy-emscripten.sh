@@ -18,7 +18,7 @@ git remote set-url origin "https://${GH_TOKEN}@github.com/WagicProject/wagic.git
 git clone $REPO out
 cd out
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
-rm -rf **/* || exit 0
+rm -rf * || exit 0
 
 ## Move emscripten files in the out directory
 mv ../build_emscripten/bin/wagic.html index.html
