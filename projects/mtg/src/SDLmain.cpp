@@ -226,11 +226,11 @@ public:
 
         /* On Android, this is triggered when the device orientation changed */
         case SDL_WINDOWEVENT:
-            window = SDL_GetWindowFromID(Event->window.windowID);
-            int h,w;
-            SDL_GetWindowSize(window, &w, &h);
-            OnResize(w, h);
-            break;
+			window = SDL_GetWindowFromID(Event->window.windowID);
+			int h, w;
+			SDL_GetWindowSize(window, &w, &h);
+			OnResize(w, h);
+			break;
 
         case SDL_KEYDOWN:
         case SDL_KEYUP:
@@ -670,8 +670,8 @@ bool SdlApp::OnInit()
 	window_w = currentDisplayMode.w;
 	window_h = currentDisplayMode.h;
 #else
-	window_w = ACTUAL_SCREEN_WIDTH;
-	window_h = ACTUAL_SCREEN_HEIGHT;
+	window_w = SCREEN_WIDTH;
+	window_h = SCREEN_HEIGHT;
 #endif
 
     int buffers, samples;
@@ -720,9 +720,9 @@ bool SdlApp::OnInit()
 #endif
 	window = SDL_CreateWindow(
 		g_launcher->GetName(),
-		SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED,
-		window_w, windowed_h, flags);
+		SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED,
+		window_w, window_h, flags);
 	if (window == NULL)
 	{
 		DebugTrace(SDL_GetError());
@@ -731,9 +731,7 @@ bool SdlApp::OnInit()
 
 	gl_context = SDL_GL_CreateContext(window);
 
-
-
-  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 #if (defined GL_ES_VERSION_2_0) && (!defined __EMSCRIPTEN__)
@@ -799,16 +797,7 @@ int main(int argc, char* argv[])
 #endif		
 
 	DebugTrace("I R in da native");
-/*
-    DownloadRequest* downloadRequest = NULL;
-    Downloader*downloader = Downloader::GetInstance();
-    downloadRequest = downloader->Get(
-                "core.zip",
-                "file:///C:/Users/xawot_000/Documents/GitHub/wagic-master/build-emscripten/bin/Wagic-core.zip"
-//                "http://127.0.0.1:8000/Wagic-core.zip"
-              );
-    downloadRequest->waitUntilCompleted();
-*/
+
 	g_launcher = new JGameLauncher();
 
 	u32 flags = g_launcher->GetInitFlags();
