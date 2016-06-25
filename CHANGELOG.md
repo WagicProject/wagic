@@ -2,6 +2,24 @@
 
 ## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
 
+#### 6/23/16
+- *Merged pull-request:* Fix producecolor:color [#\704] (https://github.com/WagicProject/wagic/pull/704) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 6/17/16
+- *Merged pull-request:* Force Mounting 2 [#\699] (https://github.com/WagicProject/wagic/pull/699) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 6/16/16
+- *Merged pull-request:* Import Deck Options [#\697] (https://github.com/WagicProject/wagic/pull/697) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 6/11/16
+- *Merged pull-request:* Refactor & Devotion [#\690] (https://github.com/WagicProject/wagic/pull/690) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 6/3/16
+- *Merged pull-request:* Cost Increaser & Reducer Fix [#\676] (https://github.com/WagicProject/wagic/pull/676) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 5/30/16
+- *Fixed Bug:* deckstats crash when "unlock cards" is used [#\668] (https://github.com/WagicProject/wagic/issues/668) ([zethfoxster](https://github.com/zethfoxster))
+
 #### 5/26/16
 - *Closed issue:* Nasty memleak crashing devices and its fix. [#\664] (https://github.com/WagicProject/wagic/issues/664) ([zethfoxster](https://github.com/zethfoxster))
 
