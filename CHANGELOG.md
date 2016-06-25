@@ -1,6 +1,49 @@
 # Changelog
 
 ## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
+
+#### 5/26/16
+- *Closed issue:* Nasty memleak crashing devices and its fix. [#\664] (https://github.com/WagicProject/wagic/issues/664) ([zethfoxster](https://github.com/zethfoxster))
+
+#### 11/08/15
+- *Merged pull-request:* produce mana for lands you/opponent could produce [#\658] (https://github.com/WagicProject/wagic/pull/658) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 11/07/15
+- *Merged pull-request:* Manacost Changes, Anyzone for CDA, PayZero Cost [#\656] (https://github.com/WagicProject/wagic/pull/656) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 10/31/15
+- *Merged pull-request:* Exile Zone, Altercost and Hand modifier [#\653] (https://github.com/WagicProject/wagic/pull/653) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 10/17/15
+- *Merged pull-request:* Fix issue #473 #784 [#\646] (https://github.com/WagicProject/wagic/pull/646) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 10/15/15
+- *Merged pull-request:* Bug Fix: Planeswalker Rule & ABlink return to play ability for Aura cards [#\644] (https://github.com/WagicProject/wagic/pull/644) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 10/14/15
+- *Merged pull-request:* Fix Legend Rule [#\643] (https://github.com/WagicProject/wagic/pull/643) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 10/12/15
+- *Merged pull-request:* Fix crash bug, support doubled res texture for background, avatars, menutitle [#\641] (https://github.com/WagicProject/wagic/pull/641) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 10/02/15
+- *Merged pull-request:* LKI for power, toughness and basic abilities, produceextra ability [#\636] (https://github.com/WagicProject/wagic/pull/636) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 09/29/15
+- *Merged pull-request:* Fix Recover Cards, Cloner, Copier, and Preliminary support for Madness [#\635] (https://github.com/WagicProject/wagic/pull/635) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 09/22/15
+- *Merged pull-request:* Auraward, unattach event and statebased action for protection from quality [#\631] (https://github.com/WagicProject/wagic/pull/631) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 09/19/15
+- *Merged pull-request:* PT Switch like Layer 7e and Token Indicator [#\626] (https://github.com/WagicProject/wagic/pull/626) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 09/18/15
+- *Merged pull-request:* Token Cloning fix and colored PT [#\624] (https://github.com/WagicProject/wagic/pull/624) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 09/15/15
+- *Merged pull-request:* CDA and X manacost on stack [\#623] (https://github.com/WagicProject/wagic/pull/623) ([kevlahnota](https://github.com/kevlahnota))
+
 #### 08/12/14
 - *Merged pull-request:* Fix for guild_keywords Devotion, added some "Chroma" cards [\#606](https://github.com/WagicProject/wagic/pull/606) ([kevlahnota](https://github.com/kevlahnota))
 
