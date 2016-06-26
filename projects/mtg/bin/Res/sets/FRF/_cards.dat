@@ -274,8 +274,13 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
+id=391835
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=391836
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Formless Nurturing
@@ -390,7 +395,12 @@ rarity=C
 [card]
 primitive=Island
 id=391859
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=391860
+rarity=L
 [/card]
 [card]
 primitive=Jeskai Barricade
@@ -520,7 +530,12 @@ rarity=R
 [card]
 primitive=Mountain
 id=391885
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=391886
+rarity=L
 [/card]
 [card]
 primitive=Neutralizing Blast
@@ -559,8 +574,13 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
+id=391894
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=391895
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Pressure Point
@@ -755,7 +775,12 @@ rarity=R
 [card]
 primitive=Swamp
 id=391934
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=391935
+rarity=L
 [/card]
 [card]
 primitive=Swiftwater Cliffs
@@ -906,29 +931,4 @@ rarity=C
 primitive=Yasova Dragonclaw
 id=391965
 rarity=R
-[/card]
-[card]
-primitive=Forest
-id=391835
-rarity=C
-[/card]
-[card]
-primitive=Island
-id=391860
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=391886
-rarity=C
-[/card]
-[card]
-primitive=Plains
-id=391894
-rarity=C
-[/card]
-[card]
-primitive=Swamp
-id=391935
-rarity=C
 [/card]

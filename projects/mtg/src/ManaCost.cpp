@@ -1119,14 +1119,20 @@ int ManaPool::remove(int color, int value)
     return result;
 }
 
-int ManaPool::add(int color, int value, MTGCardInstance * source)
+int ManaPool::add(int color, int value, MTGCardInstance * source, bool extra)
 {
 	if (color == Constants::MTG_COLOR_ARTIFACT)
 		color = Constants::MTG_COLOR_WASTE;
     int result = ManaCost::add(color, value);
     for (int i = 0; i < value; ++i)
     {
-        WEvent * e = NEW WEventEngageMana(color, source, this);
+        WEvent * e = NEW WEvent;
+
+        if(extra)
+            e = NEW WEventEngageManaExtra(color, source, this);
+        else
+            e = NEW WEventEngageMana(color, source, this);
+
         player->getObserver()->receiveEvent(e);
     }
     return result;

@@ -25,10 +25,14 @@ public class StorageOptions
     public static void determineStorageOptions()
     {
         initializeMountPoints();
-        readMountsFileTest();
+        if (findForcemount()){
+            readMountsFileTest();
+        }
         readMountsFile();
         readVoldFile();
-        removeDuplicates(mMounts);
+        if (findForcemount()){
+            removeDuplicates(mMounts);
+        }
         compareMountsWithVold();
         testAndCleanMountsList();
         setProperties();
@@ -201,7 +205,7 @@ public class StorageOptions
                 mMounts.remove(i--);
         }
         
-        if (t == 0 && Build.VERSION.SDK_INT >= 16)
+        if (t == 0 && Build.VERSION.SDK_INT >= 16 && findForcemount())
         {//if none is found lets force it for Jellybean and above...
             if (System.getenv("EXTERNAL_STORAGE") != null)
             {
@@ -250,16 +254,28 @@ public class StorageOptions
         ArrayList<String> mLabels = new ArrayList<String>();
 
         int i = 1;
-        for (String path : mMounts)
-        { // TODO: /mnt/sdcard is assumed to always mean internal storage. Use this comparison until there is a better way to do this
-            if ("/mnt/sdcard".equalsIgnoreCase(path) || "/storage/sdcard0".equalsIgnoreCase(path))
-                mLabels.add("Internal SD " + "[" + path + "]");
-            else if (path.contains("emulated"))
-                mLabels.add("Emulated SD " + " [" + path + "]");
-            else
-                mLabels.add("External SD " + " [" + path + "]");
+        if(findForcemount()){
+            for (String path : mMounts)
+            {//with forcemount menu
+                if ("/mnt/sdcard".equalsIgnoreCase(path) || "/storage/sdcard0".equalsIgnoreCase(path))
+                    mLabels.add("Internal SD " + "[" + path + "]");
+                else if (path.contains("emulated"))
+                    mLabels.add("Emulated SD " + " [" + path + "]");
+                else
+                    mLabels.add("External SD " + " [" + path + "]");
+            }
         }
-
+        else
+        {
+            for (String path : mMounts)
+            { // TODO: /mnt/sdcard is assumed to always mean internal storage. Use this comparison until there is a better way to do this
+                if ("/mnt/sdcard".equalsIgnoreCase(path))
+                    mLabels.add("Built-in Storage");
+                else
+                    mLabels.add("External SD Card " + i++);
+            }
+        }
+        
         labels = new String[mLabels.size()];
         mLabels.toArray(labels);
 
@@ -357,5 +373,21 @@ public class StorageOptions
     }
 
     return executedSuccesfully;
+    }
+    
+    private static boolean findForcemount(){
+    try 
+    {
+        File file = new File(System.getenv("EXTERNAL_STORAGE")+"/forcemount");
+        if (file.exists()) 
+        {
+            return true;
+        }
+    } 
+    catch (Exception e1) 
+    {
+        return false;
+    }
+    return false;
     }
 }

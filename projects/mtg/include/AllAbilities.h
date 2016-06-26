@@ -4856,7 +4856,7 @@ public:
         {
             if ((isManaProduced->card == source) && isManaProduced->color == Constants::GetColorStringIndex(colorname))
             {
-                source->controller()->getManaPool()->add(Constants::GetColorStringIndex(colorname),1);
+                source->controller()->getManaPool()->add(Constants::GetColorStringIndex(colorname),1,source,true);
             }
         }
         return 1;

@@ -248,6 +248,14 @@ struct WEventCombatStepChange : public WEvent
   WEventCombatStepChange(CombatStep);
 };
 
+//Event when a mana is engaged
+//color : color
+struct WEventEngageManaExtra : public WEvent {
+  int color;
+  MTGCardInstance* card;
+  ManaPool * destination;
+  WEventEngageManaExtra(int color, MTGCardInstance* card, ManaPool * destination);
+};
 
 //Event when a mana is engaged
 //color : color
