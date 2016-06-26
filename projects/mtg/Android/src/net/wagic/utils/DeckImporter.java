@@ -17,6 +17,7 @@ public class DeckImporter
         String message = "";
         String deck = "";
         String deckname = "";
+		String prefix = "#SB:";
         if(f.exists() && !f.isDirectory())
         { 
             deckname = f.getName();
@@ -33,15 +34,21 @@ public class DeckImporter
                 {
                     while (scanner.hasNext()) 
                     {
+						boolean foundSideboard = false;
                         String line = scanner.nextLine();
+						if(line.toLowerCase().contains("sideboard"))
+							foundSideboard = true;
                         String[] slines = line.split("\\s+");
                         String arranged = "";
                         for(int idx = 1; idx < slines.length; idx++)
                         {
                              arranged += slines[idx] + " ";
                         }
-                        if (isNumeric(slines[0]) && arranged != null)
+                        if ((isNumeric(slines[0])||foundSideboard) && arranged != null)
                         {
+							if (foundSideboard)
+								deck += prefix;
+							
                             if (slines[1] != null && slines[1].startsWith("["))
                             {
                                 arranged = arranged.substring(5);
