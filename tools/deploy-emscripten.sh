@@ -26,7 +26,7 @@ mv ../build_emscripten/bin/wagic.js wagic.js
 mv ../build_emscripten/bin/wagic.data wagic.data
 
 ## Add, commit and push to GH
-git add .
+git add --all .
 git commit -m "Deploy Emscripten to Github pages"
 ## Push new branch to remote server
 git push -q origin $TARGET_BRANCH:$TARGET_BRANCH  2> /dev/null > /dev/null
