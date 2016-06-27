@@ -234,6 +234,26 @@ id=-407587
 rarity=T
 [/card]
 [card]
+primitive=Eldrazi Scion
+id=-407635
+rarity=T
+[/card]
+[card]
+primitive=Eldrazi Scion
+id=-407550
+rarity=T
+[/card]
+[card]
+primitive=Eldrazi Scion
+id=-407633
+rarity=T
+[/card]
+[card]
+primitive=Eldrazi Scion
+id=-407631
+rarity=T
+[/card]
+[card]
 primitive=Elemental
 id=-407614
 rarity=T
@@ -421,6 +441,11 @@ rarity=T
 [card]
 primitive=Kor Ally
 id=-407540
+rarity=T
+[/card]
+[card]
+primitive=Kor Ally
+id=-407672
 rarity=T
 [/card]
 [card]
@@ -976,6 +1001,11 @@ rarity=R
 [card]
 primitive=Zombie
 id=-407594
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-407596
 rarity=T
 [/card]
 [card]

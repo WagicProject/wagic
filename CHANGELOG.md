@@ -1,6 +1,8 @@
 # Changelog
 
 ## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
+#### 6/27/16
+- *Merged pull-request:* CardID Indicator, Add Missing Tokens, Support Importing dck for Android [#\705] (https://github.com/WagicProject/wagic/pull/705) ([kevlahnota](https://github.com/kevlahnota))
 
 #### 6/23/16
 - *Merged pull-request:* Fix producecolor:color [#\704] (https://github.com/WagicProject/wagic/pull/704) ([kevlahnota](https://github.com/kevlahnota))
@@ -13,6 +15,24 @@
 
 #### 6/11/16
 - *Merged pull-request:* Refactor & Devotion [#\690] (https://github.com/WagicProject/wagic/pull/690) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 6/9/16
+- *Closed issue:* Clone goes to graveyard before being able to copy anything [\#546](https://github.com/WagicProject/wagic/issues/546)
+
+- *Closed issue:* Blinking an aura causes freeze [\#541](https://github.com/WagicProject/wagic/issues/541)
+
+- *Closed issue:* Profile name at upper left side is not being updated correctly [\#469](https://github.com/WagicProject/wagic/issues/469)
+
+- *Closed issue:* Giving card C protection from X does not remove cards attached to C which have quality X [\#464](https://github.com/WagicProject/wagic/issues/464)
+
+- *Closed issue:* (graphical glitch) wood / gold textures [\#461](https://github.com/WagicProject/wagic/issues/461)
+
+- *Closed issue:* Clone does not get all P/T bonuses [\#448](https://github.com/WagicProject/wagic/issues/448)
+
+- *Closed issue:* Card "threaten" messes up the GUI [\#473](https://github.com/WagicProject/wagic/issues/473)
+
+#### 6/7/16
+- *Closed issue:* Emrakul isn't killed by creatures with deathtouch [\#597](https://github.com/WagicProject/wagic/issues/597)
 
 #### 6/3/16
 - *Merged pull-request:* Cost Increaser & Reducer Fix [#\676] (https://github.com/WagicProject/wagic/pull/676) ([kevlahnota](https://github.com/kevlahnota))

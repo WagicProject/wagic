@@ -221,7 +221,7 @@ public class SDLActivity extends Activity implements OnKeyListener
         File[] files = root.listFiles();
         for( File f : files) 
         {
-            if( !myresult.contains(f.toString()) && (f.toString().contains(".txt")||f.toString().contains(".dec")))
+            if( !myresult.contains(f.toString()) && (f.toString().contains(".txt")||f.toString().contains(".dck")||f.toString().contains(".dec")))
                 myresult.add(f.toString());
         }
         
