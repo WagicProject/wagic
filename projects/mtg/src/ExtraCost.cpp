@@ -756,9 +756,10 @@ int TapTargetCost::isPaymentSet()
 int TapTargetCost::doPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    source->storedCard = target->createSnapShot();
+    
     if (target)
     {
+		source->storedCard = target->createSnapShot();
         _target->tap();
         target = NULL;
         if (tc)
@@ -799,9 +800,10 @@ int UnTapTargetCost::isPaymentSet()
 int UnTapTargetCost::doPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    source->storedCard = target->createSnapShot();
+    
     if (target)
     {
+		source->storedCard = target->createSnapShot();
         _target->untap();
         target = NULL;
         if (tc)

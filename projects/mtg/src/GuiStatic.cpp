@@ -149,12 +149,16 @@ ostream& GuiAvatar::toString(ostream& out) const
 
 void GuiGameZone::toggleDisplay()
 {
-    if (showCards)
-        showCards = 0;
-    else
+	if (showCards)
+	{
+		showCards = 0;
+		cd->zone->owner->getObserver()->OpenedDisplay = NULL;
+	}
+    else if(!cd->zone->owner->getObserver()->OpenedDisplay)//one display at a time please.
     {
         showCards = 1;
         cd->init(zone);
+		cd->zone->owner->getObserver()->OpenedDisplay = cd;
     }
 }
 

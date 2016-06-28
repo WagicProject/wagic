@@ -206,6 +206,21 @@ public:
     virtual MTGOverloadRule * clone() const;
 };
 
+class MTGBestowRule : public MTGAlternativeCostRule
+{
+public:
+	int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+	int reactToClick(MTGCardInstance * card);
+	virtual ostream& toString(ostream& out) const;
+	MTGBestowRule(GameObserver* observer, int _id);
+	const string getMenuText()
+	{
+		return "Bestow";
+	}
+	virtual MTGBestowRule * clone() const;
+};
+
+
 class MTGSuspendRule: public MTGAlternativeCostRule
 {
 public:

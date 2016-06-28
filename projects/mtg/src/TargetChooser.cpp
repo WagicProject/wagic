@@ -156,6 +156,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 zones[nbzones++] = MTGGameZone::ALL_ZONES;
             }
+			else if (zoneName.compare("reveal") == 0)
+			{
+				zones[nbzones++] = MTGGameZone::MY_REVEAL;
+				zones[nbzones++] = MTGGameZone::OPPONENT_REVEAL;
+			}
             else if (zoneName.compare("graveyard") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
@@ -637,15 +642,15 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         }
                     }
 
-                    if (attribute.find("iscolorless") != string::npos)
-                    {
-                         attributefound = 1;
-                        for (int cid = 1; cid < Constants::NB_Colors; cid++)
-                        { 
-                            cd->SetExclusionColor(cid);
-                        }
-                        cd->mode = CardDescriptor::CD_OR;
-                    }
+					if (attribute.find("colorless") != string::npos)
+					{
+						attributefound = 1;
+						for (int cid = 1; cid < Constants::NB_Colors; cid++)
+						{
+							cd->SetExclusionColor(cid);
+						}
+						cd->mode = CardDescriptor::CD_OR;
+					}
 
                     if (attribute.find("chosencolor") != string::npos)
                     {
@@ -817,6 +822,7 @@ TargetChooser::TargetChooser(GameObserver *observer, MTGCardInstance * card, int
     TargetsList(), observer(observer)
 {
     forceTargetListReady = 0;
+	forceTargetListReadyByPlayer = 0;
     source = card;
     targetter = card;
     maxtargets = _maxtargets;
@@ -899,6 +905,10 @@ int TargetChooser::ForceTargetListReady()
 
 int TargetChooser::targetsReadyCheck()
 {
+	if (targetMin == false && !targets.size() && forceTargetListReadyByPlayer)
+	{
+		return TARGET_OK_FULL;//we have no min amount for targets and 0 targets is a valid amount player called for a forced finish.
+	}
     if (!targets.size())
     {
         return TARGET_NOK;
@@ -931,8 +941,8 @@ bool TargetChooser::validTargetsExist(int maxTargets)
         int maxAmount = 0;
         Player *p = observer->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack };
-        for (int k = 0; k < 6; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal };
+        for (int k = 0; k < 7; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -965,8 +975,8 @@ int TargetChooser::countValidTargets(bool withoutProtections)
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack };
-        for (int k = 0; k < 6; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal };
+        for (int k = 0; k < 7; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))

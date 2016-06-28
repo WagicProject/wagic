@@ -38,6 +38,117 @@ public:
     virtual MTGEventText * clone() const;
 };
 
+class MTGRevealingCards : public MTGAbility, public CardDisplay
+{
+public:
+	vector<CardView*> cards;
+	Player * playerForZone;
+	MTGGameZone * RevealZone;
+	MTGGameZone * RevealFromZone;
+	string revealCertainTypes;
+	string revealUntil;
+
+	CardDisplay * revealDisplay;
+	vector<CardDisplay*>trashDisplays;//used for repeat
+	int nbCard;
+	string abilityString;
+	string number;
+	string abilityOne;
+	string abilityTwo;
+	string afterReveal;
+	bool afterEffectActivated;
+	MTGAbility * abilityToCast;
+	MTGAbility * abilityFirst;
+	MTGAbility * abilitySecond;
+	MTGAbility * abilityAfter;
+	vector<MTGAbility*>abilities;
+	bool repeat;//only the first ability can be repeated, and it must be targeted.
+	bool initCD;
+
+	void Update(float dt);
+	int testDestroy();
+	int toResolve();
+	void CardViewBackup(MTGCardInstance * backup);
+	void Render();
+	bool CheckUserInput(JButton key);
+	MTGAbility * contructAbility(string abilityToMake = "");
+	MTGRevealingCards(GameObserver* observer, int _id, MTGCardInstance * card, string text);
+	virtual MTGRevealingCards * clone() const;
+	~MTGRevealingCards();
+	int receiveEvent(WEvent*);
+};
+
+class RevealDisplay : public CardDisplay
+{
+public:
+	RevealDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener = NULL, TargetChooser * tc = NULL,
+		int nb_displayed_items = 7);
+	void AddCard(MTGCardInstance * _card);
+	bool CheckUserInput(JButton key);
+};
+
+class GenericRevealAbility : public ActivatedAbility
+{
+public:
+	string howMany;
+	MTGRevealingCards * ability;
+	GenericRevealAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string _howMany);
+	int resolve();
+	const string getMenuText();
+	GenericRevealAbility * clone() const;
+	~GenericRevealAbility();
+
+};
+
+class MTGScryCards : public MTGAbility, public CardDisplay
+{
+public:
+	vector<CardView*> cards;
+	MTGGameZone * RevealZone;
+	MTGGameZone * RevealFromZone;
+
+	CardDisplay * revealDisplay;
+	vector<CardDisplay*>trashDisplays;//used for repeat
+	int nbCard;
+	bool delayed;
+	bool dontRevealAfter;
+	int revealTopAmount;
+	string delayedAbilityString;
+	string abilityString;
+	string number;
+	string abilityOne;
+	string abilityTwo;
+	MTGAbility * abilityToCast;
+	MTGAbility * abilityFirst;
+	MTGAbility * abilitySecond;
+	vector<MTGAbility*>abilities;
+	bool initCD;
+	void Update(float dt);
+	int testDestroy();
+	void initDisplay(int value = 0);
+	int toResolve();
+	void Render();
+	bool CheckUserInput(JButton key);
+	MTGAbility * contructAbility(string abilityToMake = "");
+	MTGScryCards(GameObserver* observer, int _id, MTGCardInstance * card, string text);
+	virtual MTGScryCards * clone() const;
+	~MTGScryCards();
+	int receiveEvent(WEvent*);
+};
+
+class GenericScryAbility : public ActivatedAbility
+{
+public:
+	string howMany;
+	MTGScryCards * ability;
+	GenericScryAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string _howMany);
+	int resolve();
+	const string getMenuText();
+	GenericScryAbility * clone() const;
+	~GenericScryAbility();
+
+};
+
 class WParsedInt
 {
 public:
@@ -240,6 +351,10 @@ private:
         {
             intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLUE,Constants::MTG_COLOR_GREEN);
         }
+		else if (s == "Iroas")//devotion to red white
+		{
+			intValue = countDevotionTo(card, card->controller()->inPlay(), Constants::MTG_COLOR_RED, Constants::MTG_COLOR_WHITE);
+		}
         else if (s.find("type:") != string::npos)
         {
             size_t begins = s.find("type:");
@@ -556,6 +671,10 @@ private:
         {
             intValue = target->getCurrentToughness();
         }
+		else if (s == "countedamount")
+		{
+			intValue = target->CountedObjects;
+		}
         else if (s == "kicked")
         {
             intValue = target->kicked;
@@ -745,6 +864,21 @@ private:
                     intValue += card->controller()->game->inPlay->cards[j]->power;
             }
         }
+		else if (s == "revealedp")
+		{
+			if (card->revealedLast)
+				intValue = card->revealedLast->power;
+		}
+		else if (s == "revealedt")
+		{
+			if (card->revealedLast)
+				intValue = card->revealedLast->toughness;
+		}
+		else if (s == "revealedmana")
+		{
+			if (card->revealedLast)
+				intValue = card->revealedLast->getManaCost()->getConvertedCost();
+		}
         else
         {
             intValue = atoi(s.c_str());
@@ -2855,7 +2989,6 @@ public:
         return NEW ARegularLifeModifierAura(*this);
     }
 };
-
 //Generic Kird Ape
 class AAsLongAs: public ListMaintainerAbility, public NestedAbility
 {
@@ -3334,6 +3467,7 @@ public:
     list<int> colors;
     int power, toughness;
     int tokenId;
+	string _cardName;
     string name;
     string sabilities;
     string starfound;
@@ -3345,6 +3479,7 @@ public:
     MTGCardInstance * myToken;
     vector<MTGAbility *> currentAbilities;
     Player * tokenReciever;
+	//by id
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, int tokenId,string starfound, WParsedInt * multiplier = NULL,
         int who = 0,bool aLivingWeapon = false) :
     ActivatedAbility(observer, _id, _source, _cost, 0), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
@@ -3354,7 +3489,18 @@ public:
         if (card) name = card->data->getName();
         battleReady = false;
     }
-
+	//by name, card still require valid card.dat info, this just makes the primitive code far more readable. token(Eldrazi scion) instead of token(-1234234)...
+	ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, string cardName, string starfound, WParsedInt * multiplier = NULL,
+		int who = 0, bool aLivingWeapon = false) :
+		ActivatedAbility(observer, _id, _source, _cost, 0), _cardName(cardName), starfound(starfound), multiplier(multiplier), who(who), aLivingWeapon(aLivingWeapon)
+	{
+		if (!multiplier) this->multiplier = NEW WParsedInt(1);
+		MTGCard * card = MTGCollection()->getCardByName(_cardName);
+		tokenId = card->getId();
+		if (card) name = card->data->getName();
+		battleReady = false;
+	}
+	//by construction
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
         string sabilities, string starfound,WParsedInt * multiplier = NULL, int _who = 0,bool aLivingWeapon = false,string spt = "") :
     ActivatedAbility(observer, _id, _source, _cost, 0),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(_who),aLivingWeapon(aLivingWeapon),spt(spt)
@@ -3877,10 +4023,12 @@ class AThis: public MTGAbility, public NestedAbility
 public:
     MTGAbility * a;
     ThisDescriptor * td;
-    AThis(GameObserver* observer, int _id, MTGCardInstance * _source, Damageable * _target, ThisDescriptor * _td, MTGAbility * ability) :
+	string restrictionCheck;
+    AThis(GameObserver* observer, int _id, MTGCardInstance * _source, Damageable * _target, ThisDescriptor * _td, MTGAbility * ability, string restriction = "") :
         MTGAbility(observer, _id, _source, _target), NestedAbility(ability)
     {
         td = _td;
+		restrictionCheck = restriction;
         ability->source = source;
         ability->target = target;
         a = NULL;
@@ -3904,9 +4052,18 @@ public:
 
     int resolve()
     {
-        //TODO check if ability is oneShot ?
-        int match;
-        match = td->match(source);
+		int match = 0;
+		if (td)
+		{
+			match = td->match(source);
+		}
+		else
+		{//restriction check instead of Targetchooser
+			AbilityFactory abf(target->getObserver());
+			int checkCond = abf.parseCastRestrictions(source, source->controller(), restrictionCheck);
+			if (checkCond)
+				match = 1;
+		}
         if (match > 0)
         {
             addAbilityToGame();
@@ -3953,6 +4110,7 @@ public:
     {
         AThis * a =  NEW AThis(*this);
         a->ability = ability->clone();
+		if(a->td)
         a->td = td->clone();
         return a;
     }
@@ -4166,6 +4324,16 @@ public:
         return NEW TADamager(*this);
     }
 };
+//bestow
+class ABestow : public ActivatedAbility
+{
+public:
+	MTGCardInstance * _card;
+	ABestow(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+	int resolve();
+	const string getMenuText();
+	ABestow * clone() const;
+};
 
 /* Can tap a target for a cost */
 class AATapper: public ActivatedAbility
@@ -4197,12 +4365,22 @@ public:
     int resolve();
     AAWhatsMax * clone() const;
 };
+//counts a targetchooser for use later by other effects
+class AACountObject : public ActivatedAbility
+{
+public:
+	string value;
 
+	AACountObject(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost = NULL, string value ="");
+	int resolve();
+	AACountObject * clone() const;
+};
 /* Can prevent a card from untapping next untap */
 class AAFrozen: public ActivatedAbility
 {
 public:
-    AAFrozen(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+	bool freeze;
+    AAFrozen(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, bool tap, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();
     AAFrozen * clone() const;
@@ -6205,7 +6383,8 @@ public:
     MTGCardInstance * theNamedCard;
     bool noEvent;
     bool putinplay;
-    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay);
+	bool asNormalMadness;
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false);
 
     int testDestroy(){return 0;};
     void Update(float dt);

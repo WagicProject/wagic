@@ -35,6 +35,7 @@ auto=lifelinkrule
 auto=deathtouchrule
 auto=soulbondrule
 auto=dredgerule
+auto=bestowrule
 
 [PLAYERS]
 life:20

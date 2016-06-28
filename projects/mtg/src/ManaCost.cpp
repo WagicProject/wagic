@@ -152,7 +152,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             manaCost->addExtraCost(NEW SacrificeCost(tc));
                         }
                         break;
-                    case 'e': //Exile
+                    case 'e': 
+						//Exile
                         manaCost->addExtraCost(NEW ExileTargetCost(tc));
                         break;
                     case 'h': //bounce (move to Hand)
@@ -387,6 +388,7 @@ ManaCost::ManaCost(ManaCost * manaCost)
     FlashBack = NEW ManaCost( manaCost->FlashBack );
     morph = NEW ManaCost( manaCost->morph );
     suspend = NEW ManaCost( manaCost->suspend );
+	Bestow = NEW ManaCost(manaCost->Bestow);
 
     extraCosts = manaCost->extraCosts ? manaCost->extraCosts->clone() : NULL;
     manaUsedToCast = NULL;
@@ -415,7 +417,8 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     FlashBack = NEW ManaCost( manaCost.FlashBack );
     morph = NEW ManaCost( manaCost.morph );
     suspend = NEW ManaCost( manaCost.suspend );
-    
+	Bestow = NEW ManaCost(manaCost.Bestow);
+
     extraCosts = manaCost.extraCosts ? manaCost.extraCosts->clone() : NULL;
     manaUsedToCast = NULL;
     xColor = manaCost.xColor;
@@ -438,6 +441,7 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
         FlashBack = manaCost.FlashBack;
         morph = manaCost.morph;
         suspend = manaCost.suspend;
+		Bestow = manaCost.Bestow;
         manaUsedToCast = manaCost.manaUsedToCast;
         xColor = manaCost.xColor;
     }
@@ -454,6 +458,7 @@ ManaCost::~ManaCost()
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
     SAFE_DELETE(suspend);
+	SAFE_DELETE(Bestow);
     SAFE_DELETE(manaUsedToCast);
 
     cost.erase(cost.begin() ,cost.end());
@@ -539,6 +544,7 @@ void ManaCost::init()
     Retrace = NULL;
     morph = NULL;
     suspend = NULL;
+	Bestow = NULL;
     manaUsedToCast = NULL;
     isMulti = false;
     xColor = -1;
@@ -563,6 +569,7 @@ void ManaCost::resetCosts()
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
     SAFE_DELETE(suspend);
+	SAFE_DELETE(Bestow);
 }
 
 void ManaCost::copy(ManaCost * _manaCost)
@@ -628,6 +635,12 @@ void ManaCost::copy(ManaCost * _manaCost)
         suspend = NEW ManaCost();
         suspend->copy(_manaCost->suspend);
     }
+	SAFE_DELETE(Bestow);
+	if (_manaCost->Bestow)
+	{
+		Bestow = NEW ManaCost();
+		Bestow->copy(_manaCost->Bestow);
+	}
     xColor = _manaCost->xColor;
 }
 
@@ -1092,6 +1105,7 @@ void ManaPool::Empty()
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
     SAFE_DELETE(suspend);
+	SAFE_DELETE(Bestow);
     SAFE_DELETE(manaUsedToCast);
     init();
     WEvent * e = NEW WEventEmptyManaPool(this);
