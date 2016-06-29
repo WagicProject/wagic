@@ -31,6 +31,7 @@ protected:
     ManaCost * manaUsedToCast;
     ManaCost * morph;
     ManaCost * Retrace;
+	ManaCost * Bestow;
     ManaCost * FlashBack;
     ManaCost * BuyBack;
     ManaCost * kicker;
@@ -74,6 +75,9 @@ public:
 
     ManaCost * getSuspend(){ return suspend; };
     void setSuspend(ManaCost * aMana){ SAFE_DELETE(suspend); suspend = aMana;};
+
+	ManaCost * getBestow() { return Bestow; };
+	void setBestow(ManaCost * aMana) { SAFE_DELETE(Bestow); Bestow = aMana; };
 
     ManaCost * getManaUsedToCast(){ return manaUsedToCast; };
     void setManaUsedToCast(ManaCost * aMana){ SAFE_DELETE(manaUsedToCast); manaUsedToCast = aMana;};

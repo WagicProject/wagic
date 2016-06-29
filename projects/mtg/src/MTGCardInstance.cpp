@@ -69,6 +69,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     cardistargetted = 0;
     cardistargetter = 0;
     myconvertedcost = getManaCost()->getConvertedCost();
+	revealedLast = NULL;
+	MadnessPlay = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -194,6 +196,7 @@ void MTGCardInstance::initMTGCI()
     wasDealtDamage = false;
     isDualWielding = false;
     suspended = false;
+	isBestowed = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;
     stillNeeded = true;
@@ -222,6 +225,7 @@ void MTGCardInstance::initMTGCI()
     imprintW = 0;
     currentimprintName = "";
     imprintedNames.clear();
+	CountedObjects = 0;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;
@@ -789,6 +793,9 @@ bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 //check targetted?
 bool MTGCardInstance::isTargetted()
 {
+    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
+        return false;
+
     if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     {
         ActionStack * stack = observer->mLayers->stackLayer();
@@ -814,6 +821,9 @@ bool MTGCardInstance::isTargetted()
 //check targetter?
 bool MTGCardInstance::isTargetter()
 {
+    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
+        return false;
+
     if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     {
         ActionStack * stack = observer->mLayers->stackLayer();
@@ -870,7 +880,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
         return 0;
     if (opponent->basicAbilities[(int)Constants::ONEBLOCKER] && opponent->blocked)
         return 0;
-    if(opponent->basicAbilities[(int)Constants::EVADEBIGGER] && power > opponent->power)
+    if((opponent->basicAbilities[(int)Constants::EVADEBIGGER]|| opponent->basicAbilities[(int)Constants::SKULK]) && power > opponent->power)
         return 0;
     if(opponent->basicAbilities[(int)Constants::STRONG] && power < opponent->power)
         return 0;
@@ -1035,7 +1045,6 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
                     if(newCost->getCost(color) > 0)
                         newCost->remove(color,1);
             }//end3
-        SAFE_DELETE(original);
     
     if(!noTrinisphere)
     {
@@ -1057,6 +1066,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
             }
         }
     }
+
+    SAFE_DELETE(original);
 
     return newCost;
 }
@@ -1266,7 +1277,7 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent)
     if (defenser)
     {
         if (observer->players[0]->game->battlefield->hasCard(defenser) || observer->players[1]->game->battlefield->hasCard(defenser))
-        {
+        {//remove blocker "this" from the attackers list of blockers.
             defenser->removeBlocker(this);
         }
     }

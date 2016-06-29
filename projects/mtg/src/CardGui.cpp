@@ -659,6 +659,14 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 
                 }
 
+                found = Carditem->mName.find("cardid"); // Write the cardid
+                if (found != string::npos)
+                {
+                    stringstream st;
+                    st << card->getMTGId();
+                    formattedfield = FormattedData(formattedfield, "mtgid", st.str());
+                }
+
                 found = Carditem->mName.find("power"); // Write the strength
                 if (found != string::npos)
                 {

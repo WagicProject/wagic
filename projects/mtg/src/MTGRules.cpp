@@ -367,9 +367,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = card->getManaCost();
-
     //this handles extra cost payments at the moment a card is played.
-
     if (cost->isExtraPaymentSet())
     {
         if (!game->targetListIsSet(card))
@@ -383,7 +381,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         game->mExtraPayment = cost->extraCosts;
         return 0;
     }
-
+	
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     int payResult = player->getManaPool()->pay(card->getManaCost());
     if (card->getManaCost()->getKicker() && (OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
@@ -497,6 +495,9 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
         withKickerCost->add(card->getManaCost()->getKicker());
         //cost reduction/recalculation must be here or outside somehow...
+		//no recalculations beyound this point, reactToClick is the function that
+		//happens only with the assumption that you could actually pay for it, any calculations after will
+		//have negitive effects. this function is basically "can i play this card?"
 #ifdef WIN32
         withKickerCost->Dump();
 #endif
@@ -532,7 +533,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     int payResult = player->getManaPool()->pay(card->getManaCost());
     if (card->getManaCost()->getKicker())
-    {  //cost reduction/recalculation must be here or outside somehow...
+    {  
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
         withKickerCost->add(withKickerCost->getKicker());
         if (card->getManaCost()->getKicker()->isMulti)
@@ -1345,7 +1346,68 @@ MTGOverloadRule * MTGOverloadRule::clone() const
 {
     return NEW MTGOverloadRule(*this);
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//bestow
+MTGBestowRule::MTGBestowRule(GameObserver* observer, int _id) :
+	MTGAlternativeCostRule(observer, _id)
+{
+	aType = MTGAbility::BESTOW_COST;
+}
 
+int MTGBestowRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+	if (!card->model)
+		return 0;
+	//Player * player = game->currentlyActing();
+	if (!card->model->data->getManaCost()->getBestow())
+		return 0;
+	if (card->isInPlay(game))
+		return 0;
+	ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getBestow());
+	ManaCost * newCost = card->computeNewCost(card, cost, cost);
+	if (newCost->extraCosts)
+		for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
+		{
+			newCost->extraCosts->costs[i]->setSource(card);
+		}
+	SAFE_DELETE(cost);
+	if (card->isLand())
+		return 0;
+	if (!card->controller()->inPlay()->hasType("creature") && !card->controller()->opponent()->inPlay()->hasType("creature"))
+		return 0;
+	return MTGAlternativeCostRule::isReactingToClick(card, mana, newCost);
+}
+
+int MTGBestowRule::reactToClick(MTGCardInstance * card)
+{
+	if (!isReactingToClick(card))
+		return 0;
+	//this new method below in all alternative cost type causes a memleak, however, you cant safedelete the cost here as it cause a crash
+	//TODO::::we need to get to the source of this leak and fix it.
+	ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getBestow());
+	ManaCost * newCost = card->computeNewCost(card, cost, cost);
+	
+	if (newCost->extraCosts)
+		for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
+		{
+			newCost->extraCosts->costs[i]->setSource(card);
+		}
+
+	card->paymenttype = MTGAbility::BESTOW_COST;
+	card->spellTargetType = "creature|battlefield";
+	return MTGAlternativeCostRule::reactToClick(card, newCost, ManaCost::MANA_PAID_WITH_BESTOW, false);
+}
+
+ostream& MTGBestowRule::toString(ostream& out) const
+{
+	out << "MTGBestowRule ::: (";
+	return MTGAbility::toString(out) << ")";
+}
+
+MTGBestowRule * MTGBestowRule::clone() const
+{
+	return NEW MTGBestowRule(*this);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //ATTACK COST
@@ -1425,7 +1487,6 @@ MTGBlockCostRule::MTGBlockCostRule(GameObserver* observer, int _id) :
     aType = MTGAbility::BLOCK_COST;
     scost = "Pay to block";
 }
-
 int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     if (currentPhase == MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting
@@ -1536,6 +1597,14 @@ int MTGAttackRule::receiveEvent(WEvent *e)
             for (int i = 0; i < z->nb_cards; i++)
             {
                 MTGCardInstance * card = z->cards[i];
+				if (card->isAttacker() && card->has(Constants::NOSOLO))
+				{
+					TargetChooserFactory tf(game);
+					TargetChooser * tc = tf.createTargetChooser("creature[attacking]", NULL);
+					int Check = card->controller()->game->battlefield->countByCanTarget(tc);
+					if (Check <2)
+						card->initAttackersDefensers();
+				}
                 if (!card->isAttacker() && !event->from->isExtra && card->has(Constants::MUSTATTACK))//cards are only required to attack in the real attack phase of a turn.
                     reactToClick(card);
                 if (!card->isAttacker() && card->has(Constants::TREASON) && p->isAI())
@@ -1848,6 +1917,50 @@ PermanentAbility(observer, _id)
 
 int MTGBlockRule::receiveEvent(WEvent *e)
 {
+
+	if (dynamic_cast<WEventBlockersChosen*>(e))
+	{//do not refactor, these are keep seperate for readability.
+		Player * p = game->currentPlayer;
+
+		vector<MTGCardInstance *> Attacker;
+		MTGGameZone * k = p->game->inPlay;
+		for (int i = 0; i < k->nb_cards; i++)
+		{
+			MTGCardInstance * card = k->cards[i];
+			if (card->isAttacker())
+			{
+				Attacker.push_back(card);
+			}
+		}
+		//force cards that must block, to block whatever is first found. players have a chance to set thier own
+		//but if ignored we do it for them.
+		if (Attacker.size())
+		{
+			MTGGameZone * tf = p->opponent()->game->inPlay;
+			for (size_t i = 0; i < tf->cards.size(); i++)
+			{
+				MTGCardInstance * card = tf->cards[i];
+				if (card->has(Constants::MUSTBLOCK) && !card->defenser && card->canBlock())
+				{//force mustblockers to block the first thing theyre allowed to block if player leaves blockers with them
+					//unassigned as a block.
+					for (size_t i = 0; i < Attacker.size(); i++)
+					{
+						if (card->canBlock(Attacker[i]) && !card->defenser)
+						{
+							blocker = NEW AABlock(card->getObserver(), -1, card, NULL);
+							blocker->oneShot = true;
+							blocker->forceDestroy = 1;
+							blocker->canBeInterrupted = false;
+							blocker->target = Attacker[i];
+							blocker->resolve();
+							SAFE_DELETE(blocker);
+						}
+					}
+
+				}
+			}
+
+		}
     if (dynamic_cast<WEventBlockersChosen*>(e))
     {
 
@@ -1866,6 +1979,25 @@ int MTGBlockRule::receiveEvent(WEvent *e)
                 //but this action can not be ignored.
             }
         }
+
+		//if a card with menace is not blocked by 2 or more, remove any known blockers and attacking as normal.
+		MTGGameZone * z = p->game->inPlay;
+		for (int i = 0; i < z->nb_cards; i++)
+		{
+			MTGCardInstance * card = z->cards[i];
+			if (card->has(Constants::MENACE) && card->blockers.size() < 2)
+			{
+				while (card->blockers.size())
+				{
+					MTGCardInstance * blockingCard = card->blockers.front();
+					blockingCard->toggleDefenser(NULL);
+					
+				}
+			}
+     	}
+
+	}
+
         return 1;
 
     }

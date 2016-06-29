@@ -32,7 +32,8 @@ void GameObserver::cleanup()
     SAFE_DELETE(replacementEffects);
     for (size_t i = 0; i < players.size(); ++i)
     {
-        SAFE_DELETE(players[i]);
+        if(players[i])
+            SAFE_DELETE(players[i]);
     }
     players.clear();
 
@@ -51,6 +52,7 @@ void GameObserver::cleanup()
     connectRule = false;
     actionsList.clear();
     gameTurn.clear();
+	OpenedDisplay = NULL;
 }
 
 GameObserver::~GameObserver()
@@ -59,7 +61,8 @@ GameObserver::~GameObserver()
 
     for (size_t i = 0; i < players.size(); ++i)
     {
-        players[i]->End();
+        if(players[i])
+            players[i]->End();
     }
     SAFE_DELETE(targetChooser);
     SAFE_DELETE(mLayers);
@@ -67,7 +70,8 @@ GameObserver::~GameObserver()
     SAFE_DELETE(replacementEffects);
     for (size_t i = 0; i < players.size(); ++i)
     {
-        SAFE_DELETE(players[i]);
+        if(players[i])
+            SAFE_DELETE(players[i]);
     }
     players.clear();
     delete[] ExtraRules;
@@ -93,6 +97,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
     mExtraPayment = NULL;
+	OpenedDisplay = NULL;
     gameOver = NULL;
     phaseRing = NULL;
     replacementEffects = NEW ReplacementEffects();
@@ -322,7 +327,11 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
     // Here's what I find weird - if the extra cost is something like a sacrifice, doesn't that imply a TargetChooser?
     if (WaitForExtraPayment(NULL)) 
         return;
-
+	/*if (OpenedDisplay)//dont let us fly through all the phases with grave and library box still open.
+	{
+		return;//I want this here, but it locks up on opponents turn, we need to come up with a clever way to close opened
+		//displays, it makes no sense that you travel through 4 or 5 phases with library or grave still open.
+	}*/
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
     if (allowInterrupt && ((cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER)
         || (cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS)
@@ -727,12 +736,20 @@ void GameObserver::gameStateBasedEffects()
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////
+			if (card->target && !isInPlay(card->target) && card->isBestowed && card->hasType("aura"))
+			{
+				card->removeType("aura");
+				card->addType("creature");
+				card->target = NULL;
+				card->isBestowed = false;
+			}
+
             if ((card->target||card->playerTarget) && !card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
                 if(card->target && !isInPlay(card->target))
                 players[i]->game->putInGraveyard(card);
                 if(card->target && isInPlay(card->target))
-                {
+                {//what exactly does this section do?
                     if(card->spellTargetType.find("creature") != string::npos && !card->target->hasType("creature"))
                         players[i]->game->putInGraveyard(card);
                     if(card->spellTargetType.find("artifact") != string::npos && !card->target->hasType("artifact"))
@@ -1029,9 +1046,41 @@ void GameObserver::Affinity()
                 if (!card)
                     continue;
 
+				bool NewAffinityFound = false;
+				for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
+				{
+					if (!card->cardsAbilities[na])
+						break;
+					ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
+					if (newAff)
+					{
+						NewAffinityFound = true;
+					}
+				}
+				bool DoReduceIncrease = false;
+				if (card->has(Constants::AFFINITYARTIFACTS) ||
+					card->has(Constants::AFFINITYFOREST) ||
+					card->has(Constants::AFFINITYGREENCREATURES) ||
+					card->has(Constants::AFFINITYISLAND) ||
+					card->has(Constants::AFFINITYMOUNTAIN) ||
+					card->has(Constants::AFFINITYPLAINS) ||
+					card->has(Constants::AFFINITYSWAMP) ||
+					card->has(Constants::TRINISPHERE) ||
+					card->getIncreasedManaCost()->getConvertedCost() ||
+					card->getReducedManaCost()->getConvertedCost() ||
+					NewAffinityFound)
+					DoReduceIncrease = true;
+				if (!DoReduceIncrease)
+					continue;
+				//above we check if there are even any cards that effect cards manacost
+				//if there are none, leave this function. manacost->copy( is a very expensive funtion
+				//1mb a sec to run at all time even when no known reducers or increasers are in play.
+				//memory snapshot shots pointed to this as such a heavy load that games with many cards inplay
+				//would slow to a crawl.
+                //only do any of the following if a card with the stated ability is in your hand.
                 int color = 0;
                 string type = "";
-                //only do any of the following if a card with the stated ability is in your hand.
+                
                 ManaCost * original = NEW ManaCost();
                 original->copy(card->model->data->getManaCost());
                 if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
@@ -1054,6 +1103,8 @@ void GameObserver::Affinity()
                 bool resetCost = false;
                 for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
                 {//start2
+					if (!card->cardsAbilities[na])
+						break;
                     ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
                     if(newAff)
                     {
@@ -1372,6 +1423,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool lo
                     int _result = targetChooser->ForceTargetListReady();
                     if(targetChooser->targetMin && int(targetChooser->getNbTargets()) < targetChooser->maxtargets)
                         _result = 0;
+
                     if (_result)
                     {
                         result = TARGET_OK_FULL;
