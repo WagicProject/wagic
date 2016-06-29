@@ -793,6 +793,9 @@ bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 //check targetted?
 bool MTGCardInstance::isTargetted()
 {
+    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
+        return false;
+
     if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     {
         ActionStack * stack = observer->mLayers->stackLayer();
@@ -818,6 +821,9 @@ bool MTGCardInstance::isTargetted()
 //check targetter?
 bool MTGCardInstance::isTargetter()
 {
+    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
+        return false;
+
     if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     {
         ActionStack * stack = observer->mLayers->stackLayer();
@@ -1039,7 +1045,6 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
                     if(newCost->getCost(color) > 0)
                         newCost->remove(color,1);
             }//end3
-        SAFE_DELETE(original);
     
     if(!noTrinisphere)
     {
@@ -1061,6 +1066,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
             }
         }
     }
+
+    SAFE_DELETE(original);
 
     return newCost;
 }
