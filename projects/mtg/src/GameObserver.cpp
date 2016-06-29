@@ -32,7 +32,8 @@ void GameObserver::cleanup()
     SAFE_DELETE(replacementEffects);
     for (size_t i = 0; i < players.size(); ++i)
     {
-        SAFE_DELETE(players[i]);
+        if(players[i])
+            SAFE_DELETE(players[i]);
     }
     players.clear();
 
@@ -60,7 +61,8 @@ GameObserver::~GameObserver()
 
     for (size_t i = 0; i < players.size(); ++i)
     {
-        players[i]->End();
+        if(players[i])
+            players[i]->End();
     }
     SAFE_DELETE(targetChooser);
     SAFE_DELETE(mLayers);
@@ -68,7 +70,8 @@ GameObserver::~GameObserver()
     SAFE_DELETE(replacementEffects);
     for (size_t i = 0; i < players.size(); ++i)
     {
-        SAFE_DELETE(players[i]);
+        if(players[i])
+            SAFE_DELETE(players[i]);
     }
     players.clear();
     delete[] ExtraRules;

@@ -503,6 +503,8 @@ int MTGRevealingCards::receiveEvent(WEvent* e)
 			CardView* t;
 			if (event->card->view)
 				t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
+            else
+                t = NEW CardView(CardView::nullZone, event->card, (float)x, (float)y);
 			//we store copies of the card view since moving to and from card displays also deletes the guis stored in cards.
 			//GuiLayer::resetObjects() is the main reason we need to back them up. card views are set to NULL maybe more often than
 			//they should be, possibly someone being to over cautious.
@@ -510,6 +512,7 @@ int MTGRevealingCards::receiveEvent(WEvent* e)
 			t->actY = SCREEN_HEIGHT * -2;
 			//correct cards x and y, last known location was the reveal display.
 			cards.push_back(t);
+            return 1;
 		} 
 	}
 	return 0;
@@ -832,6 +835,8 @@ int MTGScryCards::receiveEvent(WEvent* e)
 			CardView* t;
 			if (event->card->view)
 				t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
+            else
+                t = NEW CardView(CardView::nullZone, event->card, (float)x, (float)y);
 			//we store copies of the card view since moving to and from card displays also deletes the guis stored in cards.
 			//GuiLayer::resetObjects() is the main reason we need to back them up. card views are set to NULL maybe more often than
 			//they should be, possibly someone being to over cautious.
@@ -839,6 +844,7 @@ int MTGScryCards::receiveEvent(WEvent* e)
 			t->actY = SCREEN_HEIGHT * -2;
 			//correct cards x and y, last known location was the reveal display.
 			cards.push_back(t);
+            return 1;
 		}
 	}
 	return 0;
