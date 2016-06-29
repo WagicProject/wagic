@@ -80,6 +80,7 @@ class GameObserver{
   ExtraCosts * mExtraPayment;
   int oldGamePhase;
   TargetChooser * targetChooser;
+  CardDisplay * OpenedDisplay;
   DuelLayers * mLayers;
   ReplacementEffects *replacementEffects;
   vector<Player *> players; //created outside

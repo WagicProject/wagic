@@ -95,6 +95,7 @@ public:
     bool exileEffects;
     bool suspended;
     bool miracle;
+	bool isBestowed;
     int chooseacolor;
     string chooseasubtype;
     int coinSide;//1 = tails
@@ -105,6 +106,7 @@ public:
     int notblocked;
     int fresh;
     int MaxLevelUp;
+	int CountedObjects;
     int kicked;
     int dredge;
     bool isDualWielding;
@@ -272,6 +274,8 @@ public:
     string currentimprintName;
     vector<string>imprintedNames;
 
+	MTGCardInstance * revealedLast;//last card revealed by a ability this card owns.
+	bool MadnessPlay;
     void eventattacked();
     void eventattackedAlone();
     void eventattackednotblocked();

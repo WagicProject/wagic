@@ -121,6 +121,7 @@ public:
     ManaCost* BuyBack;
     ManaCost* FlashBack;
     ManaCost* Retrace;
+	ManaCost* Bestow;
     ManaCost* morph;
     ManaCost* suspend;
 

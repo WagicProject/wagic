@@ -82,6 +82,7 @@ class Constants
   static const string kRetraceKeyword;
   static const string kKickerKeyword;
   static const string kMorphKeyword;
+  static const string kBestowKeyword;
 
   // used for deck statistics
   static const int STATS_FOR_TURNS = 8;
@@ -246,8 +247,11 @@ class Constants
       COMBATTOUGHNESS = 125,
       CANTPAYLIFE = 126,
       CANTBESACRIFIED = 127,
-      NB_BASIC_ABILITIES = 128,
-
+      SKULK = 128,
+	  MENACE = 129,
+	  NOSOLO = 130,//cant attack alone
+	  MUSTBLOCK = 131,//blocks each turn
+	  NB_BASIC_ABILITIES = 132,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
@@ -308,6 +312,7 @@ class Constants
         CAST_WITH_RETRACE = 6,
         CAST_WITH_MORPH = 7,
         CAST_WITH_SUSPEND = 8,
+		CAST_WITH_BESTOW = 9,
 
         CAST_ALTERNATE = -1, //matches all alternate costs, including itself
         CAST_ALL = -2, // matches everything except NOT_CAST

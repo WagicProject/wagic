@@ -69,6 +69,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     cardistargetted = 0;
     cardistargetter = 0;
     myconvertedcost = getManaCost()->getConvertedCost();
+	revealedLast = NULL;
+	MadnessPlay = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -194,6 +196,7 @@ void MTGCardInstance::initMTGCI()
     wasDealtDamage = false;
     isDualWielding = false;
     suspended = false;
+	isBestowed = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;
     stillNeeded = true;
@@ -222,6 +225,7 @@ void MTGCardInstance::initMTGCI()
     imprintW = 0;
     currentimprintName = "";
     imprintedNames.clear();
+	CountedObjects = 0;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;
@@ -870,7 +874,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
         return 0;
     if (opponent->basicAbilities[(int)Constants::ONEBLOCKER] && opponent->blocked)
         return 0;
-    if(opponent->basicAbilities[(int)Constants::EVADEBIGGER] && power > opponent->power)
+    if((opponent->basicAbilities[(int)Constants::EVADEBIGGER]|| opponent->basicAbilities[(int)Constants::SKULK]) && power > opponent->power)
         return 0;
     if(opponent->basicAbilities[(int)Constants::STRONG] && power < opponent->power)
         return 0;
@@ -1266,7 +1270,7 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent)
     if (defenser)
     {
         if (observer->players[0]->game->battlefield->hasCard(defenser) || observer->players[1]->game->battlefield->hasCard(defenser))
-        {
+        {//remove blocker "this" from the attackers list of blockers.
             defenser->removeBlocker(this);
         }
     }

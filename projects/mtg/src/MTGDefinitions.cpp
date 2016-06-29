@@ -26,6 +26,7 @@ const string Constants::kFlashBackKeyword = "flashback";
 const string Constants::kRetraceKeyword = "retrace";
 const string Constants::kKickerKeyword = "kicker";
 const string Constants::kMorphKeyword = "facedown";
+const string Constants::kBestowKeyword = "bestow";
 
 int Constants::NB_Colors = 0; //Store the Max number of colors.
 
@@ -157,7 +158,11 @@ const char* Constants::MTGBasicAbilities[] = {
     "cantchangelife",
     "combattoughness",
     "cantpaylife",
-    "cantbesacrified"
+    "cantbesacrified",
+	"skulk",
+	"menace",
+	"nosolo",
+	"mustblock"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

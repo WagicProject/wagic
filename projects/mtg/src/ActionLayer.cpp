@@ -77,7 +77,7 @@ void ActionLayer::cleanGarbage()
 
 int ActionLayer::reactToClick(ActionElement * ability, MTGCardInstance * card)
 {
-    int result = ability->reactToClick(card);
+    int result = ability?ability->reactToClick(card):0;
     if (result)
         stuffHappened = 1;
     return result;
@@ -186,8 +186,11 @@ void ActionLayer::Update(float dt)
                 without this, the game locks into a freeze state while you try to select the targets and dont have enough to
                 fill the maxtargets list.
                 */
-                if(int(ae->getActionTc()->getNbTargets()) == countTargets-1)
-                    ae->getActionTc()->done = true;
+				if (int(ae->getActionTc()->getNbTargets()) == countTargets)//if the amount of targets is equal the all we can target
+				{
+					ae->getActionTc()->done = true;//were done
+					ae->getActionTc()->source->getObserver()->cardClick(ae->getActionTc()->source, 0, false);//click source.
+				}
             }
         }
     }

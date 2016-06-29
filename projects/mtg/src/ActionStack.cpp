@@ -578,6 +578,10 @@ int ActionStack::addAbility(MTGAbility * ability)
     if (!observer->players[0]->isAI() && ability->source->controller() == observer->players[0] && 0
         == options[Options::INTERRUPTMYABILITIES].number)
         interruptDecision[0] = DONT_INTERRUPT;
+	if (observer->OpenedDisplay && observer->players[0]->game->reveal->cards.size())
+	{
+		interruptDecision[0] = DONT_INTERRUPT;
+	}
     return result;
 }
 
