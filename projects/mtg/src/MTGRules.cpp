@@ -1358,7 +1358,7 @@ int MTGBestowRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
 	if (!card->model)
 		return 0;
-	Player * player = game->currentlyActing();
+	//Player * player = game->currentlyActing();
 	if (!card->model->data->getManaCost()->getBestow())
 		return 0;
 	if (card->isInPlay(game))

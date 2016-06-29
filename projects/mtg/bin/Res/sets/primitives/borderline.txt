@@ -12,18 +12,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Aven Warhawk
-abilities=flying
-auto=foreach(bird|myhand) counter(1/1,1)
-auto=foreach(soldier|myhand) counter(1/1,1)
-text=Amplify 1 (As this creature enters the battlefield, put a +1/+1 counter on it for each Bird and/or Soldier card you reveal in your hand.) -- Flying
-mana={4}{W}
-type=Creature
-subtype=Bird Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Cemetery Puca
 text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, Cemetery Puca becomes a copy of that creature and gains this ability.
 auto=@movedto(creature|graveyard) from(battlefield):all(trigger[from]) pay[[{1}]] copy
@@ -107,27 +95,6 @@ text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put
 auto=counter(1/1,X)
 auto={3}:counter(1/1)
 #Not all player can use ability
-[/card]
-[card]
-name=Ghastly Remains
-auto=foreach(zombie|myhand) counter(1/1,1)
-autograveyard={B}{B}{B}:moveTo(myhand) myUpkeepOnly
-text=Amplify 1 (As this creature enters the battlefield, put a +1/+1 counter on it for each Zombie card you reveal in your hand.) -- At the beginning of your upkeep, if Ghastly Remains is in your graveyard, you may pay {B}{B}{B}. If you do, return Ghastly Remains to your hand.
-mana={B}{B}{B}
-type=Creature
-subtype=Zombie
-power=0
-toughness=0
-[/card]
-[card]
-name=Glowering Rogon
-auto=foreach(beast|myhand) counter(1/1,1)
-text=Amplify 1 (As this creature enters the battlefield, put a +1/+1 counter on it for each Beast card you reveal in your hand.)
-mana={5}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
 [/card]
 [card]
 name=Govern the Guildless
@@ -348,6 +315,13 @@ text={T}: Add {1} to your mana pool. -- {2}, {T}: Thespian's Stage becomes a cop
 type=Land
 [/card]
 [card]
+name=Trinisphere
+auto=this(untapped) lord(*[-land]|hand,library,exile,graveyard) trinisphere forcedalive
+text=As long as Trinisphere is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Unstable Shapeshifter
 auto=@movedto(other creature|battlefield):all(trigger[from]) copy
 text=Whenever another creature enters the battlefield, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
@@ -366,15 +340,4 @@ auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseacti
 mana={B}
 type=Instant
 text=Target creature gets +2/+0 and gains deathtouch until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
-name=Zombie Brute
-abilities=trample
-auto=foreach(zombie|myhand) counter(1/1,1)
-text=Amplify 1 (As this creature enters the battlefield, put a +1/+1 counter on it for each Zombie card you reveal in your hand.) -- Trample
-mana={6}{B}
-type=Creature
-subtype=Zombie
-power=5
-toughness=4
 [/card]

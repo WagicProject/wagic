@@ -1,8 +1,11 @@
 # Changelog
 
 ## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
-#### 6/27/16
-- *Merged pull-request:* CardID Indicator, Add Missing Tokens, Support Importing dck for Android [#\705] (https://github.com/WagicProject/wagic/pull/705) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 6/29/16
+- *Merged pull-request:* Updated Primitives and Hide Highlight Border [#\707] (https://github.com/WagicProject/wagic/pull/707) ([kevlahnota](https://github.com/kevlahnota))
+
+- *Committed:* Pretty huge patch here(sorry old habits never die :( )  [#\6ee00c1] (https://github.com/WagicProject/wagic/commit/6ee00c138ce374d54cb3ee034575ce440288ca0e) ([zethfoxster](https://github.com/zethfoxster))
 
 #### 6/23/16
 - *Merged pull-request:* Fix producecolor:color [#\704] (https://github.com/WagicProject/wagic/pull/704) ([kevlahnota](https://github.com/kevlahnota))

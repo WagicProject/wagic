@@ -765,7 +765,7 @@ bool MTGScryCards::CheckUserInput(JButton key)
 			}
 			game->Update(1);
 
-			if (zone->cards.size() || revealDisplay && !zone->cards.size())
+			if (zone->cards.size() || (revealDisplay && !zone->cards.size()))
 			{
 				initDisplay(revealTopAmount);
 				abilitySecond = contructAbility(abilityTwo);
