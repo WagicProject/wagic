@@ -6099,12 +6099,14 @@ public:
 
 
 //AACascade
-class AACascade: public ActivatedAbilityTP
+class AACascade: public ActivatedAbility
 {
 public:
     string nbcardsStr;
-    AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
-    int who = TargetChooser::UNSET);
+    vector<MTGCardInstance*>selectedCards;
+    vector<MTGCardInstance *>oldOrder;
+    vector<MTGCardInstance *>newOrder;
+    AACascade(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string nbcardsStr, ManaCost * _cost = NULL);
     int resolve();
     void toCastCard(MTGCardInstance * card);
     const string getMenuText();

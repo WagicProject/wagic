@@ -1137,13 +1137,16 @@ AADepleter * AADepleter::clone() const
 }
 
 //AACascade
-AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who) :
-    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr)
+AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string nbcardsStr, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0),nbcardsStr(nbcardsStr)
 {
+    selectedCards.clear();
+    oldOrder.clear();
+    newOrder.clear();
 }
     int AACascade::resolve()
     {
-        Player * player = getPlayerFromTarget(getTarget());
+        Player * player = source->controller();
         if (player)
         {
             WParsedInt numCards(nbcardsStr, NULL, source);
@@ -1155,14 +1158,13 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Ta
             {
                 if (library->nb_cards)
                 {
-                    for(int z = library->nb_cards; z >= 0; z--)
+                    for(int z = library->nb_cards-1; z >= 0; z--)
                     {
                         if(!library->cards[z]->isLand() && (library->cards[z]->getManaCost()->getConvertedCost() < source->getManaCost()->getConvertedCost()))
                         {
                             viable = library->cards[z];
                             player->game->putInZone(viable, library, exile);
                             {
-                                vector<MTGCardInstance*>selectedCards;
                                 for(int j=0; j < library->nb_cards; j++)
                                 {
                                      if(library->cards[j]->isCascaded)
@@ -1176,8 +1178,7 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Ta
                                     std::random_shuffle ( selectedCards.begin(), selectedCards.end() );
                                     for(unsigned int i = 0; i < selectedCards.size();++i)
                                     {
-                                        vector<MTGCardInstance *>oldOrder = library->cards;
-                                        vector<MTGCardInstance *>newOrder;
+                                        oldOrder = library->cards;
                                         newOrder.push_back(selectedCards[i]);
                                         for(unsigned int k = 0;k < oldOrder.size();++k)
                                         {
@@ -1207,8 +1208,10 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Ta
 void AACascade::toCastCard(MTGCardInstance * thisCard)
 {
     MTGAbility *ac = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), thisCard, thisCard,false,false,true,"","",false,false);
-    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac, thisCard->clone(),true);
-    MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), thisCard,NULL,ma1);
+    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac->clone(), thisCard->clone(),true);
+    MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), thisCard,NULL,ma1->clone());
+    SAFE_DELETE(ac);
+    SAFE_DELETE(ma1);
     ga1->resolve();
     return;
 }
