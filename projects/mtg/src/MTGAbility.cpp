@@ -2802,8 +2802,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitCascade = parseBetween(s, "cascade:", " ", false);
     if (splitCascade.size())
     {
-        Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AACascade(observer, id, card, t , splitCascade[1], NULL, who);
+        MTGAbility * a = NEW AACascade(observer, id, card, target, splitCascade[1], NULL);
         a->oneShot = 1;
         return a;
     }
