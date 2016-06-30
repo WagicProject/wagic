@@ -1137,13 +1137,16 @@ AADepleter * AADepleter::clone() const
 }
 
 //AACascade
-AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who) :
-    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr)
+AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string nbcardsStr, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0),nbcardsStr(nbcardsStr)
 {
+    selectedCards.clear();
+    oldOrder.clear();
+    newOrder.clear();
 }
     int AACascade::resolve()
     {
-        Player * player = getPlayerFromTarget(getTarget());
+        Player * player = source->controller();
         if (player)
         {
             WParsedInt numCards(nbcardsStr, NULL, source);
@@ -1155,14 +1158,13 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Ta
             {
                 if (library->nb_cards)
                 {
-                    for(int z = library->nb_cards; z >= 0; z--)
+                    for(int z = library->nb_cards-1; z >= 0; z--)
                     {
                         if(!library->cards[z]->isLand() && (library->cards[z]->getManaCost()->getConvertedCost() < source->getManaCost()->getConvertedCost()))
                         {
                             viable = library->cards[z];
                             player->game->putInZone(viable, library, exile);
                             {
-                                vector<MTGCardInstance*>selectedCards;
                                 for(int j=0; j < library->nb_cards; j++)
                                 {
                                      if(library->cards[j]->isCascaded)
@@ -1176,8 +1178,7 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Ta
                                     std::random_shuffle ( selectedCards.begin(), selectedCards.end() );
                                     for(unsigned int i = 0; i < selectedCards.size();++i)
                                     {
-                                        vector<MTGCardInstance *>oldOrder = library->cards;
-                                        vector<MTGCardInstance *>newOrder;
+                                        oldOrder = library->cards;
                                         newOrder.push_back(selectedCards[i]);
                                         for(unsigned int k = 0;k < oldOrder.size();++k)
                                         {
@@ -1207,8 +1208,10 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Ta
 void AACascade::toCastCard(MTGCardInstance * thisCard)
 {
     MTGAbility *ac = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), thisCard, thisCard,false,false,true,"","",false,false);
-    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac, thisCard->clone(),true);
-    MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), thisCard,NULL,ma1);
+    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac->clone(), thisCard,true);
+    MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), thisCard,NULL,ma1->clone());
+    SAFE_DELETE(ac);
+    SAFE_DELETE(ma1);
     ga1->resolve();
     return;
 }
@@ -6468,6 +6471,114 @@ const string ABlockSetCost::getMenuText()
 ABlockSetCost * ABlockSetCost::clone() const
 {
     return NEW ABlockSetCost(*this);
+}
+
+//AShackle
+AShackle::AShackle(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target) :
+MTGAbility(observer, _id, card)
+{
+    target = _target;
+    Shackled = NULL;
+    previousController = NULL;
+    resolved = false;
+}
+
+void AShackle::Update(float dt)
+{
+    if (resolved == false)
+    {
+        resolved = true;
+        resolveShackle();
+    }
+
+    if (!source->isTapped() || !source->isInPlay(game))
+    {
+            if (Shackled == NULL || !Shackled->isInPlay(game))
+                MTGAbility::Update(dt);
+            MTGCardInstance * _target = Shackled;
+            returntoOwner(_target);
+    }
+    MTGAbility::Update(dt);
+}
+
+void AShackle::resolveShackle()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        previousController = _target->controller();
+        previousController->game->putInZone(_target, _target->currentZone,
+            source->controller()->game->inPlay);
+        Shackled = _target;
+    }
+}
+
+void AShackle::returntoOwner(MTGCardInstance* _target) {
+    MTGCardInstance * cardToReturn = _target;
+    if(!cardToReturn)
+    {
+        this->forceDestroy = 1;
+        return;
+    }
+    if(previousController && cardToReturn->isInPlay(game))
+    {
+        cardToReturn->controller()->game->putInZone(_target, _target->currentZone,
+            previousController->game->inPlay);
+    }
+    this->forceDestroy = 1;
+    Shackled = NULL;
+    return;
+}
+
+int AShackle::resolve()
+{
+    return 0;
+}
+const string AShackle::getMenuText()
+{
+    return "Gain Control";
+}
+
+AShackle * AShackle::clone() const
+{
+    AShackle * a = NEW AShackle(*this);
+    a->forceDestroy = -1;
+    return a;
+};
+AShackle::~AShackle()
+{
+}
+
+AShackleWrapper::AShackleWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target) :
+    InstantAbility(observer, _id, source, _target)
+{
+    ability = NEW AShackle(observer, _id,card,_target);
+}
+
+int AShackleWrapper::resolve()
+{
+    AShackle * a = ability->clone();
+    a->target = target;
+    a->addToGame();
+    return 1;
+}
+
+const string AShackleWrapper::getMenuText()
+{
+    return "Gain Control";
+}
+
+AShackleWrapper * AShackleWrapper::clone() const
+{
+    AShackleWrapper * a = NEW AShackleWrapper(*this);
+    a->ability = this->ability->clone();
+    a->oneShot = 1;
+    return a;
+}
+
+AShackleWrapper::~AShackleWrapper()
+{
+    SAFE_DELETE(ability);
 }
 
 //a blink

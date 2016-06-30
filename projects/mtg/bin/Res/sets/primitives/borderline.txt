@@ -106,6 +106,17 @@ mana={5}{U}
 type=Sorcery
 [/card]
 [card]
+name=Hypergenesis
+color=green
+restriction=turn:200
+mana={0}
+suspend(3)={1}{g}{g}
+auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,enchantment,land|myhand) !$ controller
+auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,enchantment,land|myhand) !$ opponent
+text=Suspend 3—{1}{G}{G} (Rather than cast this card from your hand, pay {1}{G}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
+type=Sorcery
+[/card]
+[card]
 name=Ivy Seer
 auto={2}{G}{T}:foreach(*[green]|myhand) 1/1 target(creature)
 text={2}{G}, {T}: Reveal any number of green cards in your hand. Target creature gets +X/+X until end of turn, where X is the number of cards revealed this way.

@@ -5136,6 +5136,37 @@ public:
     ABlockSetCost * clone() const;
 };
 
+//AShackle
+class AShackle: public MTGAbility
+{
+public:
+    MTGCardInstance * Shackled;
+    Player * previousController;
+    bool resolved;
+    AShackle(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target);
+    void Update(float dt);
+    void resolveShackle();
+    int resolve();
+    const string getMenuText();
+    AShackle * clone() const;
+    ~AShackle();
+private:
+    void returntoOwner(MTGCardInstance *_target);
+};
+
+//ShackleWrapper
+class AShackleWrapper: public InstantAbility
+{
+public:
+    AShackle * ability;
+    AShackleWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target);
+    int resolve();
+    const string getMenuText();
+    AShackleWrapper * clone() const;
+    ~AShackleWrapper();
+
+};
+
 //ABlink
 class ABlink: public MTGAbility
 {
@@ -6099,12 +6130,14 @@ public:
 
 
 //AACascade
-class AACascade: public ActivatedAbilityTP
+class AACascade: public ActivatedAbility
 {
 public:
     string nbcardsStr;
-    AACascade(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
-    int who = TargetChooser::UNSET);
+    vector<MTGCardInstance*>selectedCards;
+    vector<MTGCardInstance *>oldOrder;
+    vector<MTGCardInstance *>newOrder;
+    AACascade(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string nbcardsStr, ManaCost * _cost = NULL);
     int resolve();
     void toCastCard(MTGCardInstance * card);
     const string getMenuText();
