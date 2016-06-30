@@ -611,6 +611,8 @@ MTGCardInstance * MTGCardInstance::changeController(Player * newController,bool 
 
 Player * MTGCardInstance::controller()
 {
+    if(!lastController)//if null then set the owner as the lastcontroller, prevents crashes...
+        lastController = owner;
     return lastController;
 }
 
