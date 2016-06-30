@@ -1,6 +1,8 @@
 [meta]
 author=Wagic Team
+name=The Dark
 year=1994
+total=119
 [/meta]
 [card]
 primitive=Amnesia
@@ -188,13 +190,13 @@ id=1808
 rarity=C
 [/card]
 [card]
-primitive=Fire and Brimstone
-id=1809
+primitive=Fire Drake
+id=1788
 rarity=U
 [/card]
 [card]
-primitive=Fire Drake
-id=1788
+primitive=Fire and Brimstone
+id=1809
 rarity=U
 [/card]
 [card]
