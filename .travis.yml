@@ -60,6 +60,7 @@ before_install:
 # Building for Android here
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
       export ANDROID="/usr/local/android-sdk-linux/tools/android" &&
+      export PATH=$PATH:"/usr/local/android-sdk-linux/tools" &&
       wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
       wget https://bitbucket.org/ewing/sdl_androidcmake/get/4e9e88c03f04.zip -nv;
     fi
