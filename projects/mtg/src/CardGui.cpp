@@ -263,6 +263,22 @@ void CardGui::Render()
                 highlightborder->SetColor(ARGB(95,0,245,0));
                 renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
             }
+            if(card->myPair && card->myPair->isInPlay(game) && highlightborder)
+            {
+                if(mHasFocus)
+                {
+                    highlightborder->SetColor(ARGB(200,7,98,248));
+                    renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                }
+                if(CardView* cv = dynamic_cast<CardView*>(card->myPair->view))
+                {
+                    if(cv->mHasFocus)
+                    {
+                    highlightborder->SetColor(ARGB(200,57,28,248));
+                    renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                    }
+                }
+            }
         }
         //draw the card image
         renderer->RenderQuad(quad.get(), actX, actY, actT, scale, scale);
