@@ -6473,6 +6473,114 @@ ABlockSetCost * ABlockSetCost::clone() const
     return NEW ABlockSetCost(*this);
 }
 
+//AShackle
+AShackle::AShackle(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target) :
+MTGAbility(observer, _id, card)
+{
+    target = _target;
+    Shackled = NULL;
+    previousController = NULL;
+    resolved = false;
+}
+
+void AShackle::Update(float dt)
+{
+    if (resolved == false)
+    {
+        resolved = true;
+        resolveShackle();
+    }
+
+    if (!source->isTapped() || !source->isInPlay(game))
+    {
+            if (Shackled == NULL || !Shackled->isInPlay(game))
+                MTGAbility::Update(dt);
+            MTGCardInstance * _target = Shackled;
+            returntoOwner(_target);
+    }
+    MTGAbility::Update(dt);
+}
+
+void AShackle::resolveShackle()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        previousController = _target->controller();
+        previousController->game->putInZone(_target, _target->currentZone,
+            source->controller()->game->inPlay);
+        Shackled = _target;
+    }
+}
+
+void AShackle::returntoOwner(MTGCardInstance* _target) {
+    MTGCardInstance * cardToReturn = _target;
+    if(!cardToReturn)
+    {
+        this->forceDestroy = 1;
+        return;
+    }
+    if(previousController && cardToReturn->isInPlay(game))
+    {
+        cardToReturn->controller()->game->putInZone(_target, _target->currentZone,
+            previousController->game->inPlay);
+    }
+    this->forceDestroy = 1;
+    Shackled = NULL;
+    return;
+}
+
+int AShackle::resolve()
+{
+    return 0;
+}
+const string AShackle::getMenuText()
+{
+    return "Gain Control";
+}
+
+AShackle * AShackle::clone() const
+{
+    AShackle * a = NEW AShackle(*this);
+    a->forceDestroy = -1;
+    return a;
+};
+AShackle::~AShackle()
+{
+}
+
+AShackleWrapper::AShackleWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target) :
+    InstantAbility(observer, _id, source, _target)
+{
+    ability = NEW AShackle(observer, _id,card,_target);
+}
+
+int AShackleWrapper::resolve()
+{
+    AShackle * a = ability->clone();
+    a->target = target;
+    a->addToGame();
+    return 1;
+}
+
+const string AShackleWrapper::getMenuText()
+{
+    return "Gain Control";
+}
+
+AShackleWrapper * AShackleWrapper::clone() const
+{
+    AShackleWrapper * a = NEW AShackleWrapper(*this);
+    a->ability = this->ability->clone();
+    a->oneShot = 1;
+    return a;
+}
+
+AShackleWrapper::~AShackleWrapper()
+{
+    SAFE_DELETE(ability);
+}
+
 //a blink
 ABlink::ABlink(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, bool blinkueot, bool blinkForSource, bool blinkhand, MTGAbility * stored) :
 MTGAbility(observer, _id, card),blinkueot(blinkueot),blinkForSource(blinkForSource),blinkhand(blinkhand),stored(stored)

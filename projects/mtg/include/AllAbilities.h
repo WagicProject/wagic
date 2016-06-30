@@ -5136,6 +5136,37 @@ public:
     ABlockSetCost * clone() const;
 };
 
+//AShackle
+class AShackle: public MTGAbility
+{
+public:
+    MTGCardInstance * Shackled;
+    Player * previousController;
+    bool resolved;
+    AShackle(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target);
+    void Update(float dt);
+    void resolveShackle();
+    int resolve();
+    const string getMenuText();
+    AShackle * clone() const;
+    ~AShackle();
+private:
+    void returntoOwner(MTGCardInstance *_target);
+};
+
+//ShackleWrapper
+class AShackleWrapper: public InstantAbility
+{
+public:
+    AShackle * ability;
+    AShackleWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target);
+    int resolve();
+    const string getMenuText();
+    AShackleWrapper * clone() const;
+    ~AShackleWrapper();
+
+};
+
 //ABlink
 class ABlink: public MTGAbility
 {
