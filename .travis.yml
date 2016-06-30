@@ -1,4 +1,8 @@
 language: cpp
+branches:
+  except:
+- latest-master
+- latest-cmake
 
 matrix:
   include:
