@@ -114,7 +114,7 @@ after_success:
   fi
 - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "ANDROID" ]; then
     python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH &&
-    python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l build_android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH;
+    python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l build_android/package/bin/Wagic_*.apk -r Wagic-android.apk -b $TRAVIS_BRANCH;
   fi
 - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "PSP" ]; then
     python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l build_psp/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH;
