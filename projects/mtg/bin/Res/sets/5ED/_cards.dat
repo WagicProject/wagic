@@ -1,8 +1,14 @@
 [meta]
 author=Wagic Team
-name=5th Edition
+name=Fifth Edition
 year=1997
+total=449
 [/meta]
+[card]
+primitive=AEther Storm
+id=3891
+rarity=U
+[/card]
 [card]
 primitive=Abbey Gargoyles
 id=4098
@@ -17,11 +23,6 @@ rarity=U
 primitive=Adarkar Wastes
 id=4175
 rarity=R
-[/card]
-[card]
-primitive=AEther Storm
-id=3891
-rarity=U
 [/card]
 [card]
 primitive=Air Elemental
@@ -54,14 +55,14 @@ id=3759
 rarity=C
 [/card]
 [card]
-primitive=Angry Mob
-id=4101
-rarity=U
-[/card]
-[card]
 primitive=An-Havva Constable
 id=3960
 rarity=R
+[/card]
+[card]
+primitive=Angry Mob
+id=4101
+rarity=U
 [/card]
 [card]
 primitive=Animate Dead
@@ -429,6 +430,11 @@ id=3835
 rarity=U
 [/card]
 [card]
+primitive=D'Avenant Archer
+id=4120
+rarity=C
+[/card]
+[card]
 primitive=Dance of Many
 id=3899
 rarity=R
@@ -451,11 +457,6 @@ rarity=C
 [card]
 primitive=Dark Ritual
 id=3836
-rarity=C
-[/card]
-[card]
-primitive=D'Avenant Archer
-id=4120
 rarity=C
 [/card]
 [card]
@@ -734,23 +735,18 @@ id=3976
 rarity=C
 [/card]
 [card]
-primitive=Force of Nature
-id=3977
-rarity=R
-[/card]
-[card]
 primitive=Force Spike
 id=3909
 rarity=C
 [/card]
 [card]
-primitive=Forest
-id=4174
-rarity=L
+primitive=Force of Nature
+id=3977
+rarity=R
 [/card]
 [card]
 primitive=Forest
-id=4173
+id=4171
 rarity=L
 [/card]
 [card]
@@ -760,7 +756,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=4171
+id=4173
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=4174
 rarity=L
 [/card]
 [card]
@@ -899,13 +900,13 @@ id=4182
 rarity=U
 [/card]
 [card]
-primitive=Heal
-id=4129
+primitive=Healing Salve
+id=4130
 rarity=C
 [/card]
 [card]
-primitive=Healing Salve
-id=4130
+primitive=Heal
+id=4129
 rarity=C
 [/card]
 [card]
@@ -1054,13 +1055,13 @@ id=3988
 rarity=C
 [/card]
 [card]
-primitive=Island
-id=4202
-rarity=L
+primitive=Island Sanctuary
+id=4136
+rarity=R
 [/card]
 [card]
 primitive=Island
-id=4201
+id=4199
 rarity=L
 [/card]
 [card]
@@ -1070,13 +1071,13 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=4199
+id=4201
 rarity=L
 [/card]
 [card]
-primitive=Island Sanctuary
-id=4136
-rarity=R
+primitive=Island
+id=4202
+rarity=L
 [/card]
 [card]
 primitive=Ivory Cup
@@ -1364,13 +1365,13 @@ id=4072
 rarity=C
 [/card]
 [card]
-primitive=Mountain
-id=4198
-rarity=L
+primitive=Mountain Goat
+id=4073
+rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=4197
+id=4195
 rarity=L
 [/card]
 [card]
@@ -1380,13 +1381,13 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=4195
+id=4197
 rarity=L
 [/card]
 [card]
-primitive=Mountain Goat
-id=4073
-rarity=C
+primitive=Mountain
+id=4198
+rarity=L
 [/card]
 [card]
 primitive=Murk Dwellers
@@ -1545,12 +1546,7 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=4206
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=4205
+id=4203
 rarity=L
 [/card]
 [card]
@@ -1560,7 +1556,12 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=4203
+id=4205
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=4206
 rarity=L
 [/card]
 [card]
@@ -1794,14 +1795,14 @@ id=3810
 rarity=U
 [/card]
 [card]
-primitive=Shatter
-id=4086
-rarity=C
-[/card]
-[card]
 primitive=Shatterstorm
 id=4087
 rarity=U
+[/card]
+[card]
+primitive=Shatter
+id=4086
+rarity=C
 [/card]
 [card]
 primitive=Shield Bearer
@@ -1920,12 +1921,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=4170
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=4169
+id=4167
 rarity=L
 [/card]
 [card]
@@ -1935,7 +1931,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=4167
+id=4169
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=4170
 rarity=L
 [/card]
 [card]

@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Limited Edition Alpha
 block=Early
 year=1993
+total=295
 [/meta]
 [card]
 primitive=Air Elemental
@@ -455,12 +457,12 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
-id=289
+id=288
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=288
+id=289
 rarity=L
 [/card]
 [card]
@@ -634,9 +636,9 @@ id=159
 rarity=C
 [/card]
 [card]
-primitive=Island
-id=293
-rarity=L
+primitive=Island Sanctuary
+id=256
+rarity=R
 [/card]
 [card]
 primitive=Island
@@ -644,9 +646,9 @@ id=292
 rarity=L
 [/card]
 [card]
-primitive=Island Sanctuary
-id=256
-rarity=R
+primitive=Island
+id=293
+rarity=L
 [/card]
 [card]
 primitive=Ivory Cup
@@ -830,12 +832,12 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=291
+id=290
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=290
+id=291
 rarity=L
 [/card]
 [card]
@@ -955,12 +957,12 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=295
+id=294
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=294
+id=295
 rarity=L
 [/card]
 [card]
@@ -1079,13 +1081,13 @@ id=268
 rarity=C
 [/card]
 [card]
-primitive=Savannah
-id=282
+primitive=Savannah Lions
+id=269
 rarity=R
 [/card]
 [card]
-primitive=Savannah Lions
-id=269
+primitive=Savannah
+id=282
 rarity=R
 [/card]
 [card]
@@ -1215,12 +1217,12 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=278
+id=277
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=277
+id=278
 rarity=L
 [/card]
 [card]

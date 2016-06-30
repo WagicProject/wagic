@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
-name=8th Edition
+name=Eighth Edition
 year=2003
+total=357
 [/meta]
 [card]
 primitive=Abyssal Specter
@@ -894,14 +895,14 @@ id=45316
 rarity=U
 [/card]
 [card]
-primitive=Merchant of Secrets
-id=45231
-rarity=C
-[/card]
-[card]
 primitive=Merchant Scroll
 id=45275
 rarity=U
+[/card]
+[card]
+primitive=Merchant of Secrets
+id=45231
+rarity=C
 [/card]
 [card]
 primitive=Might of Oaks
@@ -1274,14 +1275,14 @@ id=45187
 rarity=C
 [/card]
 [card]
-primitive=Sage of Lat-Nam
-id=45269
-rarity=R
-[/card]
-[card]
 primitive=Sage Owl
 id=45226
 rarity=C
+[/card]
+[card]
+primitive=Sage of Lat-Nam
+id=45269
+rarity=R
 [/card]
 [card]
 primitive=Salt Marsh
@@ -1374,13 +1375,13 @@ id=45494
 rarity=U
 [/card]
 [card]
-primitive=Shock
-id=45352
+primitive=Shock Troops
+id=45350
 rarity=C
 [/card]
 [card]
-primitive=Shock Troops
-id=45350
+primitive=Shock
+id=45352
 rarity=C
 [/card]
 [card]

@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
-name=10th Edition
+name=Tenth Edition
 year=2007
+total=383
 [/meta]
 [card]
 primitive=Abundance
@@ -59,6 +60,11 @@ id=129465
 rarity=U
 [/card]
 [card]
+primitive=Angel's Feather
+id=129466
+rarity=U
+[/card]
+[card]
 primitive=Angelic Blessing
 id=129711
 rarity=C
@@ -72,11 +78,6 @@ rarity=R
 primitive=Angelic Wall
 id=129671
 rarity=C
-[/card]
-[card]
-primitive=Angel's Feather
-id=129466
-rarity=U
 [/card]
 [card]
 primitive=Arcane Teachings
@@ -574,14 +575,14 @@ id=134762
 rarity=C
 [/card]
 [card]
-primitive=Furnace of Rath
-id=129566
-rarity=R
-[/card]
-[card]
 primitive=Furnace Whelp
 id=130386
 rarity=U
+[/card]
+[card]
+primitive=Furnace of Rath
+id=129566
+rarity=R
 [/card]
 [card]
 primitive=Gaea's Herald
@@ -959,14 +960,14 @@ id=135272
 rarity=R
 [/card]
 [card]
-primitive=Might of Oaks
-id=129642
-rarity=R
-[/card]
-[card]
 primitive=Might Weaver
 id=130996
 rarity=U
+[/card]
+[card]
+primitive=Might of Oaks
+id=129642
+rarity=R
 [/card]
 [card]
 primitive=Millstone
