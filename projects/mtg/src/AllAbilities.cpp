@@ -1208,7 +1208,7 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * _source,
 void AACascade::toCastCard(MTGCardInstance * thisCard)
 {
     MTGAbility *ac = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), thisCard, thisCard,false,false,true,"","",false,false);
-    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac->clone(), thisCard->clone(),true);
+    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac->clone(), thisCard,true);
     MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), thisCard,NULL,ma1->clone());
     SAFE_DELETE(ac);
     SAFE_DELETE(ma1);
