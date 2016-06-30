@@ -469,6 +469,13 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
 				return 0;
 		}
 
+        check = restriction[i].find("canuntap");
+        if(check != string::npos)
+        {
+            if(card->frozen >= 1 || card->basicAbilities[(int)Constants::DOESNOTUNTAP] || !card->isTapped())
+                return 0;
+        }
+
         check = restriction[i].find("raid");
         if(check != string::npos)
         {
@@ -2222,6 +2229,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (found != string::npos)
     {
         MTGAbility * a = NEW ACombatRemoval(observer, id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //gain control until source is untapped or leaves battlefield
+    found = s.find("shackle");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AShackleWrapper(observer, id, card, target);
         a->oneShot = 1;
         return a;
     }
