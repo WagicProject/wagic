@@ -1,8 +1,15 @@
 [meta]
 author=Wagic Team
-year=1997
+name=Weatherlight
 block=Mirage
+year=1997
+total=167
 [/meta]
+[card]
+primitive=AEther Flash
+id=4534
+rarity=U
+[/card]
 [card]
 primitive=Abduction
 id=4476
@@ -27,11 +34,6 @@ rarity=R
 primitive=Abyssal Gatekeeper
 id=4447
 rarity=C
-[/card]
-[card]
-primitive=AEther Flash
-id=4534
-rarity=U
 [/card]
 [card]
 primitive=Agonizing Memories
@@ -94,6 +96,11 @@ id=4481
 rarity=R
 [/card]
 [card]
+primitive=Bosium Strip
+id=4429
+rarity=R
+[/card]
+[card]
 primitive=Barishi
 id=4507
 rarity=U
@@ -146,11 +153,6 @@ rarity=C
 [card]
 primitive=Bone Dancer
 id=4450
-rarity=R
-[/card]
-[card]
-primitive=Bosium Strip
-id=4429
 rarity=R
 [/card]
 [card]
