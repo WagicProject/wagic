@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=2001
+name=Apocalypse
 block=Invasion
+year=2001
+total=143
 [/meta]
 [card]
 primitive=AEther Mutation
@@ -214,12 +216,7 @@ id=28011
 rarity=R
 [/card]
 [card]
-primitive=Fire // Ice (Fire)
-id=27165
-rarity=U
-[/card]
-[card]
-primitive=Fire // Ice (Ice)
+primitive=Fire // Ice
 id=27166
 rarity=U
 [/card]
@@ -309,12 +306,7 @@ id=26447
 rarity=U
 [/card]
 [card]
-primitive=Illusion // Reality (Illusion)
-id=27163
-rarity=U
-[/card]
-[card]
-primitive=Illusion // Reality (Reality)
+primitive=Illusion // Reality
 id=27164
 rarity=U
 [/card]
@@ -374,13 +366,8 @@ id=26424
 rarity=R
 [/card]
 [card]
-primitive=Life // Death (Death)
+primitive=Life // Death
 id=27162
-rarity=U
-[/card]
-[card]
-primitive=Life // Death (Life)
-id=27161
 rarity=U
 [/card]
 [card]
@@ -459,23 +446,13 @@ id=25949
 rarity=R
 [/card]
 [card]
-primitive=Night // Day (Day)
-id=26276
-rarity=U
-[/card]
-[card]
-primitive=Night // Day (Night)
+primitive=Night // Day
 id=26691
 rarity=U
 [/card]
 [card]
-primitive=Order // Chaos (Chaos)
+primitive=Order // Chaos
 id=27168
-rarity=U
-[/card]
-[card]
-primitive=Order // Chaos (Order)
-id=27167
 rarity=U
 [/card]
 [card]
