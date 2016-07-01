@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
 name=Shadows over Innistrad
+block=Shadows over Innistrad
 year=2016
+total=330
 [/meta]
 [card]
 primitive=Aberrant Researcher
