@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=2014
+name=Journey into Nyx
 block=Theros
+year=2014
+total=165
 [/meta]
 [card]
 primitive=Aegis of the Gods
@@ -19,14 +21,14 @@ id=380366
 rarity=U
 [/card]
 [card]
-primitive=Ajani, Mentor of Heroes
-id=380367
-rarity=M
-[/card]
-[card]
 primitive=Ajani's Presence
 id=380368
 rarity=C
+[/card]
+[card]
+primitive=Ajani, Mentor of Heroes
+id=380367
+rarity=M
 [/card]
 [card]
 primitive=Akroan Line Breaker
@@ -319,6 +321,11 @@ id=380426
 rarity=M
 [/card]
 [card]
+primitive=Gold-Forged Sentinel
+id=380429
+rarity=U
+[/card]
+[card]
 primitive=Golden Hind
 id=380427
 rarity=C
@@ -326,11 +333,6 @@ rarity=C
 [card]
 primitive=Goldenhide Ox
 id=380428
-rarity=U
-[/card]
-[card]
-primitive=Gold-Forged Sentinel
-id=380429
 rarity=U
 [/card]
 [card]
@@ -414,14 +416,14 @@ id=380445
 rarity=U
 [/card]
 [card]
-primitive=Kruphix, God of Horizons
-id=380446
-rarity=M
-[/card]
-[card]
 primitive=Kruphix's Insight
 id=380447
 rarity=C
+[/card]
+[card]
+primitive=Kruphix, God of Horizons
+id=380446
+rarity=M
 [/card]
 [card]
 primitive=Lagonna-Band Trailblazer
@@ -529,14 +531,14 @@ id=380468
 rarity=U
 [/card]
 [card]
-primitive=Pharika, God of Affliction
-id=380469
-rarity=M
-[/card]
-[card]
 primitive=Pharika's Chosen
 id=380470
 rarity=C
+[/card]
+[card]
+primitive=Pharika, God of Affliction
+id=380469
+rarity=M
 [/card]
 [card]
 primitive=Pheres-Band Thunderhoof

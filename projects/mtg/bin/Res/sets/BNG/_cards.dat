@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Born of the Gods
-year=2014
 block=Theros
+year=2014
+total=165
 [/meta]
 [card]
 primitive=Acolyte's Reward
@@ -180,11 +181,6 @@ id=378380
 rarity=C
 [/card]
 [card]
-primitive=Ephara, God of the Polis
-id=378517
-rarity=M
-[/card]
-[card]
 primitive=Ephara's Enlightenment
 id=378518
 rarity=U
@@ -193,6 +189,11 @@ rarity=U
 primitive=Ephara's Radiance
 id=378381
 rarity=C
+[/card]
+[card]
+primitive=Ephara, God of the Polis
+id=378517
+rarity=M
 [/card]
 [card]
 primitive=Epiphany Storm
@@ -307,7 +308,7 @@ rarity=U
 [card]
 primitive=Forsaken Drifters
 id=378444
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Ghostblade Eidolon
@@ -395,24 +396,19 @@ id=378471
 rarity=C
 [/card]
 [card]
-primitive=Karametra, God of Harvests
-id=378520
-rarity=M
-[/card]
-[card]
 primitive=Karametra's Favor
 id=378497
 rarity=C
 [/card]
 [card]
-primitive=Kiora, the Crashing Wave
-id=378521
+primitive=Karametra, God of Harvests
+id=378520
 rarity=M
 [/card]
 [card]
-primitive=Kiora's Prevention
-id=37852101
-rarity=T
+primitive=Kiora's Follower
+id=378522
+rarity=U
 [/card]
 [card]
 primitive=Kiora's Kraken
@@ -420,9 +416,9 @@ id=-378521
 rarity=T
 [/card]
 [card]
-primitive=Kiora's Follower
-id=378522
-rarity=U
+primitive=Kiora, the Crashing Wave
+id=378521
+rarity=M
 [/card]
 [card]
 primitive=Kragma Butcher
@@ -615,7 +611,7 @@ id=378507
 rarity=U
 [/card]
 [card]
-primitive=Reap what is Sown
+primitive=Reap What Is Sown
 id=378526
 rarity=U
 [/card]
@@ -700,6 +696,11 @@ id=378398
 rarity=R
 [/card]
 [card]
+primitive=Siren Song Lyre
+id=378533
+rarity=U
+[/card]
+[card]
 primitive=Siren of the Fanged Coast
 id=378422
 rarity=U
@@ -707,11 +708,6 @@ rarity=U
 [card]
 primitive=Siren of the Silent Song
 id=378527
-rarity=U
-[/card]
-[card]
-primitive=Siren Song Lyre
-id=378533
 rarity=U
 [/card]
 [card]
