@@ -1,6 +1,8 @@
 [meta]
 author=Wagic Team
+name=Antiquities
 year=1994
+total=100
 [/meta]
 [card]
 primitive=Amulet of Kroog
@@ -219,12 +221,7 @@ rarity=U
 [/card]
 [card]
 primitive=Mishra's Factory
-id=1074
-rarity=U
-[/card]
-[card]
-primitive=Mishra's Factory
-id=1073
+id=1071
 rarity=R
 [/card]
 [card]
@@ -234,8 +231,13 @@ rarity=R
 [/card]
 [card]
 primitive=Mishra's Factory
-id=1071
+id=1073
 rarity=R
+[/card]
+[card]
+primitive=Mishra's Factory
+id=1074
+rarity=U
 [/card]
 [card]
 primitive=Mishra's War Machine
@@ -334,12 +336,7 @@ rarity=C
 [/card]
 [card]
 primitive=Strip Mine
-id=1079
-rarity=U
-[/card]
-[card]
-primitive=Strip Mine
-id=1078
+id=1076
 rarity=R
 [/card]
 [card]
@@ -349,8 +346,13 @@ rarity=R
 [/card]
 [card]
 primitive=Strip Mine
-id=1076
+id=1078
 rarity=R
+[/card]
+[card]
+primitive=Strip Mine
+id=1079
+rarity=U
 [/card]
 [card]
 primitive=Su-Chi
@@ -414,12 +416,7 @@ rarity=C
 [/card]
 [card]
 primitive=Urza's Mine
-id=1083
-rarity=U
-[/card]
-[card]
-primitive=Urza's Mine
-id=1082
+id=1080
 rarity=C
 [/card]
 [card]
@@ -429,8 +426,13 @@ rarity=U
 [/card]
 [card]
 primitive=Urza's Mine
-id=1080
+id=1082
 rarity=C
+[/card]
+[card]
+primitive=Urza's Mine
+id=1083
+rarity=U
 [/card]
 [card]
 primitive=Urza's Miter
@@ -439,13 +441,8 @@ rarity=R
 [/card]
 [card]
 primitive=Urza's Power Plant
-id=1087
+id=1084
 rarity=U
-[/card]
-[card]
-primitive=Urza's Power Plant
-id=1086
-rarity=C
 [/card]
 [card]
 primitive=Urza's Power Plant
@@ -454,12 +451,22 @@ rarity=C
 [/card]
 [card]
 primitive=Urza's Power Plant
-id=1084
+id=1086
+rarity=C
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=1087
 rarity=U
 [/card]
 [card]
 primitive=Urza's Tower
-id=1091
+id=1088
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=1089
 rarity=U
 [/card]
 [card]
@@ -469,12 +476,7 @@ rarity=C
 [/card]
 [card]
 primitive=Urza's Tower
-id=1089
-rarity=U
-[/card]
-[card]
-primitive=Urza's Tower
-id=1088
+id=1091
 rarity=U
 [/card]
 [card]

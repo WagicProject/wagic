@@ -1,17 +1,19 @@
 [meta]
 author=Wagic Team
+name=Saviors of Kamigawa
+block=Kamigawa
 year=2005
-block=Kami
+total=165
 [/meta]
-[card]
-primitive=Adamaro, First to Desire
-id=74187
-rarity=R
-[/card]
 [card]
 primitive=AEther Shockwave
 id=74208
 rarity=U
+[/card]
+[card]
+primitive=Adamaro, First to Desire
+id=74187
+rarity=R
 [/card]
 [card]
 primitive=Akki Drillmaster
@@ -364,14 +366,14 @@ id=74047
 rarity=R
 [/card]
 [card]
-primitive=Kagemaro, First to Suffer
-id=74016
-rarity=R
-[/card]
-[card]
 primitive=Kagemaro's Clutch
 id=74560
 rarity=C
+[/card]
+[card]
+primitive=Kagemaro, First to Suffer
+id=74016
+rarity=R
 [/card]
 [card]
 primitive=Kaho, Minamo Historian
@@ -544,6 +546,11 @@ id=84639
 rarity=U
 [/card]
 [card]
+primitive=O-Naginata
+id=74146
+rarity=U
+[/card]
+[card]
 primitive=Oboro Breezecaller
 id=88784
 rarity=C
@@ -562,11 +569,6 @@ rarity=R
 primitive=Okina Nightwatch
 id=74196
 rarity=C
-[/card]
-[card]
-primitive=O-Naginata
-id=74146
-rarity=U
 [/card]
 [card]
 primitive=One with Nothing
@@ -693,12 +695,11 @@ primitive=Sasaya, Orochi Ascendant
 id=87595
 rarity=R
 [/card]
-#need to find a way to deal with multipart cards
-#[card]
-#primitive=Sasaya, Orochi Ascendant (Sasaya's Essence)
-#id=87595
-#rarity=R
-#[/card]
+[card]
+primitive=Sasaya's Essence
+id=8759511
+rarity=T
+[/card]
 [card]
 primitive=Scroll of Origins
 id=88811

@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=1997
+name=Visions
 block=Mirage
+year=1997
+total=167
 [/meta]
 [card]
 primitive=Aku Djinn
@@ -364,13 +366,13 @@ id=3667
 rarity=C
 [/card]
 [card]
-primitive=Knight of the Mists
-id=3643
+primitive=Knight of Valor
+id=3718
 rarity=C
 [/card]
 [card]
-primitive=Knight of Valor
-id=3718
+primitive=Knight of the Mists
+id=3643
 rarity=C
 [/card]
 [card]

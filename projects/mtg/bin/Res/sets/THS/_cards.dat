@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Theros
+block=Theros
 year=2013
-block=THS
+total=249
 [/meta]
 [card]
 primitive=Abhorrent Overlord
@@ -130,14 +131,14 @@ id=373638
 rarity=C
 [/card]
 [card]
-primitive=Boon of Erebos
-id=373642
-rarity=C
-[/card]
-[card]
 primitive=Boon Satyr
 id=373509
 rarity=R
+[/card]
+[card]
+primitive=Boon of Erebos
+id=373642
+rarity=C
 [/card]
 [card]
 primitive=Borderland Minotaur
@@ -315,14 +316,14 @@ id=373724
 rarity=C
 [/card]
 [card]
-primitive=Erebos, God of the Dead
-id=373589
-rarity=M
-[/card]
-[card]
 primitive=Erebos's Emissary
 id=373745
 rarity=U
+[/card]
+[card]
+primitive=Erebos, God of the Dead
+id=373589
+rarity=M
 [/card]
 [card]
 primitive=Evangel of Heliod
@@ -455,14 +456,14 @@ id=373587
 rarity=R
 [/card]
 [card]
-primitive=Heliod, God of the Sun
-id=373524
-rarity=M
-[/card]
-[card]
 primitive=Heliod's Emissary
 id=373729
 rarity=U
+[/card]
+[card]
+primitive=Heliod, God of the Sun
+id=373524
+rarity=M
 [/card]
 [card]
 primitive=Hero's Downfall
@@ -690,11 +691,6 @@ id=373713
 rarity=R
 [/card]
 [card]
-primitive=Nylea, God of the Hunt
-id=373559
-rarity=M
-[/card]
-[card]
 primitive=Nylea's Disciple
 id=373498
 rarity=C
@@ -708,6 +704,11 @@ rarity=U
 primitive=Nylea's Presence
 id=373580
 rarity=C
+[/card]
+[card]
+primitive=Nylea, God of the Hunt
+id=373559
+rarity=M
 [/card]
 [card]
 primitive=Observant Alseid
@@ -840,14 +841,14 @@ id=373695
 rarity=R
 [/card]
 [card]
-primitive=Purphoros, God of the Forge
-id=373556
-rarity=M
-[/card]
-[card]
 primitive=Purphoros's Emissary
 id=373505
 rarity=U
+[/card]
+[card]
+primitive=Purphoros, God of the Forge
+id=373556
+rarity=M
 [/card]
 [card]
 primitive=Pyxis of Pandemonium
@@ -1090,11 +1091,6 @@ id=373560
 rarity=R
 [/card]
 [card]
-primitive=Thassa, God of the Sea
-id=373535
-rarity=M
-[/card]
-[card]
 primitive=Thassa's Bounty
 id=373662
 rarity=C
@@ -1103,6 +1099,11 @@ rarity=C
 primitive=Thassa's Emissary
 id=373735
 rarity=U
+[/card]
+[card]
+primitive=Thassa, God of the Sea
+id=373535
+rarity=M
 [/card]
 [card]
 primitive=Thoughtseize

@@ -1,17 +1,19 @@
 [meta]
 author=Wagic Team
-year=1999
+name=Urza's Destiny
 block=Urza
+year=1999
+total=143
 [/meta]
-[card]
-primitive=Academy Rector
-id=15138
-rarity=R
-[/card]
 [card]
 primitive=AEther Sting
 id=12612
 rarity=U
+[/card]
+[card]
+primitive=Academy Rector
+id=15138
+rarity=R
 [/card]
 [card]
 primitive=Ancient Silverback
@@ -504,14 +506,14 @@ id=15154
 rarity=C
 [/card]
 [card]
-primitive=Rofellos, Llanowar Emissary
-id=15237
-rarity=R
-[/card]
-[card]
 primitive=Rofellos's Gift
 id=15877
 rarity=C
+[/card]
+[card]
+primitive=Rofellos, Llanowar Emissary
+id=15237
+rarity=R
 [/card]
 [card]
 primitive=Sanctimony

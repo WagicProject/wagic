@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=2002
+name=Torment
 block=Odyssey
+year=2002
+total=143
 [/meta]
 [card]
 primitive=Accelerate
@@ -144,14 +146,14 @@ id=36034
 rarity=R
 [/card]
 [card]
-primitive=Chainer, Dementia Master
-id=32916
-rarity=R
-[/card]
-[card]
 primitive=Chainer's Edict
 id=29603
 rarity=U
+[/card]
+[card]
+primitive=Chainer, Dementia Master
+id=32916
+rarity=R
 [/card]
 [card]
 primitive=Churning Eddy

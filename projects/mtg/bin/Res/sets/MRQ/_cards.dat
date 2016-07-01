@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Mercadian Masques
+block=Masque
 year=1999
-block=Masks
+total=350
 [/meta]
 [card]
 primitive=Aerial Caravan
@@ -259,14 +261,14 @@ id=19779
 rarity=U
 [/card]
 [card]
-primitive=Cho-Manno, Revolutionary
-id=20411
-rarity=R
-[/card]
-[card]
 primitive=Cho-Manno's Blessing
 id=19551
 rarity=C
+[/card]
+[card]
+primitive=Cho-Manno, Revolutionary
+id=20411
+rarity=R
 [/card]
 [card]
 primitive=Cinder Elemental
@@ -579,14 +581,14 @@ id=19740
 rarity=R
 [/card]
 [card]
-primitive=Fountain of Cho
-id=19893
-rarity=U
-[/card]
-[card]
 primitive=Fountain Watch
 id=19784
 rarity=R
+[/card]
+[card]
+primitive=Fountain of Cho
+id=19893
+rarity=U
 [/card]
 [card]
 primitive=Fresh Volunteers
@@ -919,6 +921,11 @@ id=19733
 rarity=R
 [/card]
 [card]
+primitive=Mercadia's Downfall
+id=19850
+rarity=U
+[/card]
+[card]
 primitive=Mercadian Atlas
 id=20844
 rarity=R
@@ -932,11 +939,6 @@ rarity=U
 primitive=Mercadian Lift
 id=19754
 rarity=R
-[/card]
-[card]
-primitive=Mercadia's Downfall
-id=19850
-rarity=U
 [/card]
 [card]
 primitive=Midnight Ritual
@@ -1459,14 +1461,14 @@ id=19871
 rarity=R
 [/card]
 [card]
-primitive=Squall
-id=19636
-rarity=C
-[/card]
-[card]
 primitive=Squallmonger
 id=19856
 rarity=U
+[/card]
+[card]
+primitive=Squall
+id=19636
+rarity=C
 [/card]
 [card]
 primitive=Squee, Goblin Nabob

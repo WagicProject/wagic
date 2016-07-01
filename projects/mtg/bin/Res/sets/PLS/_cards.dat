@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=2001
+name=Planeshift
 block=Invasion
+year=2001
+total=146
 [/meta]
 [card]
 primitive=Allied Strategies
@@ -159,9 +161,9 @@ id=25646
 rarity=R
 [/card]
 [card]
-primitive=Ertai, the Corrupted
-id=29292
-rarity=R
+primitive=Ertai's Trickery
+id=26590
+rarity=U
 [/card]
 [card]
 primitive=Ertai, the Corrupted
@@ -169,9 +171,9 @@ id=25614
 rarity=R
 [/card]
 [card]
-primitive=Ertai's Trickery
-id=26590
-rarity=U
+primitive=Ertai, the Corrupted
+id=29292
+rarity=R
 [/card]
 [card]
 primitive=Escape Routes
@@ -570,12 +572,12 @@ rarity=C
 [/card]
 [card]
 primitive=Skyship Weatherlight
-id=29293
+id=26480
 rarity=R
 [/card]
 [card]
 primitive=Skyship Weatherlight
-id=26480
+id=29293
 rarity=R
 [/card]
 [card]
@@ -660,12 +662,12 @@ rarity=U
 [/card]
 [card]
 primitive=Tahngarth, Talruum Hero
-id=29291
+id=26408
 rarity=R
 [/card]
 [card]
 primitive=Tahngarth, Talruum Hero
-id=26408
+id=29291
 rarity=R
 [/card]
 [card]

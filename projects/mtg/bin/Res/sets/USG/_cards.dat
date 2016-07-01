@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=1999
+name=Urza's Saga
 block=Urza
+year=1999
+total=350
 [/meta]
 [card]
 primitive=Absolute Grace
@@ -109,13 +111,13 @@ id=5711
 rarity=R
 [/card]
 [card]
-primitive=Barrin, Master Wizard
-id=9856
+primitive=Barrin's Codex
+id=5735
 rarity=R
 [/card]
 [card]
-primitive=Barrin's Codex
-id=5735
+primitive=Barrin, Master Wizard
+id=9856
 rarity=R
 [/card]
 [card]
@@ -1314,6 +1316,11 @@ id=5743
 rarity=U
 [/card]
 [card]
+primitive=Shiv's Embrace
+id=5721
+rarity=U
+[/card]
+[card]
 primitive=Shivan Gorge
 id=10482
 rarity=R
@@ -1326,11 +1333,6 @@ rarity=R
 [card]
 primitive=Shivan Raptor
 id=5562
-rarity=U
-[/card]
-[card]
-primitive=Shiv's Embrace
-id=5721
 rarity=U
 [/card]
 [card]
@@ -1749,12 +1751,12 @@ id=5629
 rarity=R
 [/card]
 [card]
-primitive=Zephid
-id=5825
-rarity=R
-[/card]
-[card]
 primitive=Zephid's Embrace
 id=8787
 rarity=U
+[/card]
+[card]
+primitive=Zephid
+id=5825
+rarity=R
 [/card]

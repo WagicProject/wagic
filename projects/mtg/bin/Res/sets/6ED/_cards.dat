@@ -1,8 +1,14 @@
 [meta]
 author=Wagic Team
-name=6th Edition
+name=Classic Sixth Edition
 year=1999
+total=350
 [/meta]
+[card]
+primitive=AEther Flash
+id=15447
+rarity=U
+[/card]
 [card]
 primitive=Abduction
 id=14526
@@ -22,11 +28,6 @@ rarity=U
 primitive=Adarkar Wastes
 id=14727
 rarity=R
-[/card]
-[card]
-primitive=AEther Flash
-id=15447
-rarity=U
 [/card]
 [card]
 primitive=Agonizing Memories
@@ -124,13 +125,13 @@ id=14628
 rarity=U
 [/card]
 [card]
-primitive=Blight
-id=15399
+primitive=Blighted Shaman
+id=15385
 rarity=U
 [/card]
 [card]
-primitive=Blighted Shaman
-id=15385
+primitive=Blight
+id=15399
 rarity=U
 [/card]
 [card]
@@ -289,6 +290,11 @@ id=15404
 rarity=R
 [/card]
 [card]
+primitive=D'Avenant Archer
+id=14472
+rarity=C
+[/card]
+[card]
 primitive=Dancing Scimitar
 id=14773
 rarity=R
@@ -302,11 +308,6 @@ rarity=U
 primitive=Daring Apprentice
 id=14552
 rarity=R
-[/card]
-[card]
-primitive=D'Avenant Archer
-id=14472
-rarity=C
 [/card]
 [card]
 primitive=Deflection
@@ -534,14 +535,14 @@ id=14626
 rarity=C
 [/card]
 [card]
-primitive=Flash
-id=16440
-rarity=R
-[/card]
-[card]
 primitive=Flashfires
 id=16446
 rarity=U
+[/card]
+[card]
+primitive=Flash
+id=16440
+rarity=R
 [/card]
 [card]
 primitive=Flight
@@ -554,13 +555,13 @@ id=14776
 rarity=R
 [/card]
 [card]
-primitive=Fog
-id=14682
+primitive=Fog Elemental
+id=16433
 rarity=C
 [/card]
 [card]
-primitive=Fog Elemental
-id=16433
+primitive=Fog
+id=14682
 rarity=C
 [/card]
 [card]
@@ -994,6 +995,11 @@ id=15442
 rarity=U
 [/card]
 [card]
+primitive=Mountain Goat
+id=16442
+rarity=C
+[/card]
+[card]
 primitive=Mountain
 id=14745
 rarity=L
@@ -1012,11 +1018,6 @@ rarity=L
 primitive=Mountain
 id=14748
 rarity=L
-[/card]
-[card]
-primitive=Mountain Goat
-id=16442
-rarity=C
 [/card]
 [card]
 primitive=Mystic Compass
@@ -1364,14 +1365,14 @@ id=14670
 rarity=C
 [/card]
 [card]
-primitive=Shatter
-id=14614
-rarity=C
-[/card]
-[card]
 primitive=Shatterstorm
 id=11497
 rarity=R
+[/card]
+[card]
+primitive=Shatter
+id=14614
+rarity=C
 [/card]
 [card]
 primitive=Shock

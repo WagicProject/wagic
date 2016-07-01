@@ -1,17 +1,14 @@
 [meta]
 author=Wagic Team
+name=Alara Reborn
+block=Shards of Alara
 year=2009
-block=Shards
+total=145
 [/meta]
 [card]
 primitive=Anathemancer
 id=179538
 rarity=U
-[/card]
-[card]
-primitive=Anathemancer Unearthed
-id=17953811
-rarity=T
 [/card]
 [card]
 primitive=Architects of Will
@@ -189,11 +186,6 @@ id=179573
 rarity=C
 [/card]
 [card]
-primitive=Etherium Abomination Unearthed
-id=17957311
-rarity=T
-[/card]
-[card]
 primitive=Ethersworn Shieldmage
 id=179578
 rarity=C
@@ -327,11 +319,6 @@ rarity=M
 primitive=Kathari Bomber
 id=179602
 rarity=C
-[/card]
-[card]
-primitive=Kathari Bomber Unearthed
-id=17960211
-rarity=T
 [/card]
 [card]
 primitive=Kathari Remnant
