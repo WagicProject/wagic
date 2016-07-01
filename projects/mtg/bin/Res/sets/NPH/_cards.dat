@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-name=NPH
+name=New Phyrexia
+block=Scars of Mirrodin
 year=2011
+total=175
 [/meta]
 [card]
 primitive=Act of Aggression
@@ -235,12 +237,12 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=230081
+id=230071
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=230071
+id=230081
 rarity=L
 [/card]
 [card]
@@ -345,12 +347,12 @@ rarity=R
 [/card]
 [card]
 primitive=Island
-id=227530
+id=227505
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=227505
+id=227530
 rarity=L
 [/card]
 [card]
@@ -519,6 +521,11 @@ id=233085
 rarity=C
 [/card]
 [card]
+primitive=Phyrexia's Core
+id=218015
+rarity=U
+[/card]
+[card]
 primitive=Phyrexian Hulk
 id=214379
 rarity=C
@@ -549,23 +556,18 @@ id=218058
 rarity=R
 [/card]
 [card]
-primitive=Phyrexia's Core
-id=218015
-rarity=U
-[/card]
-[card]
 primitive=Pith Driller
 id=230079
 rarity=C
 [/card]
 [card]
 primitive=Plains
-id=227552
+id=227518
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=227518
+id=227552
 rarity=L
 [/card]
 [card]
