@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Ice Age
+block=Ice Age
 year=1995
-block=Ice
+total=383
 [/meta]
 [card]
 primitive=Abyssal Specter
@@ -525,7 +527,7 @@ rarity=U
 [/card]
 [card]
 primitive=Forest
-id=2748
+id=2746
 rarity=L
 [/card]
 [card]
@@ -535,7 +537,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=2746
+id=2748
 rarity=L
 [/card]
 [card]
@@ -860,7 +862,7 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=2769
+id=2767
 rarity=L
 [/card]
 [card]
@@ -870,7 +872,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=2767
+id=2769
 rarity=L
 [/card]
 [card]
@@ -1069,6 +1071,11 @@ id=2577
 rarity=U
 [/card]
 [card]
+primitive=Marton Stromgald
+id=2635
+rarity=R
+[/card]
+[card]
 primitive=Maddening Wind
 id=2578
 rarity=U
@@ -1082,11 +1089,6 @@ rarity=R
 primitive=Malachite Talisman
 id=2414
 rarity=U
-[/card]
-[card]
-primitive=Marton Stromgald
-id=2635
-rarity=R
 [/card]
 [card]
 primitive=Melee
@@ -1164,8 +1166,18 @@ id=2477
 rarity=C
 [/card]
 [card]
+primitive=Mountain Goat
+id=2639
+rarity=C
+[/card]
+[card]
+primitive=Mountain Titan
+id=2735
+rarity=R
+[/card]
+[card]
 primitive=Mountain
-id=2765
+id=2763
 rarity=L
 [/card]
 [card]
@@ -1175,18 +1187,8 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=2763
+id=2765
 rarity=L
-[/card]
-[card]
-primitive=Mountain Goat
-id=2639
-rarity=C
-[/card]
-[card]
-primitive=Mountain Titan
-id=2735
-rarity=R
 [/card]
 [card]
 primitive=Mudslide
@@ -1320,7 +1322,7 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
-id=2773
+id=2771
 rarity=L
 [/card]
 [card]
@@ -1330,7 +1332,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=2771
+id=2773
 rarity=L
 [/card]
 [card]
@@ -1529,11 +1531,6 @@ id=2713
 rarity=U
 [/card]
 [card]
-primitive=Snowblind
-id=2588
-rarity=R
-[/card]
-[card]
 primitive=Snow-Covered Forest
 id=2749
 rarity=L
@@ -1557,6 +1554,11 @@ rarity=L
 primitive=Snow-Covered Swamp
 id=2742
 rarity=L
+[/card]
+[card]
+primitive=Snowblind
+id=2588
+rarity=R
 [/card]
 [card]
 primitive=Snowfall
@@ -1675,7 +1677,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=2745
+id=2743
 rarity=L
 [/card]
 [card]
@@ -1685,7 +1687,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=2743
+id=2745
 rarity=L
 [/card]
 [card]
@@ -1899,6 +1901,11 @@ id=2604
 rarity=U
 [/card]
 [card]
+primitive=Zur's Weirding
+id=2546
+rarity=R
+[/card]
+[card]
 primitive=Zuran Enchanter
 id=2547
 rarity=C
@@ -1912,9 +1919,4 @@ rarity=U
 primitive=Zuran Spellcaster
 id=2548
 rarity=C
-[/card]
-[card]
-primitive=Zur's Weirding
-id=2546
-rarity=R
 [/card]
