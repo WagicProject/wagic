@@ -1383,6 +1383,7 @@ MTGSetInfo::MTGSetInfo(const string& _id)
     id = _id;
     block = -1;
     year = -1;
+    total = -1;
 
     for (int i = 0; i < MTGSetInfo::MAX_COUNT; i++)
         counts[i] = 0;
@@ -1458,5 +1459,8 @@ void MTGSetInfo::processConfLine(string line)
         author = value;
     else if (key.compare("block") == 0)
         block = setlist.findBlock(value.c_str());
-    else if (key.compare("year") == 0) year = atoi(value.c_str());
+    else if (key.compare("year") == 0) 
+        year = atoi(value.c_str());
+    else if (key.compare("total") == 0) 
+        total = atoi(value.c_str());
 }

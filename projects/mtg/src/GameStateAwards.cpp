@@ -108,6 +108,8 @@ void GameStateAwards::Start()
 
         if (!si->author.size())
             sprintf(buf, _("%i cards.").c_str(), si->totalCards());
+        else if (si->year > 0 && si->total > 0)
+            sprintf(buf, _("%s (%i): %i/%i cards").c_str(), si->author.c_str(), si->year, si->totalCards(), si->total);
         else if (si->year > 0)
             sprintf(buf, _("%s (%i): %i cards").c_str(), si->author.c_str(), si->year, si->totalCards());
         else
