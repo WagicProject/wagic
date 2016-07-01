@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Future Sight
+block=Time Spiral
 year=2007
-block=Time
+total=180
 [/meta]
 [card]
 primitive=Akroma's Memorial
@@ -49,7 +51,7 @@ id=136048
 rarity=R
 [/card]
 [card]
-primitive=Baru Fist of Krosa
+primitive=Baru, Fist of Krosa
 id=136155
 rarity=R
 [/card]
@@ -274,7 +276,7 @@ id=136157
 rarity=R
 [/card]
 [card]
-primitive=Goldmeadow Harrier Token from Goldmeadow Lookout
+primitive=Goldmeadow Harrier Token
 id=-130311
 rarity=T
 [/card]
@@ -384,7 +386,7 @@ id=130698
 rarity=C
 [/card]
 [card]
-primitive=Korlash Heir to Blackblade
+primitive=Korlash, Heir to Blackblade
 id=136208
 rarity=R
 [/card]
@@ -404,7 +406,7 @@ id=132213
 rarity=C
 [/card]
 [card]
-primitive=Llanowar Elves Token from Llanowar Mentor
+primitive=Llanowar Elves Token
 id=-126166
 rarity=T
 [/card]
@@ -749,7 +751,7 @@ id=126213
 rarity=U
 [/card]
 [card]
-primitive=Spark Elemental Token from Sparkspitter
+primitive=Spark Elemental Token
 id=-130341
 rarity=T
 [/card]
@@ -874,14 +876,14 @@ id=136149
 rarity=R
 [/card]
 [card]
-primitive=Venser, Shaper Savant
-id=136209
-rarity=R
-[/card]
-[card]
 primitive=Venser's Diffusion
 id=136197
 rarity=C
+[/card]
+[card]
+primitive=Venser, Shaper Savant
+id=136209
+rarity=R
 [/card]
 [card]
 primitive=Virulent Sliver

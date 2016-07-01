@@ -1,14 +1,10 @@
-#Thanks to Blublub for orignal version 2009/07/05
 [meta]
 author=Wagic Team
+name=Time Spiral
+block=Time Spiral
 year=2006
-block=Time
+total=301
 [/meta]
-[card]
-primitive=Academy Ruins
-id=116725
-rarity=R
-[/card]
 [card]
 primitive=AEther Web
 id=108852
@@ -18,6 +14,11 @@ rarity=C
 primitive=AEtherflame Wall
 id=113558
 rarity=C
+[/card]
+[card]
+primitive=Academy Ruins
+id=116725
+rarity=R
 [/card]
 [card]
 primitive=Amrou Scout
@@ -235,13 +236,13 @@ id=114915
 rarity=C
 [/card]
 [card]
-primitive=Dark Withering
-id=118892
+primitive=D'Avenant Healer
+id=113518
 rarity=C
 [/card]
 [card]
-primitive=D'Avenant Healer
-id=113518
+primitive=Dark Withering
+id=118892
 rarity=C
 [/card]
 [card]
@@ -421,12 +422,7 @@ rarity=U
 [/card]
 [card]
 primitive=Forest
-id=122088
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=122083
+id=118906
 rarity=L
 [/card]
 [card]
@@ -436,7 +432,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=118906
+id=122083
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=122088
 rarity=L
 [/card]
 [card]
@@ -601,7 +602,7 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=122095
+id=118905
 rarity=L
 [/card]
 [card]
@@ -616,7 +617,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=118905
+id=122095
 rarity=L
 [/card]
 [card]
@@ -745,13 +746,13 @@ id=113563
 rarity=R
 [/card]
 [card]
-primitive=Might of Old Krosa
-id=109763
+primitive=Might Sliver
+id=111042
 rarity=U
 [/card]
 [card]
-primitive=Might Sliver
-id=111042
+primitive=Might of Old Krosa
+id=109763
 rarity=U
 [/card]
 [card]
@@ -801,7 +802,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=122090
+id=118926
 rarity=L
 [/card]
 [card]
@@ -811,7 +812,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=118926
+id=122090
 rarity=L
 [/card]
 [card]
@@ -931,12 +932,7 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
-id=122092
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=122087
+id=122084
 rarity=L
 [/card]
 [card]
@@ -946,7 +942,12 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=122084
+id=122087
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=122092
 rarity=L
 [/card]
 [card]
@@ -1266,12 +1267,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=122078
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=122076
+id=118903
 rarity=L
 [/card]
 [card]
@@ -1281,7 +1277,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=118903
+id=122076
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=122078
 rarity=L
 [/card]
 [card]
@@ -1450,13 +1451,13 @@ id=109766
 rarity=R
 [/card]
 [card]
-primitive=Vesuva
-id=113543
+primitive=Vesuvan Shapeshifter
+id=109765
 rarity=R
 [/card]
 [card]
-primitive=Vesuvan Shapeshifter
-id=109765
+primitive=Vesuva
+id=113543
 rarity=R
 [/card]
 [card]
