@@ -1,8 +1,15 @@
 [meta]
 author=Wagic Team
+name=Guildpact
+block=Ravnica
 year=2006
-block=Guild
+total=165
 [/meta]
+[card]
+primitive=AEtherplasm
+id=96924
+rarity=U
+[/card]
 [card]
 primitive=Absolver Thrull
 id=96953
@@ -12,11 +19,6 @@ rarity=C
 primitive=Abyssal Nocturnus
 id=96858
 rarity=R
-[/card]
-[card]
-primitive=AEtherplasm
-id=96924
-rarity=U
 [/card]
 [card]
 primitive=Agent of Masks
@@ -439,14 +441,14 @@ id=107685
 rarity=C
 [/card]
 [card]
-primitive=Nivix, Aerie of the Firemind
-id=96937
-rarity=U
-[/card]
-[card]
 primitive=Niv-Mizzet, the Firemind
 id=96952
 rarity=R
+[/card]
+[card]
+primitive=Nivix, Aerie of the Firemind
+id=96937
+rarity=U
 [/card]
 [card]
 primitive=Ogre Savant
