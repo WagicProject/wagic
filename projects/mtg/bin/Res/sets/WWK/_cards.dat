@@ -1,8 +1,15 @@
 [meta]
 author=Wagic Team
+name=Worldwake
+block=Zendikar
 year=2010
-block=Adventure
+total=145
 [/meta]
+[card]
+primitive=AEther Tradewinds
+id=201568
+rarity=C
+[/card]
 [card]
 primitive=Abyssal Persecutor
 id=197869
@@ -12,11 +19,6 @@ rarity=M
 primitive=Admonition Angel
 id=197160
 rarity=M
-[/card]
-[card]
-primitive=AEther Tradewinds
-id=201568
-rarity=C
 [/card]
 [card]
 primitive=Agadeem Occultist
@@ -189,14 +191,14 @@ id=194679
 rarity=C
 [/card]
 [card]
-primitive=Deathforge Shaman
-id=191540
-rarity=U
-[/card]
-[card]
 primitive=Death's Shadow
 id=198372
 rarity=R
+[/card]
+[card]
+primitive=Deathforge Shaman
+id=191540
+rarity=U
 [/card]
 [card]
 primitive=Dispel
@@ -369,13 +371,13 @@ id=197789
 rarity=C
 [/card]
 [card]
-primitive=Kitesail
-id=197152
+primitive=Kitesail Apprentice
+id=194018
 rarity=C
 [/card]
 [card]
-primitive=Kitesail Apprentice
-id=194018
+primitive=Kitesail
+id=197152
 rarity=C
 [/card]
 [card]
@@ -484,6 +486,11 @@ id=194007
 rarity=U
 [/card]
 [card]
+primitive=Quest for Ula's Temple
+id=198401
+rarity=R
+[/card]
+[card]
 primitive=Quest for the Goblin Lord
 id=198392
 rarity=U
@@ -491,11 +498,6 @@ rarity=U
 [card]
 primitive=Quest for the Nihil Stone
 id=198386
-rarity=R
-[/card]
-[card]
-primitive=Quest for Ula's Temple
-id=198401
 rarity=R
 [/card]
 [card]
