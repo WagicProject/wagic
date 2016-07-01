@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-block=Time
+name=Time Spiral "Timeshifted"
+block=Time Spiral
 year=2006
+total=121
 [/meta]
 [card]
 primitive=Akroma, Angel of Wrath
@@ -14,16 +16,10 @@ id=109739
 rarity=S
 [/card]
 [card]
-primitive=Assault // Battery (Assault)
+primitive=Assault // Battery
 id=109704
 rarity=S
 [/card]
-#need to find a way to deal with multipart cards
-#[card]
-#primitive=Assault // Battery (Battery)
-#id=109704
-#rarity=S
-#[/card]
 [card]
 primitive=Auratog
 id=106665
@@ -560,13 +556,13 @@ id=109759
 rarity=S
 [/card]
 [card]
-primitive=Void
-id=109677
+primitive=Voidmage Prodigy
+id=108811
 rarity=S
 [/card]
 [card]
-primitive=Voidmage Prodigy
-id=108811
+primitive=Void
+id=109677
 rarity=S
 [/card]
 [card]

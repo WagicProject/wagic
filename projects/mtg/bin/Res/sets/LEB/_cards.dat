@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Limited Edition Beta
 block=Early
 year=1993
+total=302
 [/meta]
 [card]
 primitive=Air Elemental
@@ -460,7 +462,7 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
-id=588
+id=586
 rarity=L
 [/card]
 [card]
@@ -470,7 +472,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=586
+id=588
 rarity=L
 [/card]
 [card]
@@ -644,8 +646,13 @@ id=454
 rarity=C
 [/card]
 [card]
+primitive=Island Sanctuary
+id=552
+rarity=R
+[/card]
+[card]
 primitive=Island
-id=594
+id=592
 rarity=L
 [/card]
 [card]
@@ -655,13 +662,8 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=592
+id=594
 rarity=L
-[/card]
-[card]
-primitive=Island Sanctuary
-id=552
-rarity=R
 [/card]
 [card]
 primitive=Ivory Cup
@@ -845,7 +847,7 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=591
+id=589
 rarity=L
 [/card]
 [card]
@@ -855,7 +857,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=589
+id=591
 rarity=L
 [/card]
 [card]
@@ -975,7 +977,7 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=597
+id=595
 rarity=L
 [/card]
 [card]
@@ -985,7 +987,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=595
+id=597
 rarity=L
 [/card]
 [card]
@@ -1104,13 +1106,13 @@ id=564
 rarity=C
 [/card]
 [card]
-primitive=Savannah
-id=579
+primitive=Savannah Lions
+id=565
 rarity=R
 [/card]
 [card]
-primitive=Savannah Lions
-id=565
+primitive=Savannah
+id=579
 rarity=R
 [/card]
 [card]
@@ -1240,7 +1242,7 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=575
+id=573
 rarity=L
 [/card]
 [card]
@@ -1250,7 +1252,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=573
+id=575
 rarity=L
 [/card]
 [card]

@@ -1,25 +1,27 @@
 [meta]
 author=Wagic Team
+name=Dragon's Maze
+block=Return to Ravnica
 year=2013
-block=RTR
+total=156
 [/meta]
+[card]
+primitive=AEtherling
+id=368961
+rarity=R
+[/card]
 [card]
 primitive=Advent of the Wurm
 id=369036
 rarity=R
 [/card]
 [card]
-primitive=AEtherling
-id=368961
-rarity=R 
-[/card]
-[card]
-primitive=Alive // Well (Alive)
+primitive=Alive // Well
 id=369041
 rarity=U
 [/card]
 [card]
-primitive=Armed // Dangerous (Armed)
+primitive=Armed // Dangerous
 id=368989
 rarity=U
 [/card]
@@ -31,11 +33,6 @@ rarity=C
 [card]
 primitive=Ascended Lawmage
 id=369016
-rarity=U
-[/card]
-[card]
-primitive=Far // Away (Away)
-id=369042
 rarity=U
 [/card]
 [card]
@@ -64,7 +61,7 @@ id=368984
 rarity=C
 [/card]
 [card]
-primitive=Beck // Call (Beck)
+primitive=Beck // Call
 id=369063
 rarity=R
 [/card]
@@ -82,11 +79,6 @@ rarity=U
 primitive=Blaze Commando
 id=369047
 rarity=U
-[/card]
-[card]
-primitive=Flesh // Blood (Blood)
-id=368991
-rarity=R
 [/card]
 [card]
 primitive=Blood Baron of Vizkopa
@@ -119,7 +111,7 @@ id=369028
 rarity=C
 [/card]
 [card]
-primitive=Breaking // Entering (Breaking)
+primitive=Breaking // Entering
 id=369009
 rarity=R
 [/card]
@@ -134,22 +126,12 @@ id=368971
 rarity=U
 [/card]
 [card]
-primitive=Turn // Burn (Burn)
-id=369080
-rarity=U
-[/card]
-[card]
-primitive=Beck // Call (Beck)
-id=369063
-rarity=R
-[/card]
-[card]
 primitive=Carnage Gladiator
 id=369057
 rarity=U
 [/card]
 [card]
-primitive=Catch // Release (Catch)
+primitive=Catch // Release
 id=368982
 rarity=R
 [/card]
@@ -167,11 +149,6 @@ rarity=M
 primitive=Crypt Incursion
 id=369056
 rarity=C
-[/card]
-[card]
-primitive= Armed // Dangerous (Dangerous)
-id=368989
-rarity=U
 [/card]
 [card]
 primitive=Deadbridge Chant
@@ -199,12 +176,7 @@ id=369058
 rarity=C
 [/card]
 [card]
-primitive=Down // Dirty (Dirty)
-id=369089
-rarity=U
-[/card]
-[card]
-primitive=Down // Dirty (Down)
+primitive=Down // Dirty
 id=369089
 rarity=U
 [/card]
@@ -224,17 +196,12 @@ id=368944
 rarity=R
 [/card]
 [card]
-primitive= Breaking // Entering (Entering)
-id=369009
-rarity=R
-[/card]
-[card]
 primitive=Exava, Rakdos Blood Witch
 id=369055
 rarity=R
 [/card]
 [card]
-primitive=Far // Away (Far)
+primitive=Far // Away
 id=369042
 rarity=U
 [/card]
@@ -249,7 +216,7 @@ id=368969
 rarity=U
 [/card]
 [card]
-primitive=Flesh // Blood (Flesh)
+primitive=Flesh // Blood
 id=368991
 rarity=R
 [/card]
@@ -264,7 +231,7 @@ id=369095
 rarity=R
 [/card]
 [card]
-primitive=Give // Take (Give)
+primitive=Give // Take
 id=369097
 rarity=U
 [/card]
@@ -351,7 +318,7 @@ rarity=U
 [card]
 primitive=Kraul Warrior
 id=369059
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Lavinia of the Tenth
@@ -362,11 +329,6 @@ rarity=R
 primitive=Legion's Initiative
 id=369066
 rarity=M
-[/card]
-[card]
-primitive=Profit // Loss (Loss)
-id=369071
-rarity=U
 [/card]
 [card]
 primitive=Lyev Decree
@@ -504,7 +466,7 @@ id=369013
 rarity=R
 [/card]
 [card]
-primitive=Profit // Loss (Profit)
+primitive=Profit // Loss
 id=369071
 rarity=U
 [/card]
@@ -514,7 +476,7 @@ id=369001
 rarity=M
 [/card]
 [card]
-primitive=Protect // Serve (Protect)
+primitive=Protect // Serve
 id=369024
 rarity=U
 [/card]
@@ -554,7 +516,7 @@ id=369031
 rarity=M
 [/card]
 [card]
-primitive=Ready // Willing (Ready)
+primitive=Ready // Willing
 id=368967
 rarity=R
 [/card]
@@ -562,11 +524,6 @@ rarity=R
 primitive=Reap Intellect
 id=368958
 rarity=M
-[/card]
-[card]
-primitive=Catch // Release (Release)
-id=368982
-rarity=R
 [/card]
 [card]
 primitive=Render Silent
@@ -634,7 +591,7 @@ id=369005
 rarity=U
 [/card]
 [card]
-primitive=Scion of Vitu-Ghazi 
+primitive=Scion of Vitu-Ghazi
 id=369092
 rarity=R
 [/card]
@@ -647,11 +604,6 @@ rarity=C
 primitive=Selesnya Guildgate
 id=369018
 rarity=C
-[/card]
-[card]
-primitive=Serve // Protect (Serve)
-id=369024
-rarity=U
 [/card]
 [card]
 primitive=Showstopper
@@ -719,16 +671,6 @@ id=369098
 rarity=R
 [/card]
 [card]
-primitive=Give // Take (Take)
-id=369097
-rarity=U
-[/card]
-[card]
-primitive=Wear // Tear (Tear)
-id=368950
-rarity=U
-[/card]
-[card]
 primitive=Teysa, Envoy of Ghosts
 id=369011
 rarity=R
@@ -744,7 +686,7 @@ id=368970
 rarity=C
 [/card]
 [card]
-primitive=Toil // Trouble (Toil)
+primitive=Toil // Trouble
 id=369032
 rarity=U
 [/card]
@@ -779,12 +721,7 @@ id=-19784555
 rarity=T
 [/card]
 [card]
-primitive=Toil // Trouble (Trouble)
-id=369032
-rarity=U
-[/card]
-[card]
-primitive=Turn // Burn (Turn)
+primitive=Turn // Burn
 id=369080
 rarity=U
 [/card]
@@ -844,19 +781,9 @@ id=369004
 rarity=C
 [/card]
 [card]
-primitive=Wear // Tear (Wear)
+primitive=Wear // Tear
 id=368950
 rarity=U
-[/card]
-[card]
-primitive=Alive // Well (Well)
-id=369041
-rarity=U
-[/card]
-[card]
-primitive=Ready // Willing (Willing)
-id=368967
-rarity=R
 [/card]
 [card]
 primitive=Wind Drake

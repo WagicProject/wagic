@@ -1,8 +1,15 @@
 [meta]
 author=Wagic Team
-year=2000
+name=Invasion
 block=Invasion
+year=2000
+total=350
 [/meta]
+[card]
+primitive=AEther Rift
+id=23194
+rarity=R
+[/card]
 [card]
 primitive=Absorb
 id=23155
@@ -12,11 +19,6 @@ rarity=R
 primitive=Addle
 id=23030
 rarity=U
-[/card]
-[card]
-primitive=AEther Rift
-id=23194
-rarity=R
 [/card]
 [card]
 primitive=Aggressive Urge
@@ -94,12 +96,7 @@ id=23195
 rarity=R
 [/card]
 [card]
-primitive=Assault // Battery (Assault)
-id=20579
-rarity=U
-[/card]
-[card]
-primitive=Assault // Battery (Battery)
+primitive=Assault // Battery
 id=20580
 rarity=U
 [/card]
@@ -279,14 +276,14 @@ id=22934
 rarity=C
 [/card]
 [card]
-primitive=Crosis, the Purger
-id=23207
-rarity=R
-[/card]
-[card]
 primitive=Crosis's Attendant
 id=25837
 rarity=U
+[/card]
+[card]
+primitive=Crosis, the Purger
+id=23207
+rarity=R
 [/card]
 [card]
 primitive=Crown of Flames
@@ -314,14 +311,14 @@ id=23044
 rarity=C
 [/card]
 [card]
-primitive=Darigaaz, the Igniter
-id=23208
-rarity=R
-[/card]
-[card]
 primitive=Darigaaz's Attendant
 id=25838
 rarity=U
+[/card]
+[card]
+primitive=Darigaaz, the Igniter
+id=23208
+rarity=R
 [/card]
 [card]
 primitive=Death or Glory
@@ -384,14 +381,14 @@ id=24124
 rarity=U
 [/card]
 [card]
-primitive=Dromar, the Banisher
-id=23206
-rarity=R
-[/card]
-[card]
 primitive=Dromar's Attendant
 id=25836
 rarity=U
+[/card]
+[card]
+primitive=Dromar, the Banisher
+id=23206
+rarity=R
 [/card]
 [card]
 primitive=Dueling Grounds
@@ -859,12 +856,7 @@ id=23070
 rarity=C
 [/card]
 [card]
-primitive=Pain // Suffering (Pain)
-id=20577
-rarity=U
-[/card]
-[card]
-primitive=Pain // Suffering (Suffering)
+primitive=Pain // Suffering
 id=20578
 rarity=U
 [/card]
@@ -1109,14 +1101,14 @@ id=23150
 rarity=U
 [/card]
 [card]
-primitive=Rith, the Awakener
-id=23209
-rarity=R
-[/card]
-[card]
 primitive=Rith's Attendant
 id=25839
 rarity=U
+[/card]
+[card]
+primitive=Rith, the Awakener
+id=23209
+rarity=R
 [/card]
 [card]
 primitive=Rogue Kavu
@@ -1314,23 +1306,18 @@ id=23189
 rarity=R
 [/card]
 [card]
-primitive=Spirit of Resistance
-id=22968
-rarity=R
-[/card]
-[card]
 primitive=Spirit Weaver
 id=22950
 rarity=U
 [/card]
 [card]
-primitive=Spite // Malice (Malice)
-id=20576
-rarity=U
+primitive=Spirit of Resistance
+id=22968
+rarity=R
 [/card]
 [card]
-primitive=Spite // Malice (Spite)
-id=20575
+primitive=Spite // Malice
+id=20576
 rarity=U
 [/card]
 [card]
@@ -1344,12 +1331,7 @@ id=25752
 rarity=R
 [/card]
 [card]
-primitive=Stand // Deliver (Stand)
-id=20573
-rarity=U
-[/card]
-[card]
-primitive=Stand // Deliver (Deliver)
+primitive=Stand // Deliver
 id=20574
 rarity=U
 [/card]
@@ -1539,14 +1521,14 @@ id=23039
 rarity=U
 [/card]
 [card]
-primitive=Treva, the Renewer
-id=23210
-rarity=R
-[/card]
-[card]
 primitive=Treva's Attendant
 id=25840
 rarity=U
+[/card]
+[card]
+primitive=Treva, the Renewer
+id=23210
+rarity=R
 [/card]
 [card]
 primitive=Tribal Flames
@@ -1714,13 +1696,8 @@ id=25320
 rarity=U
 [/card]
 [card]
-primitive=Wax // Wane (Wane)
+primitive=Wax // Wane
 id=20582
-rarity=U
-[/card]
-[card]
-primitive=Wax // Wane (Wax)
-id=20581
 rarity=U
 [/card]
 [card]

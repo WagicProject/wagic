@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=1998
+name=Stronghold
 block=Tempest
+year=1998
+total=143
 [/meta]
 [card]
 primitive=Acidic Sliver

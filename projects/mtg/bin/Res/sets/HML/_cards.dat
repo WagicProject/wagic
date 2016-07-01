@@ -1,7 +1,14 @@
 [meta]
 author=Wagic Team
+name=Homelands
 year=1995
+total=140
 [/meta]
+[card]
+primitive=AEther Storm
+id=2935
+rarity=U
+[/card]
 [card]
 primitive=Abbey Gargoyles
 id=3010
@@ -9,22 +16,12 @@ rarity=U
 [/card]
 [card]
 primitive=Abbey Matron
-id=3012
-rarity=C
-[/card]
-[card]
-primitive=Abbey Matron
 id=3011
 rarity=C
 [/card]
 [card]
-primitive=AEther Storm
-id=2935
-rarity=U
-[/card]
-[card]
-primitive=Aliban's Tower
-id=2986
+primitive=Abbey Matron
+id=3012
 rarity=C
 [/card]
 [card]
@@ -33,13 +30,8 @@ id=2985
 rarity=C
 [/card]
 [card]
-primitive=Ambush
-id=2987
-rarity=C
-[/card]
-[card]
-primitive=Ambush Party
-id=2989
+primitive=Aliban's Tower
+id=2986
 rarity=C
 [/card]
 [card]
@@ -48,34 +40,14 @@ id=2988
 rarity=C
 [/card]
 [card]
-primitive=Anaba Ancestor
-id=2991
-rarity=R
-[/card]
-[card]
-primitive=Anaba Bodyguard
-id=2993
+primitive=Ambush Party
+id=2989
 rarity=C
 [/card]
 [card]
-primitive=Anaba Bodyguard
-id=2992
+primitive=Ambush
+id=2987
 rarity=C
-[/card]
-[card]
-primitive=Anaba Shaman
-id=2995
-rarity=C
-[/card]
-[card]
-primitive=Anaba Shaman
-id=2994
-rarity=C
-[/card]
-[card]
-primitive=Anaba Spirit Crafter
-id=2996
-rarity=R
 [/card]
 [card]
 primitive=An-Havva Constable
@@ -98,6 +70,36 @@ id=2990
 rarity=R
 [/card]
 [card]
+primitive=Anaba Ancestor
+id=2991
+rarity=R
+[/card]
+[card]
+primitive=Anaba Bodyguard
+id=2992
+rarity=C
+[/card]
+[card]
+primitive=Anaba Bodyguard
+id=2993
+rarity=C
+[/card]
+[card]
+primitive=Anaba Shaman
+id=2994
+rarity=C
+[/card]
+[card]
+primitive=Anaba Shaman
+id=2995
+rarity=C
+[/card]
+[card]
+primitive=Anaba Spirit Crafter
+id=2996
+rarity=R
+[/card]
+[card]
 primitive=Apocalypse Chime
 id=2900
 rarity=R
@@ -114,12 +116,12 @@ rarity=U
 [/card]
 [card]
 primitive=Aysen Bureaucrats
-id=3014
+id=3013
 rarity=C
 [/card]
 [card]
 primitive=Aysen Bureaucrats
-id=3013
+id=3014
 rarity=C
 [/card]
 [card]
@@ -159,12 +161,12 @@ rarity=R
 [/card]
 [card]
 primitive=Carapace
-id=2964
+id=2963
 rarity=C
 [/card]
 [card]
 primitive=Carapace
-id=2963
+id=2964
 rarity=C
 [/card]
 [card]
@@ -174,12 +176,12 @@ rarity=U
 [/card]
 [card]
 primitive=Cemetery Gate
-id=2914
+id=2913
 rarity=C
 [/card]
 [card]
 primitive=Cemetery Gate
-id=2913
+id=2914
 rarity=C
 [/card]
 [card]
@@ -214,12 +216,12 @@ rarity=C
 [/card]
 [card]
 primitive=Dark Maze
-id=2940
+id=2939
 rarity=C
 [/card]
 [card]
 primitive=Dark Maze
-id=2939
+id=2940
 rarity=C
 [/card]
 [card]
@@ -244,12 +246,12 @@ rarity=U
 [/card]
 [card]
 primitive=Dry Spell
-id=2917
+id=2916
 rarity=C
 [/card]
 [card]
 primitive=Dry Spell
-id=2916
+id=2917
 rarity=C
 [/card]
 [card]
@@ -264,12 +266,12 @@ rarity=R
 [/card]
 [card]
 primitive=Dwarven Trader
-id=3001
+id=3000
 rarity=C
 [/card]
 [card]
 primitive=Dwarven Trader
-id=3000
+id=3001
 rarity=C
 [/card]
 [card]
@@ -294,12 +296,12 @@ rarity=R
 [/card]
 [card]
 primitive=Feast of the Unicorn
-id=2919
+id=2918
 rarity=C
 [/card]
 [card]
 primitive=Feast of the Unicorn
-id=2918
+id=2919
 rarity=C
 [/card]
 [card]
@@ -309,12 +311,12 @@ rarity=R
 [/card]
 [card]
 primitive=Folk of An-Havva
-id=2968
+id=2967
 rarity=C
 [/card]
 [card]
 primitive=Folk of An-Havva
-id=2967
+id=2968
 rarity=C
 [/card]
 [card]
@@ -334,12 +336,12 @@ rarity=U
 [/card]
 [card]
 primitive=Giant Albatross
-id=2943
+id=2942
 rarity=C
 [/card]
 [card]
 primitive=Giant Albatross
-id=2942
+id=2943
 rarity=C
 [/card]
 [card]
@@ -374,12 +376,12 @@ rarity=R
 [/card]
 [card]
 primitive=Hungry Mist
-id=2970
+id=2969
 rarity=C
 [/card]
 [card]
 primitive=Hungry Mist
-id=2969
+id=2970
 rarity=C
 [/card]
 [card]
@@ -403,11 +405,6 @@ id=2945
 rarity=C
 [/card]
 [card]
-primitive=Joven
-id=3006
-rarity=C
-[/card]
-[card]
 primitive=Joven's Ferrets
 id=2971
 rarity=C
@@ -416,6 +413,11 @@ rarity=C
 primitive=Joven's Tools
 id=2907
 rarity=U
+[/card]
+[card]
+primitive=Joven
+id=3006
+rarity=C
 [/card]
 [card]
 primitive=Koskun Falls
@@ -429,12 +431,12 @@ rarity=U
 [/card]
 [card]
 primitive=Labyrinth Minotaur
-id=2947
+id=2946
 rarity=C
 [/card]
 [card]
 primitive=Labyrinth Minotaur
-id=2946
+id=2947
 rarity=C
 [/card]
 [card]
@@ -459,12 +461,12 @@ rarity=R
 [/card]
 [card]
 primitive=Memory Lapse
-id=2950
+id=2949
 rarity=C
 [/card]
 [card]
 primitive=Memory Lapse
-id=2949
+id=2950
 rarity=C
 [/card]
 [card]
@@ -474,12 +476,12 @@ rarity=C
 [/card]
 [card]
 primitive=Mesa Falcon
-id=3022
+id=3021
 rarity=C
 [/card]
 [card]
 primitive=Mesa Falcon
-id=3021
+id=3022
 rarity=C
 [/card]
 [card]
@@ -514,12 +516,12 @@ rarity=U
 [/card]
 [card]
 primitive=Reef Pirates
-id=2955
+id=2954
 rarity=C
 [/card]
 [card]
 primitive=Reef Pirates
-id=2954
+id=2955
 rarity=C
 [/card]
 [card]
@@ -559,12 +561,12 @@ rarity=R
 [/card]
 [card]
 primitive=Samite Alchemist
-id=3026
+id=3025
 rarity=C
 [/card]
 [card]
 primitive=Samite Alchemist
-id=3025
+id=3026
 rarity=C
 [/card]
 [card]
@@ -584,12 +586,12 @@ rarity=U
 [/card]
 [card]
 primitive=Sengir Bats
-id=2930
+id=2929
 rarity=C
 [/card]
 [card]
 primitive=Sengir Bats
-id=2929
+id=2930
 rarity=C
 [/card]
 [card]
@@ -619,12 +621,12 @@ rarity=C
 [/card]
 [card]
 primitive=Shrink
-id=2980
+id=2979
 rarity=C
 [/card]
 [card]
 primitive=Shrink
-id=2979
+id=2980
 rarity=C
 [/card]
 [card]
@@ -649,22 +651,22 @@ rarity=R
 [/card]
 [card]
 primitive=Torture
-id=2933
-rarity=C
-[/card]
-[card]
-primitive=Torture
 id=2932
 rarity=C
 [/card]
 [card]
-primitive=Trade Caravan
-id=3033
+primitive=Torture
+id=2933
 rarity=C
 [/card]
 [card]
 primitive=Trade Caravan
 id=3032
+rarity=C
+[/card]
+[card]
+primitive=Trade Caravan
+id=3033
 rarity=C
 [/card]
 [card]
@@ -684,12 +686,12 @@ rarity=R
 [/card]
 [card]
 primitive=Willow Faerie
-id=2983
+id=2982
 rarity=C
 [/card]
 [card]
 primitive=Willow Faerie
-id=2982
+id=2983
 rarity=C
 [/card]
 [card]

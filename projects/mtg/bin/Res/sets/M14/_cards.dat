@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
-name=Magic 2014
+name=Magic 2014 Core Set
 year=2013
+total=249
 [/meta]
 [card]
 primitive=Academy Raider
@@ -34,14 +35,14 @@ id=370688
 rarity=U
 [/card]
 [card]
-primitive=Ajani, Caller of the Pride
-id=370680
-rarity=M
-[/card]
-[card]
 primitive=Ajani's Chosen
 id=370750
 rarity=R
+[/card]
+[card]
+primitive=Ajani, Caller of the Pride
+id=370680
+rarity=M
 [/card]
 [card]
 primitive=Altar's Reap
@@ -184,11 +185,6 @@ id=370666
 rarity=C
 [/card]
 [card]
-primitive=Chandra, Pyromaster
-id=370637
-rarity=M
-[/card]
-[card]
 primitive=Chandra's Outrage
 id=370659
 rarity=C
@@ -197,6 +193,11 @@ rarity=C
 primitive=Chandra's Phoenix
 id=370691
 rarity=R
+[/card]
+[card]
+primitive=Chandra, Pyromaster
+id=370637
+rarity=M
 [/card]
 [card]
 primitive=Charging Griffin
@@ -449,14 +450,14 @@ id=370590
 rarity=R
 [/card]
 [card]
-primitive=Garruk, Caller of Beasts
-id=370687
-rarity=M
-[/card]
-[card]
 primitive=Garruk's Horde
 id=370684
 rarity=R
+[/card]
+[card]
+primitive=Garruk, Caller of Beasts
+id=370687
+rarity=M
 [/card]
 [card]
 primitive=Giant Growth
@@ -574,14 +575,14 @@ id=370773
 rarity=L
 [/card]
 [card]
-primitive=Jace, Memory Adept
-id=370728
-rarity=M
-[/card]
-[card]
 primitive=Jace's Mindseeker
 id=370638
 rarity=R
+[/card]
+[card]
+primitive=Jace, Memory Adept
+id=370728
+rarity=M
 [/card]
 [card]
 primitive=Kalonian Hydra
@@ -829,7 +830,7 @@ id=370656
 rarity=M
 [/card]
 [card]
-primitive=Pyromancer's Guantlet
+primitive=Pyromancer's Gauntlet
 id=370686
 rarity=R
 [/card]
@@ -959,14 +960,14 @@ id=370631
 rarity=U
 [/card]
 [card]
-primitive=Shivan Dragon
-id=370825
-rarity=R
-[/card]
-[card]
 primitive=Shiv's Embrace
 id=370707
 rarity=U
+[/card]
+[card]
+primitive=Shivan Dragon
+id=370825
+rarity=R
 [/card]
 [card]
 primitive=Shock
@@ -1039,13 +1040,13 @@ id=370676
 rarity=U
 [/card]
 [card]
-primitive=Staff of the Wild Magus
-id=370592
+primitive=Staff of the Sun Magus
+id=370635
 rarity=U
 [/card]
 [card]
-primitive=Staff of the Sun Magus
-id=370635
+primitive=Staff of the Wild Magus
+id=370592
 rarity=U
 [/card]
 [card]

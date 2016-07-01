@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Betrayers of Kamigawa
+block=Kamigawa
 year=2005
-block=Kami
+total=165
 [/meta]
 [card]
 primitive=Akki Blizzard-Herder
@@ -609,13 +611,13 @@ id=74541
 rarity=C
 [/card]
 [card]
-primitive=Scour
-id=74640
+primitive=Scourge of Numai
+id=74488
 rarity=U
 [/card]
 [card]
-primitive=Scourge of Numai
-id=74488
+primitive=Scour
+id=74640
 rarity=U
 [/card]
 [card]

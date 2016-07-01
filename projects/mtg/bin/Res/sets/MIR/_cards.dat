@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=1996
+name=Mirage
 block=Mirage
+year=1996
+total=350
 [/meta]
 [card]
 primitive=Abyssal Hunter
@@ -585,12 +587,7 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
-id=3569
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=3568
+id=3566
 rarity=L
 [/card]
 [card]
@@ -600,7 +597,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=3566
+id=3568
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=3569
 rarity=L
 [/card]
 [card]
@@ -760,12 +762,7 @@ rarity=U
 [/card]
 [card]
 primitive=Island
-id=3584
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=3583
+id=3581
 rarity=L
 [/card]
 [card]
@@ -775,7 +772,12 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=3581
+id=3583
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=3584
 rarity=L
 [/card]
 [card]
@@ -969,13 +971,13 @@ id=3260
 rarity=U
 [/card]
 [card]
-primitive=Mountain
-id=3580
-rarity=L
+primitive=Mountain Valley
+id=3574
+rarity=U
 [/card]
 [card]
 primitive=Mountain
-id=3579
+id=3577
 rarity=L
 [/card]
 [card]
@@ -985,13 +987,13 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=3577
+id=3579
 rarity=L
 [/card]
 [card]
-primitive=Mountain Valley
-id=3574
-rarity=U
+primitive=Mountain
+id=3580
+rarity=L
 [/card]
 [card]
 primitive=Mtenda Griffin
@@ -1085,12 +1087,7 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
-id=3588
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=3587
+id=3585
 rarity=L
 [/card]
 [card]
@@ -1100,7 +1097,12 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=3585
+id=3587
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=3588
 rarity=L
 [/card]
 [card]
@@ -1354,14 +1356,14 @@ id=3362
 rarity=C
 [/card]
 [card]
-primitive=Shauku, Endbringer
-id=3311
-rarity=R
-[/card]
-[card]
 primitive=Shauku's Minion
 id=3554
 rarity=U
+[/card]
+[card]
+primitive=Shauku, Endbringer
+id=3311
+rarity=R
 [/card]
 [card]
 primitive=Shimmer
@@ -1465,12 +1467,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=3565
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=3564
+id=3562
 rarity=L
 [/card]
 [card]
@@ -1480,7 +1477,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=3562
+id=3564
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=3565
 rarity=L
 [/card]
 [card]
@@ -1524,11 +1526,6 @@ id=3576
 rarity=R
 [/card]
 [card]
-primitive=Telim'Tor
-id=3468
-rarity=R
-[/card]
-[card]
 primitive=Telim'Tor's Darts
 id=3269
 rarity=U
@@ -1536,6 +1533,11 @@ rarity=U
 [card]
 primitive=Telim'Tor's Edict
 id=3469
+rarity=R
+[/card]
+[card]
+primitive=Telim'Tor
+id=3468
 rarity=R
 [/card]
 [card]

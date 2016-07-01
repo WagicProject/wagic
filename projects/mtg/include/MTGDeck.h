@@ -25,6 +25,7 @@ public:
     string name; //Long name: Tenth Edition
     int block; //For future use by tournament mode, etc.
     int year; //The year the set was released.
+    int total;//total cards
     //TODO Way to group cards by name, rather than mtgid.
 
     void count(MTGCard * c);

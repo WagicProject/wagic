@@ -15617,8 +15617,14 @@ type=Planeswalker
 subtype=Sarkhan
 [/card]
 [card]
+name=Sasaya's Essence
+text=Whenever a land you control is tapped for mana, for each other land you control with the same name, add one mana to your mana pool of any type that land produced.
+mana={1}{G}{G}
+type=Legendary Enchantment
+[/card]
+[card]
 name=Sasaya, Orochi Ascendant
-text=Reveal your hand: If you have seven or more land cards in your hand, flip Sasaya, Orochi Ascendant. --  -- ——— --  -- Sasaya's Essence -- Legendary Enchantment --  -- Whenever a land you control is tapped for mana, for each other land you control with the same name, add one mana to your mana pool of any type that land produced. -- 2/3
+text=Reveal your hand: If you have seven or more land cards in your hand, flip Sasaya, Orochi Ascendant.
 mana={1}{G}{G}
 type=Legendary Creature
 subtype=Snake Monk

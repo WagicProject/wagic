@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Champions of Kamigawa
+block=Kamigawa
 year=2004
-block=Kami
+total=307
 [/meta]
 [card]
 primitive=Akki Avalanchers
@@ -100,12 +102,12 @@ rarity=R
 [/card]
 [card]
 primitive=Brothers Yamazaki
-id=85106
+id=78968
 rarity=U
 [/card]
 [card]
 primitive=Brothers Yamazaki
-id=78968
+id=85106
 rarity=U
 [/card]
 [card]
@@ -330,12 +332,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=79079
+id=79078
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=79078
+id=79079
 rarity=L
 [/card]
 [card]
@@ -459,11 +461,6 @@ id=50426
 rarity=U
 [/card]
 [card]
-primitive=Hisoka, Minamo Sensei
-id=50474
-rarity=R
-[/card]
-[card]
 primitive=Hisoka's Defiance
 id=50439
 rarity=C
@@ -472,6 +469,11 @@ rarity=C
 primitive=Hisoka's Guard
 id=79149
 rarity=C
+[/card]
+[card]
+primitive=Hisoka, Minamo Sensei
+id=50474
+rarity=R
 [/card]
 [card]
 primitive=Hold the Line
@@ -654,6 +656,11 @@ id=79236
 rarity=U
 [/card]
 [card]
+primitive=Kami of Twisted Reflection
+id=50228
+rarity=C
+[/card]
+[card]
 primitive=Kami of the Hunt
 id=79198
 rarity=C
@@ -671,11 +678,6 @@ rarity=U
 [card]
 primitive=Kami of the Waning Moon
 id=50311
-rarity=C
-[/card]
-[card]
-primitive=Kami of Twisted Reflection
-id=50228
 rarity=C
 [/card]
 [card]
@@ -697,11 +699,6 @@ rarity=R
 primitive=Kiki-Jiki, Mirror Breaker
 id=50321
 rarity=R
-[/card]
-[card]
-primitive=Kiki's Cloning Object
-id=5032111
-rarity=T
 [/card]
 [card]
 primitive=Kiku, Night's Flower
@@ -764,11 +761,6 @@ id=50445
 rarity=R
 [/card]
 [card]
-primitive=Konda, Lord of Eiganjo
-id=78594
-rarity=R
-[/card]
-[card]
 primitive=Konda's Banner
 id=76637
 rarity=R
@@ -779,14 +771,19 @@ id=79201
 rarity=U
 [/card]
 [card]
-primitive=Kumano, Master Yamabushi
-id=78964
+primitive=Konda, Lord of Eiganjo
+id=78594
 rarity=R
 [/card]
 [card]
 primitive=Kumano's Pupils
 id=75267
 rarity=U
+[/card]
+[card]
+primitive=Kumano, Master Yamabushi
+id=78964
+rarity=R
 [/card]
 [card]
 primitive=Kuro, Pitlord
@@ -976,7 +973,7 @@ rarity=R
 [card]
 primitive=Stabwhisker the Odious
 id=7867911
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Night Dealings
@@ -1484,14 +1481,14 @@ id=78606
 rarity=R
 [/card]
 [card]
-primitive=Time of Need
-id=78987
-rarity=U
-[/card]
-[card]
 primitive=Time Stop
 id=78184
 rarity=R
+[/card]
+[card]
+primitive=Time of Need
+id=78987
+rarity=U
 [/card]
 [card]
 primitive=Tranquil Garden

@@ -1,17 +1,19 @@
 [meta]
 author=Wagic Team
+name=Legions
+block=Onslaught
 year=2003
-block=Slaughter
+total=145
 [/meta]
-[card]
-primitive=Akroma, Angel of Wrath
-id=42049
-rarity=R
-[/card]
 [card]
 primitive=Akroma's Devoted
 id=44747
 rarity=U
+[/card]
+[card]
+primitive=Akroma, Angel of Wrath
+id=42049
+rarity=R
 [/card]
 [card]
 primitive=Aphetto Exterminator

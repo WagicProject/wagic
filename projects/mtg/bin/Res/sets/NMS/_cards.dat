@@ -1,17 +1,19 @@
 [meta]
 author=Wagic Team
+name=Nemesis
+block=Masque
 year=2000
-block=Masks
+total=143
 [/meta]
-[card]
-primitive=Accumulated Knowledge
-id=21285
-rarity=C
-[/card]
 [card]
 primitive=AEther Barrier
 id=22289
 rarity=R
+[/card]
+[card]
+primitive=Accumulated Knowledge
+id=21285
+rarity=C
 [/card]
 [card]
 primitive=Air Bladder
@@ -439,6 +441,11 @@ id=21396
 rarity=U
 [/card]
 [card]
+primitive=Rath's Edge
+id=21402
+rarity=R
+[/card]
+[card]
 primitive=Rathi Assassin
 id=22890
 rarity=R
@@ -452,11 +459,6 @@ rarity=U
 primitive=Rathi Intimidator
 id=21307
 rarity=C
-[/card]
-[card]
-primitive=Rath's Edge
-id=21402
-rarity=R
 [/card]
 [card]
 primitive=Refreshing Rain
