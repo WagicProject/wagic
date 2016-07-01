@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Fifth Dawn
+block=Mirrodin
 year=2004
-block=Mirror
+total=165
 [/meta]
 [card]
 primitive=Abuna's Chant
