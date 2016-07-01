@@ -421,6 +421,11 @@ id=253669
 rarity=M
 [/card]
 [card]
+primitive=Beast Token
+id=-253669
+rarity=T
+[/card]
+[card]
 primitive=Gem of Becoming
 id=275727
 rarity=U

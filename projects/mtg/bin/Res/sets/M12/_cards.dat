@@ -470,6 +470,11 @@ id=220100
 rarity=M
 [/card]
 [card]
+primitive=Beast Token
+id=-220100
+rarity=T
+[/card]
+[card]
 primitive=Wurm Token
 id=-22010012
 rarity=T
