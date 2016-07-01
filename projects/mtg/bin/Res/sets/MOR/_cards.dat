@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Morningtide
+block=Lorwyn
 year=2008
-block=Morning
+total=150
 [/meta]
 [card]
 primitive=Ambassador Oak
@@ -714,14 +716,14 @@ id=152672
 rarity=U
 [/card]
 [card]
-primitive=Warren Weirding
-id=152732
-rarity=U
-[/card]
-[card]
 primitive=War-Spike Changeling
 id=143199
 rarity=C
+[/card]
+[card]
+primitive=Warren Weirding
+id=152732
+rarity=U
 [/card]
 [card]
 primitive=Waterspout Weavers
