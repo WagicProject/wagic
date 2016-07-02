@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
-name=Starter '00
+name=Starter 2000
 block=Starter
 year=2000
+total=57
 [/meta]
 [card]
 primitive=Angelic Blessing
@@ -66,12 +67,12 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=25483
+id=25482
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=25482
+id=25483
 rarity=L
 [/card]
 [card]
@@ -106,12 +107,12 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=25452
+id=25451
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=25451
+id=25452
 rarity=L
 [/card]
 [card]
@@ -151,12 +152,12 @@ rarity=U
 [/card]
 [card]
 primitive=Mountain
-id=25481
+id=25480
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=25480
+id=25481
 rarity=L
 [/card]
 [card]
@@ -176,12 +177,12 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
-id=25454
+id=25453
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=25453
+id=25454
 rarity=L
 [/card]
 [card]
@@ -241,12 +242,12 @@ rarity=C
 [/card]
 [card]
 primitive=Swamp
-id=25479
+id=25478
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=25478
+id=25479
 rarity=L
 [/card]
 [card]

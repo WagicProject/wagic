@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
-name=AVN
+name=Duel Decks: Ajani vs. Nicol Bolas
 block=Duel
 year=2011
+total=80
 [/meta]
 [card]
 primitive=Ageless Entity
@@ -95,11 +96,6 @@ id=249395
 rarity=C
 [/card]
 [card]
-primitive=Rise // Fall
-id=259266
-rarity=U
-[/card]
-[card]
 primitive=Fire-Field Ogre
 id=259270
 rarity=U
@@ -116,13 +112,13 @@ rarity=U
 [/card]
 [card]
 primitive=Forest
-id=262651
-rarity=C
+id=259285
+rarity=L
 [/card]
 [card]
 primitive=Forest
-id=259285
-rarity=C
+id=262651
+rarity=L
 [/card]
 [card]
 primitive=Graypelt Refuge
@@ -162,7 +158,7 @@ rarity=C
 [card]
 primitive=Island
 id=259287
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Jade Mage
@@ -210,11 +206,6 @@ id=249414
 rarity=R
 [/card]
 [card]
-primitive=Spite // Malice
-id=249394
-rarity=U
-[/card]
-[card]
 primitive=Marisi's Twinclaws
 id=249375
 rarity=U
@@ -231,13 +222,13 @@ rarity=U
 [/card]
 [card]
 primitive=Mountain
-id=259286
-rarity=C
+id=259284
+rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=259284
-rarity=C
+id=259286
+rarity=L
 [/card]
 [card]
 primitive=Nacatl Hunt-Pride
@@ -277,7 +268,7 @@ rarity=U
 [card]
 primitive=Plains
 id=249376
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Pride of Lions
@@ -303,6 +294,11 @@ rarity=C
 primitive=Recumbent Bliss
 id=249400
 rarity=C
+[/card]
+[card]
+primitive=Rise // Fall
+id=259266
+rarity=U
 [/card]
 [card]
 primitive=Rupture Spire
@@ -335,6 +331,11 @@ id=249404
 rarity=U
 [/card]
 [card]
+primitive=Spite // Malice
+id=249394
+rarity=U
+[/card]
+[card]
 primitive=Spitemare
 id=249388
 rarity=U
@@ -351,13 +352,13 @@ rarity=C
 [/card]
 [card]
 primitive=Swamp
-id=262652
-rarity=C
+id=259283
+rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=259283
-rarity=C
+id=262652
+rarity=L
 [/card]
 [card]
 primitive=Sylvan Bounty

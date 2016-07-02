@@ -1,9 +1,9 @@
-#PORTAL
-#Thanks to Dr.Solomat for the initial release 2009/01/01
 [meta]
 author=Wagic Team
-year=1997
+name=Portal
 block=Portal
+year=1997
+total=222
 [/meta]
 [card]
 primitive=Alabaster Dragon
@@ -17,12 +17,12 @@ rarity=R
 [/card]
 [card]
 primitive=Anaconda
-id=4288
+id=4287
 rarity=U
 [/card]
 [card]
 primitive=Anaconda
-id=4287
+id=4288
 rarity=U
 [/card]
 [card]
@@ -82,12 +82,12 @@ rarity=U
 [/card]
 [card]
 primitive=Blaze
-id=4329
+id=4328
 rarity=U
 [/card]
 [card]
 primitive=Blaze
-id=4328
+id=4329
 rarity=U
 [/card]
 [card]
@@ -216,6 +216,11 @@ id=4215
 rarity=R
 [/card]
 [card]
+primitive=Deja Vu
+id=4259
+rarity=C
+[/card]
+[card]
 primitive=Deep Wood
 id=4292
 rarity=U
@@ -229,11 +234,6 @@ rarity=U
 primitive=Defiant Stand
 id=4380
 rarity=U
-[/card]
-[card]
-primitive=Deja Vu
-id=4259
-rarity=C
 [/card]
 [card]
 primitive=Desert Drake
@@ -282,12 +282,12 @@ rarity=R
 [/card]
 [card]
 primitive=Elite Cat Warrior
-id=4294
+id=4293
 rarity=C
 [/card]
 [card]
 primitive=Elite Cat Warrior
-id=4293
+id=4294
 rarity=C
 [/card]
 [card]
@@ -367,12 +367,7 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=4416
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=4415
+id=4413
 rarity=L
 [/card]
 [card]
@@ -382,7 +377,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=4413
+id=4415
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=4416
 rarity=L
 [/card]
 [card]
@@ -432,12 +432,12 @@ rarity=C
 [/card]
 [card]
 primitive=Hand of Death
-id=4225
+id=4224
 rarity=C
 [/card]
 [card]
 primitive=Hand of Death
-id=4224
+id=4225
 rarity=C
 [/card]
 [card]
@@ -487,12 +487,7 @@ rarity=U
 [/card]
 [card]
 primitive=Island
-id=4424
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=4423
+id=4421
 rarity=L
 [/card]
 [card]
@@ -502,7 +497,12 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=4421
+id=4423
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=4424
 rarity=L
 [/card]
 [card]
@@ -582,12 +582,12 @@ rarity=C
 [/card]
 [card]
 primitive=Monstrous Growth
-id=4305
+id=4304
 rarity=C
 [/card]
 [card]
 primitive=Monstrous Growth
-id=4304
+id=4305
 rarity=C
 [/card]
 [card]
@@ -596,13 +596,13 @@ id=4306
 rarity=U
 [/card]
 [card]
-primitive=Mountain
-id=4420
-rarity=L
+primitive=Mountain Goat
+id=4352
+rarity=U
 [/card]
 [card]
 primitive=Mountain
-id=4419
+id=4417
 rarity=L
 [/card]
 [card]
@@ -612,13 +612,13 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=4417
+id=4419
 rarity=L
 [/card]
 [card]
-primitive=Mountain Goat
-id=4352
-rarity=U
+primitive=Mountain
+id=4420
+rarity=L
 [/card]
 [card]
 primitive=Muck Rats
@@ -702,12 +702,7 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
-id=4428
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=4427
+id=4425
 rarity=L
 [/card]
 [card]
@@ -717,7 +712,12 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=4425
+id=4427
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=4428
 rarity=L
 [/card]
 [card]
@@ -752,12 +752,12 @@ rarity=C
 [/card]
 [card]
 primitive=Raging Goblin
-id=4357
+id=4356
 rarity=C
 [/card]
 [card]
 primitive=Raging Goblin
-id=4356
+id=4357
 rarity=C
 [/card]
 [card]
@@ -922,12 +922,7 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=4412
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=4411
+id=4409
 rarity=L
 [/card]
 [card]
@@ -937,7 +932,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=4409
+id=4411
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=4412
 rarity=L
 [/card]
 [card]
@@ -1062,12 +1062,12 @@ rarity=U
 [/card]
 [card]
 primitive=Warrior's Charge
-id=4407
+id=4406
 rarity=C
 [/card]
 [card]
 primitive=Warrior's Charge
-id=4406
+id=4407
 rarity=C
 [/card]
 [card]

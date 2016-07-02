@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=1999
+name=Portal Three Kingdoms
 block=Portal
+year=1999
+total=180
 [/meta]
 [card]
 primitive=Alert Shu Infantry
@@ -204,6 +206,11 @@ id=10622
 rarity=C
 [/card]
 [card]
+primitive=Forest Bear
+id=10505
+rarity=C
+[/card]
+[card]
 primitive=Forest
 id=10532
 rarity=L
@@ -219,23 +226,18 @@ id=10640
 rarity=L
 [/card]
 [card]
-primitive=Forest Bear
-id=10505
-rarity=C
-[/card]
-[card]
 primitive=Ghostly Visit
 id=10546
 rarity=C
 [/card]
 [card]
-primitive=Guan Yu, Sainted Warrior
-id=10494
+primitive=Guan Yu's 1,000-Li March
+id=10597
 rarity=R
 [/card]
 [card]
-primitive=Guan Yu's 1,000-Li March
-id=10597
+primitive=Guan Yu, Sainted Warrior
+id=10494
 rarity=R
 [/card]
 [card]
@@ -294,13 +296,13 @@ id=10642
 rarity=L
 [/card]
 [card]
-primitive=Kongming, "Sleeping Dragon"
-id=10490
+primitive=Kongming's Contraptions
+id=10495
 rarity=R
 [/card]
 [card]
-primitive=Kongming's Contraptions
-id=10495
+primitive=Kongming, "Sleeping Dragon"
+id=10490
 rarity=R
 [/card]
 [card]
@@ -359,18 +361,23 @@ id=10547
 rarity=R
 [/card]
 [card]
-primitive=Meng Huo, Barbarian King
-id=10732
-rarity=R
-[/card]
-[card]
 primitive=Meng Huo's Horde
 id=10503
 rarity=C
 [/card]
 [card]
+primitive=Meng Huo, Barbarian King
+id=10732
+rarity=R
+[/card]
+[card]
 primitive=Misfortune's Gain
 id=10579
+rarity=C
+[/card]
+[card]
+primitive=Mountain Bandit
+id=10585
 rarity=C
 [/card]
 [card]
@@ -387,11 +394,6 @@ rarity=L
 primitive=Mountain
 id=10644
 rarity=L
-[/card]
-[card]
-primitive=Mountain Bandit
-id=10585
-rarity=C
 [/card]
 [card]
 primitive=Mystic Denial
@@ -799,14 +801,14 @@ id=10584
 rarity=C
 [/card]
 [card]
-primitive=Yuan Shao, the Indecisive
-id=10516
-rarity=R
-[/card]
-[card]
 primitive=Yuan Shao's Infantry
 id=10559
 rarity=U
+[/card]
+[card]
+primitive=Yuan Shao, the Indecisive
+id=10516
+rarity=R
 [/card]
 [card]
 primitive=Zhang Fei, Fierce Warrior

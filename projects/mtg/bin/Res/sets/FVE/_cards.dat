@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=From the Vault: Exiled
 block=Vault
 year=2009
+total=15
 [/meta]
 [card]
 primitive=Balance

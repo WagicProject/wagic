@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Duel Decks: Knights vs. Dragons
 block=Duel
 year=2011
+total=81
 [/meta]
 [card]
 primitive=Alaborn Cavalier
@@ -100,12 +102,12 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=243461
+id=243460
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=243460
+id=243461
 rarity=L
 [/card]
 [card]
@@ -126,7 +128,7 @@ rarity=C
 [card]
 primitive=Grasslands
 id=243452
-rarity=L
+rarity=U
 [/card]
 [card]
 primitive=Griffin Guide
@@ -230,12 +232,12 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
-id=243496
+id=243495
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=243495
+id=243496
 rarity=L
 [/card]
 [card]
@@ -265,12 +267,12 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
-id=243457
+id=243456
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=243456
+id=243457
 rarity=L
 [/card]
 [card]
@@ -324,14 +326,14 @@ id=243454
 rarity=C
 [/card]
 [card]
-primitive=Shivan Hellkite
-id=243478
-rarity=R
-[/card]
-[card]
 primitive=Shiv's Embrace
 id=243491
 rarity=U
+[/card]
+[card]
+primitive=Shivan Hellkite
+id=243478
+rarity=R
 [/card]
 [card]
 primitive=Sigil Blessing

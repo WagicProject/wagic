@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Duel Decks: Garruk vs. Liliana
 block=Duel
 year=2009
+total=63
 [/meta]
 [card]
 primitive=Albino Troll
@@ -65,7 +67,7 @@ rarity=U
 [/card]
 [card]
 primitive=Forest
-id=204966
+id=204964
 rarity=L
 [/card]
 [card]
@@ -75,12 +77,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=204967
+id=204966
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=204964
+id=204967
 rarity=L
 [/card]
 [card]
@@ -245,7 +247,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=204970
+id=204968
 rarity=L
 [/card]
 [card]
@@ -255,7 +257,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=204968
+id=204970
 rarity=L
 [/card]
 [card]
