@@ -1,0 +1,82 @@
+[meta]
+author=Wagic Team
+name=From the Vault: Legends
+block=Vault
+year=2011
+total=15
+[/meta]
+[card]
+primitive=Cao Cao, Lord of Wei
+id=244670
+rarity=M
+[/card]
+[card]
+primitive=Captain Sisay
+id=244665
+rarity=M
+[/card]
+[card]
+primitive=Doran, the Siege Tower
+id=244674
+rarity=M
+[/card]
+[card]
+primitive=Kiki-Jiki, Mirror Breaker
+id=244666
+rarity=M
+[/card]
+[card]
+primitive=Kresh the Bloodbraided
+id=244672
+rarity=M
+[/card]
+[card]
+primitive=Mikaeus, the Lunarch
+id=259296
+rarity=M
+[/card]
+[card]
+primitive=Omnath, Locus of Mana
+id=259295
+rarity=M
+[/card]
+[card]
+primitive=Oona, Queen of the Fae
+id=244668
+rarity=M
+[/card]
+[card]
+primitive=Progenitus
+id=244675
+rarity=M
+[/card]
+[card]
+primitive=Rafiq of the Many
+id=244669
+rarity=M
+[/card]
+[card]
+primitive=Sharuum the Hegemon
+id=244664
+rarity=M
+[/card]
+[card]
+primitive=Sun Quan, Lord of Wu
+id=244663
+rarity=M
+[/card]
+[card]
+primitive=Teferi, Mage of Zhalfir
+id=244667
+rarity=M
+[/card]
+[card]
+primitive=Ulamog, the Infinite Gyre
+id=261321
+rarity=M
+[/card]
+[card]
+primitive=Visara the Dreadful
+id=244677
+rarity=M
+[/card]
