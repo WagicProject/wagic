@@ -1,30 +1,447 @@
 [meta]
 author=Wagic Team
-block=Unblock
+name=Unglued
+block=Un-Serious
 year=1998
+total=88
 [/meta]
+[card]
+primitive=Ashnod's Coupon
+id=9769
+rarity=R
+[/card]
+[card]
+primitive=B.F.M.
+id=9780
+rarity=R
+[/card]
+[card]
+primitive=B.F.M.
+id=9844
+rarity=R
+[/card]
+[card]
+primitive=Blacker Lotus
+id=9764
+rarity=R
+[/card]
+[card]
+primitive=Bronze Calendar
+id=9730
+rarity=U
+[/card]
+[card]
+primitive=Bureaucracy
+id=9778
+rarity=R
+[/card]
+[card]
+primitive=Burning Cinder Fury of Crimson Chaos Fire
+id=9783
+rarity=R
+[/card]
+[card]
+primitive=Cardboard Carapace
+id=9762
+rarity=R
+[/card]
+[card]
+primitive=Censorship
+id=9747
+rarity=U
+[/card]
+[card]
+primitive=Chaos Confetti
+id=5712
+rarity=C
+[/card]
+[card]
+primitive=Charm School
+id=9741
+rarity=U
+[/card]
+[card]
+primitive=Checks and Balances
+id=9746
+rarity=U
+[/card]
+[card]
+primitive=Chicken a la King
+id=9749
+rarity=R
+[/card]
+[card]
+primitive=Chicken Egg
+id=9667
+rarity=C
+[/card]
+[card]
+primitive=Clam Session
+id=5824
+rarity=C
+[/card]
+[card]
+primitive=Clam-I-Am
+id=5770
+rarity=C
+[/card]
+[card]
+primitive=Clambassadors
+id=5763
+rarity=C
+[/card]
+[card]
+primitive=Clay Pigeon
+id=9766
+rarity=U
+[/card]
+[card]
+primitive=Common Courtesy
+id=9748
+rarity=U
+[/card]
+[card]
+primitive=Deadhead
+id=5839
+rarity=C
+[/card]
+[card]
+primitive=Denied!
+id=5800
+rarity=C
+[/card]
+[card]
+primitive=Double Cross
+id=5846
+rarity=C
+[/card]
+[card]
+primitive=Double Deal
+id=8812
+rarity=C
+[/card]
+[card]
+primitive=Double Dip
+id=5726
+rarity=C
+[/card]
+[card]
+primitive=Double Play
+id=9895
+rarity=C
+[/card]
+[card]
+primitive=Double Take
+id=9894
+rarity=C
+[/card]
+[card]
+primitive=Elvish Impersonators
+id=9669
+rarity=C
+[/card]
+[card]
+primitive=Flock of Rabid Sheep
+id=9759
+rarity=U
+[/card]
 [card]
 primitive=Forest
 id=9683
+rarity=L
+[/card]
+[card]
+primitive=Fowl Play
+id=5822
 rarity=C
+[/card]
+[card]
+primitive=Free-Range Chicken
+id=9675
+rarity=C
+[/card]
+[card]
+primitive=Free-for-All
+id=9775
+rarity=R
+[/card]
+[card]
+primitive=Gerrymandering
+id=9761
+rarity=U
+[/card]
+[card]
+primitive=Get a Life
+id=9743
+rarity=U
+[/card]
+[card]
+primitive=Ghazban Ogress
+id=9668
+rarity=C
+[/card]
+[card]
+primitive=Giant Fan
+id=9767
+rarity=R
+[/card]
+[card]
+primitive=Goblin Bookie
+id=9665
+rarity=C
+[/card]
+[card]
+primitive=Goblin Bowling Team
+id=9666
+rarity=C
+[/card]
+[card]
+primitive=Goblin Tutor
+id=9755
+rarity=U
+[/card]
+[card]
+primitive=Growth Spurt
+id=9671
+rarity=C
+[/card]
+[card]
+primitive=Gus
+id=9670
+rarity=C
+[/card]
+[card]
+primitive=Handcuffs
+id=9751
+rarity=U
+[/card]
+[card]
+primitive=Hungry Hungry Heifer
+id=9843
+rarity=U
+[/card]
+[card]
+primitive=Hurloon Wrangler
+id=8904
+rarity=C
+[/card]
+[card]
+primitive=I'm Rubber, You're Glue
+id=9774
+rarity=R
+[/card]
+[card]
+primitive=Incoming!
+id=9788
+rarity=R
+[/card]
+[card]
+primitive=Infernal Spawn of Evil
+id=9779
+rarity=R
 [/card]
 [card]
 primitive=Island
 id=9677
+rarity=L
+[/card]
+[card]
+primitive=Jack-in-the-Mox
+id=9729
+rarity=R
+[/card]
+[card]
+primitive=Jalum Grifter
+id=9782
+rarity=R
+[/card]
+[card]
+primitive=Jester's Sombrero
+id=9739
+rarity=R
+[/card]
+[card]
+primitive=Jumbo Imp
+id=9750
+rarity=U
+[/card]
+[card]
+primitive=Knight of the Hokey Pokey
+id=9742
 rarity=C
+[/card]
+[card]
+primitive=Krazy Kow
+id=9758
+rarity=C
+[/card]
+[card]
+primitive=Landfill
+id=9785
+rarity=R
+[/card]
+[card]
+primitive=Lexivore
+id=9760
+rarity=U
+[/card]
+[card]
+primitive=Look at Me, I'm the DCI
+id=9771
+rarity=R
+[/card]
+[card]
+primitive=Mesa Chicken
+id=5725
+rarity=C
+[/card]
+[card]
+primitive=Mine, Mine, Mine!
+id=9787
+rarity=R
+[/card]
+[card]
+primitive=Mirror Mirror
+id=9765
+rarity=R
+[/card]
+[card]
+primitive=Miss Demeanor
+id=9745
+rarity=U
 [/card]
 [card]
 primitive=Mountain
 id=9707
+rarity=L
+[/card]
+[card]
+primitive=Once More with Feeling
+id=9772
+rarity=R
+[/card]
+[card]
+primitive=Organ Harvest
+id=9752
+rarity=C
+[/card]
+[card]
+primitive=Ow
+id=9781
+rarity=R
+[/card]
+[card]
+primitive=Paper Tiger
+id=5705
 rarity=C
 [/card]
 [card]
 primitive=Plains
 id=9680
+rarity=L
+[/card]
+[card]
+primitive=Poultrygeist
+id=5864
 rarity=C
+[/card]
+[card]
+primitive=Prismatic Wardrobe
+id=9744
+rarity=C
+[/card]
+[card]
+primitive=Psychic Network
+id=9777
+rarity=R
+[/card]
+[card]
+primitive=Ricochet
+id=9756
+rarity=U
+[/card]
+[card]
+primitive=Rock Lobster
+id=5648
+rarity=C
+[/card]
+[card]
+primitive=Scissors Lizard
+id=5698
+rarity=C
+[/card]
+[card]
+primitive=Sex Appeal
+id=5755
+rarity=C
+[/card]
+[card]
+primitive=Sorry
+id=9776
+rarity=U
+[/card]
+[card]
+primitive=Spark Fiend
+id=9754
+rarity=R
+[/card]
+[card]
+primitive=Spatula of the Ages
+id=9740
+rarity=U
+[/card]
+[card]
+primitive=Squirrel Farm
+id=9789
+rarity=R
+[/card]
+[card]
+primitive=Strategy, Schmategy
+id=9784
+rarity=R
 [/card]
 [card]
 primitive=Swamp
 id=9676
+rarity=L
+[/card]
+[card]
+primitive=Team Spirit
+id=9763
 rarity=C
+[/card]
+[card]
+primitive=Temp of the Damned
+id=10717
+rarity=C
+[/card]
+[card]
+primitive=The Cheese Stands Alone
+id=9773
+rarity=R
+[/card]
+[card]
+primitive=The Ultimate Nightmare of Wizards of the Coast® Customer Service
+id=9757
+rarity=U
+[/card]
+[card]
+primitive=Timmy, Power Gamer
+id=9786
+rarity=R
+[/card]
+[card]
+primitive=Urza's Contact Lenses
+id=9770
+rarity=U
+[/card]
+[card]
+primitive=Urza's Science Fair Project
+id=9731
+rarity=U
+[/card]
+[card]
+primitive=Volrath's Motion Sensor
+id=9753
+rarity=U
 [/card]
