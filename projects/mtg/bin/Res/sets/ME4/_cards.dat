@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-name=ME4
+name=Masters Edition IV
+block=MTGO
 year=2010
+total=269
 [/meta]
 [card]
 primitive=Acid Rain
@@ -84,13 +86,13 @@ id=202428
 rarity=U
 [/card]
 [card]
-primitive=Armageddon
-id=228262
+primitive=Armageddon Clock
+id=202414
 rarity=R
 [/card]
 [card]
-primitive=Armageddon Clock
-id=202414
+primitive=Armageddon
+id=228262
 rarity=R
 [/card]
 [card]
@@ -914,14 +916,14 @@ id=220964
 rarity=C
 [/card]
 [card]
-primitive=Savannah
-id=202571
-rarity=R
-[/card]
-[card]
 primitive=Savannah Lions
 id=221577
 rarity=U
+[/card]
+[card]
+primitive=Savannah
+id=202571
+rarity=R
 [/card]
 [card]
 primitive=Scarecrow
