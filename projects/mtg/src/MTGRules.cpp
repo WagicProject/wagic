@@ -1605,6 +1605,11 @@ int MTGAttackRule::receiveEvent(WEvent *e)
 					if (Check <2)
 						card->initAttackersDefensers();
 				}
+				if (card->isAttacker() && card->has(Constants::DETHRONE))
+				{
+					if (p->opponent()->life >= p->life)
+						card->counters->addCounter(1, 1);
+				}
                 if (!card->isAttacker() && !event->from->isExtra && card->has(Constants::MUSTATTACK))//cards are only required to attack in the real attack phase of a turn.
                     reactToClick(card);
                 if (!card->isAttacker() && card->has(Constants::TREASON) && p->isAI())

@@ -715,6 +715,27 @@ void GameObserver::gameStateBasedEffects()
                 }
             }
             card->bypassTC = false; //turn off bypass
+			///////////////////////////
+			//reset extracost shadows//
+			///////////////////////////
+			card->isExtraCostTarget = false;
+			if (mExtraPayment != NULL)
+			{
+				for (unsigned int ec = 0; ec < mExtraPayment->costs.size(); ec++)
+				{
+
+					if (mExtraPayment->costs[ec]->tc)
+					{
+						vector<Targetable*>targetlist = mExtraPayment->costs[ec]->tc->getTargetsFrom();
+						for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+						{
+							Targetable * cardMasked = *it;
+							dynamic_cast<MTGCardInstance*>(cardMasked)->isExtraCostTarget = true;
+						}
+
+					}
+				}
+			}
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//
             ////////////////////////////////////////////////////
@@ -733,6 +754,7 @@ void GameObserver::gameStateBasedEffects()
                     }
                 }
             }
+
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////
@@ -773,18 +795,7 @@ void GameObserver::gameStateBasedEffects()
             {
                 card->playerTarget->curses.push_back(card);
             }
-            ///////////////////////////
-            //reset extracost shadows//
-            ///////////////////////////
-            card->isExtraCostTarget = false;
-            if(mExtraPayment != NULL)
-            {
-                for(unsigned int ec = 0;ec < mExtraPayment->costs.size();ec++)
-                {
-                    if( mExtraPayment->costs[ec]->target)
-                        mExtraPayment->costs[ec]->target->isExtraCostTarget = true;
-                }
-            }
+
             //////////////////////
             //reset morph hiding//
             //////////////////////
@@ -1046,6 +1057,28 @@ void GameObserver::Affinity()
                 if (!card)
                     continue;
 
+				///////////////////////////
+				//reset extracost shadows//
+				///////////////////////////
+				card->isExtraCostTarget = false;
+				if (mExtraPayment != NULL)
+				{
+					for (unsigned int ec = 0; ec < mExtraPayment->costs.size(); ec++)
+					{
+
+						if (mExtraPayment->costs[ec]->tc)
+						{
+							vector<Targetable*>targetlist = mExtraPayment->costs[ec]->tc->getTargetsFrom();
+							for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+							{
+								Targetable * cardMasked = *it;
+								dynamic_cast<MTGCardInstance*>(cardMasked)->isExtraCostTarget = true;
+							}
+
+						}
+					}
+				}
+				////////////////////////////
 				bool NewAffinityFound = false;
 				for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
 				{

@@ -105,6 +105,11 @@ bool ActionLayer::CheckUserInput(JButton key)
                 //being cancelled. currently only menuability and paidability will care.
             }
         }
+		if (observer->mExtraPayment->costs.size() && observer->mExtraPayment->costs[0]->tc)
+		{
+			//if we cancel, clear the targets list so that when you try again you dont already have targets from before.
+			observer->mExtraPayment->costs[0]->tc->initTargets();
+		}
         observer->mExtraPayment = NULL;
         return 1;
     }

@@ -166,8 +166,11 @@ private:
     {
         if(!s.size())
             return;
-        if(!card)
-            return;
+		if (!card)
+		{
+			intValue = atoi(s.c_str());//if there is no card, try parsing a number.
+			return;
+		}
         MTGCardInstance * target = card->target;
         if(!card->storedCard)
             card->storedCard = card->storedSourceCard;
@@ -5166,7 +5169,38 @@ public:
     ~AShackleWrapper();
 
 };
+//Grant
+class AGrant : public MTGAbility
+{
+public:
+	MTGCardInstance * Blessed;
+	bool resolved;
+	MTGAbility * Granted;
+	MTGAbility * toGrant;
+	AGrant(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, MTGAbility * toGrant);
+	void Update(float dt);
+	void resolveGrant();
+	int resolve();
+	const string getMenuText();
+	AGrant * clone() const;
+	~AGrant();
+private:
+	void removeGranted(MTGCardInstance *_target);
+};
 
+//GrantWrapper
+class AGrantWrapper : public InstantAbility
+{
+public:
+	AGrant * ability;
+	MTGAbility * Granted;
+	AGrantWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, MTGAbility * toGrant);
+	int resolve();
+	const string getMenuText();
+	AGrantWrapper * clone() const;
+	~AGrantWrapper();
+
+};
 //ABlink
 class ABlink: public MTGAbility
 {

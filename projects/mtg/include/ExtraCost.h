@@ -274,7 +274,27 @@ public:
   virtual int doPay();
   virtual Ninja * clone() const;
 };
-
+//Convoke
+class Convoke : public ExtraCost
+{
+public:
+	ManaCost * getReduction();
+	Convoke(TargetChooser *_tc = NULL);
+	virtual int canPay();
+	virtual int isPaymentSet();
+	virtual int doPay();
+	virtual Convoke * clone() const;
+};
+//delve
+class Delve : public ExtraCost
+{
+public:
+	Delve(TargetChooser *_tc = NULL);
+	virtual int canPay();
+	virtual int isPaymentSet();
+	virtual int doPay();
+	virtual Delve * clone() const;
+};
 //offering cost
 class Offering : public ExtraCost
 {

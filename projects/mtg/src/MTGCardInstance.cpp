@@ -972,6 +972,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
         string type = "";
         ManaCost * original = NEW ManaCost();
         original->copy(newCost);
+		
         int reducem = 0;
         bool resetCost = false;
         for(unsigned int na = 0; na < card->cardsAbilities.size();na++)

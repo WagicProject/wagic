@@ -6581,6 +6581,113 @@ AShackleWrapper::~AShackleWrapper()
     SAFE_DELETE(ability);
 }
 
+//grant
+AGrant::AGrant(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, MTGAbility * _Grant) :
+	MTGAbility(observer, _id, card)
+{
+	Granted = _Grant;
+	target = _target;
+	Blessed = NULL;
+	resolved = false;
+	toGrant = NULL;
+}
+
+void AGrant::Update(float dt)
+{
+	if (resolved == false)
+	{
+		resolved = true;
+		resolveGrant();
+	}
+
+	if (!source->isTapped() || !source->isInPlay(game))
+	{
+		if (Blessed == NULL || !Blessed->isInPlay(game))
+			MTGAbility::Update(dt);
+		MTGCardInstance * _target = Blessed;
+		removeGranted(_target);
+	}
+	else
+		resolveGrant();
+	MTGAbility::Update(dt);
+}
+
+void AGrant::resolveGrant()
+{
+	if (toGrant) return;
+	MTGCardInstance * _target = (MTGCardInstance *)target;
+	if (_target)
+	{
+		toGrant = Granted->clone();
+		toGrant->target = _target;
+		toGrant->addToGame();
+		Blessed = _target;
+	}
+}
+
+void AGrant::removeGranted(MTGCardInstance* _target)
+{
+	if (!toGrant) return;
+	MTGCardInstance * cardToReturn = _target;
+	game->removeObserver(toGrant);
+	game->removeObserver(this);
+	Blessed = NULL;
+	return;
+}
+
+int AGrant::resolve()
+{
+	return 0;
+}
+const string AGrant::getMenuText()
+{
+	return Granted->getMenuText();
+}
+
+AGrant * AGrant::clone() const
+{
+	AGrant * a = NEW AGrant(*this);
+	a->forceDestroy = -1;
+	a->Granted = Granted->clone();
+	return a;
+};
+AGrant::~AGrant()
+{
+	SAFE_DELETE(Granted);
+}
+
+AGrantWrapper::AGrantWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, MTGAbility * _Grant) :
+	InstantAbility(observer, _id, source, _target), Granted(_Grant)
+{
+	ability = NEW AGrant(observer, _id, card, _target,_Grant);
+}
+
+int AGrantWrapper::resolve()
+{
+	AGrant * a = ability->clone();
+	a->target = target;
+	a->addToGame();
+	return 1;
+}
+
+const string AGrantWrapper::getMenuText()
+{
+	return "Grant";
+}
+
+AGrantWrapper * AGrantWrapper::clone() const
+{
+	AGrantWrapper * a = NEW AGrantWrapper(*this);
+	a->ability = this->ability->clone();
+	a->oneShot = 1;
+	return a;
+}
+
+AGrantWrapper::~AGrantWrapper()
+{
+	SAFE_DELETE(ability);
+}
+
 //a blink
 ABlink::ABlink(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, bool blinkueot, bool blinkForSource, bool blinkhand, MTGAbility * stored) :
 MTGAbility(observer, _id, card),blinkueot(blinkueot),blinkForSource(blinkForSource),blinkhand(blinkhand),stored(stored)
