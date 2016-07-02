@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Duel Decks: Izzet vs. Golgari
 block=Duel
 year=2012
+total=90
 [/meta]
 [card]
 primitive=Barren Moor
@@ -31,11 +33,6 @@ rarity=C
 [card]
 primitive=Dakmor Salvage
 id=292984
-rarity=U
-[/card]
-[card]
-primitive=Life//Death (Death)
-id=292976
 rarity=U
 [/card]
 [card]
@@ -74,7 +71,7 @@ id=338405
 rarity=C
 [/card]
 [card]
-primitive=Fire//Ice (Fire)
+primitive=Fire // Ice
 id=292753
 rarity=U
 [/card]
@@ -84,23 +81,23 @@ id=292750
 rarity=C
 [/card]
 [card]
-primitve=Forest
+primitive=Forest
 id=292943
 rarity=L
 [/card]
 [card]
-primitve=Forest
-id=292946
+primitive=Forest
+id=292944
 rarity=L
 [/card]
 [card]
-primitve=Forest
+primitive=Forest
 id=292945
 rarity=L
 [/card]
 [card]
-primitve=Forest
-id=292944
+primitive=Forest
+id=292946
 rarity=L
 [/card]
 [card]
@@ -174,19 +171,9 @@ id=338390
 rarity=U
 [/card]
 [card]
-primitive=Ice//Fire(Ice)
-id=292754
-rarity=
-[/card]
-[card]
 primitive=Invoke the Firemind
 id=292732
 rarity=R
-[/card]
-[card]
-primitive=Island
-id=292765
-rarity=L
 [/card]
 [card]
 primitive=Island
@@ -195,12 +182,17 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=292766
+id=292764
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=292764
+id=292765
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=292766
 rarity=L
 [/card]
 [card]
@@ -249,8 +241,8 @@ id=338415
 rarity=U
 [/card]
 [card]
-primitive=Life//Death (Life)
-id=292977
+primitive=Life // Death
+id=292976
 rarity=U
 [/card]
 [card]
@@ -270,11 +262,6 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=292769
-rarity=L
-[/card]
-[card]
-primitive=Mountain
 id=292767
 rarity=L
 [/card]
@@ -285,8 +272,13 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
+id=292769
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=292770
-rarity=
+rarity=L
 [/card]
 [card]
 primitive=Nightmare Void
@@ -294,14 +286,14 @@ id=338410
 rarity=U
 [/card]
 [card]
-primitive=Nivix, Aerie of the Firemind
-id=292737
-rarity=U
-[/card]
-[card]
 primitive=Niv-Mizzet, the Firemind
 id=292738
 rarity=M
+[/card]
+[card]
+primitive=Nivix, Aerie of the Firemind
+id=292737
+rarity=U
 [/card]
 [card]
 primitive=Ogre Savant
@@ -366,7 +358,7 @@ rarity=U
 [card]
 primitive=Shambling Shell
 id=292957
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Shrewd Hatchling
@@ -405,7 +397,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=292962
+id=292960
 rarity=L
 [/card]
 [card]
@@ -415,7 +407,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=292960
+id=292962
 rarity=L
 [/card]
 [card]
