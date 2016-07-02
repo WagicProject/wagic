@@ -153,12 +153,14 @@ int MTGCardInstance::init()
     data = this;
     X = 0;
     castX = 0;
+	setX = -1;
     return 1;
 }
 
 void MTGCardInstance::initMTGCI()
 {
     X = 0;
+	setX = -1;
     sample = "";
     model = NULL;
     isToken = false;
@@ -779,11 +781,13 @@ int MTGCardInstance::getCurrentToughness()
 //check stack
 bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 {
+	Player * whoInterupts = getObserver()->isInterrupting;//leave this so we can actually debug who is interupting/current.
+	Player * whoCurrent = getObserver()->currentPlayer;
     if((getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0) &&
         (getObserver()->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN ||
         getObserver()->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN) &&
-        controller() == getObserver()->currentPlayer &&
-        !getObserver()->isInterrupting)
+        controller() == whoCurrent &&
+        (!whoInterupts || whoInterupts == whoCurrent))
     {
         return true;
     }

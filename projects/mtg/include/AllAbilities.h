@@ -4358,6 +4358,22 @@ public:
     AAUntapper * clone() const;
 };
 
+/*announce card X*/
+class AAWhatsX : public ActivatedAbility
+{
+public:
+	int value;
+	MTGAbility * costRule;
+	AAWhatsX(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * source, int value = 0, MTGAbility * costRule = NULL);
+	int resolve();
+	const string getMenuText()
+	{
+		sprintf(menuText, "%i", value);
+		return menuText;
+	};
+	AAWhatsX * clone() const;
+};
+
 /* set max level up on a levelup creature this is an Ai hint ability, no effect for players.*/
 class AAWhatsMax: public ActivatedAbility
 {

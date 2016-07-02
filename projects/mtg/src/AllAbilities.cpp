@@ -4412,6 +4412,27 @@ AAWhatsMax * AAWhatsMax::clone() const
 {
     return NEW AAWhatsMax(*this);
 }
+//set X value
+AAWhatsX::AAWhatsX(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance *, int value, MTGAbility * _costRule) :
+	ActivatedAbility(observer, id, card, NULL, 0), value(value),costRule(_costRule)
+{
+}
+
+int AAWhatsX::resolve()
+{
+	if (source)
+	{
+		source->setX = value;
+		
+	}
+	costRule->reactToClick(source);
+	return 1;
+}
+
+AAWhatsX * AAWhatsX::clone() const
+{
+	return NEW AAWhatsX(*this);
+}
 //count objects on field before doing an effect
 AACountObject::AACountObject(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance *, ManaCost * _cost, string value) :
 	ActivatedAbility(observer, id, card, _cost, 0), value(value)
