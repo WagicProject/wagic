@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
-name=Starter '99
+name=Starter 1999
 block=Starter
 year=1999
+total=173
 [/meta]
 [card]
 primitive=Abyssal Horror
@@ -246,22 +247,22 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=21807
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=21808
-rarity=L
-[/card]
-[card]
-primitive=Forest
 id=21805
 rarity=L
 [/card]
 [card]
 primitive=Forest
 id=21806
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=21807
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=21808
 rarity=L
 [/card]
 [card]
@@ -381,12 +382,12 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=21800
+id=21795
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=21795
+id=21800
 rarity=L
 [/card]
 [card]
@@ -461,7 +462,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=21804
+id=21802
 rarity=L
 [/card]
 [card]
@@ -471,7 +472,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=21802
+id=21804
 rarity=L
 [/card]
 [card]
@@ -536,7 +537,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=21792
+id=21790
 rarity=L
 [/card]
 [card]
@@ -546,7 +547,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=21790
+id=21792
 rarity=L
 [/card]
 [card]
@@ -711,22 +712,22 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=21797
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=21799
-rarity=L
-[/card]
-[card]
-primitive=Swamp
 id=21796
 rarity=L
 [/card]
 [card]
 primitive=Swamp
+id=21797
+rarity=L
+[/card]
+[card]
+primitive=Swamp
 id=21798
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=21799
 rarity=L
 [/card]
 [card]
