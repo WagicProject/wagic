@@ -3,6 +3,7 @@ author=Wagic Team
 name=From the Vault: Twenty
 block=Vault
 year=2013
+total=20
 [/meta]
 [card]
 primitive=Akroma's Vengeance

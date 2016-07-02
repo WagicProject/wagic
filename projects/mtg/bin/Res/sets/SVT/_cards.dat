@@ -1,0 +1,407 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Sorin vs. Tibalt
+block=Duel
+year=2013
+total=80
+[/meta]
+[card]
+primitive=Absorb Vis
+id=368527
+rarity=C
+[/card]
+[card]
+primitive=Akoum Refuge
+id=368523
+rarity=U
+[/card]
+[card]
+primitive=Ancient Craving
+id=368540
+rarity=R
+[/card]
+[card]
+primitive=Ashmouth Hound
+id=368476
+rarity=C
+[/card]
+[card]
+primitive=Blazing Salvo
+id=368507
+rarity=C
+[/card]
+[card]
+primitive=Blightning
+id=368483
+rarity=C
+[/card]
+[card]
+primitive=Bloodrage Vampire
+id=368543
+rarity=C
+[/card]
+[card]
+primitive=Breaking Point
+id=368486
+rarity=R
+[/card]
+[card]
+primitive=Browbeat
+id=368528
+rarity=U
+[/card]
+[card]
+primitive=Bump in the Night
+id=368490
+rarity=C
+[/card]
+[card]
+primitive=Butcher of Malakir
+id=368501
+rarity=R
+[/card]
+[card]
+primitive=Child of Night
+id=368520
+rarity=C
+[/card]
+[card]
+primitive=Coal Stoker
+id=368533
+rarity=C
+[/card]
+[card]
+primitive=Corpse Connoisseur
+id=368487
+rarity=U
+[/card]
+[card]
+primitive=Death Grasp
+id=368495
+rarity=R
+[/card]
+[card]
+primitive=Decompose
+id=368506
+rarity=U
+[/card]
+[card]
+primitive=Devil's Play
+id=368518
+rarity=R
+[/card]
+[card]
+primitive=Doomed Traveler
+id=368503
+rarity=C
+[/card]
+[card]
+primitive=Duskhunter Bat
+id=368541
+rarity=C
+[/card]
+[card]
+primitive=Evolving Wilds
+id=368505
+rarity=C
+[/card]
+[card]
+primitive=Faithless Looting
+id=368475
+rarity=C
+[/card]
+[card]
+primitive=Field of Souls
+id=368510
+rarity=R
+[/card]
+[card]
+primitive=Fiend Hunter
+id=368496
+rarity=U
+[/card]
+[card]
+primitive=Flame Javelin
+id=368544
+rarity=U
+[/card]
+[card]
+primitive=Flame Slash
+id=368536
+rarity=C
+[/card]
+[card]
+primitive=Gang of Devils
+id=368539
+rarity=U
+[/card]
+[card]
+primitive=Gatekeeper of Malakir
+id=368479
+rarity=U
+[/card]
+[card]
+primitive=Geistflame
+id=368524
+rarity=C
+[/card]
+[card]
+primitive=Goblin Arsonist
+id=368478
+rarity=C
+[/card]
+[card]
+primitive=Hellrider
+id=368530
+rarity=R
+[/card]
+[card]
+primitive=Hellspark Elemental
+id=368477
+rarity=U
+[/card]
+[card]
+primitive=Lavaborn Muse
+id=368526
+rarity=R
+[/card]
+[card]
+primitive=Lingering Souls
+id=368485
+rarity=U
+[/card]
+[card]
+primitive=Mad Prophet
+id=368474
+rarity=C
+[/card]
+[card]
+primitive=Mark of the Vampire
+id=368499
+rarity=C
+[/card]
+[card]
+primitive=Mausoleum Guard
+id=368547
+rarity=U
+[/card]
+[card]
+primitive=Mesmeric Fiend
+id=368519
+rarity=C
+[/card]
+[card]
+primitive=Mortify
+id=368498
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=368500
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=368502
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=368512
+rarity=L
+[/card]
+[card]
+primitive=Phantom General
+id=368546
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=368473
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=368480
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=368508
+rarity=L
+[/card]
+[card]
+primitive=Pyroclasm
+id=368545
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Carnarium
+id=368493
+rarity=C
+[/card]
+[card]
+primitive=Reassembling Skeleton
+id=368551
+rarity=U
+[/card]
+[card]
+primitive=Recoup
+id=368517
+rarity=U
+[/card]
+[card]
+primitive=Revenant Patriarch
+id=368532
+rarity=U
+[/card]
+[card]
+primitive=Scorched Rusalka
+id=368504
+rarity=U
+[/card]
+[card]
+primitive=Scourge Devil
+id=368513
+rarity=U
+[/card]
+[card]
+primitive=Sengir Vampire
+id=368525
+rarity=U
+[/card]
+[card]
+primitive=Shambling Remains
+id=368489
+rarity=U
+[/card]
+[card]
+primitive=Skirsdag Cultist
+id=368488
+rarity=U
+[/card]
+[card]
+primitive=Sorin's Thirst
+id=368509
+rarity=C
+[/card]
+[card]
+primitive=Sorin, Lord of Innistrad
+id=368535
+rarity=M
+[/card]
+[card]
+primitive=Spectral Procession
+id=368515
+rarity=U
+[/card]
+[card]
+primitive=Strangling Soot
+id=368521
+rarity=C
+[/card]
+[card]
+primitive=Sulfuric Vortex
+id=368550
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=368482
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=368484
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=368492
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=368494
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=368497
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=368538
+rarity=L
+[/card]
+[card]
+primitive=Tainted Field
+id=368529
+rarity=U
+[/card]
+[card]
+primitive=Terminate
+id=368491
+rarity=C
+[/card]
+[card]
+primitive=Tibalt, the Fiend-Blooded
+id=368531
+rarity=M
+[/card]
+[card]
+primitive=Torrent of Souls
+id=368511
+rarity=U
+[/card]
+[card]
+primitive=Twilight Drover
+id=368549
+rarity=R
+[/card]
+[card]
+primitive=Unmake
+id=368514
+rarity=C
+[/card]
+[card]
+primitive=Urge to Feed
+id=368522
+rarity=U
+[/card]
+[card]
+primitive=Vampire Lacerator
+id=368481
+rarity=C
+[/card]
+[card]
+primitive=Vampire Nighthawk
+id=368534
+rarity=U
+[/card]
+[card]
+primitive=Vampire Outcasts
+id=368537
+rarity=U
+[/card]
+[card]
+primitive=Vampire's Bite
+id=368472
+rarity=C
+[/card]
+[card]
+primitive=Vithian Stinger
+id=368548
+rarity=C
+[/card]
+[card]
+primitive=Wall of Omens
+id=368516
+rarity=U
+[/card]
+[card]
+primitive=Zealous Persecution
+id=368542
+rarity=U
+[/card]

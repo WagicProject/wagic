@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=From the Vault: Realms
 block=Vault
 year=2012
+total=15
 [/meta]
 [card]
 primitive=Ancient Tomb

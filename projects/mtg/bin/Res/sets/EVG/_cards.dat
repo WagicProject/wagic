@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Duel Decks: Elves vs. Goblins
 block=Duel
 year=2007
+total=62
 [/meta]
 [card]
 primitive=Akki Coalflinger
@@ -70,12 +72,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=159042
+id=159041
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=159041
+id=159042
 rarity=L
 [/card]
 [card]
@@ -175,22 +177,22 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=157940
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=159061
-rarity=L
-[/card]
-[card]
-primitive=Mountain
 id=157939
 rarity=L
 [/card]
 [card]
 primitive=Mountain
+id=157940
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=157941
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=159061
 rarity=L
 [/card]
 [card]
