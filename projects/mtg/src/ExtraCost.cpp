@@ -966,6 +966,7 @@ int Convoke::isPaymentSet()
 		SAFE_DELETE(toReduce);
 		return 1;
 	}
+	SAFE_DELETE(toReduce);
 	return 0;
 }
 
@@ -1085,6 +1086,7 @@ int Delve::isPaymentSet()
 		SAFE_DELETE(toReduce);
 		return 1;
 	}
+	SAFE_DELETE(toReduce);
 	return 0;
 }
 
@@ -1400,8 +1402,41 @@ int ExtraCosts::tryToSetPayment(MTGCardInstance * card)
         {
             for(size_t k = 0; k < costs.size(); k++)
             {
-                if(card == costs[k]->target)
-                    return 0;
+				if (card == costs[k]->target)
+				{
+					//tapping or sacrificing a target to pay for its own cost
+					//is allowed, unless the source is already being tapped and contains a tap target
+					//or sacced and contains a sactarget
+					//cost like {t}{s(creature)} the source is allowed to be targeted for this
+					//if it is a creature. these cases below should be added whenever we a need
+					//for extra cost that have both a source and target version used on cards.
+					if (dynamic_cast<TapCost*>(costs[k]))
+					{
+						for (size_t tapCheck = 0; tapCheck < costs.size(); tapCheck++)
+						{
+							if (dynamic_cast<TapTargetCost*>(costs[tapCheck]))
+							{
+								return 0;//{t}{t(creature)}
+							}
+						}
+
+					}
+					else if (SacrificeCost * checking = dynamic_cast<SacrificeCost*>(costs[k]))
+					{
+						for (size_t sacCheck = 0; sacCheck < costs.size(); sacCheck++)
+						{
+							SacrificeCost * checking2 = dynamic_cast<SacrificeCost*>(costs[sacCheck]);
+							if (checking2)
+							if ((checking->tc != NULL && checking2->tc == NULL)
+								|| (checking->tc == NULL && checking2->tc != NULL))
+							{
+								return 0; //{s}{s(creature)}
+							}
+						}
+					}
+					else
+					return 0;
+				}
             }
             if (int result = costs[i]->setPayment(card))
             {
