@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
 name=Shadows over Innistrad
+block=Shadows over Innistrad
 year=2016
+total=330
 [/meta]
 [card]
 primitive=Aberrant Researcher
@@ -36,7 +38,7 @@ rarity=R
 [card]
 primitive=Ancient of the Equinox
 id=409952
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Angel
@@ -81,12 +83,12 @@ rarity=M
 [card]
 primitive=Arlinn, Embraced by the Moon
 id=410008
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Ashmouth Blade
 id=410027
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Asylum Visitor
@@ -106,7 +108,7 @@ rarity=R
 [card]
 primitive=Avacyn, the Purifier
 id=409742
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Avacynian Missionaries
@@ -116,12 +118,12 @@ rarity=U
 [card]
 primitive=Awoken Horror
 id=409837
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Bearer of Overwhelming Truths
 id=409797
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Behind the Scenes
@@ -156,7 +158,7 @@ rarity=R
 [card]
 primitive=Branded Howler
 id=409901
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Breakneck Rider
@@ -426,7 +428,7 @@ rarity=R
 [card]
 primitive=Demon-Possessed Witch
 id=409869
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Deny Existence
@@ -601,7 +603,7 @@ rarity=R
 [card]
 primitive=Flameheart Werewolf
 id=409924
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Fleeting Memories
@@ -676,7 +678,7 @@ rarity=C
 [card]
 primitive=Gatstaf Ravagers
 id=409911
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Geier Reach Bandit
@@ -781,7 +783,7 @@ rarity=U
 [card]
 primitive=Heir to the Night
 id=409865
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Hermit of the Natterknolls
@@ -851,7 +853,7 @@ rarity=U
 [card]
 primitive=Incited Rabble
 id=409787
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Incorrigible Youths
@@ -871,7 +873,7 @@ rarity=R
 [card]
 primitive=Infectious Curse
 id=409844
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Inner Struggle
@@ -891,7 +893,7 @@ rarity=T
 [card]
 primitive=Insidious Mist
 id=409856
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Insolent Neonate
@@ -966,12 +968,12 @@ rarity=U
 [card]
 primitive=Krallenhorde Howler
 id=409962
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Lambholt Butcher
 id=409977
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Lambholt Pacifist
@@ -1001,12 +1003,12 @@ rarity=C
 [card]
 primitive=Lone Wolf of the Natterknolls
 id=409969
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Lunarch Inquisitors
 id=409744
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Macabre Waltz
@@ -1076,7 +1078,7 @@ rarity=U
 [card]
 primitive=Moonrise Intruder
 id=409947
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Moorland Drifter
@@ -1136,7 +1138,7 @@ rarity=U
 [card]
 primitive=Neck Breaker
 id=409898
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Neglected Heirloom
@@ -1181,7 +1183,7 @@ rarity=M
 [card]
 primitive=One of the Pack
 id=409993
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Ongoing Investigation
@@ -1201,7 +1203,7 @@ rarity=U
 [card]
 primitive=Ormendahl, Profane Prince
 id=410050
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Pack Guardian
@@ -1221,12 +1223,12 @@ rarity=U
 [card]
 primitive=Perfected Form
 id=409791
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Persistent Nightmare
 id=409832
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Pick the Brain
@@ -1381,7 +1383,7 @@ rarity=R
 [card]
 primitive=Scrounged Scythe
 id=410022
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Seagraf Skaab
@@ -1461,7 +1463,7 @@ rarity=U
 [card]
 primitive=Skin Shedder
 id=409938
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Slayer's Plate
@@ -1576,7 +1578,7 @@ rarity=U
 [card]
 primitive=Stonewing Antagonizer
 id=410034
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Stormrider Spirit
@@ -1666,7 +1668,7 @@ rarity=C
 [card]
 primitive=Timber Shredder
 id=409971
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Tireless Tracker
@@ -1746,7 +1748,7 @@ rarity=C
 [card]
 primitive=Unimpeded Trespasser
 id=409840
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Uninvited Geist
@@ -1806,7 +1808,7 @@ rarity=U
 [card]
 primitive=Vildin-Pack Alpha
 id=409913
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Village Messenger
@@ -1831,7 +1833,7 @@ rarity=C
 [card]
 primitive=Wayward Disciple
 id=409774
-rarity=U
+rarity=T
 [/card]
 [card]
 primitive=Weirding Wood
@@ -1846,7 +1848,7 @@ rarity=R
 [card]
 primitive=Werewolf of Ancient Hunger
 id=409988
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Westvale Abbey
@@ -1856,7 +1858,7 @@ rarity=R
 [card]
 primitive=Westvale Cult Leader
 id=409760
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Wicker Witch

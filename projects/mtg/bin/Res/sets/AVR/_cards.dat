@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Avacyn Restored
+block=Innistrad
 year=2012
-block=ISD
+total=244
 [/meta]
 [card]
 primitive=Abundant Growth
@@ -39,16 +41,6 @@ id=240120
 rarity=R
 [/card]
 [card]
-primitive=Angelic Armaments
-id=240074
-rarity=U
-[/card]
-[card]
-primitive=Angelic Wall
-id=278065
-rarity=C
-[/card]
-[card]
 primitive=Angel's Mercy
 id=240044
 rarity=C
@@ -57,6 +49,16 @@ rarity=C
 primitive=Angel's Tomb
 id=240059
 rarity=U
+[/card]
+[card]
+primitive=Angelic Armaments
+id=240074
+rarity=U
+[/card]
+[card]
+primitive=Angelic Wall
+id=278065
+rarity=C
 [/card]
 [card]
 primitive=Appetite for Brains
@@ -425,7 +427,7 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=269636
+id=269629
 rarity=L
 [/card]
 [card]
@@ -435,7 +437,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=269629
+id=269636
 rarity=L
 [/card]
 [card]
@@ -615,7 +617,7 @@ rarity=U
 [/card]
 [card]
 primitive=Island
-id=269639
+id=269625
 rarity=L
 [/card]
 [card]
@@ -625,7 +627,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=269625
+id=269639
 rarity=L
 [/card]
 [card]
@@ -755,17 +757,17 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=269632
-rarity=L
-[/card]
-[card]
-primitive=Mountain
 id=269622
 rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=269630
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=269632
 rarity=L
 [/card]
 [card]
@@ -830,12 +832,12 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=269637
+id=269634
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=269634
+id=269637
 rarity=L
 [/card]
 [card]
@@ -949,13 +951,13 @@ id=240063
 rarity=U
 [/card]
 [card]
-primitive=Seraph of Dawn
-id=240078
+primitive=Seraph Sanctuary
+id=240175
 rarity=C
 [/card]
 [card]
-primitive=Seraph Sanctuary
-id=240175
+primitive=Seraph of Dawn
+id=240078
 rarity=C
 [/card]
 [card]
@@ -1035,12 +1037,12 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=269631
+id=269627
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=269627
+id=269631
 rarity=L
 [/card]
 [card]

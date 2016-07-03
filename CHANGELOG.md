@@ -2,6 +2,13 @@
 
 ## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
 
+#### 6/30/16
+- *Merged pull-request:* Sorted Primitives [#\711] (https://github.com/WagicProject/wagic/pull/711) ([kevlahnota](https://github.com/kevlahnota))
+
+- *Merged pull-request:* Add Shackle Ability [#\710] (https://github.com/WagicProject/wagic/pull/710) ([kevlahnota](https://github.com/kevlahnota))
+
+- *Merged pull-request:* Fix Cascade, Crash fix on lastController and some corrections [#\709] (https://github.com/WagicProject/wagic/pull/709) ([kevlahnota](https://github.com/kevlahnota))
+
 #### 6/29/16
 - *Merged pull-request:* Updated Primitives and Hide Highlight Border [#\707] (https://github.com/WagicProject/wagic/pull/707) ([kevlahnota](https://github.com/kevlahnota))
 

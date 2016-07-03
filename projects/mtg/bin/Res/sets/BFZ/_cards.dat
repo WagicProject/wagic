@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
 name=Battle for Zendikar
+block=Battle for Zendikar
 year=2015
+total=299
 [/meta]
 [card]
 primitive=Adverse Conditions
@@ -299,14 +301,14 @@ id=401860
 rarity=M
 [/card]
 [card]
-primitive=Drana, Liberator of Malakir
-id=401861
-rarity=M
-[/card]
-[card]
 primitive=Drana's Emissary
 id=401862
 rarity=U
+[/card]
+[card]
+primitive=Drana, Liberator of Malakir
+id=401861
+rarity=M
 [/card]
 [card]
 primitive=Drowner of Hope
@@ -574,14 +576,14 @@ id=401896
 rarity=C
 [/card]
 [card]
-primitive=Gideon, Ally of Zendikar
-id=401897
-rarity=M
-[/card]
-[card]
 primitive=Gideon's Reproach
 id=401898
 rarity=C
+[/card]
+[card]
+primitive=Gideon, Ally of Zendikar
+id=401897
+rarity=M
 [/card]
 [card]
 primitive=Goblin War Paint
@@ -1179,14 +1181,14 @@ id=402012
 rarity=U
 [/card]
 [card]
-primitive=Roilmage's Trick
-id=402014
-rarity=C
-[/card]
-[card]
 primitive=Roil's Retribution
 id=402013
 rarity=U
+[/card]
+[card]
+primitive=Roilmage's Trick
+id=402014
+rarity=C
 [/card]
 [card]
 primitive=Rolling Thunder
@@ -1509,11 +1511,6 @@ id=402078
 rarity=R
 [/card]
 [card]
-primitive=Ulamog, the Ceaseless Hunger
-id=402079
-rarity=M
-[/card]
-[card]
 primitive=Ulamog's Despoiler
 id=402080
 rarity=U
@@ -1527,6 +1524,11 @@ rarity=U
 primitive=Ulamog's Reclaimer
 id=402082
 rarity=U
+[/card]
+[card]
+primitive=Ulamog, the Ceaseless Hunger
+id=402079
+rarity=M
 [/card]
 [card]
 primitive=Undergrowth Champion

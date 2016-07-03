@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
-name=3rd Edition
+name=Revised Edition
 year=1994
+total=306
 [/meta]
 [card]
 primitive=Air Elemental
@@ -39,13 +40,13 @@ id=1094
 rarity=R
 [/card]
 [card]
-primitive=Armageddon
-id=1328
+primitive=Armageddon Clock
+id=1095
 rarity=R
 [/card]
 [card]
-primitive=Armageddon Clock
-id=1095
+primitive=Armageddon
+id=1328
 rarity=R
 [/card]
 [card]
@@ -485,7 +486,7 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
-id=1388
+id=1386
 rarity=L
 [/card]
 [card]
@@ -495,7 +496,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=1386
+id=1388
 rarity=L
 [/card]
 [card]
@@ -644,8 +645,18 @@ id=1253
 rarity=C
 [/card]
 [card]
+primitive=Island Fish Jasconius
+id=1203
+rarity=R
+[/card]
+[card]
+primitive=Island Sanctuary
+id=1351
+rarity=R
+[/card]
+[card]
 primitive=Island
-id=1394
+id=1392
 rarity=L
 [/card]
 [card]
@@ -655,18 +666,8 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=1392
+id=1394
 rarity=L
-[/card]
-[card]
-primitive=Island Fish Jasconius
-id=1203
-rarity=R
-[/card]
-[card]
-primitive=Island Sanctuary
-id=1351
-rarity=R
 [/card]
 [card]
 primitive=Ivory Cup
@@ -880,7 +881,7 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=1391
+id=1389
 rarity=L
 [/card]
 [card]
@@ -890,7 +891,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=1389
+id=1391
 rarity=L
 [/card]
 [card]
@@ -990,7 +991,7 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=1397
+id=1395
 rarity=L
 [/card]
 [card]
@@ -1000,7 +1001,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=1395
+id=1397
 rarity=L
 [/card]
 [card]
@@ -1129,13 +1130,13 @@ id=1364
 rarity=C
 [/card]
 [card]
-primitive=Savannah
-id=1379
+primitive=Savannah Lions
+id=1365
 rarity=R
 [/card]
 [card]
-primitive=Savannah Lions
-id=1365
+primitive=Savannah
+id=1379
 rarity=R
 [/card]
 [card]
@@ -1189,14 +1190,14 @@ id=1265
 rarity=C
 [/card]
 [card]
-primitive=Shatter
-id=1316
-rarity=C
-[/card]
-[card]
 primitive=Shatterstorm
 id=1317
 rarity=U
+[/card]
+[card]
+primitive=Shatter
+id=1316
+rarity=C
 [/card]
 [card]
 primitive=Shivan Dragon
@@ -1275,7 +1276,7 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=1375
+id=1373
 rarity=L
 [/card]
 [card]
@@ -1285,7 +1286,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=1373
+id=1375
 rarity=L
 [/card]
 [card]

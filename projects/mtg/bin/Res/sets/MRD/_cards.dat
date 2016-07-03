@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Mirrodin
+block=Mirrodin
 year=2003
-block=Mirror
+total=306
 [/meta]
 [card]
 primitive=AEther Spellbomb
@@ -564,6 +566,11 @@ id=49437
 rarity=C
 [/card]
 [card]
+primitive=Krark's Thumb
+id=48923
+rarity=R
+[/card]
+[card]
 primitive=Krark-Clan Grunt
 id=45992
 rarity=C
@@ -572,11 +579,6 @@ rarity=C
 primitive=Krark-Clan Shaman
 id=45994
 rarity=C
-[/card]
-[card]
-primitive=Krark's Thumb
-id=48923
-rarity=R
 [/card]
 [card]
 primitive=Leaden Myr

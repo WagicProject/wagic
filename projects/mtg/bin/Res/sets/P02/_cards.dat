@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=1998
+name=Portal Second Age
 block=Portal
+year=1998
+total=165
 [/meta]
 [card]
 primitive=Abyssal Nightstalker
@@ -169,6 +171,11 @@ id=6606
 rarity=R
 [/card]
 [card]
+primitive=Deja Vu
+id=6528
+rarity=C
+[/card]
+[card]
 primitive=Dakmor Bat
 id=6553
 rarity=C
@@ -202,11 +209,6 @@ rarity=R
 primitive=Deep Wood
 id=6631
 rarity=U
-[/card]
-[card]
-primitive=Deja Vu
-id=6528
-rarity=C
 [/card]
 [card]
 primitive=Denizen of the Deep
@@ -245,7 +247,7 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=8410
+id=8408
 rarity=L
 [/card]
 [card]
@@ -255,7 +257,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=8408
+id=8410
 rarity=L
 [/card]
 [card]
@@ -350,7 +352,7 @@ rarity=U
 [/card]
 [card]
 primitive=Island
-id=8391
+id=8387
 rarity=L
 [/card]
 [card]
@@ -360,7 +362,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=8387
+id=8391
 rarity=L
 [/card]
 [card]
@@ -420,7 +422,7 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=8407
+id=8395
 rarity=L
 [/card]
 [card]
@@ -430,7 +432,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=8395
+id=8407
 rarity=L
 [/card]
 [card]
@@ -520,7 +522,7 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
-id=8380
+id=8354
 rarity=L
 [/card]
 [card]
@@ -530,7 +532,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=8354
+id=8380
 rarity=L
 [/card]
 [card]
@@ -660,7 +662,7 @@ rarity=C
 [/card]
 [card]
 primitive=Swamp
-id=8394
+id=8392
 rarity=L
 [/card]
 [card]
@@ -670,7 +672,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=8392
+id=8394
 rarity=L
 [/card]
 [card]

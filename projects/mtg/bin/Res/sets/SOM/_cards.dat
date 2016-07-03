@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-name=SOM
+name=Scars of Mirrodin
+block=Scars of Mirrodin
 year=2010
+total=249
 [/meta]
 [card]
 primitive=Abuna Acolyte
@@ -94,13 +96,13 @@ id=194297
 rarity=C
 [/card]
 [card]
-primitive=Bladed Pinions
-id=206354
+primitive=Blade-Tribe Berserkers
+id=194165
 rarity=C
 [/card]
 [card]
-primitive=Blade-Tribe Berserkers
-id=194165
+primitive=Bladed Pinions
+id=206354
 rarity=C
 [/card]
 [card]
@@ -299,11 +301,6 @@ id=210235
 rarity=U
 [/card]
 [card]
-primitive=Ezuri, Renegade Leader
-id=194243
-rarity=R
-[/card]
-[card]
 primitive=Ezuri's Archers
 id=194092
 rarity=C
@@ -311,6 +308,11 @@ rarity=C
 [card]
 primitive=Ezuri's Brigade
 id=212707
+rarity=R
+[/card]
+[card]
+primitive=Ezuri, Renegade Leader
+id=194243
 rarity=R
 [/card]
 [card]
@@ -340,17 +342,17 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
+id=214670
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=214673
 rarity=L
 [/card]
 [card]
 primitive=Forest
 id=214680
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=214670
 rarity=L
 [/card]
 [card]
@@ -399,13 +401,13 @@ id=209043
 rarity=C
 [/card]
 [card]
-primitive=Glint Hawk
-id=206358
+primitive=Glint Hawk Idol
+id=194049
 rarity=C
 [/card]
 [card]
-primitive=Glint Hawk Idol
-id=194049
+primitive=Glint Hawk
+id=206358
 rarity=C
 [/card]
 [card]
@@ -520,12 +522,12 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=214672
+id=214666
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=214666
+id=214672
 rarity=L
 [/card]
 [card]
@@ -539,14 +541,14 @@ id=214682
 rarity=L
 [/card]
 [card]
-primitive=Kemba, Kha Regent
-id=215091
-rarity=R
-[/card]
-[card]
 primitive=Kemba's Skyguard
 id=194083
 rarity=C
+[/card]
+[card]
+primitive=Kemba, Kha Regent
+id=215091
+rarity=R
 [/card]
 [card]
 primitive=Koth of the Hammer
@@ -805,17 +807,17 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
+id=214671
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=214677
 rarity=L
 [/card]
 [card]
 primitive=Plains
 id=214679
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=214671
 rarity=L
 [/card]
 [card]
@@ -1035,12 +1037,12 @@ rarity=C
 [/card]
 [card]
 primitive=Swamp
-id=214684
+id=214669
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=214669
+id=214674
 rarity=L
 [/card]
 [card]
@@ -1050,7 +1052,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=214674
+id=214684
 rarity=L
 [/card]
 [card]
@@ -1189,14 +1191,14 @@ id=208257
 rarity=C
 [/card]
 [card]
-primitive=Venser, the Sojourner
-id=212240
-rarity=M
-[/card]
-[card]
 primitive=Venser's Journal
 id=215079
 rarity=R
+[/card]
+[card]
+primitive=Venser, the Sojourner
+id=212240
+rarity=M
 [/card]
 [card]
 primitive=Vigil for the Lost

@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-year=1999
+name=Urza's Legacy
 block=Urza
+year=1999
+total=143
 [/meta]
 [card]
 primitive=About Face
@@ -9,14 +11,14 @@ id=12414
 rarity=C
 [/card]
 [card]
-primitive=Angelic Curator
-id=12354
-rarity=C
-[/card]
-[card]
 primitive=Angel's Trumpet
 id=8832
 rarity=U
+[/card]
+[card]
+primitive=Angelic Curator
+id=12354
+rarity=C
 [/card]
 [card]
 primitive=Anthroplasm
@@ -344,11 +346,6 @@ id=5704
 rarity=U
 [/card]
 [card]
-primitive=Multani, Maro-Sorcerer
-id=12440
-rarity=R
-[/card]
-[card]
 primitive=Multani's Acolyte
 id=12427
 rarity=C
@@ -357,6 +354,11 @@ rarity=C
 primitive=Multani's Presence
 id=12490
 rarity=U
+[/card]
+[card]
+primitive=Multani, Maro-Sorcerer
+id=12440
+rarity=R
 [/card]
 [card]
 primitive=No Mercy
@@ -464,11 +466,6 @@ id=12422
 rarity=U
 [/card]
 [card]
-primitive=Radiant, Archangel
-id=12368
-rarity=R
-[/card]
-[card]
 primitive=Radiant's Dragoons
 id=12364
 rarity=U
@@ -477,6 +474,11 @@ rarity=U
 primitive=Radiant's Judgment
 id=12360
 rarity=C
+[/card]
+[card]
+primitive=Radiant, Archangel
+id=12368
+rarity=R
 [/card]
 [card]
 primitive=Rancor

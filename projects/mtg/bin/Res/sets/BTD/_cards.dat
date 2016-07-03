@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
+name=Beatdown Box Set
 year=2000
-block=Duel
+total=90
 [/meta]
 [card]
 primitive=Air Elemental
@@ -139,13 +140,13 @@ id=26621
 rarity=C
 [/card]
 [card]
-primitive=Fog
-id=26648
+primitive=Fog Elemental
+id=26657
 rarity=C
 [/card]
 [card]
-primitive=Fog Elemental
-id=26657
+primitive=Fog
+id=26648
 rarity=C
 [/card]
 [card]
@@ -155,7 +156,7 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
-id=27244
+id=27242
 rarity=L
 [/card]
 [card]
@@ -165,7 +166,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=27242
+id=27244
 rarity=L
 [/card]
 [card]
@@ -210,7 +211,7 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=27238
+id=27236
 rarity=L
 [/card]
 [card]
@@ -220,7 +221,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=27236
+id=27238
 rarity=L
 [/card]
 [card]
@@ -265,7 +266,7 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
-id=27241
+id=27239
 rarity=L
 [/card]
 [card]
@@ -275,7 +276,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=27239
+id=27241
 rarity=L
 [/card]
 [card]
@@ -380,7 +381,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=27235
+id=27233
 rarity=L
 [/card]
 [card]
@@ -390,7 +391,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=27233
+id=27235
 rarity=L
 [/card]
 [card]

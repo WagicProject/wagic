@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-block=Master
+name=Masters Edition
+block=MTGO
 year=2007
+total=195
 [/meta]
 [card]
 primitive=Adun Oakenshield
@@ -449,6 +451,11 @@ id=159749
 rarity=R
 [/card]
 [card]
+primitive=Island of Wak-Wak
+id=159763
+rarity=R
+[/card]
+[card]
 primitive=Island
 id=159281
 rarity=L
@@ -462,11 +469,6 @@ rarity=L
 primitive=Island
 id=159283
 rarity=L
-[/card]
-[card]
-primitive=Island of Wak-Wak
-id=159763
-rarity=R
 [/card]
 [card]
 primitive=Ivory Tower
@@ -529,13 +531,13 @@ id=159096
 rarity=R
 [/card]
 [card]
-primitive=Mana Flare
-id=159264
+primitive=Marton Stromgald
+id=159237
 rarity=R
 [/card]
 [card]
-primitive=Marton Stromgald
-id=159237
+primitive=Mana Flare
+id=159264
 rarity=R
 [/card]
 [card]
@@ -564,6 +566,11 @@ id=159308
 rarity=R
 [/card]
 [card]
+primitive=Mountain Yeti
+id=159773
+rarity=C
+[/card]
+[card]
 primitive=Mountain
 id=159284
 rarity=L
@@ -577,11 +584,6 @@ rarity=L
 primitive=Mountain
 id=159286
 rarity=L
-[/card]
-[card]
-primitive=Mountain Yeti
-id=159773
-rarity=C
 [/card]
 [card]
 primitive=Mystic Remora
@@ -774,14 +776,14 @@ id=159246
 rarity=C
 [/card]
 [card]
-primitive=Shield of the Ages
-id=159839
-rarity=U
-[/card]
-[card]
 primitive=Shield Sphere
 id=159103
 rarity=C
+[/card]
+[card]
+primitive=Shield of the Ages
+id=159839
+rarity=U
 [/card]
 [card]
 primitive=Singing Tree

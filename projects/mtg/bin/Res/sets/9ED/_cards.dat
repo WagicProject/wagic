@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
-name=9th Edition
+name=Ninth Edition
 year=2005
+total=359
 [/meta]
 [card]
 primitive=Adarkar Wastes
@@ -44,14 +45,14 @@ id=82992
 rarity=U
 [/card]
 [card]
-primitive=Angelic Blessing
-id=84583
-rarity=C
-[/card]
-[card]
 primitive=Angel's Feather
 id=83449
 rarity=U
+[/card]
+[card]
+primitive=Angelic Blessing
+id=84583
+rarity=C
 [/card]
 [card]
 primitive=Annex

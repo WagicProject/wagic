@@ -7827,12 +7827,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Helm of Possession
-text=You may choose not to untap Helm of Possession during your untap step. -- {2}, {T}, Sacrifice a creature: Gain control of target creature for as long as you control Helm of Possession and Helm of Possession remains tapped.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Helvault
 text={1}, {T}: Exile target creature you control. -- {7}, {T}: Exile target creature you don't control. -- When Helvault is put into a graveyard from the battlefield, return all cards exiled with it to the battlefield under their owners' control.
 mana={3}
@@ -7997,15 +7991,6 @@ name=Hive Mind
 text=Whenever a player casts an instant or sorcery spell, each other player copies that spell. Each of those players may choose new targets for his or her copy.
 mana={5}{U}
 type=Enchantment
-[/card]
-[card]
-name=Hivis of the Scale
-text=You may choose not to untap Hivis of the Scale during your untap step. -- {T}: Gain control of target Dragon for as long as you control Hivis and Hivis remains tapped.
-mana={3}{R}{R}
-type=Legendary Creature
-subtype=Viashino Shaman
-power=3
-toughness=4
 [/card]
 [card]
 name=Hixus, Prison Warden
@@ -12602,15 +12587,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Old Man of the Sea
-text=You may choose not to untap Old Man of the Sea during your untap step. -- {T}: Gain control of target creature with power less than or equal to Old Man of the Sea's power for as long as Old Man of the Sea remains tapped and that creature's power remains less than or equal to Old Man of the Sea's power.
-mana={1}{U}{U}
-type=Creature
-subtype=Djinn
-power=2
-toughness=3
-[/card]
-[card]
 name=Oloro, Ageless Ascetic
 text=At the beginning of your upkeep, you gain 2 life. -- Whenever you gain life, you may pay {1}. If you do, draw a card and each opponent loses 1 life. -- At the beginning of your upkeep, if Oloro, Ageless Ascetic is in the command zone, you gain 2 life.
 mana={3}{W}{U}{B}
@@ -15312,15 +15288,6 @@ mana={2}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Rubinia Soulsinger
-text=You may choose not to untap Rubinia Soulsinger during your untap step. -- {T}: Gain control of target creature for as long as you control Rubinia and Rubinia remains tapped.
-mana={2}{G}{W}{U}
-type=Legendary Creature
-subtype=Faerie
-power=2
-toughness=3
-[/card]
-[card]
 name=Ruin Processor
 text=When you cast Ruin Processor, you may put a card an opponent owns from exile into that player's graveyard. If you do, you gain 5 life.
 mana={7}
@@ -15650,8 +15617,14 @@ type=Planeswalker
 subtype=Sarkhan
 [/card]
 [card]
+name=Sasaya's Essence
+text=Whenever a land you control is tapped for mana, for each other land you control with the same name, add one mana to your mana pool of any type that land produced.
+mana={1}{G}{G}
+type=Legendary Enchantment
+[/card]
+[card]
 name=Sasaya, Orochi Ascendant
-text=Reveal your hand: If you have seven or more land cards in your hand, flip Sasaya, Orochi Ascendant. --  -- ——— --  -- Sasaya's Essence -- Legendary Enchantment --  -- Whenever a land you control is tapped for mana, for each other land you control with the same name, add one mana to your mana pool of any type that land produced. -- 2/3
+text=Reveal your hand: If you have seven or more land cards in your hand, flip Sasaya, Orochi Ascendant.
 mana={1}{G}{G}
 type=Legendary Creature
 subtype=Snake Monk
@@ -19793,12 +19766,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Vedalken Shackles
-text=You may choose not to untap Vedalken Shackles during your untap step. -- {2}, {T}: Gain control of target creature with power less than or equal to the number of Islands you control for as long as Vedalken Shackles remains tapped.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Veil of Secrecy
 text=Target creature gains shroud until end of turn and is unblockable this turn. -- Splice onto Arcane—Return a blue creature you control to its owner's hand. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}
@@ -20768,15 +20735,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Willow Satyr
-text=You may choose not to untap Willow Satyr during your untap step. -- {T}: Gain control of target legendary creature for as long as you control Willow Satyr and Willow Satyr remains tapped.
-mana={2}{G}{G}
-type=Creature
-subtype=Satyr
-power=1
-toughness=1
 [/card]
 [card]
 name=Wilt-Leaf Liege

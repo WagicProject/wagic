@@ -1,22 +1,24 @@
 [meta]
 author=Wagic Team
+name=Duel Decks: Elspeth vs. Tezzeret
 block=Duel
 year=2010
+total=79
 [/meta]
-[card]
-primitive=Abolish
-id=222765
-rarity=U
-[/card]
 [card]
 primitive=AEther Spellbomb
 id=222720
 rarity=C
 [/card]
 [card]
+primitive=Abolish
+id=222765
+rarity=U
+[/card]
+[card]
 primitive=Angel of Salvation
 id=222774
-rarity=
+rarity=R
 [/card]
 [card]
 primitive=Arcbound Worker
@@ -160,7 +162,7 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=222727
+id=222724
 rarity=L
 [/card]
 [card]
@@ -175,7 +177,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=222724
+id=222727
 rarity=L
 [/card]
 [card]
@@ -250,12 +252,12 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
-id=222752
+id=222751
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=222754
+id=222752
 rarity=L
 [/card]
 [card]
@@ -265,7 +267,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=222751
+id=222754
 rarity=L
 [/card]
 [card]

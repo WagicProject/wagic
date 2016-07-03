@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
-name=Wagic 2013
+name=Magic 2013
 block=Core
 year=2012
+total=249
 [/meta]
 [card]
 primitive=Acidic Slime
@@ -10,14 +11,14 @@ id=265718
 rarity=U
 [/card]
 [card]
-primitive=Ajani, Caller of the Pride
-id=249695
-rarity=M
-[/card]
-[card]
 primitive=Ajani's Sunstriker
 id=259715
 rarity=C
+[/card]
+[card]
+primitive=Ajani, Caller of the Pride
+id=249695
+rarity=M
 [/card]
 [card]
 primitive=Akroma's Memorial
@@ -25,14 +26,14 @@ id=279712
 rarity=M
 [/card]
 [card]
-primitive=Angelic Benediction
-id=279702
-rarity=U
-[/card]
-[card]
 primitive=Angel's Mercy
 id=259714
 rarity=C
+[/card]
+[card]
+primitive=Angelic Benediction
+id=279702
+rarity=U
 [/card]
 [card]
 primitive=Arbor Elf
@@ -140,14 +141,14 @@ id=279993
 rarity=C
 [/card]
 [card]
-primitive=Chandra, the Firebrand
-id=259205
-rarity=M
-[/card]
-[card]
 primitive=Chandra's Fury
 id=249682
 rarity=C
+[/card]
+[card]
+primitive=Chandra, the Firebrand
+id=259205
+rarity=M
 [/card]
 [card]
 primitive=Chronomaton
@@ -370,14 +371,19 @@ id=249712
 rarity=U
 [/card]
 [card]
+primitive=Fog Bank
+id=270314
+rarity=U
+[/card]
+[card]
 primitive=Fog
 id=253673
 rarity=C
 [/card]
 [card]
-primitive=Fog Bank
-id=270314
-rarity=U
+primitive=Forest
+id=249718
+rarity=L
 [/card]
 [card]
 primitive=Forest
@@ -387,11 +393,6 @@ rarity=L
 [card]
 primitive=Forest
 id=249720
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=249718
 rarity=L
 [/card]
 [card]
@@ -410,14 +411,19 @@ id=288936
 rarity=U
 [/card]
 [card]
+primitive=Garruk's Packleader
+id=253687
+rarity=U
+[/card]
+[card]
 primitive=Garruk, Primal Hunter
 id=253669
 rarity=M
 [/card]
 [card]
-primitive=Garruk's Packleader
-id=253687
-rarity=U
+primitive=Beast Token
+id=-253669
+rarity=T
 [/card]
 [card]
 primitive=Gem of Becoming
@@ -516,11 +522,6 @@ rarity=R
 [/card]
 [card]
 primitive=Island
-id=249725
-rarity=L
-[/card]
-[card]
-primitive=Island
 id=249723
 rarity=L
 [/card]
@@ -531,18 +532,23 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=249726
+id=249725
 rarity=L
 [/card]
 [card]
-primitive=Jace, Memory Adept
-id=254107
-rarity=M
+primitive=Island
+id=249726
+rarity=L
 [/card]
 [card]
 primitive=Jace's Phantasm
 id=249672
 rarity=U
+[/card]
+[card]
+primitive=Jace, Memory Adept
+id=254107
+rarity=M
 [/card]
 [card]
 primitive=Jayemdae Tome
@@ -575,14 +581,14 @@ id=279699
 rarity=C
 [/card]
 [card]
-primitive=Krenko, Mob Boss
-id=253712
-rarity=R
-[/card]
-[card]
 primitive=Krenko's Command
 id=259213
 rarity=C
+[/card]
+[card]
+primitive=Krenko, Mob Boss
+id=253712
+rarity=R
 [/card]
 [card]
 primitive=Liliana of the Dark Realms
@@ -641,7 +647,12 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=249730
+id=249727
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=249728
 rarity=L
 [/card]
 [card]
@@ -651,12 +662,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=249727
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=249728
+id=249730
 rarity=L
 [/card]
 [card]
@@ -731,12 +737,12 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=249732
+id=249731
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=249734
+id=249732
 rarity=L
 [/card]
 [card]
@@ -746,7 +752,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=249731
+id=249734
 rarity=L
 [/card]
 [card]
@@ -1031,16 +1037,6 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=249740
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=249739
-rarity=L
-[/card]
-[card]
-primitive=Swamp
 id=249737
 rarity=L
 [/card]
@@ -1050,19 +1046,29 @@ id=249738
 rarity=L
 [/card]
 [card]
+primitive=Swamp
+id=249739
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=249740
+rarity=L
+[/card]
+[card]
 primitive=Switcheroo
 id=253704
+rarity=U
+[/card]
+[card]
+primitive=Talrand's Invocation
+id=254117
 rarity=U
 [/card]
 [card]
 primitive=Talrand, Sky Summoner
 id=253701
 rarity=R
-[/card]
-[card]
-primitive=Talrand's Invocation
-id=254117
-rarity=U
 [/card]
 [card]
 primitive=Thragtusk
@@ -1235,14 +1241,14 @@ id=253728
 rarity=R
 [/card]
 [card]
-primitive=Yeva, Nature's Herald
-id=249680
-rarity=R
-[/card]
-[card]
 primitive=Yeva's Forcemage
 id=265840
 rarity=C
+[/card]
+[card]
+primitive=Yeva, Nature's Herald
+id=249680
+rarity=R
 [/card]
 [card]
 primitive=Zombie Goliath

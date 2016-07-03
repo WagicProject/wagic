@@ -1,6 +1,9 @@
 [meta]
-year=2010
 author=Wagic Team
+name=Duel Decks: Phyrexia vs. the Coalition
+block=Duel
+year=2010
+total=71
 [/meta]
 [card]
 primitive=Allied Strategies
@@ -33,14 +36,14 @@ id=209158
 rarity=R
 [/card]
 [card]
-primitive=Darigaaz, the Igniter
-id=209111
-rarity=R
-[/card]
-[card]
 primitive=Darigaaz's Charm
 id=209149
 rarity=U
+[/card]
+[card]
+primitive=Darigaaz, the Igniter
+id=209111
+rarity=R
 [/card]
 [card]
 primitive=Dark Ritual
@@ -248,14 +251,14 @@ id=210557
 rarity=C
 [/card]
 [card]
-primitive=Rith, the Awakener
-id=209118
-rarity=R
-[/card]
-[card]
 primitive=Rith's Charm
 id=209152
 rarity=U
+[/card]
+[card]
+primitive=Rith, the Awakener
+id=209118
+rarity=R
 [/card]
 [card]
 primitive=Sanguine Guard
@@ -328,14 +331,14 @@ id=209155
 rarity=U
 [/card]
 [card]
-primitive=Treva, the Renewer
-id=209121
-rarity=R
-[/card]
-[card]
 primitive=Treva's Charm
 id=209156
 rarity=U
+[/card]
+[card]
+primitive=Treva, the Renewer
+id=209121
+rarity=R
 [/card]
 [card]
 primitive=Tribal Flames

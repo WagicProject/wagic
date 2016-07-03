@@ -1,12 +1,299 @@
 [meta]
 author=Wagic Team
-block=Unblock
+name=Unhinged
+block=Un-Serious
 year=2004
+total=141
 [/meta]
+[card]
+primitive="Ach! Hans, Run!"
+id=73935
+rarity=R
+[/card]
+[card]
+primitive=AWOL
+id=74231
+rarity=C
+[/card]
+[card]
+primitive=Aesthetic Consultation
+id=74284
+rarity=R
+[/card]
+[card]
+primitive=Ambiguity
+id=74317
+rarity=R
+[/card]
+[card]
+primitive=Artful Looter
+id=74356
+rarity=C
+[/card]
+[card]
+primitive=Ass Whuppin'
+id=74329
+rarity=R
+[/card]
+[card]
+primitive=Assquatch
+id=74251
+rarity=R
+[/card]
+[card]
+primitive=Atinlay Igpay
+id=73937
+rarity=U
+[/card]
+[card]
+primitive=Avatar of Me
+id=74254
+rarity=R
+[/card]
+[card]
+primitive=B-I-N-G-O
+id=73938
+rarity=R
+[/card]
+[card]
+primitive=Bad Ass
+id=74350
+rarity=C
+[/card]
+[card]
+primitive=Blast from the Past
+id=74227
+rarity=R
+[/card]
+[card]
+primitive=Bloodletter
+id=73979
+rarity=C
+[/card]
+[card]
+primitive=Booster Tutor
+id=73939
+rarity=U
+[/card]
+[card]
+primitive=Bosom Buddy
+id=73977
+rarity=U
+[/card]
+[card]
+primitive=Brushstroke Paintermage
+id=74249
+rarity=C
+[/card]
+[card]
+primitive=Bursting Beebles
+id=74289
+rarity=C
+[/card]
+[card]
+primitive=Cardpecker
+id=74244
+rarity=C
+[/card]
+[card]
+primitive=Carnivorous Death-Parrot
+id=74236
+rarity=C
+[/card]
+[card]
+primitive=Cheap Ass
+id=74220
+rarity=C
+[/card]
+[card]
+primitive=Cheatyface
+id=74306
+rarity=U
+[/card]
+[card]
+primitive=Circle of Protection: Art
+id=73940
+rarity=C
+[/card]
+[card]
+primitive=City of Ass
+id=74327
+rarity=R
+[/card]
+[card]
+primitive=Collector Protector
+id=74354
+rarity=R
+[/card]
+[card]
+primitive=Creature Guy
+id=74303
+rarity=U
+[/card]
+[card]
+primitive=Curse of the Fire Penguin
+id=73956
+rarity=R
+[/card]
+[card]
+primitive=Deal Damage
+id=74359
+rarity=U
+[/card]
+[card]
+primitive=Double Header
+id=74262
+rarity=C
+[/card]
+[card]
+primitive=Drawn Together
+id=74325
+rarity=R
+[/card]
+[card]
+primitive=Duh
+id=73943
+rarity=C
+[/card]
+[card]
+primitive=Dumb Ass
+id=74287
+rarity=C
+[/card]
+[card]
+primitive=Elvish House Party
+id=73961
+rarity=U
+[/card]
+[card]
+primitive=Emcee
+id=73944
+rarity=U
+[/card]
+[card]
+primitive=Enter the Dungeon
+id=74312
+rarity=R
+[/card]
+[card]
+primitive=Erase (Not the Urza's Legacy One)
+id=74275
+rarity=C
+[/card]
+[card]
+primitive=Eye to Eye
+id=73936
+rarity=U
+[/card]
+[card]
+primitive=Face to Face
+id=73966
+rarity=U
+[/card]
+[card]
+primitive=Farewell to Arms
+id=74300
+rarity=C
+[/card]
+[card]
+primitive=Fascist Art Director
+id=74348
+rarity=C
+[/card]
+[card]
+primitive=Fat Ass
+id=74224
+rarity=C
+[/card]
+[card]
+primitive=First Come, First Served
+id=74261
+rarity=U
+[/card]
+[card]
+primitive=Flaccify
+id=74330
+rarity=C
+[/card]
 [card]
 primitive=Forest
 id=73946
 rarity=L
+[/card]
+[card]
+primitive=Form of the Squirrel
+id=74318
+rarity=R
+[/card]
+[card]
+primitive=Fraction Jackson
+id=74301
+rarity=R
+[/card]
+[card]
+primitive=Framed!
+id=74218
+rarity=C
+[/card]
+[card]
+primitive=Frankie Peanuts
+id=73950
+rarity=R
+[/card]
+[card]
+primitive=Frazzled Editor
+id=73941
+rarity=C
+[/card]
+[card]
+primitive=Gleemax
+id=73947
+rarity=R
+[/card]
+[card]
+primitive=Gluetius Maximus
+id=74298
+rarity=U
+[/card]
+[card]
+primitive=Goblin Mime
+id=74221
+rarity=C
+[/card]
+[card]
+primitive=Goblin S.W.A.T. Team
+id=74314
+rarity=C
+[/card]
+[card]
+primitive=Goblin Secret Agent
+id=74295
+rarity=C
+[/card]
+[card]
+primitive=Granny's Payback
+id=74281
+rarity=U
+[/card]
+[card]
+primitive=Graphic Violence
+id=74328
+rarity=C
+[/card]
+[card]
+primitive=Greater Morphling
+id=74296
+rarity=R
+[/card]
+[card]
+primitive=Head to Head
+id=74307
+rarity=U
+[/card]
+[card]
+primitive=Infernal Spawn of Infernal Spawn of Evil
+id=73981
+rarity=R
 [/card]
 [card]
 primitive=Island
@@ -14,9 +301,169 @@ id=73951
 rarity=L
 [/card]
 [card]
+primitive=Johnny, Combo Player
+id=74271
+rarity=R
+[/card]
+[card]
+primitive=Keeper of the Sacred Word
+id=73971
+rarity=C
+[/card]
+[card]
+primitive=Kill Destroy
+id=74322
+rarity=U
+[/card]
+[card]
+primitive=Ladies' Knight
+id=74260
+rarity=U
+[/card]
+[card]
+primitive=Land Aid '04
+id=74259
+rarity=C
+[/card]
+[card]
+primitive=Laughing Hyena
+id=74293
+rarity=C
+[/card]
+[card]
+primitive=Letter Bomb
+id=74232
+rarity=R
+[/card]
+[card]
+primitive=Little Girl
+id=74257
+rarity=C
+[/card]
+[card]
+primitive=Look at Me, I'm R&D
+id=74360
+rarity=R
+[/card]
+[card]
+primitive=Loose Lips
+id=73964
+rarity=C
+[/card]
+[card]
+primitive=Magical Hacker
+id=74256
+rarity=
+[/card]
+[card]
+primitive=Man of Measure
+id=74268
+rarity=C
+[/card]
+[card]
+primitive=Mana Flair
+id=74266
+rarity=C
+[/card]
+[card]
+primitive=Mana Screw
+id=73955
+rarity=U
+[/card]
+[card]
+primitive=Meddling Kids
+id=74347
+rarity=R
+[/card]
+[card]
+primitive=Mise
+id=74304
+rarity=U
+[/card]
+[card]
+primitive=Moniker Mage
+id=74255
+rarity=C
+[/card]
+[card]
+primitive=Monkey Monkey Monkey
+id=74233
+rarity=C
+[/card]
+[card]
+primitive=Mons's Goblin Waiters
+id=73957
+rarity=C
+[/card]
+[card]
+primitive=Mother of Goons
+id=74292
+rarity=C
+[/card]
+[card]
 primitive=Mountain
 id=73958
 rarity=L
+[/card]
+[card]
+primitive=Mouth to Mouth
+id=73949
+rarity=U
+[/card]
+[card]
+primitive=Mox Lotus
+id=74323
+rarity=R
+[/card]
+[card]
+primitive=My First Tome
+id=73945
+rarity=U
+[/card]
+[card]
+primitive=Name Dropping
+id=74286
+rarity=U
+[/card]
+[card]
+primitive=Necro-Impotence
+id=74326
+rarity=R
+[/card]
+[card]
+primitive=Now I Know My ABC's
+id=73959
+rarity=R
+[/card]
+[card]
+primitive=Number Crunch
+id=74337
+rarity=C
+[/card]
+[card]
+primitive=Old Fogey
+id=74235
+rarity=R
+[/card]
+[card]
+primitive=Orcish Paratroopers
+id=73960
+rarity=C
+[/card]
+[card]
+primitive=Our Market Research Shows That Players Like Really Long Card Names So We Made this Card to Have the Absolute Longest Card Name Ever Elemental
+id=74237
+rarity=C
+[/card]
+[card]
+primitive=Persecute Artist
+id=74238
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Librarian
+id=73962
+rarity=U
 [/card]
 [card]
 primitive=Plains
@@ -24,7 +471,242 @@ id=73963
 rarity=L
 [/card]
 [card]
+primitive=Pointy Finger of Doom
+id=74263
+rarity=R
+[/card]
+[card]
+primitive=Punctuate
+id=74248
+rarity=C
+[/card]
+[card]
+primitive=Pygmy Giant
+id=74333
+rarity=U
+[/card]
+[card]
+primitive=Question Elemental?
+id=74294
+rarity=U
+[/card]
+[card]
+primitive=R&D's Secret Lair
+id=73967
+rarity=R
+[/card]
+[card]
+primitive=Rare-B-Gone
+id=73968
+rarity=R
+[/card]
+[card]
+primitive=Red-Hot Hottie
+id=74267
+rarity=C
+[/card]
+[card]
+primitive=Remodel
+id=74310
+rarity=C
+[/card]
+[card]
+primitive=Richard Garfield, Ph.D.
+id=74250
+rarity=R
+[/card]
+[card]
+primitive=Rocket-Powered Turbo Slug
+id=74324
+rarity=U
+[/card]
+[card]
+primitive=Rod of Spanking
+id=74344
+rarity=U
+[/card]
+[card]
+primitive=S.N.O.T.
+id=73942
+rarity=C
+[/card]
+[card]
+primitive=Saute
+id=74242
+rarity=C
+[/card]
+[card]
+primitive=Save Life
+id=74277
+rarity=U
+[/card]
+[card]
+primitive=Shoe Tree
+id=74332
+rarity=C
+[/card]
+[card]
+primitive=Side to Side
+id=73948
+rarity=U
+[/card]
+[card]
+primitive=Six-y Beast
+id=73934
+rarity=U
+[/card]
+[card]
+primitive=Smart Ass
+id=74270
+rarity=C
+[/card]
+[card]
+primitive=Spell Counter
+id=74339
+rarity=U
+[/card]
+[card]
+primitive=Standing Army
+id=74343
+rarity=C
+[/card]
+[card]
+primitive=Staying Power
+id=74276
+rarity=R
+[/card]
+[card]
+primitive=Stone-Cold Basilisk
+id=74246
+rarity=U
+[/card]
+[card]
+primitive=Stop That
+id=74346
+rarity=C
+[/card]
+[card]
+primitive=Super Secret Tech
+id=74272
+rarity=T
+[/card]
+[card]
+primitive=Supersize
+id=74315
+rarity=C
+[/card]
+[card]
 primitive=Swamp
 id=73973
 rarity=L
+[/card]
+[card]
+primitive=Symbol Status
+id=74265
+rarity=U
+[/card]
+[card]
+primitive=Tainted Monkey
+id=73974
+rarity=C
+[/card]
+[card]
+primitive=The Fallen Apart
+id=74288
+rarity=C
+[/card]
+[card]
+primitive=Time Machine
+id=74342
+rarity=R
+[/card]
+[card]
+primitive=Togglodyte
+id=73985
+rarity=U
+[/card]
+[card]
+primitive=Topsy Turvy
+id=74321
+rarity=R
+[/card]
+[card]
+primitive=Touch and Go
+id=74349
+rarity=C
+[/card]
+[card]
+primitive=Toy Boat
+id=74234
+rarity=U
+[/card]
+[card]
+primitive=Uktabi Kong
+id=73976
+rarity=R
+[/card]
+[card]
+primitive=Urza's Hot Tub
+id=74345
+rarity=U
+[/card]
+[card]
+primitive=Vile Bile
+id=74319
+rarity=C
+[/card]
+[card]
+primitive=Water Gun Balloon Game
+id=73953
+rarity=R
+[/card]
+[card]
+primitive=Wet Willie of the Damned
+id=74219
+rarity=C
+[/card]
+[card]
+primitive=When Fluffy Bunnies Attack
+id=74274
+rarity=C
+[/card]
+[card]
+primitive=Who/What/When/Where/Why
+id=74358
+rarity=R
+[/card]
+[card]
+primitive=Wordmail
+id=73972
+rarity=C
+[/card]
+[card]
+primitive=Working Stiff
+id=74241
+rarity=U
+[/card]
+[card]
+primitive=World-Bottling Kit
+id=74334
+rarity=R
+[/card]
+[card]
+primitive=Yet Another AEther Vortex
+id=74331
+rarity=R
+[/card]
+[card]
+primitive=Zombie Fanboy
+id=74290
+rarity=U
+[/card]
+[card]
+primitive=Zzzyxas's Abyss
+id=74336
+rarity=R
+[/card]
+[card]
+primitive=_____
+id=74252
+rarity=U
 [/card]

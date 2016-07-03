@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Prophecy
+block=Masque
 year=2000
-block=Masks
+total=143
 [/meta]
 [card]
 primitive=Abolish
@@ -14,14 +16,14 @@ id=24601
 rarity=C
 [/card]
 [card]
-primitive=Alexi, Zephyr Mage
-id=24591
-rarity=R
-[/card]
-[card]
 primitive=Alexi's Cloak
 id=24579
 rarity=C
+[/card]
+[card]
+primitive=Alexi, Zephyr Mage
+id=24591
+rarity=R
 [/card]
 [card]
 primitive=Aura Fracture
@@ -239,14 +241,14 @@ id=24549
 rarity=C
 [/card]
 [card]
-primitive=Greel, Mind Raker
-id=24619
-rarity=R
-[/card]
-[card]
 primitive=Greel's Caress
 id=24604
 rarity=C
+[/card]
+[card]
+primitive=Greel, Mind Raker
+id=24619
+rarity=R
 [/card]
 [card]
 primitive=Gulf Squid
@@ -284,14 +286,14 @@ id=24566
 rarity=R
 [/card]
 [card]
-primitive=Jolrael, Empress of Beasts
-id=24673
-rarity=R
-[/card]
-[card]
 primitive=Jolrael's Favor
 id=24660
 rarity=C
+[/card]
+[card]
+primitive=Jolrael, Empress of Beasts
+id=24673
+rarity=R
 [/card]
 [card]
 primitive=Keldon Arsonist
@@ -314,14 +316,14 @@ id=24648
 rarity=R
 [/card]
 [card]
-primitive=Latulla, Keldon Overseer
-id=24646
-rarity=R
-[/card]
-[card]
 primitive=Latulla's Orders
 id=24632
 rarity=C
+[/card]
+[card]
+primitive=Latulla, Keldon Overseer
+id=24646
+rarity=R
 [/card]
 [card]
 primitive=Lesser Gargadon

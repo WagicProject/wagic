@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Eventide
+block=Shadowmoor
 year=2008
-block=Shadow
+total=180
 [/meta]
 [card]
 primitive=Aerie Ouphes

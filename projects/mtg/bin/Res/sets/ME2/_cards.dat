@@ -1,8 +1,15 @@
 [meta]
 author=Wagic Team
-block=Master
+name=Masters Edition II
+block=MTGO
 year=2008
+total=245
 [/meta]
+[card]
+primitive=AEther Storm
+id=184722
+rarity=U
+[/card]
 [card]
 primitive=Abbey Gargoyles
 id=184585
@@ -19,14 +26,14 @@ id=184464
 rarity=C
 [/card]
 [card]
-primitive=AEther Storm
-id=184722
-rarity=U
-[/card]
-[card]
 primitive=Ambush Party
 id=184543
 rarity=C
+[/card]
+[card]
+primitive=An-Zerrin Ruins
+id=184586
+rarity=R
 [/card]
 [card]
 primitive=Anarchy
@@ -44,18 +51,13 @@ id=184753
 rarity=U
 [/card]
 [card]
-primitive=An-Zerrin Ruins
-id=184586
-rarity=R
+primitive=Armor Thrull
+id=184684
+rarity=C
 [/card]
 [card]
 primitive=Armor of Faith
 id=184726
-rarity=C
-[/card]
-[card]
-primitive=Armor Thrull
-id=184684
 rarity=C
 [/card]
 [card]
@@ -664,13 +666,13 @@ id=184732
 rarity=R
 [/card]
 [card]
-primitive=Marjhan
-id=184593
+primitive=Mana Crypt
+id=184773
 rarity=R
 [/card]
 [card]
-primitive=Mana Crypt
-id=184773
+primitive=Marjhan
+id=184593
 rarity=R
 [/card]
 [card]
@@ -1094,13 +1096,13 @@ id=184770
 rarity=R
 [/card]
 [card]
-primitive=Thallid
-id=184711
+primitive=Thallid Devourer
+id=184527
 rarity=C
 [/card]
 [card]
-primitive=Thallid Devourer
-id=184527
+primitive=Thallid
+id=184711
 rarity=C
 [/card]
 [card]

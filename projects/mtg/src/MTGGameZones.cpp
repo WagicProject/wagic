@@ -564,6 +564,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->kicked = card->kicked;
                 copy->storedCard = card->storedCard;
                 copy->storedSourceCard = card->storedSourceCard;
+                copy->lastController = card->controller();
                 for (int i = 0; i < ManaCost::MANA_PAID_WITH_OVERLOAD +1; i++)
                     copy->alternateCostPaid[i] = card->alternateCostPaid[i];
 
@@ -950,7 +951,7 @@ void MTGInPlay::untapAll()
     {
         MTGCardInstance * card = cards[i];
         card->setUntapping();
-        if (!card->basicAbilities[(int)Constants::DOESNOTUNTAP])
+        if (!card->basicAbilities[(int)Constants::DOESNOTUNTAP] && card->alias != 50120)
         {
             if (card->frozen < 1)
             {

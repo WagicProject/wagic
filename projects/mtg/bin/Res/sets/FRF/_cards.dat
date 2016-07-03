@@ -1,6 +1,9 @@
 [meta]
 author=Wagic Team
+name=Fate Reforged
+block=Khans of Tarkir
 year=2015
+total=185
 [/meta]
 [card]
 primitive=Abzan Advantage
@@ -33,14 +36,14 @@ id=391786
 rarity=C
 [/card]
 [card]
-primitive=Alesha, Who Smiles at Death
-id=391787
-rarity=R
-[/card]
-[card]
 primitive=Alesha's Vanguard
 id=391788
 rarity=C
+[/card]
+[card]
+primitive=Alesha, Who Smiles at Death
+id=391787
+rarity=R
 [/card]
 [card]
 primitive=Ambush Krotiq
@@ -653,14 +656,14 @@ id=391909
 rarity=U
 [/card]
 [card]
-primitive=Sage-Eye Avengers
-id=391911
-rarity=R
-[/card]
-[card]
 primitive=Sage's Reverie
 id=391910
 rarity=U
+[/card]
+[card]
+primitive=Sage-Eye Avengers
+id=391911
+rarity=R
 [/card]
 [card]
 primitive=Sandblast
@@ -788,14 +791,14 @@ id=391936
 rarity=C
 [/card]
 [card]
-primitive=Tasigur, the Golden Fang
-id=391937
-rarity=R
-[/card]
-[card]
 primitive=Tasigur's Cruelty
 id=391938
 rarity=C
+[/card]
+[card]
+primitive=Tasigur, the Golden Fang
+id=391937
+rarity=R
 [/card]
 [card]
 primitive=Temporal Trespass
@@ -843,14 +846,14 @@ id=391947
 rarity=C
 [/card]
 [card]
-primitive=Ugin, the Spirit Dragon
-id=391948
-rarity=M
-[/card]
-[card]
 primitive=Ugin's Construct
 id=391949
 rarity=U
+[/card]
+[card]
+primitive=Ugin, the Spirit Dragon
+id=391948
+rarity=M
 [/card]
 [card]
 primitive=Valorous Stance
@@ -913,14 +916,14 @@ id=391961
 rarity=C
 [/card]
 [card]
-primitive=Winds of Qal Sisma
-id=391962
-rarity=U
-[/card]
-[card]
 primitive=Wind-Scarred Crag
 id=391963
 rarity=C
+[/card]
+[card]
+primitive=Winds of Qal Sisma
+id=391962
+rarity=U
 [/card]
 [card]
 primitive=Write into Being

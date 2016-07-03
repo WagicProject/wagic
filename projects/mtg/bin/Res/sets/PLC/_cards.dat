@@ -1,17 +1,19 @@
 [meta]
 author=Wagic Team
+name=Planar Chaos
+block=Time Spiral
 year=2007
-block=Time
+total=165
 [/meta]
-[card]
-primitive=Aeon Chronicler
-id=122449
-rarity=R
-[/card]
 [card]
 primitive=AEther Membrane
 id=124504
 rarity=U
+[/card]
+[card]
+primitive=Aeon Chronicler
+id=122449
+rarity=R
 [/card]
 [card]
 primitive=Akroma, Angel of Fury
@@ -74,16 +76,10 @@ id=122321
 rarity=C
 [/card]
 [card]
-primitive=Boom // Bust (Boom)
+primitive=Boom // Bust
 id=126218
 rarity=R
 [/card]
-#need to find a way to deal with multipart cards
-#[card]
-#primitive=Boom // Bust (Bust)
-#id=126218
-#rarity=R
-#[/card]
 [card]
 primitive=Braids, Conjurer Adept
 id=124316
@@ -115,7 +111,7 @@ id=111066
 rarity=R
 [/card]
 [card]
-primitive=Chronozoa (Chronozoa)
+primitive=Chronozoa Token
 id=-111066
 rarity=T
 [/card]
@@ -160,16 +156,10 @@ id=124080
 rarity=C
 [/card]
 [card]
-primitive=Dead // Gone (Dead)
+primitive=Dead // Gone
 id=126419
 rarity=C
 [/card]
-#need to find a way to deal with multipart cards
-#[card]
-#primitive=Dead // Gone (Gone)
-#id=126419
-#rarity=C
-#[/card]
 [card]
 primitive=Deadly Grub
 id=111046
@@ -621,16 +611,10 @@ id=122431
 rarity=R
 [/card]
 [card]
-primitive=Rough // Tumble (Rough)
+primitive=Rough // Tumble
 id=126420
 rarity=U
 [/card]
-#need to find a way to deal with multipart cards
-#[card]
-#primitive=Rough // Tumble (Tumble)
-#id=126420
-#rarity=U
-#[/card]
 [card]
 primitive=Saltblast
 id=122435
@@ -832,9 +816,7 @@ id=126303
 rarity=R
 [/card]
 [card]
-primitive=Vorosh the Hunter
-#The comma needed to be stripped from the name to make the card work.
-#Reintroducing it requires an update to mtg.txt as well.
+primitive=Vorosh, the Hunter
 id=124057
 rarity=R
 [/card]
