@@ -467,6 +467,10 @@ void ActionLayer::doReactTo(int menuIndex)
     {
         int controlid = abilitiesMenu->mObjects[menuIndex]->GetId();
         DebugTrace("ActionLayer::doReactTo " << controlid);
+		if (abilitiesMenu && abilitiesMenu->isMultipleChoice)
+		{
+			return ButtonPressedOnMultipleChoice(menuIndex);
+		}
         ButtonPressed(0, controlid);
     }
 }

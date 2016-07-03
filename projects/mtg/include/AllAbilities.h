@@ -275,9 +275,16 @@ private:
         }
         if(s == "prex")
         {
-            ManaCost * cX = card->controller()->getManaPool()->Diff(card->getManaCost());
-            intValue = cX->getCost(Constants::NB_Colors);
-            delete cX;
+			if (card->setX > -1)
+			{
+				intValue = card->setX;
+			}
+			else
+			{
+				ManaCost * cX = card->controller()->getManaPool()->Diff(card->getManaCost());
+				intValue = cX->getCost(Constants::NB_Colors);
+				delete cX;
+			}
         }
         else if (s == "x" || s == "X")
         {
