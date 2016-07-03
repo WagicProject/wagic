@@ -6649,7 +6649,6 @@ void AGrant::resolveGrant()
 void AGrant::removeGranted(MTGCardInstance* _target)
 {
 	if (!toGrant) return;
-	MTGCardInstance * cardToReturn = _target;
 	game->removeObserver(toGrant);
 	game->removeObserver(this);
 	Blessed = NULL;
