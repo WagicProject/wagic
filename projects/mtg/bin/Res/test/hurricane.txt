@@ -9,6 +9,7 @@ manapool:{4}{G}
 inplay:serra angel
 [DO]
 hurricane
+choice 4
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

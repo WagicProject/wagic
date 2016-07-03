@@ -6,6 +6,7 @@ hand:Feral Hydra
 [player2]
 [do]
 Feral Hydra
+choice 5
 eot
 eot
 next

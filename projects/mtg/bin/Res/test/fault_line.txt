@@ -8,6 +8,7 @@ manapool:{1}{R}{R}
 inplay:grizzly bears
 [DO]
 fault line
+choice 1
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
