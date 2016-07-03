@@ -752,7 +752,7 @@ int TapTargetCost::isPaymentSet()
         target = NULL;
         return 0;
     }
-    if (target && (tc->getNbTargets() == tc->maxtargets || tc->done))
+    if (target)
         return 1;
     return 0;
 }
