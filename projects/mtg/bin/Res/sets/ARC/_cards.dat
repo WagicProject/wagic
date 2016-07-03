@@ -1,12 +1,9 @@
 [meta]
 author=Wagic Team
+name=Archenemy
 year=2010
+total=150
 [/meta]
-[card]
-primitive=A Display of My Dark Power
-id=212578
-rarity=C
-[/card]
 [card]
 primitive=AEther Spellbomb
 id=220525
@@ -15,21 +12,6 @@ rarity=C
 [card]
 primitive=Agony Warp
 id=220454
-rarity=C
-[/card]
-[card]
-primitive=All in Good Time
-id=212648
-rarity=C
-[/card]
-[card]
-primitive=All Shall Smolder in My Wake
-id=212617
-rarity=C
-[/card]
-[card]
-primitive=Approach My Molten Realm
-id=212591
 rarity=C
 [/card]
 [card]
@@ -83,11 +65,6 @@ id=220482
 rarity=R
 [/card]
 [card]
-primitive=Behold the Power of Destruction
-id=212585
-rarity=C
-[/card]
-[card]
 primitive=Bituminous Blast
 id=220518
 rarity=U
@@ -109,7 +86,7 @@ rarity=U
 [/card]
 [card]
 primitive=Cemetery Reaper
-id=220485
+id=220476
 rarity=R
 [/card]
 [card]
@@ -123,11 +100,6 @@ id=220513
 rarity=C
 [/card]
 [card]
-primitive=Choose Your Champion
-id=212581
-rarity=C
-[/card]
-[card]
 primitive=Colossal Might
 id=220519
 rarity=C
@@ -136,11 +108,6 @@ rarity=C
 primitive=Corpse Connoisseur
 id=220567
 rarity=U
-[/card]
-[card]
-primitive=Dance, Pathetic Marionette
-id=212610
-rarity=C
 [/card]
 [card]
 primitive=Dimir Signet
@@ -183,11 +150,6 @@ id=220526
 rarity=R
 [/card]
 [card]
-primitive=Embrace My Diabolical Vision
-id=212596
-rarity=C
-[/card]
-[card]
 primitive=Ethersworn Shieldmage
 id=220520
 rarity=C
@@ -198,33 +160,13 @@ id=220534
 rarity=U
 [/card]
 [card]
-primitive=Every Hope Shall Vanish
-id=212593
-rarity=C
-[/card]
-[card]
-primitive=Every Last Vestige Shall Rot
-id=212655
-rarity=C
-[/card]
-[card]
-primitive=Evil Comes to Fruition
-id=212599
-rarity=C
-[/card]
-[card]
 primitive=Extractor Demon
 id=220507
 rarity=R
 [/card]
 [card]
-primitive=Feed the Machine
-id=212652
-rarity=C
-[/card]
-[card]
 primitive=Feral Hydra
-id=220532
+id=220684
 rarity=R
 [/card]
 [card]
@@ -284,7 +226,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forgotten Ancient
-id=220476
+id=220583
 rarity=R
 [/card]
 [card]
@@ -333,33 +275,8 @@ id=220563
 rarity=U
 [/card]
 [card]
-primitive=I Bask in Your Silent Awe
-id=212614
-rarity=C
-[/card]
-[card]
-primitive=I Call on the Ancient Magics
-id=212619
-rarity=C
-[/card]
-[card]
-primitive=I Delight in Your Convulsions
-id=212580
-rarity=C
-[/card]
-[card]
-primitive=I Know All, I See All
-id=212597
-rarity=C
-[/card]
-[card]
-primitive=Ignite the Cloneforge!
-id=212587
-rarity=C
-[/card]
-[card]
 primitive=Imperial Hellkite
-id=220463
+id=220464
 rarity=R
 [/card]
 [card]
@@ -381,16 +298,6 @@ rarity=U
 primitive=Infest
 id=220459
 rarity=U
-[/card]
-[card]
-primitive=Into the Earthen Maw
-id=212582
-rarity=C
-[/card]
-[card]
-primitive=Introductions Are in Order
-id=212603
-rarity=C
 [/card]
 [card]
 primitive=Island
@@ -434,13 +341,8 @@ rarity=C
 [/card]
 [card]
 primitive=Kilnmouth Dragon
-id=220464
+id=220465
 rarity=R
-[/card]
-[card]
-primitive=Know Naught but Fire
-id=212600
-rarity=C
 [/card]
 [card]
 primitive=Krosan Tusker
@@ -478,11 +380,6 @@ id=220536
 rarity=R
 [/card]
 [card]
-primitive=Look Skyward and Despair
-id=212579
-rarity=C
-[/card]
-[card]
 primitive=Magister Sphinx
 id=220509
 rarity=R
@@ -503,13 +400,8 @@ id=220510
 rarity=R
 [/card]
 [card]
-primitive=May Civilization Collapse
-id=212606
-rarity=C
-[/card]
-[card]
 primitive=Memnarch
-id=220471
+id=220532
 rarity=R
 [/card]
 [card]
@@ -524,17 +416,12 @@ rarity=C
 [/card]
 [card]
 primitive=Molimo, Maro-Sorcerer
-id=220503
+id=220485
 rarity=R
 [/card]
 [card]
-primitive=Mortal Flesh Is Weak
-id=212608
-rarity=C
-[/card]
-[card]
 primitive=Mosswort Bridge
-id=220571
+id=220570
 rarity=R
 [/card]
 [card]
@@ -553,44 +440,9 @@ id=221305
 rarity=L
 [/card]
 [card]
-primitive=My Crushing Masterstroke
-id=212611
-rarity=C
-[/card]
-[card]
-primitive=My Genius Knows No Bounds
-id=212661
-rarity=C
-[/card]
-[card]
-primitive=My Undead Horde Awakens
-id=212620
-rarity=C
-[/card]
-[card]
-primitive=My Wish Is Your Command
-id=212607
-rarity=C
-[/card]
-[card]
 primitive=Nantuko Monastery
 id=220545
 rarity=U
-[/card]
-[card]
-primitive=Nature Demands an Offering
-id=212601
-rarity=C
-[/card]
-[card]
-primitive=Nature Shields Its Own
-id=212577
-rarity=C
-[/card]
-[card]
-primitive=Nothing Can Stop Me Now
-id=212624
-rarity=C
 [/card]
 [card]
 primitive=Obelisk of Esper
@@ -600,11 +452,6 @@ rarity=C
 [card]
 primitive=Oblivion Ring
 id=220586
-rarity=C
-[/card]
-[card]
-primitive=Only Blood Ends Your Nightmares
-id=212622
 rarity=C
 [/card]
 [card]
@@ -634,7 +481,7 @@ rarity=C
 [/card]
 [card]
 primitive=Primal Command
-id=220570
+id=220571
 rarity=R
 [/card]
 [card]
@@ -658,11 +505,6 @@ id=220577
 rarity=C
 [/card]
 [card]
-primitive=Realms Befitting My Majesty
-id=212653
-rarity=C
-[/card]
-[card]
 primitive=Reanimate
 id=220576
 rarity=U
@@ -673,18 +515,8 @@ id=220515
 rarity=U
 [/card]
 [card]
-primitive=Roots of All Evil
-id=212602
-rarity=C
-[/card]
-[card]
-primitive=Rotted Ones, Lay Siege
-id=212583
-rarity=C
-[/card]
-[card]
 primitive=Ryusei, the Falling Star
-id=220583
+id=220471
 rarity=R
 [/card]
 [card]
@@ -704,7 +536,7 @@ rarity=U
 [/card]
 [card]
 primitive=Scion of Darkness
-id=220465
+id=220588
 rarity=R
 [/card]
 [card]
@@ -774,13 +606,8 @@ rarity=U
 [/card]
 [card]
 primitive=Sundering Titan
-id=220472
+id=220533
 rarity=R
-[/card]
-[card]
-primitive=Surrender Your Thoughts
-id=212598
-rarity=C
 [/card]
 [card]
 primitive=Swamp
@@ -823,31 +650,6 @@ id=220481
 rarity=C
 [/card]
 [card]
-primitive=The Dead Shall Serve
-id=212613
-rarity=C
-[/card]
-[card]
-primitive=The Fate of the Flammable
-id=212576
-rarity=C
-[/card]
-[card]
-primitive=The Iron Guardian Stirs
-id=212594
-rarity=C
-[/card]
-[card]
-primitive=The Pieces Are Coming Together
-id=212604
-rarity=C
-[/card]
-[card]
-primitive=The Very Soil Shall Shake
-id=212615
-rarity=C
-[/card]
-[card]
 primitive=Thelonite Hermit
 id=220558
 rarity=R
@@ -861,11 +663,6 @@ rarity=U
 primitive=Thunderstaff
 id=220581
 rarity=U
-[/card]
-[card]
-primitive=Tooth, Claw, and Tail
-id=212590
-rarity=C
 [/card]
 [card]
 primitive=Torrent of Souls
@@ -884,7 +681,7 @@ rarity=C
 [/card]
 [card]
 primitive=Two-Headed Dragon
-id=220486
+id=220472
 rarity=R
 [/card]
 [card]
@@ -933,14 +730,9 @@ id=220551
 rarity=U
 [/card]
 [card]
-primitive=Wax (Wax/Wane)
+primitive=Wax // Wane
 id=220502
 rarity=U
-[/card]
-[card]
-primitive=Which of You Burns Brightest?
-id=212605
-rarity=C
 [/card]
 [card]
 primitive=Wickerbough Elder
@@ -951,21 +743,6 @@ rarity=C
 primitive=Yavimaya Dryad
 id=220560
 rarity=U
-[/card]
-[card]
-primitive=Your Fate Is Thrice Sealed
-id=212618
-rarity=C
-[/card]
-[card]
-primitive=Your Puny Minds Cannot Fathom
-id=212588
-rarity=C
-[/card]
-[card]
-primitive=Your Will Is Not Your Own
-id=212609
-rarity=C
 [/card]
 [card]
 primitive=Zombie Infestation

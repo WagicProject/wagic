@@ -1,6 +1,8 @@
 [meta]
 author=Wagic Team
+name=Chronicles
 year=1995
+total=125
 [/meta]
 [card]
 primitive=Abu Ja'far
@@ -153,6 +155,11 @@ id=2829
 rarity=R
 [/card]
 [card]
+primitive=D'Avenant Archer
+id=2856
+rarity=C
+[/card]
+[card]
 primitive=Dakkon Blackblade
 id=2870
 rarity=R
@@ -165,11 +172,6 @@ rarity=R
 [card]
 primitive=Dandan
 id=2802
-rarity=C
-[/card]
-[card]
-primitive=D'Avenant Archer
-id=2856
 rarity=C
 [/card]
 [card]
@@ -514,12 +516,7 @@ rarity=R
 [/card]
 [card]
 primitive=Urza's Mine
-id=2891
-rarity=U
-[/card]
-[card]
-primitive=Urza's Mine
-id=2890
+id=2888
 rarity=U
 [/card]
 [card]
@@ -529,17 +526,17 @@ rarity=U
 [/card]
 [card]
 primitive=Urza's Mine
-id=2888
+id=2890
+rarity=U
+[/card]
+[card]
+primitive=Urza's Mine
+id=2891
 rarity=U
 [/card]
 [card]
 primitive=Urza's Power Plant
-id=2895
-rarity=U
-[/card]
-[card]
-primitive=Urza's Power Plant
-id=2894
+id=2892
 rarity=U
 [/card]
 [card]
@@ -549,17 +546,17 @@ rarity=U
 [/card]
 [card]
 primitive=Urza's Power Plant
-id=2892
+id=2894
+rarity=U
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=2895
 rarity=U
 [/card]
 [card]
 primitive=Urza's Tower
-id=2899
-rarity=U
-[/card]
-[card]
-primitive=Urza's Tower
-id=2898
+id=2896
 rarity=U
 [/card]
 [card]
@@ -569,7 +566,12 @@ rarity=U
 [/card]
 [card]
 primitive=Urza's Tower
-id=2896
+id=2898
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=2899
 rarity=U
 [/card]
 [card]
