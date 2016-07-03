@@ -1,0 +1,286 @@
+[meta]
+author=Wagic Team
+name=Deckmasters
+year=2001
+total=56
+[/meta]
+[card]
+primitive=Abyssal Specter
+id=687701
+rarity=R
+[/card]
+[card]
+primitive=Balduvian Bears
+id=687722
+rarity=R
+[/card]
+[card]
+primitive=Balduvian Horde
+id=687710
+rarity=R
+[/card]
+[card]
+primitive=Barbed Sextant
+id=687734
+rarity=R
+[/card]
+[card]
+primitive=Bounty of the Hunt
+id=687723
+rarity=R
+[/card]
+[card]
+primitive=Contagion
+id=687702
+rarity=R
+[/card]
+[card]
+primitive=Dark Banishing
+id=687703
+rarity=R
+[/card]
+[card]
+primitive=Dark Ritual
+id=687704
+rarity=R
+[/card]
+[card]
+primitive=Death Spark
+id=687711
+rarity=R
+[/card]
+[card]
+primitive=Elkin Bottle
+id=687735
+rarity=R
+[/card]
+[card]
+primitive=Elvish Bard
+id=687724
+rarity=R
+[/card]
+[card]
+primitive=Folk of the Pines
+id=687725
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=687748
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=687749
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=687750
+rarity=L
+[/card]
+[card]
+primitive=Foul Familiar
+id=687705
+rarity=R
+[/card]
+[card]
+primitive=Fyndhorn Elves
+id=687726
+rarity=R
+[/card]
+[card]
+primitive=Giant Growth
+id=687727
+rarity=R
+[/card]
+[card]
+primitive=Giant Trap Door Spider
+id=687733
+rarity=R
+[/card]
+[card]
+primitive=Goblin Mutant
+id=687712
+rarity=R
+[/card]
+[card]
+primitive=Guerrilla Tactics
+id=687713
+rarity=R
+[/card]
+[card]
+primitive=Guerrilla Tactics
+id=687753
+rarity=R
+[/card]
+[card]
+primitive=Hurricane
+id=687728
+rarity=R
+[/card]
+[card]
+primitive=Icy Manipulator
+id=687736
+rarity=R
+[/card]
+[card]
+primitive=Incinerate
+id=687714
+rarity=R
+[/card]
+[card]
+primitive=Jokulhaups
+id=687715
+rarity=R
+[/card]
+[card]
+primitive=Karplusan Forest
+id=687739
+rarity=R
+[/card]
+[card]
+primitive=Lava Burst
+id=687716
+rarity=R
+[/card]
+[card]
+primitive=Lhurgoyf
+id=687729
+rarity=R
+[/card]
+[card]
+primitive=Lim-Dul's High Guard
+id=687751
+rarity=R
+[/card]
+[card]
+primitive=Lim-Dul's High Guard
+id=687706
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=687745
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=687746
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=687747
+rarity=L
+[/card]
+[card]
+primitive=Necropotence
+id=687707
+rarity=R
+[/card]
+[card]
+primitive=Orcish Cannoneers
+id=687717
+rarity=R
+[/card]
+[card]
+primitive=Phantasmal Fiend
+id=687752
+rarity=R
+[/card]
+[card]
+primitive=Phantasmal Fiend
+id=687708
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian War Beast
+id=687737
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian War Beast
+id=687756
+rarity=R
+[/card]
+[card]
+primitive=Pillage
+id=687718
+rarity=R
+[/card]
+[card]
+primitive=Pyroclasm
+id=687719
+rarity=R
+[/card]
+[card]
+primitive=Shatter
+id=687720
+rarity=R
+[/card]
+[card]
+primitive=Soul Burn
+id=687709
+rarity=R
+[/card]
+[card]
+primitive=Storm Shaman
+id=687721
+rarity=R
+[/card]
+[card]
+primitive=Storm Shaman
+id=687754
+rarity=R
+[/card]
+[card]
+primitive=Sulfurous Springs
+id=687740
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=687742
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=687743
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=687744
+rarity=L
+[/card]
+[card]
+primitive=Underground River
+id=687741
+rarity=R
+[/card]
+[card]
+primitive=Walking Wall
+id=687738
+rarity=R
+[/card]
+[card]
+primitive=Woolly Spider
+id=687730
+rarity=R
+[/card]
+[card]
+primitive=Yavimaya Ancients
+id=687731
+rarity=R
+[/card]
+[card]
+primitive=Yavimaya Ancients
+id=687755
+rarity=R
+[/card]
+[card]
+primitive=Yavimaya Ants
+id=687732
+rarity=R
+[/card]

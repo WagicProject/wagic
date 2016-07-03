@@ -1,7 +1,14 @@
 [meta]
 author=Wagic Team
+name=Magic: The Gathering-Commander
 year=2011
+total=318
 [/meta]
+[card]
+primitive=AEthersnipe
+id=247295
+rarity=C
+[/card]
 [card]
 primitive=Acidic Slime
 id=247317
@@ -11,11 +18,6 @@ rarity=U
 primitive=Acorn Catapult
 id=233197
 rarity=R
-[/card]
-[card]
-primitive=AEthersnipe
-id=247295
-rarity=C
 [/card]
 [card]
 primitive=Afterlife
@@ -28,13 +30,13 @@ id=247543
 rarity=U
 [/card]
 [card]
-primitive=Akroma, Angel of Fury
-id=247358
+primitive=Akroma's Vengeance
+id=247343
 rarity=R
 [/card]
 [card]
-primitive=Akroma's Vengeance
-id=247343
+primitive=Akroma, Angel of Fury
+id=247358
 rarity=R
 [/card]
 [card]
@@ -333,13 +335,13 @@ id=247359
 rarity=U
 [/card]
 [card]
-primitive=Death by Dragons
-id=229988
+primitive=Death Mutation
+id=247158
 rarity=U
 [/card]
 [card]
-primitive=Death Mutation
-id=247158
+primitive=Death by Dragons
+id=229988
 rarity=U
 [/card]
 [card]
@@ -529,22 +531,22 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=249801
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=249803
-rarity=L
-[/card]
-[card]
-primitive=Forest
 id=249800
 rarity=L
 [/card]
 [card]
 primitive=Forest
+id=249801
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=249802
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=249803
 rarity=L
 [/card]
 [card]
@@ -694,12 +696,12 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=249807
+id=249804
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=249804
+id=249805
 rarity=L
 [/card]
 [card]
@@ -709,7 +711,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=249805
+id=249807
 rarity=L
 [/card]
 [card]
@@ -864,17 +866,17 @@ rarity=U
 [/card]
 [card]
 primitive=Mountain
+id=249808
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=249809
 rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=249810
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=249808
 rarity=L
 [/card]
 [card]
@@ -907,12 +909,11 @@ primitive=Nemesis Trap
 id=247541
 rarity=U
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Nezumi Graverobber (Nighteyes the Desecrator)
-#id=247175
-#rarity=U
-#[/card]
+[card]
+primitive=Nezumi Graverobber
+id=247175
+rarity=U
+[/card]
 [card]
 primitive=Nin, the Pain Artist
 id=236471
@@ -995,6 +996,11 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
+id=249812
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=249813
 rarity=L
 [/card]
@@ -1006,11 +1012,6 @@ rarity=L
 [card]
 primitive=Plains
 id=249815
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=249812
 rarity=L
 [/card]
 [card]
@@ -1330,12 +1331,12 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=249819
+id=249816
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=249816
+id=249817
 rarity=L
 [/card]
 [card]
@@ -1345,7 +1346,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=249817
+id=249819
 rarity=L
 [/card]
 [card]

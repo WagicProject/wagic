@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-Block=HOP
+name=Planechase 2012 Edition
+block=Planechase
 year=2012
+total=156
 [/meta]
 [card]
 primitive=Arc Trail
@@ -159,11 +161,6 @@ id=270742
 rarity=U
 [/card]
 [card]
-primitive=Saproling
-id=222222309
-rarity=T
-[/card]
-[card]
 primitive=Elderwood Scion
 id=270725
 rarity=R
@@ -230,7 +227,7 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=276464
+id=276454
 rarity=L
 [/card]
 [card]
@@ -240,22 +237,22 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=276454
-rarity=L
-[/card]
-[card]
-primitive=Forest
 id=276460
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=276468
+id=276464
 rarity=L
 [/card]
 [card]
 primitive=Forest
 id=276467
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=276468
 rarity=L
 [/card]
 [card]
@@ -345,12 +342,17 @@ rarity=U
 [/card]
 [card]
 primitive=Island
-id=276462
+id=276452
 rarity=L
 [/card]
 [card]
 primitive=Island
 id=276453
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=276462
 rarity=L
 [/card]
 [card]
@@ -361,11 +363,6 @@ rarity=L
 [card]
 primitive=Island
 id=276471
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=276452
 rarity=L
 [/card]
 [card]
@@ -450,17 +447,17 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
-id=276465
-rarity=L
-[/card]
-[card]
-primitive=Mountain
 id=276447
 rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=276449
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=276465
 rarity=L
 [/card]
 [card]
@@ -525,6 +522,16 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
+id=276458
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=276459
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=276461
 rarity=L
 [/card]
@@ -536,16 +543,6 @@ rarity=L
 [card]
 primitive=Plains
 id=276473
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=276459
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=276458
 rarity=L
 [/card]
 [card]
@@ -659,19 +656,9 @@ id=275265
 rarity=U
 [/card]
 [card]
-primitive=Sunken Hope 
+primitive=Sunken Hope
 id=271202
 rarity=R
-[/card]
-[card]
-primitive=Swamp
-id=276455
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=276472
-rarity=L
 [/card]
 [card]
 primitive=Swamp
@@ -680,7 +667,22 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
+id=276455
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=276457
+rarity=L
+[/card]
+[card]
+primitive=Swamp
 id=276463
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=276472
 rarity=L
 [/card]
 [card]
@@ -698,7 +700,7 @@ primitive=Thorn-Thrash Viashino
 id=271162
 rarity=C
 [/card]
-[card] 
+[card]
 primitive=Thran Golem
 id=271173
 rarity=U
@@ -763,23 +765,23 @@ primitive=Wall of Blossoms
 id=275262
 rarity=U
 [/card]
-[card] 
+[card]
 primitive=Wall of Frost
 id=271197
 rarity=U
 [/card]
 [card]
-primitive=Warstorm Surge 
+primitive=Warstorm Surge
 id=271226
 rarity=R
 [/card]
 [card]
-primitive=Whirlpool Warrior 
+primitive=Whirlpool Warrior
 id=271165
-rarity=r
+rarity=R
 [/card]
 [card]
-primitive=Whispersilk Cloak 
+primitive=Whispersilk Cloak
 id=271198
 rarity=U
 [/card]
