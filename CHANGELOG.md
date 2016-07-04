@@ -1,6 +1,18 @@
 # Changelog
 
 ## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
+#### 7/4/16
+- *Merged pull-request:* Fails but I have no idea why [#\717] (https://github.com/WagicProject/wagic/pull/717) ([zethfoxster](https://github.com/zethfoxster))
+
+- *Merged pull-request:* Updated Sets [#\715] (https://github.com/WagicProject/wagic/pull/715) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 7/2/16
+- *Merged pull-request:* Updated Masters, Beginners, Duels and Vault Sets [#\714] (https://github.com/WagicProject/wagic/pull/714) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 7/1/16
+- *Merged pull-request:* Cleaned and Sorted all Core and Expansion Sets [#\713] (https://github.com/WagicProject/wagic/pull/713) ([kevlahnota](https://github.com/kevlahnota))
+
+- *Merged pull-request:* Soulbond Pair Indicator [#\712] (https://github.com/WagicProject/wagic/pull/712) ([kevlahnota](https://github.com/kevlahnota))
 
 #### 6/30/16
 - *Merged pull-request:* Sorted Primitives [#\711] (https://github.com/WagicProject/wagic/pull/711) ([kevlahnota](https://github.com/kevlahnota))
