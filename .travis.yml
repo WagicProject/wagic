@@ -112,7 +112,7 @@ after_success:
 - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "Qt" ]; then
     coveralls -b . -e JGE/src -e JGE/include -i projects/mtg/include -i projects/mtg/src --gcov-options '\-lp';
   fi
-- if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "ANDROID" ]; then
+- if [ "$BUILD_TYPE" == "ANDROID" ]; then
     python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH &&
     python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l build_android/package/bin/Wagic_*.apk -r Wagic-android.apk -b $TRAVIS_BRANCH;
   fi
