@@ -8,7 +8,9 @@ hand:howl from beyond
 [PLAYER2]
 [DO]
 howl from beyond
+choice 5
 grizzly bears
+howl from beyond
 next
 #begin
 next

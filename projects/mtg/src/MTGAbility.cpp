@@ -1374,6 +1374,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 		}
 	}
 
+	vector<string> splitGrant = parseBetween(s, "grant ", " grantend", false);
+	if (splitGrant.size() && storedAbilityString.empty())
+	{
+		storedAbilityString = splitGrant[1];
+		s = splitGrant[0];
+		s.append("grant ");
+		s.append(splitGrant[2]);
+	}
+
 	vector<string> splitRevealx = parseBetween(s, "reveal:", " revealend", false);
 	if (!abilfound.size() && !transfound.size() && splitRevealx.size() && storedAbilityString.empty())
 	{
@@ -2241,6 +2250,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
+
+	//grant ability until source is untapped or leaves battlefield
+	found = s.find("grant ");
+	if (found != string::npos)
+	{
+		MTGAbility * toGrant = parseMagicLine(storedAbilityString, id, spell, card);
+		MTGAbility * a = NEW AGrantWrapper(observer, id, card, target,toGrant);
+		a->oneShot = 1;
+		return a;
+	}
 
    //momentary blink
     found = s.find("(blink)");

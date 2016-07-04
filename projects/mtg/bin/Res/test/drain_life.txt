@@ -9,7 +9,9 @@ inplay:1099
 life:20
 [DO]
 1156
+choice 3
 1099
+1156
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
