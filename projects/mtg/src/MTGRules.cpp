@@ -329,7 +329,6 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 #ifdef WIN32
         cost->Dump();
 #endif
-        //cost of card.
         if (playerMana->canAfford(cost))
         {
             //-------
@@ -351,9 +350,8 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
                                 card->sunburst += 1;
                             }
                         }
-                    }
-                    //-------
-                }
+                    }//if (player->getManaPool()->hasColor(i))
+                }//for (int i = 1; i != 6; i++)
             }
             return 1;//play if you can afford too.
         }
@@ -367,6 +365,65 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = card->getManaCost();
+	ManaCost * playerMana = player->getManaPool();
+	///////announce X cost///////
+	if ((cost->hasX() || cost->hasSpecificX()) && card->setX == -1)
+	{
+		vector<MTGAbility*>selection;
+		int options = cost->hasSpecificX() ? 20 : (playerMana->getConvertedCost() - cost->getConvertedCost()) + 1;
+		//you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
+		//give me the correct amount sorry.
+		for (int i = 0; i < options; ++i)
+		{
+
+			MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
+			MTGAbility * setCardX = setX->clone();
+			setCardX->oneShot = true;
+			selection.push_back(setCardX);
+			SAFE_DELETE(setX);
+		}
+		if (selection.size())
+		{
+			MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), card, card, false, selection);
+			game->mLayers->actionLayer()->currentActionCard = card;
+			a1->resolve();
+		}
+		return 0;
+	}
+	///////////////////////////////////////////////////////////////////////////////////////
+	//////X is set, below we set sunburst for X if needed and cast or reset the card.//////
+	//////107.3a If a spell or activated ability has a mana cost, alternative cost,  //////
+	//////additional cost, and / or activation cost with an{ X }, [-X], or X in it,  //////
+	//////and the value of X isn’t defined by the text of that spell or ability, the //////
+	//////controller of that spell or ability chooses and announces the value of X as//////
+	//////part of casting the spell or activating the ability.                       //////
+	//////(See rule 601, “Casting Spells.”) While a spell is on the stack, any X in  //////
+	//////its mana cost or in any alternative cost or additional cost it has equals  //////
+	//////the announced value.While an activated ability is on the stack, any X in   //////
+	//////its activation cost equals the announced value.                            //////
+	///////////////////////////////////////////////////////////////////////////////////////
+	if (card->setX > -1)
+	{
+		ManaCost * Xcost = NEW ManaCost();
+		Xcost->copy(cost);
+		Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
+		Xcost->remove(7, 1);
+		if (playerMana->canAfford(Xcost))
+		{
+			cost->copy(Xcost);
+			SAFE_DELETE(Xcost);
+		}
+		else
+		{
+			if (card->setX > -1)
+				card->setX = -1;
+			SAFE_DELETE(Xcost);
+			return 0;
+		}
+	}
+	//////////////////////////////////////////
+	////cards without X contenue from here////
+	//////////////////////////////////////////
     //this handles extra cost payments at the moment a card is played.
     if (cost->isExtraPaymentSet())
     {
@@ -685,7 +742,6 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
-        //cost of card.
         if (playerMana->canAfford(alternateManaCost))
         {
             return 1;
@@ -713,6 +769,62 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
 
     Player * player = game->currentlyActing();
     ManaPool * playerMana = player->getManaPool();
+	///////announce X cost///////
+	if ((alternateCost->hasX() || alternateCost->hasSpecificX()) && card->setX == -1)
+	{
+		vector<MTGAbility*>selection;
+		int options = alternateCost->hasSpecificX()? 20 : (playerMana->getConvertedCost() - alternateCost->getConvertedCost()) + 1;
+		//you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
+		//give me the correct amount sorry.
+		for (int i = 0; i < options; ++i)
+		{
+
+			MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
+			MTGAbility * setCardX = setX->clone();
+			setCardX->oneShot = true;
+			selection.push_back(setCardX);
+			SAFE_DELETE(setX);
+		}
+		if (selection.size())
+		{
+			MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), card, card, false, selection);
+			game->mLayers->actionLayer()->currentActionCard = card;
+			a1->resolve();
+		}
+		return 0;
+	}
+	///////////////////////////////////////////////////////////////////////////////////////
+	//////X is set, below we set sunburst for X if needed and cast or reset the card.//////
+	//////107.3a If a spell or activated ability has a mana cost, alternative cost,  //////
+	//////additional cost, and / or activation cost with an{ X }, [-X], or X in it,  //////
+	//////and the value of X isn’t defined by the text of that spell or ability, the //////
+	//////controller of that spell or ability chooses and announces the value of X as//////
+	//////part of casting the spell or activating the ability.                       //////
+	//////(See rule 601, “Casting Spells.”) While a spell is on the stack, any X in  //////
+	//////its mana cost or in any alternative cost or additional cost it has equals  //////
+	//////the announced value.While an activated ability is on the stack, any X in   //////
+	//////its activation cost equals the announced value.                            //////
+	///////////////////////////////////////////////////////////////////////////////////////
+	if (card->setX > -1)
+	{
+		ManaCost * Xcost = NEW ManaCost();
+		Xcost->copy(alternateCost);
+		Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
+		Xcost->remove(7, 1);//remove the X
+		if (playerMana->canAfford(Xcost))
+		{
+			alternateCost->copy(Xcost);
+			SAFE_DELETE(Xcost);
+		}
+		else
+		{
+			if (card->setX > -1)
+				card->setX = -1;
+			SAFE_DELETE(Xcost);
+			return 0;
+		}
+	}
+
     //this handles extra cost payments at the moment a card is played.
 
     if(overload)
@@ -766,8 +878,9 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         }//end of storm
         else
         {
+
             ManaCost * c = spellCost->Diff(alternateCost);
-            copy->X = c->getCost(Constants::NB_Colors);
+			copy->X = card->setX;
             copy->castX = copy->X;
             delete c;
         }
@@ -1604,6 +1717,11 @@ int MTGAttackRule::receiveEvent(WEvent *e)
 					int Check = card->controller()->game->battlefield->countByCanTarget(tc);
 					if (Check <2)
 						card->initAttackersDefensers();
+				}
+				if (card->isAttacker() && card->has(Constants::DETHRONE))
+				{
+					if (p->opponent()->life >= p->life)
+						card->counters->addCounter(1, 1);
 				}
                 if (!card->isAttacker() && !event->from->isExtra && card->has(Constants::MUSTATTACK))//cards are only required to attack in the real attack phase of a turn.
                     reactToClick(card);

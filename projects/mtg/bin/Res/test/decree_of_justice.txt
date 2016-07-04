@@ -8,6 +8,7 @@ manapool:{8}{W}{W}
 [DO]
 Decree of Justice
 choice 0
+choice 6
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

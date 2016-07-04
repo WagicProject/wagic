@@ -10,6 +10,7 @@ inplay:raging goblin,Akrasan Squire,Alpha Myr,Ambush Party,Apprentice Wizard,Arb
 [PLAYER2]
 [DO]
 fireball
+choice 14
 raging goblin
 Akrasan Squire
 Alpha Myr
@@ -19,6 +20,7 @@ Arbor Elf
 Aven Squire
 Bay Falcon
 Alpha Myr
+next
 fireball
 [ASSERT]
 FIRSTMAIN

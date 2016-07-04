@@ -251,7 +251,8 @@ class Constants
 	  MENACE = 129,
 	  NOSOLO = 130,//cant attack alone
 	  MUSTBLOCK = 131,//blocks each turn
-	  NB_BASIC_ABILITIES = 132,
+	  DETHRONE = 132,
+	  NB_BASIC_ABILITIES = 133,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
