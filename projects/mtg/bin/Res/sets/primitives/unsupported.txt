@@ -4202,12 +4202,6 @@ mana={7}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Dictate of Karametra
-text=Flash -- Whenever a player taps a land for mana, that player adds one mana to his or her mana pool of any type that land produced.
-mana={3}{G}{G}
-type=Enchantment
-[/card]
-[card]
 name=Dictate of the Twin Gods
 text=Flash -- If a source would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
 mana={3}{R}{R}
@@ -7548,12 +7542,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Heartbeat of Spring
-text=Whenever a player taps a land for mana, that player adds one mana to his or her mana pool of any type that land produced.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Heartstone
 text=Activated abilities of creatures cost {1} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
 mana={3}
@@ -9042,15 +9030,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Keeper of Progenitus
-text=Whenever a player taps a Mountain, Forest, or Plains for mana, that player adds one mana to his or her mana pool of any type that land produced.
-mana={3}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=3
-[/card]
-[card]
 name=Keeper of the Lens
 text=You may look at face-down creatures you don't control. (You may do this at any time.)
 mana={1}
@@ -10324,12 +10303,6 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
-name=Mana Flare
-text=Whenever a player taps a land for mana, that player adds one mana to his or her mana pool of any type that land produced.
-mana={2}{R}
-type=Enchantment
-[/card]
-[card]
 name=Mana Maze
 text=Players can't cast spells that share a color with the spell most recently cast this turn.
 mana={1}{U}
@@ -10957,12 +10930,6 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
-[/card]
-[card]
-name=Mirari's Wake
-text=Creatures you control get +1/+1. --  -- Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced.
-mana={3}{G}{W}
-type=Enchantment
 [/card]
 [card]
 name=Mire's Toll
@@ -19600,15 +19567,6 @@ power=1
 toughness=4
 [/card]
 [card]
-name=Vorinclex, Voice of Hunger
-text=Trample -- Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced. -- Whenever an opponent taps a land for mana, that land doesn't untap during its controller's next untap step.
-mana={6}{G}{G}
-type=Legendary Creature
-subtype=Praetor
-power=7
-toughness=6
-[/card]
-[card]
 name=Vortex Elemental
 text={U}: Put Vortex Elemental and each creature blocking or blocked by it on top of their owners' libraries, then those players shuffle their libraries. -- {3}{U}{U}: Target creature blocks Vortex Elemental this turn if able.
 mana={U}
@@ -20553,12 +20511,6 @@ type=Legendary Creature
 subtype=Minotaur Monk
 power=2
 toughness=4
-[/card]
-[card]
-name=Zendikar Resurgent
-text=Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced. (The types of mana are white, blue, black, red, green, and colorless.) -- Whenever you cast a creature spell, draw a card.
-mana={5}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Zerapa Minotaur
