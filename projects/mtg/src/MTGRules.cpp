@@ -49,6 +49,10 @@ PermanentAbility(observer, _id)
         Angel[i] = 0;
         dragonbonusgranted[i] = false;
         dragon[i] = 0;
+		eldrazibonusgranted[i] = false;
+		eldrazi[i] = 0;
+		werewolfbonusgranted[i] = false;
+		werewolf[i] = 0;
     
     }
 }
@@ -171,6 +175,10 @@ int MTGEventBonus::receiveEvent(WEvent * event)
                     Angel[currentPlayer->getId()]++;
                 if(e->card->hasType("dragon")||e->card->hasType("wurm")||e->card->hasType("drake")||e->card->hasType("snake")||e->card->hasType("hydra"))
                     dragon[currentPlayer->getId()]++;
+				if (e->card->hasType("eldrazi"))
+					eldrazi[currentPlayer->getId()]++;
+				if (e->card->hasType("werewolf") || e->card->hasType("wolf"))
+					werewolf[currentPlayer->getId()]++;
             }
             if(toys[currentPlayer->getId()] > 30 && !toybonusgranted[currentPlayer->getId()])
             {
@@ -228,6 +236,16 @@ int MTGEventBonus::receiveEvent(WEvent * event)
                 grantAward("Teeth And Scales!",300);
                 dragonbonusgranted[currentPlayer->getId()] = true;
             }
+			if (eldrazi[currentPlayer->getId()] > 30 && !eldrazibonusgranted[currentPlayer->getId()])
+			{
+				grantAward("Colorblind!", 300);
+				eldrazibonusgranted[currentPlayer->getId()] = true;
+			}
+			if (werewolf[currentPlayer->getId()] > 30 && !werewolfbonusgranted[currentPlayer->getId()])
+			{
+				grantAward("Full Moon!", 300);
+				werewolfbonusgranted[currentPlayer->getId()] = true;
+			}
         }
     }
     //bonus for dealing 100+ damage from a single source
