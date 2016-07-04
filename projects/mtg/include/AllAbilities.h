@@ -166,8 +166,11 @@ private:
     {
         if(!s.size())
             return;
-        if(!card)
-            return;
+		if (!card)
+		{
+			intValue = atoi(s.c_str());//if there is no card, try parsing a number.
+			return;
+		}
         MTGCardInstance * target = card->target;
         if(!card->storedCard)
             card->storedCard = card->storedSourceCard;
@@ -272,9 +275,16 @@ private:
         }
         if(s == "prex")
         {
-            ManaCost * cX = card->controller()->getManaPool()->Diff(card->getManaCost());
-            intValue = cX->getCost(Constants::NB_Colors);
-            delete cX;
+			if (card->setX > -1)
+			{
+				intValue = card->setX;
+			}
+			else
+			{
+				ManaCost * cX = card->controller()->getManaPool()->Diff(card->getManaCost());
+				intValue = cX->getCost(Constants::NB_Colors);
+				delete cX;
+			}
         }
         else if (s == "x" || s == "X")
         {
@@ -4355,6 +4365,22 @@ public:
     AAUntapper * clone() const;
 };
 
+/*announce card X*/
+class AAWhatsX : public ActivatedAbility
+{
+public:
+	int value;
+	MTGAbility * costRule;
+	AAWhatsX(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * source, int value = 0, MTGAbility * costRule = NULL);
+	int resolve();
+	const string getMenuText()
+	{
+		sprintf(menuText, "%i", value);
+		return menuText;
+	};
+	AAWhatsX * clone() const;
+};
+
 /* set max level up on a levelup creature this is an Ai hint ability, no effect for players.*/
 class AAWhatsMax: public ActivatedAbility
 {
@@ -5166,7 +5192,38 @@ public:
     ~AShackleWrapper();
 
 };
+//Grant
+class AGrant : public MTGAbility
+{
+public:
+	MTGCardInstance * Blessed;
+	bool resolved;
+	MTGAbility * Granted;
+	MTGAbility * toGrant;
+	AGrant(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, MTGAbility * toGrant);
+	void Update(float dt);
+	void resolveGrant();
+	int resolve();
+	const string getMenuText();
+	AGrant * clone() const;
+	~AGrant();
+private:
+	void removeGranted(MTGCardInstance *_target);
+};
 
+//GrantWrapper
+class AGrantWrapper : public InstantAbility
+{
+public:
+	AGrant * ability;
+	MTGAbility * Granted;
+	AGrantWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, MTGAbility * toGrant);
+	int resolve();
+	const string getMenuText();
+	AGrantWrapper * clone() const;
+	~AGrantWrapper();
+
+};
 //ABlink
 class ABlink: public MTGAbility
 {

@@ -8,6 +8,7 @@ manapool:{U}{U}{U}{W}{W}
 inplay:1389,1390,1391
 [DO]
 1231
+choice 2
 1389
 1390
 1231

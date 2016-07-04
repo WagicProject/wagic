@@ -179,7 +179,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         }
                         break;
                     case 'd': //DiscardRandom cost
-                        if (value == "d")
+						if (value.find("delve") != string::npos)
+						{
+							if(!tc)
+								tc = tcf.createTargetChooser("*|mygraveyard", c);
+							manaCost->addExtraCost(NEW Delve(tc));
+						}
+                        else if (value == "d")
                         {
                             manaCost->addExtraCost(NEW DiscardRandomCost(tc));
                         }
@@ -253,7 +259,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         break;
                     case 'c': //Counters or cycle
                         {
-                            if(value == "chosencolor")
+							if (value.find("convoke") != string::npos)
+							{
+								if (!tc)
+									tc = tcf.createTargetChooser("creature|mybattlefield", c);
+								manaCost->addExtraCost(NEW Convoke(tc));
+							}
+                            else if(value == "chosencolor")
                             {
                                 if(c)
                                 manaCost->add(c->chooseacolor, 1);

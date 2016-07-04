@@ -9,9 +9,11 @@ manapool:{3}{U}{U}{U}
 [PLAYER2]
 [DO]
 Distorting Wake
+choice 3
 Mox Pearl
 Ornithopter
 Grizzly Bears
+Distorting Wake
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

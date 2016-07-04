@@ -21,7 +21,9 @@ next
 plains
 swamp
 Unwilling Recruit
+choice 2
 grizzly bears
+Unwilling Recruit
 next
 #begin
 next
