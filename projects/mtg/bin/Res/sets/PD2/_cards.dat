@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
-block=Duel
+name=Premium Deck Series: Fire and Lightning
 year=2010
+total=34
 [/meta]
 [card]
 primitive=Ball Lightning
@@ -115,22 +116,22 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=234739
-rarity=L
-[/card]
-[card]
-primitive=Mountain
 id=234738
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=234741
+id=234739
 rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=234740
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=234741
 rarity=L
 [/card]
 [card]
