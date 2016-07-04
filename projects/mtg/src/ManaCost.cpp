@@ -389,11 +389,10 @@ ManaCost::ManaCost(ManaCost * manaCost)
     {
         cost[i] = manaCost->getCost(i);
     }
-    hybrids = manaCost->hybrids;
-
-    kicker = NEW ManaCost( manaCost->kicker );
-    if(kicker)
-    kicker->isMulti = manaCost->isMulti;
+	hybrids = manaCost->hybrids;
+	kicker = NEW ManaCost(manaCost->kicker);
+	if (kicker)
+			kicker->isMulti = manaCost->isMulti;
     Retrace = NEW ManaCost( manaCost->Retrace );
     BuyBack = NEW ManaCost( manaCost->BuyBack );
     alternative = NEW ManaCost( manaCost->alternative );
@@ -401,8 +400,11 @@ ManaCost::ManaCost(ManaCost * manaCost)
     morph = NEW ManaCost( manaCost->morph );
     suspend = NEW ManaCost( manaCost->suspend );
 	Bestow = NEW ManaCost(manaCost->Bestow);
-
-    extraCosts = manaCost->extraCosts ? manaCost->extraCosts->clone() : NULL;
+	extraCosts = NULL;
+	if (manaCost->extraCosts)
+	{
+		extraCosts = manaCost->extraCosts->clone();
+	}
     manaUsedToCast = NULL;
     xColor = manaCost->xColor;
 }
@@ -430,8 +432,12 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     morph = NEW ManaCost( manaCost.morph );
     suspend = NEW ManaCost( manaCost.suspend );
 	Bestow = NEW ManaCost(manaCost.Bestow);
+	extraCosts = NULL;
+	if (manaCost.extraCosts)
+	{
+		extraCosts = manaCost.extraCosts->clone();
+	}
 
-    extraCosts = manaCost.extraCosts ? manaCost.extraCosts->clone() : NULL;
     manaUsedToCast = NULL;
     xColor = manaCost.xColor;
 }
@@ -480,7 +486,6 @@ void ManaCost::x()
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
         return;
     }
 
@@ -491,7 +496,6 @@ int ManaCost::hasX()
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
         return 0;
     }
     if (xColor > 0)
@@ -504,7 +508,6 @@ void ManaCost::specificX(int color)
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
         return;
     }
     xColor = color;
@@ -515,7 +518,6 @@ int ManaCost::hasSpecificX()
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
         return 0;
     }
     if(xColor > 0)

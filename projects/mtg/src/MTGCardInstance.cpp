@@ -962,20 +962,22 @@ JQuadPtr MTGCardInstance::getIcon()
 
 ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * newCost, ManaCost * refCost, bool noTrinisphere)
 {
+	//this function introduces a nasty memleak, it also cant be safe_deleted at the locations if its not used as it leads to a wild nullpointer crash.
     if(!card)
         return NULL;
-    
+	ManaCost * cardUnchangedCost = NEW ManaCost();
+	cardUnchangedCost->copy(newCost);
         if(card->getIncreasedManaCost()->getConvertedCost())
-            newCost->add(card->getIncreasedManaCost());
+			cardUnchangedCost->add(card->getIncreasedManaCost());
         if(card->getReducedManaCost()->getConvertedCost())
-            newCost->remove(card->getReducedManaCost());
+			cardUnchangedCost->remove(card->getReducedManaCost());
         if(refCost->extraCosts)
-            newCost->extraCosts = refCost->extraCosts;
+			cardUnchangedCost->extraCosts = refCost->extraCosts;
         //affinity
         int color = 0;
         string type = "";
         ManaCost * original = NEW ManaCost();
-        original->copy(newCost);
+        original->copy(cardUnchangedCost);
 		
         int reducem = 0;
         bool resetCost = false;
@@ -987,7 +989,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
                 if(!resetCost)
                 {
                     resetCost = true;
-                    newCost->copy(original);
+					cardUnchangedCost->copy(original);
                 }
                 TargetChooserFactory tf(observer);
                 TargetChooser * tcn = tf.createTargetChooser(newAff->tcString,card,NULL);
@@ -1006,7 +1008,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
                 SAFE_DELETE(tcn);
                 ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
                 for(int j = 0; j < reducem; j++)
-                    newCost->remove(removingCost);
+					cardUnchangedCost->remove(removingCost);
                 SAFE_DELETE(removingCost);
             }
         }//end2
@@ -1035,7 +1037,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
                     color = 1;
                     type = "creature";
                 }
-                newCost->copy(original);
+				cardUnchangedCost->copy(original);
                 int reduce = 0;
                 if(card->has(Constants::AFFINITYGREENCREATURES))
                 {
@@ -1047,8 +1049,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
                 else
                     reduce = card->controller()->game->battlefield->countByType(type);
                 for(int i = 0; i < reduce;i++)
-                    if(newCost->getCost(color) > 0)
-                        newCost->remove(color,1);
+                    if(cardUnchangedCost->getCost(color) > 0)
+						cardUnchangedCost->remove(color,1);
             }//end3
     
     if(!noTrinisphere)
@@ -1056,9 +1058,9 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
         //trinisphere... now how to implement kicker recomputation
         if(card->has(Constants::TRINISPHERE))
         {
-            for(int jj = newCost->getConvertedCost(); jj < 3; jj++)
+            for(int jj = cardUnchangedCost->getConvertedCost(); jj < 3; jj++)
             {
-                newCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+				cardUnchangedCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
                 card->countTrini++;
             }
         }
@@ -1066,7 +1068,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
         {
             if(card->countTrini)
             {
-                newCost->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+				cardUnchangedCost->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
                 card->countTrini=0;
             }
         }
@@ -1074,7 +1076,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * new
 
     SAFE_DELETE(original);
 
-    return newCost;
+    return cardUnchangedCost;
 }
 
 MTGCardInstance * MTGCardInstance::getNextPartner()

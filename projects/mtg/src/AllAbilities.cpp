@@ -1319,6 +1319,7 @@ int AACopier::resolve()
         MTGCard* clone = MTGCollection()->getCardById(_target->copiedID);
         MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
         source->copy(myClone);
+		SAFE_DELETE(myClone);
         source->isACopier = true;
         source->copiedID = _target->getMTGId();
         source->modifiedbAbi = _target->modifiedbAbi;
@@ -6133,6 +6134,7 @@ int AProduceMana::produce()
     {
         AManaProducer *amp = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(ManaDescription,NULL,source), NULL, 0,"",false);
         amp->resolve();
+		SAFE_DELETE(amp);//once you call resolve() on a ability, you can safely delete it.
     }
     return 1;
 }
