@@ -274,8 +274,32 @@ void CardGui::Render()
                 {
                     if(cv->mHasFocus)
                     {
-                    highlightborder->SetColor(ARGB(200,57,28,248));
+                        highlightborder->SetColor(ARGB(200,57,28,248));
+                        renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                    }
+                }
+            }
+            if(card->shackled && card->shackled->isInPlay(game) && highlightborder)
+            {
+                if(mHasFocus)
+                {
+                    if(card->has(Constants::SHACKLER))
+                        highlightborder->SetColor(ARGB(200,7,98,248));
+                    else
+                        highlightborder->SetColor(ARGB(200,57,28,248));
+
                     renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                }
+                if(CardView* cv = dynamic_cast<CardView*>(card->shackled->view))
+                {
+                    if(cv->mHasFocus)
+                    {
+                        if(!card->shackled->has(Constants::SHACKLER))
+                            highlightborder->SetColor(ARGB(200,7,98,248));
+                        else
+                            highlightborder->SetColor(ARGB(200,57,28,248));
+
+                        renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
                     }
                 }
             }
