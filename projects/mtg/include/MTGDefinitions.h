@@ -253,7 +253,8 @@ class Constants
       MUSTBLOCK = 131,//blocks each turn
       DETHRONE = 132,
       OVERLOAD = 133,
-      NB_BASIC_ABILITIES = 134,
+      SHACKLER = 134,
+      NB_BASIC_ABILITIES = 135,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
