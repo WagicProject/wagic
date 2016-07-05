@@ -39,6 +39,18 @@ if [ "$BUILD_TYPE" = "PSP" ]; then
     cd build_psp
     cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/psp.toolchain.cmake ..
     make -j8
+    mkdir WTH
+    mkdir WTH/Res
+    mv bin/EBOOT.PBP WTH/
+    mv ../thirdParty/exceptionHandler/prx/exception.prx WTH/
+    cp ../core.zip WTH/Res
+    cd WTH/Res
+    unzip core.zip
+    rm core.zip
+    cd ..
+    chmod -R 775 Res
+    cd ..
+    zip psprelease.zip -r WTH/
     cd ..
 fi
 
