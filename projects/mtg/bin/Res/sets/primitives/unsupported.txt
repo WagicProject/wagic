@@ -20304,24 +20304,6 @@ power=3
 toughness=6
 [/card]
 [card]
-name=Yisan, the Wanderer Bard
-text={2}{G}, {T}, Put a verse counter on Yisan, the Wanderer Bard: Search your library for a creature card with converted mana cost equal to the number of verse counters on Yisan, put it onto the battlefield, then shuffle your library.
-mana={2}{G}
-type=Legendary Creature
-subtype=Human Rogue
-power=2
-toughness=3
-[/card]
-[card]
-name=Yixlid Jailer
-text=Cards in graveyards lose all abilities.
-mana={1}{B}
-type=Creature
-subtype=Zombie Wizard
-power=2
-toughness=1
-[/card]
-[card]
 name=Yosei, the Morning Star
 text=Flying -- When Yosei, the Morning Star dies, target player skips his or her next untap step. Tap up to five target permanents that player controls.
 mana={4}{W}{W}
@@ -20362,15 +20344,6 @@ type=Legendary Creature
 subtype=Goblin Ally
 power=3
 toughness=3
-[/card]
-[card]
-name=Zameck Guildmage
-text={G}{U}: This turn, each creature you control enters the battlefield with an additional +1/+1 counter on it. -- {G}{U}, Remove a +1/+1 counter from a creature you control: Draw a card.
-mana={G}{U}
-type=Creature
-subtype=Elf Wizard
-power=2
-toughness=2
 [/card]
 [card]
 name=Zealous Inquisitor
