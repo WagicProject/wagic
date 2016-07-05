@@ -386,7 +386,7 @@ void CardGui::Render()
         buff = "C";
     //if(card->has(Constants::PAYZERO))
         //buff += "Z";
-    if(card->alias == 1000)
+    if(card->chooseacolor >= 1)
     {
         if(card->chooseacolor == 1)
             buff += "\n-Green";
