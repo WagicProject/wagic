@@ -2438,7 +2438,7 @@ int AIPlayerBaka::computeActions()
                             cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
                             MTGCardInstance *freecard = cd.match(game->graveyard);
                             int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
-                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMGRAVEYARD) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (freecard->alias != 1111))
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMGRAVEYARD) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (!freecard->isCDA))
                             {
                                 MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
                                 AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
@@ -2453,7 +2453,7 @@ int AIPlayerBaka::computeActions()
                             cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
                             MTGCardInstance *freecard = cd.match(game->exile);
                             int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
-                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMEXILE) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (freecard->alias != 1111))
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMEXILE) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (!freecard->isCDA))
                             {
                                 MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
                                 AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
