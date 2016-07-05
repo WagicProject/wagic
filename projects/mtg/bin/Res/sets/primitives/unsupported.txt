@@ -132,15 +132,6 @@ mana={W}
 type=Enchantment
 [/card]
 [card]
-name=Aerial Caravan
-text=Flying -- {1}{U}{U}: Exile the top card of your library. Until end of turn, you may play that card. (Reveal the card as you exile it.)
-mana={4}{U}{U}
-type=Creature
-subtype=Human Soldier
-power=4
-toughness=3
-[/card]
-[card]
 name=Aerial Formation
 text=Strive — Aerial Formation costs {2}{U} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain flying until end of turn.
 mana={U}
@@ -464,12 +455,6 @@ type=Artifact
 name=Animal Magnetism
 text=Reveal the top five cards of your library. An opponent chooses a creature card from among them. Put that card onto the battlefield and the rest into your graveyard.
 mana={4}{G}
-type=Sorcery
-[/card]
-[card]
-name=Animist's Awakening
-text=Reveal the top X cards of your library. Put all land cards from among them onto the battlefield tapped and the rest on the bottom of your library in a random order. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, untap those lands.
-mana={X}{G}
 type=Sorcery
 [/card]
 [card]
@@ -2991,12 +2976,6 @@ mana={X}{R}{R}
 type=Instant
 [/card]
 [card]
-name=Commune with the Gods
-text=Reveal the top five cards of your library. You may put a creature or enchantment card from among them into your hand. Put the rest into your graveyard.
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
 name=Compelling Deterrence
 text=Return target nonland permanent to its owner's hand. Then that player discards a card if you control a Zombie.
 mana={1}{U}
@@ -4200,12 +4179,6 @@ name=Dichotomancy
 text=For each tapped nonland permanent target opponent controls, search that player's library for a card with the same name as that permanent and put it onto the battlefield under your control. Then that player shuffles his or her library. -- Suspend 3—{1}{U}{U} (Rather than cast this card from your hand, you may pay {1}{U}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={7}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Dictate of Karametra
-text=Flash -- Whenever a player taps a land for mana, that player adds one mana to his or her mana pool of any type that land produced.
-mana={3}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Dictate of the Twin Gods
@@ -5997,12 +5970,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Fork in the Road
-text=Search your library for up to two basic land cards and reveal them. Put one into your hand and the other into your graveyard. Then shuffle your library.
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
 name=Forked Lightning
 text=Forked Lightning deals 4 damage divided as you choose among one, two, or three target creatures.
 mana={3}{R}
@@ -6228,19 +6195,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Garruk, Caller of Beasts
-text=+1: Reveal the top five cards of your library. Put all creature cards revealed this way into your hand and the rest on the bottom of your library in any order. -- -3: You may put a green creature card from your hand onto the battlefield. -- -7: You get an emblem with "Whenever you cast a creature spell, you may search your library for a creature card, put it onto the battlefield, then shuffle your library."
-mana={4}{G}{G}
-type=Planeswalker
-subtype=Garruk
-[/card]
-[card]
-name=Garruk, the Veil-Cursed
-text=+1: Put a 1/1 black Wolf creature token with deathtouch onto the battlefield. -- -1: Sacrifice a creature. If you do, search your library for a creature card, reveal it, put it into your hand, then shuffle your library. -- -3: Creatures you control gain trample and get +X/+X until end of turn, where X is the number of creature cards in your graveyard.
-type=Planeswalker
-subtype=Garruk
-[/card]
-[card]
 name=Garruk's Horde
 text=Trample  -- Play with the top card of your library revealed. -- You may cast the top card of your library if it's a creature card. (Do this only any time you could cast that creature card. You still pay the spell's costs.)
 mana={5}{G}{G}
@@ -6260,12 +6214,6 @@ name=Gather Specimens
 text=If a creature would enter the battlefield under an opponent's control this turn, it enters the battlefield under your control instead.
 mana={3}{U}{U}{U}
 type=Instant
-[/card]
-[card]
-name=Gather the Pack
-text=Reveal the top five cards of your library. You may put a creature card from among them into your hand. Put the rest into your graveyard. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, put up to two creature cards from among the revealed cards into your hand instead of one.
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
 name=Gauntlets of Chaos
@@ -6331,15 +6279,6 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=1
-[/card]
-[card]
-name=Genesis Hydra
-text=When you cast Genesis Hydra, reveal the top X cards of your library. You may put a nonland permanent card with converted mana cost X or less from among them onto the battlefield. Then shuffle the rest into your library. -- Genesis Hydra enters the battlefield with X +1/+1 counters on it.
-mana={X}{G}{G}
-type=Creature
-subtype=Plant Hydra
-power=0
-toughness=0
 [/card]
 [card]
 name=Geosurge
@@ -7546,12 +7485,6 @@ type=Creature
 subtype=Wolf
 power=2
 toughness=2
-[/card]
-[card]
-name=Heartbeat of Spring
-text=Whenever a player taps a land for mana, that player adds one mana to his or her mana pool of any type that land produced.
-mana={2}{G}
-type=Enchantment
 [/card]
 [card]
 name=Heartstone
@@ -9042,15 +8975,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Keeper of Progenitus
-text=Whenever a player taps a Mountain, Forest, or Plains for mana, that player adds one mana to his or her mana pool of any type that land produced.
-mana={3}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=3
-[/card]
-[card]
 name=Keeper of the Lens
 text=You may look at face-down creatures you don't control. (You may do this at any time.)
 mana={1}
@@ -9495,12 +9419,6 @@ type=Legendary Enchantment Creature
 subtype=God
 power=4
 toughness=7
-[/card]
-[card]
-name=Kruphix's Insight
-text=Reveal the top six cards of your library. Put up to three enchantment cards from among them into your hand and the rest of the revealed cards into your graveyard.
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
 name=Kuldotha Flamefiend
@@ -10324,12 +10242,6 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
-name=Mana Flare
-text=Whenever a player taps a land for mana, that player adds one mana to his or her mana pool of any type that land produced.
-mana={2}{R}
-type=Enchantment
-[/card]
-[card]
 name=Mana Maze
 text=Players can't cast spells that share a color with the spell most recently cast this turn.
 mana={1}{U}
@@ -10957,12 +10869,6 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
-[/card]
-[card]
-name=Mirari's Wake
-text=Creatures you control get +1/+1. --  -- Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced.
-mana={3}{G}{W}
-type=Enchantment
 [/card]
 [card]
 name=Mire's Toll
@@ -12639,15 +12545,6 @@ mana={B} // {3}{R}
 type=Sorcery // Sorcery
 [/card]
 [card]
-name=Pain Seer
-text=Inspired — Whenever Pain Seer becomes untapped, reveal the top card of your library and put that card into your hand. You lose life equal to that card's converted mana cost.
-mana={1}{B}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Pain's Reward
 text=Each player may bid life. You start the bidding with a bid of any number. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and draws four cards.
 mana={2}{B}
@@ -13509,12 +13406,6 @@ name=Prohibit
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Counter target spell if its converted mana cost is 2 or less. If Prohibit was kicked, counter that spell if its converted mana cost is 4 or less instead.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Prophecy
-text=Reveal the top card of target opponent's library. If it's a land, you gain 1 life. Then that player shuffles his or her library. -- Draw a card at the beginning of the next turn's upkeep.
-mana={W}
-type=Sorcery
 [/card]
 [card]
 name=Prophetic Flamespeaker
@@ -15215,13 +15106,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=Sarkhan the Mad
-text=0: Reveal the top card of your library and put it into your hand. Sarkhan the Mad deals damage to himself equal to that card's converted mana cost. -- -2: Target creature's controller sacrifices it, then that player puts a 5/5 red Dragon creature token with flying onto the battlefield. -- -4: Each Dragon creature you control deals damage equal to its power to target player.
-mana={3}{B}{R}
-type=Planeswalker
-subtype=Sarkhan
-[/card]
-[card]
 name=Sasaya, Orochi Ascendant
 text=Reveal your hand: If you have seven or more land cards in your hand, flip Sasaya, Orochi Ascendant.
 mana={1}{G}{G}
@@ -15243,15 +15127,6 @@ mana={2}{G}
 type=Creature
 subtype=Satyr Rogue
 power=2
-toughness=1
-[/card]
-[card]
-name=Satyr Wayfinder
-text=When Satyr Wayfinder enters the battlefield, reveal the top four cards of your library. You may put a land card from among them into your hand. Put the rest into your graveyard.
-mana={1}{G}
-type=Creature
-subtype=Satyr
-power=1
 toughness=1
 [/card]
 [card]
@@ -18645,12 +18520,6 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Tracker's Instincts
-text=Reveal the top four cards of your library. Put a creature card from among them into your hand and the rest into your graveyard. -- Flashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
 name=Trade Secrets
 text=Target opponent draws two cards, then you draw up to four cards. That opponent may repeat this process as many times as he or she chooses.
 mana={1}{U}{U}
@@ -19370,12 +19239,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Vigean Intuition
-text=Choose a card type, then reveal the top four cards of your library. Put all cards of the chosen type revealed this way into your hand and the rest into your graveyard. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
-mana={3}{G}{U}
-type=Instant
-[/card]
-[card]
 name=Vigil for the Lost
 text=Whenever a creature you control dies, you may pay {X}. If you do, you gain X life.
 mana={3}{W}
@@ -19598,15 +19461,6 @@ type=Legendary Creature
 subtype=Human Merfolk
 power=1
 toughness=4
-[/card]
-[card]
-name=Vorinclex, Voice of Hunger
-text=Trample -- Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced. -- Whenever an opponent taps a land for mana, that land doesn't untap during its controller's next untap step.
-mana={6}{G}{G}
-type=Legendary Creature
-subtype=Praetor
-power=7
-toughness=6
 [/card]
 [card]
 name=Vortex Elemental
@@ -20555,12 +20409,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Zendikar Resurgent
-text=Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced. (The types of mana are white, blue, black, red, green, and colorless.) -- Whenever you cast a creature spell, draw a card.
-mana={5}{G}{G}
-type=Enchantment
-[/card]
-[card]
 name=Zerapa Minotaur
 text=First strike -- {2}: Zerapa Minotaur loses first strike until end of turn. Any player may activate this ability.
 mana={2}{R}{R}
@@ -20592,4 +20440,4 @@ name=Zur's Weirding
 text=Players play with their hands revealed. -- If a player would draw a card, he or she reveals it instead. Then any other player may pay 2 life. If a player does, put that card into its owner's graveyard. Otherwise, that player draws a card.
 mana={3}{U}
 type=Enchantment
-[/card]
+[/card]
