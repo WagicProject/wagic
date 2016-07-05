@@ -159,11 +159,12 @@ const char* Constants::MTGBasicAbilities[] = {
     "combattoughness",
     "cantpaylife",
     "cantbesacrified",
-	"skulk",
-	"menace",
-	"nosolo",
-	"mustblock",
-	"dethrone",
+    "skulk",
+    "menace",
+    "nosolo",
+    "mustblock",
+    "dethrone",
+    "overload",
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

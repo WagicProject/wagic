@@ -687,7 +687,7 @@ PermanentAbility(observer, _id)
 
 int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    if (card->alias == 11000)
+    if (card->has(Constants::OVERLOAD))
         return 0;//overload has its own rule
     if(!card->getManaCost()->getAlternative())
         return 0;
@@ -1410,7 +1410,7 @@ MTGAlternativeCostRule(observer, _id)
 
 int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    if (card->alias != 11000)
+    if (!card->has(Constants::OVERLOAD))
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getAlternative());
