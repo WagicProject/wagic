@@ -4005,15 +4005,6 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Delver of Secrets
-text=At the beginning of your upkeep, look at the top card of your library. You may reveal that card. If an instant or sorcery card is revealed this way, transform Delver of Secrets.
-mana={U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Dementia Sliver
 text=All Slivers have "{T}: Name a card. Target opponent reveals a card at random from his or her hand. If it's the named card, that player discards it. Activate this ability only during your turn."
 mana={3}{U}{B}
@@ -17767,15 +17758,6 @@ name=Tariff
 text=Each player sacrifices the creature he or she controls with the highest converted mana cost unless he or she pays that creature's mana cost. If two creatures a player controls are tied for highest cost, that player chooses one.
 mana={1}{W}
 type=Sorcery
-[/card]
-[card]
-name=Tasigur, the Golden Fang
-text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- {2}{GU}{GU}: Put the top two cards of your library into your graveyard, then return a nonland card of an opponent's choice from your graveyard to your hand.
-mana={5}{B}
-type=Legendary Creature
-subtype=Human Shaman
-power=4
-toughness=5
 [/card]
 [card]
 name=Task Mage Assembly
