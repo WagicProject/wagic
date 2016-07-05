@@ -42,7 +42,7 @@ if [ "$BUILD_TYPE" = "PSP" ]; then
     mkdir WTH
     mkdir WTH/Res
     mv bin/EBOOT.PBP WTH/
-    mv ../thirdParty/exceptionHandler/prx/exception.prx WTH/
+    mv ../thirdparty/exceptionHandler/prx/exception.prx WTH/
     cp ../core.zip WTH/Res
     cd WTH/Res
     unzip core.zip
