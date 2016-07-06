@@ -58,6 +58,10 @@ public:
     int Angel[2];
     bool dragonbonusgranted[2];
     int dragon[2];
+    bool eldrazibonusgranted[2];
+    int eldrazi[2];
+    bool werewolfbonusgranted[2];
+    int werewolf[2];
 
     int receiveEvent(WEvent * event);
     void grantAward(string awardName,int amount);

@@ -1057,208 +1057,115 @@ void GameObserver::Affinity()
                 if (!card)
                     continue;
 
-				///////////////////////////
-				//reset extracost shadows//
-				///////////////////////////
-				card->isExtraCostTarget = false;
-				if (mExtraPayment != NULL)
-				{
-					for (unsigned int ec = 0; ec < mExtraPayment->costs.size(); ec++)
-					{
-
-						if (mExtraPayment->costs[ec]->tc)
-						{
-							vector<Targetable*>targetlist = mExtraPayment->costs[ec]->tc->getTargetsFrom();
-							for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
-							{
-								Targetable * cardMasked = *it;
-								dynamic_cast<MTGCardInstance*>(cardMasked)->isExtraCostTarget = true;
-							}
-
-						}
-					}
-				}
-				////////////////////////////
-				bool NewAffinityFound = false;
-				for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
-				{
-					if (!card->cardsAbilities[na])
-						break;
-					ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
-					if (newAff)
-					{
-						NewAffinityFound = true;
-					}
-				}
-				bool DoReduceIncrease = false;
-				if (card->has(Constants::AFFINITYARTIFACTS) ||
-					card->has(Constants::AFFINITYFOREST) ||
-					card->has(Constants::AFFINITYGREENCREATURES) ||
-					card->has(Constants::AFFINITYISLAND) ||
-					card->has(Constants::AFFINITYMOUNTAIN) ||
-					card->has(Constants::AFFINITYPLAINS) ||
-					card->has(Constants::AFFINITYSWAMP) ||
-					card->has(Constants::TRINISPHERE) ||
-					card->getIncreasedManaCost()->getConvertedCost() ||
-					card->getReducedManaCost()->getConvertedCost() ||
-					NewAffinityFound)
-					DoReduceIncrease = true;
-				if (!DoReduceIncrease)
-					continue;
-				//above we check if there are even any cards that effect cards manacost
-				//if there are none, leave this function. manacost->copy( is a very expensive funtion
-				//1mb a sec to run at all time even when no known reducers or increasers are in play.
-				//memory snapshot shots pointed to this as such a heavy load that games with many cards inplay
-				//would slow to a crawl.
-                //only do any of the following if a card with the stated ability is in your hand.
-                int color = 0;
-                string type = "";
-                
-                ManaCost * original = NEW ManaCost();
-                original->copy(card->model->data->getManaCost());
-                if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
-                {//start1
-                    if(card->getIncreasedManaCost()->getConvertedCost())
-                        original->add(card->getIncreasedManaCost());
-                    if(card->getReducedManaCost()->getConvertedCost())
-                        original->remove(card->getReducedManaCost());
-                    if(card->getManaCost())
-                        card->getManaCost()->copy(original);
-                    if(card->getManaCost()->extraCosts)
+                ///////////////////////////
+                //reset extracost shadows//
+                ///////////////////////////
+                card->isExtraCostTarget = false;
+                if (mExtraPayment != NULL)
+                {
+                    for (unsigned int ec = 0; ec < mExtraPayment->costs.size(); ec++)
                     {
-                        for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
+
+                        if (mExtraPayment->costs[ec]->tc)
                         {
-                            card->getManaCost()->extraCosts->costs[i]->setSource(card);
+                            vector<Targetable*>targetlist = mExtraPayment->costs[ec]->tc->getTargetsFrom();
+                            for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+                            {
+                                Targetable * cardMasked = *it;
+                                dynamic_cast<MTGCardInstance*>(cardMasked)->isExtraCostTarget = true;
+                            }
+
                         }
                     }
-                }//end1
-                int reducem = 0;
-                bool resetCost = false;
-                for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
-                {//start2
-					if (!card->cardsAbilities[na])
-						break;
+                }
+                ////////////////////////////
+                bool NewAffinityFound = false;
+                for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
+                {
+                    if (!card->cardsAbilities[na])
+                        break;
                     ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
-                    if(newAff)
+                    if (newAff)
                     {
-                        if(!resetCost)
-                        {
-                            resetCost = true;
-                            card->getManaCost()->copy(original);
-                            if(card->getManaCost()->extraCosts)
-                            {
-                                for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
-                                {
-                                    card->getManaCost()->extraCosts->costs[i]->setSource(card);
-                                }
-                            }
-                        }
-                        TargetChooserFactory tf(this);
-                        TargetChooser * tcn = tf.createTargetChooser(newAff->tcString,card,NULL);
+                        NewAffinityFound = true;
+                    }
+                }
+                bool DoReduceIncrease = false;
+                if (card->has(Constants::AFFINITYARTIFACTS) ||
+                    card->has(Constants::AFFINITYFOREST) ||
+                    card->has(Constants::AFFINITYGREENCREATURES) ||
+                    card->has(Constants::AFFINITYISLAND) ||
+                    card->has(Constants::AFFINITYMOUNTAIN) ||
+                    card->has(Constants::AFFINITYPLAINS) ||
+                    card->has(Constants::AFFINITYSWAMP) ||
+                    card->has(Constants::TRINISPHERE) ||
+                    card->getIncreasedManaCost()->getConvertedCost() ||
+                    card->getReducedManaCost()->getConvertedCost() ||
+                    NewAffinityFound)
+                    DoReduceIncrease = true;
+                if (!DoReduceIncrease)
+                    continue;
+                //above we check if there are even any cards that effect cards manacost
+                //if there are none, leave this function. manacost->copy( is a very expensive funtion
+                //1mb a sec to run at all time even when no known reducers or increasers are in play.
+                //memory snapshot shots pointed to this as such a heavy load that games with many cards inplay
+                //would slow to a crawl.
+                //only do any of the following if a card with the stated ability is in your hand.
+                //kicker is an addon to normal cost, suspend is not casting. add cost as needed EXACTLY as seen below.
+                card->getManaCost()->resetCosts();
+                ManaCost * newCost = NEW ManaCost();
+                newCost->copy(card->computeNewCost(card, card->getManaCost(), card->model->data->getManaCost()));
+                card->getManaCost()->copy(newCost);
+                SAFE_DELETE(newCost);
+                if (card->getManaCost()->getAlternative())
+                {
+                    card->getManaCost()->getAlternative()->resetCosts();
+                    ManaCost * newCost = NEW ManaCost();
+                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getAlternative(), card->model->data->getManaCost()->getAlternative()));
+                    card->getManaCost()->getAlternative()->copy(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getBestow())
+                {
+                    card->getManaCost()->getBestow()->resetCosts();
+                    ManaCost * newCost = NEW ManaCost();
+                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getBestow(), card->model->data->getManaCost()->getBestow()));
+                    card->getManaCost()->getBestow()->copy(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getRetrace())
+                {
+                    card->getManaCost()->getRetrace()->resetCosts();
+                    ManaCost * newCost = NEW ManaCost();
+                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getRetrace(), card->model->data->getManaCost()->getRetrace()));
+                    card->getManaCost()->getRetrace()->copy(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getBuyback())
+                {
+                    card->getManaCost()->getBuyback()->resetCosts();
+                    ManaCost * newCost = NEW ManaCost();
+                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getBuyback(), card->model->data->getManaCost()->getBuyback()));
+                    card->getManaCost()->getBuyback()->copy(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getFlashback())
+                {
+                    card->getManaCost()->getFlashback()->resetCosts();
+                    ManaCost * newCost = NEW ManaCost();
+                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getFlashback(), card->model->data->getManaCost()->getFlashback()));
+                    card->getManaCost()->getFlashback()->copy(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getMorph())
+                {
+                    card->getManaCost()->getMorph()->resetCosts();
+                    ManaCost * newCost = NEW ManaCost();
+                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getMorph(), card->model->data->getManaCost()->getMorph()));
+                    card->getManaCost()->getMorph()->copy(newCost);
+                    SAFE_DELETE(newCost);
+                }
 
-                        for (int w = 0; w < 2; ++w)
-                        {
-                            Player *p = this->players[w];
-                            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
-                            for (int k = 0; k < 6; k++)
-                            {
-                                MTGGameZone * z = zones[k];
-                                if (tcn->targetsZone(z))
-                                {
-                                    reducem += z->countByCanTarget(tcn);
-                                }
-                            }
-                        }
-                        SAFE_DELETE(tcn);
-                        ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
-                        for(int j = 0; j < reducem; j++)
-                            card->getManaCost()->remove(removingCost);
-                        SAFE_DELETE(removingCost);
-                    }
-                }//end2
-                if(card->has(Constants::AFFINITYARTIFACTS)||
-                    card->has(Constants::AFFINITYFOREST)||
-                    card->has(Constants::AFFINITYGREENCREATURES)||
-                    card->has(Constants::AFFINITYISLAND)||
-                    card->has(Constants::AFFINITYMOUNTAIN)||
-                    card->has(Constants::AFFINITYPLAINS)||
-                    card->has(Constants::AFFINITYSWAMP))
-                    {//start3
-                        if (card->has(Constants::AFFINITYARTIFACTS))
-                        {
-                            type = "artifact";
-                        }
-                        else if (card->has(Constants::AFFINITYSWAMP))
-                        {
-                            type = "swamp";
-                        }
-                        else if (card->has(Constants::AFFINITYMOUNTAIN))
-                        {
-                            type = "mountain";
-                        }
-                        else if (card->has(Constants::AFFINITYPLAINS))
-                        {
-                            type = "plains";
-                        }
-                        else if (card->has(Constants::AFFINITYISLAND))
-                        {
-                            type = "island";
-                        }
-                        else if (card->has(Constants::AFFINITYFOREST))
-                        {
-                            type = "forest";
-                        }
-                        else if (card->has(Constants::AFFINITYGREENCREATURES))
-                        {
-                            color = 1;
-                            type = "creature";
-                        }
-                        card->getManaCost()->copy(original);
-                        if(card->getManaCost()->extraCosts)
-                        {
-                            for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
-                            {
-                                card->getManaCost()->extraCosts->costs[i]->setSource(card);
-                            }
-                        }
-                        int reduce = 0;
-                        if(card->has(Constants::AFFINITYGREENCREATURES))
-                        {
-                            TargetChooserFactory tf(this);
-                            TargetChooser * tc = tf.createTargetChooser("creature[green]",NULL);
-                            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
-                            SAFE_DELETE(tc);
-                        }
-                        else
-                        {
-                            reduce = card->controller()->game->battlefield->countByType(type);
-                        }
-                        for(int i = 0; i < reduce;i++)
-                        {
-                            if(card->getManaCost()->getCost(color) > 0)
-                                card->getManaCost()->remove(color,1);
-                        }
-                    }//end3
-                //trinisphere... now how to implement kicker recomputation
-                
-                if(card->has(Constants::TRINISPHERE))
-                {
-                    for(int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
-                    {
-                        card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                        card->countTrini++;
-                    }
-                }
-                else
-                {
-                    if(card->countTrini)
-                    {
-                        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
-                        card->countTrini=0;
-                    }
-                }
-                
-                SAFE_DELETE(original);
             }//end
         }
     }
