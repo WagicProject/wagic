@@ -352,3 +352,13 @@ mana={B}
 type=Instant
 text=Target creature gets +2/+0 and gains deathtouch until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
+[card]
+name=Yixlid Jailer
+auto=lord(*|graveyard) loseabilities
+text=Cards in graveyards lose all abilities.
+mana={1}{B}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=1
+[/card]

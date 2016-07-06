@@ -274,8 +274,32 @@ void CardGui::Render()
                 {
                     if(cv->mHasFocus)
                     {
-                    highlightborder->SetColor(ARGB(200,57,28,248));
+                        highlightborder->SetColor(ARGB(200,57,28,248));
+                        renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                    }
+                }
+            }
+            if(card->shackled && card->shackled->isInPlay(game) && highlightborder)
+            {
+                if(mHasFocus)
+                {
+                    if(card->has(Constants::SHACKLER))
+                        highlightborder->SetColor(ARGB(200,7,98,248));
+                    else
+                        highlightborder->SetColor(ARGB(200,57,28,248));
+
                     renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                }
+                if(CardView* cv = dynamic_cast<CardView*>(card->shackled->view))
+                {
+                    if(cv->mHasFocus)
+                    {
+                        if(!card->shackled->has(Constants::SHACKLER))
+                            highlightborder->SetColor(ARGB(200,7,98,248));
+                        else
+                            highlightborder->SetColor(ARGB(200,57,28,248));
+
+                        renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
                     }
                 }
             }
@@ -386,7 +410,7 @@ void CardGui::Render()
         buff = "C";
     //if(card->has(Constants::PAYZERO))
         //buff += "Z";
-    if(card->alias == 1000)
+    if(card->chooseacolor >= 1)
     {
         if(card->chooseacolor == 1)
             buff += "\n-Green";
@@ -1114,7 +1138,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         string cardsetname = setlist[card->setId].c_str();
         if(!noborder)
         {
-            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR")
+            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
             {
                 //like white border
                 renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,248,248,255));

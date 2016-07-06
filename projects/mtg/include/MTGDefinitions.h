@@ -248,11 +248,13 @@ class Constants
       CANTPAYLIFE = 126,
       CANTBESACRIFIED = 127,
       SKULK = 128,
-	  MENACE = 129,
-	  NOSOLO = 130,//cant attack alone
-	  MUSTBLOCK = 131,//blocks each turn
-	  DETHRONE = 132,
-	  NB_BASIC_ABILITIES = 133,
+      MENACE = 129,
+      NOSOLO = 130,//cant attack alone
+      MUSTBLOCK = 131,//blocks each turn
+      DETHRONE = 132,
+      OVERLOAD = 133,
+      SHACKLER = 134,
+      NB_BASIC_ABILITIES = 135,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

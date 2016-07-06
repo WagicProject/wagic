@@ -211,6 +211,7 @@ void MTGCardInstance::initMTGCI()
     storedCard = NULL;
     storedSourceCard = NULL;
     myPair = NULL;
+    shackled = NULL;
     miracle = false;
     countTrini = 0;
     imprintedCards.clear();
