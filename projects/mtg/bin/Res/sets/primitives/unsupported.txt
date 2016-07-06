@@ -4005,15 +4005,6 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Delver of Secrets
-text=At the beginning of your upkeep, look at the top card of your library. You may reveal that card. If an instant or sorcery card is revealed this way, transform Delver of Secrets.
-mana={U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Dementia Sliver
 text=All Slivers have "{T}: Name a card. Target opponent reveals a card at random from his or her hand. If it's the named card, that player discards it. Activate this ability only during your turn."
 mana={3}{U}{B}
@@ -17769,15 +17760,6 @@ mana={1}{W}
 type=Sorcery
 [/card]
 [card]
-name=Tasigur, the Golden Fang
-text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- {2}{GU}{GU}: Put the top two cards of your library into your graveyard, then return a nonland card of an opponent's choice from your graveyard to your hand.
-mana={5}{B}
-type=Legendary Creature
-subtype=Human Shaman
-power=4
-toughness=5
-[/card]
-[card]
 name=Task Mage Assembly
 text=When there are no creatures on the battlefield, sacrifice Task Mage Assembly. -- {2}: Task Mage Assembly deals 1 damage to target creature. Any player may activate this ability but only any time he or she could cast a sorcery.
 mana={2}{R}
@@ -20322,24 +20304,6 @@ power=3
 toughness=6
 [/card]
 [card]
-name=Yisan, the Wanderer Bard
-text={2}{G}, {T}, Put a verse counter on Yisan, the Wanderer Bard: Search your library for a creature card with converted mana cost equal to the number of verse counters on Yisan, put it onto the battlefield, then shuffle your library.
-mana={2}{G}
-type=Legendary Creature
-subtype=Human Rogue
-power=2
-toughness=3
-[/card]
-[card]
-name=Yixlid Jailer
-text=Cards in graveyards lose all abilities.
-mana={1}{B}
-type=Creature
-subtype=Zombie Wizard
-power=2
-toughness=1
-[/card]
-[card]
 name=Yosei, the Morning Star
 text=Flying -- When Yosei, the Morning Star dies, target player skips his or her next untap step. Tap up to five target permanents that player controls.
 mana={4}{W}{W}
@@ -20380,15 +20344,6 @@ type=Legendary Creature
 subtype=Goblin Ally
 power=3
 toughness=3
-[/card]
-[card]
-name=Zameck Guildmage
-text={G}{U}: This turn, each creature you control enters the battlefield with an additional +1/+1 counter on it. -- {G}{U}, Remove a +1/+1 counter from a creature you control: Draw a card.
-mana={G}{U}
-type=Creature
-subtype=Elf Wizard
-power=2
-toughness=2
 [/card]
 [card]
 name=Zealous Inquisitor
