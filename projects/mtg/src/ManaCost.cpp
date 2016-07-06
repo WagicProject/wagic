@@ -601,6 +601,7 @@ void ManaCost::copy(ManaCost * _manaCost)
     hybrids = _manaCost->hybrids;
 
     SAFE_DELETE(extraCosts);
+
     if (_manaCost->extraCosts)
     {
         extraCosts = _manaCost->extraCosts->clone();
