@@ -1459,8 +1459,6 @@ int MTGOverloadRule::reactToClick(MTGCardInstance * card)
 {
     if (!isReactingToClick(card))
         return 0;
-
-    ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getAlternative());
     ManaCost * newCost = card->getManaCost()->getAlternative();
     if(newCost->extraCosts)
         for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
