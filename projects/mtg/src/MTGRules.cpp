@@ -1053,7 +1053,7 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 	{
 		return 0;
 	}
-	auto retraceCost = card->getManaCost()->getRetrace();
+	ManaCost * retraceCost = card->getManaCost()->getRetrace();
     if(retraceCost->extraCosts)
         for(unsigned int i = 0; i < retraceCost->extraCosts->costs.size();i++)
         {
@@ -1378,7 +1378,6 @@ int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 	}
 	ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
 	ManaCost * newCost = card->computeNewCost(card, cost, cost);
-	SAFE_DELETE(cost);
 	if (newCost->extraCosts)
 		for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
 		{
