@@ -179,10 +179,8 @@ private:
         bool halfdown = false;
         bool twice = false;
         bool thrice = false;
-        bool plusone = false;
-        bool plustwo = false;
-        bool plusthree = false;
         bool other = false;//othertype:[subtype]
+
         if (!target) target = card;
         int multiplier = 1;
         if (s[0] == '-')
@@ -231,24 +229,7 @@ private:
             size_t tXXX = s.find("thrice");
             s.erase(tXXX,tXXX + 6);
         }
-        if(s.find("plusone") != string::npos)
-        {
-            plusone = true;
-            size_t pOne = s.find("plusone");
-            s.erase(pOne,pOne + 7);
-        }
-        if(s.find("plustwo") != string::npos)
-        {
-            plustwo = true;
-            size_t pTwo = s.find("plustwo");
-            s.erase(pTwo,pTwo + 7);
-        }
-        if(s.find("plusthree") != string::npos)
-        {
-            plusthree = true;
-            size_t pThree = s.find("plusthree");
-            s.erase(pThree,pThree + 9);
-        }
+
         if(s.find("othertype") != string::npos)
         {
             other = true;
@@ -273,7 +254,47 @@ private:
             size_t otc = s.find("otherconvertedcost");
             s.erase(otc,otc + 5);
         }
-        if(s == "prex")
+
+		if (s.find("plusend") != string::npos || s.find("minusend") != string::npos || s.find("math") != string::npos)
+		{
+			//plus#plusend and minus#minusend splits the first part and second parts and parses the
+			//ints for each part, then either adds or subtracts those 2 variables as specified.
+			vector<string>mathFound = parseBetween(s, "math", "mathend", true);
+			if (mathFound.size())//maths allows us to get the value before applying multipliers
+			{
+				WParsedInt numPar(mathFound[1], NULL, card);
+				intValue = numPar.getValue();
+
+			}
+			else
+			{
+				vector<string>plusSplit = parseBetween(s, "", "plus", true);
+				if (plusSplit.size())
+				{
+					WParsedInt numPar(plusSplit[1], NULL, card);
+					intValue = numPar.getValue();
+				}
+				vector<string>plusFound = parseBetween(s, "plus", "plusend", true);
+				if (plusFound.size())
+				{
+					WParsedInt numPar(plusFound[1], NULL, card);
+					intValue += numPar.getValue();
+				}
+				vector<string>minusSplit = parseBetween(s, "", "minus", true);
+				if (minusSplit.size())
+				{
+					WParsedInt numPar(minusSplit[1], NULL, card);
+					intValue = numPar.getValue();
+				}
+				vector<string>minusFound = parseBetween(s, "minus", "minusend", true);
+				if (minusFound.size())
+				{
+					WParsedInt numPar(minusFound[1], NULL, card);
+					intValue -= numPar.getValue();
+				}
+			}
+		}
+        else if(s == "prex")
         {
 			if (card->setX > -1)
 			{
@@ -806,12 +827,18 @@ private:
         else if (s == "pbasiclandtypes")//Basic Land types
         {
             MTGGameZone * checkZone = card->controller()->inPlay();
-            intValue = 
-                    cardHasTypeinZone("forest",checkZone) +
-                    cardHasTypeinZone("plains",checkZone) +
-                    cardHasTypeinZone("swamp",checkZone) +
-                    cardHasTypeinZone("island",checkZone) +
-                    cardHasTypeinZone("mountain",checkZone);
+            intValue = //mtg rules 205.4c
+				cardHasTypeinZone("waste", checkZone) +
+				cardHasTypeinZone("forest", checkZone) +
+				cardHasTypeinZone("plains", checkZone) +
+				cardHasTypeinZone("swamp", checkZone) +
+				cardHasTypeinZone("island", checkZone) +
+				cardHasTypeinZone("mountain", checkZone) +
+				cardHasTypeinZone("snow-covered forest", checkZone) +
+				cardHasTypeinZone("snow-covered plains", checkZone) +
+				cardHasTypeinZone("snow-covered swamp", checkZone) +
+				cardHasTypeinZone("snow-covered island", checkZone) +
+				cardHasTypeinZone("snow-covered mountain", checkZone);
         }
         else if (s == "myname")//Name of the card you control
         {
@@ -858,13 +885,6 @@ private:
                     cardHasTypeinZone("artifact",checkZone);
             }
         }
-        else if (s == "morethanfourcards")
-        {
-            intValue = 0;
-            int damage = card->playerTarget ? card->playerTarget->game->hand->nb_cards - 4 : card->controller()->opponent()->game->hand->nb_cards - 4;
-            if ( damage > 0 )
-                intValue = damage;
-        }
         else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
         {
             intValue = 0;
@@ -889,42 +909,34 @@ private:
 			if (card->revealedLast)
 				intValue = card->revealedLast->getManaCost()->getConvertedCost();
 		}
-        else
+        else if(!intValue)//found nothing, try parsing a atoi
         {
             intValue = atoi(s.c_str());
-        }
-        if(intValue > 0)
-        {
-            if(halfup)
-            {
-                if(intValue%2 == 1)
-                    intValue++;
-                intValue = intValue/2;
-            }
-            if(halfdown)
-                intValue = intValue/2;
-            if(twice)
-                intValue = intValue*2;
-            if(thrice)
-                intValue = intValue*3;
-            if(plusone)
-                intValue = intValue+1;
-            if(plustwo)
-                intValue = intValue+2;
-            if(plusthree)
-                intValue = intValue+3;
-        }
-        else
-        {
-            if(plusone)
-                intValue = intValue+1;
-            if(plustwo)
-                intValue = intValue+2;
-            if(plusthree)
-                intValue = intValue+3;
-        }
-        intValue *= multiplier;
-    }
+		}
+		if (intValue > 0)//dont divide by 0 the rest are valid.
+		{
+			if (halfup)
+			{
+				if (intValue % 2 == 1)
+					intValue++;
+				intValue = intValue / 2;
+			}
+			if (halfdown)
+				intValue = intValue / 2;
+		}
+		if (twice)
+			intValue = intValue * 2;
+		if (thrice)
+			intValue = intValue * 3;
+		if (intValue < 0)
+		{
+			//we remove "-" at the start and are parsing for real values.
+			//if we ended up with a value less than 0, then we return just 0
+			intValue = 0;
+		}
+
+		intValue *= multiplier;
+	}
 public:
 
     int countDevotionTo(MTGCardInstance * card, MTGGameZone * zone, int color1, int color2)
