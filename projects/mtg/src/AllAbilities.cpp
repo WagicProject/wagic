@@ -6533,6 +6533,8 @@ void AShackle::resolveShackle()
         previousController->game->putInZone(_target, _target->currentZone,
             source->controller()->game->inPlay);
         Shackled = _target;
+        source->shackled = Shackled;
+        Shackled->shackled = source;
     }
 }
 
@@ -6540,14 +6542,19 @@ void AShackle::returntoOwner(MTGCardInstance* _target) {
     MTGCardInstance * cardToReturn = _target;
     if(!cardToReturn)
     {
+        if (source)
+            source->shackled = NULL;
         this->forceDestroy = 1;
         return;
     }
     if(previousController && cardToReturn->isInPlay(game))
     {
+        cardToReturn->shackled = NULL;
         cardToReturn->controller()->game->putInZone(_target, _target->currentZone,
             previousController->game->inPlay);
     }
+    if (source)
+        source->shackled = NULL;
     this->forceDestroy = 1;
     Shackled = NULL;
     return;
