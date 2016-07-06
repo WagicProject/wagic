@@ -1927,12 +1927,6 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
-name=Bulwark
-text=At the beginning of your upkeep, Bulwark deals X damage to target opponent, where X is the number of cards in your hand minus the number of cards in that player's hand.
-mana={3}{R}{R}
-type=Enchantment
-[/card]
-[card]
 name=Burn at the Stake
 text=As an additional cost to cast Burn at the Stake, tap any number of untapped creatures you control. -- Burn at the Stake deals damage to target creature or player equal to three times the number of creatures tapped this way.
 mana={2}{R}{R}{R}
@@ -3698,12 +3692,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Dark Deal
-text=Each player discards all the cards in his or her hand, then draws that many cards minus one.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
 name=Dark Impostor
 text={4}{B}{B}: Exile target creature and put a +1/+1 counter on Dark Impostor. -- Dark Impostor has all activated abilities of all creature cards exiled with it.
 mana={2}{B}
@@ -3717,12 +3705,6 @@ name=Dark Sphere
 text={T}, Sacrifice Dark Sphere: The next time a source of your choice would deal damage to you this turn, it deals half that damage, rounded up, to you instead.
 mana={0}
 type=Artifact
-[/card]
-[card]
-name=Dark Suspicions
-text=At the beginning of each opponent's upkeep, that player loses X life, where X is the number of cards in that player's hand minus the number of cards in your hand.
-mana={2}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Darkpact
@@ -14685,15 +14667,6 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=2
-[/card]
-[card]
-name=Roiling Horror
-text=Roiling Horror's power and toughness are each equal to your life total minus the life total of an opponent with the most life. -- Suspend X—{X}{B}{B}{B}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{B}{B}{B} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Roiling Horror while it's exiled, target player loses 1 life and you gain 1 life.
-mana={3}{B}{B}
-type=Creature
-subtype=Horror
-power=*
-toughness=*
 [/card]
 [card]
 name=Roiling Waters
