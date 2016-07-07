@@ -363,6 +363,16 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             if (!card->isToken)
                 to = g->players[i]->game->exile;
         }
+
+
+        if (from == g->players[i]->game->library || from == g->players[i]->game->graveyard || from == g->players[i]->game->exile)
+        {
+            if (g->guiOpenDisplay)
+            {
+                g->ButtonPressed(g->guiOpenDisplay);
+            }
+        }
+
     }
 	//all cards that go from the hand to the graveyard is ALWAYS a discard.
 	if ((to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard) && (from == g->players[0]->game->hand || from
@@ -370,6 +380,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 	{
 		card->discarded = true;
 	}
+
     //When a card is moved from inPlay to inPlay (controller change, for example), it is still the same object
     if ((to == g->players[0]->game->inPlay || to == g->players[1]->game->inPlay) && (from == g->players[0]->game->inPlay || from
                     == g->players[1]->game->inPlay))
