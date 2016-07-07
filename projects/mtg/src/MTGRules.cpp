@@ -2774,11 +2774,9 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
             Player * p = game->players[i];
             if (e->player == p)
             {
+                int Dredgers = 0;
                 for(int draw = 0;draw < e->nb_cards;draw++)
                 {
-                    tcb = tf.createTargetChooser("dredgeable",card);
-                    tcb->targetter = NULL;
-
                     vector<MTGAbility*>selection;
                     //look for other draw replacement effects
                     list<ReplacementEffect *>::iterator it;
@@ -2802,27 +2800,36 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
                         }
                     }
 
-                    //there is a memleak here that i have no idea what causes it.
-                    dredgeAbility = NEW dredgeCard(game, game->mLayers->actionLayer()->getMaxId(), card,NULL);
-                    dredgeAbility->oneShot = true;
-                    targetAbility = NEW GenericTargetAbility(game, "Dredge A Card","",game->mLayers->actionLayer()->getMaxId(), card,tcb->clone(),dredgeAbility->clone());
-                    targetAbility->oneShot = true;
-                    SAFE_DELETE(dredgeAbility);
+                    //there is a memleak here that i have no idea what causes it. got it reduced to just 4 bytes but its still bothering me.
+                    if (Dredgers < e->nb_cards)
+                    {
+                        tcb = tf.createTargetChooser("dredgeable", card);
+                        tcb->targetter = NULL;
 
-                    targetAbilityAdder = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,targetAbility->clone());
-                    targetAbilityAdder->oneShot = true;
-                    SAFE_DELETE(targetAbility);
-                    MTGAbility * setDredge = targetAbilityAdder->clone();
-                    SAFE_DELETE(targetAbilityAdder);
-                    setDredge->oneShot = true;
+                        dredgeAbility = NEW dredgeCard(game, game->mLayers->actionLayer()->getMaxId(), card, NULL);
+                        dredgeAbility->oneShot = true;
+                        dredgeAbility->canBeInterrupted = false;
+                        targetAbility = NEW GenericTargetAbility(game, "Dredge A Card", "", game->mLayers->actionLayer()->getMaxId(), card, tcb->clone(), dredgeAbility->clone());
+                        SAFE_DELETE(tcb);
+                        SAFE_DELETE(dredgeAbility);
+                        targetAbility->oneShot = true;
+                        targetAbility->canBeInterrupted = false;
+                        targetAbilityAdder = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card, NULL, targetAbility->clone());
+                        targetAbilityAdder->oneShot = true;
+                        SAFE_DELETE(targetAbility);
+                        MTGAbility * setDredge = targetAbilityAdder->clone();
+                        SAFE_DELETE(targetAbilityAdder);
+                        setDredge->oneShot = true;
 
-                    selection.push_back(setDredge);
-                    targetAbility1 = NEW AADrawer(game, this->GetId(), card,card,NULL, "1",TargetChooser::CONTROLLER,true);
-                    selection.push_back(targetAbility1);
-                    MTGAbility * menuChoice = NEW MenuAbility(game, this->GetId(), card, card,true,selection,card->controller(),"Dredge or Draw");
+                        selection.push_back(setDredge);
+                        targetAbility1 = NEW AADrawer(game, this->GetId(), card, card, NULL, "1", TargetChooser::CONTROLLER, true);
+                        targetAbility1->canBeInterrupted = false;
+                        selection.push_back(targetAbility1);
+                        MTGAbility * menuChoice = NEW MenuAbility(game, this->GetId(), card, card, true, selection, card->controller(), "Dredge or Draw");
 
-                    menuChoice->addToGame();
-                    SAFE_DELETE(tcb);
+                        menuChoice->addToGame();
+
+                    }
                 }
                 
                 SAFE_DELETE(event);
