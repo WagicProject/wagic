@@ -69,8 +69,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     cardistargetted = 0;
     cardistargetter = 0;
     myconvertedcost = getManaCost()->getConvertedCost();
-	revealedLast = NULL;
-	MadnessPlay = false;
+    revealedLast = NULL;
+    MadnessPlay = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -153,14 +153,14 @@ int MTGCardInstance::init()
     data = this;
     X = 0;
     castX = 0;
-	setX = -1;
+    setX = -1;
     return 1;
 }
 
 void MTGCardInstance::initMTGCI()
 {
     X = 0;
-	setX = -1;
+    setX = -1;
     sample = "";
     model = NULL;
     isToken = false;
@@ -198,7 +198,7 @@ void MTGCardInstance::initMTGCI()
     wasDealtDamage = false;
     isDualWielding = false;
     suspended = false;
-	isBestowed = false;
+    isBestowed = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;
     stillNeeded = true;
@@ -228,7 +228,7 @@ void MTGCardInstance::initMTGCI()
     imprintW = 0;
     currentimprintName = "";
     imprintedNames.clear();
-	CountedObjects = 0;
+    CountedObjects = 0;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;
@@ -782,8 +782,8 @@ int MTGCardInstance::getCurrentToughness()
 //check stack
 bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 {
-	Player * whoInterupts = getObserver()->isInterrupting;//leave this so we can actually debug who is interupting/current.
-	Player * whoCurrent = getObserver()->currentPlayer;
+    Player * whoInterupts = getObserver()->isInterrupting;//leave this so we can actually debug who is interupting/current.
+    Player * whoCurrent = getObserver()->currentPlayer;
     if((getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0) &&
         (getObserver()->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN ||
         getObserver()->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN) &&
