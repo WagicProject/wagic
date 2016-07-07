@@ -98,6 +98,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     cardWaitingForTargets = NULL;
     mExtraPayment = NULL;
 	OpenedDisplay = NULL;
+    guiOpenDisplay = NULL;
     gameOver = NULL;
     phaseRing = NULL;
     replacementEffects = NEW ReplacementEffects();
