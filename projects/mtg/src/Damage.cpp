@@ -251,7 +251,7 @@ int Damage::resolve()
             target->lifeLostThisTurn += damage;
             if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
             {
-                vector<string> values = MTGAllCards::getCreatureValuesById();//getting a weird crash here. rarely.
+                vector<string> values = MTGAllCards::getCreatureValuesById();
                 for (size_t i = 0; i < values.size(); ++i)
                 {
                     if ( source->hasSubtype( values[i] ) && find(source->controller()->prowledTypes.begin(), source->controller()->prowledTypes.end(), values[i])==source->controller()->prowledTypes.end() )
