@@ -49,10 +49,10 @@ PermanentAbility(observer, _id)
         Angel[i] = 0;
         dragonbonusgranted[i] = false;
         dragon[i] = 0;
-		eldrazibonusgranted[i] = false;
-		eldrazi[i] = 0;
-		werewolfbonusgranted[i] = false;
-		werewolf[i] = 0;
+        eldrazibonusgranted[i] = false;
+        eldrazi[i] = 0;
+        werewolfbonusgranted[i] = false;
+        werewolf[i] = 0;
     
     }
 }
@@ -175,10 +175,10 @@ int MTGEventBonus::receiveEvent(WEvent * event)
                     Angel[currentPlayer->getId()]++;
                 if(e->card->hasType("dragon")||e->card->hasType("wurm")||e->card->hasType("drake")||e->card->hasType("snake")||e->card->hasType("hydra"))
                     dragon[currentPlayer->getId()]++;
-				if (e->card->hasType("eldrazi"))
-					eldrazi[currentPlayer->getId()]++;
-				if (e->card->hasType("werewolf") || e->card->hasType("wolf"))
-					werewolf[currentPlayer->getId()]++;
+                if (e->card->hasType("eldrazi"))
+                    eldrazi[currentPlayer->getId()]++;
+                if (e->card->hasType("werewolf") || e->card->hasType("wolf"))
+                    werewolf[currentPlayer->getId()]++;
             }
             if(toys[currentPlayer->getId()] > 30 && !toybonusgranted[currentPlayer->getId()])
             {
@@ -236,16 +236,16 @@ int MTGEventBonus::receiveEvent(WEvent * event)
                 grantAward("Teeth And Scales!",300);
                 dragonbonusgranted[currentPlayer->getId()] = true;
             }
-			if (eldrazi[currentPlayer->getId()] > 30 && !eldrazibonusgranted[currentPlayer->getId()])
-			{
-				grantAward("Colorblind!", 300);
-				eldrazibonusgranted[currentPlayer->getId()] = true;
-			}
-			if (werewolf[currentPlayer->getId()] > 30 && !werewolfbonusgranted[currentPlayer->getId()])
-			{
-				grantAward("Full Moon!", 300);
-				werewolfbonusgranted[currentPlayer->getId()] = true;
-			}
+            if (eldrazi[currentPlayer->getId()] > 30 && !eldrazibonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Colorblind!", 300);
+                eldrazibonusgranted[currentPlayer->getId()] = true;
+            }
+            if (werewolf[currentPlayer->getId()] > 30 && !werewolfbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Full Moon!", 300);
+                werewolfbonusgranted[currentPlayer->getId()] = true;
+            }
         }
     }
     //bonus for dealing 100+ damage from a single source
@@ -383,65 +383,65 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = card->getManaCost();
-	ManaCost * playerMana = player->getManaPool();
-	///////announce X cost///////
-	if ((cost->hasX() || cost->hasSpecificX()) && card->setX == -1)
-	{
-		vector<MTGAbility*>selection;
-		int options = cost->hasSpecificX() ? 20 : (playerMana->getConvertedCost() - cost->getConvertedCost()) + 1;
-		//you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
-		//give me the correct amount sorry.
-		for (int i = 0; i < options; ++i)
-		{
+    ManaCost * playerMana = player->getManaPool();
+    ///////announce X cost///////
+    if ((cost->hasX() || cost->hasSpecificX()) && card->setX == -1)
+    {
+        vector<MTGAbility*>selection;
+        int options = cost->hasSpecificX() ? 20 : (playerMana->getConvertedCost() - cost->getConvertedCost()) + 1;
+        //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
+        //give me the correct amount sorry.
+        for (int i = 0; i < options; ++i)
+        {
 
-			MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
-			MTGAbility * setCardX = setX->clone();
-			setCardX->oneShot = true;
-			selection.push_back(setCardX);
-			SAFE_DELETE(setX);
-		}
-		if (selection.size())
-		{
-			MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), card, card, false, selection);
-			game->mLayers->actionLayer()->currentActionCard = card;
-			a1->resolve();
-		}
-		return 0;
-	}
-	///////////////////////////////////////////////////////////////////////////////////////
-	//////X is set, below we set sunburst for X if needed and cast or reset the card.//////
-	//////107.3a If a spell or activated ability has a mana cost, alternative cost,  //////
-	//////additional cost, and / or activation cost with an{ X }, [-X], or X in it,  //////
-	//////and the value of X isn’t defined by the text of that spell or ability, the //////
-	//////controller of that spell or ability chooses and announces the value of X as//////
-	//////part of casting the spell or activating the ability.                       //////
-	//////(See rule 601, “Casting Spells.”) While a spell is on the stack, any X in  //////
-	//////its mana cost or in any alternative cost or additional cost it has equals  //////
-	//////the announced value.While an activated ability is on the stack, any X in   //////
-	//////its activation cost equals the announced value.                            //////
-	///////////////////////////////////////////////////////////////////////////////////////
-	if (card->setX > -1)
-	{
-		ManaCost * Xcost = NEW ManaCost();
-		Xcost->copy(cost);
-		Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
-		Xcost->remove(7, 1);
-		if (playerMana->canAfford(Xcost))
-		{
-			cost->copy(Xcost);
-			SAFE_DELETE(Xcost);
-		}
-		else
-		{
-			if (card->setX > -1)
-				card->setX = -1;
-			SAFE_DELETE(Xcost);
-			return 0;
-		}
-	}
-	//////////////////////////////////////////
-	////cards without X contenue from here////
-	//////////////////////////////////////////
+            MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
+            MTGAbility * setCardX = setX->clone();
+            setCardX->oneShot = true;
+            selection.push_back(setCardX);
+            SAFE_DELETE(setX);
+        }
+        if (selection.size())
+        {
+            MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), card, card, false, selection);
+            game->mLayers->actionLayer()->currentActionCard = card;
+            a1->resolve();
+        }
+        return 0;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //////X is set, below we set sunburst for X if needed and cast or reset the card.//////
+    //////107.3a If a spell or activated ability has a mana cost, alternative cost,  //////
+    //////additional cost, and / or activation cost with an{ X }, [-X], or X in it,  //////
+    //////and the value of X isn’t defined by the text of that spell or ability, the //////
+    //////controller of that spell or ability chooses and announces the value of X as//////
+    //////part of casting the spell or activating the ability.                       //////
+    //////(See rule 601, “Casting Spells.”) While a spell is on the stack, any X in  //////
+    //////its mana cost or in any alternative cost or additional cost it has equals  //////
+    //////the announced value.While an activated ability is on the stack, any X in   //////
+    //////its activation cost equals the announced value.                            //////
+    ///////////////////////////////////////////////////////////////////////////////////////
+    if (card->setX > -1)
+    {
+        ManaCost * Xcost = NEW ManaCost();
+        Xcost->copy(cost);
+        Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
+        Xcost->remove(7, 1);
+        if (playerMana->canAfford(Xcost))
+        {
+            cost->copy(Xcost);
+            SAFE_DELETE(Xcost);
+        }
+        else
+        {
+            if (card->setX > -1)
+                card->setX = -1;
+            SAFE_DELETE(Xcost);
+            return 0;
+        }
+    }
+    //////////////////////////////////////////
+    ////cards without X contenue from here////
+    //////////////////////////////////////////
     //this handles extra cost payments at the moment a card is played.
     if (cost->isExtraPaymentSet())
     {
@@ -456,7 +456,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         game->mExtraPayment = cost->extraCosts;
         return 0;
     }
-	
+    
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     int payResult = player->getManaPool()->pay(card->getManaCost());
     if (card->getManaCost()->getKicker() && (OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
@@ -570,9 +570,9 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
         withKickerCost->add(card->getManaCost()->getKicker());
         //cost reduction/recalculation must be here or outside somehow...
-		//no recalculations beyound this point, reactToClick is the function that
-		//happens only with the assumption that you could actually pay for it, any calculations after will
-		//have negitive effects. this function is basically "can i play this card?"
+        //no recalculations beyound this point, reactToClick is the function that
+        //happens only with the assumption that you could actually pay for it, any calculations after will
+        //have negitive effects. this function is basically "can i play this card?"
 #ifdef WIN32
         withKickerCost->Dump();
 #endif
@@ -787,61 +787,61 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
 
     Player * player = game->currentlyActing();
     ManaPool * playerMana = player->getManaPool();
-	///////announce X cost///////
-	if ((alternateCost->hasX() || alternateCost->hasSpecificX()) && card->setX == -1)
-	{
-		vector<MTGAbility*>selection;
-		int options = alternateCost->hasSpecificX()? 20 : (playerMana->getConvertedCost() - alternateCost->getConvertedCost()) + 1;
-		//you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
-		//give me the correct amount sorry.
-		for (int i = 0; i < options; ++i)
-		{
+    ///////announce X cost///////
+    if ((alternateCost->hasX() || alternateCost->hasSpecificX()) && card->setX == -1)
+    {
+        vector<MTGAbility*>selection;
+        int options = alternateCost->hasSpecificX()? 20 : (playerMana->getConvertedCost() - alternateCost->getConvertedCost()) + 1;
+        //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
+        //give me the correct amount sorry.
+        for (int i = 0; i < options; ++i)
+        {
 
-			MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
-			MTGAbility * setCardX = setX->clone();
-			setCardX->oneShot = true;
-			selection.push_back(setCardX);
-			SAFE_DELETE(setX);
-		}
-		if (selection.size())
-		{
-			MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), card, card, false, selection);
-			game->mLayers->actionLayer()->currentActionCard = card;
-			a1->resolve();
-		}
-		return 0;
-	}
-	///////////////////////////////////////////////////////////////////////////////////////
-	//////X is set, below we set sunburst for X if needed and cast or reset the card.//////
-	//////107.3a If a spell or activated ability has a mana cost, alternative cost,  //////
-	//////additional cost, and / or activation cost with an{ X }, [-X], or X in it,  //////
-	//////and the value of X isn’t defined by the text of that spell or ability, the //////
-	//////controller of that spell or ability chooses and announces the value of X as//////
-	//////part of casting the spell or activating the ability.                       //////
-	//////(See rule 601, “Casting Spells.”) While a spell is on the stack, any X in  //////
-	//////its mana cost or in any alternative cost or additional cost it has equals  //////
-	//////the announced value.While an activated ability is on the stack, any X in   //////
-	//////its activation cost equals the announced value.                            //////
-	///////////////////////////////////////////////////////////////////////////////////////
-	if (card->setX > -1)
-	{
-		ManaCost * Xcost = NEW ManaCost();
-		Xcost->copy(alternateCost);
-		Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
-		Xcost->remove(7, 1);//remove the X
-		if (playerMana->canAfford(Xcost))
-		{
-			alternateCost->copy(Xcost);
-			SAFE_DELETE(Xcost);
-		}
-		else
-		{
-			if (card->setX > -1)
-				card->setX = -1;
-			SAFE_DELETE(Xcost);
-			return 0;
-		}
-	}
+            MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
+            MTGAbility * setCardX = setX->clone();
+            setCardX->oneShot = true;
+            selection.push_back(setCardX);
+            SAFE_DELETE(setX);
+        }
+        if (selection.size())
+        {
+            MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), card, card, false, selection);
+            game->mLayers->actionLayer()->currentActionCard = card;
+            a1->resolve();
+        }
+        return 0;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //////X is set, below we set sunburst for X if needed and cast or reset the card.//////
+    //////107.3a If a spell or activated ability has a mana cost, alternative cost,  //////
+    //////additional cost, and / or activation cost with an{ X }, [-X], or X in it,  //////
+    //////and the value of X isn’t defined by the text of that spell or ability, the //////
+    //////controller of that spell or ability chooses and announces the value of X as//////
+    //////part of casting the spell or activating the ability.                       //////
+    //////(See rule 601, “Casting Spells.”) While a spell is on the stack, any X in  //////
+    //////its mana cost or in any alternative cost or additional cost it has equals  //////
+    //////the announced value.While an activated ability is on the stack, any X in   //////
+    //////its activation cost equals the announced value.                            //////
+    ///////////////////////////////////////////////////////////////////////////////////////
+    if (card->setX > -1)
+    {
+        ManaCost * Xcost = NEW ManaCost();
+        Xcost->copy(alternateCost);
+        Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
+        Xcost->remove(7, 1);//remove the X
+        if (playerMana->canAfford(Xcost))
+        {
+            alternateCost->copy(Xcost);
+            SAFE_DELETE(Xcost);
+        }
+        else
+        {
+            if (card->setX > -1)
+                card->setX = -1;
+            SAFE_DELETE(Xcost);
+            return 0;
+        }
+    }
 
     //this handles extra cost payments at the moment a card is played.
 
@@ -898,7 +898,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         {
 
             ManaCost * c = spellCost->Diff(alternateCost);
-			copy->X = card->setX;
+            copy->X = card->setX;
             copy->castX = copy->X;
             delete c;
         }
@@ -1049,11 +1049,11 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     Player * player = game->currentlyActing();
     if(!card->getManaCost()->getRetrace())
         return 0;
-	if (!player->game->graveyard->hasCard(card))
-	{
-		return 0;
-	}
-	ManaCost * retraceCost = card->getManaCost()->getRetrace();
+    if (!player->game->graveyard->hasCard(card))
+    {
+        return 0;
+    }
+    ManaCost * retraceCost = card->getManaCost()->getRetrace();
     if(retraceCost->extraCosts)
         for(unsigned int i = 0; i < retraceCost->extraCosts->costs.size();i++)
         {
@@ -1364,25 +1364,25 @@ MTGAlternativeCostRule(observer, _id)
 
 int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-	if (!card->has(Constants::PAYZERO))
-		return 0;
-	Player * player = game->currentlyActing();
-	if (card->isLand() || (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card)))
-	{
-		//only allowed to pay zero for cards in library??? above is "if you dont have it in hand, grave, or exile"
-		return 0;
-	}
-	if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
-	{
-		return 0;
-	}
-	ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
-	ManaCost * newCost = card->computeNewCost(card, cost, cost);
-	if (newCost->extraCosts)
-		for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
-		{
-			newCost->extraCosts->costs[i]->setSource(card);
-		}
+    if (!card->has(Constants::PAYZERO))
+        return 0;
+    Player * player = game->currentlyActing();
+    if (card->isLand() || (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card)))
+    {
+        //only allowed to pay zero for cards in library??? above is "if you dont have it in hand, grave, or exile"
+        return 0;
+    }
+    if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
+    {
+        return 0;
+    }
+    ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
+    ManaCost * newCost = card->computeNewCost(card, cost, cost);
+    if (newCost->extraCosts)
+        for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
+        {
+            newCost->extraCosts->costs[i]->setSource(card);
+        }
     if(card->has(Constants::CANPLAYFROMGRAVEYARD))
         CustomName = "Zero Cast From Graveyard";
     else if(card->has(Constants::CANPLAYFROMEXILE))
@@ -1432,19 +1432,19 @@ int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     if (!card->has(Constants::OVERLOAD))
         return 0;
-	if (card->isLand())
-	{
-		return 0;
-	}
-	Player * player = card->controller();
-	if (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
-	{
-		return 0;
-	}
-	if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
-	{
-		return 0;
-	}
+    if (card->isLand())
+    {
+        return 0;
+    }
+    Player * player = card->controller();
+    if (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
+    {
+        return 0;
+    }
+    if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
+    {
+        return 0;
+    }
     ManaCost * newCost = card->getManaCost()->getAlternative();
     if(newCost->extraCosts)
         for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
@@ -1484,64 +1484,64 @@ MTGOverloadRule * MTGOverloadRule::clone() const
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //bestow
 MTGBestowRule::MTGBestowRule(GameObserver* observer, int _id) :
-	MTGAlternativeCostRule(observer, _id)
+    MTGAlternativeCostRule(observer, _id)
 {
-	aType = MTGAbility::BESTOW_COST;
+    aType = MTGAbility::BESTOW_COST;
 }
 
 int MTGBestowRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-	if (!card->model)
-		return 0;
-	if (!card->model->data->getManaCost()->getBestow())
-		return 0;
-	if (card->isInPlay(game))
-		return 0;
-	if (card->isLand())
-	{
-		return 0;
-	}
-	if (!card->controller()->inPlay()->hasType("creature") && !card->controller()->opponent()->inPlay()->hasType("creature"))
-	{
-		return 0;
-	}
-	ManaCost * newCost = card->getManaCost()->getBestow();
-	if (newCost->extraCosts)
-		for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
-		{
-			newCost->extraCosts->costs[i]->setSource(card);
-		}
-	return MTGAlternativeCostRule::isReactingToClick(card, mana, newCost);
+    if (!card->model)
+        return 0;
+    if (!card->model->data->getManaCost()->getBestow())
+        return 0;
+    if (card->isInPlay(game))
+        return 0;
+    if (card->isLand())
+    {
+        return 0;
+    }
+    if (!card->controller()->inPlay()->hasType("creature") && !card->controller()->opponent()->inPlay()->hasType("creature"))
+    {
+        return 0;
+    }
+    ManaCost * newCost = card->getManaCost()->getBestow();
+    if (newCost->extraCosts)
+        for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
+        {
+            newCost->extraCosts->costs[i]->setSource(card);
+        }
+    return MTGAlternativeCostRule::isReactingToClick(card, mana, newCost);
 }
 
 int MTGBestowRule::reactToClick(MTGCardInstance * card)
 {
-	if (!isReactingToClick(card))
-		return 0;
-	//this new method below in all alternative cost type causes a memleak, however, you cant safedelete the cost here as it cause a crash
-	//TODO::::we need to get to the source of this leak and fix it.
-	ManaCost * newCost = card->getManaCost()->getBestow();
-	
-	if (newCost->extraCosts)
-		for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
-		{
-			newCost->extraCosts->costs[i]->setSource(card);
-		}
+    if (!isReactingToClick(card))
+        return 0;
+    //this new method below in all alternative cost type causes a memleak, however, you cant safedelete the cost here as it cause a crash
+    //TODO::::we need to get to the source of this leak and fix it.
+    ManaCost * newCost = card->getManaCost()->getBestow();
+    
+    if (newCost->extraCosts)
+        for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
+        {
+            newCost->extraCosts->costs[i]->setSource(card);
+        }
 
-	card->paymenttype = MTGAbility::BESTOW_COST;
-	card->spellTargetType = "creature|battlefield";
-	return MTGAlternativeCostRule::reactToClick(card, newCost, ManaCost::MANA_PAID_WITH_BESTOW, false);
+    card->paymenttype = MTGAbility::BESTOW_COST;
+    card->spellTargetType = "creature|battlefield";
+    return MTGAlternativeCostRule::reactToClick(card, newCost, ManaCost::MANA_PAID_WITH_BESTOW, false);
 }
 
 ostream& MTGBestowRule::toString(ostream& out) const
 {
-	out << "MTGBestowRule ::: (";
-	return MTGAbility::toString(out) << ")";
+    out << "MTGBestowRule ::: (";
+    return MTGAbility::toString(out) << ")";
 }
 
 MTGBestowRule * MTGBestowRule::clone() const
 {
-	return NEW MTGBestowRule(*this);
+    return NEW MTGBestowRule(*this);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1732,19 +1732,19 @@ int MTGAttackRule::receiveEvent(WEvent *e)
             for (int i = 0; i < z->nb_cards; i++)
             {
                 MTGCardInstance * card = z->cards[i];
-				if (card->isAttacker() && card->has(Constants::NOSOLO))
-				{
-					TargetChooserFactory tf(game);
-					TargetChooser * tc = tf.createTargetChooser("creature[attacking]", NULL);
-					int Check = card->controller()->game->battlefield->countByCanTarget(tc);
-					if (Check <2)
-						card->initAttackersDefensers();
-				}
-				if (card->isAttacker() && card->has(Constants::DETHRONE))
-				{
-					if (p->opponent()->life >= p->life)
-						card->counters->addCounter(1, 1);
-				}
+                if (card->isAttacker() && card->has(Constants::NOSOLO))
+                {
+                    TargetChooserFactory tf(game);
+                    TargetChooser * tc = tf.createTargetChooser("creature[attacking]", NULL);
+                    int Check = card->controller()->game->battlefield->countByCanTarget(tc);
+                    if (Check <2)
+                        card->initAttackersDefensers();
+                }
+                if (card->isAttacker() && card->has(Constants::DETHRONE))
+                {
+                    if (p->opponent()->life >= p->life)
+                        card->counters->addCounter(1, 1);
+                }
                 if (!card->isAttacker() && !event->from->isExtra && card->has(Constants::MUSTATTACK))//cards are only required to attack in the real attack phase of a turn.
                     reactToClick(card);
                 if (!card->isAttacker() && card->has(Constants::TREASON) && p->isAI())
@@ -2058,49 +2058,49 @@ PermanentAbility(observer, _id)
 int MTGBlockRule::receiveEvent(WEvent *e)
 {
 
-	if (dynamic_cast<WEventBlockersChosen*>(e))
-	{//do not refactor, these are keep seperate for readability.
-		Player * p = game->currentPlayer;
+    if (dynamic_cast<WEventBlockersChosen*>(e))
+    {//do not refactor, these are keep seperate for readability.
+        Player * p = game->currentPlayer;
 
-		vector<MTGCardInstance *> Attacker;
-		MTGGameZone * k = p->game->inPlay;
-		for (int i = 0; i < k->nb_cards; i++)
-		{
-			MTGCardInstance * card = k->cards[i];
-			if (card->isAttacker())
-			{
-				Attacker.push_back(card);
-			}
-		}
-		//force cards that must block, to block whatever is first found. players have a chance to set thier own
-		//but if ignored we do it for them.
-		if (Attacker.size())
-		{
-			MTGGameZone * tf = p->opponent()->game->inPlay;
-			for (size_t i = 0; i < tf->cards.size(); i++)
-			{
-				MTGCardInstance * card = tf->cards[i];
-				if (card->has(Constants::MUSTBLOCK) && !card->defenser && card->canBlock())
-				{//force mustblockers to block the first thing theyre allowed to block if player leaves blockers with them
-					//unassigned as a block.
-					for (size_t i = 0; i < Attacker.size(); i++)
-					{
-						if (card->canBlock(Attacker[i]) && !card->defenser)
-						{
-							blocker = NEW AABlock(card->getObserver(), -1, card, NULL);
-							blocker->oneShot = true;
-							blocker->forceDestroy = 1;
-							blocker->canBeInterrupted = false;
-							blocker->target = Attacker[i];
-							blocker->resolve();
-							SAFE_DELETE(blocker);
-						}
-					}
+        vector<MTGCardInstance *> Attacker;
+        MTGGameZone * k = p->game->inPlay;
+        for (int i = 0; i < k->nb_cards; i++)
+        {
+            MTGCardInstance * card = k->cards[i];
+            if (card->isAttacker())
+            {
+                Attacker.push_back(card);
+            }
+        }
+        //force cards that must block, to block whatever is first found. players have a chance to set thier own
+        //but if ignored we do it for them.
+        if (Attacker.size())
+        {
+            MTGGameZone * tf = p->opponent()->game->inPlay;
+            for (size_t i = 0; i < tf->cards.size(); i++)
+            {
+                MTGCardInstance * card = tf->cards[i];
+                if (card->has(Constants::MUSTBLOCK) && !card->defenser && card->canBlock())
+                {//force mustblockers to block the first thing theyre allowed to block if player leaves blockers with them
+                    //unassigned as a block.
+                    for (size_t i = 0; i < Attacker.size(); i++)
+                    {
+                        if (card->canBlock(Attacker[i]) && !card->defenser)
+                        {
+                            blocker = NEW AABlock(card->getObserver(), -1, card, NULL);
+                            blocker->oneShot = true;
+                            blocker->forceDestroy = 1;
+                            blocker->canBeInterrupted = false;
+                            blocker->target = Attacker[i];
+                            blocker->resolve();
+                            SAFE_DELETE(blocker);
+                        }
+                    }
 
-				}
-			}
+                }
+            }
 
-		}
+        }
     if (dynamic_cast<WEventBlockersChosen*>(e))
     {
 
@@ -2120,23 +2120,23 @@ int MTGBlockRule::receiveEvent(WEvent *e)
             }
         }
 
-		//if a card with menace is not blocked by 2 or more, remove any known blockers and attacking as normal.
-		MTGGameZone * z = p->game->inPlay;
-		for (int i = 0; i < z->nb_cards; i++)
-		{
-			MTGCardInstance * card = z->cards[i];
-			if (card->has(Constants::MENACE) && card->blockers.size() < 2)
-			{
-				while (card->blockers.size())
-				{
-					MTGCardInstance * blockingCard = card->blockers.front();
-					blockingCard->toggleDefenser(NULL);
-					
-				}
-			}
-     	}
+        //if a card with menace is not blocked by 2 or more, remove any known blockers and attacking as normal.
+        MTGGameZone * z = p->game->inPlay;
+        for (int i = 0; i < z->nb_cards; i++)
+        {
+            MTGCardInstance * card = z->cards[i];
+            if (card->has(Constants::MENACE) && card->blockers.size() < 2)
+            {
+                while (card->blockers.size())
+                {
+                    MTGCardInstance * blockingCard = card->blockers.front();
+                    blockingCard->toggleDefenser(NULL);
+                    
+                }
+            }
+         }
 
-	}
+    }
 
         return 1;
 
@@ -2906,7 +2906,7 @@ int MTGPersistRule::receiveEvent(WEvent * event)
                     }
                     AAMover *putinplay = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), copy, copy,"ownerbattlefield",code,NULL,undying,persist);
                     putinplay->oneShot = true;
-					game->mLayers->actionLayer()->garbage.push_back(putinplay);
+                    game->mLayers->actionLayer()->garbage.push_back(putinplay);
                     putinplay->fireAbility();
                     return 1;
                 }

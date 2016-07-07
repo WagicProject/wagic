@@ -107,17 +107,17 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 
     case 'b': //buyback/Bestow
         if (!primitive) primitive = NEW CardPrimitive();
-		if (key[1] == 'e' && key[2] == 's')
-		{ //bestow
-			if (!primitive) primitive = NEW CardPrimitive();
-			if (ManaCost * cost = primitive->getManaCost())
-			{
-				string value = val;
-				std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-				cost->setBestow(ManaCost::parseManaCost(value));
-			}
-		}
-		else//buyback
+        if (key[1] == 'e' && key[2] == 's')
+        { //bestow
+            if (!primitive) primitive = NEW CardPrimitive();
+            if (ManaCost * cost = primitive->getManaCost())
+            {
+                string value = val;
+                std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                cost->setBestow(ManaCost::parseManaCost(value));
+            }
+        }
+        else//buyback
         if (ManaCost * cost = primitive->getManaCost())
         {
             string value = val;

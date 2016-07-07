@@ -98,7 +98,7 @@ class Constants
       MTG_COLOR_WHITE = 5,
       MTG_COLOR_WASTE = 6,
       MTG_COLOR_LAND = 7,
-	  
+      
 
       MTG_NB_COLORS = 8,
 
@@ -315,7 +315,7 @@ class Constants
         CAST_WITH_RETRACE = 6,
         CAST_WITH_MORPH = 7,
         CAST_WITH_SUSPEND = 8,
-		CAST_WITH_BESTOW = 9,
+        CAST_WITH_BESTOW = 9,
 
         CAST_ALTERNATE = -1, //matches all alternate costs, including itself
         CAST_ALL = -2, // matches everything except NOT_CAST

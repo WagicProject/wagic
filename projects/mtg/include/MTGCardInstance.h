@@ -55,7 +55,7 @@ public:
     Pos* view;
     int X;
     int castX;
-	int setX;
+    int setX;
     int alternateCostPaid[ManaCost::MANA_PAID_WITH_BESTOW + 1]; 
     int paymenttype;
     int castMethod; /* Tells if the card reached its current zone by being cast or not (brought into the zone by an effect). non 0 == cast, 0 == not cast */
@@ -96,7 +96,7 @@ public:
     bool exileEffects;
     bool suspended;
     bool miracle;
-	bool isBestowed;
+    bool isBestowed;
     int chooseacolor;
     string chooseasubtype;
     int coinSide;//1 = tails
@@ -107,7 +107,7 @@ public:
     int notblocked;
     int fresh;
     int MaxLevelUp;
-	int CountedObjects;
+    int CountedObjects;
     int kicked;
     int dredge;
     bool isDualWielding;
@@ -276,8 +276,8 @@ public:
     string currentimprintName;
     vector<string>imprintedNames;
 
-	MTGCardInstance * revealedLast;//last card revealed by a ability this card owns.
-	bool MadnessPlay;
+    MTGCardInstance * revealedLast;//last card revealed by a ability this card owns.
+    bool MadnessPlay;
     void eventattacked();
     void eventattackedAlone();
     void eventattackednotblocked();

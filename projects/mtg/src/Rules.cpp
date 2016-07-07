@@ -419,7 +419,7 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
                                               initState.playerData[i].player->game->hand,
                                               initState.playerData[i].player->game->inPlay,
                                               initState.playerData[i].player->game->exile,
-			                                  initState.playerData[i].player->game->reveal };
+                                              initState.playerData[i].player->game->reveal };
         for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];

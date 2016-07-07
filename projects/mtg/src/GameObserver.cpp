@@ -52,7 +52,7 @@ void GameObserver::cleanup()
     connectRule = false;
     actionsList.clear();
     gameTurn.clear();
-	OpenedDisplay = NULL;
+    OpenedDisplay = NULL;
 }
 
 GameObserver::~GameObserver()
@@ -97,7 +97,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
     mExtraPayment = NULL;
-	OpenedDisplay = NULL;
+    OpenedDisplay = NULL;
     guiOpenDisplay = NULL;
     gameOver = NULL;
     phaseRing = NULL;
@@ -328,11 +328,11 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
     // Here's what I find weird - if the extra cost is something like a sacrifice, doesn't that imply a TargetChooser?
     if (WaitForExtraPayment(NULL)) 
         return;
-	/*if (OpenedDisplay)//dont let us fly through all the phases with grave and library box still open.
-	{
-		return;//I want this here, but it locks up on opponents turn, we need to come up with a clever way to close opened
-		//displays, it makes no sense that you travel through 4 or 5 phases with library or grave still open.
-	}*/
+    /*if (OpenedDisplay)//dont let us fly through all the phases with grave and library box still open.
+    {
+        return;//I want this here, but it locks up on opponents turn, we need to come up with a clever way to close opened
+        //displays, it makes no sense that you travel through 4 or 5 phases with library or grave still open.
+    }*/
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
     if (allowInterrupt && ((cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER)
         || (cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS)
@@ -716,27 +716,27 @@ void GameObserver::gameStateBasedEffects()
                 }
             }
             card->bypassTC = false; //turn off bypass
-			///////////////////////////
-			//reset extracost shadows//
-			///////////////////////////
-			card->isExtraCostTarget = false;
-			if (mExtraPayment != NULL)
-			{
-				for (unsigned int ec = 0; ec < mExtraPayment->costs.size(); ec++)
-				{
+            ///////////////////////////
+            //reset extracost shadows//
+            ///////////////////////////
+            card->isExtraCostTarget = false;
+            if (mExtraPayment != NULL)
+            {
+                for (unsigned int ec = 0; ec < mExtraPayment->costs.size(); ec++)
+                {
 
-					if (mExtraPayment->costs[ec]->tc)
-					{
-						vector<Targetable*>targetlist = mExtraPayment->costs[ec]->tc->getTargetsFrom();
-						for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
-						{
-							Targetable * cardMasked = *it;
-							dynamic_cast<MTGCardInstance*>(cardMasked)->isExtraCostTarget = true;
-						}
+                    if (mExtraPayment->costs[ec]->tc)
+                    {
+                        vector<Targetable*>targetlist = mExtraPayment->costs[ec]->tc->getTargetsFrom();
+                        for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+                        {
+                            Targetable * cardMasked = *it;
+                            dynamic_cast<MTGCardInstance*>(cardMasked)->isExtraCostTarget = true;
+                        }
 
-					}
-				}
-			}
+                    }
+                }
+            }
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//
             ////////////////////////////////////////////////////
@@ -759,13 +759,13 @@ void GameObserver::gameStateBasedEffects()
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////
-			if (card->target && !isInPlay(card->target) && card->isBestowed && card->hasType("aura"))
-			{
-				card->removeType("aura");
-				card->addType("creature");
-				card->target = NULL;
-				card->isBestowed = false;
-			}
+            if (card->target && !isInPlay(card->target) && card->isBestowed && card->hasType("aura"))
+            {
+                card->removeType("aura");
+                card->addType("creature");
+                card->target = NULL;
+                card->isBestowed = false;
+            }
 
             if ((card->target||card->playerTarget) && !card->hasType(Subtypes::TYPE_EQUIPMENT))
             {

@@ -72,13 +72,13 @@ class MTGGameZone {
     OWNER_STACK = 66,
     TARGETED_PLAYER_STACK = 67,
 
-	MY_REVEAL = 71,
-	OPPONENT_REVEAL = 72,
-	TARGET_OWNER_REVEAL = 73,
-	TARGET_CONTROLLER_REVEAL = 74,
-	REVEAL = 75,
-	OWNER_REVEAL = 76,
-	TARGETED_PLAYER_REVEAL = 77,
+    MY_REVEAL = 71,
+    OPPONENT_REVEAL = 72,
+    TARGET_OWNER_REVEAL = 73,
+    TARGET_CONTROLLER_REVEAL = 74,
+    REVEAL = 75,
+    OWNER_REVEAL = 76,
+    TARGETED_PLAYER_REVEAL = 77,
 
    };
 
@@ -202,7 +202,7 @@ public:
     MTGRemovedFromGame * exile; //alias to removedFromZone
     MTGGameZone * garbage;
     MTGGameZone * garbageLastTurn;
-	MTGGameZone * reveal;
+    MTGGameZone * reveal;
     MTGGameZone * temp;
 
     MTGPlayerCards();
