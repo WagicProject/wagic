@@ -81,6 +81,7 @@ class GameObserver{
   int oldGamePhase;
   TargetChooser * targetChooser;
   CardDisplay * OpenedDisplay;
+  GuiGameZone * guiOpenDisplay;
   DuelLayers * mLayers;
   ReplacementEffects *replacementEffects;
   vector<Player *> players; //created outside
