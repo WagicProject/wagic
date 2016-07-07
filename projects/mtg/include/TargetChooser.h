@@ -25,7 +25,7 @@ class TargetChooser: public TargetsList
 protected:
     int forceTargetListReady;
 public:
-	int forceTargetListReadyByPlayer;
+    int forceTargetListReadyByPlayer;
     const static int UNLITMITED_TARGETS = 1000;
     enum
     {
