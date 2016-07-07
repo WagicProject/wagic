@@ -3575,7 +3575,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("tap");
     if (found != string::npos)
     {
-        MTGAbility * a = NEW AATapper(observer, id, card, target);
+        MTGAbility * a = NEW AATapper(observer, id, card, target, NULL, bool(s.find("tap(noevent)") != string::npos));
         a->oneShot = 1;
         return a;
     }

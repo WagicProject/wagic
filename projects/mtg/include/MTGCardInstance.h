@@ -222,7 +222,7 @@ public:
     int isUntapping();
     int isTapped();
     void untap();
-    void tap();
+    void tap(bool sendNoEvent = false);
     void attemptUntap();
 
     //cda and other func

@@ -467,12 +467,14 @@ void MTGCardInstance::eventblocked(MTGCardInstance * opponent)
 }
 
 //Taps the card
-void MTGCardInstance::tap()
+void MTGCardInstance::tap(bool sendNoEvent)
 {
     if (tapped)
         return;
     tapped = 1;
     WEvent * e = NEW WEventCardTap(this, 0, 1);
+    if (sendNoEvent)
+        dynamic_cast<WEventCardTap*>(e)->noTrigger = true;
     observer->receiveEvent(e);
 }
 

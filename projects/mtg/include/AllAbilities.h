@@ -1159,6 +1159,8 @@ public:
     {
         WEventCardTap * e = dynamic_cast<WEventCardTap *> (event);
         if (!e) return 0;
+        if (e->noTrigger)
+            return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
@@ -4361,7 +4363,8 @@ public:
 class AATapper: public ActivatedAbility
 {
 public:
-    AATapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+    bool _sendNoEvent;
+    AATapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, bool _sendNoEvent = true);
     int resolve();
     const string getMenuText();
     AATapper * clone() const;
