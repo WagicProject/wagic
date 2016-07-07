@@ -961,121 +961,156 @@ JQuadPtr MTGCardInstance::getIcon()
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }
 
-ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * newCost, ManaCost * refCost, bool noTrinisphere)
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cost, ManaCost * Data, bool noTrinisphere)
 {
-    if(!card)
-        return NULL;
-    
-        if(card->getIncreasedManaCost()->getConvertedCost())
-            newCost->add(card->getIncreasedManaCost());
-        if(card->getReducedManaCost()->getConvertedCost())
-            newCost->remove(card->getReducedManaCost());
-        if(refCost->extraCosts)
-            newCost->extraCosts = refCost->extraCosts;
-        //affinity
-        int color = 0;
-        string type = "";
-        ManaCost * original = NEW ManaCost();
-        original->copy(newCost);
-		
-        int reducem = 0;
-        bool resetCost = false;
-        for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
-        {//start2
-            ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
-            if(newAff)
-            {
-                if(!resetCost)
-                {
-                    resetCost = true;
-                    newCost->copy(original);
-                }
-                TargetChooserFactory tf(observer);
-                TargetChooser * tcn = tf.createTargetChooser(newAff->tcString,card,NULL);
+    int color = 0;
+    string type = "";
+    ManaCost * original = NEW ManaCost();
+    original->copy(Data);
+    if (card->getIncreasedManaCost()->getConvertedCost() || card->getReducedManaCost()->getConvertedCost())
+    {//start1
+        if (card->getIncreasedManaCost()->getConvertedCost())
+            original->add(card->getIncreasedManaCost());
+        if (card->getReducedManaCost()->getConvertedCost())
+            original->remove(card->getReducedManaCost());
 
-                for (int w = 0; w < 2; ++w)
+        Cost->copy(original);
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
+    }//end1
+    int reducem = 0;
+    bool resetCost = false;
+    for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
+    {//start2
+        if (!card->cardsAbilities[na])
+            break;
+        ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
+        if (newAff)
+        {
+            if (!resetCost)
+            {
+                resetCost = true;
+                Cost->copy(original);
+                if (Cost->extraCosts)
                 {
-                    Player *p = observer->players[w];
-                    MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
-                    for (int k = 0; k < 6; k++)
+                    for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
                     {
-                        MTGGameZone * z = zones[k];
-                        if (tcn->targetsZone(z))
-                            reducem += z->countByCanTarget(tcn);
+                        Cost->extraCosts->costs[i]->setSource(card);
                     }
                 }
-                SAFE_DELETE(tcn);
-                ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
-                for(int j = 0; j < reducem; j++)
-                    newCost->remove(removingCost);
-                SAFE_DELETE(removingCost);
             }
-        }//end2
-        if(card->has(Constants::AFFINITYARTIFACTS)||
-            card->has(Constants::AFFINITYFOREST)||
-            card->has(Constants::AFFINITYGREENCREATURES)||
-            card->has(Constants::AFFINITYISLAND)||
-            card->has(Constants::AFFINITYMOUNTAIN)||
-            card->has(Constants::AFFINITYPLAINS)||
-            card->has(Constants::AFFINITYSWAMP))
-            {//start3
-                if (card->has(Constants::AFFINITYARTIFACTS))
-                    type = "artifact";
-                else if (card->has(Constants::AFFINITYSWAMP))
-                    type = "swamp";
-                else if (card->has(Constants::AFFINITYMOUNTAIN))
-                    type = "mountain";
-                else if (card->has(Constants::AFFINITYPLAINS))
-                    type = "plains";
-                else if (card->has(Constants::AFFINITYISLAND))
-                    type = "island";
-                else if (card->has(Constants::AFFINITYFOREST))
-                    type = "forest";
-                else if (card->has(Constants::AFFINITYGREENCREATURES))
-                {
-                    color = 1;
-                    type = "creature";
-                }
-                newCost->copy(original);
-                int reduce = 0;
-                if(card->has(Constants::AFFINITYGREENCREATURES))
-                {
-                    TargetChooserFactory tf(observer);
-                    TargetChooser * tc = tf.createTargetChooser("creature[green]",NULL);
-                    reduce = card->controller()->game->battlefield->countByCanTarget(tc);
-                    SAFE_DELETE(tc);
-                }
-                else
-                    reduce = card->controller()->game->battlefield->countByType(type);
-                for(int i = 0; i < reduce;i++)
-                    if(newCost->getCost(color) > 0)
-                        newCost->remove(color,1);
-            }//end3
-    
-    if(!noTrinisphere)
-    {
-        //trinisphere... now how to implement kicker recomputation
-        if(card->has(Constants::TRINISPHERE))
-        {
-            for(int jj = newCost->getConvertedCost(); jj < 3; jj++)
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tcn = tf.createTargetChooser(newAff->tcString, card, NULL);
+
+            for (int w = 0; w < 2; ++w)
             {
-                newCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                card->countTrini++;
+                Player *p = getObserver()->players[w];
+                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+                for (int k = 0; k < 6; k++)
+                {
+                    MTGGameZone * z = zones[k];
+                    if (tcn->targetsZone(z))
+                    {
+                        reducem += z->countByCanTarget(tcn);
+                    }
+                }
             }
+            SAFE_DELETE(tcn);
+            ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
+            for (int j = 0; j < reducem; j++)
+                original->remove(removingCost);
+            SAFE_DELETE(removingCost);
+        }
+    }//end2
+    if (card->has(Constants::AFFINITYARTIFACTS) ||
+        card->has(Constants::AFFINITYFOREST) ||
+        card->has(Constants::AFFINITYGREENCREATURES) ||
+        card->has(Constants::AFFINITYISLAND) ||
+        card->has(Constants::AFFINITYMOUNTAIN) ||
+        card->has(Constants::AFFINITYPLAINS) ||
+        card->has(Constants::AFFINITYSWAMP))
+    {//start3
+        if (card->has(Constants::AFFINITYARTIFACTS))
+        {
+            type = "artifact";
+        }
+        else if (card->has(Constants::AFFINITYSWAMP))
+        {
+            type = "swamp";
+        }
+        else if (card->has(Constants::AFFINITYMOUNTAIN))
+        {
+            type = "mountain";
+        }
+        else if (card->has(Constants::AFFINITYPLAINS))
+        {
+            type = "plains";
+        }
+        else if (card->has(Constants::AFFINITYISLAND))
+        {
+            type = "island";
+        }
+        else if (card->has(Constants::AFFINITYFOREST))
+        {
+            type = "forest";
+        }
+        else if (card->has(Constants::AFFINITYGREENCREATURES))
+        {
+            color = 1;
+            type = "creature";
+        }
+
+        Cost->copy(original);
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
+        int reduce = 0;
+        if (card->has(Constants::AFFINITYGREENCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature[green]", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
         }
         else
         {
-            if(card->countTrini)
-            {
-                newCost->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
-                card->countTrini=0;
-            }
+            reduce = card->controller()->game->battlefield->countByType(type);
+        }
+        for (int i = 0; i < reduce; i++)
+        {
+            if (Cost->getCost(color) > 0)
+                Cost->remove(color, 1);
+        }
+    }//end3
+     //trinisphere... now how to implement kicker recomputation
+
+    if (card->has(Constants::TRINISPHERE))
+    {
+        for (int jj = Cost->getConvertedCost(); jj < 3; jj++)
+        {
+            Cost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+            card->countTrini++;
         }
     }
-
+    else
+    {
+        if (card->countTrini)
+        {
+            Cost->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+            card->countTrini = 0;
+        }
+    }
     SAFE_DELETE(original);
-
-    return newCost;
+    return Cost;
 }
 
 MTGCardInstance * MTGCardInstance::getNextPartner()
