@@ -6160,7 +6160,7 @@ public:
     {
         if(forceDestroy != -1)
             return 1;
-        if(!(source->hasType(Subtypes::TYPE_INSTANT)||source->hasType(Subtypes::TYPE_INSTANT)) && !source->isInPlay(game))
+        if(!(source->hasType(Subtypes::TYPE_INSTANT)||source->hasType(Subtypes::TYPE_SORCERY)) && !source->isInPlay(game))
             return 1;
         return 0;
     }
