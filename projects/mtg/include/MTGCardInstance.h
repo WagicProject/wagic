@@ -113,6 +113,7 @@ public:
     bool isDualWielding;
     bool stillNeeded;
     Player * lastController;
+    Player * previousController;
     MTGGameZone * getCurrentZone();
     MTGGameZone * previousZone;
     MTGCardInstance * previous;
