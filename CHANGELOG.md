@@ -1,7 +1,14 @@
 # Changelog
 
 ## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
+#### 7/7/16
+- *Merged pull-request:* Sorted Primitives and Cleanup Tabs [#\727] (https://github.com/WagicProject/wagic/pull/719) ([kevlahnota](https://github.com/kevlahnota))
+
+- *Merged pull-request:* push to wagicproject [#\725] (https://github.com/WagicProject/wagic/pull/725) ([zethfoxster](https://github.com/zethfoxster))
+
 #### 7/4/16
+- *Merged pull-request:* Sorted Primitives & Updated Premium Deck Series [#\719] (https://github.com/WagicProject/wagic/pull/719) ([kevlahnota](https://github.com/kevlahnota))
+
 - *Merged pull-request:* Fails but I have no idea why [#\717] (https://github.com/WagicProject/wagic/pull/717) ([zethfoxster](https://github.com/zethfoxster))
 
 - *Merged pull-request:* Updated Sets [#\715] (https://github.com/WagicProject/wagic/pull/715) ([kevlahnota](https://github.com/kevlahnota))
