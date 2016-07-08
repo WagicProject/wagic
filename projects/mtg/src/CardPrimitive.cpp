@@ -426,6 +426,9 @@ uint8_t CardPrimitive::ConvertColorToBitMask(int inColor)
     case Constants::MTG_COLOR_LAND:
         value = kColorBitMask_Land;
         break;
+    case Constants::MTG_COLOR_WASTE://the true colorless mana shares the kbitmask of land. kbitmask dictates the color of the quad(no image boarder), and the symbol. nothing more.
+        value = kColorBitMask_Land;
+        break;
 
     default:
         break;
