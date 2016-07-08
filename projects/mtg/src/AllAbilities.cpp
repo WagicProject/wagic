@@ -3873,7 +3873,8 @@ int AAMover::resolve()
                     MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
                     Spell * spell = NEW Spell(game, copy);
                     spell->resolve();
-                    spell->source->previousController = fromZone->owner;
+                    if(destination == "previousbattlefield")
+                        spell->source->previousController = fromZone->owner;
                     if(andAbility)
                     {
                         MTGAbility * andAbilityClone = andAbility->clone();
