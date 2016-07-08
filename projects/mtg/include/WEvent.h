@@ -127,6 +127,7 @@ struct WEventCardChangeType : public WEventCardUpdate {
 struct WEventCardTap : public WEventCardUpdate {
   bool before;
   bool after;
+  bool noTrigger;
   WEventCardTap(MTGCardInstance * card, bool before, bool after);
   virtual Targetable * getTarget(int target);
 };

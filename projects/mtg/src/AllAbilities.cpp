@@ -4334,8 +4334,8 @@ ABestow * ABestow::clone() const
 }
 
 //Tapper
-AATapper::AATapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
-    ActivatedAbility(observer, id, card, _cost, 0)
+AATapper::AATapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, bool sendNoEvent) :
+    ActivatedAbility(observer, id, card, _cost, 0),_sendNoEvent(sendNoEvent)
 {
     target = _target;
     aType = MTGAbility::TAPPER;
@@ -4348,7 +4348,7 @@ int AATapper::resolve()
     {
         while (_target->next)
             _target = _target->next; //This is for cards such as rampant growth
-        _target->tap();
+        _target->tap(_sendNoEvent);
     }
     return 1;
 }
