@@ -3843,6 +3843,13 @@ AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTG
 MTGGameZone * AAMover::destinationZone(Targetable * target)
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(destination == "previousbattlefield")
+    {
+        if(_target->previousController)
+            return _target->previousController->inPlay();
+        else
+            return _target->controller()->inPlay();
+    }
     return MTGGameZone::stringToZone(game, destination, source, _target);
 }
 
@@ -3866,6 +3873,7 @@ int AAMover::resolve()
                     MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
                     Spell * spell = NEW Spell(game, copy);
                     spell->resolve();
+                    spell->source->previousController = fromZone->owner;
                     if(andAbility)
                     {
                         MTGAbility * andAbilityClone = andAbility->clone();

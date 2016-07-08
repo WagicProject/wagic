@@ -49,6 +49,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     if (arg_belongs_to)
         owner = arg_belongs_to->library->owner;
     lastController = owner;
+    previousController = owner;
     defenser = NULL;
     banding = NULL;
     life = toughness;
