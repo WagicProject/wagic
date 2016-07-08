@@ -1,0 +1,22 @@
+#Player 2 must not gain life because Shocklands enters tha battlefied tapped...
+[INIT]
+firstmain
+[PLAYER1]
+hand:Stomping Ground, Temple Garden
+inplay:Exploration
+[PLAYER2]
+inplay:Lifetap
+life:20
+[DO]
+Stomping Ground
+choice 1
+Temple Garden
+choice 1
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Exploration, Stomping Ground, Temple Garden
+[PLAYER2]
+inplay:Lifetap
+life:20
+[END]
