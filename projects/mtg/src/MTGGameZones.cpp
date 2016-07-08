@@ -364,7 +364,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
                 to = g->players[i]->game->exile;
         }
 
-
+        //close the currently open MAIN display.
         if (from == g->players[i]->game->library || from == g->players[i]->game->graveyard || from == g->players[i]->game->exile)
         {
             if (g->guiOpenDisplay)

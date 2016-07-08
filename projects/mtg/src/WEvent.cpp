@@ -56,6 +56,7 @@ WEvent(CHANGE_PHASE), from(from), to(to)
 WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after) :
     WEventCardUpdate(card), before(before), after(after)
 {
+    noTrigger = false;
 }
 
 WEventCardTappedForMana::WEventCardTappedForMana(MTGCardInstance * card, bool before, bool after) :
