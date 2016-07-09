@@ -328,6 +328,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
     bool inplaytoinplay = false;
     bool ripToken = false;
+    g->AffinityNeedsUpdate = true;//we refresh affinity whenever a card is moved from anywhere to anywhere.
     if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
         ripToken = true;
     //Madness or Put in Play...

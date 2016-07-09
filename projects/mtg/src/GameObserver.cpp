@@ -53,6 +53,7 @@ void GameObserver::cleanup()
     actionsList.clear();
     gameTurn.clear();
     OpenedDisplay = NULL;
+    AffinityNeedsUpdate = false;
 }
 
 GameObserver::~GameObserver()
@@ -1092,20 +1093,22 @@ void GameObserver::Affinity()
                         NewAffinityFound = true;
                     }
                 }
-                bool DoReduceIncrease = false;
-                if (card->has(Constants::AFFINITYARTIFACTS) ||
-                    card->has(Constants::AFFINITYFOREST) ||
-                    card->has(Constants::AFFINITYGREENCREATURES) ||
-                    card->has(Constants::AFFINITYISLAND) ||
-                    card->has(Constants::AFFINITYMOUNTAIN) ||
-                    card->has(Constants::AFFINITYPLAINS) ||
-                    card->has(Constants::AFFINITYSWAMP) ||
-                    card->has(Constants::TRINISPHERE) ||
-                    card->getIncreasedManaCost()->getConvertedCost() ||
-                    card->getReducedManaCost()->getConvertedCost() ||
-                    NewAffinityFound)
-                    DoReduceIncrease = true;
-                if (!DoReduceIncrease)
+                //bool DoReduceIncrease = false;
+                //if (card->has(Constants::AFFINITYARTIFACTS) ||
+                //    card->has(Constants::AFFINITYFOREST) ||
+                //    card->has(Constants::AFFINITYGREENCREATURES) ||
+                //    card->has(Constants::AFFINITYISLAND) ||
+                //    card->has(Constants::AFFINITYMOUNTAIN) ||
+                //    card->has(Constants::AFFINITYPLAINS) ||
+                //    card->has(Constants::AFFINITYSWAMP) ||
+                //    card->has(Constants::TRINISPHERE) ||
+                //    card->getIncreasedManaCost()->getConvertedCost() ||
+                //    card->getReducedManaCost()->getConvertedCost() ||
+                //    NewAffinityFound)
+                //    DoReduceIncrease = true;
+                //if (!DoReduceIncrease)
+                //    continue;
+                if(!AffinityNeedsUpdate)//we only adjust cost when cards move from anywhere to anywhere.
                     continue;
                 //above we check if there are even any cards that effect cards manacost
                 //if there are none, leave this function. manacost->copy( is a very expensive funtion
@@ -1117,6 +1120,7 @@ void GameObserver::Affinity()
                 card->getManaCost()->resetCosts();
                 ManaCost *newCost = NEW ManaCost();
                 newCost->copy(card->computeNewCost(card, card->getManaCost(), card->model->data->getManaCost()));
+
                 card->getManaCost()->copy(newCost);
                 SAFE_DELETE(newCost);
                 if (card->getManaCost()->getAlternative())
@@ -1171,6 +1175,7 @@ void GameObserver::Affinity()
             }//end
         }
     }
+    AffinityNeedsUpdate = false;
 }
 
 void GameObserver::Render()
