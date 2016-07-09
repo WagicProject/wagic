@@ -1079,7 +1079,8 @@ void GameObserver::Affinity()
                         }
                     }
                 }
-                ////////////////////////////
+
+                ///////////////////////
                 bool NewAffinityFound = false;
                 for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
                 {
@@ -1114,7 +1115,7 @@ void GameObserver::Affinity()
                 //only do any of the following if a card with the stated ability is in your hand.
                 //kicker is an addon to normal cost, suspend is not casting. add cost as needed EXACTLY as seen below.
                 card->getManaCost()->resetCosts();
-                ManaCost * newCost = NEW ManaCost();
+                ManaCost *newCost = NEW ManaCost();
                 newCost->copy(card->computeNewCost(card, card->getManaCost(), card->model->data->getManaCost()));
                 card->getManaCost()->copy(newCost);
                 SAFE_DELETE(newCost);

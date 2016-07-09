@@ -3256,6 +3256,7 @@ public:
             }
             else
             {
+                a->forcedAlive = 1;
                 a->addToGame();
                 abilities[d] = a;
             }
@@ -3278,6 +3279,7 @@ public:
         if (abilities.find(card) != abilities.end()
             && !(forceDestroy == -1 && forcedAlive == 1)) //only embelms have forcedestroy = -1 and forcedalive = 1
         { 
+            abilities[card]->forcedAlive = 0;
             game->removeObserver(abilities[card]);
             abilities.erase(card);
         }
