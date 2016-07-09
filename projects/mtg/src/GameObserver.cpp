@@ -1080,7 +1080,23 @@ void GameObserver::Affinity()
                         }
                     }
                 }
-
+                ///we handle trisnisphere seperately because its a desaster.
+                if (card->has(Constants::TRINISPHERE))
+                {
+                    for (int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
+                    {
+                        card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                        card->countTrini++;
+                    }
+                }
+                else
+                {
+                    if (card->countTrini)
+                    {
+                        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+                        card->countTrini = 0;
+                    }
+                }
                 ///////////////////////
                 bool NewAffinityFound = false;
                 for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
@@ -1093,28 +1109,26 @@ void GameObserver::Affinity()
                         NewAffinityFound = true;
                     }
                 }
-                //bool DoReduceIncrease = false;
-                //if (card->has(Constants::AFFINITYARTIFACTS) ||
-                //    card->has(Constants::AFFINITYFOREST) ||
-                //    card->has(Constants::AFFINITYGREENCREATURES) ||
-                //    card->has(Constants::AFFINITYISLAND) ||
-                //    card->has(Constants::AFFINITYMOUNTAIN) ||
-                //    card->has(Constants::AFFINITYPLAINS) ||
-                //    card->has(Constants::AFFINITYSWAMP) ||
-                //    card->has(Constants::TRINISPHERE) ||
-                //    card->getIncreasedManaCost()->getConvertedCost() ||
-                //    card->getReducedManaCost()->getConvertedCost() ||
-                //    NewAffinityFound)
-                //    DoReduceIncrease = true;
-                //if (!DoReduceIncrease)
-                //    continue;
-                if(!AffinityNeedsUpdate)//we only adjust cost when events queqes are complete.
+                bool DoReduceIncrease = false;
+                if (
+                    (card->has(Constants::AFFINITYARTIFACTS) ||
+                    card->has(Constants::AFFINITYFOREST) ||
+                    card->has(Constants::AFFINITYGREENCREATURES) ||
+                    card->has(Constants::AFFINITYISLAND) ||
+                    card->has(Constants::AFFINITYMOUNTAIN) ||
+                    card->has(Constants::AFFINITYPLAINS) ||
+                    card->has(Constants::AFFINITYSWAMP) ||
+                    card->getIncreasedManaCost()->getConvertedCost() ||
+                    card->getReducedManaCost()->getConvertedCost() ||
+                    NewAffinityFound)
+                    &&
+                    AffinityNeedsUpdate
+                    )
+                    DoReduceIncrease = true;
+                if (!DoReduceIncrease)
                     continue;
+
                 //above we check if there are even any cards that effect cards manacost
-                //if there are none, leave this function. manacost->copy( is a very expensive funtion
-                //1mb a sec to run at all time even when no known reducers or increasers are in play.
-                //memory snapshot shots pointed to this as such a heavy load that games with many cards inplay
-                //would slow to a crawl.
                 //only do any of the following if a card with the stated ability is in your hand.
                 //kicker is an addon to normal cost, suspend is not casting. add cost as needed EXACTLY as seen below.
                 card->getManaCost()->resetCosts();
