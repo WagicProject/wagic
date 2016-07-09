@@ -1108,7 +1108,7 @@ void GameObserver::Affinity()
                 //    DoReduceIncrease = true;
                 //if (!DoReduceIncrease)
                 //    continue;
-                if(!AffinityNeedsUpdate)//we only adjust cost when cards move from anywhere to anywhere.
+                if(!AffinityNeedsUpdate)//we only adjust cost when events queqes are complete.
                     continue;
                 //above we check if there are even any cards that effect cards manacost
                 //if there are none, leave this function. manacost->copy( is a very expensive funtion
@@ -1585,6 +1585,7 @@ int GameObserver::receiveEvent(WEvent * e)
         SAFE_DELETE(ev);
         eventsQueue.pop();
     }
+    AffinityNeedsUpdate = true;
     return result;
 }
 
