@@ -534,6 +534,7 @@ pledge_protection.txt
 plumes_of_peace_i260.txt
 pouncing_jaguar_i425.txt
 power_armor.txt
+previousbattlefield.txt
 promise_of_bunrei_i305.txt
 prosperity.txt
 protomatter_powder.txt
