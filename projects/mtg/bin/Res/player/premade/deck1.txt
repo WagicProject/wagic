@@ -1,19 +1,7 @@
 #NAME:Premade G/R
 #DESC:A Red/Green deck with simple mechanics to get you started. We recommend you create your own decks to get the full Wagic experience!
 
-Forest (10E) *11
-Mountain (10E) *12
+arbor elf *25
 
-Aggressive Urge (10E) *4
-Wall of Wood (10E) *4
-Llanowar Elves (10E) *4
-Mirri, Cat Warrior (10E)
-Scion of the Wild (10E) *4
-Primal Rage (10E) *2
-
-Lightning Elemental (10E) *4
-Shock (10E) *4
-Firebreathing (10E) *2
-Raging Goblin (10E) *4
-Anaba Bodyguard (10E) *4
-
+Arbiter of Knollridge *13
+Arbor Colossus *13
