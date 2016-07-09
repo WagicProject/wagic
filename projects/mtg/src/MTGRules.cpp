@@ -2774,7 +2774,6 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
             Player * p = game->players[i];
             if (e->player == p)
             {
-                int Dredgers = 0;
                 vector<MTGAbility*>menusOfferedWithDredge;
                 for(int draw = 0;draw < e->nb_cards;draw++)
                 {
@@ -2804,7 +2803,6 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
                         }
                     }
 
-                    int Choices = int(selection.size());
                     //there is a memleak here that i have no idea what causes it. got it reduced to just 4 bytes but its still bothering me.
                     if (int(menusOfferedWithDredge.size()) < toDredge)
                     {
