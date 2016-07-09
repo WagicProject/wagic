@@ -970,6 +970,14 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
     string type = "";
     ManaCost * original = NEW ManaCost();
     original->copy(Data);
+    Cost->copy(original);
+    if (Cost->extraCosts)
+    {
+        for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+        {
+            Cost->extraCosts->costs[i]->setSource(card);
+        }
+    }
     if (card->getIncreasedManaCost()->getConvertedCost() || card->getReducedManaCost()->getConvertedCost())
     {//start1
         if (card->getIncreasedManaCost()->getConvertedCost())
@@ -1069,6 +1077,13 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         }
 
         Cost->copy(original);
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
         if (Cost->extraCosts)
         {
             for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
