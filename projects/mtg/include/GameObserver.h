@@ -124,6 +124,7 @@ class GameObserver{
   void gameStateBasedEffects();
   void enchantmentStatus();
   void Affinity();
+  bool AffinityNeedsUpdate;
   void addObserver(MTGAbility * observer);
   bool removeObserver(ActionElement * observer);
   void startGame(GameType, Rules * rules);
