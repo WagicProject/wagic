@@ -1083,6 +1083,8 @@ int Delve::isPaymentSet()
     }
     if (target && (source->controller()->getManaPool()->canAfford(toReduce)))
     {
+        if (target->getObserver()->guiOpenDisplay)
+            target->getObserver()->ButtonPressed(target->getObserver()->guiOpenDisplay);
         SAFE_DELETE(toReduce);
         return 1;
     }
