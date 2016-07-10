@@ -7189,6 +7189,13 @@ void AACastCard::Update(float dt)
        return;
    if(cardNamed.size() && !theNamedCard)
    {
+       if (cardNamed.find("imprintedcard") != string::npos)
+       {
+           if (source && source->currentimprintName.size())
+           {
+               cardNamed = source->currentimprintName;
+           }
+       }
        theNamedCard = makeCard();
    }
    if(putinplay)
