@@ -108,6 +108,7 @@ public:
     int getManaSymbols(int color);
     int getManaSymbolsHybridMerged(int color);
     int countHybridsNoPhyrexian();
+    void removeHybrid(ManaCost * _cost);
 
     //Returns NULL if i is greater than nbhybrids
     ManaCostHybrid * getHybridCost(unsigned int i);

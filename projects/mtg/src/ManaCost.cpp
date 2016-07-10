@@ -719,6 +719,37 @@ int ManaCost::countHybridsNoPhyrexian()
     return result;
 }
 
+void ManaCost::removeHybrid(ManaCost * _manaCost)
+{
+    if (!_manaCost)
+        return;
+
+    vector<int> colors;
+    int match = 0;
+
+    for(int j = 0; j < 7; j++)
+    {//populate colors values
+        colors.push_back(_manaCost->getCost(j));
+    }
+
+    for (size_t i = 0; i < hybrids.size(); i++)
+    {
+        for(int j = 0; j < 7; j++)
+        {
+            if(colors[j])
+            {
+                if(hybrids[i].hasColor(j))
+                {
+                    hybrids[i].reduceValue(j, colors[j]);
+                    colors[j] -= 1;
+                    match++;
+                }
+            }
+        }
+    }
+    return;
+}
+
 int ManaCost::parseManaSymbol(char symbol)
 {
     switch (symbol)
