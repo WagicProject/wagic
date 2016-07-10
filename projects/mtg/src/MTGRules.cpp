@@ -2774,9 +2774,12 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
             Player * p = game->players[i];
             if (e->player == p)
             {
-                int Dredgers = 0;
+                vector<MTGAbility*>menusOfferedWithDredge;
                 for(int draw = 0;draw < e->nb_cards;draw++)
                 {
+                    tcb = tf.createTargetChooser("dredgeable", card);
+                    int toDredge = tcb->countValidTargets();
+                    SAFE_DELETE(tcb);
                     vector<MTGAbility*>selection;
                     //look for other draw replacement effects
                     list<ReplacementEffect *>::iterator it;
@@ -2801,16 +2804,14 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
                     }
 
                     //there is a memleak here that i have no idea what causes it. got it reduced to just 4 bytes but its still bothering me.
-                    if (Dredgers < e->nb_cards)
+                    if (int(menusOfferedWithDredge.size()) < toDredge)
                     {
                         tcb = tf.createTargetChooser("dredgeable", card);
                         tcb->targetter = NULL;
-
                         dredgeAbility = NEW dredgeCard(game, game->mLayers->actionLayer()->getMaxId(), card, NULL);
                         dredgeAbility->oneShot = true;
                         dredgeAbility->canBeInterrupted = false;
-                        targetAbility = NEW GenericTargetAbility(game, "Dredge A Card", "", game->mLayers->actionLayer()->getMaxId(), card, tcb->clone(), dredgeAbility->clone());
-                        SAFE_DELETE(tcb);
+                        targetAbility = NEW GenericTargetAbility(game, "Dredge A Card", "", game->mLayers->actionLayer()->getMaxId(), card, tcb, dredgeAbility->clone());
                         SAFE_DELETE(dredgeAbility);
                         targetAbility->oneShot = true;
                         targetAbility->canBeInterrupted = false;
@@ -2820,18 +2821,21 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
                         MTGAbility * setDredge = targetAbilityAdder->clone();
                         SAFE_DELETE(targetAbilityAdder);
                         setDredge->oneShot = true;
-
                         selection.push_back(setDredge);
-                        targetAbility1 = NEW AADrawer(game, this->GetId(), card, card, NULL, "1", TargetChooser::CONTROLLER, true);
-                        targetAbility1->canBeInterrupted = false;
-                        selection.push_back(targetAbility1);
-                        MTGAbility * menuChoice = NEW MenuAbility(game, this->GetId(), card, card, true, selection, card->controller(), "Dredge or Draw");
-
-                        menuChoice->addToGame();
-
                     }
+                    targetAbility1 = NEW AADrawer(game, this->GetId(), card, card, NULL, "1", TargetChooser::CONTROLLER, true);
+                    targetAbility1->canBeInterrupted = false;
+                    selection.push_back(targetAbility1);
+                    MTGAbility * menuChoice = NEW MenuAbility(game, this->GetId(), card, card, true, selection, card->controller(), "Dredge or Draw");  
+                    menusOfferedWithDredge.push_back(menuChoice);
                 }
-                
+
+                while (menusOfferedWithDredge.size())
+                {
+                    menusOfferedWithDredge[0]->addToGame();
+                    menusOfferedWithDredge.erase(menusOfferedWithDredge.begin());
+                }
+
                 SAFE_DELETE(event);
                 return event;
             }

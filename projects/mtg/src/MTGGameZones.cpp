@@ -980,7 +980,11 @@ void MTGInPlay::untapAll()
 
 MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
 {
-
+    if (p2 != p && p2 && (p != p2->opponent()))
+    {
+        p = p2->opponent();
+        //these cases are generally handled this is a edge case fix.
+    }
     switch (zoneId)
     {
     case MY_GRAVEYARD:
