@@ -1,6 +1,6 @@
 grade=unsupported
 #The cards in this file are not implemented/incomplete yet (UNGLUED, UNHINGED REMOVED)
-#Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards up to Shadows over Innistrad) as of 7/7/2016
+#Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards up to Shadows over Innistrad) as of 7/10/2016
 [card]
 name=1996 World Champion
 text=Cannot be the targets of spells or effects. World Champion has power and toughness equal to the life totals of target opponent. {0}: Discard your hand to search your library for 1996 World Champion and reveal it to all players. Shuffle your library and put 1996 World Champion on top of it. Use this ability only at the beginning of your upkeep, and only if 1996 World Champion is in your library.
@@ -333,18 +333,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Altar of Dementia
-text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
-mana={2}
-type=Artifact
-[/card]
-[card]
-name=Altar Of Dementia
-text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Altar of the Lost
 text=Altar of the Lost enters the battlefield tapped. -- {T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast spells with flashback from a graveyard.
 mana={3}
@@ -385,12 +373,6 @@ type=Creature
 subtype=Volver
 power=3
 toughness=3
-[/card]
-[card]
-name=Anchor to the AEther
-text=Put target creature on top of its owner's library. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
 name=Ancient Ziggurat
@@ -1147,15 +1129,6 @@ text=At the beginning of your upkeep, sacrifice Barrow Ghoul unless you exile th
 mana={1}{B}
 type=Creature
 subtype=Zombie
-power=4
-toughness=4
-[/card]
-[card]
-name=Baru, Fist of Krosa
-text=Whenever a Forest enters the battlefield, green creatures you control get +1/+1 and gain trample until end of turn. -- Grandeur — Discard another card named Baru, Fist of Krosa: Put an X/X green Wurm creature token onto the battlefield, where X is the number of lands you control.
-mana={3}{G}{G}
-type=Legendary Creature
-subtype=Human Druid
 power=4
 toughness=4
 [/card]
@@ -3658,15 +3631,6 @@ text=When you set this scheme in motion, each opponent reveals cards from the to
 type=Scheme
 [/card]
 [card]
-name=Dandan
-text=Dandan can't attack unless defending player controls an Island. -- When you control no Islands, sacrifice Dandan.
-mana={U}{U}
-type=Creature
-subtype=Fish
-power=4
-toughness=1
-[/card]
-[card]
 name=Daretti, Scrap Savant
 text=+2: Discard up to two cards, then draw that many cards. -- -2: Sacrifice an artifact. If you do, return target artifact card from your graveyard to the battlefield. -- -10: You get an emblem with "Whenever an artifact is put into your graveyard from the battlefield, return that card to the battlefield at the beginning of the next end step." -- Daretti, Scrap Savant can be your commander.
 mana={3}{R}
@@ -4785,15 +4749,6 @@ name=Elemental Uprising
 text=Target land you control becomes a 4/4 Elemental creature with haste until end of turn. It's still a land. It must be blocked this turn if able.
 mana={1}{G}
 type=Instant
-[/card]
-[card]
-name=El-Hajjaj
-text=Whenever El-Hajjaj deals damage, you gain that much life.
-mana={1}{B}{B}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Elite Arcanist
@@ -6177,12 +6132,6 @@ power=7
 toughness=7
 [/card]
 [card]
-name=Gate to the AEther
-text=At the beginning of each player's upkeep, that player reveals the top card of his or her library. If it's an artifact, creature, enchantment, or land card, the player may put it onto the battlefield.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Gather Specimens
 text=If a creature would enter the battlefield under an opponent's control this turn, it enters the battlefield under your control instead.
 mana={3}{U}{U}{U}
@@ -6276,15 +6225,6 @@ name=Ghastly Haunting
 text=Enchant creature -- You control enchanted creature.
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Ghazban Ogre
-text=At the beginning of your upkeep, if a player has more life than each other player, the player with the most life gains control of Ghazban Ogre.
-mana={G}
-type=Creature
-subtype=Ogre
-power=2
-toughness=2
 [/card]
 [card]
 name=Ghitu Fire
@@ -7547,6 +7487,12 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Heretic's Punishment
+text={3}{R}: Choose target creature or player, then put the top three cards of your library into your graveyard.Heretic's Punishment deals damage to that creature or player equal to the highest converted mana cost among those cards.
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
 name=Hero of Leina Tower
 text=Heroic — Whenever you cast a spell that targets Hero of Leina Tower, you may pay {X}. If you do, put X +1/+1 counters on Hero of Leina Tower.
 mana={G}
@@ -8336,12 +8282,11 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Insectile Aberration
-text=Flying
-type=Creature
-subtype=Human Insect
-power=3
-toughness=2
+name=Inquisitor's Flail
+text=If equipped creature would deal combat damage, it deals double that damage instead. -- If another creature would deal combat damage to equipped creature, it deals double that damage to equipped creature instead. -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Insidious Dreams
@@ -8518,12 +8463,6 @@ name=Isle of Vesuva
 text=Whenever a nontoken creature enters the battlefield, its controller puts a token onto the battlefield that's a copy of that creature. -- Whenever you roll {C}, destroy target creature and all other creatures with the same name as that creature.
 type=Plane
 subtype=Dominaria
-[/card]
-[card]
-name=Isochron Scepter
-text=Imprint — When Isochron Scepter enters the battlefield, you may exile an instant card with converted mana cost 2 or less from your hand. -- {2}, {T}: You may copy the exiled card. If you do, you may cast the copy without paying its mana cost.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Isperia the Inscrutable
@@ -8803,15 +8742,6 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
-name=Juzam Djinn
-text=At the beginning of your upkeep, Juzam Djinn deals 1 damage to you.
-mana={2}{B}{B}
-type=Creature
-subtype=Djinn
-power=5
-toughness=5
-[/card]
-[card]
 name=Kaboom!
 text=Choose any number of target players. For each of those players, reveal cards from the top of your library until you reveal a nonland card. Kaboom deals damage equal to that card's converted mana cost to that player, then you put the revealed cards on the bottom of your library in any order.
 mana={4}{R}
@@ -9005,15 +8935,6 @@ type=Plane
 subtype=Innistrad
 [/card]
 [card]
-name=Khabal Ghoul
-text=At the beginning of each end step, put a +1/+1 counter on Khabal Ghoul for each creature that died this turn.
-mana={2}{B}
-type=Creature
-subtype=Zombie
-power=1
-toughness=1
-[/card]
-[card]
 name=Kharasha Foothills
 text=Whenever a creature you control attacks a player, for each other opponent, you may put a token that's a copy of that creature onto the battlefield tapped and attacking that opponent. Exile those tokens at the beginning of the next end step. -- Whenever you roll {K}, you may sacrifice any number of creatures. If you do, Kharasha Foothills deals that much damage to target creature.
 type=Plane
@@ -9199,15 +9120,6 @@ power=1
 toughness=4
 [/card]
 [card]
-name=Knight Of Dawn
-text=First strike -- {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-[/card]
-[card]
 name=Knight of Dusk
 text={B}{B}: Destroy target creature blocking Knight of Dusk.
 mana={1}{B}{B}
@@ -9299,15 +9211,6 @@ name=Kor Dirge
 text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
 mana={2}{B}
 type=Instant
-[/card]
-[card]
-name=Korlash, Heir to Blackblade
-text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. -- {1}{B}: Regenerate Korlash. -- Grandeur — Discard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them onto the battlefield tapped, then shuffle your library.
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Zombie Warrior
-power=*
-toughness=*
 [/card]
 [card]
 name=Kozilek's Return
@@ -9588,15 +9491,6 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Legions of Lim-Dul
-text=Snow swampwalk
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=3
-[/card]
-[card]
 name=Lens of Clarity
 text=You may look at the top card of your library and at face-down creatures you don't control. (You may do this at any time.)
 mana={1}
@@ -9775,37 +9669,10 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Lim-Dul's Cohort
-text=Whenever Lim-Dul's Cohort blocks or becomes blocked by a creature, that creature can't be regenerated this turn.
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=3
-[/card]
-[card]
 name=Lim-Dul's Hex
 text=At the beginning of your upkeep, for each player, Lim-Dul's Hex deals 1 damage to that player unless he or she pays {B} or {3}.
 mana={1}{B}
 type=Enchantment
-[/card]
-[card]
-name=Lim-Dul's High Guard
-text=First strike -- {1}{B}: Regenerate Lim-Dul's High Guard.
-mana={1}{B}{B}
-type=Creature
-subtype=Skeleton
-power=2
-toughness=1
-[/card]
-[card]
-name=Lim-Dul's Paladin
-text=Trample -- At the beginning of your upkeep, you may discard a card. If you don't, sacrifice Lim-Dul's Paladin and draw a card. -- Whenever Lim-Dul's Paladin becomes blocked, it gets +6/+3 until end of turn. -- Whenever Lim-Dul's Paladin attacks and isn't blocked, it assigns no combat damage to defending player this turn and that player loses 4 life.
-mana={2}{B}{R}
-type=Creature
-subtype=Human Knight
-power=0
-toughness=3
 [/card]
 [card]
 name=Lim-Dul's Vault
@@ -12799,15 +12666,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Pheres-Band Centaurs
-text=
-mana={4}{G}
-type=Creature
-subtype=Centaur Warrior
-power=3
-toughness=7
-[/card]
-[card]
 name=Phosphorescent Feast
 text=Chroma — Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
 mana={2}{G}{G}{G}
@@ -13035,14 +12893,6 @@ type=Enchantment
 name=Planewide Disaster
 text=When you encounter Planewide Disaster, destroy all creatures. (Then planeswalk away from this phenomenon.)
 type=Phenomenon
-[/card]
-[card]
-name=Plant
-text=
-type=Token Creature
-subtype=Plant
-power=0
-toughness=1
 [/card]
 [card]
 name=Plasm Capture
@@ -16641,13 +16491,6 @@ name=Spell Syphon
 text=Counter target spell unless its controller pays {1} for each blue permanent you control.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Spellbinder
-text=Imprint — When Spellbinder enters the battlefield, you may exile an instant card from your hand. -- Whenever equipped creature deals combat damage to a player, you may copy the exiled card. If you do, you may cast the copy without paying its mana cost. -- Equip {4}
-mana={3}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Spellbreaker Behemoth
