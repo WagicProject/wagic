@@ -1324,7 +1324,7 @@ int AACopier::resolve()
         source->copiedID = _target->getMTGId();
         source->modifiedbAbi = _target->modifiedbAbi;
         source->origbasicAbilities = _target->origbasicAbilities;
-        source->basicAbilities = _target->basicAbilities;
+        source->basicAbilities = _target->origbasicAbilities;
         if(_target->isMorphed)
         {
             source->power = 2;
@@ -3696,7 +3696,7 @@ int AACloner::resolve()
             spell->source->addType(*it);
         }
         spell->source->modifiedbAbi = _target->modifiedbAbi;
-        spell->source->origbasicAbilities = _target->origbasicAbilities;
+        spell->source->basicAbilities = _target->origbasicAbilities;
         delete spell;
     }
     return 1;

@@ -941,12 +941,12 @@ void GameObserver::gameStateBasedEffects()
                         p->game->putInExile(c);
 
                     }
-                }
+                }/*
                 if(c->modifiedbAbi > 0)
                 {
                     c->modifiedbAbi = 0;
                     c->basicAbilities = c->origbasicAbilities;
-                }
+                }*///disabled this failed logic I introduce... when copying/cloning a card copy orig basic abilities...
                 if(nbcards > z->nb_cards)
                 {
                     t = 0;
