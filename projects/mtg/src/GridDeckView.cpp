@@ -123,9 +123,11 @@ void GridDeckView::Render()
         {
             if (WResourceManager::Instance()->IsThreaded())
             {
-                WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_THUMB);
+                //WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_THUMB);
+                WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_NORMAL);
             }
-            renderCard(i, 255, true);
+            //renderCard(i, 255, true);
+            renderCard(i, 255, false);//for psp, use lowres images if you can.
         }
         else
         {

@@ -34,96 +34,91 @@ public class DeckImporter
                 {
                     while (scanner.hasNext()) 
                     {
-						boolean foundSideboard = false;
                         String line = scanner.nextLine();
-						if(line.toLowerCase().contains("sideboard"))
-							foundSideboard = true;
-                        String[] slines = line.split("\\s+");
-                        String arranged = "";
-                        for(int idx = 1; idx < slines.length; idx++)
-                        {
-                             arranged += slines[idx] + " ";
-                        }
-                        if ((isNumeric(slines[0])||foundSideboard) && arranged != null)
-                        {
-							if (foundSideboard)
-								deck += prefix;
-							
-                            if (slines[1] != null && slines[1].startsWith("["))
-                            {
-                                arranged = arranged.substring(5);
-                                slines[1] = slines[1].replaceAll("\\[", "").replaceAll("\\]","");
-                                deck += arranged + " (" + renameSet(slines[1]) + ") * " + slines[0] + "\n";
-                            }
-                            else
-                            {
-                                deck += arranged + "(*) * " + slines[0] + "\n";
-                            }
-                        }
-                    }
-                    File profile = new File(activePath+"/Res/settings/options.txt");
-                    if(profile.exists() && !profile.isDirectory())
-                    {
-                        String profileName = getActiveProfile(profile);
-                        if(profileName != "Missing!")
-                        {
-                            File rootProfiles = new File(activePath+"/Res/profiles/"+profileName);
-                            if(rootProfiles.exists() && rootProfiles.isDirectory())
-                            {
-                                //save deck
-                                int countdeck = 1;
-                                File[] files = rootProfiles.listFiles();
-                                for (int i = 0; i < files.length; i++)
-                                {//check if there is available deck...
-                                    if(files[i].getName().startsWith("deck"))
-                                        countdeck++;
-                                }
-                                File toSave = new File(rootProfiles+"/deck"+countdeck+".txt");
-                                try 
-                                {
-                                    FileOutputStream fop = new FileOutputStream(toSave);
-                                    
-                                    // if file doesn't exists, then create it
-                                    if (!toSave.exists()) {
-                                        toSave.createNewFile();
-                                    }
-
-                                    // get the content in bytes
-                                    byte[] contentInBytes = deck.getBytes();
-
-                                    fop.write(contentInBytes);
-                                    fop.flush();
-                                    fop.close();
-
-                                    message = "Import Deck Success!\n\n"+deck;
-                                } 
-                                catch (IOException e) 
-                                {
-                                    message = e.getMessage();
-                                }
-                            }
-                            else
-                            {
-                                message = "Missing Folder!";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        message = "Invalid Profile!";
-                    }
-                }
-                else
-                {
-                    message = "No errors, and file EMPTY";
-                }
-            }
-            catch(IOException e)
-            {
-                message = e.getMessage();
-            }
-        }
-        return message;
+						line = line.trim();
+						if (!line.equals("")) // don't write out blank lines
+						{
+							String[] slines = line.split("\\s+");
+							String arranged = "";
+							for(int idx = 1; idx < slines.length; idx++)
+							{
+								arranged += slines[idx] + " ";
+							}
+							if ((isNumeric(slines[0])) && arranged != null)
+							{							
+								if (slines[1] != null && slines[1].startsWith("["))
+								{
+									arranged = arranged.substring(5);
+									slines[1] = slines[1].replaceAll("\\[", "").replaceAll("\\]","");
+									deck += arranged + " (" + renameSet(slines[1]) + ") * " + slines[0] + "\n";
+								}
+								else
+								{
+									deck += arranged + "(*) * " + slines[0] + "\n";
+								}
+							}
+						}
+					}
+					File profile = new File(activePath+"/Res/settings/options.txt");
+					if(profile.exists() && !profile.isDirectory())
+					{
+						String profileName = getActiveProfile(profile);
+						if(profileName != "Missing!")
+						{
+							File rootProfiles = new File(activePath+"/Res/profiles/"+profileName);
+							if(rootProfiles.exists() && rootProfiles.isDirectory())
+							{
+								//save deck
+								int countdeck = 1;
+								File[] files = rootProfiles.listFiles();
+								for (int i = 0; i < files.length; i++)
+								{//check if there is available deck...
+									if(files[i].getName().startsWith("deck"))
+                                       countdeck++;
+								}
+								File toSave = new File(rootProfiles+"/deck"+countdeck+".txt");
+								try 
+								{
+									FileOutputStream fop = new FileOutputStream(toSave);
+                                   
+									// if file doesn't exists, then create it
+									if (!toSave.exists()) {
+                                       toSave.createNewFile();
+									}
+										// get the content in bytes
+									byte[] contentInBytes = deck.getBytes();
+									fop.write(contentInBytes);
+									fop.flush();
+									fop.close();
+									message = "Import Deck Success!\n\n"+deck;
+								} 
+								catch (IOException e) 
+								{
+									message = e.getMessage();
+								}
+							}
+							else
+							{
+								message = "Missing Folder!";
+							}
+						}
+					}
+					else
+					{
+						message = "Invalid Profile!";
+					}
+				}
+				else
+				{
+					message = "No errors, and file EMPTY";
+				}
+			}
+			catch(IOException e)
+			{
+				message = e.getMessage();
+			}
+		}
+		return message;
     }
       
     private static boolean isNumeric(String input)
