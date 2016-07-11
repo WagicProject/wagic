@@ -88,7 +88,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     MTGCard * source = card->model;
     CardPrimitive * data = source->data;
 
-    basicAbilities = card->basicAbilities;
+    basicAbilities = card->origbasicAbilities;
     origbasicAbilities = card->origbasicAbilities;
     modifiedbAbi = card->modifiedbAbi;
     for (size_t i = 0; i < data->types.size(); i++)
