@@ -52,7 +52,10 @@ int Damage::resolve()
     damage = ev->damage->damage;
     target = ev->damage->target;
     if (!damage)
+    {
+        delete (e);
         return 0;
+    }
 
     //asorbing effects for cards controller-----------
 
