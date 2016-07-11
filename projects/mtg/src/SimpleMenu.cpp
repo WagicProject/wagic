@@ -172,14 +172,26 @@ void SimpleMenu::Render()
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
     float heightPadding = SimpleMenuConst::kLineHeight/2; // this to reduce the bottom padding of the menu
-    renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(180,0,0,0));
+    //renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(180,0,0,0));
+    
+    //menu black bg
+    renderer->FillRect(mX-3, mY-3, mWidth+6, (height - heightPadding)+6, ARGB(225,5,5,5));
+    renderer->DrawRect(mX-3, mY-3, mWidth+6, (height - heightPadding)+6, ARGB(255,25,25,25));
+
+    //menu fill
+    //renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(225,5,5,5));
+    //menu border
+    renderer->DrawRect(mX-1, mY-1, mWidth+2, (height - heightPadding)+2, ARGB(255,240,240,240));
+    //another border
+    renderer->DrawRect(mX+1, mY+1, mWidth-2, (height - heightPadding)-2, ARGB(255,89,89,89));
 
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-    
+    /*
     drawVertPole(mX, mY, height - heightPadding);
     drawVertPole(mX + mWidth, mY, height - heightPadding);
     drawHorzPole(mX, mY, mWidth);
-    drawHorzPole(mX, mY + height - heightPadding, mWidth);
+    drawHorzPole(mX, mY + height - heightPadding, mWidth);*///horizontal and vertical disabled
+
     //drawVertPole(mX, mY - 16, height + 32);
     //drawVertPole(mX + mWidth, mY - 16, height + 32);
     //drawHorzPole(mX - 16, mY, mWidth + 32);

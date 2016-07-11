@@ -88,7 +88,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     MTGCard * source = card->model;
     CardPrimitive * data = source->data;
 
-    basicAbilities = card->basicAbilities;
+    basicAbilities = card->origbasicAbilities;
     origbasicAbilities = card->origbasicAbilities;
     modifiedbAbi = card->modifiedbAbi;
     for (size_t i = 0; i < data->types.size(); i++)
@@ -969,6 +969,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
     int color = 0;
     string type = "";
     ManaCost * original = NEW ManaCost();
+    ManaCost * excess = NEW ManaCost();
     original->copy(Data);
     Cost->copy(original);
     if (Cost->extraCosts)
@@ -982,9 +983,26 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
     {//start1
         if (card->getIncreasedManaCost()->getConvertedCost())
             original->add(card->getIncreasedManaCost());
+        //before removing get the diff for excess
+        if(card->getReducedManaCost()->getConvertedCost())
+        {
+            for(int xc = 0; xc < 7;xc++)
+            {//if the diff is more than 0
+                if(card->getReducedManaCost()->getCost(xc) > original->getCost(xc))
+                {
+                    int count = card->getReducedManaCost()->getCost(xc) - original->getCost(xc);
+                    excess->add(xc,count);
+                }
+            }
+        }
+        //apply reduced
         if (card->getReducedManaCost()->getConvertedCost())
             original->remove(card->getReducedManaCost());
-
+        //try to reduce hybrid
+        if (excess->getConvertedCost())
+        {
+            original->removeHybrid(excess);
+        }
         Cost->copy(original);
         if (Cost->extraCosts)
         {
@@ -1128,6 +1146,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         }
     }
     SAFE_DELETE(original);
+    SAFE_DELETE(excess);
     return Cost;
 }
 
