@@ -175,7 +175,7 @@ void SimpleMenu::Render()
     float heightPadding = SimpleMenuConst::kLineHeight/2; // this to reduce the bottom padding of the menu
     
     if(!title.empty())
-        adjustme += 7.f;
+        adjustme += 3.f;
 
     //renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(180,0,0,0));
     
