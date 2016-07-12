@@ -1681,10 +1681,16 @@ int AIPlayerBaka::selectMenuOption()
                 }
             }
             if(currentMenu)
-                for(unsigned int mk = 0;mk < currentMenu->abilities.size();mk++)
+                for (unsigned int mk = 0; mk < currentMenu->abilities.size(); mk++)
                 {
+                    if (dynamic_cast<AAWhatsX*>(currentMenu->abilities[0]))
+                    {
+                        int potent = manaPool->getConvertedCost();
+                        int aftercost = potent - currentMenu->abilities[0]->source->getManaCost()->getConvertedCost();
+                        return  aftercost;
+                    }
                     int checked = getEfficiency(currentMenu->abilities[mk]);
-                    if(checked > 60 && checked > checkedLast)
+                    if (checked > 60 && checked > checkedLast)
                     {
                         doThis = mk;
                         checkedLast = checked;
