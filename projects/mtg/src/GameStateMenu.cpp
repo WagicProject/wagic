@@ -780,6 +780,11 @@ void GameStateMenu::Render()
             else
                 sprintf(text, "%s", _("LOADING...").c_str());
         }
+        //rectangle
+        renderer->FillRect(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH + 1.5f, mFont->GetHeight(),ARGB(225,5,5,5));
+        //renderer->FillRect(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH + 1.5f, mFont->GetHeight(),ARGB(25,205,0,0));
+        renderer->DrawRect(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH + 1.5f, mFont->GetHeight(),ARGB(200, 204, 153, 0));
+        //end
         mFont->SetColor(ARGB(170,0,0,0));
         mFont->DrawString(text, SCREEN_WIDTH / 2 + 2, SCREEN_HEIGHT - 50 + 2, JGETEXT_CENTER);
         mFont->SetColor(ARGB(255,255,255,255));
