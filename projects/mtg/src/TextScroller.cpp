@@ -67,10 +67,10 @@ void TextScroller::Update(float dt)
 void TextScroller::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-    JRenderer::GetInstance()->DrawLine(mX,mY,mX+mWidth,mY, ARGB(100, 255, 255, 255));
-    JRenderer::GetInstance()->FillRect(mX,mY,mWidth,mFont->GetHeight(), ARGB(225,5,5,5));
+    //JRenderer::GetInstance()->DrawLine(mX,mY,mX+mWidth,mY, ARGB(100, 255, 255, 255));
+    JRenderer::GetInstance()->FillRoundRect(mX,mY,mWidth,mFont->GetHeight(), 1, ARGB(225,5,5,5));
     //JRenderer::GetInstance()->FillRect(mX,mY,mWidth,mFont->GetHeight(), ARGB(25,205,0,0));
-    JRenderer::GetInstance()->DrawLine(mX,mY+11,mX+mWidth,mY+11, ARGB(100, 255, 255, 255));
+    //JRenderer::GetInstance()->DrawLine(mX,mY+11,mX+mWidth,mY+11, ARGB(100, 255, 255, 255));
     mFont->DrawString(mText.c_str(), mX, mY, JGETEXT_LEFT, start, mWidth);
 }
 
