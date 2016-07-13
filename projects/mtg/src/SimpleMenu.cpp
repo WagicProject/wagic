@@ -176,6 +176,8 @@ void SimpleMenu::Render()
     
     if(!title.empty())
         adjustme += 3.f;
+    else
+        adjustme += 5.f;
 
     //renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(180,0,0,0));
     
