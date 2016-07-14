@@ -249,6 +249,8 @@ LifeCost::LifeCost(TargetChooser *_tc)
 int LifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (!_target)
+        return 0;
     if (_target->controller()->life <= 0 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) ||
         _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) ||
         _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))

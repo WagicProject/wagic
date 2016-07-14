@@ -1144,75 +1144,89 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * _source,
     oldOrder.clear();
     newOrder.clear();
 }
-    int AACascade::resolve()
+int AACascade::resolve()
+{
+    Player * player = source->controller();
+    if (!player)
+        return 0;
+    WParsedInt numCards(nbcardsStr, NULL, source);
+    MTGLibrary * library = player->game->library;
+    MTGRemovedFromGame * exile = player->game->exile;
+    MTGCardInstance * viable = NULL;
+    int counter = 0;
+    bool found = false;
+    for (int i = 0; i < numCards.getValue(); i++)
     {
-        Player * player = source->controller();
-        if (player)
+        //*//*//*//
+        if (found)
+            continue;
+        //////////////////////////////////////////////
+        if (!library->nb_cards)
+            continue;
+        //////////////////////////////////////////////
+        while (library->nb_cards && !found)
         {
-            WParsedInt numCards(nbcardsStr, NULL, source);
-            MTGLibrary * library = player->game->library;
-            MTGRemovedFromGame * exile = player->game->exile;
-            MTGCardInstance * viable = NULL;
-            int counter = 0;
-            for (int i = 0; i < numCards.getValue(); i++)
+            viable = library->cards[library->nb_cards -1];
+            if (!found)
             {
-                if (library->nb_cards)
+                if (!viable->isLand() && (viable->getManaCost()->getConvertedCost() < source->getManaCost()->getConvertedCost()))
                 {
-                    for(int z = library->nb_cards-1; z >= 0; z--)
-                    {
-                        if(!library->cards[z]->isLand() && (library->cards[z]->getManaCost()->getConvertedCost() < source->getManaCost()->getConvertedCost()))
-                        {
-                            viable = library->cards[z];
-                            player->game->putInZone(viable, library, exile);
-                            {
-                                for(int j=0; j < library->nb_cards; j++)
-                                {
-                                     if(library->cards[j]->isCascaded)
-                                     {
-                                         library->cards[j]->isCascaded = false;
-                                         selectedCards.push_back(library->cards[j]);
-                                     }
-                                }
-                                if(selectedCards.size())
-                                {
-                                    std::random_shuffle ( selectedCards.begin(), selectedCards.end() );
-                                    for(unsigned int i = 0; i < selectedCards.size();++i)
-                                    {
-                                        oldOrder = library->cards;
-                                        newOrder.push_back(selectedCards[i]);
-                                        for(unsigned int k = 0;k < oldOrder.size();++k)
-                                        {
-                                            MTGCardInstance * rearranged = oldOrder[k];
-                                            if(rearranged != selectedCards[i])
-                                                newOrder.push_back(rearranged);
-                                        }
-                                        library->cards = newOrder;
-                                    }
-                                }
-                            }
-                            toCastCard(viable->next);
-                            return 1;
-                        }
-                        else
-                        {
-                            library->cards[library->nb_cards - 1]->isCascaded=true;
-                            counter++;
-                        }
-                    }
+
+                    toCastCard(viable);
+                    viable = player->game->putInZone(viable, library, exile);
+                    viable->isCascaded = true;
+                    found = true;
+                }
+                else
+                {
+                    viable = player->game->putInZone(viable, library, exile);
+                    viable->isCascaded = true;
+                    counter++;
                 }
             }
         }
-        return 1;
+
+        //*//*//*//*
     }
+    ////////////////////////////////////////////
+    for (int j = 0; j < exile->nb_cards; j++)
+    {
+        if (exile->cards[j]->isCascaded)
+        {
+            MTGCardInstance * CardToPutBack = exile->cards[j];//player->game->putInZone(exile->cards[j], exile, library);
+            CardToPutBack->isCascaded = false;
+            selectedCards.push_back(CardToPutBack);
+        }
+    }
+    //////////////////////////////////////////
+    if (selectedCards.size())
+    {
+        do
+        {
+            MTGCardInstance * toMove = selectedCards.back();
+            if (toMove)
+            {
+                MTGAbility * a = NEW AALibraryBottom(game, game->mLayers->actionLayer()->getMaxId(), source, toMove);
+                a->oneShot = 1;
+                a->resolve();
+                SAFE_DELETE(a);
+                selectedCards.pop_back();
+            }
+        } while (selectedCards.size());
+    }
+    //////////////////////////////////////
+    return 1;
+}
 
 void AACascade::toCastCard(MTGCardInstance * thisCard)
 {
     MTGAbility *ac = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), thisCard, thisCard,false,false,true,"","",false,false);
-    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac->clone(), thisCard,true);
+    MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac->clone(), thisCard,false);
     MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), thisCard,NULL,ma1->clone());
     SAFE_DELETE(ac);
     SAFE_DELETE(ma1);
     ga1->resolve();
+    SAFE_DELETE(ga1);
     return;
 }
 
@@ -7291,6 +7305,7 @@ MTGCardInstance * AACastCard::makeCard()
    MTGCardInstance * card = NULL;
    MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
    card = NEW MTGCardInstance(cardData, source->controller()->game);
+   card->owner = source->controller();
    source->controller()->game->temp->addCard(card);
    return card;
 }
@@ -7311,6 +7326,7 @@ int AACastCard::resolveSpell()
         MTGCard * cardToCopy = MTGCollection()->getCardById(_target->getId());
         MTGCardInstance * myDummy = NULL;
         myDummy = NEW MTGCardInstance(cardToCopy, source->controller()->game);
+        myDummy->setObserver(source->controller()->getObserver());
         source->controller()->game->garbage->addCard(myDummy);
         _target = myDummy;
         _target->isToken = 1;
