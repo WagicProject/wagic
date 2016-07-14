@@ -18,7 +18,7 @@ before_install:
       export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
       export PSPSDK="$PSPDEV/psp/sdk" &&
       export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin" &&
-      wget -O sdk.lzma http://sourceforge.net/projects/minpspw/files/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma/download;
+      wget -O sdk.lzma http://superb-sea2.dl.sourceforge.net/project/minpspw/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma;
     fi
 # Building for Qt here
   - if [ "$BUILD_Qt" == "YES" ]; then
