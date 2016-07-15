@@ -92,6 +92,7 @@ public:
     bool isPhased;
     bool isCascaded;
     int phasedTurn;
+    bool handEffects;
     bool graveEffects;
     bool exileEffects;
     bool suspended;

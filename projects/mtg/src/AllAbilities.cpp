@@ -1143,6 +1143,7 @@ AACascade::AACascade(GameObserver* observer, int _id, MTGCardInstance * _source,
     selectedCards.clear();
     oldOrder.clear();
     newOrder.clear();
+    castingThis = NULL;
 }
 int AACascade::resolve()
 {
@@ -1171,10 +1172,9 @@ int AACascade::resolve()
             {
                 if (!viable->isLand() && (viable->getManaCost()->getConvertedCost() < source->getManaCost()->getConvertedCost()))
                 {
-
-                    toCastCard(viable);
                     viable = player->game->putInZone(viable, library, exile);
                     viable->isCascaded = true;
+                    castingThis = viable;
                     found = true;
                 }
                 else
@@ -1193,7 +1193,7 @@ int AACascade::resolve()
     {
         if (exile->cards[j]->isCascaded)
         {
-            MTGCardInstance * CardToPutBack = exile->cards[j];//player->game->putInZone(exile->cards[j], exile, library);
+            MTGCardInstance * CardToPutBack = exile->cards[j];;
             CardToPutBack->isCascaded = false;
             selectedCards.push_back(CardToPutBack);
         }
@@ -1213,6 +1213,13 @@ int AACascade::resolve()
                 selectedCards.pop_back();
             }
         } while (selectedCards.size());
+
+        if (castingThis)
+        {
+            while (castingThis->next)
+                castingThis = castingThis->next;
+            toCastCard(castingThis);
+        }
     }
     //////////////////////////////////////
     return 1;
