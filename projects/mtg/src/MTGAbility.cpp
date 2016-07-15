@@ -5945,8 +5945,8 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
         {
             if (!source->hasSummoningSickness())
             {
-                if (game->currentlyActing()->game->inPlay->hasCard(source) && source->hasType(Subtypes::TYPE_LAND))
-                {
+                 if (game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()))
+                 {
                     if (!source->isPhased)
                     {
                         ManaCost * cost = getCost();
