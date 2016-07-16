@@ -5941,19 +5941,16 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
     //and far to prone to bugs.
     if (_card == source)
     {
-        if (!tap || (tap && !source->isTapped()))
+        if (!tap || (tap && (!source->isTapped() && !source->hasSummoningSickness())))
         {
-            if (!source->hasSummoningSickness())
+            if (game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()))
             {
-                 if (game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()))
-                 {
-                    if (!source->isPhased)
+                if (!source->isPhased)
+                {
+                    ManaCost * cost = getCost();
+                    if (!cost || (mana->canAfford(cost) && (!cost->extraCosts || cost->extraCosts->canPay())))/*counter cost bypass react to click*/
                     {
-                        ManaCost * cost = getCost();
-                        if (!cost || (mana->canAfford(cost) && (!cost->extraCosts || cost->extraCosts->canPay())))/*counter cost bypass react to click*/
-                        {
-                            result = 1;
-                        }
+                        result = 1;
                     }
                 }
             }
