@@ -1165,7 +1165,7 @@ void GameStateDuel::Render()
                 opponentMenu->Render();
                 // display the selected player deck name too
                 string selectedPlayerDeckName = _("Player Deck: ").c_str() + game->players[0]->deckName;
-                mFont->DrawString( selectedPlayerDeckName.c_str(), 30, 40);
+                mFont->DrawString( selectedPlayerDeckName.c_str(),  (SCREEN_WIDTH / 4) - (mFont->GetStringWidth(selectedPlayerDeckName.c_str())/2)-3, 32);
             }
             else if (deckmenu && !deckmenu->isClosed()) deckmenu->Render();
 
