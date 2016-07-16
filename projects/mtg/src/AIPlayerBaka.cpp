@@ -105,7 +105,8 @@ int OrderedAIAction::getEfficiency()
         target = a->source;
     }
     
-    if (AACastCard * CC = dynamic_cast<AACastCard*> (a))
+    AACastCard * CC = dynamic_cast<AACastCard*> (a);
+    if (CC)
         return 99;
 
     switch (a->aType)
