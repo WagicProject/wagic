@@ -1,0 +1,3 @@
+Wagic Team
+
+Check out themeinfo.txt in the graphics directory for more information on making themes!

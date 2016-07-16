@@ -1,0 +1,5 @@
+Jeck
+
+This is Gemstones, a theme based on semi-precious gemstones. It demonstrates the use of backdrop.txt to script backdrop selection.
+
+See the forum at http://wololo.net/forum/ for more themes!
