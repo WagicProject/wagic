@@ -1,0 +1,16 @@
+Wagic Team
+
+Default Theme Credits: 
+ * Our awesome phase bar and shop background are courtesy of Jhotun! Check out his work at www.jhotun.com!
+ * The eboot background, card back, logo, large card templates, and manual were contributed by Jeck.
+ * The default player's avatar is courtesy of http://mathieuchoinet.blogspot.com, under CC License.
+ * Other images are courtesy of J, who also does most of our gui coding. Thanks, J!
+ * The duel backdrop is from the KDE project, www.kde.org
+
+
+Notes on themes:
+This is themeinfo.txt. The first line should contain theme authorship information, but the rest is free to use any way you'd like.
+
+To build a theme, copy any file from the res/graphics/ directory to a directory just like this one. Then comes the fun part... edit it, save it, and load it up in Wagic. Be sure to include a 227*128 pixel "preview.png" to show off your new theme in options menu!
+
+You can also replace card images! Just place your new card picture in the same place it would be under the sets directory. For example, to replace 10th Edition's Demystify in "My Theme", use a file like this: "themes/my theme/sets/10E/129524.jpg". You can also use zipped card images, just like with the normal sets directory!
