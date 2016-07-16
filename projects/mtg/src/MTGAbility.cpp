@@ -3982,13 +3982,14 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
     {
         card->graveEffects = false;
         card->exileEffects = false;
-
+        card->handEffects = false;
         for (int i = 0; i < 2; ++i)
         {
             MTGPlayerCards * zones = observer->players[i]->game;
             if (dest == zones->hand)
             {
                 magicText = card->magicTexts["hand"];
+                card->handEffects = true;
                 break;
             }
             if (dest == zones->graveyard)
@@ -4890,6 +4891,8 @@ int MTGAbility::testDestroy()
     if (forceDestroy == 1)
         return 1;
     if (forceDestroy == -1)
+        return 0;
+    if (source->handEffects && game->isInHand(source))
         return 0;
     if(source->graveEffects && game->isInGrave(source))
         return 0;
@@ -5934,13 +5937,26 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
     int result = 0;
     if (!mana)
         mana = game->currentlyActing()->getManaPool();
-    if (_card == source && (!tap || !source->isTapped()) && game->currentlyActing()->game->inPlay->hasCard(source)
-                    && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()) && !source->isPhased)
+    //please do not condense the following, I broke it apart for readability, it was far to difficult to tell what exactly happened before with it all in a single line.
+    //and far to prone to bugs.
+    if (_card == source)
     {
-        ManaCost * cost = getCost();
-        if (!cost || (mana->canAfford(cost) && (!cost->extraCosts || cost->extraCosts->canPay())))/*counter cost bypass react to click*/
+        if (!tap || (tap && !source->isTapped()))
         {
-            result = 1;
+            if (!source->hasSummoningSickness())
+            {
+                 if (game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()))
+                 {
+                    if (!source->isPhased)
+                    {
+                        ManaCost * cost = getCost();
+                        if (!cost || (mana->canAfford(cost) && (!cost->extraCosts || cost->extraCosts->canPay())))/*counter cost bypass react to click*/
+                        {
+                            result = 1;
+                        }
+                    }
+                }
+            }
         }
     }
     return result;
