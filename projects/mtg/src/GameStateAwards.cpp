@@ -148,7 +148,7 @@ void GameStateAwards::Render()
 
     JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
     if (background.get())
-        r->RenderQuad(background.get(), 0, 0);
+        r->RenderQuad(background.get(), 0, 0, 0, SCREEN_WIDTH_F / background->mWidth, SCREEN_HEIGHT_F / background->mHeight);
 
     switch (mState)
     {
