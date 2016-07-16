@@ -1568,7 +1568,17 @@ int GameObserver::isInExile(MTGCardInstance * card)
     }
     return 0;
 }
+int GameObserver::isInHand(MTGCardInstance * card)
+{
 
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * hand = players[i]->game->hand;
+        if (players[i]->game->isInZone(card, hand))
+            return 1;
+    }
+    return 0;
+}
 void GameObserver::cleanupPhase()
 {
     currentPlayer->cleanupPhase();

@@ -76,10 +76,22 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
     {
-        MTGCardInstance * snapShot = NEW MTGCardInstance(*this);
-        snapShot->previous = NULL;
-        snapShot->counters = NEW Counters(snapShot);
-        controller()->game->garbage->addCard(snapShot);
+        //the below section of code was changed without all possible side effects checked
+        //the reason was becuase while NEW MTGCardInstance(*this); does indeed return an exact copy
+        //the lower layer cardprimitive data is pointed to from the original source.
+        //this would cause cards like lotus bloom, which contain a restriction, to already has deleted the restriction
+        //which belonged to the original card before getting to the safe_delete, 
+        //it was leaving a dangling pointer which leads to
+        //a total crash on "cleanup()" calls from garbage zone.
+        //snapshots are created for extra cost, they are used for abilities contained after the cost through storecard variable.
+        //TODO:fix this correctly. I want this to use an exact copy of the card in its current state for stored.
+        //making it safe_delete these "copies" leads to the same crash, as they are still pointing to the original data.
+        MTGCardInstance * snapShot = this;
+        //below is how we used to handle this.
+       // MTGCardInstance * snapShot = NEW MTGCardInstance(*this);
+        //snapShot->previous = NULL;
+       // snapShot->counters = NEW Counters(snapShot);
+        //controller()->game->garbage->addCard(snapShot);
         return snapShot;
     }
 

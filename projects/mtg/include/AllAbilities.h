@@ -6208,6 +6208,7 @@ class AACascade: public ActivatedAbility
 {
 public:
     string nbcardsStr;
+    MTGCardInstance * castingThis;
     vector<MTGCardInstance*>selectedCards;
     vector<MTGCardInstance *>oldOrder;
     vector<MTGCardInstance *>newOrder;
