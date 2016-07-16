@@ -1330,7 +1330,14 @@ void WGuiAward::Underlay()
 
     if (trophy.get())
     {
-        JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT - trophy->mHeight);
+        trophy->SetHotSpot(0,trophy->mHeight);
+        if(trophy->mHeight == 268.f && trophy->mWidth == 203.f)
+        {
+            trophy->SetHotSpot(0,0);
+            JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT-trophy->mHeight);
+        }
+        else
+            JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT, 0, 171.f / trophy->mWidth, 192.f / trophy->mHeight);
     }
 
 }
