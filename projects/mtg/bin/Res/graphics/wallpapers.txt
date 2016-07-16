@@ -5,7 +5,6 @@ wallpapers/wagic1.jpg
 wallpapers/kaioshin_garruk.jpg
 wallpapers/kaioshin_jace.jpg
 graphics/shop.jpg
-themes/Classic/backdrop.jpg
 wallpapers/kaioshin_ravager.jpg
 wallpapers/kaioshin_elsXIII.jpg
 wallpapers/kaioshin_sorin.jpg
