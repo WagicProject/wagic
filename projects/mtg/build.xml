@@ -77,7 +77,7 @@ Author: Michael Nguyen
 #define WAGIC_VERSION_MAJOR     ${build.major}
 #define WAGIC_VERSION_MEDIUM    ${build.minor}
 #define WAGIC_VERSION_MINOR     ${build.point}
-#define WAGIC_VERSION_REVISION  ((${env.TRAVIS_BUILD_NUMBER})-1198)
+#define WAGIC_VERSION_REVISION  ${env.TRAVIS_BUILD_NUMBER}
 
 #define VERSION_DOT(a, b, c, d) a ##.## b ##.## c ##.## d
 #define VERSION_WITHOUT_DOT(a, b, c) a ## b ## c
