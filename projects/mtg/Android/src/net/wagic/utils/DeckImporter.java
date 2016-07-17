@@ -18,6 +18,7 @@ public class DeckImporter
         String deck = "";
         String deckname = "";
 		String prefix = "#SB:";
+		int cardcount = 0;
         if(f.exists() && !f.isDirectory())
         { 
             deckname = f.getName();
@@ -36,7 +37,7 @@ public class DeckImporter
                     {
                         String line = scanner.nextLine();
 						line = line.trim();
-						if (!line.equals("")) // don't write out blank lines
+						if (!line.equals("") && cardcount < 61) // don't write out blank lines
 						{
 							String[] slines = line.split("\\s+");
 							String arranged = "";
@@ -56,6 +57,7 @@ public class DeckImporter
 								{
 									deck += arranged + "(*) * " + slines[0] + "\n";
 								}
+								cardcount += Integer.parseInt(slines[0]);
 							}
 						}
 					}
@@ -90,7 +92,7 @@ public class DeckImporter
 									fop.write(contentInBytes);
 									fop.flush();
 									fop.close();
-									message = "Import Deck Success!\n\n"+deck;
+									message = "Import Deck Success!\n"+cardcount+" total cards in this deck\n\n"+deck;
 								} 
 								catch (IOException e) 
 								{
