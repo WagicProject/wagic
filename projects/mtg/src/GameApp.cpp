@@ -232,6 +232,7 @@ void GameApp::Create()
     //WResourceManager::Instance()->RetrieveTexture("gold.png", RETRIEVE_MANAGE);
     //WResourceManager::Instance()->RetrieveTexture("goldglow.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("backdrop.jpg", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("backdropframe.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("handback.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("shadows.png", RETRIEVE_MANAGE);
 
