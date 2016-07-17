@@ -259,6 +259,7 @@ void DeckMenu::Render()
     if (avatarholder.get() && menupanel.get() && inDeckMenu)//bg panel
          renderer->RenderQuad(menupanel.get(), 225.f, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
     RenderBackground();//background deck menu
+    mScroller->Render();
     if (menuholder.get() && inDeckMenu)//menuholder
          renderer->RenderQuad(menuholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / menuholder.get()->mWidth, SCREEN_HEIGHT_F / menuholder.get()->mHeight);
 
@@ -345,7 +346,6 @@ void DeckMenu::Render()
         }
     }
     
-    mScroller->Render();
     RenderDeckManaColors();
 
     if (!title.empty())
