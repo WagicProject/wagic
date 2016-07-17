@@ -531,7 +531,8 @@ void Credits::Render()
                 if (unlockedQuad)
                 {
                     showMsg = 0;
-                    r->RenderQuad(unlockedQuad.get(), 20, 20);
+                    unlockedQuad->SetHotSpot(unlockedQuad->mWidth/2,0);
+                    r->RenderQuad(unlockedQuad.get(), SCREEN_WIDTH_F/2, 20, 0, 400.f / unlockedQuad->mWidth, 100.f / unlockedQuad->mHeight);
                 }
                 if (unlockedString.size())
                 {

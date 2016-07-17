@@ -704,7 +704,7 @@ void GameStateShop::Render()
 
     JQuadPtr mBg = WResourceManager::Instance()->RetrieveTempQuad("shop.jpg", TEXTURE_SUB_5551);
     if (mBg.get())
-        r->RenderQuad(mBg.get(), 0, 0);
+        r->RenderQuad(mBg.get(), 0, 0, 0, SCREEN_WIDTH_F / mBg->mWidth, SCREEN_HEIGHT_F / mBg->mHeight);
 
     JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad("shop_light.jpg", TEXTURE_SUB_5551);
     if (quad.get())
@@ -712,7 +712,8 @@ void GameStateShop::Render()
         r->EnableTextureFilter(false);
         r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
         quad->SetColor(ARGB(lightAlpha,255,255,255));
-        r->RenderQuad(quad.get(), 0, 0);
+        quad->SetHotSpot(0,quad->mHeight);
+        r->RenderQuad(quad.get(), 0, SCREEN_HEIGHT, 0, 255.f / quad->mWidth, 272.f / quad->mHeight);
         r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
         r->EnableTextureFilter(true);
     }
