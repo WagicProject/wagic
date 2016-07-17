@@ -95,6 +95,7 @@ bool GuiPhaseBar::Leaving(JButton)
 void GuiPhaseBar::Render()
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
+    JQuadPtr phaseinfo = WResourceManager::Instance()->RetrieveTempQuad("phaseinfo.png"); //new phaseinfo graphics
     //uncomment to draw a hideous line across hires screens.
     // JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
 
@@ -148,6 +149,13 @@ void GuiPhaseBar::Render()
     string phaseNameToTranslate = observer->phaseRing->phaseName(displayedPhaseId%kPhases + 1);
     phaseNameToTranslate = _(phaseNameToTranslate);
     sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(),phaseNameToTranslate.c_str());
+    if(phaseinfo.get())
+    {
+        phaseinfo->SetHotSpot(phaseinfo->mWidth - 1.f,0);
+        phaseinfo->mWidth = font->GetStringWidth(buf)+12.f;
+        phaseinfo->mHeight = font->GetHeight()+5.f;
+        JRenderer::GetInstance()->RenderQuad(phaseinfo.get(),SCREEN_WIDTH_F,0,0);
+    }
     font->DrawString(buf, SCREEN_WIDTH - 5, 2, JGETEXT_RIGHT);
 }
 

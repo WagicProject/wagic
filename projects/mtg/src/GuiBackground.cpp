@@ -30,8 +30,6 @@ void GuiBackground::Render()
     }
     if (quad.get())
     {
-        quad->mWidth = 480.f;
-        quad->mHeight = 272.f;
-        renderer->RenderQuad(quad.get(), 0, 0);
+        renderer->RenderQuad(quad.get(), 0, 0, 0, SCREEN_WIDTH_F / quad->mWidth, SCREEN_HEIGHT_F / quad->mHeight);
     }
 }
