@@ -2633,6 +2633,11 @@ public:
     {
         if(!nonstatic)
             return;
+        if(source->isToken && !source->isInPlay(game) && cda)
+        {
+            this->forceDestroy = 1;
+            return;
+        }
         if(!cda || (cda && (((MTGCardInstance *) target)->isSettingBase < 1)))
         {
             if(((MTGCardInstance *) target)->isSwitchedPT)
