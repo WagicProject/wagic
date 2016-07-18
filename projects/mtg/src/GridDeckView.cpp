@@ -2,8 +2,10 @@
 
 const float GridDeckView::scroll_animation_duration = 0.3f;
 const float GridDeckView::slide_animation_duration =  0.6f;
-const float GridDeckView::card_scale_small = 0.47f;
-const float GridDeckView::card_scale_big = 0.6f;
+//const float GridDeckView::card_scale_small = 0.47f;
+//const float GridDeckView::card_scale_big = 0.6f;
+const float GridDeckView::card_scale_small = 0.42f;
+const float GridDeckView::card_scale_big = 0.52f;
 
 GridDeckView::GridDeckView()
     : DeckView(16), mCols(8), mRows(2), mScrollOffset(0), mSlideOffset(0),

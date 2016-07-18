@@ -10,7 +10,7 @@
 #include "JLogger.h"
 #include <sstream>
 
-#ifdef PSP
+#if defined (PSP) 
 #define HUGE_CACHE_LIMIT 28000000  // Size of the cache for PSP (in bytes) - old value is 20mb increased to 28mb
 #else
 #define HUGE_CACHE_LIMIT 60000000  // Size of the cache for Windows and Linux (in bytes) - old value is 20mb increased to 60mb

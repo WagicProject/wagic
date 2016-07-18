@@ -66,19 +66,25 @@ void TextScroller::Update(float dt)
 
 void TextScroller::Render()
 {
+    
+    JQuadPtr fakebar;
+    JTexture * tex = WResourceManager::Instance()->RetrieveTexture("phaseinfo.png");
+        if (tex)
+        {
+            fakebar = WResourceManager::Instance()->RetrieveQuad("phaseinfo.png", 0.0f, 0.0f, tex->mWidth - 3.5f, tex->mHeight - 2.0f); //avoids weird rectangle around the texture because of bilinear filtering
+        }
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-    //tooltip
-    JQuadPtr tooltips;
-    tooltips = WResourceManager::Instance()->RetrieveTempQuad("tooltips.png");//new graphics tooltips
-    if (tooltips.get())
+    mFont->SetColor(ARGB(128,255,255,255));
+    if(fakebar.get())
     {
-        float xscale = (mWidth+(mWidth/18)) / tooltips->mWidth;
-        float yscale = mFont->GetHeight() / tooltips->mHeight;
-        JRenderer::GetInstance()->RenderQuad(tooltips.get(), mX-4.5f, mY+0.5f,0,xscale,yscale);
+        if(mText.length() > 1)
+        {
+            float xscale = (SCREEN_WIDTH_F/2.6f) / fakebar->mWidth;
+            float yscale = (mFont->GetHeight()+(mFont->GetHeight()/3.5f)) / fakebar->mHeight;
+            fakebar->SetHotSpot(fakebar->mWidth-8.f,0);
+            JRenderer::GetInstance()->RenderQuad(fakebar.get(),SCREEN_WIDTH_F, 4,0,xscale,yscale);
+        }
     }
-    else
-        JRenderer::GetInstance()->FillRoundRect(mX,mY,mWidth,mFont->GetHeight(), 1, ARGB(225,5,5,5));
-    //end tooltip
     mFont->DrawString(mText.c_str(), mX, mY, JGETEXT_LEFT, start, mWidth);
 }
 
