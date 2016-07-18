@@ -117,7 +117,7 @@ void GameStateMenu::Create()
     {
         currentState = MENU_STATE_MAJOR_LANG | MENU_STATE_MINOR_NONE;
     }
-    scroller = NEW TextScroller(Fonts::MAIN_FONT, SCREEN_WIDTH / 2 + 50, 5, 180);
+    scroller = NEW TextScroller(Fonts::MAIN_FONT, SCREEN_WIDTH / 2 + 65, 5, 180);
     scrollerSet = 0;
     splashTex = NULL;
 

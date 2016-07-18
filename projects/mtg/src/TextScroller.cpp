@@ -66,8 +66,19 @@ void TextScroller::Update(float dt)
 
 void TextScroller::Render()
 {
+    JQuadPtr fakebar = WResourceManager::Instance()->RetrieveTempQuad("phaseinfo.png"); //new phaseinfo graphics
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     mFont->SetColor(ARGB(128,255,255,255));
+    if(fakebar.get())
+    {
+        if(mText.length() > 1)
+        {
+            float xscale = (mFont->GetStringWidth(mText.c_str())+(mFont->GetStringWidth(mText.c_str())/18)) / fakebar->mWidth;
+            float yscale = (mFont->GetHeight()+(mFont->GetHeight()/3.5f)) / fakebar->mHeight;
+            fakebar->SetHotSpot(fakebar->mWidth-8.f,0);
+            JRenderer::GetInstance()->RenderQuad(fakebar.get(),SCREEN_WIDTH_F, 4,0,xscale,yscale);
+        }
+    }
     mFont->DrawString(mText.c_str(), mX, mY, JGETEXT_LEFT, start, mWidth);
 }
 
