@@ -41,15 +41,16 @@ void MenuItem::Render()
         if (mParticleSys)
             start = mParticleSys->info.colColorStart.GetHWColor();
         PIXEL_TYPE colors[] = { ARGB(0,0,0,0), start, ARGB(0,0,0,0), start, };
-        renderer->FillRect(255, 0, SCREEN_WIDTH - 155, SCREEN_HEIGHT, colors);
+        renderer->FillRect(255, 0, SCREEN_WIDTH - 165, SCREEN_HEIGHT, colors);//color on main menu right side
         // set additive blending
         renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
         mParticleSys->Render();
         // set normal blending
         renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
         mFont->SetColor(ARGB(255,255,255,255));
-        onQuad->SetColor(ARGB(70,255,255,255));
-        renderer->RenderQuad(onQuad, SCREEN_WIDTH, SCREEN_HEIGHT / 2, 0, 8, 8);
+        offQuad->SetColor(ARGB(60,255,255,255));
+        renderer->RenderQuad(offQuad, SCREEN_WIDTH, SCREEN_HEIGHT / 2, 0, 8, 8);//big icon main menu right side
+        offQuad->SetColor(ARGB(255,255,255,255));
         onQuad->SetColor(ARGB(255,255,255,255));
         mFont->DrawString(mText.c_str(), SCREEN_WIDTH / 2, 3 * SCREEN_HEIGHT / 4, JGETEXT_CENTER);
         renderer->RenderQuad(onQuad, mX, mY, 0, mScale, mScale);
@@ -88,7 +89,7 @@ void MenuItem::Entering()
     if (mParticleSys)
         mParticleSys->Fire();
     mHasFocus = true;
-    mTargetScale = 1.3f;
+    mTargetScale = 1.2f;
 }
 
 bool MenuItem::Leaving(JButton)
