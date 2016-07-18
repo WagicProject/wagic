@@ -2820,8 +2820,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitDeplete = parseBetween(s, "deplete:", " ", false);
     if (splitDeplete.size())
     {
+        bool namerepeat = false;
+        bool colorrepeat = false;
+        if (splitDeplete[0].find("color") != string::npos)
+            colorrepeat = true;
+        if (splitDeplete[0].find("name") != string::npos)
+            namerepeat = true;
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitDeplete[1], NULL, who, false);
+        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitDeplete[1], NULL, who, false, colorrepeat, namerepeat);
         a->oneShot = 1;
         return a;
     }
@@ -2830,8 +2836,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitIngest = parseBetween(s, "ingest:", " ", false);
     if (splitIngest.size())
     {
+        bool namerepeat = false;
+        bool colorrepeat = false;
+        if (splitIngest[0].find("coloringest") != string::npos)
+            colorrepeat = true;
+        if (splitIngest[0].find("nameingest") != string::npos)
+            namerepeat = true;
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitIngest[1], NULL, who, true);
+        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitIngest[1], NULL, who, true, colorrepeat, namerepeat);
         a->oneShot = 1;
         return a;
     }
