@@ -138,8 +138,9 @@ void OtherMenuItem::Render()
   float olds = mFont->GetScale();
   float xPos = SCREEN_WIDTH - 64;
   float xTextPos = xPos + 54;
+  float yPos = SCREEN_HEIGHT_F-26.f;
   int textAlign = JGETEXT_RIGHT;
-  onQuad->SetHFlip(false);
+  //onQuad->SetHFlip(false);
 
   switch(mKey)
   {
@@ -147,18 +148,30 @@ void OtherMenuItem::Render()
       xPos = 5;
       xTextPos = xPos + 10;
       textAlign = JGETEXT_LEFT;
-      onQuad->SetHFlip(true);
+      //onQuad->SetHFlip(true);
       break;
   default:
       break;
   }
 
-  onQuad->SetColor(ARGB(abs(alpha),255,255,255));
-  mFont->SetColor(ARGB(abs(alpha),0,0,0));
+  //onQuad->SetColor(ARGB(abs(alpha),255,255,255));
   mFont->SetScale(1.0f);
   mFont->SetScale(50.0f / mFont->GetStringWidth(mText.c_str()));
-  JRenderer::GetInstance()->RenderQuad(onQuad, xPos, 2, 0, mScale, mScale);
-  mFont->DrawString(mText, xTextPos, 9, textAlign);
+  //JRenderer::GetInstance()->RenderQuad(onQuad, xPos, yPos+2, 0, mScale, mScale);
+  //JRenderer::GetInstance()->FillRoundRect(xPos,yPos+2,mFont->GetStringWidth(mText.c_str()),mFont->GetHeight(),2,ARGB(abs(alpha),255,255,255));
+  JRenderer::GetInstance()->FillRoundRect(xPos+1, yPos+6, mFont->GetStringWidth(mText.c_str()) - 3, mFont->GetHeight() - 10, 5, ARGB(abs(alpha), 5, 5, 5));
+  if(!mHasFocus)
+  {
+    mFont->SetColor(ARGB(abs(alpha),255,255,255));
+    JRenderer::GetInstance()->FillRoundRect(xPos, yPos+5, mFont->GetStringWidth(mText.c_str()) - 3, mFont->GetHeight() - 10, 5, ARGB(abs(alpha), 140, 23, 23));
+  }
+  else
+  {
+    mFont->SetColor(ARGB(abs(alpha),5,5,5));
+    JRenderer::GetInstance()->FillRoundRect(xPos, yPos+5, mFont->GetStringWidth(mText.c_str()) - 3, mFont->GetHeight() - 10, 5, ARGB(abs(alpha), 140, 140, 140));
+  }
+  JRenderer::GetInstance()->DrawRoundRect(xPos, yPos+5, mFont->GetStringWidth(mText.c_str()) - 3, mFont->GetHeight() - 10, 5, ARGB(abs(alpha-20), 5, 5, 5));
+  mFont->DrawString(mText, xTextPos, yPos+9, textAlign);
   mFont->SetScale(olds);
 }
 

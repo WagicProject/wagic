@@ -117,7 +117,7 @@ void GameStateMenu::Create()
     {
         currentState = MENU_STATE_MAJOR_LANG | MENU_STATE_MINOR_NONE;
     }
-    scroller = NEW TextScroller(Fonts::MAIN_FONT, SCREEN_WIDTH / 2 - 90, SCREEN_HEIGHT - 17, 180);
+    scroller = NEW TextScroller(Fonts::MAIN_FONT, SCREEN_WIDTH / 2 + 65, 5, 180);
     scrollerSet = 0;
     splashTex = NULL;
 
@@ -445,9 +445,11 @@ void GameStateMenu::ensureMGuiController()
                     (i == 0)));
             }
 
-            JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
+            JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");//I set this transparent, don't remove button_shoulder.png
             if (!jq.get()) return;
             jq->SetHFlip(false);
+            jq->mWidth = 64.f;
+            jq->mHeight = 32.f;
             jq->SetColor(ARGB(abs(255),255,255,255));
             mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
             vector<ModRulesOtherMenuItem *>otherItems = gModRules.menu.other;
@@ -455,7 +457,7 @@ void GameStateMenu::ensureMGuiController()
                 mGuiController->Add(NEW OtherMenuItem(
                                        otherItems[0]->mActionId,
                                        mFont, otherItems[0]->mDisplayName,
-                                       SCREEN_WIDTH - 64, 2,
+                                       SCREEN_WIDTH - 64, SCREEN_HEIGHT_F-26.f,
                                        jq.get(), jq.get(), otherItems[0]->mKey, false
                                        ));
             }
@@ -733,8 +735,21 @@ void GameStateMenu::RenderTopMenu()
 
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-    mFont->SetColor(ARGB(128,255,255,255));
-    mFont->DrawString(GAME_VERSION, rightTextPos, 5, JGETEXT_RIGHT);
+    //mFont->SetColor(ARGB(128,255,255,255));
+    mFont->SetColor(ARGB(220,255,255,255));
+    /*//tooltip
+    JQuadPtr tooltips;
+    tooltips = WResourceManager::Instance()->RetrieveTempQuad("tooltips.png");//new graphics tooltips
+    if (tooltips.get())
+    {
+        float xscale = (mFont->GetStringWidth(GAME_VERSION)+(mFont->GetStringWidth(GAME_VERSION)/18)) / tooltips->mWidth;
+        float yscale = mFont->GetHeight() / tooltips->mHeight;
+        tooltips->SetHotSpot(tooltips->mWidth / 2,0);
+        JRenderer::GetInstance()->RenderQuad(tooltips.get(), SCREEN_WIDTH_F/2, SCREEN_HEIGHT_F-17,0,xscale,yscale);
+    }
+    //end tooltip*/
+    mFont->DrawString(GAME_VERSION, (SCREEN_WIDTH_F/2) - (mFont->GetStringWidth(GAME_VERSION))/2, SCREEN_HEIGHT_F-17, JGETEXT_LEFT);
+    mFont->SetColor(ARGB(128,255,255,255));//reset color
     mFont->DrawString(GameApp::mynbcardsStr, leftTextPos, 5);
     renderer->FillRect(leftTextPos, 26, 104, 8, ARGB(255, 100, 90, 60));
     renderer->FillRect(leftTextPos + 2, 28, (float)(gamePercentComplete()), 4, ARGB(255,220,200, 125));
