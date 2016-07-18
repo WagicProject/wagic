@@ -145,7 +145,10 @@ void DeckMenu::RenderDeckManaColors()
 void DeckMenu::RenderBackground()
 {
     ostringstream bgFilename;
-    bgFilename << backgroundName << ".png";
+    if(backgroundName == "menubgdeckeditor")
+        bgFilename << backgroundName << ".jpg";
+    else
+        bgFilename << backgroundName << ".png";
 
     static bool loadBackground = true;
     if (loadBackground)
@@ -248,7 +251,11 @@ void DeckMenu::Render()
         modAvatarX =26.f;
         modAvatarY =1.f;
     }
-
+    else
+    {
+        modAvatarX =-76.f;
+        modAvatarY =-1.5f;
+    }
     if (!menuInitialized)
     {
         initMenuItems();
@@ -334,7 +341,10 @@ void DeckMenu::Render()
                     oss << _("Deck: ") << currentMenuItem->getDeckName() << endl;
                     oss << currentMenuItem->getDeckStatsSummary();
                     descriptionFont->SetColor(ARGB(255,255,255,255));
-                    descriptionFont->DrawString(oss.str(), statsX+2, statsY-2);
+                    if(inDeckMenu)
+                        descriptionFont->DrawString(oss.str(), statsX+2, statsY-2);
+                    else
+                        descriptionFont->DrawString(oss.str(), statsX-86, statsY-4);
                 }
                 
                 // change the font color of the current menu item

@@ -1037,7 +1037,12 @@ void GameStateDuel::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
-
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
     //render the game until someone did win the game (otherwise it crashes sometimes under linux)
     if (game && !game->didWin())
         game->Render();

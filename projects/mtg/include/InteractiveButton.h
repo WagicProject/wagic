@@ -29,6 +29,10 @@ const int kPrevStatsButtonId     = 10006;
 const int kCycleCardsButtonId    = 10007;
 const int kShowCardListButtonId  = 10008;
 const int kSwitchViewButton      = 10009;
+const int kToggleUpButton        = 10010;
+const int kToggleDownButton      = 10011;
+const int kToggleLeftButton      = 10012;
+const int kToggleRightButton     = 10013;
 
 class InteractiveButton: public SimpleButton
 {
