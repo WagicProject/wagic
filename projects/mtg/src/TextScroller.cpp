@@ -67,18 +67,7 @@ void TextScroller::Update(float dt)
 void TextScroller::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-    //tooltip
-    JQuadPtr tooltips;
-    tooltips = WResourceManager::Instance()->RetrieveTempQuad("tooltips.png");//new graphics tooltips
-    if (tooltips.get())
-    {
-        float xscale = (mWidth+(mWidth/18)) / tooltips->mWidth;
-        float yscale = mFont->GetHeight() / tooltips->mHeight;
-        JRenderer::GetInstance()->RenderQuad(tooltips.get(), mX-4.5f, mY+0.5f,0,xscale,yscale);
-    }
-    else
-        JRenderer::GetInstance()->FillRoundRect(mX,mY,mWidth,mFont->GetHeight(), 1, ARGB(225,5,5,5));
-    //end tooltip
+    mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(mText.c_str(), mX, mY, JGETEXT_LEFT, start, mWidth);
 }
 
