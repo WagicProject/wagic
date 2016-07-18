@@ -151,10 +151,11 @@ void GuiPhaseBar::Render()
     sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(),phaseNameToTranslate.c_str());
     if(phaseinfo.get())
     {
-        phaseinfo->SetHotSpot(phaseinfo->mWidth-2.f,0);
-        //phaseinfo->mWidth = font->GetStringWidth(buf)+12.f;
+        
+        phaseinfo->mWidth = font->GetStringWidth(buf)+12.f;
+        phaseinfo->SetHotSpot(phaseinfo->mWidth -4, 0);
         //phaseinfo->mHeight = font->GetHeight()+5.f;
-        JRenderer::GetInstance()->RenderQuad(phaseinfo.get(),SCREEN_WIDTH_F,0,0,SCREEN_WIDTH_F / phaseinfo->mWidth, SCREEN_HEIGHT_F / phaseinfo->mHeight);
+        JRenderer::GetInstance()->RenderQuad(phaseinfo.get(),SCREEN_WIDTH_F,0,0,2.2f, SCREEN_HEIGHT_F / phaseinfo->mHeight);
     }
     font->DrawString(buf, SCREEN_WIDTH - 5, 2, JGETEXT_RIGHT);
 }
