@@ -62,8 +62,9 @@ int OrderedAIAction::getEfficiency(AADamager * aad)
 // I can't remember as I type this in which condition we use one or the other for this function, if you find out please replace this comment
 int OrderedAIAction::getEfficiency()
 {
-    if (efficiency > -1)
-        return efficiency;
+    //commented out the below becuase I noticed it prevented ai from updating the given abilities with new eff %.
+    //if (efficiency > -1)
+    //    return efficiency;
     if (!ability)
         return 0;
     GameObserver * g = owner->getObserver();
@@ -335,6 +336,16 @@ int OrderedAIAction::getEfficiency()
         }
     case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
     {
+        AManaProducer * manamaker = dynamic_cast<AManaProducer*>(a);
+        GenericActivatedAbility * GAA = dynamic_cast<GenericActivatedAbility*>(ability);
+        AForeach * forMana = dynamic_cast<AForeach*>(GAA->ability);
+        if (manamaker && forMana)
+        {
+            int outPut = forMana->checkActivation();
+            if (ability->getCost() && outPut > int(ability->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability->source->controller()->game->hand->nb_cards > 1)
+                efficiency = 90;//might be a bit random, but better than never using them.
+        }
+        else
         efficiency = 0;
         break;
     }
@@ -632,6 +643,10 @@ int OrderedAIAction::getEfficiency()
         efficiency += 65;
     }
     else if (dynamic_cast<MTGAlternativeCostRule *>(a))
+    {
+        efficiency += 55;
+    }
+    else if (dynamic_cast<MTGSuspendRule *>(a))
     {
         efficiency += 55;
     }

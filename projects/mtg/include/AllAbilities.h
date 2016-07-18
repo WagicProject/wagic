@@ -6200,8 +6200,10 @@ class AADepleter: public ActivatedAbilityTP
 public:
     string nbcardsStr;
     bool toexile;
+    bool colorrepeat;
+    bool namerepeat;
     AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
-    int who = TargetChooser::UNSET, bool toexile = false);
+    int who = TargetChooser::UNSET, bool toexile = false, bool colorrepeat = false, bool namerepeat = false);
     int resolve();
     const string getMenuText();
     AADepleter * clone() const;
