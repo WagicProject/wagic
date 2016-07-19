@@ -11,7 +11,7 @@
 #include <sstream>
 
 #if defined (PSP) 
-#define HUGE_CACHE_LIMIT 28000000  // Size of the cache for PSP (in bytes) - old value is 20mb increased to 28mb
+#define HUGE_CACHE_LIMIT 20000000  // Size of the cache for PSP (in bytes) - old value is 20mb - reverted
 #else
 #define HUGE_CACHE_LIMIT 60000000  // Size of the cache for Windows and Linux (in bytes) - old value is 20mb increased to 60mb
 #endif
