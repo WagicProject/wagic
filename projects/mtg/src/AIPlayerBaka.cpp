@@ -62,8 +62,9 @@ int OrderedAIAction::getEfficiency(AADamager * aad)
 // I can't remember as I type this in which condition we use one or the other for this function, if you find out please replace this comment
 int OrderedAIAction::getEfficiency()
 {
-    if (efficiency > -1)
-        return efficiency;
+    //commented out the below becuase I noticed it prevented ai from updating the given abilities with new eff %.
+    //if (efficiency > -1)
+    //    return efficiency;
     if (!ability)
         return 0;
     GameObserver * g = owner->getObserver();
@@ -335,6 +336,16 @@ int OrderedAIAction::getEfficiency()
         }
     case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
     {
+        AManaProducer * manamaker = dynamic_cast<AManaProducer*>(a);
+        GenericActivatedAbility * GAA = dynamic_cast<GenericActivatedAbility*>(ability);
+        AForeach * forMana = dynamic_cast<AForeach*>(GAA->ability);
+        if (manamaker && forMana)
+        {
+            int outPut = forMana->checkActivation();
+            if (ability->getCost() && outPut > int(ability->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability->source->controller()->game->hand->nb_cards > 1)
+                efficiency = 90;//might be a bit random, but better than never using them.
+        }
+        else
         efficiency = 0;
         break;
     }
@@ -632,6 +643,10 @@ int OrderedAIAction::getEfficiency()
         efficiency += 65;
     }
     else if (dynamic_cast<MTGAlternativeCostRule *>(a))
+    {
+        efficiency += 55;
+    }
+    else if (dynamic_cast<MTGSuspendRule *>(a))
     {
         efficiency += 55;
     }
@@ -1354,7 +1369,7 @@ int AIPlayerBaka::selectHintAbility()
     return 0;
 }
 
-int AIPlayerBaka::selectAbility()
+int AIPlayerBaka::selectAbility(MTGAbility * Specific)
 {
     if(observer->mExtraPayment && observer->mExtraPayment->source && observer->mExtraPayment->source->controller() == this)
     {
@@ -1395,12 +1410,14 @@ int AIPlayerBaka::selectAbility()
     for (size_t i = 1; i < observer->mLayers->actionLayer()->mObjects.size(); i++)
     { //0 is not a mtgability...hackish
         MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->mObjects[i]);
+        if (Specific && Specific != a)
+            continue;
         //Skip mana abilities for performance
         if (dynamic_cast<AManaProducer*> (a))
             continue;
         //Make sure we can use the ability
         for (int j = 0; j < game->inPlay->nb_cards; j++)
-        {
+        {//zeth fox: note to self, this is where I can teach it suspend and other cost types.
             MTGCardInstance * card = game->inPlay->cards[j];
             if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
             {
@@ -1429,7 +1446,32 @@ int AIPlayerBaka::selectAbility()
                     ManaCost * pMana = getPotentialMana(card);
                     pMana->add(this->getManaPool());
                     if (a->isReactingToClick(card, pMana))
+                    {
                         createAbilityTargets(a, card, ranking);
+                        if (Specific)
+                        {
+                            if (!Specific->getCost())
+                            {
+                                //attackcost, blockcost
+                                if (a->aType == MTGAbility::ATTACK_COST)
+                                {
+                                    ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
+                                    specificCost->add(0, card->attackCostBackup);
+                                    abilityPayment = canPayMana(card, specificCost);
+                                    SAFE_DELETE(specificCost);
+                                }
+                                else if (a->aType == MTGAbility::BLOCK_COST)
+                                {
+                                    ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
+                                    specificCost->add(0, card->blockCostBackup);
+                                    abilityPayment = canPayMana(card, specificCost);
+                                    SAFE_DELETE(specificCost);
+                                }
+                            }
+                            delete (pMana);
+                            break;
+                        }
+                    }
                     delete (pMana);
                 }     
             }
@@ -1443,6 +1485,8 @@ int AIPlayerBaka::selectAbility()
         if (!forceBestAbilityUse)
             chance = 1 + randomGenerator.random() % 100;
         int actionScore = action.getEfficiency();
+        if (Specific)
+            actionScore = 95;
         if(action.ability->getCost() && action.ability->getCost()->hasX() && this->game->hand->cards.size())
             actionScore = actionScore/int(this->game->hand->cards.size());//reduce chance for "x" abilities if cards are in hand.
         if (actionScore >= chance)
@@ -1454,6 +1498,35 @@ int AIPlayerBaka::selectAbility()
                     DebugTrace(" Ai knows exactly what mana to use for this ability.");
                 }
                 DebugTrace("AIPlayer:Using Activated ability");
+                if (Specific)
+                {
+                    if (!Specific->getCost())
+                    {
+                        //attackcost, blockcost
+                        if (action.ability->aType == MTGAbility::ATTACK_COST)
+                        {
+                            ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
+                            specificCost->add(0, action.click->attackCostBackup);
+                            if (payTheManaCost(specificCost, action.click, abilityPayment))
+                                clickstream.push(NEW AIAction(action));
+                            SAFE_DELETE(specificCost);
+                        }
+                        else if (action.ability->aType == MTGAbility::BLOCK_COST)
+                        {
+                            ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
+                            specificCost->add(0, action.click->blockCostBackup);
+                            if (payTheManaCost(specificCost, action.click, abilityPayment))
+                                clickstream.push(NEW AIAction(action));
+                            SAFE_DELETE(specificCost);
+                        }
+                    }
+                    else
+                    {
+                        if (payTheManaCost(action.ability->getCost(), action.click, abilityPayment))
+                            clickstream.push(NEW AIAction(action));
+                    }
+                }
+                else
                 if (payTheManaCost(action.ability->getCost(), action.click,abilityPayment))
                     clickstream.push(NEW AIAction(action));
             }
@@ -2609,8 +2682,19 @@ int AIPlayerBaka::chooseAttackers()
     MTGCardInstance * card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
-        if(hints && hints->HintSaysAlwaysAttack(observer,card))
-        observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
+        if (hints && hints->HintSaysAlwaysAttack(observer, card))
+        {
+            if (!card->isAttacker())
+            {
+                if (card->attackCost)
+                {
+                    MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::ATTACK_COST);
+                    selectAbility(a);
+                    observer->cardClick(card, MTGAbility::ATTACK_COST);
+                }
+            }
+            observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
+        }
     }
 
     if (attack)
@@ -2623,8 +2707,16 @@ int AIPlayerBaka::chooseAttackers()
         {
             if(hints && hints->HintSaysDontAttack(observer,card))
                 continue;
-            if(!card->isAttacker())
+            if (!card->isAttacker())
+            {
+                if (card->attackCost)
+                {
+                    MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::ATTACK_COST);
+                    selectAbility(a);
+                    observer->cardClick(card, MTGAbility::ATTACK_COST);
+                }
                 observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
+            }
         }
     }
     return 1;
@@ -2701,6 +2793,12 @@ int AIPlayerBaka::chooseBlockers()
                 }
                 else
                 {
+                    if (card->blockCost)
+                    {
+                        MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
+                        selectAbility(a);
+                        observer->cardClick(card, MTGAbility::BLOCK_COST);
+                    }
                     observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
                 }
             }
@@ -2731,6 +2829,11 @@ int AIPlayerBaka::chooseBlockers()
             continue;
         if (!card->defenser)
         {
+            if (card->blockCost)
+            {
+                MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
+                selectAbility(a);
+            }
             observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
             int set = 0;
             while (!set)
@@ -2745,6 +2848,11 @@ int AIPlayerBaka::chooseBlockers()
                     if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life
                             && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
                     {
+                        if (card->blockCost)
+                        {
+                            MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
+                            selectAbility(a);
+                        }
                         observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
                     }
                     else

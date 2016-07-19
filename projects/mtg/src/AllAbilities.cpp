@@ -1099,8 +1099,8 @@ AADamager * AADamager::clone() const
 
 
 //AADepleter
-AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who, bool toexile) :
-    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr),toexile(toexile)
+AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who, bool toexile, bool colorrepeat, bool namerepeat) :
+    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr),toexile(toexile), colorrepeat(colorrepeat), namerepeat(namerepeat)
 {
 }
     int AADepleter::resolve()
@@ -1110,16 +1110,124 @@ AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, 
         {
             WParsedInt numCards(nbcardsStr, NULL, source);
             MTGLibrary * library = player->game->library;
-            for (int i = 0; i < numCards.getValue(); i++)
+            if (colorrepeat && library->nb_cards)
             {
-                if (library->nb_cards)
+                bool repeating = false;
+                do
                 {
-                    if(toexile)
-                        player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->exile);
-                    else
-                        player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
+                    repeating = false;
+                    vector<MTGCardInstance*>found;
+                    for (int i = 0; i < numCards.getValue(); i++)
+                    {
+                        if (library->nb_cards)
+                        {
+                            if(library->nb_cards > i)
+                            found.push_back(library->cards[(library->nb_cards - 1) - i]);
+                        }
+                    }
+
+                    for (vector<MTGCardInstance*>::iterator it = found.begin(); it != found.end(); it++)
+                    {
+                        MTGCardInstance * cardFirst = *it;
+                        if (cardFirst->isLand())
+                            continue;
+                        for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+                        {
+                            if (cardFirst->hasColor(i))
+                            {
+                                for (vector<MTGCardInstance*>::iterator secondit = found.begin(); secondit != found.end(); secondit++)
+                                {
+                                    MTGCardInstance * cardSecond = *secondit;
+                                    if (cardSecond->isLand())
+                                        continue;
+                                    if (cardSecond->hasColor(i) && cardFirst != cardSecond)
+                                    {
+                                        repeating = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    do
+                    {
+                        if (found.size())
+                        {
+                            MTGCardInstance * toMove = found.back();
+                            if (toMove)
+                            {
+                                if (toexile)
+                                    player->game->putInZone(toMove, library, player->game->exile);
+                                else
+                                    player->game->putInZone(toMove, library, player->game->graveyard);
+                                found.pop_back();
+                            }
+                        }
+                    } while (found.size());
+
+                } while (repeating);
+            }
+            else if (namerepeat && library->nb_cards)
+            {
+                bool repeating = false;
+                do
+                {
+                    repeating = false;
+                    vector<MTGCardInstance*>found;
+                    for (int i = 0; i < numCards.getValue(); i++)
+                    {
+                        if (library->nb_cards)
+                        {
+                            if (library->nb_cards  > i)
+                            found.push_back(library->cards[(library->nb_cards - 1) - i]);
+                        }
+                    }
+
+                    for (vector<MTGCardInstance*>::iterator it = found.begin(); it != found.end(); it++)
+                    {
+                        MTGCardInstance * cardFirst = *it;
+                        for (vector<MTGCardInstance*>::iterator secondit = found.begin(); secondit != found.end(); secondit++)
+                        {
+                            MTGCardInstance * cardSecond = *secondit;
+                            if (cardSecond->name == cardFirst->name && cardFirst != cardSecond)
+                            {
+                                repeating = true;
+                            }
+                        }
+
+                    }
+
+                    do
+                    {
+                        if (found.size())
+                        {
+                            MTGCardInstance * toMove = found.back();
+                            if (toMove)
+                            {
+                                if (toexile)
+                                    player->game->putInZone(toMove, library, player->game->exile);
+                                else
+                                    player->game->putInZone(toMove, library, player->game->graveyard);
+                                found.pop_back();
+                            }
+                        }
+                    } while (found.size());
+                } while (repeating);
+            }
+            else
+            {
+                for (int i = 0; i < numCards.getValue(); i++)
+                {
+                    if (library->nb_cards)
+                    {
+                        if (toexile)
+                            player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->exile);
+                        else
+                            player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
+                    }
                 }
             }
+
         }
         return 1;
     }
