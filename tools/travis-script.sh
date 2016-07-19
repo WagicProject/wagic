@@ -62,7 +62,7 @@ if [ "$BUILD_ANDROID" = "YES" ]; then
     android-ndk-r9/ndk-build -C projects/mtg/Android -j4
     $ANDROID list targets
     $ANDROID update project -t 1 -p projects/mtg/Android
-    ant release -f projects/mtg/Android/build.xml
+    ant debug -f projects/mtg/Android/build.xml
 fi
 
 # we're building a Qt version with GUI here
