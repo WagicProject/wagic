@@ -1553,7 +1553,7 @@ MTGAttackCostRule::MTGAttackCostRule(GameObserver* observer, int _id) :
     scost = "Pay to attack";
 }
 
-int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
+int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiCheck)
 {
 
     if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
@@ -1571,8 +1571,12 @@ int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
                 attackcost->extraCosts->costs[i]->setSource(card);
             }
         scost = attackcost->getConvertedCost();
-        if (playerMana->canAfford(attackcost))
+        if ((aiCheck && aiCheck->canAfford(attackcost)) || playerMana->canAfford(attackcost))
+        {
+            SAFE_DELETE(attackcost);
             return 1;
+        }
+        SAFE_DELETE(attackcost);
     }
     return 0;
 }
@@ -1588,6 +1592,7 @@ int MTGAttackCostRule::reactToClick(MTGCardInstance * card)
     playerMana->pay(attackcost);//I think you can't pay partial cost to attack cost so you pay full (508.1i)
     card->attackCost = 0;
     card->attackPlaneswalkerCost = 0; 
+    SAFE_DELETE(attackcost);
     return 1;
     /*
     508.1g: If any of the chosen creatures require paying costs to attack, the active player determines the total cost to attack.
@@ -1622,7 +1627,7 @@ MTGBlockCostRule::MTGBlockCostRule(GameObserver* observer, int _id) :
     aType = MTGAbility::BLOCK_COST;
     scost = "Pay to block";
 }
-int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
+int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiCheck)
 {
     if (currentPhase == MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting
         && card->controller() != game->currentPlayer
@@ -1642,8 +1647,12 @@ int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
                 blockcost->extraCosts->costs[i]->setSource(card);
             }
         scost = blockcost->getConvertedCost();
-        if (playerMana->canAfford(blockcost))
+        if ((aiCheck && aiCheck->canAfford(blockcost)) || playerMana->canAfford(blockcost))
+        {
+            SAFE_DELETE(blockcost);
             return 1;
+        }
+        SAFE_DELETE(blockcost);
     }
     return 0;
 }
@@ -1658,6 +1667,7 @@ int MTGBlockCostRule::reactToClick(MTGCardInstance * card)
     ManaCost * playerMana = player->getManaPool();
     playerMana->pay(blockcost);//I think you can't pay partial cost to block cost so you pay full (509.1f)
     card->blockCost = 0;
+    SAFE_DELETE(blockcost);
     return 1;
     /*
     509.1d: If any of the chosen creatures require paying costs to block, the defending player determines the total cost to block. 

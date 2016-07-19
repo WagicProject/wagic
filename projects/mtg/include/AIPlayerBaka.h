@@ -107,7 +107,7 @@ class AIPlayerBaka: public AIPlayer{
     virtual bool payTheManaCost(ManaCost * cost, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
     virtual int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
     virtual ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
-    virtual int selectAbility();
+    virtual int selectAbility(MTGAbility * Specific = NULL);
 
  public:
     enum {
