@@ -149,6 +149,7 @@ void GuiPhaseBar::Render()
     string phaseNameToTranslate = observer->phaseRing->phaseName(displayedPhaseId%kPhases + 1);
     phaseNameToTranslate = _(phaseNameToTranslate);
     sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(),phaseNameToTranslate.c_str());
+#if !defined (PSP)
     if(phaseinfo.get())
     {
         
@@ -157,6 +158,7 @@ void GuiPhaseBar::Render()
         //phaseinfo->mHeight = font->GetHeight()+5.f;
         JRenderer::GetInstance()->RenderQuad(phaseinfo.get(),SCREEN_WIDTH_F,0,0,2.2f, SCREEN_HEIGHT_F / phaseinfo->mHeight);
     }
+#endif
     font->DrawString(buf, SCREEN_WIDTH - 5, 2, JGETEXT_RIGHT);
 }
 
