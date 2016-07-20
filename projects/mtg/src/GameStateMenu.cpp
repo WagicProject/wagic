@@ -795,6 +795,7 @@ void GameStateMenu::Render()
             else
                 sprintf(text, "%s", _("LOADING...").c_str());
         }
+#if !defined (PSP)
         //tooltip & overlay
         JQuadPtr menubar;
         menubar = WResourceManager::Instance()->RetrieveTempQuad("menubar.png");//new graphics menubar
@@ -811,6 +812,7 @@ void GameStateMenu::Render()
             renderer->DrawRect(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH + 1.5f, mFont->GetHeight(),ARGB(200, 204, 153, 0));
         //end
         }
+#endif
         mFont->SetColor(ARGB(170,0,0,0));
         mFont->DrawString(text, SCREEN_WIDTH / 2 + 2, SCREEN_HEIGHT - 50 + 2, JGETEXT_CENTER);
         mFont->SetColor(ARGB(255,255,255,255));

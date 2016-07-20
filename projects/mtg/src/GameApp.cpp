@@ -231,8 +231,12 @@ void GameApp::Create()
     //WResourceManager::Instance()->RetrieveTexture("wood.png", RETRIEVE_MANAGE);
     //WResourceManager::Instance()->RetrieveTexture("gold.png", RETRIEVE_MANAGE);
     //WResourceManager::Instance()->RetrieveTexture("goldglow.png", RETRIEVE_MANAGE);
+#if !defined (PSP)
     WResourceManager::Instance()->RetrieveTexture("backdrop.jpg", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("backdropframe.png", RETRIEVE_MANAGE);
+#else
+    WResourceManager::Instance()->RetrieveTexture("pspbackdrop.jpg", RETRIEVE_MANAGE);
+#endif
     WResourceManager::Instance()->RetrieveTexture("handback.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("shadows.png", RETRIEVE_MANAGE);
 
