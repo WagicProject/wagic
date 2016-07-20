@@ -505,12 +505,14 @@ void Credits::Render()
     if (!p1)
         return;
     JRenderer * r = JRenderer::GetInstance();
+#if !defined (PSP)
     JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
     if (wpTex)
     {
         JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
-        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+        r->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
+#endif
     WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     WFont * f2 = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
     WFont * f3 = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);

@@ -1285,6 +1285,7 @@ void GameStateDeckViewer::Render()
     setButtonState(false);
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
+#if !defined (PSP)
     JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
     if (wpTex)
     {
@@ -1293,7 +1294,7 @@ void GameStateDeckViewer::Render()
     }/*
     if (mView->deck() == myDeck && mStage != STAGE_MENU)
         renderDeckBackground();*/
-
+#endif
     mView->Render();
 
     if (mView->deck()->Size() > 0)

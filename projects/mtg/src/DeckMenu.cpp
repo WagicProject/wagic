@@ -150,6 +150,10 @@ void DeckMenu::RenderBackground()
     else
         bgFilename << backgroundName << ".png";
 
+#if defined (PSP)
+    bgFilename << "psppspdeckmenu.png";
+#endif
+
     static bool loadBackground = true;
     if (loadBackground)
     {
@@ -263,13 +267,20 @@ void DeckMenu::Render()
         timeOpen = 0;
         menuInitialized = true;
     }
+#if !defined (PSP)
     if (avatarholder.get() && menupanel.get() && inDeckMenu)//bg panel
          renderer->RenderQuad(menupanel.get(), 225.f, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
+
     RenderBackground();//background deck menu
     mScroller->Render();
+#else
+    mScroller->Render();
+    RenderBackground();//background deck menu
+#endif
+#if !defined (PSP)
     if (menuholder.get() && inDeckMenu)//menuholder
          renderer->RenderQuad(menuholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / menuholder.get()->mWidth, SCREEN_HEIGHT_F / menuholder.get()->mHeight);
-
+#endif
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
     
     for (int i = startId; i < startId + maxItems; i++)
@@ -313,16 +324,20 @@ void DeckMenu::Render()
                         {
                             JQuad * evil = quad.get();
                             evil->SetHFlip(true);
+#if !defined (PSP)
                             if (avatarholder.get() && inDeckMenu)
                                 renderer->RenderQuad(avatarholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
+#endif
                             renderer->RenderQuad(quad.get(), avatarX+modAvatarX, avatarY+modAvatarY, 0, xscale, yscale);
                             renderer->DrawRect(avatarX+modAvatarX, avatarY+modAvatarY,37.f,50.f,ARGB(200,3,3,3));
                             evil = NULL;
                         }
                         else
                         {
+#if !defined (PSP)
                             if (avatarholder.get() && inDeckMenu)
                                 renderer->RenderQuad(avatarholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
+#endif
                             renderer->RenderQuad(quad.get(), avatarX+modAvatarX, avatarY+modAvatarY, 0, xscale, yscale);
                             renderer->DrawRect(avatarX+modAvatarX, avatarY+modAvatarY,37.f,50.f,ARGB(200,3,3,3));
                         }
