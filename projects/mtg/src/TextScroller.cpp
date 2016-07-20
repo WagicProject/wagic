@@ -165,13 +165,17 @@ void VerticalTextScroller::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     JQuadPtr textscroller;
     JQuadPtr textscrollershadow;
+#if !defined (PSP)
     textscroller = WResourceManager::Instance()->RetrieveTempQuad("textscroller.png");//new graphics textscroller
     textscrollershadow = WResourceManager::Instance()->RetrieveTempQuad("textscrollershadow.png");//new graphics textscroller shadow
     if(!mText.empty() && mText.length() > 1)
         if (textscrollershadow.get())
             JRenderer::GetInstance()->RenderQuad(textscrollershadow.get(), 0, 0, 0 ,SCREEN_WIDTH_F / textscrollershadow->mWidth, SCREEN_HEIGHT_F / textscrollershadow->mHeight);
+#endif
     mFont->DrawString(mText.c_str(), mX, mY);
+#if !defined (PSP)
     if(!mText.empty() && mText.length() > 1)
         if (textscroller.get())
             JRenderer::GetInstance()->RenderQuad(textscroller.get(), 0, 0, 0 ,SCREEN_WIDTH_F / textscroller->mWidth, SCREEN_HEIGHT_F / textscroller->mHeight);
+#endif
 }
