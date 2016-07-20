@@ -62,9 +62,9 @@ int OrderedAIAction::getEfficiency(AADamager * aad)
 // I can't remember as I type this in which condition we use one or the other for this function, if you find out please replace this comment
 int OrderedAIAction::getEfficiency()
 {
-    //commented out the below becuase I noticed it prevented ai from updating the given abilities with new eff %.
-    //if (efficiency > -1)
-    //    return efficiency;
+    //the below is required for CMPAbilities operator override, without it the effs trip a debug assert. we need to find a better way to do it.
+    if (efficiency > -1)
+        return efficiency;
     if (!ability)
         return 0;
     GameObserver * g = owner->getObserver();
@@ -2684,6 +2684,7 @@ int AIPlayerBaka::computeActions()
             {
                 if(observer->currentPlayer != this)//only on my opponents turns.
                     chooseBlockers();
+                selectAbility();
                 break;
             }
         case MTG_PHASE_COMBATDAMAGE:
