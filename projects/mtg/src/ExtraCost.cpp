@@ -1128,8 +1128,8 @@ Offering * Offering::clone() const
     return ec;
 }
 
-Offering::Offering(TargetChooser *_tc) :
-ExtraCost("Select creature to offer", _tc)
+Offering::Offering(TargetChooser *_tc,bool emerge) :
+ExtraCost("Select creature to offer", _tc), emerge(emerge)
 {
 }
 
@@ -1137,28 +1137,77 @@ int Offering::canPay()
 {
     if (target && target->has(Constants::CANTBESACRIFIED))
         return 0;
-
-    if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+    if (emerge)
     {
-        tc->removeTarget(target);
-        target = NULL;
-        return 0;
+        if (target)
+        {
+            ManaCost * reduced = NEW ManaCost(source->getManaCost());
+            reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
+
+            if (target && (!source->controller()->getManaPool()->canAfford(reduced)))
+            {
+                tc->removeTarget(target);
+                target = NULL;
+                SAFE_DELETE(reduced);
+                return 0;
+            }
+            if (target && source->controller()->getManaPool()->canAfford(reduced))
+            {
+                SAFE_DELETE(reduced);
+                return 1;
+            }
+        }
+
     }
-    if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
-        return 1;
+    else
+    {
+        if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+        {
+            tc->removeTarget(target);
+            target = NULL;
+            return 0;
+        }
+        if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+            return 1;
+    }
     return 0;
 }
 
 int Offering::isPaymentSet()
 {
-    if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+    if (emerge)
     {
-        tc->removeTarget(target);
-        target = NULL;
-        return 0;
+        if (target)
+        {
+            ManaCost * reduced = NEW ManaCost(source->getManaCost());
+            reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
+
+            if (target && (!source->controller()->getManaPool()->canAfford(reduced)))
+            {
+                tc->removeTarget(target);
+                target = NULL;
+                SAFE_DELETE(reduced);
+                return 0;
+            }
+            if (target && source->controller()->getManaPool()->canAfford(reduced))
+            {
+                SAFE_DELETE(reduced);
+                return 1;
+            }
+        }
+
     }
-    if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
-        return 1;
+    else
+    {
+        if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+        {
+            tc->removeTarget(target);
+            target = NULL;
+            return 0;
+        }
+        if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+            return 1;
+    }
     return 0;
 }
 
@@ -1166,6 +1215,14 @@ int Offering::doPay()
 {
     if (target)
     {
+        if (emerge)
+        {
+            ManaCost * reduced = NEW ManaCost(source->getManaCost());
+            reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
+            target->controller()->getManaPool()->pay(reduced);
+            SAFE_DELETE(reduced);
+        }
+        else
         target->controller()->getManaPool()->pay(source->getManaCost()->Diff(target->getManaCost()));
         MTGCardInstance * beforeCard = target;
         source->storedCard = target->createSnapShot();

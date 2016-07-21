@@ -153,6 +153,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         }
                         break;
                     case 'e': 
+                        if (value == "emerge")
+                        {
+                            if (!tc)
+                                tc = tcf.createTargetChooser("creature|mybattlefield", c);
+                            manaCost->addExtraCost(NEW Offering(tc,true));
+                        }
+                        else
                         //Exile
                         manaCost->addExtraCost(NEW ExileTargetCost(tc));
                         break;

@@ -299,7 +299,8 @@ public:
 class Offering : public ExtraCost
 {
 public:
-  Offering(TargetChooser *_tc = NULL);
+    bool emerge;
+  Offering(TargetChooser *_tc = NULL, bool emerge = false);
   virtual int canPay();
   virtual int isPaymentSet();
   virtual int doPay();
