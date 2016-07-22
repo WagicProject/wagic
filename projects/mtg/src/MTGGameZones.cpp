@@ -431,6 +431,34 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             return ret;//don't send event
         }
     }
+    //before adding card to zone, if its Melded, we break it apart
+    if (from == g->players[0]->game->battlefield || from == g->players[1]->game->battlefield)
+    {
+        if(to != g->players[0]->game->battlefield || to != g->players[1]->game->battlefield)
+        if (copy->previous && copy->previous->MeldedFrom.size())
+        {
+            vector<string> names = split(copy->previous->MeldedFrom, '|');
+            MTGCard * cardone = MTGCollection()->getCardByName(names[0]);
+            MTGCardInstance * cardOne = NEW MTGCardInstance(cardone, copy->owner->game);
+            to->addCard(cardOne);
+            WEvent * e = NEW WEventZoneChange(cardOne, from, to);
+            g->receiveEvent(e);
+            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1]);
+            MTGCardInstance * cardTwo = NEW MTGCardInstance(cardtwo, copy->owner->game);
+            to->addCard(cardTwo);
+            WEvent * e2 = NEW WEventZoneChange(cardTwo, from, to);
+            g->receiveEvent(e2);
+
+            if(from == g->players[0]->game->battlefield)
+                g->players[0]->game->temp->addCard(copy);
+            if (from == g->players[1]->game->battlefield)
+                g->players[1]->game->temp->addCard(copy);
+            WEvent * e3 = NEW WEventZoneChange(copy, from, to);
+            g->receiveEvent(e3);
+            return ret;
+        }
+
+    }
     to->addCard(copy);
     //The "Temp" zone are purely for code purposes, and we don't want the abilities engine to
     //Trigger when cards move in this zone

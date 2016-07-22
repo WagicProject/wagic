@@ -154,6 +154,11 @@ void CardGui::Render()
         quad = AlternateThumbQuad(card);
 
     float cardScale = quad ? 40 / quad->mHeight : 1;
+    //I want the below for melded cards but I dont know how to adjust everything else
+    //to look neat and clean. leaving this here incase someone else wants to pretty up the p/t box
+    //and line up the position.
+   /* if (card->MeldedFrom.size())
+        cardScale = cardScale + (10 / quad->mHeight);*/
     float scale = actZ * cardScale;
 
     JQuadPtr shadow;

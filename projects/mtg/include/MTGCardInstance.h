@@ -89,6 +89,7 @@ public:
     bool turningOver;
     bool isMorphed;
     bool isFlipped;
+    string MeldedFrom;
     bool isPhased;
     bool isCascaded;
     int phasedTurn;

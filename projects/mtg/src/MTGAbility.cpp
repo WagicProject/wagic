@@ -3296,6 +3296,33 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //meld helper class
+    vector<string> splitMeldFrom = parseBetween(s, "meldfrom(", ")", true);
+    if (splitMeldFrom.size())
+    {
+        string splitMeldNames = "";
+        if (splitMeldFrom[1].size())
+        {
+            splitMeldNames = splitMeldFrom[1];
+        }
+        MTGAbility * a = NEW AAMeldFrom(observer, id, card, target, splitMeldNames);
+        a->oneShot = true;
+        return a;
+    }
+
+    //meld
+    vector<string> splitMeld = parseBetween(s, "meld(", ")", true);
+    if (splitMeld.size())
+    {
+        string splitMeldName = "";
+        if (splitMeld[1].size())
+        {
+            splitMeldName = splitMeld[1];
+        }
+        MTGAbility * a = NEW AAMeld(observer, id, card, target, splitMeldName);
+        a->oneShot = true;
+        return a;
+    }
     //flip
     vector<string> splitFlipStat = parseBetween(s, "flip(", ")", true);
     if(splitFlipStat.size())

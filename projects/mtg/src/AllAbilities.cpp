@@ -3069,6 +3069,68 @@ AAMorph * AAMorph::clone() const
     a->forceDestroy = 1;
     return a;
 }
+
+//Melded From Setter
+AAMeldFrom::AAMeldFrom(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, string MeldedName) :
+    ActivatedAbility(observer, id, card, 0), _MeldedName(MeldedName)
+{
+    target = _target;
+    // aType = MTGAbility::Melder;
+}
+
+int AAMeldFrom::resolve()
+{
+    source->MeldedFrom = _MeldedName;
+    return 1;
+}
+
+const string AAMeldFrom::getMenuText()
+{
+    return "Melded From";
+}
+
+AAMeldFrom * AAMeldFrom::clone() const
+{
+    return NEW AAMeldFrom(*this);
+}
+
+//Melding
+AAMeld::AAMeld(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, string MeldedName) :
+    ActivatedAbility(observer, id, card, 0), _MeldedName(MeldedName)
+{
+    target = _target;
+   // aType = MTGAbility::Melder;
+}
+
+int AAMeld::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    if (_target && _target->controller() == source->controller() && _target->owner == source->owner && !_target->isToken && !source->isToken)
+    {
+        source->controller()->game->putInExile(source);
+        _target->controller()->game->putInExile(_target);
+        source->next->controller()->game->putInZone(source->next, source->next->currentZone, source->next->controller()->game->temp);
+        _target->next->controller()->game->putInZone(_target->next, _target->next->currentZone, _target->next->controller()->game->temp);
+        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), source, source, false, false, false, _MeldedName, _MeldedName, false, true);
+        a->oneShot = false;
+        a->canBeInterrupted = false;
+        a->addToGame();
+
+        return 1;
+    }
+    return 0;
+}
+
+const string AAMeld::getMenuText()
+{
+    return "Meld";
+}
+
+AAMeld * AAMeld::clone() const
+{
+    return NEW AAMeld(*this);
+}
+
 // flip a card
 AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats) :
 InstantAbility(observer, id, card, _target),flipStats(flipStats)
@@ -6900,21 +6962,62 @@ void ABlink::resolveBlink()
         //    this->forceDestroy = 1;
         //    return;
         //}
+        if (_target->MeldedFrom.size())
+        {
+            //cards with meld are handled very different from normal cards with this specific ability giving us about 3 of the
+            //core rules for the ability. below we split the card up, and we send them to garbage, move the original to temp where
+            //it is later moved to garbage by garbage collection.
+            //then we build 2 seperate blinks with the 2 parts as the targets.
+            vector<string> names = split(_target->MeldedFrom, '|');
+            MTGCard * cardone = MTGCollection()->getCardByName(names[0]);
+            MTGCardInstance * cardOne = NEW MTGCardInstance(cardone, _target->owner->game);
+            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1]);
+            MTGCardInstance * cardTwo = NEW MTGCardInstance(cardtwo, _target->owner->game);
+            _target->controller()->game->putInZone(_target, _target->currentZone,
+                _target->owner->game->temp);
+            _target->controller()->game->garbage->addCard(cardOne);
+            _target->controller()->game->garbage->addCard(cardTwo);
+            MTGAbility * a = NEW ABlinkGeneric(game, game->mLayers->actionLayer()->getMaxId(), source, cardOne, blinkueot, blinkForSource, blinkhand, stored);
+            a->target = (Targetable*)cardOne;
+            a->oneShot = false;
+            a->canBeInterrupted = false;
+            a->resolve();
+            SAFE_DELETE(a);
+
+
+            MTGAbility * a2 = NEW ABlinkGeneric(game, game->mLayers->actionLayer()->getMaxId(), source, cardTwo, blinkueot, blinkForSource, blinkhand, stored);
+            a2->target = (Targetable*)cardTwo;
+            a2->oneShot = false;
+            a2->canBeInterrupted = false;
+            a2->resolve();
+            SAFE_DELETE(a2);
+            this->forceDestroy = 1;
+            this->removeFromGame();
+            return;
+        }
+        else
         _target->controller()->game->putInZone(_target, _target->currentZone,
             _target->owner->game->exile);
+        if (_target->MeldedFrom.size() || !_target)
+        {
+            return;
+        }
         if(_target->isToken)
         {
             //if our target is a token, we're done as soon as its sent to exile.
             this->forceDestroy = 1;
             return;
         }
-        _target = _target->next;
+
+        if (_target && _target->next)
+            _target = _target->next;
         _target->blinked = true;
         Blinked = _target;
-        if(!blinkueot && !blinkForSource)
+        if (!blinkueot && !blinkForSource)
         {
             returnCardIntoPlay(_target);
         }
+
     }
 }
 

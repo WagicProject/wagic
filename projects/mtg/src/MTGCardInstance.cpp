@@ -195,6 +195,7 @@ void MTGCardInstance::initMTGCI()
     morphed = false;
     turningOver = false;
     isMorphed = false;
+    MeldedFrom = "";
     isFlipped = false;
     isPhased = false;
     isCascaded = false;
