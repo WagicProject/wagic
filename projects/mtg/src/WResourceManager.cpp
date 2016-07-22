@@ -234,10 +234,14 @@ JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submod
 
     submode = submode | TEXTURE_SUB_CARD;
 
-    static std::ostringstream filename;
-    filename.str("");
-    filename << setlist[card->setId] << "/" << card->getImageName();
-
+    //static std::ostringstream filename;
+    //filename.str("");
+    string filename;
+    filename.reserve(4096);
+    //filename << setlist[card->setId] << "/" << card->getImageName();
+    filename.append(setlist[card->setId]);
+    filename.append("/");
+    filename.append(card->getImageName());
     int id = card->getMTGId();
 
     //Aliases.
@@ -247,7 +251,7 @@ JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submod
         style = RETRIEVE_NORMAL;
     }
 
-    JQuadPtr jq = RetrieveQuad(filename.str(), 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
+    JQuadPtr jq = RetrieveQuad(filename, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
 
     lastError = textureWCache.mError;
     if (jq)
