@@ -842,12 +842,13 @@ void ResourceManagerImpl::InitFonts(const std::string& inLang)
     LoadWFont("pspsimon", 11, Fonts::MAIN_FONT + idOffset);
     GetWFont(Fonts::MAIN_FONT)->SetTracking(-1);
     LoadWFont("pspf3", 16, Fonts::MENU_FONT + idOffset);
+    LoadWFont("pspmagic", 16, Fonts::MAGIC_FONT + idOffset);
 #else
     LoadWFont("simon", 11, Fonts::MAIN_FONT + idOffset);
     GetWFont(Fonts::MAIN_FONT)->SetTracking(-1);
     LoadWFont("f3", 16, Fonts::MENU_FONT + idOffset);
-#endif
     LoadWFont("magic", 16, Fonts::MAGIC_FONT + idOffset);
+#endif
     LoadWFont("smallface", 7, Fonts::SMALLFACE_FONT + idOffset);
 }
 

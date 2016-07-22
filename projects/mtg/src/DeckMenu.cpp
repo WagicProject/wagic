@@ -151,7 +151,10 @@ void DeckMenu::RenderBackground()
         bgFilename << backgroundName << ".png";
 
 #if defined (PSP)
-    bgFilename << "psppspdeckmenu.png";
+    if(backgroundName == "menubgdeckeditor")
+        bgFilename << "pspmenubgdeckeditor.jpg";
+    else
+        bgFilename << "pspdeckmenu.png";
 #endif
 
     static bool loadBackground = true;
