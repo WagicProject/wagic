@@ -166,6 +166,10 @@ int Player::gainOrLoseLife(int value)
         life+=value;
     if (value<0)
         lifeLostThisTurn += abs(value);
+    else if (value > 0)
+    {
+        lifeGainedThisTurn += abs(value);
+    }
 
     //Send life event to listeners
     WEvent * lifed = NEW WEventLife(this,value);
