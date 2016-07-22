@@ -500,8 +500,10 @@ void GuiCombat::Render()
     }
     if (ok_tex)
     {
-        JQuadPtr ok_quad = WResourceManager::Instance()->RetrieveTempQuad("Ok.png");
-        ok_quad->SetHotSpot(28, 22);
+        JQuadPtr ok_quad = WResourceManager::Instance()->RetrieveQuad("Ok.png", 0.0f, 0.0f, ok_tex->mWidth - 4.5f, ok_tex->mHeight - 4.5f);
+        ok_quad->mWidth = 56.f;
+        ok_quad->mHeight = 45.f;
+        ok_quad->SetHotSpot(ok_quad->mWidth/2, ok_quad->mHeight/2);
         ok.Render(ok_quad.get());
     }
     renderer->DrawLine(0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2, ARGB(255, 255, 64, 0));
