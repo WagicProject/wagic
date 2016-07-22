@@ -1141,7 +1141,8 @@ int Offering::canPay()
     {
         if (target)
         {
-            ManaCost * reduced = NEW ManaCost(source->getManaCost());
+            ManaCost * reduced = NEW ManaCost(source->getManaCost()->getAlternative());
+            reduced->extraCosts = NULL;
             reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
 
             if (target && (!source->controller()->getManaPool()->canAfford(reduced)))
@@ -1161,14 +1162,22 @@ int Offering::canPay()
     }
     else
     {
-        if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+        if (target)
         {
-            tc->removeTarget(target);
-            target = NULL;
-            return 0;
+            ManaCost * diff = source->getManaCost()->Diff(target->getManaCost());
+            if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+            {
+                SAFE_DELETE(diff);
+                tc->removeTarget(target);
+                target = NULL;
+                return 0;
+            }
+            if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+            {
+                SAFE_DELETE(diff);
+                return 1;
+            }
         }
-        if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
-            return 1;
     }
     return 0;
 }
@@ -1179,7 +1188,8 @@ int Offering::isPaymentSet()
     {
         if (target)
         {
-            ManaCost * reduced = NEW ManaCost(source->getManaCost());
+            ManaCost * reduced = NEW ManaCost(source->getManaCost()->getAlternative());
+            reduced->extraCosts = NULL;
             reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
 
             if (target && (!source->controller()->getManaPool()->canAfford(reduced)))
@@ -1199,14 +1209,22 @@ int Offering::isPaymentSet()
     }
     else
     {
-        if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+        if (target)
         {
-            tc->removeTarget(target);
-            target = NULL;
-            return 0;
+            ManaCost * diff = source->getManaCost()->Diff(target->getManaCost());
+            if (target && (!source->controller()->getManaPool()->canAfford(diff)))
+            {
+                SAFE_DELETE(diff);
+                tc->removeTarget(target);
+                target = NULL;
+                return 0;
+            }
+            if (target && (source->controller()->getManaPool()->canAfford(diff)))
+            {
+                SAFE_DELETE(diff);
+                return 1;
+            }
         }
-        if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
-            return 1;
     }
     return 0;
 }
@@ -1217,13 +1235,18 @@ int Offering::doPay()
     {
         if (emerge)
         {
-            ManaCost * reduced = NEW ManaCost(source->getManaCost());
+            ManaCost * reduced = NEW ManaCost(source->getManaCost()->getAlternative());
+            reduced->extraCosts = NULL;
             reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
             target->controller()->getManaPool()->pay(reduced);
             SAFE_DELETE(reduced);
         }
         else
-        target->controller()->getManaPool()->pay(source->getManaCost()->Diff(target->getManaCost()));
+        {
+            ManaCost * diff = source->getManaCost()->Diff(target->getManaCost());
+            target->controller()->getManaPool()->pay(diff);
+            SAFE_DELETE(diff);
+        }
         MTGCardInstance * beforeCard = target;
         source->storedCard = target->createSnapShot();
         target->controller()->game->putInGraveyard(target);
