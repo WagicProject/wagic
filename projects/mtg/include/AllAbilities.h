@@ -658,6 +658,14 @@ private:
         {
             intValue = target->controller()->lifeLostThisTurn;
         }
+        else if (s == "oplifegain")
+        {
+            intValue = target->controller()->opponent()->lifeGainedThisTurn;
+        }
+        else if (s == "lifegain")
+        {
+            intValue = target->controller()->lifeGainedThisTurn;
+        }
         else if (s == "pdcount")
         {
             intValue = target->controller()->damageCount;
@@ -4456,6 +4464,29 @@ public:
     const string getMenuText();
     AAMorph * clone() const;
 };
+
+class AAMeldFrom : public ActivatedAbility
+{
+public:
+    string _MeldedName;
+    AAMeldFrom(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, string MeldedName = "");
+    int resolve();
+
+    const string getMenuText();
+    AAMeldFrom * clone() const;
+};
+/* meld*/
+class AAMeld : public ActivatedAbility
+{
+public:
+    string _MeldedName;
+    AAMeld(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string MeldedName = "");
+    int resolve();
+
+    const string getMenuText();
+    AAMeld * clone() const;
+};
+
 /* flip*/
 class AAFlip: public InstantAbility
 {
