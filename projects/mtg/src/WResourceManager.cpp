@@ -237,6 +237,7 @@ JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submod
     //static std::ostringstream filename;
     //filename.str("");
     string filename;
+    filename.reserve(4096);
     //filename << setlist[card->setId] << "/" << card->getImageName();
     filename.append(setlist[card->setId]);
     filename.append("/");
