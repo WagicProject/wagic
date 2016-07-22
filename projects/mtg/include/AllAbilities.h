@@ -658,6 +658,14 @@ private:
         {
             intValue = target->controller()->lifeLostThisTurn;
         }
+        else if (s == "oplifegain")
+        {
+            intValue = target->controller()->opponent()->lifeGainedThisTurn;
+        }
+        else if (s == "lifegain")
+        {
+            intValue = target->controller()->lifeGainedThisTurn;
+        }
         else if (s == "pdcount")
         {
             intValue = target->controller()->damageCount;

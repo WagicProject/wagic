@@ -27,11 +27,12 @@ public:
     int preventable;
     int thatmuch;
     int lifeLostThisTurn;
+    int lifeGainedThisTurn;
     DamageableType type_as_damageable;
     Damageable(GameObserver* observer, int _life)
         : Targetable(observer), life(_life), handsize(0),
           poisonCount(0), damageCount(0), preventable(0), thatmuch(0),
-          lifeLostThisTurn(0), type_as_damageable(DAMAGEABLE_MTGCARDINSTANCE)
+          lifeLostThisTurn(0), lifeGainedThisTurn(0), type_as_damageable(DAMAGEABLE_MTGCARDINSTANCE)
         {}
     int getLife(){return life;}
     virtual int dealDamage(int damage){life-=damage;return life;}

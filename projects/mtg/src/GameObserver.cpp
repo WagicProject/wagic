@@ -248,6 +248,8 @@ void GameObserver::nextGamePhase()
         currentPlayer->prowledTypes.clear();
         currentPlayer->lifeLostThisTurn = 0;
         currentPlayer->opponent()->lifeLostThisTurn = 0;
+        currentPlayer->lifeGainedThisTurn = 0;
+        currentPlayer->opponent()->lifeGainedThisTurn = 0;
         currentPlayer->doesntEmpty->remove(currentPlayer->doesntEmpty);
         currentPlayer->opponent()->doesntEmpty->remove(currentPlayer->opponent()->doesntEmpty);
         nextPlayer();
