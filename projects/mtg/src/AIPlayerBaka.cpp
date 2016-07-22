@@ -2739,8 +2739,8 @@ int AIPlayerBaka::getCreaturesInfo(Player * player, int neededInfo, int untapMod
                 result++;
             }
             else
-            {
-                result += card->power;
+            {//AI should consider COMBATTOUGHNESS for attackers and blockers
+                result += card->has(Constants::COMBATTOUGHNESS) ? card->toughness : card->power;
             }
         }
     }
