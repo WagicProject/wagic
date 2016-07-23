@@ -637,6 +637,8 @@ int MTGCardInstance::canAttack()
 {
     if (basicAbilities[(int)Constants::CANTATTACK])
         return 0;
+    if (basicAbilities[(int)Constants::FLYERSONLY] && !basicAbilities[(int)Constants::FLYING])
+        return 0;
     if (tapped)
         return 0;
     if (hasSummoningSickness())

@@ -3982,6 +3982,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::WEAK] = true;
     badAbilities[(int)Constants::NOLIFEGAIN] = true;
     badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
+    badAbilities[(int)Constants::MUSTBLOCK] = true;
+    badAbilities[(int)Constants::FLYERSONLY] = true;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {
