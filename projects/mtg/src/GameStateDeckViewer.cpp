@@ -52,8 +52,8 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     toggleViewButton = NEW InteractiveButton(NULL, kSwitchViewButton, Fonts::MAIN_FONT, "Grid", (SCREEN_WIDTH_F/ 2) + 50, SCREEN_HEIGHT_F - 20, JGE_BTN_MAX);
     toggleUpButton = NEW InteractiveButton(NULL, kToggleUpButton, Fonts::MAIN_FONT, "UP", 10, 25, JGE_BTN_DOWN);
     toggleDownButton = NEW InteractiveButton(NULL, kToggleDownButton, Fonts::MAIN_FONT, "DN", SCREEN_WIDTH_F-25, 25, JGE_BTN_UP);
-    toggleLeftButton = NEW InteractiveButton(NULL, kToggleLeftButton, Fonts::MAIN_FONT, "<<", 10, SCREEN_HEIGHT_F/2, JGE_BTN_RIGHT);
-    toggleRightButton = NEW InteractiveButton(NULL, kToggleRightButton, Fonts::MAIN_FONT, ">>", SCREEN_WIDTH_F-20, SCREEN_HEIGHT_F/2, JGE_BTN_LEFT);
+    toggleLeftButton = NEW InteractiveButton(NULL, kToggleLeftButton, Fonts::MAIN_FONT, "<<", 10, SCREEN_HEIGHT_F/2, JGE_BTN_LEFT);
+    toggleRightButton = NEW InteractiveButton(NULL, kToggleRightButton, Fonts::MAIN_FONT, ">>", SCREEN_WIDTH_F-20, SCREEN_HEIGHT_F/2, JGE_BTN_RIGHT);
 }
 
 GameStateDeckViewer::~GameStateDeckViewer()
