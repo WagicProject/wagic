@@ -340,7 +340,30 @@ void CardSelector::Render()
         if (CardView* card = dynamic_cast<CardView*>(active) )
         {
             if(timer > 0)
-                card->DrawCard(bigpos, mDrawMode);
+            {
+                float modx = 0.f;
+                //if(card->mHasFocus && observer->isInHand(card->getCard()) && !card->getCard()->owner->isAI())
+                    //modx -= 1.8f;//todo small adjustment
+                //new npos for smaller bigquad
+                Pos npos = Pos(bigpos.x+7.f+modx,bigpos.y-4.f,bigpos.zoom-(bigpos.zoom/10),bigpos.t,bigpos.alpha);
+                //border
+                if(mDrawMode < 2)
+                {
+                    string cardsetname = setlist[card->getCard()->setId].c_str();
+                    if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+                    {
+                        JRenderer::GetInstance()->FillRoundRect((npos.actX - (npos.actZ * 84.f))-10.f,(npos.actY - (npos.actZ * 119.7f))-12.5f,npos.actZ * 168.f + 6.5f,npos.actZ * 239.4f + 12.f,6.5f,ARGB(255,248,248,255));
+                        JRenderer::GetInstance()->DrawRoundRect((npos.actX - (npos.actZ * 84.f))-10.f,(npos.actY - (npos.actZ * 119.7f))-12.5f,npos.actZ * 168.f + 6.5f,npos.actZ * 239.4f + 12.f,6.5f,ARGB(150,20,20,20));
+                    }
+                    else
+                    {
+                        JRenderer::GetInstance()->FillRoundRect((npos.actX - (npos.actZ * 84.f))-10.f,(npos.actY - (npos.actZ * 119.7f))-12.5f,npos.actZ * 168.f + 6.5f,npos.actZ * 239.4f + 12.f,6.5f,ARGB(255,5,5,5));
+                        JRenderer::GetInstance()->DrawRoundRect((npos.actX - (npos.actZ * 84.f))-10.f,(npos.actY - (npos.actZ * 119.7f))-12.5f,npos.actZ * 168.f + 6.5f,npos.actZ * 239.4f + 12.f,6.5f,ARGB(50,240,240,240));
+                    }
+                }
+                //render card
+                card->DrawCard(npos, mDrawMode, false, true);
+            }
         }
     }
 }

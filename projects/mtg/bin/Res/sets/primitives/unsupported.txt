@@ -7010,12 +7010,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Grindstone
-text={3}, {T}: Put the top two cards of target player's library into that player's graveyard. If both cards share a color, repeat this process.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Grinning Totem
 text={2}, {T}, Sacrifice Grinning Totem: Search target opponent's library for a card and exile it. Then that player shuffles his or her library. Until the beginning of your next upkeep, you may play that card. At the beginning of your next upkeep, if you haven't played it, put it into its owner's graveyard.
 mana={4}
@@ -13072,12 +13066,6 @@ mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Primal Surge
-text=Exile the top card of your library. If it's a permanent card, you may put it onto the battlefield. If you do, repeat this process.
-mana={8}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Primal Vigor
 text=If one or more tokens would be put onto the battlefield, twice that many of those tokens are put onto the battlefield instead. -- If one or more +1/+1 counters would be placed on a creature, twice that many +1/+1 counters are placed on that creature instead.
 mana={4}{G}
@@ -14917,15 +14905,6 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Scalpelexis
-text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Scalpelexis deals combat damage to a player, that player exiles the top four cards of his or her library. If two or more of those cards have the same name, repeat this process.
-mana={4}{U}
-type=Creature
-subtype=Beast
-power=1
-toughness=5
-[/card]
-[card]
 name=Scandalmonger
 text={2}: Target player discards a card. Any player may activate this ability but only any time he or she could cast a sorcery.
 mana={3}{B}
@@ -16558,12 +16537,6 @@ type=Creature
 subtype=Sphinx
 power=5
 toughness=6
-[/card]
-[card]
-name=Sphinx's Tutelage
-text=Whenever you draw a card, target opponent puts the top two cards of his or her library into his or her graveyard. If they're both nonland cards that share a color, repeat this process. -- {5}{U}: Draw a card, then discard a card.
-mana={2}{U}
-type=Enchantment
 [/card]
 [card]
 name=Spider Climb
