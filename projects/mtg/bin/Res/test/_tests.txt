@@ -463,7 +463,6 @@ living_lands.txt
 livingweapon.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
-Living_Death.txt
 magma_spray.txt
 manabarbs_dual_lands_i562.txt
 master_decoy.txt
