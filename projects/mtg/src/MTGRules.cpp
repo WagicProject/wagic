@@ -760,7 +760,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
-        if (alternateManaCost->extraCosts)
+        if (alternateManaCost->extraCosts && !playerMana->canAfford(card->getManaCost()))
         {
             //offerings handle thier own casting and cost payments.
             //we add this condiational here because offering can also have a completely different 
