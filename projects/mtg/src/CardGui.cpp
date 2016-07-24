@@ -1145,19 +1145,29 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         {
             if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
             {
-                JRenderer::GetInstance()->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-12.5f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,6.5f,ARGB(255,248,248,255));
-                JRenderer::GetInstance()->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-12.5f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,6.5f,ARGB(150,20,20,20));
+                renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,248,248,255));
+                renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(150,20,20,20));
             }
             else
             {
-                JRenderer::GetInstance()->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-12.5f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,6.5f,ARGB(255,5,5,5));
-                JRenderer::GetInstance()->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-12.5f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,6.5f,ARGB(50,240,240,240));
+                if(cardsetname == "LEA"||cardsetname == "LEB")
+                {
+                    renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(255,5,5,5));
+                    renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(50,240,240,240));
+                }
+                else
+                {
+                    renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
+                    renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
+                }
             }
-            //render card image
-            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+            if(cardsetname == "LEA"||cardsetname == "LEB")
+                renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.01f, scale-0.01f);
+            else
+                renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
         }
         else
-            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+        renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
 
         RenderCountersBig(card, pos);
         return;
