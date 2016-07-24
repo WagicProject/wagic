@@ -596,6 +596,10 @@ private:
             if(card->playerTarget)
                 intValue = card->playerTarget->curses.size();
         }
+        else if (s == "oplifetotal")
+        {
+            intValue = target->controller()->opponent()->life;
+        }
         else if (s == "lifetotal")
         {
             intValue = target->controller()->life;
@@ -3296,6 +3300,7 @@ public:
             game->removeObserver(abilities[card]);
             abilities.erase(card);
         }
+        resolve();
         return 1;
     }
 

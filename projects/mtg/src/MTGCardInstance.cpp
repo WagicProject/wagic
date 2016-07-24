@@ -635,15 +635,15 @@ Player * MTGCardInstance::controller()
 
 int MTGCardInstance::canAttack()
 {
-    if (basicAbilities[(int)Constants::CANTATTACK])
+    if (has(Constants::CANTATTACK))
         return 0;
-    if (basicAbilities[(int)Constants::FLYERSONLY] && !basicAbilities[(int)Constants::FLYING])
+    if (has(Constants::FLYERSONLY) && !has(Constants::FLYING))
         return 0;
     if (tapped)
         return 0;
     if (hasSummoningSickness())
         return 0;
-    if (basicAbilities[(int)Constants::DEFENSER] && !basicAbilities[(int)Constants::CANATTACK])
+    if (has(Constants::DEFENSER) && !has(Constants::CANATTACK))
         return 0;
     if (!isCreature())
         return 0;
