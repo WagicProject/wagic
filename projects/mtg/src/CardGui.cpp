@@ -1145,20 +1145,16 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         {
             if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
             {
-                //like white border
-                renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,248,248,255));
-                //black thin line to simulate card edge
-                renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(150,20,20,20));
+                JRenderer::GetInstance()->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-12.5f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,6.5f,ARGB(255,248,248,255));
+                JRenderer::GetInstance()->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-12.5f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,6.5f,ARGB(150,20,20,20));
             }
             else
             {
-                //like black border
-                renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,10,10,10));
-                //white thin line to simulate card edge
-                renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(50,240,240,240));
+                JRenderer::GetInstance()->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-12.5f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,6.5f,ARGB(255,5,5,5));
+                JRenderer::GetInstance()->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-12.5f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,6.5f,ARGB(50,240,240,240));
             }
             //render card image
-            renderer->RenderQuad(quad.get(), x, pos.actY-2, pos.actT, scale-0.02f, scale-0.02f);
+            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
         }
         else
             renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
