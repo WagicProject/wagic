@@ -333,6 +333,14 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Unexpected Results
+auto=shuffle
+auto=reveal:1 optionone transforms((,newability[if type(land|reveal)~morethan~0 then moveto(ownerhand) && all(*[land]|reveal) moveto(ownerbattlefield)])) forever optiononeend optiontwo name(Put Back) target(<1>*[-land]|reveal) moveto(mylibrary) and!(transforms((,newability[may activate castcard(normal)])) oneshot)! optiontwoend revealend
+text=Shuffle your library, then reveal the top card. If it's a nonland card, you may cast it without paying its mana cost. If it's a land card, you may put it onto the battlefield and return Unexpected Results to its owner's hand.
+mana={2}{G}{U}
+type=Sorcery
+[/card]
+[card]
 name=Unstable Shapeshifter
 auto=@movedto(other creature|battlefield):all(trigger[from]) copy
 text=Whenever another creature enters the battlefield, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
@@ -341,6 +349,14 @@ type=Creature
 subtype=Shapeshifter
 power=0
 toughness=1
+[/card]
+[card]
+name=Venser's Diffusion
+target=*[-land]
+auto=moveTo(ownerhand)
+text=Return target nonland permanent or suspended card to its owner's hand.
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 name=Virulent Swipe
