@@ -1,0 +1,43 @@
+#Bug: Haste from legendary lords. It seems failed logic on cantattack, this is a specific order to reproduce it
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Worry Beads,swamp,forest,plains
+graveyard:394548, 394548
+library:Krosan Cloudscraper
+hand:Living Death,Dark Ritual
+manapool:{2}{B}{B}{G}
+[PLAYER2]
+[DO]
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+swamp
+forest
+plains
+Dark Ritual
+Living Death
+choice 0
+next
+#begins
+next
+#attack
+Krosan Cloudscraper
+Dragonlord Kolaghan
+next
+#block
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:394548, Krosan Cloudscraper, Worry Beads,swamp,forest,plains
+graveyard:*, Living Death, Dark Ritual
+[PLAYER2]
+life:1
+[END]
