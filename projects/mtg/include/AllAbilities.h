@@ -3300,7 +3300,6 @@ public:
             game->removeObserver(abilities[card]);
             abilities.erase(card);
         }
-        resolve();
         return 1;
     }
 
