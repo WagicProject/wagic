@@ -760,6 +760,30 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
+        if (alternateManaCost->extraCosts)
+        {
+            //offerings handle thier own casting and cost payments.
+            //we add this condiational here because offering can also have a completely different 
+            //manacost from orginal cost, this allows us to simulate reacting to click for cards that
+            //would be able to afford the cost AFTER the sacrifice is made, we use isPaymentSet to determine
+            //legality of casting.
+            if (alternateManaCost->getExtraCost(0) == dynamic_cast<Offering*>(alternateManaCost->getExtraCost(0)))
+            {
+                if (alternateManaCost->isExtraPaymentSet())//cant get past this section without doing it. you either pay the cost or dont
+                {
+                    if (!game->targetListIsSet(card))
+                        return 0;
+                }
+                else
+                {
+                    alternateManaCost->setExtraCostsAction(this, card);
+                    game->mExtraPayment = alternateManaCost->extraCosts;
+                    return 0;
+                }
+                return 1;
+            }
+        }
+
         if (playerMana->canAfford(alternateManaCost))
         {
             return 1;
