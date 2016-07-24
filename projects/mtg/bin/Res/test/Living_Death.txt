@@ -1,0 +1,54 @@
+#Bug: Haste from legendary lords
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Worry Beads,swamp,forest,plains
+graveyard:99, Dragonlord Kolaghan
+library:Krosan Cloudscraper
+hand:5556,Dark Ritual,651,Animate Dead,Exhume
+manapool:{2}{B}{B}{G}
+[PLAYER2]
+[DO]
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+swamp
+forest
+plains
+Dark Ritual
+651
+Animate Dead
+Krosan Cloudscraper
+5556
+choice 0
+Dragonlord Kolaghan
+5556
+choice 0
+99
+choice 0
+Dragonlord Kolaghan
+choice 0
+next
+#begins
+next
+#attack
+Krosan Cloudscraper
+99
+next
+#block
+next
+#damage
+next
+#end
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:99, Krosan Cloudscraper, Worry Beads,swamp,forest,plains,Animate Dead
+graveyard:Dragonlord Kolaghan, Exhume, Dark Ritual, 651, 5556
+[PLAYER2]
+life:2
+[END]
