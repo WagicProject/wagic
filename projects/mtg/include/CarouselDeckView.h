@@ -23,7 +23,7 @@ public:
     void renderCard(int index)
     {
         int alpha = (int) (255 * (mCards[index].scale + 1.0 - max_scale));
-        DeckView::renderCard(index, alpha);
+        DeckView::renderCard(index, alpha, false, true);
     }
 
     void Render();
