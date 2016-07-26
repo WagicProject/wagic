@@ -255,7 +255,8 @@ class Constants
       OVERLOAD = 133,
       SHACKLER = 134,
       FLYERSONLY = 135,//can attack only if it has flying
-      NB_BASIC_ABILITIES = 136,
+      TEMPFLASHBACK = 136,
+      NB_BASIC_ABILITIES = 137,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

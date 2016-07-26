@@ -12447,12 +12447,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Past in Flames
-text=Each instant and sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. -- Flashback {4}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{R}
-type=Sorcery
-[/card]
-[card]
 name=Pathbreaker Ibex
 text=Whenever Pathbreaker Ibex attacks, creatures you control gain trample and get +X/+X until end of turn, where X is the greatest power among creatures you control.
 mana={4}{G}{G}
@@ -13844,12 +13838,6 @@ name=Reclamation
 text=Black creatures can't attack unless their controller sacrifices a land for each black creature he or she controls that's attacking.
 mana={2}{G}{W}
 type=Enchantment
-[/card]
-[card]
-name=Recoup
-text=Target sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (Mana cost includes color.) -- Flashback {3}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
 name=Recross the Paths
@@ -16090,15 +16078,6 @@ text=Enchant creature -- Enchanted creature gets +1/+1 and has "Whenever this cr
 mana={2}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Snapcaster Mage
-text=Flash -- When Snapcaster Mage enters the battlefield, target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (You may cast that card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=1
 [/card]
 [card]
 name=Snow Mercy
