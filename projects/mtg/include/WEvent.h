@@ -184,7 +184,8 @@ struct WEventCardBlocked : public WEventCardUpdate {
 //event when card is sacrificed.
 struct WEventCardSacrifice : public WEventCardUpdate {
     MTGCardInstance * cardAfter;
-    WEventCardSacrifice(MTGCardInstance * card,MTGCardInstance * afterCard);
+    bool istoken;
+    WEventCardSacrifice(MTGCardInstance * card,MTGCardInstance * afterCard, bool token = false);
     virtual Targetable * getTarget(int target);
 };
 
