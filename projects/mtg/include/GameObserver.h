@@ -126,6 +126,8 @@ class GameObserver{
   void Affinity();
   bool AffinityNeedsUpdate;
   void addObserver(MTGAbility * observer);
+  void checkLegendary(MTGCardInstance * card);
+  map<MTGCardInstance *,bool> cards;
   bool removeObserver(ActionElement * observer);
   void startGame(GameType, Rules * rules);
   void untapPhase();
