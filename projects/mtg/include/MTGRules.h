@@ -150,6 +150,21 @@ public:
     virtual MTGFlashBackRule * clone() const;
 };
 
+class MTGTempFlashBackRule: public MTGAlternativeCostRule
+{
+public:
+
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGTempFlashBackRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "Flashback Manacost";
+    }
+    virtual MTGTempFlashBackRule * clone() const;
+};
+
 class MTGRetraceRule: public MTGAlternativeCostRule
 {
 public:

@@ -219,6 +219,7 @@ public:
         BESTOW_COST = 35,
         ATTACK_COST = 36,
         BLOCK_COST = 37,
+        GRANTEDFLASHBACK_COST = 38,
     };
 };
 
