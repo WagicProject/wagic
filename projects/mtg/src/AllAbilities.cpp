@@ -3224,11 +3224,14 @@ int AAFlip::resolve()
             {
                 toughMod =_target->toughness - _target->origtoughness;
             }
+            if(!_target->isCDA)
+            {
             _target->power = powerlessThanOriginal?myFlip->power - powerMod:myFlip->power + powerMod;
             _target->life = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
             _target->toughness = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
             _target->origpower = myFlip->origpower;
             _target->origtoughness = myFlip->origtoughness;
+            }
             SAFE_DELETE(myFlip);
             _target->mPropertiesChangedSinceLastUpdate = true;
         }
