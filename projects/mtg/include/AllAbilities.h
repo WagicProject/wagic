@@ -4499,7 +4499,8 @@ class AAFlip: public InstantAbility
 public:
     vector<MTGAbility *> currentAbilities;
     string flipStats;
-    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats);
+    bool isflipcard;
+    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard = false);
     int resolve();
     int testDestroy();
     const string getMenuText();

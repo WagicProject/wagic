@@ -3334,8 +3334,35 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             /*vector<string>FlipStats = split(splitFlipStat[1],'%');*/
             flipStats = splitFlipStat[1];
         }
-        MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats);
-        return a;
+        if(flipStats == "Tomoya the Revealer" ||
+            flipStats == "Tok-Tok, Volcano Born" ||
+            flipStats == "Tobita, Master of Winds" ||
+            flipStats == "Stabwhisker the Odious" ||
+            flipStats == "Shidako, Broodmistress" ||
+            flipStats == "Sasaya's Essence" ||
+            flipStats == "Rune-Tail's Essence" ||
+            flipStats == "Nighteyes the Desecrator" ||
+            flipStats == "Kuon's Essence" ||
+            flipStats == "Kenzo the Hardhearted" ||
+            flipStats == "Kaiso, Memory of Loyalty" ||
+            flipStats == "Ichiga, Who Topples Oaks" ||
+            flipStats == "Homura's Essence" ||
+            flipStats == "Scarmaker" ||
+            flipStats == "Goka the Unjust" ||
+            flipStats == "Erayo's Essence" ||
+            flipStats == "Jaraku the Interloper" ||
+            flipStats == "Azamuki, Treachery Incarnate" ||
+            flipStats == "Autumn-Tail, Kitsune Sage" ||
+            flipStats == "Dokai, Weaver of Life" )
+        {//old flip cards kamigawa
+            MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats,true);
+            return a;
+        }
+        else//regular transform
+        {
+            MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats);
+            return a;
+        }
     }
 
     //Change Power/Toughness
