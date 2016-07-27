@@ -2716,10 +2716,14 @@ int AASacrificeCard::resolve()
     {
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;
+        WEvent * e;
+        if(!_target->isToken)
+            e = NEW WEventCardSacrifice(beforeCard,_target);
+        else
+            e = NEW WEventCardSacrifice(beforeCard,_target,true);
         p->game->putInGraveyard(_target);
         while(_target->next)
             _target = _target->next;
-        WEvent * e = NEW WEventCardSacrifice(beforeCard,_target);
         game->receiveEvent(e);
         if(andAbility)
         {
@@ -3236,11 +3240,14 @@ int AAFlip::resolve()
             {
                 toughMod =_target->toughness - _target->origtoughness;
             }
+            if(!_target->isCDA)
+            {
             _target->power = powerlessThanOriginal?myFlip->power - powerMod:myFlip->power + powerMod;
             _target->life = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
             _target->toughness = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
             _target->origpower = myFlip->origpower;
             _target->origtoughness = myFlip->origtoughness;
+            }
             SAFE_DELETE(myFlip);
             _target->mPropertiesChangedSinceLastUpdate = true;
         }

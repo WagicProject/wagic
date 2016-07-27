@@ -1176,6 +1176,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if(found != string::npos)
     {
         observer->addObserver(NEW MTGFlashBackRule(observer, -1));
+        observer->addObserver(NEW MTGTempFlashBackRule(observer, -1));
         return NULL;
     }
     //alternative cost type flashback

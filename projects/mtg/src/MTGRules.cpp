@@ -1056,6 +1056,55 @@ MTGFlashBackRule * MTGFlashBackRule::clone() const
     return NEW MTGFlashBackRule(*this);
 }
 
+//temporary flashback
+MTGTempFlashBackRule::MTGTempFlashBackRule(GameObserver* observer, int _id) :
+MTGAlternativeCostRule(observer, _id)
+{
+    aType = MTGAbility::GRANTEDFLASHBACK_COST;
+}
+int MTGTempFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    Player * player = game->currentlyActing();
+    if (!player->game->graveyard->hasCard(card))
+        return 0;
+    if (!card->has(Constants::TEMPFLASHBACK))
+        return 0;
+    ManaCost * flashbackCost = card->getManaCost();
+    if(flashbackCost->extraCosts)
+        for(unsigned int i = 0; i < flashbackCost->extraCosts->costs.size();i++)
+        {
+            flashbackCost->extraCosts->costs[i]->setSource(card);
+        }
+    return MTGAlternativeCostRule::isReactingToClick(card, mana, flashbackCost );
+}
+
+int MTGTempFlashBackRule::reactToClick(MTGCardInstance * card) 
+{
+    ManaCost * flashbackCost = card->getManaCost();
+    if(flashbackCost->extraCosts)
+        for(unsigned int i = 0; i < flashbackCost->extraCosts->costs.size();i++)
+        {
+            flashbackCost->extraCosts->costs[i]->setSource(card);
+        }
+    if (!isReactingToClick(card))
+        return 0;
+
+    card->paymenttype = MTGAbility::FLASHBACK_COST;
+
+    return MTGAlternativeCostRule::reactToClick(card, flashbackCost, ManaCost::MANA_PAID_WITH_FLASHBACK);
+
+}
+
+ostream& MTGTempFlashBackRule::toString(ostream& out) const
+{
+    out << "MTGTempFlashBackRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+MTGTempFlashBackRule * MTGTempFlashBackRule::clone() const
+{
+    return NEW MTGTempFlashBackRule(*this);
+}
+
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
@@ -3138,7 +3187,7 @@ int MTGLegendRule::canBeInList(MTGCardInstance * card)
         return 0;
     if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
     {
-        if(card->has(Constants::NOLEGEND))
+        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasName("Mirror Gallery")||card->controller()->inPlay()->hasName("Mirror Gallery"))
             return 0;
         else
             return 1;
