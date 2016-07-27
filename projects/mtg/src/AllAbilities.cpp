@@ -1457,15 +1457,16 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        MTGCard* clone = MTGCollection()->getCardById(_target->copiedID);
+        MTGCard* clone ;
+        if(_target->isToken || _target->isACopier)
+            clone = _target;
+        else
+            clone = MTGCollection()->getCardById(_target->copiedID);
         MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
         source->copy(myClone);
         SAFE_DELETE(myClone);
         source->isACopier = true;
-        source->copiedID = _target->getMTGId();
-        source->modifiedbAbi = _target->modifiedbAbi;
-        source->origbasicAbilities = _target->origbasicAbilities;
-        source->basicAbilities = _target->origbasicAbilities;
+        source->copiedID = _target->copiedID;
         if(_target->isMorphed)
         {
             source->power = 2;
