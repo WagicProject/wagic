@@ -3187,7 +3187,7 @@ int MTGLegendRule::canBeInList(MTGCardInstance * card)
         return 0;
     if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
     {
-        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasName("Mirror Gallery")||card->controller()->inPlay()->hasName("Mirror Gallery"))
+        if(card->has(Constants::NOLEGEND)||card->controller()->game->inPlay->hasAbility(Constants::NOLEGEND)||card->controller()->opponent()->game->inPlay->hasAbility(Constants::NOLEGEND))
             return 0;
         else
             return 1;
@@ -3196,6 +3196,22 @@ int MTGLegendRule::canBeInList(MTGCardInstance * card)
 }
 
 int MTGLegendRule::added(MTGCardInstance * card)
+{
+    checkLegendary(card);
+    return 1;
+}
+
+int MTGLegendRule::removed(MTGCardInstance *)
+{
+    return 0;
+}
+
+int MTGLegendRule::testDestroy()
+{
+    return 0;
+}
+
+void MTGLegendRule::checkLegendary(MTGCardInstance *  card)
 {
     map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
@@ -3230,17 +3246,6 @@ int MTGLegendRule::added(MTGCardInstance * card)
         MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
         menuChoice->addToGame();
     }
-    return 1;
-}
-
-int MTGLegendRule::removed(MTGCardInstance *)
-{
-    return 0;
-}
-
-int MTGLegendRule::testDestroy()
-{
-    return 0;
 }
 
 ostream& MTGLegendRule::toString(ostream& out) const
