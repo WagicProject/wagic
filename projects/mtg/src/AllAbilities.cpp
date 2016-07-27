@@ -773,6 +773,18 @@ bool MTGScryCards::CheckUserInput(JButton key)
                 initDisplay(revealTopAmount);
                 abilitySecond = contructAbility(abilityTwo);
                 game->addObserver(abilitySecond);
+                if(revealTopAmount == 0 && dontRevealAfter && delayed)
+                    {
+                        MTGAbility * delayedA = contructAbility(delayedAbilityString);
+                        if (delayedA->oneShot)
+                        {
+                            delayedA->resolve();
+                            SAFE_DELETE(delayedA);
+                        }
+                        else
+                            delayedA->addToGame();
+
+                    }
             }
 
         }
