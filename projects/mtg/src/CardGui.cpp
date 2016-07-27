@@ -1125,6 +1125,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
 
     JQuadPtr quad = thumb ? WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_THUMB)
                           : WResourceManager::Instance()->RetrieveCard(card);
+    JQuadPtr alphabeta = WResourceManager::Instance()->RetrieveTempQuad("alphabeta.png");
     MTGCardInstance * kcard =  dynamic_cast<MTGCardInstance*>(card);
     if(kcard && !kcard->isToken && kcard->name != kcard->model->data->name)
     {
@@ -1162,7 +1163,11 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
                 }
             }
             if(cardsetname == "LEA"||cardsetname == "LEB")
+            {
+                if(alphabeta.get())
+                    renderer->RenderQuad(alphabeta.get(),(pos.actX - (pos.actZ * 100.f))+12.f,(pos.actY - (pos.actZ * 142.5f))+17.5f, pos.actT, 0.88f, 0.88f);
                 renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.01f, scale-0.01f);
+            }
             else
                 renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
         }
