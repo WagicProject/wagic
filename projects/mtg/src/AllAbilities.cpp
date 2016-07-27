@@ -1457,15 +1457,16 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        MTGCard* clone = MTGCollection()->getCardById(_target->copiedID);
+        MTGCard* clone ;
+        if(_target->isToken || _target->isACopier)
+            clone = _target;
+        else
+            clone = MTGCollection()->getCardById(_target->copiedID);
         MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
         source->copy(myClone);
         SAFE_DELETE(myClone);
         source->isACopier = true;
-        source->copiedID = _target->getMTGId();
-        source->modifiedbAbi = _target->modifiedbAbi;
-        source->origbasicAbilities = _target->origbasicAbilities;
-        source->basicAbilities = _target->origbasicAbilities;
+        source->copiedID = _target->copiedID;
         if(_target->isMorphed)
         {
             source->power = 2;
@@ -3148,14 +3149,15 @@ AAMeld * AAMeld::clone() const
 }
 
 // flip a card
-AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats) :
-InstantAbility(observer, id, card, _target),flipStats(flipStats)
+AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard) :
+InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard)
 {
     target = _target;
 }
 
 int AAFlip::resolve()
 {
+    int cdaDamage = 0;
     MTGCardInstance * Flipper = (MTGCardInstance*)source;
     this->oneShot = true;
     if(Flipper->isFlipped)
@@ -3163,9 +3165,20 @@ int AAFlip::resolve()
         game->removeObserver(this);
         return 0;
     }
+    
+    //701.25a Only permanents represented by double-faced cards can transform.
+    //(See rule 711, “Double-Faced Cards.”) If a spell or ability instructs a player
+    //to transform any permanent that isn’t represented by a double-faced card, nothing happens.
+    //***Copier and Tokens cannot transform but can be flip since flip cards are single sided***
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if((_target->isACopier||_target->isToken) && !isflipcard)
+        {
+            game->removeObserver(this);
+            return 0;
+        }
+
         while (_target->next)
             _target = _target->next; 
 
@@ -3179,12 +3192,19 @@ int AAFlip::resolve()
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
             _target->name = myFlip->name;
             _target->setName(myFlip->name);
+            if(!isflipcard)//transform card
+            {
+                _target->getManaCost()->resetCosts();
+                if(myFlip->getManaCost())
+                    _target->getManaCost()->copy(myFlip->getManaCost());
+            }
             _target->colors = myFlip->colors;
             _target->types = myFlip->types;
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
             _target->basicAbilities = myFlip->basicAbilities;
-
+            cdaDamage = _target->damageCount;
+            _target->copiedID = myFlip->getMTGId();//for copier
             for(unsigned int i = 0;i < _target->cardsAbilities.size();i++)
             {
                 MTGAbility * a = dynamic_cast<MTGAbility *>(_target->cardsAbilities[i]);
@@ -3242,11 +3262,15 @@ int AAFlip::resolve()
             }
             if(!_target->isCDA)
             {
-            _target->power = powerlessThanOriginal?myFlip->power - powerMod:myFlip->power + powerMod;
-            _target->life = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
-            _target->toughness = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
-            _target->origpower = myFlip->origpower;
-            _target->origtoughness = myFlip->origtoughness;
+                _target->power = powerlessThanOriginal?myFlip->power - powerMod:myFlip->power + powerMod;
+                _target->life = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
+                _target->toughness = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
+                _target->origpower = myFlip->origpower;
+                _target->origtoughness = myFlip->origtoughness;
+            }
+            else
+            {//pbonus & tbonus are already computed except damage taken...
+                _target->life -= cdaDamage;
             }
             SAFE_DELETE(myFlip);
             _target->mPropertiesChangedSinceLastUpdate = true;
