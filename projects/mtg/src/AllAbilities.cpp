@@ -2704,10 +2704,14 @@ int AASacrificeCard::resolve()
     {
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;
+        WEvent * e;
+        if(!_target->isToken)
+            e = NEW WEventCardSacrifice(beforeCard,_target);
+        else
+            e = NEW WEventCardSacrifice(beforeCard,_target,true);
         p->game->putInGraveyard(_target);
         while(_target->next)
             _target = _target->next;
-        WEvent * e = NEW WEventCardSacrifice(beforeCard,_target);
         game->receiveEvent(e);
         if(andAbility)
         {
