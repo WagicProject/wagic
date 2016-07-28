@@ -3187,7 +3187,7 @@ int MTGLegendRule::canBeInList(MTGCardInstance * card)
         return 0;
     if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
     {
-        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasName("Mirror Gallery")||card->controller()->inPlay()->hasName("Mirror Gallery"))
+        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
             return 0;
         else
             return 1;
@@ -3233,8 +3233,10 @@ int MTGLegendRule::added(MTGCardInstance * card)
     return 1;
 }
 
-int MTGLegendRule::removed(MTGCardInstance *)
+int MTGLegendRule::removed(MTGCardInstance * card)
 {
+    if (card->has(Constants::NOLEGENDRULE))
+        game->legendNeedUpdate = true;
     return 0;
 }
 

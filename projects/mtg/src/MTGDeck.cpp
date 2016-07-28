@@ -140,8 +140,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             }
         }
         break;
-    case 'd'://dredge
-        if (!primitive) primitive = NEW CardPrimitive();
+    case 'd'://double faced card /dredge
+        if (key == "doublefaced")
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            {
+                primitive->setdoubleFaced(val);
+                break;
+            }
+        }
+        else if (!primitive) primitive = NEW CardPrimitive();
         {
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
