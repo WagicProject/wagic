@@ -125,6 +125,7 @@ class GameObserver{
   void enchantmentStatus();
   void Affinity();
   bool AffinityNeedsUpdate;
+  bool legendNeedUpdate;
   void addObserver(MTGAbility * observer);
   void checkLegendary(MTGCardInstance * card);
   map<MTGCardInstance *,bool> cards;

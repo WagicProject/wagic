@@ -54,6 +54,7 @@ void GameObserver::cleanup()
     gameTurn.clear();
     OpenedDisplay = NULL;
     AffinityNeedsUpdate = false;
+    legendNeedUpdate = false;
 }
 
 GameObserver::~GameObserver()
@@ -898,11 +899,15 @@ void GameObserver::gameStateBasedEffects()
         //------------------------------
         p->nomaxhandsize = (z->hasAbility(Constants::NOMAXHAND));
         //legendary
-        for (int cl = 0; cl < nbcards; cl++)
+        if (legendNeedUpdate)
         {
-            MTGCardInstance * c = z->cards[cl];
-            if(!c->isPhased && c->hasType(Subtypes::TYPE_LEGENDARY) && !c->has(Constants::NOLEGEND))
-                checkLegendary(c);
+            for (int cl = 0; cl < nbcards; cl++)
+            {
+                MTGCardInstance * c = z->cards[cl];
+                if (!c->isPhased && c->hasType(Subtypes::TYPE_LEGENDARY) && !c->has(Constants::NOLEGEND))
+                    checkLegendary(c);
+            }
+            legendNeedUpdate = false;
         }
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
@@ -1126,6 +1131,7 @@ void GameObserver::Affinity()
                     }
                 }
                 ///we handle trisnisphere seperately because its a desaster.
+                if(card->getManaCost())//make sure we check, abiliy$!/token dont have a mancost object.
                 if (card->has(Constants::TRINISPHERE))
                 {
                     for (int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
