@@ -256,7 +256,8 @@ class Constants
       SHACKLER = 134,
       FLYERSONLY = 135,//can attack only if it has flying
       TEMPFLASHBACK = 136,
-      NB_BASIC_ABILITIES = 137,
+      NOLEGENDRULE =137,
+      NB_BASIC_ABILITIES = 138,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

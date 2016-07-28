@@ -416,6 +416,12 @@ bool MTGRevealingCards::CheckUserInput(JButton key)
     {
         if (this->source->controller() != game->isInterrupting)
             game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
+        //if (game->currentActionPlayer->isAI() && key != JGE_BTN_OK)
+        //{
+        //    key = JGE_BTN_NEXT;
+        //    game->Update(0);
+        //}
+        
     }
     if (JGE_BTN_SEC == key || JGE_BTN_PREV == key || JGE_BTN_NEXT == key || JGE_BTN_MENU == key)//android back button
     {
@@ -432,6 +438,7 @@ bool MTGRevealingCards::CheckUserInput(JButton key)
                 {
                     abilityFirst->removeFromGame();
                     game->mLayers->stackLayer()->Remove(abilityFirst);
+                    abilityFirst = NULL;
                 }
                 game->Update(0);
                 //remove it from the game, update, and remove it from stack if needed.
@@ -723,6 +730,11 @@ bool MTGScryCards::CheckUserInput(JButton key)
         //in the future we will need a way to find out if the human is pressing the keys and which player.
         if (this->source->controller() != game->isInterrupting)
             game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
+        //if (game->currentActionPlayer->isAI() && key != JGE_BTN_OK)
+        //{
+        //    key = JGE_BTN_NEXT;
+        //    game->Update(0);
+        //}
     }
     if (JGE_BTN_SEC == key || JGE_BTN_PREV == key || JGE_BTN_NEXT == key || JGE_BTN_MENU == key)
     {
@@ -2718,13 +2730,11 @@ int AASacrificeCard::resolve()
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;
         WEvent * e;
-        if(!_target->isToken)
-            e = NEW WEventCardSacrifice(beforeCard,_target);
-        else
-            e = NEW WEventCardSacrifice(beforeCard,_target,true);
         p->game->putInGraveyard(_target);
         while(_target->next)
             _target = _target->next;
+        bool cardIsToken = _target->isToken ? true : false;
+         e = NEW WEventCardSacrifice(beforeCard, _target, cardIsToken);
         game->receiveEvent(e);
         if(andAbility)
         {

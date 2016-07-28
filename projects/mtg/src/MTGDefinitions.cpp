@@ -167,7 +167,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "overload",
     "shackler",
     "flyersonly",
-    "tempflashback"
+    "tempflashback",
+    "legendruleremove"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

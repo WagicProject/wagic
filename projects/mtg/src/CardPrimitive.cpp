@@ -57,6 +57,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     formattedText = source->formattedText;
     setName(source->name);
 
+    setdoubleFaced(source->doubleFaced);
     power = source->power;
     toughness = source->toughness;
     restrictions = source->restrictions ? source->restrictions->clone() : NULL;
@@ -318,6 +319,18 @@ void CardPrimitive::addMagicText(string value, string key)
         magicTexts[key].append("\n");
     magicTexts[key].append(value);
 }
+
+void CardPrimitive::setdoubleFaced(const string& value)
+{
+    std::transform(doubleFaced.begin(), doubleFaced.end(), doubleFaced.begin(), ::tolower);
+    doubleFaced = value;
+}
+
+const string& CardPrimitive::getdoubleFaced() const
+{
+    return doubleFaced;
+}
+
 
 void CardPrimitive::setName(const string& value)
 {

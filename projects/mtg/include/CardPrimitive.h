@@ -69,6 +69,9 @@ public:
     int toughness;
     int suspendedTime;
     int dredgeAmount;
+    string doubleFaced;
+    void setdoubleFaced(const string& value);
+    const string& getdoubleFaced() const;
 
     vector<int>types;
     CardPrimitive();
