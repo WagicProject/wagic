@@ -434,7 +434,6 @@ public:
     int added(MTGCardInstance * card);
     int removed(MTGCardInstance * card);
     int testDestroy();
-    void checkLegendary(MTGCardInstance *  card);
     virtual ostream& toString(ostream& out) const;
     virtual MTGLegendRule * clone() const;
 };
