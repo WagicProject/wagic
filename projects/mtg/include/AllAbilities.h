@@ -1372,7 +1372,7 @@ public:
         if (!e) return 0;
         MTGCardInstance * check = e->cardAfter;
         MTGGameZone * oldZone = e->cardAfter->currentZone;
-        MTGGameZone * currZone = check->currentZone;
+        //MTGGameZone * currZone = check->currentZone;
         check->currentZone = check->previousZone;
         if (check->next && (check->next->currentZone|| check->isToken))
         {
