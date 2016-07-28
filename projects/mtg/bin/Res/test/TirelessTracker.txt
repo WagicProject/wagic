@@ -2,7 +2,7 @@
 [INIT]
 FIRSTMAIN
 [PLAYER1]
-inplay:Concordant Crossroads, Swamp, Tireless Tracker
+inplay:Concordant Crossroads, Swamp, Tireless Tracker, Mortician Beetle
 library:Mountain
 hand:Plains
 [PLAYER2]
@@ -16,6 +16,8 @@ next
 #attack
 next
 Tireless Tracker
+#Mortician sacrificed event must not trigger
+Mortician Beetle
 next
 #damage
 next
@@ -25,9 +27,9 @@ eot
 [ASSERT]
 UNTAP
 [PLAYER1]
-inplay:Concordant Crossroads, Swamp, Tireless Tracker, Plains
+inplay:Concordant Crossroads, Swamp, Tireless Tracker, Plains, Mortician Beetle
 hand:Mountain
 life:20
 [PLAYER2]
-life:16
+life:15
 [END]
