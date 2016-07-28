@@ -1132,20 +1132,22 @@ void GameObserver::Affinity()
                 }
                 ///we handle trisnisphere seperately because its a desaster.
                 if(card->getManaCost())//make sure we check, abiliy$!/token dont have a mancost object.
-                if (card->has(Constants::TRINISPHERE))
                 {
-                    for (int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
+                    if (card->has(Constants::TRINISPHERE))
                     {
-                        card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                        card->countTrini++;
+                        for (int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
+                        {
+                            card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                            card->countTrini++;
+                        }
                     }
-                }
-                else
-                {
-                    if (card->countTrini)
+                    else
                     {
-                        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
-                        card->countTrini = 0;
+                        if (card->countTrini)
+                        {
+                            card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+                            card->countTrini = 0;
+                        }
                     }
                 }
                 ///////////////////////

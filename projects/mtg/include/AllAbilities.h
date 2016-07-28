@@ -1370,8 +1370,8 @@ public:
     {
         WEventCardSacrifice * e = dynamic_cast<WEventCardSacrifice *> (event);
         if (!e) return 0;
-        //if (e->istoken)
-        //    return 1;
+        if (e->istoken)
+            tc->setAllZones();
         MTGCardInstance * check = e->cardAfter;
         MTGGameZone * oldZone = e->cardAfter->currentZone;
         check->currentZone = check->previousZone;
