@@ -130,25 +130,9 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
 
     if (bigQuad)
     {
-        //Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
-        Pos npos = Pos(CardGui::BigWidth / 2 + 8.f, CardGui::BigHeight / 2 - 2.f, 1.0f - (1.0f/10), 0.0, 220);
-        //border
-        if(observer->getCardSelector()->GetDrawMode() < 2)
-        {
-            string cardsetname = setlist[source->setId].c_str();
-            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
-            {
-                JRenderer::GetInstance()->FillRoundRect((npos.actX - (npos.actZ * 84.f))-11.5f,(npos.actY - (npos.actZ * 119.7f))-14.f,npos.actZ * 168.f + 6.5f,npos.actZ * 239.4f + 12.f,8.f,ARGB(255,248,248,255));
-                JRenderer::GetInstance()->DrawRoundRect((npos.actX - (npos.actZ * 84.f))-11.5f,(npos.actY - (npos.actZ * 119.7f))-14.f,npos.actZ * 168.f + 6.5f,npos.actZ * 239.4f + 12.f,8.f,ARGB(150,20,20,20));
-            }
-            else
-            {
-                JRenderer::GetInstance()->FillRoundRect((npos.actX - (npos.actZ * 84.f))-11.5f,(npos.actY - (npos.actZ * 119.7f))-14.f,npos.actZ * 168.f + 6.5f,npos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
-                JRenderer::GetInstance()->DrawRoundRect((npos.actX - (npos.actZ * 84.f))-11.5f,(npos.actY - (npos.actZ * 119.7f))-14.f,npos.actZ * 168.f + 6.5f,npos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
-            }
-        }
-        //render card
-        CardGui::DrawCard(source, npos, observer->getCardSelector()->GetDrawMode(),false,true);
+        Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 0.90f, 0.0, 220);
+        pos.actY = 142;//adjust y a little bit
+        CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
     }
 
     if (targetQuad)
