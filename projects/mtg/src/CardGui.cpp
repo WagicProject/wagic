@@ -1122,10 +1122,10 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
     //    card = (MTGCard*)game->mLayers->actionLayer()->currentActionCard;
     //i want this but ai targets cards so quickly that it can crash the game.
     float x = pos.actX;
-
+    //init setname
+    string cardsetname = setlist[card->setId].c_str();
     JQuadPtr quad = thumb ? WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_THUMB)
                           : WResourceManager::Instance()->RetrieveCard(card);
-    JQuadPtr alphabeta = WResourceManager::Instance()->RetrieveTempQuad("alphabeta.png");
     MTGCardInstance * kcard =  dynamic_cast<MTGCardInstance*>(card);
     if(kcard && !kcard->isToken && kcard->name != kcard->model->data->name)
     {
@@ -1140,43 +1140,10 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         }
         quad->SetColor(ARGB(255,255,255,255));
         float scale = pos.actZ * 250.f / quad->mHeight;
-        //init setname
-        string cardsetname = setlist[card->setId].c_str();
-        if(!noborder)
-        {
-            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
-            {//Draw white border
-                renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,248,248,255));
-                renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(150,20,20,20));
-            }
-            else
-            {
-                if(cardsetname == "LEA"||cardsetname == "LEB")
-                {
-                    //force smaller scale
-                    smallerscale = true;
-                    //Draw more rounder black border
-                    renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(255,5,5,5));
-                    renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(50,240,240,240));
-                }
-                else
-                {//draw black border
-                    renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
-                    renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
-                }
-            }
-        }
-        //draw inner border
-        if(cardsetname == "LEA"||cardsetname == "LEB")
-        {
-            if(alphabeta.get())
-            {
-                alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
-                float myscale = pos.actZ * 250 / alphabeta->mHeight;
-                alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
-                renderer->RenderQuad(alphabeta.get(), x, pos.actY, pos.actT, myscale, myscale);
-            }
-        }
+        //Draw border
+        DrawBorder(cardsetname, pos, x, noborder, smallerscale);
+        //force smaller scale on alpha beta
+            smallerscale = cardsetname=="LEA"||cardsetname=="LEB"?true:smallerscale;
         //Draw card
         if(smallerscale)
             renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.01f, scale-0.01f);
@@ -1190,6 +1157,46 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
 
     // If we come here, we do not have the picture.
     AlternateRender(card, pos);
+}
+
+void CardGui::DrawBorder(string cardsetname, const Pos& pos, float x, bool noborder, bool smallerscale)
+{
+    JRenderer * renderer = JRenderer::GetInstance();
+    JQuadPtr alphabeta = WResourceManager::Instance()->RetrieveTempQuad("alphabeta.png");
+    
+    if(!noborder)
+    {
+        if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+        {//Draw white border
+            renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,248,248,255));
+            renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(150,20,20,20));
+        }
+        else
+        {
+            if(cardsetname == "LEA")
+            {//BETA HAS REGULAR BORDER
+                //Draw more rounder black border
+                renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(255,5,5,5));
+                renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(50,240,240,240));
+            }
+            else
+            {//draw black border
+                renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
+                renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
+            }
+        }
+    }
+    //draw inner border
+    if(cardsetname == "LEA"||cardsetname == "LEB")
+    {
+        if(alphabeta.get())
+        {
+            alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
+            float myscale = pos.actZ * 250 / alphabeta->mHeight;
+            alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
+            renderer->RenderQuad(alphabeta.get(), x, pos.actY, pos.actT, myscale, myscale);
+        }
+    }
 }
 
 string CardGui::FormattedData(string data, string replace, string value)

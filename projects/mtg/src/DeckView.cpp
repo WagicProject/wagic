@@ -148,7 +148,7 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail, bool addWHbord
         int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
         float modx = addWHborder ? 2.0f:0.0f;
         bool smallerscale = modx > 0.0f ? true:false;
-        //border for editor && others???
+        //border for editor && others since the border in cardgui:drawcard scales larger...
         string cardsetname = setlist[cardPosition.card->setId].c_str();
         if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
         {
@@ -157,7 +157,7 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail, bool addWHbord
         }
         else
         {
-            if (cardsetname == "LEA" || cardsetname == "LEB")
+            if (cardsetname == "LEA")
             {
                 JRenderer::GetInstance()->FillRoundRect((cardPosition.x - cardPosition.scale * 96.75f)-(7.f+modx),(cardPosition.y - cardPosition.scale * 139.25f)-(7.f+modx),cardPosition.scale * 193.5f,cardPosition.scale * 278.5f,7.f+modx,ARGB(255,10,10,10));
                 JRenderer::GetInstance()->DrawRoundRect((cardPosition.x - cardPosition.scale * 96.75f)-(7.f+modx),(cardPosition.y - cardPosition.scale * 139.25f)-(7.f+modx),cardPosition.scale * 193.5f,cardPosition.scale * 278.5f,7.f+modx,ARGB(50,240,240,240));
