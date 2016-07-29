@@ -111,17 +111,17 @@ void CardGui::Update(float dt)
     PlayGuiObject::Update(dt);
 }
 
-void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder)
+void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder, bool smallerscale)
 {
-    DrawCard(card, inPosition, inMode, thumb, noborder);
+    DrawCard(card, inPosition, inMode, thumb, noborder, smallerscale);
 }
 
-void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder)
+void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder, bool smallerscale)
 {
     switch (inMode)
     {
     case DrawMode::kNormal:
-        RenderBig(inCard, inPosition, thumb, noborder);
+        RenderBig(inCard, inPosition, thumb, noborder, smallerscale);
         break;
     case DrawMode::kText:
         AlternateRender(inCard, inPosition);
@@ -1114,7 +1114,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
-void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder)
+void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder, bool smallerscale)
 {
     JRenderer * renderer = JRenderer::GetInstance();
     //GameObserver * game = GameObserver::GetInstance();
@@ -1145,7 +1145,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         if(!noborder)
         {
             if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
-            {
+            {//Draw white border
                 renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,248,248,255));
                 renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(150,20,20,20));
             }
@@ -1153,27 +1153,35 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
             {
                 if(cardsetname == "LEA"||cardsetname == "LEB")
                 {
+                    //force smaller scale
+                    smallerscale = true;
+                    //Draw more rounder black border
                     renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(255,5,5,5));
                     renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(50,240,240,240));
                 }
                 else
-                {
+                {//draw black border
                     renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
                     renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
                 }
             }
-            if(cardsetname == "LEA"||cardsetname == "LEB")
-            {
-                if(alphabeta.get())
-                    renderer->RenderQuad(alphabeta.get(),(pos.actX - (pos.actZ * 100.f))+12.f,(pos.actY - (pos.actZ * 142.5f))+17.5f, pos.actT, 0.88f, 0.88f);
-                renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.01f, scale-0.01f);
-            }
-            else
-                renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
         }
+        //draw inner border
+        if(cardsetname == "LEA"||cardsetname == "LEB")
+        {
+            if(alphabeta.get())
+            {
+                alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
+                float myscale = pos.actZ * 250 / alphabeta->mHeight;
+                alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
+                renderer->RenderQuad(alphabeta.get(), x, pos.actY, pos.actT, myscale, myscale);
+            }
+        }
+        //Draw card
+        if(smallerscale)
+            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.01f, scale-0.01f);
         else
-        renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
-
+            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
         RenderCountersBig(card, pos);
         return;
     }

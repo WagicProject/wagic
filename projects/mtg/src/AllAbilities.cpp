@@ -1466,18 +1466,23 @@ AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, M
 
 int AACopier::resolve()
 {
+    bool tokencopied = false;
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
         MTGCard* clone ;
-        if(_target->isToken || _target->isACopier)
+        if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
+        {
             clone = _target;
+            tokencopied = true;
+        }
         else
             clone = MTGCollection()->getCardById(_target->copiedID);
         MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
         source->copy(myClone);
         SAFE_DELETE(myClone);
         source->isACopier = true;
+        source->hasCopiedToken = tokencopied;
         source->copiedID = _target->copiedID;
         if(_target->isMorphed)
         {
@@ -3880,8 +3885,8 @@ int AACloner::resolve()
     // Use id of the card to have the same image as the original
     MTGCard* clone = (_target->isToken ? _target: MTGCollection()->getCardById(_target->getId()));
 
-    // If its a copier then copy what it is
-    if(_target->isACopier)
+    // If its a copier and copied a token then copy what it is
+    if(_target->isACopier && _target->hasCopiedToken)
         clone = _target;
 
     Player * targetPlayer = who == 1 ? source->controller()->opponent() : source->controller();
