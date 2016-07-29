@@ -98,6 +98,7 @@ public:
     bool exileEffects;
     bool suspended;
     bool miracle;
+    bool hasCopiedToken;
     bool isBestowed;
     int chooseacolor;
     string chooseasubtype;

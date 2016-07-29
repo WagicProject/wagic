@@ -227,6 +227,7 @@ void MTGCardInstance::initMTGCI()
     myPair = NULL;
     shackled = NULL;
     miracle = false;
+    hasCopiedToken = false;
     countTrini = 0;
     imprintedCards.clear();
     attackCost = 0;
