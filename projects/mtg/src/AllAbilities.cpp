@@ -732,6 +732,10 @@ bool MTGScryCards::CheckUserInput(JButton key)
             if (!abilitySecond && !tc->getNbTargets() && tc->source)
             {
                 tc->source->getObserver()->cardClick(tc->source, 0, false);
+                //remove the first ability to avoid a menu react.
+                source->getObserver()->mLayers->stackLayer()->Remove(abilityFirst);
+                abilityFirst->removeFromGame();
+                game->removeObserver(abilityFirst);
                 game->Update(0);
                 if (zone->cards.size())
                 {
@@ -755,6 +759,10 @@ bool MTGScryCards::CheckUserInput(JButton key)
     {                     
         if (!tc && !abilitySecond)
         {
+            //remove the first ability to avoid a menu react.
+            source->getObserver()->mLayers->stackLayer()->Remove(abilityFirst);
+            abilityFirst->removeFromGame();
+            game->removeObserver(abilityFirst);
             game->Update(1);
 
             if (zone->cards.size() || (revealDisplay && !zone->cards.size()))
