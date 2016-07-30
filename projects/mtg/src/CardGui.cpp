@@ -153,7 +153,7 @@ void CardGui::Render()
     else
         quad = AlternateThumbQuad(card);
 
-    float cardScale = quad ? 35.5f / quad->mHeight : 1;
+    float cardScale = quad ? 37.f / quad->mHeight : 1;
     //I want the below for melded cards but I dont know how to adjust everything else
     //to look neat and clean. leaving this here incase someone else wants to pretty up the p/t box
     //and line up the position.
@@ -258,7 +258,7 @@ void CardGui::Render()
                 fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
             else
                 fakeborder->SetColor(ARGB((int)(actA),15,15,15));
-            renderer->RenderQuad(fakeborder.get(), actX, (actY-yy), actT, (26 * (actZ*zz) + 1) / 16, 38 * (actZ*zz) / 16);
+            renderer->RenderQuad(fakeborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
         }
         //draw border for highlighting
         if (game)
@@ -266,26 +266,26 @@ void CardGui::Render()
             if (card && card->isTargetted() && highlightborder)
             {
                 highlightborder->SetColor(ARGB(95,255,0,0));
-                renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (27 * (actZ*zz) + 1) / 16, 39 * (actZ*zz) / 16);
+                renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
             }
             if (card && card->isTargetter() && highlightborder)
             {
                 highlightborder->SetColor(ARGB(95,0,245,0));
-                renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (27 * (actZ*zz) + 1) / 16, 39 * (actZ*zz) / 16);
+                renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
             }
             if(card->myPair && card->myPair->isInPlay(game) && highlightborder)
             {
                 if(mHasFocus)
                 {
                     highlightborder->SetColor(ARGB(200,7,98,248));
-                    renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (27 * (actZ*zz) + 1) / 16, 39 * (actZ*zz) / 16);
+                    renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
                 }
                 if(CardView* cv = dynamic_cast<CardView*>(card->myPair->view))
                 {
                     if(cv->mHasFocus)
                     {
                         highlightborder->SetColor(ARGB(200,57,28,248));
-                        renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (27 * (actZ*zz) + 1) / 16, 39 * (actZ*zz) / 16);
+                        renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
                     }
                 }
             }
@@ -298,7 +298,7 @@ void CardGui::Render()
                     else
                         highlightborder->SetColor(ARGB(200,57,28,248));
 
-                    renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (27 * (actZ*zz) + 1) / 16, 39 * (actZ*zz) / 16);
+                    renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
                 }
                 if(CardView* cv = dynamic_cast<CardView*>(card->shackled->view))
                 {
@@ -309,7 +309,7 @@ void CardGui::Render()
                         else
                             highlightborder->SetColor(ARGB(200,57,28,248));
 
-                        renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (27 * (actZ*zz) + 1) / 16, 39 * (actZ*zz) / 16);
+                        renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
                     }
                 }
             }
@@ -474,7 +474,7 @@ void CardGui::Render()
         if (shadow)
         {
             shadow->SetColor(ARGB(200,255,255,255));
-            renderer->RenderQuad(shadow.get(), actX, (actY-yy), actT, (23 * (actZ*zz) + 1) / 16, 35 * (actZ*zz) / 16);
+            renderer->RenderQuad(shadow.get(), actX, (actY-yy), actT, (25 * (actZ*zz) + 1) / 16, 37 * (actZ*zz) / 16);
         }
     }
 
