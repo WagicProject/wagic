@@ -263,8 +263,8 @@ void CardDisplay::Render()
     {
         mObjects[mCurr]->Render();
         CardGui * cardg = ((CardGui *) mObjects[mCurr]);
-        Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 0.90f, 0.0, 220);
-        int drawMode = DrawMode::kNormal;//scale card display from 1.0f to 0.90f
+        Pos pos = Pos((CardGui::BigWidth / 2), CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
+        int drawMode = DrawMode::kNormal;//scale card display from 1.0f to 0.80f
         if (observer)
         {
             pos.actY = 142;//reduce y a little

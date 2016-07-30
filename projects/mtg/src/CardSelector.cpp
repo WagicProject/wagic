@@ -341,7 +341,8 @@ void CardSelector::Render()
         {
             if(timer > 0)
             {
-                Pos npos = Pos(bigpos.x+7.f,bigpos.y-4.f,bigpos.zoom-(bigpos.zoom/10),bigpos.t,bigpos.alpha);
+                float modx = 14.f;
+                Pos npos = Pos(bigpos.x+modx,bigpos.y-4.f,bigpos.zoom-(bigpos.zoom/5),bigpos.t,bigpos.alpha);
                 //render card
                 card->DrawCard(npos, mDrawMode);
             }
