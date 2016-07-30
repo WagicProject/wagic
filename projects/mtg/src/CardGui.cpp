@@ -153,17 +153,17 @@ void CardGui::Render()
     else
         quad = AlternateThumbQuad(card);
 
-    float cardScale = quad ? 40 / quad->mHeight : 1;
+    float cardScale = quad ? 37.f / quad->mHeight : 1;
     //I want the below for melded cards but I dont know how to adjust everything else
     //to look neat and clean. leaving this here incase someone else wants to pretty up the p/t box
     //and line up the position.
-	float zz = 1.0f;
-	float yy = 0.0f;
+    float zz = 0.99f;
+    float yy = 0.0f;
     if (card->MeldedFrom.size())
-	{
-        zz = 1.15f;
-		yy = 2.0f;
-	}
+    {
+        zz = 1.10f;
+        yy = 2.0f;
+    }
     float scale = (actZ*zz) * cardScale;
 
     JQuadPtr shadow;
@@ -173,7 +173,7 @@ void CardGui::Render()
         if (shadow) 
         {
             shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
-            renderer->RenderQuad(shadow.get(), actX + ((actZ*zz) - 1) * 15, (actY-yy) + ((actZ*zz) - 1) * 15, actT, 28 * (actZ*zz) / 16, 40 * (actZ*zz) / 16);
+            renderer->RenderQuad(shadow.get(), actX + ((actZ*zz) - 1) * 15, (actY-yy) + ((actZ*zz) - 1) * 15, actT, 27 * (actZ*zz) / 16, 39 * (actZ*zz) / 16);
         }
     }
 
@@ -184,7 +184,7 @@ void CardGui::Render()
         if (extracostshadow) 
         {
             extracostshadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,100,0,0));
-            renderer->RenderQuad(extracostshadow.get(), actX + ((actZ*zz) - 1) * 15, (actY-yy) + ((actZ*zz) - 1) * 15, actT, 28 * (actZ*zz) / 16, 40 * (actZ*zz) / 16);
+            renderer->RenderQuad(extracostshadow.get(), actX + ((actZ*zz) - 1) * 15, (actY-yy) + ((actZ*zz) - 1) * 15, actT, 27 * (actZ*zz) / 16, 39 * (actZ*zz) / 16);
         }
     }
 
@@ -213,7 +213,7 @@ void CardGui::Render()
             if(white)
             {
                 white->SetColor(ARGB(255,230,50,50));
-                renderer->RenderQuad(white.get(), actX, (actY-yy), actT, 30 * (actZ*zz) / 16, 42 * (actZ*zz) / 16);
+                renderer->RenderQuad(white.get(), actX, (actY-yy), actT, 28 * (actZ*zz) / 16, 40 * (actZ*zz) / 16);
             }
         }
 
@@ -240,7 +240,7 @@ void CardGui::Render()
             if(white)
             {
                 white->SetColor(ARGB(255,0,0,255));
-                renderer->RenderQuad(white.get(), actX, (actY-yy), actT, 30 * (actZ*zz) / 16, 42 * (actZ*zz) / 16);
+                renderer->RenderQuad(white.get(), actX, (actY-yy), actT, 28 * (actZ*zz) / 16, 40 * (actZ*zz) / 16);
             }
         }
     }
@@ -258,7 +258,7 @@ void CardGui::Render()
                 fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
             else
                 fakeborder->SetColor(ARGB((int)(actA),15,15,15));
-            renderer->RenderQuad(fakeborder.get(), actX, (actY-yy), actT, (29 * (actZ*zz) + 1) / 16, 42 * (actZ*zz) / 16);
+            renderer->RenderQuad(fakeborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
         }
         //draw border for highlighting
         if (game)
@@ -266,26 +266,26 @@ void CardGui::Render()
             if (card && card->isTargetted() && highlightborder)
             {
                 highlightborder->SetColor(ARGB(95,255,0,0));
-                renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (30 * (actZ*zz) + 1) / 16, 43 * (actZ*zz) / 16);
+                renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
             }
             if (card && card->isTargetter() && highlightborder)
             {
                 highlightborder->SetColor(ARGB(95,0,245,0));
-                renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (30 * (actZ*zz) + 1) / 16, 43 * (actZ*zz) / 16);
+                renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
             }
             if(card->myPair && card->myPair->isInPlay(game) && highlightborder)
             {
                 if(mHasFocus)
                 {
                     highlightborder->SetColor(ARGB(200,7,98,248));
-                    renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (30 * (actZ*zz) + 1) / 16, 43 * (actZ*zz) / 16);
+                    renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
                 }
                 if(CardView* cv = dynamic_cast<CardView*>(card->myPair->view))
                 {
                     if(cv->mHasFocus)
                     {
                         highlightborder->SetColor(ARGB(200,57,28,248));
-                        renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (30 * (actZ*zz) + 1) / 16, 43 * (actZ*zz) / 16);
+                        renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
                     }
                 }
             }
@@ -298,7 +298,7 @@ void CardGui::Render()
                     else
                         highlightborder->SetColor(ARGB(200,57,28,248));
 
-                    renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (30 * (actZ*zz) + 1) / 16, 43 * (actZ*zz) / 16);
+                    renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
                 }
                 if(CardView* cv = dynamic_cast<CardView*>(card->shackled->view))
                 {
@@ -309,7 +309,7 @@ void CardGui::Render()
                         else
                             highlightborder->SetColor(ARGB(200,57,28,248));
 
-                        renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (30 * (actZ*zz) + 1) / 16, 43 * (actZ*zz) / 16);
+                        renderer->RenderQuad(highlightborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
                     }
                 }
             }
@@ -390,9 +390,12 @@ void CardGui::Render()
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
         sprintf(buffer, "%i/%i", card->power, card->life);
-        renderer->FillRect(actX - (13 * (actZ*zz)), (actY-yy) + 4 * (actZ*zz), 25.5f * (actZ*zz), 14 * (actZ*zz),
+        //move up the p/t box by increasing ymody
+        float ymody = (card->isAttacker()||card->isDefenser())&&card->isTapped()?-5.0f:0.0f;
+        //float ymody = (card->getObserver()->getView()->getRenderedPlayer() == card->controller() ? - mody: +mody);
+        renderer->FillRect(actX - (13 * (actZ*zz)), (actY-yy+ymody) + 4 * (actZ*zz), 25.5f * (actZ*zz), 14 * (actZ*zz),
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
-        renderer->DrawRect(actX - (13 * (actZ*zz)), (actY-yy) + 4 * (actZ*zz), 25.5f * (actZ*zz), 14 * (actZ*zz),
+        renderer->DrawRect(actX - (13 * (actZ*zz)), (actY-yy+ymody) + 4 * (actZ*zz), 25.5f * (actZ*zz), 14 * (actZ*zz),
             ARGB(((static_cast<unsigned char>(actA))),20,20,20));
         //damaged or buffed or powered down        
         if(card->wasDealtDamage && card->life <= 2)
@@ -407,7 +410,9 @@ void CardGui::Render()
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
         mFont->SetScale((actZ*zz));
         mFont->SetScale((actZ*zz));
-        mFont->DrawString(buffer, actX - 10 * (actZ*zz), (actY-yy) + 7 * (actZ*zz));
+        //try to center p/t inside the p/t box
+        float halfbufferW = (mFont->GetStringWidth(buffer))/2;
+        mFont->DrawString(buffer, actX - (halfbufferW), (actY-yy+ymody) + 5 * (actZ*zz));
         mFont->SetScale(1);
     }
 
@@ -472,7 +477,7 @@ void CardGui::Render()
         if (shadow)
         {
             shadow->SetColor(ARGB(200,255,255,255));
-            renderer->RenderQuad(shadow.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
+            renderer->RenderQuad(shadow.get(), actX, (actY-yy), actT, (25 * (actZ*zz) + 1) / 16, 37 * (actZ*zz) / 16);
         }
     }
 
