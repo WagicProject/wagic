@@ -390,6 +390,7 @@ void CardGui::Render()
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
         sprintf(buffer, "%i/%i", card->power, card->life);
+        //move up the p/t box by increasing ymody
         float ymody = (card->isAttacker()||card->isDefenser())&&card->isTapped()?-5.0f:0.0f;
         //float ymody = (card->getObserver()->getView()->getRenderedPlayer() == card->controller() ? - mody: +mody);
         renderer->FillRect(actX - (13 * (actZ*zz)), (actY-yy+ymody) + 4 * (actZ*zz), 25.5f * (actZ*zz), 14 * (actZ*zz),
@@ -409,7 +410,9 @@ void CardGui::Render()
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
         mFont->SetScale((actZ*zz));
         mFont->SetScale((actZ*zz));
-        mFont->DrawString(buffer, actX - 10 * (actZ*zz), (actY-yy+ymody) + 7 * (actZ*zz));
+        //try to center p/t inside the p/t box
+        float halfbufferW = (mFont->GetStringWidth(buffer))/2;
+        mFont->DrawString(buffer, actX - (halfbufferW), (actY-yy+ymody) + 5 * (actZ*zz));
         mFont->SetScale(1);
     }
 
