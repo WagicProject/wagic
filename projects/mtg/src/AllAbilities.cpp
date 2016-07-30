@@ -401,8 +401,8 @@ void MTGRevealingCards::Render()
 {
     if (!revealDisplay)
         return;
-    CheckUserInput(mEngine->ReadButton());
-    revealDisplay->CheckUserInput(mEngine->ReadButton());
+        CheckUserInput(mEngine->ReadButton());
+        revealDisplay->CheckUserInput(mEngine->ReadButton());
     revealDisplay->Render();
     return;
 }
@@ -416,11 +416,6 @@ bool MTGRevealingCards::CheckUserInput(JButton key)
     {
         if (this->source->controller() != game->isInterrupting)
             game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
-        //if (game->currentActionPlayer->isAI() && key != JGE_BTN_OK)
-        //{
-        //    key = JGE_BTN_NEXT;
-        //    game->Update(0);
-        //}
         
     }
     if (JGE_BTN_SEC == key || JGE_BTN_PREV == key || JGE_BTN_NEXT == key || JGE_BTN_MENU == key)//android back button
@@ -434,16 +429,15 @@ bool MTGRevealingCards::CheckUserInput(JButton key)
             if (!abilitySecond && !tc->getNbTargets() && tc->source)
             {//we selected nothing for the first ability.
                 tc->source->getObserver()->cardClick(tc->source, 0, false);
-                if (abilityFirst)///some abilities resolve themselves and remove faster than you can removethem from the game.
-                {
-                    abilityFirst->removeFromGame();
-                    game->mLayers->stackLayer()->Remove(abilityFirst);
-                    abilityFirst = NULL;
-                }
+                //remove the first ability to avoid a menu react.
+                source->getObserver()->mLayers->stackLayer()->Remove(abilityFirst);
+                abilityFirst->removeFromGame();
+                game->removeObserver(abilityFirst);
+                
+
                 game->Update(0);
-                //remove it from the game, update, and remove it from stack if needed.
-                //before adding next ability, otherwise we end up with a menu reactToClick.
-                if (zone->cards.size() && abilityFirst->testDestroy())//generally only want to add ability 2 if anything is left in the zone.
+                
+                if (zone->cards.size())//generally only want to add ability 2 if anything is left in the zone.
                 {
                     repeat = false;
                     abilitySecond = contructAbility(abilityTwo);
@@ -465,12 +459,10 @@ bool MTGRevealingCards::CheckUserInput(JButton key)
     {                     //looks redundent and can be added above as another condiational, however we would end up with a massive
                           //if statement that becomes very very hard to follow. 
         if (!tc && !abilitySecond)
-        {           
-            if (abilityFirst)
-            {
-                abilityFirst->removeFromGame();
-                game->mLayers->stackLayer()->Remove(abilityFirst);
-            }
+        {         
+            source->getObserver()->mLayers->stackLayer()->Remove(abilityFirst);
+            abilityFirst->removeFromGame();
+            game->removeObserver(abilityFirst);
             game->Update(1);
 
             if (zone->cards.size())
@@ -730,11 +722,6 @@ bool MTGScryCards::CheckUserInput(JButton key)
         //in the future we will need a way to find out if the human is pressing the keys and which player.
         if (this->source->controller() != game->isInterrupting)
             game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
-        //if (game->currentActionPlayer->isAI() && key != JGE_BTN_OK)
-        //{
-        //    key = JGE_BTN_NEXT;
-        //    game->Update(0);
-        //}
     }
     if (JGE_BTN_SEC == key || JGE_BTN_PREV == key || JGE_BTN_NEXT == key || JGE_BTN_MENU == key)
     {
@@ -745,13 +732,8 @@ bool MTGScryCards::CheckUserInput(JButton key)
             if (!abilitySecond && !tc->getNbTargets() && tc->source)
             {
                 tc->source->getObserver()->cardClick(tc->source, 0, false);
-                if (abilityFirst)///some abilities resolve themselves and remove faster than you can removethem from the game.
-                {
-                    abilityFirst->removeFromGame();
-                    game->mLayers->stackLayer()->Remove(abilityFirst);
-                }
                 game->Update(0);
-                if (zone->cards.size() && abilityFirst->testDestroy())
+                if (zone->cards.size())
                 {
                     initDisplay(revealTopAmount);
                     abilitySecond = contructAbility(abilityTwo);
@@ -773,11 +755,6 @@ bool MTGScryCards::CheckUserInput(JButton key)
     {                     
         if (!tc && !abilitySecond)
         {
-            if (abilityFirst)
-            {
-                abilityFirst->removeFromGame();
-                game->mLayers->stackLayer()->Remove(abilityFirst);
-            }
             game->Update(1);
 
             if (zone->cards.size() || (revealDisplay && !zone->cards.size()))
