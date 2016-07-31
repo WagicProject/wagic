@@ -3280,6 +3280,11 @@ int AAFlip::resolve()
             }
             SAFE_DELETE(myFlip);
             _target->mPropertiesChangedSinceLastUpdate = true;
+            if(!isflipcard)
+            {
+                WEvent * e = NEW WEventCardTransforms(_target);
+                game->receiveEvent(e);
+            }
         }
 
         currentAbilities.clear();
@@ -4112,7 +4117,7 @@ int AAMover::resolve()
             //inplay is a special zone !
             for (int i = 0; i < 2; i++)
             {
-                if (!_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
+                if (!_target->hasSubtype(Subtypes::TYPE_INSTANT) && !_target->hasSubtype(Subtypes::TYPE_SORCERY) && !_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
                         != game->players[i]->opponent()->game->inPlay)
                 {
                     MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
@@ -4172,6 +4177,17 @@ int AAMover::resolve()
             }
             else
             {
+                if((_target->hasSubtype(Subtypes::TYPE_INSTANT) || _target->hasSubtype(Subtypes::TYPE_SORCERY)) &&
+                    (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
+                {
+                    if(andAbility)
+                    {
+                        if(!dynamic_cast<AAFlip *>(andAbility))
+                            return 0;
+                    }
+                    else
+                        return 0;
+                }
                 p->game->putInZone(_target, fromZone, destZone);
                 while(_target->next)
                     _target = _target->next;
@@ -7077,7 +7093,7 @@ void ABlink::resolveBlink()
 
 void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
     MTGCardInstance * Blinker = NULL;
-    if(!_target->blinked)
+    if(!_target->blinked || _target->hasSubtype(Subtypes::TYPE_INSTANT) || _target->hasSubtype(Subtypes::TYPE_SORCERY))
     {
         this->forceDestroy = 1;
         return;
@@ -7640,12 +7656,24 @@ int AACastCard::resolveSpell()
             if (game->targetChooser)
             {
                 game->targetChooser->Owner = source->controller();
-                spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                if(putinplay)
+                {
+                    spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
+                    spell->resolve();
+                }
+                else
+                    spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
                 game->targetChooser = NULL;
             }
             else
             {
-                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+                if(putinplay)
+                {
+                    spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
+                    spell->resolve();
+                }
+                else
+                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
             }
 
             if (copy->has(Constants::STORM))
