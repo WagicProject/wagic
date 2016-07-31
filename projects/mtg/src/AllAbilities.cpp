@@ -3936,7 +3936,12 @@ int AACloner::resolve()
             spell->source->addType(*it);
         }
         spell->source->modifiedbAbi = _target->modifiedbAbi;
-        spell->source->basicAbilities = _target->origbasicAbilities;
+        //spell->source->basicAbilities = _target->origbasicAbilities;
+        for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
+        {
+            if(_target->model->data->basicAbilities[k])
+               spell->source->basicAbilities[k] = _target->model->data->basicAbilities[k];
+        }
         delete spell;
     }
     return 1;
