@@ -7656,12 +7656,24 @@ int AACastCard::resolveSpell()
             if (game->targetChooser)
             {
                 game->targetChooser->Owner = source->controller();
-                spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                if(putinplay)
+                {
+                    spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
+                    spell->resolve();
+                }
+                else
+                    spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
                 game->targetChooser = NULL;
             }
             else
             {
-                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+                if(putinplay)
+                {
+                    spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
+                    spell->resolve();
+                }
+                else
+                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
             }
 
             if (copy->has(Constants::STORM))
