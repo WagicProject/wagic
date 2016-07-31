@@ -424,6 +424,8 @@ int GuiPlay::receiveEventPlus(WEvent * e)
         Replace();
     else if (dynamic_cast<WEventCardControllerChange*> (e))
         Replace();
+    else if (dynamic_cast<WEventCardTransforms*> (e))
+        Replace();
     Replace();
     return 0;
 }
