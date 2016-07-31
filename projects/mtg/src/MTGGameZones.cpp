@@ -435,7 +435,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (from == g->players[0]->game->battlefield || from == g->players[1]->game->battlefield)
     {
         if(to != g->players[0]->game->battlefield || to != g->players[1]->game->battlefield)
-        if (copy->previous && copy->previous->MeldedFrom.size())
+        if (copy->previous && copy->previous->MeldedFrom.size() && !copy->isACopier && !copy->isToken)//!copier & !token fix kiki-jiki clones crash
         {
             vector<string> names = split(copy->previous->MeldedFrom, '|');
             MTGCard * cardone = MTGCollection()->getCardByName(names[0]);
