@@ -4177,7 +4177,7 @@ int AAMover::resolve()
             }
             else
             {
-                if(_target->hasSubtype(Subtypes::TYPE_INSTANT) || _target->hasSubtype(Subtypes::TYPE_SORCERY) &&
+                if((_target->hasSubtype(Subtypes::TYPE_INSTANT) || _target->hasSubtype(Subtypes::TYPE_SORCERY)) &&
                     (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
                 {
                     if(andAbility)
