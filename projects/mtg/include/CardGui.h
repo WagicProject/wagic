@@ -54,7 +54,7 @@ public:
     CardGui(MTGCardInstance* card, const Pos& ref);
     virtual void Render();
     virtual void Update(float dt);
-
+    bool isBlackBorder(string set);
     void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false, bool smallscale = false);
     static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false, bool smallscale = false);
     static void DrawBorder(string setname, const Pos& inPosition, float x, bool noborder = false, bool smallscale = false);
