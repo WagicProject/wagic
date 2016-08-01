@@ -41,7 +41,10 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     if(!source)
         return;
     basicAbilities = source->basicAbilities;
-    origbasicAbilities = source->basicAbilities;
+    for(int k=0; k < Constants::NB_BASIC_ABILITIES; k++)
+    {
+        modbasicAbilities.push_back(source->basicAbilities[k]);
+    }
     LKIbasicAbilities = source->basicAbilities;
 
     for (size_t i = 0; i < source->types.size(); ++i)
@@ -79,7 +82,7 @@ CardPrimitive::~CardPrimitive()
 int CardPrimitive::init()
 {
     basicAbilities.reset();
-    origbasicAbilities.reset();
+    modbasicAbilities.clear();
 
     types.clear();
 

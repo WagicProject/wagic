@@ -3940,8 +3940,6 @@ int AACloner::resolve()
         {
             spell->source->addType(*it);
         }
-        spell->source->modifiedbAbi = _target->modifiedbAbi;
-        //spell->source->basicAbilities = _target->origbasicAbilities;
         for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
         {
             if(_target->model->data->basicAbilities[k])
@@ -5652,7 +5650,6 @@ for (it = types.begin(); it != types.end(); it++)
     for (it = abilities.begin(); it != abilities.end(); it++)
     {
         _target->basicAbilities.set(*it);
-        _target->modifiedbAbi += 1;
     }
 
     if(newAbilityFound)
@@ -5801,7 +5798,6 @@ int ATransformer::destroy()
         for (it = abilities.begin(); it != abilities.end(); it++)
         {
             _target->basicAbilities.reset(*it);
-            _target->modifiedbAbi -= 1;
         }
 
         for (it = oldcolors.begin(); it != oldcolors.end(); it++)

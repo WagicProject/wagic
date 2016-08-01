@@ -57,8 +57,8 @@ public:
 
     uint8_t colors;
     typedef std::bitset<Constants::NB_BASIC_ABILITIES> BasicAbilitiesSet;
+    vector<int> modbasicAbilities;
     BasicAbilitiesSet basicAbilities;
-    BasicAbilitiesSet origbasicAbilities;
     BasicAbilitiesSet LKIbasicAbilities;
 
     map<string,string> magicTexts;
