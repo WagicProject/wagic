@@ -4117,8 +4117,11 @@ int AAMover::resolve()
             //inplay is a special zone !
             for (int i = 0; i < 2; i++)
             {
-                if (!_target->hasSubtype(Subtypes::TYPE_INSTANT) && !_target->hasSubtype(Subtypes::TYPE_SORCERY) && !_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
-                        != game->players[i]->opponent()->game->inPlay)
+                if (!_target->isSorceryorInstant() && 
+                    !_target->hasSubtype(Subtypes::TYPE_AURA) && 
+                    destZone == game->players[i]->game->inPlay && 
+                    fromZone != game->players[i]->game->inPlay && 
+                    fromZone != game->players[i]->opponent()->game->inPlay)
                 {
                     MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
                     Spell * spell = NEW Spell(game, copy);
@@ -4177,8 +4180,7 @@ int AAMover::resolve()
             }
             else
             {
-                if((_target->hasSubtype(Subtypes::TYPE_INSTANT) || _target->hasSubtype(Subtypes::TYPE_SORCERY)) &&
-                    (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
+                if(_target->isSorceryorInstant() && (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
                 {
                     if(andAbility)
                     {

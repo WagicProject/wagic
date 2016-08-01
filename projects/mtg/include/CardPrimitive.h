@@ -115,6 +115,8 @@ public:
     bool isCreature();
     bool isLand();
     bool isSpell();
+    bool isPermanent();
+    bool isSorceryorInstant();
     int dredge();
     void setPower(int _power);
     int getPower();

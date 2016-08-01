@@ -110,6 +110,18 @@ bool CardPrimitive::isSpell()
     return (!isCreature() && !isLand());
 }
 
+bool CardPrimitive::isPermanent()
+{
+    return (!isSorceryorInstant());
+}
+
+bool CardPrimitive::isSorceryorInstant()
+{
+    if(hasSubtype(Subtypes::TYPE_SORCERY)||hasSubtype(Subtypes::TYPE_INSTANT))
+        return true;
+    return false;
+}
+
 int CardPrimitive::dredge()
 {
     return dredgeAmount;
