@@ -254,11 +254,13 @@ void CardGui::Render()
         highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
         if(fakeborder)
         {
+            int rgb = isBlackBorder(setlist[card->setId].c_str())?15:240;
             if(card->has(Constants::CANPLAYFROMGRAVEYARD)||card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))
                 fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
             else
-                fakeborder->SetColor(ARGB((int)(actA),15,15,15));
+                fakeborder->SetColor(ARGB((int)(actA),rgb,rgb,rgb));
             renderer->RenderQuad(fakeborder.get(), actX, (actY-yy), actT, (28 * (actZ*zz) + 1) / 16, 40 * (actZ*zz) / 16);
+            renderer->DrawRect(actX, (actY-yy),((28 * (actZ*zz) + 1) / 16),(40 * (actZ*zz) / 16),ARGB((int)(actA),240,240,240));
         }
         //draw border for highlighting
         if (game)
@@ -438,7 +440,7 @@ void CardGui::Render()
         else if(card->chooseacolor == 5)
             buff += "\n-White";
     }
-    if(!alternate && buff != "" && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
+    if(buff != "")//enable indicator at all modes
     {
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
@@ -1160,7 +1162,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
             smallerscale = cardsetname=="LEA"||cardsetname=="LEB"?true:smallerscale;
         //Draw card
         if(smallerscale)
-            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.01f, scale-0.01f);
+            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.001f, scale-0.001f);
         else
             renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
         RenderCountersBig(card, pos);
@@ -1190,8 +1192,8 @@ void CardGui::DrawBorder(string cardsetname, const Pos& pos, float x, bool nobor
             if(cardsetname == "LEA")
             {//BETA HAS REGULAR BORDER
                 //Draw more rounder black border
-                renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(255,5,5,5));
-                renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.5f,(pos.actY - (pos.actZ * 119.7f))-11.5f,pos.actZ * 168.f + 0.5f,pos.actZ * 239.4f + 4.f,10.f,ARGB(50,240,240,240));
+                renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f - 0.5f,pos.actZ * 239.4f + 8.f,10.f,ARGB(255,5,5,5));
+                renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f - 0.5f,pos.actZ * 239.4f + 8.f,10.f,ARGB(50,240,240,240));
             }
             else
             {//draw black border
@@ -1206,11 +1208,27 @@ void CardGui::DrawBorder(string cardsetname, const Pos& pos, float x, bool nobor
         if(alphabeta.get())
         {
             alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
-            float myscale = pos.actZ * 250 / alphabeta->mHeight;
+            float myscale = pos.actZ * 254 / alphabeta->mHeight;
             alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
             renderer->RenderQuad(alphabeta.get(), x, pos.actY, pos.actT, myscale, myscale);
         }
     }
+}
+
+bool CardGui::isBlackBorder(string cardsetname)
+{
+    if(cardsetname == "2ED"||
+        cardsetname == "RV"||
+        cardsetname == "4ED"||
+        cardsetname == "5ED"||
+        cardsetname == "6ED"||
+        cardsetname == "7ED"||
+        cardsetname == "8ED"||
+        cardsetname == "9ED"||
+        cardsetname == "CHR"||
+        cardsetname == "DM")
+        return false;
+    return true;
 }
 
 string CardGui::FormattedData(string data, string replace, string value)
