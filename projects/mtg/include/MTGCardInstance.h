@@ -256,7 +256,6 @@ public:
     bool bypassTC;
     bool discarded;
     int copiedID;
-    int modifiedbAbi;
     bool StackIsEmptyandSorcerySpeed();
     bool isTargetted();
     int cardistargetted;

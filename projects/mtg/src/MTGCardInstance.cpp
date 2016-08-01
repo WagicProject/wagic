@@ -64,7 +64,6 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     bypassTC = false;
     discarded = false;
     copiedID = getId();
-    modifiedbAbi = 0;
     LKIpower = power;
     LKItoughness = toughness;
     cardistargetted = 0;
@@ -100,15 +99,12 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     MTGCard * source = card->model;
     CardPrimitive * data = source->data;
 
-    //basicAbilities = card->origbasicAbilities;
     for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
     {
         if(card->model->data->basicAbilities[k])
             basicAbilities[k] = card->model->data->basicAbilities[k];
     }
 
-    origbasicAbilities = card->origbasicAbilities;
-    modifiedbAbi = card->modifiedbAbi;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);

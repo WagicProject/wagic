@@ -2211,7 +2211,12 @@ public:
 
         assert(modifier < 2);
         ((MTGCardInstance *) target)->basicAbilities.set(ability, modifier > 0);
-
+        //---add or subtract so we can keep track - for future use
+        ((MTGCardInstance *) target)->modbasicAbilities[ability] += modifier;
+        //---make sure no negative values
+        if(((MTGCardInstance *) target)->modbasicAbilities[ability] < 0)
+            ((MTGCardInstance *) target)->modbasicAbilities[ability] = 0;
+        //---end add or subtract abilities
         return MTGAbility::addToGame();
     }
 
@@ -2262,7 +2267,7 @@ public:
 
             assert(value < 2);
             _target->basicAbilities.set(ability, value > 0);
-            _target->modifiedbAbi += 1;
+
             return InstantAbility::addToGame();
         }
 
@@ -2275,10 +2280,7 @@ public:
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
         if (_target)
-        {
             _target->basicAbilities.set(ability, stateBeforeActivation);
-            _target->modifiedbAbi -= 1;
-        }
         return 1;
     }
 

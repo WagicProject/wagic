@@ -3940,8 +3940,6 @@ int AACloner::resolve()
         {
             spell->source->addType(*it);
         }
-        spell->source->modifiedbAbi = _target->modifiedbAbi;
-        //spell->source->basicAbilities = _target->origbasicAbilities;
         for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
         {
             if(_target->model->data->basicAbilities[k])
@@ -4117,8 +4115,11 @@ int AAMover::resolve()
             //inplay is a special zone !
             for (int i = 0; i < 2; i++)
             {
-                if (!_target->hasSubtype(Subtypes::TYPE_INSTANT) && !_target->hasSubtype(Subtypes::TYPE_SORCERY) && !_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
-                        != game->players[i]->opponent()->game->inPlay)
+                if (!_target->isSorceryorInstant() && 
+                    !_target->hasSubtype(Subtypes::TYPE_AURA) && 
+                    destZone == game->players[i]->game->inPlay && 
+                    fromZone != game->players[i]->game->inPlay && 
+                    fromZone != game->players[i]->opponent()->game->inPlay)
                 {
                     MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
                     Spell * spell = NEW Spell(game, copy);
@@ -4177,8 +4178,7 @@ int AAMover::resolve()
             }
             else
             {
-                if((_target->hasSubtype(Subtypes::TYPE_INSTANT) || _target->hasSubtype(Subtypes::TYPE_SORCERY)) &&
-                    (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
+                if(_target->isSorceryorInstant() && (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
                 {
                     if(andAbility)
                     {
@@ -5650,7 +5650,6 @@ for (it = types.begin(); it != types.end(); it++)
     for (it = abilities.begin(); it != abilities.end(); it++)
     {
         _target->basicAbilities.set(*it);
-        _target->modifiedbAbi += 1;
     }
 
     if(newAbilityFound)
@@ -5799,7 +5798,6 @@ int ATransformer::destroy()
         for (it = abilities.begin(); it != abilities.end(); it++)
         {
             _target->basicAbilities.reset(*it);
-            _target->modifiedbAbi -= 1;
         }
 
         for (it = oldcolors.begin(); it != oldcolors.end(); it++)
