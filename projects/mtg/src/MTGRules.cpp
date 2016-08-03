@@ -1836,6 +1836,8 @@ int MTGAttackRule::receiveEvent(WEvent *e)
                     card->setAttacker(0);
                 if (card->isAttacker() && !card->has(Constants::VIGILANCE))
                     card->tap();
+                if (card->isAttacker() && card->has(Constants::CANTATTACK))
+                    card->toggleAttacker();//if a card has cantattack, then you cant
             }
             return 1;
         }

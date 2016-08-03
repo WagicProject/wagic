@@ -551,6 +551,18 @@ private:
                     intValue +=1;
             }
         }
+        else if (s == "countallspell")
+        {
+            intValue = card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+        }
+        else if (s == "countmycrespell")
+        {
+            intValue = card->controller()->game->stack->seenThisTurn("creature", Constants::CAST_ALL);
+        }
+        else if (s == "countmynoncrespell")
+        {
+            intValue = card->controller()->game->stack->seenThisTurn("*[-creature]", Constants::CAST_ALL);
+        }
         else if (s == "evictg")
         {
             intValue = card->imprintG;
