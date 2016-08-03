@@ -3692,6 +3692,8 @@ public:
             //andability
             if(andAbility)
             {
+                //backup andAbility for copier and cloner
+                spell->source->TokenAndAbility = andAbility->clone();
                 MTGAbility * andAbilityClone = andAbility->clone();
                 andAbilityClone->target = spell->source;
                 if(andAbility->oneShot)

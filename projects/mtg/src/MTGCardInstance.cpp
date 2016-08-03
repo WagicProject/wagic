@@ -265,6 +265,7 @@ void MTGCardInstance::initMTGCI()
     previousZone = NULL;
     previous = NULL;
     next = NULL;
+    TokenAndAbility = NULL;
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;
