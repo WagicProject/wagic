@@ -104,7 +104,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
         if(card->model->data->basicAbilities[k])
             basicAbilities[k] = card->model->data->basicAbilities[k];
     }
-
+    modbasicAbilities = card->modbasicAbilities;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -141,9 +141,9 @@ void MTGCardInstance::copy(MTGCardInstance * card)
         mtgid = backupid; // there must be a way to get the token id...
     else
     {
-        mtgid = card->getMTGId();   ///////////////////////////////////////////////////
-        setId = card->setId;        // Copier/Cloner cards produces the same token...//
-        rarity = card->getRarity(); ///////////////////////////////////////////////////
+        mtgid = card->getMTGId();     ///////////////////////////////////////////////////
+        setId = card->setId;          // Copier/Cloner cards produces the same token...//
+        //rarity = card->getRarity(); ///////////////////////////////////////////////////
     }
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
@@ -611,7 +611,7 @@ int MTGCardInstance::hasSummoningSickness()
 {
     if (!summoningSickness)
         return 0;
-    if (basicAbilities[(int)Constants::HASTE])
+    if (has(Constants::HASTE))
         return 0;
     if (!isCreature())
         return 0;
