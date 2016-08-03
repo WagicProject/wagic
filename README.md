@@ -20,7 +20,7 @@ It is highly customizable and allows the player to tweak the rules / create thei
 
 Info, downloads, discussions and more at http://wololo.net/forum/index.php
 
--![alt text](http://wololo.net/wagic/wp-content/uploads/2009/10/shop.jpg "Screenshot")
+![alt text](http://wololo.net/wagic/wp-content/uploads/2009/10/shop.jpg "Screenshot")
 
 
 
