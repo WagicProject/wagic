@@ -1462,16 +1462,31 @@ int AACopier::resolve()
     if (_target)
     {
         MTGCard* clone ;
-        if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
+        if((_target->isToken || _target->isACopier) && _target->hasCopiedToken)
         {
             clone = _target;
             tokencopied = true;
         }
         else
             clone = MTGCollection()->getCardById(_target->copiedID);
-        MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
-        source->copy(myClone);
-        SAFE_DELETE(myClone);
+
+        if(tokencopied)
+        {
+            MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
+            source->copy(myClone);
+            SAFE_DELETE(myClone);
+        }
+        else
+        {/*********************************************
+         * instead of using source->copy(myClone) use *
+         * AAFlip with forcedcopy to true             *
+         *********************************************/
+            AAFlip * af = NEW AAFlip(game, game->mLayers->actionLayer()->getMaxId(), source, source, clone->data->name, false, true);
+            af->oneShot;
+            af->canBeInterrupted = false;
+            af->resolve();
+            SAFE_DELETE(af);
+        }
         source->isACopier = true;
         source->hasCopiedToken = tokencopied;
         source->copiedID = _target->copiedID;
@@ -3155,8 +3170,8 @@ AAMeld * AAMeld::clone() const
 }
 
 // flip a card
-AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard) :
-InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard)
+AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy) :
+InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy)
 {
     target = _target;
 }
@@ -3179,7 +3194,7 @@ int AAFlip::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if((_target->isACopier||_target->isToken) && !isflipcard)
+        if((_target->isACopier||_target->isToken) && !isflipcard && !forcedcopy)
         {
             game->removeObserver(this);
             return 0;
@@ -3208,9 +3223,20 @@ int AAFlip::resolve()
             _target->types = myFlip->types;
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
-            _target->basicAbilities = myFlip->basicAbilities;
+            //_target->basicAbilities = myFlip->basicAbilities;
+            for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
+            {
+                if(myFlip->model->data->basicAbilities[k])
+                    _target->basicAbilities[k] = myFlip->model->data->basicAbilities[k];
+            }
+            _target->modbasicAbilities = myFlip->modbasicAbilities;
             cdaDamage = _target->damageCount;
             _target->copiedID = myFlip->getMTGId();//for copier
+            if(forcedcopy && _target->owner->playMode != Player::MODE_TEST_SUITE)
+            {
+                _target->setMTGId(myFlip->getMTGId());
+                _target->setId = myFlip->setId;
+            }
             for(unsigned int i = 0;i < _target->cardsAbilities.size();i++)
             {
                 MTGAbility * a = dynamic_cast<MTGAbility *>(_target->cardsAbilities[i]);

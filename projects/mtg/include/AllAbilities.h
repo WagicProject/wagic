@@ -3524,6 +3524,7 @@ public:
     bool battleReady;
     MTGCardInstance * myToken;
     vector<MTGAbility *> currentAbilities;
+    MTGAbility * andAbility;
     Player * tokenReciever;
     //by id
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, int tokenId,string starfound, WParsedInt * multiplier = NULL,
@@ -3534,6 +3535,7 @@ public:
         MTGCard * card = MTGCollection()->getCardById(tokenId);
         if (card) name = card->data->getName();
         battleReady = false;
+        andAbility = NULL;
     }
     //by name, card still require valid card.dat info, this just makes the primitive code far more readable. token(Eldrazi scion) instead of token(-1234234)...
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, string cardName, string starfound, WParsedInt * multiplier = NULL,
@@ -3545,6 +3547,7 @@ public:
         tokenId = card->getId();
         if (card) name = card->data->getName();
         battleReady = false;
+        andAbility = NULL;
     }
     //by construction
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
@@ -3557,6 +3560,7 @@ public:
         tokenId = 0;
         aType = MTGAbility::STANDARD_TOKENCREATOR;
         battleReady = false;
+        andAbility = NULL;
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
         //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
@@ -3684,6 +3688,21 @@ public:
             if(battleReady)
             {
                 battleReadyToken(spell->source);
+            }
+            //andability
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = spell->source;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
             }
             delete spell;
         }
@@ -4501,7 +4520,8 @@ public:
     vector<MTGAbility *> currentAbilities;
     string flipStats;
     bool isflipcard;
-    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard = false);
+    bool forcedcopy;
+    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard = false, bool forcedcopy = false);
     int resolve();
     int testDestroy();
     const string getMenuText();

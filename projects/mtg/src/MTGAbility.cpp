@@ -2381,6 +2381,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
             ATokenCreator * tok = NEW ATokenCreator(observer, id, card,target, NULL, tokenId, starfound, multiplier, who);
             tok->oneShot = 1;
+            //andability
+            if(storedAndAbility.size())
+            {
+                string stored = storedAndAbility;
+                storedAndAbility.clear();
+                ((ATokenCreator*)tok)->andAbility = parseMagicLine(stored, id, spell, card);
+            }
             return tok;
         }
         
@@ -2395,6 +2402,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 ATokenCreator * tok = NEW ATokenCreator(observer, id, card, target, NULL, cardName, starfound, multiplier, who);
                 tok->oneShot = 1;
+                //andability
+                if(storedAndAbility.size())
+                {
+                    string stored = storedAndAbility;
+                    storedAndAbility.clear();
+                    ((ATokenCreator*)tok)->andAbility = parseMagicLine(stored, id, spell, card);
+                }
                 return tok;
             }
         }
@@ -2431,6 +2445,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         tok->oneShot = 1;
         if(aLivingWeapon)
             tok->forceDestroy = 1;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((ATokenCreator*)tok)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return tok;  
     }
 
