@@ -1482,7 +1482,7 @@ int AACopier::resolve()
          * AAFlip with forcedcopy to true             *
          *********************************************/
             AAFlip * af = NEW AAFlip(game, game->mLayers->actionLayer()->getMaxId(), source, source, clone->data->name, false, true);
-            //af->oneShot;
+            af->oneShot = 1;
             af->canBeInterrupted = false;
             af->resolve();
             SAFE_DELETE(af);

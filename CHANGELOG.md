@@ -1,6 +1,37 @@
 # Changelog
 
 ## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
+#### 8/3/16
+- *Merged pull-request:* andAbility on ATokenCreator, Extend AAFlip [#\824] (https://github.com/WagicProject/wagic/pull/824) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 7/31/16
+- *Merged pull-request:* Fix Chandra, Flamecaller & Cryptolith Rite [#\818] (https://github.com/WagicProject/wagic/pull/818) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 7/28/16
+- *Merged pull-request:* changing some of the logic to the previous fixes, we want to avoid using code that looks for specific card names. [#\800] (https://github.com/WagicProject/wagic/pull/800) ([zethfoxster](https://github.com/zethfoxster))
+
+#### 7/26/16
+- *Merged pull-request:* granted flashback [#\791] (https://github.com/WagicProject/wagic/pull/791) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 7/23/16
+- *Merged pull-request:* Fix Flying vs Moat (multiples of them). Fixes issue #526 [#\783] (https://github.com/WagicProject/wagic/pull/783) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 7/19/16
+- *Merged pull-request:* pushing to master [#\770] (https://github.com/WagicProject/wagic/pull/770) ([zethfoxster](https://github.com/zethfoxster))
+
+#### 7/18/16
+- *Merged pull-request:* Fix Deck Menu layer, Change Main Menu Layout, Fix Crash cdaactive on tokens [#\765] (https://github.com/WagicProject/wagic/pull/765) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 7/12/16
+- *Merged pull-request:* Pushing fixes [#\750] (https://github.com/WagicProject/wagic/pull/750) ([zethfoxster](https://github.com/zethfoxster))
+
+- *Merged pull-request:* try to fix failed logic here [#\747] (https://github.com/WagicProject/wagic/pull/747) ([kevlahnota](https://github.com/kevlahnota))
+
+#### 7/9/16
+- *Merged pull-request:* pushing to master [#\738] (https://github.com/WagicProject/wagic/pull/738) ([zethfoxster](https://github.com/zethfoxster))
+
+- *Merged pull-request:* Sorted Primitives and Cleanup Tabs [#\736] (https://github.com/WagicProject/wagic/pull/736) ([kevlahnota](https://github.com/kevlahnota))
+
 #### 7/7/16
 - *Merged pull-request:* Sorted Primitives and Cleanup Tabs [#\727] (https://github.com/WagicProject/wagic/pull/719) ([kevlahnota](https://github.com/kevlahnota))
 
