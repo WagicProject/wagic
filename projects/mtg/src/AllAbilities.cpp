@@ -1462,8 +1462,8 @@ int AACopier::resolve()
     if (_target)
     {
         MTGCard* clone ;
-        if((_target->isToken || _target->isACopier) && _target->hasCopiedToken)
-        {
+        if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
+        {//fix crash when copying token
             clone = _target;
             tokencopied = true;
         }
