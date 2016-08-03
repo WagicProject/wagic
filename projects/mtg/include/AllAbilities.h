@@ -4519,8 +4519,8 @@ class AAFlip: public InstantAbility
 public:
     vector<MTGAbility *> currentAbilities;
     string flipStats;
-    bool forcedcopy;
     bool isflipcard;
+    bool forcedcopy;
     AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard = false, bool forcedcopy = false);
     int resolve();
     int testDestroy();
