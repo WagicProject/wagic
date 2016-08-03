@@ -121,6 +121,7 @@ public:
     MTGGameZone * previousZone;
     MTGCardInstance * previous;
     MTGCardInstance * next;
+    MTGAbility * TokenAndAbility;
     int doDamageTest;
     bool skipDamageTestOnce;
     int summoningSickness;

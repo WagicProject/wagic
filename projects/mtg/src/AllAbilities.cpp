@@ -1503,6 +1503,20 @@ int AACopier::resolve()
             source->basicAbilities.reset();
             source->getManaCost()->resetCosts();
         }
+        if(_target->TokenAndAbility)
+        {//the source copied a token with andAbility
+            MTGAbility * andAbilityClone = _target->TokenAndAbility->clone();
+            andAbilityClone->target = source;
+            if(_target->TokenAndAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
         return 1;
     }
     return 0;
@@ -3970,6 +3984,20 @@ int AACloner::resolve()
         {
             if(_target->model->data->basicAbilities[k])
                spell->source->basicAbilities[k] = _target->model->data->basicAbilities[k];
+        }
+        if(_target->TokenAndAbility)
+        {//the source copied a token with andAbility
+            MTGAbility * andAbilityClone = _target->TokenAndAbility->clone();
+            andAbilityClone->target = spell->source;
+            if(_target->TokenAndAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
         }
         delete spell;
     }
