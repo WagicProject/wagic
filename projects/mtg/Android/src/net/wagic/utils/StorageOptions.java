@@ -310,84 +310,95 @@ public class StorageOptions
     *
     * @return <code>true</code> if the device is rooted, <code>false</code> otherwise.
     */
-    public static boolean isRooted() {
-
-    // get from build info
-    String buildTags = android.os.Build.TAGS;
-    if (buildTags != null && buildTags.contains("test-keys")) {
-      return true;
-    }
-
-    // check if /system/app/Superuser.apk is present
-    try {
-      File file = new File("/system/app/Superuser.apk");
-      if (file.exists()) {
-        return true;
-      }
-    } 
-    catch (Exception e1) {
-      // ignore
-    }
-    try {
-      File file = new File("/system/app/Superuser/Superuser.apk");
-      if (file.exists()) {
-        return true;
-      }
-    } 
-    catch (Exception e1) {
-      // ignore
-    }
-    //SuperSU
-    try {
-      File file = new File("/system/app/SuperSU.apk");
-      if (file.exists()) {
-        return true;
-      }
-    } 
-    catch (Exception e1) {
-      // ignore
-    }
-    try {
-      File file = new File("/system/app/SuperSU/SuperSU.apk");
-      if (file.exists()) {
-        return true;
-      }
-    } 
-    catch (Exception e1) {
-      // ignore
-    }
-    // try executing commands
-    return canExecuteCommand("/system/xbin/which su")
-        || canExecuteCommand("/system/bin/which su") || canExecuteCommand("which su");
-    }
-
-    // executes a command on the system
-    private static boolean canExecuteCommand(String command) {
-    boolean executedSuccesfully;
-    try {
-      Runtime.getRuntime().exec(command);
-      executedSuccesfully = true;
-    } 
-    catch (Exception e) {
-      executedSuccesfully = false;
-    }
-
-    return executedSuccesfully;
-    }
-    
-    private static boolean findForcemount(){
-    try 
+    public static boolean isRooted()
     {
-        File file = new File(System.getenv("EXTERNAL_STORAGE")+"/forcemount");
-        if (file.exists()) 
+        // get from build info
+        String buildTags = android.os.Build.TAGS;
+        if (buildTags != null && buildTags.contains("test-keys"))
         {
             return true;
         }
-    } 
-    catch (Exception e1) 
-    {
-        return false;
+
+        // check if /system/app/Superuser.apk is present
+        try
+        {
+            File file = new File("/system/app/Superuser.apk");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            // ignore
+        }
+        try
+        {
+            File file = new File("/system/app/Superuser/Superuser.apk");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            // ignore
+        }
+        //SuperSU
+        try
+        {
+            File file = new File("/system/app/SuperSU.apk");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            // ignore
+        }
+        try
+        {
+            File file = new File("/system/app/SuperSU/SuperSU.apk");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            // ignore
+        }
+        // try executing commands
+        return canExecuteCommand("/system/xbin/which su")
+                || canExecuteCommand("/system/bin/which su") || canExecuteCommand("which su");
     }
-    return false;
+
+    // executes a command on the system
+    private static boolean canExecuteCommand(String command)
+    {
+        boolean executedSuccesfully;
+        try
+        {
+            Runtime.getRuntime().exec(command);
+            executedSuccesfully = true;
+        } catch (Exception e)
+        {
+            executedSuccesfully = false;
+        }
+
+        return executedSuccesfully;
+    }
+
+    private static boolean findForcemount()
+    {
+        try
+        {
+            File file = new File(System.getenv("EXTERNAL_STORAGE") + "/forcemount");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            return false;
+        }
+        return false;
     }
 }

@@ -14,8 +14,6 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -1096,7 +1094,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
 
         try
         {
-
             EGL10 egl = (EGL10) EGLContext.getEGL();
 
             EGLDisplay dpy = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
@@ -1162,7 +1159,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
         EGL10 egl = (EGL10) EGLContext.getEGL();
         if (mEGLSurface != null)
         {
-
             /*
              * Unbind and destroy the old EGL surface, if there is one.
              */
@@ -1197,7 +1193,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
     // EGL buffer flip
     public void flipEGL()
     {
-
         if (!mSurfaceValid)
         {
             createSurface(this.getHolder());
@@ -1223,7 +1218,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
                 Log.e("SDL", s.toString());
             }
         }
-
     }
 
     // Key events
@@ -1234,6 +1228,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
 
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
             return false;
+
         if (event.getAction() == KeyEvent.ACTION_DOWN)
         {
             // Log.d("SDL", "key down: " + keyCode);
@@ -1252,7 +1247,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
     // Touch events
     public boolean onTouch(View v, MotionEvent event)
     {
-
         for (int index = 0; index < event.getPointerCount(); ++index)
         {
             int action = event.getActionMasked();
