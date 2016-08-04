@@ -690,6 +690,14 @@ private:
         {
             intValue = target->controller()->opponent()->damageCount;
         }
+        else if (s == "pdnoncount")
+        {
+            intValue = target->controller()->nonCombatDamage;
+        }
+        else if (s == "odnoncount")
+        {
+            intValue = target->controller()->opponent()->nonCombatDamage;
+        }
         else if (s == "playerpoisoncount")
         {
             intValue = target->controller()->poisonCount;
