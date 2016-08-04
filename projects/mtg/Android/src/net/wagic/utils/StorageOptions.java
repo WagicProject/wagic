@@ -149,7 +149,7 @@ public class StorageOptions
             mMounts.add(defaultMountPoint);
         } catch (Exception e)
         {
-            Log.e(TAG, e.getMessage() + ": unknown exception while reading mounts file");
+            Log.e(TAG, e.getMessage() + ": unknown exception while reading vold.fstab file");
             mMounts.add(defaultMountPoint);
         }
     }
@@ -175,15 +175,18 @@ public class StorageOptions
     {
         /*
          * Sometimes the two lists of mount points will be different. We only want those mount points that are in both list.
-         * 
+         *
          * Compare the two lists together and remove items that are not in both lists.
          */
 
-        for (int i = 0; i < mMounts.size(); i++)
+        if (mVold.size() > 0)
         {
-            String mount = mMounts.get(i);
-            if (!mVold.contains(mount))
-                mMounts.remove(i--);
+            for (int i = 0; i < mMounts.size(); i++)
+            {
+                String mount = mMounts.get(i);
+                if (!mVold.contains(mount))
+                    mMounts.remove(i--);
+            }
         }
 
         // don't need this anymore, clear the vold list to reduce memory
@@ -205,9 +208,10 @@ public class StorageOptions
             if (!root.exists() || !root.isDirectory() || !root.canWrite())
                 mMounts.remove(i--);
         }
-        
+
         if (t == 0 && Build.VERSION.SDK_INT >= 16 && findForcemount())
-        {//if none is found lets force it for Jellybean and above...
+        {
+            //if none is found lets force it for Jellybean and above...
             if (System.getenv("EXTERNAL_STORAGE") != null)
             {
                 File root = new File(System.getenv("EXTERNAL_STORAGE"));
@@ -225,7 +229,7 @@ public class StorageOptions
                     }
                 }
             }
-            
+
             if (System.getenv("SECONDARY_STORAGE") != null)
             {
                 File root = new File(System.getenv("SECONDARY_STORAGE"));
@@ -248,6 +252,7 @@ public class StorageOptions
 
     private static void setProperties()
     {
+        Log.d(TAG, "setProperties()");
         /*
          * At this point all the paths in the list should be valid. Build the public properties.
          */
@@ -269,7 +274,8 @@ public class StorageOptions
         else
         {
             for (String path : mMounts)
-            { // TODO: /mnt/sdcard is assumed to always mean internal storage. Use this comparison until there is a better way to do this
+            {
+                // TODO: /mnt/sdcard is assumed to always mean internal storage. Use this comparison until there is a better way to do this
                 if ("/mnt/sdcard".equalsIgnoreCase(path))
                     mLabels.add("Built-in Storage");
                 else
@@ -389,6 +395,7 @@ public class StorageOptions
 
     private static boolean findForcemount()
     {
+        Log.d(TAG, "findForcemount()");
         try
         {
             File file = new File(System.getenv("EXTERNAL_STORAGE") + "/forcemount");
@@ -396,8 +403,9 @@ public class StorageOptions
             {
                 return true;
             }
-        } catch (Exception e1)
+        } catch (Exception e)
         {
+            Log.w(TAG, e.getMessage());
             return false;
         }
         return false;

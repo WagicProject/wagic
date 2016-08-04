@@ -500,8 +500,6 @@ public class SDLActivity extends Activity implements OnKeyListener
         // So we can call stuff from static callbacks
         mSingleton = this;
         mContext = this.getApplicationContext();
-        // get the current version of the app to set the core filename
-        String versionCodeString = getApplicationCode();
         RES_FILENAME = getResourceName();
 
         StorageOptions.determineStorageOptions();
