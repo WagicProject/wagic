@@ -1661,8 +1661,7 @@ int MTGAttackCostRule::reactToClick(MTGCardInstance * card)
     Player * player = game->currentlyActing();
     ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
     attackcost->add(0,card->attackCostBackup);
-    ManaCost * playerMana = player->getManaPool();
-    playerMana->pay(attackcost);//I think you can't pay partial cost to attack cost so you pay full (508.1i)
+    player->getManaPool()->pay(attackcost);//I think you can't pay partial cost to attack cost so you pay full (508.1i)
     card->attackCost = 0;
     card->attackPlaneswalkerCost = 0; 
     SAFE_DELETE(attackcost);
@@ -1737,8 +1736,7 @@ int MTGBlockCostRule::reactToClick(MTGCardInstance * card)
     Player * player = game->currentlyActing();
     ManaCost * blockcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
     blockcost->add(0,card->blockCostBackup);
-    ManaCost * playerMana = player->getManaPool();
-    playerMana->pay(blockcost);//I think you can't pay partial cost to block cost so you pay full (509.1f)
+    player->getManaPool()->pay(blockcost);//I think you can't pay partial cost to block cost so you pay full (509.1f)
     card->blockCost = 0;
     SAFE_DELETE(blockcost);
     return 1;
