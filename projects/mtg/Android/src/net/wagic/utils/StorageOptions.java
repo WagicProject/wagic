@@ -14,6 +14,7 @@ import android.util.Log;
 
 public class StorageOptions
 {
+    private static final String      TAG     = StorageOptions.class.getCanonicalName();
     private static ArrayList<String> mMounts = new ArrayList<String>();
     private static ArrayList<String> mVold   = new ArrayList<String>();
 
@@ -77,11 +78,11 @@ public class StorageOptions
         } catch (FileNotFoundException fnfex)
         {
             // if proc/mount doesn't exist we just use
-            Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+            Log.i(TAG, fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
             mMounts.add(defaultMountPoint);
         } catch (Exception e)
         {
-            Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+            Log.e(TAG, e.getMessage() + ": unknown exception while reading mounts file");
             mMounts.add(defaultMountPoint);
         }
     }
@@ -111,11 +112,11 @@ public class StorageOptions
         } catch (FileNotFoundException fnfex)
         {
             // if proc/mount doesn't exist we just use
-            Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+            Log.i(TAG, fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
             mMounts.add(defaultMountPoint);
         } catch (Exception e)
         {
-            Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+            Log.e(TAG, e.getMessage() + ": unknown exception while reading mounts file");
             mMounts.add(defaultMountPoint);
         }
     }
@@ -144,11 +145,11 @@ public class StorageOptions
         } catch (FileNotFoundException fnfex)
         {
             // if vold.fstab doesn't exist we use the value gathered from the Environment
-            Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+            Log.i(TAG, fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
             mMounts.add(defaultMountPoint);
         } catch (Exception e)
         {
-            Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+            Log.e(TAG, e.getMessage() + ": unknown exception while reading mounts file");
             mMounts.add(defaultMountPoint);
         }
     }
