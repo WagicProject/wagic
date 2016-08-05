@@ -263,6 +263,46 @@ JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submod
     return JQuadPtr();
 }
 
+JQuadPtr ResourceManagerImpl::RetrieveCardToken(MTGCard * card, int style, int submode, int tId)
+{
+    //Cards are never, ever resource managed, so just check cache.
+    if (!card || options[Options::DISABLECARDS].number) return JQuadPtr();
+
+    submode = submode | TEXTURE_SUB_CARD;
+
+    //static std::ostringstream filename;
+    //filename.str("");
+    string filename;
+    filename.reserve(4096);
+    //filename << setlist[card->setId] << "/" << card->getImageName();
+    filename.append(setlist[card->setId]);
+    filename.append("/");
+    int id = -card->getMTGId();
+    if(tId)
+        id = -tId;
+    ostringstream imagename;
+    imagename << "-" << id << "t.jpg";
+    filename.append(imagename.str());
+
+    //Aliases.
+    if (style == RETRIEVE_THUMB)
+    {
+        submode = submode | TEXTURE_SUB_THUMB;
+        style = RETRIEVE_NORMAL;
+    }
+
+    JQuadPtr jq = RetrieveQuad(filename, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
+
+    lastError = textureWCache.mError;
+    if (jq)
+    {
+        jq->SetHotSpot(static_cast<float> (jq->mTex->mWidth / 2), static_cast<float> (jq->mTex->mHeight / 2));
+        return jq;
+    }
+
+    return JQuadPtr();
+}
+
 int ResourceManagerImpl::AddQuadToManaged(const WManagedQuad& inQuad)
 {
     int id = mIDLookupMap.size();
