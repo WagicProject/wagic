@@ -14,6 +14,7 @@ import android.util.Log;
 
 public class StorageOptions
 {
+    private static final String      TAG     = StorageOptions.class.getCanonicalName();
     private static ArrayList<String> mMounts = new ArrayList<String>();
     private static ArrayList<String> mVold   = new ArrayList<String>();
 
@@ -77,11 +78,11 @@ public class StorageOptions
         } catch (FileNotFoundException fnfex)
         {
             // if proc/mount doesn't exist we just use
-            Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+            Log.i(TAG, fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
             mMounts.add(defaultMountPoint);
         } catch (Exception e)
         {
-            Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+            Log.e(TAG, e.getMessage() + ": unknown exception while reading mounts file");
             mMounts.add(defaultMountPoint);
         }
     }
@@ -111,11 +112,11 @@ public class StorageOptions
         } catch (FileNotFoundException fnfex)
         {
             // if proc/mount doesn't exist we just use
-            Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+            Log.i(TAG, fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
             mMounts.add(defaultMountPoint);
         } catch (Exception e)
         {
-            Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+            Log.e(TAG, e.getMessage() + ": unknown exception while reading mounts file");
             mMounts.add(defaultMountPoint);
         }
     }
@@ -144,11 +145,11 @@ public class StorageOptions
         } catch (FileNotFoundException fnfex)
         {
             // if vold.fstab doesn't exist we use the value gathered from the Environment
-            Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+            Log.i(TAG, fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
             mMounts.add(defaultMountPoint);
         } catch (Exception e)
         {
-            Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+            Log.e(TAG, e.getMessage() + ": unknown exception while reading vold.fstab file");
             mMounts.add(defaultMountPoint);
         }
     }
@@ -174,15 +175,18 @@ public class StorageOptions
     {
         /*
          * Sometimes the two lists of mount points will be different. We only want those mount points that are in both list.
-         * 
+         *
          * Compare the two lists together and remove items that are not in both lists.
          */
 
-        for (int i = 0; i < mMounts.size(); i++)
+        if (mVold.size() > 0)
         {
-            String mount = mMounts.get(i);
-            if (!mVold.contains(mount))
-                mMounts.remove(i--);
+            for (int i = 0; i < mMounts.size(); i++)
+            {
+                String mount = mMounts.get(i);
+                if (!mVold.contains(mount))
+                    mMounts.remove(i--);
+            }
         }
 
         // don't need this anymore, clear the vold list to reduce memory
@@ -204,9 +208,10 @@ public class StorageOptions
             if (!root.exists() || !root.isDirectory() || !root.canWrite())
                 mMounts.remove(i--);
         }
-        
+
         if (t == 0 && Build.VERSION.SDK_INT >= 16 && findForcemount())
-        {//if none is found lets force it for Jellybean and above...
+        {
+            //if none is found lets force it for Jellybean and above...
             if (System.getenv("EXTERNAL_STORAGE") != null)
             {
                 File root = new File(System.getenv("EXTERNAL_STORAGE"));
@@ -224,7 +229,7 @@ public class StorageOptions
                     }
                 }
             }
-            
+
             if (System.getenv("SECONDARY_STORAGE") != null)
             {
                 File root = new File(System.getenv("SECONDARY_STORAGE"));
@@ -247,6 +252,7 @@ public class StorageOptions
 
     private static void setProperties()
     {
+        Log.d(TAG, "setProperties()");
         /*
          * At this point all the paths in the list should be valid. Build the public properties.
          */
@@ -268,7 +274,8 @@ public class StorageOptions
         else
         {
             for (String path : mMounts)
-            { // TODO: /mnt/sdcard is assumed to always mean internal storage. Use this comparison until there is a better way to do this
+            {
+                // TODO: /mnt/sdcard is assumed to always mean internal storage. Use this comparison until there is a better way to do this
                 if ("/mnt/sdcard".equalsIgnoreCase(path))
                     mLabels.add("Built-in Storage");
                 else
@@ -310,84 +317,97 @@ public class StorageOptions
     *
     * @return <code>true</code> if the device is rooted, <code>false</code> otherwise.
     */
-    public static boolean isRooted() {
-
-    // get from build info
-    String buildTags = android.os.Build.TAGS;
-    if (buildTags != null && buildTags.contains("test-keys")) {
-      return true;
-    }
-
-    // check if /system/app/Superuser.apk is present
-    try {
-      File file = new File("/system/app/Superuser.apk");
-      if (file.exists()) {
-        return true;
-      }
-    } 
-    catch (Exception e1) {
-      // ignore
-    }
-    try {
-      File file = new File("/system/app/Superuser/Superuser.apk");
-      if (file.exists()) {
-        return true;
-      }
-    } 
-    catch (Exception e1) {
-      // ignore
-    }
-    //SuperSU
-    try {
-      File file = new File("/system/app/SuperSU.apk");
-      if (file.exists()) {
-        return true;
-      }
-    } 
-    catch (Exception e1) {
-      // ignore
-    }
-    try {
-      File file = new File("/system/app/SuperSU/SuperSU.apk");
-      if (file.exists()) {
-        return true;
-      }
-    } 
-    catch (Exception e1) {
-      // ignore
-    }
-    // try executing commands
-    return canExecuteCommand("/system/xbin/which su")
-        || canExecuteCommand("/system/bin/which su") || canExecuteCommand("which su");
-    }
-
-    // executes a command on the system
-    private static boolean canExecuteCommand(String command) {
-    boolean executedSuccesfully;
-    try {
-      Runtime.getRuntime().exec(command);
-      executedSuccesfully = true;
-    } 
-    catch (Exception e) {
-      executedSuccesfully = false;
-    }
-
-    return executedSuccesfully;
-    }
-    
-    private static boolean findForcemount(){
-    try 
+    public static boolean isRooted()
     {
-        File file = new File(System.getenv("EXTERNAL_STORAGE")+"/forcemount");
-        if (file.exists()) 
+        // get from build info
+        String buildTags = android.os.Build.TAGS;
+        if (buildTags != null && buildTags.contains("test-keys"))
         {
             return true;
         }
-    } 
-    catch (Exception e1) 
-    {
-        return false;
+
+        // check if /system/app/Superuser.apk is present
+        try
+        {
+            File file = new File("/system/app/Superuser.apk");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            // ignore
+        }
+        try
+        {
+            File file = new File("/system/app/Superuser/Superuser.apk");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            // ignore
+        }
+        //SuperSU
+        try
+        {
+            File file = new File("/system/app/SuperSU.apk");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            // ignore
+        }
+        try
+        {
+            File file = new File("/system/app/SuperSU/SuperSU.apk");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e1)
+        {
+            // ignore
+        }
+        // try executing commands
+        return canExecuteCommand("/system/xbin/which su")
+                || canExecuteCommand("/system/bin/which su") || canExecuteCommand("which su");
     }
-    return false;
+
+    // executes a command on the system
+    private static boolean canExecuteCommand(String command)
+    {
+        boolean executedSuccesfully;
+        try
+        {
+            Runtime.getRuntime().exec(command);
+            executedSuccesfully = true;
+        } catch (Exception e)
+        {
+            executedSuccesfully = false;
+        }
+
+        return executedSuccesfully;
+    }
+
+    private static boolean findForcemount()
+    {
+        Log.d(TAG, "findForcemount()");
+        try
+        {
+            File file = new File(System.getenv("EXTERNAL_STORAGE") + "/forcemount");
+            if (file.exists())
+            {
+                return true;
+            }
+        } catch (Exception e)
+        {
+            Log.w(TAG, e.getMessage());
+            return false;
+        }
+        return false;
     }
 }
