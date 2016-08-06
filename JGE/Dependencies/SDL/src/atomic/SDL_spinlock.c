@@ -77,6 +77,13 @@ SDL_AtomicTryLock(SDL_SpinLock *lock)
         : "=&r" (result) : "r" (1), "r" (lock) : "cc", "memory");
     return (result == 0);
 
+#elif defined(__GNUC__) && (defined(__i386__) || defined(__x86_64__))
+    int result;
+    __asm__ __volatile__(
+        "lock ; xchgl %0, (%1)\n"
+        : "=r" (result) : "r" (lock), "0" (1) : "cc", "memory");
+    return (result == 0);
+
 #else
     /* Need CPU instructions for spinlock here! */
     __need_spinlock_implementation__
