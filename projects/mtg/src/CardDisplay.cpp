@@ -272,7 +272,7 @@ void CardDisplay::Render()
             drawMode = observer->getCardSelector()->GetDrawMode();
         }
         bool ingame = observer?true:false;
-        cardg->DrawCard(pos, drawMode, 0, false, false,ingame);
+        cardg->DrawCard(pos, drawMode, false, false, false,ingame);
     }
 }
 
