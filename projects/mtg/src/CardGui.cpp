@@ -111,17 +111,17 @@ void CardGui::Update(float dt)
     PlayGuiObject::Update(dt);
 }
 
-void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder, bool smallerscale)
+void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder, bool smallerscale, bool ingame)
 {
-    DrawCard(card, inPosition, inMode, thumb, noborder, smallerscale);
+    DrawCard(card, inPosition, inMode, thumb, noborder, smallerscale, ingame);
 }
 
-void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder, bool smallerscale)
+void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder, bool smallerscale, bool ingame)
 {
     switch (inMode)
     {
     case DrawMode::kNormal:
-        RenderBig(inCard, inPosition, thumb, noborder, smallerscale);
+        RenderBig(inCard, inPosition, thumb, noborder, smallerscale, ingame);
         break;
     case DrawMode::kText:
         AlternateRender(inCard, inPosition);
@@ -1135,7 +1135,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
-void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder, bool smallerscale)
+void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder, bool smallerscale, bool ingame)
 {
     JRenderer * renderer = JRenderer::GetInstance();
     //GameObserver * game = GameObserver::GetInstance();
@@ -1152,13 +1152,16 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
     {
         MTGCard * fcard = MTGCollection()->getCardByName(kcard->name);
         quad = WResourceManager::Instance()->RetrieveCard(fcard);
-    }/*
-    if (kcard->hasCopiedToken && !quad.get())
+    }
+    if(ingame)
     {
-        MTGCard * tcard = MTGCollection()->getCardById(abs(kcard->copiedID));
-        quad = thumb ? WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_THUMB, 1, abs(kcard->copiedID))
-                     : WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_NORMAL, 1, abs(kcard->copiedID));
-    }*///temporary disabled this so it will not crash, this must be called when ingame -kevlahnota
+        if (kcard->hasCopiedToken && kcard->getObserver() && !quad.get())
+        {
+            MTGCard * tcard = MTGCollection()->getCardById(abs(kcard->copiedID));
+            quad = thumb ? WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_THUMB, 1, abs(kcard->copiedID))
+                        : WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_NORMAL, 1, abs(kcard->copiedID));
+        }
+    }
     if (quad.get())
     {
         if (quad->mHeight < quad->mWidth)
