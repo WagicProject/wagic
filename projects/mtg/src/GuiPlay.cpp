@@ -91,9 +91,9 @@ void GuiPlay::VertStack::Enstack(CardView* card)
 
     card->x = x + baseX;
     card->y = y + baseY;
-    y += 10;
-    if (++count == total - 1 && y == 10)
-        y += 10;
+    y += 9;
+    if (++count == total - 1 && y == 9)
+        y += 9;
     //last value += 12...
 }
 
@@ -133,7 +133,7 @@ void GuiPlay::BattleField::reset(float x, float y)
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
     //card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
-    card->x = x-6 + baseX;
+    card->x = x-4 + baseX;
     if (attackers+1 < 8)
         x += CARD_WIDTH;
     else if (attackers+1 < 24)

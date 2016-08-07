@@ -88,11 +88,11 @@ void GuiAvatar::Render()
     }
 
     if (player->getObserver()->currentPlayer == player)
-        r->DrawRect(x0 - 1, y0 - 1, 36 * actZ, 51 * actZ, ARGB((int)actA, 0, 255, 0));
+        r->DrawRect(x0 - 1, y0 - 1, (Width+1) * actZ, (Height+1) * actZ, ARGB((int)actA, 0, 255, 0));
     else if (player->getObserver()->currentActionPlayer == player)
-        r->DrawRect(x0, y0, 34 * actZ, 49 * actZ, ARGB((int)actA, 0, 0, 255));
+        r->DrawRect(x0, y0, (Width-1) * actZ, (Height-1) * actZ, ARGB((int)actA, 0, 0, 255));
     if (player->getObserver()->isInterrupting == player)
-        r->DrawRect(x0, y0, 34 * actZ, 49 * actZ, ARGB((int)actA, 255, 0, 0));
+        r->DrawRect(x0, y0, (Width-1) * actZ, (Height-1) * actZ, ARGB((int)actA, 255, 0, 0));
 
     //Life
     char buffer[10];
