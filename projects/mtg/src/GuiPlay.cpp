@@ -125,12 +125,12 @@ void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
     //card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
     card->x = x + baseX;
-    if (total < 8)
+    if (attackers+1 < 8)
         x += CARD_WIDTH;
-    else if (total < 16)
-        x += (SCREEN_WIDTH - 200 - baseX) / total;
+    else if (attackers+1 < 16)
+        x += (SCREEN_WIDTH - 200 - baseX) / attackers+1;
     else
-        x += (SCREEN_WIDTH - 50 - baseX) / total;
+        x += (HORZWIDTH - 50 - baseX) / attackers+1;
 
     card->y = baseY + (card->card->getObserver()->getView()->getRenderedPlayer() == card->card->controller() ? 20 + y : -20 - y);
     ++currentAttacker;
