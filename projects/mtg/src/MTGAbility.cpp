@@ -2518,6 +2518,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW AACopier(observer, id, card, target);
         a->oneShot = 1;
+        a->canBeInterrupted = false;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AACopier*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 

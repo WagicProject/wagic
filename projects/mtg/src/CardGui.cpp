@@ -1224,7 +1224,7 @@ void CardGui::DrawBorder(string cardsetname, const Pos& pos, float x, bool nobor
             alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
             float myscale = pos.actZ * 254 / alphabeta->mHeight;
             alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
-            renderer->RenderQuad(alphabeta.get(), x, pos.actY, pos.actT, myscale, myscale);
+            renderer->RenderQuad(alphabeta.get(), x, pos.actY+0.2f, pos.actT, myscale, myscale);
         }
     }
 }

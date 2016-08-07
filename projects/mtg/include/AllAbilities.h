@@ -1911,6 +1911,7 @@ public:
 class AACopier: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();

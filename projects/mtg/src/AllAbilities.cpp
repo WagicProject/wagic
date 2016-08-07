@@ -1453,6 +1453,7 @@ AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, M
     ActivatedAbility(observer, _id, _source, _cost, 0)
 {
     target = _target;
+    andAbility = NULL;
 }
 
 int AACopier::resolve()
@@ -1505,9 +1506,23 @@ int AACopier::resolve()
         }
         if(_target->TokenAndAbility)
         {//the source copied a token with andAbility
-            MTGAbility * andAbilityClone = _target->TokenAndAbility->clone();
-            andAbilityClone->target = source;
+            MTGAbility * TokenandAbilityClone = _target->TokenAndAbility->clone();
+            TokenandAbilityClone->target = source;
             if(_target->TokenAndAbility->oneShot)
+            {
+                TokenandAbilityClone->resolve();
+                SAFE_DELETE(TokenandAbilityClone);
+            }
+            else
+            {
+                TokenandAbilityClone->addToGame();
+            }
+        }
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = source;
+            if(andAbility->oneShot)
             {
                 andAbilityClone->resolve();
                 SAFE_DELETE(andAbilityClone);
@@ -3968,10 +3983,10 @@ int AACloner::resolve()
             }
         }
         list<int>::iterator it;
-        for (it = awith.begin(); it != awith.end(); it++)
+        /*for (it = awith.begin(); it != awith.end(); it++)
         {//there must be a layer of temporary abilities and original abilities
             spell->source->basicAbilities[*it] = 1;
-        }
+        }*/
         for (it = colors.begin(); it != colors.end(); it++)
         {
             spell->source->setColor(*it);
