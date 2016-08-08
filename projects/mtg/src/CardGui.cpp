@@ -1168,11 +1168,19 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         DrawBorder(cardsetname, pos, x, noborder, smallerscale);
         //force smaller scale on alpha beta
             smallerscale = cardsetname=="LEA"||cardsetname=="LEB"?true:smallerscale;
+        float modxscale = (cardsetname =="UNH")?0.02f:0.008f;
+        float modyscale = (cardsetname =="UNH")?0.015f:0.0075f;
+        bool unh = (cardsetname =="UNH")?true:false;
         //Draw card
-        if(smallerscale)
+        if(smallerscale && !unh)
             renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.001f, scale-0.001f);
         else
-            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+        {
+            if(ingame)  
+                renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale+modxscale, scale+modyscale);
+            else
+                renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale+0.002f, scale+0.0015f);
+        }
         RenderCountersBig(card, pos);
         return;
     }
