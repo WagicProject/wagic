@@ -2394,7 +2394,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string tokenDesc = splitToken[1];
         vector<string> tokenParameters = split(tokenDesc, ',');
         //lets try finding a token by card name.
-        if (splitToken[1].size() && tokenParameters.size() <3)//names with "," should work like token(Akuta, Born of Ash) 
+        if (splitToken[1].size() && tokenParameters.size() ==1)
         {
             string cardName = splitToken[1];
             MTGCard * safetycard = MTGCollection()->getCardByName(cardName);
