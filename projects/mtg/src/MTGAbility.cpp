@@ -2394,7 +2394,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string tokenDesc = splitToken[1];
         vector<string> tokenParameters = split(tokenDesc, ',');
         //lets try finding a token by card name.
-        if (splitToken[1].size() && tokenParameters.size() ==1)
+        if (splitToken[1].size() && tokenParameters.size() <3)
         {
             string cardName = splitToken[1];
             MTGCard * safetycard = MTGCollection()->getCardByName(cardName);
@@ -2420,7 +2420,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string sname = tokenParameters[0];
         string stypes = tokenParameters[1];
         string spt = tokenParameters[2];
-
+        string cID = "";
         //reconstructing string abilities from the split version,
         // then we re-split it again in the token constructor,
         // this needs to be improved
@@ -2429,6 +2429,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             sabilities.append(",");
             sabilities.append(tokenParameters[i]);
+        }
+        if(sabilities.find(",tnum:") != string::npos)
+        {
+            size_t begins = sabilities.find(",tnum:");
+            cID = sabilities.substr(begins+6);
+            sabilities = cReplaceString(sabilities,",tnum:"+cID,"");
         }
         int value = 0;
         if (spt.find("xx/xx") != string::npos)
@@ -2441,7 +2447,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         
         ATokenCreator * tok = NEW ATokenCreator(
             observer, id, card,target, NULL, sname, stypes, power + value, toughness + value,
-            sabilities, starfound, multiplier, who, aLivingWeapon, spt);
+            sabilities, starfound, multiplier, who, aLivingWeapon, spt, cID);
         tok->oneShot = 1;
         if(aLivingWeapon)
             tok->forceDestroy = 1;

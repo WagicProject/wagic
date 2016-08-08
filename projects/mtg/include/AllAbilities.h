@@ -3547,6 +3547,7 @@ public:
     vector<MTGAbility *> currentAbilities;
     MTGAbility * andAbility;
     Player * tokenReciever;
+    string cID;
     //by id
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, int tokenId,string starfound, WParsedInt * multiplier = NULL,
         int who = 0,bool aLivingWeapon = false) :
@@ -3557,6 +3558,7 @@ public:
         if (card) name = card->data->getName();
         battleReady = false;
         andAbility = NULL;
+        cID = "";
     }
     //by name, card still require valid card.dat info, this just makes the primitive code far more readable. token(Eldrazi scion) instead of token(-1234234)...
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, string cardName, string starfound, WParsedInt * multiplier = NULL,
@@ -3569,10 +3571,11 @@ public:
         if (card) name = card->data->getName();
         battleReady = false;
         andAbility = NULL;
+        cID = "";
     }
     //by construction
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
-        string sabilities, string starfound,WParsedInt * multiplier = NULL, int _who = 0,bool aLivingWeapon = false,string spt = "") :
+        string sabilities, string starfound,WParsedInt * multiplier = NULL, int _who = 0,bool aLivingWeapon = false,string spt = "", string tnum = "") :
     ActivatedAbility(observer, _id, _source, _cost, 0),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(_who),aLivingWeapon(aLivingWeapon),spt(spt)
     {
         power = _power;
@@ -3582,6 +3585,7 @@ public:
         aType = MTGAbility::STANDARD_TOKENCREATOR;
         battleReady = false;
         andAbility = NULL;
+        cID = tnum;
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
         //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
@@ -3668,6 +3672,16 @@ public:
             else
             {
                 myToken = NEW Token(name, source, power, toughness);
+                if(!cID.empty())
+                {
+                    string customId = "";
+                    ostringstream tokID;
+                    tokID << abs(myToken->getId());
+                    customId.append(""+tokID.str()+cID);
+                    customId = cReplaceString(customId," ","");
+                    WParsedInt newID(customId, NULL, source);
+                    myToken->setMTGId(-newID.getValue());
+                }
                 list<int>::iterator it;
                 for (it = types.begin(); it != types.end(); it++)
                 {
