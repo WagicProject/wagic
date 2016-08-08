@@ -1,7 +1,7 @@
 #NAME:Etched Affinity
 #DESC:Modern URB Aggro
 #HINT:dontattackwith(creature[power<=0])
-#HINT:combo hold(Glimmervoid|myhand)^until(artifact|mybattlefield)^cast(Glimmervoid|myhand)^totalmananeeded({0})
+#HINT:combo hold(Glimmervoid|myhand)^cast(Glimmervoid|myhand)^restriction{type(land[fresh]|mybattlefield)~lessthan~1,type(artifact|mybattlefield)~morethan~0}^totalmananeeded({0})
 #HINT:combo hold(Galvanic Blast|myhand)^cast(Galvanic Blast|myhand)^restriction{type(artifact|mybattlefield)~morethan~2,turn:3}^totalmananeeded({R})
 
 #25 creatures
