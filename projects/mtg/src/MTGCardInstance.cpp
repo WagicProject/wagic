@@ -149,20 +149,6 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     backupTargets = this->backupTargets;
     storedCard = oldStored;
     miracle = false;
-    if (card->TokenAndAbility)
-    {
-        MTGAbility * andAbilityClone = card->TokenAndAbility->clone();
-        andAbilityClone->target = this;
-        if(card->TokenAndAbility->oneShot)
-        {
-            andAbilityClone->resolve();
-            SAFE_DELETE(andAbilityClone);
-        }
-        else
-        {
-            andAbilityClone->addToGame();
-        }
-    }
 }
 
 MTGCardInstance::~MTGCardInstance()
