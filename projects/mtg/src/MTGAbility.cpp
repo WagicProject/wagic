@@ -2420,15 +2420,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string sname = tokenParameters[0];
         string stypes = tokenParameters[1];
         string spt = tokenParameters[2];
-
+        string cID = "";
         //reconstructing string abilities from the split version,
         // then we re-split it again in the token constructor,
         // this needs to be improved
         string sabilities = (tokenParameters.size() > 3)? tokenParameters[3] : "";
         for (size_t i = 4; i < tokenParameters.size(); ++i)
         {
-            sabilities.append(",");
-            sabilities.append(tokenParameters[i]);
+            string tnum = tokenParameters[i];
+            if(tnum.find("tnum:"))
+                cID = cReplaceString(tnum,"tnum:","");
+            else
+            {
+                sabilities.append(",");
+                sabilities.append(tokenParameters[i]);
+            }
         }
         int value = 0;
         if (spt.find("xx/xx") != string::npos)
@@ -2441,7 +2447,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         
         ATokenCreator * tok = NEW ATokenCreator(
             observer, id, card,target, NULL, sname, stypes, power + value, toughness + value,
-            sabilities, starfound, multiplier, who, aLivingWeapon, spt);
+            sabilities, starfound, multiplier, who, aLivingWeapon, spt, cID);
         tok->oneShot = 1;
         if(aLivingWeapon)
             tok->forceDestroy = 1;
