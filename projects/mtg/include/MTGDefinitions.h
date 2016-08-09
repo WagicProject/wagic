@@ -258,7 +258,8 @@ class Constants
       TEMPFLASHBACK = 136,
       NOLEGENDRULE =137,
       CANTTRANSFORM =138,
-      NB_BASIC_ABILITIES = 139,
+      ASFLASH =139,
+      NB_BASIC_ABILITIES = 140,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
