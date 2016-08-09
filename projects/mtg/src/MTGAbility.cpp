@@ -371,6 +371,24 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
 
+        check = restriction[i].find("notdelirum");
+        if (check != string::npos)
+        {
+                Player * checkCurrent = card->controller();
+                MTGGameZone * grave = checkCurrent->game->graveyard;
+
+                int checkTypesAmount = 0;
+                if(grave->hasType("creature")) checkTypesAmount++;
+                if (grave->hasType("enchantment")) checkTypesAmount++;
+                if (grave->hasType("sorcery")) checkTypesAmount++;
+                if (grave->hasType("instant")) checkTypesAmount++;
+                if (grave->hasType("land")) checkTypesAmount++;
+                if (grave->hasType("artifact")) checkTypesAmount++;
+                if (grave->hasType("planeswalker")) checkTypesAmount++;
+                if (checkTypesAmount > 3)
+                return 0;
+        }
+
         check = restriction[i].find("miracle");
         if(check != string::npos)
         {
@@ -824,7 +842,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             fromTc->targetter = NULL; //avoid protection from
         }
         TriggeredAbility * mover = NEW TrCardAddedToZone(observer, id, card, (TargetZoneChooser *) toTc,
-            toTcCard, (TargetZoneChooser *) fromTc, fromTcCard, once, sourceUntapped, isSuspended);
+            toTcCard, (TargetZoneChooser *) fromTc, fromTcCard, once, sourceUntapped, isSuspended, limitOnceATurn);
         if(neverRemove)
         {
             mover->forcedAlive = 1;
@@ -845,6 +863,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser *tc = parseSimpleTC(s,"tappedformana", card))
         return NEW TrCardTappedformana(observer, id, card, tc, true,once);
     
+    //Card Transforms
+    if (TargetChooser *tc = parseSimpleTC(s,"transformed", card))
+        return NEW TrCardTransformed(observer, id, card, tc,once);
+
 //CombatTrigger
     //Card card attacked and is blocked
     found = s.find("combat(");

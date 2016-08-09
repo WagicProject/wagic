@@ -499,7 +499,7 @@ void CardGui::Render()
             renderer->RenderQuad(fakemask.get(), actX, (actY-yy), actT, (26 * (actZ*zz) + 1) / 16, 38 * (actZ*zz) / 16);
         }
     }
-    if(tc && tc->source && tc->source->view && tc->source->view->actY >= 1.3 && card == tc->source)//paint the source green while infocus.
+    if(tc && tc->source && tc->source->view && tc->source->view->actZ >= 1.3 && card == tc->source)//paint the source green while infocus.
     {
         if(fakemask)
         {

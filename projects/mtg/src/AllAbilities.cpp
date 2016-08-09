@@ -1653,6 +1653,11 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
         if (target)
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
+            if(_target->isFlipped && _target->hasType(Subtypes::TYPE_PLANESWALKER))//is flipping pw
+            {
+                this->forceDestroy = 1;
+                return 0;
+            }
             AbilityFactory af(game);
             if(counterstring.size())
             {
@@ -3223,7 +3228,7 @@ int AAFlip::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if((_target->isACopier||_target->isToken) && !isflipcard && !forcedcopy)
+        if((_target->isACopier||_target->isToken||_target->has(Constants::CANTTRANSFORM)) && !isflipcard && !forcedcopy)
         {
             game->removeObserver(this);
             return 0;
@@ -3240,6 +3245,9 @@ int AAFlip::resolve()
             MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
             if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
+            MTGCardInstance * myParent = NULL;
+            if(_target->target)
+                myParent = _target->target;
             _target->name = myFlip->name;
             _target->setName(myFlip->name);
             if(!isflipcard)//transform card
@@ -3252,12 +3260,7 @@ int AAFlip::resolve()
             _target->types = myFlip->types;
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
-            //_target->basicAbilities = myFlip->basicAbilities;
-            for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
-            {
-                if(myFlip->model->data->basicAbilities[k])
-                    _target->basicAbilities[k] = myFlip->model->data->basicAbilities[k];
-            }
+            _target->basicAbilities = myFlip->model->data->basicAbilities;
             _target->modbasicAbilities = myFlip->modbasicAbilities;
             cdaDamage = _target->damageCount;
             _target->copiedID = myFlip->getMTGId();//for copier
@@ -3332,6 +3335,11 @@ int AAFlip::resolve()
             else
             {//pbonus & tbonus are already computed except damage taken...
                 _target->life -= cdaDamage;
+            }
+            if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
+            {
+                if(myParent)
+                    _target->target = myParent;
             }
             SAFE_DELETE(myFlip);
             _target->mPropertiesChangedSinceLastUpdate = true;

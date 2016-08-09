@@ -903,19 +903,29 @@ private:
         }
         else if (s == "gravecardtypes")//Tarmogoyf
         {
-            for (int i = 0; i < 2; i++)
+            intValue = 0;
+            int pc = 0, tc = 0, sc = 0, lc = 0, ic = 0, ec = 0, cc = 0, ac = 0;
+            for (int j = 0; j < 2; j++)
             {
-                MTGGameZone * checkZone = card->getObserver()->players[i]->game->graveyard;
-                intValue = 
-                    cardHasTypeinZone("planeswalker",checkZone) +
-                    cardHasTypeinZone("tribal",checkZone) +
-                    cardHasTypeinZone("sorcery",checkZone) +
-                    cardHasTypeinZone("land",checkZone) +
-                    cardHasTypeinZone("instant",checkZone) +
-                    cardHasTypeinZone("enchantment",checkZone) +
-                    cardHasTypeinZone("creature",checkZone) +
-                    cardHasTypeinZone("artifact",checkZone);
+                MTGGameZone * checkZone = card->getObserver()->players[j]->game->graveyard;
+                if(cardHasTypeinZone("planeswalker",checkZone))
+                    pc = 1;
+                if(cardHasTypeinZone("tribal",checkZone))
+                    tc = 1;
+                if(cardHasTypeinZone("sorcery",checkZone))
+                    sc = 1;
+                if(cardHasTypeinZone("land",checkZone))
+                    lc = 1;
+                if(cardHasTypeinZone("instant",checkZone))
+                    ic = 1;
+                if(cardHasTypeinZone("enchantment",checkZone))
+                    ec = 1;
+                if(cardHasTypeinZone("creature",checkZone))
+                    cc = 1;
+                if(cardHasTypeinZone("artifact",checkZone))
+                    ac = 1;
             }
+            intValue = pc+tc+sc+lc+ic+ec+cc+ac;
         }
         else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
         {
@@ -1133,10 +1143,13 @@ public:
     TargetChooser * toTcCard, *fromTcCard;
     bool sourceUntapped;
     bool isSuspended;
+    bool limitOnceATurn;
+    int triggeredTurn;
     TrCardAddedToZone(GameObserver* observer, int id, MTGCardInstance * source, TargetZoneChooser * toTcZone, TargetChooser * toTcCard,
-            TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL,bool once = false,bool sourceUntapped = false,bool isSuspended = false) :
-        Trigger(observer, id, source, once), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),sourceUntapped(sourceUntapped),isSuspended(isSuspended)
+            TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL,bool once = false,bool sourceUntapped = false,bool isSuspended = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),sourceUntapped(sourceUntapped),isSuspended(isSuspended),limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     };
 
 
@@ -1145,6 +1158,8 @@ public:
         WEventZoneChange * e = dynamic_cast<WEventZoneChange*> (event);
         if (!e) return 0;
         if(sourceUntapped && source->isTapped() == 1)
+            return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
             return 0;
         if(isSuspended && !source->suspended)
             return 0;
@@ -1160,7 +1175,7 @@ public:
         {
             return 0;
         }
-
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -1227,6 +1242,28 @@ public:
     TrCardTappedformana * clone() const
     {
         return NEW TrCardTappedformana(*this);
+    }
+};
+
+class TrCardTransformed: public Trigger
+{
+public:
+    TrCardTransformed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+        Trigger(observer, id, source, once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardTransforms * e = dynamic_cast<WEventCardTransforms *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrCardTransformed * clone() const
+    {
+        return NEW TrCardTransformed(*this);
     }
 };
 

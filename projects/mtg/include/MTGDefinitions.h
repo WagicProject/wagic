@@ -257,7 +257,8 @@ class Constants
       FLYERSONLY = 135,//can attack only if it has flying
       TEMPFLASHBACK = 136,
       NOLEGENDRULE =137,
-      NB_BASIC_ABILITIES = 138,
+      CANTTRANSFORM =138,
+      NB_BASIC_ABILITIES = 139,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

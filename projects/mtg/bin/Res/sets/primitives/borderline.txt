@@ -96,6 +96,19 @@ auto=counter(1/1,X)
 auto={3}:counter(1/1)
 #Not all player can use ability
 [/card]
+#need doubler damage ability...
+[card]
+name=Goldnight Castigator
+abilities=flying,haste
+auto=@damaged(controller):damage:thatmuch controller
+auto=@damaged(this):damage:thatmuch all(this)
+text=Flying, haste -- If a source would deal damage to you, it deals double that damage to you instead. -- If a source would deal damage to Goldnight Castigator, it deals double that damage to Goldnight Castigator instead.
+mana={2}{R}{R}
+type=Creature
+subtype=Angel
+power=4
+toughness=9
+[/card]
 [card]
 name=Govern the Guildless
 target=creature[-multicolor]
@@ -233,6 +246,18 @@ auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseacti
 mana={4}{U}{U}
 type=Sorcery
 text=Draw cards equal to the number of cards in target opponent's hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Relentless Dead
+auto=@movedTo(this|graveyard) from(battlefield):transforms((,newability[{B}:moveto(myhand)])) ueot
+auto=@movedTo(this|graveyard) from(battlefield):transforms((,newability[{X}:moveto(myhand) target(zombie[manacost=X]|mygraveyard)])) ueot
+text=Menace (This creature can't be blocked except by two or more creatures.) -- When Relentless Dead dies, you may pay {B}. If you do, return it to its owner's hand. -- When Relentless Dead dies, you may pay {X}. If you do, return another target Zombie creature card with converted mana cost X from your graveyard to the battlefield.
+mana={B}{B}
+abilities=menace
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
 [/card]
 [card]
 name=Sacellum Godspeaker
