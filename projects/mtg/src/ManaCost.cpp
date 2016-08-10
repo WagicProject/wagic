@@ -666,6 +666,30 @@ void ManaCost::copy(ManaCost * _manaCost)
     xColor = _manaCost->xColor;
 }
 
+void ManaCost::changeCostTo(ManaCost * _manaCost)
+{
+    if (!_manaCost)
+        return;
+
+    cost.erase(cost.begin() ,cost.end());
+
+    for (int i = 0; i <= Constants::NB_Colors; i++)
+    {
+        cost.push_back(_manaCost->getCost(i));
+    }
+
+    hybrids = _manaCost->hybrids;
+
+    SAFE_DELETE(extraCosts);
+
+    if (_manaCost->extraCosts)
+    {
+        extraCosts = _manaCost->extraCosts->clone();
+    }
+    
+    xColor = _manaCost->xColor;
+}
+
 int ManaCost::getCost(int color)
 {
     if (cost.size() <= (size_t)color)

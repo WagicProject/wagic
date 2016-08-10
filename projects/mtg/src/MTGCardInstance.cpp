@@ -98,12 +98,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 {
     MTGCard * source = card->model;
     CardPrimitive * data = source->data;
-
-    for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
-    {
-        if(card->model->data->basicAbilities[k])
-            basicAbilities[k] = card->model->data->basicAbilities[k];
-    }
+    basicAbilities = card->model->data->basicAbilities;
     modbasicAbilities = card->modbasicAbilities;
     for (size_t i = 0; i < data->types.size(); i++)
     {
@@ -149,6 +144,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     backupTargets = this->backupTargets;
     storedCard = oldStored;
     miracle = false;
+    mPropertiesChangedSinceLastUpdate = true;
 }
 
 MTGCardInstance::~MTGCardInstance()
