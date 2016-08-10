@@ -33,10 +33,10 @@ protected:
     /*
     ** Tries to render the Big version of a card picture, backups to text version in case of failure
     */
-    static void RenderBig(MTGCard * card, const Pos& pos, bool thumb = false, bool noborder = false, bool smallerscale = false);
+    static void RenderBig(MTGCard * card, const Pos& pos, bool thumb = false, bool noborder = false, bool smallerscale = false, bool ingame = false);
 
     static void RenderCountersBig(MTGCard * card, const Pos& pos, int drawMode = DrawMode::kNormal);
-    static void AlternateRender(MTGCard * card, const Pos& pos);
+    static void AlternateRender(MTGCard * card, const Pos& pos, bool noborder = false, bool smallerscale = false);
     static void TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad);
     static string FormattedData (string data, string replace, string value);
     static bool FilterCard (MTGCard * card,string filter);
@@ -54,9 +54,9 @@ public:
     CardGui(MTGCardInstance* card, const Pos& ref);
     virtual void Render();
     virtual void Update(float dt);
-
-    void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false, bool smallscale = false);
-    static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false, bool smallscale = false);
+    bool isBlackBorder(string set);
+    void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false, bool smallscale = false, bool ingame = false);
+    static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false, bool smallscale = false, bool ingame = false);
     static void DrawBorder(string setname, const Pos& inPosition, float x, bool noborder = false, bool smallscale = false);
     static JQuadPtr AlternateThumbQuad(MTGCard * card);
     virtual ostream& toString(ostream&) const;

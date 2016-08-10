@@ -334,7 +334,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         else
             return 0;
     }
-    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (card->StackIsEmptyandSorcerySpeed()))
+    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::ASFLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
         if(card->controller()->epic)
             return 0;
@@ -559,7 +559,7 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(!card->getManaCost()->getKicker())
         return 0;
 
-    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (card->StackIsEmptyandSorcerySpeed()))
+    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::ASFLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
         if(card->controller()->epic)
             return 0;
@@ -748,7 +748,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         else
             return 0;
     }
-    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::SPELLMASTERY) || card->has(Constants::OFFERING) || (card->StackIsEmptyandSorcerySpeed()))
+    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::ASFLASH) || card->has(Constants::SPELLMASTERY) || card->has(Constants::OFFERING) || (card->StackIsEmptyandSorcerySpeed()))
     {
         if(card->controller()->epic)
             return 0;
@@ -1313,7 +1313,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(card->controller()->epic)//zoetic cavern... morph is casted for a cost...
         return 0;
     //note lands can morph too, this is different from other cost types.
-    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (card->StackIsEmptyandSorcerySpeed()))
+    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::ASFLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
         if (card->controller()->game->playRestrictions->canPutIntoZone(card, card->controller()->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
@@ -1661,8 +1661,7 @@ int MTGAttackCostRule::reactToClick(MTGCardInstance * card)
     Player * player = game->currentlyActing();
     ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
     attackcost->add(0,card->attackCostBackup);
-    ManaCost * playerMana = player->getManaPool();
-    playerMana->pay(attackcost);//I think you can't pay partial cost to attack cost so you pay full (508.1i)
+    player->getManaPool()->pay(attackcost);//I think you can't pay partial cost to attack cost so you pay full (508.1i)
     card->attackCost = 0;
     card->attackPlaneswalkerCost = 0; 
     SAFE_DELETE(attackcost);
@@ -1737,8 +1736,7 @@ int MTGBlockCostRule::reactToClick(MTGCardInstance * card)
     Player * player = game->currentlyActing();
     ManaCost * blockcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
     blockcost->add(0,card->blockCostBackup);
-    ManaCost * playerMana = player->getManaPool();
-    playerMana->pay(blockcost);//I think you can't pay partial cost to block cost so you pay full (509.1f)
+    player->getManaPool()->pay(blockcost);//I think you can't pay partial cost to block cost so you pay full (509.1f)
     card->blockCost = 0;
     SAFE_DELETE(blockcost);
     return 1;
@@ -1836,6 +1834,8 @@ int MTGAttackRule::receiveEvent(WEvent *e)
                     card->setAttacker(0);
                 if (card->isAttacker() && !card->has(Constants::VIGILANCE))
                     card->tap();
+                if (card->isAttacker() && card->has(Constants::CANTATTACK))
+                    card->toggleAttacker();//if a card has cantattack, then you cant
             }
             return 1;
         }

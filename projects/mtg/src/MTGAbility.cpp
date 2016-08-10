@@ -371,6 +371,24 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
 
+        check = restriction[i].find("notdelirum");
+        if (check != string::npos)
+        {
+                Player * checkCurrent = card->controller();
+                MTGGameZone * grave = checkCurrent->game->graveyard;
+
+                int checkTypesAmount = 0;
+                if(grave->hasType("creature")) checkTypesAmount++;
+                if (grave->hasType("enchantment")) checkTypesAmount++;
+                if (grave->hasType("sorcery")) checkTypesAmount++;
+                if (grave->hasType("instant")) checkTypesAmount++;
+                if (grave->hasType("land")) checkTypesAmount++;
+                if (grave->hasType("artifact")) checkTypesAmount++;
+                if (grave->hasType("planeswalker")) checkTypesAmount++;
+                if (checkTypesAmount > 3)
+                return 0;
+        }
+
         check = restriction[i].find("miracle");
         if(check != string::npos)
         {
@@ -824,7 +842,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             fromTc->targetter = NULL; //avoid protection from
         }
         TriggeredAbility * mover = NEW TrCardAddedToZone(observer, id, card, (TargetZoneChooser *) toTc,
-            toTcCard, (TargetZoneChooser *) fromTc, fromTcCard, once, sourceUntapped, isSuspended);
+            toTcCard, (TargetZoneChooser *) fromTc, fromTcCard, once, sourceUntapped, isSuspended, limitOnceATurn);
         if(neverRemove)
         {
             mover->forcedAlive = 1;
@@ -845,6 +863,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser *tc = parseSimpleTC(s,"tappedformana", card))
         return NEW TrCardTappedformana(observer, id, card, tc, true,once);
     
+    //Card Transforms
+    if (TargetChooser *tc = parseSimpleTC(s,"transformed", card))
+        return NEW TrCardTransformed(observer, id, card, tc,once);
+
 //CombatTrigger
     //Card card attacked and is blocked
     found = s.find("combat(");
@@ -2381,13 +2403,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
             ATokenCreator * tok = NEW ATokenCreator(observer, id, card,target, NULL, tokenId, starfound, multiplier, who);
             tok->oneShot = 1;
+            //andability
+            if(storedAndAbility.size())
+            {
+                string stored = storedAndAbility;
+                storedAndAbility.clear();
+                ((ATokenCreator*)tok)->andAbility = parseMagicLine(stored, id, spell, card);
+            }
             return tok;
         }
         
         string tokenDesc = splitToken[1];
         vector<string> tokenParameters = split(tokenDesc, ',');
         //lets try finding a token by card name.
-        if (splitToken[1].size() && tokenParameters.size() ==1)
+        if (splitToken[1].size() && tokenParameters.size() <3)
         {
             string cardName = splitToken[1];
             MTGCard * safetycard = MTGCollection()->getCardByName(cardName);
@@ -2395,6 +2424,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 ATokenCreator * tok = NEW ATokenCreator(observer, id, card, target, NULL, cardName, starfound, multiplier, who);
                 tok->oneShot = 1;
+                //andability
+                if(storedAndAbility.size())
+                {
+                    string stored = storedAndAbility;
+                    storedAndAbility.clear();
+                    ((ATokenCreator*)tok)->andAbility = parseMagicLine(stored, id, spell, card);
+                }
                 return tok;
             }
         }
@@ -2406,7 +2442,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string sname = tokenParameters[0];
         string stypes = tokenParameters[1];
         string spt = tokenParameters[2];
-
+        string cID = "";
         //reconstructing string abilities from the split version,
         // then we re-split it again in the token constructor,
         // this needs to be improved
@@ -2415,6 +2451,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             sabilities.append(",");
             sabilities.append(tokenParameters[i]);
+        }
+        if(sabilities.find(",tnum:") != string::npos)
+        {
+            size_t begins = sabilities.find(",tnum:");
+            cID = sabilities.substr(begins+6);
+            sabilities = cReplaceString(sabilities,",tnum:"+cID,"");
         }
         int value = 0;
         if (spt.find("xx/xx") != string::npos)
@@ -2427,10 +2469,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         
         ATokenCreator * tok = NEW ATokenCreator(
             observer, id, card,target, NULL, sname, stypes, power + value, toughness + value,
-            sabilities, starfound, multiplier, who, aLivingWeapon, spt);
+            sabilities, starfound, multiplier, who, aLivingWeapon, spt, cID);
         tok->oneShot = 1;
         if(aLivingWeapon)
             tok->forceDestroy = 1;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((ATokenCreator*)tok)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return tok;  
     }
 
@@ -2497,6 +2546,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW AACopier(observer, id, card, target);
         a->oneShot = 1;
+        a->canBeInterrupted = false;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AACopier*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 

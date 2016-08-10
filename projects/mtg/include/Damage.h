@@ -24,6 +24,7 @@ public:
     int handsize;
     int poisonCount;
     int damageCount;
+    int nonCombatDamage;
     int preventable;
     int thatmuch;
     int lifeLostThisTurn;

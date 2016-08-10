@@ -271,8 +271,8 @@ void CardDisplay::Render()
             if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
             drawMode = observer->getCardSelector()->GetDrawMode();
         }
-
-        cardg->DrawCard(pos, drawMode);
+        bool ingame = observer?true:false;
+        cardg->DrawCard(pos, drawMode, false, false, false,ingame);
     }
 }
 

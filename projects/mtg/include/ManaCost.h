@@ -101,6 +101,7 @@ public:
     ManaCost(const ManaCost& manaCost);
     ManaCost& operator= (const ManaCost& manaCost);
     void copy(ManaCost * _manaCost);
+    void changeCostTo(ManaCost * _manaCost);
     int isNull();
     int getConvertedCost();
     string toString();

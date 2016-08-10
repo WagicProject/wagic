@@ -121,6 +121,7 @@ public:
     MTGGameZone * previousZone;
     MTGCardInstance * previous;
     MTGCardInstance * next;
+    MTGAbility * TokenAndAbility;
     int doDamageTest;
     bool skipDamageTestOnce;
     int summoningSickness;
@@ -256,7 +257,6 @@ public:
     bool bypassTC;
     bool discarded;
     int copiedID;
-    int modifiedbAbi;
     bool StackIsEmptyandSorcerySpeed();
     bool isTargetted();
     int cardistargetted;

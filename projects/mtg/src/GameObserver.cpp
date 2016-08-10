@@ -211,11 +211,13 @@ void GameObserver::nextGamePhase()
     {
         cleanupPhase();
         currentPlayer->damageCount = 0;
+        currentPlayer->nonCombatDamage = 0;
         currentPlayer->drawCounter = 0;
         currentPlayer->raidcount = 0;
         currentPlayer->opponent()->raidcount = 0;
         currentPlayer->prowledTypes.clear();
         currentPlayer->opponent()->damageCount = 0; //added to clear odcount
+        currentPlayer->opponent()->nonCombatDamage = 0;
         currentPlayer->preventable = 0;
         mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
         mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
@@ -954,12 +956,8 @@ void GameObserver::gameStateBasedEffects()
                         p->game->putInExile(c);
 
                     }
-                }/*
-                if(c->modifiedbAbi > 0)
-                {
-                    c->modifiedbAbi = 0;
-                    c->basicAbilities = c->origbasicAbilities;
-                }*///disabled this failed logic I introduce... when copying/cloning a card copy orig basic abilities...
+                }
+
                 if(nbcards > z->nb_cards)
                 {
                     t = 0;
@@ -1186,56 +1184,56 @@ void GameObserver::Affinity()
                 //kicker is an addon to normal cost, suspend is not casting. add cost as needed EXACTLY as seen below.
                 card->getManaCost()->resetCosts();
                 ManaCost *newCost = NEW ManaCost();
-                newCost->copy(card->computeNewCost(card, card->getManaCost(), card->model->data->getManaCost()));
+                newCost->changeCostTo(card->computeNewCost(card, card->getManaCost(), card->model->data->getManaCost()));
 
-                card->getManaCost()->copy(newCost);
+                card->getManaCost()->changeCostTo(newCost);
                 SAFE_DELETE(newCost);
                 if (card->getManaCost()->getAlternative())
                 {
                     card->getManaCost()->getAlternative()->resetCosts();
                     ManaCost * newCost = NEW ManaCost();
-                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getAlternative(), card->model->data->getManaCost()->getAlternative()));
-                    card->getManaCost()->getAlternative()->copy(newCost);
+                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getAlternative(), card->model->data->getManaCost()->getAlternative()));
+                    card->getManaCost()->getAlternative()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getBestow())
                 {
                     card->getManaCost()->getBestow()->resetCosts();
                     ManaCost * newCost = NEW ManaCost();
-                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getBestow(), card->model->data->getManaCost()->getBestow()));
-                    card->getManaCost()->getBestow()->copy(newCost);
+                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getBestow(), card->model->data->getManaCost()->getBestow()));
+                    card->getManaCost()->getBestow()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getRetrace())
                 {
                     card->getManaCost()->getRetrace()->resetCosts();
                     ManaCost * newCost = NEW ManaCost();
-                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getRetrace(), card->model->data->getManaCost()->getRetrace()));
-                    card->getManaCost()->getRetrace()->copy(newCost);
+                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getRetrace(), card->model->data->getManaCost()->getRetrace()));
+                    card->getManaCost()->getRetrace()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getBuyback())
                 {
                     card->getManaCost()->getBuyback()->resetCosts();
                     ManaCost * newCost = NEW ManaCost();
-                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getBuyback(), card->model->data->getManaCost()->getBuyback()));
-                    card->getManaCost()->getBuyback()->copy(newCost);
+                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getBuyback(), card->model->data->getManaCost()->getBuyback()));
+                    card->getManaCost()->getBuyback()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getFlashback())
                 {
                     card->getManaCost()->getFlashback()->resetCosts();
                     ManaCost * newCost = NEW ManaCost();
-                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getFlashback(), card->model->data->getManaCost()->getFlashback()));
-                    card->getManaCost()->getFlashback()->copy(newCost);
+                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getFlashback(), card->model->data->getManaCost()->getFlashback()));
+                    card->getManaCost()->getFlashback()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getMorph())
                 {
                     card->getManaCost()->getMorph()->resetCosts();
                     ManaCost * newCost = NEW ManaCost();
-                    newCost->copy(card->computeNewCost(card, card->getManaCost()->getMorph(), card->model->data->getManaCost()->getMorph()));
-                    card->getManaCost()->getMorph()->copy(newCost);
+                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getMorph(), card->model->data->getManaCost()->getMorph()));
+                    card->getManaCost()->getMorph()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
 

@@ -291,11 +291,6 @@ id=401859
 rarity=C
 [/card]
 [card]
-primitive=Dragon
-id=-401860
-rarity=T
-[/card]
-[card]
 primitive=Dragonmaster Outcast
 id=401860
 rarity=M
@@ -331,104 +326,9 @@ id=401866
 rarity=C
 [/card]
 [card]
-primitive=Elemental
-rarity=T
-id=-401806
-[/card]
-[card]
-primitive=Elemental
-rarity=T
-id=-401973
-[/card]
-[card]
-primitive=Eldrazi
-rarity=T
-id=-401857
-[/card]
-[card]
 primitive=Eldrazi Devastator
 id=401867
 rarity=C
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401803
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401819
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401825
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401832
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401833
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401836
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401838
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401839
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401893
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-402092
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401900
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401863
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401868
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401875
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-401915
-[/card]
-[card]
-primitive=Eldrazi Scion
-rarity=T
-id=-402046
 [/card]
 [card]
 primitive=Eldrazi Skyspawner
@@ -756,19 +656,9 @@ id=401932
 rarity=C
 [/card]
 [card]
-primitive=Knight Ally
-rarity=T
-id=-401897
-[/card]
-[card]
 primitive=Kor Ally
 rarity=T
 id=-402007
-[/card]
-[card]
-primitive=Kor Ally
-rarity=T
-id=-402084
 [/card]
 [card]
 primitive=Kor Bladewhirl
@@ -971,11 +861,6 @@ id=401972
 rarity=M
 [/card]
 [card]
-primitive=Octopus
-rarity=T
-id=-401931
-[/card]
-[card]
 primitive=Omnath, Locus of Rage
 id=401973
 rarity=M
@@ -1089,11 +974,6 @@ rarity=L
 primitive=Planar Outburst
 id=401995
 rarity=R
-[/card]
-[card]
-primitive=Plant
-rarity=T
-id=-401904
 [/card]
 [card]
 primitive=Plated Crusher

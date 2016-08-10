@@ -301,6 +301,12 @@ struct WEventCardControllerChange : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//event when card transforms
+struct WEventCardTransforms : public WEventCardUpdate {
+  WEventCardTransforms(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 std::ostream& operator<<(std::ostream&, const WEvent&);
 
 #endif

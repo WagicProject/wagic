@@ -231,6 +231,11 @@ WEventCardControllerChange::WEventCardControllerChange(MTGCardInstance * card) :
 {
 }
 
+WEventCardTransforms::WEventCardTransforms(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCombatStepChange::WEventCombatStepChange(CombatStep step) :
     WEvent(), step(step)
 {
@@ -392,6 +397,12 @@ Targetable * WEventCardEquipped::getTarget(int target)
 }
 
 Targetable * WEventCardControllerChange::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardTransforms::getTarget(int target)
 {
     if (target) return card;
     return NULL;

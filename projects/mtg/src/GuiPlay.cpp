@@ -62,12 +62,20 @@ void GuiPlay::HorzStack::Enstack(CardView* card)
 {
     card->x = x + baseX;
     card->y = y + baseY;
-    if (total < 8)
+    /*if (total < 8)
         x += CARD_WIDTH;
     else if (total < 16)
         x += (SCREEN_WIDTH - 200 - baseX) / total;
     else
-        x += (SCREEN_WIDTH - 50 - baseX) / total;
+        x += (SCREEN_WIDTH - 50 - baseX) / total;*/
+
+    // new adjustment
+    if (total < 8)
+        x += CARD_WIDTH;
+    else if (total < 24)
+        x += (SCREEN_WIDTH - 200 - baseX) / total;
+    else
+        x += (SCREEN_WIDTH - 70 - baseX) / total;
 }
 
 void GuiPlay::VertStack::Enstack(CardView* card)
@@ -83,9 +91,10 @@ void GuiPlay::VertStack::Enstack(CardView* card)
 
     card->x = x + baseX;
     card->y = y + baseY;
-    y += 12;
-    if (++count == total - 1 && y == 12)
-        y += 12;
+    y += 9;
+    if (++count == total - 1 && y == 9)
+        y += 9;
+    //last value += 12...
 }
 
 void GuiPlay::VertStack::Render(CardView* card, iterator begin, iterator end)
@@ -124,13 +133,13 @@ void GuiPlay::BattleField::reset(float x, float y)
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
     //card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
-    card->x = x + baseX;
-    if (total < 8)
+    card->x = x-4 + baseX;
+    if (attackers+1 < 8)
         x += CARD_WIDTH;
-    else if (total < 16)
-        x += (SCREEN_WIDTH - 200 - baseX) / total;
+    else if (attackers+1 < 24)
+        x += (SCREEN_WIDTH - 200 - baseX) / attackers+1;
     else
-        x += (SCREEN_WIDTH - 50 - baseX) / total;
+        x += (HORZWIDTH - baseX) / attackers+1;
 
     card->y = baseY + (card->card->getObserver()->getView()->getRenderedPlayer() == card->card->controller() ? 20 + y : -20 - y);
     ++currentAttacker;
@@ -423,6 +432,8 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     else if (dynamic_cast<WEventCardEquipped*> (e))
         Replace();
     else if (dynamic_cast<WEventCardControllerChange*> (e))
+        Replace();
+    else if (dynamic_cast<WEventCardTransforms*> (e))
         Replace();
     Replace();
     return 0;

@@ -64,7 +64,6 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     bypassTC = false;
     discarded = false;
     copiedID = getId();
-    modifiedbAbi = 0;
     LKIpower = power;
     LKItoughness = toughness;
     cardistargetted = 0;
@@ -99,16 +98,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 {
     MTGCard * source = card->model;
     CardPrimitive * data = source->data;
-
-    //basicAbilities = card->origbasicAbilities;
-    for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
-    {
-        if(card->model->data->basicAbilities[k])
-            basicAbilities[k] = card->model->data->basicAbilities[k];
-    }
-
-    origbasicAbilities = card->origbasicAbilities;
-    modifiedbAbi = card->modifiedbAbi;
+    basicAbilities = card->model->data->basicAbilities;
+    modbasicAbilities = card->modbasicAbilities;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -145,14 +136,15 @@ void MTGCardInstance::copy(MTGCardInstance * card)
         mtgid = backupid; // there must be a way to get the token id...
     else
     {
-        mtgid = card->getMTGId();   ///////////////////////////////////////////////////
-        setId = card->setId;        // Copier/Cloner cards produces the same token...//
-        rarity = card->getRarity(); ///////////////////////////////////////////////////
+        mtgid = card->getMTGId();     ///////////////////////////////////////////////////
+        setId = card->setId;          // Copier/Cloner cards produces the same token...//
+        //rarity = card->getRarity(); ///////////////////////////////////////////////////
     }
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
     storedCard = oldStored;
     miracle = false;
+    mPropertiesChangedSinceLastUpdate = true;
 }
 
 MTGCardInstance::~MTGCardInstance()
@@ -269,6 +261,7 @@ void MTGCardInstance::initMTGCI()
     previousZone = NULL;
     previous = NULL;
     next = NULL;
+    TokenAndAbility = NULL;
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;
@@ -615,7 +608,7 @@ int MTGCardInstance::hasSummoningSickness()
 {
     if (!summoningSickness)
         return 0;
-    if (basicAbilities[(int)Constants::HASTE])
+    if (has(Constants::HASTE))
         return 0;
     if (!isCreature())
         return 0;

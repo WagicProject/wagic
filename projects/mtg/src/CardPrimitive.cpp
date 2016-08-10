@@ -41,7 +41,10 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     if(!source)
         return;
     basicAbilities = source->basicAbilities;
-    origbasicAbilities = source->basicAbilities;
+    for(int k=0; k < Constants::NB_BASIC_ABILITIES; k++)
+    {
+        modbasicAbilities.push_back(source->basicAbilities[k]);
+    }
     LKIbasicAbilities = source->basicAbilities;
 
     for (size_t i = 0; i < source->types.size(); ++i)
@@ -79,7 +82,7 @@ CardPrimitive::~CardPrimitive()
 int CardPrimitive::init()
 {
     basicAbilities.reset();
-    origbasicAbilities.reset();
+    modbasicAbilities.clear();
 
     types.clear();
 
@@ -108,6 +111,18 @@ bool CardPrimitive::isLand()
 bool CardPrimitive::isSpell()
 {
     return (!isCreature() && !isLand());
+}
+
+bool CardPrimitive::isPermanent()
+{
+    return (!isSorceryorInstant());
+}
+
+bool CardPrimitive::isSorceryorInstant()
+{
+    if(hasSubtype(Subtypes::TYPE_SORCERY)||hasSubtype(Subtypes::TYPE_INSTANT))
+        return true;
+    return false;
 }
 
 int CardPrimitive::dredge()

@@ -1453,6 +1453,7 @@ AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, M
     ActivatedAbility(observer, _id, _source, _cost, 0)
 {
     target = _target;
+    andAbility = NULL;
 }
 
 int AACopier::resolve()
@@ -1463,15 +1464,30 @@ int AACopier::resolve()
     {
         MTGCard* clone ;
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
-        {
+        {//fix crash when copying token
             clone = _target;
             tokencopied = true;
         }
         else
             clone = MTGCollection()->getCardById(_target->copiedID);
-        MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
-        source->copy(myClone);
-        SAFE_DELETE(myClone);
+
+        if(tokencopied)
+        {
+            MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
+            source->copy(myClone);
+            SAFE_DELETE(myClone);
+        }
+        else
+        {/*********************************************
+         * instead of using source->copy(myClone) use *
+         * AAFlip with forcedcopy to true             *
+         *********************************************/
+            AAFlip * af = NEW AAFlip(game, game->mLayers->actionLayer()->getMaxId(), source, source, clone->data->name, false, true);
+            af->oneShot = 1;
+            af->canBeInterrupted = false;
+            af->resolve();
+            SAFE_DELETE(af);
+        }
         source->isACopier = true;
         source->hasCopiedToken = tokencopied;
         source->copiedID = _target->copiedID;
@@ -1487,6 +1503,34 @@ int AACopier::resolve()
             source->setType(cre.c_str());
             source->basicAbilities.reset();
             source->getManaCost()->resetCosts();
+        }
+        if(_target->TokenAndAbility)
+        {//the source copied a token with andAbility
+            MTGAbility * TokenandAbilityClone = _target->TokenAndAbility->clone();
+            TokenandAbilityClone->target = source;
+            if(_target->TokenAndAbility->oneShot)
+            {
+                TokenandAbilityClone->resolve();
+                SAFE_DELETE(TokenandAbilityClone);
+            }
+            else
+            {
+                TokenandAbilityClone->addToGame();
+            }
+        }
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = source;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
         }
         return 1;
     }
@@ -1609,6 +1653,11 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
         if (target)
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
+            if(_target->isFlipped && _target->hasType(Subtypes::TYPE_PLANESWALKER))//is flipping pw
+            {
+                this->forceDestroy = 1;
+                return 0;
+            }
             AbilityFactory af(game);
             if(counterstring.size())
             {
@@ -3155,8 +3204,8 @@ AAMeld * AAMeld::clone() const
 }
 
 // flip a card
-AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard) :
-InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard)
+AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy) :
+InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy)
 {
     target = _target;
 }
@@ -3179,7 +3228,7 @@ int AAFlip::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if((_target->isACopier||_target->isToken) && !isflipcard)
+        if((_target->isACopier||_target->isToken||_target->has(Constants::CANTTRANSFORM)) && !isflipcard && !forcedcopy)
         {
             game->removeObserver(this);
             return 0;
@@ -3196,6 +3245,9 @@ int AAFlip::resolve()
             MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
             if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
+            MTGCardInstance * myParent = NULL;
+            if(_target->target)
+                myParent = _target->target;
             _target->name = myFlip->name;
             _target->setName(myFlip->name);
             if(!isflipcard)//transform card
@@ -3208,9 +3260,15 @@ int AAFlip::resolve()
             _target->types = myFlip->types;
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
-            _target->basicAbilities = myFlip->basicAbilities;
+            _target->basicAbilities = myFlip->model->data->basicAbilities;
+            _target->modbasicAbilities = myFlip->modbasicAbilities;
             cdaDamage = _target->damageCount;
             _target->copiedID = myFlip->getMTGId();//for copier
+            if(forcedcopy && _target->owner->playMode != Player::MODE_TEST_SUITE)
+            {
+                _target->setMTGId(myFlip->getMTGId());
+                _target->setId = myFlip->setId;
+            }
             for(unsigned int i = 0;i < _target->cardsAbilities.size();i++)
             {
                 MTGAbility * a = dynamic_cast<MTGAbility *>(_target->cardsAbilities[i]);
@@ -3278,8 +3336,18 @@ int AAFlip::resolve()
             {//pbonus & tbonus are already computed except damage taken...
                 _target->life -= cdaDamage;
             }
+            if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
+            {
+                if(myParent)
+                    _target->target = myParent;
+            }
             SAFE_DELETE(myFlip);
             _target->mPropertiesChangedSinceLastUpdate = true;
+            if(!isflipcard)
+            {
+                WEvent * e = NEW WEventCardTransforms(_target);
+                game->receiveEvent(e);
+            }
         }
 
         currentAbilities.clear();
@@ -3923,10 +3991,10 @@ int AACloner::resolve()
             }
         }
         list<int>::iterator it;
-        for (it = awith.begin(); it != awith.end(); it++)
+        /*for (it = awith.begin(); it != awith.end(); it++)
         {//there must be a layer of temporary abilities and original abilities
             spell->source->basicAbilities[*it] = 1;
-        }
+        }*/
         for (it = colors.begin(); it != colors.end(); it++)
         {
             spell->source->setColor(*it);
@@ -3935,12 +4003,24 @@ int AACloner::resolve()
         {
             spell->source->addType(*it);
         }
-        spell->source->modifiedbAbi = _target->modifiedbAbi;
-        //spell->source->basicAbilities = _target->origbasicAbilities;
         for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
         {
             if(_target->model->data->basicAbilities[k])
                spell->source->basicAbilities[k] = _target->model->data->basicAbilities[k];
+        }
+        if(_target->TokenAndAbility)
+        {//the source copied a token with andAbility
+            MTGAbility * andAbilityClone = _target->TokenAndAbility->clone();
+            andAbilityClone->target = spell->source;
+            if(_target->TokenAndAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
         }
         delete spell;
     }
@@ -4112,8 +4192,11 @@ int AAMover::resolve()
             //inplay is a special zone !
             for (int i = 0; i < 2; i++)
             {
-                if (!_target->hasSubtype(Subtypes::TYPE_AURA) && destZone == game->players[i]->game->inPlay && fromZone != game->players[i]->game->inPlay && fromZone
-                        != game->players[i]->opponent()->game->inPlay)
+                if (!_target->isSorceryorInstant() && 
+                    !_target->hasSubtype(Subtypes::TYPE_AURA) && 
+                    destZone == game->players[i]->game->inPlay && 
+                    fromZone != game->players[i]->game->inPlay && 
+                    fromZone != game->players[i]->opponent()->game->inPlay)
                 {
                     MTGCardInstance * copy = game->players[i]->game->putInZone(_target, fromZone, game->players[i]->game->temp);
                     Spell * spell = NEW Spell(game, copy);
@@ -4172,6 +4255,16 @@ int AAMover::resolve()
             }
             else
             {
+                if(_target->isSorceryorInstant() && (destZone == game->players[0]->game->inPlay || destZone == game->players[1]->game->inPlay))
+                {
+                    if(andAbility)
+                    {
+                        if(!dynamic_cast<AAFlip *>(andAbility))
+                            return 0;
+                    }
+                    else
+                        return 0;
+                }
                 p->game->putInZone(_target, fromZone, destZone);
                 while(_target->next)
                     _target = _target->next;
@@ -5634,7 +5727,6 @@ for (it = types.begin(); it != types.end(); it++)
     for (it = abilities.begin(); it != abilities.end(); it++)
     {
         _target->basicAbilities.set(*it);
-        _target->modifiedbAbi += 1;
     }
 
     if(newAbilityFound)
@@ -5783,7 +5875,6 @@ int ATransformer::destroy()
         for (it = abilities.begin(); it != abilities.end(); it++)
         {
             _target->basicAbilities.reset(*it);
-            _target->modifiedbAbi -= 1;
         }
 
         for (it = oldcolors.begin(); it != oldcolors.end(); it++)
@@ -7077,7 +7168,7 @@ void ABlink::resolveBlink()
 
 void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
     MTGCardInstance * Blinker = NULL;
-    if(!_target->blinked)
+    if(!_target->blinked || _target->hasSubtype(Subtypes::TYPE_INSTANT) || _target->hasSubtype(Subtypes::TYPE_SORCERY))
     {
         this->forceDestroy = 1;
         return;
@@ -7640,12 +7731,24 @@ int AACastCard::resolveSpell()
             if (game->targetChooser)
             {
                 game->targetChooser->Owner = source->controller();
-                spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                if(putinplay)
+                {
+                    spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
+                    spell->resolve();
+                }
+                else
+                    spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
                 game->targetChooser = NULL;
             }
             else
             {
-                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+                if(putinplay)
+                {
+                    spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
+                    spell->resolve();
+                }
+                else
+                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
             }
 
             if (copy->has(Constants::STORM))

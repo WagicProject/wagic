@@ -344,7 +344,8 @@ void CardSelector::Render()
                 float modx = 14.f;
                 Pos npos = Pos(bigpos.x+modx,bigpos.y-4.f,bigpos.zoom-(bigpos.zoom/5),bigpos.t,bigpos.alpha);
                 //render card
-                card->DrawCard(npos, mDrawMode);
+                bool ingame = observer?true:false;
+                card->DrawCard(npos, mDrawMode, false, false, false,ingame);
             }
         }
     }
