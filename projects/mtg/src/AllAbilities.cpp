@@ -1449,11 +1449,12 @@ AALibraryBottom * AALibraryBottom::clone() const
 }
 
 //AACopier
-AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, bool _activated) :
     ActivatedAbility(observer, _id, _source, _cost, 0)
 {
     target = _target;
     andAbility = NULL;
+    activated = _activated;
 }
 
 int AACopier::resolve()
@@ -1462,6 +1463,7 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        _target->activateCF = activated;
         MTGCard* clone ;
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
         {//fix crash when copying token
@@ -1482,7 +1484,7 @@ int AACopier::resolve()
          * instead of using source->copy(myClone) use *
          * AAFlip with forcedcopy to true             *
          *********************************************/
-            AAFlip * af = NEW AAFlip(game, game->mLayers->actionLayer()->getMaxId(), source, source, clone->data->name, false, true);
+            AAFlip * af = NEW AAFlip(game, game->mLayers->actionLayer()->getMaxId(), source, source, clone->data->name, false, true, activated);
             af->oneShot = 1;
             af->canBeInterrupted = false;
             af->resolve();
@@ -1532,6 +1534,7 @@ int AACopier::resolve()
                 andAbilityClone->addToGame();
             }
         }
+        _target->activateCF = false;
         return 1;
     }
     return 0;
@@ -1653,7 +1656,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
         if (target)
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
-            if(_target->isFlipped && _target->hasType(Subtypes::TYPE_PLANESWALKER))//is flipping pw
+            if(_target->isFlipped && (_target->activateCF || _target->hasType(Subtypes::TYPE_PLANESWALKER)))//is flipping && activated flip or activated copy or Planeswalker
             {
                 this->forceDestroy = 1;
                 return 0;
@@ -3204,10 +3207,11 @@ AAMeld * AAMeld::clone() const
 }
 
 // flip a card
-AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy) :
+AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy, bool _activated) :
 InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy)
 {
     target = _target;
+    activated = _activated;
 }
 
 int AAFlip::resolve()
@@ -3239,6 +3243,7 @@ int AAFlip::resolve()
 
         AbilityFactory af(game);
         _target->isFlipped = true;
+        _target->activateCF = activated;
         GameObserver * game = _target->getObserver();
         if(flipStats.size())
         {
@@ -3286,7 +3291,8 @@ int AAFlip::resolve()
                 {
                     if (a->oneShot)
                     {
-                        a->resolve();
+                        if(!activated)
+                            a->resolve();
                         SAFE_DELETE(a);
                     }
                     else
@@ -3368,6 +3374,7 @@ int AAFlip::testDestroy()
             //originally added as a safegaurd to insure the ability was removed
             //it's been so long and so much has changed that it appears to do nothing but cause a crash now
             _target->isFlipped = false;
+            _target->activateCF = false;
             return 1;
         }
     }
