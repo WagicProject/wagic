@@ -1474,9 +1474,12 @@ int AACopier::resolve()
 ///////////////////////////////////////////////////////////////////////
             MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
             //source->copy(myClone);
-            source->setMTGId(myClone->getMTGId());
-            source->setId = myClone->setId;
-            source->setRarity(myClone->getRarity());
+            if(source->controller()->playMode != Player::MODE_TEST_SUITE)
+            {
+                source->setMTGId(myClone->getMTGId());
+                source->setId = myClone->setId;
+                source->setRarity(myClone->getRarity());
+            }
             source->name = myClone->name;
             source->setName(myClone->name);
             source->getManaCost()->resetCosts();
