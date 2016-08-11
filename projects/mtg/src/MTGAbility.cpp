@@ -2547,7 +2547,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW AACopier(observer, id, card, target);
         a->oneShot = 1;
         a->canBeInterrupted = false;
-        ((AACopier*)a)->activated = activated;
         //andability
         if(storedAndAbility.size())
         {
@@ -3394,12 +3393,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         if(card->getdoubleFaced() == "kamiflip")
         {//old flip cards kamigawa
-            MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats,true,false,activated);
+            MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats,true);
             return a;
         }
         else//regular transform
         {
-            MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats,false,false,activated);
+            MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats);
             return a;
         }
     }

@@ -12,10 +12,10 @@ GuiAvatars::GuiAvatars(DuelLayers* duelLayers) :
 {
     Add(self = NEW GuiAvatar(SCREEN_WIDTH, SCREEN_HEIGHT, false, mpDuelLayers->getRenderedPlayer(), GuiAvatar::BOTTOM_RIGHT, this));
     self->zoom = 0.9f;
-    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 7, false, mpDuelLayers->getRenderedPlayer(), this));
-    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 10 + GuiGameZone::Height + 5, false, mpDuelLayers->getRenderedPlayer(), this));
+    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 1, false, mpDuelLayers->getRenderedPlayer(), this));
+    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, mpDuelLayers->getRenderedPlayer(), this));
     //myexile
-    Add(selfExile = NEW GuiExile(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 34, false, mpDuelLayers->getRenderedPlayer(), this));
+    Add(selfExile = NEW GuiExile(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 30, false, mpDuelLayers->getRenderedPlayer(), this));
 
     Add(opponent = NEW GuiAvatar(0, 0, false, mpDuelLayers->getRenderedPlayerOpponent(), GuiAvatar::TOP_LEFT, this));
     opponent->zoom = 0.9f;

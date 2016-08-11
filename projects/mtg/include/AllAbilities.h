@@ -1949,8 +1949,7 @@ class AACopier: public ActivatedAbility
 {
 public:
     MTGAbility * andAbility;
-    bool activated;
-    AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, bool activated = false);
+    AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();
     AACopier * clone() const;
@@ -4596,8 +4595,7 @@ public:
     string flipStats;
     bool isflipcard;
     bool forcedcopy;
-    bool activated;
-    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard = false, bool forcedcopy = false, bool activated = false);
+    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard = false, bool forcedcopy = false);
     int resolve();
     int testDestroy();
     const string getMenuText();

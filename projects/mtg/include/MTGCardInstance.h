@@ -89,7 +89,6 @@ public:
     bool turningOver;
     bool isMorphed;
     bool isFlipped;
-    bool activateCF;
     string MeldedFrom;
     bool isPhased;
     bool isCascaded;

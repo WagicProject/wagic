@@ -195,7 +195,6 @@ void MTGCardInstance::initMTGCI()
     isMorphed = false;
     MeldedFrom = "";
     isFlipped = false;
-    activateCF = false;
     isPhased = false;
     isCascaded = false;
     phasedTurn = -1;
