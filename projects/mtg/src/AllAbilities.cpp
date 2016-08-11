@@ -6580,7 +6580,7 @@ AUpkeep::AUpkeep(GameObserver* observer, int _id, MTGCardInstance * card, MTGAbi
     {
         backupMana = NEW ManaCost();
         backupMana->copy(this->getCost());
-        backupMana->addExtraCosts(this->getCost()->extraCosts);
+        //backupMana->addExtraCosts(this->getCost()->extraCosts);
     }
 }
 
