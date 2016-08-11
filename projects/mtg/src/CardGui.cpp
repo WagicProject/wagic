@@ -444,6 +444,7 @@ void CardGui::Render()
         else if(card->chooseacolor == 5)
             buff += "\n-White";
     }
+
     if(buff != "")//enable indicator at all modes
     {
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);

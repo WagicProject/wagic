@@ -1462,7 +1462,8 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        MTGCard* clone ;
+        MTGCard* clone;
+        AbilityFactory af(game);
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
         {//fix crash when copying token
             clone = _target;
@@ -1470,24 +1471,92 @@ int AACopier::resolve()
         }
         else
             clone = MTGCollection()->getCardById(_target->copiedID);
-
-        if(tokencopied)
-        {
+///////////////////////////////////////////////////////////////////////
             MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
-            source->copy(myClone);
+            //source->copy(myClone);
+            source->setMTGId(myClone->getMTGId());
+            source->setId = myClone->setId;
+            source->setRarity(myClone->getRarity());
+            source->name = myClone->name;
+            source->setName(myClone->name);
+            source->getManaCost()->resetCosts();
+            if(myClone->getManaCost())
+                source->getManaCost()->copy(myClone->getManaCost());
+            source->colors = myClone->colors;
+            source->types = myClone->types;
+            source->text = myClone->text;
+            source->formattedText = myClone->formattedText;
+            source->basicAbilities = myClone->model->data->basicAbilities;
+            source->modbasicAbilities = myClone->modbasicAbilities;
+            for(unsigned int i = 0;i < source->cardsAbilities.size();i++)
+            {
+                MTGAbility * a = dynamic_cast<MTGAbility *>(source->cardsAbilities[i]);
+
+                if(a) game->removeObserver(a);
+            }
+            source->cardsAbilities.clear();
+            source->magicText = myClone->magicText;
+            af.getAbilities(&currentAbilities, NULL, source);
+            for (size_t i = 0; i < currentAbilities.size(); ++i)
+            {
+                MTGAbility * a = currentAbilities[i];
+                a->source = (MTGCardInstance *) source;
+                if (a)
+                {
+                    if (a->oneShot)
+                    {
+                        a->resolve();
+                        SAFE_DELETE(a);
+                    }
+                    else
+                    {
+                        a->addToGame();
+                        MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
+                        if(!dontAdd)
+                        {
+                            source->cardsAbilities.push_back(a);
+                        }
+                    }
+                }
+            }
+            //power
+            int powerMod = 0;
+            int toughMod = 0;
+            bool powerlessThanOriginal = false;
+            bool toughLessThanOriginal = false;
+            if(source->power < source->origpower)
+            {
+                powerMod = source->origpower - source->power;
+                powerlessThanOriginal = true;
+            }
+            else
+            {
+                powerMod =source->power - source->origpower;
+            }
+            //toughness
+            if(source->toughness <= source->origtoughness)
+            {
+                toughMod = source->origtoughness - source->toughness;
+                toughLessThanOriginal = true;
+            }
+            else
+            {
+                toughMod =source->toughness - source->origtoughness;
+            }
+            if(!source->isCDA)
+            {
+                source->power = powerlessThanOriginal?myClone->power - powerMod:myClone->power + powerMod;
+                source->life = toughLessThanOriginal?myClone->toughness - toughMod:myClone->toughness + toughMod;
+                source->toughness = toughLessThanOriginal?myClone->toughness - toughMod:myClone->toughness + toughMod;
+                source->origpower = myClone->origpower;
+                source->origtoughness = myClone->origtoughness;
+            }
+            else
+            {//pbonus & tbonus are already computed except damage taken...
+                source->life -= source->damageCount;
+            }
             SAFE_DELETE(myClone);
-        }
-        else
-        {/*********************************************
-         * instead of using source->copy(myClone) use *
-         * AAFlip with forcedcopy to true             *
-         *********************************************/
-            AAFlip * af = NEW AAFlip(game, game->mLayers->actionLayer()->getMaxId(), source, source, clone->data->name, false, true);
-            af->oneShot = 1;
-            af->canBeInterrupted = false;
-            af->resolve();
-            SAFE_DELETE(af);
-        }
+///////////////////////////////////////////////////////////////////////
         source->isACopier = true;
         source->hasCopiedToken = tokencopied;
         source->copiedID = _target->copiedID;
@@ -1532,6 +1601,7 @@ int AACopier::resolve()
                 andAbilityClone->addToGame();
             }
         }
+        source->mPropertiesChangedSinceLastUpdate = true;
         return 1;
     }
     return 0;
