@@ -3391,16 +3391,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             /*vector<string>FlipStats = split(splitFlipStat[1],'%');*/
             flipStats = splitFlipStat[1];
         }
-        if(card->getdoubleFaced() == "kamiflip")
-        {//old flip cards kamigawa
-            MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats,true);
-            return a;
-        }
-        else//regular transform
-        {
-            MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats);
-            return a;
-        }
+        bool transmode = card->getdoubleFaced() == "kamiflip"?true:false;
+        MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats,transmode);
+        return a;
     }
 
     //Change Power/Toughness
