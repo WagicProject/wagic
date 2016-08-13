@@ -129,6 +129,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     alias = data->alias;
     copiedID = card->copiedID;
     doubleFaced = data->doubleFaced;
+    origpower = card->origpower;//for flip
+    origtoughness = card->origtoughness;//for flip
 
     //Now this is dirty...
     int backupid = mtgid;
@@ -147,6 +149,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
         mtgid = card->getMTGId();   ///////////////////////////////////////////////////
         setId = card->setId;        // Copier/Cloner cards produces the same token...//
         rarity = card->getRarity(); ///////////////////////////////////////////////////
+
+        setMTGId(card->copiedID);   //**************sets copier image****************//
     }
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;

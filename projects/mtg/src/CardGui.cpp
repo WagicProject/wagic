@@ -403,7 +403,7 @@ void CardGui::Render()
         mFont->SetScale(actZ);
         mFont->SetScale(actZ);
         float halfbufferW = (mFont->GetStringWidth(buffer))/2;
-        mFont->DrawString(buffer, actX - halfbufferW * actZ, actY + 7 * actZ);
+        mFont->DrawString(buffer, actX - halfbufferW, actY + 7 * actZ);
         mFont->SetScale(1);
     }
 
