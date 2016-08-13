@@ -62,20 +62,12 @@ void GuiPlay::HorzStack::Enstack(CardView* card)
 {
     card->x = x + baseX;
     card->y = y + baseY;
-    /*if (total < 8)
+    if (total < 8)
         x += CARD_WIDTH;
     else if (total < 16)
         x += (SCREEN_WIDTH - 200 - baseX) / total;
     else
-        x += (SCREEN_WIDTH - 50 - baseX) / total;*/
-
-    // new adjustment
-    if (total < 8)
-        x += CARD_WIDTH;
-    else if (total < 24)
-        x += (SCREEN_WIDTH - 200 - baseX) / total;
-    else
-        x += (SCREEN_WIDTH - 70 - baseX) / total;
+        x += (SCREEN_WIDTH - 50 - baseX) / total;
 }
 
 void GuiPlay::VertStack::Enstack(CardView* card)
@@ -91,10 +83,9 @@ void GuiPlay::VertStack::Enstack(CardView* card)
 
     card->x = x + baseX;
     card->y = y + baseY;
-    y += 9;
-    if (++count == total - 1 && y == 9)
-        y += 9;
-    //last value += 12...
+    y += 12;
+    if (++count == total - 1 && y == 12)
+        y += 12;
 }
 
 void GuiPlay::VertStack::Render(CardView* card, iterator begin, iterator end)

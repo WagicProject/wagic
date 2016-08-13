@@ -1288,11 +1288,9 @@ int SacrificeCost::doPay()
     {
         MTGCardInstance * beforeCard = target;
         source->storedCard = target->createSnapShot();
-        WEvent * e;
         target->controller()->game->putInGraveyard(target);
+        WEvent * e = NEW WEventCardSacrifice(beforeCard,target);
         GameObserver * game = target->owner->getObserver();
-        bool cardIsToken = target->isToken ? true : false;
-        e = NEW WEventCardSacrifice(beforeCard, target, cardIsToken);
         game->receiveEvent(e);
         target = NULL;
         if (tc)

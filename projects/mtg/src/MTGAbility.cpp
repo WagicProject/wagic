@@ -2416,7 +2416,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string tokenDesc = splitToken[1];
         vector<string> tokenParameters = split(tokenDesc, ',');
         //lets try finding a token by card name.
-        if (splitToken[1].size() && tokenParameters.size() <3)
+        if (splitToken[1].size() && (tokenParameters.size() ==1||tokenParameters.size() ==2))
         {
             string cardName = splitToken[1];
             MTGCard * safetycard = MTGCollection()->getCardByName(cardName);
@@ -3394,6 +3394,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool transmode = card->getdoubleFaced() == "kamiflip"?true:false;
         MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats,transmode);
         return a;
+    }
+
+    //changecost - alternate for altercost
+    vector<string> splitChangeCost = parseBetween(s, "changecost(", ")", true);
+    if(splitChangeCost.size())
+    {
+        if(splitChangeCost[1].size())
+        {
+            vector<string> ccParameters = split( splitChangeCost[1], ':');
+            int amount = atoi(ccParameters[1].c_str());
+            int color = Constants::GetColorStringIndex(ccParameters[0]);
+            if(ccParameters[0] == "colorless")
+                color = 0;
+            if(ccParameters[0].size() && ccParameters[1].size())
+            {
+                MTGAbility * a = NEW AAlterCost(observer, id, card, target, amount, color);
+                return a;
+            }
+        }
     }
 
     //Change Power/Toughness

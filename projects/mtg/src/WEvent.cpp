@@ -99,8 +99,8 @@ player(player), nb_cards(nb_cards),drawAbility(cardDraw)
 {
 }
 
-WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card, MTGCardInstance * after, bool token) :
-    WEventCardUpdate(card),cardAfter(after),istoken(token)
+WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card, MTGCardInstance * after) :
+    WEventCardUpdate(card),cardAfter(after)
 {
 }
 

@@ -263,16 +263,16 @@ void CardDisplay::Render()
     {
         mObjects[mCurr]->Render();
         CardGui * cardg = ((CardGui *) mObjects[mCurr]);
-        Pos pos = Pos((CardGui::BigWidth / 2), CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
-        int drawMode = DrawMode::kNormal;//scale card display from 1.0f to 0.80f
+        Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
+        int drawMode = DrawMode::kNormal;
         if (observer)
         {
-            pos.actY = 142;//reduce y a little
+            pos.actY = 145;
             if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
             drawMode = observer->getCardSelector()->GetDrawMode();
         }
-        bool ingame = observer?true:false;
-        cardg->DrawCard(pos, drawMode, false, false, false,ingame);
+
+        cardg->DrawCard(pos, drawMode);
     }
 }
 

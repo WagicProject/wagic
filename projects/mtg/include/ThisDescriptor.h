@@ -61,6 +61,14 @@ class ThisControllerlife:public ThisDescriptor{
     ThisControllerlife * clone() const;
 };
 
+class ThisCreatureSpells:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+  
+    ThisCreatureSpells(int count);
+    ThisCreatureSpells * clone() const;
+};
+
 class ThisOpponentlife:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);

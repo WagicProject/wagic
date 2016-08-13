@@ -96,10 +96,16 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
 
 void MTGCardInstance::copy(MTGCardInstance * card)
 {
-    MTGCard * source = card->model;
+    MTGCard * source = NULL;
+    if(card->isToken || card->hasCopiedToken)
+    {
+        source = card;
+    }
+    else
+         source = MTGCollection()->getCardById(card->copiedID);
+
     CardPrimitive * data = source->data;
-    basicAbilities = card->model->data->basicAbilities;
-    modbasicAbilities = card->modbasicAbilities;
+    basicAbilities = data->basicAbilities;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -121,24 +127,30 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     magicText = data->magicText;
     spellTargetType = data->spellTargetType;
     alias = data->alias;
+    copiedID = card->copiedID;
+    doubleFaced = data->doubleFaced;
+    origpower = card->origpower;//for flip
+    origtoughness = card->origtoughness;//for flip
 
     //Now this is dirty...
     int backupid = mtgid;
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
-    Spell * spell = NEW Spell(observer, this);
+    /*Spell * spell = NEW Spell(observer, this);
     observer = card->observer;
     AbilityFactory af(observer);
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
-    delete spell;
+    delete spell;*/
     if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
         mtgid = backupid; // there must be a way to get the token id...
     else
     {
-        mtgid = card->getMTGId();     ///////////////////////////////////////////////////
-        setId = card->setId;          // Copier/Cloner cards produces the same token...//
-        //rarity = card->getRarity(); ///////////////////////////////////////////////////
+        mtgid = card->getMTGId();   ///////////////////////////////////////////////////
+        setId = card->setId;        // Copier/Cloner cards produces the same token...//
+        rarity = card->getRarity(); ///////////////////////////////////////////////////
+
+        setMTGId(card->copiedID);   //**************sets copier image****************//
     }
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;

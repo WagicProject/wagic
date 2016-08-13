@@ -1196,59 +1196,24 @@ void GameStateDuel::Render()
     case DUEL_STATE_BACK_TO_MAIN_MENU:
         if (game)
         {
-            string gtype = "";
-            if(game->gameType() == GAME_TYPE_CLASSIC)
-                gtype = "Classic";
-            else if(game->gameType() == GAME_TYPE_MOMIR)
-                gtype = "Momir";
-            else if(game->gameType() == GAME_TYPE_RANDOM1 || game->gameType() == GAME_TYPE_RANDOM2)
-                gtype = "Random";
-            else if(game->gameType() == GAME_TYPE_STORY)
-                gtype = "Story";
-            else if(game->gameType() == GAME_TYPE_DEMO)
-                gtype = "Demo";
-            else if(game->gameType() == GAME_TYPE_STONEHEWER)
-                gtype = "Stone Hewer";
-            else if(game->gameType() == GAME_TYPE_HERMIT)
-                gtype = "Hermit Druid";
-            else
-                gtype = "Blitzkrieg";
             r->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(100,0,0,0));
             char buffer[4096];
             sprintf(buffer, _("Turn:%i").c_str(), game->turn);
             mFont->SetColor(ARGB(255,255,255,255));
             mFont->DrawString(buffer, SCREEN_WIDTH / 2, 0, JGETEXT_CENTER);
-            mFont->DrawString(gtype, SCREEN_WIDTH / 2, SCREEN_HEIGHT - 15, JGETEXT_CENTER);
         }
         if (menu) 
         {
             menu->Render();
 
             // display the player deck names in their respective corners
-            string p0playmode = "";
-            if(game->players[0]->playMode == Player::MODE_TEST_SUITE)
-                p0playmode = "AI Testsuite";
-            else if(game->players[0]->playMode == Player::MODE_HUMAN)
-                p0playmode = "Human";
-            else
-                p0playmode = "AI";
             string playerDeckName =  game->players[0]->deckName;
             float playerDeckNamePixelLength = mFont->GetStringWidth(playerDeckName.c_str());
-            float playerModePixelLength = mFont->GetStringWidth(p0playmode.c_str());
             mFont->DrawString( playerDeckName, SCREEN_WIDTH_F - playerDeckNamePixelLength, SCREEN_HEIGHT_F - 50);
-            mFont->DrawString( p0playmode, SCREEN_WIDTH_F - playerModePixelLength, SCREEN_HEIGHT_F - 60);
             if(game->players.size()>1)
             {
-                string p1playmode = "";
-                if(game->players[1]->playMode == Player::MODE_TEST_SUITE)
-                    p1playmode = "AI Testsuite";
-                else if(game->players[1]->playMode == Player::MODE_HUMAN)
-                    p1playmode = "Human";
-                else
-                    p1playmode = "AI";
                 string opponentDeckName = game->players[1]->deckName;
-                mFont->DrawString( opponentDeckName, 0, 40);
-                mFont->DrawString( p1playmode, 0, 50);
+                mFont->DrawString( opponentDeckName, 0, 50);
             }
         }
     }

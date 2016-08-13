@@ -3233,10 +3233,8 @@ int MTGLegendRule::added(MTGCardInstance * card)
     return 1;
 }
 
-int MTGLegendRule::removed(MTGCardInstance * card)
+int MTGLegendRule::removed(MTGCardInstance *)
 {
-    if (card->has(Constants::NOLEGENDRULE))
-        game->legendNeedUpdate = true;
     return 0;
 }
 

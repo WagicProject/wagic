@@ -122,9 +122,9 @@ void GuiHandSelf::Repos()
     {
         float dist = 180.0f / cards.size();
         if (dist > 20)
-            dist = 18.0;//20.0
+            dist = 20.0;
         else
-            y = 35.0;//40.0
+            y = 40.0;
         for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
         {
             (*it)->x = ClosedRowX;
