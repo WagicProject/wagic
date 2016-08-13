@@ -1470,17 +1470,40 @@ int AACopier::resolve()
             source->copy(_target->clone());
         else
         {
-            if(!_target->isACopier)
-                source->copy(_target);
-            else
+            source->copy(_target);
+        }
+        //abilities
+        for(unsigned int i = 0;i < source->cardsAbilities.size();i++)
+        {
+            MTGAbility * a = dynamic_cast<MTGAbility *>(source->cardsAbilities[i]);
+
+            if(a) game->removeObserver(a);
+        }
+        source->cardsAbilities.clear();
+        af.getAbilities(&currentAbilities, NULL, source);
+        for (size_t i = 0; i < currentAbilities.size(); ++i)
+        {
+            MTGAbility * a = currentAbilities[i];
+            a->source = (MTGCardInstance *) source;
+            if (a)
             {
-                source->copy(_target);
-                source->power -= _target->pbonus;
-                source->toughness -= _target->tbonus;
-                source->life = source->toughness;
+                if (a->oneShot)
+                {
+                    a->resolve();
+                    SAFE_DELETE(a);
+                }
+                else
+                {
+                    a->addToGame();
+                    MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
+                    if(!dontAdd)
+                    {
+                        source->cardsAbilities.push_back(a);
+                    }
+                }
             }
         }
-
+        //
         source->isACopier = true;
         source->hasCopiedToken = tokencopied;
         source->copiedID = _target->copiedID;
@@ -3213,6 +3236,12 @@ int AAFlip::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(((_target->isACopier||_target->isToken) && !isflipcard) || _target->has(Constants::CANTTRANSFORM))
+        {
+            game->removeObserver(this);
+            return 0;
+        }
+
         while (_target->next)
             _target = _target->next; 
 

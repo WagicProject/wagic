@@ -402,7 +402,8 @@ void CardGui::Render()
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
         mFont->SetScale(actZ);
         mFont->SetScale(actZ);
-        mFont->DrawString(buffer, actX - 10 * actZ, actY + 7 * actZ);
+        float halfbufferW = (mFont->GetStringWidth(buffer))/2;
+        mFont->DrawString(buffer, actX - halfbufferW * actZ, actY + 7 * actZ);
         mFont->SetScale(1);
     }
 
