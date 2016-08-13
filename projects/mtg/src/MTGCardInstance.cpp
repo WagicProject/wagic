@@ -985,8 +985,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
     string type = "";
     ManaCost * original = NEW ManaCost();
     ManaCost * excess = NEW ManaCost();
-    original->changeCostTo(Data);
-    Cost->changeCostTo(original);
+    original->copy(Data);
+    Cost->copy(original);
     if (Cost->extraCosts)
     {
         for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
@@ -1018,7 +1018,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         {
             original->removeHybrid(excess);
         }
-        Cost->changeCostTo(original);
+        Cost->copy(original);
         if (Cost->extraCosts)
         {
             for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
@@ -1109,7 +1109,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             type = "creature";
         }
 
-        Cost->changeCostTo(original);
+        Cost->copy(original);
         if (Cost->extraCosts)
         {
             for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
