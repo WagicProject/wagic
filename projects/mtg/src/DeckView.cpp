@@ -93,7 +93,7 @@ void DeckView::reloadIndexes()
     }
 }
 
-void DeckView::renderCard(int index, int alpha, bool asThumbnail, bool addWHborder)
+void DeckView::renderCard(int index, int alpha, bool asThumbnail)
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
@@ -146,30 +146,20 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail, bool addWHbord
     else
     {//NORMAL VIEW WITH IMAGES
         int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
-        float modx = addWHborder ? 2.0f:0.0f;
-        bool smallerscale = modx > 0.0f ? true:false;
-        //border for editor && others since the border in cardgui:drawcard scales larger...
+        //border for editor && others???
         string cardsetname = setlist[cardPosition.card->setId].c_str();
         if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
         {
-            JRenderer::GetInstance()->FillRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-(5.f+modx),(cardPosition.y - cardPosition.scale * 142.5f)-(5.f+modx),cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f+modx,ARGB(255,248,248,255));
-            JRenderer::GetInstance()->DrawRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-(5.f+modx),(cardPosition.y - cardPosition.scale * 142.5f)-(5.f+modx),cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f+modx,ARGB(150,20,20,20));
+            JRenderer::GetInstance()->FillRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-5.f,(cardPosition.y - cardPosition.scale * 142.5f)-5.f,cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f,ARGB(255,248,248,255));
+            JRenderer::GetInstance()->DrawRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-5.f,(cardPosition.y - cardPosition.scale * 142.5f)-5.f,cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f,ARGB(150,20,20,20));
         }
         else
         {
-            if (cardsetname == "LEA")
-            {
-                JRenderer::GetInstance()->FillRoundRect((cardPosition.x - cardPosition.scale * 96.75f)-(7.f+modx),(cardPosition.y - cardPosition.scale * 139.25f)-(7.f+modx),cardPosition.scale * 193.5f,cardPosition.scale * 278.5f,7.f+modx,ARGB(255,10,10,10));
-                JRenderer::GetInstance()->DrawRoundRect((cardPosition.x - cardPosition.scale * 96.75f)-(7.f+modx),(cardPosition.y - cardPosition.scale * 139.25f)-(7.f+modx),cardPosition.scale * 193.5f,cardPosition.scale * 278.5f,7.f+modx,ARGB(50,240,240,240));
-            }
-            else
-            {
-                JRenderer::GetInstance()->FillRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-(5.f+modx),(cardPosition.y - cardPosition.scale * 142.5f)-(5.f+modx),cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f+modx,ARGB(255,10,10,10));
-                JRenderer::GetInstance()->DrawRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-(5.f+modx),(cardPosition.y - cardPosition.scale * 142.5f)-(5.f+modx),cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f+modx,ARGB(50,240,240,240));
-            }
+            JRenderer::GetInstance()->FillRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-5.f,(cardPosition.y - cardPosition.scale * 142.5f)-5.f,cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f,ARGB(255,10,10,10));
+            JRenderer::GetInstance()->DrawRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-5.f,(cardPosition.y - cardPosition.scale * 142.5f)-5.f,cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f,ARGB(50,240,240,240));
         }
         Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
-        CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail, true, smallerscale);
+        CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail, true);
     }
     int quadAlpha = alpha;
     if (!deck()->count(cardPosition.card)) quadAlpha /= 2;

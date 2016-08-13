@@ -130,10 +130,8 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
 
     if (bigQuad)
     {
-        Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
-        pos.actY = 142;//adjust y a little bit
-        bool ingame = observer?true:false;
-        CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode(),false,false,false,ingame);
+        Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
+        CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
     }
 
     if (targetQuad)

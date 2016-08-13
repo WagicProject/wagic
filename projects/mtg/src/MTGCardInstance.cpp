@@ -96,10 +96,10 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
 
 void MTGCardInstance::copy(MTGCardInstance * card)
 {
-    MTGCard * source = card->model;
+    //MTGCard * source = card->model;
+    MTGCard * source = card;
     CardPrimitive * data = source->data;
     basicAbilities = card->model->data->basicAbilities;
-    modbasicAbilities = card->modbasicAbilities;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -136,9 +136,9 @@ void MTGCardInstance::copy(MTGCardInstance * card)
         mtgid = backupid; // there must be a way to get the token id...
     else
     {
-        mtgid = card->getMTGId();     ///////////////////////////////////////////////////
-        setId = card->setId;          // Copier/Cloner cards produces the same token...//
-        //rarity = card->getRarity(); ///////////////////////////////////////////////////
+        mtgid = card->getMTGId();   ///////////////////////////////////////////////////
+        setId = card->setId;        // Copier/Cloner cards produces the same token...//
+        rarity = card->getRarity(); ///////////////////////////////////////////////////
     }
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
@@ -985,8 +985,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
     string type = "";
     ManaCost * original = NEW ManaCost();
     ManaCost * excess = NEW ManaCost();
-    original->copy(Data);
-    Cost->copy(original);
+    original->changeCostTo(Data);
+    Cost->changeCostTo(original);
     if (Cost->extraCosts)
     {
         for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
@@ -1018,7 +1018,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         {
             original->removeHybrid(excess);
         }
-        Cost->copy(original);
+        Cost->changeCostTo(original);
         if (Cost->extraCosts)
         {
             for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
@@ -1109,7 +1109,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             type = "creature";
         }
 
-        Cost->copy(original);
+        Cost->changeCostTo(original);
         if (Cost->extraCosts)
         {
             for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)

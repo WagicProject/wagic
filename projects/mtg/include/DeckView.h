@@ -207,7 +207,7 @@ protected:
      *
      * \see mCards
      */
-    void renderCard(int index, int alpha, bool asThumbnail = false, bool addWHborder = false);
+    void renderCard(int index, int alpha, bool asThumbnail = false);
 
     /*! \brief Returns the index in mCards of the card that is nearest to the given point
      *
