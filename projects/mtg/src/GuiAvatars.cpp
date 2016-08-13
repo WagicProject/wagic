@@ -12,24 +12,24 @@ GuiAvatars::GuiAvatars(DuelLayers* duelLayers) :
 {
     Add(self = NEW GuiAvatar(SCREEN_WIDTH, SCREEN_HEIGHT, false, mpDuelLayers->getRenderedPlayer(), GuiAvatar::BOTTOM_RIGHT, this));
     self->zoom = 0.9f;
-    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 7, false, mpDuelLayers->getRenderedPlayer(), this));
-    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 10 + GuiGameZone::Height + 5, false, mpDuelLayers->getRenderedPlayer(), this));
+    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 1, false, mpDuelLayers->getRenderedPlayer(), this));
+    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, mpDuelLayers->getRenderedPlayer(), this));
     //myexile
-    Add(selfExile = NEW GuiExile(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 34, false, mpDuelLayers->getRenderedPlayer(), this));
+    Add(selfExile = NEW GuiExile(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 30, false, mpDuelLayers->getRenderedPlayer(), this));
 
     Add(opponent = NEW GuiAvatar(0, 0, false, mpDuelLayers->getRenderedPlayerOpponent(), GuiAvatar::TOP_LEFT, this));
     opponent->zoom = 0.9f;
     //opponentExile
-    Add(opponentExile = NEW GuiExile(-30 + GuiAvatar::Width * 1.2f - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10,
+    Add(opponentExile = NEW GuiExile(-30 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10,
                     false, mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponentGraveyard
-    Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.4f - GuiGameZone::Width / 2, 5, false,
+    Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5, false,
                     mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponentHand
-    Add(opponentHand = NEW GuiOpponentHand(-15 + GuiAvatar::Width * 1.4f - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10, false,
+    Add(opponentHand = NEW GuiOpponentHand(-15 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10, false,
                     mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponentLibrary
-    Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.4f - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
+    Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
                     mpDuelLayers->getRenderedPlayerOpponent(), this));
 
     observer->getCardSelector()->Add(self);
@@ -145,12 +145,12 @@ void GuiAvatars::Update(float dt)
 void GuiAvatars::Render()
 {
     JRenderer * r = JRenderer::GetInstance();
-    float w = 52;
-    float h = 52;
+    float w = 54;
+    float h = 54;
     if (opponent == active)
     {
-        r->FillRect(opponent->actX, opponent->actY, 34 * opponent->actZ, h+22 * opponent->actZ, ARGB(200,0,0,0));
-        r->FillRect(opponent->actX, opponent->actY, (w * opponent->actZ)-1, (h * opponent->actZ)+2, ARGB(200,0,0,0));
+        r->FillRect(opponent->actX, opponent->actY, 40 * opponent->actZ, h+20 * opponent->actZ, ARGB(200,0,0,0));
+        r->FillRect(opponent->actX, opponent->actY, w * opponent->actZ, h * opponent->actZ, ARGB(200,0,0,0));
     }
     else if (self == active)
     {

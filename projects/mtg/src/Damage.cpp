@@ -185,7 +185,7 @@ int Damage::resolve()
             _target->poisonCount += damage;//this will be changed to poison counters.
         _target->damageCount += damage;
         if(typeOfDamage == 2)
-            target->nonCombatDamage += damage;
+            _target->nonCombatDamage += damage;
         if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
         {
             vector<string> values = MTGAllCards::getCreatureValuesById();

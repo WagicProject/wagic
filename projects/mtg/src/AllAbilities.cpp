@@ -401,8 +401,8 @@ void MTGRevealingCards::Render()
 {
     if (!revealDisplay)
         return;
-        CheckUserInput(mEngine->ReadButton());
-        revealDisplay->CheckUserInput(mEngine->ReadButton());
+    CheckUserInput(mEngine->ReadButton());
+    revealDisplay->CheckUserInput(mEngine->ReadButton());
     revealDisplay->Render();
     return;
 }
@@ -1459,107 +1459,51 @@ AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, M
 int AACopier::resolve()
 {
     bool tokencopied = false;
+    AbilityFactory af(game);
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        MTGCard* clone;
-        AbilityFactory af(game);
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
-        {//fix crash when copying token
-            clone = _target;
             tokencopied = true;
-        }
-        else
-            clone = MTGCollection()->getCardById(_target->copiedID);
-///////////////////////////////////////////////////////////////////////
-            MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
-            //source->copy(myClone);
-            if(source->controller()->playMode != Player::MODE_TEST_SUITE)
-            {
-                source->setMTGId(myClone->getMTGId());
-                source->setId = myClone->setId;
-                source->setRarity(myClone->getRarity());
-            }
-            source->name = myClone->name;
-            source->setName(myClone->name);
-            source->getManaCost()->resetCosts();
-            if(myClone->getManaCost())
-                source->getManaCost()->copy(myClone->getManaCost());
-            source->colors = myClone->colors;
-            source->types = myClone->types;
-            source->text = myClone->text;
-            source->formattedText = myClone->formattedText;
-            source->basicAbilities = myClone->model->data->basicAbilities;
-            source->modbasicAbilities = myClone->modbasicAbilities;
-            for(unsigned int i = 0;i < source->cardsAbilities.size();i++)
-            {
-                MTGAbility * a = dynamic_cast<MTGAbility *>(source->cardsAbilities[i]);
 
-                if(a) game->removeObserver(a);
-            }
-            source->cardsAbilities.clear();
-            source->magicText = myClone->magicText;
-            af.getAbilities(&currentAbilities, NULL, source);
-            for (size_t i = 0; i < currentAbilities.size(); ++i)
+        if(tokencopied)
+            source->copy(_target->clone());
+        else
+        {
+            source->copy(_target);
+        }
+        //abilities
+        for(unsigned int i = 0;i < source->cardsAbilities.size();i++)
+        {
+            MTGAbility * a = dynamic_cast<MTGAbility *>(source->cardsAbilities[i]);
+
+            if(a) game->removeObserver(a);
+        }
+        source->cardsAbilities.clear();
+        af.getAbilities(&currentAbilities, NULL, source);
+        for (size_t i = 0; i < currentAbilities.size(); ++i)
+        {
+            MTGAbility * a = currentAbilities[i];
+            a->source = (MTGCardInstance *) source;
+            if (a)
             {
-                MTGAbility * a = currentAbilities[i];
-                a->source = (MTGCardInstance *) source;
-                if (a)
+                if (a->oneShot)
                 {
-                    if (a->oneShot)
+                    a->resolve();
+                    SAFE_DELETE(a);
+                }
+                else
+                {
+                    a->addToGame();
+                    MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
+                    if(!dontAdd)
                     {
-                        a->resolve();
-                        SAFE_DELETE(a);
-                    }
-                    else
-                    {
-                        a->addToGame();
-                        MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
-                        if(!dontAdd)
-                        {
-                            source->cardsAbilities.push_back(a);
-                        }
+                        source->cardsAbilities.push_back(a);
                     }
                 }
             }
-            //power
-            int powerMod = 0;
-            int toughMod = 0;
-            bool powerlessThanOriginal = false;
-            bool toughLessThanOriginal = false;
-            if(source->power < source->origpower)
-            {
-                powerMod = source->origpower - source->power;
-                powerlessThanOriginal = true;
-            }
-            else
-            {
-                powerMod =source->power - source->origpower;
-            }
-            //toughness
-            if(source->toughness <= source->origtoughness)
-            {
-                toughMod = source->origtoughness - source->toughness;
-                toughLessThanOriginal = true;
-            }
-            else
-            {
-                toughMod =source->toughness - source->origtoughness;
-            }
-            if(!source->isCDA)
-            {
-                source->power = powerlessThanOriginal?myClone->power - powerMod:myClone->power + powerMod;
-                source->life = toughLessThanOriginal?myClone->toughness - toughMod:myClone->toughness + toughMod;
-                source->toughness = toughLessThanOriginal?myClone->toughness - toughMod:myClone->toughness + toughMod;
-                source->origpower = myClone->origpower;
-                source->origtoughness = myClone->origtoughness;
-            }
-            else
-            {//pbonus & tbonus are already computed except damage taken...
-                source->life -= source->damageCount;
-            }
-            SAFE_DELETE(myClone);
-///////////////////////////////////////////////////////////////////////
+        }
+        //
         source->isACopier = true;
         source->hasCopiedToken = tokencopied;
         source->copiedID = _target->copiedID;
@@ -1604,7 +1548,7 @@ int AACopier::resolve()
                 andAbilityClone->addToGame();
             }
         }
-        source->mPropertiesChangedSinceLastUpdate = true;
+        //source->mPropertiesChangedSinceLastUpdate = true;
         return 1;
     }
     return 0;
@@ -1727,10 +1671,8 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
             if(_target->isFlipped && _target->hasType(Subtypes::TYPE_PLANESWALKER))//is flipping pw
-            {
-                this->forceDestroy = 1;
                 return 0;
-            }
+
             AbilityFactory af(game);
             if(counterstring.size())
             {
@@ -2847,12 +2789,10 @@ int AASacrificeCard::resolve()
     {
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;
-        WEvent * e;
         p->game->putInGraveyard(_target);
         while(_target->next)
             _target = _target->next;
-        bool cardIsToken = _target->isToken ? true : false;
-         e = NEW WEventCardSacrifice(beforeCard, _target, cardIsToken);
+        WEvent * e = NEW WEventCardSacrifice(beforeCard,_target);
         game->receiveEvent(e);
         if(andAbility)
         {
@@ -3293,15 +3233,10 @@ int AAFlip::resolve()
         game->removeObserver(this);
         return 0;
     }
-    
-    //701.25a Only permanents represented by double-faced cards can transform.
-    //(See rule 711, “Double-Faced Cards.”) If a spell or ability instructs a player
-    //to transform any permanent that isn’t represented by a double-faced card, nothing happens.
-    //***Copier and Tokens cannot transform but can be flip since flip cards are single sided***
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if((_target->isACopier||_target->isToken||_target->has(Constants::CANTTRANSFORM)) && !isflipcard && !forcedcopy)
+        if(((_target->isACopier||_target->isToken) && !isflipcard) || _target->has(Constants::CANTTRANSFORM))
         {
             game->removeObserver(this);
             return 0;
@@ -3334,10 +3269,9 @@ int AAFlip::resolve()
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
             _target->basicAbilities = myFlip->model->data->basicAbilities;
-            _target->modbasicAbilities = myFlip->modbasicAbilities;
             cdaDamage = _target->damageCount;
             _target->copiedID = myFlip->getMTGId();//for copier
-            if(forcedcopy && _target->owner->playMode != Player::MODE_TEST_SUITE)
+            if(_target->owner->playMode != Player::MODE_TEST_SUITE)
             {
                 _target->setMTGId(myFlip->getMTGId());
                 _target->setId = myFlip->setId;
@@ -4064,10 +3998,10 @@ int AACloner::resolve()
             }
         }
         list<int>::iterator it;
-        /*for (it = awith.begin(); it != awith.end(); it++)
+        for (it = awith.begin(); it != awith.end(); it++)
         {//there must be a layer of temporary abilities and original abilities
             spell->source->basicAbilities[*it] = 1;
-        }*/
+        }
         for (it = colors.begin(); it != colors.end(); it++)
         {
             spell->source->setColor(*it);
@@ -4075,11 +4009,6 @@ int AACloner::resolve()
         for (it = typesToAdd.begin(); it != typesToAdd.end(); it++)
         {
             spell->source->addType(*it);
-        }
-        for(int k = 0; k < Constants::NB_BASIC_ABILITIES; k++)
-        {
-            if(_target->model->data->basicAbilities[k])
-               spell->source->basicAbilities[k] = _target->model->data->basicAbilities[k];
         }
         if(_target->TokenAndAbility)
         {//the source copied a token with andAbility
@@ -7804,24 +7733,12 @@ int AACastCard::resolveSpell()
             if (game->targetChooser)
             {
                 game->targetChooser->Owner = source->controller();
-                if(putinplay)
-                {
-                    spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
-                    spell->resolve();
-                }
-                else
-                    spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
                 game->targetChooser = NULL;
             }
             else
             {
-                if(putinplay)
-                {
-                    spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
-                    spell->resolve();
-                }
-                else
-                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
             }
 
             if (copy->has(Constants::STORM))

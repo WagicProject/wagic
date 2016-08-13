@@ -318,6 +318,19 @@ mana={G}{W}
 type=Instant
 [/card]
 [card]
+name=Silvergill Adept
+otherrestriction=type(*[merfolk]|myhand)~lessthan~2
+other={4}{U}
+restriction=type(*[merfolk]|myhand)~morethan~1
+auto=draw:1
+text=As an additional cost to cast Silvergill Adept, reveal a Merfolk card from your hand or pay {3}. -- When Silvergill Adept enters the battlefield, draw a card.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=1
+[/card]
+[card]
 name=Staggershock
 target=creature,player
 auto=damage:2

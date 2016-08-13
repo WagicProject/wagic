@@ -25,8 +25,8 @@ struct GuiAvatar: public GuiStatic
         BOTTOM_RIGHT
     } Corner;
 
-    static const unsigned Width = 32;//35
-    static const unsigned Height = 45;//50
+    static const unsigned Width = 35;
+    static const unsigned Height = 50;
 
 protected:
     int avatarRed;

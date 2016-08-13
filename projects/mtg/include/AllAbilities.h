@@ -1429,7 +1429,6 @@ public:
         if (!e) return 0;
         MTGCardInstance * check = e->cardAfter;
         MTGGameZone * oldZone = e->cardAfter->currentZone;
-        //MTGGameZone * currZone = check->currentZone;
         check->currentZone = check->previousZone;
         if (check->next && (check->next->currentZone|| check->isToken))
         {
@@ -1948,8 +1947,8 @@ public:
 class AACopier: public ActivatedAbility
 {
 public:
-    MTGAbility * andAbility;
     vector<MTGAbility *> currentAbilities;
+    MTGAbility * andAbility;
     AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();
@@ -2270,12 +2269,7 @@ public:
 
         assert(modifier < 2);
         ((MTGCardInstance *) target)->basicAbilities.set(ability, modifier > 0);
-        //---add or subtract so we can keep track - for future use
-        ((MTGCardInstance *) target)->modbasicAbilities[ability] += modifier;
-        //---make sure no negative values
-        if(((MTGCardInstance *) target)->modbasicAbilities[ability] < 0)
-            ((MTGCardInstance *) target)->modbasicAbilities[ability] = 0;
-        //---end add or subtract abilities
+
         return MTGAbility::addToGame();
     }
 
