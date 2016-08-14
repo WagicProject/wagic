@@ -23,23 +23,23 @@
 369072
 
 #4 x Armada Wurm (RTR), {2}{g}{g}{w}{w}, Creature Wurm, 5/5, trample; 
-999009
-999009
-999009
-999009
+253587
+253587
+253587
+253587
 
 #2 x Precinct Captain (RTR), {w}{w}, Creature Human Soldier, 2/2, first strike; 
-999171
-999171
+270792
+270792
 
 #4 x Wayfaring Temple (RTR), {1}{g}{w}, Creature Elemental, 0/0, 
-999260
-999260
-999260
-999260
+253539
+253539
+253539
+253539
 
 #1 x Worldspine Wurm (RTR), {8}{g}{g}{g}, Creature Wurm, 15/15, trample; 
-999262
+253575
 
 
 
@@ -57,14 +57,14 @@
 369060
 
 #2 x Chromatic Lantern (RTR), {3}, Artifact, 
-999039
-999039
+290542
+290542
 
 #4 x Growing Ranks (RTR), {2}{g/w}{g/w}, Enchantment, 
-999106
-999106
-999106
-999106
+270957
+270957
+270957
+270957
 
 
 
@@ -84,26 +84,26 @@
 369018
 
 #4 x Forest (RTR), Basic Land Forest, 
-999086
-999086
-999086
-999086
+289326
+289326
+289326
+289326
 
 #4 x Plains (RTR), Basic Land Plains, 
-999168
-999168
-999168
-999168
+289310
+289310
+289310
+289310
 
 #2 x Temple Garden (RTR), Land Forest Plains, 
-999238
-999238
+253681
+253681
 
 #4 x Plains (RTR), Basic Land Plains, 
-999265
-999265
-999265
-999265
+289309
+289309
+289309
+289309
 
 
 

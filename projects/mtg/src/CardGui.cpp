@@ -386,7 +386,7 @@ void CardGui::Render()
         char buffer[200];
         sprintf(buffer, "%i/%i", card->power, card->life);
          //move up the p/t box by increasing ymody
-         float ymody = (card->isAttacker()||card->isDefenser())?-6.0f:0.0f;
+         float ymody = ((card->isAttacker()||card->isDefenser())&&card->isTapped())?-6.0f:0.0f;
         renderer->FillRect(actX - (13 * actZ), actY + ymody + 4 * actZ, 25.5f * actZ, 14 * actZ,
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
         renderer->DrawRect(actX - (13 * actZ), actY + ymody + 4 * actZ, 25.5f * actZ, 14 * actZ,
