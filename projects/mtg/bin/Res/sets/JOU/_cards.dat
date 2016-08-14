@@ -1,0 +1,832 @@
+[meta]
+author=Wagic Team
+name=Journey into Nyx
+block=Theros
+year=2014
+total=165
+[/meta]
+[card]
+primitive=Aegis of the Gods
+id=380364
+rarity=R
+[/card]
+[card]
+primitive=Aerial Formation
+id=380365
+rarity=C
+[/card]
+[card]
+primitive=Agent of Erebos
+id=380366
+rarity=U
+[/card]
+[card]
+primitive=Ajani's Presence
+id=380368
+rarity=C
+[/card]
+[card]
+primitive=Ajani, Mentor of Heroes
+id=380367
+rarity=M
+[/card]
+[card]
+primitive=Akroan Line Breaker
+id=380369
+rarity=U
+[/card]
+[card]
+primitive=Akroan Mastiff
+id=380370
+rarity=C
+[/card]
+[card]
+primitive=Armament of Nyx
+id=380371
+rarity=C
+[/card]
+[card]
+primitive=Armory of Iroas
+id=380372
+rarity=U
+[/card]
+[card]
+primitive=Aspect of Gorgon
+id=380373
+rarity=C
+[/card]
+[card]
+primitive=Athreos, God of Passage
+id=380374
+rarity=M
+[/card]
+[card]
+primitive=Banishing Light
+id=380375
+rarity=U
+[/card]
+[card]
+primitive=Bassara Tower Archer
+id=380376
+rarity=U
+[/card]
+[card]
+primitive=Battlefield Thaumaturge
+id=380377
+rarity=R
+[/card]
+[card]
+primitive=Bearer of the Heavens
+id=380378
+rarity=R
+[/card]
+[card]
+primitive=Bladetusk Boar
+id=380379
+rarity=C
+[/card]
+[card]
+primitive=Blinding Flare
+id=380380
+rarity=U
+[/card]
+[card]
+primitive=Bloodcrazed Hoplite
+id=380381
+rarity=C
+[/card]
+[card]
+primitive=Brain Maggot
+id=380382
+rarity=U
+[/card]
+[card]
+primitive=Cast into Darkness
+id=380383
+rarity=C
+[/card]
+[card]
+primitive=Chariot of Victory
+id=380384
+rarity=U
+[/card]
+[card]
+primitive=Cloaked Siren
+id=380385
+rarity=C
+[/card]
+[card]
+primitive=Colossal Heroics
+id=380386
+rarity=U
+[/card]
+[card]
+primitive=Consign to Dust
+id=380387
+rarity=U
+[/card]
+[card]
+primitive=Countermand
+id=380388
+rarity=C
+[/card]
+[card]
+primitive=Cruel Feeding
+id=380389
+rarity=C
+[/card]
+[card]
+primitive=Crystalline Nautilus
+id=380390
+rarity=U
+[/card]
+[card]
+primitive=Cyclops of Eternal Fury
+id=380391
+rarity=U
+[/card]
+[card]
+primitive=Dakra Mystic
+id=380392
+rarity=U
+[/card]
+[card]
+primitive=Daring Thief
+id=380393
+rarity=R
+[/card]
+[card]
+primitive=Dawnbringer Charioteers
+id=380394
+rarity=R
+[/card]
+[card]
+primitive=Deicide
+id=380395
+rarity=R
+[/card]
+[card]
+primitive=Desecration Plague
+id=380396
+rarity=C
+[/card]
+[card]
+primitive=Deserter's Quarters
+id=380397
+rarity=U
+[/card]
+[card]
+primitive=Desperate Stand
+id=380398
+rarity=U
+[/card]
+[card]
+primitive=Dictate of Erebos
+id=380399
+rarity=R
+[/card]
+[card]
+primitive=Dictate of Heliod
+id=380400
+rarity=R
+[/card]
+[card]
+primitive=Dictate of Karametra
+id=380401
+rarity=R
+[/card]
+[card]
+primitive=Dictate of Kruphix
+id=380402
+rarity=R
+[/card]
+[card]
+primitive=Dictate of the Twin Gods
+id=380403
+rarity=R
+[/card]
+[card]
+primitive=Disciple of Deceit
+id=380404
+rarity=U
+[/card]
+[card]
+primitive=Doomwake Giant
+id=380405
+rarity=R
+[/card]
+[card]
+primitive=Dreadbringer Lampads
+id=380406
+rarity=C
+[/card]
+[card]
+primitive=Eagle of the Watch
+id=380407
+rarity=C
+[/card]
+[card]
+primitive=Eidolon of Blossoms
+id=380408
+rarity=R
+[/card]
+[card]
+primitive=Eidolon of Rhetoric
+id=380409
+rarity=U
+[/card]
+[card]
+primitive=Eidolon of the Great Revel
+id=380410
+rarity=R
+[/card]
+[card]
+primitive=Extinguish All Hope
+id=380411
+rarity=R
+[/card]
+[card]
+primitive=Feast of Dreams
+id=380412
+rarity=C
+[/card]
+[card]
+primitive=Felhide Petrifier
+id=380413
+rarity=U
+[/card]
+[card]
+primitive=Flamespeaker's Will
+id=380414
+rarity=C
+[/card]
+[card]
+primitive=Fleetfeather Cockatrice
+id=380415
+rarity=U
+[/card]
+[card]
+primitive=Flurry of Horns
+id=380416
+rarity=C
+[/card]
+[card]
+primitive=Font of Fertility
+id=380417
+rarity=C
+[/card]
+[card]
+primitive=Font of Fortunes
+id=380418
+rarity=C
+[/card]
+[card]
+primitive=Font of Ire
+id=380419
+rarity=C
+[/card]
+[card]
+primitive=Font of Return
+id=380420
+rarity=C
+[/card]
+[card]
+primitive=Font of Vigor
+id=380421
+rarity=C
+[/card]
+[card]
+primitive=Forgeborn Oreads
+id=380422
+rarity=U
+[/card]
+[card]
+primitive=Gluttonous Cyclops
+id=380423
+rarity=C
+[/card]
+[card]
+primitive=Gnarled Scarhide
+id=380424
+rarity=U
+[/card]
+[card]
+primitive=Godhunter Octopus
+id=380425
+rarity=C
+[/card]
+[card]
+primitive=Godsend
+id=380426
+rarity=M
+[/card]
+[card]
+primitive=Gold-Forged Sentinel
+id=380429
+rarity=U
+[/card]
+[card]
+primitive=Golden Hind
+id=380427
+rarity=C
+[/card]
+[card]
+primitive=Goldenhide Ox
+id=380428
+rarity=U
+[/card]
+[card]
+primitive=Grim Guardian
+id=380430
+rarity=C
+[/card]
+[card]
+primitive=Hall of Triumph
+id=380431
+rarity=R
+[/card]
+[card]
+primitive=Harness by Force
+id=380432
+rarity=R
+[/card]
+[card]
+primitive=Harvestguard Alseids
+id=380433
+rarity=C
+[/card]
+[card]
+primitive=Heroes' Bane
+id=380434
+rarity=R
+[/card]
+[card]
+primitive=Hour of Need
+id=380435
+rarity=U
+[/card]
+[card]
+primitive=Hubris
+id=380436
+rarity=C
+[/card]
+[card]
+primitive=Humbler of Mortals
+id=380437
+rarity=C
+[/card]
+[card]
+primitive=Hydra Broodmaster
+id=380438
+rarity=R
+[/card]
+[card]
+primitive=Hypnotic Siren
+id=380439
+rarity=R
+[/card]
+[card]
+primitive=Interpret the Signs
+id=380440
+rarity=U
+[/card]
+[card]
+primitive=Iroas, God of Victory
+id=380441
+rarity=M
+[/card]
+[card]
+primitive=Keranos, God of Storms
+id=380442
+rarity=M
+[/card]
+[card]
+primitive=King Macar, the Gold-Cursed
+id=380443
+rarity=R
+[/card]
+[card]
+primitive=Kiora's Dismissal
+id=380444
+rarity=U
+[/card]
+[card]
+primitive=Knowledge and Power
+id=380445
+rarity=U
+[/card]
+[card]
+primitive=Kruphix's Insight
+id=380447
+rarity=C
+[/card]
+[card]
+primitive=Kruphix, God of Horizons
+id=380446
+rarity=M
+[/card]
+[card]
+primitive=Lagonna-Band Trailblazer
+id=380448
+rarity=C
+[/card]
+[card]
+primitive=Launch the Fleet
+id=380449
+rarity=R
+[/card]
+[card]
+primitive=Leonin Iconoclast
+id=380450
+rarity=U
+[/card]
+[card]
+primitive=Lightning Diadem
+id=380451
+rarity=C
+[/card]
+[card]
+primitive=Magma Spray
+id=380452
+rarity=C
+[/card]
+[card]
+primitive=Mana Confluence
+id=380453
+rarity=R
+[/card]
+[card]
+primitive=Market Festival
+id=380454
+rarity=C
+[/card]
+[card]
+primitive=Master of the Feast
+id=380455
+rarity=R
+[/card]
+[card]
+primitive=Mogis's Warhound
+id=380456
+rarity=U
+[/card]
+[card]
+primitive=Mortal Obstinacy
+id=380457
+rarity=C
+[/card]
+[card]
+primitive=Nature's Panoply
+id=380458
+rarity=C
+[/card]
+[card]
+primitive=Nessian Game Warden
+id=380459
+rarity=U
+[/card]
+[card]
+primitive=Nightmarish End
+id=380460
+rarity=U
+[/card]
+[card]
+primitive=Nyx Infusion
+id=380461
+rarity=C
+[/card]
+[card]
+primitive=Nyx Weaver
+id=380462
+rarity=U
+[/card]
+[card]
+primitive=Nyx-Fleece Ram
+id=380463
+rarity=U
+[/card]
+[card]
+primitive=Oakheart Dryads
+id=380464
+rarity=C
+[/card]
+[card]
+primitive=Oppressive Rays
+id=380465
+rarity=C
+[/card]
+[card]
+primitive=Oreskos Swiftclaw
+id=380466
+rarity=C
+[/card]
+[card]
+primitive=Pensive Minotaur
+id=380467
+rarity=C
+[/card]
+[card]
+primitive=Phalanx Formation
+id=380468
+rarity=U
+[/card]
+[card]
+primitive=Pharika's Chosen
+id=380470
+rarity=C
+[/card]
+[card]
+primitive=Pharika, God of Affliction
+id=380469
+rarity=M
+[/card]
+[card]
+primitive=Pheres-Band Thunderhoof
+id=380471
+rarity=C
+[/card]
+[card]
+primitive=Pheres-Band Warchief
+id=380472
+rarity=R
+[/card]
+[card]
+primitive=Pin to the Earth
+id=380473
+rarity=C
+[/card]
+[card]
+primitive=Polymorphous Rush
+id=380474
+rarity=R
+[/card]
+[card]
+primitive=Prophetic Flamespeaker
+id=380475
+rarity=M
+[/card]
+[card]
+primitive=Pull from the Deep
+id=380476
+rarity=U
+[/card]
+[card]
+primitive=Quarry Colossus
+id=380477
+rarity=U
+[/card]
+[card]
+primitive=Ravenous Leucrocota
+id=380478
+rarity=C
+[/card]
+[card]
+primitive=Renowned Weaver
+id=380479
+rarity=C
+[/card]
+[card]
+primitive=Reprisal
+id=380480
+rarity=U
+[/card]
+[card]
+primitive=Returned Reveler
+id=380481
+rarity=C
+[/card]
+[card]
+primitive=Revel of the Fallen God
+id=380482
+rarity=R
+[/card]
+[card]
+primitive=Reviving Melody
+id=380483
+rarity=U
+[/card]
+[card]
+primitive=Riddle of Lightning
+id=380484
+rarity=U
+[/card]
+[card]
+primitive=Riptide Chimera
+id=380485
+rarity=U
+[/card]
+[card]
+primitive=Rise of Eagles
+id=380486
+rarity=C
+[/card]
+[card]
+primitive=Ritual of the Returned
+id=380487
+rarity=U
+[/card]
+[card]
+primitive=Rollick of Abandon
+id=380488
+rarity=U
+[/card]
+[card]
+primitive=Rotted Hulk
+id=380489
+rarity=C
+[/card]
+[card]
+primitive=Rouse the Mob
+id=380490
+rarity=C
+[/card]
+[card]
+primitive=Sage of Hours
+id=380491
+rarity=M
+[/card]
+[card]
+primitive=Satyr Grovedancer
+id=380492
+rarity=C
+[/card]
+[card]
+primitive=Satyr Hoplite
+id=380493
+rarity=C
+[/card]
+[card]
+primitive=Scourge of Fleets
+id=380494
+rarity=R
+[/card]
+[card]
+primitive=Setessan Tactics
+id=380495
+rarity=R
+[/card]
+[card]
+primitive=Sightless Brawler
+id=380496
+rarity=U
+[/card]
+[card]
+primitive=Sigiled Skink
+id=380497
+rarity=C
+[/card]
+[card]
+primitive=Sigiled Starfish
+id=380498
+rarity=C
+[/card]
+[card]
+primitive=Silence the Believers
+id=380499
+rarity=R
+[/card]
+[card]
+primitive=Skybind
+id=380500
+rarity=R
+[/card]
+[card]
+primitive=Skyspear Cavalry
+id=380501
+rarity=U
+[/card]
+[card]
+primitive=Solidarity of Heroes
+id=380502
+rarity=U
+[/card]
+[card]
+primitive=Spawn of Thraxes
+id=380503
+rarity=R
+[/card]
+[card]
+primitive=Spirespine
+id=380504
+rarity=U
+[/card]
+[card]
+primitive=Spite of Mogis
+id=380505
+rarity=U
+[/card]
+[card]
+primitive=Spiteful Blow
+id=380506
+rarity=U
+[/card]
+[card]
+primitive=Squelching Leeches
+id=380507
+rarity=U
+[/card]
+[card]
+primitive=Starfall
+id=380508
+rarity=C
+[/card]
+[card]
+primitive=Stonewise Fortifier
+id=380509
+rarity=C
+[/card]
+[card]
+primitive=Stormchaser Chimera
+id=380510
+rarity=U
+[/card]
+[card]
+primitive=Strength from the Fallen
+id=380511
+rarity=U
+[/card]
+[card]
+primitive=Supply-Line Cranes
+id=380512
+rarity=C
+[/card]
+[card]
+primitive=Swarmborn Giant
+id=380513
+rarity=U
+[/card]
+[card]
+primitive=Temple of Epiphany
+id=380514
+rarity=R
+[/card]
+[card]
+primitive=Temple of Malady
+id=380515
+rarity=R
+[/card]
+[card]
+primitive=Tethmos High Priest
+id=380516
+rarity=U
+[/card]
+[card]
+primitive=Thassa's Devourer
+id=380517
+rarity=C
+[/card]
+[card]
+primitive=Thassa's Ire
+id=380518
+rarity=U
+[/card]
+[card]
+primitive=Thoughtrender Lamia
+id=380519
+rarity=U
+[/card]
+[card]
+primitive=Tormented Thoughts
+id=380520
+rarity=U
+[/card]
+[card]
+primitive=Triton Cavalry
+id=380521
+rarity=U
+[/card]
+[card]
+primitive=Triton Shorestalker
+id=380522
+rarity=C
+[/card]
+[card]
+primitive=Twinflame
+id=380523
+rarity=R
+[/card]
+[card]
+primitive=Underworld Coinsmith
+id=380524
+rarity=U
+[/card]
+[card]
+primitive=War-Wing Siren
+id=380525
+rarity=C
+[/card]
+[card]
+primitive=Whitewater Naiads
+id=380526
+rarity=U
+[/card]
+[card]
+primitive=Wildfire Cerberus
+id=380527
+rarity=U
+[/card]
+[card]
+primitive=Worst Fears
+id=380528
+rarity=M
+[/card]

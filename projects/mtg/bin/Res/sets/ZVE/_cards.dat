@@ -1,0 +1,392 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Zendikar vs. Eldrazi
+block=Duel
+year=2015
+total=80
+[/meta]
+[card]
+primitive=Affa Guard Hound
+id=401644
+rarity=U
+[/card]
+[card]
+primitive=Akoum Refuge
+id=401709
+rarity=U
+[/card]
+[card]
+primitive=Artisan of Kozilek
+id=401684
+rarity=U
+[/card]
+[card]
+primitive=Avenger of Zendikar
+id=401643
+rarity=M
+[/card]
+[card]
+primitive=Beastbreaker of Bala Ged
+id=401652
+rarity=U
+[/card]
+[card]
+primitive=Bloodrite Invoker
+id=401687
+rarity=C
+[/card]
+[card]
+primitive=Bloodthrone Vampire
+id=401688
+rarity=C
+[/card]
+[card]
+primitive=Butcher of Malakir
+id=401689
+rarity=R
+[/card]
+[card]
+primitive=Cadaver Imp
+id=401690
+rarity=C
+[/card]
+[card]
+primitive=Caravan Escort
+id=401645
+rarity=C
+[/card]
+[card]
+primitive=Consume the Meek
+id=401691
+rarity=R
+[/card]
+[card]
+primitive=Corpsehatch
+id=401692
+rarity=U
+[/card]
+[card]
+primitive=Daggerback Basilisk
+id=401653
+rarity=C
+[/card]
+[card]
+primitive=Dominator Drone
+id=401693
+rarity=C
+[/card]
+[card]
+primitive=Eldrazi Temple
+id=401710
+rarity=U
+[/card]
+[card]
+primitive=Emrakul's Hatcher
+id=401701
+rarity=C
+[/card]
+[card]
+primitive=Evolving Wilds
+id=401673
+rarity=C
+[/card]
+[card]
+primitive=Explorer's Scope
+id=401670
+rarity=C
+[/card]
+[card]
+primitive=Forerunner of Slaughter
+id=401706
+rarity=U
+[/card]
+[card]
+primitive=Forest
+id=401680
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=401681
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=401682
+rarity=L
+[/card]
+[card]
+primitive=Forked Bolt
+id=401702
+rarity=C
+[/card]
+[card]
+primitive=Frontier Guide
+id=401654
+rarity=U
+[/card]
+[card]
+primitive=Graypelt Hunter
+id=401655
+rarity=C
+[/card]
+[card]
+primitive=Graypelt Refuge
+id=401674
+rarity=U
+[/card]
+[card]
+primitive=Grazing Gladehart
+id=401656
+rarity=C
+[/card]
+[card]
+primitive=Groundswell
+id=401657
+rarity=C
+[/card]
+[card]
+primitive=Harrow
+id=401658
+rarity=C
+[/card]
+[card]
+primitive=Heartstabber Mosquito
+id=401694
+rarity=C
+[/card]
+[card]
+primitive=Hellion Eruption
+id=401703
+rarity=R
+[/card]
+[card]
+primitive=Hellion
+id=401721
+rarity=C
+[/card]
+[card]
+primitive=Induce Despair
+id=401695
+rarity=C
+[/card]
+[card]
+primitive=It That Betrays
+id=401685
+rarity=R
+[/card]
+[card]
+primitive=Joraga Bard
+id=401659
+rarity=C
+[/card]
+[card]
+primitive=Kabira Vindicator
+id=401646
+rarity=U
+[/card]
+[card]
+primitive=Khalni Heart Expedition
+id=401660
+rarity=C
+[/card]
+[card]
+primitive=Knight of Cliffhaven
+id=401647
+rarity=C
+[/card]
+[card]
+primitive=Magmaw
+id=401704
+rarity=R
+[/card]
+[card]
+primitive=Makindi Griffin
+id=401648
+rarity=C
+[/card]
+[card]
+primitive=Marsh Casualties
+id=401696
+rarity=U
+[/card]
+[card]
+primitive=Mind Stone
+id=401707
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=401715
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=401716
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=401717
+rarity=L
+[/card]
+[card]
+primitive=Oblivion Sower
+id=401683
+rarity=M
+[/card]
+[card]
+primitive=Ondu Giant
+id=401661
+rarity=C
+[/card]
+[card]
+primitive=Oust
+id=401649
+rarity=U
+[/card]
+[card]
+primitive=Pawn of Ulamog
+id=401697
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=401677
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=401678
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=401679
+rarity=L
+[/card]
+[card]
+primitive=Plant
+id=401722
+rarity=C
+[/card]
+[card]
+primitive=Primal Command
+id=401662
+rarity=R
+[/card]
+[card]
+primitive=Read the Bones
+id=401698
+rarity=C
+[/card]
+[card]
+primitive=Repel the Darkness
+id=401650
+rarity=C
+[/card]
+[card]
+primitive=Retreat to Kazandu
+id=401663
+rarity=U
+[/card]
+[card]
+primitive=Rocky Tar Pit
+id=401711
+rarity=U
+[/card]
+[card]
+primitive=Runed Servitor
+id=401708
+rarity=U
+[/card]
+[card]
+primitive=Scute Mob
+id=401664
+rarity=R
+[/card]
+[card]
+primitive=Seer's Sundial
+id=401671
+rarity=R
+[/card]
+[card]
+primitive=Sheer Drop
+id=401651
+rarity=C
+[/card]
+[card]
+primitive=Smother
+id=401699
+rarity=U
+[/card]
+[card]
+primitive=Stirring Wildwood
+id=401675
+rarity=R
+[/card]
+[card]
+primitive=Stonework Puma
+id=401672
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=401712
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=401713
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=401714
+rarity=L
+[/card]
+[card]
+primitive=Tajuru Archer
+id=401665
+rarity=U
+[/card]
+[card]
+primitive=Territorial Baloth
+id=401666
+rarity=C
+[/card]
+[card]
+primitive=Torch Slinger
+id=401705
+rarity=C
+[/card]
+[card]
+primitive=Turntimber Basilisk
+id=401667
+rarity=U
+[/card]
+[card]
+primitive=Turntimber Grove
+id=401676
+rarity=C
+[/card]
+[card]
+primitive=Ulamog's Crusher
+id=401686
+rarity=C
+[/card]
+[card]
+primitive=Vampire Nighthawk
+id=401700
+rarity=U
+[/card]
+[card]
+primitive=Veteran Warleader
+id=401669
+rarity=R
+[/card]
+[card]
+primitive=Wildheart Invoker
+id=401668
+rarity=C
+[/card]
