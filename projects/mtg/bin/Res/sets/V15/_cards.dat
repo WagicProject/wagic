@@ -1,0 +1,81 @@
+[meta]
+author=Wagic Team
+name=From the Vault: Angels
+year=2015
+total=15
+[/meta]
+[card]
+primitive=Akroma, Angel of Fury
+id=401628
+rarity=M
+[/card]
+[card]
+primitive=Akroma, Angel of Wrath
+id=401629
+rarity=M
+[/card]
+[card]
+primitive=Archangel of Strife
+id=401630
+rarity=M
+[/card]
+[card]
+primitive=Aurelia, the Warleader
+id=401631
+rarity=M
+[/card]
+[card]
+primitive=Avacyn, Angel of Hope
+id=401632
+rarity=M
+[/card]
+[card]
+primitive=Baneslayer Angel
+id=401633
+rarity=M
+[/card]
+[card]
+primitive=Entreat the Angels
+id=401634
+rarity=M
+[/card]
+[card]
+primitive=Exalted Angel
+id=401635
+rarity=M
+[/card]
+[card]
+primitive=Iona, Shield of Emeria
+id=401636
+rarity=M
+[/card]
+[card]
+primitive=Iridescent Angel
+id=401637
+rarity=M
+[/card]
+[card]
+primitive=Jenara, Asura of War
+id=401638
+rarity=M
+[/card]
+[card]
+primitive=Lightning Angel
+id=401639
+rarity=M
+[/card]
+[card]
+primitive=Platinum Angel
+id=401640
+rarity=M
+[/card]
+[card]
+primitive=Serra Angel
+id=401641
+rarity=M
+[/card]
+[card]
+primitive=Tariel, Reckoner of Souls
+id=401642
+rarity=M
+[/card]

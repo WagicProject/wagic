@@ -1,0 +1,386 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Blessed vs. Cursed
+year=2016
+total=76
+[/meta]
+[card]
+primitive=Abattoir Ghoul
+id=409626
+rarity=U
+[/card]
+[card]
+primitive=Appetite for Brains
+id=409627
+rarity=U
+[/card]
+[card]
+primitive=Barter in Blood
+id=409628
+rarity=U
+[/card]
+[card]
+primitive=Bonds of Faith
+id=409578
+rarity=C
+[/card]
+[card]
+primitive=Butcher Ghoul
+id=409629
+rarity=C
+[/card]
+[card]
+primitive=Butcher's Cleaver
+id=409607
+rarity=U
+[/card]
+[card]
+primitive=Captain of the Mists
+id=409600
+rarity=R
+[/card]
+[card]
+primitive=Cathedral Sanctifier
+id=409579
+rarity=C
+[/card]
+[card]
+primitive=Champion of the Parish
+id=409580
+rarity=R
+[/card]
+[card]
+primitive=Chapel Geist
+id=409581
+rarity=C
+[/card]
+[card]
+primitive=Cobbled Wings
+id=409645
+rarity=C
+[/card]
+[card]
+primitive=Compelling Deterrence
+id=409618
+rarity=U
+[/card]
+[card]
+primitive=Dearly Departed
+id=409582
+rarity=R
+[/card]
+[card]
+primitive=Diregraf Captain
+id=409644
+rarity=U
+[/card]
+[card]
+primitive=Diregraf Ghoul
+id=409630
+rarity=U
+[/card]
+[card]
+primitive=Dismal Backwater
+id=409646
+rarity=C
+[/card]
+[card]
+primitive=Doomed Traveler
+id=409583
+rarity=C
+[/card]
+[card]
+primitive=Dread Return
+id=409631
+rarity=U
+[/card]
+[card]
+primitive=Driver of the Dead
+id=409632
+rarity=C
+[/card]
+[card]
+primitive=Eerie Interlude
+id=409584
+rarity=R
+[/card]
+[card]
+primitive=Elder Cathar
+id=409585
+rarity=C
+[/card]
+[card]
+primitive=Emancipation Angel
+id=409586
+rarity=U
+[/card]
+[card]
+primitive=Falkenrath Noble
+id=409633
+rarity=U
+[/card]
+[card]
+primitive=Fiend Hunter
+id=409587
+rarity=U
+[/card]
+[card]
+primitive=Forbidden Alchemy
+id=409619
+rarity=C
+[/card]
+[card]
+primitive=Gather the Townsfolk
+id=409588
+rarity=C
+[/card]
+[card]
+primitive=Geist of Saint Traft
+id=409577
+rarity=M
+[/card]
+[card]
+primitive=Ghoulraiser
+id=409634
+rarity=C
+[/card]
+[card]
+primitive=Goldnight Redeemer
+id=409589
+rarity=U
+[/card]
+[card]
+primitive=Gravecrawler
+id=409635
+rarity=R
+[/card]
+[card]
+primitive=Gryff Vanguard
+id=409601
+rarity=C
+[/card]
+[card]
+primitive=Harvester of Souls
+id=409636
+rarity=R
+[/card]
+[card]
+primitive=Havengul Runebinder
+id=409620
+rarity=R
+[/card]
+[card]
+primitive=Human Frailty
+id=409637
+rarity=U
+[/card]
+[card]
+primitive=Increasing Devotion
+id=409590
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=409611
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=409612
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=409613
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=409647
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=409648
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=409649
+rarity=L
+[/card]
+[card]
+primitive=Makeshift Mauler
+id=409621
+rarity=C
+[/card]
+[card]
+primitive=Mindwrack Demon
+id=409617
+rarity=M
+[/card]
+[card]
+primitive=Mist Raven
+id=409602
+rarity=C
+[/card]
+[card]
+primitive=Moan of the Unhallowed
+id=409638
+rarity=U
+[/card]
+[card]
+primitive=Momentary Blink
+id=409591
+rarity=C
+[/card]
+[card]
+primitive=Moorland Inquisitor
+id=409592
+rarity=C
+[/card]
+[card]
+primitive=Nephalia Smuggler
+id=409603
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=409614
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=409615
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=409616
+rarity=L
+[/card]
+[card]
+primitive=Pore Over the Pages
+id=409604
+rarity=U
+[/card]
+[card]
+primitive=Rebuke
+id=409593
+rarity=C
+[/card]
+[card]
+primitive=Relentless Skaabs
+id=409622
+rarity=U
+[/card]
+[card]
+primitive=Scrapskin Drake
+id=409623
+rarity=C
+[/card]
+[card]
+primitive=Screeching Skaab
+id=409624
+rarity=C
+[/card]
+[card]
+primitive=Seraph Sanctuary
+id=409609
+rarity=C
+[/card]
+[card]
+primitive=Sever the Bloodline
+id=409639
+rarity=R
+[/card]
+[card]
+primitive=Sharpened Pitchfork
+id=409608
+rarity=U
+[/card]
+[card]
+primitive=Slayer of the Wicked
+id=409594
+rarity=U
+[/card]
+[card]
+primitive=Spectral Gateguards
+id=409595
+rarity=C
+[/card]
+[card]
+primitive=Stitched Drake
+id=409625
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=409650
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=409651
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=409652
+rarity=L
+[/card]
+[card]
+primitive=Tandem Lookout
+id=409605
+rarity=U
+[/card]
+[card]
+primitive=Thraben Heretic
+id=409596
+rarity=U
+[/card]
+[card]
+primitive=Tooth Collector
+id=409640
+rarity=U
+[/card]
+[card]
+primitive=Topplegeist
+id=409597
+rarity=U
+[/card]
+[card]
+primitive=Tower Geist
+id=409606
+rarity=U
+[/card]
+[card]
+primitive=Tranquil Cove
+id=409610
+rarity=C
+[/card]
+[card]
+primitive=Tribute to Hunger
+id=409641
+rarity=U
+[/card]
+[card]
+primitive=Unbreathing Horde
+id=409642
+rarity=R
+[/card]
+[card]
+primitive=Victim of Night
+id=409643
+rarity=C
+[/card]
+[card]
+primitive=Village Bell-Ringer
+id=409598
+rarity=C
+[/card]
+[card]
+primitive=Voice of the Provinces
+id=409599
+rarity=C
+[/card]

@@ -1,0 +1,447 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Jace vs. Vraska
+block=Duel
+year=2014
+total=88
+[/meta]
+[card]
+primitive=AEther Adept
+id=380241
+rarity=C
+[/card]
+[card]
+primitive=AEther Figment
+id=380263
+rarity=U
+[/card]
+[card]
+primitive=Acidic Slime
+id=380236
+rarity=U
+[/card]
+[card]
+primitive=Aeon Chronicler
+id=380272
+rarity=R
+[/card]
+[card]
+primitive=Agoraphobia
+id=380253
+rarity=U
+[/card]
+[card]
+primitive=Archaeomancer
+id=380252
+rarity=C
+[/card]
+[card]
+primitive=Body Double
+id=380228
+rarity=R
+[/card]
+[card]
+primitive=Chronomaton
+id=380269
+rarity=U
+[/card]
+[card]
+primitive=Claustrophobia
+id=380259
+rarity=C
+[/card]
+[card]
+primitive=Consume Strength
+id=380246
+rarity=C
+[/card]
+[card]
+primitive=Control Magic
+id=380201
+rarity=U
+[/card]
+[card]
+primitive=Corpse Traders
+id=380254
+rarity=U
+[/card]
+[card]
+primitive=Crosstown Courier
+id=380256
+rarity=C
+[/card]
+[card]
+primitive=Death-Hood Cobra
+id=380262
+rarity=C
+[/card]
+[card]
+primitive=Dread Statuary
+id=380232
+rarity=U
+[/card]
+[card]
+primitive=Dream Stalker
+id=380210
+rarity=C
+[/card]
+[card]
+primitive=Drooling Groodion
+id=380205
+rarity=U
+[/card]
+[card]
+primitive=Errant Ephemeron
+id=380243
+rarity=C
+[/card]
+[card]
+primitive=Festerhide Boar
+id=380200
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=380192
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=380198
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=380208
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=380209
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=380229
+rarity=L
+[/card]
+[card]
+primitive=Future Sight
+id=380251
+rarity=R
+[/card]
+[card]
+primitive=Gatecreeper Vine
+id=380268
+rarity=C
+[/card]
+[card]
+primitive=Golgari Guildgate
+id=380220
+rarity=C
+[/card]
+[card]
+primitive=Griptide
+id=380267
+rarity=C
+[/card]
+[card]
+primitive=Grisly Spectacle
+id=380274
+rarity=C
+[/card]
+[card]
+primitive=Halimar Depths
+id=380231
+rarity=C
+[/card]
+[card]
+primitive=Highway Robber
+id=380193
+rarity=C
+[/card]
+[card]
+primitive=Hypnotic Cloud
+id=380225
+rarity=C
+[/card]
+[card]
+primitive=Into the Roil
+id=380188
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=380194
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=380217
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=380222
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=380223
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=380261
+rarity=L
+[/card]
+[card]
+primitive=Jace's Ingenuity
+id=380211
+rarity=U
+[/card]
+[card]
+primitive=Jace's Mindseeker
+id=380206
+rarity=R
+[/card]
+[card]
+primitive=Jace's Phantasm
+id=380245
+rarity=U
+[/card]
+[card]
+primitive=Jace, Architect of Thought
+id=380190
+rarity=M
+[/card]
+[card]
+primitive=Krovikan Mist
+id=380275
+rarity=C
+[/card]
+[card]
+primitive=Last Kiss
+id=380218
+rarity=C
+[/card]
+[card]
+primitive=Leyline Phantom
+id=380257
+rarity=C
+[/card]
+[card]
+primitive=Marsh Casualties
+id=380238
+rarity=U
+[/card]
+[card]
+primitive=Memory Lapse
+id=380199
+rarity=C
+[/card]
+[card]
+primitive=Merfolk Wayfinder
+id=380233
+rarity=U
+[/card]
+[card]
+primitive=Mold Shambler
+id=380249
+rarity=C
+[/card]
+[card]
+primitive=Nekrataal
+id=380273
+rarity=U
+[/card]
+[card]
+primitive=Night's Whisper
+id=380191
+rarity=U
+[/card]
+[card]
+primitive=Ohran Viper
+id=380265
+rarity=R
+[/card]
+[card]
+primitive=Oran-Rief Recluse
+id=380248
+rarity=C
+[/card]
+[card]
+primitive=Phantasmal Bear
+id=380219
+rarity=C
+[/card]
+[card]
+primitive=Phantasmal Dragon
+id=380215
+rarity=U
+[/card]
+[card]
+primitive=Prohibit
+id=380270
+rarity=C
+[/card]
+[card]
+primitive=Pulse Tracker
+id=380250
+rarity=C
+[/card]
+[card]
+primitive=Putrid Leech
+id=380242
+rarity=C
+[/card]
+[card]
+primitive=Ray of Command
+id=380216
+rarity=C
+[/card]
+[card]
+primitive=Reaper of the Wilds
+id=380224
+rarity=R
+[/card]
+[card]
+primitive=Remand
+id=380255
+rarity=U
+[/card]
+[card]
+primitive=Riftwing Cloudskate
+id=380197
+rarity=U
+[/card]
+[card]
+primitive=River Boa
+id=380260
+rarity=U
+[/card]
+[card]
+primitive=Rogue's Passage
+id=380234
+rarity=U
+[/card]
+[card]
+primitive=Sadistic Augermage
+id=380189
+rarity=C
+[/card]
+[card]
+primitive=Sea Gate Oracle
+id=380247
+rarity=C
+[/card]
+[card]
+primitive=Shadow Alley Denizen
+id=380212
+rarity=C
+[/card]
+[card]
+primitive=Slate Street Ruffian
+id=380226
+rarity=C
+[/card]
+[card]
+primitive=Spawnwrithe
+id=380196
+rarity=R
+[/card]
+[card]
+primitive=Spelltwine
+id=380258
+rarity=R
+[/card]
+[card]
+primitive=Stab Wound
+id=380204
+rarity=C
+[/card]
+[card]
+primitive=Stealer of Secrets
+id=380202
+rarity=C
+[/card]
+[card]
+primitive=Stonefare Crocodile
+id=380230
+rarity=C
+[/card]
+[card]
+primitive=Summoner's Bane
+id=380266
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=380237
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=380239
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=380240
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=380264
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=380271
+rarity=L
+[/card]
+[card]
+primitive=Tainted Wood
+id=380213
+rarity=U
+[/card]
+[card]
+primitive=Tavern Swindler
+id=380195
+rarity=U
+[/card]
+[card]
+primitive=Thought Scour
+id=380203
+rarity=C
+[/card]
+[card]
+primitive=Tragic Slip
+id=380221
+rarity=C
+[/card]
+[card]
+primitive=Treasured Find
+id=380235
+rarity=U
+[/card]
+[card]
+primitive=Underworld Connections
+id=380227
+rarity=R
+[/card]
+[card]
+primitive=Vinelasher Kudzu
+id=380244
+rarity=R
+[/card]
+[card]
+primitive=Vraska the Unseen
+id=380214
+rarity=M
+[/card]
+[card]
+primitive=Wight of Precinct Six
+id=380207
+rarity=U
+[/card]

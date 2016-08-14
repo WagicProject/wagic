@@ -1,0 +1,332 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Elspeth vs. Kiora
+block=Duel
+year=2015
+total=65
+[/meta]
+[card]
+primitive=AEtherize
+id=394352
+rarity=U
+[/card]
+[card]
+primitive=Accumulated Knowledge
+id=394351
+rarity=C
+[/card]
+[card]
+primitive=Banisher Priest
+id=394353
+rarity=U
+[/card]
+[card]
+primitive=Captain of the Watch
+id=394354
+rarity=R
+[/card]
+[card]
+primitive=Celestial Flare
+id=394355
+rarity=C
+[/card]
+[card]
+primitive=Coiling Oracle
+id=394356
+rarity=C
+[/card]
+[card]
+primitive=Court Street Denizen
+id=394357
+rarity=C
+[/card]
+[card]
+primitive=Dauntless Onslaught
+id=394358
+rarity=U
+[/card]
+[card]
+primitive=Decree of Justice
+id=394359
+rarity=R
+[/card]
+[card]
+primitive=Dictate of Heliod
+id=394360
+rarity=R
+[/card]
+[card]
+primitive=Elspeth, Sun's Champion
+id=394361
+rarity=M
+[/card]
+[card]
+primitive=Evolving Wilds
+id=394362
+rarity=C
+[/card]
+[card]
+primitive=Explore
+id=394363
+rarity=C
+[/card]
+[card]
+primitive=Explosive Vegetation
+id=394364
+rarity=U
+[/card]
+[card]
+primitive=Forest
+id=394365
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=394366
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=394367
+rarity=L
+[/card]
+[card]
+primitive=Gempalm Avenger
+id=394368
+rarity=C
+[/card]
+[card]
+primitive=Grazing Gladehart
+id=394369
+rarity=C
+[/card]
+[card]
+primitive=Gustcloak Harrier
+id=394370
+rarity=C
+[/card]
+[card]
+primitive=Gustcloak Savior
+id=394371
+rarity=R
+[/card]
+[card]
+primitive=Gustcloak Sentinel
+id=394372
+rarity=U
+[/card]
+[card]
+primitive=Gustcloak Skirmisher
+id=394373
+rarity=U
+[/card]
+[card]
+primitive=Icatian Javelineers
+id=394374
+rarity=C
+[/card]
+[card]
+primitive=Inkwell Leviathan
+id=394375
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=394376
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=394377
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=394378
+rarity=L
+[/card]
+[card]
+primitive=Kinsbaile Skirmisher
+id=394379
+rarity=C
+[/card]
+[card]
+primitive=Kiora's Follower
+id=394381
+rarity=U
+[/card]
+[card]
+primitive=Kiora, the Crashing Wave
+id=394380
+rarity=M
+[/card]
+[card]
+primitive=Kor Skyfisher
+id=394382
+rarity=C
+[/card]
+[card]
+primitive=Lorescale Coatl
+id=394384
+rarity=U
+[/card]
+[card]
+primitive=Loxodon Partisan
+id=394385
+rarity=C
+[/card]
+[card]
+primitive=Man-o'-War
+id=394386
+rarity=C
+[/card]
+[card]
+primitive=Mighty Leap
+id=394387
+rarity=C
+[/card]
+[card]
+primitive=Mortal's Ardor
+id=394388
+rarity=C
+[/card]
+[card]
+primitive=Mother of Runes
+id=394389
+rarity=U
+[/card]
+[card]
+primitive=Nessian Asp
+id=394390
+rarity=C
+[/card]
+[card]
+primitive=Netcaster Spider
+id=394391
+rarity=C
+[/card]
+[card]
+primitive=Nimbus Swimmer
+id=394392
+rarity=U
+[/card]
+[card]
+primitive=Noble Templar
+id=394393
+rarity=C
+[/card]
+[card]
+primitive=Omenspeaker
+id=394394
+rarity=C
+[/card]
+[card]
+primitive=Peel from Reality
+id=394395
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=394396
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=394397
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=394398
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=394399
+rarity=L
+[/card]
+[card]
+primitive=Plasm Capture
+id=394400
+rarity=R
+[/card]
+[card]
+primitive=Precinct Captain
+id=394401
+rarity=R
+[/card]
+[card]
+primitive=Raise the Alarm
+id=394402
+rarity=C
+[/card]
+[card]
+primitive=Scourge of Fleets
+id=394403
+rarity=R
+[/card]
+[card]
+primitive=Sealock Monster
+id=394404
+rarity=U
+[/card]
+[card]
+primitive=Secluded Steppe
+id=394405
+rarity=C
+[/card]
+[card]
+primitive=Simic Sky Swallower
+id=394406
+rarity=R
+[/card]
+[card]
+primitive=Soul Parry
+id=394408
+rarity=C
+[/card]
+[card]
+primitive=Standing Troops
+id=394409
+rarity=C
+[/card]
+[card]
+primitive=Sunlance
+id=394410
+rarity=C
+[/card]
+[card]
+primitive=Surrakar Banisher
+id=394411
+rarity=C
+[/card]
+[card]
+primitive=Temple of the False God
+id=394412
+rarity=U
+[/card]
+[card]
+primitive=Time to Feed
+id=394413
+rarity=C
+[/card]
+[card]
+primitive=Urban Evolution
+id=394414
+rarity=U
+[/card]
+[card]
+primitive=Veteran Armorsmith
+id=394415
+rarity=C
+[/card]
+[card]
+primitive=Veteran Swordsmith
+id=394416
+rarity=C
+[/card]
+[card]
+primitive=Whelming Wave
+id=394417
+rarity=R
+[/card]
