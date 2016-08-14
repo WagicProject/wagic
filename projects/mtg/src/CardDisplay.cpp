@@ -263,11 +263,13 @@ void CardDisplay::Render()
     {
         mObjects[mCurr]->Render();
         CardGui * cardg = ((CardGui *) mObjects[mCurr]);
-        Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
+        //Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
+        Pos pos = Pos((CardGui::BigWidth / 2), CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
         int drawMode = DrawMode::kNormal;
         if (observer)
         {
-            pos.actY = 145;
+            //pos.actY = 145;
+            pos.actY = 142;//reduce y a little
             if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
             drawMode = observer->getCardSelector()->GetDrawMode();
         }
