@@ -1466,7 +1466,7 @@ int AACopier::resolve()
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
             tokencopied = true;
 
-        if(tokencopied)
+        if(tokencopied && !_target->isACopier)
             source->copy(_target->clone());
         else
         {

@@ -106,6 +106,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 
     CardPrimitive * data = source->data;
     basicAbilities = data->basicAbilities;
+    types.clear();//reset types.. fix copying man lands... the copier becomes an unanimated land...
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -115,7 +116,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 
     manaCost.copy(data->getManaCost());
 
-    setText(""); //The text is retrieved from the data anyways
+    setText(data->text); //The text is retrieved from the data anyways
     setName(data->name);
 
     power = data->power;//layer 7a
