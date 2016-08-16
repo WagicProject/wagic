@@ -444,6 +444,17 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecuresetfresh(1);
                     }
                 }
+                else if (attribute.find("geared") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDgeared = -1;
+                    }
+                    else
+                    {
+                        cd->CDgeared = 1;
+                    }
+                }
                 //creature is a level up creature
                 else if (attribute.find("leveler") != string::npos)
                 {
