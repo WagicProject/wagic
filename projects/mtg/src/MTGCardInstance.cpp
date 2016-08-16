@@ -1090,7 +1090,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         card->has(Constants::AFFINITYISLAND) ||
         card->has(Constants::AFFINITYMOUNTAIN) ||
         card->has(Constants::AFFINITYPLAINS) ||
-        card->has(Constants::AFFINITYSWAMP))
+        card->has(Constants::AFFINITYSWAMP) ||
+        card->has(Constants::CONDUITED))
     {//start3
         if (card->has(Constants::AFFINITYARTIFACTS))
         {
@@ -1144,6 +1145,14 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             TargetChooser * tc = tf.createTargetChooser("creature[green]", NULL);
             reduce = card->controller()->game->battlefield->countByCanTarget(tc);
             SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::CONDUITED))
+        {//I had to hardcode this since it doesn't update with auto=this(creaturespells<1) lord(creature|mycastingzone) altercost(colorless,-2)
+            color = 0;
+            reduce = card->controller()->inPlay()->countByAlias(401847);
+            reduce *= 2;
+            if(card->controller()->game->stack->seenThisTurn("creature", Constants::CAST_ALL) > 0)
+                reduce = 0;
         }
         else
         {

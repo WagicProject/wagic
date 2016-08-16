@@ -259,7 +259,8 @@ class Constants
       NOLEGENDRULE =137,
       CANTTRANSFORM =138,
       ASFLASH =139,
-      NB_BASIC_ABILITIES = 140,
+      CONDUITED = 140,
+      NB_BASIC_ABILITIES = 141,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

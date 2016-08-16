@@ -102,7 +102,8 @@ class MTGGameZone {
    size_t getIndex(MTGCardInstance * card);
    void cleanupPhase();
    void beforeBeginPhase();
-
+   
+   unsigned int countByAlias(int number = 0);
    unsigned int countByType(const string &value);
    unsigned int countByCanTarget(TargetChooser * tc);
    unsigned int countTotalManaSymbols(TargetChooser * tc, int color);
