@@ -1121,6 +1121,7 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYMOUNTAIN) ||
                     card->has(Constants::AFFINITYPLAINS) ||
                     card->has(Constants::AFFINITYSWAMP) ||
+                    card->has(Constants::CONDUITED) ||
                     card->getIncreasedManaCost()->getConvertedCost() ||
                     card->getReducedManaCost()->getConvertedCost() ||
                     NewAffinityFound)
