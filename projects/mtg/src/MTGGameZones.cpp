@@ -643,6 +643,20 @@ size_t MTGGameZone::getIndex(MTGCardInstance * card)
     return -1;
 }
 
+unsigned int MTGGameZone::countByAlias(int number)
+{
+    if(!number)
+        return 0;
+    int result = 0;
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->alias == number)
+        {
+            result++;
+        }
+    }
+    return result;
+}
 
 unsigned int MTGGameZone::countByType(const string &value)
 {
