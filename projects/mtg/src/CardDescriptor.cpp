@@ -24,6 +24,7 @@ CardDescriptor::CardDescriptor()
     CDopponentDamaged = 0;
     CDcontrollerDamaged = 0;
     CDdamager = 0;
+    CDgeared = 0;
 }
 
 int CardDescriptor::init()
@@ -53,7 +54,7 @@ void CardDescriptor::setisMultiColored(int w)
 {
     isMultiColored = w;
 }
-    
+
 void CardDescriptor::setNegativeSubtype(string value)
 {
     int id = MTGAllCards::findType(value);
@@ -207,6 +208,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     if ((fresh == -1 && card->fresh) || (fresh == 1 && !card->fresh))
+    {
+        match = NULL;
+    }
+    
+    if ((CDgeared == -1 && card->equipment > 0) || (CDgeared == 1 && card->equipment < 1))
     {
         match = NULL;
     }
