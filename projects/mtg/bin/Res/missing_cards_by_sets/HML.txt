@@ -1,0 +1,140 @@
+[card]
+name=AEther Storm
+text=Creature spells can't be cast. -- Pay 4 life: Destroy AEther Storm. It can't be regenerated. Any player may activate this ability.
+mana={3}{U}
+type=Enchantment
+[/card]
+[card]
+name=Apocalypse Chime
+text={2}, {T}, Sacrifice Apocalypse Chime: Destroy all nontoken permanents from the Homelands expansion. They can't be regenerated.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Autumn Willow
+text=Shroud -- {G}: Until end of turn, Autumn Willow can be the target of spells and abilities controlled by target player as though it didn't have shroud.
+mana={4}{G}{G}
+type=Legendary Creature
+subtype=Avatar
+power=4
+toughness=4
+[/card]
+[card]
+name=Beast Walkers
+text={G}: Beast Walkers gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}{W}
+type=Creature
+subtype=Human Beast Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Broken Visage
+text=Destroy target nonartifact attacking creature. It can't be regenerated. Put a black Spirit creature token with that creature's power and toughness onto the battlefield. Sacrifice the token at the beginning of the next end step.
+mana={4}{B}
+type=Instant
+[/card]
+[card]
+name=Chain Stasis
+text=You may tap or untap target creature. Then that creature's controller may pay {2}{U}. If the player does, he or she may copy this spell and may choose a new target for that copy.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Daughter of Autumn
+text={W}: The next 1 damage that would be dealt to target white creature this turn is dealt to Daughter of Autumn instead.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Avatar
+power=2
+toughness=4
+[/card]
+[card]
+name=Dwarven Sea Clan
+text={T}: Choose target attacking or blocking creature whose controller controls an Island. Dwarven Sea Clan deals 2 damage to that creature at end of combat. Activate this ability only before the end of combat step.
+mana={2}{R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+[/card]
+[card]
+name=Giant Albatross
+text=Flying -- When Giant Albatross dies, you may pay {1}{U}. If you do, for each creature that dealt damage to Giant Albatross this turn, destroy that creature unless its controller pays 2 life. A creature destroyed this way can't be regenerated.
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
+name=Giant Oyster
+text=You may choose not to untap Giant Oyster during your untap step. -- {T}: For as long as Giant Oyster remains tapped, target tapped creature doesn't untap during its controller's untap step, and at the beginning of each of your draw steps, put a -1/-1 counter on that creature. When Giant Oyster leaves the battlefield or becomes untapped, remove all -1/-1 counters from the creature.
+mana={2}{U}{U}
+type=Creature
+subtype=Oyster
+power=0
+toughness=3
+[/card]
+[card]
+name=Hazduhr the Abbot
+text={X}, {T}: The next X damage that would be dealt this turn to target white creature you control is dealt to Hazduhr the Abbot instead.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=5
+[/card]
+[card]
+name=Heart Wolf
+text=First strike -- {T}: Target Dwarf creature gets +2/+0 and gains first strike until end of turn. When that creature leaves the battlefield this turn, sacrifice Heart Wolf. Activate this ability only during combat.
+mana={3}{R}
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+[/card]
+[card]
+name=Ironclaw Curse
+text=Enchant creature -- Enchanted creature gets -0/-1. -- Enchanted creature can't block creatures with power equal to or greater than the enchanted creature's toughness.
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Leeches
+text=Target player loses all poison counters. Leeches deals that much damage to that player.
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Orcish Mine
+text=Enchant land -- Orcish Mine enters the battlefield with three ore counters on it. -- At the beginning of your upkeep and whenever enchanted land becomes tapped, remove an ore counter from Orcish Mine. -- When the last ore counter is removed from Orcish Mine, destroy enchanted land and Orcish Mine deals 2 damage to its controller.
+mana={1}{R}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Retribution
+text=Choose two target creatures an opponent controls. That player chooses and sacrifices one of those creatures. Put a -1/-1 counter on the other.
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Soraya the Falconer
+text=Bird creatures get +1/+1. -- {1}{W}: Target Bird creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}{W}
+type=Legendary Creature
+subtype=Human
+power=2
+toughness=2
+[/card]
+[card]
+name=Timmerian Fiends
+text=Remove Timmerian Fiends from your deck before playing if you're not playing for ante. -- {B}{B}{B}, Sacrifice Timmerian Fiends: The owner of target artifact may ante the top card of his or her library. If that player doesn't, exchange ownership of that artifact and Timmerian Fiends. Put the artifact card into your graveyard and Timmerian Fiends from anywhere into that player's graveyard. This change in ownership is permanent.
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+power=1
+toughness=1
+[/card]
