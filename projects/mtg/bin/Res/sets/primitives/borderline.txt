@@ -85,6 +85,14 @@ type=Instant
 text=Target creature you control gains protection from the color of your choice until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
+name=Eureka
+auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,enchantment,land,planeswalker|myhand) !$ controller
+auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,enchantment,land,planeswalker|myhand) !$ opponent
+text=Starting with you, each player may put a permanent card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
+mana={2}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Feral Hydra
 type=Creature
 subtype=Hydra Beast
