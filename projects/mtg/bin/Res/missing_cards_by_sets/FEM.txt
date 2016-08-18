@@ -1,0 +1,106 @@
+[card]
+name=Delif's Cube
+text={2}, {T}: This turn, when target creature you control attacks and isn't blocked, it assigns no combat damage this turn and you put a cube counter on Delif's Cube. -- {2}, Remove a cube counter from Delif's Cube: Regenerate target creature.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Dwarven Catapult
+text=Dwarven Catapult deals X damage divided evenly, rounded down, among all creatures target opponent controls.
+mana={X}{R}
+type=Instant
+[/card]
+[card]
+name=Goblin Flotilla
+text=Islandwalk -- At the beginning of combat, unless you pay {R}, whenever Goblin Flotilla blocks or becomes blocked by a creature this combat, that creature gains first strike until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
+name=Heroism
+text=Sacrifice a white creature: For each attacking red creature, prevent all combat damage that would be dealt by that creature this turn unless its controller pays {2}{R}.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Icatian Infantry
+text={1}: Icatian Infantry gains first strike until end of turn. -- {1}: Icatian Infantry gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Icatian Phalanx
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
+name=Icatian Skirmishers
+text=First strike; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- Whenever Icatian Skirmishers attacks, all creatures banded with it gain first strike until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Merseine
+text=Enchant creature  -- Merseine enters the battlefield with three net counters on it.  -- Enchanted creature doesn't untap during its controller's untap step if Merseine has a net counter on it. -- Pay enchanted creature's mana cost: Remove a net counter from Merseine. Any player may activate this ability, but only if he or she controls the enchanted creature.
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Raiding Party
+text=Raiding Party can't be the target of white spells or abilities from white sources. --  -- Sacrifice an Orc: Each player may tap any number of untapped white creatures he or she controls. For each creature tapped this way, that player chooses up to two Plains. Then destroy all Plains that weren't chosen this way by any player.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Seasinger
+text=When you control no Islands, sacrifice Seasinger. -- You may choose not to untap Seasinger during your untap step. -- {T}: Gain control of target creature whose controller controls an Island for as long as you control Seasinger and Seasinger remains tapped.
+mana={1}{U}{U}
+type=Creature
+subtype=Merfolk
+power=0
+toughness=1
+[/card]
+[card]
+name=Soul Exchange
+text=As an additional cost to cast Soul Exchange, exile a creature you control. -- Return target creature card from your graveyard to the battlefield. Put a +2/+2 counter on that creature if the exiled creature was a Thrull.
+mana={B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Thrull Champion
+text=Thrull creatures get +1/+1. -- {T}: Gain control of target Thrull for as long as you control Thrull Champion.
+mana={4}{B}
+type=Creature
+subtype=Thrull
+power=2
+toughness=2
+[/card]
+[card]
+name=Tidal Flats
+text={U}{U}: For each attacking creature without flying, its controller may pay {1}. If he or she doesn't, creatures you control blocking that creature gain first strike until end of turn.
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Vodalian War Machine
+text=Defender (This creature can't attack.) -- Tap an untapped Merfolk you control: Vodalian War Machine can attack this turn as though it didn't have defender. -- Tap an untapped Merfolk you control: Vodalian War Machine gets +2/+1 until end of turn. -- When Vodalian War Machine dies, destroy all Merfolk tapped this turn to pay for its abilities.
+mana={1}{U}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=4
+[/card]

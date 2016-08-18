@@ -1,0 +1,206 @@
+[card]
+name=Blood of the Martyr
+text=Until end of turn, if damage would be dealt to any creature, you may have that damage dealt to you instead.
+mana={W}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Cleansing
+text=For each land, destroy that land unless any player pays 1 life.
+mana={W}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Dance of Many
+text=When Dance of Many enters the battlefield, put a token that's a copy of target nontoken creature onto the battlefield. -- When Dance of Many leaves the battlefield, exile the token. -- When the token leaves the battlefield, sacrifice Dance of Many. -- At the beginning of your upkeep, sacrifice Dance of Many unless you pay {U}{U}.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Dark Sphere
+text={T}, Sacrifice Dark Sphere: The next time a source of your choice would deal damage to you this turn, it deals half that damage, rounded up, to you instead.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Deep Water
+text={U}: Until end of turn, if you tap a land you control for mana, it produces {U} instead of any other type.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Erosion
+text=Enchant land -- At the beginning of the upkeep of enchanted land's controller, destroy that land unless that player pays {1} or 1 life.
+mana={U}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Fasting
+text=At the beginning of your upkeep, put a hunger counter on Fasting. Then destroy Fasting if it has five or more hunger counters on it. -- If you would begin your draw step, you may skip that step instead. If you do, you gain 2 life. -- When you draw a card, destroy Fasting.
+mana={W}
+type=Enchantment
+[/card]
+[card]
+name=Fire and Brimstone
+text=Fire and Brimstone deals 4 damage to target player who declared an attacking creature this turn and 4 damage to you.
+mana={3}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Frankenstein's Monster
+text=As Frankenstein's Monster enters the battlefield, exile X creature cards from your graveyard. If you can't, put Frankenstein's Monster into its owner's graveyard instead of onto the battlefield. For each creature card exiled this way, Frankenstein's Monster enters the battlefield with a +2/+0, +1/+1, or +0/+2 counter on it.
+mana={X}{B}{B}
+type=Creature
+subtype=Zombie
+power=0
+toughness=1
+[/card]
+[card]
+name=Gaea's Touch
+text=You may play an additional land during your turn if that land is a basic Forest. --  -- Sacrifice Gaea's Touch: Add {G}{G} to your mana pool.
+mana={G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Knights of Thorn
+text=Protection from red; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={3}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Mana Clash
+text=You and target opponent each flip a coin. Mana Clash deals 1 damage to each player whose coin comes up tails. Repeat this process until both players' coins come up heads on the same flip.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Mana Vortex
+text=When you cast Mana Vortex, counter it unless you sacrifice a land. -- At the beginning of each player's upkeep, that player sacrifices a land. -- When there are no lands on the battlefield, sacrifice Mana Vortex.
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Mind Bomb
+text=Each player may discard up to three cards. Mind Bomb deals damage to each player equal to 3 minus the number of cards he or she discarded this way.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Miracle Worker
+text={T}: Destroy target Aura attached to a creature you control.
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Nameless Race
+text=Trample -- As Nameless Race enters the battlefield, pay any amount of life. The amount you pay can't be more than the total number of white nontoken permanents your opponents control plus the total number of white cards in their graveyards. -- Nameless Race's power and toughness are each equal to the life paid as it entered the battlefield.
+mana={3}{B}
+type=Creature
+power=*
+toughness=*
+[/card]
+[card]
+name=Pikemen
+text=First strike; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Preacher
+text=You may choose not to untap Preacher during your untap step. -- {T}: Gain control of target creature of an opponent's choice that he or she controls for as long as Preacher remains tapped.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Rag Man
+text={B}{B}{B}, {T}: Target opponent reveals his or her hand and discards a creature card at random. Activate this ability only during your turn.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Minion
+power=2
+toughness=1
+[/card]
+[card]
+name=Reflecting Mirror
+text={X}, {T}: Change the target of target spell with a single target if that target is you. The new target must be a player. X is twice the converted mana cost of that spell.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Runesword
+text={3}, {T}: Target attacking creature gets +2/+0 until end of turn. When that creature leaves the battlefield this turn, sacrifice Runesword. If the creature deals damage to a creature this turn, the creature dealt damage can't be regenerated this turn. If a creature dealt damage by the targeted creature would die this turn, exile that creature instead.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Savaen Elves
+text={G}{G}, {T}: Destroy target Aura attached to a land.
+mana={G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+[/card]
+[card]
+name=Scarwood Bandits
+text=Forestwalk -- {2}{G}, {T}: Unless an opponent pays {2}, gain control of target artifact for as long as Scarwood Bandits remains on the battlefield.
+mana={2}{G}{G}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Sorrow's Path
+text={T}: Choose two target blocking creatures an opponent controls. If each of those creatures could block all creatures that the other is blocking, remove both of them from combat. Each one then blocks all creatures the other was blocking.  -- Whenever Sorrow's Path becomes tapped, it deals 2 damage to you and each creature you control.
+type=Land
+[/card]
+[card]
+name=Spitting Slug
+text=Whenever Spitting Slug blocks or becomes blocked, you may pay {1}{G}. If you do, Spitting Slug gains first strike until end of turn. Otherwise, each creature blocking or blocked by Spitting Slug gains first strike until end of turn.
+mana={1}{G}{G}
+type=Creature
+subtype=Slug
+power=2
+toughness=4
+[/card]
+[card]
+name=Wand of Ith
+text={3}, {T}: Target player reveals a card at random from his or her hand. If it's a land card, that player discards it unless he or she pays 1 life. If it isn't a land card, the player discards it unless he or she pays life equal to its converted mana cost. Activate this ability only during your turn.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=War Barge
+text={3}: Target creature gains islandwalk until end of turn. When War Barge leaves the battlefield this turn, destroy that creature. A creature destroyed this way can't be regenerated.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Whippoorwill
+text={G}{G}, {T}: Target creature can't be regenerated this turn. Damage that would be dealt to that creature this turn can't be prevented or dealt instead to another creature or player. When the creature dies this turn, exile the creature.
+mana={G}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
+name=Worms of the Earth
+text=Players can't play lands. -- Lands can't enter the battlefield. -- At the beginning of each upkeep, any player may sacrifice two lands or have Worms of the Earth deal 5 damage to him or her. If a player does either, destroy Worms of the Earth.
+mana={2}{B}{B}{B}
+type=Enchantment
+[/card]

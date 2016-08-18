@@ -1,0 +1,132 @@
+[card]
+name=Abu Ja'far
+text=When Abu Ja'far dies, destroy all creatures blocking or blocked by it. They can't be regenerated.
+mana={W}
+type=Creature
+subtype=Human
+power=0
+toughness=1
+[/card]
+[card]
+name=Aladdin's Lamp
+text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, put all but one of them on the bottom of your library in a random order, then draw a card. X can't be 0.
+mana={10}
+type=Artifact
+[/card]
+[card]
+name=Camel
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- As long as Camel is attacking, prevent all damage Deserts would deal to Camel and to creatures banded with Camel.
+mana={W}
+type=Creature
+subtype=Camel
+power=0
+toughness=1
+[/card]
+[card]
+name=City in a Bottle
+text=Whenever a nontoken permanent from the Arabian Nights expansion other than City in a Bottle is on the battlefield, its controller sacrifices it.  -- Players can't play cards from the Arabian Nights expansion.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Cyclone
+text=At the beginning of your upkeep, put a wind counter on Cyclone, then sacrifice Cyclone unless you pay {G} for each wind counter on it. If you pay, Cyclone deals damage equal to the number of wind counters on it to each creature and each player.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Guardian Beast
+text=As long as Guardian Beast is untapped, noncreature artifacts you control can't be enchanted, they're indestructible, and other players can't gain control of them. This effect doesn't remove Auras already attached to those artifacts.
+mana={3}{B}
+type=Creature
+subtype=Beast
+power=2
+toughness=4
+[/card]
+[card]
+name=Ifh-Biff Efreet
+text=Flying -- {G}: Ifh-Biff Efreet deals 1 damage to each creature with flying and each player. Any player may activate this ability.
+mana={2}{G}{G}
+type=Creature
+subtype=Efreet
+power=3
+toughness=3
+[/card]
+[card]
+name=Jeweled Bird
+text=Remove Jeweled Bird from your deck before playing if you're not playing for ante. -- {T}: Put Jeweled Bird into the ante. If you do, put all other cards you own from the ante into your graveyard, then draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Metamorphosis
+text=As an additional cost to cast Metamorphosis, sacrifice a creature. -- Add X mana of any one color to your mana pool, where X is one plus the sacrificed creature's converted mana cost. Spend this mana only to cast creature spells.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Nafs Asp
+text=Whenever Nafs Asp deals damage to a player, that player loses 1 life at the beginning of his or her next draw step unless he or she pays {1} before that draw step.
+mana={G}
+type=Creature
+subtype=Snake
+power=1
+toughness=1
+[/card]
+[card]
+name=Oubliette
+text=When Oubliette enters the battlefield, exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. -- When Oubliette leaves the battlefield, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it. If you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Pyramids
+text={2}: Choose one — Destroy target Aura attached to a land; or the next time target land would be destroyed this turn, remove all damage marked on it instead.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Ring of Ma'ruf
+text={5}, {T}, Exile Ring of Ma'ruf: The next time you would draw a card this turn, instead choose a card you own from outside the game and put it into your hand.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Sandals of Abdallah
+text={2}, {T}: Target creature gains islandwalk until end of turn. When that creature dies this turn, destroy Sandals of Abdallah.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Shahrazad
+text=Players play a MAGIC subgame, using their libraries as their decks. Each player who doesn't win the subgame loses half his or her life, rounded up.
+mana={W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Sindbad
+text={T}: Draw a card and reveal it. If it isn't a land card, discard it.
+mana={1}{U}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
+name=War Elephant
+text=Trample; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={3}{W}
+type=Creature
+subtype=Elephant
+power=2
+toughness=2
+[/card]
+[card]
+name=Ydwen Efreet
+text=Whenever Ydwen Efreet blocks, flip a coin. If you lose the flip, remove Ydwen Efreet from combat and it can't block this turn. Creatures it was blocking that had become blocked by only Ydwen Efreet this combat become unblocked.
+mana={R}{R}{R}
+type=Creature
+subtype=Efreet
+power=3
+toughness=6
+[/card]
