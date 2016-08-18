@@ -408,6 +408,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->defenser = &MTGCardInstance::AnyCard;
                     }
                 }
+                //Blocked
+                else if (attribute.find("blocked") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDblocked = -1;
+                    }
+                    else
+                    {
+                        cd->CDblocked = 1;
+                    }
+                }
                 //Tapped, untapped
                 else if (attribute.find("tapped") != string::npos)
                 {
