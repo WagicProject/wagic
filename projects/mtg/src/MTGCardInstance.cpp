@@ -252,6 +252,12 @@ void MTGCardInstance::initMTGCI()
     imprintR = 0;
     imprintB = 0;
     imprintW = 0;
+    canproduceG = 0;
+    canproduceU = 0;
+    canproduceR = 0;
+    canproduceB = 0;
+    canproduceW = 0;
+    canproduceC = 0;
     currentimprintName = "";
     imprintedNames.clear();
     CountedObjects = 0;
