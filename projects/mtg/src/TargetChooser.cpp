@@ -209,7 +209,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
             }
-            else if (zoneName.compare("oppcastingzone") == 0)
+            else if (zoneName.compare("opponentcastingzone") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
@@ -225,7 +225,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
             }
-            else if (zoneName.compare("oppzones") == 0)
+            else if (zoneName.compare("opponentzones") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_BATTLEFIELD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_STACK;
