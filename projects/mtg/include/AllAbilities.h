@@ -1080,17 +1080,17 @@ public:
         int count = 0;
         for (int i = 0; i < player->game->battlefield->nb_cards; i++)
         {
-            if(((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceC && (color == Constants::MTG_COLOR_ARTIFACT || color == Constants::MTG_COLOR_WASTE))
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceC && (color == Constants::MTG_COLOR_ARTIFACT || color == Constants::MTG_COLOR_WASTE))
                 count += 1;
-            if(((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceG && color == Constants::MTG_COLOR_GREEN)
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceG && color == Constants::MTG_COLOR_GREEN)
                 count += 1;
-            if(((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceU && color == Constants::MTG_COLOR_BLUE)
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceU && color == Constants::MTG_COLOR_BLUE)
                 count += 1;
-            if(((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceR && color == Constants::MTG_COLOR_RED)
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceR && color == Constants::MTG_COLOR_RED)
                 count += 1;
-            if(((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceB && color == Constants::MTG_COLOR_BLACK)
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceB && color == Constants::MTG_COLOR_BLACK)
                 count += 1;
-            if(((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceW && color == Constants::MTG_COLOR_WHITE)
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceW && color == Constants::MTG_COLOR_WHITE)
                 count += 1;
         }
         return count;

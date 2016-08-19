@@ -67,6 +67,12 @@ class CardDescriptor: public MTGCardInstance
   int CDdamager;
   int CDgeared;
   int CDblocked;
+  int CDcanProduceC;
+  int CDcanProduceG;
+  int CDcanProduceU;
+  int CDcanProduceR;
+  int CDcanProduceB;
+  int CDcanProduceW;
 };
 
 #endif

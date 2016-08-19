@@ -557,6 +557,73 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->CDdamager = 1;
                     }
                 }
+                //can produce mana
+                else if (attribute.find("manac") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceC = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceC = 1;
+                    }
+                }
+                else if (attribute.find("manag") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceG = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceG = 1;
+                    }
+                }
+                else if (attribute.find("manau") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceU = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceU = 1;
+                    }
+                }
+                else if (attribute.find("manar") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceR = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceR = 1;
+                    }
+                }
+                else if (attribute.find("manab") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceB = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceB = 1;
+                    }
+                }
+                else if (attribute.find("manaw") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceW = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceW = 1;
+                    }
+                }
                 else if (attribute.find("multicolor") != string::npos)
                 {
                     //card is multicolored?
