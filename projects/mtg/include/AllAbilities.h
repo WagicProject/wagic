@@ -748,53 +748,53 @@ private:
         }
         else if (s == "olandg")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target->controller()->opponent());
         }
         else if (s == "olandu")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target->controller()->opponent());
         }
         else if (s == "olandr")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target->controller()->opponent());
         }
         else if (s == "olandb")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target->controller()->opponent());
         }
         else if (s == "olandw")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target->controller()->opponent());
         }
         else if (s == "olandc")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()->opponent()) +
-                countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target->controller()->opponent()) +
+                countManaProducedby(Constants::MTG_COLOR_WASTE, target->controller()->opponent());
         }
         else if (s == "plandg")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target->controller());
         }
         else if (s == "plandu")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target->controller());
         }
         else if (s == "plandr")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target->controller());
         }
         else if (s == "plandb")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target->controller());
         }
         else if (s == "plandw")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target->controller());
         }
         else if (s == "plandc")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()) +
-                countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target->controller()) +
+                countManaProducedby(Constants::MTG_COLOR_WASTE, target->controller());
         }
         else if (s == "cantargetmycre")// can target my creature
         {
@@ -1061,7 +1061,7 @@ public:
         return count;
     }
 
-    int countManaProducedby(int color, MTGCardInstance * target, Player * player)
+    /*int countManaProducedby(int color, MTGCardInstance * target, Player * player)
     {
         int count = 0;
         for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
@@ -1072,6 +1072,27 @@ public:
                     (dynamic_cast<AManaProducer*> (((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i])))->output->hasColor(color))
                     count += 1;
             }
+        return count;
+    }*/
+
+    int countManaProducedby(int color, Player * player)
+    {
+        int count = 0;
+        for (int i = 0; i < player->game->battlefield->nb_cards; i++)
+        {
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceC && (color == Constants::MTG_COLOR_ARTIFACT || color == Constants::MTG_COLOR_WASTE))
+                count += 1;
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceG && color == Constants::MTG_COLOR_GREEN)
+                count += 1;
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceU && color == Constants::MTG_COLOR_BLUE)
+                count += 1;
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceR && color == Constants::MTG_COLOR_RED)
+                count += 1;
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceB && color == Constants::MTG_COLOR_BLACK)
+                count += 1;
+            if(((MTGCardInstance *)player->game->battlefield->cards[i])->isLand() && ((MTGCardInstance *)player->game->battlefield->cards[i])->canproduceW && color == Constants::MTG_COLOR_WHITE)
+                count += 1;
+        }
         return count;
     }
 

@@ -241,8 +241,8 @@ toughness=2
 [card]
 name=Rayne, Academy Chancellor
 #missing parser for player/controller/opponent
-auto=this(auras >= 1) transforms((,newability[@targeted(*|mybattlefield) from(*|oppzones):draw:2]))
-auto=this(auras < 1) transforms((,newability[@targeted(*|mybattlefield) from(*|oppzones):draw:1]))
+auto=this(auras >= 1) transforms((,newability[@targeted(*|mybattlefield) from(*|opponentzones):draw:2]))
+auto=this(auras < 1) transforms((,newability[@targeted(*|mybattlefield) from(*|opponentzones):draw:1]))
 text=Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card. You may draw an additional card if Rayne, Academy Chancellor is enchanted.
 mana={2}{U}
 type=Legendary Creature
@@ -349,6 +349,18 @@ type=Creature
 subtype=Merfolk Wizard
 power=2
 toughness=1
+[/card]
+[card]
+name=Squandered Resources
+auto=this(variable{plandg}>0) {S(land[manag]|mybattlefield)}:Add{G}
+auto=this(variable{plandu}>0) {S(land[manau]|mybattlefield)}:Add{U}
+auto=this(variable{plandr}>0) {S(land[manar]|mybattlefield)}:Add{R}
+auto=this(variable{plandb}>0) {S(land[manab]|mybattlefield)}:Add{B}
+auto=this(variable{plandw}>0) {S(land[manaw]|mybattlefield)}:Add{W}
+auto=this(variable{plandc}>0) {S(land[cmana]|mybattlefield)}:Add{C}
+text=Sacrifice a land: Add to your mana pool one mana of any type the sacrificed land could produce.
+mana={B}{G}
+type=Enchantment
 [/card]
 [card]
 name=Staggershock

@@ -209,7 +209,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
             }
-            else if (zoneName.compare("oppcastingzone") == 0)
+            else if (zoneName.compare("opponentcastingzone") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
@@ -225,7 +225,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
             }
-            else if (zoneName.compare("oppzones") == 0)
+            else if (zoneName.compare("opponentzones") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_BATTLEFIELD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_STACK;
@@ -555,6 +555,73 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else 
                     {
                         cd->CDdamager = 1;
+                    }
+                }
+                //can produce mana
+                else if (attribute.find("cmana") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceC = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceC = 1;
+                    }
+                }
+                else if (attribute.find("manag") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceG = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceG = 1;
+                    }
+                }
+                else if (attribute.find("manau") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceU = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceU = 1;
+                    }
+                }
+                else if (attribute.find("manar") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceR = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceR = 1;
+                    }
+                }
+                else if (attribute.find("manab") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceB = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceB = 1;
+                    }
+                }
+                else if (attribute.find("manaw") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceW = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceW = 1;
                     }
                 }
                 else if (attribute.find("multicolor") != string::npos)

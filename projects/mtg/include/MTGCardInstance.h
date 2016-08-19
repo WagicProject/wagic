@@ -277,6 +277,12 @@ public:
     int imprintR;
     int imprintB;
     int imprintW;
+    int canproduceG;
+    int canproduceU;
+    int canproduceR;
+    int canproduceB;
+    int canproduceW;
+    int canproduceC;
     string currentimprintName;
     vector<string>imprintedNames;
 
