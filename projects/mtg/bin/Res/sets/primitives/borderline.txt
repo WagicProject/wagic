@@ -239,6 +239,18 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Rayne, Academy Chancellor
+#missing parser for player/controller/opponent
+auto=this(auras >= 1) transforms((,newability[@targeted(*|mybattlefield) from(*|oppzones):draw:2]))
+auto=this(auras < 1) transforms((,newability[@targeted(*|mybattlefield) from(*|oppzones):draw:1]))
+text=Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card. You may draw an additional card if Rayne, Academy Chancellor is enchanted.
+mana={2}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Recall
 auto=name(discard) notatarget(<xx>*|myhand) transforms((,newability[reject],newability[moveto(ownerhand) notatarget(*|mygraveyard)]))
 auto=moveto(exile) all(this)
