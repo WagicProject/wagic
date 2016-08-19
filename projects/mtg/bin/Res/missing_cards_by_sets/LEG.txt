@@ -1,0 +1,564 @@
+[card]
+name=Adventurers' Guildhouse
+text=Green legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+type=Land
+[/card]
+[card]
+name=Anti-Magic Aura
+text=Enchant creature -- Enchanted creature can't be the target of spells and can't be enchanted. This effect doesn't remove Anti-Magic Aura.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Avoid Fate
+text=Counter target instant or Aura spell that targets a permanent you control.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Ayesha Tanaka
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- {T}: Counter target activated ability from an artifact source unless that ability's controller pays {W}. (Mana abilities can't be targeted.)
+mana={W}{W}{U}{U}
+type=Legendary Creature
+subtype=Human Artificer
+power=2
+toughness=2
+[/card]
+[card]
+name=Backdraft
+text=Choose a player who cast one or more sorcery spells this turn. Backdraft deals damage to that player equal to half the damage dealt by one of those sorcery spells this turn, rounded down.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Blazing Effigy
+text=When Blazing Effigy dies, it deals X damage to target creature, where X is 3 plus the amount of damage dealt to Blazing Effigy this turn by other sources named Blazing Effigy.
+mana={1}{R}
+type=Creature
+subtype=Elemental
+power=0
+toughness=3
+[/card]
+[card]
+name=Brine Hag
+text=When Brine Hag dies, all creatures that dealt damage to it this turn become 0/2. (This effect lasts indefinitely.)
+mana={2}{U}{U}
+type=Creature
+subtype=Hag
+power=2
+toughness=2
+[/card]
+[card]
+name=Bronze Horse
+text=Trample -- As long as you control another creature, prevent all damage that would be dealt to Bronze Horse by spells that target it.
+mana={7}
+type=Artifact Creature
+subtype=Horse
+power=4
+toughness=4
+[/card]
+[card]
+name=Cathedral of Serra
+text=White legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+type=Land
+[/card]
+[card]
+name=Caverns of Despair
+text=No more than two creatures can attack each combat. -- No more than two creatures can block each combat.
+mana={2}{R}{R}
+type=World Enchantment
+[/card]
+[card]
+name=Chain Lightning
+text=Chain Lightning deals 3 damage to target creature or player. Then that player or that creature's controller may pay {R}{R}. If the player does, he or she may copy this spell and may choose a new target for that copy.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Chains of Mephistopheles
+text=If a player would draw a card except the first one he or she draws in his or her draw step each turn, that player discards a card instead. If the player discards a card this way, he or she draws a card. If the player doesn't discard a card this way, he or she puts the top card of his or her library into his or her graveyard.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Clergy of the Holy Nimbus
+text=If Clergy of the Holy Nimbus would be destroyed, regenerate it. -- {1}: Clergy of the Holy Nimbus can't be regenerated this turn. Only any opponent may activate this ability.
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Cocoon
+text=Enchant creature you control -- Enchanted creature doesn't untap during your untap step if Cocoon has a pupa counter on it. -- When Cocoon enters the battlefield, tap enchanted creature and put three pupa counters on Cocoon. -- At the beginning of your upkeep, remove a pupa counter from Cocoon. If you can't, sacrifice it, put a +1/+1 counter on enchanted creature, and that creature gains flying. (This effect lasts indefinitely.)
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Divine Intervention
+text=Divine Intervention enters the battlefield with two intervention counters on it. -- At the beginning of your upkeep, remove an intervention counter from Divine Intervention. -- When you remove the last intervention counter from Divine Intervention, the game is a draw.
+mana={6}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Dream Coat
+text=Enchant creature -- {0}: Enchanted creature becomes the color or colors of your choice. Activate this ability only once each turn.
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Enchantment Alteration
+text=Attach target Aura attached to a creature or land to another permanent of that type.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Equinox
+text=Enchant land -- Enchanted land has "{T}: Counter target spell if it would destroy a land you control."
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Falling Star
+text=Flip Falling Star onto the playing area from a height of at least one foot. Falling Star deals 3 damage to each creature it lands on. Tap all creatures dealt damage by Falling Star. If Falling Star doesn't turn completely over at least once during the flip, it has no effect.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Feint
+text=Tap all creatures blocking target attacking creature. Prevent all combat damage that would be dealt this turn by that creature and each creature blocking it.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Field of Dreams
+text=Players play with the top card of their libraries revealed.
+mana={U}
+type=World Enchantment
+[/card]
+[card]
+name=Firestorm Phoenix
+text=Flying -- If Firestorm Phoenix would die, return Firestorm Phoenix to its owner's hand instead. Until that player's next turn, that player plays with that card revealed in his or her hand and can't play it.
+mana={4}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=2
+[/card]
+[card]
+name=Forethought Amulet
+text=At the beginning of your upkeep, sacrifice Forethought Amulet unless you pay {3}. -- If an instant or sorcery source would deal 3 or more damage to you, it deals 2 damage to you instead.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Fortified Area
+text=Wall creatures you control get +1/+0 and have banding. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Gabriel Angelfire
+text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep. (Whenever a creature with rampage 3 becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
+mana={3}{G}{G}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Gauntlets of Chaos
+text={5}, Sacrifice Gauntlets of Chaos: Exchange control of target artifact, creature, or land you control and target permanent an opponent controls that shares one of those types with it. If those permanents are exchanged this way, destroy all Auras attached to them.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Giant Slug
+text={5}: At the beginning of your next upkeep, choose a basic land type. Giant Slug gains landwalk of the chosen type until the end of that turn.
+mana={1}{B}
+type=Creature
+subtype=Slug
+power=1
+toughness=1
+[/card]
+[card]
+name=Giant Turtle
+text=Giant Turtle can't attack if it attacked during your last turn.
+mana={1}{G}{G}
+type=Creature
+subtype=Turtle
+power=2
+toughness=4
+[/card]
+[card]
+name=Glyph of Delusion
+text=Put X glyph counters on target creature that target Wall blocked this turn, where X is the power of that blocked creature. The creature gains "This creature doesn't untap during your untap step if it has a glyph counter on it" and "At the beginning of your upkeep, remove a glyph counter from this creature."
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Glyph of Destruction
+text=Target blocking Wall you control gets +10/+0 until end of combat. Prevent all damage that would be dealt to it this turn. Destroy it at the beginning of the next end step.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Glyph of Doom
+text=At end of combat, destroy all creatures that were blocked by target Wall this turn.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Glyph of Life
+text=Until end of turn, whenever an attacking creature deals damage to target Wall creature, you gain that much life.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Glyph of Reincarnation
+text=Cast Glyph of Reincarnation only after combat. -- Destroy all creatures that were blocked by target Wall this turn. They can't be regenerated. For each creature that died this way, put a creature card from the graveyard of the player who controlled that creature the last time it became blocked by that Wall onto the battlefield under its owner's control.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Greater Realm of Preservation
+text={1}{W}: The next time a black or red source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Halfdane
+text=At the beginning of your upkeep, Halfdane's power and toughness become equal to the power and toughness of target creature other than Halfdane until the end of your next upkeep.
+mana={1}{W}{U}{B}
+type=Legendary Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Imprison
+text=Enchant creature -- Whenever a player activates an ability of enchanted creature with {T} in its activation cost that isn't a mana ability, you may pay {1}. If you do, counter that ability. If you don't, destroy Imprison. -- Whenever enchanted creature attacks or blocks, you may pay {1}. If you do, tap the creature, remove it from combat, and creatures it was blocking that had become blocked by only that creature this combat become unblocked. If you don't, destroy Imprison.
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Infinite Authority
+text=Enchant creature -- Whenever enchanted creature blocks or becomes blocked by a creature with toughness 3 or less, destroy the other creature at end of combat. At the beginning of the next end step, if that creature was destroyed this way, put a +1/+1 counter on the first creature.
+mana={W}{W}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Invoke Prejudice
+text=Whenever an opponent casts a creature spell that doesn't share a color with a creature you control, counter that spell unless its controller pays {X}, where X is its converted mana cost.
+mana={U}{U}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Juxtapose
+text=You and target player exchange control of the creature you each control with the highest converted mana cost. Then exchange control of artifacts the same way. If two or more permanents a player controls are tied for highest cost, their controller chooses one of them.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Knowledge Vault
+text={2}, {T}: Exile the top card of your library face down. -- {0}: Sacrifice Knowledge Vault. If you do, discard your hand, then put all cards exiled with Knowledge Vault into their owner's hand. -- When Knowledge Vault leaves the battlefield, put all cards exiled with Knowledge Vault into their owner's graveyard.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Land's Edge
+text=Discard a card: If the discarded card is a land card, Land's Edge deals 2 damage to target player. Any player may activate this ability.
+mana={1}{R}{R}
+type=World Enchantment
+[/card]
+[card]
+name=Lesser Werewolf
+text={B}: If Lesser Werewolf's power is 1 or more, it gets -1/-0 until end of turn and put a -0/-1 counter on target creature blocking or blocked by Lesser Werewolf. Activate this ability only during the declare blockers step.
+mana={3}{B}
+type=Creature
+subtype=Werewolf
+power=2
+toughness=4
+[/card]
+[card]
+name=Mana Drain
+text=Counter target spell. At the beginning of your next main phase, add {X} to your mana pool, where X is that spell's converted mana cost.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+name=Marble Priest
+text=All Walls able to block Marble Priest do so. -- Prevent all combat damage that would be dealt to Marble Priest by Walls.
+mana={5}
+type=Artifact Creature
+subtype=Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Master of the Hunt
+text={2}{G}{G}: Put a 1/1 green Wolf creature token named Wolves of the Hunt onto the battlefield. It has "bands with other creatures named Wolves of the Hunt." (Any creatures named Wolves of the Hunt can attack in a band as long as at least one has "bands with other creatures named Wolves of the Hunt." Bands are blocked as a group. If at least two creatures named Wolves of the Hunt you control, one of which has "bands with other creatures named Wolves of the Hunt," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}{G}{G}
+type=Creature
+subtype=Human
+power=2
+toughness=2
+[/card]
+[card]
+name=Mountain Stronghold
+text=Red legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+type=Land
+[/card]
+[card]
+name=Nebuchadnezzar
+text={X}, {T}: Name a card. Target opponent reveals X cards at random from his or her hand. Then that player discards all cards with that name revealed this way. Activate this ability only during your turn.
+mana={3}{U}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=North Star
+text={4}, {T}: For one spell this turn, you may spend mana as though it were mana of any color to pay that spell's mana cost. (Additional costs are still paid normally.)
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Nova Pentacle
+text={3}, {T}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to target creature of an opponent's choice instead.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Petra Sphinx
+text={T}: Target player names a card, then reveals the top card of his or her library. If that card is the named card, that player puts it into his or her hand. If it isn't, the player puts it into his or her graveyard.
+mana={2}{W}{W}{W}
+type=Creature
+subtype=Sphinx
+power=3
+toughness=4
+[/card]
+[card]
+name=Primordial Ooze
+text=Primordial Ooze attacks each turn if able. -- At the beginning of your upkeep, put a +1/+1 counter on Primordial Ooze. Then you may pay {X}, where X is the number of +1/+1 counters on it. If you don't, tap Primordial Ooze and it deals X damage to you.
+mana={R}
+type=Creature
+subtype=Ooze
+power=1
+toughness=1
+[/card]
+[card]
+name=Psychic Purge
+text=Psychic Purge deals 1 damage to target creature or player. -- When a spell or ability an opponent controls causes you to discard Psychic Purge, that player loses 5 life.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Puppet Master
+text=Enchant creature -- When enchanted creature dies, return that card to its owner's hand. If that card is returned to its owner's hand this way, you may pay {U}{U}{U}. If you do, return Puppet Master to its owner's hand.
+mana={U}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Pyrotechnics
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Quarum Trench Gnomes
+text={T}: If target Plains is tapped for mana, it produces colorless mana instead of white mana. (This effect lasts indefinitely.)
+mana={3}{R}
+type=Creature
+subtype=Gnome
+power=1
+toughness=1
+[/card]
+[card]
+name=Rapid Fire
+text=Cast Rapid Fire only before blockers are declared. -- Target creature gains first strike until end of turn. If it doesn't have rampage, that creature gains rampage 2 until end of turn. (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Rebirth
+text=Remove Rebirth from your deck before playing if you're not playing for ante. --  -- Each player may put the top card of his or her library into the ante. If a player does, his or her life total becomes 20.
+mana={3}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Recall
+text=Discard X cards, then return a card from your graveyard to your hand for each card discarded this way. Exile Recall.
+mana={X}{X}{U}
+type=Sorcery
+[/card]
+[card]
+name=Remove Enchantments
+text=Return to your hand all enchantments you both own and control, all Auras you own attached to permanents you control, and all Auras you own attached to attacking creatures your opponents control. Then destroy all other enchantments you control, all other Auras attached to permanents you control, and all other Auras attached to attacking creatures your opponents control.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Revelation
+text=Players play with their hands revealed.
+mana={G}
+type=World Enchantment
+[/card]
+[card]
+name=Reverberation
+text=All damage that would be dealt this turn by target sorcery spell is dealt to that spell's controller instead.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Ring of Immortals
+text={3}, {T}: Counter target instant or Aura spell that targets a permanent you control.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Rust
+text=Counter target activated ability from an artifact source. (Mana abilities can't be targeted.)
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Seafarer's Quay
+text=Blue legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+type=Land
+[/card]
+[card]
+name=Sentinel
+text={0}: Sentinel's toughness becomes 1 plus the power of target creature blocking or blocked by Sentinel. (This effect lasts indefinitely.)
+mana={4}
+type=Artifact Creature
+subtype=Shapeshifter
+power=1
+toughness=1
+[/card]
+[card]
+name=Shelkin Brownie
+text={T}: Target creature loses all "bands with other" abilities until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Ouphe
+power=1
+toughness=1
+[/card]
+[card]
+name=Shimian Night Stalker
+text={B}, {T}: All damage that would be dealt to you this turn by target attacking creature is dealt to Shimian Night Stalker instead.
+mana={3}{B}{B}
+type=Creature
+subtype=Nightstalker
+power=4
+toughness=4
+[/card]
+[card]
+name=Silhouette
+text=Prevent all damage that would be dealt to target creature this turn by spells or abilities that target it.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Sword of the Ages
+text=Sword of the Ages enters the battlefield tapped. -- {T}, Sacrifice Sword of the Ages and any number of creatures you control: Sword of the Ages deals X damage to target creature or player, where X is the total power of the creatures sacrificed this way, then exile Sword of the Ages and those creature cards.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Sylvan Library
+text=At the beginning of your draw step, you may draw two additional cards. If you do, choose two cards in your hand drawn this turn. For each of those cards, pay 4 life or put the card on top of your library.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Takklemaggot
+text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature. -- When enchanted creature dies, that creature's controller chooses a creature that Takklemaggot could enchant. If he or she does, return Takklemaggot to the battlefield under your control attached to that creature. If he or she doesn't, return Takklemaggot to the battlefield under your control as a non-Aura enchantment. It loses "enchant creature" and gains "At the beginning of that player's upkeep, Takklemaggot deals 1 damage to him or her."
+mana={2}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Tempest Efreet
+text=Remove Tempest Efreet from your deck before playing if you're not playing for ante. -- {T}, Sacrifice Tempest Efreet: Target opponent may pay 10 life. If that player doesn't, he or she reveals a card at random from his or her hand. Exchange ownership of the revealed card and Tempest Efreet. Put the revealed card into your hand and Tempest Efreet from anywhere into that player's graveyard.
+mana={1}{R}{R}{R}
+type=Creature
+subtype=Efreet
+power=3
+toughness=3
+[/card]
+[card]
+name=The Wretched
+text=At end of combat, gain control of all creatures blocking The Wretched for as long as you control The Wretched.
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=2
+toughness=5
+[/card]
+[card]
+name=Tolaria
+text={T}: Add {U} to your mana pool. -- {T}: Target creature loses banding and all "bands with other" abilities until end of turn. Activate this ability only during any upkeep step.
+type=Legendary Land
+[/card]
+[card]
+name=Unholy Citadel
+text=Black legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+type=Land
+[/card]
+[card]
+name=Venarian Gold
+text=Enchant creature -- When Venarian Gold enters the battlefield, tap enchanted creature and put X sleep counters on it. -- Enchanted creature doesn't untap during its controller's untap step if it has a sleep counter on it. -- At the beginning of the upkeep of enchanted creature's controller, remove a sleep counter from that creature.
+mana={X}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Visions
+text=Look at the top five cards of target player's library. You may then have that player shuffle that library.
+mana={W}
+type=Sorcery
+[/card]
+[card]
+name=Wall of Caltrops
+text=Defender (This creature can't attack.) -- Whenever Wall of Caltrops blocks a creature, if no non-Wall creatures are blocking that creature, Wall of Caltrops gains banding until end of turn. (If any creatures with banding you control are blocking a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by.)
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=2
+toughness=1
+[/card]
+[card]
+name=Wall of Shadows
+text=Defender (This creature can't attack.) -- Prevent all damage that would be dealt to Wall of Shadows by creatures it's blocking. -- Wall of Shadows can't be the target of spells that can target only Walls or of abilities that can target only Walls.
+mana={1}{B}{B}
+type=Creature
+subtype=Wall
+power=0
+toughness=1
+[/card]
+[card]
+name=Wall of Vapor
+text=Defender (This creature can't attack.) -- Prevent all damage that would be dealt to Wall of Vapor by creatures it's blocking.
+mana={3}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=1
+[/card]
+[card]
+name=Winter Blast
+text=Tap X target creatures. Winter Blast deals 2 damage to each of those creatures with flying.
+mana={X}{G}
+type=Sorcery
+[/card]

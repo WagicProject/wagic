@@ -973,18 +973,6 @@ text=(Start the game with this conspiracy face up in the command zone.) -- Draw 
 type=Conspiracy
 [/card]
 [card]
-name=Balance
-text=Each player chooses a number of lands he or she controls equal to the number of lands controlled by the player who controls the fewest, then sacrifices the rest. Players discard cards and sacrifice creatures the same way.
-mana={1}{W}
-type=Sorcery
-[/card]
-[card]
-name=Balancing Act
-text=Each player chooses a number of permanents he or she controls equal to the number of permanents controlled by the player who controls the fewest, then sacrifices the rest. Each player discards cards the same way.
-mana={2}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Balduvian Fallen
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever Balduvian Fallen's cumulative upkeep is paid, it gets +1/+0 until end of turn for each {B} or {R} spent this way.
 mana={3}{B}
@@ -11287,12 +11275,6 @@ power=4
 toughness=2
 [/card]
 [card]
-name=Natural Balance
-text=Each player who controls six or more lands chooses five lands he or she controls and sacrifices the rest. Each player who controls four or fewer lands may search his or her library for X basic land cards and put them onto the battlefield, where X is five minus the number of lands he or she controls. Then each player who searched his or her library this way shuffles it.
-mana={2}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Nature Demands an Offering
 text=When you set this scheme in motion, target opponent chooses a creature you don't control and puts it on top of its owner's library, then repeats this process for an artifact, an enchantment, and a land. Then the owner of each permanent chosen this way shuffles his or her library.
 type=Scheme
@@ -14029,11 +14011,6 @@ type=Sorcery
 name=Restless Dreams
 text=As an additional cost to cast Restless Dreams, discard X cards. -- Return X target creature cards from your graveyard to your hand.
 mana={B}
-type=Sorcery
-[/card]
-[card]
-name=Restore Balance
-text=Suspend 6—{W} (Rather than cast this card from your hand, pay {W} and exile it with six time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Each player chooses a number of lands he or she controls equal to the number of lands controlled by the player who controls the fewest, then sacrifices the rest. Players sacrifice creatures and discard cards the same way.
 type=Sorcery
 [/card]
 [card]

@@ -25,6 +25,7 @@ CardDescriptor::CardDescriptor()
     CDcontrollerDamaged = 0;
     CDdamager = 0;
     CDgeared = 0;
+    CDblocked = 0;
 }
 
 int CardDescriptor::init()
@@ -215,6 +216,28 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if ((CDgeared == -1 && card->equipment > 0) || (CDgeared == 1 && card->equipment < 1))
     {
         match = NULL;
+    }
+    
+    if (CDblocked == -1)
+    {
+        if(!card->isAttacker())
+            match = NULL;
+        else
+        {
+            if(card->isBlocked())
+                match = NULL;
+        }
+    }
+
+    if (CDblocked == 1)
+    {
+        if(!card->isAttacker())
+            match = NULL;
+        else
+        {
+            if(!card->isBlocked())
+                match = NULL;
+        }
     }
 
     if ((isMultiColored == -1 && card->isMultiColored) || (isMultiColored == 1 && !card->isMultiColored))
