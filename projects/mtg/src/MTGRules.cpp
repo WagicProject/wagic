@@ -388,7 +388,29 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     if ((cost->hasX() || cost->hasSpecificX()) && card->setX == -1)
     {
         vector<MTGAbility*>selection;
-        int options = cost->hasSpecificX() ? 20 : (playerMana->getConvertedCost() - cost->getConvertedCost()) + 1;
+        int amountx = 0;
+        int colorlessx = 0;
+        int costcx = 0;
+        costcx = cost->getCost(0);
+        if (cost->xColor)
+        {
+            int thisxcolor = cost->xColor;
+            amountx = (playerMana->getCost(thisxcolor) - cost->getCost(thisxcolor));
+            for(int kk = 0; kk < 7; kk++)
+            {
+                if(kk!=thisxcolor)
+                {
+                    colorlessx += playerMana->getCost(kk);
+                }
+            }
+        }
+        if (amountx < 0)
+            amountx = 0;
+        if(colorlessx >= costcx)
+            colorlessx = 0;
+        else
+            colorlessx -= costcx;
+        int options = cost->hasSpecificX() ? amountx + 1 +colorlessx : (playerMana->getConvertedCost() - cost->getConvertedCost()) + 1;
         //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
         //give me the correct amount sorry.
         for (int i = 0; i < options; ++i)

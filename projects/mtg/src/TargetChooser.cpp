@@ -558,7 +558,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     }
                 }
                 //can produce mana
-                else if (attribute.find("manac") != string::npos)
+                else if (attribute.find("cmana") != string::npos)
                 {
                     if (minus)
                     {
