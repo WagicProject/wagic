@@ -1,0 +1,172 @@
+[card]
+name=Calming Licid
+text={W}, {T}: Calming Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {W} to end this effect. -- Enchanted creature can't attack.
+mana={2}{W}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+[/card]
+[card]
+name=Cannibalize
+text=Choose two target creatures controlled by the same player. Exile one of those creatures and put two +1/+1 counters on the other.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Convulsing Licid
+text={R}, {T}: Convulsing Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {R} to end this effect. -- Enchanted creature can't block.
+mana={2}{R}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+[/card]
+[card]
+name=Corrupting Licid
+text={B}, {T}: Corrupting Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {B} to end this effect. -- Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
+mana={2}{B}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+[/card]
+[card]
+name=Dream Halls
+text=Rather than pay the mana cost for a spell, its controller may discard a card that shares a color with that spell.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Gliding Licid
+text={U}, {T}: Gliding Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {U} to end this effect. -- Enchanted creature has flying.
+mana={2}{U}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+[/card]
+[card]
+name=Heartstone
+text=Activated abilities of creatures cost {1} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Invasion Plans
+text=All creatures block each turn if able. -- The attacking player chooses how each creature blocks each turn.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Lancers en-Kor
+text=Trample -- {0}: The next 1 damage that would be dealt to Lancers en-Kor this turn is dealt to target creature you control instead.
+mana={3}{W}{W}
+type=Creature
+subtype=Kor Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Nomads en-Kor
+text={0}: The next 1 damage that would be dealt to Nomads en-Kor this turn is dealt to target creature you control instead.
+mana={W}
+type=Creature
+subtype=Kor Nomad Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Provoke
+text=Untap target creature you don't control. That creature blocks this turn if able. -- Draw a card.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Rebound
+text=Change the target of target spell that targets only a player. The new target must be a player.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Sacred Ground
+text=Whenever a spell or ability an opponent controls causes a land to be put into your graveyard from the battlefield, return that card to the battlefield.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Samite Blessing
+text=Enchant creature -- Enchanted creature has "{T}: The next time a source of your choice would deal damage to target creature this turn, prevent that damage."
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Shaman en-Kor
+text={0}: The next 1 damage that would be dealt to Shaman en-Kor this turn is dealt to target creature you control instead. -- {1}{W}: The next time a source of your choice would deal damage to target creature this turn, that damage is dealt to Shaman en-Kor instead.
+mana={1}{W}
+type=Creature
+subtype=Kor Cleric Shaman
+power=1
+toughness=2
+[/card]
+[card]
+name=Silver Wyvern
+text=Flying -- {U}: Change the target of target spell or ability that targets only Silver Wyvern. The new target must be a creature.
+mana={3}{U}{U}
+type=Creature
+subtype=Drake
+power=4
+toughness=3
+[/card]
+[card]
+name=Skeleton Scavengers
+text=Skeleton Scavengers enters the battlefield with a +1/+1 counter on it. -- Pay {1} for each +1/+1 counter on Skeleton Scavengers: Regenerate Skeleton Scavengers. When it regenerates this way, put a +1/+1 counter on it.
+mana={2}{B}
+type=Creature
+subtype=Skeleton
+power=0
+toughness=0
+[/card]
+[card]
+name=Spirit en-Kor
+text=Flying -- {0}: The next 1 damage that would be dealt to Spirit en-Kor this turn is dealt to target creature you control instead.
+mana={3}{W}
+type=Creature
+subtype=Kor Spirit
+power=2
+toughness=2
+[/card]
+[card]
+name=Temper
+text=Prevent the next X damage that would be dealt to target creature this turn. For each 1 damage prevented this way, put a +1/+1 counter on that creature.
+mana={X}{1}{W}
+type=Instant
+[/card]
+[card]
+name=Tempting Licid
+text={G}, {T}: Tempting Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {G} to end this effect. -- All creatures able to block enchanted creature do so.
+mana={2}{G}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+[/card]
+[card]
+name=Volrath's Shapeshifter
+text=As long as the top card of your graveyard is a creature card, Volrath's Shapeshifter has the full text of that card and has the text "{2}: Discard a card." (Volrath's Shapeshifter has that card's name, mana cost, color, types, abilities, power, and toughness.) -- {2}: Discard a card.
+mana={1}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=1
+[/card]
+[card]
+name=Warrior en-Kor
+text={0}: The next 1 damage that would be dealt to Warrior en-Kor this turn is dealt to target creature you control instead.
+mana={W}{W}
+type=Creature
+subtype=Kor Warrior Knight
+power=2
+toughness=2
+[/card]
