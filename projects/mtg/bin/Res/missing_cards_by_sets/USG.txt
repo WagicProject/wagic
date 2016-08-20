@@ -1,0 +1,266 @@
+[card]
+name=Argothian Wurm
+text=Trample -- When Argothian Wurm enters the battlefield, any player may sacrifice a land. If a player does, put Argothian Wurm on top of its owner's library.
+mana={3}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
+[/card]
+[card]
+name=Carpet of Flowers
+text=At the beginning of each of your main phases, if you haven't added mana to your mana pool with this ability this turn, you may add up to X mana of any one color to your mana pool, where X is the number of Islands target opponent controls.
+mana={G}
+type=Enchantment
+[/card]
+[card]
+name=Contamination
+text=At the beginning of your upkeep, sacrifice Contamination unless you sacrifice a creature. -- If a land is tapped for mana, it produces {B} instead of any other type and amount.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Defensive Formation
+text=Rather than the attacking player, you assign the combat damage of each creature attacking you. You can divide that creature's combat damage as you choose among any of the creatures blocking it.
+mana={W}
+type=Enchantment
+[/card]
+[card]
+name=Diabolic Servitude
+text=When Diabolic Servitude enters the battlefield, return target creature card from your graveyard to the battlefield. -- When the creature put onto the battlefield with Diabolic Servitude dies, exile it and return Diabolic Servitude to its owner's hand. -- When Diabolic Servitude leaves the battlefield, exile the creature put onto the battlefield with Diabolic Servitude.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
+name=Enchantment Alteration
+text=Attach target Aura attached to a creature or land to another permanent of that type.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Fluctuator
+text=Cycling abilities you activate cost you up to {2} less to activate.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Gilded Drake
+text=Flying -- When Gilded Drake enters the battlefield, exchange control of Gilded Drake and up to one target creature an opponent controls. If you don't make an exchange, sacrifice Gilded Drake. This ability can't be countered except by spells and abilities. (This effect lasts indefinitely.)
+mana={1}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=3
+[/card]
+[card]
+name=Hidden Stag
+text=Whenever an opponent plays a land, if Hidden Stag is an enchantment, Hidden Stag becomes a 3/2 Elk Beast creature. -- Whenever you play a land, if Hidden Stag is a creature, Hidden Stag becomes an enchantment.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Lilting Refrain
+text=At the beginning of your upkeep, you may put a verse counter on Lilting Refrain. -- Sacrifice Lilting Refrain: Counter target spell unless its controller pays {X}, where X is the number of verse counters on Lilting Refrain.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+name=Lurking Evil
+text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
+mana={B}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Metrognome
+text=When a spell or ability an opponent controls causes you to discard Metrognome, put four 1/1 colorless Gnome artifact creature tokens onto the battlefield. -- {4}, {T}: Put a 1/1 colorless Gnome artifact creature token onto the battlefield.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Okk
+text=Okk can't attack unless a creature with greater power also attacks. -- Okk can't block unless a creature with greater power also blocks.
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=4
+toughness=4
+[/card]
+[card]
+name=Opal Acrolith
+text=Whenever an opponent casts a creature spell, if Opal Acrolith is an enchantment, Opal Acrolith becomes a 2/4 Soldier creature. -- {0}: Opal Acrolith becomes an enchantment.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Opal Titan
+text=When an opponent casts a creature spell, if Opal Titan is an enchantment, Opal Titan becomes a 4/4 Giant creature with protection from each of that spell's colors.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Outmaneuver
+text=X target blocked creatures assign their combat damage this turn as though they weren't blocked.
+mana={X}{R}
+type=Instant
+[/card]
+[card]
+name=Pariah
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) -- All damage that would be dealt to you is dealt to enchanted creature instead.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Pendrell Flux
+text=Enchant creature -- Enchanted creature has "At the beginning of your upkeep, sacrifice this creature unless you pay its mana cost."
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Phyrexian Colossus
+text=Phyrexian Colossus doesn't untap during your untap step. -- Pay 8 life: Untap Phyrexian Colossus. -- Phyrexian Colossus can't be blocked except by three or more creatures.
+mana={7}
+type=Artifact Creature
+subtype=Golem
+power=8
+toughness=8
+[/card]
+[card]
+name=Phyrexian Processor
+text=As Phyrexian Processor enters the battlefield, pay any amount of life. -- {4}, {T}: Put an X/X black Minion creature token onto the battlefield, where X is the life paid as Phyrexian Processor entered the battlefield.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Rune of Protection: Artifacts
+text={W}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Black
+text={W}: The next time a black source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Blue
+text={W}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Green
+text={W}: The next time a green source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Lands
+text={W}: The next time a land source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Red
+text={W}: The next time a red source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: White
+text={W}: The next time a white source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sanctum Guardian
+text=Sacrifice Sanctum Guardian: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=4
+[/card]
+[card]
+name=Serra's Hymn
+text=At the beginning of your upkeep, you may put a verse counter on Serra's Hymn. -- Sacrifice Serra's Hymn: Prevent the next X damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose, where X is the number of verse counters on Serra's Hymn.
+mana={W}
+type=Enchantment
+[/card]
+[card]
+name=Smokestack
+text=At the beginning of your upkeep, you may put a soot counter on Smokestack. -- At the beginning of each player's upkeep, that player sacrifices a permanent for each soot counter on Smokestack.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Soul Sculptor
+text={1}{W}, {T}: Target creature becomes an enchantment and loses all abilities until a player casts a creature spell.
+mana={2}{W}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
+name=Sporogenesis
+text=At the beginning of your upkeep, you may put a fungus counter on target nontoken creature. -- Whenever a creature with a fungus counter on it dies, put a 1/1 green Saproling creature token onto the battlefield for each fungus counter on that creature. -- When Sporogenesis leaves the battlefield, remove all fungus counters from all creatures.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Sulfuric Vapors
+text=If a red spell would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Telepathy
+text=Your opponents play with their hands revealed.
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Temporal Aperture
+text={5}, {T}: Shuffle your library, then reveal the top card. Until end of turn, for as long as that card remains on top of your library, play with the top card of your library revealed and you may play that card without paying its mana cost. (If it has X in its mana cost, X is 0.)
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Thran Turbine
+text=At the beginning of your upkeep, you may add {1} or {2} to your mana pool. You can't spend this mana to cast spells.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Urza's Armor
+text=If a source would deal damage to you, prevent 1 of that damage.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Veiled Crocodile
+text=When a player has no cards in hand, if Veiled Crocodile is an enchantment, Veiled Crocodile becomes a 4/4 Crocodile creature.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Veiled Sentry
+text=When an opponent casts a spell, if Veiled Sentry is an enchantment, Veiled Sentry becomes an Illusion creature with power and toughness each equal to that spell's converted mana cost.
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Victimize
+text=Choose two target creature cards in your graveyard. Sacrifice a creature. If you do, return the chosen cards to the battlefield tapped.
+mana={2}{B}
+type=Sorcery
+[/card]

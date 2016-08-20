@@ -1,0 +1,145 @@
+[card]
+name=AEther Tide
+text=As an additional cost to cast AEther Tide, discard X creature cards. -- Return X target creatures to their owners' hands.
+mana={X}{U}
+type=Sorcery
+[/card]
+[card]
+name=Cataclysm
+text=Each player chooses from the permanents he or she controls an artifact, a creature, an enchantment, and a land, then sacrifices the rest.
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Cinder Crawler
+text={R}: Cinder Crawler gets +1/+0 until end of turn. Activate this ability only if Cinder Crawler is blocked.
+mana={1}{R}
+type=Creature
+subtype=Salamander
+power=1
+toughness=2
+[/card]
+[card]
+name=Coat of Arms
+text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, if two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Crashing Boars
+text=Whenever Crashing Boars attacks, defending player chooses an untapped creature he or she controls. That creature blocks Crashing Boars this turn if able.
+mana={3}{G}{G}
+type=Creature
+subtype=Boar
+power=4
+toughness=4
+[/card]
+[card]
+name=Dominating Licid
+text={1}{U}{U}, {T}: Dominating Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {U} to end this effect. -- You control enchanted creature.
+mana={1}{U}{U}
+type=Creature
+subtype=Licid
+power=1
+toughness=1
+[/card]
+[card]
+name=Fade Away
+text=For each creature, its controller sacrifices a permanent unless he or she pays {1}.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Hatred
+text=As an additional cost to cast Hatred, pay X life. -- Target creature gets +X/+0 until end of turn.
+mana={3}{B}{B}
+type=Instant
+[/card]
+[card]
+name=High Ground
+text=Each creature you control can block an additional creature.
+mana={W}
+type=Enchantment
+[/card]
+[card]
+name=Kor Chant
+text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Limited Resources
+text=When Limited Resources enters the battlefield, each player chooses five lands he or she controls and sacrifices the rest. -- Players can't play lands as long as ten or more lands are on the battlefield.
+mana={W}
+type=Enchantment
+[/card]
+[card]
+name=Memory Crystal
+text=Buyback costs cost {2} less.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Mogg Assassin
+text={T}: You choose target creature an opponent controls, and that opponent chooses target creature. Flip a coin. If you win the flip, destroy the creature you chose. If you lose the flip, destroy the creature your opponent chose.
+mana={2}{R}
+type=Creature
+subtype=Goblin Assassin
+power=2
+toughness=1
+[/card]
+[card]
+name=Necrologia
+text=Cast Necrologia only during your end step. -- As an additional cost to cast Necrologia, pay X life. -- Draw X cards.
+mana={3}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Oath of Druids
+text=At the beginning of each player's upkeep, that player chooses target player who controls more creatures than he or she does and is his or her opponent. The first player may reveal cards from the top of his or her library until he or she reveals a creature card. If he or she does, that player puts that card onto the battlefield and all other cards revealed this way into his or her graveyard.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Oath of Scholars
+text=At the beginning of each player's upkeep, that player chooses target player who has more cards in hand than he or she does and is his or her opponent. The first player may discard his or her hand and draw three cards.
+mana={3}{U}
+type=Enchantment
+[/card]
+[card]
+name=Paroxysm
+text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, that player reveals the top card of his or her library. If that card is a land card, destroy that creature. Otherwise, it gets +3/+3 until end of turn.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Penance
+text=Put a card from your hand on top of your library: The next time a black or red source of your choice would deal damage this turn, prevent that damage.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Spike Cannibal
+text=Spike Cannibal enters the battlefield with a +1/+1 counter on it. -- When Spike Cannibal enters the battlefield, move all +1/+1 counters from all creatures onto it.
+mana={1}{B}{B}
+type=Creature
+subtype=Spike
+power=0
+toughness=0
+[/card]
+[card]
+name=Transmogrifying Licid
+text={1}, {T}: Transmogrifying Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {1} to end this effect. -- Enchanted creature gets +1/+1 and is an artifact in addition to its other types.
+mana={3}
+type=Artifact Creature
+subtype=Licid
+power=2
+toughness=2
+[/card]
+[card]
+name=Volrath's Dungeon
+text=Pay 5 life: Destroy Volrath's Dungeon. Any player may activate this ability but only during his or her turn. -- Discard a card: Target player puts a card from his or her hand on top of his or her library. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}{B}
+type=Enchantment
+[/card]

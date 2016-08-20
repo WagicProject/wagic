@@ -204,12 +204,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Squandered Resources
-text=Sacrifice a land: Add to your mana pool one mana of any type the sacrificed land could produce.
-mana={B}{G}
-type=Enchantment
-[/card]
-[card]
 name=Talruum Piper
 text=All creatures with flying able to block Talruum Piper do so.
 mana={4}{R}

@@ -1,0 +1,108 @@
+[card]
+name=Brine Seer
+text={2}{U}, {T}: Reveal any number of blue cards in your hand. Counter target spell unless its controller pays {1} for each card revealed this way.
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Goblin Festival
+text={2}: Goblin Festival deals 1 damage to target creature or player. Flip a coin. If you lose the flip, choose one of your opponents. That player gains control of Goblin Festival.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
+name=Ivy Seer
+text={2}{G}, {T}: Reveal any number of green cards in your hand. Target creature gets +X/+X until end of turn, where X is the number of cards revealed this way.
+mana={3}{G}
+type=Creature
+subtype=Elf Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Jasmine Seer
+text={2}{W}, {T}: Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
+mana={3}{W}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Metalworker
+text={T}: Reveal any number of artifact cards in your hand. Add {2} to your mana pool for each card revealed this way.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=2
+[/card]
+[card]
+name=Nightshade Seer
+text={2}{B}, {T}: Reveal any number of black cards in your hand. Target creature gets -X/-X until end of turn, where X is the number of cards revealed this way.
+mana={3}{B}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Rofellos's Gift
+text=Reveal any number of green cards in your hand. Return an enchantment card from your graveyard to your hand for each card revealed this way.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Scent of Brine
+text=Reveal any number of blue cards in your hand. Counter target spell unless its controller pays {1} for each card revealed this way.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Scent of Cinder
+text=Reveal any number of red cards in your hand. Scent of Cinder deals X damage to target creature or player, where X is the number of cards revealed this way.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Scent of Ivy
+text=Reveal any number of green cards in your hand. Target creature gets +X/+X until end of turn, where X is the number of cards revealed this way.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Scent of Jasmine
+text=Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Scent of Nightshade
+text=Reveal any number of black cards in your hand. Target creature gets -X/-X until end of turn, where X is the number of cards revealed this way.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Scrying Glass
+text={3}, {T}: Choose a number greater than 0 and a color. Target opponent reveals his or her hand. If that opponent reveals exactly the chosen number of cards of the chosen color, you draw a card.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Storage Matrix
+text=As long as Storage Matrix is untapped, each player chooses artifact, creature, or land during his or her untap step. That player can untap only permanents of the chosen type this step.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Wall of Glare
+text=Defender (This creature can't attack.) -- Wall of Glare can block any number of creatures.
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=0
+toughness=5
+[/card]

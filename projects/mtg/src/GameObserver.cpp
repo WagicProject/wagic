@@ -702,6 +702,25 @@ void GameObserver::gameStateBasedEffects()
                 card->myPair->myPair = NULL;
                 card->myPair = NULL;
             }
+            ///set basic land mana objects canproduce
+            for (size_t gg = 0; gg < mLayers->actionLayer()->manaObjects.size(); gg++)
+            {
+                if (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])) && 
+                    (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->source->isLand() && 
+                    (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->source == card)
+                {
+                    if (card->hasType("forest") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_GREEN))
+                        card->canproduceG = 1;
+                    if (card->hasType("island") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_BLUE))
+                        card->canproduceU = 1;
+                    if (card->hasType("mountain") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_RED))
+                        card->canproduceR = 1;
+                    if (card->hasType("swamp") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_BLACK))
+                        card->canproduceB = 1;
+                    if (card->hasType("plains") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_WHITE))
+                        card->canproduceW = 1;
+                }
+            }
             ///clear imprints
             if(isInPlay(card) && card->imprintedCards.size())
             {
