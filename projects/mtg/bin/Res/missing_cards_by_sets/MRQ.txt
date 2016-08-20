@@ -1,0 +1,254 @@
+[card]
+name=Barbed Wire
+text=At the beginning of each player's upkeep, Barbed Wire deals 1 damage to that player. --  -- {2}: Prevent the next 1 damage that would be dealt by Barbed Wire this turn.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Charisma
+text=Enchant creature -- Whenever enchanted creature deals damage to a creature, gain control of the other creature for as long as Charisma remains on the battlefield.
+mana={U}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Charm Peddler
+text={W}, {T}, Discard a card: The next time a source of your choice would deal damage to target creature this turn, prevent that damage.
+mana={W}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=1
+[/card]
+[card]
+name=Cho-Arrim Alchemist
+text={1}{W}{W}, {T}, Discard a card: The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.
+mana={W}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=1
+[/card]
+[card]
+name=Clear the Land
+text=Each player reveals the top five cards of his or her library, puts all land cards revealed this way onto the battlefield tapped, and exiles the rest.
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+name=Common Cause
+text=Nonartifact creatures get +2/+2 as long as they all share a color.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Conspiracy
+text=As Conspiracy enters the battlefield, choose a creature type. -- Creature cards you own that aren't on the battlefield, creature spells you control, and creatures you control are the chosen type.
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Crooked Scales
+text={4}, {T}: Flip a coin. If you win the flip, destroy target creature an opponent controls. If you lose the flip, destroy target creature you control unless you pay {3} and repeat this process.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Crumbling Sanctuary
+text=If damage would be dealt to a player, that player exiles that many cards from the top of his or her library instead.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Diplomatic Escort
+text={U}, {T}, Discard a card: Counter target spell or ability that targets a creature.
+mana={1}{U}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=1
+[/card]
+[card]
+name=Flailing Manticore
+text=Flying, first strike -- {1}: Flailing Manticore gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Manticore gets -1/-1 until end of turn. Any player may activate this ability.
+mana={3}{R}
+type=Creature
+subtype=Manticore
+power=3
+toughness=3
+[/card]
+[card]
+name=Flailing Ogre
+text={1}: Flailing Ogre gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Ogre gets -1/-1 until end of turn. Any player may activate this ability.
+mana={2}{R}
+type=Creature
+subtype=Ogre
+power=3
+toughness=3
+[/card]
+[card]
+name=Flailing Soldier
+text={1}: Flailing Soldier gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Soldier gets -1/-1 until end of turn. Any player may activate this ability.
+mana={R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Food Chain
+text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Game Preserve
+text=At the beginning of your upkeep, each player reveals the top card of his or her library. If all cards revealed this way are creature cards, put those cards onto the battlefield under their owners' control.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=General's Regalia
+text={3}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to target creature you control instead.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Horn of Plenty
+text=Whenever a player casts a spell, he or she may pay {1}. If that player does, he or she draws a card at the beginning of the next end step.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Insubordination
+text=Enchant creature -- At the beginning of the end step of enchanted creature's controller, Insubordination deals 2 damage to that player unless that creature attacked this turn.
+mana={B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Kyren Archive
+text=At the beginning of your upkeep, you may exile the top card of your library face down. -- {5}, Discard your hand, Sacrifice Kyren Archive: Put all cards exiled with Kyren Archive into their owner's hand.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Misdirection
+text=You may exile a blue card from your hand rather than pay Misdirection's mana cost. -- Change the target of target spell with a single target.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Righteous Aura
+text={W}, Pay 2 life: The next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sailmonger
+text={2}: Target creature gains flying until end of turn. Any player may activate this ability.
+mana={3}{U}
+type=Creature
+subtype=Human Monger
+power=3
+toughness=3
+[/card]
+[card]
+name=Saprazzan Breaker
+text={U}: Put the top card of your library into your graveyard. If that card is a land card, Saprazzan Breaker is unblockable this turn.
+mana={4}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Scandalmonger
+text={2}: Target player discards a card. Any player may activate this ability but only any time he or she could cast a sorcery.
+mana={3}{B}
+type=Creature
+subtype=Boar Monger
+power=3
+toughness=3
+[/card]
+[card]
+name=Spiritual Focus
+text=Whenever a spell or ability an opponent controls causes you to discard a card, you gain 2 life and you may draw a card.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Squallmonger
+text={2}: Squallmonger deals 1 damage to each creature with flying and each player. Any player may activate this ability.
+mana={3}{G}
+type=Creature
+subtype=Monger
+power=3
+toughness=3
+[/card]
+[card]
+name=Story Circle
+text=As Story Circle enters the battlefield, choose a color. -- {W}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Thieves' Auction
+text=Exile all nontoken permanents. Starting with you, each player chooses one of the exiled cards and puts it onto the battlefield tapped under his or her control. Repeat this process until all cards exiled this way have been chosen.
+mana={4}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Trap Runner
+text={T}: Target unblocked attacking creature becomes blocked. Activate this ability only during combat after blockers are declared. (This ability works on unblockable creatures.)
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+[/card]
+[card]
+name=Two-Headed Dragon
+text=Flying -- {1}{R}: Two-Headed Dragon gets +2/+0 until end of turn. -- Two-Headed Dragon can't be blocked except by two or more creatures. -- Two-Headed Dragon can block an additional creature.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Venomous Breath
+text=Choose target creature. At end of combat, destroy all creatures that blocked or were blocked by it this turn.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
+name=Volcanic Wind
+text=Volcanic Wind deals X damage divided as you choose among any number of target creatures, where X is the number of creatures on the battlefield as you cast Volcanic Wind.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Warmonger
+text={2}: Warmonger deals 1 damage to each creature without flying and each player. Any player may activate this ability.
+mana={3}{R}
+type=Creature
+subtype=Minotaur Monger
+power=3
+toughness=3
+[/card]
+[card]
+name=Warpath
+text=Warpath deals 3 damage to each blocking creature and each blocked creature.
+mana={3}{R}
+type=Instant
+[/card]
+[card]
+name=Wishmonger
+text={2}: Target creature gains protection from the color of its controller's choice until end of turn. Any player may activate this ability.
+mana={3}{W}
+type=Creature
+subtype=Unicorn Monger
+power=3
+toughness=3
+[/card]
