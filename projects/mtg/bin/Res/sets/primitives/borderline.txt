@@ -93,6 +93,16 @@ mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Exquisite Firecraft
+#nofizzle don't work with aslongas
+target=creature,player
+auto=damage:4
+auto=aslongas(*[instant;sorcery]|mygraveyard) nofizzle >1
+text=Exquisite Firecraft deals 4 damage to target creature or player. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, Exquisite Firecraft can't be countered by spells or abilities.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Feral Hydra
 type=Creature
 subtype=Hydra Beast
@@ -370,6 +380,19 @@ auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseacti
 mana={2}{R}
 type=Instant
 text=Staggershock deals 2 damage to target creature or player. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Surrak Dragonclaw
+abilities=flash,nofizzle
+#lord nofizzle doesn't seem to work
+auto=lord(*|mystack) nofizzle
+auto=lord(other creature|mybattlefield) trample
+text=Flash -- Surrak Dragonclaw can't be countered. -- Creature spells you control can't be countered. -- Other creatures you control have trample.
+mana={2}{G}{U}{R}
+type=Legendary Creature
+subtype=Human Warrior
+power=6
+toughness=6
 [/card]
 [card]
 name=Surreal Memoir
