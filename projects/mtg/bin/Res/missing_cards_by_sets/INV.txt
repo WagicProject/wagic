@@ -1,0 +1,286 @@
+[card]
+name=AEther Rift
+text=At the beginning of your upkeep, discard a card at random. If you discard a creature card this way, return it from your graveyard to the battlefield unless any player pays 5 life.
+mana={1}{R}{G}
+type=Enchantment
+[/card]
+[card]
+name=Assault // Battery
+text=Assault deals 2 damage to target creature or player. --  //  -- Put a 3/3 green Elephant creature token onto the battlefield.
+mana={R} // {3}{G}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Barrin's Spite
+text=Choose two target creatures controlled by the same player. Their controller chooses and sacrifices one of them. Return the other to its owner's hand.
+mana={2}{U}{B}
+type=Sorcery
+[/card]
+[card]
+name=Barrin's Unmaking
+text=Return target permanent to its owner's hand if that permanent shares a color with the most common color among all permanents or a color tied for most common.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Bend or Break
+text=Each player separates all nontoken lands he or she controls into two piles. For each player, one of his or her piles is chosen by one of his or her opponents of his or her choice. Destroy all lands in the chosen piles. Tap all lands in the other piles.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Bind
+text=Counter target activated ability. (Mana abilities can't be targeted.) -- Draw a card.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Breaking Wave
+text=You may cast Breaking Wave any time you could cast an instant if you pay {2} more to cast it. -- Simultaneously untap all tapped creatures and tap all untapped creatures.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Callous Giant
+text=If a source would deal 3 or less damage to Callous Giant, prevent that damage.
+mana={4}{R}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=4
+[/card]
+[card]
+name=Crystal Spray
+text=Change the text of target spell or permanent by replacing all instances of one color word or basic land type with another until end of turn. --  -- Draw a card.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Death or Glory
+text=Separate all creature cards in your graveyard into two piles. Exile the pile of an opponent's choice and return the other to the battlefield.
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
+name=Desperate Research
+text=Name a card other than a basic land card. Then reveal the top seven cards of your library and put all of them with that name into your hand. Exile the rest.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Divine Presence
+text=If a source would deal 4 or more damage to a creature or player, that source deals 3 damage to that creature or player instead.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Do or Die
+text=Separate all creatures target player controls into two piles. Destroy all creatures in the pile of that player's choice. They can't be regenerated.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Essence Leak
+text=Enchant permanent -- As long as enchanted permanent is red or green, it has "At the beginning of your upkeep, sacrifice this permanent unless you pay its mana cost."
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Fact or Fiction
+text=Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Fight or Flight
+text=At the beginning of each opponent's combat, separate all creatures that player controls into two piles. Only creatures in the pile of his or her choice can attack this turn.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Ghitu Fire
+text=You may cast Ghitu Fire any time you could cast an instant if you pay {2} more to cast it. -- Ghitu Fire deals X damage to target creature or player.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Global Ruin
+text=Each player chooses from the lands he or she controls a land of each basic land type, then sacrifices the rest.
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
+name=Goblin Spy
+text=Play with the top card of your library revealed.
+mana={R}
+type=Creature
+subtype=Goblin Rogue
+power=1
+toughness=1
+[/card]
+[card]
+name=Harsh Judgment
+text=As Harsh Judgment enters the battlefield, choose a color. -- If an instant or sorcery spell of the chosen color would deal damage to you, it deals that damage to its controller instead.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Loafing Giant
+text=Whenever Loafing Giant attacks or blocks, put the top card of your library into your graveyard. If that card is a land card, prevent all combat damage Loafing Giant would deal this turn.
+mana={4}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=6
+[/card]
+[card]
+name=Mages' Contest
+text=You and target spell's controller bid life. You start the bidding with a bid of 1. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid. If you win the bidding, counter that spell.
+mana={1}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Mana Maze
+text=Players can't cast spells that share a color with the spell most recently cast this turn.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+name=Overabundance
+text=Whenever a player taps a land for mana, that player adds one mana to his or her mana pool of any type that land produced, and Overabundance deals 1 damage to him or her.
+mana={1}{R}{G}
+type=Enchantment
+[/card]
+[card]
+name=Pain // Suffering
+text=Target player discards a card. --  //  -- Destroy target land.
+mana={B} // {3}{R}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Prohibit
+text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Counter target spell if its converted mana cost is 2 or less. If Prohibit was kicked, counter that spell if its converted mana cost is 4 or less instead.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Protective Sphere
+text={1}, Pay 1 life: Prevent all damage that would be dealt to you this turn by a source of your choice that shares a color with the mana spent on this activation cost. (Colorless mana prevents no damage.)
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Psychic Battle
+text=Whenever a player chooses one or more targets, each player reveals the top card of his or her library. The player who reveals the card with the highest converted mana cost may change the target or targets. If two or more cards are tied for highest cost, the target or targets remain unchanged. Changing targets this way doesn't trigger this ability.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Pulse of Llanowar
+text=If a basic land you control is tapped for mana, it produces mana of a color of your choice instead of any other type.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Rampant Elephant
+text={G}: Target creature blocks Rampant Elephant this turn if able.
+mana={3}{W}
+type=Creature
+subtype=Elephant
+power=2
+toughness=2
+[/card]
+[card]
+name=Rout
+text=You may cast Rout any time you could cast an instant if you pay {2} more to cast it. -- Destroy all creatures. They can't be regenerated.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Samite Ministration
+text=Prevent all damage that would be dealt to you this turn by a source of your choice. Whenever damage from a black or red source is prevented this way this turn, you gain that much life.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Saproling Infestation
+text=Whenever a player kicks a spell, you put a 1/1 green Saproling creature token onto the battlefield.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Saproling Symbiosis
+text=You may cast Saproling Symbiosis any time you could cast an instant if you pay {2} more to cast it. -- Put a 1/1 green Saproling creature token onto the battlefield for each creature you control.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Seer's Vision
+text=Your opponents play with their hands revealed. -- Sacrifice Seer's Vision: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
+mana={2}{U}{B}
+type=Enchantment
+[/card]
+[card]
+name=Soul Burn
+text=Spend only black and/or red mana on X. -- Soul Burn deals X damage to target creature or player. You gain life equal to the damage dealt, but not more than the amount of {B} spent on X, the player's life total before Soul Burn dealt damage, or the creature's toughness.
+mana={X}{2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Spite // Malice
+text=Counter target noncreature spell. --  //  -- Destroy target nonblack creature. It can't be regenerated.
+mana={3}{U} // {3}{B}
+type=Instant // Instant
+[/card]
+[card]
+name=Stand // Deliver
+text=Prevent the next 2 damage that would be dealt to target creature this turn. --  //  -- Return target permanent to its owner's hand.
+mana={W} // {2}{U}
+type=Instant // Instant
+[/card]
+[card]
+name=Stand or Fall
+text=At the beginning of combat on your turn, separate all creatures defending player controls into two piles. Only creatures in the pile of that player's choice can block this turn.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Teferi's Response
+text=Counter target spell or ability an opponent controls that targets a land you control. If a permanent's ability is countered this way, destroy that permanent. --  -- Draw two cards.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Tsabo's Assassin
+text={T}: Destroy target creature if it shares a color with the most common color among all permanents or a color tied for most common. A creature destroyed this way can't be regenerated.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Assassin
+power=1
+toughness=1
+[/card]
+[card]
+name=Tsabo's Web
+text=When Tsabo's Web enters the battlefield, draw a card. -- Each land with an activated ability that isn't a mana ability doesn't untap during its controller's untap step.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Twilight's Call
+text=You may cast Twilight's Call any time you could cast an instant if you pay {2} more to cast it. -- Each player returns all creature cards from his or her graveyard to the battlefield.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Urza's Rage
+text=Kicker {8}{R} (You may pay an additional {8}{R} as you cast this spell.) -- Urza's Rage can't be countered by spells or abilities. -- Urza's Rage deals 3 damage to target creature or player. If Urza's Rage was kicked, instead it deals 10 damage to that creature or player and the damage can't be prevented.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Wax // Wane
+text=Target creature gets +2/+2 until end of turn. --  //  -- Destroy target enchantment.
+mana={G} // {W}
+type=Instant // Instant
+[/card]
