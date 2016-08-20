@@ -1,0 +1,190 @@
+[card]
+name=Confound
+text=Counter target spell that targets one or more creatures. --  -- Draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Draco
+text=Domain — Draco costs {2} less to cast for each basic land type among lands you control. -- Flying -- Domain — At the beginning of your upkeep, sacrifice Draco unless you pay {1}0. This cost is reduced by {2} for each basic land type among lands you control.
+mana={16}
+type=Artifact Creature
+subtype=Dragon
+power=9
+toughness=9
+[/card]
+[card]
+name=Falling Timber
+text=Kicker—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Prevent all combat damage target creature would deal this turn. If Falling Timber was kicked, prevent all combat damage another target creature would deal this turn.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Gaea's Herald
+text=Creature spells can't be countered.
+mana={1}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+[/card]
+[card]
+name=Goblin Game
+text=Each player hides at least one item, then all players reveal them simultaneously. Each player loses life equal to the number of items he or she revealed. The player who revealed the fewest items then loses half his or her life, rounded up. If two or more players are tied for fewest, each loses half his or her life, rounded up.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Guard Dogs
+text={2}{W}, {T}: Choose a permanent you control. Prevent all combat damage target creature would deal this turn if it shares a color with that permanent.
+mana={3}{W}
+type=Creature
+subtype=Hound
+power=2
+toughness=2
+[/card]
+[card]
+name=Heroic Defiance
+text=Enchant creature -- Enchanted creature gets +3/+3 unless it shares a color with the most common color among all permanents or a color tied for most common.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Hull Breach
+text=Choose one — -- • Destroy target artifact. -- • Destroy target enchantment. -- • Destroy target artifact and target enchantment.
+mana={R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Keldon Twilight
+text=At the beginning of each player's end step, if no creatures attacked this turn, that player sacrifices a creature he or she controlled since the beginning of the turn.
+mana={1}{B}{R}
+type=Enchantment
+[/card]
+[card]
+name=Meddling Mage
+text=As Meddling Mage enters the battlefield, name a nonland card. -- The named card can't be cast.
+mana={W}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Mirrorwood Treefolk
+text={2}{R}{W}: The next time damage would be dealt to Mirrorwood Treefolk this turn, that damage is dealt to target creature or player instead.
+mana={3}{G}
+type=Creature
+subtype=Treefolk
+power=2
+toughness=4
+[/card]
+[card]
+name=Nightscape Battlemage
+text=Kicker {2}{U} and/or {2}{R} (You may pay an additional {2}{U} and/or {2}{R} as you cast this spell.) -- When Nightscape Battlemage enters the battlefield, if it was kicked with its {2}{U} kicker, return up to two target nonblack creatures to their owners' hands. -- When Nightscape Battlemage enters the battlefield, if it was kicked with its {2}{R} kicker, destroy target land.
+mana={2}{B}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Noxious Vapors
+text=Each player reveals his or her hand and chooses one card of each color from it, then discards all other nonland cards.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Planar Overlay
+text=Each player chooses a land he or she controls of each basic land type. Return those lands to their owners' hands.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Planeswalker's Favor
+text={3}{G}: Target opponent reveals a card at random from his or her hand. Target creature gets +X/+X until end of turn, where X is the revealed card's converted mana cost.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Planeswalker's Fury
+text={3}{R}: Target opponent reveals a card at random from his or her hand. Planeswalker's Fury deals damage equal to that card's converted mana cost to that player. Activate this ability only any time you could cast a sorcery.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Planeswalker's Mirth
+text={3}{W}: Target opponent reveals a card at random from his or her hand. You gain life equal to that card's converted mana cost.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Planeswalker's Mischief
+text={3}{U}: Target opponent reveals a card at random from his or her hand. If it's an instant or sorcery card, exile it. You may cast it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.) At the beginning of the next end step, if you haven't cast it, return it to its owner's hand. Activate this ability only any time you could cast a sorcery.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Planeswalker's Scorn
+text={3}{B}: Target opponent reveals a card at random from his or her hand. Target creature gets -X/-X until end of turn, where X is the revealed card's converted mana cost. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Pollen Remedy
+text=Kicker—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Prevent the next 3 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose. If Pollen Remedy was kicked, prevent the next 6 damage this way instead.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Rith's Charm
+text=Choose one — Destroy target nonbasic land; or put three 1/1 green Saproling creature tokens onto the battlefield; or prevent all damage a source of your choice would deal this turn.
+mana={R}{G}{W}
+type=Instant
+[/card]
+[card]
+name=Stormscape Battlemage
+text=Kicker {W} and/or {2}{B}(You may pay an additional {W} and/or {2}{B} as you cast this spell.) -- When Stormscape Battlemage enters the battlefield, if it was kicked with its {W} kicker, you gain 3 life. -- When Stormscape Battlemage enters the battlefield, if it was kicked with its {2}{B} kicker, destroy target nonblack creature. That creature can't be regenerated.
+mana={2}{U}
+type=Creature
+subtype=Metathran Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Stratadon
+text=Domain — Stratadon costs {1} less to cast for each basic land type among lands you control. -- Trample
+mana={10}
+type=Artifact Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
+name=Sunscape Battlemage
+text=Kicker {1}{G} and/or {2}{U} (You may pay an additional {1}{G} and/or {2}{U} as you cast this spell.) -- When Sunscape Battlemage enters the battlefield, if it was kicked with its {1}{G} kicker, destroy target creature with flying. -- When Sunscape Battlemage enters the battlefield, if it was kicked with its {2}{U} kicker, draw two cards.
+mana={2}{W}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Thornscape Battlemage
+text=Kicker {R} and/or {W} (You may pay an additional {R} and/or {W} as you cast this spell.) -- When Thornscape Battlemage enters the battlefield, if it was kicked with its {R} kicker, it deals 2 damage to target creature or player. -- When Thornscape Battlemage enters the battlefield, if it was kicked with its {W} kicker, destroy target artifact.
+mana={2}{G}
+type=Creature
+subtype=Elf Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Thunderscape Battlemage
+text=Kicker {1}{B} and/or {G} (You may pay an additional {1}{B} and/or {G} as you cast this spell.) -- When Thunderscape Battlemage enters the battlefield, if it was kicked with its {1}{B} kicker, target player discards two cards. -- When Thunderscape Battlemage enters the battlefield, if it was kicked with its {G} kicker, destroy target enchantment.
+mana={2}{R}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
