@@ -1,0 +1,198 @@
+[card]
+name=Beacon of Destiny
+text={T}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to Beacon of Destiny instead.
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+[card]
+name=Brontotherium
+text=Trample -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=3
+[/card]
+[card]
+name=Chromeshell Crab
+text=Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Chromeshell Crab is turned face up, you may exchange control of target creature you control and target creature an opponent controls.
+mana={4}{U}
+type=Creature
+subtype=Crab Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Crested Craghorn
+text=Haste -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+mana={4}{R}
+type=Creature
+subtype=Goat Beast
+power=4
+toughness=1
+[/card]
+[card]
+name=Deftblade Elite
+text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.) -- {1}{W}: Prevent all combat damage that would be dealt to and dealt by Deftblade Elite this turn.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Dermoplasm
+text=Flying -- Morph {2}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Dermoplasm is turned face up, you may put a creature card with morph from your hand onto the battlefield face up. If you do, return Dermoplasm to its owner's hand.
+mana={2}{U}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=1
+[/card]
+[card]
+name=Feral Throwback
+text=Amplify 2 (As this creature enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Goblin Assassin
+text=Whenever Goblin Assassin or another Goblin enters the battlefield, each player flips a coin. Each player whose coin comes up tails sacrifices a creature.
+mana={3}{R}{R}
+type=Creature
+subtype=Goblin Assassin
+power=2
+toughness=2
+[/card]
+[card]
+name=Goblin Grappler
+text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+mana={R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+[/card]
+[card]
+name=Hunter Sliver
+text=All Sliver creatures have provoke. (When a Sliver attacks, its controller may have target creature defending player controls untap and block it if able.)
+mana={1}{R}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+[/card]
+[card]
+name=Krosan Vorine
+text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.) -- Krosan Vorine can't be blocked by more than one creature.
+mana={3}{G}
+type=Creature
+subtype=Cat Beast
+power=3
+toughness=2
+[/card]
+[card]
+name=Lowland Tracker
+text=First strike -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Master of the Veil
+text=Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Master of the Veil is turned face up, you may turn target creature with morph face down.
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Primal Whisperer
+text=Primal Whisperer gets +2/+2 for each face-down creature on the battlefield. -- Morph {3}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{G}
+type=Creature
+subtype=Elf Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Riptide Mangler
+text={1}{U}: Change Riptide Mangler's power to target creature's power. (This effect lasts indefinitely.)
+mana={1}{U}
+type=Creature
+subtype=Beast
+power=0
+toughness=3
+[/card]
+[card]
+name=Root Sliver
+text=Root Sliver can't be countered. -- Sliver spells can't be countered by spells or abilities.
+mana={3}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
+name=Skirk Alarmist
+text=Haste -- {T}: Turn target face-down creature you control face up. At the beginning of the next end step, sacrifice it.
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Swooping Talon
+text=Flying -- {1}: Swooping Talon loses flying until end of turn. -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
+mana={4}{W}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=6
+[/card]
+[card]
+name=Wall of Deceit
+text=Defender (This creature can't attack.) -- {3}: Turn Wall of Deceit face down. -- Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={1}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=5
+[/card]
+[card]
+name=Weaver of Lies
+text=Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Weaver of Lies is turned face up, turn any number of target creatures with morph other than Weaver of Lies face down.
+mana={5}{U}{U}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+[card]
+name=Whipgrass Entangler
+text={1}{W}: Until end of turn, target creature gains "This creature can't attack or block unless its controller pays {1} for each Cleric on the battlefield."
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+[card]
+name=Willbender
+text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]

@@ -1,0 +1,120 @@
+[card]
+name=Abuna's Chant
+text=Choose one — You gain 5 life; or prevent the next 5 damage that would be dealt to target creature this turn. -- Entwine {2} (Choose both if you pay the entwine cost.)
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Circle of Protection: Artifacts
+text={2}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Disruption Aura
+text=Enchant artifact -- Enchanted artifact has "At the beginning of your upkeep, sacrifice this artifact unless you pay its mana cost."
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Ensouled Scimitar
+text={3}: Ensouled Scimitar becomes a 1/5 Spirit artifact creature with flying until end of turn. (Equipment that's a creature can't equip a creature.) -- Equipped creature gets +1/+5. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Ferropede
+text=Ferropede is unblockable. -- Whenever Ferropede deals combat damage to a player, you may remove a counter from target permanent.
+mana={3}
+type=Artifact Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
+name=Fist of Suns
+text=You may pay {W}{U}{B}{R}{G} rather than pay the mana cost for spells that you cast.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Grafted Wargear
+text=Equipped creature gets +3/+2. -- Whenever Grafted Wargear becomes unattached from a permanent, sacrifice that permanent. -- Equip {0} ({0}: Attach to target creature you control. Equip only as a sorcery.)
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Lantern of Insight
+text=Each player plays with the top card of his or her library revealed. -- {T}, Sacrifice Lantern of Insight: Target player shuffles his or her library.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Ouphe Vandals
+text={G}, Sacrifice Ouphe Vandals: Counter target activated ability from an artifact source and destroy that artifact if it's on the battlefield. (Mana abilities can't be targeted.)
+mana={2}{G}
+type=Creature
+subtype=Ouphe Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Plunge into Darkness
+text=Choose one — Sacrifice any number of creatures, then you gain 3 life for each sacrificed creature; or pay X life, then look at the top X cards of your library, put one of those cards into your hand, and exile the rest. -- Entwine {B} (Choose both if you pay the entwine cost.)
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Rain of Rust
+text=Choose one — Destroy target artifact; or destroy target land. -- Entwine {3}{R} (Choose both if you pay the entwine cost.)
+mana={3}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Reversal of Fortune
+text=Target opponent reveals his or her hand. You may copy an instant or sorcery card in it. If you do, you may cast the copy without paying its mana cost.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Silent Arbiter
+text=No more than one creature can attack each combat. -- No more than one creature can block each combat.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=5
+[/card]
+[card]
+name=Spectral Shift
+text=Choose one — Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) -- Entwine {2} (Choose both if you pay the entwine cost.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Spinal Parasite
+text=Sunburst (This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.) -- Remove two +1/+1 counters from Spinal Parasite: Remove a counter from target permanent.
+mana={5}
+type=Artifact Creature
+subtype=Insect
+power=-1
+toughness=-1
+[/card]
+[card]
+name=Summoner's Egg
+text=Imprint — When Summoner's Egg enters the battlefield, you may exile a card from your hand face down. -- When Summoner's Egg dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=4
+[/card]
+[card]
+name=Vicious Betrayal
+text=As an additional cost to cast Vicious Betrayal, sacrifice any number of creatures. -- Target creature gets +2/+2 until end of turn for each creature sacrificed this way.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
