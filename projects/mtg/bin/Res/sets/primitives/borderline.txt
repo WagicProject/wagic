@@ -22,18 +22,8 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Cinder Seer
-auto={2}{r}{t}:target(creature,Player) damage:type:*[red]:myhand
-text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
-mana={3}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-#can target same creature
-[card]
 name=Consume Strength
+#can target same creature
 target=creature
 auto=2/2 ueot
 auto=target(creature) -2/-2 ueot
@@ -114,9 +104,9 @@ auto=counter(1/1,X)
 auto={3}:counter(1/1)
 #Not all player can use ability
 [/card]
-#need doubler damage ability...
 [card]
 name=Goldnight Castigator
+#need doubler damage ability...
 abilities=flying,haste
 auto=@damaged(controller):damage:thatmuch controller
 auto=@damaged(this):damage:thatmuch all(this)
@@ -427,8 +417,8 @@ type=Artifact
 [/card]
 [card]
 name=Uba Mask
-auto=replacedraw name(uba mask) reveal:1 optionone all(*|reveal) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot)! optiononeend revealend
-auto=opponentreplacedraw name(uba mask) reveal:1 revealzone(opponentlibrary) optionone all(*|reveal) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot)! optiononeend revealend
+auto=replacedraw reveal:1 optionone all(*|reveal) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot)! optiononeend revealend
+auto=opponentreplacedraw reveal:1 revealzone(opponentlibrary) optionone all(*|reveal) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot)! optiononeend revealend
 text=If a player would draw a card, that player exiles that card face up instead. -- Each player may play cards he or she exiled with Uba Mask this turn.
 mana={4}
 type=Artifact
