@@ -7576,6 +7576,12 @@ void AACastCard::Update(float dt)
            }
        }
        theNamedCard = makeCard();
+       //if somehow the imprinted card leaves its zone destroy this...
+       if(cardNamed.find("imprintedcard") != string::npos && !theNamedCard)
+       {
+           this->forceDestroy = 1;
+           return;
+       }
    }
    if(putinplay)
    {
@@ -7669,6 +7675,7 @@ MTGCardInstance * AACastCard::makeCard()
 {
    MTGCardInstance * card = NULL;
    MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
+   if(!cardData) return NULL;
    card = NEW MTGCardInstance(cardData, source->controller()->game);
    card->owner = source->controller();
    source->controller()->game->temp->addCard(card);

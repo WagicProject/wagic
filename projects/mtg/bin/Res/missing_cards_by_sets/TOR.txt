@@ -1,0 +1,183 @@
+[card]
+name=Alter Reality
+text=Change the text of target spell or permanent by replacing all instances of one color word with another. (This effect lasts indefinitely.) -- Flashback {1}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Carrion Rats
+text=Whenever Carrion Rats attacks or blocks, any player may exile a card from his or her graveyard. If a player does, Carrion Rats assigns no combat damage this turn.
+mana={B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+[/card]
+[card]
+name=Carrion Wurm
+text=Whenever Carrion Wurm attacks or blocks, any player may exile three cards from his or her graveyard. If a player does, Carrion Wurm assigns no combat damage this turn.
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie Wurm
+power=6
+toughness=5
+[/card]
+[card]
+name=Cleansing Meditation
+text=Destroy all enchantments. -- Threshold — If seven or more cards are in your graveyard, instead destroy all enchantments, then return all cards in your graveyard destroyed this way to the battlefield.
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Crazed Firecat
+text=When Crazed Firecat enters the battlefield, flip a coin until you lose a flip. Put a +1/+1 counter on Crazed Firecat for each flip you win.
+mana={5}{R}{R}
+type=Creature
+subtype=Elemental Cat
+power=4
+toughness=4
+[/card]
+[card]
+name=Devastating Dreams
+text=As an additional cost to cast Devastating Dreams, discard X cards at random. -- Each player sacrifices X lands. Devastating Dreams deals X damage to each creature.
+mana={R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Equal Treatment
+text=If any source would deal 1 or more damage to a creature or player this turn, it deals 2 damage to that creature or player instead. --  -- Draw a card.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Flaming Gambit
+text=Flaming Gambit deals X damage to target player. That player may choose a creature he or she controls and have Flaming Gambit deal that damage to it instead. -- Flashback {X}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={X}{R}
+type=Instant
+[/card]
+[card]
+name=Hydromorph Guardian
+text={U}, Sacrifice Hydromorph Guardian: Counter target spell that targets one or more creatures you control.
+mana={2}{U}
+type=Creature
+subtype=Elemental
+power=2
+toughness=2
+[/card]
+[card]
+name=Hydromorph Gull
+text=Flying -- {U}, Sacrifice Hydromorph Gull: Counter target spell that targets one or more creatures you control.
+mana={3}{U}{U}
+type=Creature
+subtype=Elemental Bird
+power=3
+toughness=3
+[/card]
+[card]
+name=Insidious Dreams
+text=As an additional cost to cast Insidious Dreams, discard X cards. -- Search your library for X cards. Then shuffle your library and put those cards on top of it in any order.
+mana={3}{B}
+type=Instant
+[/card]
+[card]
+name=Insist
+text=The next creature spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Longhorn Firebeast
+text=When Longhorn Firebeast enters the battlefield, any opponent may have it deal 5 damage to him or her. If a player does, sacrifice Longhorn Firebeast.
+mana={2}{R}
+type=Creature
+subtype=Elemental Ox Beast
+power=3
+toughness=2
+[/card]
+[card]
+name=Nostalgic Dreams
+text=As an additional cost to cast Nostalgic Dreams, discard X cards. -- Return X target cards from your graveyard to your hand. Exile Nostalgic Dreams.
+mana={G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Overmaster
+text=The next instant or sorcery spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Pay No Heed
+text=Prevent all damage a source of your choice would deal this turn.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Pitchstone Wall
+text=Defender (This creature can't attack.) -- Whenever you discard a card, you may sacrifice Pitchstone Wall. If you do, return the discarded card from your graveyard to your hand.
+mana={2}{R}
+type=Creature
+subtype=Wall
+power=2
+toughness=5
+[/card]
+[card]
+name=Radiate
+text=Choose target instant or sorcery spell that targets only a single permanent or player. Copy that spell for each other permanent or player the spell could target. Each copy targets a different one of those permanents and players.
+mana={3}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Restless Dreams
+text=As an additional cost to cast Restless Dreams, discard X cards. -- Return X target creature cards from your graveyard to your hand.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Shambling Swarm
+text=When Shambling Swarm dies, distribute three -1/-1 counters among one, two, or three target creatures. For each -1/-1 counter you put on a creature this way, remove a -1/-1 counter from that creature at the beginning of the next end step.
+mana={1}{B}{B}{B}
+type=Creature
+subtype=Horror
+power=3
+toughness=3
+[/card]
+[card]
+name=Sickening Dreams
+text=As an additional cost to cast Sickening Dreams, discard X cards. -- Sickening Dreams deals X damage to each creature and each player.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Skullscorch
+text=Target player discards two cards at random unless that player has Skullscorch deal 4 damage to him or her.
+mana={R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Soul Scourge
+text=Flying -- When Soul Scourge enters the battlefield, target player loses 3 life. -- When Soul Scourge leaves the battlefield, that player gains 3 life.
+mana={4}{B}
+type=Creature
+subtype=Nightmare Horror
+power=3
+toughness=2
+[/card]
+[card]
+name=Turbulent Dreams
+text=As an additional cost to cast Turbulent Dreams, discard X cards. -- Return X target nonland permanents to their owners' hands.
+mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Vengeful Dreams
+text=As an additional cost to cast Vengeful Dreams, discard X cards. -- Exile X target attacking creatures.
+mana={W}{W}
+type=Instant
+[/card]
+[card]
+name=Violent Eruption
+text=Violent Eruption deals 4 damage divided as you choose among any number of target creatures and/or players. -- Madness {1}{R}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{R}{R}{R}
+type=Instant
+[/card]
