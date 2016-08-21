@@ -1,0 +1,305 @@
+[card]
+name=Aegis of Honor
+text={1}: The next time an instant or sorcery spell would deal damage to you this turn, that spell deals that damage to its controller instead.
+mana={W}
+type=Enchantment
+[/card]
+[card]
+name=Aura Graft
+text=Gain control of target Aura that's attached to a permanent. Attach it to another permanent it can enchant.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Blazing Salvo
+text=Blazing Salvo deals 3 damage to target creature unless that creature's controller has Blazing Salvo deal 5 damage to him or her.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Cabal Shrine
+text=Whenever a player casts a spell, that player discards X cards, where X is the number of cards in all graveyards with the same name as that spell.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Catalyst Stone
+text=Flashback costs you pay cost up to {2} less. -- Flashback costs your opponents pay cost {2} more.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Cephalid Shrine
+text=Whenever a player casts a spell, counter that spell unless that player pays {X}, where X is the number of cards in all graveyards with the same name as the spell.
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Chance Encounter
+text=Whenever you win a coin flip, put a luck counter on Chance Encounter. --  -- At the beginning of your upkeep, if Chance Encounter has ten or more luck counters on it, you win the game.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Charmed Pendant
+text={T}, Put the top card of your library into your graveyard: For each colored mana symbol in that card's mana cost, add one mana of that color to your mana pool. Activate this ability only any time you could cast an instant. (For example, if the card's mana cost is {3}{U}{U}{B}, you add {U}{U}{B} to your mana pool.)
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Cultural Exchange
+text=Choose any number of creatures target player controls. Choose the same number of creatures another target player controls. Those players exchange control of those creatures. (This effect lasts indefinitely.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Decimate
+text=Destroy target artifact, target creature, target enchantment, and target land.
+mana={2}{R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Delaying Shield
+text=If damage would be dealt to you, put that many delay counters on Delaying Shield instead. --  -- At the beginning of your upkeep, remove all delay counters from Delaying Shield. For each delay counter removed this way, you lose 1 life unless you pay {1}{W}.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Divert
+text=Change the target of target spell with a single target unless that spell's controller pays {2}.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Dwarven Shrine
+text=Whenever a player casts a spell, Dwarven Shrine deals X damage to that player, where X is twice the number of cards in all graveyards with the same name as that spell.
+mana={1}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Embolden
+text=Prevent the next 4 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose. -- Flashback {1}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Graceful Antelope
+text=Plainswalk -- Whenever Graceful Antelope deals combat damage to a player, you may have target land become a Plains until Graceful Antelope leaves the battlefield.
+mana={2}{W}{W}
+type=Creature
+subtype=Antelope
+power=1
+toughness=4
+[/card]
+[card]
+name=Holistic Wisdom
+text={2}, Exile a card from your hand: Return target card from your graveyard to your hand if it shares a card type with the card exiled this way. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
+mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Impulsive Maneuvers
+text=Whenever a creature attacks, flip a coin. If you win the flip, the next time that creature would deal combat damage this turn, it deals double that damage instead. If you lose the flip, the next time that creature would deal combat damage this turn, prevent that damage.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Karmic Justice
+text=Whenever a spell or ability an opponent controls destroys a noncreature permanent you control, you may destroy target permanent that opponent controls.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Last Rites
+text=Discard any number of cards. Target player reveals his or her hand, then you choose a nonland card from it for each card discarded this way. That player discards those cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Lava Blister
+text=Destroy target nonbasic land unless its controller has Lava Blister deal 6 damage to him or her.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Liquid Fire
+text=As an additional cost to cast Liquid Fire, choose a number between 0 and 5. -- Liquid Fire deals X damage to target creature and 5 minus X damage to that creature's controller, where X is the chosen number.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Luminous Guardian
+text={W}: Luminous Guardian gets +0/+1 until end of turn. -- {2}: Luminous Guardian can block an additional creature this turn.
+mana={3}{W}
+type=Creature
+subtype=Human Nomad
+power=1
+toughness=4
+[/card]
+[card]
+name=Mad Dog
+text=At the beginning of your end step, if Mad Dog didn't attack or come under your control this turn, sacrifice it.
+mana={1}{R}
+type=Creature
+subtype=Hound
+power=2
+toughness=2
+[/card]
+[card]
+name=Molten Influence
+text=Counter target instant or sorcery spell unless its controller has Molten Influence deal 4 damage to him or her.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Nantuko Shrine
+text=Whenever a player casts a spell, that player puts X 1/1 green Squirrel creature tokens onto the battlefield, where X is the number of cards in all graveyards with the same name as that spell.
+mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Nefarious Lich
+text=If damage would be dealt to you, exile that many cards from your graveyard instead. If you can't, you lose the game. -- If you would gain life, draw that many cards instead. -- When Nefarious Lich leaves the battlefield, you lose the game.
+mana={B}{B}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=New Frontiers
+text=Each player may search his or her library for up to X basic land cards and put them onto the battlefield tapped. Then each player who searched his or her library this way shuffles it.
+mana={X}{G}
+type=Sorcery
+[/card]
+[card]
+name=Pilgrim of Justice
+text=Protection from red -- {W}, Sacrifice Pilgrim of Justice: The next time a red source of your choice would deal damage this turn, prevent that damage.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+[card]
+name=Pilgrim of Virtue
+text=Protection from black -- {W}, Sacrifice Pilgrim of Virtue: The next time a black source of your choice would deal damage this turn, prevent that damage.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+[card]
+name=Predict
+text=Name a card, then put the top card of target player's library into his or her graveyard. If that card is the named card, you draw two cards. Otherwise, you draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Rites of Initiation
+text=Discard any number of cards at random. Creatures you control get +1/+0 until end of turn for each card discarded this way.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Rites of Refusal
+text=Discard any number of cards. Counter target spell unless its controller pays {3} for each card discarded this way.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Rites of Spring
+text=Discard any number of cards. Search your library for that many basic land cards, reveal those cards, and put them into your hand. Then shuffle your library.
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+name=Shifty Doppelganger
+text={3}{U}, Exile Shifty Doppelganger: You may put a creature card from your hand onto the battlefield. If you do, that creature gains haste until end of turn. At the beginning of the next end step, sacrifice that creature. If you do, return Shifty Doppelganger to the battlefield.
+mana={2}{U}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=1
+[/card]
+[card]
+name=Skeletal Scrying
+text=As an additional cost to cast Skeletal Scrying, exile X cards from your graveyard. -- You draw X cards and you lose X life.
+mana={X}{B}
+type=Instant
+[/card]
+[card]
+name=Sphere of Duty
+text=If a green source would deal damage to you, prevent 2 of that damage.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sphere of Grace
+text=If a black source would deal damage to you, prevent 2 of that damage.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sphere of Law
+text=If a red source would deal damage to you, prevent 2 of that damage.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sphere of Reason
+text=If a blue source would deal damage to you, prevent 2 of that damage.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sphere of Truth
+text=If a white source would deal damage to you, prevent 2 of that damage.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Steam Vines
+text=Enchant land -- When enchanted land becomes tapped, destroy it and Steam Vines deals 1 damage to that land's controller. That player attaches Steam Vines to a land of his or her choice.
+mana={1}{R}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Tainted Pact
+text=Exile the top card of your library. You may put that card into your hand unless it has the same name as another card exiled this way. Repeat this process until you put a card into your hand or you exile two cards with the same name, whichever comes first.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Tombfire
+text=Target player exiles all cards with flashback from his or her graveyard.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Traveling Plague
+text=Enchant creature -- At the beginning of each upkeep, put a plague counter on Traveling Plague. -- Enchanted creature gets -1/-1 for each plague counter on Traveling Plague. -- When enchanted creature leaves the battlefield, that creature's controller returns Traveling Plague from its owner's graveyard to the battlefield.
+mana={3}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Unifying Theory
+text=Whenever a player casts a spell, that player may pay {2}. If the player does, he or she draws a card.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+name=Volley of Boulders
+text=Volley of Boulders deals 6 damage divided as you choose among any number of target creatures and/or players. -- Flashback {R}{R}{R}{R}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={8}{R}
+type=Sorcery
+[/card]
+[card]
+name=Whipkeeper
+text={T}: Whipkeeper deals damage to target creature equal to the damage already dealt to it this turn.
+mana={2}{R}{R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+[/card]

@@ -1,0 +1,220 @@
+[card]
+name=Anurid Swarmsnapper
+text=Reach (This creature can block creatures with flying.) -- {1}{G}: Anurid Swarmsnapper can block an additional creature this turn.
+mana={2}{G}
+type=Creature
+subtype=Frog Beast
+power=1
+toughness=4
+[/card]
+[card]
+name=Barbarian Bully
+text=Discard a card at random: Barbarian Bully gets +2/+2 until end of turn unless a player has Barbarian Bully deal 4 damage to him or her. Activate this ability only once each turn.
+mana={2}{R}
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
+[/card]
+[card]
+name=Battlefield Scrounger
+text=Threshold — Put three cards from your graveyard on the bottom of your library: Battlefield Scrounger gets +3/+3 until end of turn. Activate this ability only once each turn, and only if seven or more cards are in your graveyard.
+mana={3}{G}{G}
+type=Creature
+subtype=Centaur
+power=3
+toughness=3
+[/card]
+[card]
+name=Book Burning
+text=Any player may have Book Burning deal 6 damage to him or her. If no one does, put the top six cards of target player's library into his or her graveyard.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Breaking Point
+text=Any player may have Breaking Point deal 6 damage to him or her. If no one does, destroy all creatures. Creatures destroyed this way can't be regenerated.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Browbeat
+text=Any player may have Browbeat deal 5 damage to him or her. If no one does, target player draws three cards.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Burning Wish
+text=You may choose a sorcery card you own from outside the game, reveal that card, and put it into your hand. Exile Burning Wish.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Cabal Therapy
+text=Name a nonland card. Target player reveals his or her hand and discards all cards with that name. -- Flashback—Sacrifice a creature. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Cunning Wish
+text=You may choose an instant card you own from outside the game, reveal that card, and put it into your hand. Exile Cunning Wish.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Death Wish
+text=You may choose a card you own from outside the game and put it into your hand. You lose half your life, rounded up. Exile Death Wish.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Dwarven Driller
+text={T}: Destroy target land unless its controller has Dwarven Driller deal 2 damage to him or her.
+mana={3}{R}
+type=Creature
+subtype=Dwarf
+power=2
+toughness=2
+[/card]
+[card]
+name=Dwarven Scorcher
+text=Sacrifice Dwarven Scorcher: Dwarven Scorcher deals 1 damage to target creature unless that creature's controller has Dwarven Scorcher deal 2 damage to him or her.
+mana={R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+[/card]
+[card]
+name=Firecat Blitz
+text=Put X 1/1 red Elemental Cat creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step. -- Flashback—{R}{R}, Sacrifice X Mountains. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Flaring Pain
+text=Damage can't be prevented this turn. -- Flashback {R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Flash of Insight
+text=Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order. -- Flashback—{1}{U}, Exile X blue cards from your graveyard. (You may cast this card from your graveyard for its flashback cost, then exile it. You can't exile Flash of Insight to pay for its own flashback cost.)
+mana={X}{1}{U}
+type=Instant
+[/card]
+[card]
+name=Golden Wish
+text=You may choose an artifact or enchantment card you own from outside the game, reveal that card, and put it into your hand. Exile Golden Wish.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Grave Consequences
+text=Each player may exile any number of cards from his or her graveyard. Then each player loses 1 life for each card in his or her graveyard. -- Draw a card.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Grip of Amnesia
+text=Counter target spell unless its controller exiles all cards from his or her graveyard. -- Draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Infectious Rage
+text=Enchant creature -- Enchanted creature gets +2/-1. -- When enchanted creature dies, choose a creature at random Infectious Rage can enchant. Return Infectious Rage to the battlefield attached to that creature.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Krosan Verge
+text=Krosan Verge enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {2}, {T}, Sacrifice Krosan Verge: Search your library for a Forest card and a Plains card and put them onto the battlefield tapped. Then shuffle your library.
+type=Land
+[/card]
+[card]
+name=Laquatus's Disdain
+text=Counter target spell cast from a graveyard. -- Draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Lightning Surge
+text=Lightning Surge deals 4 damage to target creature or player. -- Threshold — If seven or more cards are in your graveyard, instead Lightning Surge deals 6 damage to that creature or player and the damage can't be prevented. -- Flashback {5}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Living Wish
+text=You may choose a creature or land card you own from outside the game, reveal that card, and put it into your hand. Exile Living Wish.
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+name=Lost in Thought
+text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. Its controller may exile three cards from his or her graveyard for that player to ignore this effect until end of turn.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Planar Chaos
+text=At the beginning of your upkeep, flip a coin. If you lose the flip, sacrifice Planar Chaos. -- Whenever a player casts a spell, that player flips a coin. If he or she loses the flip, counter that spell.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Quiet Speculation
+text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
+name=Shaman's Trance
+text=Until end of turn, other players can't play cards from their graveyards, and you may play cards from other players' graveyards as though they were in your graveyard.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Shieldmage Advocate
+text={T}: Return target card from an opponent's graveyard to his or her hand. Prevent all damage that would be dealt to target creature or player this turn by a source of your choice.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+[card]
+name=Soulgorger Orgg
+text=Trample -- When Soulgorger Orgg enters the battlefield, you lose all but 1 life. -- When Soulgorger Orgg leaves the battlefield, you gain life equal to the life you lost when it entered the battlefield.
+mana={3}{R}{R}
+type=Creature
+subtype=Nightmare Orgg
+power=6
+toughness=6
+[/card]
+[card]
+name=Spelljack
+text=Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. You may play it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.)
+mana={3}{U}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Sutured Ghoul
+text=Trample -- As Sutured Ghoul enters the battlefield, exile any number of creature cards from your graveyard. -- Sutured Ghoul's power is equal to the total power of the exiled cards and its toughness is equal to their total toughness.
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Zombie
+power=*
+toughness=*
+[/card]
+[card]
+name=Wormfang Crab
+text=Wormfang Crab is unblockable. -- When Wormfang Crab enters the battlefield, an opponent chooses a permanent you control other than Wormfang Crab and exiles it. -- When Wormfang Crab leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+mana={3}{U}
+type=Creature
+subtype=Nightmare Crab
+power=3
+toughness=6
+[/card]

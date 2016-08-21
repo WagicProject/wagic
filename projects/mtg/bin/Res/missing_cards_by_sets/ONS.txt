@@ -1,0 +1,291 @@
+[card]
+name=Animal Magnetism
+text=Reveal the top five cards of your library. An opponent chooses a creature card from among them. Put that card onto the battlefield and the rest into your graveyard.
+mana={4}{G}
+type=Sorcery
+[/card]
+[card]
+name=Artificial Evolution
+text=Change the text of target spell or permanent by replacing all instances of one creature type with another. The new creature type can't be Wall. (This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Aven Soulgazer
+text=Flying -- {2}{W}: Look at target face-down creature.
+mana={3}{W}{W}
+type=Creature
+subtype=Bird Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Backslide
+text=Turn target creature with morph face down. -- Cycling {U} ({U}, Discard this card: Draw a card.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Break Open
+text=Turn target face-down creature an opponent controls face up.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Butcher Orgg
+text=You may assign Butcher Orgg's combat damage divided as you choose among defending player and/or any number of creatures he or she controls.
+mana={4}{R}{R}{R}
+type=Creature
+subtype=Orgg
+power=6
+toughness=6
+[/card]
+[card]
+name=Callous Oppressor
+text=You may choose not to untap Callous Oppressor during your untap step. -- As Callous Oppressor enters the battlefield, an opponent chooses a creature type. -- {T}: Gain control of target creature that isn't of the chosen type for as long as Callous Oppressor remains tapped.
+mana={1}{U}{U}
+type=Creature
+subtype=Cephalid
+power=1
+toughness=2
+[/card]
+[card]
+name=Chain of Plasma
+text=Chain of Plasma deals 3 damage to target creature or player. Then that player or that creature's controller may discard a card. If the player does, he or she may copy this spell and may choose a new target for that copy.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Chain of Silence
+text=Prevent all damage target creature would deal this turn. That creature's controller may sacrifice a land. If the player does, he or she may copy this spell and may choose a new target for that copy.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Chain of Vapor
+text=Return target nonland permanent to its owner's hand. Then that permanent's controller may sacrifice a land. If the player does, he or she may copy this spell and may choose a new target for that copy.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Complicate
+text=Counter target spell unless its controller pays {3}. -- Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) -- When you cycle Complicate, you may counter target spell unless its controller pays {1}.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Cryptic Gateway
+text=Tap two untapped creatures you control: You may put a creature card from your hand that shares a creature type with each creature tapped this way onto the battlefield.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Dream Chisel
+text=Face-down creature spells you cast cost {1} less to cast.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Future Sight
+text=Play with the top card of your library revealed. -- You may play the top card of your library.
+mana={2}{U}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Glarecaster
+text=Flying -- {5}{W}: The next time damage would be dealt to Glarecaster and/or you this turn, that damage is dealt to target creature or player instead.
+mana={4}{W}{W}
+type=Creature
+subtype=Bird Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Gratuitous Violence
+text=If a creature you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={2}{R}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Graxiplon
+text=Graxiplon is unblockable unless defending player controls three or more creatures that share a creature type.
+mana={5}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=4
+[/card]
+[card]
+name=Ironfist Crusher
+text=Ironfist Crusher can block any number of creatures. -- Morph {3}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
+name=Ixidor's Will
+text=Counter target spell unless its controller pays {2} for each Wizard on the battlefield.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Ixidor, Reality Sculptor
+text=Face-down creatures get +1/+1. -- {2}{U}: Turn target face-down creature face up.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
+[/card]
+[card]
+name=Kaboom!
+text=Choose any number of target players. For each of those players, reveal cards from the top of your library until you reveal a nonland card. Kaboom deals damage equal to that card's converted mana cost to that player, then you put the revealed cards on the bottom of your library in any order.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Kamahl's Summons
+text=Each player may reveal any number of creature cards from his or her hand. Then each player puts a 2/2 green Bear creature token onto the battlefield for each card he or she revealed this way.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Meddle
+text=If target spell has only one target and that target is a creature, change that spell's target to another creature.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Menacing Ogre
+text=Trample, haste -- When Menacing Ogre enters the battlefield, each player secretly chooses a number. Then those numbers are revealed. Each player with the highest number loses that much life. If you are one of those players, put two +1/+1 counters on Menacing Ogre.
+mana={3}{R}{R}
+type=Creature
+subtype=Ogre
+power=3
+toughness=3
+[/card]
+[card]
+name=Nosy Goblin
+text={T}, Sacrifice Nosy Goblin: Destroy target face-down creature.
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=1
+[/card]
+[card]
+name=Patriarch's Bidding
+text=Each player chooses a creature type. Each player returns all creature cards of a type chosen this way from his or her graveyard to the battlefield.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Pinpoint Avalanche
+text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
+mana={3}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Prowling Pangolin
+text=When Prowling Pangolin enters the battlefield, any player may sacrifice two creatures. If a player does, sacrifice Prowling Pangolin.
+mana={3}{B}{B}
+type=Creature
+subtype=Beast
+power=6
+toughness=5
+[/card]
+[card]
+name=Quicksilver Dragon
+text=Flying -- {U}: If target spell has only one target and that target is Quicksilver Dragon, change that spell's target to another creature. -- Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{U}{U}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Read the Runes
+text=Draw X cards. For each card drawn this way, discard a card unless you sacrifice a permanent.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Riptide Shapeshifter
+text={2}{U}{U}, Sacrifice Riptide Shapeshifter: Choose a creature type. Reveal cards from the top of your library until you reveal a creature card of that type. Put that card onto the battlefield and shuffle the rest into your library.
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Risky Move
+text=At the beginning of each player's upkeep, that player gains control of Risky Move. --  -- When you gain control of Risky Move from another player, choose a creature you control and an opponent. Flip a coin. If you lose the flip, that opponent gains control of that creature.
+mana={3}{R}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Skittish Valesk
+text=At the beginning of your upkeep, flip a coin. If you lose the flip, turn Skittish Valesk face down. -- Morph {5}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={6}{R}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
+name=Spy Network
+text=Look at target player's hand, the top card of that player's library, and any face-down creatures he or she controls. Look at the top four cards of your library, then put them back in any order.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Strongarm Tactics
+text=Each player discards a card. Then each player who didn't discard a creature card this way loses 4 life.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Trade Secrets
+text=Target opponent draws two cards, then you draw up to four cards. That opponent may repeat this process as many times as he or she chooses.
+mana={1}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Weird Harvest
+text=Each player may search his or her library for up to X creature cards, reveal those cards, and put them into his or her hand. Then each player who searched his or her library this way shuffles it.
+mana={X}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Words of War
+text={1}: The next time you would draw a card this turn, Words of War deals 2 damage to target creature or player instead.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Words of Waste
+text={1}: The next time you would draw a card this turn, each opponent discards a card instead.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Words of Wilding
+text={1}: The next time you would draw a card this turn, put a 2/2 green Bear creature token onto the battlefield instead.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Words of Wind
+text={1}: The next time you would draw a card this turn, each player returns a permanent he or she controls to its owner's hand instead.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Words of Worship
+text={1}: The next time you would draw a card this turn, you gain 5 life instead.
+mana={2}{W}
+type=Enchantment
+[/card]

@@ -1,0 +1,173 @@
+[card]
+name=Alpha Status
+text=Enchant creature -- Enchanted creature gets +2/+2 for each other creature on the battlefield that shares a creature type with it.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Aphetto Runecaster
+text=Whenever a permanent is turned face up, you may draw a card.
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Aven Farseer
+text=Flying -- Whenever a permanent is turned face up, put a +1/+1 counter on Aven Farseer.
+mana={1}{W}
+type=Creature
+subtype=Bird Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Bonethorn Valesk
+text=Whenever a permanent is turned face up, Bonethorn Valesk deals 1 damage to target creature or player.
+mana={4}{R}
+type=Creature
+subtype=Beast
+power=4
+toughness=2
+[/card]
+[card]
+name=Cabal Conditioning
+text=Any number of target players each discard a number of cards equal to the highest converted mana cost among permanents you control.
+mana={6}{B}
+type=Sorcery
+[/card]
+[card]
+name=Chill Haunting
+text=As an additional cost to cast Chill Haunting, exile X creature cards from your graveyard. -- Target creature gets -X/-X until end of turn.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Dimensional Breach
+text=Exile all permanents. For as long as any of those cards remain exiled, at the beginning of each player's upkeep, that player returns one of the exiled cards he or she owns to the battlefield.
+mana={5}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Exiled Doomsayer
+text=All morph costs cost {2} more. (This doesn't affect the cost to cast creature spells face down.)
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+[/card]
+[card]
+name=Faces of the Past
+text=Whenever a creature dies, tap all untapped creatures that share a creature type with it or untap all tapped creatures that share a creature type with it.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Fatal Mutation
+text=Enchant creature -- When enchanted creature is turned face up, destroy it. It can't be regenerated.
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Force Bubble
+text=If damage would be dealt to you, put that many depletion counters on Force Bubble instead. -- When there are four or more depletion counters on Force Bubble, sacrifice it. -- At the beginning of each end step, remove all depletion counters from Force Bubble.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Gilded Light
+text=You gain shroud until end of turn. (You can't be the target of spells or abilities.) -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Goblin Psychopath
+text=Whenever Goblin Psychopath attacks or blocks, flip a coin. If you lose the flip, the next time it would deal combat damage this turn, it deals that damage to you instead.
+mana={3}{R}
+type=Creature
+subtype=Goblin Mutant
+power=5
+toughness=5
+[/card]
+[card]
+name=Grip of Chaos
+text=Whenever a spell or ability is put onto the stack, if it has a single target, reselect its target at random. (Select from among all legal targets.)
+mana={4}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Karona's Zealot
+text=Morph {3}{W}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Karona's Zealot is turned face up, all damage that would be dealt to it this turn is dealt to target creature instead.
+mana={4}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=5
+[/card]
+[card]
+name=Lethal Vapors
+text=Whenever a creature enters the battlefield, destroy it. -- {0}: Destroy Lethal Vapors. You skip your next turn. Any player may activate this ability.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Long-Term Plans
+text=Search your library for a card, shuffle your library, then put that card third from the top.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Parallel Thoughts
+text=When Parallel Thoughts enters the battlefield, search your library for seven cards, exile them in a face-down pile, and shuffle that pile. Then shuffle your library. -- If you would draw a card, you may instead put the top card of the pile you exiled into your hand.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Primitive Etchings
+text=Reveal the first card you draw each turn. Whenever you reveal a creature card this way, draw a card.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Rock Jockey
+text=You can't cast Rock Jockey if you've played a land this turn. -- You can't play lands if you've cast Rock Jockey this turn.
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=3
+toughness=3
+[/card]
+[card]
+name=Skirk Volcanist
+text=Morph—Sacrifice two Mountains. (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Skirk Volcanist is turned face up, it deals 3 damage divided as you choose among one, two, or three target creatures.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=3
+toughness=1
+[/card]
+[card]
+name=Stabilizer
+text=Players can't cycle cards.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Stifle
+text=Counter target activated or triggered ability. (Mana abilities can't be targeted.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Zealous Inquisitor
+text={1}{W}: The next 1 damage that would be dealt to Zealous Inquisitor this turn is dealt to target creature instead.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
