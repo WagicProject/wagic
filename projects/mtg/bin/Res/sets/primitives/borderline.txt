@@ -426,6 +426,14 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Uba Mask
+auto=replacedraw name(uba mask) reveal:1 optionone all(*|reveal) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot)! optiononeend revealend
+auto=opponentreplacedraw name(uba mask) reveal:1 revealzone(opponentlibrary) optionone all(*|reveal) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot)! optiononeend revealend
+text=If a player would draw a card, that player exiles that card face up instead. -- Each player may play cards he or she exiled with Uba Mask this turn.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Unexpected Results
 auto=shuffle
 auto=reveal:1 optionone transforms((,newability[if type(land|reveal)~morethan~0 then moveto(ownerhand) && all(*[land]|reveal) moveto(ownerbattlefield)])) forever optiononeend optiontwo name(Put Back) target(<1>*[-land]|reveal) moveto(mylibrary) and!(transforms((,newability[may activate castcard(normal)])) oneshot)! optiontwoend revealend
