@@ -890,7 +890,7 @@ bool MTGCardInstance::isTargetter()
 
 int MTGCardInstance::canBlock()
 {
-    if (tapped)
+    if (tapped && !has(Constants::CANBLOCKTAPPED))
         return 0;
     if (basicAbilities[(int)Constants::CANTBLOCK])
         return 0;

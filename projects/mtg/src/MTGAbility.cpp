@@ -352,6 +352,15 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!isMorbid)
                 return 0;
         }
+        
+
+        check = restriction[i].find("morecardsthanopponent");
+        if (check != string::npos)
+        {
+            Player * checkCurrent = card->controller();
+            if(checkCurrent->game->hand->nb_cards <= checkCurrent->opponent()->game->hand->nb_cards)
+                return 0;
+        }
 
         check = restriction[i].find("delirium");
         if (check != string::npos)
