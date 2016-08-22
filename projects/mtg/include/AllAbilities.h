@@ -2021,6 +2021,7 @@ public:
     list<int> awith;
     list<int> colors;
     list<int> typesToAdd;
+    MTGAbility * andAbility;
 
     AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, int who = 0,
             string abilitiesStringList = "",string typeslist = "");

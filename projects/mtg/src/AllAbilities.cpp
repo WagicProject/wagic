@@ -3939,7 +3939,7 @@ AACloner::AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, M
     {
         PopulateSubtypesIndexVector(typesToAdd,TypesList);
     }
-
+    andAbility = NULL;
 }
 
 int AACloner::resolve()
@@ -4012,9 +4012,23 @@ int AACloner::resolve()
         }
         if(_target->TokenAndAbility)
         {//the source copied a token with andAbility
-            MTGAbility * andAbilityClone = _target->TokenAndAbility->clone();
-            andAbilityClone->target = spell->source;
+            MTGAbility * TokenandAbilityClone = _target->TokenAndAbility->clone();
+            TokenandAbilityClone->target = spell->source;
             if(_target->TokenAndAbility->oneShot)
+            {
+                TokenandAbilityClone->resolve();
+                SAFE_DELETE(TokenandAbilityClone);
+            }
+            else
+            {
+                TokenandAbilityClone->addToGame();
+            }
+        }
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = spell->source;
+            if(andAbility->oneShot)
             {
                 andAbilityClone->resolve();
                 SAFE_DELETE(andAbilityClone);
