@@ -171,7 +171,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "legendruleremove",
     "canttransform",
     "asflash",
-    "conduited"
+    "conduited",
+    "canblocktapped"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -1,0 +1,193 @@
+[card]
+name=Barrel Down Sokenzan
+text=Sweep — Return any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
+mana={2}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Burning-Eye Zubera
+text=When Burning-Eye Zubera dies, if 4 or more damage was dealt to it this turn, Burning-Eye Zubera deals 3 damage to target creature or player.
+mana={2}{R}{R}
+type=Creature
+subtype=Zubera Spirit
+power=3
+toughness=3
+[/card]
+[card]
+name=Choice of Damnations
+text=Target opponent chooses a number. You may have that player lose that much life. If you don't, that player sacrifices all but that many permanents.
+mana={5}{B}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
+name=Cowed by Wisdom
+text=Enchant creature -- Enchanted creature can't attack or block unless its controller pays {1} for each card in your hand.
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Curtain of Light
+text=Cast Curtain of Light only during combat after blockers are declared. -- Target unblocked attacking creature becomes blocked. (This spell works on unblockable creatures.) -- Draw a card.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Evermind
+text=(Nonexistent mana costs can't be paid.) -- Draw a card. -- Splice onto Arcane {1}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Godo's Irregulars
+text={R}: Godo's Irregulars deals 1 damage to target creature blocking it.
+mana={R}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
+[/card]
+[card]
+name=Hail of Arrows
+text=Hail of Arrows deals X damage divided as you choose among any number of target attacking creatures.
+mana={X}{W}
+type=Instant
+[/card]
+[card]
+name=Infernal Kirin
+text=Flying -- Whenever you cast a Spirit or Arcane spell, target player reveals his or her hand and discards all cards with that spell's converted mana cost.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Kirin Spirit
+power=3
+toughness=3
+[/card]
+[card]
+name=Into the Fray
+text=Target creature attacks this turn if able. -- Splice onto Arcane {R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Kaho, Minamo Historian
+text=When Kaho, Minamo Historian enters the battlefield, search your library for up to three instant cards and exile them. Then shuffle your library. -- {X}, {T}: You may cast a card with converted mana cost X exiled with Kaho without paying its mana cost.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Murmurs from Beyond
+text=Reveal the top three cards of your library. An opponent chooses one of them. Put that card into your graveyard and the rest into your hand.
+mana={2}{U}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Oppressive Will
+text=Counter target spell unless its controller pays {1} for each card in your hand.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Pain's Reward
+text=Each player may bid life. You start the bidding with a bid of any number. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and draws four cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Pithing Needle
+text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Plow Through Reito
+text=Sweep — Return any number of Plains you control to their owner's hand. Target creature gets +1/+1 until end of turn for each Plains returned this way.
+mana={1}{W}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Pure Intentions
+text=Whenever a spell or ability an opponent controls causes you to discard cards this turn, return those cards from your graveyard to your hand. -- When a spell or ability an opponent controls causes you to discard Pure Intentions, return Pure Intentions from your graveyard to your hand at the beginning of the next end step.
+mana={W}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Rally the Horde
+text=Exile the top card of your library. Exile the top card of your library. Exile the top card of your library. If the last card exiled isn't a land, repeat this process. Put a 1/1 red Warrior creature token onto the battlefield for each nonland card exiled this way.
+mana={5}{R}
+type=Sorcery
+[/card]
+[card]
+name=Rushing-Tide Zubera
+text=When Rushing-Tide Zubera dies, if 4 or more damage was dealt to it this turn, draw three cards.
+mana={2}{U}{U}
+type=Creature
+subtype=Zubera Spirit
+power=3
+toughness=3
+[/card]
+[card]
+name=Sakashima the Impostor
+text=You may have Sakashima the Impostor enter the battlefield as a copy of any creature on the battlefield, except its name is still Sakashima the Impostor, it's legendary in addition to its other types, and it gains "{2}{U}{U}: Return Sakashima the Impostor to its owner's hand at the beginning of the next end step."
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Sasaya, Orochi Ascendant
+text=Reveal your hand: If you have seven or more land cards in your hand, flip Sasaya, Orochi Ascendant. --  -- ——— --  -- Sasaya's Essence -- Legendary Enchantment --  -- Whenever a land you control is tapped for mana, for each other land you control with the same name, add one mana to your mana pool of any type that land produced. -- 2/3
+mana={1}{G}{G}
+type=Legendary Creature
+subtype=Snake Monk
+power=2
+toughness=3
+[/card]
+[card]
+name=Sekki, Seasons' Guide
+text=Sekki, Seasons' Guide enters the battlefield with eight +1/+1 counters on it. -- If damage would be dealt to Sekki, prevent that damage, remove that many +1/+1 counters from Sekki, and put that many 1/1 colorless Spirit creature tokens onto the battlefield. -- Sacrifice eight Spirits: Return Sekki from your graveyard to the battlefield.
+mana={5}{G}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=0
+toughness=0
+[/card]
+[card]
+name=Shape Stealer
+text=Whenever Shape Stealer blocks or becomes blocked by a creature, change Shape Stealer's power and toughness to that creature's power and toughness until end of turn.
+mana={U}{U}
+type=Creature
+subtype=Shapeshifter Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Shifting Borders
+text=Exchange control of two target lands. -- Splice onto Arcane {3}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={3}{U}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Sink into Takenuma
+text=Sweep — Return any number of Swamps you control to their owner's hand. Target player discards a card for each Swamp returned this way.
+mana={3}{B}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
+name=Spiritual Visit
+text=Put a 1/1 colorless Spirit creature token onto the battlefield. -- Splice onto Arcane {W} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={W}
+type=Instant
+subtype=Arcane
+[/card]

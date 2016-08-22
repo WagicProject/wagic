@@ -260,7 +260,8 @@ class Constants
       CANTTRANSFORM =138,
       ASFLASH =139,
       CONDUITED = 140,
-      NB_BASIC_ABILITIES = 141,
+      CANBLOCKTAPPED = 141,
+      NB_BASIC_ABILITIES = 142,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
