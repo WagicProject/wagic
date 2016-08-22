@@ -249,7 +249,8 @@ void CardGui::Render()
         highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
         if(fakeborder)
         {
-            if(card->has(Constants::CANPLAYFROMGRAVEYARD)||card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))
+            if(card->has(Constants::CANPLAYFROMGRAVEYARD)||card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO)
+                ||((card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)))
                 fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
             else
                 fakeborder->SetColor(ARGB((int)(actA),15,15,15));
@@ -1172,7 +1173,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
             if(alphabeta.get())
             {
                 alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
-                float myscale = pos.actZ * 254 / alphabeta->mHeight;
+                float myscale = pos.actZ * 255 / alphabeta->mHeight;
                 alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
                 renderer->RenderQuad(alphabeta.get(), x, pos.actY+0.2f, pos.actT, myscale, myscale);
             }

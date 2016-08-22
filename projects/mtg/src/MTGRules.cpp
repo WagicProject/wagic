@@ -1111,7 +1111,7 @@ int MTGTempFlashBackRule::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
 
-    card->paymenttype = MTGAbility::FLASHBACK_COST;
+    card->paymenttype = MTGAbility::GRANTEDFLASHBACK_COST;
 
     return MTGAlternativeCostRule::reactToClick(card, flashbackCost, ManaCost::MANA_PAID_WITH_FLASHBACK);
 
