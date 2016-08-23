@@ -1,0 +1,228 @@
+[card]
+name=Auriok Steelshaper
+text=Equip costs you pay cost {1} less. -- As long as Auriok Steelshaper is equipped, Soldier and/or Knight creatures you control get +1/+1.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Awe Strike
+text=The next time target creature would deal damage this turn, prevent that damage. You gain life equal to the damage prevented this way.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Betrayal of Flesh
+text=Choose one — Destroy target creature; or return target creature card from your graveyard to the battlefield. -- Entwine—Sacrifice three lands. (Choose both if you pay the entwine cost.)
+mana={5}{B}
+type=Instant
+[/card]
+[card]
+name=Blinding Beam
+text=Choose one — Tap two target creatures; or creatures don't untap during target player's next untap step. -- Entwine {1} (Choose both if you pay the entwine cost.)
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Brown Ouphe
+text={1}{G}, {T}: Counter target activated ability from an artifact source. (Mana abilities can't be targeted.)
+mana={G}
+type=Creature
+subtype=Ouphe
+power=1
+toughness=1
+[/card]
+[card]
+name=Confusion in the Ranks
+text=Whenever an artifact, creature, or enchantment enters the battlefield, its controller chooses target permanent another player controls that shares a card type with it. Exchange control of those permanents.
+mana={3}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Disarm
+text=Unattach all Equipment from target creature.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Dream's Grip
+text=Choose one — Tap target permanent; or untap target permanent. -- Entwine {1} (Choose both if you pay the entwine cost.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Duplicant
+text=Imprint — When Duplicant enters the battlefield, you may exile target nontoken creature. -- As long as the exiled card is a creature card, Duplicant has that card's power, toughness, and creature types. It's still a Shapeshifter.
+mana={6}
+type=Artifact Creature
+subtype=Shapeshifter
+power=2
+toughness=4
+[/card]
+[card]
+name=Extraplanar Lens
+text=Imprint — When Extraplanar Lens enters the battlefield, you may exile target land you control. -- Whenever a land with the same name as the exiled card is tapped for mana, its controller adds one mana to his or her mana pool of any type that land produced.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Fatespinner
+text=At the beginning of each opponent's upkeep, that player chooses draw step, main phase, or combat phase. The player skips each instance of the chosen step or phase this turn.
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Fiery Gambit
+text=Flip a coin until you lose a flip or choose to stop flipping. If you lose a flip, Fiery Gambit has no effect. If you win one or more flips, Fiery Gambit deals 3 damage to target creature. If you win two or more flips, Fiery Gambit deals 6 damage to each opponent. If you win three or more flips, draw nine cards and untap all lands you control.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Glissa Sunseeker
+text=First strike -- {T}: Destroy target artifact if its converted mana cost is equal to the amount of mana in your mana pool.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Elf
+power=3
+toughness=2
+[/card]
+[card]
+name=Goblin Charbelcher
+text={3}, {T}: Reveal cards from the top of your library until you reveal a land card. Goblin Charbelcher deals damage equal to the number of nonland cards revealed this way to target creature or player. If the revealed land card was a Mountain, Goblin Charbelcher deals double that damage instead. Put the revealed cards on the bottom of your library in any order.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Grab the Reins
+text=Choose one — Until end of turn, you gain control of target creature and it gains haste; or sacrifice a creature, then Grab the Reins deals damage equal to that creature's power to target creature or player. -- Entwine {2}{R} (Choose both if you pay the entwine cost.)
+mana={3}{R}
+type=Instant
+[/card]
+[card]
+name=Grim Reminder
+text=Search your library for a nonland card and reveal it. Each opponent who cast a card this turn with the same name as that card loses 6 life. Then shuffle your library.  -- {B}{B}: Return Grim Reminder from your graveyard to your hand. Activate this ability only during your upkeep.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+name=Hum of the Radix
+text=Each artifact spell costs {1} more to cast for each artifact its controller controls.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Krark's Thumb
+text=If you would flip a coin, instead flip two coins and ignore one.
+mana={2}
+type=Legendary Artifact
+[/card]
+[card]
+name=Liar's Pendulum
+text={2}, {T}: Name a card. Target opponent guesses whether a card with that name is in your hand. You may reveal your hand. If you do and your opponent guessed wrong, draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Mindslaver
+text={4}, {T}, Sacrifice Mindslaver: You control target player during that player's next turn. (You see all cards that player could see and make all decisions for the player.)
+mana={6}
+type=Legendary Artifact
+[/card]
+[card]
+name=Mirror Golem
+text=Imprint — When Mirror Golem enters the battlefield, you may exile target card from a graveyard. -- Mirror Golem has protection from each of the exiled card's card types. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=4
+[/card]
+[card]
+name=Mourner's Shield
+text=Imprint — When Mourner's Shield enters the battlefield, you may exile target card from a graveyard. -- {2}, {T}: Prevent all damage that would be dealt this turn by a source of your choice that shares a color with the exiled card.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Power Conduit
+text={T}, Remove a counter from a permanent you control: Choose one — Put a charge counter on target artifact; or put a +1/+1 counter on target creature.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Psychogenic Probe
+text=Whenever a spell or ability causes a player to shuffle his or her library, Psychogenic Probe deals 2 damage to him or her.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Quicksilver Elemental
+text={U}: Quicksilver Elemental gains all activated abilities of target creature until end of turn. (If any of the abilities use that creature's name, use this creature's name instead.) -- You may spend blue mana as though it were mana of any color to pay the activation costs of Quicksilver Elemental's abilities.
+mana={3}{U}{U}
+type=Creature
+subtype=Elemental
+power=3
+toughness=4
+[/card]
+[card]
+name=Quicksilver Fountain
+text=At the beginning of each player's upkeep, that player puts a flood counter on target non-Island land he or she controls of his or her choice. That land is an Island for as long as it has a flood counter on it. -- At the beginning of each end step, if all lands on the battlefield are Islands, remove all flood counters from them.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Shared Fate
+text=If a player would draw a card, that player exiles the top card of an opponent's library face down instead. -- Each player may look at and play cards he or she exiled with Shared Fate.
+mana={4}{U}
+type=Enchantment
+[/card]
+[card]
+name=Soul Foundry
+text=Imprint — When Soul Foundry enters the battlefield, you may exile a creature card from your hand. -- {X}, {T}: Put a token that's a copy of the exiled card onto the battlefield. X is the converted mana cost of that card.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Spellweaver Helix
+text=Imprint — When Spellweaver Helix enters the battlefield, you may exile two target sorcery cards from a single graveyard.  -- Whenever a player casts a card, if it has the same name as one of the cards exiled with Spellweaver Helix, you may copy the other. If you do, you may cast the copy without paying its mana cost.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Sphere of Purity
+text=If an artifact would deal damage to you, prevent 1 of that damage.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Spoils of the Vault
+text=Name a card. Reveal cards from the top of your library until you reveal the named card, then put that card into your hand. Exile all other cards revealed this way, and you lose 1 life for each of the exiled cards.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Taj-Nar Swordsmith
+text=When Taj-Nar Swordsmith enters the battlefield, you may pay {X}. If you do, search your library for an Equipment card with converted mana cost X or less and put that card onto the battlefield. Then shuffle your library.
+mana={3}{W}
+type=Creature
+subtype=Cat Soldier
+power=2
+toughness=3
+[/card]
+[card]
+name=Thought Prison
+text=Imprint — When Thought Prison enters the battlefield, you may have target player reveal his or her hand. If you do, choose a nonland card from it and exile that card. -- Whenever a player casts a spell that shares a color or converted mana cost with the exiled card, Thought Prison deals 2 damage to that player.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Timesifter
+text=At the beginning of each upkeep, each player exiles the top card of his or her library. The player who exiled the card with the highest converted mana cost takes an extra turn after this one. If two or more players' cards are tied for highest cost, the tied players repeat this process until the tie is broken.
+mana={5}
+type=Artifact
+[/card]

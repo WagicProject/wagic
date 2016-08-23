@@ -872,6 +872,24 @@ private:
                 cardHasTypeinZone("snow-covered island", checkZone) +
                 cardHasTypeinZone("snow-covered mountain", checkZone);
         }
+        else if (s == "pdomain")//player domain
+        {
+            MTGGameZone * checkZone = card->controller()->inPlay();
+            intValue = cardHasTypeinZone("forest", checkZone) +
+                cardHasTypeinZone("plains", checkZone) +
+                cardHasTypeinZone("swamp", checkZone) +
+                cardHasTypeinZone("island", checkZone) +
+                cardHasTypeinZone("mountain", checkZone);
+        }
+        else if (s == "odomain")//opponent domain
+        {
+            MTGGameZone * checkZone = card->controller()->opponent()->inPlay();
+            intValue = cardHasTypeinZone("forest", checkZone) +
+                cardHasTypeinZone("plains", checkZone) +
+                cardHasTypeinZone("swamp", checkZone) +
+                cardHasTypeinZone("island", checkZone) +
+                cardHasTypeinZone("mountain", checkZone);
+        }
         else if (s == "myname")//Name of the card you control
         {
             intValue = countCardNameinZone(card->name,card->controller()->inPlay());
@@ -2003,6 +2021,7 @@ public:
     list<int> awith;
     list<int> colors;
     list<int> typesToAdd;
+    MTGAbility * andAbility;
 
     AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, int who = 0,
             string abilitiesStringList = "",string typeslist = "");

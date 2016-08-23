@@ -352,6 +352,15 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!isMorbid)
                 return 0;
         }
+        
+
+        check = restriction[i].find("morecardsthanopponent");
+        if (check != string::npos)
+        {
+            Player * checkCurrent = card->controller();
+            if(checkCurrent->game->hand->nb_cards <= checkCurrent->opponent()->game->hand->nb_cards)
+                return 0;
+        }
 
         check = restriction[i].find("delirium");
         if (check != string::npos)
@@ -2483,6 +2492,110 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return tok;  
     }
 
+    //Alternative Token creator. Name, type, p/t, abilities - uses ":" as delimeter
+    vector<string> makeToken = parseBetween(s, "makecardt(", ")");
+    if (makeToken.size())
+    {
+        WParsedInt * multiplier = NULL;
+        size_t myMultiplier = s.find("*");
+        string myMultiplierfound = "";
+        if (myMultiplier != string::npos)
+        {
+            myMultiplierfound = s.substr(myMultiplier + 1);
+            size_t myMultiplierEnd= myMultiplierfound.find_first_of(" ");
+            myMultiplierfound = myMultiplierfound.substr(0,myMultiplierEnd);
+            multiplier = NEW WParsedInt(myMultiplierfound, spell, card);
+        }
+        
+        int mytokenId = atoi(makeToken[1].c_str());
+        if (mytokenId)
+        {
+            MTGCard * mysafetycard = MTGCollection()->getCardById(mytokenId);
+            if (!mysafetycard) //Error, card not foudn in DB
+                return NEW ATokenCreator(observer, id, card, target, NULL, "ID NOT FOUND", "ERROR ID",0, 0, "","", NULL,0);
+
+            ATokenCreator * mtok = NEW ATokenCreator(observer, id, card,target, NULL, mytokenId, myMultiplierfound, multiplier, who);
+            mtok->oneShot = 1;
+            //andability
+            if(storedAndAbility.size())
+            {
+                string stored = storedAndAbility;
+                storedAndAbility.clear();
+                ((ATokenCreator*)mtok)->andAbility = parseMagicLine(stored, id, spell, card);
+            }
+            return mtok;
+        }
+        
+        string tokenDesc = makeToken[1];
+        vector<string> tokenParameters = split(tokenDesc, ':');
+        //lets try finding a token by card name.
+        if (makeToken[1].size() && tokenParameters.size() ==1)
+        {
+            string cardName = makeToken[1];
+            MTGCard * mysafetycard = MTGCollection()->getCardByName(cardName);
+            if (mysafetycard) //lets try constructing it then,we didnt find it by name
+            {
+                ATokenCreator * mtok = NEW ATokenCreator(observer, id, card, target, NULL, cardName, myMultiplierfound, multiplier, who);
+                mtok->oneShot = 1;
+                //andability
+                if(storedAndAbility.size())
+                {
+                    string stored = storedAndAbility;
+                    storedAndAbility.clear();
+                    ((ATokenCreator*)mtok)->andAbility = parseMagicLine(stored, id, spell, card);
+                }
+                return mtok;
+            }
+        }
+        if (tokenParameters.size() < 3)
+        {
+            DebugTrace("incorrect Parameters for Token" << tokenDesc);
+            return NULL;
+        }
+        string sname = tokenParameters[0];
+        string stypes = tokenParameters[1];
+        string spt = tokenParameters[2];
+        string cID = "";
+        //reconstructing string abilities from the split version,
+        // then we re-split it again in the token constructor,
+        // this needs to be improved
+        string sabilities = (tokenParameters.size() > 3)? tokenParameters[3] : "";
+        for (size_t i = 4; i < tokenParameters.size(); ++i)
+        {
+            sabilities.append(",");
+            sabilities.append(tokenParameters[i]);
+        }
+        if(sabilities.find(",tnum:") != string::npos)
+        {
+            size_t begins = sabilities.find(",tnum:");
+            cID = sabilities.substr(begins+6);
+            sabilities = cReplaceString(sabilities,",tnum:"+cID,"");
+        }
+        int value = 0;
+        if (spt.find("xx/xx") != string::npos)
+            value = card->X / 2;
+        else if (spt.find("x/x") != string::npos)
+            value = card->X;
+
+        int power, toughness;
+        parsePowerToughness(spt, &power, &toughness);
+        
+        ATokenCreator * mtok = NEW ATokenCreator(
+            observer, id, card,target, NULL, sname, stypes, power + value, toughness + value,
+            sabilities, myMultiplierfound, multiplier, who, aLivingWeapon, spt, cID);
+        mtok->oneShot = 1;
+        if(aLivingWeapon)
+            mtok->forceDestroy = 1;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((ATokenCreator*)mtok)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return mtok;  
+    }
+
     //Equipment
     found = s.find("equip");
     if (found != string::npos)
@@ -2596,6 +2709,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         MTGAbility * a = NEW AACloner(observer, id, card, target, 0, who, with,types);
         a->oneShot = 1;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AACloner*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 
