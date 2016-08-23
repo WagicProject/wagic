@@ -12,6 +12,18 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Bearer of Silence
+abilities=flying,cantblock
+autostack=if casted(this) then pay({1}{c}) ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+text=Devoid (This card has no color.) -- When you cast Bearer of Silence, you may pay {1}{C}. If you do, target opponent sacrifices a creature. ({C} represents colorless mana.) -- Flying -- Bearer of Silence can't block.
+mana={1}{B}
+abilities=devoid
+type=Creature
+subtype=Eldrazi
+power=2
+toughness=1
+[/card]
+[card]
 name=Cemetery Puca
 text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, Cemetery Puca becomes a copy of that creature and gains this ability.
 auto=@movedto(creature|graveyard) from(battlefield):all(trigger[from]) pay[[{1}]] copy
