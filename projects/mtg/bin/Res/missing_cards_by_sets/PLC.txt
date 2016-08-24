@@ -1,0 +1,226 @@
+[card]
+name=Ana Battlemage
+text=Kicker {2}{U} and/or {1}{B} (You may pay an additional {2}{U} and/or {1}{B} as you cast this spell.) -- When Ana Battlemage enters the battlefield, if it was kicked with its {2}{U} kicker, target player discards three cards. -- When Ana Battlemage enters the battlefield, if it was kicked with its {1}{B} kicker, tap target untapped creature and that creature deals damage equal to its power to its controller.
+mana={2}{G}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Boom // Bust
+text=Destroy target land you control and target land you don't control. --  //  -- Destroy all lands.
+mana={1}{R} // {5}{R}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Brain Gorgers
+text=When you cast Brain Gorgers, any player may sacrifice a creature. If a player does, counter Brain Gorgers. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=4
+toughness=2
+[/card]
+[card]
+name=Circle of Affliction
+text=As Circle of Affliction enters the battlefield, choose a color. -- Whenever a source of the chosen color deals damage to you, you may pay {1}. If you do, target player loses 1 life and you gain 1 life.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Dash Hopes
+text=When you cast Dash Hopes, any player may pay 5 life. If a player does, counter Dash Hopes.  -- Counter target spell.
+mana={B}{B}
+type=Instant
+[/card]
+[card]
+name=Dawn Charm
+text=Choose one — Prevent all combat damage that would be dealt this turn; or regenerate target creature; or counter target spell that targets you.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Dead // Gone
+text=Dead deals 2 damage to target creature. --  //  -- Return target creature you don't control to its owner's hand.
+mana={R} // {2}{R}
+type=Instant // Instant
+[/card]
+[card]
+name=Dichotomancy
+text=For each tapped nonland permanent target opponent controls, search that player's library for a card with the same name as that permanent and put it onto the battlefield under your control. Then that player shuffles his or her library. -- Suspend 3—{1}{U}{U} (Rather than cast this card from your hand, you may pay {1}{U}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={7}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Fa'adiyah Seer
+text={T}: Draw a card and reveal it. If it isn't a land card, discard it.
+mana={1}{G}
+type=Creature
+subtype=Human Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Fungal Behemoth
+text=Fungal Behemoth's power and toughness are each equal to the number of +1/+1 counters on creatures you control. -- Suspend X—{X}{G}{G}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{G}{G} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Fungal Behemoth while it's exiled, you may put a +1/+1 counter on target creature.
+mana={3}{G}
+type=Creature
+subtype=Fungus
+power=*
+toughness=*
+[/card]
+[card]
+name=Imp's Mischief
+text=Change the target of target spell with a single target. You lose life equal to that spell's converted mana cost.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Intet, the Dreamer
+text=Flying -- Whenever Intet, the Dreamer deals combat damage to a player, you may pay {2}{U}. If you do, exile the top card of your library face down. You may look at that card for as long as it remains exiled. You may play that card without paying its mana cost for as long as Intet remains on the battlefield.
+mana={3}{U}{R}{G}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
+name=Kor Dirge
+text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+name=Magus of the Arena
+text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Those creatures fight each other. (Each deals damage equal to its power to the other.)
+mana={4}{R}{R}
+type=Creature
+subtype=Human Wizard
+power=5
+toughness=5
+[/card]
+[card]
+name=Muck Drubb
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Muck Drubb enters the battlefield, change the target of target spell that targets only a single creature to Muck Drubb. -- Madness {2}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{B}{B}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Null Profusion
+text=Skip your draw step. -- Whenever you play a card, draw a card. -- Your maximum hand size is two.
+mana={4}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Phantasmagorian
+text=When you cast Phantasmagorian, any player may discard three cards. If a player does, counter Phantasmagorian. -- Discard three cards: Return Phantasmagorian from your graveyard to your hand.
+mana={5}{B}{B}
+type=Creature
+subtype=Horror
+power=6
+toughness=6
+[/card]
+[card]
+name=Reality Acid
+text=Enchant permanent -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Reality Acid leaves the battlefield, enchanted permanent's controller sacrifices it.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Rebuff the Wicked
+text=Counter target spell that targets a permanent you control.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Retether
+text=Return each Aura card from your graveyard to the battlefield. Only creatures can be enchanted this way. (Aura cards that can't enchant a creature on the battlefield remain in your graveyard.)
+mana={3}{W}
+type=Sorcery
+[/card]
+[card]
+name=Rough // Tumble
+text=Rough deals 2 damage to each creature without flying. --  //  -- Tumble deals 6 damage to each creature with flying.
+mana=//
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Shivan Wumpus
+text=Trample -- When Shivan Wumpus enters the battlefield, any player may sacrifice a land. If a player does, put Shivan Wumpus on top of its owner's library.
+mana={3}{R}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
+[/card]
+[card]
+name=Shrouded Lore
+text=Target opponent chooses a card in your graveyard. You may pay {B}. If you do, repeat this process except that opponent can't choose a card already chosen for Shrouded Lore. Then put the last chosen card into your hand.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Spellshift
+text=Counter target instant or sorcery spell. Its controller reveals cards from the top of his or her library until he or she reveals an instant or sorcery card. That player may cast that card without paying its mana cost. Then he or she shuffles his or her library.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Temporal Extortion
+text=When you cast Temporal Extortion, any player may pay half his or her life, rounded up. If a player does, counter Temporal Extortion. -- Take an extra turn after this one.
+mana={B}{B}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Timebender
+text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Timebender is turned face up, choose one — Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Timecrafting
+text=Choose one — Remove X time counters from target permanent or suspended card; or put X time counters on target permanent with a time counter on it or suspended card.
+mana={X}{R}
+type=Instant
+[/card]
+[card]
+name=Torchling
+text={R}: Untap Torchling. -- {R}: Target creature blocks Torchling this turn if able. -- {R}: Change the target of target spell that targets only Torchling. -- {1}: Torchling gets +1/-1 until end of turn. -- {1}: Torchling gets -1/+1 until end of turn.
+mana={3}{R}{R}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Voidstone Gargoyle
+text=Flying -- As Voidstone Gargoyle enters the battlefield, name a nonland card. -- The named card can't be cast. -- Activated abilities of sources with the chosen name can't be activated.
+mana={3}{W}{W}
+type=Creature
+subtype=Gargoyle
+power=3
+toughness=3
+[/card]
+[card]
+name=Volcano Hellion
+text=Volcano Hellion has echo {X}, where X is your life total. (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Volcano Hellion enters the battlefield, it deals an amount of damage of your choice to you and target creature. The damage can't be prevented.
+mana={2}{R}{R}
+type=Creature
+subtype=Hellion
+power=6
+toughness=5
+[/card]
+[card]
+name=Wild Pair
+text=Whenever a creature enters the battlefield, if you cast it from your hand, you may search your library for a creature card with the same total power and toughness and put it onto the battlefield. If you do, shuffle your library.
+mana={4}{G}{G}
+type=Enchantment
+[/card]

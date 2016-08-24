@@ -1,0 +1,292 @@
+[card]
+name=Auratouched Mage
+text=When Auratouched Mage enters the battlefield, search your library for an Aura card that could enchant it. If Auratouched Mage is still on the battlefield, put that Aura card onto the battlefield attached to it. Otherwise, reveal the Aura card and put it into your hand. Then shuffle your library.
+mana={5}{W}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Blood Funnel
+text=Noncreature spells you cast cost {2} less to cast. -- Whenever you cast a noncreature spell, counter that spell unless you sacrifice a creature.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Bottled Cloister
+text=At the beginning of each opponent's upkeep, exile all cards from your hand face down. -- At the beginning of your upkeep, return all cards you own exiled with Bottled Cloister to your hand, then draw a card.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Brightflame
+text=Radiance — Brightflame deals X damage to target creature and each other creature that shares a color with it. You gain life equal to the damage dealt this way.
+mana={X}{R}{R}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Chant of Vitu-Ghazi
+text=Convoke (Each creature you tap while casting this spell reduces its cost by {1} or by one mana of that creature's color.) -- Prevent all damage that would be dealt by creatures this turn. You gain life equal to the damage prevented this way.
+mana={6}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Chord of Calling
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Search your library for a creature card with converted mana cost X or less and put it onto the battlefield. Then shuffle your library.
+mana={X}{G}{G}{G}
+type=Instant
+[/card]
+[card]
+name=Chorus of the Conclave
+text=Forestwalk -- As an additional cost to cast creature spells, you may pay any amount of mana. If you do, that creature enters the battlefield with that many additional +1/+1 counters on it.
+mana={4}{G}{G}{W}{W}
+type=Legendary Creature
+subtype=Dryad
+power=3
+toughness=8
+[/card]
+[card]
+name=Circu, Dimir Lobotomist
+text=Whenever you cast a blue spell, exile the top card of target library. -- Whenever you cast a black spell, exile the top card of target library. -- Your opponents can't cast nonland cards with the same name as a card exiled with Circu, Dimir Lobotomist.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Copy Enchantment
+text=You may have Copy Enchantment enter the battlefield as a copy of any enchantment on the battlefield.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Crown of Convergence
+text=Play with the top card of your library revealed. -- As long as the top card of your library is a creature card, creatures you control that share a color with that card get +1/+1. -- {G}{W}: Put the top card of your library on the bottom of your library.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Dimir Doppelganger
+text={1}{U}{B}: Exile target creature card from a graveyard. Dimir Doppelganger becomes a copy of that card and gains this ability.
+mana={1}{U}{B}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=2
+[/card]
+[card]
+name=Doubling Season
+text=If an effect would put one or more tokens onto the battlefield under your control, it puts twice that many of those tokens onto the battlefield instead. -- If an effect would place one or more counters on a permanent you control, it places twice that many of those counters on that permanent instead.
+mana={4}{G}
+type=Enchantment
+[/card]
+[card]
+name=Drooling Groodion
+text={2}{B}{G}, Sacrifice a creature: Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
+mana={3}{B}{B}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=3
+[/card]
+[card]
+name=Excruciator
+text=Damage that would be dealt by Excruciator can't be prevented.
+mana={6}{R}{R}
+type=Creature
+subtype=Avatar
+power=7
+toughness=7
+[/card]
+[card]
+name=Eye of the Storm
+text=Whenever a player casts an instant or sorcery card, exile it. Then that player copies each instant or sorcery card exiled with Eye of the Storm. For each copy, the player may cast the copy without paying its mana cost.
+mana={5}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Flickerform
+text=Enchant creature -- {2}{W}{W}: Exile enchanted creature and all Auras attached to it. At the beginning of the next end step, return that card to the battlefield under its owner's control. If you do, return the other cards exiled this way to the battlefield under their owners' control attached to that creature.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Gaze of the Gorgon
+text=({BG} can be paid with either {B} or {G}.) -- Regenerate target creature. At end of combat, destroy all creatures that blocked or were blocked by that creature this turn.
+mana={3}{BG}
+type=Instant
+[/card]
+[card]
+name=Ghosts of the Innocent
+text=If a source would deal damage to a creature or player, it deals half that damage, rounded down, to that creature or player instead.
+mana={5}{W}{W}
+type=Creature
+subtype=Spirit
+power=4
+toughness=5
+[/card]
+[card]
+name=Goblin Fire Fiend
+text=Haste -- Goblin Fire Fiend must be blocked if able. -- {R}: Goblin Fire Fiend gets +1/+0 until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Goblin Berserker
+power=1
+toughness=1
+[/card]
+[card]
+name=Instill Furor
+text=Enchant creature -- Enchanted creature has "At the beginning of your end step, sacrifice this creature unless it attacked this turn."
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Mark of Eviction
+text=Enchant creature -- At the beginning of your upkeep, return enchanted creature and all Auras attached to that creature to their owners' hands.
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Master Warcraft
+text=Cast Master Warcraft only before attackers are declared. -- You choose which creatures attack this turn. -- You choose which creatures block this turn and how those creatures block.
+mana={2}{RW}{RW}
+type=Instant
+[/card]
+[card]
+name=Molten Sentry
+text=As Molten Sentry enters the battlefield, flip a coin. If the coin comes up heads, Molten Sentry enters the battlefield as a 5/2 creature with haste. If it comes up tails, Molten Sentry enters the battlefield as a 2/5 creature with defender.
+mana={3}{R}
+type=Creature
+subtype=Elemental
+power=*
+toughness=*
+[/card]
+[card]
+name=Pariah's Shield
+text=All damage that would be dealt to you is dealt to equipped creature instead. -- Equip {3}
+mana={5}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Perplex
+text=Counter target spell unless its controller discards his or her hand. -- Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+mana={1}{U}{B}
+type=Instant
+[/card]
+[card]
+name=Razia, Boros Archangel
+text=Flying, vigilance, haste -- {T}: The next 3 damage that would be dealt to target creature you control this turn is dealt to another target creature instead.
+mana={4}{R}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=6
+toughness=3
+[/card]
+[card]
+name=Reroute
+text=Change the target of target activated ability with a single target. (Mana abilities can't be targeted.) -- Draw a card.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Seeds of Strength
+text=Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn.
+mana={G}{W}
+type=Instant
+[/card]
+[card]
+name=Selesnya Sagittars
+text=Reach (This creature can block creatures with flying.) -- Selesnya Sagittars can block an additional creature.
+mana={3}{G}{W}
+type=Creature
+subtype=Elf Archer
+power=2
+toughness=5
+[/card]
+[card]
+name=Shadow of Doubt
+text=({UB} can be paid with either {U} or {B}.) -- Players can't search libraries this turn. -- Draw a card.
+mana={UB}{UB}
+type=Instant
+[/card]
+[card]
+name=Sins of the Past
+text=Until end of turn, you may cast target instant or sorcery card from your graveyard without paying its mana cost. If that card would be put into your graveyard this turn, exile it instead. Exile Sins of the Past.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Sisters of Stone Death
+text={G}: Target creature blocks Sisters of Stone Death this turn if able. -- {B}{G}: Exile target creature blocking or blocked by Sisters of Stone Death. -- {2}{B}: Put a creature card exiled with Sisters of Stone Death onto the battlefield under your control.
+mana={4}{B}{B}{G}{G}
+type=Legendary Creature
+subtype=Gorgon
+power=7
+toughness=5
+[/card]
+[card]
+name=Spawnbroker
+text=When Spawnbroker enters the battlefield, you may exchange control of target creature you control and target creature with power less than or equal to that creature's power an opponent controls.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Suppression Field
+text=Activated abilities cost {2} more to activate unless they're mana abilities.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Three Dreams
+text=Search your library for up to three Aura cards with different names, reveal them, and put them into your hand. Then shuffle your library.
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
+name=Tunnel Vision
+text=Name a card. Target player reveals cards from the top of his or her library until the named card is revealed. If it is, that player puts the rest of the revealed cards into his or her graveyard and puts the named card on top of his or her library. Otherwise, the player shuffles his or her library.
+mana={5}{U}
+type=Sorcery
+[/card]
+[card]
+name=Warp World
+text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way onto the battlefield, then does the same for enchantment cards, then puts all cards revealed this way that weren't put onto the battlefield on the bottom of his or her library.
+mana={5}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Wizened Snitches
+text=Flying -- Players play with the top card of their libraries revealed.
+mana={3}{U}
+type=Creature
+subtype=Faerie Rogue
+power=1
+toughness=3
+[/card]
+[card]
+name=Wojek Apothecary
+text=Radiance — {T}: Prevent the next 1 damage that would be dealt to target creature and each other creature that shares a color with it this turn.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Wojek Embermage
+text=Radiance — {T}: Wojek Embermage deals 1 damage to target creature and each other creature that shares a color with it.
+mana={3}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
