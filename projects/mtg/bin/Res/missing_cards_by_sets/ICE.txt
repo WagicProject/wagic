@@ -1,0 +1,695 @@
+[card]
+name=Adarkar Unicorn
+text={T}: Add {U} or {1}{U} to your mana pool. Spend this mana only to pay cumulative upkeep costs.
+mana={1}{W}{W}
+type=Creature
+subtype=Unicorn
+power=2
+toughness=2
+[/card]
+[card]
+name=Aggression
+text=Enchant non-Wall creature -- Enchanted creature has first strike and trample. -- At the beginning of the end step of enchanted creature's controller, destroy that creature if it didn't attack this turn.
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Amulet of Quoz
+text=Remove Amulet of Quoz from your deck before playing if you're not playing for ante. -- {T}, Sacrifice Amulet of Quoz: Target opponent may add the top card of his or her library to the ante. If he or she doesn't, you flip a coin. If you win the flip, that player loses the game. If you lose the flip, you lose the game. Activate this ability only during your upkeep.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Arcum's Weathervane
+text={2}, {T}: Target snow land is no longer snow. -- {2}, {T}: Target nonsnow basic land becomes snow.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Arcum's Whistle
+text={3}, {T}: Choose target non-Wall creature the active player has controlled continuously since the beginning of the turn. That player may pay {X}, where X is that creature's converted mana cost. If he or she doesn't, the creature attacks this turn if able, and at the beginning of the next end step, destroy it if it didn't attack. Activate this ability only before attackers are declared.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Ashen Ghoul
+text=Haste -- {B}: Return Ashen Ghoul from your graveyard to the battlefield. Activate this ability only during your upkeep and only if three or more creature cards are above Ashen Ghoul.
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=1
+[/card]
+[card]
+name=Balduvian Shaman
+text={T}: Change the text of target white enchantment you control that doesn't have cumulative upkeep by replacing all instances of one color word with another. (For example, you may change "black creatures can't attack" to "blue creatures can't attack.") That enchantment gains "Cumulative upkeep {1}." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.)
+mana={U}
+type=Creature
+subtype=Human Cleric Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Baton of Morale
+text={2}: Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Bone Shaman
+text={B}: Until end of turn, Bone Shaman gains "Creatures dealt damage by Bone Shaman this turn can't be regenerated this turn."
+mana={2}{R}{R}
+type=Creature
+subtype=Giant Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Brown Ouphe
+text={1}{G}, {T}: Counter target activated ability from an artifact source. (Mana abilities can't be targeted.)
+mana={G}
+type=Creature
+subtype=Ouphe
+power=1
+toughness=1
+[/card]
+[card]
+name=Burnt Offering
+text=As an additional cost to cast Burnt Offering, sacrifice a creature. -- Add X mana in any combination of {B} and/or {R} to your mana pool, where X is the sacrificed creature's converted mana cost.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Call to Arms
+text=As Call to Arms enters the battlefield, choose a color and an opponent. -- White creatures get +1/+1 as long as the chosen color is the most common color among nontoken permanents the chosen player controls but isn't tied for most common. -- When the chosen color isn't the most common color among nontoken permanents the chosen player controls or is tied for most common, sacrifice Call to Arms.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Chaos Lord
+text=First strike -- At the beginning of your upkeep, target opponent gains control of Chaos Lord if the number of permanents is even. -- Chaos Lord can attack as though it had haste unless it entered the battlefield this turn.
+mana={4}{R}{R}{R}
+type=Creature
+subtype=Human
+power=7
+toughness=7
+[/card]
+[card]
+name=Chaos Moon
+text=At the beginning of each upkeep, count the number of permanents. If the number is odd, until end of turn, red creatures get +1/+1 and whenever a player taps a Mountain for mana, that player adds {R} to his or her mana pool (in addition to the mana the land produces). If the number is even, until end of turn, red creatures get -1/-1 and if a player taps a Mountain for mana, that Mountain produces colorless mana instead of any other type.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Chromatic Armor
+text=Enchant creature -- As Chromatic Armor enters the battlefield, choose a color. -- Chromatic Armor enters the battlefield with a sleight counter on it. -- Prevent all damage that would be dealt to enchanted creature by sources of the last chosen color. -- {X}: Put a sleight counter on Chromatic Armor and choose a color. X is the number of sleight counters on Chromatic Armor.
+mana={1}{W}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Cooperation
+text=Enchant creature -- Enchanted creature has banding. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Crown of the Ages
+text={4}, {T}: Attach target Aura attached to a creature to another creature.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Deflection
+text=Change the target of target spell with a single target.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Demonic Consultation
+text=Name a card. Exile the top six cards of your library, then reveal cards from the top of your library until you reveal the named card. Put that card into your hand and exile all other cards revealed this way.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Dire Wolves
+text=Dire Wolves has banding as long as you control a Plains. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}{G}
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+[/card]
+[card]
+name=Drought
+text=At the beginning of your upkeep, sacrifice Drought unless you pay {W}{W}. -- Spells cost an additional "Sacrifice a Swamp" to cast for each black mana symbol in their mana costs. -- Activated abilities cost an additional "Sacrifice a Swamp" to activate for each black mana symbol in their activation costs.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Elkin Bottle
+text={3}, {T}: Exile the top card of your library. Until the beginning of your next upkeep, you may play that card.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Enduring Renewal
+text=Play with your hand revealed. -- If you would draw a card, reveal the top card of your library instead. If it's a creature card, put it into your graveyard. Otherwise, draw a card. -- Whenever a creature is put into your graveyard from the battlefield, return it to your hand.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Errant Minion
+text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, that player may pay any amount of mana. Errant Minion deals 2 damage to that player. Prevent X of that damage, where X is the amount of mana that player paid this way.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Fiery Justice
+text=Fiery Justice deals 5 damage divided as you choose among any number of target creatures and/or players. Target opponent gains 5 life.
+mana={R}{G}{W}
+type=Sorcery
+[/card]
+[card]
+name=Fire Covenant
+text=As an additional cost to cast Fire Covenant, pay X life. -- Fire Covenant deals X damage divided as you choose among any number of target creatures.
+mana={1}{B}{R}
+type=Instant
+[/card]
+[card]
+name=Flooded Woodlands
+text=Green creatures can't attack unless their controller sacrifices a land for each green creature he or she controls that's attacking.
+mana={2}{U}{B}
+type=Enchantment
+[/card]
+[card]
+name=Forgotten Lore
+text=Target opponent chooses a card in your graveyard. You may pay {G}. If you do, repeat this process except that opponent can't choose a card already chosen for Forgotten Lore. Then put the last chosen card into your hand.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Formation
+text=Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- Draw a card at the beginning of the next turn's upkeep.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Game of Chaos
+text=Flip a coin. If you win the flip, you gain 1 life and target opponent loses 1 life, and you decide whether to flip again. If you lose the flip, you lose 1 life and that opponent gains 1 life, and that player decides whether to flip again. Double the life stakes with each flip.
+mana={R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Gaze of Pain
+text=Until end of turn, whenever a creature you control attacks and isn't blocked, you may choose to have it deal damage equal to its power to a target creature. If you do, it assigns no combat damage this turn.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=General Jarkeld
+text={T}: Switch the blocking creatures of two target attacking creatures. Activate this ability only during the declare blockers step.
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=1
+toughness=2
+[/card]
+[card]
+name=Ghostly Flame
+text=Black and/or red permanents and spells are colorless sources of damage.
+mana={B}{R}
+type=Enchantment
+[/card]
+[card]
+name=Goblin Snowman
+text=Whenever Goblin Snowman blocks, prevent all combat damage that would be dealt to and dealt by it this turn. -- {T}: Goblin Snowman deals 1 damage to target creature it's blocking.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+[/card]
+[card]
+name=Halls of Mist
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Creatures that attacked during their controller's last turn can't attack.
+type=Land
+[/card]
+[card]
+name=Hipparion
+text=Hipparion can't block creatures with power 3 or greater unless you pay {1}.
+mana={1}{W}
+type=Creature
+subtype=Horse
+power=1
+toughness=3
+[/card]
+[card]
+name=Ice Cauldron
+text={X}, {T}: Put a charge counter on Ice Cauldron and exile a nonland card from your hand. You may cast that card for as long as it remains exiled. Note the type and amount of mana spent to pay this activation cost. Activate this ability only if there are no charge counters on Ice Cauldron. -- {T}, Remove a charge counter from Ice Cauldron: Add Ice Cauldron's last noted type and amount of mana to your mana pool. Spend this mana only to cast the last card exiled with Ice Cauldron.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Icy Prison
+text=When Icy Prison enters the battlefield, exile target creature. -- At the beginning of your upkeep, sacrifice Icy Prison unless any player pays {3}. -- When Icy Prison leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Illusionary Presence
+text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, choose a land type. Illusionary Presence gains landwalk of the chosen type until end of turn.
+mana={1}{U}{U}
+type=Creature
+subtype=Illusion
+power=2
+toughness=2
+[/card]
+[card]
+name=Illusionary Terrain
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- As Illusionary Terrain enters the battlefield, choose two basic land types. -- Basic lands of the first chosen type are the second chosen type.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Infernal Darkness
+text=Cumulative upkeep—Pay {B} and 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- If a land is tapped for mana, it produces {B} instead of any other type.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Infernal Denizen
+text=At the beginning of your upkeep, sacrifice two Swamps. If you can't, tap Infernal Denizen, and an opponent may gain control of a creature you control of his or her choice for as long as Infernal Denizen remains on the battlefield. -- {T}: Gain control of target creature for as long as Infernal Denizen remains on the battlefield.
+mana={7}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=7
+[/card]
+[card]
+name=Infinite Hourglass
+text=At the beginning of your upkeep, put a time counter on Infinite Hourglass. -- All creatures get +1/+0 for each time counter on Infinite Hourglass. -- {3}: Remove a time counter from Infinite Hourglass. Any player may activate this ability but only during any upkeep step.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Jester's Mask
+text=Jester's Mask enters the battlefield tapped. -- {1}, {T}, Sacrifice Jester's Mask: Target opponent puts the cards from his or her hand on top of his or her library. Search that player's library for that many cards. That player puts those cards into his or her hand, then shuffles his or her library.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Jeweled Amulet
+text={1}, {T}: Put a charge counter on Jeweled Amulet. Note the type of mana spent to pay this activation cost. Activate this ability only if there are no charge counters on Jeweled Amulet. -- {T}, Remove a charge counter from Jeweled Amulet: Add one mana of Jeweled Amulet's last noted type to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Kjeldoran Elite Guard
+text={T}: Target creature gets +2/+2 until end of turn. When that creature leaves the battlefield this turn, sacrifice Kjeldoran Elite Guard. Activate this ability only during combat.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Kjeldoran Guard
+text={T}: Target creature gets +1/+1 until end of turn. When that creature leaves the battlefield this turn, sacrifice Kjeldoran Guard. Activate this ability only during combat and only if defending player controls no snow lands.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Kjeldoran Knight
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- {1}{W}: Kjeldoran Knight gets +1/+0 until end of turn. -- {W}{W}: Kjeldoran Knight gets +0/+2 until end of turn.
+mana={W}{W}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+[/card]
+[card]
+name=Kjeldoran Phalanx
+text=First strike; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={5}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=5
+[/card]
+[card]
+name=Kjeldoran Royal Guard
+text={T}: All combat damage that would be dealt to you by unblocked creatures this turn is dealt to Kjeldoran Royal Guard instead.
+mana={3}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=5
+[/card]
+[card]
+name=Kjeldoran Skycaptain
+text=Flying; first strike; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Kjeldoran Skyknight
+text=Flying; first strike; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+[/card]
+[card]
+name=Kjeldoran Warrior
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={W}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
+[/card]
+[card]
+name=Krovikan Vampire
+text=At the beginning of each end step, if a creature dealt damage by Krovikan Vampire this turn died, put that card onto the battlefield under your control. Sacrifice it when you lose control of Krovikan Vampire.
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=3
+[/card]
+[card]
+name=Lava Burst
+text=Lava Burst deals X damage to target creature or player. If Lava Burst would deal damage to a creature, that damage can't be prevented or dealt instead to another creature or player.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Lim-Dul's Hex
+text=At the beginning of your upkeep, for each player, Lim-Dul's Hex deals 1 damage to that player unless he or she pays {B} or {3}.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Melee
+text=Cast Melee only during your turn and only during combat before blockers are declared. -- You choose which creatures block this combat and how those creatures block. -- Whenever a creature attacks and isn't blocked this combat, untap it and remove it from combat.
+mana={4}{R}
+type=Instant
+[/card]
+[card]
+name=Melting
+text=All lands are no longer snow.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Mercenaries
+text={3}: The next time Mercenaries would deal damage to you this turn, prevent that damage. Any player may activate this ability.
+mana={3}{W}
+type=Creature
+subtype=Human Mercenary
+power=3
+toughness=3
+[/card]
+[card]
+name=Merieke Ri Berit
+text=Merieke Ri Berit doesn't untap during your untap step. -- {T}: Gain control of target creature for as long as you control Merieke Ri Berit. When Merieke Ri Berit leaves the battlefield or becomes untapped, destroy that creature. It can't be regenerated.
+mana={W}{U}{B}
+type=Legendary Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
+name=Meteor Shower
+text=Meteor Shower deals X plus 1 damage divided as you choose among any number of target creatures and/or players.
+mana={X}{X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Mistfolk
+text={U}: Counter target spell that targets Mistfolk.
+mana={U}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=2
+[/card]
+[card]
+name=Musician
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Put a music counter on target creature. If it doesn't have "At the beginning of your upkeep, destroy this creature unless you pay {1} for each music counter on it," it gains that ability.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Naked Singularity
+text=Cumulative upkeep {3} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- If tapped for mana, Plains produce {R}, Islands produce {G}, Swamps produce {W}, Mountains produce {U}, and Forests produce {B} instead of any other type.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Necropotence
+text=Skip your draw step. -- Whenever you discard a card, exile that card from your graveyard. -- Pay 1 life: Exile the top card of your library face down. Put that card into your hand at the beginning of your next end step.
+mana={B}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Norritt
+text={T}: Untap target blue creature. -- {T}: Choose target non-Wall creature the active player has controlled continuously since the beginning of the turn. That creature attacks this turn if able. If it doesn't, destroy it at the beginning of the next end step. Activate this ability only before attackers are declared.
+mana={3}{B}
+type=Creature
+subtype=Imp
+power=1
+toughness=1
+[/card]
+[card]
+name=Oath of Lim-Dul
+text=Whenever you lose life, for each 1 life you lost, sacrifice a permanent other than Oath of Lim-Dul unless you discard a card. (Damage dealt to you causes you to lose life.) -- {B}{B}: Draw a card.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
+name=Orcish Farmer
+text={T}: Target land becomes a Swamp until its controller's next untap step.
+mana={1}{R}{R}
+type=Creature
+subtype=Orc
+power=2
+toughness=2
+[/card]
+[card]
+name=Orcish Squatters
+text=Whenever Orcish Squatters attacks and isn't blocked, you may gain control of target land defending player controls for as long as you control Orcish Squatters. If you do, Orcish Squatters assigns no combat damage this turn.
+mana={4}{R}
+type=Creature
+subtype=Orc
+power=2
+toughness=3
+[/card]
+[card]
+name=Pentagram of the Ages
+text={4}, {T}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Phantasmal Mount
+text=Flying -- {T}: Target creature you control with toughness 2 or less gets +1/+1 and gains flying until end of turn. When Phantasmal Mount leaves the battlefield this turn, sacrifice that creature. When the creature leaves the battlefield this turn, sacrifice Phantasmal Mount.
+mana={1}{U}
+type=Creature
+subtype=Illusion Horse
+power=1
+toughness=1
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Pox
+text=Each player loses a third of his or her life, then discards a third of the cards in his or her hand, then sacrifices a third of the creatures he or she controls, then sacrifices a third of the lands he or she controls. Round up each time.
+mana={B}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Reality Twist
+text=Cumulative upkeep {1}{U}{U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- If tapped for mana, Plains produce {R}, Swamps produce {G}, Mountains produce {W}, and Forests produce {B} instead of any other type.
+mana={U}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Reclamation
+text=Black creatures can't attack unless their controller sacrifices a land for each black creature he or she controls that's attacking.
+mana={2}{G}{W}
+type=Enchantment
+[/card]
+[card]
+name=Ritual of Subdual
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- If a land is tapped for mana, it produces colorless mana instead of any other type.
+mana={4}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Sacred Boon
+text=Prevent the next 3 damage that would be dealt to target creature this turn. At the beginning of the next end step, put a +0/+1 counter on that creature for each 1 damage prevented this way.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Seizures
+text=Enchant creature -- Whenever enchanted creature becomes tapped, Seizures deals 3 damage to that creature's controller unless that player pays {3}.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Seraph
+text=Flying -- Whenever a creature dealt damage by Seraph this turn dies, put that card onto the battlefield under your control at the beginning of the next end step. Sacrifice the creature when you lose control of Seraph.
+mana={6}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Shield Bearer
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=0
+toughness=3
+[/card]
+[card]
+name=Sleight of Mind
+text=Change the text of target spell or permanent by replacing all instances of one color word with another. (For example, you may change "target black spell" to "target blue spell." This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Snowblind
+text=Enchant creature -- Enchanted creature gets -X/-Y. If that creature is attacking, X is the number of snow lands defending player controls. Otherwise, X is the number of snow lands its controller controls. Y is equal to X or to enchanted creature's toughness minus 1, whichever is smaller.
+mana={3}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Snowfall
+text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever an Island is tapped for mana, its controller may add {U} to his or her mana pool (in addition to the mana the land produces). If that Island is snow, its controller may add {U}{U} to his or her mana pool instead. Spend this mana only to pay cumulative upkeep costs.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Soldevi Machinist
+text={T}: Add {2} to your mana pool. Spend this mana only to activate abilities of artifacts.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard Artificer
+power=1
+toughness=1
+[/card]
+[card]
+name=Soul Barrier
+text=Whenever an opponent casts a creature spell, Soul Barrier deals 2 damage to that player unless he or she pays {2}.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Soul Burn
+text=Spend only black and/or red mana on X. -- Soul Burn deals X damage to target creature or player. You gain life equal to the damage dealt, but not more than the amount of {B} spent on X, the player's life total before Soul Burn dealt damage, or the creature's toughness.
+mana={X}{2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Spoils of War
+text=X is the number of artifact and/or creature cards in an opponent's graveyard as you cast Spoils of War. -- Distribute X +1/+1 counters among any number of target creatures.
+mana={X}{B}
+type=Sorcery
+[/card]
+[card]
+name=Staff of the Ages
+text=Creatures with landwalk abilities can be blocked as though they didn't have those abilities.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Stench of Evil
+text=Destroy all Plains. For each land destroyed this way, Stench of Evil deals 1 damage to that land's controller unless he or she pays {2}.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Tinder Wall
+text=Defender (This creature can't attack.) -- Sacrifice Tinder Wall: Add {R}{R} to your mana pool. -- {R}, Sacrifice Tinder Wall: Tinder Wall deals 2 damage to target creature it's blocking.
+mana={G}
+type=Creature
+subtype=Plant Wall
+power=0
+toughness=3
+[/card]
+[card]
+name=Total War
+text=Whenever a player attacks with one or more creatures, destroy all untapped non-Wall creatures that player controls that didn't attack, except for creatures the player hasn't controlled continuously since the beginning of the turn.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Urza's Bauble
+text={T}, Sacrifice Urza's Bauble: Look at a card at random in target player's hand. You draw a card at the beginning of the next turn's upkeep.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Venomous Breath
+text=Choose target creature. At end of combat, destroy all creatures that blocked or were blocked by it this turn.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
+name=Vexing Arcanix
+text={3}, {T}: Target player names a card, then reveals the top card of his or her library. If it's the named card, the player puts it into his or her hand. Otherwise, the player puts it into his or her graveyard and Vexing Arcanix deals 2 damage to him or her.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Wall of Shields
+text=Defender (This creature can't attack.) -- Banding (If any creatures with banding you control are blocking a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by.)
+mana={3}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=4
+[/card]
+[card]
+name=Winter's Chill
+text=Cast Winter's Chill only during combat before blockers are declared. -- X can't be greater than the number of snow lands you control. -- Choose X target attacking creatures. For each of those creatures, its controller may pay {1} or {2}. If that player doesn't, destroy that creature at end of combat. If that player pays only {1}, prevent all combat damage that would be dealt to and dealt by that creature this combat.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Word of Undoing
+text=Return target creature and all white Auras you own attached to it to their owners' hands.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Zur's Weirding
+text=Players play with their hands revealed. -- If a player would draw a card, he or she reveals it instead. Then any other player may pay 2 life. If a player does, put that card into its owner's graveyard. Otherwise, that player draws a card.
+mana={3}{U}
+type=Enchantment
+[/card]

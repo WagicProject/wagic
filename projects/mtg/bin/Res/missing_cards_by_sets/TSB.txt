@@ -1,0 +1,146 @@
+[card]
+name=Arena
+text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Those creatures fight each other. (Each deals damage equal to its power to the other.)
+type=Land
+[/card]
+[card]
+name=Assault // Battery
+text=Assault deals 2 damage to target creature or player. --  //  -- Put a 3/3 green Elephant creature token onto the battlefield.
+mana={R} // {3}{G}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Avoid Fate
+text=Counter target instant or Aura spell that targets a permanent you control.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Browbeat
+text=Any player may have Browbeat deal 5 damage to him or her. If no one does, target player draws three cards.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Celestial Dawn
+text=Lands you control are Plains. -- Nonland cards you own that aren't on the battlefield, spells you control, and nonland permanents you control are white. -- You may spend white mana as though it were mana of any color. You may spend other mana only as though it were colorless mana.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Conspiracy
+text=As Conspiracy enters the battlefield, choose a creature type. -- Creature cards you own that aren't on the battlefield, creature spells you control, and creatures you control are the chosen type.
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Dodecapod
+text=If a spell or ability an opponent controls causes you to discard Dodecapod, put it onto the battlefield with two +1/+1 counters on it instead of putting it into your graveyard.
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+name=Enduring Renewal
+text=Play with your hand revealed. -- If you would draw a card, reveal the top card of your library instead. If it's a creature card, put it into your graveyard. Otherwise, draw a card. -- Whenever a creature is put into your graveyard from the battlefield, return it to your hand.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Fiery Justice
+text=Fiery Justice deals 5 damage divided as you choose among any number of target creatures and/or players. Target opponent gains 5 life.
+mana={R}{G}{W}
+type=Sorcery
+[/card]
+[card]
+name=Gaea's Liege
+text=As long as Gaea's Liege isn't attacking, its power and toughness are each equal to the number of Forests you control. As long as Gaea's Liege is attacking, its power and toughness are each equal to the number of Forests defending player controls. -- {T}: Target land becomes a Forest until Gaea's Liege leaves the battlefield.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
+[/card]
+[card]
+name=Giant Oyster
+text=You may choose not to untap Giant Oyster during your untap step. -- {T}: For as long as Giant Oyster remains tapped, target tapped creature doesn't untap during its controller's untap step, and at the beginning of each of your draw steps, put a -1/-1 counter on that creature. When Giant Oyster leaves the battlefield or becomes untapped, remove all -1/-1 counters from the creature.
+mana={2}{U}{U}
+type=Creature
+subtype=Oyster
+power=0
+toughness=3
+[/card]
+[card]
+name=Goblin Snowman
+text=Whenever Goblin Snowman blocks, prevent all combat damage that would be dealt to and dealt by it this turn. -- {T}: Goblin Snowman deals 1 damage to target creature it's blocking.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+[/card]
+[card]
+name=Grinning Totem
+text={2}, {T}, Sacrifice Grinning Totem: Search target opponent's library for a card and exile it. Then that player shuffles his or her library. Until the beginning of your next upkeep, you may play that card. At the beginning of your next upkeep, if you haven't played it, put it into its owner's graveyard.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Honorable Passage
+text=The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage. If damage from a red source is prevented this way, Honorable Passage deals that much damage to the source's controller.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Merieke Ri Berit
+text=Merieke Ri Berit doesn't untap during your untap step. -- {T}: Gain control of target creature for as long as you control Merieke Ri Berit. When Merieke Ri Berit leaves the battlefield or becomes untapped, destroy that creature. It can't be regenerated.
+mana={W}{U}{B}
+type=Legendary Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
+name=Sindbad
+text={T}: Draw a card and reveal it. If it isn't a land card, discard it.
+mana={1}{U}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
+name=Spitting Slug
+text=Whenever Spitting Slug blocks or becomes blocked, you may pay {1}{G}. If you do, Spitting Slug gains first strike until end of turn. Otherwise, each creature blocking or blocked by Spitting Slug gains first strike until end of turn.
+mana={1}{G}{G}
+type=Creature
+subtype=Slug
+power=2
+toughness=4
+[/card]
+[card]
+name=Thornscape Battlemage
+text=Kicker {R} and/or {W} (You may pay an additional {R} and/or {W} as you cast this spell.) -- When Thornscape Battlemage enters the battlefield, if it was kicked with its {R} kicker, it deals 2 damage to target creature or player. -- When Thornscape Battlemage enters the battlefield, if it was kicked with its {W} kicker, destroy target artifact.
+mana={2}{G}
+type=Creature
+subtype=Elf Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=War Barge
+text={3}: Target creature gains islandwalk until end of turn. When War Barge leaves the battlefield this turn, destroy that creature. A creature destroyed this way can't be regenerated.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Willbender
+text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
