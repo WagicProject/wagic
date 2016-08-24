@@ -726,6 +726,14 @@ private:
         {//this is just to count the number of snow mana produced ... just for debugging purposes...
             intValue = target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
         }
+        else if (s == "mypoolcount")
+        {//manapool
+            intValue = target->controller()->getManaPool()->getConvertedCost();
+        }
+        else if (s == "opponentpoolcount")
+        {//manapool opponent
+            intValue = target->controller()->opponent()->getManaPool()->getConvertedCost();
+        }
         else if (s == "p" || s == "power")
         {
             intValue = target->getCurrentPower();
@@ -1132,6 +1140,13 @@ public:
     int getValue()
     {
         return intValue;
+    }
+
+    string getStringValue()
+    {
+        stringstream sval;
+        sval << intValue;
+        return sval.str();
     }
 };
 
