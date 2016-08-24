@@ -1,5 +1,14 @@
 grade=borderline
 [card]
+name=Angel's Grace
+abilities=split second
+#the cantlose cannot seen by the gameobserver when used by emblem...
+auto=emblem transforms((,newability[lord(*|opponentbattlefield) cantwin],newability[lord(*|mybattlefield) cantlose],newability[this(controllerlife >= 1) reduceto:1])) ueot
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- You can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Autumn Willow
 abilities=opponentshroud,shroud
 auto={G}:-shroud
@@ -22,6 +31,21 @@ type=Creature
 subtype=Eldrazi
 power=2
 toughness=1
+[/card]
+[card]
+name=Benthic Explorers
+auto=this(variable{olandg}>0) {Q(land[manag]|opponentbattlefield)}{T}:Add{G}
+auto=this(variable{olandu}>0) {Q(land[manau]|opponentbattlefield)}{T}:Add{U}
+auto=this(variable{olandr}>0) {Q(land[manar]|opponentbattlefield)}{T}:Add{R}
+auto=this(variable{olandb}>0) {Q(land[manab]|opponentbattlefield)}{T}:Add{B}
+auto=this(variable{olandw}>0) {Q(land[manaw]|opponentbattlefield)}{T}:Add{W}
+auto=this(variable{olandc}>0) {Q(land[cmana]|opponentbattlefield)}{T}:Add{C}
+text={T}, Untap a tapped land an opponent controls: Add one mana of any type that land could produce to your mana pool.
+mana={3}{U}
+type=Creature
+subtype=Merfolk Scout
+power=2
+toughness=4
 [/card]
 [card]
 name=Cemetery Puca
@@ -412,6 +436,18 @@ auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseacti
 mana={2}{W}
 type=Sorcery
 text=You gain 2 life. Then if you have more life than an opponent, draw a card. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Teferi, Mage of Zhalfir
+abilities=flash
+auto=lord(creature|mycastingzone) flash
+auto=this(variable{controllerturn}>0) maxCast(*)0 opponent
+text=Flash (You may cast this spell any time you could cast an instant.) -- Creature cards you own that aren't on the battlefield have flash. -- Each opponent can cast spells only any time he or she could cast a sorcery.
+mana={2}{U}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
 [/card]
 [card]
 name=Thespian's Stage
