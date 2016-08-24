@@ -4008,6 +4008,7 @@ int AACloner::resolve()
         spell->source->isToken = 1;
         spell->resolve();
         spell->source->fresh = 1;
+        spell->source->entersBattlefield = 1;
         spell->source->model = spell->source;
         spell->source->model->data = spell->source;
         //if the token doesn't have cda/dynamic pt then allow this...

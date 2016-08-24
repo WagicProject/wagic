@@ -486,6 +486,17 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecuresetfresh(1);
                     }
                 }
+                else if (attribute.find("recent") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecuresetrecent(-1);
+                    }
+                    else
+                    {
+                        cd->unsecuresetrecent(1);
+                    }
+                }
                 else if (attribute.find("geared") != string::npos)
                 {
                     if (minus)

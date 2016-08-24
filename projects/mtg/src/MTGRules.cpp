@@ -3131,6 +3131,7 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
         if (e->to == e->card->controller()->game->battlefield)
         {
             e->card->fresh = 1;
+            e->card->entersBattlefield = 1;
         }
 
         if (card && card->basicAbilities[(int)Constants::UNEARTH])

@@ -258,6 +258,7 @@ void MTGCardInstance::initMTGCI()
     canproduceB = 0;
     canproduceW = 0;
     canproduceC = 0;
+    entersBattlefield = 0;
     currentimprintName = "";
     imprintedNames.clear();
     CountedObjects = 0;
