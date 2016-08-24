@@ -690,6 +690,7 @@ void GameObserver::gameStateBasedEffects()
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
+            card->entersBattlefield = 0;
             card->LKIpower = card->power;
             card->LKItoughness = card->toughness;
             card->LKIbasicAbilities = card->basicAbilities;

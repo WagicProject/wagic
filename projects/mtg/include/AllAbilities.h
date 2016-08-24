@@ -551,6 +551,14 @@ private:
                     intValue +=1;
             }
         }
+        else if (s == "praidcount")
+        {
+            intValue = card->controller()->raidcount;
+        }
+        else if (s == "oraidcount")
+        {
+            intValue = card->controller()->opponent()->raidcount;
+        }
         else if (s == "countallspell")
         {
             intValue = card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
@@ -3803,6 +3811,15 @@ public:
             spell->source->owner = tokenReciever;
             spell->source->isToken = 1;
             spell->source->fresh = 1;
+            spell->source->entersBattlefield = 1;
+            if(spell->source->getMTGId() == 0)
+            {//fix missing art: if token creator is put inside ability$!!$ who, then try to get the stored source card
+                if(((MTGCardInstance*)source)->storedSourceCard)
+                {
+                    spell->source->setId = ((MTGCardInstance*)source)->storedSourceCard->setId;
+                    spell->source->setMTGId(-((MTGCardInstance*)source)->storedSourceCard->getMTGId());
+                }
+            }
             if(aLivingWeapon)
             {
                 livingWeaponToken(spell->source);

@@ -141,6 +141,30 @@ auto={3}:counter(1/1)
 #Not all player can use ability
 [/card]
 [card]
+name=Flamekin Bladewhirl
+otherrestriction=type(*[elemental]|myhand)~lessthan~2
+other={3}{R}
+restriction=type(*[elemental]|myhand)~morethan~1
+text=As an additional cost to cast Flamekin Bladewhirl, reveal an Elemental card from your hand or pay {3}.
+mana={R}
+type=Creature
+subtype=Elemental Warrior
+power=2
+toughness=1
+[/card]
+[card]
+name=Goldmeadow Stalwart
+otherrestriction=type(*[kithkin]|myhand)~lessthan~2
+other={3}{W}
+restriction=type(*[kithkin]|myhand)~morethan~1
+text=As an additional cost to cast Goldmeadow Stalwart, reveal a Kithkin card from your hand or pay {3}.
+mana={W}
+type=Creature
+subtype=Kithkin Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Goldnight Castigator
 #need doubler damage ability...
 abilities=flying,haste
@@ -399,6 +423,19 @@ mana={B}{G}
 type=Enchantment
 [/card]
 [card]
+name=Squeaking Pie Sneak
+abilities=fear
+otherrestriction=type(*[goblin]|myhand)~lessthan~2
+other={4}{B}
+restriction=type(*[goblin]|myhand)~morethan~1
+text=As an additional cost to cast Squeaking Pie Sneak, reveal a Goblin card from your hand or pay {3}. -- Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+mana={1}{B}
+type=Creature
+subtype=Goblin Rogue
+power=2
+toughness=2
+[/card]
+[card]
 name=Staggershock
 target=creature,player
 auto=damage:2
@@ -506,6 +543,19 @@ auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseacti
 mana={B}
 type=Instant
 text=Target creature gets +2/+0 and gains deathtouch until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Wren's Run Vanquisher
+otherrestriction=type(*[elf]|myhand)~lessthan~2
+other={4}{G}
+restriction=type(*[elf]|myhand)~morethan~1
+abilities=deathtouch
+text=As an additional cost to cast Wren's Run Vanquisher, reveal an Elf card from your hand or pay {3}. -- Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.)
+mana={1}{G}
+type=Creature
+subtype=Elf Warrior
+power=3
+toughness=3
 [/card]
 [card]
 name=Yixlid Jailer

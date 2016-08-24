@@ -283,6 +283,7 @@ public:
     int canproduceB;
     int canproduceW;
     int canproduceC;
+    int entersBattlefield;
     string currentimprintName;
     vector<string>imprintedNames;
 
