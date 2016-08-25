@@ -551,6 +551,14 @@ private:
                     intValue +=1;
             }
         }
+        else if (s == "praidcount")
+        {
+            intValue = card->controller()->raidcount;
+        }
+        else if (s == "oraidcount")
+        {
+            intValue = card->controller()->opponent()->raidcount;
+        }
         else if (s == "countallspell")
         {
             intValue = card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
@@ -725,6 +733,14 @@ private:
         else if (s == "snowcount")
         {//this is just to count the number of snow mana produced ... just for debugging purposes...
             intValue = target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
+        }
+        else if (s == "mypoolcount")
+        {//manapool
+            intValue = target->controller()->getManaPool()->getConvertedCost();
+        }
+        else if (s == "opponentpoolcount")
+        {//manapool opponent
+            intValue = target->controller()->opponent()->getManaPool()->getConvertedCost();
         }
         else if (s == "p" || s == "power")
         {
@@ -1132,6 +1148,13 @@ public:
     int getValue()
     {
         return intValue;
+    }
+
+    string getStringValue()
+    {
+        stringstream sval;
+        sval << intValue;
+        return sval.str();
     }
 };
 
@@ -3788,6 +3811,15 @@ public:
             spell->source->owner = tokenReciever;
             spell->source->isToken = 1;
             spell->source->fresh = 1;
+            spell->source->entersBattlefield = 1;
+            if(spell->source->getMTGId() == 0)
+            {//fix missing art: if token creator is put inside ability$!!$ who, then try to get the stored source card
+                if(((MTGCardInstance*)source)->storedSourceCard)
+                {
+                    spell->source->setId = ((MTGCardInstance*)source)->storedSourceCard->setId;
+                    spell->source->setMTGId(-((MTGCardInstance*)source)->storedSourceCard->getMTGId());
+                }
+            }
             if(aLivingWeapon)
             {
                 livingWeaponToken(spell->source);

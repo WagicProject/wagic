@@ -1,0 +1,263 @@
+[card]
+name=AEtherplasm
+text=Whenever AEtherplasm blocks a creature, you may return AEtherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
+mana={2}{U}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=1
+[/card]
+[card]
+name=Absolver Thrull
+text=Haunt (When this creature dies, exile it haunting target creature.) -- When Absolver Thrull enters the battlefield or the creature it haunts dies, destroy target enchantment.
+mana={3}{W}
+type=Creature
+subtype=Thrull Cleric
+power=2
+toughness=3
+[/card]
+[card]
+name=Belfry Spirit
+text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Belfry Spirit enters the battlefield or the creature it haunts dies, put two 1/1 black Bat creature tokens with flying onto the battlefield.
+mana={3}{W}{W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Benediction of Moons
+text=You gain 1 life for each player. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Benediction of Moons haunts dies, you gain 1 life for each player.
+mana={W}
+type=Sorcery
+[/card]
+[card]
+name=Bioplasm
+text=Whenever Bioplasm attacks, exile the top card of your library. If it's a creature card, Bioplasm gets +X/+Y until end of turn, where X is the exiled creature card's power and Y is its toughness.
+mana={3}{G}{G}
+type=Creature
+subtype=Ooze
+power=4
+toughness=4
+[/card]
+[card]
+name=Blind Hunter
+text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Blind Hunter enters the battlefield or the creature it haunts dies, target player loses 2 life and you gain 2 life.
+mana={2}{W}{B}
+type=Creature
+subtype=Bat
+power=2
+toughness=2
+[/card]
+[card]
+name=Burning-Tree Bloodscale
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- {2}{R}: Target creature can't block Burning-Tree Bloodscale this turn. -- {2}{G}: Target creature blocks Burning-Tree Bloodscale this turn if able.
+mana={2}{R}{G}
+type=Creature
+subtype=Viashino Berserker
+power=2
+toughness=2
+[/card]
+[card]
+name=Burning-Tree Shaman
+text=Whenever a player activates an ability that isn't a mana ability, Burning-Tree Shaman deals 1 damage to that player.
+mana={1}{R}{G}
+type=Creature
+subtype=Centaur Shaman
+power=3
+toughness=4
+[/card]
+[card]
+name=Cerebral Vortex
+text=Target player draws two cards, then Cerebral Vortex deals damage to that player equal to the number of cards he or she has drawn this turn.
+mana={1}{U}{R}
+type=Instant
+[/card]
+[card]
+name=Conjurer's Ban
+text=Name a card. Until your next turn, the named card can't be played. -- Draw a card.
+mana={W}{B}
+type=Sorcery
+[/card]
+[card]
+name=Cry of Contrition
+text=Target player discards a card. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Cry of Contrition haunts dies, target player discards a card.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Djinn Illuminatus
+text=({UR} can be paid with either {U} or {R}.) -- Flying -- Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
+mana={5}{UR}{UR}
+type=Creature
+subtype=Djinn
+power=3
+toughness=5
+[/card]
+[card]
+name=Exhumer Thrull
+text=Haunt (When this creature dies, exile it haunting target creature.) -- When Exhumer Thrull enters the battlefield or the creature it haunts dies, return target creature card from your graveyard to your hand.
+mana={5}{B}
+type=Creature
+subtype=Thrull
+power=3
+toughness=3
+[/card]
+[card]
+name=Gigadrowse
+text=Replicate {U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Tap target permanent.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Goblin Flectomancer
+text=Sacrifice Goblin Flectomancer: You may change the targets of target instant or sorcery spell.
+mana={U}{R}{R}
+type=Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Graven Dominator
+text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Graven Dominator enters the battlefield or the creature it haunts dies, each other creature becomes 1/1 until end of turn.
+mana={4}{W}{W}
+type=Creature
+subtype=Gargoyle
+power=4
+toughness=4
+[/card]
+[card]
+name=Ink-Treader Nephilim
+text=Whenever a player casts an instant or sorcery spell, if Ink-Treader Nephilim is the only target of that spell, copy the spell for each other creature that spell could target. Each copy targets a different one of those creatures.
+mana={R}{G}{W}{U}
+type=Creature
+subtype=Nephilim
+power=3
+toughness=3
+[/card]
+[card]
+name=Leap of Flame
+text=Replicate {U}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Target creature gets +1/+0 and gains flying and first strike until end of turn.
+mana={U}{R}
+type=Instant
+[/card]
+[card]
+name=Leyline of Lifeforce
+text=If Leyline of Lifeforce is in your opening hand, you may begin the game with it on the battlefield. -- Creature spells can't be countered.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Living Inferno
+text={T}: Living Inferno deals damage equal to its power divided as you choose among any number of target creatures. Each of those creatures deals damage equal to its power to Living Inferno.
+mana={6}{R}{R}
+type=Creature
+subtype=Elemental
+power=8
+toughness=5
+[/card]
+[card]
+name=Mimeofacture
+text=Replicate {3}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Choose target permanent an opponent controls. Search that player's library for a card with the same name and put it onto the battlefield under your control. Then that player shuffles his or her library.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Mizzium Transreliquat
+text={3}: Mizzium Transreliquat becomes a copy of target artifact until end of turn. -- {1}{U}{R}: Mizzium Transreliquat becomes a copy of target artifact and gains this ability.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Nivix, Aerie of the Firemind
+text={T}: Add {1} to your mana pool. -- {2}{U}{R}, {T}: Exile the top card of your library. Until your next turn, you may cast that card if it's an instant or sorcery.
+type=Land
+[/card]
+[card]
+name=Orzhov Euthanist
+text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Euthanist enters the battlefield or the creature it haunts dies, destroy target creature that was dealt damage this turn.
+mana={2}{B}
+type=Creature
+subtype=Human Assassin
+power=2
+toughness=2
+[/card]
+[card]
+name=Orzhov Pontiff
+text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Pontiff enters the battlefield or the creature it haunts dies, choose one — Creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
+mana={1}{W}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Predatory Focus
+text=You may have creatures you control assign their combat damage this turn as though they weren't blocked.
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Pyromatics
+text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Pyromatics deals 1 damage to target creature or player.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Quicken
+text=The next sorcery card you cast this turn can be cast as though it had flash. -- Draw a card.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Schismotivate
+text=Target creature gets +4/+0 until end of turn. Another target creature gets -4/-0 until end of turn.
+mana={1}{U}{R}
+type=Instant
+[/card]
+[card]
+name=Seize the Soul
+text=Destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Seize the Soul haunts dies, destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield.
+mana={2}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Shattering Spree
+text=Replicate {R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Destroy target artifact.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Siege of Towers
+text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Target Mountain becomes a 3/1 creature. It's still a land.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Thunderheads
+text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Put a 3/3 blue Weird creature token with defender and flying onto the battlefield. Exile it at the beginning of the next end step.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Train of Thought
+text=Replicate {1}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Draw a card.
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
+name=Vacuumelt
+text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Return target creature to its owner's hand.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Vedalken Plotter
+text=When Vedalken Plotter enters the battlefield, exchange control of target land you control and target land an opponent controls.
+mana={2}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=1
+[/card]

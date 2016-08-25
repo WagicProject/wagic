@@ -13,14 +13,6 @@ mana={2}{R}{G}
 type=Sorcery
 [/card]
 [card]
-name=Gerrard's Verdict
-target=player
-auto=transforms((,newability[discard:2 targetedplayer],newability[@discarded(land|targetedpersonshand):life:3]))
-text=Target player discards two cards. You gain 3 life for each land card discarded this way.
-mana={W}{B}
-type=Sorcery
-[/card]
-[card]
 name=Lurking Evil
 auto=this(cantargetcard(enchantment)) {0}:name(pay halfup life) life:-halfdownlifetotal controller && transforms((removetypes)) forever && transforms((Horror Creature,setpower=4,settoughness=4,flying)) forever
 text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.

@@ -1,0 +1,311 @@
+[card]
+name=Anthem of Rakdos
+text=Whenever a creature you control attacks, it gets +2/+0 until end of turn and Anthem of Rakdos deals 1 damage to you. -- Hellbent — As long as you have no cards in hand, if a source you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={2}{B}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Azorius Guildmage
+text={2}{W}: Tap target creature. -- {2}{U}: Counter target activated ability. (Mana abilities can't be targeted.)
+mana={WU}{WU}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Bond of Agony
+text=As an additional cost to cast Bond of Agony, pay X life. -- Each other player loses X life.
+mana={X}{B}
+type=Sorcery
+[/card]
+[card]
+name=Bound // Determined
+text=Sacrifice a creature. Return up to X cards from your graveyard to your hand, where X is the number of colors that creature was. Exile this card. --  //  -- Other spells you control can't be countered by spells or abilities this turn. -- Draw a card.
+mana={3}{B}{G} // {G}{U}
+type=Instant // Instant
+[/card]
+[card]
+name=Brain Pry
+text=Name a nonland card. Target player reveals his or her hand. That player discards a card with that name. If he or she can't, you draw a card.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Bronze Bombshell
+text=When a player other than Bronze Bombshell's owner controls it, that player sacrifices it. If the player does, Bronze Bombshell deals 7 damage to him or her.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=4
+toughness=1
+[/card]
+[card]
+name=Carom
+text=The next 1 damage that would be dealt to target creature this turn is dealt to another target creature instead. -- Draw a card.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Crime // Punishment
+text=Put target creature or enchantment card from an opponent's graveyard onto the battlefield under your control. --  //  -- Destroy each artifact, creature, and enchantment with converted mana cost X.
+mana={3}{W}{B} // {X}{B}{G}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Cytoplast Manipulator
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {U}, {T}: Gain control of target creature with a +1/+1 counter on it for as long as Cytoplast Manipulator remains on the battlefield.
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard Mutant
+power=0
+toughness=0
+[/card]
+[card]
+name=Cytoshape
+text=Choose a nonlegendary creature on the battlefield. Target creature becomes a copy of that creature until end of turn.
+mana={1}{G}{U}
+type=Instant
+[/card]
+[card]
+name=Demonfire
+text=Demonfire deals X damage to target creature or player. If a creature dealt damage this way would die this turn, exile it instead. -- Hellbent — If you have no cards in hand, Demonfire can't be countered by spells or abilities and the damage can't be prevented.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Elemental Resonance
+text=Enchant permanent -- At the beginning of your precombat main phase, add mana equal to enchanted permanent's mana cost to your mana pool. (Mana cost includes color. If a mana symbol has multiple colors, choose one.)
+mana={2}{G}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Experiment Kraj
+text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. -- {T}: Put a +1/+1 counter on target creature.
+mana={2}{G}{G}{U}{U}
+type=Legendary Creature
+subtype=Ooze Mutant
+power=4
+toughness=6
+[/card]
+[card]
+name=Flash Foliage
+text=Cast Flash Foliage only during combat after blockers are declared. -- Put a 1/1 green Saproling creature token onto the battlefield blocking target creature attacking you.  -- Draw a card.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Govern the Guildless
+text=Gain control of target monocolored creature. -- Forecast — {1}{U}, Reveal Govern the Guildless from your hand: Target creature becomes the color or colors of your choice until end of turn. (Activate this ability only during your upkeep and only once each turn.)
+mana={5}{U}
+type=Sorcery
+[/card]
+[card]
+name=Haazda Shield Mate
+text=At the beginning of your upkeep, sacrifice Haazda Shield Mate unless you pay {W}{W}. -- {W}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Hellhole Rats
+text=Haste -- When Hellhole Rats enters the battlefield, target player discards a card. Hellhole Rats deals damage to that player equal to that card's converted mana cost.
+mana={2}{B}{R}
+type=Creature
+subtype=Rat
+power=2
+toughness=2
+[/card]
+[card]
+name=Hide // Seek
+text=Put target artifact or enchantment on the bottom of its owner's library. --  //  -- Search target opponent's library for a card and exile it. You gain life equal to its converted mana cost. Then that player shuffles his or her library.
+mana={R}{W} // {W}{B}
+type=Instant // Instant
+[/card]
+[card]
+name=Hit // Run
+text=Target player sacrifices an artifact or creature. Hit deals damage to that player equal to that permanent's converted mana cost. --  //  -- Attacking creatures you control get +1/+0 until end of turn for each other attacking creature.
+mana={1}{B}{R} // {3}{R}{G}
+type=Instant // Instant
+[/card]
+[card]
+name=Isperia the Inscrutable
+text=Flying -- Whenever Isperia the Inscrutable deals combat damage to a player, name a card. That player reveals his or her hand. If he or she reveals the named card, search your library for a creature card with flying, reveal it, put it into your hand, then shuffle your library.
+mana={1}{W}{W}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=6
+[/card]
+[card]
+name=Kill-Suit Cultist
+text=Kill-Suit Cultist attacks each turn if able. -- {B}, Sacrifice Kill-Suit Cultist: The next time damage would be dealt to target creature this turn, destroy that creature instead.
+mana={R}
+type=Creature
+subtype=Goblin Berserker
+power=1
+toughness=1
+[/card]
+[card]
+name=Kindle the Carnage
+text=Discard a card at random. If you do, Kindle the Carnage deals damage equal to that card's converted mana cost to each creature. You may repeat this process any number of times.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Lyzolda, the Blood Witch
+text={2}, Sacrifice a creature: Lyzolda, the Blood Witch deals 2 damage to target creature or player if the sacrificed creature was red. Draw a card if the sacrificed creature was black.
+mana={1}{B}{R}
+type=Legendary Creature
+subtype=Human Cleric
+power=3
+toughness=1
+[/card]
+[card]
+name=Magewright's Stone
+text={1}, {T}: Untap target creature that has an activated ability with {T} in its cost.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Muse Vessel
+text={3}, {T}: Target player exiles a card from his or her hand. Activate this ability only any time you could cast a sorcery. -- {1}: Choose a card exiled with Muse Vessel. You may play that card this turn.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Odds // Ends
+text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy. --  //  -- Target player sacrifices two attacking creatures.
+mana={U}{R} // {3}{R}{W}
+type=Instant // Instant
+[/card]
+[card]
+name=Overrule
+text=Counter target spell unless its controller pays {X}. You gain X life.
+mana={X}{W}{U}
+type=Instant
+[/card]
+[card]
+name=Pillar of the Paruns
+text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a multicolored spell.
+type=Land
+[/card]
+[card]
+name=Protean Hulk
+text=When Protean Hulk dies, search your library for any number of creature cards with total converted mana cost 6 or less and put them onto the battlefield. Then shuffle your library.
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
+[/card]
+[card]
+name=Pure // Simple
+text=Destroy target multicolored permanent. --  //  -- Destroy all Auras and Equipment.
+mana={1}{R}{G} // {1}{G}{W}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Rain of Gore
+text=If a spell or ability would cause its controller to gain life, that player loses that much life instead.
+mana={B}{R}
+type=Enchantment
+[/card]
+[card]
+name=Rakdos Augermage
+text=First strike -- {T}: Reveal your hand and discard a card of target opponent's choice. Then that player reveals his or her hand and discards a card of your choice. Activate this ability only any time you could cast a sorcery.
+mana={B}{B}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+[/card]
+[card]
+name=Rakdos Riteknife
+text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." -- {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Research // Development
+text=Choose up to four cards you own from outside the game and shuffle them into your library. --  //  -- Put a 3/1 red Elemental creature token onto the battlefield unless any opponent has you draw a card. Repeat this process two more times.
+mana={G}{U} // {3}{U}{R}
+type=Instant // Instant
+[/card]
+[card]
+name=Rise // Fall
+text=Return target creature card from a graveyard and target creature on the battlefield to their owners' hands. --  //  -- Target player reveals two cards at random from his or her hand, then discards each nonland card revealed this way.
+mana={U}{B} // {B}{R}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Simic Guildmage
+text=({GU} can be paid with either {G} or {U}.) -- {1}{G}: Move a +1/+1 counter from target creature onto another target creature with the same controller. -- {1}{U}: Attach target Aura enchanting a permanent to another permanent with the same controller.
+mana={GU}{GU}
+type=Creature
+subtype=Elf Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Squealing Devil
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- When Squealing Devil enters the battlefield, you may pay {X}. If you do, target creature gets +X/+0 until end of turn. -- When Squealing Devil enters the battlefield, sacrifice it unless {B} was spent to cast it.
+mana={1}{R}
+type=Creature
+subtype=Devil
+power=2
+toughness=1
+[/card]
+[card]
+name=Stormscale Anarch
+text={2}{R}, Discard a card at random: Stormscale Anarch deals 2 damage to target creature or player. If the discarded card was multicolored, Stormscale Anarch deals 4 damage to that creature or player instead.
+mana={2}{R}{R}
+type=Creature
+subtype=Viashino Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Street Savvy
+text=Enchant creature -- Enchanted creature gets +0/+2 and can block creatures with landwalk abilities as though they didn't have those abilities.
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Supply // Demand
+text=Put X 1/1 green Saproling creature tokens onto the battlefield. --  //  -- Search your library for a multicolored card, reveal it, and put it into your hand. Then shuffle your library.
+mana={X}{G}{W} // {1}{W}{U}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Trial // Error
+text=Return all creatures blocking or blocked by target creature to their owner's hand. --  //  -- Counter target multicolored spell.
+mana={W}{U} // {U}{B}
+type=Instant // Instant
+[/card]
+[card]
+name=Unliving Psychopath
+text={B}: Unliving Psychopath gets +1/-1 until end of turn. -- {B}, {T}: Destroy target creature with power less than Unliving Psychopath's power.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Assassin
+power=0
+toughness=4
+[/card]
+[card]
+name=Valor Made Real
+text=Target creature can block any number of creatures this turn.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Voidslime
+text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
+mana={U}{U}{G}
+type=Instant
+[/card]

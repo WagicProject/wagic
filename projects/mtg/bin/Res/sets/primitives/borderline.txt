@@ -1,5 +1,14 @@
 grade=borderline
 [card]
+name=Angel's Grace
+abilities=split second
+#the cantlose cannot seen by the gameobserver when used by emblem...
+auto=emblem transforms((,newability[lord(*|opponentbattlefield) cantwin],newability[lord(*|mybattlefield) cantlose],newability[this(controllerlife >= 1) reduceto:1])) ueot
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- You can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Autumn Willow
 abilities=opponentshroud,shroud
 auto={G}:-shroud
@@ -9,6 +18,33 @@ mana={4}{G}{G}
 type=Legendary Creature
 subtype=Avatar
 power=4
+toughness=4
+[/card]
+[card]
+name=Bearer of Silence
+abilities=flying,cantblock
+autostack=if casted(this) then pay({1}{c}) ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+text=Devoid (This card has no color.) -- When you cast Bearer of Silence, you may pay {1}{C}. If you do, target opponent sacrifices a creature. ({C} represents colorless mana.) -- Flying -- Bearer of Silence can't block.
+mana={1}{B}
+abilities=devoid
+type=Creature
+subtype=Eldrazi
+power=2
+toughness=1
+[/card]
+[card]
+name=Benthic Explorers
+auto=this(variable{olandg}>0) {Q(land[manag]|opponentbattlefield)}{T}:Add{G}
+auto=this(variable{olandu}>0) {Q(land[manau]|opponentbattlefield)}{T}:Add{U}
+auto=this(variable{olandr}>0) {Q(land[manar]|opponentbattlefield)}{T}:Add{R}
+auto=this(variable{olandb}>0) {Q(land[manab]|opponentbattlefield)}{T}:Add{B}
+auto=this(variable{olandw}>0) {Q(land[manaw]|opponentbattlefield)}{T}:Add{W}
+auto=this(variable{olandc}>0) {Q(land[cmana]|opponentbattlefield)}{T}:Add{C}
+text={T}, Untap a tapped land an opponent controls: Add one mana of any type that land could produce to your mana pool.
+mana={3}{U}
+type=Creature
+subtype=Merfolk Scout
+power=2
 toughness=4
 [/card]
 [card]
@@ -103,6 +139,30 @@ text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put
 auto=counter(1/1,X)
 auto={3}:counter(1/1)
 #Not all player can use ability
+[/card]
+[card]
+name=Flamekin Bladewhirl
+otherrestriction=type(*[elemental]|myhand)~lessthan~2
+other={3}{R}
+restriction=type(*[elemental]|myhand)~morethan~1
+text=As an additional cost to cast Flamekin Bladewhirl, reveal an Elemental card from your hand or pay {3}.
+mana={R}
+type=Creature
+subtype=Elemental Warrior
+power=2
+toughness=1
+[/card]
+[card]
+name=Goldmeadow Stalwart
+otherrestriction=type(*[kithkin]|myhand)~lessthan~2
+other={3}{W}
+restriction=type(*[kithkin]|myhand)~morethan~1
+text=As an additional cost to cast Goldmeadow Stalwart, reveal a Kithkin card from your hand or pay {3}.
+mana={W}
+type=Creature
+subtype=Kithkin Soldier
+power=2
+toughness=2
 [/card]
 [card]
 name=Goldnight Castigator
@@ -363,6 +423,19 @@ mana={B}{G}
 type=Enchantment
 [/card]
 [card]
+name=Squeaking Pie Sneak
+abilities=fear
+otherrestriction=type(*[goblin]|myhand)~lessthan~2
+other={4}{B}
+restriction=type(*[goblin]|myhand)~morethan~1
+text=As an additional cost to cast Squeaking Pie Sneak, reveal a Goblin card from your hand or pay {3}. -- Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+mana={1}{B}
+type=Creature
+subtype=Goblin Rogue
+power=2
+toughness=2
+[/card]
+[card]
 name=Staggershock
 target=creature,player
 auto=damage:2
@@ -400,6 +473,18 @@ auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseacti
 mana={2}{W}
 type=Sorcery
 text=You gain 2 life. Then if you have more life than an opponent, draw a card. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Teferi, Mage of Zhalfir
+abilities=flash
+auto=lord(creature|mycastingzone) flash
+auto=this(variable{controllerturn}>0) maxCast(*)0 opponent
+text=Flash (You may cast this spell any time you could cast an instant.) -- Creature cards you own that aren't on the battlefield have flash. -- Each opponent can cast spells only any time he or she could cast a sorcery.
+mana={2}{U}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
 [/card]
 [card]
 name=Thespian's Stage
@@ -458,6 +543,19 @@ auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseacti
 mana={B}
 type=Instant
 text=Target creature gets +2/+0 and gains deathtouch until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Wren's Run Vanquisher
+otherrestriction=type(*[elf]|myhand)~lessthan~2
+other={4}{G}
+restriction=type(*[elf]|myhand)~morethan~1
+abilities=deathtouch
+text=As an additional cost to cast Wren's Run Vanquisher, reveal an Elf card from your hand or pay {3}. -- Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.)
+mana={1}{G}
+type=Creature
+subtype=Elf Warrior
+power=3
+toughness=3
 [/card]
 [card]
 name=Yixlid Jailer

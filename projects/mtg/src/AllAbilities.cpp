@@ -1103,7 +1103,20 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
         if(_target && _target->hasType(Subtypes::TYPE_PLANESWALKER))
             return _target->name.c_str();
         if(redirected)
+        {
+            if(d.size())
+            {
+                WParsedInt parsedNum(d, NULL, source);
+                return _("Deal " + parsedNum.getStringValue() + " Damage to Player").c_str();
+            }
             return "Damage Player";
+        }
+        
+        if(d.size())
+        {
+            WParsedInt parsedNum(d, NULL, source);
+            return _("Deal " + parsedNum.getStringValue() + " Damage").c_str();
+        }
         return "Damage";
     }
 
@@ -1250,7 +1263,20 @@ AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, 
 const string AADepleter::getMenuText()
 {
     if(toexile)
+    {
+        if(nbcardsStr.size())
+        {
+            WParsedInt parsedNum(nbcardsStr, NULL, source);
+            return _("Ingest " + parsedNum.getStringValue()).c_str();
+        }
         return "Ingest";
+    }
+    
+    if(nbcardsStr.size())
+    {
+        WParsedInt parsedNum(nbcardsStr, NULL, source);
+        return _("Deplete " + parsedNum.getStringValue()).c_str();
+    }
     return "Deplete";
 }
 
@@ -2934,6 +2960,11 @@ AADrawer::AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targ
 
 const string AADrawer::getMenuText()
 {
+    if(nbcardsStr.size())
+    {
+        WParsedInt parsedNum(nbcardsStr, NULL, source);
+        return _("Draw " + parsedNum.getStringValue()).c_str();
+    }
     return "Draw";
 }
 
@@ -3977,6 +4008,7 @@ int AACloner::resolve()
         spell->source->isToken = 1;
         spell->resolve();
         spell->source->fresh = 1;
+        spell->source->entersBattlefield = 1;
         spell->source->model = spell->source;
         spell->source->model->data = spell->source;
         //if the token doesn't have cda/dynamic pt then allow this...
@@ -4492,6 +4524,11 @@ int AARandomDiscarder::resolve()
 
 const string AARandomDiscarder::getMenuText()
 {
+    if(nbcardsStr.size())
+    {
+        WParsedInt parsedNum(nbcardsStr, NULL, source);
+        return _("Discard " + parsedNum.getStringValue() + " at random").c_str();
+    }
     return "Discard Random";
 }
 
@@ -6803,6 +6840,11 @@ int AAttackSetCost::destroy()
 
 const string AAttackSetCost::getMenuText()
 {
+    if(number.size())
+    {
+        WParsedInt parsedNum(number, NULL, source);
+        return _("Pay " + parsedNum.getStringValue() + " to attack").c_str();
+    }
     return "Attack Cost";
 }
 
@@ -6847,6 +6889,11 @@ int ABlockSetCost::destroy()
 
 const string ABlockSetCost::getMenuText()
 {
+    if(number.size())
+    {
+        WParsedInt parsedNum(number, NULL, source);
+        return _("Pay " + parsedNum.getStringValue() + " to block").c_str();
+    }
     return "Block Cost";
 }
 

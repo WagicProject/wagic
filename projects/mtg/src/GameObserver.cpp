@@ -690,6 +690,7 @@ void GameObserver::gameStateBasedEffects()
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
+            card->entersBattlefield = 0;
             card->LKIpower = card->power;
             card->LKItoughness = card->toughness;
             card->LKIbasicAbilities = card->basicAbilities;
@@ -795,7 +796,7 @@ void GameObserver::gameStateBasedEffects()
             {
                 if(card->target && !isInPlay(card->target))
                 players[i]->game->putInGraveyard(card);
-                if(card->target && isInPlay(card->target))
+                /*if(card->target && isInPlay(card->target))
                 {//what exactly does this section do?
                     if(card->spellTargetType.find("creature") != string::npos && !card->target->hasType("creature"))
                         players[i]->game->putInGraveyard(card);
@@ -807,7 +808,7 @@ void GameObserver::gameStateBasedEffects()
                         players[i]->game->putInGraveyard(card);
                     if(card->spellTargetType.find("planeswalker") != string::npos && !card->target->hasType("planeswalker"))
                         players[i]->game->putInGraveyard(card);
-                }
+                }*/
                 if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card) && !card->has(Constants::AURAWARD))//protection from quality except aura cards like flickering ward
                 players[i]->game->putInGraveyard(card);
             }

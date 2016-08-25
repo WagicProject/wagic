@@ -57,6 +57,11 @@ void CardDescriptor::unsecuresetfresh(int k)
     fresh = k;
 }
 
+void CardDescriptor::unsecuresetrecent(int j)
+{
+    entersBattlefield = j;
+}
+
 void CardDescriptor::setisMultiColored(int w)
 {
     isMultiColored = w;
@@ -215,6 +220,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     if ((fresh == -1 && card->fresh) || (fresh == 1 && !card->fresh))
+    {
+        match = NULL;
+    }
+
+    if ((entersBattlefield == -1 && card->entersBattlefield) || (entersBattlefield == 1 && !card->entersBattlefield))
     {
         match = NULL;
     }
