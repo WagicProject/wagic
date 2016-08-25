@@ -1,0 +1,445 @@
+[card]
+name=Adder-Staff Boggart
+text=When Adder-Staff Boggart enters the battlefield, clash with an opponent. If you win, put a +1/+1 counter on Adder-Staff Boggart. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=1
+[/card]
+[card]
+name=Ashling's Prerogative
+text=As Ashling's Prerogative enters the battlefield, choose odd or even. (Zero is even.) -- Each creature with converted mana cost of the chosen value has haste. -- Each creature without converted mana cost of the chosen value enters the battlefield tapped.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
+name=Bog Hoodlums
+text=Bog Hoodlums can't block. -- When Bog Hoodlums enters the battlefield, clash with an opponent. If you win, put a +1/+1 counter on Bog Hoodlums. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={5}{B}
+type=Creature
+subtype=Goblin Warrior
+power=4
+toughness=1
+[/card]
+[card]
+name=Broken Ambitions
+text=Counter target spell unless its controller pays {X}. Clash with an opponent. If you win, that spell's controller puts the top four cards of his or her library into his or her graveyard. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Captivating Glance
+text=Enchant creature -- At the beginning of your end step, clash with an opponent. If you win, gain control of enchanted creature. Otherwise, that player gains control of enchanted creature. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Ceaseless Searblades
+text=Whenever you activate an ability of an Elemental, Ceaseless Searblades gets +1/+0 until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Elemental Warrior
+power=2
+toughness=4
+[/card]
+[card]
+name=Colfenor's Plans
+text=When Colfenor's Plans enters the battlefield, exile the top seven cards of your library face down. -- You may look at and play cards exiled with Colfenor's Plans. -- Skip your draw step. -- You can't cast more than one spell each turn.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Colfenor's Urn
+text=Whenever a creature with toughness 4 or greater is put into your graveyard from the battlefield, you may exile it. -- At the beginning of the end step, if three or more cards have been exiled with Colfenor's Urn, sacrifice it. If you do, return those cards to the battlefield under their owner's control.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Cryptic Command
+text=Choose two — Counter target spell; or return target permanent to its owner's hand; or tap all creatures your opponents control; or draw a card.
+mana={1}{U}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Entangling Trap
+text=Whenever you clash, tap target creature an opponent controls. If you won, that creature doesn't untap during its controller's next untap step. (This ability triggers after the clash ends.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Favor of the Mighty
+text=Each creature with the highest converted mana cost has protection from all colors.
+mana={1}{W}
+type=Tribal Enchantment
+subtype=Giant
+[/card]
+[card]
+name=Fistful of Force
+text=Target creature gets +2/+2 until end of turn. Clash with an opponent. If you win, that creature gets an additional +2/+2 and gains trample until end of turn. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Flamekin Bladewhirl
+text=As an additional cost to cast Flamekin Bladewhirl, reveal an Elemental card from your hand or pay {3}.
+mana={R}
+type=Creature
+subtype=Elemental Warrior
+power=2
+toughness=1
+[/card]
+[card]
+name=Gaddock Teeg
+text=Noncreature spells with converted mana cost 4 or greater can't be cast. -- Noncreature spells with {X} in their mana costs can't be cast.
+mana={G}{W}
+type=Legendary Creature
+subtype=Kithkin Advisor
+power=2
+toughness=2
+[/card]
+[card]
+name=Gilt-Leaf Ambush
+text=Put two 1/1 green Elf Warrior creature tokens onto the battlefield. Clash with an opponent. If you win, those creatures gain deathtouch until end of turn. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost. Any amount of damage a creature with deathtouch deals to a creature is enough to destroy it.)
+mana={2}{G}
+type=Tribal Instant
+subtype=Elf
+[/card]
+[card]
+name=Goldmeadow Stalwart
+text=As an additional cost to cast Goldmeadow Stalwart, reveal a Kithkin card from your hand or pay {3}.
+mana={W}
+type=Creature
+subtype=Kithkin Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Guile
+text=Guile can't be blocked except by three or more creatures. -- If a spell or ability you control would counter a spell, instead exile that spell and you may play that card without paying its mana cost. -- When Guile is put into a graveyard from anywhere, shuffle it into its owner's library.
+mana={3}{U}{U}{U}
+type=Creature
+subtype=Elemental Incarnation
+power=6
+toughness=6
+[/card]
+[card]
+name=Hoarder's Greed
+text=You lose 2 life and draw two cards, then clash with an opponent. If you win, repeat this process. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
+name=Hostility
+text=Haste -- If a spell you control would deal damage to an opponent, prevent that damage. Put a 3/1 red Elemental Shaman creature token with haste onto the battlefield for each 1 damage prevented this way. -- When Hostility is put into a graveyard from anywhere, shuffle it into its owner's library.
+mana={3}{R}{R}{R}
+type=Creature
+subtype=Elemental Incarnation
+power=6
+toughness=6
+[/card]
+[card]
+name=Howltooth Hollow
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {B} to your mana pool. -- {B}, {T}: You may play the exiled card without paying its mana cost if each player has no cards in hand.
+type=Land
+[/card]
+[card]
+name=Hunt Down
+text=Target creature blocks target creature this turn if able.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Incendiary Command
+text=Choose two — -- • Incendiary Command deals 4 damage to target player. -- • Incendiary Command deals 2 damage to each creature. -- • Destroy target nonbasic land. -- • Each player discards all the cards in his or her hand, then draws that many cards.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Incremental Growth
+text=Put a +1/+1 counter on target creature, two +1/+1 counters on another target creature, and three +1/+1 counters on a third target creature.
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Lairwatch Giant
+text=Lairwatch Giant can block an additional creature. -- Whenever Lairwatch Giant blocks two or more creatures, it gains first strike until end of turn.
+mana={5}{W}
+type=Creature
+subtype=Giant Warrior
+power=5
+toughness=3
+[/card]
+[card]
+name=Lammastide Weave
+text=Name a card, then target player puts the top card of his or her library into his or her graveyard. If that card is the named card, you gain life equal to its converted mana cost. -- Draw a card.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Lash Out
+text=Lash Out deals 3 damage to target creature. Clash with an opponent. If you win, Lash Out deals 3 damage to that creature's controller. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Lignify
+text=Enchant creature -- Enchanted creature is a 0/4 Treefolk with no abilities.
+mana={1}{G}
+type=Tribal Enchantment
+subtype=Treefolk Aura
+[/card]
+[card]
+name=Mosswort Bridge
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {G} to your mana pool. -- {G}, {T}: You may play the exiled card without paying its mana cost if creatures you control have total power 10 or greater.
+type=Land
+[/card]
+[card]
+name=Nath's Elite
+text=All creatures able to block Nath's Elite do so. -- When Nath's Elite enters the battlefield, clash with an opponent. If you win, put a +1/+1 counter on Nath's Elite. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={4}{G}
+type=Creature
+subtype=Elf Warrior
+power=4
+toughness=2
+[/card]
+[card]
+name=Needle Drop
+text=Needle Drop deals 1 damage to target creature or player that was dealt damage this turn. -- Draw a card.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Nettlevine Blight
+text=Enchant creature or land -- Enchanted permanent has "At the beginning of your end step, sacrifice this permanent and attach Nettlevine Blight to a creature or land you control."
+mana={4}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Oaken Brawler
+text=When Oaken Brawler enters the battlefield, clash with an opponent. If you win, put a +1/+1 counter on Oaken Brawler. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={3}{W}
+type=Creature
+subtype=Treefolk Warrior
+power=2
+toughness=4
+[/card]
+[card]
+name=Oona's Prowler
+text=Flying -- Discard a card: Oona's Prowler gets -2/-0 until end of turn. Any player may activate this ability.
+mana={1}{B}
+type=Creature
+subtype=Faerie Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Paperfin Rascal
+text=When Paperfin Rascal enters the battlefield, clash with an opponent. If you win, put a +1/+1 counter on Paperfin Rascal. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={2}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Pollen Lullaby
+text=Prevent all combat damage that would be dealt this turn. Clash with an opponent. If you win, creatures that player controls don't untap during the player's next untap step. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Primal Command
+text=Choose two — Target player gains 7 life; or put target noncreature permanent on top of its owner's library; or target player shuffles his or her graveyard into his or her library; or search your library for a creature card, reveal it, put it into your hand, then shuffle your library.
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Profane Command
+text=Choose two — -- • Target player loses X life.  -- • Return target creature card with converted mana cost X or less from your graveyard to the battlefield. -- • Target creature gets -X/-X until end of turn. -- • Up to X target creatures gain fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.)
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Purity
+text=Flying -- If noncombat damage would be dealt to you, prevent that damage. You gain life equal to the damage prevented this way. -- When Purity is put into a graveyard from anywhere, shuffle it into its owner's library.
+mana={3}{W}{W}{W}
+type=Creature
+subtype=Elemental Incarnation
+power=6
+toughness=6
+[/card]
+[card]
+name=Rebellion of the Flamekin
+text=Whenever you clash, you may pay {1}. If you do, put a 3/1 red Elemental Shaman creature token onto the battlefield. If you won, that token gains haste until end of turn. (This ability triggers after the clash ends.)
+mana={3}{R}
+type=Tribal Enchantment
+subtype=Elemental
+[/card]
+[card]
+name=Rings of Brighthearth
+text=Whenever you activate an ability, if it isn't a mana ability, you may pay {2}. If you do, copy that ability. You may choose new targets for the copy.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Ringskipper
+text=Flying -- When Ringskipper dies, clash with an opponent. If you win, return Ringskipper to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{U}
+type=Creature
+subtype=Faerie Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Scattering Stroke
+text=Counter target spell. Clash with an opponent. If you win, at the beginning of your next main phase, you may add {X} to your mana pool, where X is that spell's converted mana cost. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Sentry Oak
+text=Defender -- At the beginning of combat on your turn, you may clash with an opponent. If you win, Sentry Oak gets +2/+0 and loses defender until end of turn. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={4}{W}
+type=Creature
+subtype=Treefolk Warrior
+power=3
+toughness=5
+[/card]
+[card]
+name=Shapesharer
+text=Changeling (This card is every creature type at all times.) -- {2}{U}: Target Shapeshifter becomes a copy of target creature until your next turn.
+mana={1}{U}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=1
+[/card]
+[card]
+name=Shelldock Isle
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {U} to your mana pool. -- {U}, {T}: You may play the exiled card without paying its mana cost if a library has twenty or fewer cards in it.
+type=Land
+[/card]
+[card]
+name=Silvergill Adept
+text=As an additional cost to cast Silvergill Adept, reveal a Merfolk card from your hand or pay {3}. -- When Silvergill Adept enters the battlefield, draw a card.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Smokebraider
+text={T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast Elemental spells or activate abilities of Elementals.
+mana={1}{R}
+type=Creature
+subtype=Elemental Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Sower of Temptation
+text=Flying -- When Sower of Temptation enters the battlefield, gain control of target creature for as long as Sower of Temptation remains on the battlefield.
+mana={2}{U}{U}
+type=Creature
+subtype=Faerie Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Spinerock Knoll
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {R} to your mana pool. -- {R}, {T}: You may play the exiled card without paying its mana cost if an opponent was dealt 7 or more damage this turn.
+type=Land
+[/card]
+[card]
+name=Spring Cleaning
+text=Destroy target enchantment. Clash with an opponent. If you win, destroy all enchantments your opponents control. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Springjack Knight
+text=Whenever Springjack Knight attacks, clash with an opponent. If you win, target creature gains double strike until end of turn. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={2}{W}
+type=Creature
+subtype=Kithkin Knight
+power=2
+toughness=1
+[/card]
+[card]
+name=Squeaking Pie Sneak
+text=As an additional cost to cast Squeaking Pie Sneak, reveal a Goblin card from your hand or pay {3}. -- Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+mana={1}{B}
+type=Creature
+subtype=Goblin Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Sylvan Echoes
+text=Whenever you clash and win, you may draw a card. (This ability triggers after the clash ends.)
+mana={G}
+type=Enchantment
+[/card]
+[card]
+name=Thoughtweft Trio
+text=First strike, vigilance -- Champion a Kithkin (When this enters the battlefield, sacrifice it unless you exile another Kithkin you control. When this leaves the battlefield, that card returns to the battlefield.) -- Thoughtweft Trio can block any number of creatures.
+mana={2}{W}{W}
+type=Creature
+subtype=Kithkin Soldier
+power=5
+toughness=5
+[/card]
+[card]
+name=Thousand-Year Elixir
+text=You may activate abilities of creatures you control as though those creatures had haste. -- {1}, {T}: Untap target creature.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Twinning Glass
+text={1}, {T}: You may cast a nonland card from your hand without paying its mana cost if it has the same name as a spell that was cast this turn.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Weed Strangle
+text=Destroy target creature. Clash with an opponent. If you win, you gain life equal to that creature's toughness. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Whirlpool Whelm
+text=Clash with an opponent, then return target creature to its owner's hand. If you win, you may put that creature on top of its owner's library instead. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Wild Ricochet
+text=You may choose new targets for target instant or sorcery spell. Then copy that spell. You may choose new targets for the copy.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Windbrisk Heights
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {W} to your mana pool. -- {W}, {T}: You may play the exiled card without paying its mana cost if you attacked with three or more creatures this turn.
+type=Land
+[/card]
+[card]
+name=Woodland Guidance
+text=Return target card from your graveyard to your hand. Clash with an opponent. If you win, untap all Forests you control. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.) -- Exile Woodland Guidance.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Wren's Run Vanquisher
+text=As an additional cost to cast Wren's Run Vanquisher, reveal an Elf card from your hand or pay {3}. -- Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.)
+mana={1}{G}
+type=Creature
+subtype=Elf Warrior
+power=3
+toughness=3
+[/card]
