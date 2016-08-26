@@ -4708,7 +4708,8 @@ DYNAMIC_ABILITY_WHO_TARGETOPPONENT = 4,
 DYNAMIC_ABILITY_WHO_TOSOURCE = 5,
 DYNAMIC_ABILITY_WHO_SOURCECONTROLLER = 6,
 DYNAMIC_ABILITY_WHO_SOURCEOPPONENT = 7,
-DYNAMIC_ABILITY_WHO_NB = 8,
+DYNAMIC_ABILITY_WHO_ABILITYCONTROLLER = 8,
+DYNAMIC_ABILITY_WHO_NB = 9,
 
 };
 int type;
@@ -6275,6 +6276,14 @@ public:
                     who = source->target?source->target->controller():source->controller();
                 if (targetingString.find("owner") != string::npos)
                     who = source->owner;
+            }
+
+            if (after == "postbattle")
+            {
+                if(game->getCurrentGamePhase() < MTG_PHASE_COMBATEND)
+                    after = "secondmain";
+                else
+                    after = "this";
             }
 
             if (after == "this")//apply it right now.

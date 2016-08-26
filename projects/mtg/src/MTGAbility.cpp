@@ -77,10 +77,10 @@ const int kDynamicEffectIds[] = {
 };
 
 
-const string kDynamicWhoKeywords[] = {"eachother", "itself", "targetcontroller", "targetopponent", "tosrc", "srccontroller", "srcopponent" };
+const string kDynamicWhoKeywords[] = {"eachother", "itself", "targetcontroller", "targetopponent", "tosrc", "srccontroller", "srcopponent" , "abilitycontroller" };
 const int kDynamicWhoIds[] = { 
      AADynamic::DYNAMIC_ABILITY_WHO_EACHOTHER, AADynamic::DYNAMIC_ABILITY_WHO_ITSELF, AADynamic::DYNAMIC_ABILITY_WHO_TARGETCONTROLLER, AADynamic::DYNAMIC_ABILITY_WHO_TARGETOPPONENT,
-     AADynamic::DYNAMIC_ABILITY_WHO_TOSOURCE,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCECONTROLLER,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCEOPPONENT
+     AADynamic::DYNAMIC_ABILITY_WHO_TOSOURCE,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCECONTROLLER,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCEOPPONENT, AADynamic::DYNAMIC_ABILITY_WHO_ABILITYCONTROLLER
 };
 
 int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
