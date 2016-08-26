@@ -1,0 +1,98 @@
+[card]
+name=Cankerous Thirst
+text=If {B} was spent to cast Cankerous Thirst, you may have target creature get -3/-3 until end of turn. If {G} was spent to cast Cankerous Thirst, you may have target creature get +3/+3 until end of turn. (Do both if {B}{G} was spent.)
+mana={3}{BG}
+type=Instant
+[/card]
+[card]
+name=Endless Horizons
+text=When Endless Horizons enters the battlefield, search your library for any number of Plains cards and exile them. Then shuffle your library. -- At the beginning of your upkeep, you may put a card you own exiled with Endless Horizons into your hand.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Evershrike
+text=Flying -- Evershrike gets +2/+2 for each Aura attached to it. -- {X}{WB}{WB}: Return Evershrike from your graveyard to the battlefield. You may put an Aura card with converted mana cost X or less from your hand onto the battlefield attached to it. If you don't, exile Evershrike.
+mana={3}{WB}{WB}
+type=Creature
+subtype=Elemental Spirit
+power=2
+toughness=2
+[/card]
+[card]
+name=Fiery Bombardment
+text=Chroma — {2}, Sacrifice a creature: Fiery Bombardment deals damage to target creature or player equal to the number of red mana symbols in the sacrificed creature's mana cost.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
+name=Gilder Bairn
+text={2}{GU}, {Q}: For each counter on target permanent, put another of those counters on that permanent. ({Q} is the untap symbol.)
+mana={1}{GU}{GU}
+type=Creature
+subtype=Ouphe
+power=1
+toughness=3
+[/card]
+[card]
+name=Glamerdye
+text=Change the text of target spell or permanent by replacing all instances of one color word with another. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Light from Within
+text=Chroma — Each creature you control gets +1/+1 for each white mana symbol in its mana cost.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Mirror Sheen
+text={1}{UR}{UR}: Copy target instant or sorcery spell that targets you. You may choose new targets for the copy.
+mana={1}{UR}{UR}
+type=Enchantment
+[/card]
+[card]
+name=Noggle Hedge-Mage
+text=When Noggle Hedge-Mage enters the battlefield, if you control two or more Islands, you may tap two target permanents. -- When Noggle Hedge-Mage enters the battlefield, if you control two or more Mountains, you may have Noggle Hedge-Mage deal 2 damage to target player.
+mana={2}{UR}
+type=Creature
+subtype=Noggle Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Nucklavee
+text=When Nucklavee enters the battlefield, you may return target red sorcery card from your graveyard to your hand. -- When Nucklavee enters the battlefield, you may return target blue instant card from your graveyard to your hand.
+mana={4}{UR}{UR}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+[card]
+name=Phosphorescent Feast
+text=Chroma — Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
+mana={2}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Springjack Pasture
+text={T}: Add {C} to your mana pool. -- {4}, {T}: Put a 0/1 white Goat creature token onto the battlefield. -- {T}, Sacrifice X Goats: Add X mana of any one color to your mana pool. You gain X life.
+type=Land
+[/card]
+[card]
+name=Stigma Lasher
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Whenever Stigma Lasher deals damage to a player, that player can't gain life for the rest of the game.
+mana={R}{R}
+type=Creature
+subtype=Elemental Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Ward of Bones
+text=Each opponent who controls more creatures than you can't play creature cards. The same is true for artifacts, enchantments, and lands.
+mana={6}
+type=Artifact
+[/card]

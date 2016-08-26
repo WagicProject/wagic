@@ -1,0 +1,227 @@
+[card]
+name=Bear Umbra
+text=Enchant creature -- Enchanted creature gets +2/+2 and has "Whenever this creature attacks, untap all lands you control." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={2}{G}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Boar Umbra
+text=Enchant creature -- Enchanted creature gets +3/+3. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Cast Through Time
+text=Instant and sorcery spells you control have rebound. (Exile the spell as it resolves if you cast it from your hand. At the beginning of your next upkeep, you may cast that card from exile without paying its mana cost.)
+mana={4}{U}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Crab Umbra
+text=Enchant creature -- {2}{U}: Untap enchanted creature. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Devastating Summons
+text=As an additional cost to cast Devastating Summons, sacrifice X lands. -- Put two X/X red Elemental creature tokens onto the battlefield.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Disaster Radius
+text=As an additional cost to cast Disaster Radius, reveal a creature card from your hand. -- Disaster Radius deals X damage to each creature your opponents control, where X is the revealed card's converted mana cost.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Dormant Gomazoa
+text=Flying -- Dormant Gomazoa enters the battlefield tapped. -- Dormant Gomazoa doesn't untap during your untap step. -- Whenever you become the target of a spell, you may untap Dormant Gomazoa.
+mana={1}{U}{U}
+type=Creature
+subtype=Jellyfish
+power=5
+toughness=5
+[/card]
+[card]
+name=Drake Umbra
+text=Enchant creature -- Enchanted creature gets +3/+3 and has flying. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={4}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Eel Umbra
+text=Flash (You may cast this spell any time you could cast an instant.) -- Enchant creature -- Enchanted creature gets +1/+1. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Eland Umbra
+text=Enchant creature -- Enchanted creature gets +0/+4. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Eldrazi Temple
+text={T}: Add {1} to your mana pool. -- {T}: Add {2} to your mana pool. Spend this mana only to cast colorless Eldrazi spells or activate abilities of colorless Eldrazi.
+type=Land
+[/card]
+[card]
+name=Fissure Vent
+text=Choose one or both — -- • Destroy target artifact. -- • Destroy target nonbasic land.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Gideon Jura
+text=+2: During target opponent's next turn, creatures that player controls attack Gideon Jura if able. -- -2: Destroy target tapped creature. -- 0: Until end of turn, Gideon Jura becomes a 6/6 Human Soldier creature that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
+mana={3}{W}{W}
+type=Planeswalker
+subtype=Gideon
+[/card]
+[card]
+name=Hedron-Field Purists
+text=Level up {2}{W} ({2}{W}: Put a level counter on this. Level up only as a sorcery.) -- LEVEL 1-4 -- 1/4 -- If a source would deal damage to you or a creature you control, prevent 1 of that damage. -- LEVEL 5+ -- 2/5 -- If a source would deal damage to you or a creature you control, prevent 2 of that damage.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=0
+toughness=3
+[/card]
+[card]
+name=Hellcarver Demon
+text=Flying -- Whenever Hellcarver Demon deals combat damage to a player, sacrifice all other permanents you control and discard your hand. Exile the top six cards of your library. You may cast any number of nonland cards exiled this way without paying their mana costs.
+mana={3}{B}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
+name=Hyena Umbra
+text=Enchant creature -- Enchanted creature gets +1/+1 and has first strike. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Induce Despair
+text=As an additional cost to cast Induce Despair, reveal a creature card from your hand. -- Target creature gets -X/-X until end of turn, where X is the revealed card's converted mana cost.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+name=Irresistible Prey
+text=Target creature must be blocked this turn if able. -- Draw a card.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Living Destiny
+text=As an additional cost to cast Living Destiny, reveal a creature card from your hand. -- You gain life equal to the revealed card's converted mana cost.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
+name=Mammoth Umbra
+text=Enchant creature -- Enchanted creature gets +3/+3 and has vigilance. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={4}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Mul Daya Channelers
+text=Play with the top card of your library revealed. -- As long as the top card of your library is a creature card, Mul Daya Channelers gets +3/+3. -- As long as the top card of your library is a land card, Mul Daya Channelers has "{T}: Add two mana of any one color to your mana pool."
+mana={1}{G}{G}
+type=Creature
+subtype=Elf Druid Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Not of This World
+text=Counter target spell or ability that targets a permanent you control. -- Not of This World costs {7} less to cast if it targets a spell or ability that targets a creature you control with power 7 or greater.
+mana={7}
+type=Tribal Instant
+subtype=Eldrazi
+[/card]
+[card]
+name=Oust
+text=Put target creature into its owner's library second from the top. Its controller gains 3 life.
+mana={W}
+type=Sorcery
+[/card]
+[card]
+name=Pathrazer of Ulamog
+text=Annihilator 3 (Whenever this creature attacks, defending player sacrifices three permanents.) -- Pathrazer of Ulamog can't be blocked except by three or more creatures.
+mana={11}
+type=Creature
+subtype=Eldrazi
+power=9
+toughness=9
+[/card]
+[card]
+name=Realms Uncharted
+text=Search your library for four land cards with different names and reveal them. An opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Renegade Doppelganger
+text=Whenever another creature enters the battlefield under your control, you may have Renegade Doppelganger become a copy of that creature until end of turn. (If it does, it loses this ability for the rest of the turn.)
+mana={1}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=1
+[/card]
+[card]
+name=Snake Umbra
+text=Enchant creature -- Enchanted creature gets +1/+1 and has "Whenever this creature deals damage to an opponent, you may draw a card." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Spider Umbra
+text=Enchant creature -- Enchanted creature gets +1/+1 and has reach. (It can block creatures with flying.) -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Suffer the Past
+text=Exile X target cards from target player's graveyard. For each card exiled this way, that player loses 1 life and you gain 1 life.
+mana={X}{B}
+type=Instant
+[/card]
+[card]
+name=Tajuru Preserver
+text=Spells and abilities your opponents control can't cause you to sacrifice permanents.
+mana={1}{G}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=1
+[/card]
+[card]
+name=Training Grounds
+text=Activated abilities of creatures you control cost up to {2} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Umbra Mystic
+text=Auras attached to permanents you control have totem armor. (If an enchanted permanent you control would be destroyed, instead remove all damage from it and destroy an Aura attached to it.)
+mana={2}{W}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
