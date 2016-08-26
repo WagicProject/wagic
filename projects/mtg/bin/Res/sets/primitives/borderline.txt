@@ -58,6 +58,17 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Conflux
+auto=ability$!moveto(myhand) notatarget(*[white]|mylibrary)!$ controller
+auto=ability$!moveto(myhand) notatarget(*[blue]|mylibrary)!$ controller
+auto=ability$!moveto(myhand) notatarget(*[black]|mylibrary)!$ controller
+auto=ability$!moveto(myhand) notatarget(*[red]|mylibrary)!$ controller
+auto=ability$!moveto(myhand) notatarget(*[green]|mylibrary)!$ controller
+text=Search your library for a white card, a blue card, a black card, a red card, and a green card. Reveal those cards and put them into your hand. Then shuffle your library.
+mana={3}{W}{U}{B}{R}{G}
+type=Sorcery
+[/card]
+[card]
 name=Consume Strength
 #can target same creature
 target=creature
@@ -187,6 +198,18 @@ mana={5}{U}
 type=Sorcery
 [/card]
 [card]
+name=Hellcarver Demon
+#you can't order the stack
+abilities=flying
+auto=@combatdamaged(player) from(this):sacrifice all(other *|mybattlefield) && discard:type:*:myhand && reveal:6 optionone all(*|reveal) moveto(exile) and!( if cantargetcard(*[-land]|*) then transforms((,newability[may activate castcard(normal)]])) oneshot )! optiononeend revealend
+text=Flying -- Whenever Hellcarver Demon deals combat damage to a player, sacrifice all other permanents you control and discard your hand. Exile the top six cards of your library. You may cast any number of nonland cards exiled this way without paying their mana costs.
+mana={3}{B}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
 name=Hypergenesis
 color=green
 restriction=turn:200
@@ -286,6 +309,18 @@ auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseacti
 mana={G}
 type=Instant
 text=Target creature gets +2/+2 until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Qasali Ambusher
+abilities=reach,spellmastery
+other={0} name(cast for free)
+otherrestriction=type(creature[attacking]|opponentbattlefield)~morethan~0,type(forest|mybattlefield)~morethan~0,type(plains|mybattlefield)~morethan~0
+text=Reach -- If a creature is attacking you and you control a Forest and a Plains, you may cast Qasali Ambusher without paying its mana cost and as though it had flash.
+mana={1}{G}{W}
+type=Creature
+subtype=Cat Warrior
+power=2
+toughness=3
 [/card]
 [card]
 name=Rakdos Augermage
@@ -396,6 +431,16 @@ auto=ability$!target(creature) 1/1 ueot!$ controller
 text=Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn.
 mana={G}{W}
 type=Instant
+[/card]
+[card]
+name=Shard Convergence
+auto=ability$!moveto(myhand) notatarget(*[plains]|mylibrary)!$ controller
+auto=ability$!moveto(myhand) notatarget(*[island]|mylibrary)!$ controller
+auto=ability$!moveto(myhand) notatarget(*[swamp]|mylibrary)!$ controller
+auto=ability$!moveto(myhand) notatarget(*[mountain]|mylibrary)!$ controller
+text=Search your library for a Plains card, an Island card, a Swamp card, and a Mountain card. Reveal those cards and put them into your hand. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 name=Silvergill Adept
