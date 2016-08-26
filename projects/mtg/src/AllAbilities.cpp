@@ -3464,10 +3464,18 @@ int AADynamic::resolve()
         tosrc = true;
         break;
     case DYNAMIC_ABILITY_WHO_SOURCECONTROLLER:
-        secondaryTarget = ((MTGCardInstance *) OriginalSrc)->controller();
+        secondaryTarget = OriginalSrc->controller();
         break;
     case DYNAMIC_ABILITY_WHO_SOURCEOPPONENT:
         secondaryTarget = OriginalSrc->controller()->opponent();
+        break;
+    case DYNAMIC_ABILITY_WHO_ABILITYCONTROLLER:
+        {
+            if(OriginalSrc->storedSourceCard)
+                secondaryTarget = OriginalSrc->storedSourceCard->controller();
+            else
+                secondaryTarget = OriginalSrc->controller();
+        }
         break;
     default:
         break;

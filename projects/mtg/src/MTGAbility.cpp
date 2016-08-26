@@ -77,10 +77,10 @@ const int kDynamicEffectIds[] = {
 };
 
 
-const string kDynamicWhoKeywords[] = {"eachother", "itself", "targetcontroller", "targetopponent", "tosrc", "srccontroller", "srcopponent" };
+const string kDynamicWhoKeywords[] = {"eachother", "itself", "targetcontroller", "targetopponent", "tosrc", "srccontroller", "srcopponent" , "abilitycontroller" };
 const int kDynamicWhoIds[] = { 
      AADynamic::DYNAMIC_ABILITY_WHO_EACHOTHER, AADynamic::DYNAMIC_ABILITY_WHO_ITSELF, AADynamic::DYNAMIC_ABILITY_WHO_TARGETCONTROLLER, AADynamic::DYNAMIC_ABILITY_WHO_TARGETOPPONENT,
-     AADynamic::DYNAMIC_ABILITY_WHO_TOSOURCE,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCECONTROLLER,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCEOPPONENT
+     AADynamic::DYNAMIC_ABILITY_WHO_TOSOURCE,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCECONTROLLER,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCEOPPONENT, AADynamic::DYNAMIC_ABILITY_WHO_ABILITYCONTROLLER
 };
 
 int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
@@ -1110,6 +1110,13 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
                 return NEW TriggerAtPhase(observer, id, card, target, i, who,sourceUntapped,sourceTap,lifelost,lifeamount,once);
             }
         }
+    }
+
+    //rebound trigger controller upkeep...
+    found = s.find("rebounded");
+    if (found != string::npos)
+    {
+        return NEW TriggerRebound(observer, id, card, target, 2, 1,sourceUntapped,once);
     }
 
     return NULL;
@@ -6044,6 +6051,30 @@ int TriggerNextPhase::testDestroy()
 TriggerNextPhase* TriggerNextPhase::clone() const
 {
     return NEW TriggerNextPhase(*this);
+}
+
+TriggerRebound::TriggerRebound(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who,bool sourceUntapped, bool sourceTap,bool once) :
+    TriggerAtPhase(observer, id, source, target, _phaseId, who, sourceUntapped, sourceTap, once)
+{
+    destroyActivated = 0;
+    activeTrigger = true;
+}
+
+int TriggerRebound::testDestroy()
+{
+    if(newPhase <= phaseId && !destroyActivated && game->currentPlayer == source->controller())
+        destroyActivated=1;
+    if(destroyActivated > 1||(newPhase > phaseId && destroyActivated))
+    {
+        destroyActivated++;
+        return 1;
+    }
+    return 0;
+}
+
+TriggerRebound* TriggerRebound::clone() const
+{
+    return NEW TriggerRebound(*this);
 }
 
 GenericTriggeredAbility::GenericTriggeredAbility(GameObserver* observer, int id, MTGCardInstance * _source, TriggeredAbility * _t, MTGAbility * a,

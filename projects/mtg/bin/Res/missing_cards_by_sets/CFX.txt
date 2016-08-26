@@ -1,0 +1,50 @@
+[card]
+name=Ancient Ziggurat
+text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell.
+type=Land
+[/card]
+[card]
+name=Banefire
+text=Banefire deals X damage to target creature or player. -- If X is 5 or more, Banefire can't be countered by spells or abilities and the damage can't be prevented.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Conflux
+text=Search your library for a white card, a blue card, a black card, a red card, and a green card. Reveal those cards and put them into your hand. Then shuffle your library.
+mana={3}{W}{U}{B}{R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Ignite Disorder
+text=Ignite Disorder deals 3 damage divided as you choose among one, two, or three target white and/or blue creatures.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Quenchable Fire
+text=Quenchable Fire deals 3 damage to target player. It deals an additional 3 damage to that player at the beginning of your next upkeep step unless he or she pays {U} before that step.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Shard Convergence
+text=Search your library for a Plains card, an Island card, a Swamp card, and a Mountain card. Reveal those cards and put them into your hand. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=View from Above
+text=Target creature gains flying until end of turn. If you control a white permanent, return View from Above to its owner's hand.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Voracious Dragon
+text=Flying -- Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- When Voracious Dragon enters the battlefield, it deals damage to target creature or player equal to twice the number of Goblins it devoured.
+mana={3}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]

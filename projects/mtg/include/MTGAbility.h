@@ -425,6 +425,19 @@ public:
 
 };
 
+class TriggerRebound : public TriggerAtPhase
+{
+public:
+    int destroyActivated;
+    bool sourceUntapped;
+    bool sourceTap;
+    bool once,activeTrigger;
+    TriggerRebound(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0,bool sourceUntapped = false,bool sourceTap = false,bool once = false);
+    virtual TriggerRebound* clone() const;
+    virtual int testDestroy();
+
+};
+
 
 class GenericTriggeredAbility : public TriggeredAbility, public NestedAbility
 {

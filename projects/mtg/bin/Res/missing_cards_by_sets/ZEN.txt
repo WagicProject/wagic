@@ -1,0 +1,172 @@
+[card]
+name=Archive Trap
+text=If an opponent searched his or her library this turn, you may pay {0} rather than pay Archive Trap's mana cost. -- Target opponent puts the top thirteen cards of his or her library into his or her graveyard.
+mana={3}{U}{U}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Arrow Volley Trap
+text=If four or more creatures are attacking, you may pay {1}{W} rather than pay Arrow Volley Trap's mana cost. -- Arrow Volley Trap deals 5 damage divided as you choose among any number of target attacking creatures.
+mana={3}{W}{W}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Blazing Torch
+text=Equipped creature can't be blocked by Vampires or Zombies. -- Equipped creature has "{T}, Sacrifice Blazing Torch: Blazing Torch deals 2 damage to target creature or player." -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Cobra Trap
+text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. -- Put four 1/1 green Snake creature tokens onto the battlefield.
+mana={4}{G}{G}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Cosi's Trickster
+text=Whenever an opponent shuffles his or her library, you may put a +1/+1 counter on Cosi's Trickster.
+mana={U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Electropotence
+text=Whenever a creature enters the battlefield under your control, you may pay {2}{R}. If you do, that creature deals damage equal to its power to target creature or player.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Gomazoa
+text=Defender, flying -- {T}: Put Gomazoa and each creature it's blocking on top of their owners' libraries, then those players shuffle their libraries.
+mana={2}{U}
+type=Creature
+subtype=Jellyfish
+power=0
+toughness=3
+[/card]
+[card]
+name=Grappling Hook
+text=Equipped creature has double strike. -- Whenever equipped creature attacks, you may have target creature block it this turn if able. -- Equip {4}
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Grim Discovery
+text=Choose one or both — Return target creature card from your graveyard to your hand; and/or return target land card from your graveyard to your hand.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Inferno Trap
+text=If you've been dealt damage by two or more creatures this turn, you may pay {R} rather than pay Inferno Trap's mana cost. -- Inferno Trap deals 4 damage to target creature.
+mana={3}{R}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Kalitas, Bloodchief of Ghet
+text={B}{B}{B}, {T}: Destroy target creature. If that creature dies this way, put a black Vampire creature token onto the battlefield. Its power is equal to that creature's power and its toughness is equal to that creature's toughness.
+mana={5}{B}{B}
+type=Legendary Creature
+subtype=Vampire Warrior
+power=5
+toughness=5
+[/card]
+[card]
+name=Lullmage Mentor
+text=Whenever a spell or ability you control counters a spell, you may put a 1/1 blue Merfolk creature token onto the battlefield. -- Tap seven untapped Merfolk you control: Counter target spell.
+mana={1}{U}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Mindbreak Trap
+text=If an opponent cast three or more spells this turn, you may pay {0} rather than pay Mindbreak Trap's mana cost. -- Exile any number of target spells.
+mana={2}{U}{U}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Needlebite Trap
+text=If an opponent gained life this turn, you may pay {B} rather than pay Needlebite Trap's mana cost. -- Target player loses 5 life and you gain 5 life.
+mana={5}{B}{B}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Oracle of Mul Daya
+text=You may play an additional land on each of your turns. -- Play with the top card of your library revealed. -- You may play the top card of your library if it's a land card.
+mana={3}{G}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Pyromancer Ascension
+text=Whenever you cast an instant or sorcery spell that has the same name as a card in your graveyard, you may put a quest counter on Pyromancer Ascension. -- Whenever you cast an instant or sorcery spell while Pyromancer Ascension has two or more quest counters on it, you may copy that spell. You may choose new targets for the copy.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
+name=Quest for Pure Flame
+text=Whenever a source you control deals damage to an opponent, you may put a quest counter on Quest for Pure Flame. -- Remove four quest counters from Quest for Pure Flame and sacrifice it: If any source you control would deal damage to a creature or player this turn, it deals double that damage to that creature or player instead.
+mana={R}
+type=Enchantment
+[/card]
+[card]
+name=Roil Elemental
+text=Flying -- Landfall — Whenever a land enters the battlefield under your control, you may gain control of target creature for as long as you control Roil Elemental.
+mana={3}{U}{U}{U}
+type=Creature
+subtype=Elemental
+power=3
+toughness=2
+[/card]
+[card]
+name=Sorin Markov
+text=+2: Sorin Markov deals 2 damage to target creature or player and you gain 2 life. -- -3: Target opponent's life total becomes 10. -- -7: You control target player during that player's next turn.
+mana={3}{B}{B}{B}
+type=Planeswalker
+subtype=Sorin
+[/card]
+[card]
+name=Summoning Trap
+text=If a creature spell you cast this turn was countered by a spell or ability an opponent controlled, you may pay {0} rather than pay Summoning Trap's mana cost. -- Look at the top seven cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in any order.
+mana={4}{G}{G}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Turntimber Basilisk
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- Landfall — Whenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
+mana={1}{G}{G}
+type=Creature
+subtype=Basilisk
+power=2
+toughness=1
+[/card]
+[card]
+name=Unstable Footing
+text=Kicker {3}{R} (You may pay an additional {3}{R} as you cast this spell.) -- Damage can't be prevented this turn. If Unstable Footing was kicked, it deals 5 damage to target player.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=World Queller
+text=At the beginning of your upkeep, you may choose a card type. If you do, each player sacrifices a permanent of that type.
+mana={3}{W}{W}
+type=Creature
+subtype=Avatar
+power=4
+toughness=4
+[/card]

@@ -665,6 +665,12 @@ void GameObserver::gameStateBasedEffects()
                         card->removeColor(i);
                     }
                 }
+                //reset alternate paid
+                if(card && (isInGrave(card)||isInHand(card)||isInExile(card)))
+                {
+                    for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
+                        card->alternateCostPaid[i] = 0;
+                }
             }
 
 
