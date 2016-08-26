@@ -3468,6 +3468,7 @@ int AADynamic::resolve()
         break;
     case DYNAMIC_ABILITY_WHO_SOURCEOPPONENT:
         secondaryTarget = OriginalSrc->controller()->opponent();
+        break;
     case DYNAMIC_ABILITY_WHO_ABILITYCONTROLLER:
         {
             if(OriginalSrc->storedSourceCard)
