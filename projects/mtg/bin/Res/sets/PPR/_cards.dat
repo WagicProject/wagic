@@ -1988,16 +1988,6 @@ id=77788732
 rarity=S
 [/card]
 [card]
-primitive=Angel
-id=-4514111
-rarity=T
-[/card]
-[card]
-primitive=Soldier
-id=-4514112
-rarity=T
-[/card]
-[card]
 primitive=Demonic Tutor
 id=77788735
 rarity=S
@@ -2719,11 +2709,6 @@ rarity=S
 primitive=Ajani Goldmane
 id=7778845
 rarity=S
-[/card]
-[card]
-primitive=Avatar Token
-id=-140233
-rarity=T
 [/card]
 [card]
 primitive=Avatar of Woe

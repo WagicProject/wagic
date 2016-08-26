@@ -1,0 +1,75 @@
+[card]
+name=Comet Storm
+text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature or player, then choose another target creature or player for each time Comet Storm was kicked. Comet Storm deals X damage to each of them.
+mana={X}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Dead Reckoning
+text=You may put target creature card from your graveyard on top of your library. If you do, Dead Reckoning deals damage equal to that card's power to target creature.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Feral Contest
+text=Put a +1/+1 counter on target creature you control. Another target creature blocks it this turn if able.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Omnath, Locus of Mana
+text=Green mana doesn't empty from your mana pool as steps and phases end. -- Omnath, Locus of Mana gets +1/+1 for each green mana in your mana pool.
+mana={2}{G}
+type=Legendary Creature
+subtype=Elemental
+power=1
+toughness=1
+[/card]
+[card]
+name=Razor Boomerang
+text=Equipped creature has "{T}, Unattach Razor Boomerang: Razor Boomerang deals 1 damage to target creature or player. Return Razor Boomerang to its owner's hand." -- Equip {2}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Refraction Trap
+text=If an opponent cast a red instant or sorcery spell this turn, you may pay {W} rather than pay Refraction Trap's mana cost. -- Prevent the next 3 damage that a source of your choice would deal to you and/or permanents you control this turn. If damage is prevented this way, Refraction Trap deals that much damage to target creature or player.
+mana={3}{W}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Ricochet Trap
+text=If an opponent cast a blue spell this turn, you may pay {R} rather than pay Ricochet Trap's mana cost. -- Change the target of target spell with a single target.
+mana={3}{R}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Rumbling Aftershocks
+text=Whenever you cast a kicked spell, you may have Rumbling Aftershocks deal damage to target creature or player equal to the number of times that spell was kicked.
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
+name=Searing Blaze
+text=Searing Blaze deals 1 damage to target player and 1 damage to target creature that player controls. -- Landfall — If you had a land enter the battlefield under your control this turn, Searing Blaze deals 3 damage to that player and 3 damage to that creature instead.
+mana={R}{R}
+type=Instant
+[/card]
+[card]
+name=Strength of the Tajuru
+text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature, then choose another target creature for each time Strength of the Tajuru was kicked. Put X +1/+1 counters on each of them.
+mana={X}{G}{G}
+type=Instant
+[/card]
+[card]
+name=Tuktuk Scrapper
+text=Whenever Tuktuk Scrapper or another Ally enters the battlefield under your control, you may destroy target artifact. If that artifact is put into a graveyard this way, Tuktuk Scrapper deals damage to that artifact's controller equal to the number of Allies you control.
+mana={3}{R}
+type=Creature
+subtype=Goblin Artificer Ally
+power=2
+toughness=2
+[/card]

@@ -1,0 +1,141 @@
+[card]
+name=Branching Bolt
+text=Choose one or both — Branching Bolt deals 3 damage to target creature with flying; and/or Branching Bolt deals 3 damage to target creature without flying.
+mana={1}{R}{G}
+type=Instant
+[/card]
+[card]
+name=Brilliant Ultimatum
+text=Exile the top five cards of your library. An opponent separates those cards into two piles. You may play any number of cards from one of those piles without paying their mana costs.
+mana={W}{W}{U}{U}{U}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Clarion Ultimatum
+text=Choose five permanents you control. For each of those permanents, you may search your library for a card with the same name as that permanent. Put those cards onto the battlefield tapped, then shuffle your library.
+mana={G}{G}{W}{W}{W}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Covenant of Minds
+text=Reveal the top three cards of your library. Target opponent may choose to put those cards into your hand. If he or she doesn't, put those cards into your graveyard and draw five cards.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Empyrial Archangel
+text=Flying, shroud -- All damage that would be dealt to you is dealt to Empyrial Archangel instead.
+mana={4}{G}{W}{W}{U}
+type=Creature
+subtype=Angel
+power=5
+toughness=8
+[/card]
+[card]
+name=Feral Hydra
+text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put a +1/+1 counter on Feral Hydra. Any player may activate this ability.
+mana={X}{G}
+type=Creature
+subtype=Hydra Beast
+power=0
+toughness=0
+[/card]
+[card]
+name=Gather Specimens
+text=If a creature would enter the battlefield under an opponent's control this turn, it enters the battlefield under your control instead.
+mana={3}{U}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Hindering Light
+text=Counter target spell that targets you or a permanent you control. -- Draw a card.
+mana={W}{U}
+type=Instant
+[/card]
+[card]
+name=Immortal Coil
+text={T}, Exile two cards from your graveyard: Draw a card. -- If damage would be dealt to you, prevent that damage. Exile a card from your graveyard for each 1 damage prevented this way. -- When there are no cards in your graveyard, you lose the game.
+mana={2}{B}{B}
+type=Artifact
+[/card]
+[card]
+name=Kresh the Bloodbraided
+text=Whenever another creature dies, you may put X +1/+1 counters on Kresh the Bloodbraided, where X is that creature's power.
+mana={2}{B}{R}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Lich's Mirror
+text=If you would lose the game, instead shuffle your hand, your graveyard, and all permanents you own into your library, then draw seven cards and your life total becomes 20.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Mindlock Orb
+text=Players can't search libraries.
+mana={3}{U}
+type=Artifact
+[/card]
+[card]
+name=Prince of Thralls
+text=Whenever a permanent an opponent controls is put into a graveyard, put that card onto the battlefield under your control unless that opponent pays 3 life.
+mana={4}{U}{B}{B}{R}
+type=Creature
+subtype=Demon
+power=7
+toughness=7
+[/card]
+[card]
+name=Qasali Ambusher
+text=Reach -- If a creature is attacking you and you control a Forest and a Plains, you may cast Qasali Ambusher without paying its mana cost and as though it had flash.
+mana={1}{G}{W}
+type=Creature
+subtype=Cat Warrior
+power=2
+toughness=3
+[/card]
+[card]
+name=Sacellum Godspeaker
+text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=2
+[/card]
+[card]
+name=Skill Borrower
+text=Play with the top card of your library revealed. -- As long as the top card of your library is an artifact or creature card, Skill Borrower has all activated abilities of that card. (If any of the abilities use that card's name, use this creature's name instead.)
+mana={2}{U}
+type=Artifact Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Stoic Angel
+text=Flying, vigilance -- Players can't untap more than one creature during their untap steps.
+mana={1}{G}{W}{U}
+type=Creature
+subtype=Angel
+power=3
+toughness=4
+[/card]
+[card]
+name=Swerve
+text=Change the target of target spell with a single target.
+mana={U}{R}
+type=Instant
+[/card]
+[card]
+name=Tar Fiend
+text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- When Tar Fiend enters the battlefield, target player discards a card for each creature it devoured.
+mana={5}{B}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]
