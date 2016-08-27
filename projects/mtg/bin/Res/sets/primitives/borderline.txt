@@ -59,11 +59,11 @@ toughness=2
 [/card]
 [card]
 name=Conflux
-auto=ability$!moveto(myhand) notatarget(*[white]|mylibrary)!$ controller
-auto=ability$!moveto(myhand) notatarget(*[blue]|mylibrary)!$ controller
-auto=ability$!moveto(myhand) notatarget(*[black]|mylibrary)!$ controller
-auto=ability$!moveto(myhand) notatarget(*[red]|mylibrary)!$ controller
-auto=ability$!moveto(myhand) notatarget(*[green]|mylibrary)!$ controller
+auto=ability$!name(white card) moveto(myhand) notatarget(*[white]|mylibrary)!$ controller
+auto=ability$!name(blue card) moveto(myhand) notatarget(*[blue]|mylibrary)!$ controller
+auto=ability$!name(black card) moveto(myhand) notatarget(*[black]|mylibrary)!$ controller
+auto=ability$!name(red card) moveto(myhand) notatarget(*[red]|mylibrary)!$ controller
+auto=ability$!name(green card) moveto(myhand) notatarget(*[green]|mylibrary)!$ controller
 text=Search your library for a white card, a blue card, a black card, a red card, and a green card. Reveal those cards and put them into your hand. Then shuffle your library.
 mana={3}{W}{U}{B}{R}{G}
 type=Sorcery
