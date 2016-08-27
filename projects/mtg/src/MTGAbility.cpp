@@ -510,6 +510,27 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
 
+        check = restriction[i].find("hasdefender");
+        if(check != string::npos)
+        {
+            if(!card->has(Constants::DEFENDER))
+                return 0;
+        }
+
+        check = restriction[i].find("didattack");
+        if(check != string::npos)
+        {
+            if(!card->didattacked)
+                return 0;
+        }
+
+        check = restriction[i].find("didntattack");
+        if(check != string::npos)
+        {
+            if(card->didattacked)
+                return 0;
+        }
+
         check = restriction[i].find("ownerscontrol");
         if(check != string::npos)
         {

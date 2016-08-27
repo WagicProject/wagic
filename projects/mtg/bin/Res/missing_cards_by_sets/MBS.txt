@@ -1,0 +1,69 @@
+[card]
+name=Cryptoplasm
+text=At the beginning of your upkeep, you may have Cryptoplasm become a copy of another target creature. If you do, Cryptoplasm gains this ability.
+mana={1}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
+name=Distant Memories
+text=Search your library for a card, exile it, then shuffle your library. Any opponent may have you put that card into your hand. If no player does, you draw three cards.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Kemba's Legion
+text=Vigilance -- Kemba's Legion can block an additional creature for each Equipment attached to Kemba's Legion.
+mana={5}{W}{W}
+type=Creature
+subtype=Cat Soldier
+power=4
+toughness=6
+[/card]
+[card]
+name=Knowledge Pool
+text=Imprint — When Knowledge Pool enters the battlefield, each player exiles the top three cards of his or her library. -- Whenever a player casts a spell from his or her hand, that player exiles it. If the player does, he or she may cast another nonland card exiled with Knowledge Pool without paying that card's mana cost.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Kuldotha Flamefiend
+text=When Kuldotha Flamefiend enters the battlefield, you may sacrifice an artifact. If you do, Kuldotha Flamefiend deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]
+[card]
+name=Myr Welder
+text=Imprint — {T}: Exile target artifact card from a graveyard. -- Myr Welder has all activated abilities of all cards exiled with it.
+mana={3}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=4
+[/card]
+[card]
+name=Phyrexian Rebirth
+text=Destroy all creatures, then put an X/X colorless Horror artifact creature token onto the battlefield, where X is the number of creatures destroyed this way.
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Phyrexian Revoker
+text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
+mana={2}
+type=Artifact Creature
+subtype=Horror
+power=2
+toughness=1
+[/card]
+[card]
+name=Virulent Wound
+text=Put a -1/-1 counter on target creature. When that creature dies this turn, its controller gets a poison counter.
+mana={B}
+type=Instant
+[/card]

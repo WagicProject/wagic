@@ -873,6 +873,12 @@ void GameObserver::gameStateBasedEffects()
             {
                 card->graveEffects = false;
                 card->exileEffects = false;
+
+                if(card->isCreature())
+                {
+                    if(card->life < 1 && !card->has(Constants::INDESTRUCTIBLE))
+                        card->destroy();//manor gargoyle... recheck
+                }
             }
 
             if(card->childrenCards.size())
