@@ -1,0 +1,179 @@
+[card]
+name=Clone Shell
+text=Imprint — When Clone Shell enters the battlefield, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library in any order. -- When Clone Shell dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
+mana={5}
+type=Artifact Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
+name=Echo Circlet
+text=Equipped creature can block an additional creature. -- Equip {1}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Flesh Allergy
+text=As an additional cost to cast Flesh Allergy, sacrifice a creature. -- Destroy target creature. Its controller loses life equal to the number of creatures that died this turn.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Fulgent Distraction
+text=Choose two target creatures. Tap those creatures, then unattach all Equipment from them.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Grafted Exoskeleton
+text=Equipped creature gets +2/+2 and has infect. (It deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- Whenever Grafted Exoskeleton becomes unattached from a permanent, sacrifice that permanent. -- Equip {2}
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Grand Architect
+text=Other blue creatures you control get +1/+1. -- {U}: Target artifact creature becomes blue until end of turn. -- Tap an untapped blue creature you control: Add {2} to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
+mana={1}{U}{U}
+type=Creature
+subtype=Vedalken Artificer
+power=1
+toughness=3
+[/card]
+[card]
+name=Leonin Arbiter
+text=Players can't search libraries. Any player may pay {2} for that player to ignore this effect until end of turn.
+mana={1}{W}
+type=Creature
+subtype=Cat Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Livewire Lash
+text=Equipped creature gets +2/+0 and has "Whenever this creature becomes the target of a spell, this creature deals 2 damage to target creature or player." -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Memoricide
+text=Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
+name=Mimic Vat
+text=Imprint — Whenever a nontoken creature dies, you may exile that card. If you do, return each other card exiled with Mimic Vat to its owner's graveyard. -- {3}, {T}: Put a token onto the battlefield that's a copy of the exiled card. It gains haste. Exile it at the beginning of the next end step.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Mindslaver
+text={4}, {T}, Sacrifice Mindslaver: You control target player during that player's next turn. (You see all cards that player could see and make all decisions for the player.)
+mana={6}
+type=Legendary Artifact
+[/card]
+[card]
+name=Molten Psyche
+text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards. -- Metalcraft — If you control three or more artifacts, Molten Psyche deals damage to each opponent equal to the number of cards that player has drawn this turn.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Myr Reservoir
+text={T}: Add {2} to your mana pool. Spend this mana only to cast Myr spells or activate abilities of Myr. -- {3}, {T}: Return target Myr card from your graveyard to your hand.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Necrotic Ooze
+text=As long as Necrotic Ooze is on the battlefield, it has all activated abilities of all creature cards in all graveyards.
+mana={2}{B}{B}
+type=Creature
+subtype=Ooze
+power=4
+toughness=3
+[/card]
+[card]
+name=Nim Deathmantle
+text=Equipped creature gets +2/+2, has intimidate, and is a black Zombie. -- Whenever a nontoken creature is put into your graveyard from the battlefield, you may pay {4}. If you do, return that card to the battlefield and attach Nim Deathmantle to it. -- Equip {4}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Ogre Geargrabber
+text=Whenever Ogre Geargrabber attacks, gain control of target Equipment an opponent controls until end of turn. Attach it to Ogre Geargrabber. When you lose control of that Equipment, unattach it.
+mana={4}{R}{R}
+type=Creature
+subtype=Ogre Warrior
+power=4
+toughness=4
+[/card]
+[card]
+name=Precursor Golem
+text=When Precursor Golem enters the battlefield, put two 3/3 colorless Golem artifact creature tokens onto the battlefield. -- Whenever a player casts an instant or sorcery spell that targets only a single Golem, that player copies that spell for each other Golem that spell could target. Each copy targets a different one of those Golems.
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+name=Prototype Portal
+text=Imprint — When Prototype Portal enters the battlefield, you may exile an artifact card from your hand. -- {X}, {T}: Put a token that's a copy of the exiled card onto the battlefield. X is the converted mana cost of that card.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Psychic Miasma
+text=Target player discards a card. If a land card is discarded this way, return Psychic Miasma to its owner's hand.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Steel Hellkite
+text=Flying -- {2}: Steel Hellkite gets +1/+0 until end of turn. -- {X}: Destroy each nonland permanent with converted mana cost X whose controller was dealt combat damage by Steel Hellkite this turn. Activate this ability only once each turn.
+mana={6}
+type=Artifact Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Stoic Rebuttal
+text=Metalcraft — Stoic Rebuttal costs {1} less to cast if you control three or more artifacts. -- Counter target spell.
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Strata Scythe
+text=Imprint — When Strata Scythe enters the battlefield, search your library for a land card, exile it, then shuffle your library. -- Equipped creature gets +1/+1 for each land on the battlefield with the same name as the exiled card. -- Equip {3}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Tangle Angler
+text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- {G}: Target creature blocks Tangle Angler this turn if able.
+mana={3}{G}
+type=Creature
+subtype=Horror
+power=1
+toughness=5
+[/card]
+[card]
+name=Turn Aside
+text=Counter target spell that targets a permanent you control.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Vigil for the Lost
+text=Whenever a creature you control dies, you may pay {X}. If you do, you gain X life.
+mana={3}{W}
+type=Enchantment
+[/card]

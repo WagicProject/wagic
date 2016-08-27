@@ -706,7 +706,7 @@ private:
         {
             intValue = target->controller()->opponent()->nonCombatDamage;
         }
-        else if (s == "playerpoisoncount")
+        else if (s == "mypoisoncount")
         {
             intValue = target->controller()->poisonCount;
         }
