@@ -1,0 +1,144 @@
+[card]
+name=Alpha Brawl
+text=Target creature an opponent controls deals damage equal to its power to each other creature that player controls, then each of those creatures deals damage equal to its power to that creature.
+mana={6}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Altar of the Lost
+text=Altar of the Lost enters the battlefield tapped. -- {T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast spells with flashback from a graveyard.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Blood Feud
+text=Target creature fights another target creature. (Each deals damage equal to its power to the other.)
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Call to the Kindred
+text=Enchant creature -- At the beginning of your upkeep, you may look at the top five cards of your library. If you do, you may put a creature card that shares a creature type with enchanted creature from among them onto the battlefield, then you put the rest of those cards on the bottom of your library in any order.
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Counterlash
+text=Counter target spell. You may cast a nonland card in your hand that shares a card type with that spell without paying its mana cost.
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Curse of Bloodletting
+text=Enchant player -- If a source would deal damage to enchanted player, it deals double that damage to that player instead.
+mana={3}{R}{R}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of Echoes
+text=Enchant player -- Whenever enchanted player casts an instant or sorcery spell, each other player may copy that spell and may choose new targets for the copy he or she controls.
+mana={4}{U}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of Misfortunes
+text=Enchant player -- At the beginning of your upkeep, you may search your library for a Curse card that doesn't have the same name as a Curse attached to enchanted player, put it onto the battlefield attached to that player, then shuffle your library.
+mana={4}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Deadly Allure
+text=Target creature gains deathtouch until end of turn and must be blocked this turn if able. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Faith's Shield
+text=Target permanent you control gains protection from the color of your choice until end of turn. -- Fateful hour — If you have 5 or less life, instead you and each permanent you control gain protection from the color of your choice until end of turn.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Fiend of the Shadows
+text=Flying -- Whenever Fiend of the Shadows deals combat damage to a player, that player exiles a card from his or her hand. You may play that card for as long as it remains exiled. -- Sacrifice a Human: Regenerate Fiend of the Shadows.
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Ghastly Haunting
+text=Enchant creature -- You control enchanted creature.
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Grafdigger's Cage
+text=Creature cards can't enter the battlefield from graveyards or libraries. -- Players can't cast cards in graveyards or libraries.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Havengul Lich
+text={1}: You may cast target creature card in a graveyard this turn. When you cast that card this turn, Havengul Lich gains all activated abilities of that card until end of turn.
+mana={3}{U}{B}
+type=Creature
+subtype=Zombie Wizard
+power=4
+toughness=4
+[/card]
+[card]
+name=Helvault
+text={1}, {T}: Exile target creature you control. -- {7}, {T}: Exile target creature you don't control. -- When Helvault is put into a graveyard from the battlefield, return all cards exiled with it to the battlefield under their owners' control.
+mana={3}
+type=Legendary Artifact
+[/card]
+[card]
+name=Hinterland Hermit
+text=At the beginning of each upkeep, if no spells were cast last turn, transform Hinterland Hermit.
+mana={1}{R}
+type=Creature
+subtype=Human Werewolf
+power=2
+toughness=1
+[/card]
+[card]
+name=Hinterland Scourge
+text=Hinterland Scourge must be blocked if able. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Hinterland Scourge.
+type=Creature
+subtype=Werewolf
+power=3
+toughness=2
+[/card]
+[card]
+name=Increasing Vengeance
+text=Copy target instant or sorcery spell you control. If Increasing Vengeance was cast from a graveyard, copy that spell twice instead. You may choose new targets for the copies. -- Flashback {3}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={R}{R}
+type=Instant
+[/card]
+[card]
+name=Jar of Eyeballs
+text=Whenever a creature you control dies, put two eyeball counters on Jar of Eyeballs. -- {3}, {T}, Remove all eyeball counters from Jar of Eyeballs: Look at the top X cards of your library, where X is the number of eyeball counters removed this way. Put one of them into your hand and the rest on the bottom of your library in any order.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Lost in the Woods
+text=Whenever a creature attacks you or a planeswalker you control, reveal the top card of your library. If it's a Forest card, remove that creature from combat. Then put the revealed card on the bottom of your library.
+mana={3}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Soul Seizer
+text=Flying -- When Soul Seizer deals combat damage to a player, you may transform it. If you do, attach it to target creature that player controls.
+mana={3}{U}{U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=3
+[/card]
