@@ -1,0 +1,198 @@
+[card]
+name=Acolyte's Reward
+text=Prevent the next X damage that would be dealt to target creature this turn, where X is your devotion to white. If damage is prevented this way, Acolyte's Reward deals that much damage to target creature or player. (Each {W} in the mana costs of permanents you control counts toward your devotion to white.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Astral Cornucopia
+text=Astral Cornucopia enters the battlefield with X charge counters on it. -- {T}: Choose a color. Add one mana of that color to your mana pool for each charge counter on Astral Cornucopia.
+mana={X}{X}{X}
+type=Artifact
+[/card]
+[card]
+name=Brimaz, King of Oreskos
+text=Vigilance -- Whenever Brimaz, King of Oreskos attacks, put a 1/1 white Cat Soldier creature token with vigilance onto the battlefield attacking. -- Whenever Brimaz blocks a creature, put a 1/1 white Cat Soldier creature token with vigilance onto the battlefield blocking that creature.
+mana={1}{W}{W}
+type=Legendary Creature
+subtype=Cat Soldier
+power=3
+toughness=4
+[/card]
+[card]
+name=Champion of Stray Souls
+text={3}{B}{B}, {T}, Sacrifice X other creatures: Return X target creature cards from your graveyard to the battlefield. -- {5}{B}{B}: Put Champion of Stray Souls on top of your library from your graveyard.
+mana={4}{B}{B}
+type=Creature
+subtype=Skeleton Warrior
+power=4
+toughness=4
+[/card]
+[card]
+name=Courser of Kruphix
+text=Play with the top card of your library revealed. -- You may play the top card of your library if it's a land card. -- Whenever a land enters the battlefield under your control, you gain 1 life.
+mana={1}{G}{G}
+type=Enchantment Creature
+subtype=Centaur
+power=2
+toughness=4
+[/card]
+[card]
+name=Dawn to Dusk
+text=Choose one or both — Return target enchantment card from your graveyard to your hand; and/or destroy target enchantment.
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Flame-Wreathed Phoenix
+text=Flying -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Flame-Wreathed Phoenix enters the battlefield, if tribute wasn't paid, it gains haste and "When this creature dies, return it to its owner's hand."
+mana={2}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
+[/card]
+[card]
+name=Hero of Leina Tower
+text=Heroic — Whenever you cast a spell that targets Hero of Leina Tower, you may pay {X}. If you do, put X +1/+1 counters on Hero of Leina Tower.
+mana={G}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
+[/card]
+[card]
+name=Heroes' Podium
+text=Each legendary creature you control gets +1/+1 for each other legendary creature you control. -- {X}, {T}: Look at the top X cards of your library. You may reveal a legendary creature card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Kraken of the Straits
+text=Creatures with power less than the number of Islands you control can't block Kraken of the Straits.
+mana={5}{U}{U}
+type=Creature
+subtype=Kraken
+power=6
+toughness=6
+[/card]
+[card]
+name=Mindreaver
+text=Heroic — Whenever you cast a spell that targets Mindreaver, exile the top three cards of target player's library. -- {U}{U}, Sacrifice Mindreaver: Counter target spell with the same name as a card exiled with Mindreaver.
+mana={U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Mogis, God of Slaughter
+text=Indestructible -- As long as your devotion to black and red is less than seven, Mogis isn't a creature. -- At the beginning of each opponent's upkeep, Mogis deals 2 damage to that player unless he or she sacrifices a creature.
+mana={2}{B}{R}
+type=Legendary Enchantment Creature
+subtype=God
+power=7
+toughness=5
+[/card]
+[card]
+name=Nessian Demolok
+text=Tribute 3 (As this creature enters the battlefield, an opponent of your choice may place three +1/+1 counters on it.) -- When Nessian Demolok enters the battlefield, if tribute wasn't paid, destroy target noncreature permanent.
+mana={3}{G}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Nessian Wilds Ravager
+text=Tribute 6 (As this creature enters the battlefield, an opponent of your choice may place six +1/+1 counters on it.) -- When Nessian Wilds Ravager enters the battlefield, if tribute wasn't paid, you may have Nessian Wilds Ravager fight another target creature. (Each deals damage equal to its power to the other.)
+mana={4}{G}{G}
+type=Creature
+subtype=Hydra
+power=6
+toughness=6
+[/card]
+[card]
+name=Oracle of Bones
+text=Haste -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Oracle of Bones enters the battlefield, if tribute wasn't paid, you may cast an instant or sorcery card from your hand without paying its mana cost.
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur Shaman
+power=3
+toughness=1
+[/card]
+[card]
+name=Peregrination
+text=Search your library for up to two basic land cards, reveal those cards, and put one onto the battlefield tapped and the other into your hand. Shuffle your library, then scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Perplexing Chimera
+text=Whenever an opponent casts a spell, you may exchange control of Perplexing Chimera and that spell. If you do, you may choose new targets for the spell. (If the spell becomes a permanent, you control that permanent.)
+mana={4}{U}
+type=Enchantment Creature
+subtype=Chimera
+power=3
+toughness=3
+[/card]
+[card]
+name=Pharagax Giant
+text=Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Pharagax Giant enters the battlefield, if tribute wasn't paid, Pharagax Giant deals 5 damage to each opponent.
+mana={4}{R}
+type=Creature
+subtype=Giant
+power=3
+toughness=3
+[/card]
+[card]
+name=Shrike Harpy
+text=Flying -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Shrike Harpy enters the battlefield, if tribute wasn't paid, target opponent sacrifices a creature.
+mana={3}{B}{B}
+type=Creature
+subtype=Harpy
+power=2
+toughness=2
+[/card]
+[card]
+name=Siren of the Fanged Coast
+text=Flying -- Tribute 3 (As this creature enters the battlefield, an opponent of your choice may place three +1/+1 counters on it.) -- When Siren of the Fanged Coast enters the battlefield, if tribute wasn't paid, gain control of target creature.
+mana={3}{U}{U}
+type=Creature
+subtype=Siren
+power=1
+toughness=1
+[/card]
+[card]
+name=Spirit of the Labyrinth
+text=Each player can't draw more than one card each turn.
+mana={1}{W}
+type=Enchantment Creature
+subtype=Spirit
+power=3
+toughness=1
+[/card]
+[card]
+name=Tromokratis
+text=Tromokratis has hexproof unless it's attacking or blocking. -- Tromokratis can't be blocked unless all creatures defending player controls block it. (If any creature that player controls doesn't block this creature, it can't be blocked.)
+mana={5}{U}{U}
+type=Legendary Creature
+subtype=Kraken
+power=8
+toughness=8
+[/card]
+[card]
+name=Vortex Elemental
+text={U}: Put Vortex Elemental and each creature blocking or blocked by it on top of their owners' libraries, then those players shuffle their libraries. -- {3}{U}{U}: Target creature blocks Vortex Elemental this turn if able.
+mana={U}
+type=Creature
+subtype=Elemental
+power=0
+toughness=1
+[/card]
+[card]
+name=Whims of the Fates
+text=Starting with you, each player separates all permanents he or she controls into three piles. Then each player chooses one of his or her piles at random and sacrifices those permanents. (Piles can be empty.)
+mana={5}{R}
+type=Sorcery
+[/card]
