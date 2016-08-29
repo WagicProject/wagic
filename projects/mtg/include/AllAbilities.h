@@ -92,6 +92,7 @@ class GenericRevealAbility : public ActivatedAbility
 public:
     string howMany;
     MTGRevealingCards * ability;
+    string named;
     GenericRevealAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string _howMany);
     int resolve();
     const string getMenuText();

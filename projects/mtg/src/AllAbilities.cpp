@@ -49,6 +49,7 @@ GenericRevealAbility::GenericRevealAbility(GameObserver* observer, int id, MTGCa
     ActivatedAbility(observer, id, source, NULL), howMany(_howMany)
 {
     this->GetId();
+    named = "";
 }
 
 int GenericRevealAbility::resolve()
@@ -60,6 +61,8 @@ int GenericRevealAbility::resolve()
 
 const string GenericRevealAbility::getMenuText()
 {
+    if(named.size())
+        return named.c_str();
     return "Reveal Cards";
 }
 

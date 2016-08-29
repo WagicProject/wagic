@@ -3486,6 +3486,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         GenericRevealAbility * a = NEW GenericRevealAbility(observer, id, card, target, backup);
         a->oneShot = 1;
         a->canBeInterrupted = false;
+        a->named = newName;
         return a;
     }
 
