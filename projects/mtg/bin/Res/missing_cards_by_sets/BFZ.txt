@@ -1,0 +1,98 @@
+[card]
+name=Ally Encampment
+text={T}: Add {C} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast an Ally spell. -- {1}, {T}, Sacrifice Ally Encampment: Return target Ally you control to its owner's hand.
+type=Land
+[/card]
+[card]
+name=Beastcaller Savant
+text=Haste -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell.
+mana={1}{G}
+type=Creature
+subtype=Elf Shaman Ally
+power=1
+toughness=1
+[/card]
+[card]
+name=Brutal Expulsion
+text=Devoid (This card has no color.) -- Choose one or both — -- • Return target spell or creature to its owner's hand. -- • Brutal Expulsion deals 2 damage to target creature or planeswalker. If that permanent would be put into a graveyard this turn, exile it instead.
+mana={2}{U}{R}
+type=Instant
+[/card]
+[card]
+name=Halimar Tidecaller
+text=When Halimar Tidecaller enters the battlefield, you may return target card with awaken from your graveyard to your hand. -- Land creatures you control have flying.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard Ally
+power=2
+toughness=3
+[/card]
+[card]
+name=Kiora, Master of the Depths
+text=+1: Untap up to one target creature and up to one target land. -- -2: Reveal the top four cards of your library. You may put a creature card and/or a land card from among them into your hand. Put the rest into your graveyard. -- -8: You get an emblem with "Whenever a creature enters the battlefield under your control, you may have it fight target creature." Then put three 8/8 blue Octopus creature tokens onto the battlefield.
+mana={2}{G}{U}
+type=Planeswalker
+subtype=Kiora
+[/card]
+[card]
+name=March from the Tomb
+text=Return any number of target Ally creature cards with total converted mana cost 8 or less from your graveyard to the battlefield.
+mana={3}{W}{B}
+type=Sorcery
+[/card]
+[card]
+name=Rolling Thunder
+text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Serpentine Spike
+text=Devoid (This card has no color.) -- Serpentine Spike deals 2 damage to target creature, 3 damage to another target creature, and 4 damage to a third target creature. If a creature dealt damage this way would die this turn, exile it instead.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Shrine of the Forsaken Gods
+text={T}: Add {C} to your mana pool. -- {T}: Add {C}{C} to your mana pool. Spend this mana only to cast colorless spells. Activate this ability only if you control seven or more lands.
+type=Land
+[/card]
+[card]
+name=Titan's Presence
+text=As an additional cost to cast Titan's Presence, reveal a colorless creature card from your hand. -- Exile target creature if its power is less than or equal to the revealed card's power.
+mana={3}
+type=Instant
+[/card]
+[card]
+name=Ulamog's Despoiler
+text=As Ulamog's Despoiler enters the battlefield, you may put two cards your opponents own from exile into their owners' graveyards. If you do, Ulamog's Despoiler enters the battlefield with four +1/+1 counters on it.
+mana={6}
+type=Creature
+subtype=Eldrazi Processor
+power=5
+toughness=5
+[/card]
+[card]
+name=Ulamog's Nullifier
+text=Devoid (This card has no color.) -- Flash -- Flying -- When Ulamog's Nullifier enters the battlefield, you may put two cards your opponents own from exile into their owners' graveyards. If you do, counter target spell.
+mana={2}{U}{B}
+type=Creature
+subtype=Eldrazi Processor
+power=2
+toughness=3
+[/card]
+[card]
+name=Unnatural Aggression
+text=Devoid (This card has no color.) -- Target creature you control fights target creature an opponent controls. If the creature an opponent controls would die this turn, exile it instead.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Zada, Hedron Grinder
+text=Whenever you cast an instant or sorcery spell that targets only Zada, Hedron Grinder, copy that spell for each other creature you control that the spell could target. Each copy targets a different one of those creatures.
+mana={3}{R}
+type=Legendary Creature
+subtype=Goblin Ally
+power=3
+toughness=3
+[/card]
