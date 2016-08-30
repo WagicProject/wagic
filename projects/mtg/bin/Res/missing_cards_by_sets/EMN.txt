@@ -1,0 +1,259 @@
+[card]
+name=Blessed Alliance
+text=Escalate {2} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target player gains 4 life. -- • Untap up to two target creatures. -- • Target opponent sacrifices an attacking creature.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Borrowed Grace
+text=Escalate {1}{W} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Creatures you control get +2/+0 until end of turn. -- • Creatures you control get +0/+2 until end of turn.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Borrowed Hostility
+text=Escalate {3} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +3/+0 until end of turn. -- • Target creature gains first strike until end of turn.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Borrowed Malevolence
+text=Escalate {2} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +1/+1 until end of turn. -- • Target creature gets -1/-1 until end of turn.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Brisela, Voice of Nightmares
+text=When you cast Bruna, the Fading Light, you may return target Angel or Human creature card from your graveyard to the battlefield. -- Flying, vigilance -- (Melds with Gisela, the Broken Blade.)
+mana={5}{W}{W}
+type=Legendary Creature
+subtype=Angel Horror
+power=5
+toughness=7
+[/card]
+[card]
+name=Bruna, the Fading Light
+text=When you cast Bruna, the Fading Light, you may return target Angel or Human creature card from your graveyard to the battlefield. -- Flying, vigilance -- (Melds with Gisela, the Broken Blade.)
+mana={5}{W}{W}
+type=Legendary Creature
+subtype=Angel Horror
+power=5
+toughness=7
+[/card]
+[card]
+name=Coax from the Blind Eternities
+text=You may choose an Eldrazi card you own from outside the game or in exile, reveal that card, and put it into your hand.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Collective Brutality
+text=Escalate—Discard a card. (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target opponent reveals his or her hand. You choose an instant or sorcery card from it. That player discards that card. -- • Target creature gets -2/-2 until end of turn. -- • Target opponent loses 2 life and you gain 2 life.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Collective Defiance
+text=Escalate {1} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target player discards all the cards in his or her hand, then draws that many cards. -- • Collective Defiance deals 4 damage to target creature. -- • Collective Defiance deals 3 damage to target opponent.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Collective Effort
+text=Escalate—Tap an untapped creature you control. (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Destroy target creature with power 4 or greater. -- • Destroy target enchantment. -- • Put a +1/+1 counter on each creature target player controls.
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Curious Homunculus
+text={T}: Add {C} to your mana pool. Spend this mana only to cast an instant or sorcery spell. -- At the beginning of your upkeep, if there are three or more instant and/or sorcery cards in your graveyard, transform Curious Homunculus.
+mana={1}{U}
+type=Creature
+subtype=Homunculus
+power=1
+toughness=1
+[/card]
+[card]
+name=Emrakul, the Promised End
+text=Emrakul, the Promised End costs {1} less to cast for each card type among cards in your graveyard. -- When you cast Emrakul, you gain control of target opponent during that player's next turn. After that turn, that player takes an extra turn. -- Flying, trample, protection from instants
+mana=<img src="/Handlers/Image.ashx?size=medium&amp;name=13&amp;type=symbol" alt="13" align="absbottom" />
+type=Legendary Creature
+subtype=Eldrazi
+power=13
+toughness=13
+[/card]
+[card]
+name=Fibrous Entangler
+text=Tangleclaw Werewolf can block an additional creature each combat. -- {6}{G}: Transform Tangleclaw Werewolf.
+mana={2}{G}{G}
+type=Creature
+subtype=Werewolf Horror
+power=2
+toughness=4
+[/card]
+[card]
+name=Fortune's Favor
+text=Target opponent looks at the top four cards of your library and separates them into a face-down pile and a face-up pile. Put one pile into your hand and the other into your graveyard.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Foul Emissary
+text=When Foul Emissary enters the battlefield, look at the top four cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in any order. -- When you sacrifice Foul Emissary while casting a spell with emerge, put a 3/2 colorless Eldrazi Horror creature token onto the battlefield.
+mana={2}{G}
+type=Creature
+subtype=Human Horror
+power=1
+toughness=1
+[/card]
+[card]
+name=Gisela, the Broken Blade
+text=Flying, first strike, lifelink -- At the beginning of your end step, if you both own and control Gisela, the Broken Blade and a creature named Bruna, the Fading Light, exile them, then meld them into Brisela, Voice of Nightmares.
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=Angel Horror
+power=4
+toughness=3
+[/card]
+[card]
+name=Give No Ground
+text=Target creature gets +2/+6 until end of turn and can block any number of creatures this turn.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Hanweir, the Writhing Township
+text=Whenever Hanweir Garrison attacks, put two 1/1 red Human creature tokens onto the battlefield tapped and attacking. -- (Melds with Hanweir Battlements.)
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+[/card]
+[card]
+name=Identity Thief
+text=Whenever Identity Thief attacks, you may exile another target nontoken creature. If you do, Identity Thief becomes a copy of that creature until end of turn. Return the exiled card to the battlefield under its owner's control at the beginning of the next end step.
+mana={2}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=3
+[/card]
+[card]
+name=Impetuous Devils
+text=Trample, haste -- When Impetuous Devils attacks, up to one target creature defending player controls blocks it this combat if able. -- At the beginning of the end step, sacrifice Impetuous Devils.
+mana={2}{R}{R}
+type=Creature
+subtype=Devil
+power=6
+toughness=1
+[/card]
+[card]
+name=Mirrorwing Dragon
+text=Flying -- Whenever a player casts an instant or sorcery spell that targets only Mirrorwing Dragon, that player copies that spell for each other creature he or she controls that the spell could target. Each copy targets a different one of those creatures.
+mana={3}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=5
+[/card]
+[card]
+name=Nahiri's Wrath
+text=As an additional cost to cast Nahiri's Wrath, discard X cards. -- Nahiri's Wrath deals damage equal to the total converted mana cost of the discarded cards to each of up to X target creatures and/or planeswalkers.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Nephalia Academy
+text=If a spell or ability an opponent controls causes you to discard a card, you may reveal that card and put it on top of your library instead of putting it anywhere else. -- {T}: Add {C} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Providence
+text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, your life total becomes 26. -- Your life total becomes 26.
+mana={5}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Ride Down
+text=Destroy target blocking creature. Creatures that were blocked by that creature this combat gain trample until end of turn.
+mana={R}{W}
+type=Instant
+[/card]
+[card]
+name=Savage Alliance
+text=Escalate {1} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Creatures target player controls gain trample until end of turn. -- • Savage Alliance deals 2 damage to target creature. -- • Savage Alliance deals 1 damage to each creature target opponent controls.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Slayer's Cleaver
+text=Equipped creature gets +3/+1 and must be blocked by an Eldrazi if able. -- Equip {4}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Spell Queller
+text=Flash -- Flying -- When Spell Queller enters the battlefield, exile target spell with converted mana cost 4 or less. -- When Spell Queller leaves the battlefield, the exiled card's owner may cast that card without paying its mana cost.
+mana={1}{W}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=3
+[/card]
+[card]
+name=Spreading Flames
+text=Spreading Flames deals 6 damage divided as you choose among any number of target creatures.
+mana={6}{R}
+type=Instant
+[/card]
+[card]
+name=Summary Dismissal
+text=Exile all other spells and counter all abilities.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Tamiyo, Field Researcher
+text=+1: Choose up to two target creatures. Until your next turn, whenever either of those creatures deals combat damage, you draw a card. -- -2: Tap up to two target nonland permanents. They don't untap during their controller's next untap step. -- -7: Draw three cards. You get an emblem with "You may cast nonland cards from your hand without paying their mana costs."
+mana={1}{G}{W}{U}
+type=Planeswalker
+subtype=Tamiyo
+[/card]
+[card]
+name=Tangleclaw Werewolf
+text=Tangleclaw Werewolf can block an additional creature each combat. -- {6}{G}: Transform Tangleclaw Werewolf.
+mana={2}{G}{G}
+type=Creature
+subtype=Werewolf Horror
+power=2
+toughness=4
+[/card]
+[card]
+name=Turn Aside
+text=Counter target spell that targets a permanent you control.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Unsubstantiate
+text=Return target spell or creature to its owner's hand.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Voracious Reader
+text={T}: Add {C} to your mana pool. Spend this mana only to cast an instant or sorcery spell. -- At the beginning of your upkeep, if there are three or more instant and/or sorcery cards in your graveyard, transform Curious Homunculus.
+mana={1}{U}
+type=Creature
+subtype=Homunculus
+power=1
+toughness=1
+[/card]
+[card]
+name=Waxing Moon
+text=Transform up to one target Werewolf you control. Creatures you control gain trample until end of turn.
+mana={1}{G}
+type=Instant
+[/card]

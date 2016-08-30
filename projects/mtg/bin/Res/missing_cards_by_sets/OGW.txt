@@ -1,0 +1,111 @@
+[card]
+name=Corrupted Crossroads
+text={T}: Add {C} to your mana pool. ({C} represents colorless mana.) -- {T}, Pay 1 life: Add one mana of any color to your mana pool. Spend this mana only to cast a spell with devoid.
+type=Land
+[/card]
+[card]
+name=Cultivator Drone
+text=Devoid (This card has no color.) -- {T}: Add {C} to your mana pool. Spend this mana only to cast a colorless spell, activate an ability of a colorless permanent, or pay a cost that contains {C}. ({C} represents colorless mana.)
+mana={2}{U}
+type=Creature
+subtype=Eldrazi Drone
+power=2
+toughness=3
+[/card]
+[card]
+name=Deceiver of Form
+text=({C} represents colorless mana.) -- At the beginning of combat on your turn, reveal the top card of your library. If a creature card is revealed this way, you may have creatures you control other than Deceiver of Form become copies of that card until end of turn. You may put that card on the bottom of your library.
+mana={6}{C}
+type=Creature
+subtype=Eldrazi
+power=8
+toughness=8
+[/card]
+[card]
+name=Eldrazi Mimic
+text=Whenever another colorless creature enters the battlefield under your control, you may change Eldrazi Mimic's base power and toughness to that creature's power and toughness until end of turn.
+mana={2}
+type=Creature
+subtype=Eldrazi
+power=2
+toughness=1
+[/card]
+[card]
+name=Elemental Uprising
+text=Target land you control becomes a 4/4 Elemental creature with haste until end of turn. It's still a land. It must be blocked this turn if able.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Immobilizer Eldrazi
+text=Devoid (This card has no color.) -- {2}{C}: Each creature with toughness greater than its power can't block this turn. ({C} represents colorless mana.)
+mana={1}{R}
+type=Creature
+subtype=Eldrazi Drone
+power=2
+toughness=1
+[/card]
+[card]
+name=Iona's Blessing
+text=Enchant creature -- Enchanted creature gets +2/+2, has vigilance, and can block an additional creature.
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Kalitas, Traitor of Ghet
+text=Lifelink -- If a nontoken creature an opponent controls would die, instead exile that card and put a 2/2 black Zombie creature token onto the battlefield. -- {2}{B}, Sacrifice another Vampire or Zombie: Put two +1/+1 counters on Kalitas, Traitor of Ghet.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Vampire Warrior
+power=3
+toughness=4
+[/card]
+[card]
+name=Nissa's Judgment
+text=Support 2. (Put a +1/+1 counter on each of up to two target creatures.) -- Choose up to one target creature an opponent controls. Each creature you control with a +1/+1 counter on it deals damage equal to its power to that creature.
+mana={4}{G}
+type=Sorcery
+[/card]
+[card]
+name=Oath of Nissa
+text=When Oath of Nissa enters the battlefield, look at the top three cards of your library. You may reveal a creature, land, or planeswalker card from among them and put it into your hand. Put the rest on the bottom of your library in any order. -- You may spend mana as though it were mana of any color to cast planeswalker spells.
+mana={G}
+type=Legendary Enchantment
+[/card]
+[card]
+name=Reality Smasher
+text=({C} represents colorless mana.) -- Trample, haste -- Whenever Reality Smasher becomes the target of a spell an opponent controls, counter that spell unless its controller discards a card.
+mana={4}{C}
+type=Creature
+subtype=Eldrazi
+power=5
+toughness=5
+[/card]
+[card]
+name=Reflector Mage
+text=When Reflector Mage enters the battlefield, return target creature an opponent controls to its owner's hand. That creature's owner can't cast spells with the same name as that creature until your next turn.
+mana={1}{W}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Remorseless Punishment
+text=Target opponent loses 5 life unless that player discards two cards or sacrifices a creature or planeswalker. Repeat this process once.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Roiling Waters
+text=Return up to two target creatures your opponents control to their owners' hands. Target player draws two cards.
+mana={5}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Warping Wail
+text=({C} represents colorless mana.) -- Choose one — -- • Exile target creature with power or toughness 1 or less. -- • Counter target sorcery spell. -- • Put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {C} to your mana pool."
+mana={1}{C}
+type=Instant
+[/card]
