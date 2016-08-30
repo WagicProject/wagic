@@ -1,0 +1,290 @@
+[card]
+name=Atarka's Command
+text=Choose two — -- • Your opponents can't gain life this turn. -- • Atarka's Command deals 3 damage to each opponent. -- • You may put a land card from your hand onto the battlefield. -- • Creatures you control get +1/+1 and gain reach until end of turn.
+mana={R}{G}
+type=Instant
+[/card]
+[card]
+name=Corpseweft
+text={1}{B}, Exile one or more creature cards from your graveyard: Put an X/X black Zombie Horror creature token onto the battlefield tapped, where X is twice the number of cards exiled this way.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Deathmist Raptor
+text=Deathtouch -- Whenever a permanent you control is turned face up, you may return Deathmist Raptor from your graveyard to the battlefield face up or face down. -- Megamorph {4}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
+mana={1}{G}{G}
+type=Creature
+subtype=Lizard Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Display of Dominance
+text=Choose one — -- • Destroy target blue or black noncreature permanent. -- • Permanents you control can't be the targets of blue or black spells your opponents control this turn.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Dragon Hunter
+text=Protection from Dragons -- Dragon Hunter can block Dragons as though it had reach.
+mana={W}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=1
+[/card]
+[card]
+name=Dragonlord Atarka
+text=Flying, trample -- When Dragonlord Atarka enters the battlefield, it deals 5 damage divided as you choose among any number of target creatures and/or planeswalkers your opponents control.
+mana={5}{R}{G}
+type=Legendary Creature
+subtype=Elder Dragon
+power=8
+toughness=8
+[/card]
+[card]
+name=Dragonlord Silumgar
+text=Flying, deathtouch -- When Dragonlord Silumgar enters the battlefield, gain control of target creature or planeswalker for as long as you control Dragonlord Silumgar.
+mana={4}{U}{B}
+type=Legendary Creature
+subtype=Elder Dragon
+power=3
+toughness=5
+[/card]
+[card]
+name=Dragonlord's Prerogative
+text=As an additional cost to cast Dragonlord's Prerogative, you may reveal a Dragon card from your hand. -- If you revealed a Dragon card or controlled a Dragon as you cast Dragonlord's Prerogative, Dragonlord's Prerogative can't be countered. -- Draw four cards.
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Dromoka's Command
+text=Choose two — -- • Prevent all damage target instant or sorcery spell would deal this turn. -- • Target player sacrifices an enchantment. -- • Put a +1/+1 counter on target creature. -- • Target creature you control fights target creature you don't control.
+mana={G}{W}
+type=Instant
+[/card]
+[card]
+name=Enduring Scalelord
+text=Flying -- Whenever one or more +1/+1 counters are placed on another creature you control, you may put a +1/+1 counter on Enduring Scalelord.
+mana={4}{G}{W}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Foe-Razer Regent
+text=Flying -- When Foe-Razer Regent enters the battlefield, you may have it fight target creature you don't control. -- Whenever a creature you control fights, put two +1/+1 counters on it at the beginning of the next end step.
+mana={5}{G}{G}
+type=Creature
+subtype=Dragon
+power=4
+toughness=5
+[/card]
+[card]
+name=Foul Renewal
+text=Return target creature card from your graveyard to your hand. Target creature gets -X/-X until end of turn, where X is the toughness of the card returned this way.
+mana={3}{B}
+type=Instant
+[/card]
+[card]
+name=Gleam of Authority
+text=Enchant creature -- Enchanted creature gets +1/+1 for each +1/+1 counter on other creatures you control. -- Enchanted creature has vigilance and "{W}, {T}: Bolster 1." (To bolster 1, choose a creature with the least toughness among creatures you control and put a +1/+1 counter on it.)
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Gurmag Drowner
+text=Exploit (When this creature enters the battlefield, you may sacrifice a creature.) -- When Gurmag Drowner exploits a creature, look at the top four cards of your library. Put one of them into your hand and the rest into your graveyard.
+mana={3}{U}
+type=Creature
+subtype=Naga Wizard
+power=2
+toughness=4
+[/card]
+[card]
+name=Hardened Berserker
+text=Whenever Hardened Berserker attacks, the next spell you cast this turn costs {1} less to cast.
+mana={2}{R}
+type=Creature
+subtype=Human Berserker
+power=3
+toughness=2
+[/card]
+[card]
+name=Haven of the Spirit Dragon
+text={T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a Dragon creature spell. -- {2}, {T}, Sacrifice Haven of the Spirit Dragon: Return target Dragon creature card or Ugin planeswalker card from your graveyard to your hand.
+type=Land
+[/card]
+[card]
+name=Hedonist's Trove
+text=When Hedonist's Trove enters the battlefield, exile all cards from target opponent's graveyard. -- You may play land cards exiled with Hedonist's Trove. -- You may cast nonland cards exiled with Hedonist's Trove. You can't cast more than one spell this way each turn.
+mana={5}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Icefall Regent
+text=Flying -- When Icefall Regent enters the battlefield, tap target creature an opponent controls. That creature doesn't untap during its controller's untap step for as long as you control Icefall Regent.  -- Spells your opponents cast that target Icefall Regent cost {2} more to cast.
+mana={3}{U}{U}
+type=Creature
+subtype=Dragon
+power=4
+toughness=3
+[/card]
+[card]
+name=Illusory Gains
+text=Enchant creature -- You control enchanted creature. -- Whenever a creature enters the battlefield under an opponent's control, attach Illusory Gains to that creature.
+mana={3}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Keeper of the Lens
+text=You may look at face-down creatures you don't control. (You may do this at any time.)
+mana={1}
+type=Artifact Creature
+subtype=Golem
+power=1
+toughness=2
+[/card]
+[card]
+name=Kolaghan's Command
+text=Choose two — -- • Return target creature card from your graveyard to your hand. -- • Target player discards a card. -- • Destroy target artifact. -- • Kolaghan's Command deals 2 damage to target creature or player.
+mana={1}{B}{R}
+type=Instant
+[/card]
+[card]
+name=Living Lore
+text=As Living Lore enters the battlefield, exile an instant or sorcery card from your graveyard. -- Living Lore's power and toughness are each equal to the exiled card's converted mana cost. -- Whenever Living Lore deals combat damage, you may sacrifice it. If you do, you may cast the exiled card without paying its mana cost.
+mana={3}{U}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
+[/card]
+[card]
+name=Lurking Arynx
+text=Formidable — {2}{G}: Target creature blocks Lurking Arynx this turn if able. Activate this ability only if creatures you control have total power 8 or greater.
+mana={4}{G}
+type=Creature
+subtype=Cat Beast
+power=3
+toughness=5
+[/card]
+[card]
+name=Narset Transcendent
+text=+1: Look at the top card of your library. If it's a noncreature, nonland card, you may reveal it and put it into your hand. -- -2: When you cast your next instant or sorcery spell from your hand this turn, it gains rebound. -- -9: You get an emblem with "Your opponents can't cast noncreature spells."
+mana={2}{W}{U}
+type=Planeswalker
+subtype=Narset
+[/card]
+[card]
+name=Obscuring AEther
+text=Face-down creature spells you cast cost {1} less to cast. -- {1}{G}: Turn Obscuring AEther face down. (It becomes a 2/2 creature.)
+mana={G}
+type=Enchantment
+[/card]
+[card]
+name=Ojutai's Command
+text=Choose two — -- • Return target creature card with converted mana cost 2 or less from your graveyard to the battlefield. -- • You gain 4 life. -- • Counter target creature spell. -- • Draw a card.
+mana={2}{W}{U}
+type=Instant
+[/card]
+[card]
+name=Profaner of the Dead
+text=Exploit (When this creature enters the battlefield, you may sacrifice a creature.) -- When Profaner of the Dead exploits a creature, return to their owners' hands all creatures your opponents control with toughness less than the exploited creature's toughness.
+mana={3}{U}
+type=Creature
+subtype=Naga Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Qarsi Deceiver
+text={T}: Add {1} to your mana pool. Spend this mana only to cast a face-down creature spell, pay a mana cost to turn a manifested creature face up, or pay a morph cost. (A megamorph cost is a morph cost.)
+mana={1}{U}
+type=Creature
+subtype=Naga Wizard
+power=0
+toughness=4
+[/card]
+[card]
+name=Revealing Wind
+text=Prevent all combat damage that would be dealt this turn. You may look at each face-down creature that's attacking or blocking.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Risen Executioner
+text=Risen Executioner can't block. -- Other Zombie creatures you control get +1/+1. -- You may cast Risen Executioner from your graveyard if you pay {1} more to cast it for each other creature card in your graveyard.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Warrior
+power=4
+toughness=3
+[/card]
+[card]
+name=Salt Road Ambushers
+text=Whenever another permanent you control is turned face up, if it's a creature, put two +1/+1 counters on it. -- Megamorph {3}{G}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
+mana={3}{G}
+type=Creature
+subtype=Hound Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Savage Ventmaw
+text=Flying -- Whenever Savage Ventmaw attacks, add {R}{R}{R}{G}{G}{G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps and phases end.
+mana={4}{R}{G}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Shaman of Forgotten Ways
+text={T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast creature spells. -- Formidable — {9}{G}{G}, {T}: Each player's life total becomes the number of creatures he or she controls. Activate this ability only if creatures you control have total power 8 or greater.
+mana={2}{G}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=3
+[/card]
+[card]
+name=Shorecrasher Elemental
+text={U}: Exile Shorecrasher Elemental, then return it to the battlefield face down under its owner's control. -- {1}: Shorecrasher Elemental gets +1/-1 or -1/+1 until end of turn.  -- Megamorph {4}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
+mana={U}{U}{U}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
+name=Silumgar's Command
+text=Choose two — -- • Counter target noncreature spell. -- • Return target permanent to its owner's hand. -- • Target creature gets -3/-3 until end of turn. -- • Destroy target planeswalker.
+mana={3}{U}{B}
+type=Instant
+[/card]
+[card]
+name=Vandalize
+text=Choose one or both — -- • Destroy target artifact. -- • Destroy target land.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Volcanic Vision
+text=Return target instant or sorcery card from your graveyard to your hand. Volcanic Vision deals damage equal to that card's converted mana cost to each creature your opponents control. Exile Volcanic Vision.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Warbringer
+text=Dash costs you pay cost {2} less (as long as this creature is on the battlefield). -- Dash {2}{R} (You may cast this spell for its dash cost. If you do, it gains haste, and it's returned from the battlefield to its owner's hand at the beginning of the next end step.)
+mana={3}{R}
+type=Creature
+subtype=Orc Berserker
+power=3
+toughness=3
+[/card]

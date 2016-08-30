@@ -1,0 +1,230 @@
+[card]
+name=Arrow Storm
+text=Arrow Storm deals 4 damage to target creature or player. -- Raid — If you attacked with a creature this turn, instead Arrow Storm deals 5 damage to that creature or player and the damage can't be prevented.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Ashcloud Phoenix
+text=Flying -- When Ashcloud Phoenix dies, return it to the battlefield face down. -- Morph {4}{R}{R} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Ashcloud Phoenix is turned face up, it deals 2 damage to each player.
+mana={2}{R}{R}
+type=Creature
+subtype=Phoenix
+power=4
+toughness=1
+[/card]
+[card]
+name=Avalanche Tusker
+text=Whenever Avalanche Tusker attacks, target creature defending player controls blocks it this combat if able.
+mana={2}{G}{U}{R}
+type=Creature
+subtype=Elephant Warrior
+power=6
+toughness=4
+[/card]
+[card]
+name=Brave the Sands
+text=Creatures you control have vigilance. -- Each creature you control can block an additional creature.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Deflecting Palm
+text=The next time a source of your choice would deal damage to you this turn, prevent that damage. If damage is prevented this way, Deflecting Palm deals that much damage to that source's controller.
+mana={R}{W}
+type=Instant
+[/card]
+[card]
+name=Dragon Throne of Tarkir
+text=Equipped creature has defender and "{2}, {T}: Other creatures you control gain trample and get +X/+X until end of turn, where X is this creature's power." -- Equip {3}
+mana={4}
+type=Legendary Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Dragon's Eye Savants
+text=Morph—Reveal a blue card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Dragon's Eye Savants is turned face up, look at target opponent's hand.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=6
+[/card]
+[card]
+name=Empty the Pits
+text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- Put X 2/2 black Zombie creature tokens onto the battlefield tapped.
+mana={X}{X}{B}{B}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Ghostfire Blade
+text=Equipped creature gets +2/+2. -- Equip {3} -- Ghostfire Blade's equip ability costs {2} less to activate if it targets a colorless creature.
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Hardened Scales
+text=If one or more +1/+1 counters would be placed on a creature you control, that many plus one +1/+1 counters are placed on it instead.
+mana={G}
+type=Enchantment
+[/card]
+[card]
+name=Horde Ambusher
+text=Whenever Horde Ambusher blocks, it deals 1 damage to you. -- Morph—Reveal a red card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Horde Ambusher is turned face up, target creature can't block this turn.
+mana={1}{R}
+type=Creature
+subtype=Human Berserker
+power=2
+toughness=2
+[/card]
+[card]
+name=Howl of the Horde
+text=When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- Raid — If you attacked with a creature this turn, when you cast your next instant or sorcery spell this turn, copy that spell an additional time. You may choose new targets for the copy.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Incremental Growth
+text=Put a +1/+1 counter on target creature, two +1/+1 counters on another target creature, and three +1/+1 counters on a third target creature.
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Kheru Lich Lord
+text=At the beginning of your upkeep, you may pay {2}{B}. If you do, return a creature card at random from your graveyard to the battlefield. It gains flying, trample, and haste. Exile that card at the beginning of your next end step. If it would leave the battlefield, exile it instead of putting it anywhere else.
+mana={3}{B}{G}{U}
+type=Creature
+subtype=Zombie Wizard
+power=4
+toughness=4
+[/card]
+[card]
+name=Kheru Spellsnatcher
+text=Morph {4}{U}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Kheru Spellsnatcher is turned face up, counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. You may cast that card without paying its mana cost for as long as it remains exiled.
+mana={3}{U}
+type=Creature
+subtype=Naga Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Lens of Clarity
+text=You may look at the top card of your library and at face-down creatures you don't control. (You may do this at any time.)
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Meandering Towershell
+text=Islandwalk (This creature can't be blocked as long as defending player controls an Island.) -- Whenever Meandering Towershell attacks, exile it. Return it to the battlefield under your control tapped and attacking at the beginning of the declare attackers step on your next turn.
+mana={3}{G}{G}
+type=Creature
+subtype=Turtle
+power=5
+toughness=9
+[/card]
+[card]
+name=Necropolis Fiend
+text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- Flying -- {X}, {T}, Exile X cards from your graveyard: Target creature gets -X/-X until end of turn.
+mana={7}{B}{B}
+type=Creature
+subtype=Demon
+power=4
+toughness=5
+[/card]
+[card]
+name=Pine Walker
+text=Morph {4}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- Whenever Pine Walker or another creature you control is turned face up, untap that creature.
+mana={3}{G}{G}
+type=Creature
+subtype=Elemental
+power=5
+toughness=5
+[/card]
+[card]
+name=Retribution of the Ancients
+text={B}, Remove X +1/+1 counters from among creatures you control: Target creature gets -X/-X until end of turn.
+mana={B}
+type=Enchantment
+[/card]
+[card]
+name=Ride Down
+text=Destroy target blocking creature. Creatures that were blocked by that creature this combat gain trample until end of turn.
+mana={R}{W}
+type=Instant
+[/card]
+[card]
+name=Ruthless Ripper
+text=Deathtouch -- Morph—Reveal a black card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Ruthless Ripper is turned face up, target player loses 2 life.
+mana={B}
+type=Creature
+subtype=Human Assassin
+power=1
+toughness=1
+[/card]
+[card]
+name=Secret Plans
+text=Face-down creatures you control get +0/+1. -- Whenever a permanent you control is turned face up, draw a card.
+mana={G}{U}
+type=Enchantment
+[/card]
+[card]
+name=Sidisi, Brood Tyrant
+text=Whenever Sidisi, Brood Tyrant enters the battlefield or attacks, put the top three cards of your library into your graveyard. -- Whenever one or more creature cards are put into your graveyard from your library, put a 2/2 black Zombie creature token onto the battlefield.
+mana={1}{B}{G}{U}
+type=Legendary Creature
+subtype=Naga Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Smoke Teller
+text={1}{U}: Look at target face-down creature.
+mana={1}{G}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Temur Charger
+text=Morph—Reveal a green card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Temur Charger is turned face up, target creature gains trample until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Horse
+power=3
+toughness=1
+[/card]
+[card]
+name=Trail of Mystery
+text=Whenever a face-down creature enters the battlefield under your control, you may search your library for a basic land card, reveal it, put it into your hand, then shuffle your library. -- Whenever a permanent you control is turned face up, if it's a creature, it gets +2/+2 until end of turn.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Ugin's Nexus
+text=If a player would begin an extra turn, that player skips that turn instead. -- If Ugin's Nexus would be put into a graveyard from the battlefield, instead exile it and take an extra turn after this one.
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Villainous Wealth
+text=Target opponent exiles the top X cards of his or her library. You may cast any number of nonland cards with converted mana cost X or less from among them without paying their mana costs.
+mana={X}{B}{G}{U}
+type=Sorcery
+[/card]
+[card]
+name=Watcher of the Roost
+text=Flying -- Morph—Reveal a white card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Watcher of the Roost is turned face up, you gain 2 life.
+mana={2}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=1
+[/card]
+[card]
+name=Winterflame
+text=Choose one or both — -- • Tap target creature. -- • Winterflame deals 2 damage to target creature.
+mana={1}{U}{R}
+type=Instant
+[/card]

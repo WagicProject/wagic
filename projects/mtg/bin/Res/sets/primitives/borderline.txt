@@ -48,6 +48,15 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Blessed Reincarnation
+target=creature|opponentbattlefield
+auto=moveto(exile) and!( transforms((,newability[Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone all(creature|reveal) moveto(mybattlefield) optiononeend optiontwo all(*|myreveal) bottomoflibrary optiontwoend revealend])) oneshot )!
+auto=if rebound then moveto(exile) and!( transforms((,newability[@rebounded:may activate castcard(normal)])) forever )!
+text=Exile target creature an opponent controls. That player reveals cards from the top of his or her library until a creature card is revealed. The player puts that card onto the battlefield, then shuffles the rest into his or her library. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+mana={3}{U}
+type=Instant
+[/card]
+[card]
 name=Cemetery Puca
 text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, Cemetery Puca becomes a copy of that creature and gains this ability.
 auto=@movedto(creature|graveyard) from(battlefield):all(trigger[from]) pay[[{1}]] copy
@@ -337,7 +346,7 @@ toughness=2
 [/card]
 [card]
 name=Scapeshift
-auto=choice notatarget(<anyamount>land|mybattlefield) sacrifice && ability$!moveto(mybattlefield) notatarget(land|mylibrary) and!(tap)!!$ controller
+auto=choice notatarget(<anyamount>land|mybattlefield) sacrifice && ability$!moveto(mybattlefield) notatarget(land|mylibrary) and!( tap(noevent) )!!$ controller
 text=Sacrifice any number of lands. Search your library for that many land cards, put them onto the battlefield tapped, then shuffle your library.
 mana={2}{G}{G}
 type=Sorcery
@@ -385,10 +394,10 @@ type=Instant
 [/card]
 [card]
 name=Shard Convergence
-auto=ability$!moveto(myhand) notatarget(*[plains]|mylibrary)!$ controller
-auto=ability$!moveto(myhand) notatarget(*[island]|mylibrary)!$ controller
-auto=ability$!moveto(myhand) notatarget(*[swamp]|mylibrary)!$ controller
-auto=ability$!moveto(myhand) notatarget(*[mountain]|mylibrary)!$ controller
+auto=ability$!name(Plains) moveto(myhand) notatarget(*[plains]|mylibrary)!$ controller
+auto=ability$!name(Island) moveto(myhand) notatarget(*[island]|mylibrary)!$ controller
+auto=ability$!name(Swamp) moveto(myhand) notatarget(*[swamp]|mylibrary)!$ controller
+auto=ability$!name(Mountain) moveto(myhand) notatarget(*[mountain]|mylibrary)!$ controller
 text=Search your library for a Plains card, an Island card, a Swamp card, and a Mountain card. Reveal those cards and put them into your hand. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
@@ -503,6 +512,15 @@ auto=moveTo(ownerhand)
 text=Return target nonland permanent or suspended card to its owner's hand.
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Villainous Wealth
+#can't order stack
+target=opponent
+auto=reveal:castx revealzone(targetedpersonslibrary) optionone all(*|reveal) moveto(exile) and!( if cantargetcard(*[-land;manacost<=castx]|*) then transforms((,newability[may activate castcard(normal)]])) oneshot )! optiononeend revealend
+text=Target opponent exiles the top X cards of his or her library. You may cast any number of nonland cards with converted mana cost X or less from among them without paying their mana costs.
+mana={X}{B}{G}{U}
+type=Sorcery
 [/card]
 [card]
 name=Wren's Run Vanquisher
