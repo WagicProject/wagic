@@ -261,7 +261,8 @@ class Constants
       ASFLASH =139,
       CONDUITED = 140,
       CANBLOCKTAPPED = 141,
-      NB_BASIC_ABILITIES = 142,
+      OPPNOMAXHAND = 142,
+      NB_BASIC_ABILITIES = 143,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

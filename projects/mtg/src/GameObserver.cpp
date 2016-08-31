@@ -930,7 +930,10 @@ void GameObserver::gameStateBasedEffects()
         MTGGameZone * z = players[i]->game->inPlay;
         int nbcards = z->nb_cards;
         //------------------------------
-        p->nomaxhandsize = (z->hasAbility(Constants::NOMAXHAND));
+        if(z->hasAbility(Constants::NOMAXHAND)||p->opponent()->inPlay()->hasAbility(Constants::OPPNOMAXHAND))
+            p->nomaxhandsize = true;
+        else
+            p->nomaxhandsize = false;
 
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//

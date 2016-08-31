@@ -62,15 +62,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Nucklavee
-text=When Nucklavee enters the battlefield, you may return target red sorcery card from your graveyard to your hand. -- When Nucklavee enters the battlefield, you may return target blue instant card from your graveyard to your hand.
-mana={4}{UR}{UR}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-[/card]
-[card]
 name=Phosphorescent Feast
 text=Chroma — Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
 mana={2}{G}{G}{G}

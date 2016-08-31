@@ -1,0 +1,12 @@
+[card]
+name=Goblin War Cry
+text=Target opponent chooses a creature he or she controls. Other creatures he or she controls can't block this turn.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Piracy
+text=Until end of turn, you may tap lands you don't control for mana. Spend this mana only to cast spells.
+mana={U}{U}
+type=Sorcery
+[/card]

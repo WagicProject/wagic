@@ -129,11 +129,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Krosan Verge
-text=Krosan Verge enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {2}, {T}, Sacrifice Krosan Verge: Search your library for a Forest card and a Plains card and put them onto the battlefield tapped. Then shuffle your library.
-type=Land
-[/card]
-[card]
 name=Laquatus's Disdain
 text=Counter target spell cast from a graveyard. -- Draw a card.
 mana={1}{U}
