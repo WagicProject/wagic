@@ -98,6 +98,19 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Derevi, Empyrial Tactician
+abilities=flying
+auto=name(tap or untap) transforms((,newability[choice tap target(*)],newability[choice untap target(*)])) oneshot
+auto=@combatdamaged(player) from(creature|myBattlefield):name(tap or untap) transforms((,newability[choice tap target(*)],newability[choice untap target(*)])) oneshot
+#wagic doesn't have command zone
+text=Flying -- Whenever Derevi, Empyrial Tactician enters the battlefield or a creature you control deals combat damage to a player, you may tap or untap target permanent. -- {1}{G}{W}{U}: Put Derevi onto the battlefield from the command zone.
+mana={G}{W}{U}
+type=Legendary Creature
+subtype=Bird Wizard
+power=2
+toughness=3
+[/card]
+[card]
 name=Dimir Doppelganger
 auto={1}{U}{B}:target(creature|graveyard) moveto(exile) and!(copy)!
 text={1}{U}{B}: Exile target creature card from a graveyard. Dimir Doppelganger becomes a copy of that card and gains this ability.
@@ -148,6 +161,16 @@ type=Creature
 subtype=Elemental Warrior
 power=2
 toughness=1
+[/card]
+[card]
+name=Gahiji, Honored One
+auto=@combat(attacking) source(creature|myBattlefield):all(trigger[to]) 2/0 ueot
+text=Whenever a creature attacks one of your opponents or a planeswalker an opponent controls, that creature gets +2/+0 until end of turn.
+mana={2}{R}{G}{W}
+type=Legendary Creature
+subtype=Beast
+power=4
+toughness=4
 [/card]
 [card]
 name=Goldmeadow Stalwart
@@ -278,6 +301,18 @@ type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=1
+[/card]
+[card]
+name=Oloro, Ageless Ascetic
+auto=@each my upkeep:life:2 controller
+auto=@lifeof(player):pay({1}) draw:1 controller && life:-1 opponent
+#wagic doesn't have command zone
+text=At the beginning of your upkeep, you gain 2 life. -- Whenever you gain life, you may pay {1}. If you do, draw a card and each opponent loses 1 life. -- At the beginning of your upkeep, if Oloro, Ageless Ascetic is in the command zone, you gain 2 life.
+mana={3}{W}{U}{B}
+type=Legendary Creature
+subtype=Giant Soldier
+power=4
+toughness=5
 [/card]
 [card]
 name=Qasali Ambusher
