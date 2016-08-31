@@ -1,0 +1,9 @@
+[card]
+name=Liu Bei, Lord of Shu
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Liu Bei, Lord of Shu gets +2/+2 as long as you control a permanent named Guan Yu, Sainted Warrior or a permanent named Zhang Fei, Fierce Warrior.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]

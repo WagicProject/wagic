@@ -1,0 +1,24 @@
+[card]
+name=Rolling Thunder
+text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Sanctum Guardian
+text=Sacrifice Sanctum Guardian: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=4
+[/card]
+[card]
+name=Trumpeting Armodon
+text={1}{G}: Target creature blocks Trumpeting Armodon this turn if able.
+mana={3}{G}
+type=Creature
+subtype=Elephant
+power=3
+toughness=3
+[/card]
