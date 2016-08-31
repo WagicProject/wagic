@@ -1,0 +1,50 @@
+[card]
+name=Command Tower
+text={T}: Add to your mana pool one mana of any color in your commander's color identity.
+type=Land
+[/card]
+[card]
+name=Desertion
+text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Duplicant
+text=Imprint — When Duplicant enters the battlefield, you may exile target nontoken creature. -- As long as the exiled card is a creature card, Duplicant has that card's power, toughness, and creature types. It's still a Shapeshifter.
+mana={6}
+type=Artifact Creature
+subtype=Shapeshifter
+power=2
+toughness=4
+[/card]
+[card]
+name=Maelstrom Wanderer
+text=Creatures you control have haste. -- Cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order. Then do it again.)
+mana={5}{U}{R}{G}
+type=Legendary Creature
+subtype=Elemental
+power=7
+toughness=5
+[/card]
+[card]
+name=Scroll Rack
+text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Sylvan Library
+text=At the beginning of your draw step, you may draw two additional cards. If you do, choose two cards in your hand drawn this turn. For each of those cards, pay 4 life or put the card on top of your library.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=The Mimeoplasm
+text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
+mana={2}{G}{U}{B}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
+[/card]

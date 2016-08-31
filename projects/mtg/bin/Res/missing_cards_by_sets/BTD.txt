@@ -1,0 +1,15 @@
+[card]
+name=Crashing Boars
+text=Whenever Crashing Boars attacks, defending player chooses an untapped creature he or she controls. That creature blocks Crashing Boars this turn if able.
+mana={3}{G}{G}
+type=Creature
+subtype=Boar
+power=4
+toughness=4
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
