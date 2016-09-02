@@ -1,0 +1,365 @@
+[card]
+name=Angelic Field Marshal
+text=Flying -- Lieutenant — As long as you control your commander, Angelic Field Marshal gets +2/+2 and creatures you control have vigilance.
+mana={2}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+[card]
+name=Arcane Lighthouse
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Until end of turn, creatures your opponents control lose hexproof and shroud and can't have hexproof or shroud.
+type=Land
+[/card]
+[card]
+name=Assault Suit
+text=Equipped creature gets +2/+2, has haste, can't attack you or a planeswalker you control, and can't be sacrificed. -- At the beginning of each opponent's upkeep, you may have that player gain control of equipped creature until end of turn. If you do, untap it. -- Equip {3}
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Bitter Feud
+text=As Bitter Feud enters the battlefield, choose two players. -- If a source controlled by one of the chosen players would deal damage to the other chosen player or a permanent that player controls, that source deals double that damage to that player or permanent instead.
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
+name=Bogardan Hellkite
+text=Flash -- Flying -- When Bogardan Hellkite enters the battlefield, it deals 5 damage divided as you choose among any number of target creatures and/or players.
+mana={6}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Caged Sun
+text=As Caged Sun enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+1. -- Whenever a land's ability adds one or more mana of the chosen color to your mana pool, add one additional mana of that color to your mana pool.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Comeuppance
+text=Prevent all damage that would be dealt to you and planeswalkers you control this turn by sources you don't control. If damage from a creature source is prevented this way, Comeuppance deals that much damage to that creature. If damage from a noncreature source is prevented this way, Comeuppance deals that much damage to the source's controller.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Commander's Sphere
+text={T}: Add to your mana pool one mana of any color in your commander's color identity. -- Sacrifice Commander's Sphere: Draw a card.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Containment Priest
+text=Flash -- If a nontoken creature would enter the battlefield and it wasn't cast, exile it instead.
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Crown of Doom
+text=Whenever a creature attacks you or a planeswalker you control, it gets +2/+0 until end of turn. -- {2}: Target player other than Crown of Doom's owner gains control of it. Activate this ability only during your turn.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Demon of Wailing Agonies
+text=Flying -- Lieutenant — As long as you control your commander, Demon of Wailing Agonies gets +2/+2 and has "Whenever Demon of Wailing Agonies deals combat damage to a player, that player sacrifices a creature."
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=4
+toughness=4
+[/card]
+[card]
+name=Domineering Will
+text=Target player gains control of up to three target nonattacking creatures until end of turn. Untap those creatures. They block this turn if able.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Dulcet Sirens
+text={U}, {T}: Target creature attacks target opponent this turn if able. -- Morph {U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={2}{U}
+type=Creature
+subtype=Siren
+power=1
+toughness=3
+[/card]
+[card]
+name=Epochrasite
+text=Epochrasite enters the battlefield with three +1/+1 counters on it if you didn't cast it from your hand. -- When Epochrasite dies, exile it with three time counters on it and it gains suspend. (At the beginning of your upkeep, remove a time counter. When the last is removed, cast this card without paying its mana cost. It has haste.)
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+name=Fell the Mighty
+text=Destroy all creatures with power greater than target creature's power.
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
+name=Frost Titan
+text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn't untap during its controller's next untap step.
+mana={4}{U}{U}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Grave Sifter
+text=When Grave Sifter enters the battlefield, each player chooses a creature type and returns any number of cards of that type from his or her graveyard to his or her hand.
+mana={5}{G}
+type=Creature
+subtype=Elemental Beast
+power=5
+toughness=7
+[/card]
+[card]
+name=Impact Resonance
+text=Impact Resonance deals X damage divided as you choose among any number of target creatures, where X is the greatest amount of damage dealt by a source to a permanent or player this turn.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Incite Rebellion
+text=For each player, Incite Rebellion deals damage to that player and each creature that player controls equal to the number of creatures he or she controls.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Infernal Offering
+text=Choose an opponent. You and that player each sacrifice a creature. Each player who sacrificed a creature this way draws two cards. -- Choose an opponent. Return a creature card from your graveyard to the battlefield, then that player returns a creature card from his or her graveyard to the battlefield.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Infinite Reflection
+text=Enchant creature -- When Infinite Reflection enters the battlefield attached to a creature, each other nontoken creature you control becomes a copy of that creature. -- Nontoken creatures you control enter the battlefield as a copy of enchanted creature.
+mana={5}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Intellectual Offering
+text=Choose an opponent. You and that player each draw three cards. -- Choose an opponent. Untap all nonland permanents you control and all nonland permanents that player controls.
+mana={4}{U}
+type=Instant
+[/card]
+[card]
+name=Ixidron
+text=As Ixidron enters the battlefield, turn all other nontoken creatures face down. (They're 2/2 creatures.) -- Ixidron's power and toughness are each equal to the number of face-down creatures on the battlefield.
+mana={3}{U}{U}
+type=Creature
+subtype=Illusion
+power=*
+toughness=*
+[/card]
+[card]
+name=Malicious Affliction
+text=Morbid — When you cast Malicious Affliction, if a creature died this turn, you may copy Malicious Affliction and may choose a new target for the copy. -- Destroy target nonblack creature.
+mana={B}{B}
+type=Instant
+[/card]
+[card]
+name=Masterwork of Ingenuity
+text=You may have Masterwork of Ingenuity enter the battlefield as a copy of any Equipment on the battlefield.
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Myriad Landscape
+text=Myriad Landscape enters the battlefield tapped. -- {T}: Add {C} to your mana pool. -- {2}, {T}, Sacrifice Myriad Landscape: Search your library for up to two basic land cards that share a land type, put them onto the battlefield tapped, then shuffle your library.
+type=Land
+[/card]
+[card]
+name=Necromantic Selection
+text=Destroy all creatures, then return a creature card put into a graveyard this way to the battlefield under your control. It's a black Zombie in addition to its other colors and types. Exile Necromantic Selection.
+mana={4}{B}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Ob Nixilis of the Black Oath
+text=+2: Each opponent loses 1 life. You gain life equal to the life lost this way. -- -2: Put a 5/5 black Demon creature token with flying onto the battlefield. You lose 2 life. -- -8: You get an emblem with "{1}{B}, Sacrifice a creature: You gain X life and draw X cards, where X is the sacrificed creature's power." -- Ob Nixilis of the Black Oath can be your commander.
+mana={3}{B}{B}
+type=Planeswalker
+subtype=Nixilis
+[/card]
+[card]
+name=Phyrexian Ingester
+text=Imprint — When Phyrexian Ingester enters the battlefield, you may exile target nontoken creature. -- Phyrexian Ingester gets +X/+Y, where X is the exiled creature card's power and Y is its toughness.
+mana={6}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Profane Command
+text=Choose two — -- • Target player loses X life.  -- • Return target creature card with converted mana cost X or less from your graveyard to the battlefield. -- • Target creature gets -X/-X until end of turn. -- • Up to X target creatures gain fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.)
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Raving Dead
+text=Deathtouch -- At the beginning of combat on your turn, choose an opponent at random. Raving Dead attacks that player this combat if able. -- Whenever Raving Dead deals combat damage to a player, that player loses half his or her life, rounded down.
+mana={4}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=6
+[/card]
+[card]
+name=Reef Worm
+text=When Reef Worm dies, put a 3/3 blue Fish creature token onto the battlefield with "When this creature dies, put a 6/6 blue Whale creature token onto the battlefield with ‘When this creature dies, put a 9/9 blue Kraken creature token onto the battlefield.'"
+mana={3}{U}
+type=Creature
+subtype=Worm
+power=0
+toughness=1
+[/card]
+[card]
+name=Siege Behemoth
+text=Hexproof -- As long as Siege Behemoth is attacking, for each creature you control, you may have that creature assign its combat damage as though it weren't blocked.
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=7
+toughness=4
+[/card]
+[card]
+name=Skeletal Scrying
+text=As an additional cost to cast Skeletal Scrying, exile X cards from your graveyard. -- You draw X cards and you lose X life.
+mana={X}{B}
+type=Instant
+[/card]
+[card]
+name=Song of the Dryads
+text=Enchant permanent -- Enchanted permanent is a colorless Forest land.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Sphinx of Uthuun
+text=Flying -- When Sphinx of Uthuun enters the battlefield, reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=6
+[/card]
+[card]
+name=Spoils of Blood
+text=Put an X/X black Horror creature token onto the battlefield, where X is the number of creatures that died this turn.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Steel Hellkite
+text=Flying -- {2}: Steel Hellkite gets +1/+0 until end of turn. -- {X}: Destroy each nonland permanent with converted mana cost X whose controller was dealt combat damage by Steel Hellkite this turn. Activate this ability only once each turn.
+mana={6}
+type=Artifact Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Stitcher Geralf
+text={2}{U}, {T}: Each player puts the top three cards of his or her library into his or her graveyard. Exile up to two creature cards put into graveyards this way. Put an X/X blue Zombie creature token onto the battlefield, where X is the total power of the cards exiled this way.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
+[/card]
+[card]
+name=Stormsurge Kraken
+text=Hexproof -- Lieutenant — As long as you control your commander, Stormsurge Kraken gets +2/+2 and has "Whenever Stormsurge Kraken becomes blocked, you may draw two cards."
+mana={3}{U}{U}
+type=Creature
+subtype=Kraken
+power=5
+toughness=5
+[/card]
+[card]
+name=Strata Scythe
+text=Imprint — When Strata Scythe enters the battlefield, search your library for a land card, exile it, then shuffle your library. -- Equipped creature gets +1/+1 for each land on the battlefield with the same name as the exiled card. -- Equip {3}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Sylvan Offering
+text=Choose an opponent. You and that player each put an X/X green Treefolk creature token onto the battlefield. -- Choose an opponent. You and that player each put X 1/1 green Elf Warrior creature tokens onto the battlefield.
+mana={X}{G}
+type=Sorcery
+[/card]
+[card]
+name=Teferi, Temporal Archmage
+text=+1: Look at the top two cards of your library. Put one of them into your hand and the other on the bottom of your library. -- -1: Untap up to four target permanents. -- -10: You get an emblem with "You may activate loyalty abilities of planeswalkers you control on any player's turn any time you could cast an instant." -- Teferi, Temporal Archmage can be your commander.
+mana={4}{U}{U}
+type=Planeswalker
+subtype=Teferi
+[/card]
+[card]
+name=Thunderfoot Baloth
+text=Trample -- Lieutenant ? As long as you control your commander, Thunderfoot Baloth gets +2/+2 and other creatures you control get +2/+2 and have trample.
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
+name=Tyrant's Familiar
+text=Flying, haste -- Lieutenant ? As long as you control your commander, Tyrant's Familiar gets +2/+2 and has "Whenever Tyrant's Familiar attacks, it deals 7 damage to target creature defending player controls."
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Victimize
+text=Choose two target creature cards in your graveyard. Sacrifice a creature. If you do, return the chosen cards to the battlefield tapped.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Volcanic Offering
+text=Destroy target nonbasic land you don't control and target nonbasic land of an opponent's choice you don't control. -- Volcanic Offering deals 7 damage to target creature you don't control and 7 damage to target creature of an opponent's choice you don't control.
+mana={4}{R}
+type=Instant
+[/card]
+[card]
+name=Wake the Dead
+text=Cast Wake the Dead only during combat on an opponent's turn. -- Return X target creature cards from your graveyard to the battlefield. Sacrifice those creatures at the beginning of the next end step.
+mana={X}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Wave of Vitriol
+text=Each player sacrifices all artifacts, enchantments, and nonbasic lands he or she controls. For each land sacrificed this way, its controller may search his or her library for a basic land card and put it onto the battlefield tapped. Then each player who searched his or her library this way shuffles it.
+mana={5}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Willbender
+text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
