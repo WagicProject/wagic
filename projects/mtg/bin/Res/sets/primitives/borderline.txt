@@ -229,6 +229,13 @@ mana={5}{U}
 type=Sorcery
 [/card]
 [card]
+name=Grasp of Fate
+auto=(blink)forsrc target(*[-land]|opponentbattlefield)
+text=When Grasp of Fate enters the battlefield, for each opponent, exile up to one target nonland permanent that player controls until Grasp of Fate leaves the battlefield. (Those permanents return under their owners' control.)
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Hellcarver Demon
 #you can't order the stack
 abilities=flying
@@ -312,6 +319,17 @@ type=Artifact Creature
 subtype=Construct
 power=1
 toughness=2
+[/card]
+[card]
+name=Mizzix's Mastery
+target=*[instant;sorcery]|mygraveyard
+abilities=overload
+other={5}{R}{R}{R} name(Overload)
+auto=paidmana moveto(exile) and!( may castcard(copied noevent) )!
+auto=overload all(*[instant;sorcery]|mygraveyard) moveto(exile) and!( may castcard(copied noevent) )!
+text=Exile target card that's an instant or sorcery from your graveyard. For each card exiled this way, copy it, and you may cast the copy without paying its mana cost. Exile Mizzix's Mastery. -- Overload {5}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={3}{R}
+type=Sorcery
 [/card]
 [card]
 name=Nightshade Seer
@@ -422,6 +440,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Sandstone Oracle
+abilities=flying
+auto=foreach(*|opponenthand) if type(*|opponenthand)~morethan~type(*|myhand) then draw:1
+text=Flying -- When Sandstone Oracle enters the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference.
+mana={7}
+type=Artifact Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
 name=Scapeshift
 auto=choice notatarget(<anyamount>land|mybattlefield) sacrifice && ability$!moveto(mybattlefield) notatarget(land|mylibrary) and!( tap(noevent) )!!$ controller
 text=Sacrifice any number of lands. Search your library for that many land cards, put them onto the battlefield tapped, then shuffle your library.
@@ -491,6 +520,18 @@ type=Creature
 subtype=Merfolk Wizard
 power=2
 toughness=1
+[/card]
+[card]
+name=Skullwinder
+abilities=deathtouch
+auto=ability$!moveto(myhand) target(*|mygraveyard)!$ controller
+auto=ability$!moveto(myhand) target(*|mygraveyard)!$ opponent
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Skullwinder enters the battlefield, return target card from your graveyard to your hand, then choose an opponent. That player returns a card from his or her graveyard to his or her hand.
+mana={2}{G}
+type=Creature
+subtype=Snake
+power=1
+toughness=3
 [/card]
 [card]
 name=Squandered Resources
