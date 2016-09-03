@@ -1,0 +1,397 @@
+[card]
+name=AEthersnatch
+text=Gain control of target spell. You may choose new targets for it. (If that spell becomes a permanent, it enters the battlefield under your control.)
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Ajani's Chosen
+text=Whenever an enchantment enters the battlefield under your control, put a 2/2 white Cat creature token onto the battlefield. If that enchantment is an Aura, you may attach it to the token.
+mana={2}{W}{W}
+type=Creature
+subtype=Cat Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Awaken the Sky Tyrant
+text=When a source an opponent controls deals damage to you, sacrifice Awaken the Sky Tyrant. If you do, put a 5/5 red Dragon creature token with flying onto the battlefield.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Banshee of the Dread Choir
+text=Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Whenever Banshee of the Dread Choir deals combat damage to a player, that player discards a card.
+mana={3}{B}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+[card]
+name=Bastion Protector
+text=Commander creatures you control get +2/+2 and have indestructible.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Blade of Selves
+text=Equipped creature has myriad. (Whenever it attacks, for each opponent other than defending player, you may put a token that's a copy of that creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Equip {4}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Broodbirth Viper
+text=Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Whenever Broodbirth Viper deals combat damage to a player, you may draw a card.
+mana={4}{U}
+type=Creature
+subtype=Snake
+power=3
+toughness=3
+[/card]
+[card]
+name=Caller of the Pack
+text=Trample -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.)
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=8
+toughness=6
+[/card]
+[card]
+name=Champion of Stray Souls
+text={3}{B}{B}, {T}, Sacrifice X other creatures: Return X target creature cards from your graveyard to the battlefield. -- {5}{B}{B}: Put Champion of Stray Souls on top of your library from your graveyard.
+mana={4}{B}{B}
+type=Creature
+subtype=Skeleton Warrior
+power=4
+toughness=4
+[/card]
+[card]
+name=Cobra Trap
+text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. -- Put four 1/1 green Snake creature tokens onto the battlefield.
+mana={4}{G}{G}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Comet Storm
+text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature or player, then choose another target creature or player for each time Comet Storm was kicked. Comet Storm deals X damage to each of them.
+mana={X}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Command Beacon
+text={T}: Add {C} to your mana pool. -- {T}, Sacrifice Command Beacon: Put your commander into your hand from the command zone.
+type=Land
+[/card]
+[card]
+name=Command Tower
+text={T}: Add to your mana pool one mana of any color in your commander's color identity.
+type=Land
+[/card]
+[card]
+name=Corpse Augur
+text=When Corpse Augur dies, you draw X cards and you lose X life, where X is the number of creature cards in target player's graveyard.
+mana={3}{B}
+type=Creature
+subtype=Zombie Wizard
+power=4
+toughness=2
+[/card]
+[card]
+name=Dawn to Dusk
+text=Choose one or both — Return target enchantment card from your graveyard to your hand; and/or destroy target enchantment.
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Daxos the Returned
+text=Whenever you cast an enchantment spell, you get an experience counter.  -- {1}{W}{B}: Put a white and black Spirit enchantment creature token onto the battlefield. It has "This creature's power and toughness are each equal to the number of experience counters you have."
+mana={1}{W}{B}
+type=Legendary Creature
+subtype=Zombie Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Diabolic Servitude
+text=When Diabolic Servitude enters the battlefield, return target creature card from your graveyard to the battlefield. -- When the creature put onto the battlefield with Diabolic Servitude dies, exile it and return Diabolic Servitude to its owner's hand. -- When Diabolic Servitude leaves the battlefield, exile the creature put onto the battlefield with Diabolic Servitude.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
+name=Disaster Radius
+text=As an additional cost to cast Disaster Radius, reveal a creature card from your hand. -- Disaster Radius deals X damage to each creature your opponents control, where X is the revealed card's converted mana cost.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Dread Summons
+text=Each player puts the top X cards of his or her library into his or her graveyard. For each creature card put into a graveyard this way, you put a 2/2 black Zombie creature token onto the battlefield tapped.
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Epic Experiment
+text=Exile the top X cards of your library. For each instant and sorcery card with converted mana cost X or less among them, you may cast that card without paying its mana cost. Then put all cards exiled this way that weren't cast into your graveyard.
+mana={X}{U}{R}
+type=Sorcery
+[/card]
+[card]
+name=Ezuri's Predation
+text=For each creature your opponents control, put a 4/4 green Beast creature token onto the battlefield. Each of those Beasts fights a different one of those creatures.
+mana={5}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Ezuri, Claw of Progress
+text=Whenever a creature with power 2 or less enters the battlefield under your control, you get an experience counter. -- At the beginning of combat on your turn, put X +1/+1 counters on another target creature you control, where X is the number of experience counters you have.
+mana={2}{G}{U}
+type=Legendary Creature
+subtype=Elf Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Fact or Fiction
+text=Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Fiery Confluence
+text=Choose three. You may choose the same mode more than once. -- • Fiery Confluence deals 1 damage to each creature. -- • Fiery Confluence deals 2 damage to each opponent. -- • Destroy target artifact.
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Gisela, Blade of Goldnight
+text=Flying, first strike -- If a source would deal damage to an opponent or a permanent an opponent controls, that source deals double that damage to that player or permanent instead. -- If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up.
+mana={4}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Grasp of Fate
+text=When Grasp of Fate enters the battlefield, for each opponent, exile up to one target nonland permanent that player controls until Grasp of Fate leaves the battlefield. (Those permanents return under their owners' control.)
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Herald of the Host
+text=Flying, vigilance -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.)
+mana={3}{W}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Hostility
+text=Haste -- If a spell you control would deal damage to an opponent, prevent that damage. Put a 3/1 red Elemental Shaman creature token with haste onto the battlefield for each 1 damage prevented this way. -- When Hostility is put into a graveyard from anywhere, shuffle it into its owner's library.
+mana={3}{R}{R}{R}
+type=Creature
+subtype=Elemental Incarnation
+power=6
+toughness=6
+[/card]
+[card]
+name=Inferno Titan
+text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
+mana={4}{R}{R}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Kalemne, Disciple of Iroas
+text=Double strike, vigilance -- Whenever you cast a creature spell with converted mana cost 5 or greater, you get an experience counter. -- Kalemne, Disciple of Iroas gets +1/+1 for each experience counter you have.
+mana={2}{R}{W}
+type=Legendary Creature
+subtype=Giant Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Karmic Justice
+text=Whenever a spell or ability an opponent controls destroys a noncreature permanent you control, you may destroy target permanent that opponent controls.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Melek, Izzet Paragon
+text=Play with the top card of your library revealed. -- You may cast the top card of your library if it's an instant or sorcery card. -- Whenever you cast an instant or sorcery spell from your library, copy it. You may choose new targets for the copy.
+mana={4}{U}{R}
+type=Legendary Creature
+subtype=Weird Wizard
+power=2
+toughness=4
+[/card]
+[card]
+name=Meren of Clan Nel Toth
+text=Whenever another creature you control dies, you get an experience counter. -- At the beginning of your end step, choose target creature card in your graveyard. If that card's converted mana cost is less than or equal to the number of experience counters you have, return it to the battlefield. Otherwise, put it into your hand.
+mana={2}{B}{G}
+type=Legendary Creature
+subtype=Human Shaman
+power=3
+toughness=4
+[/card]
+[card]
+name=Meteor Blast
+text=Meteor Blast deals 4 damage to each of X target creatures and/or players.
+mana={X}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Mirror Match
+text=Cast Mirror Match only during the declare blockers step. -- For each creature attacking you or a planeswalker you control, put a token that's a copy of that creature onto the battlefield blocking that creature. Exile those tokens at end of combat.
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Mizzix of the Izmagnus
+text=Whenever you cast an instant or sorcery spell with converted mana cost greater than the number of experience counters you have, you get an experience counter. -- Instant and sorcery spells you cast cost {1} less to cast for each experience counter you have.
+mana={2}{U}{R}
+type=Legendary Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Mizzix's Mastery
+text=Exile target card that's an instant or sorcery from your graveyard. For each card exiled this way, copy it, and you may cast the copy without paying its mana cost. Exile Mizzix's Mastery. -- Overload {5}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Mosswort Bridge
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {G} to your mana pool. -- {G}, {T}: You may play the exiled card without paying its mana cost if creatures you control have total power 10 or greater.
+type=Land
+[/card]
+[card]
+name=Mystic Confluence
+text=Choose three. You may choose the same mode more than once. -- • Counter target spell unless its controller pays {3}. -- • Return target creature to its owner's hand. -- • Draw a card.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Oreskos Explorer
+text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Cat Scout
+power=2
+toughness=2
+[/card]
+[card]
+name=Righteous Confluence
+text=Choose three. You may choose the same mode more than once. -- • Put a 2/2 white Knight creature token with vigilance onto the battlefield. -- • Exile target enchantment. -- • You gain 5 life.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Sandstone Oracle
+text=Flying -- When Sandstone Oracle enters the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference.
+mana={7}
+type=Artifact Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
+name=Scourge of Nel Toth
+text=Flying -- You may cast Scourge of Nel Toth from your graveyard by paying {B}{B} and sacrificing two creatures rather than paying its mana cost.
+mana={5}{B}{B}
+type=Creature
+subtype=Zombie Dragon
+power=6
+toughness=6
+[/card]
+[card]
+name=Seal of the Guildpact
+text=As Seal of the Guildpact enters the battlefield, choose two colors. -- Each spell you cast costs {1} less to cast for each of the chosen colors it is.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Skullwinder
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Skullwinder enters the battlefield, return target card from your graveyard to your hand, then choose an opponent. That player returns a card from his or her graveyard to his or her hand.
+mana={2}{G}
+type=Creature
+subtype=Snake
+power=1
+toughness=3
+[/card]
+[card]
+name=Spinerock Knoll
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {R} to your mana pool. -- {R}, {T}: You may play the exiled card without paying its mana cost if an opponent was dealt 7 or more damage this turn.
+type=Land
+[/card]
+[card]
+name=Steam Augury
+text=Reveal the top five cards of your library and separate them into two piles. An opponent chooses one of those piles. Put that pile into your hand and the other into your graveyard.
+mana={2}{U}{R}
+type=Instant
+[/card]
+[card]
+name=Stolen Goods
+text=Target opponent exiles cards from the top of his or her library until he or she exiles a nonland card. Until end of turn, you may cast that card without paying its mana cost.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Synthetic Destiny
+text=Exile all creatures you control. At the beginning of the next end step, reveal cards from the top of your library until you reveal that many creature cards, put all creature cards revealed this way onto the battlefield, then shuffle the rest of the revealed cards into your library.
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Thief of Blood
+text=Flying -- As Thief of Blood enters the battlefield, remove all counters from all permanents. Thief of Blood enters the battlefield with a +1/+1 counter on it for each counter removed this way.
+mana={4}{B}{B}
+type=Creature
+subtype=Vampire
+power=1
+toughness=1
+[/card]
+[card]
+name=Urza's Rage
+text=Kicker {8}{R} (You may pay an additional {8}{R} as you cast this spell.) -- Urza's Rage can't be countered by spells or abilities. -- Urza's Rage deals 3 damage to target creature or player. If Urza's Rage was kicked, instead it deals 10 damage to that creature or player and the damage can't be prevented.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Verdant Confluence
+text=Choose three. You may choose the same mode more than once. -- • Put two +1/+1 counters on target creature. -- • Return target permanent card from your graveyard to your hand. -- • Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Victimize
+text=Choose two target creature cards in your graveyard. Sacrifice a creature. If you do, return the chosen cards to the battlefield tapped.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Warchief Giant
+text=Haste -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.)
+mana={3}{R}{R}
+type=Creature
+subtype=Giant Warrior
+power=5
+toughness=3
+[/card]
+[card]
+name=Wretched Confluence
+text=Choose three. You may choose the same mode more than once. -- • Target player draws a card and loses 1 life. -- • Target creature gets -2/-2 until end of turn. -- • Return target creature card from your graveyard to your hand.
+mana={3}{B}{B}
+type=Instant
+[/card]

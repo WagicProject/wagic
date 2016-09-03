@@ -1,5 +1,16 @@
 grade=borderline
 [card]
+name=Angelic Field Marshal
+abilities=flying
+#wagic doesnt have commander zone
+text=Flying -- Lieutenant — As long as you control your commander, Angelic Field Marshal gets +2/+2 and creatures you control have vigilance.
+mana={2}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+[card]
 name=Angel's Grace
 abilities=split second
 #the cantlose cannot seen by the gameobserver when used by emblem...
@@ -96,6 +107,17 @@ type=Creature
 subtype=Shapeshifter
 power=2
 toughness=2
+[/card]
+[card]
+name=Demon of Wailing Agonies
+abilities=flying
+#wagic doesnt have commander zone
+text=Flying -- Lieutenant — As long as you control your commander, Demon of Wailing Agonies gets +2/+2 and has "Whenever Demon of Wailing Agonies deals combat damage to a player, that player sacrifices a creature."
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=4
+toughness=4
 [/card]
 [card]
 name=Derevi, Empyrial Tactician
@@ -207,6 +229,13 @@ mana={5}{U}
 type=Sorcery
 [/card]
 [card]
+name=Grasp of Fate
+auto=(blink)forsrc target(*[-land]|opponentbattlefield)
+text=When Grasp of Fate enters the battlefield, for each opponent, exile up to one target nonland permanent that player controls until Grasp of Fate leaves the battlefield. (Those permanents return under their owners' control.)
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Hellcarver Demon
 #you can't order the stack
 abilities=flying
@@ -228,6 +257,15 @@ auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,
 auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,enchantment,land|myhand) !$ opponent
 text=Suspend 3—{1}{G}{G} (Rather than cast this card from your hand, pay {1}{G}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
 type=Sorcery
+[/card]
+[card]
+name=Intellectual Offering
+#wagic only supports single opponent
+auto=draw:3 all(player)
+auto=untap all(*[-land])
+text=Choose an opponent. You and that player each draw three cards. -- Choose an opponent. Untap all nonland permanents you control and all nonland permanents that player controls.
+mana={4}{U}
+type=Instant
 [/card]
 [card]
 name=Ivy Seer
@@ -281,6 +319,17 @@ type=Artifact Creature
 subtype=Construct
 power=1
 toughness=2
+[/card]
+[card]
+name=Mizzix's Mastery
+target=*[instant;sorcery]|mygraveyard
+abilities=overload
+other={5}{R}{R}{R} name(Overload)
+auto=paidmana moveto(exile) and!( may castcard(copied noevent) )!
+auto=overload all(*[instant;sorcery]|mygraveyard) moveto(exile) and!( may castcard(copied noevent) )!
+text=Exile target card that's an instant or sorcery from your graveyard. For each card exiled this way, copy it, and you may cast the copy without paying its mana cost. Exile Mizzix's Mastery. -- Overload {5}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={3}{R}
+type=Sorcery
 [/card]
 [card]
 name=Nightshade Seer
@@ -338,6 +387,17 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Raving Dead
+abilities=deathtouch,mustattack
+auto=@combatdamaged(player) from(this):life:-halfupopponentlifetotal opponent
+text=Deathtouch -- At the beginning of combat on your turn, choose an opponent at random. Raving Dead attacks that player this combat if able. -- Whenever Raving Dead deals combat damage to a player, that player loses half his or her life, rounded down.
+mana={4}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=6
+[/card]
+[card]
 name=Rayne, Academy Chancellor
 #missing parser for player/controller/opponent
 auto=this(auras >= 1) transforms((,newability[@targeted(*|mybattlefield) from(*|opponentzones):draw:2]))
@@ -378,6 +438,17 @@ type=Creature
 subtype=Elf Druid
 power=2
 toughness=2
+[/card]
+[card]
+name=Sandstone Oracle
+abilities=flying
+auto=foreach(*|opponenthand) if type(*|opponenthand)~morethan~type(*|myhand) then draw:1
+text=Flying -- When Sandstone Oracle enters the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference.
+mana={7}
+type=Artifact Creature
+subtype=Sphinx
+power=4
+toughness=4
 [/card]
 [card]
 name=Scapeshift
@@ -451,6 +522,18 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Skullwinder
+abilities=deathtouch
+auto=ability$!moveto(myhand) target(*|mygraveyard)!$ controller
+auto=ability$!moveto(myhand) target(*|mygraveyard)!$ opponent
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Skullwinder enters the battlefield, return target card from your graveyard to your hand, then choose an opponent. That player returns a card from his or her graveyard to his or her hand.
+mana={2}{G}
+type=Creature
+subtype=Snake
+power=1
+toughness=3
+[/card]
+[card]
 name=Squandered Resources
 auto=this(variable{plandg}>0) {S(land[manag]|mybattlefield)}:Add{G}
 auto=this(variable{plandu}>0) {S(land[manau]|mybattlefield)}:Add{U}
@@ -476,6 +559,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Stormsurge Kraken
+abilities=opponentshroud
+#wagic doesnt have commander zone
+text=Hexproof -- Lieutenant — As long as you control your commander, Stormsurge Kraken gets +2/+2 and has "Whenever Stormsurge Kraken becomes blocked, you may draw two cards."
+mana={3}{U}{U}
+type=Creature
+subtype=Kraken
+power=5
+toughness=5
+[/card]
+[card]
 name=Surrak Dragonclaw
 abilities=flash,nofizzle
 #lord nofizzle doesn't seem to work
@@ -487,6 +581,16 @@ type=Legendary Creature
 subtype=Human Warrior
 power=6
 toughness=6
+[/card]
+[card]
+name=Sylvan Offering
+auto=token(Treefolk,Creature Treefolk,X/X,green,tnum:2) opponent
+auto=token(Treefolk,Creature Treefolk,X/X,green,tnum:2) controller
+auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*X opponent
+auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*X controller
+text=Choose an opponent. You and that player each put an X/X green Treefolk creature token onto the battlefield. -- Choose an opponent. You and that player each put X 1/1 green Elf Warrior creature tokens onto the battlefield.
+mana={X}{G}
+type=Sorcery
 [/card]
 [card]
 name=Teferi, Mage of Zhalfir
@@ -508,11 +612,33 @@ text={T}: Add {1} to your mana pool. -- {2}, {T}: Thespian's Stage becomes a cop
 type=Land
 [/card]
 [card]
+name=Thunderfoot Baloth
+abilities=trample
+#wagic doesnt have commander zone
+text=Trample -- Lieutenant — As long as you control your commander, Thunderfoot Baloth gets +2/+2 and other creatures you control get +2/+2 and have trample.
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
 name=Trinisphere
 auto=this(untapped) lord(*[-land]|hand,library,exile,graveyard) trinisphere forcedalive
 text=As long as Trinisphere is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Tyrant's Familiar
+abilities=flying,haste
+#wagic doesnt have commander zone
+text=Flying, haste -- Lieutenant — As long as you control your commander, Tyrant's Familiar gets +2/+2 and has "Whenever Tyrant's Familiar attacks, it deals 7 damage to target creature defending player controls."
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
 [/card]
 [card]
 name=Uba Mask
@@ -556,6 +682,14 @@ auto=reveal:castx revealzone(targetedpersonslibrary) optionone all(*|reveal) mov
 text=Target opponent exiles the top X cards of his or her library. You may cast any number of nonland cards with converted mana cost X or less from among them without paying their mana costs.
 mana={X}{B}{G}{U}
 type=Sorcery
+[/card]
+[card]
+name=Wolfcaller's Howl
+#wagic supports one opponent only
+auto=@each my upkeep restriction{type(*|opponenthand)~morethan~3}:token(Wolf,Creature Wolf,2/2,green)
+text=At the beginning of your upkeep, put X 2/2 green Wolf creature tokens onto the battlefield, where X is the number of your opponents with four or more cards in hand.
+mana={3}{G}
+type=Enchantment
 [/card]
 [card]
 name=Wren's Run Vanquisher
