@@ -74,6 +74,7 @@ class CardDescriptor: public MTGCardInstance
   int CDcanProduceR;
   int CDcanProduceB;
   int CDcanProduceW;
+  int CDnocolor;
 };
 
 #endif

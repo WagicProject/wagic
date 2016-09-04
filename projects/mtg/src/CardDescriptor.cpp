@@ -32,6 +32,7 @@ CardDescriptor::CardDescriptor()
     CDcanProduceR = 0;
     CDcanProduceB = 0;
     CDcanProduceW = 0;
+    CDnocolor = 0;
 }
 
 int CardDescriptor::init()
@@ -284,6 +285,17 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if ((CDcanProduceW == -1 && card->canproduceW == 1) || (CDcanProduceW == 1 && card->canproduceW == 0))
     {
         match = NULL;
+    }
+    
+    if ((CDnocolor == -1 && card->getColor() == 0))
+    {
+        match = NULL;
+    }
+    else if(CDnocolor == 1)
+    {
+        if(!card->has(Constants::DEVOID))
+            if(card->getColor()>0)
+                match = NULL;
     }
 
     if ((isMultiColored == -1 && card->isMultiColored) || (isMultiColored == 1 && !card->isMultiColored))

@@ -790,11 +790,15 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     if (attribute.find("colorless") != string::npos)
                     {
                         attributefound = 1;
-                        for (int cid = 1; cid < Constants::NB_Colors; cid++)
+                        /*for (int cid = 1; cid < Constants::NB_Colors; cid++)
                         {
                             cd->SetExclusionColor(cid);
                         }
-                        cd->mode = CardDescriptor::CD_OR;
+                        cd->mode = CardDescriptor::CD_OR;*/
+                        if (minus)
+                            cd->CDnocolor = -1;
+                        else
+                            cd->CDnocolor = 1;
                     }
 
                     if (attribute.find("chosencolor") != string::npos)
