@@ -113,12 +113,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Jade Statue
-text={2}: Jade Statue becomes a 3/6 Golem artifact creature until end of combat. Activate this ability only during combat.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Library of Leng
 text=You have no maximum hand size. -- If an effect causes you to discard a card, discard it, but you may put it on top of your library instead of into your graveyard.
 mana={1}

@@ -195,6 +195,13 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Gem of Becoming
+auto={3}{T}{S}:name(search lands) ability$!name(Island) moveto(myhand) notatarget(*[island]|mylibrary)!$ controller && ability$!name(Swamp) moveto(myhand) notatarget(*[swamp]|mylibrary)!$ controller && ability$!name(Mountain) moveto(myhand) notatarget(*[mountain]|mylibrary)!$ controller
+text={3}, {T}, Sacrifice Gem of Becoming: Search your library for an Island card, a Swamp card, and a Mountain card. Reveal those cards and put them into your hand. Then shuffle your library.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Goldmeadow Stalwart
 otherrestriction=type(*[kithkin]|myhand)~lessthan~2
 other={3}{W}
@@ -330,6 +337,16 @@ auto=overload all(*[instant;sorcery]|mygraveyard) moveto(exile) and!( may castca
 text=Exile target card that's an instant or sorcery from your graveyard. For each card exiled this way, copy it, and you may cast the copy without paying its mana cost. Exile Mizzix's Mastery. -- Overload {5}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Necropotence
+#exile cards are faceup
+auto=@movedTo(*|mygraveyard):all(trigger[to]) moveTo(exile)
+auto=phasealter(remove,draw,controller)
+auto={L:1}:name(exile) reveal:1 optionone all(*|reveal) transforms((,newability[moveto(exile)],newability[phaseaction[my endofturn once checkex] moveto(ownerhand)])) optiononeend revealend
+text=Skip your draw step. -- Whenever you discard a card, exile that card from your graveyard. -- Pay 1 life: Exile the top card of your library face down. Put that card into your hand at the beginning of your next end step.
+mana={B}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Nightshade Seer

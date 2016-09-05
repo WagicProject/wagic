@@ -1,0 +1,112 @@
+[card]
+name=Autumn's Veil
+text=Spells you control can't be countered by blue or black spells this turn, and creatures you control can't be the targets of blue or black spells this turn.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Conundrum Sphinx
+text=Flying -- Whenever Conundrum Sphinx attacks, each player names a card. Then each player reveals the top card of his or her library. If the card a player revealed is the card he or she named, that player puts it into his or her hand. If it's not, that player puts it on the bottom of his or her library.
+mana={2}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
+name=Fire Servant
+text=If a red instant or sorcery spell you control would deal damage, it deals double that damage instead.
+mana={3}{R}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=3
+[/card]
+[card]
+name=Frost Titan
+text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn't untap during its controller's next untap step.
+mana={4}{U}{U}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Inferno Titan
+text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
+mana={4}{R}{R}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Leyline of Punishment
+text=If Leyline of Punishment is in your opening hand, you may begin the game with it on the battlefield. -- Players can't gain life. -- Damage can't be prevented.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Merfolk Spy
+text=Islandwalk (This creature is unblockable as long as defending player controls an Island.) -- Whenever Merfolk Spy deals combat damage to a player, that player reveals a card at random from his or her hand.
+mana={U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=1
+[/card]
+[card]
+name=Necrotic Plague
+text=Enchant creature -- Enchanted creature has "At the beginning of your upkeep, sacrifice this creature." -- When enchanted creature dies, its controller chooses target creature one of his or her opponents controls. Return Necrotic Plague from its owner's graveyard to the battlefield attached to that creature.
+mana={2}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Obstinate Baloth
+text=When Obstinate Baloth enters the battlefield, you gain 4 life. -- If a spell or ability an opponent controls causes you to discard Obstinate Baloth, put it onto the battlefield instead of putting it into your graveyard.
+mana={2}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+[card]
+name=Palace Guard
+text=Palace Guard can block any number of creatures.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=4
+[/card]
+[card]
+name=Phylactery Lich
+text=As Phylactery Lich enters the battlefield, put a phylactery counter on an artifact you control. -- Phylactery Lich is indestructible. -- When you control no permanents with phylactery counters on them, sacrifice Phylactery Lich.
+mana={B}{B}{B}
+type=Creature
+subtype=Zombie
+power=5
+toughness=5
+[/card]
+[card]
+name=Redirect
+text=You may choose new targets for target spell.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+name=Vengeful Archon
+text=Flying -- {X}: Prevent the next X damage that would be dealt to you this turn. If damage is prevented this way, Vengeful Archon deals that much damage to target player.
+mana={4}{W}{W}{W}
+type=Creature
+subtype=Archon
+power=7
+toughness=7
+[/card]
+[card]
+name=Wild Evocation
+text=At the beginning of each player's upkeep, that player reveals a card at random from his or her hand. If it's a land card, the player puts it onto the battlefield. Otherwise, the player casts it without paying its mana cost if able.
+mana={5}{R}
+type=Enchantment
+[/card]

@@ -1,0 +1,150 @@
+[card]
+name=Avatar of Hope
+text=If you have 3 or less life, Avatar of Hope costs {6} less to cast. -- Flying -- Avatar of Hope can block any number of creatures.
+mana={6}{W}{W}
+type=Creature
+subtype=Avatar
+power=4
+toughness=9
+[/card]
+[card]
+name=Coat of Arms
+text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, if two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Defense Grid
+text=Each spell costs {3} more to cast except during its controller's turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Deflection
+text=Change the target of target spell with a single target.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Furnace of Rath
+text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={1}{R}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Gaea's Herald
+text=Creature spells can't be countered.
+mana={1}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+[/card]
+[card]
+name=Guerrilla Tactics
+text=Guerrilla Tactics deals 2 damage to target creature or player. -- When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Mana Clash
+text=You and target opponent each flip a coin. Mana Clash deals 1 damage to each player whose coin comes up tails. Repeat this process until both players' coins come up heads on the same flip.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Mind Bend
+text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change "nonblack creature" to "nongreen creature" or "forestwalk" to "islandwalk." This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Murderous Betrayal
+text={B}{B}, Pay half your life, rounded up: Destroy target nonblack creature. It can't be regenerated.
+mana={B}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Okk
+text=Okk can't attack unless a creature with greater power also attacks. -- Okk can't block unless a creature with greater power also blocks.
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=4
+toughness=4
+[/card]
+[card]
+name=Oracle's Attendants
+text={T}: All damage that would be dealt to target creature this turn by a source of your choice is dealt to Oracle's Attendants instead.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=5
+[/card]
+[card]
+name=Phyrexian Colossus
+text=Phyrexian Colossus doesn't untap during your untap step. -- Pay 8 life: Untap Phyrexian Colossus. -- Phyrexian Colossus can't be blocked except by three or more creatures.
+mana={7}
+type=Artifact Creature
+subtype=Golem
+power=8
+toughness=8
+[/card]
+[card]
+name=Pyrotechnics
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Sacred Ground
+text=Whenever a spell or ability an opponent controls causes a land to be put into your graveyard from the battlefield, return that card to the battlefield.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Story Circle
+text=As Story Circle enters the battlefield, choose a color. -- {W}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Telepathy
+text=Your opponents play with their hands revealed.
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Thieves' Auction
+text=Exile all nontoken permanents. Starting with you, each player chooses one of the exiled cards and puts it onto the battlefield tapped under his or her control. Repeat this process until all cards exiled this way have been chosen.
+mana={4}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Two-Headed Dragon
+text=Flying -- {1}{R}: Two-Headed Dragon gets +2/+0 until end of turn. -- Two-Headed Dragon can't be blocked except by two or more creatures. -- Two-Headed Dragon can block an additional creature.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Urza's Armor
+text=If a source would deal damage to you, prevent 1 of that damage.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Vexing Arcanix
+text={3}, {T}: Target player names a card, then reveals the top card of his or her library. If it's the named card, the player puts it into his or her hand. Otherwise, the player puts it into his or her graveyard and Vexing Arcanix deals 2 damage to him or her.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Zur's Weirding
+text=Players play with their hands revealed. -- If a player would draw a card, he or she reveals it instead. Then any other player may pay 2 life. If a player does, put that card into its owner's graveyard. Otherwise, that player draws a card.
+mana={3}{U}
+type=Enchantment
+[/card]

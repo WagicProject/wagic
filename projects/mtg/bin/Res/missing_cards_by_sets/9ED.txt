@@ -1,0 +1,105 @@
+[card]
+name=Booby Trap
+text=As Booby Trap enters the battlefield, name a card other than a basic land card and choose an opponent. -- The chosen player reveals each card he or she draws. -- When the chosen player draws the named card, sacrifice Booby Trap. If you do, Booby Trap deals 10 damage to that player.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Coat of Arms
+text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, if two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Defense Grid
+text=Each spell costs {3} more to cast except during its controller's turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Furnace of Rath
+text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={1}{R}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Guerrilla Tactics
+text=Guerrilla Tactics deals 2 damage to target creature or player. -- When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Mana Clash
+text=You and target opponent each flip a coin. Mana Clash deals 1 damage to each player whose coin comes up tails. Repeat this process until both players' coins come up heads on the same flip.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Mind Bend
+text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change "nonblack creature" to "nongreen creature" or "forestwalk" to "islandwalk." This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Oracle's Attendants
+text={T}: All damage that would be dealt to target creature this turn by a source of your choice is dealt to Oracle's Attendants instead.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=5
+[/card]
+[card]
+name=Reverse Damage
+text=The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.
+mana={1}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Sacred Ground
+text=Whenever a spell or ability an opponent controls causes a land to be put into your graveyard from the battlefield, return that card to the battlefield.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sanctum Guardian
+text=Sacrifice Sanctum Guardian: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=4
+[/card]
+[card]
+name=Storage Matrix
+text=As long as Storage Matrix is untapped, each player chooses artifact, creature, or land during his or her untap step. That player can untap only permanents of the chosen type this step.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Story Circle
+text=As Story Circle enters the battlefield, choose a color. -- {W}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Telepathy
+text=Your opponents play with their hands revealed.
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Zealous Inquisitor
+text={1}{W}: The next 1 damage that would be dealt to Zealous Inquisitor this turn is dealt to target creature instead.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Zur's Weirding
+text=Players play with their hands revealed. -- If a player would draw a card, he or she reveals it instead. Then any other player may pay 2 life. If a player does, put that card into its owner's graveyard. Otherwise, that player draws a card.
+mana={3}{U}
+type=Enchantment
+[/card]
