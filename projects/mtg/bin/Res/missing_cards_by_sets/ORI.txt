@@ -1,0 +1,257 @@
+[card]
+name=Aerial Volley
+text=Aerial Volley deals 3 damage divided as you choose among one, two, or three target creatures with flying.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Alhammarret's Archive
+text=If you would gain life, you gain twice that much life instead. -- If you would draw a card except the first one you draw in each of your draw steps, draw two cards instead.
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Alhammarret, High Arbiter
+text=Flying -- As Alhammarret, High Arbiter enters the battlefield, each opponent reveals his or her hand. You choose the name of a nonland card revealed this way. -- Your opponents can't cast spells with the chosen name (as long as this creature is on the battlefield).
+mana={5}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=5
+toughness=5
+[/card]
+[card]
+name=Calculated Dismissal
+text=Counter target spell unless its controller pays {3}. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Chandra, Fire of Kaladesh
+text=Whenever you cast a red spell, untap Chandra, Fire of Kaladesh. -- {T}: Chandra, Fire of Kaladesh deals 1 damage to target player. If Chandra has dealt 3 or more damage this turn, exile her, then return her to the battlefield transformed under her owner's control.
+mana={1}{R}{R}
+type=Legendary Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Chandra, Roaring Flame
+text=+1: Chandra, Roaring Flame deals 2 damage to target player. -- -2: Chandra, Roaring Flame deals 2 damage to target creature. -- -7: Chandra, Roaring Flame deals 6 damage to each opponent. Each player dealt damage this way gets an emblem with "At the beginning of your upkeep, this emblem deals 3 damage to you."
+type=Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Day's Undoing
+text=Each player shuffles his or her hand and graveyard into his or her library, then draws seven cards. If it's your turn, end the turn. (Exile all spells and abilities on the stack, including this card. Discard down to your maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Demonic Pact
+text=At the beginning of your upkeep, choose one that hasn't been chosen — -- • Demonic Pact deals 4 damage to target creature or player and you gain 4 life. -- • Target opponent discards two cards. -- • Draw two cards. -- • You lose the game.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Embermaw Hellion
+text=Trample (This creature can deal excess combat damage to defending player or planeswalker while attacking.) -- If another red source you control would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.
+mana={3}{R}{R}
+type=Creature
+subtype=Hellion
+power=4
+toughness=5
+[/card]
+[card]
+name=Erebos's Titan
+text=As long as your opponents control no creatures, Erebos's Titan has indestructible. (Damage and effects that say "destroy" don't destroy it.) -- Whenever a creature card leaves an opponent's graveyard, you may discard a card. If you do, return Erebos's Titan from your graveyard to your hand.
+mana={1}{B}{B}{B}
+type=Creature
+subtype=Giant
+power=5
+toughness=5
+[/card]
+[card]
+name=Exquisite Firecraft
+text=Exquisite Firecraft deals 4 damage to target creature or player. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, Exquisite Firecraft can't be countered by spells or abilities.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Gideon, Battle-Forged
+text=+2: Up to one target creature an opponent controls attacks Gideon, Battle-Forged during its controller's next turn if able. -- +1: Until your next turn, target creature gains indestructible. Untap that creature. -- 0: Until end of turn, Gideon, Battle-Forged becomes a 4/4 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
+type=Planeswalker
+subtype=Gideon
+[/card]
+[card]
+name=Gilt-Leaf Winnower
+text=Menace (This creature can't be blocked except by two or more creatures.) -- When Gilt-Leaf Winnower enters the battlefield, you may destroy target non-Elf creature whose power and toughness aren't equal.
+mana={3}{B}{B}
+type=Creature
+subtype=Elf Warrior
+power=4
+toughness=3
+[/card]
+[card]
+name=Gnarlroot Trapper
+text={T}, Pay 1 life: Add {G} to your mana pool. Spend this mana only to cast an Elf creature spell. -- {T}: Target attacking Elf you control gains deathtouch until end of turn. (Any amount of damage it deals to a creature is enough to destroy it.)
+mana={B}
+type=Creature
+subtype=Elf Druid
+power=1
+toughness=1
+[/card]
+[card]
+name=Hallowed Moonlight
+text=Until end of turn, if a creature would enter the battlefield and it wasn't cast, exile it instead. -- Draw a card.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Harbinger of the Tides
+text=You may cast Harbinger of the Tides as though it had flash if you pay {2} more to cast it. (You may cast it any time you could cast an instant.) -- When Harbinger of the Tides enters the battlefield, you may return target tapped creature an opponent controls to its owner's hand.
+mana={U}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Hixus, Prison Warden
+text=Flash (You may cast this spell any time you could cast an instant.) -- Whenever a creature deals combat damage to you, if Hixus, Prison Warden entered the battlefield this turn, exile that creature until Hixus leaves the battlefield. (That creature returns under its owner's control.)
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=4
+toughness=4
+[/card]
+[card]
+name=Infinite Obliteration
+text=Name a creature card. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Jace, Telepath Unbound
+text=+1: Up to one target creature gets -2/-0 until your next turn. -- -3: You may cast target instant or sorcery card from your graveyard this turn. If that card would be put into your graveyard this turn, exile it instead. -- -9: You get an emblem with "Whenever you cast a spell, target opponent puts the top five cards of his or her library into his or her graveyard."
+type=Planeswalker
+subtype=Jace
+[/card]
+[card]
+name=Jace, Vryn's Prodigy
+text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=0
+toughness=2
+[/card]
+[card]
+name=Joraga Invocation
+text=Each creature you control gets +3/+3 until end of turn and must be blocked this turn if able.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Kytheon, Hero of Akros
+text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn.
+mana={W}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=1
+[/card]
+[card]
+name=Mizzium Meddler
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Mizzium Meddler enters the battlefield, you may change a target of target spell or ability to Mizzium Meddler.
+mana={2}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=4
+[/card]
+[card]
+name=Orbs of Warding
+text=You have hexproof. (You can't be the target of spells or abilities your opponents control.) -- If a creature would deal damage to you, prevent 1 of that damage.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Psychic Rebuttal
+text=Counter target instant or sorcery spell that targets you. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, you may copy the spell countered this way. You may choose new targets for the copy.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Pyromancer's Goggles
+text={T}: Add {R} to your mana pool. When that mana is spent to cast a red instant or sorcery spell, copy that spell and you may choose new targets for the copy.
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Sigil of Valor
+text=Whenever equipped creature attacks alone, it gets +1/+1 until end of turn for each other creature you control. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Tainted Remedy
+text=If an opponent would gain life, that player loses that much life instead.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Talent of the Telepath
+text=Target opponent reveals the top seven cards of his or her library. You may cast an instant or sorcery card from among them without paying its mana cost. Then that player puts the rest into his or her graveyard. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, you may cast up to two revealed instant and/or sorcery cards instead of one.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=The Great Aurora
+text=Each player shuffles all cards from his or her hand and all permanents he or she owns into his or her library, then draws that many cards. Each player may put any number of land cards from his or her hand onto the battlefield. Exile The Great Aurora.
+mana={6}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Thopter Spy Network
+text=At the beginning of your upkeep, if you control an artifact, put a 1/1 colorless Thopter artifact creature token with flying onto the battlefield. -- Whenever one or more artifact creatures you control deal combat damage to a player, draw a card.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Throwing Knife
+text=Equipped creature gets +2/+0. -- Whenever equipped creature attacks, you may sacrifice Throwing Knife. If you do, Throwing Knife deals 2 damage to target creature or player. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Touch of Moonglove
+text=Target creature you control gets +1/+0 and gains deathtouch until end of turn. Whenever a creature dealt damage by that creature dies this turn, its controller loses 2 life. (Any amount of damage a creature with deathtouch deals to a creature is enough to destroy it.)
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Tragic Arrogance
+text=For each player, you choose from among the permanents that player controls an artifact, a creature, an enchantment, and a planeswalker. Then each player sacrifices all other nonland permanents he or she controls.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Valeron Wardens
+text=Renown 2 (When this creature deals combat damage to a player, if it isn't renowned, put two +1/+1 counters on it and it becomes renowned.) -- Whenever a creature you control becomes renowned, draw a card.
+mana={2}{G}
+type=Creature
+subtype=Human Monk
+power=1
+toughness=3
+[/card]
+[card]
+name=Willbreaker
+text=Whenever a creature an opponent controls becomes the target of a spell or ability you control, gain control of that creature for as long as you control Willbreaker.
+mana={3}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]

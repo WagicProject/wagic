@@ -1,0 +1,322 @@
+[card]
+name=Aladdin's Lamp
+text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, put all but one of them on the bottom of your library in a random order, then draw a card. X can't be 0.
+mana={10}
+type=Artifact
+[/card]
+[card]
+name=Battering Ram
+text=At the beginning of combat on your turn, Battering Ram gains banding until end of combat. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's blocking.) -- Whenever Battering Ram becomes blocked by a Wall, destroy that Wall at end of combat.
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+name=Benalish Hero
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Bronze Tablet
+text=Remove Bronze Tablet from your deck before playing if you're not playing for ante. -- Bronze Tablet enters the battlefield tapped. -- {4}, {T}: Exile Bronze Tablet and target nontoken permanent an opponent owns. That player may pay 10 life. If he or she does, put Bronze Tablet into its owner's graveyard. Otherwise, that player owns Bronze Tablet and you own the other exiled card.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Channel
+text=Until end of turn, any time you could activate a mana ability, you may pay 1 life. If you do, add {1} to your mana pool.
+mana={G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Circle of Protection: Artifacts
+text={2}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Cursed Rack
+text=As Cursed Rack enters the battlefield, choose an opponent. -- The chosen player's maximum hand size is four.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Drain Power
+text=Target player activates a mana ability of each land he or she controls. Then put all mana from that player's mana pool into yours.
+mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Erosion
+text=Enchant land -- At the beginning of the upkeep of enchanted land's controller, destroy that land unless that player pays {1} or 1 life.
+mana={U}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Fortified Area
+text=Wall creatures you control get +1/+0 and have banding. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Gaea's Liege
+text=As long as Gaea's Liege isn't attacking, its power and toughness are each equal to the number of Forests you control. As long as Gaea's Liege is attacking, its power and toughness are each equal to the number of Forests defending player controls. -- {T}: Target land becomes a Forest until Gaea's Liege leaves the battlefield.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
+[/card]
+[card]
+name=Gloom
+text=White spells cost {3} more to cast. -- Activated abilities of white enchantments cost {3} more to activate.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Helm of Chatzuk
+text={1}, {T}: Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Island Sanctuary
+text=If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and/or islandwalk.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Jade Monolith
+text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Library of Leng
+text=You have no maximum hand size. -- If an effect causes you to discard a card, discard it, but you may put it on top of your library instead of into your graveyard.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Magical Hack
+text=Change the text of target spell or permanent by replacing all instances of one basic land type with another. (For example, you may change "swampwalk" to "plainswalk." This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Mana Clash
+text=You and target opponent each flip a coin. Mana Clash deals 1 damage to each player whose coin comes up tails. Repeat this process until both players' coins come up heads on the same flip.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Mesa Pegasus
+text=Flying; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Creature
+subtype=Pegasus
+power=1
+toughness=1
+[/card]
+[card]
+name=Mind Bomb
+text=Each player may discard up to three cards. Mind Bomb deals damage to each player equal to 3 minus the number of cards he or she discarded this way.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Mishra's War Machine
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- At the beginning of your upkeep, unless you discard a card, tap Mishra's War Machine and it deals 3 damage to you.
+mana={7}
+type=Artifact Creature
+subtype=Juggernaut
+power=5
+toughness=5
+[/card]
+[card]
+name=Nafs Asp
+text=Whenever Nafs Asp deals damage to a player, that player loses 1 life at the beginning of his or her next draw step unless he or she pays {1} before that draw step.
+mana={G}
+type=Creature
+subtype=Snake
+power=1
+toughness=1
+[/card]
+[card]
+name=Nether Shadow
+text=Haste -- At the beginning of your upkeep, if Nether Shadow is in your graveyard with three or more creature cards above it, you may put Nether Shadow onto the battlefield.
+mana={B}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Personal Incarnation
+text={0}: The next 1 damage that would be dealt to Personal Incarnation this turn is dealt to its owner instead. Any player may activate this ability, but only if he or she owns Personal Incarnation. -- When Personal Incarnation dies, its owner loses half his or her life, rounded up.
+mana={3}{W}{W}{W}
+type=Creature
+subtype=Avatar Incarnation
+power=6
+toughness=6
+[/card]
+[card]
+name=Pikemen
+text=First strike; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Power Surge
+text=At the beginning of each player's upkeep, Power Surge deals X damage to that player, where X is the number of untapped lands he or she controlled at the beginning of this turn.
+mana={R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Pyrotechnics
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Rag Man
+text={B}{B}{B}, {T}: Target opponent reveals his or her hand and discards a creature card at random. Activate this ability only during your turn.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Minion
+power=2
+toughness=1
+[/card]
+[card]
+name=Rebirth
+text=Remove Rebirth from your deck before playing if you're not playing for ante. --  -- Each player may put the top card of his or her library into the ante. If a player does, his or her life total becomes 20.
+mana={3}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Reverse Damage
+text=The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.
+mana={1}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Shapeshifter
+text=As Shapeshifter enters the battlefield, choose a number between 0 and 7. -- At the beginning of your upkeep, you may choose a number between 0 and 7. -- Shapeshifter's power is equal to the last chosen number and its toughness is equal to 7 minus that number.
+mana={6}
+type=Artifact Creature
+subtype=Shapeshifter
+power=*
+toughness=7-*
+[/card]
+[card]
+name=Sindbad
+text={T}: Draw a card and reveal it. If it isn't a land card, discard it.
+mana={1}{U}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
+name=Siren's Call
+text=Cast Siren's Call only during an opponent's turn, before attackers are declared. -- Creatures the active player controls attack this turn if able. -- At the beginning of the next end step, destroy all non-Wall creatures that player controls that didn't attack this turn. Ignore this effect for each creature the player didn't control continuously since the beginning of the turn.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Sleight of Mind
+text=Change the text of target spell or permanent by replacing all instances of one color word with another. (For example, you may change "target black spell" to "target blue spell." This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Smoke
+text=Players can't untap more than one creature during their untap steps.
+mana={R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Stone Giant
+text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
+mana={2}{R}{R}
+type=Creature
+subtype=Giant
+power=3
+toughness=4
+[/card]
+[card]
+name=Sylvan Library
+text=At the beginning of your draw step, you may draw two additional cards. If you do, choose two cards in your hand drawn this turn. For each of those cards, pay 4 life or put the card on top of your library.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Tempest Efreet
+text=Remove Tempest Efreet from your deck before playing if you're not playing for ante. -- {T}, Sacrifice Tempest Efreet: Target opponent may pay 10 life. If that player doesn't, he or she reveals a card at random from his or her hand. Exchange ownership of the revealed card and Tempest Efreet. Put the revealed card into your hand and Tempest Efreet from anywhere into that player's graveyard.
+mana={1}{R}{R}{R}
+type=Creature
+subtype=Efreet
+power=3
+toughness=3
+[/card]
+[card]
+name=Timber Wolves
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={G}
+type=Creature
+subtype=Wolf
+power=1
+toughness=1
+[/card]
+[card]
+name=Titania's Song
+text=Each noncreature artifact loses all abilities and becomes an artifact creature with power and toughness each equal to its converted mana cost. If Titania's Song leaves the battlefield, this effect continues until end of turn.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Urza's Avenger
+text={0}: Urza's Avenger gets -1/-1 and gains your choice of banding, flying, first strike, or trample until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={6}
+type=Artifact Creature
+subtype=Shapeshifter
+power=4
+toughness=4
+[/card]
+[card]
+name=Visions
+text=Look at the top five cards of target player's library. You may then have that player shuffle that library.
+mana={W}
+type=Sorcery
+[/card]
+[card]
+name=Winter Orb
+text=As long as Winter Orb is untapped, players can't untap more than one land during their untap steps.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Xenic Poltergeist
+text={T}: Until your next upkeep, target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost.
+mana={1}{B}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]

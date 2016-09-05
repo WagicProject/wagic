@@ -1,0 +1,76 @@
+[card]
+name=Chandra, the Firebrand
+text=+1: Chandra, the Firebrand deals 1 damage to target creature or player. -- -2: When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- -6: Chandra, the Firebrand deals 6 damage to each of up to six target creatures and/or players.
+mana={3}{R}
+type=Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Gem of Becoming
+text={3}, {T}, Sacrifice Gem of Becoming: Search your library for an Island card, a Swamp card, and a Mountain card. Reveal those cards and put them into your hand. Then shuffle your library.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Odric, Master Tactician
+text=First strike (This creature deals combat damage before creatures without first strike.) -- Whenever Odric, Master Tactician and at least three other creatures attack, you choose which creatures block this combat and how those creatures block.
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=4
+[/card]
+[card]
+name=Phylactery Lich
+text=As Phylactery Lich enters the battlefield, put a phylactery counter on an artifact you control. -- Phylactery Lich is indestructible. -- When you control no permanents with phylactery counters on them, sacrifice Phylactery Lich.
+mana={B}{B}{B}
+type=Creature
+subtype=Zombie
+power=5
+toughness=5
+[/card]
+[card]
+name=Redirect
+text=You may choose new targets for target spell.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+name=Rhox Faithmender
+text=Lifelink (Damage dealt by this creature also causes you to gain that much life.) -- If you would gain life, you gain twice that much life instead.
+mana={3}{W}
+type=Creature
+subtype=Rhino Monk
+power=1
+toughness=5
+[/card]
+[card]
+name=Spelltwine
+text=Exile target instant or sorcery card from your graveyard and target instant or sorcery card from an opponent's graveyard. Copy those cards. Cast the copies if able without paying their mana costs. Exile Spelltwine.
+mana={5}{U}
+type=Sorcery
+[/card]
+[card]
+name=Sphinx of Uthuun
+text=Flying -- When Sphinx of Uthuun enters the battlefield, reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=6
+[/card]
+[card]
+name=Switcheroo
+text=Exchange control of two target creatures.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Vampire Nocturnus
+text=Play with the top card of your library revealed. -- As long as the top card of your library is black, Vampire Nocturnus and other Vampire creatures you control get +2/+1 and have flying.
+mana={1}{B}{B}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=3
+[/card]
