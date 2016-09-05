@@ -1,0 +1,106 @@
+[card]
+name=Ajani's Chosen
+text=Whenever an enchantment enters the battlefield under your control, put a 2/2 white Cat creature token onto the battlefield. If that enchantment is an Aura, you may attach it to the token.
+mana={2}{W}{W}
+type=Creature
+subtype=Cat Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Chandra, Pyromaster
+text=+1: Chandra, Pyromaster deals 1 damage to target player and 1 damage to up to one target creature that player controls. That creature can't block this turn. -- 0: Exile the top card of your library. You may play it this turn. -- -7: Exile the top ten cards of your library. Choose an instant or sorcery card exiled this way and copy it three times. You may cast the copies without paying their mana costs.
+mana={2}{R}{R}
+type=Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Elite Arcanist
+text=When Elite Arcanist enters the battlefield, you may exile an instant card from your hand. -- {X}, {T}: Copy the exiled card. You may cast the copy without paying its mana cost. X is the converted mana cost of the exiled card.
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Enlarge
+text=Target creature gets +7/+7 and gains trample until end of turn. It must be blocked this turn if able. (If a creature with trample would assign enough damage to its blockers to destroy them, you may have it assign the rest of its damage to defending player or planeswalker.)
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Garruk's Horde
+text=Trample  -- Play with the top card of your library revealed. -- You may cast the top card of your library if it's a creature card. (Do this only any time you could cast that creature card. You still pay the spell's costs.)
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=7
+toughness=7
+[/card]
+[card]
+name=Into the Wilds
+text=At the beginning of your upkeep, look at the top card of your library. If it's a land card, you may put it onto the battlefield.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Jace's Mindseeker
+text=Flying -- When Jace's Mindseeker enters the battlefield, target opponent puts the top five cards of his or her library into his or her graveyard. You may cast an instant or sorcery card from among them without paying its mana cost.
+mana={4}{U}{U}
+type=Creature
+subtype=Fish Illusion
+power=4
+toughness=4
+[/card]
+[card]
+name=Merfolk Spy
+text=Islandwalk (This creature is unblockable as long as defending player controls an Island.) -- Whenever Merfolk Spy deals combat damage to a player, that player reveals a card at random from his or her hand.
+mana={U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=1
+[/card]
+[card]
+name=Molten Birth
+text=Put two 1/1 red Elemental creature tokens onto the battlefield. Then flip a coin. If you win the flip, return Molten Birth to its owner's hand.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Pay No Heed
+text=Prevent all damage a source of your choice would deal this turn.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Pyromancer's Gauntlet
+text=If a red instant or sorcery spell you control or a red planeswalker you control would deal damage to a permanent or player, it deals that much damage plus 2 to that permanent or player instead.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Quicken
+text=The next sorcery card you cast this turn can be cast as though it had flash. -- Draw a card.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Savage Summoning
+text=Savage Summoning can't be countered. -- The next creature card you cast this turn can be cast as though it had flash. That spell can't be countered. That creature enters the battlefield with an additional +1/+1 counter on it.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Strionic Resonator
+text={2}, {T}: Copy target triggered ability you control. You may choose new targets for the copy. (A triggered ability uses the words "when," "whenever," or "at.")
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Wild Ricochet
+text=You may choose new targets for target instant or sorcery spell. Then copy that spell. You may choose new targets for the copy.
+mana={2}{R}{R}
+type=Instant
+[/card]

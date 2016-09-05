@@ -1,0 +1,136 @@
+[card]
+name=Arachnus Spinner
+text=Reach (This creature can block creatures with flying.) -- Tap an untapped Spider you control: Search your graveyard and/or library for a card named Arachnus Web and put it onto the battlefield attached to target creature. If you search your library this way, shuffle it.
+mana={5}{G}
+type=Creature
+subtype=Spider
+power=5
+toughness=7
+[/card]
+[card]
+name=Arachnus Web
+text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. -- At the beginning of the end step, if enchanted creature's power is 4 or greater, destroy Arachnus Web.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Autumn's Veil
+text=Spells you control can't be countered by blue or black spells this turn, and creatures you control can't be the targets of blue or black spells this turn.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Chandra, the Firebrand
+text=+1: Chandra, the Firebrand deals 1 damage to target creature or player. -- -2: When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- -6: Chandra, the Firebrand deals 6 damage to each of up to six target creatures and/or players.
+mana={3}{R}
+type=Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Doubling Chant
+text=For each creature you control, you may search your library for a creature card with the same name as that creature. Put those cards onto the battlefield, then shuffle your library.
+mana={5}{G}
+type=Sorcery
+[/card]
+[card]
+name=Frost Titan
+text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn't untap during its controller's next untap step.
+mana={4}{U}{U}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Garruk's Horde
+text=Trample  -- Play with the top card of your library revealed. -- You may cast the top card of your library if it's a creature card. (Do this only any time you could cast that creature card. You still pay the spell's costs.)
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=7
+toughness=7
+[/card]
+[card]
+name=Gideon Jura
+text=+2: During target opponent's next turn, creatures that player controls attack Gideon Jura if able. -- -2: Destroy target tapped creature. -- 0: Until end of turn, Gideon Jura becomes a 6/6 Human Soldier creature that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
+mana={3}{W}{W}
+type=Planeswalker
+subtype=Gideon
+[/card]
+[card]
+name=Inferno Titan
+text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
+mana={4}{R}{R}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Master Thief
+text=When Master Thief enters the battlefield, gain control of target artifact for as long as you control Master Thief.
+mana={2}{U}{U}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Monomania
+text=Target player chooses a card in his or her hand and discards the rest.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Redirect
+text=You may choose new targets for target spell.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+name=Scrambleverse
+text=For each nonland permanent, choose a player at random. Then each player gains control of each permanent for which he or she was chosen. Untap those permanents.
+mana={6}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Skinshifter
+text={G}: Choose one — Until end of turn, Skinshifter becomes a 4/4 Rhino and gains trample; or until end of turn, Skinshifter becomes a 2/2 Bird and gains flying; or until end of turn, Skinshifter becomes a 0/8 Plant. Activate this ability only once each turn.
+mana={1}{G}
+type=Creature
+subtype=Human Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Sorin Markov
+text=+2: Sorin Markov deals 2 damage to target creature or player and you gain 2 life. -- -3: Target opponent's life total becomes 10. -- -7: You control target player during that player's next turn.
+mana={3}{B}{B}{B}
+type=Planeswalker
+subtype=Sorin
+[/card]
+[card]
+name=Sphinx of Uthuun
+text=Flying -- When Sphinx of Uthuun enters the battlefield, reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=6
+[/card]
+[card]
+name=Sundial of the Infinite
+text={1}, {T}: End the turn. Activate this ability only during your turn. (Exile all spells and abilities on the stack. Discard down to your maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Sutured Ghoul
+text=Trample -- As Sutured Ghoul enters the battlefield, exile any number of creature cards from your graveyard. -- Sutured Ghoul's power is equal to the total power of the exiled cards and its toughness is equal to their total toughness.
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Zombie
+power=*
+toughness=*
+[/card]

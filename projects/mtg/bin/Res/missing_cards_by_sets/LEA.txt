@@ -1,0 +1,279 @@
+[card]
+name=Benalish Hero
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Blaze of Glory
+text=Cast Blaze of Glory only during combat before blockers are declared. -- Target creature defending player controls can block any number of creatures this turn. It blocks each attacking creature this turn if able.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Camouflage
+text=Cast Camouflage only during your declare attackers step. -- This turn, instead of declaring blockers, each defending player chooses any number of creatures he or she controls and divides them into a number of piles equal to the number of attacking creatures for whom that player is the defending player. Creatures he or she controls that can block additional creatures may likewise be put into additional piles. Assign each pile to a different one of those attacking creatures at random. Each creature in a pile that can block the creature that pile is assigned to does so. (Piles can be empty.)
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Channel
+text=Until end of turn, any time you could activate a mana ability, you may pay 1 life. If you do, add {1} to your mana pool.
+mana={G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Chaos Orb
+text={1}, {T}: If Chaos Orb is on the battlefield, flip Chaos Orb onto the battlefield from a height of at least one foot. If Chaos Orb turns over completely at least once during the flip, destroy all permanents it touches. Then destroy Chaos Orb.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Contract from Below
+text=Remove Contract from Below from your deck before playing if you're not playing for ante. -- Discard your hand, add the top card of your library to the ante, then draw seven cards.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Darkpact
+text=Remove Darkpact from your deck before playing if you're not playing for ante. -- You own target card in the ante. Exchange that card with the top card of your library.
+mana={B}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Demonic Attorney
+text=Remove Demonic Attorney from your deck before playing if you're not playing for ante. -- Each player antes the top card of his or her library.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Drain Power
+text=Target player activates a mana ability of each land he or she controls. Then put all mana from that player's mana pool into yours.
+mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=False Orders
+text=Cast False Orders only during the declare blockers step.  -- Remove target creature defending player controls from combat. Creatures it was blocking that had become blocked by only that creature this combat become unblocked. You may have it block an attacking creature of your choice.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Forcefield
+text={1}: The next time an unblocked creature of your choice would deal combat damage to you this turn, prevent all but 1 of that damage.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Gaea's Liege
+text=As long as Gaea's Liege isn't attacking, its power and toughness are each equal to the number of Forests you control. As long as Gaea's Liege is attacking, its power and toughness are each equal to the number of Forests defending player controls. -- {T}: Target land becomes a Forest until Gaea's Liege leaves the battlefield.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
+[/card]
+[card]
+name=Gloom
+text=White spells cost {3} more to cast. -- Activated abilities of white enchantments cost {3} more to activate.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Guardian Angel
+text=Prevent the next X damage that would be dealt to target creature or player this turn. Until end of turn, you may pay {1} any time you could cast an instant. If you do, prevent the next 1 damage that would be dealt to that creature or player this turn.
+mana={X}{W}
+type=Instant
+[/card]
+[card]
+name=Helm of Chatzuk
+text={1}, {T}: Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Illusionary Mask
+text={X}: You may choose a creature card in your hand whose mana cost could be paid by some amount of, or all of, the mana you spent on {X}. If you do, you may cast that card face down as a 2/2 creature spell without paying its mana cost. If the creature that spell becomes as it resolves has not been turned face up and would assign or deal damage, be dealt damage, or become tapped, instead it's turned face up and assigns or deals damage, is dealt damage, or becomes tapped. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Island Sanctuary
+text=If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and/or islandwalk.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Jade Monolith
+text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Jade Statue
+text={2}: Jade Statue becomes a 3/6 Golem artifact creature until end of combat. Activate this ability only during combat.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Library of Leng
+text=You have no maximum hand size. -- If an effect causes you to discard a card, discard it, but you may put it on top of your library instead of into your graveyard.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Lich
+text=As Lich enters the battlefield, you lose life equal to your life total. -- You don't lose the game for having 0 or less life. -- If you would gain life, draw that many cards instead. -- Whenever you're dealt damage, sacrifice that many nontoken permanents. If you can't, you lose the game. -- When Lich is put into a graveyard from the battlefield, you lose the game.
+mana={B}{B}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Magical Hack
+text=Change the text of target spell or permanent by replacing all instances of one basic land type with another. (For example, you may change "swampwalk" to "plainswalk." This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Mesa Pegasus
+text=Flying; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Creature
+subtype=Pegasus
+power=1
+toughness=1
+[/card]
+[card]
+name=Nether Shadow
+text=Haste -- At the beginning of your upkeep, if Nether Shadow is in your graveyard with three or more creature cards above it, you may put Nether Shadow onto the battlefield.
+mana={B}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Nettling Imp
+text={T}: Choose target non-Wall creature the active player has controlled continuously since the beginning of the turn. That creature attacks this turn if able. If it doesn't, destroy it at the beginning of the next end step. Activate this ability only during an opponent's turn, before attackers are declared.
+mana={2}{B}
+type=Creature
+subtype=Imp
+power=1
+toughness=1
+[/card]
+[card]
+name=Personal Incarnation
+text={0}: The next 1 damage that would be dealt to Personal Incarnation this turn is dealt to its owner instead. Any player may activate this ability, but only if he or she owns Personal Incarnation. -- When Personal Incarnation dies, its owner loses half his or her life, rounded up.
+mana={3}{W}{W}{W}
+type=Creature
+subtype=Avatar Incarnation
+power=6
+toughness=6
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Power Surge
+text=At the beginning of each player's upkeep, Power Surge deals X damage to that player, where X is the number of untapped lands he or she controlled at the beginning of this turn.
+mana={R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Raging River
+text=Whenever one or more creatures you control attack, each defending player divides all creatures without flying he or she controls into a "left" pile and a "right" pile. Then, for each attacking creature you control, choose "left" or "right." That creature can't be blocked this combat except by creatures with flying and creatures in a pile with the chosen label.
+mana={R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Reverse Damage
+text=The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.
+mana={1}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Siren's Call
+text=Cast Siren's Call only during an opponent's turn, before attackers are declared. -- Creatures the active player controls attack this turn if able. -- At the beginning of the next end step, destroy all non-Wall creatures that player controls that didn't attack this turn. Ignore this effect for each creature the player didn't control continuously since the beginning of the turn.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Sleight of Mind
+text=Change the text of target spell or permanent by replacing all instances of one color word with another. (For example, you may change "target black spell" to "target blue spell." This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Smoke
+text=Players can't untap more than one creature during their untap steps.
+mana={R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Stone Giant
+text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
+mana={2}{R}{R}
+type=Creature
+subtype=Giant
+power=3
+toughness=4
+[/card]
+[card]
+name=Timber Wolves
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={G}
+type=Creature
+subtype=Wolf
+power=1
+toughness=1
+[/card]
+[card]
+name=Time Vault
+text=Time Vault enters the battlefield tapped. -- Time Vault doesn't untap during your untap step. -- If you would begin your turn while Time Vault is tapped, you may skip that turn instead. If you do, untap Time Vault. -- {T}: Take an extra turn after this one.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Two-Headed Giant of Foriys
+text=Trample -- Two-Headed Giant of Foriys can block an additional creature.
+mana={4}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=4
+[/card]
+[card]
+name=Vesuvan Doppelganger
+text=You may have Vesuvan Doppelganger enter the battlefield as a copy of any creature on the battlefield except it doesn't copy that creature's color and it gains "At the beginning of your upkeep, you may have this creature become a copy of target creature except it doesn't copy that creature's color. If you do, this creature gains this ability."
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Veteran Bodyguard
+text=As long as Veteran Bodyguard is untapped, all damage that would be dealt to you by unblocked creatures is dealt to Veteran Bodyguard instead.
+mana={3}{W}{W}
+type=Creature
+subtype=Human
+power=2
+toughness=5
+[/card]
+[card]
+name=Winter Orb
+text=As long as Winter Orb is untapped, players can't untap more than one land during their untap steps.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Word of Command
+text=Look at target opponent's hand and choose a card from it. You control that player until Word of Command finishes resolving. The player plays that card if able. While doing so, the player can activate mana abilities only if they're from lands he or she controls and only if mana they produce is spent to activate other mana abilities of lands he or she controls and/or play that card. If the chosen card is cast as a spell, you control the player while that spell is resolving.
+mana={B}{B}
+type=Instant
+[/card]
