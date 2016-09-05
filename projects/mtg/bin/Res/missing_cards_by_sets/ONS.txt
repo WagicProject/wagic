@@ -254,12 +254,6 @@ mana={1}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Weird Harvest
-text=Each player may search his or her library for up to X creature cards, reveal those cards, and put them into his or her hand. Then each player who searched his or her library this way shuffles it.
-mana={X}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Words of War
 text={1}: The next time you would draw a card this turn, Words of War deals 2 damage to target creature or player instead.
 mana={2}{R}
