@@ -233,7 +233,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
     {
         bool isOpponentAI = opponent->isAI() == 1;
         DeckMetaData *meta = observer->getDeckManager()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI);
-        if ( meta && meta->getVictoryPercentage() >= 65)
+        if ( meta && meta->getVictoryPercentage() >= 81)
             deckSetting = HARD;
     }
     
@@ -320,7 +320,7 @@ AIPlayer * AIPlayerFactory::createAIPlayerTest(GameObserver *observer, MTGAllCar
     {
         bool isOpponentAI = opponent->isAI() == 1;
         DeckMetaData *meta = observer->getDeckManager()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI);
-        if ( meta->getVictoryPercentage() >= 65)
+        if ( meta->getVictoryPercentage() >= 81)
             deckSetting = HARD;
     }
     
