@@ -981,6 +981,8 @@ void GameStateDuel::Update(float dt)
                 }
                 //END almosthumane - mulligan
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
+				menu->Add(MENUITEM_CONCEDE_GAME, "Concede Game");
+				
 #ifdef TESTSUITE
                 menu->Add(MENUITEM_UNDO, "Undo");
 #endif
@@ -1712,6 +1714,13 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             //delete menu and display score
             setGamePhase(DUEL_STATE_MENU_TO_SCORE);
             break;
+        case MENUITEM_CONCEDE_GAME:
+          // This is a hack for 1-Player mode, it won't work in 2-player mode:
+          //if (mParent->players[0] ==  PLAYER_TYPE_HUMAN) {
+            game->players[0]->life = -99;
+			menu->Close();
+			setGamePhase(DUEL_STATE_CANCEL);
+			break;
         case MENUITEM_MAIN_MENU:
             menu->Close();
             setGamePhase(DUEL_STATE_BACK_TO_MAIN_MENU);
