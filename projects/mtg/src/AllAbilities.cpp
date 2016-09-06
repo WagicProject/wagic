@@ -6913,6 +6913,137 @@ ABlockSetCost * ABlockSetCost::clone() const
     return NEW ABlockSetCost(*this);
 }
 
+//ASeize
+ASeize::ASeize(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target) :
+MTGAbility(observer, _id, card)
+{
+    target = _target;
+    Seized = NULL;
+    previousController = NULL;
+    resolved = false;
+}
+
+void ASeize::Update(float dt)
+{
+    if (resolved == false)
+    {
+        resolved = true;
+        resolveSeize();
+    }
+
+    if (!source->isInPlay(game))
+    {
+            if (Seized == NULL || !Seized->isInPlay(game))
+                MTGAbility::Update(dt);
+            MTGCardInstance * _target = Seized;
+            returntoOwner(_target);
+    }
+    MTGAbility::Update(dt);
+}
+
+void ASeize::resolveSeize()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        previousController = _target->controller();
+        previousController->game->putInZone(_target, _target->currentZone,
+            source->controller()->game->inPlay);
+        Seized = _target;
+        source->seized = Seized;
+        Seized->seized = source;
+    }
+}
+
+void ASeize::returntoOwner(MTGCardInstance* _target) {
+    MTGCardInstance * cardToReturn = _target;
+    if(!cardToReturn)
+    {
+        if (source)
+            source->seized = NULL;
+        this->forceDestroy = 1;
+        return;
+    }
+    if(previousController && cardToReturn->isInPlay(game))
+    {
+        cardToReturn->seized = NULL;
+        cardToReturn->controller()->game->putInZone(_target, _target->currentZone,
+            previousController->game->inPlay);
+    }
+    if (source)
+        source->seized = NULL;
+    this->forceDestroy = 1;
+    Seized = NULL;
+    return;
+}
+
+int ASeize::resolve()
+{
+    return 0;
+}
+
+int ASeize::receiveEvent(WEvent * event)
+{
+    WEventCardControllerChange * enters = dynamic_cast<WEventCardControllerChange *> (event);
+    if (enters && source)
+    {
+        if(enters->card == source)
+        {
+            if(Seized && Seized->controller() != enters->card->controller())
+                returntoOwner(Seized);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+const string ASeize::getMenuText()
+{
+    return "Gain Control";
+}
+
+ASeize * ASeize::clone() const
+{
+    ASeize * a = NEW ASeize(*this);
+    a->forceDestroy = -1;
+    return a;
+};
+ASeize::~ASeize()
+{
+}
+
+ASeizeWrapper::ASeizeWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target) :
+    InstantAbility(observer, _id, source, _target)
+{
+    ability = NEW ASeize(observer, _id,card,_target);
+}
+
+int ASeizeWrapper::resolve()
+{
+    ASeize * a = ability->clone();
+    a->target = target;
+    a->addToGame();
+    return 1;
+}
+
+const string ASeizeWrapper::getMenuText()
+{
+    return "Gain Control";
+}
+
+ASeizeWrapper * ASeizeWrapper::clone() const
+{
+    ASeizeWrapper * a = NEW ASeizeWrapper(*this);
+    a->ability = this->ability->clone();
+    a->oneShot = 1;
+    return a;
+}
+
+ASeizeWrapper::~ASeizeWrapper()
+{
+    SAFE_DELETE(ability);
+}
+
 //AShackle
 AShackle::AShackle(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target) :
 MTGAbility(observer, _id, card)

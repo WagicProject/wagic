@@ -68,15 +68,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Master Thief
-text=When Master Thief enters the battlefield, gain control of target artifact for as long as you control Master Thief.
-mana={2}{U}{U}
-type=Creature
-subtype=Human Rogue
-power=2
-toughness=2
-[/card]
-[card]
 name=Monomania
 text=Target player chooses a card in his or her hand and discards the rest.
 mana={3}{B}{B}

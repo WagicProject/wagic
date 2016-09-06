@@ -5386,6 +5386,38 @@ public:
     ABlockSetCost * clone() const;
 };
 
+//ASeize
+class ASeize: public MTGAbility
+{
+public:
+    MTGCardInstance * Seized;
+    Player * previousController;
+    bool resolved;
+    ASeize(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target);
+    void Update(float dt);
+    void resolveSeize();
+    int resolve();
+    int receiveEvent(WEvent * event);
+    const string getMenuText();
+    ASeize * clone() const;
+    ~ASeize();
+private:
+    void returntoOwner(MTGCardInstance *_target);
+};
+
+//SeizeWrapper
+class ASeizeWrapper: public InstantAbility
+{
+public:
+    ASeize * ability;
+    ASeizeWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target);
+    int resolve();
+    const string getMenuText();
+    ASeizeWrapper * clone() const;
+    ~ASeizeWrapper();
+
+};
+
 //AShackle
 class AShackle: public MTGAbility
 {
@@ -5416,6 +5448,7 @@ public:
     ~AShackleWrapper();
 
 };
+
 //Grant
 class AGrant : public MTGAbility
 {
@@ -5448,6 +5481,7 @@ public:
     ~AGrantWrapper();
 
 };
+
 //ABlink
 class ABlink: public MTGAbility
 {

@@ -124,15 +124,6 @@ mana={R}
 type=Enchantment
 [/card]
 [card]
-name=Roil Elemental
-text=Flying -- Landfall — Whenever a land enters the battlefield under your control, you may gain control of target creature for as long as you control Roil Elemental.
-mana={3}{U}{U}{U}
-type=Creature
-subtype=Elemental
-power=3
-toughness=2
-[/card]
-[card]
 name=Sorin Markov
 text=+2: Sorin Markov deals 2 damage to target creature or player and you gain 2 life. -- -3: Target opponent's life total becomes 10. -- -7: You control target player during that player's next turn.
 mana={3}{B}{B}{B}
