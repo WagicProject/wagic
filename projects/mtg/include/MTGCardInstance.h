@@ -174,6 +174,7 @@ public:
     MTGCardInstance * createSnapShot();
     MTGCardInstance * storedSourceCard;
     MTGCardInstance * shackled;
+    MTGCardInstance * seized;
     MTGCardInstance * isDefenser();
     int initAttackersDefensers();
     MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);

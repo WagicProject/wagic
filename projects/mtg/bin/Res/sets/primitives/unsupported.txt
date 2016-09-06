@@ -4041,15 +4041,6 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Dragonlord Silumgar
-text=Flying, deathtouch -- When Dragonlord Silumgar enters the battlefield, gain control of target creature or planeswalker for as long as you control Dragonlord Silumgar.
-mana={4}{U}{B}
-type=Legendary Creature
-subtype=Elder Dragon
-power=3
-toughness=5
-[/card]
-[card]
 name=Dragonlord's Prerogative
 text=As an additional cost to cast Dragonlord's Prerogative, you may reveal a Dragon card from your hand. -- If you revealed a Dragon card or controlled a Dragon as you cast Dragonlord's Prerogative, Dragonlord's Prerogative can't be countered. -- Draw four cards.
 mana={4}{U}{U}
@@ -9463,15 +9454,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Master Thief
-text=When Master Thief enters the battlefield, gain control of target artifact for as long as you control Master Thief.
-mana={2}{U}{U}
-type=Creature
-subtype=Human Rogue
-power=2
-toughness=2
-[/card]
-[card]
 name=Master Warcraft
 text=Cast Master Warcraft only before attackers are declared. -- You choose which creatures attack this turn. -- You choose which creatures block this turn and how those creatures block.
 mana={2}{RW}{RW}
@@ -11060,15 +11042,6 @@ text=Enchant land -- Orcish Mine enters the battlefield with three ore counters 
 mana={1}{R}{R}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Orcish Squatters
-text=Whenever Orcish Squatters attacks and isn't blocked, you may gain control of target land defending player controls for as long as you control Orcish Squatters. If you do, Orcish Squatters assigns no combat damage this turn.
-mana={4}{R}
-type=Creature
-subtype=Orc
-power=2
-toughness=3
 [/card]
 [card]
 name=Ordeal of Erebos
@@ -13200,15 +13173,6 @@ name=Rofellos's Gift
 text=Reveal any number of green cards in your hand. Return an enchantment card from your graveyard to your hand for each card revealed this way.
 mana={G}
 type=Sorcery
-[/card]
-[card]
-name=Roil Elemental
-text=Flying -- Landfall — Whenever a land enters the battlefield under your control, you may gain control of target creature for as long as you control Roil Elemental.
-mana={3}{U}{U}{U}
-type=Creature
-subtype=Elemental
-power=3
-toughness=2
 [/card]
 [card]
 name=Roiling Waters
@@ -16496,15 +16460,6 @@ text=Equipped creature gets +2/+0. -- Whenever equipped creature attacks, you ma
 mana={2}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Thrull Champion
-text=Thrull creatures get +1/+1. -- {T}: Gain control of target Thrull for as long as you control Thrull Champion.
-mana={4}{B}
-type=Creature
-subtype=Thrull
-power=2
-toughness=2
 [/card]
 [card]
 name=Thrull Parasite
