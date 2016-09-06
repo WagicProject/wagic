@@ -46,10 +46,15 @@ void GameStateOptions::Start()
                         OptionDifficulty::getInstance()));
         optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::ECON_DIFFICULTY, "Economic Difficuly", Constants::ECON_EASY)));
     }
-    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 45, 1));
     optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
-   // optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));
+	optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));
     //this is a dev option, not meant for standard play. uncomment if you need to see abilities you own hitting the stack.
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_UPKEEP, "Interrupt opponent's Upkeep"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_FIRSTMAIN, "Interrupt opponent's First Main"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_BEGINCOMBAT, "Interrupt opponent's Combat Begins"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_ATTACKERS, "Interrupt after opponent's Attackers"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_BLOCKERS, "Interrupt after opponent's Blockers"));
     optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDMAIN, "Interrupt opponent's end of turn"));
     optionsTabs = NEW WGuiTabMenu();
     optionsTabs->Add(optionsList);
