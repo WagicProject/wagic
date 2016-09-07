@@ -339,6 +339,14 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+name=Mogg Infestation
+target=player
+auto=all(creature|targetedpersonsbattlefield) destroy and!( if cantargetcard(creature|graveyard) then makecardt(Goblin:Creature Goblin:1/1:red)*2 )!
+mana={3}{R}{R}
+type=Sorcery
+text=Destroy all creatures target player controls. For each creature that died this way, put two 1/1 red Goblin creature tokens onto the battlefield under that player's control.
+[/card]
+[card]
 name=Necropotence
 #exile cards are faceup
 auto=@movedTo(*|mygraveyard):all(trigger[to]) moveTo(exile)
