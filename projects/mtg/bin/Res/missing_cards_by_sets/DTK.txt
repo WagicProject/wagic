@@ -44,15 +44,6 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Dragonlord Silumgar
-text=Flying, deathtouch -- When Dragonlord Silumgar enters the battlefield, gain control of target creature or planeswalker for as long as you control Dragonlord Silumgar.
-mana={4}{U}{B}
-type=Legendary Creature
-subtype=Elder Dragon
-power=3
-toughness=5
-[/card]
-[card]
 name=Dragonlord's Prerogative
 text=As an additional cost to cast Dragonlord's Prerogative, you may reveal a Dragon card from your hand. -- If you revealed a Dragon card or controlled a Dragon as you cast Dragonlord's Prerogative, Dragonlord's Prerogative can't be countered. -- Draw four cards.
 mana={4}{U}{U}

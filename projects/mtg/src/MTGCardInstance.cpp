@@ -237,6 +237,7 @@ void MTGCardInstance::initMTGCI()
     storedSourceCard = NULL;
     myPair = NULL;
     shackled = NULL;
+    seized = NULL;
     miracle = false;
     hasCopiedToken = false;
     countTrini = 0;

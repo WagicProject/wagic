@@ -3903,10 +3903,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //steal target until source leaves battlefield
     found = s.find("steal");
     if (found != string::npos)
     {
-        MTGAbility * a = NEW AInstantControlSteal(observer, id, card, target);
+        MTGAbility * a = NEW ASeizeWrapper(observer, id, card, target);
         a->oneShot = 1;
         return a;
     }

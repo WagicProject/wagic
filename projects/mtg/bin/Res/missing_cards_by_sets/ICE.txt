@@ -491,15 +491,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Orcish Squatters
-text=Whenever Orcish Squatters attacks and isn't blocked, you may gain control of target land defending player controls for as long as you control Orcish Squatters. If you do, Orcish Squatters assigns no combat damage this turn.
-mana={4}{R}
-type=Creature
-subtype=Orc
-power=2
-toughness=3
-[/card]
-[card]
 name=Pentagram of the Ages
 text={4}, {T}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
 mana={4}
