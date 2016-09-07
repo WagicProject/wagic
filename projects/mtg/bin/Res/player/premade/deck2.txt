@@ -1,0 +1,19 @@
+#NAME:Blue White Precon
+#DESC:A Blue/White deck with simple mechanics to get you started. We recommend you create your own decks to get the full Wagic experience!
+
+Island (LEA) *9
+Plains (LEA) *10
+Coastal Tower (8ed) *4
+
+Unsummon (LEA) *4
+Angelic Wall (AVR) *4
+Merfolk of the Pearl Trident (LEA) *4
+Mahamoti Djinn (LEA)
+Cloud Elemental (m11) *4
+Levitation (M12) *2
+
+Sky Spirit (VVK) *4
+Condemn (m11) *4
+Pacifism (M13) *2
+Savannah Lions (LEA) *4
+White Knight (LEA) *4
