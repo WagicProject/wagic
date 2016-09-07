@@ -398,7 +398,7 @@ void GameStateShop::load()
             mInventory[i] = 4;
             break;
         case Constants::RARITY_L:
-            mInventory[i] = 100;
+            mInventory[i] = 1000;
             break;
         default: //We're using some non-coded rarities (S) in cards.dat.
         case Constants::RARITY_U:
