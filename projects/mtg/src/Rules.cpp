@@ -106,7 +106,7 @@ RulesPlayerData::~RulesPlayerData()
 
 RulesState::RulesState()
 {
-    phase = MTG_PHASE_FIRSTMAIN;
+    phase = MTG_PHASE_DRAW;
     player = 0;
 }
 
