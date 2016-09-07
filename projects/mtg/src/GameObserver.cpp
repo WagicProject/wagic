@@ -1042,7 +1042,7 @@ void GameObserver::gameStateBasedEffects()
         if ((opponent()->isAI() && !(isInterrupting)) && ((mCurrentGamePhase == MTG_PHASE_UNTAP)
             || (mCurrentGamePhase == MTG_PHASE_DRAW)
 			|| (mCurrentGamePhase == MTG_PHASE_COMBATBEGIN)
-            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0))
+            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (currentPlayer->noPossibleAttackers()))
             || mCurrentGamePhase == MTG_PHASE_COMBATEND
 			|| mCurrentGamePhase == MTG_PHASE_ENDOFTURN
             || ((mCurrentGamePhase == MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
