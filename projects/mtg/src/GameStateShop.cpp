@@ -377,7 +377,7 @@ void GameStateShop::load()
     for (int i = 0; i < BOOSTER_SLOTS; i++)
     {
         mBooster[i].randomize(packlist);
-        mInventory[i] = 1 + rand() % mBooster[i].maxInventory();
+        mInventory[i] = 36 + rand() % mBooster[i].maxInventory();
         mPrices[i] = pricelist->getOtherPrice(mBooster[i].basePrice());
     }
     for (int i = BOOSTER_SLOTS; i < SHOP_ITEMS; i++)
@@ -395,20 +395,25 @@ void GameStateShop::load()
         switch (c->getRarity())
         {
         case Constants::RARITY_C:
-            mInventory[i] = 2 + rand() % 8;
+            mInventory[i] = 4;
             break;
         case Constants::RARITY_L:
             mInventory[i] = 100;
             break;
         default: //We're using some non-coded rarities (S) in cards.dat.
         case Constants::RARITY_U:
-            mInventory[i] = 1 + rand() % 5;
+            mInventory[i] = 4;
             break;
         case Constants::RARITY_R:
-            mInventory[i] = 1 + rand() % 2;
+            mInventory[i] = 4;
+            break;
+		case Constants::RARITY_M:
+            mInventory[i] = 4;
+            break;
+		case Constants::RARITY_S:
+            mInventory[i] = 4;
             break;
         }
-
     }
 }
 void GameStateShop::save(bool force)
@@ -737,7 +742,7 @@ void GameStateShop::Render()
             bigDisplay->Render();
             float elp = srcCards->getElapsed();
             //Render the card list overlay.
-            if (bListCards || elp > LIST_FADEIN)
+            if (bListCards)// || elp > LIST_FADEIN)
             {
                 int alpha = 200;
                 if (!bListCards && elp < LIST_FADEIN + .25)

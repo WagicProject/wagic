@@ -361,6 +361,10 @@ MTGPack * MTGPacks::getDefault()
                 ps->addEntry(NEW MTGPackEntryRandom("rarity:rare;"));
             defaultBooster.slotss.push_back(ps);
             ps = NEW MTGPackSlot();
+            ps->copies = 1;
+			ps->addEntry(NEW MTGPackEntryRandom("rarity:special;"));
+            defaultBooster.slotss.push_back(ps);
+            ps = NEW MTGPackSlot();
             ps->copies = 3;
             ps->addEntry(NEW MTGPackEntryRandom("rarity:uncommon;"));
             defaultBooster.slotss.push_back(ps);
@@ -374,10 +378,10 @@ MTGPack * MTGPacks::getDefault()
             defaultBooster.slotss.push_back(ps);
             defaultBooster.bValid = true;
             defaultBooster.unlockStatus = 1;
-            for (size_t i = 0; i <  defaultBooster.slotss.size(); ++ i)
-            {
-                defaultBooster.slotss[i]->addEntry(NEW MTGPackEntryRandom("rarity:special;"));
-            }
+            //for (size_t i = 0; i <  defaultBooster.slotss.size(); ++ i)
+            //{
+            //    defaultBooster.slotss[i]->addEntry(NEW MTGPackEntryRandom("rarity:special;"));
+            //}
         }
     }
     return &defaultBooster;
