@@ -560,6 +560,14 @@ private:
         {
             intValue = card->controller()->opponent()->raidcount;
         }
+        else if (s == "pstormcount")
+        {
+            intValue = card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+        }
+        else if (s == "ostormcount")
+        {
+            intValue = card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+        }
         else if (s == "countallspell")
         {
             intValue = card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
@@ -4513,6 +4521,19 @@ public:
     const string getMenuText();
     AAAlterPoison * clone() const;
     ~AAAlterPoison();
+};
+//Energy Counter
+class AAAlterEnergy: public ActivatedAbilityTP
+{
+public:
+    int energy;
+
+    AAAlterEnergy(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int energy, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterEnergy * clone() const;
+    ~AAAlterEnergy();
 };
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager: public TargetAbility

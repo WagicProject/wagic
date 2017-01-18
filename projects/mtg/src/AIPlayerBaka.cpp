@@ -595,6 +595,13 @@ int OrderedAIAction::getEfficiency()
             efficiency = 90;
         }
     }
+    else if (dynamic_cast<AAAlterEnergy *>(a))
+    {
+        if (playerAbilityTarget && playerAbilityTarget == p)
+        {
+            efficiency = 90;
+        }
+    }
     else if (ATokenCreator * atc = dynamic_cast<ATokenCreator *>(a))
     {
         efficiency = 80;

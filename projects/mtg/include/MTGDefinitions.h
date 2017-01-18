@@ -262,7 +262,9 @@ class Constants
       CONDUITED = 140,
       CANBLOCKTAPPED = 141,
       OPPNOMAXHAND = 142,
-      NB_BASIC_ABILITIES = 143,
+      CANTCREW = 143,
+      HIDDENFACE = 144,
+      NB_BASIC_ABILITIES = 145,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

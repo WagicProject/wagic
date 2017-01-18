@@ -329,6 +329,37 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 if(!count)
                     return 0;
         }
+        check = restriction[i].find("revolt");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->hand->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * tCard = player->game->hand->cardsSeenThisTurn[k];
+                    if(tCard && tCard->previousZone == card->controller()->game->battlefield)
+                        count++;
+                }
+                for(unsigned int k = 0; k < player->game->exile->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * tCard = player->game->exile->cardsSeenThisTurn[k];
+                    if(tCard && tCard->previousZone == card->controller()->game->battlefield)
+                        count++;
+                }
+                for(unsigned int k = 0; k < player->game->library->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * tCard = player->game->library->cardsSeenThisTurn[k];
+                    if(tCard && tCard->previousZone == card->controller()->game->battlefield)
+                        count++;
+                }
+                for(unsigned int k = 0; k < player->game->graveyard->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * tCard = player->game->graveyard->cardsSeenThisTurn[k];
+                    if(tCard && tCard->previousZone == card->controller()->game->battlefield)
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
         check = restriction[i].find("morbid");
         if(check != string::npos)
         {
@@ -2945,6 +2976,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         int poison = atoi(splitPoison[1].c_str());
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AAAlterPoison(observer, id, card, t, poison, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //alter energy
+    vector<string> splitEnergy = parseBetween(s, "alterenergy:", " ", false);
+    if (splitEnergy.size())
+    {
+        int energy = atoi(splitEnergy[1].c_str());
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterEnergy(observer, id, card, t, energy, NULL, who);
         a->oneShot = 1;
         return a;
     }

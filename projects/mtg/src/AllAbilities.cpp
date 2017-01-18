@@ -1010,6 +1010,40 @@ AAAlterPoison::~AAAlterPoison()
 {
 }
 
+//AA Energy Counters
+AAAlterEnergy::AAAlterEnergy(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int energy, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), energy(energy)
+{
+}
+
+int AAAlterEnergy::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+            pTarget->energyCount += energy;
+    }
+    return 0;
+}
+
+const string AAAlterEnergy::getMenuText()
+{
+    WParsedInt parsedNum(energy);
+    return _(parsedNum.getStringValue() + " Energy ").c_str();
+}
+
+AAAlterEnergy * AAAlterEnergy::clone() const
+{
+    return NEW AAAlterEnergy(*this);
+}
+
+AAAlterEnergy::~AAAlterEnergy()
+{
+}
+
 //Damage Prevent
 AADamagePrevent::AADamagePrevent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int preventing, ManaCost * _cost,
         int who) :
@@ -2008,6 +2042,12 @@ int AAProliferate::resolve()
     if(pTarget && pTarget->poisonCount && pTarget != source->controller())
     {
         MTGAbility * a = NEW AAAlterPoison(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
+        a->oneShot = true;
+        pcounters.push_back(a);
+    }
+    else if(pTarget && pTarget->energyCount && pTarget == source->controller())
+    {
+        MTGAbility * a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
@@ -7909,17 +7949,9 @@ int AACastCard::resolveSpell()
     }
     if (_target)
     {
-        
         if (_target->isLand())
-        {
-            MTGCardInstance * copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->temp,noEvent);
-            copy->changeController(source->controller(),true);
-            Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, 1);
-            spell->resolve();
-            delete spell;
-        }
-        else
-        {
+            putinplay = true;
+
             Spell * spell = NULL;
             MTGCardInstance * copy = NULL;
             if ((normal || asNormalMadness)||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
@@ -7943,12 +7975,24 @@ int AACastCard::resolveSpell()
             if (game->targetChooser)
             {
                 game->targetChooser->Owner = source->controller();
-                spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                if(putinplay)
+                {
+                    spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
+                    spell->resolve();
+                }
+                else
+                    spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
                 game->targetChooser = NULL;
             }
             else
             {
-                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+                if(putinplay)
+                {
+                    spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
+                    spell->resolve();
+                }
+                else
+                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
             }
 
             if (copy->has(Constants::STORM))
@@ -7980,7 +8024,7 @@ int AACastCard::resolveSpell()
                     andAbilityClone->addToGame();
                 }
             }
-        }
+
         this->forceDestroy = true;
         processed = true;
         return 1;

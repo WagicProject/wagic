@@ -533,6 +533,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     // Draw the "unknown" card model
     JRenderer * renderer = JRenderer::GetInstance();
     JQuadPtr q;
+    MTGCardInstance * thiscard = dynamic_cast<MTGCardInstance*> (card);
 
     float x = pos.actX;
    
@@ -553,6 +554,14 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     items.clear();
     if (q.get() && q->mTex)
     {
+        //test
+        //draw black border ingame only
+        if(thiscard && thiscard->getObserver())
+        {
+            renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
+            renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
+        }
+
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
 
         float scale = pos.actZ * 250 / q->mHeight;
