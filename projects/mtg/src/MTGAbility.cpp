@@ -541,6 +541,14 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
 
+        check = restriction[i].find("outnumbered");//opponent controls atleast 4 or more creatures than you
+        if(check != string::npos)
+        {
+            bool isoutnumbered = (card->controller()->opponent()->inPlay()->countByType("creature") - card->controller()->inPlay()->countByType("creature"))>3;
+            if(!isoutnumbered)
+                return 0;
+        }
+
         check = restriction[i].find("hasdefender");
         if(check != string::npos)
         {
