@@ -552,6 +552,14 @@ private:
                     intValue +=1;
             }
         }
+        else if (s == "penergy")
+        {
+            intValue = card->controller()->energyCount;
+        }
+        else if (s == "oenergy")
+        {
+            intValue = card->controller()->opponent()->energyCount;
+        }
         else if (s == "praidcount")
         {
             intValue = card->controller()->raidcount;
