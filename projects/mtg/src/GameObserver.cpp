@@ -213,6 +213,7 @@ void GameObserver::nextGamePhase()
         currentPlayer->nonCombatDamage = 0;
         currentPlayer->drawCounter = 0;
         currentPlayer->raidcount = 0;
+        currentPlayer->dealsdamagebycombat = 0; //clear check for restriction
         currentPlayer->opponent()->raidcount = 0;
         currentPlayer->prowledTypes.clear();
         currentPlayer->opponent()->damageCount = 0; //added to clear odcount

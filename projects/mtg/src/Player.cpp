@@ -37,6 +37,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     energyCount = 0;
     epic = 0;
     forcefield = 0;
+    dealsdamagebycombat = 0;
     raidcount = 0;
     handmodifier = 0;
     snowManaG = 0;

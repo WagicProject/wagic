@@ -45,6 +45,7 @@ public:
     int energyCount;
     int epic;
     int forcefield;
+    int dealsdamagebycombat;
     int initLife;
     int raidcount;
     int handmodifier;

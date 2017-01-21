@@ -540,6 +540,14 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(card->controller()->raidcount < 1)
                 return 0;
         }
+        
+
+        check = restriction[i].find("opponentdamagedbycombat");
+        if(check != string::npos)
+        {
+            if(card->controller()->dealsdamagebycombat < 1)
+                return 0;
+        }
 
         check = restriction[i].find("outnumbered");//opponent controls atleast 4 or more creatures than you
         if(check != string::npos)
