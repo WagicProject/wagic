@@ -266,6 +266,7 @@ public:
     int myconvertedcost;
     ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false);
     int countTrini;
+    bool anymanareplacement;
     vector<MTGCardInstance*>imprintedCards;
     int attackCost;
     int attackCostBackup;

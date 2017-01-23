@@ -68,12 +68,6 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
-name=Oath of Nissa
-text=When Oath of Nissa enters the battlefield, look at the top three cards of your library. You may reveal a creature, land, or planeswalker card from among them and put it into your hand. Put the rest on the bottom of your library in any order. -- You may spend mana as though it were mana of any color to cast planeswalker spells.
-mana={G}
-type=Legendary Enchantment
-[/card]
-[card]
 name=Reality Smasher
 text=({C} represents colorless mana.) -- Trample, haste -- Whenever Reality Smasher becomes the target of a spell an opponent controls, counter that spell unless its controller discards a card.
 mana={4}{C}

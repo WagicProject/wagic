@@ -264,7 +264,8 @@ class Constants
       OPPNOMAXHAND = 142,
       CANTCREW = 143,
       HIDDENFACE = 144,
-      NB_BASIC_ABILITIES = 145,
+      ANYTYPEOFMANA = 145,
+      NB_BASIC_ABILITIES = 146,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

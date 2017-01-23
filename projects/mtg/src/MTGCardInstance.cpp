@@ -241,6 +241,7 @@ void MTGCardInstance::initMTGCI()
     miracle = false;
     hasCopiedToken = false;
     countTrini = 0;
+    anymanareplacement = false;
     imprintedCards.clear();
     attackCost = 0;
     attackCostBackup = 0;

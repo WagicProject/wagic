@@ -1119,6 +1119,26 @@ void GameObserver::Affinity()
                 ///we handle trisnisphere seperately because its a desaster.
                 if(card->getManaCost())//make sure we check, abiliy$!/token dont have a mancost object.
                 {
+                    //change cost to colorless for anytypeofmana ability
+                    if(card->has(Constants::ANYTYPEOFMANA))
+                    {
+                        card->anymanareplacement = true;
+                        int convertedC = card->getManaCost()->getConvertedCost();
+                        card->getManaCost()->changeCostTo( NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, card)) );
+                        for (int jj = 0; jj < convertedC; jj++)
+                        {
+                            card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                        }
+                    }
+                    else
+                    {
+                        if (card->anymanareplacement)
+                        {
+                            card->getManaCost()->changeCostTo( card->model->data->getManaCost() );
+                            card->anymanareplacement = false;
+                        }
+                    }
+
                     if (card->has(Constants::TRINISPHERE))
                     {
                         for (int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)

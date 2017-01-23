@@ -388,7 +388,14 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     //Counters
-    if (anyCounter)
+    if (anyCounter == -1)
+    {
+        if (card->counters->mCount)
+        {
+            match = NULL;
+        }
+    }
+    else if (anyCounter)
     {
         if (!(card->counters->mCount))
         {
