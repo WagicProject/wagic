@@ -240,6 +240,11 @@ WEventCombatStepChange::WEventCombatStepChange(CombatStep step) :
     WEvent(), step(step)
 {
 }
+
+WEventplayerEnergized::WEventplayerEnergized(Player * player, int nb_count) :
+    player(player), nb_count(nb_count)
+{
+}
 ;
 
 Targetable * WEventDamage::getTarget(int target)
@@ -405,6 +410,12 @@ Targetable * WEventCardControllerChange::getTarget(int target)
 Targetable * WEventCardTransforms::getTarget(int target)
 {
     if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventplayerEnergized::getTarget(Player * player)
+{
+    if (player) return player;
     return NULL;
 }
 

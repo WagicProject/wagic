@@ -306,6 +306,15 @@ struct WEventCardTransforms : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//alterenergy event
+struct WEventplayerEnergized : public WEvent {
+    WEventplayerEnergized(Player * player,int nb_count);
+    Player * player;
+    int nb_count;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 std::ostream& operator<<(std::ostream&, const WEvent&);
 
 #endif

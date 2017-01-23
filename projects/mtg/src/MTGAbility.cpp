@@ -982,6 +982,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
     }
 
+    
+    //energized player - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "energizedof", card))
+        return NEW TrplayerEnergized(observer, id, card, tc,once,true,false);
+
+    //energized player - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "energizedfoeof", card))
+        return NEW TrplayerEnergized(observer, id, card, tc,once,false,true);
 
     //drawn player - controller of card - dynamic version drawof(player) -> returns current controller even with exchange of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "drawof", card))

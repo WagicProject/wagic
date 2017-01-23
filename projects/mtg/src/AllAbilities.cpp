@@ -1024,7 +1024,14 @@ int AAAlterEnergy::resolve()
     {
         Player * pTarget = (Player*)_target;
         if(pTarget)
+        {
             pTarget->energyCount += energy;
+            if(energy > 0)
+            {
+                WEvent * e = NEW WEventplayerEnergized(pTarget, energy);
+                game->receiveEvent(e);
+            }//todo loses enegy event
+        }
     }
     return 0;
 }

@@ -1464,6 +1464,34 @@ public:
         return NEW TrCombatTrigger(*this);
     }
 };
+class TrplayerEnergized: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerEnergized * e = dynamic_cast<WEventplayerEnergized *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerEnergized * clone() const
+    {
+        return NEW TrplayerEnergized(*this);
+    }
+};
 
 class TrcardDrawn: public Trigger
 {
