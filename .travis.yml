@@ -3,6 +3,10 @@ branches:
   except:
     - latest-master
 
+# Force set JDK version
+jdk:
+  - oraclejdk7
+
 before_install:
   - export BUILD_PSP=YES
   - export BUILD_ANDROID=YES
