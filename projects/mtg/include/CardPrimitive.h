@@ -71,6 +71,9 @@ public:
     string doubleFaced;
     void setdoubleFaced(const string& value);
     const string& getdoubleFaced() const;
+    string AICustomCode;
+    void setAICustomCode(const string& value);
+    const string& getAICustomCode() const;
 
     vector<int>types;
     CardPrimitive();

@@ -58,7 +58,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     switch (key[0])
     {
     case 'a':
-        if (key == "auto")
+        if (key == "aicode")//replacement code for AI. for reveal:number basic version only
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            primitive->setAICustomCode(val);
+        }
+        else if (key == "auto")
         {
             if (!primitive) primitive = NEW CardPrimitive();
             primitive->addMagicText(val);

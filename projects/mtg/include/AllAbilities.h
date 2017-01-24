@@ -2045,6 +2045,7 @@ class AALibraryBottom: public ActivatedAbility
 {
 public:
     AALibraryBottom(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    MTGAbility * andAbility;
     int resolve();
     const string getMenuText();
     AALibraryBottom * clone() const;

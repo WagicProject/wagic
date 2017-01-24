@@ -57,6 +57,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     setName(source->name);
 
     setdoubleFaced(source->doubleFaced);
+    setAICustomCode(source->AICustomCode);
     power = source->power;
     toughness = source->toughness;
     restrictions = source->restrictions ? source->restrictions->clone() : NULL;
@@ -341,6 +342,16 @@ const string& CardPrimitive::getdoubleFaced() const
     return doubleFaced;
 }
 
+void CardPrimitive::setAICustomCode(const string& value)
+{
+    std::transform(AICustomCode.begin(), AICustomCode.end(), AICustomCode.begin(), ::tolower);
+    AICustomCode = value;
+}
+
+const string& CardPrimitive::getAICustomCode() const
+{
+    return AICustomCode;
+}
 
 void CardPrimitive::setName(const string& value)
 {

@@ -1386,7 +1386,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("legendrule");
     if(found != string::npos)
     {
-        observer->addObserver(NEW MTGLegendRule(observer, -1));
+        //I replaced this rule since it broke cards with copy effects and with andability and other
+        //complex cards. So I moved it to gameobserver state based effects, if there are no more
+        //abilities that needs resolving then trigger this legend check... example bug:
+        //cast Phantasmal Image, then copy Vendilion Clique in play, after you choose target player
+        //there will be infinite menu for legendary rule that conflicts with Phantasmal andAbility
+        //observer->addObserver(NEW MTGLegendRule(observer, -1));
+        observer->foundlegendrule = true;
         return NULL;
     }
     //this handles the planeswalker named legend rule which is dramatically different from above.
@@ -2733,6 +2739,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW AALibraryBottom(observer, id, card, target);
         a->oneShot = 1;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AALibraryBottom*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 
@@ -3553,7 +3566,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         a->canBeInterrupted = false;
         a->named = newName;
-        return a;
+        if(card->getAICustomCode().size() && card->controller()->isAI())
+        {
+            MTGAbility * a3 = parseMagicLine(card->getAICustomCode(), id, spell, card);
+            a3->oneShot = 1;
+            a3->canBeInterrupted = false;
+            return a3;
+        }
+        else
+            return a;
     }
 
     //scry:x (activate aility) 
