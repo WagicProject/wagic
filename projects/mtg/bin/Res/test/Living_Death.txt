@@ -2,7 +2,7 @@
 [INIT]
 FIRSTMAIN
 [PLAYER1]
-graveyard:Krosan Cloudscraper, Dragonlord Kolaghan, Clone
+graveyard:109684, Dragonlord Kolaghan, 370622
 hand:Living Death
 manapool:{2}{B}{B}{B}
 [PLAYER2]
@@ -15,8 +15,8 @@ choice 0
 next
 #attack
 next
-Clone
-Krosan Cloudscraper
+370622
+109684
 #block
 next
 #damage
@@ -26,7 +26,7 @@ eot
 [ASSERT]
 UNTAP
 [PLAYER1]
-inplay:Krosan Cloudscraper, Clone
+inplay:109684, 370622
 graveyard:Dragonlord Kolaghan, Living Death
 [PLAYER2]
 life:1

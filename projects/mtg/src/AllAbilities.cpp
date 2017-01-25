@@ -7795,7 +7795,7 @@ const string AEquip::getMenuText()
 int AEquip::testDestroy()
 {
     if (source->target && !game->isInPlay(source->target))
-        unequip();
+        //unequip();//testfix for equipment when the card it equip moves to other battlefield
     if (!game->connectRule)
     {
         if (source->target && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target,true))

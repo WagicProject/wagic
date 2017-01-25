@@ -773,9 +773,9 @@ void GameObserver::gameStateBasedEffects()
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//
             ////////////////////////////////////////////////////
-            if ((card->target) && card->hasType(Subtypes::TYPE_EQUIPMENT))
+            if (!card->isCreature() && card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
-                if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card))//protection from quality
+                if(isInPlay(card))
                 {
                     for (size_t i = 1; i < mLayers->actionLayer()->mObjects.size(); i++)
                     {
@@ -783,7 +783,14 @@ void GameObserver::gameStateBasedEffects()
                         AEquip * eq = dynamic_cast<AEquip*> (a);
                         if (eq && eq->source == card)
                         {
-                            ((AEquip*)a)->unequip();
+                            if(card->target)//unattach equipments from cards that has protection from quality ex. protection from artifacts
+                            {
+                                if((card->target)->protectedAgainst(card))
+                                    ((AEquip*)a)->unequip();
+                            }
+                            if(card->controller())
+                                ((AEquip*)a)->getActionTc()->Owner = card->controller();
+                            //fix for equip ability when the equipment changed controller... 
                         }
                     }
                 }
