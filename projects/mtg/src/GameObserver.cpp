@@ -773,7 +773,7 @@ void GameObserver::gameStateBasedEffects()
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//
             ////////////////////////////////////////////////////
-            if (!card->isCreature() && card->hasType(Subtypes::TYPE_EQUIPMENT))
+            if (card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
                 if(isInPlay(card))
                 {
@@ -785,7 +785,7 @@ void GameObserver::gameStateBasedEffects()
                         {
                             if(card->target)//unattach equipments from cards that has protection from quality ex. protection from artifacts
                             {
-                                if((card->target)->protectedAgainst(card))
+                                if((card->target)->protectedAgainst(card)||card->isCreature())
                                     ((AEquip*)a)->unequip();
                             }
                             if(card->controller())
