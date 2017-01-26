@@ -1149,7 +1149,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         MTGCard * fcard = MTGCollection()->getCardByName(kcard->name);
         quad = WResourceManager::Instance()->RetrieveCard(fcard);
     }
-    if (kcard->getObserver() && kcard->hasCopiedToken && !quad.get())
+    if (kcard && kcard->hasCopiedToken)
     {
         MTGCard * tcard = MTGCollection()->getCardById(abs(kcard->copiedID));
         quad = thumb ? WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_THUMB, 1, abs(kcard->copiedID))
