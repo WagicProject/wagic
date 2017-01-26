@@ -968,6 +968,7 @@ void GameObserver::gameStateBasedEffects()
                     c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
+                c->combatdamageToOpponent = false;
                 c->damageToCreature = false;
                 c->isAttacking = NULL;
             }

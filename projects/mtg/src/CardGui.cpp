@@ -148,6 +148,11 @@ void CardGui::Render()
         MTGCard * fcard = MTGCollection()->getCardByName(card->name);
         quad = game->getResourceManager()->RetrieveCard(fcard, CACHE_THUMB);
     }
+    if (game && card->hasCopiedToken && !quad.get())
+    {
+        MTGCard * tcard = MTGCollection()->getCardById(abs(card->copiedID));
+        quad = game->getResourceManager()->RetrieveCardToken(tcard, CACHE_THUMB, 1, abs(card->copiedID));
+    }
     if (quad.get())
         alternate = false;
     else
@@ -1143,6 +1148,12 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
     {
         MTGCard * fcard = MTGCollection()->getCardByName(kcard->name);
         quad = WResourceManager::Instance()->RetrieveCard(fcard);
+    }
+    if (kcard->getObserver() && kcard->hasCopiedToken && !quad.get())
+    {
+        MTGCard * tcard = MTGCollection()->getCardById(abs(kcard->copiedID));
+        quad = thumb ? WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_THUMB, 1, abs(kcard->copiedID))
+                     : WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_NORMAL, 1, abs(kcard->copiedID));
     }
     if (quad.get())
     {

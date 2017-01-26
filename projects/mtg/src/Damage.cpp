@@ -261,6 +261,7 @@ int Damage::resolve()
             if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
             {
                 source->controller()->dealsdamagebycombat = 1; // for restriction check
+                ((MTGCardInstance*)source)->combatdamageToOpponent = true; //check
                 vector<string> values = MTGAllCards::getCreatureValuesById();//getting a weird crash here. rarely.
                 for (size_t i = 0; i < values.size(); ++i)
                 {

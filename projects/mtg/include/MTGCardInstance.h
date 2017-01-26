@@ -64,6 +64,7 @@ public:
     int equipment;
     int auras;
     bool wasDealtDamage;
+    bool combatdamageToOpponent;
     bool damageToOpponent;
     bool damageToController;
     bool damageToCreature;

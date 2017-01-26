@@ -218,6 +218,7 @@ void MTGCardInstance::initMTGCI()
     sunburst = 0;
     equipment = 0;
     auras = 0;
+    combatdamageToOpponent = false;
     damageToOpponent = false;
     damageToController = false;
     damageToCreature = false;
