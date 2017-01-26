@@ -52,6 +52,7 @@ install:
 
 env:
   global:
+  - JAVA_HOME=/usr/lib/jvm/java-7-oracle # Force set JVM version to comply with Travis Ant version (1.8.2)
   - secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
   - secure: "X5dTQfofqAutnXxmu11Ep2MQ5QYnMN8m0AITRtwymhEF2UclcOudI1+skPtuhAGbWQnSO+lhunV3cvMfw2/Ml3k/VDz6VdFSKFrzAu7ja1VLJfcxr7chi0s8q30pVBb66tGydjIBac3B+RQyqgmZQW1frbRrhC/kPFQ6wPWOJdQ="
   - secure: "T97NUPnxCpVZ/c5HH0zfo0FO3DPSRMSmze58ubW5EUTZOjAMtEt+OFdsrNZvUTCugUj2M1agtonZbAbczpaAL+lgZcHDgXgWMkfO0pMnsWX1yyCNqMuE/iTMpJr/xsLQeyWlftWjJLsseQU45abZsd1XVmda/G+ZhrDLF1y55SA="
