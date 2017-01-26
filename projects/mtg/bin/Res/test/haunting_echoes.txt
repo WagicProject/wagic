@@ -10,6 +10,8 @@ graveyard:White Knight,Glorious Anthem
 library:White Knight,Glorious Anthem,Grizzly Bears
 [DO]
 Haunting Echoes
+choice 0
+p2
 next
 goto firstmain
 [ASSERT]

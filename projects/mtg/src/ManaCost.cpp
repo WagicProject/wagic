@@ -159,6 +159,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                 tc = tcf.createTargetChooser("creature|mybattlefield", c);
                             manaCost->addExtraCost(NEW Offering(tc,true));
                         }
+                        else if(value.substr(0,2) == "e:")
+                        {//Energy Cost
+                            vector<string>valSplit = parseBetween(value,"e:"," ",false);
+                            if (valSplit.size()) {
+                                WParsedInt* energytopay = NEW WParsedInt(valSplit[1], NULL, c);
+                                manaCost->addExtraCost(NEW EnergyCost(energytopay->getValue()));
+                                SAFE_DELETE(energytopay);
+                            }
+                        }
                         else
                         //Exile
                         manaCost->addExtraCost(NEW ExileTargetCost(tc));
@@ -248,12 +257,19 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             break;
                         }
                     case 'i' :
+                        if(value == "improvise")
+                        {
+                            if(!tc)
+                                tc = tcf.createTargetChooser("artifact[-tapped]|myBattlefield", c);
+                            manaCost->addExtraCost(NEW Improvise(tc));
+                        }
+                        else
                         {
                             SAFE_DELETE(tc);
                             manaCost->add(0,1);
                             manaCost->addExtraCost(NEW SnowCost);
-                            break;
                         }
+                        break;
                     case 'q':
                         if(value == "q")
                         {

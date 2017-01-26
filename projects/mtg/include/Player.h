@@ -42,8 +42,10 @@ public:
     int skippingTurn;
     int extraTurn;
     int drawCounter;
+    int energyCount;
     int epic;
     int forcefield;
+    int dealsdamagebycombat;
     int initLife;
     int raidcount;
     int handmodifier;

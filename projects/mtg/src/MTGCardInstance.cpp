@@ -130,6 +130,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     alias = data->alias;
     copiedID = card->copiedID;
     doubleFaced = data->doubleFaced;
+    AICustomCode = data->AICustomCode;
     origpower = card->origpower;//for flip
     origtoughness = card->origtoughness;//for flip
 
@@ -217,6 +218,7 @@ void MTGCardInstance::initMTGCI()
     sunburst = 0;
     equipment = 0;
     auras = 0;
+    combatdamageToOpponent = false;
     damageToOpponent = false;
     damageToController = false;
     damageToCreature = false;
@@ -241,6 +243,7 @@ void MTGCardInstance::initMTGCI()
     miracle = false;
     hasCopiedToken = false;
     countTrini = 0;
+    anymanareplacement = false;
     imprintedCards.clear();
     attackCost = 0;
     attackCostBackup = 0;
@@ -806,14 +809,18 @@ void MTGCardInstance::switchPT(bool apply)
 
 int MTGCardInstance::getCurrentPower()
 {
-    if(!isInPlay(observer))
+    if(observer && !isCreature())
+        return 0;
+    if(observer && !isInPlay(observer))
         return LKIpower;
     return power;
 }
 
 int MTGCardInstance::getCurrentToughness()
 {
-    if(!isInPlay(observer))
+    if(observer && !isCreature())
+        return 0;
+    if(observer && !isInPlay(observer))
         return LKItoughness;
     return toughness;
 }

@@ -173,7 +173,10 @@ const char* Constants::MTGBasicAbilities[] = {
     "asflash",
     "conduited",
     "canblocktapped",
-    "oppnomaxhand"
+    "oppnomaxhand",
+    "cantcrew",
+    "hiddenface",//test for facedown
+    "anytypeofmana"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

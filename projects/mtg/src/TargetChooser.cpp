@@ -746,6 +746,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->anyCounter = 1;
                     }
+                    else if (attribute.find("{notany}") != string::npos)
+                    {
+                        cd->anyCounter = -1;
+                    }
                     else
                     {
                         size_t start = attribute.find("{");

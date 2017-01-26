@@ -110,6 +110,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     mLayers = NULL;
     mTrash = new Trash();
     mDeckManager = new DeckManager();
+    foundlegendrule = false;
 }
 
 GamePhase GameObserver::getCurrentGamePhase()
@@ -213,6 +214,7 @@ void GameObserver::nextGamePhase()
         currentPlayer->nonCombatDamage = 0;
         currentPlayer->drawCounter = 0;
         currentPlayer->raidcount = 0;
+        currentPlayer->dealsdamagebycombat = 0; //clear check for restriction
         currentPlayer->opponent()->raidcount = 0;
         currentPlayer->prowledTypes.clear();
         currentPlayer->opponent()->damageCount = 0; //added to clear odcount
@@ -712,19 +714,20 @@ void GameObserver::gameStateBasedEffects()
             ///set basic land mana objects canproduce
             for (size_t gg = 0; gg < mLayers->actionLayer()->manaObjects.size(); gg++)
             {
-                if (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])) && 
-                    (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->source->isLand() && 
-                    (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->source == card)
+                MTGAbility * aa = ((MTGAbility *) mLayers->actionLayer()->manaObjects[gg]);
+                //AManaProducer * amp = dynamic_cast<AManaProducer*> (aa);
+
+                if (dynamic_cast<AManaProducer*> (aa) && (dynamic_cast<AManaProducer*> (aa))->source->isLand() && (dynamic_cast<AManaProducer*> (aa))->source == card)
                 {
-                    if (card->hasType("forest") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_GREEN))
+                    if (card->hasType("forest") && ((AManaProducer*)aa)->output->hasColor(Constants::MTG_COLOR_GREEN))
                         card->canproduceG = 1;
-                    if (card->hasType("island") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_BLUE))
+                    if (card->hasType("island") && ((AManaProducer*)aa)->output->hasColor(Constants::MTG_COLOR_BLUE))
                         card->canproduceU = 1;
-                    if (card->hasType("mountain") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_RED))
+                    if (card->hasType("mountain") && ((AManaProducer*)aa)->output->hasColor(Constants::MTG_COLOR_RED))
                         card->canproduceR = 1;
-                    if (card->hasType("swamp") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_BLACK))
+                    if (card->hasType("swamp") && ((AManaProducer*)aa)->output->hasColor(Constants::MTG_COLOR_BLACK))
                         card->canproduceB = 1;
-                    if (card->hasType("plains") && (dynamic_cast<AManaProducer*> (((MTGAbility *) mLayers->actionLayer()->manaObjects[gg])))->output->hasColor(Constants::MTG_COLOR_WHITE))
+                    if (card->hasType("plains") && ((AManaProducer*)aa)->output->hasColor(Constants::MTG_COLOR_WHITE))
                         card->canproduceW = 1;
                 }
             }
@@ -771,9 +774,9 @@ void GameObserver::gameStateBasedEffects()
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//
             ////////////////////////////////////////////////////
-            if ((card->target) && card->hasType(Subtypes::TYPE_EQUIPMENT))
+            if (card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
-                if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card))//protection from quality
+                if(isInPlay(card))
                 {
                     for (size_t i = 1; i < mLayers->actionLayer()->mObjects.size(); i++)
                     {
@@ -781,7 +784,14 @@ void GameObserver::gameStateBasedEffects()
                         AEquip * eq = dynamic_cast<AEquip*> (a);
                         if (eq && eq->source == card)
                         {
-                            ((AEquip*)a)->unequip();
+                            if(card->target)//unattach equipments from cards that has protection from quality ex. protection from artifacts
+                            {
+                                if((card->target)->protectedAgainst(card)||card->isCreature())
+                                    ((AEquip*)a)->unequip();
+                            }
+                            if(card->controller())
+                                ((AEquip*)a)->getActionTc()->Owner = card->controller();
+                            //fix for equip ability when the equipment changed controller... 
                         }
                     }
                 }
@@ -879,6 +889,7 @@ void GameObserver::gameStateBasedEffects()
                     if(card->life < 1 && !card->has(Constants::INDESTRUCTIBLE))
                         card->destroy();//manor gargoyle... recheck
                 }
+                checkLegendary(card); //legendary rule as state based effect
             }
 
             if(card->childrenCards.size())
@@ -934,7 +945,6 @@ void GameObserver::gameStateBasedEffects()
             p->nomaxhandsize = true;
         else
             p->nomaxhandsize = false;
-
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
         /////////////////////////////////////////////////
@@ -959,6 +969,7 @@ void GameObserver::gameStateBasedEffects()
                     c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
+                c->combatdamageToOpponent = false;
                 c->damageToCreature = false;
                 c->isAttacking = NULL;
             }
@@ -1054,6 +1065,51 @@ void GameObserver::gameStateBasedEffects()
     }
 }
 
+void GameObserver::checkLegendary(MTGCardInstance *  card)
+{
+    if(!foundlegendrule)
+        return;
+    if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
+        return;
+    int destroy = 0;
+    vector<MTGCardInstance*>oldCards;
+
+     MTGGameZone * z = card->controller()->game->inPlay;
+     int nbcards = z->nb_cards-1;
+
+    for (int r = 0;  r < nbcards; r++)
+    {
+        MTGCardInstance * comparison = z->cards[r];
+        if (comparison != card && comparison->hasType("legendary") && !(comparison->getName().compare(card->getName())))
+        {
+            oldCards.push_back(comparison);
+            destroy = 1;
+        }
+    }
+
+    if(destroy)
+    {
+        vector<MTGAbility*>selection;
+        MultiAbility * multi = NEW MultiAbility(this, this->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        for(unsigned int i = 0;i < oldCards.size();i++)
+        {
+            AAMover *a = NEW AAMover(this, this->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
+            a->oneShot = true;
+            multi->Add(a);
+        }
+        multi->oneShot = 1;
+        MTGAbility * a1 = multi;
+        selection.push_back(a1);
+        AAMover *b = NEW AAMover(this, this->mLayers->actionLayer()->getMaxId(), card, card,"ownergraveyard","Keep Old");
+        b->oneShot = true;
+        MTGAbility * b1 = b;
+        selection.push_back(b1);
+        MTGAbility * menuChoice = NEW MenuAbility(this, this->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
+        menuChoice->addToGame();
+    }
+    return;
+}
+
 void GameObserver::enchantmentStatus()
 {
     for (int i = 0; i < 2; i++)
@@ -1118,6 +1174,26 @@ void GameObserver::Affinity()
                 ///we handle trisnisphere seperately because its a desaster.
                 if(card->getManaCost())//make sure we check, abiliy$!/token dont have a mancost object.
                 {
+                    //change cost to colorless for anytypeofmana ability
+                    if(card->has(Constants::ANYTYPEOFMANA))
+                    {
+                        card->anymanareplacement = true;
+                        int convertedC = card->getManaCost()->getConvertedCost();
+                        card->getManaCost()->changeCostTo( NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, card)) );
+                        for (int jj = 0; jj < convertedC; jj++)
+                        {
+                            card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                        }
+                    }
+                    else
+                    {
+                        if (card->anymanareplacement)
+                        {
+                            card->getManaCost()->changeCostTo( card->model->data->getManaCost() );
+                            card->anymanareplacement = false;
+                        }
+                    }
+
                     if (card->has(Constants::TRINISPHERE))
                     {
                         for (int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)

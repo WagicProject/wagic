@@ -232,6 +232,37 @@ int SnowCost::doPay()
     return 0;
 }
 
+//Energy Cost
+EnergyCost * EnergyCost::clone() const
+{
+    EnergyCost * ec = NEW EnergyCost(*this);
+    return ec;
+}
+
+EnergyCost::EnergyCost(int enc) :
+ExtraCost("Energy Cost"),enc(enc)
+{
+}
+
+int EnergyCost::canPay()
+{
+    if(source->controller()->energyCount >= enc)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int EnergyCost::doPay()
+{
+    if(source->controller()->energyCount)
+    {
+        source->controller()->energyCount -= enc;
+        return 1;
+    }
+    return 0;
+}
+
 //life cost
 LifeCost * LifeCost::clone() const
 {
@@ -1110,6 +1141,74 @@ int Delve::doPay()
             MTGCardInstance * targetCard = dynamic_cast<MTGCardInstance*>(*it);
             source->storedCard = targetCard->createSnapShot();
             targetCard->controller()->game->putInExile(targetCard);
+        }
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+
+//IMPROVISE
+Improvise * Improvise::clone() const
+{
+    Improvise * ec = NEW Improvise(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+Improvise::Improvise(TargetChooser *_tc) :
+    ExtraCost("Select Artifacts To Tap", _tc)
+{
+}
+
+int Improvise::canPay()
+{
+    return isPaymentSet();
+}
+
+int Improvise::isPaymentSet()
+{
+    ManaCost * toReduce = NEW ManaCost(source->getManaCost());
+    tc->maxtargets = source->getManaCost()->getCost(Constants::MTG_COLOR_ARTIFACT);
+    if (tc->getNbTargets())
+    {
+        toReduce->remove(Constants::MTG_COLOR_ARTIFACT, tc->getNbTargets());
+    }
+    if (target && (!source->controller()->getManaPool()->canAfford(toReduce)))
+    {
+        target = NULL;
+        SAFE_DELETE(toReduce);
+        return 0;
+    }
+    if (target && (source->controller()->getManaPool()->canAfford(toReduce)))
+    {
+        /*if (target->getObserver()->guiOpenDisplay)
+            target->getObserver()->ButtonPressed(target->getObserver()->guiOpenDisplay);*/
+        SAFE_DELETE(toReduce);
+        return 1;
+    }
+    SAFE_DELETE(toReduce);
+    return 0;
+}
+
+int Improvise::doPay()
+{
+    if (target && tc->getNbTargets())
+    {
+        ManaCost * toReduce = NEW ManaCost(source->getManaCost());
+
+        toReduce->remove(Constants::MTG_COLOR_ARTIFACT, tc->getNbTargets());
+
+        target->controller()->getManaPool()->pay(toReduce);
+        SAFE_DELETE(toReduce);
+        vector<Targetable*>targetlist = tc->getTargetsFrom();
+        for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+        {
+            MTGCardInstance * targetCard = dynamic_cast<MTGCardInstance*>(*it);
+            source->storedCard = targetCard->createSnapShot();
+            targetCard->tap();
         }
         if (tc)
             tc->initTargets();

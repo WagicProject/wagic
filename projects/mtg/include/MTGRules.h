@@ -73,6 +73,8 @@ public:
 
 class MTGPutInPlayRule: public PermanentAbility
 {
+protected:
+    string defaultPlayName;
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
@@ -80,8 +82,8 @@ public:
     MTGPutInPlayRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        if(game && game->gameType() == GAME_TYPE_MOMIR)
-            return "Play Land";
+        if(defaultPlayName.size())
+            return defaultPlayName.c_str();
         return "Cast Card Normally";
     }
     virtual MTGPutInPlayRule * clone() const;

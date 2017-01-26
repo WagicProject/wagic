@@ -552,6 +552,14 @@ private:
                     intValue +=1;
             }
         }
+        else if (s == "penergy")
+        {
+            intValue = card->controller()->energyCount;
+        }
+        else if (s == "oenergy")
+        {
+            intValue = card->controller()->opponent()->energyCount;
+        }
         else if (s == "praidcount")
         {
             intValue = card->controller()->raidcount;
@@ -559,6 +567,14 @@ private:
         else if (s == "oraidcount")
         {
             intValue = card->controller()->opponent()->raidcount;
+        }
+        else if (s == "pstormcount")
+        {
+            intValue = card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+        }
+        else if (s == "ostormcount")
+        {
+            intValue = card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
         }
         else if (s == "countallspell")
         {
@@ -1448,6 +1464,34 @@ public:
         return NEW TrCombatTrigger(*this);
     }
 };
+class TrplayerEnergized: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerEnergized * e = dynamic_cast<WEventplayerEnergized *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerEnergized * clone() const
+    {
+        return NEW TrplayerEnergized(*this);
+    }
+};
 
 class TrcardDrawn: public Trigger
 {
@@ -2001,6 +2045,7 @@ class AALibraryBottom: public ActivatedAbility
 {
 public:
     AALibraryBottom(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    MTGAbility * andAbility;
     int resolve();
     const string getMenuText();
     AALibraryBottom * clone() const;
@@ -4513,6 +4558,19 @@ public:
     const string getMenuText();
     AAAlterPoison * clone() const;
     ~AAAlterPoison();
+};
+//Energy Counter
+class AAAlterEnergy: public ActivatedAbilityTP
+{
+public:
+    int energy;
+
+    AAAlterEnergy(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int energy, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterEnergy * clone() const;
+    ~AAAlterEnergy();
 };
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager: public TargetAbility

@@ -296,11 +296,13 @@ MTGPutInPlayRule::MTGPutInPlayRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
 {
     aType = MTGAbility::PUT_INTO_PLAY;
+    defaultPlayName = "";
 }
 
 int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     int cardsinhand = game->players[0]->game->hand->nb_cards;
+    defaultPlayName = card->isLand()?"Play Land":"Cast Card Normally";
     Player * player = game->currentlyActing();
     if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
          return 0;
@@ -753,6 +755,8 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     if(!allowedToAltCast(card,player))
         return 0;
 
+    
+    alternativeName = "Pay Alternative Cost";
 
     if(card->has(Constants::CANPLAYFROMGRAVEYARD))
         alternativeName = "Alternate Cast From Graveyard";
@@ -763,6 +767,8 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
 
     if (card->isLand())
     {
+        alternativeName = "Play Land";
+
         if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
         if (card->StackIsEmptyandSorcerySpeed())

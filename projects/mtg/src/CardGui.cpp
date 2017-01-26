@@ -148,6 +148,11 @@ void CardGui::Render()
         MTGCard * fcard = MTGCollection()->getCardByName(card->name);
         quad = game->getResourceManager()->RetrieveCard(fcard, CACHE_THUMB);
     }
+    if (game && card->hasCopiedToken && !quad.get())
+    {
+        MTGCard * tcard = MTGCollection()->getCardById(abs(card->copiedID));
+        quad = game->getResourceManager()->RetrieveCardToken(tcard, CACHE_THUMB, 1, abs(card->copiedID));
+    }
     if (quad.get())
         alternate = false;
     else
@@ -533,6 +538,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     // Draw the "unknown" card model
     JRenderer * renderer = JRenderer::GetInstance();
     JQuadPtr q;
+    MTGCardInstance * thiscard = dynamic_cast<MTGCardInstance*> (card);
 
     float x = pos.actX;
    
@@ -553,6 +559,14 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     items.clear();
     if (q.get() && q->mTex)
     {
+        //test
+        //draw black border ingame only
+        if(thiscard && thiscard->getObserver())
+        {
+            renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
+            renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
+        }
+
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
 
         float scale = pos.actZ * 250 / q->mHeight;
@@ -1134,6 +1148,12 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
     {
         MTGCard * fcard = MTGCollection()->getCardByName(kcard->name);
         quad = WResourceManager::Instance()->RetrieveCard(fcard);
+    }
+    if (kcard && kcard->hasCopiedToken)
+    {
+        MTGCard * tcard = MTGCollection()->getCardById(abs(kcard->copiedID));
+        quad = thumb ? WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_THUMB, 1, abs(kcard->copiedID))
+                     : WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_NORMAL, 1, abs(kcard->copiedID));
     }
     if (quad.get())
     {

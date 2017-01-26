@@ -329,6 +329,37 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 if(!count)
                     return 0;
         }
+        check = restriction[i].find("revolt");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->hand->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * tCard = player->game->hand->cardsSeenThisTurn[k];
+                    if(tCard && tCard->previousZone == card->controller()->game->battlefield)
+                        count++;
+                }
+                for(unsigned int k = 0; k < player->game->exile->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * tCard = player->game->exile->cardsSeenThisTurn[k];
+                    if(tCard && tCard->previousZone == card->controller()->game->battlefield)
+                        count++;
+                }
+                for(unsigned int k = 0; k < player->game->library->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * tCard = player->game->library->cardsSeenThisTurn[k];
+                    if(tCard && tCard->previousZone == card->controller()->game->battlefield)
+                        count++;
+                }
+                for(unsigned int k = 0; k < player->game->graveyard->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * tCard = player->game->graveyard->cardsSeenThisTurn[k];
+                    if(tCard && tCard->previousZone == card->controller()->game->battlefield)
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
         check = restriction[i].find("morbid");
         if(check != string::npos)
         {
@@ -509,6 +540,22 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(card->controller()->raidcount < 1)
                 return 0;
         }
+        
+
+        check = restriction[i].find("opponentdamagedbycombat");
+        if(check != string::npos)
+        {
+            if(card->controller()->dealsdamagebycombat < 1)
+                return 0;
+        }
+
+        check = restriction[i].find("outnumbered");//opponent controls atleast 4 or more creatures than you
+        if(check != string::npos)
+        {
+            bool isoutnumbered = (card->controller()->opponent()->inPlay()->countByType("creature") - card->controller()->inPlay()->countByType("creature"))>3;
+            if(!isoutnumbered)
+                return 0;
+        }
 
         check = restriction[i].find("hasdefender");
         if(check != string::npos)
@@ -528,6 +575,13 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         if(check != string::npos)
         {
             if(card->didattacked)
+                return 0;
+        }
+        
+        check = restriction[i].find("didcombatdamagetofoe");
+        if(check != string::npos)
+        {
+            if(!card->combatdamageToOpponent)
                 return 0;
         }
 
@@ -935,6 +989,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
     }
 
+    
+    //energized player - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "energizedof", card))
+        return NEW TrplayerEnergized(observer, id, card, tc,once,true,false);
+
+    //energized player - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "energizedfoeof", card))
+        return NEW TrplayerEnergized(observer, id, card, tc,once,false,true);
 
     //drawn player - controller of card - dynamic version drawof(player) -> returns current controller even with exchange of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "drawof", card))
@@ -1331,7 +1393,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("legendrule");
     if(found != string::npos)
     {
-        observer->addObserver(NEW MTGLegendRule(observer, -1));
+        //I replaced this rule since it broke cards with copy effects and with andability and other
+        //complex cards. So I moved it to gameobserver state based effects, if there are no more
+        //abilities that needs resolving then trigger this legend check... example bug:
+        //cast Phantasmal Image, then copy Vendilion Clique in play, after you choose target player
+        //there will be infinite menu for legendary rule that conflicts with Phantasmal andAbility
+        //observer->addObserver(NEW MTGLegendRule(observer, -1));
+        observer->foundlegendrule = true;
         return NULL;
     }
     //this handles the planeswalker named legend rule which is dramatically different from above.
@@ -2678,6 +2746,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW AALibraryBottom(observer, id, card, target);
         a->oneShot = 1;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AALibraryBottom*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 
@@ -2945,6 +3020,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         int poison = atoi(splitPoison[1].c_str());
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AAAlterPoison(observer, id, card, t, poison, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //alter energy
+    vector<string> splitEnergy = parseBetween(s, "alterenergy:", " ", false);
+    if (splitEnergy.size())
+    {
+        int energy = atoi(splitEnergy[1].c_str());
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterEnergy(observer, id, card, t, energy, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -3487,7 +3573,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         a->canBeInterrupted = false;
         a->named = newName;
-        return a;
+        if(card->getAICustomCode().size() && card->controller()->isAI())
+        {
+            MTGAbility * a3 = parseMagicLine(card->getAICustomCode(), id, spell, card);
+            a3->oneShot = 1;
+            a3->canBeInterrupted = false;
+            return a3;
+        }
+        else
+            return a;
     }
 
     //scry:x (activate aility) 
