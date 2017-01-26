@@ -809,14 +809,18 @@ void MTGCardInstance::switchPT(bool apply)
 
 int MTGCardInstance::getCurrentPower()
 {
-    if(!isInPlay(observer))
+    if(observer && !isCreature())
+        return 0;
+    if(observer && !isInPlay(observer))
         return LKIpower;
     return power;
 }
 
 int MTGCardInstance::getCurrentToughness()
 {
-    if(!isInPlay(observer))
+    if(observer && !isCreature())
+        return 0;
+    if(observer && !isInPlay(observer))
         return LKItoughness;
     return toughness;
 }
