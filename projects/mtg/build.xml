@@ -1,69 +1,63 @@
 <project name="Wagic">
-	<!-- build.properties should contain the values for major, minor and point -->
-	<property file="build.properties" />
-	<property file="build.number.properties" />
-	<property environment="env"/>
-    
-	<path id="groovy.class.path" >
-		<fileset dir="${groovy.dir}" />
-	</path>
+    <!-- build.properties should contain the values for major, minor and point -->
+    <property file="build.properties"/>
+    <property file="build.number.properties"/>
+    <property environment="env"/>
 
-	<taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy" classpathref="groovy.class.path" />
+    <path id="groovy.class.path">
+        <fileset dir="${groovy.dir}"/>
+    </path>
 
-	<tstamp>
-		<format property="TODAY" pattern="EEE, dd-MMM-yyyy HH::mm:ss" />
-	</tstamp>
+    <taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy" classpathref="groovy.class.path"/>
 
-	<target name="update.major" >
-		<echo message="incrementing Major Version number by 1" />
-                <!-- update the build.number.properties file -->
-                <propertyfile file="build.number.properties"
-                                          comment="build.number.properties (normally this file is maintained by build.xml)">
-                        <entry key="build.major" type="int" default="0" operation="+" pattern="0" />
-                </propertyfile>
+    <tstamp>
+        <format pattern="EEE, dd-MMM-yyyy HH::mm:ss" property="TODAY"/>
+    </tstamp>
 
-	</target>
-	
-	<target name="update.minor" >
-		<echo message="incrementing minor Version number by 1" />
-                <!-- update the build.number.properties file -->
-                <propertyfile file="build.number.properties"
-                                          comment="build.number.properties (normally this file is maintained by build.xml)">
-                        <entry key="build.minor" type="int" default="00" operation="+" pattern="00" />
-                </propertyfile>
-	</target>
+    <target name="update.major">
+        <echo message="incrementing Major Version number by 1"/>
+        <!-- update the build.number.properties file -->
+        <propertyfile comment="build.number.properties (normally this file is maintained by build.xml)"
+                      file="build.number.properties">
+            <entry default="0" key="build.major" operation="+" pattern="0" type="int"/>
+        </propertyfile>
+    </target>
 
-	<target name="update.point" >
-		<echo message="incrementing point Version number by 1" />
-                <!-- update the build.number.properties file -->
-                <propertyfile file="build.number.properties"
-                                          comment="build.number.properties (normally this file is maintained by build.xml)">
-                        <entry key="build.point" type="int" default="0" operation="+" pattern="0" />
-                </propertyfile>
+    <target name="update.minor">
+        <echo message="incrementing minor Version number by 1"/>
+        <!-- update the build.number.properties file -->
+        <propertyfile comment="build.number.properties (normally this file is maintained by build.xml)"
+                      file="build.number.properties">
+            <entry default="00" key="build.minor" operation="+" pattern="00" type="int"/>
+        </propertyfile>
+    </target>
 
-	</target>
+    <target name="update.point">
+        <echo message="incrementing point Version number by 1"/>
+        <!-- update the build.number.properties file -->
+        <propertyfile comment="build.number.properties (normally this file is maintained by build.xml)"
+                      file="build.number.properties">
+            <entry default="0" key="build.point" operation="+" pattern="0" type="int"/>
+        </propertyfile>
+    </target>
 
-	<target name="update" description="Updates the AndroidManifest and Wagic_Version.h with the current version information" >
-		
-		<antcall target="build.maemo.changelog"  />	
-		<antcall target="build.meego.changelog"  />	
-		<antcall target="build.wagic.header"  />	
-		<antcall target="update.android.manifest"  />	
-	</target>
+    <target name="update" description="Updates the AndroidManifest and Wagic_Version.h with the current version information">
+        <antcall target="build.maemo.changelog"/>
+        <antcall target="build.wagic.header"/>
+        <antcall target="update.android.manifest"/>
+    </target>
 
-	<target name="update.android.manifest" description="Updates the AndroidManifest.xml with the current version information" >
+    <target name="update.android.manifest" description="Updates the AndroidManifest.xml with the current version information">
+        <groovy classpathref="groovy.class.path" src="${basedir}/updateAndroidManifest.groovy">
+            <arg value="Android/AndroidManifest.xml"/>
+        </groovy>
+    </target>
 
-	<groovy src="${basedir}/updateAndroidManifest.groovy" classpathref="groovy.class.path" >
-    		<arg value="Android/AndroidManifest.xml" />
-	</groovy>
-
-	</target>
-
-	<target name="build.wagic.header" description="Create the Wagic_Version.h file" >
-		<echo message="Creating Wagic_Version.h" />
-		<echo file="${basedir}/include/Wagic_Version.h" >
-/* 
-This file was auto-generated by ant build script on ${TODAY} 
+    <target name="build.wagic.header" description="Create the Wagic_Version.h file">
+        <echo message="Creating Wagic_Version.h"/>
+        <echo file="${basedir}/include/Wagic_Version.h">
+/*
+This file was auto-generated by ant build script on ${TODAY}
 To make changes please edit the ant build script, otherwise your changes will be lost
 
 Author: Michael Nguyen
@@ -74,10 +68,10 @@ Author: Michael Nguyen
 #define wagic_Wagic_Version_h
 
 /* Wagic versions */
-#define WAGIC_VERSION_MAJOR     ${build.major}
-#define WAGIC_VERSION_MEDIUM    ${build.minor}
-#define WAGIC_VERSION_MINOR     ${build.point}
-#define WAGIC_VERSION_REVISION  ${env.TRAVIS_BUILD_NUMBER}
+#define WAGIC_VERSION_MAJOR ${build.major}
+#define WAGIC_VERSION_MEDIUM ${build.minor}
+#define WAGIC_VERSION_MINOR ${build.point}
+#define WAGIC_VERSION_REVISION ${env.TRAVIS_BUILD_NUMBER}
 
 #define VERSION_DOT(a, b, c, d) a ##.## b ##.## c ##.## d
 #define VERSION_WITHOUT_DOT(a, b, c) a ## b ## c
@@ -86,40 +80,34 @@ Author: Michael Nguyen
 #define VERSION_TOSTRING(a) #a
 #define VERSION_STRINGIFY(a) VERSION_TOSTRING(a)
 
-#define WAGIC_VERSION           VERSION_GAME(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM, WAGIC_VERSION_MINOR, WAGIC_VERSION_REVISION)
-#define WAGIC_RESOURCE_VERSION  VERSION_FILE(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM, WAGIC_VERSION_MINOR)
-#define WAGIC_VERSION_STRING    VERSION_STRINGIFY(WAGIC_VERSION)
+#define WAGIC_VERSION VERSION_GAME(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM,
+WAGIC_VERSION_MINOR, WAGIC_VERSION_REVISION)
+#define WAGIC_RESOURCE_VERSION VERSION_FILE(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM,
+WAGIC_VERSION_MINOR)
+#define WAGIC_VERSION_STRING VERSION_STRINGIFY(WAGIC_VERSION)
 #define WAGIC_CORE_VERSION_STRING "core_" VERSION_STRINGIFY(WAGIC_RESOURCE_VERSION)
-#define WAGIC_RESOURCE_NAME     "Wagic-core.zip"
-#define WAGIC_RELEASE_NAME      "${env.RELEASE_NAME}"
-#define WAGIC_RESOURCE_URL      "https://github.com/WagicProject/wagic/releases/download/" WAGIC_RELEASE_NAME "/" WAGIC_RESOURCE_NAME
+#define WAGIC_RESOURCE_NAME "Wagic-core.zip"
+#define WAGIC_RELEASE_NAME "${env.RELEASE_NAME}"
+#define WAGIC_RESOURCE_URL "https://github.com/WagicProject/wagic/releases/download/"
+WAGIC_RELEASE_NAME "/" WAGIC_RESOURCE_NAME
 
 #endif
 
-		</echo>
-	</target>
-	<target name="build.maemo.changelog" description="Create the maemo changelog file" >
-		<echo message="Creating maemo changelog" />
-		<echo file="${basedir}/debian/changelog" >
-wagic (${build.major}.${build.minor}.${build.point}maemo0) unstable; urgency=low
+        </echo>
+    </target>
 
-  * {replace with some kickass changelog}
-    -- Xawotihs ${TODAY}
+    <target name="build.maemo.changelog" description="Create the maemo changelog file">
+        <echo message="Creating maemo changelog"/>
+        <echo file="${basedir}/debian/changelog">
+            wagic (${build.major}.${build.minor}.${build.point}maemo0) unstable; urgency=low
 
-		</echo>
-	</target>
-	<target name="build.meego.changelog" description="Create the meego changelog file" >
-		<echo message="Creating meego changelog" />
-		<echo file="${basedir}/debian_harmattan/changelog" >
-wagic (${build.major}.${build.minor}.${build.point}meego0) unstable; urgency=low
+            * {replace with some kickass changelog}
+            -- Xawotihs ${TODAY}
 
-  * {replace with some kickass changelog}
- -- Xawotihs ${TODAY}
+        </echo>
+    </target>
 
-		</echo>
-	</target>
-
-	<target name="current">
-		<echo message="Current version: ${build.major}.${build.minor}.${build.point} "/>
-	</target>
+    <target name="current">
+        <echo message="Current version: ${build.major}.${build.minor}.${build.point} "/>
+    </target>
 </project>
