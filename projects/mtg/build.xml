@@ -68,10 +68,10 @@ Author: Michael Nguyen
 #define wagic_Wagic_Version_h
 
 /* Wagic versions */
-#define WAGIC_VERSION_MAJOR ${build.major}
-#define WAGIC_VERSION_MEDIUM ${build.minor}
-#define WAGIC_VERSION_MINOR ${build.point}
-#define WAGIC_VERSION_REVISION ${env.TRAVIS_BUILD_NUMBER}
+#define WAGIC_VERSION_MAJOR     ${build.major}
+#define WAGIC_VERSION_MEDIUM    ${build.minor}
+#define WAGIC_VERSION_MINOR     ${build.point}
+#define WAGIC_VERSION_REVISION  ${env.TRAVIS_BUILD_NUMBER}
 
 #define VERSION_DOT(a, b, c, d) a ##.## b ##.## c ##.## d
 #define VERSION_WITHOUT_DOT(a, b, c) a ## b ## c
@@ -80,16 +80,13 @@ Author: Michael Nguyen
 #define VERSION_TOSTRING(a) #a
 #define VERSION_STRINGIFY(a) VERSION_TOSTRING(a)
 
-#define WAGIC_VERSION VERSION_GAME(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM,
-WAGIC_VERSION_MINOR, WAGIC_VERSION_REVISION)
-#define WAGIC_RESOURCE_VERSION VERSION_FILE(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM,
-WAGIC_VERSION_MINOR)
-#define WAGIC_VERSION_STRING VERSION_STRINGIFY(WAGIC_VERSION)
+#define WAGIC_VERSION           VERSION_GAME(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM, WAGIC_VERSION_MINOR, WAGIC_VERSION_REVISION)
+#define WAGIC_RESOURCE_VERSION  VERSION_FILE(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM, WAGIC_VERSION_MINOR)
+#define WAGIC_VERSION_STRING    VERSION_STRINGIFY(WAGIC_VERSION)
 #define WAGIC_CORE_VERSION_STRING "core_" VERSION_STRINGIFY(WAGIC_RESOURCE_VERSION)
-#define WAGIC_RESOURCE_NAME "Wagic-core.zip"
-#define WAGIC_RELEASE_NAME "${env.RELEASE_NAME}"
-#define WAGIC_RESOURCE_URL "https://github.com/WagicProject/wagic/releases/download/"
-WAGIC_RELEASE_NAME "/" WAGIC_RESOURCE_NAME
+#define WAGIC_RESOURCE_NAME     "Wagic-core.zip"
+#define WAGIC_RELEASE_NAME      "${env.RELEASE_NAME}"
+#define WAGIC_RESOURCE_URL      "https://github.com/WagicProject/wagic/releases/download/" WAGIC_RELEASE_NAME "/" WAGIC_RESOURCE_NAME
 
 #endif
 
@@ -111,3 +108,4 @@ WAGIC_RELEASE_NAME "/" WAGIC_RESOURCE_NAME
         <echo message="Current version: ${build.major}.${build.minor}.${build.point} "/>
     </target>
 </project>
+
