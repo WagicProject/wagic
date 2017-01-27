@@ -160,6 +160,8 @@ TranslateKeycode(int keycode)
     }
     if (scancode == SDL_SCANCODE_UNKNOWN) {
         __android_log_print(ANDROID_LOG_INFO, "SDL", "Unknown keycode %d", keycode);
+    } else {
+        __android_log_print(ANDROID_LOG_INFO, "SDL", "Trans  scancode %d", scancode);
     }
     return scancode;
 }
@@ -177,3 +179,4 @@ Android_OnKeyUp(int keycode)
 }
 
 /* vi: set ts=4 sw=4 expandtab: */
+
