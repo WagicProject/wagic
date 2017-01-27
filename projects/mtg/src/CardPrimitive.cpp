@@ -41,7 +41,6 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     if(!source)
         return;
     basicAbilities = source->basicAbilities;
-    origbasicAbilities = source->basicAbilities;
     LKIbasicAbilities = source->basicAbilities;
 
     for (size_t i = 0; i < source->types.size(); ++i)
@@ -57,6 +56,8 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     formattedText = source->formattedText;
     setName(source->name);
 
+    setdoubleFaced(source->doubleFaced);
+    setAICustomCode(source->AICustomCode);
     power = source->power;
     toughness = source->toughness;
     restrictions = source->restrictions ? source->restrictions->clone() : NULL;
@@ -78,7 +79,6 @@ CardPrimitive::~CardPrimitive()
 int CardPrimitive::init()
 {
     basicAbilities.reset();
-    origbasicAbilities.reset();
 
     types.clear();
 
@@ -107,6 +107,18 @@ bool CardPrimitive::isLand()
 bool CardPrimitive::isSpell()
 {
     return (!isCreature() && !isLand());
+}
+
+bool CardPrimitive::isPermanent()
+{
+    return (!isSorceryorInstant());
+}
+
+bool CardPrimitive::isSorceryorInstant()
+{
+    if(hasSubtype(Subtypes::TYPE_SORCERY)||hasSubtype(Subtypes::TYPE_INSTANT))
+        return true;
+    return false;
 }
 
 int CardPrimitive::dredge()
@@ -319,6 +331,28 @@ void CardPrimitive::addMagicText(string value, string key)
     magicTexts[key].append(value);
 }
 
+void CardPrimitive::setdoubleFaced(const string& value)
+{
+    std::transform(doubleFaced.begin(), doubleFaced.end(), doubleFaced.begin(), ::tolower);
+    doubleFaced = value;
+}
+
+const string& CardPrimitive::getdoubleFaced() const
+{
+    return doubleFaced;
+}
+
+void CardPrimitive::setAICustomCode(const string& value)
+{
+    std::transform(AICustomCode.begin(), AICustomCode.end(), AICustomCode.begin(), ::tolower);
+    AICustomCode = value;
+}
+
+const string& CardPrimitive::getAICustomCode() const
+{
+    return AICustomCode;
+}
+
 void CardPrimitive::setName(const string& value)
 {
     name = value;
@@ -424,6 +458,9 @@ uint8_t CardPrimitive::ConvertColorToBitMask(int inColor)
         break;
 
     case Constants::MTG_COLOR_LAND:
+        value = kColorBitMask_Land;
+        break;
+    case Constants::MTG_COLOR_WASTE://the true colorless mana shares the kbitmask of land. kbitmask dictates the color of the quad(no image boarder), and the symbol. nothing more.
         value = kColorBitMask_Land;
         break;
 

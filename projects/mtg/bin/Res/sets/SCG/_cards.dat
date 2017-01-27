@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Scourge
+block=Onslaught
 year=2003
-block=Slaughter
+total=143
 [/meta]
 [card]
 primitive=Accelerated Mutation
@@ -167,16 +169,6 @@ rarity=R
 primitive=Decree of Justice
 id=45141
 rarity=R
-[/card]
-[card]
-primitive=Angel
-id=-4514111
-rarity=T
-[/card]
-[card]
-primitive=Soldier
-id=-4514112
-rarity=T
 [/card]
 [card]
 primitive=Decree of Pain
@@ -379,14 +371,14 @@ id=45848
 rarity=U
 [/card]
 [card]
-primitive=Karona, False God
-id=44263
-rarity=R
-[/card]
-[card]
 primitive=Karona's Zealot
 id=45858
 rarity=U
+[/card]
+[card]
+primitive=Karona, False God
+id=44263
+rarity=R
 [/card]
 [card]
 primitive=Krosan Drover

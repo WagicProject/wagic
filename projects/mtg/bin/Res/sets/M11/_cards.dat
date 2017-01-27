@@ -1,8 +1,14 @@
 [meta]
 author=Wagic Team
-name=Wagic 2011
+name=Magic 2011
 year=2010
+total=249
 [/meta]
+[card]
+primitive=AEther Adept
+id=205020
+rarity=C
+[/card]
 [card]
 primitive=Acidic Slime
 id=207333
@@ -11,11 +17,6 @@ rarity=U
 [card]
 primitive=Act of Treason
 id=205072
-rarity=C
-[/card]
-[card]
-primitive=AEther Adept
-id=205020
 rarity=C
 [/card]
 [card]
@@ -49,14 +50,14 @@ id=204980
 rarity=R
 [/card]
 [card]
-primitive=Angelic Arbiter
-id=204975
-rarity=R
-[/card]
-[card]
 primitive=Angel's Feather
 id=206325
 rarity=U
+[/card]
+[card]
+primitive=Angelic Arbiter
+id=204975
+rarity=R
 [/card]
 [card]
 primitive=Arc Runner
@@ -425,7 +426,12 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=213631
+id=213628
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=213629
 rarity=L
 [/card]
 [card]
@@ -435,12 +441,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=213628
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=213629
+id=213631
 rarity=L
 [/card]
 [card]
@@ -595,12 +596,12 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=213617
+id=213616
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=213619
+id=213617
 rarity=L
 [/card]
 [card]
@@ -610,7 +611,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=213616
+id=213619
 rarity=L
 [/card]
 [card]
@@ -669,13 +670,13 @@ id=204993
 rarity=R
 [/card]
 [card]
-primitive=Leyline of the Void
-id=205013
+primitive=Leyline of Vitality
+id=205031
 rarity=R
 [/card]
 [card]
-primitive=Leyline of Vitality
-id=205031
+primitive=Leyline of the Void
+id=205013
 rarity=R
 [/card]
 [card]
@@ -760,22 +761,22 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
-id=213625
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=213627
-rarity=L
-[/card]
-[card]
-primitive=Mountain
 id=213624
 rarity=L
 [/card]
 [card]
 primitive=Mountain
+id=213625
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=213626
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=213627
 rarity=L
 [/card]
 [card]
@@ -825,12 +826,12 @@ rarity=R
 [/card]
 [card]
 primitive=Ooze T1
-id=66666666
+id=-2050321
 rarity=T
 [/card]
 [card]
 primitive=Ooze T2
-id=77777777
+id=-2050322
 rarity=T
 [/card]
 [card]
@@ -870,7 +871,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=213615
+id=213613
 rarity=L
 [/card]
 [card]
@@ -880,7 +881,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=213613
+id=213615
 rarity=L
 [/card]
 [card]
@@ -1105,7 +1106,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=213623
+id=213621
 rarity=L
 [/card]
 [card]
@@ -1115,7 +1116,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=213621
+id=213623
 rarity=L
 [/card]
 [card]
@@ -1257,9 +1258,4 @@ rarity=U
 primitive=Yavimaya Wurm
 id=205221
 rarity=C
-[/card]
-[card]
-primitive=Avatar Token
-id=-205957
-rarity=T
 [/card]

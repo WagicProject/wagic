@@ -1,0 +1,90 @@
+[card]
+name=Aven Mimeomancer
+text=Flying -- At the beginning of your upkeep, you may put a feather counter on target creature. If you do, that creature is 3/1 and has flying for as long as it has a feather counter on it.
+mana={1}{W}{U}
+type=Creature
+subtype=Bird Wizard
+power=3
+toughness=1
+[/card]
+[card]
+name=Enigma Sphinx
+text=Flying -- When Enigma Sphinx is put into your graveyard from the battlefield, put it into your library third from the top. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={4}{W}{U}{B}
+type=Artifact Creature
+subtype=Sphinx
+power=5
+toughness=4
+[/card]
+[card]
+name=Giant Ambush Beetle
+text=Haste -- When Giant Ambush Beetle enters the battlefield, you may have target creature block it this turn if able.
+mana={3}{BG}{R}
+type=Creature
+subtype=Insect
+power=4
+toughness=3
+[/card]
+[card]
+name=Meddling Mage
+text=As Meddling Mage enters the battlefield, name a nonland card. -- The named card can't be cast.
+mana={W}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Sen Triplets
+text=At the beginning of your upkeep, choose target opponent. This turn, that player can't cast spells or activate abilities and plays with his or her hand revealed. You may play cards from that player's hand this turn.
+mana={2}{W}{U}{B}
+type=Legendary Artifact Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Singe-Mind Ogre
+text=When Singe-Mind Ogre enters the battlefield, target player reveals a card at random from his or her hand, then loses life equal to that card's converted mana cost.
+mana={2}{B}{R}
+type=Creature
+subtype=Ogre Mutant
+power=3
+toughness=2
+[/card]
+[card]
+name=Soul Manipulation
+text=Choose one or both — Counter target creature spell; and/or return target creature card from your graveyard to your hand.
+mana={1}{U}{B}
+type=Instant
+[/card]
+[card]
+name=Sovereigns of Lost Alara
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, you may search your library for an Aura card that could enchant that creature, put it onto the battlefield attached to that creature, then shuffle your library.
+mana={4}{W}{U}
+type=Creature
+subtype=Spirit
+power=4
+toughness=5
+[/card]
+[card]
+name=Spellbreaker Behemoth
+text=Spellbreaker Behemoth can't be countered. -- Creature spells you control with power 5 or greater can't be countered.
+mana={1}{R}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
+name=Thought Hemorrhage
+text=Name a nonland card. Target player reveals his or her hand. Thought Hemorrhage deals 3 damage to that player for each card with that name revealed this way. Search that player's graveyard, hand, and library for all cards with that name and exile them. Then that player shuffles his or her library.
+mana={2}{B}{R}
+type=Sorcery
+[/card]
+[card]
+name=Vengeful Rebirth
+text=Return target card from your graveyard to your hand. If you return a nonland card to your hand this way, Vengeful Rebirth deals damage equal to that card's converted mana cost to target creature or player. -- Exile Vengeful Rebirth.
+mana={4}{R}{G}
+type=Sorcery
+[/card]

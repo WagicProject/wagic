@@ -1,0 +1,126 @@
+[card]
+name=Accursed Witch
+text=Spells your opponents cast that target Accursed Witch cost {1} less to cast. -- When Accursed Witch dies, return it to the battlefield transformed under your control attached to target opponent.
+mana={3}{B}
+type=Creature
+subtype=Human Shaman
+power=4
+toughness=2
+[/card]
+[card]
+name=Avacyn's Judgment
+text=Madness {X}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.) -- Avacyn's Judgment deals 2 damage divided as you choose among any number of target creatures and/or players. If Avacyn's Judgment's madness cost was paid, it deals X damage divided as you choose among those creatures and/or players instead.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Briarbridge Patrol
+text=Whenever Briarbridge Patrol deals damage to one or more creatures, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- At the beginning of each end step, if you sacrificed three or more Clues this turn, you may put a creature card from your hand onto the battlefield.
+mana={3}{G}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Creeping Dread
+text=At the beginning of your upkeep, each player discards a card. Each opponent who discarded a card that shares a card type with the card you discarded loses 3 life. (Players reveal the discarded cards simultaneously.)
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
+name=Cult of the Waxing Moon
+text=Whenever a permanent you control transforms into a non-Human creature, put a 2/2 green Wolf creature token onto the battlefield.
+mana={4}{G}
+type=Creature
+subtype=Human Shaman
+power=5
+toughness=4
+[/card]
+[card]
+name=Dissension in the Ranks
+text=Target blocking creature fights another target blocking creature.
+mana={3}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Epiphany at the Drownyard
+text=Reveal the top X plus one cards of your library and separate them into two piles. An opponent chooses one of those piles. Put that pile into your hand and the other into your graveyard.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Falkenrath Gorger
+text=Each Vampire creature card you own that isn't on the battlefield has madness. The madness cost is equal to its mana cost. (If you discard a card with madness, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={R}
+type=Creature
+subtype=Vampire Berserker
+power=2
+toughness=1
+[/card]
+[card]
+name=Goldnight Castigator
+text=Flying, haste -- If a source would deal damage to you, it deals double that damage to you instead. -- If a source would deal damage to Goldnight Castigator, it deals double that damage to Goldnight Castigator instead.
+mana={2}{R}{R}
+type=Creature
+subtype=Angel
+power=4
+toughness=9
+[/card]
+[card]
+name=Harness the Storm
+text=Whenever you cast an instant or sorcery spell from your hand, you may cast target card with the same name as that spell from your graveyard. (You still pay its costs.)
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Infectious Curse
+text=Enchant player -- Spells you cast that target enchanted player cost {1} less to cast. -- At the beginning of enchanted player's upkeep, that player loses 1 life and you gain 1 life.
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Moonlight Hunt
+text=Choose target creature you don't control. Each creature you control that's a Wolf or a Werewolf deals damage equal to its power to that creature.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Relentless Dead
+text=Menace (This creature can't be blocked except by two or more creatures.) -- When Relentless Dead dies, you may pay {B}. If you do, return it to its owner's hand. -- When Relentless Dead dies, you may pay {X}. If you do, return another target Zombie creature card with converted mana cost X from your graveyard to the battlefield.
+mana={B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
+name=Seasons Past
+text=Return any number of cards with different converted mana costs from your graveyard to your hand. Put Seasons Past on the bottom of its owner's library.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Sin Prodder
+text=Menace -- At the beginning of your upkeep, reveal the top card of your library. Any opponent may have you put that card into your graveyard. If a player does, Sin Prodder deals damage to that player equal to that card's converted mana cost. Otherwise, put that card into your hand.
+mana={2}{R}
+type=Creature
+subtype=Devil
+power=3
+toughness=2
+[/card]
+[card]
+name=Watcher in the Web
+text=Reach (This creature can block creatures with flying.) -- Watcher in the Web can block an additional seven creatures each combat.
+mana={4}{G}
+type=Creature
+subtype=Spider
+power=2
+toughness=5
+[/card]
+[card]
+name=Welcome to the Fold
+text=Madness {X}{U}{U} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.) -- Gain control of target creature if its toughness is 2 or less. If Welcome to the Fold's madness cost was paid, instead gain control of that creature if its toughness is X or less.
+mana={2}{U}{U}
+type=Sorcery
+[/card]

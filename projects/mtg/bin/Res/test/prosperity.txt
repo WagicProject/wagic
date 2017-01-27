@@ -9,6 +9,7 @@ manapool:{2}{U}
 library:plains,forest,mountain
 [DO]
 prosperity
+choice 2
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

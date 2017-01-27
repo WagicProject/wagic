@@ -10,7 +10,9 @@ manapool:{W}{B}{10}
 [PLAYER2]
 [DO]
 Death Grasp
+choice 10
 p2
+Death Grasp
 [ASSERT]
 firstmain
 [PLAYER1]

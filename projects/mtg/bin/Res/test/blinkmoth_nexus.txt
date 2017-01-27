@@ -33,7 +33,8 @@ blinkmoth nexus
 COMBATATTACKERS
 [PLAYER1]
 inplay:blinkmoth nexus
-manapool:{1}
+#changed to {c} since all colorless produced are now {c}
+manapool:{c}
 [PLAYER2]
 life:19
 [END]

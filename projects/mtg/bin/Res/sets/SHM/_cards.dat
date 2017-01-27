@@ -1,17 +1,19 @@
 [meta]
 author=Wagic Team
+name=Shadowmoor
+block=Shadowmoor
 year=2008
-block=Shadow
+total=301
 [/meta]
-[card]
-primitive=Advice from the Fae
-id=154408
-rarity=U
-[/card]
 [card]
 primitive=AEthertow
 id=158750
 rarity=C
+[/card]
+[card]
+primitive=Advice from the Fae
+id=154408
+rarity=U
 [/card]
 [card]
 primitive=Aphotic Wisps
@@ -229,14 +231,14 @@ id=158747
 rarity=U
 [/card]
 [card]
-primitive=Deepchannel Mentor
-id=141981
-rarity=U
-[/card]
-[card]
 primitive=Deep-Slumber Titan
 id=159396
 rarity=R
+[/card]
+[card]
+primitive=Deepchannel Mentor
+id=141981
+rarity=U
 [/card]
 [card]
 primitive=Demigod of Revenge
@@ -380,22 +382,22 @@ rarity=U
 [/card]
 [card]
 primitive=Forest
-id=157877
-rarity=L
-[/card]
-[card]
-primitive=Forest
 id=157870
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=158242
+id=157877
 rarity=L
 [/card]
 [card]
 primitive=Forest
 id=158241
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=158242
 rarity=L
 [/card]
 [card]
@@ -459,14 +461,14 @@ id=158757
 rarity=C
 [/card]
 [card]
-primitive=Gloomwidow
-id=147375
-rarity=U
-[/card]
-[card]
 primitive=Gloomwidow's Feast
 id=154394
 rarity=C
+[/card]
+[card]
+primitive=Gloomwidow
+id=147375
+rarity=U
 [/card]
 [card]
 primitive=Gnarled Effigy
@@ -600,11 +602,6 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=158237
-rarity=L
-[/card]
-[card]
-primitive=Island
 id=157874
 rarity=L
 [/card]
@@ -616,6 +613,11 @@ rarity=L
 [card]
 primitive=Island
 id=157883
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=158237
 rarity=L
 [/card]
 [card]
@@ -810,12 +812,7 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
-id=158240
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=157888
+id=157882
 rarity=L
 [/card]
 [card]
@@ -825,7 +822,12 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=157882
+id=157888
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=158240
 rarity=L
 [/card]
 [card]
@@ -864,14 +866,14 @@ id=142007
 rarity=C
 [/card]
 [card]
-primitive=Oona, Queen of the Fae
-id=152063
-rarity=R
-[/card]
-[card]
 primitive=Oona's Gatewarden
 id=141975
 rarity=C
+[/card]
+[card]
+primitive=Oona, Queen of the Fae
+id=152063
+rarity=R
 [/card]
 [card]
 primitive=Oracle of Nectars
@@ -915,12 +917,7 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
-id=158235
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=158236
+id=157873
 rarity=L
 [/card]
 [card]
@@ -930,7 +927,12 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=157873
+id=158235
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=158236
 rarity=L
 [/card]
 [card]
@@ -1134,13 +1136,13 @@ id=159404
 rarity=R
 [/card]
 [card]
-primitive=Scar
-id=142049
+primitive=Scarscale Ritual
+id=154396
 rarity=C
 [/card]
 [card]
-primitive=Scarscale Ritual
-id=154396
+primitive=Scar
+id=142049
 rarity=C
 [/card]
 [card]
@@ -1265,22 +1267,22 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=157889
-rarity=L
-[/card]
-[card]
-primitive=Swamp
 id=157871
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=158239
+id=157886
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=157886
+id=157889
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=158239
 rarity=L
 [/card]
 [card]

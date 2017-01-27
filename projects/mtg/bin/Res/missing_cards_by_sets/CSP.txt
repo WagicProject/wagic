@@ -1,0 +1,256 @@
+[card]
+name=Balduvian Fallen
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever Balduvian Fallen's cumulative upkeep is paid, it gets +1/+0 until end of turn for each {B} or {R} spent this way.
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=5
+[/card]
+[card]
+name=Balduvian Warlord
+text={T}: Remove target blocking creature from combat. Creatures it was blocking that hadn't become blocked by another creature this combat become unblocked, then it blocks an attacking creature of your choice. Activate this ability only during the declare blockers step.
+mana={3}{R}
+type=Creature
+subtype=Human Barbarian
+power=3
+toughness=2
+[/card]
+[card]
+name=Commandeer
+text=You may exile two blue cards from your hand rather than pay Commandeer's mana cost. -- Gain control of target noncreature spell. You may choose new targets for it. (If that spell is an artifact, enchantment, or planeswalker, the permanent enters the battlefield under your control.)
+mana={5}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Counterbalance
+text=Whenever an opponent casts a spell, you may reveal the top card of your library. If you do, counter that spell if it has the same converted mana cost as the revealed card.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Cover of Winter
+text=Cumulative upkeep {S} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it. {S} can be paid with one mana from a snow permanent.) -- If a creature would deal combat damage to you and/or one or more creatures you control, prevent X of that damage, where X is the number of age counters on Cover of Winter. -- {S}: Put an age counter on Cover of Winter.
+mana={2}{W}
+type=Snow Enchantment
+[/card]
+[card]
+name=Glacial Plating
+text=Enchant creature -- Cumulative upkeep {S} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it. {S} can be paid with one mana from a snow permanent.) -- Enchanted creature gets +3/+3 for each age counter on Glacial Plating.
+mana={2}{W}{W}
+type=Snow Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Haakon, Stromgald Scourge
+text=You may cast Haakon, Stromgald Scourge from your graveyard, but not from anywhere else. -- As long as Haakon is on the battlefield, you may play Knight cards from your graveyard. -- When Haakon dies, you lose 2 life.
+mana={1}{B}{B}
+type=Legendary Creature
+subtype=Zombie Knight
+power=3
+toughness=3
+[/card]
+[card]
+name=Herald of Leshrac
+text=Flying -- Cumulative upkeep—Gain control of a land you don't control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Herald of Leshrac gets +1/+1 for each land you control but don't own. -- When Herald of Leshrac leaves the battlefield, each player gains control of each land he or she owns that you control.
+mana={6}{B}
+type=Creature
+subtype=Avatar
+power=2
+toughness=4
+[/card]
+[card]
+name=Hibernation's End
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever you pay Hibernation's End's cumulative upkeep, you may search your library for a creature card with converted mana cost equal to the number of age counters on Hibernation's End and put it onto the battlefield. If you do, shuffle your library.
+mana={4}{G}
+type=Enchantment
+[/card]
+[card]
+name=Jotun Grunt
+text=Cumulative upkeep—Put two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{W}
+type=Creature
+subtype=Giant Soldier
+power=4
+toughness=4
+[/card]
+[card]
+name=Jester's Scepter
+text=When Jester's Scepter enters the battlefield, exile the top five cards of target player's library face down. You may look at those cards for as long as they remain exiled. -- {2}, {T}, Put a card exiled with Jester's Scepter into its owner's graveyard: Counter target spell if it has the same name as that card.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Karplusan Minotaur
+text=Cumulative upkeep—Flip a coin. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever you win a coin flip, Karplusan Minotaur deals 1 damage to target creature or player. -- Whenever you lose a coin flip, Karplusan Minotaur deals 1 damage to target creature or player of an opponent's choice.
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Lightning Storm
+text=Lightning Storm deals X damage to target creature or player, where X is 3 plus the number of charge counters on it. -- Discard a land card: Put two charge counters on Lightning Storm. You may choose a new target for it. Any player may activate this ability but only if Lightning Storm is on the stack.
+mana={1}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Magmatic Core
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, Magmatic Core deals X damage divided as you choose among any number of target creatures, where X is the number of age counters on it.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Martyr of Ashes
+text={2}, Reveal X red cards from your hand, Sacrifice Martyr of Ashes: Martyr of Ashes deals X damage to each creature without flying.
+mana={R}
+type=Creature
+subtype=Human Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Martyr of Bones
+text={1}, Reveal X black cards from your hand, Sacrifice Martyr of Bones: Exile up to X target cards from a single graveyard.
+mana={B}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Martyr of Frost
+text={2}, Reveal X blue cards from your hand, Sacrifice Martyr of Frost: Counter target spell unless its controller pays {X}.
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Martyr of Sands
+text={1}, Reveal X white cards from your hand, Sacrifice Martyr of Sands: You gain three times X life.
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Martyr of Spores
+text={1}, Reveal X green cards from your hand, Sacrifice Martyr of Spores: Target creature gets +X/+X until end of turn.
+mana={G}
+type=Creature
+subtype=Human Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Panglacial Wurm
+text=Trample -- While you're searching your library, you may cast Panglacial Wurm from your library.
+mana={5}{G}{G}
+type=Creature
+subtype=Wurm
+power=9
+toughness=5
+[/card]
+[card]
+name=Rimehorn Aurochs
+text=Trample -- Whenever Rimehorn Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs. -- {2}{S}: Target creature blocks target creature this turn if able. ({S} can be paid with one mana from a snow permanent.)
+mana={4}{G}
+type=Snow Creature
+subtype=Aurochs
+power=3
+toughness=3
+[/card]
+[card]
+name=Rimewind Cryomancer
+text={1}, {T}: Counter target activated ability. Activate this ability only if you control four or more snow permanents. (Mana abilities can't be targeted.)
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Rune Snag
+text=Counter target spell unless its controller pays {2} plus an additional {2} for each card named Rune Snag in each graveyard.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Shape of the Wiitigo
+text=Enchant creature -- When Shape of the Wiitigo enters the battlefield, put six +1/+1 counters on enchanted creature. -- At the beginning of your upkeep, put a +1/+1 counter on enchanted creature if it attacked or blocked since your last upkeep. Otherwise, remove a +1/+1 counter from it.
+mana={3}{G}{G}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Surging AEther
+target=*
+auto=moveto(ownerhand)
+#reveal cannot be used with castcard with targetchooser, it will be stucked
+autostack=if casted(this) then reveal:4 optionone name(Ripple) target(<upto:4>Surging AEther|reveal) castcard(restricted) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
+text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Return target permanent to its owner's hand.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Surging Dementia
+target=player
+auto=ability$!reject notatarget(*|myhand)!$ targetedplayer
+#reveal cannot be used with castcard with targetchooser, it will be stucked
+autostack=if casted(this) then reveal:4 optionone name(Ripple) target(<upto:4>Surging Dementia|reveal) castcard(restricted) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
+text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Target player discards a card.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Surging Flame
+target=creature,player
+auto=damage:2
+#reveal cannot be used with castcard with targetchooser, it will be stucked
+autostack=if casted(this) then reveal:4 optionone name(Ripple) target(<upto:4>Surging Flame|reveal) castcard(restricted) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
+text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Surging Flame deals 2 damage to target creature or player.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Surging Might
+target=creature
+auto=teach(creature) 2/2
+#reveal cannot be used with castcard with targetchooser, it will be stucked
+autostack=if casted(this) then reveal:4 optionone name(Ripple) target(<upto:4>Surging Might|reveal) castcard(restricted) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
+text=Enchant creature -- Enchanted creature gets +2/+2. -- Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.)
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Thermal Flux
+text=Choose one — Target nonsnow permanent becomes snow until end of turn; or target snow permanent isn't snow until end of turn. -- Draw a card at the beginning of the next turn's upkeep.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Thrumming Stone
+text=Spells you cast have ripple 4. (Whenever you cast a spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as the spell without paying their mana costs. Put the rest on the bottom of your library.)
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Vanish into Memory
+text=Exile target creature. You draw cards equal to that creature's power. At the beginning of your next upkeep, return that card to the battlefield under its owner's control. If you do, discard cards equal to its toughness.
+mana={2}{W}{U}
+type=Instant
+[/card]
+[card]
+name=Void Maw
+text=Trample -- If another creature would die, exile it instead. -- Put a card exiled with Void Maw into its owner's graveyard: Void Maw gets +2/+2 until end of turn.
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=5
+[/card]

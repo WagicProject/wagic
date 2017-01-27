@@ -1,0 +1,264 @@
+[card]
+name=Aerial Formation
+text=Strive — Aerial Formation costs {2}{U} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain flying until end of turn.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Ajani's Presence
+text=Strive — Ajani's Presence costs {2}{W} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain indestructible until end of turn. (Damage and effects that say "destroy" don't destroy them.)
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Ajani, Mentor of Heroes
+text=+1: Distribute three +1/+1 counters among one, two, or three target creatures you control. -- +1: Look at the top four cards of your library. You may reveal an Aura, creature, or planeswalker card from among them and put it into your hand. Put the rest on the bottom of your library in any order. -- -8: You gain 100 life.
+mana={3}{G}{W}
+type=Planeswalker
+subtype=Ajani
+[/card]
+[card]
+name=Athreos, God of Passage
+text=Indestructible -- As long as your devotion to white and black is less than seven, Athreos isn't a creature. -- Whenever another creature you own dies, return it to your hand unless target opponent pays 3 life.
+mana={1}{W}{B}
+type=Legendary Enchantment Creature
+subtype=God
+power=5
+toughness=4
+[/card]
+[card]
+name=Battlefield Thaumaturge
+text=Each instant and sorcery spell you cast costs {1} less to cast for each creature it targets. -- Heroic — Whenever you cast a spell that targets Battlefield Thaumaturge, Battlefield Thaumaturge gains hexproof until end of turn.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Blinding Flare
+text=Strive — Blinding Flare costs {R} more to cast for each target beyond the first. -- Any number of target creatures can't block this turn.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Colossal Heroics
+text=Strive — Colossal Heroics costs {1}{G} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+2 until end of turn. Untap those creatures.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Consign to Dust
+text=Strive — Consign to Dust costs {2}{G} more to cast for each target beyond the first. -- Destroy any number of target artifacts and/or enchantments.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Cruel Feeding
+text=Strive — Cruel Feeding costs {2}{B} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+0 and gain lifelink until end of turn. (Damage dealt by a creature with lifelink also causes its controller to gain that much life.)
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Dakra Mystic
+text={U}, {T}: Each player reveals the top card of his or her library. You may put the revealed cards into their owners' graveyards. If you don't, each player draws a card.
+mana={U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Daring Thief
+text=Inspired — Whenever Daring Thief becomes untapped, you may exchange control of target nonland permanent you control and target permanent an opponent controls that shares a card type with it.
+mana={2}{U}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=3
+[/card]
+[card]
+name=Desperate Stand
+text=Strive — Desperate Stand costs {R}{W} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+0 and gain first strike and vigilance until end of turn.
+mana={R}{W}
+type=Sorcery
+[/card]
+[card]
+name=Dictate of the Twin Gods
+text=Flash -- If a source would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
+mana={3}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Disciple of Deceit
+text=Inspired — Whenever Disciple of Deceit becomes untapped, you may discard a nonland card. If you do, search your library for a card with the same converted mana cost as that card, reveal it, put it into your hand, then shuffle your library.
+mana={U}{B}
+type=Creature
+subtype=Human Rogue
+power=1
+toughness=3
+[/card]
+[card]
+name=Godsend
+text=Equipped creature gets +3/+3. -- Whenever equipped creature blocks or becomes blocked by one or more creatures, you may exile one of those creatures. -- Opponents can't cast cards with the same name as cards exiled with Godsend. -- Equip {3}
+mana={1}{W}{W}
+type=Legendary Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Goldenhide Ox
+text=Constellation — Whenever Goldenhide Ox or another enchantment enters the battlefield under your control, target creature must be blocked this turn if able.
+mana={5}{G}
+type=Enchantment Creature
+subtype=Ox
+power=5
+toughness=4
+[/card]
+[card]
+name=Harness by Force
+text=Strive — Harness by Force costs {2}{R} more to cast for each target beyond the first. -- Gain control of any number of target creatures until end of turn. Untap those creatures. They gain haste until end of turn.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Hour of Need
+text=Strive — Hour of Need costs {1}{U} more to cast for each target beyond the first. -- Exile any number of target creatures. For each creature exiled this way, its controller puts a 4/4 blue Sphinx creature token with flying onto the battlefield.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Keranos, God of Storms
+text=Indestructible -- As long as your devotion to blue and red is less than seven, Keranos isn't a creature. -- Reveal the first card you draw on each of your turns. Whenever you reveal a land card this way, draw a card. Whenever you reveal a nonland card this way, Keranos deals 3 damage to target creature or player.
+mana={3}{U}{R}
+type=Legendary Enchantment Creature
+subtype=God
+power=6
+toughness=5
+[/card]
+[card]
+name=Kiora's Dismissal
+text=Strive — Kiora's Dismissal costs {U} more to cast for each target beyond the first. -- Return any number of target enchantments to their owners' hands.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Knowledge and Power
+text=Whenever you scry, you may pay {2}. If you do, Knowledge and Power deals 2 damage to target creature or player.
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
+name=Kruphix, God of Horizons
+text=Indestructible -- As long as your devotion to green and blue is less than seven, Kruphix isn't a creature. -- You have no maximum hand size. -- If unused mana would empty from your mana pool, that mana becomes colorless instead.
+mana={3}{G}{U}
+type=Legendary Enchantment Creature
+subtype=God
+power=4
+toughness=7
+[/card]
+[card]
+name=Launch the Fleet
+text=Strive — Launch the Fleet costs {1} more to cast for each target beyond the first. -- Until end of turn, any number of target creatures each gain "Whenever this creature attacks, put a 1/1 white Soldier creature token onto the battlefield tapped and attacking."
+mana={W}
+type=Sorcery
+[/card]
+[card]
+name=Nature's Panoply
+text=Strive — Nature's Panoply costs {2}{G} more to cast for each target beyond the first. -- Choose any number of target creatures. Put a +1/+1 counter on each of them.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Oppressive Rays
+text=Enchant creature -- Enchanted creature can't attack or block unless its controller pays {3}. -- Activated abilities of enchanted creature cost {3} more to activate.
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Phalanx Formation
+text=Strive — Phalanx Formation costs {1}{W} more to cast for each target beyond the first. -- Any number of target creatures each gain double strike until end of turn. (They deal both first-strike and regular combat damage.)
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Polymorphous Rush
+text=Strive — Polymorphous Rush costs {1}{U} more to cast for each target beyond the first. -- Choose a creature on the battlefield. Any number of target creatures you control each become a copy of that creature until end of turn.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Pull from the Deep
+text=Return up to one target instant card and up to one target sorcery card from your graveyard to your hand. Exile Pull from the Deep.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Quarry Colossus
+text=When Quarry Colossus enters the battlefield, put target creature into its owner's library just beneath the top X cards of that library, where X is the number of Plains you control.
+mana={5}{W}{W}
+type=Creature
+subtype=Giant
+power=5
+toughness=6
+[/card]
+[card]
+name=Ritual of the Returned
+text=Exile target creature card from your graveyard. Put a black Zombie creature token onto the battlefield. Its power is equal to that card's power and its toughness is equal to that card's toughness.
+mana={3}{B}
+type=Instant
+[/card]
+[card]
+name=Rouse the Mob
+text=Strive — Rouse the Mob costs {2}{R} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+0 and gain trample until end of turn.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Sage of Hours
+text=Heroic — Whenever you cast a spell that targets Sage of Hours, put a +1/+1 counter on it. -- Remove all +1/+1 counters from Sage of Hours: For each five counters removed this way, take an extra turn after this one.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Setessan Tactics
+text=Strive — Setessan Tactics costs {G} more to cast for each target beyond the first. -- Until end of turn, any number of target creatures each get +1/+1 and gain "{T}: This creature fights another target creature."
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Silence the Believers
+text=Strive — Silence the Believers costs {2}{B} more to cast for each target beyond the first. -- Exile any number of target creatures and all Auras attached to them.
+mana={2}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Solidarity of Heroes
+text=Strive — Solidarity of Heroes costs {1}{G} more to cast for each target beyond the first. -- Choose any number of target creatures. Double the number of +1/+1 counters on each of them.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Stonewise Fortifier
+text={4}{W}: Prevent all damage that would be dealt to Stonewise Fortifier by target creature this turn.
+mana={1}{W}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Twinflame
+text=Strive — Twinflame costs {2}{R} more to cast for each target beyond the first. -- Choose any number of target creatures you control. For each of them, put a token that's a copy of that creature onto the battlefield. Those tokens have haste. Exile them at the beginning of the next end step.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Worst Fears
+text=You control target player during that player's next turn. Exile Worst Fears. (You see all cards that player could see and make all decisions for the player.)
+mana={7}{B}
+type=Sorcery
+[/card]

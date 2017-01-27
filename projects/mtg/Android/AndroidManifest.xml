@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="0192" android:versionName="@string/app_version" package="net.wagic.app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="0201" android:versionName="@string/app_version" package="net.wagic.app">
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        <activity android:configChanges="keyboard|keyboardHidden|orientation" android:label="@string/app_name" android:name="org.libsdl.app.SDLActivity" android:screenOrientation="sensorLandscape">
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        <activity android:debuggable="false" android:configChanges="keyboard|keyboardHidden|orientation" android:label="@string/app_name" android:name="org.libsdl.app.SDLActivity" android:screenOrientation="sensorLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
-        <activity android:configChanges="keyboard|keyboardHidden|orientation" android:name="com.google.ads.AdActivity" android:screenOrientation="sensorLandscape"/>
     </application>
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="10"/>
 </manifest>

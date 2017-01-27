@@ -234,10 +234,14 @@ JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submod
 
     submode = submode | TEXTURE_SUB_CARD;
 
-    static std::ostringstream filename;
-    filename.str("");
-    filename << setlist[card->setId] << "/" << card->getImageName();
-
+    //static std::ostringstream filename;
+    //filename.str("");
+    string filename;
+    filename.reserve(4096);
+    //filename << setlist[card->setId] << "/" << card->getImageName();
+    filename.append(setlist[card->setId]);
+    filename.append("/");
+    filename.append(card->getImageName());
     int id = card->getMTGId();
 
     //Aliases.
@@ -247,7 +251,47 @@ JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submod
         style = RETRIEVE_NORMAL;
     }
 
-    JQuadPtr jq = RetrieveQuad(filename.str(), 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
+    JQuadPtr jq = RetrieveQuad(filename, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
+
+    lastError = textureWCache.mError;
+    if (jq)
+    {
+        jq->SetHotSpot(static_cast<float> (jq->mTex->mWidth / 2), static_cast<float> (jq->mTex->mHeight / 2));
+        return jq;
+    }
+
+    return JQuadPtr();
+}
+
+JQuadPtr ResourceManagerImpl::RetrieveCardToken(MTGCard * card, int style, int submode, int tId)
+{
+    //Cards are never, ever resource managed, so just check cache.
+    if (!card || options[Options::DISABLECARDS].number) return JQuadPtr();
+
+    submode = submode | TEXTURE_SUB_CARD;
+
+    //static std::ostringstream filename;
+    //filename.str("");
+    string filename;
+    filename.reserve(4096);
+    //filename << setlist[card->setId] << "/" << card->getImageName();
+    filename.append(setlist[card->setId]);
+    filename.append("/");
+    int id = -card->getMTGId();
+    if(tId)
+        id = -tId;
+    ostringstream imagename;
+    imagename << "-" << id << "t.jpg";
+    filename.append(imagename.str());
+
+    //Aliases.
+    if (style == RETRIEVE_THUMB)
+    {
+        submode = submode | TEXTURE_SUB_THUMB;
+        style = RETRIEVE_NORMAL;
+    }
+
+    JQuadPtr jq = RetrieveQuad(filename, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
 
     lastError = textureWCache.mError;
     if (jq)
@@ -842,12 +886,13 @@ void ResourceManagerImpl::InitFonts(const std::string& inLang)
     LoadWFont("pspsimon", 11, Fonts::MAIN_FONT + idOffset);
     GetWFont(Fonts::MAIN_FONT)->SetTracking(-1);
     LoadWFont("pspf3", 16, Fonts::MENU_FONT + idOffset);
+    LoadWFont("pspmagic", 16, Fonts::MAGIC_FONT + idOffset);
 #else
     LoadWFont("simon", 11, Fonts::MAIN_FONT + idOffset);
     GetWFont(Fonts::MAIN_FONT)->SetTracking(-1);
     LoadWFont("f3", 16, Fonts::MENU_FONT + idOffset);
-#endif
     LoadWFont("magic", 16, Fonts::MAGIC_FONT + idOffset);
+#endif
     LoadWFont("smallface", 7, Fonts::SMALLFACE_FONT + idOffset);
 }
 

@@ -56,6 +56,7 @@ WEvent(CHANGE_PHASE), from(from), to(to)
 WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after) :
     WEventCardUpdate(card), before(before), after(after)
 {
+    noTrigger = false;
 }
 
 WEventCardTappedForMana::WEventCardTappedForMana(MTGCardInstance * card, bool before, bool after) :
@@ -123,6 +124,7 @@ WEventTarget::WEventTarget(MTGCardInstance * card,MTGCardInstance * source) :
     WEventCardUpdate(card),card(card),source(source)
 {
     card->cardistargetted = 1;
+    if(source)
     source->cardistargetter = 1;
 }
 
@@ -147,9 +149,63 @@ WEventCreatureBlockerRank::WEventCreatureBlockerRank(MTGCardInstance * card, MTG
 {
 }
 
+WEventEngageManaExtra::WEventEngageManaExtra(int color, MTGCardInstance* card, ManaPool * destination) :
+    WEvent(), color(color), card(card), destination(destination)
+{//controller snow
+    if(color == 1 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaG += 1;
+    if(color == 2 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaU += 1;
+    if(color == 3 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaR += 1;
+    if(color == 4 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaB += 1;
+    if(color == 5 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaW += 1;
+    if((color == 0 || color == 6) && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaC += 1;
+    //opponent snow
+    if(color == 1 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaG += 1;
+    if(color == 2 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaU += 1;
+    if(color == 3 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaR += 1;
+    if(color == 4 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaB += 1;
+    if(color == 5 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaW += 1;
+    if((color == 0 || color == 6) && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaC += 1;
+}
 WEventEngageMana::WEventEngageMana(int color, MTGCardInstance* card, ManaPool * destination) :
     WEvent(), color(color), card(card), destination(destination)
-{
+{//controller snow
+    if(color == 1 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaG += 1;
+    if(color == 2 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaU += 1;
+    if(color == 3 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaR += 1;
+    if(color == 4 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaB += 1;
+    if(color == 5 && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaW += 1;
+    if((color == 0 || color == 6) && card->controller()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->snowManaC += 1;
+    //opponent snow
+    if(color == 1 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaG += 1;
+    if(color == 2 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaU += 1;
+    if(color == 3 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaR += 1;
+    if(color == 4 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaB += 1;
+    if(color == 5 && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaW += 1;
+    if((color == 0 || color == 6) && card->controller()->opponent()->getManaPool() == destination && card->hasType("snow"))
+        card->controller()->opponent()->snowManaC += 1;
 }
 WEventConsumeMana::WEventConsumeMana(int color, ManaPool * source) :
     WEvent(), color(color), source(source)
@@ -175,8 +231,18 @@ WEventCardControllerChange::WEventCardControllerChange(MTGCardInstance * card) :
 {
 }
 
+WEventCardTransforms::WEventCardTransforms(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCombatStepChange::WEventCombatStepChange(CombatStep step) :
     WEvent(), step(step)
+{
+}
+
+WEventplayerEnergized::WEventplayerEnergized(Player * player, int nb_count) :
+    player(player), nb_count(nb_count)
 {
 }
 ;
@@ -338,6 +404,18 @@ Targetable * WEventCardEquipped::getTarget(int target)
 Targetable * WEventCardControllerChange::getTarget(int target)
 {
     if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardTransforms::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventplayerEnergized::getTarget(Player * player)
+{
+    if (player) return player;
     return NULL;
 }
 

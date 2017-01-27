@@ -1,27 +1,24 @@
 [meta]
 author=Wagic Team
+name=Lorwyn
+block=Lorwyn
 year=2007
-block=Morning
+total=301
 [/meta]
-[card]
-primitive=Adder-Staff Boggart
-id=145992
-rarity=C
-[/card]
 [card]
 primitive=AEthersnipe
 id=145817
 rarity=C
 [/card]
 [card]
+primitive=Adder-Staff Boggart
+id=145992
+rarity=C
+[/card]
+[card]
 primitive=Ajani Goldmane
 id=140233
 rarity=R
-[/card]
-[card]
-primitive=Avatar Token
-id=-140233
-rarity=T
 [/card]
 [card]
 primitive=Amoeboid Changeling
@@ -109,6 +106,11 @@ id=145966
 rarity=C
 [/card]
 [card]
+primitive=Bog-Strider Ash
+id=139410
+rarity=C
+[/card]
+[card]
 primitive=Boggart Birth Rite
 id=142359
 rarity=C
@@ -141,11 +143,6 @@ rarity=U
 [card]
 primitive=Boggart Sprite-Chaser
 id=146446
-rarity=C
-[/card]
-[card]
-primitive=Bog-Strider Ash
-id=139410
 rarity=C
 [/card]
 [card]
@@ -470,17 +467,17 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
+id=143617
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=143618
 rarity=L
 [/card]
 [card]
 primitive=Forest
 id=143625
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=143617
 rarity=L
 [/card]
 [card]
@@ -705,7 +702,7 @@ rarity=U
 [/card]
 [card]
 primitive=Island
-id=143628
+id=143619
 rarity=L
 [/card]
 [card]
@@ -715,12 +712,12 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=143632
+id=143628
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=143619
+id=143632
 rarity=L
 [/card]
 [card]
@@ -905,17 +902,17 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
+id=143626
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=143627
 rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=143631
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=143626
 rarity=L
 [/card]
 [card]
@@ -1020,12 +1017,12 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=143621
+id=143620
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=143630
+id=143621
 rarity=L
 [/card]
 [card]
@@ -1035,7 +1032,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=143620
+id=143630
 rarity=L
 [/card]
 [card]
@@ -1275,7 +1272,7 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=143636
+id=143629
 rarity=L
 [/card]
 [card]
@@ -1285,12 +1282,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=143629
+id=143635
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=143635
+id=143636
 rarity=L
 [/card]
 [card]

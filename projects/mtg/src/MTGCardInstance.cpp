@@ -12,6 +12,9 @@
 #include "Counters.h"
 #include "Subtypes.h"
 
+
+#include "AIPlayerBaka.h"
+
 using namespace std;
 
 SUPPORT_OBJECT_ANALYTICS(MTGCardInstance)
@@ -46,6 +49,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     if (arg_belongs_to)
         owner = arg_belongs_to->library->owner;
     lastController = owner;
+    previousController = owner;
     defenser = NULL;
     banding = NULL;
     life = toughness;
@@ -60,31 +64,49 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     bypassTC = false;
     discarded = false;
     copiedID = getId();
-    modifiedbAbi = 0;
     LKIpower = power;
     LKItoughness = toughness;
     cardistargetted = 0;
     cardistargetter = 0;
     myconvertedcost = getManaCost()->getConvertedCost();
+    revealedLast = NULL;
+    MadnessPlay = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
     {
-        MTGCardInstance * snapShot = NEW MTGCardInstance(*this);
-        snapShot->previous = NULL;
-        snapShot->counters = NEW Counters(snapShot);
-        controller()->game->garbage->addCard(snapShot);
+        //the below section of code was changed without all possible side effects checked
+        //the reason was becuase while NEW MTGCardInstance(*this); does indeed return an exact copy
+        //the lower layer cardprimitive data is pointed to from the original source.
+        //this would cause cards like lotus bloom, which contain a restriction, to already has deleted the restriction
+        //which belonged to the original card before getting to the safe_delete, 
+        //it was leaving a dangling pointer which leads to
+        //a total crash on "cleanup()" calls from garbage zone.
+        //snapshots are created for extra cost, they are used for abilities contained after the cost through storecard variable.
+        //TODO:fix this correctly. I want this to use an exact copy of the card in its current state for stored.
+        //making it safe_delete these "copies" leads to the same crash, as they are still pointing to the original data.
+        MTGCardInstance * snapShot = this;
+        //below is how we used to handle this.
+       // MTGCardInstance * snapShot = NEW MTGCardInstance(*this);
+        //snapShot->previous = NULL;
+       // snapShot->counters = NEW Counters(snapShot);
+        //controller()->game->garbage->addCard(snapShot);
         return snapShot;
     }
 
 void MTGCardInstance::copy(MTGCardInstance * card)
 {
-    MTGCard * source = card->model;
-    CardPrimitive * data = source->data;
+    MTGCard * source = NULL;
+    if(card->isToken || card->hasCopiedToken)
+    {
+        source = card;
+    }
+    else
+         source = MTGCollection()->getCardById(card->copiedID);
 
-    basicAbilities = card->basicAbilities;
-    origbasicAbilities = card->origbasicAbilities;
-    modifiedbAbi = card->modifiedbAbi;
+    CardPrimitive * data = source->data;
+    basicAbilities = data->basicAbilities;
+    types.clear();//reset types.. fix copying man lands... the copier becomes an unanimated land...
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -94,32 +116,49 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 
     manaCost.copy(data->getManaCost());
 
-    setText(""); //The text is retrieved from the data anyways
+    setText(data->text); //The text is retrieved from the data anyways
     setName(data->name);
 
-    power = data->power;
-    toughness = data->toughness;
+    power = data->power;//layer 7a
+    toughness = data->toughness;//layer 7a
+    power += pbonus;//layer 7b
+    toughness += tbonus;//layer 7b
     life = toughness;
     lifeOrig = life;
     magicText = data->magicText;
     spellTargetType = data->spellTargetType;
     alias = data->alias;
+    copiedID = card->copiedID;
+    doubleFaced = data->doubleFaced;
+    AICustomCode = data->AICustomCode;
+    origpower = card->origpower;//for flip
+    origtoughness = card->origtoughness;//for flip
 
     //Now this is dirty...
     int backupid = mtgid;
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
-    Spell * spell = NEW Spell(observer, this);
+    /*Spell * spell = NEW Spell(observer, this);
     observer = card->observer;
     AbilityFactory af(observer);
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
-    delete spell;
-    mtgid = backupid;
+    delete spell;*/
+    if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
+        mtgid = backupid; // there must be a way to get the token id...
+    else
+    {
+        mtgid = card->getMTGId();   ///////////////////////////////////////////////////
+        setId = card->setId;        // Copier/Cloner cards produces the same token...//
+        rarity = card->getRarity(); ///////////////////////////////////////////////////
+
+        setMTGId(card->copiedID);   //**************sets copier image****************//
+    }
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
     storedCard = oldStored;
     miracle = false;
+    mPropertiesChangedSinceLastUpdate = true;
 }
 
 MTGCardInstance::~MTGCardInstance()
@@ -139,12 +178,14 @@ int MTGCardInstance::init()
     data = this;
     X = 0;
     castX = 0;
+    setX = -1;
     return 1;
 }
 
 void MTGCardInstance::initMTGCI()
 {
     X = 0;
+    setX = -1;
     sample = "";
     model = NULL;
     isToken = false;
@@ -166,8 +207,10 @@ void MTGCardInstance::initMTGCI()
     morphed = false;
     turningOver = false;
     isMorphed = false;
+    MeldedFrom = "";
     isFlipped = false;
     isPhased = false;
+    isCascaded = false;
     phasedTurn = -1;
     didattacked = 0;
     didblocked = 0;
@@ -175,12 +218,14 @@ void MTGCardInstance::initMTGCI()
     sunburst = 0;
     equipment = 0;
     auras = 0;
+    combatdamageToOpponent = false;
     damageToOpponent = false;
     damageToController = false;
     damageToCreature = false;
     wasDealtDamage = false;
     isDualWielding = false;
     suspended = false;
+    isBestowed = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;
     stillNeeded = true;
@@ -193,7 +238,34 @@ void MTGCardInstance::initMTGCI()
     storedCard = NULL;
     storedSourceCard = NULL;
     myPair = NULL;
+    shackled = NULL;
+    seized = NULL;
     miracle = false;
+    hasCopiedToken = false;
+    countTrini = 0;
+    anymanareplacement = false;
+    imprintedCards.clear();
+    attackCost = 0;
+    attackCostBackup = 0;
+    attackPlaneswalkerCost = 0;
+    attackPlaneswalkerCostBackup = 0;
+    blockCost = 0;
+    blockCostBackup = 0;
+    imprintG = 0;
+    imprintU = 0;
+    imprintR = 0;
+    imprintB = 0;
+    imprintW = 0;
+    canproduceG = 0;
+    canproduceU = 0;
+    canproduceR = 0;
+    canproduceB = 0;
+    canproduceW = 0;
+    canproduceC = 0;
+    entersBattlefield = 0;
+    currentimprintName = "";
+    imprintedNames.clear();
+    CountedObjects = 0;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;
@@ -213,6 +285,7 @@ void MTGCardInstance::initMTGCI()
     previousZone = NULL;
     previous = NULL;
     next = NULL;
+    TokenAndAbility = NULL;
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;
@@ -432,12 +505,14 @@ void MTGCardInstance::eventblocked(MTGCardInstance * opponent)
 }
 
 //Taps the card
-void MTGCardInstance::tap()
+void MTGCardInstance::tap(bool sendNoEvent)
 {
     if (tapped)
         return;
     tapped = 1;
     WEvent * e = NEW WEventCardTap(this, 0, 1);
+    if (sendNoEvent)
+        dynamic_cast<WEventCardTap*>(e)->noTrigger = true;
     observer->receiveEvent(e);
 }
 
@@ -557,7 +632,7 @@ int MTGCardInstance::hasSummoningSickness()
 {
     if (!summoningSickness)
         return 0;
-    if (basicAbilities[(int)Constants::HASTE])
+    if (has(Constants::HASTE))
         return 0;
     if (!isCreature())
         return 0;
@@ -573,7 +648,7 @@ MTGCardInstance * MTGCardInstance::changeController(Player * newController,bool 
     }
     Player * originalOwner = controller();
     MTGCardInstance * copy = originalOwner->game->putInZone(this, this->currentZone, newController->game->inPlay);
-    copy->summoningSickness = 1;
+    //copy->summoningSickness = 1;
     return copy;
 }
 
@@ -584,13 +659,15 @@ Player * MTGCardInstance::controller()
 
 int MTGCardInstance::canAttack()
 {
-    if (basicAbilities[(int)Constants::CANTATTACK])
+    if (has(Constants::CANTATTACK))
+        return 0;
+    if (has(Constants::FLYERSONLY) && !has(Constants::FLYING))
         return 0;
     if (tapped)
         return 0;
     if (hasSummoningSickness())
         return 0;
-    if (basicAbilities[(int)Constants::DEFENSER] && !basicAbilities[(int)Constants::CANATTACK])
+    if (has(Constants::DEFENSER) && !has(Constants::CANATTACK))
         return 0;
     if (!isCreature())
         return 0;
@@ -732,14 +809,18 @@ void MTGCardInstance::switchPT(bool apply)
 
 int MTGCardInstance::getCurrentPower()
 {
-    if(!isInPlay(observer))
+    if(observer && !isCreature())
+        return 0;
+    if(observer && !isInPlay(observer))
         return LKIpower;
     return power;
 }
 
 int MTGCardInstance::getCurrentToughness()
 {
-    if(!isInPlay(observer))
+    if(observer && !isCreature())
+        return 0;
+    if(observer && !isInPlay(observer))
         return LKItoughness;
     return toughness;
 }
@@ -747,11 +828,13 @@ int MTGCardInstance::getCurrentToughness()
 //check stack
 bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 {
+    Player * whoInterupts = getObserver()->isInterrupting;//leave this so we can actually debug who is interupting/current.
+    Player * whoCurrent = getObserver()->currentPlayer;
     if((getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0) &&
         (getObserver()->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN ||
         getObserver()->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN) &&
-        controller() == getObserver()->currentPlayer &&
-        !getObserver()->isInterrupting)
+        controller() == whoCurrent &&
+        (!whoInterupts || whoInterupts == whoCurrent))
     {
         return true;
     }
@@ -761,6 +844,9 @@ bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 //check targetted?
 bool MTGCardInstance::isTargetted()
 {
+    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
+        return false;
+
     if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     {
         ActionStack * stack = observer->mLayers->stackLayer();
@@ -786,6 +872,9 @@ bool MTGCardInstance::isTargetted()
 //check targetter?
 bool MTGCardInstance::isTargetter()
 {
+    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
+        return false;
+
     if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     {
         ActionStack * stack = observer->mLayers->stackLayer();
@@ -810,7 +899,7 @@ bool MTGCardInstance::isTargetter()
 
 int MTGCardInstance::canBlock()
 {
-    if (tapped)
+    if (tapped && !has(Constants::CANBLOCKTAPPED))
         return 0;
     if (basicAbilities[(int)Constants::CANTBLOCK])
         return 0;
@@ -842,7 +931,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
         return 0;
     if (opponent->basicAbilities[(int)Constants::ONEBLOCKER] && opponent->blocked)
         return 0;
-    if(opponent->basicAbilities[(int)Constants::EVADEBIGGER] && power > opponent->power)
+    if((opponent->basicAbilities[(int)Constants::EVADEBIGGER]|| opponent->basicAbilities[(int)Constants::SKULK]) && power > opponent->power)
         return 0;
     if(opponent->basicAbilities[(int)Constants::STRONG] && power < opponent->power)
         return 0;
@@ -918,23 +1007,199 @@ JQuadPtr MTGCardInstance::getIcon()
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }
 
-ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * oldCost)
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cost, ManaCost * Data, bool noTrinisphere)
 {
-    if(card->isLand())
-        return oldCost;
+    int color = 0;
+    string type = "";
+    ManaCost * original = NEW ManaCost();
+    ManaCost * excess = NEW ManaCost();
+    original->copy(Data);
+    Cost->copy(original);
+    if (Cost->extraCosts)
+    {
+        for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+        {
+            Cost->extraCosts->costs[i]->setSource(card);
+        }
+    }
+    if (card->getIncreasedManaCost()->getConvertedCost() || card->getReducedManaCost()->getConvertedCost())
+    {//start1
+        if (card->getIncreasedManaCost()->getConvertedCost())
+            original->add(card->getIncreasedManaCost());
+        //before removing get the diff for excess
+        if(card->getReducedManaCost()->getConvertedCost())
+        {
+            for(int xc = 0; xc < 7;xc++)
+            {//if the diff is more than 0
+                if(card->getReducedManaCost()->getCost(xc) > original->getCost(xc))
+                {
+                    int count = card->getReducedManaCost()->getCost(xc) - original->getCost(xc);
+                    excess->add(xc,count);
+                }
+            }
+        }
+        //apply reduced
+        if (card->getReducedManaCost()->getConvertedCost())
+            original->remove(card->getReducedManaCost());
+        //try to reduce hybrid
+        if (excess->getConvertedCost())
+        {
+            original->removeHybrid(excess);
+        }
+        Cost->copy(original);
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
+    }//end1
+    int reducem = 0;
+    bool resetCost = false;
+    for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
+    {//start2
+        if (!card->cardsAbilities[na])
+            break;
+        ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
+        if (newAff)
+        {
+            if (!resetCost)
+            {
+                resetCost = true;
+                Cost->copy(original);
+                if (Cost->extraCosts)
+                {
+                    for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+                    {
+                        Cost->extraCosts->costs[i]->setSource(card);
+                    }
+                }
+            }
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tcn = tf.createTargetChooser(newAff->tcString, card, NULL);
 
-    if(!card)
-        return oldCost;
-        //use forcedalive//
-        //pay zero costs//
-        //kicker???...//
-        //morph cost todo//
-        //trinisphere must be here below//
-    if(card->has(Constants::TRINISPHERE))
-        for(int jj = oldCost->getConvertedCost(); jj < 3; jj++)
-            oldCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+            for (int w = 0; w < 2; ++w)
+            {
+                Player *p = getObserver()->players[w];
+                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+                for (int k = 0; k < 6; k++)
+                {
+                    MTGGameZone * z = zones[k];
+                    if (tcn->targetsZone(z))
+                    {
+                        reducem += z->countByCanTarget(tcn);
+                    }
+                }
+            }
+            SAFE_DELETE(tcn);
+            ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
+            for (int j = 0; j < reducem; j++)
+                original->remove(removingCost);
+            SAFE_DELETE(removingCost);
+        }
+    }//end2
+    if (card->has(Constants::AFFINITYARTIFACTS) ||
+        card->has(Constants::AFFINITYFOREST) ||
+        card->has(Constants::AFFINITYGREENCREATURES) ||
+        card->has(Constants::AFFINITYISLAND) ||
+        card->has(Constants::AFFINITYMOUNTAIN) ||
+        card->has(Constants::AFFINITYPLAINS) ||
+        card->has(Constants::AFFINITYSWAMP) ||
+        card->has(Constants::CONDUITED))
+    {//start3
+        if (card->has(Constants::AFFINITYARTIFACTS))
+        {
+            type = "artifact";
+        }
+        else if (card->has(Constants::AFFINITYSWAMP))
+        {
+            type = "swamp";
+        }
+        else if (card->has(Constants::AFFINITYMOUNTAIN))
+        {
+            type = "mountain";
+        }
+        else if (card->has(Constants::AFFINITYPLAINS))
+        {
+            type = "plains";
+        }
+        else if (card->has(Constants::AFFINITYISLAND))
+        {
+            type = "island";
+        }
+        else if (card->has(Constants::AFFINITYFOREST))
+        {
+            type = "forest";
+        }
+        else if (card->has(Constants::AFFINITYGREENCREATURES))
+        {
+            color = 1;
+            type = "creature";
+        }
 
-    return oldCost;
+        Cost->copy(original);
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
+        int reduce = 0;
+        if (card->has(Constants::AFFINITYGREENCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature[green]", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::CONDUITED))
+        {//I had to hardcode this since it doesn't update with auto=this(creaturespells<1) lord(creature|mycastingzone) altercost(colorless,-2)
+            color = 0;
+            reduce = card->controller()->inPlay()->countByAlias(401847);
+            reduce *= 2;
+            if(card->controller()->game->stack->seenThisTurn("creature", Constants::CAST_ALL) > 0)
+                reduce = 0;
+        }
+        else
+        {
+            reduce = card->controller()->game->battlefield->countByType(type);
+        }
+        for (int i = 0; i < reduce; i++)
+        {
+            if (Cost->getCost(color) > 0)
+                Cost->remove(color, 1);
+        }
+    }//end3
+     //trinisphere... now how to implement kicker recomputation
+
+    if (card->has(Constants::TRINISPHERE))
+    {
+        for (int jj = Cost->getConvertedCost(); jj < 3; jj++)
+        {
+            Cost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+            card->countTrini++;
+        }
+    }
+    else
+    {
+        if (card->countTrini)
+        {
+            Cost->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+            card->countTrini = 0;
+        }
+    }
+    SAFE_DELETE(original);
+    SAFE_DELETE(excess);
+    return Cost;
 }
 
 MTGCardInstance * MTGCardInstance::getNextPartner()
@@ -1142,7 +1407,7 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent)
     if (defenser)
     {
         if (observer->players[0]->game->battlefield->hasCard(defenser) || observer->players[1]->game->battlefield->hasCard(defenser))
-        {
+        {//remove blocker "this" from the attackers list of blockers.
             defenser->removeBlocker(this);
         }
     }
@@ -1417,12 +1682,13 @@ const string& MTGCardInstance::getSample()
 
 int MTGCardInstance::stepPower(CombatStep step)
 {
+    int damage = has(Constants::COMBATTOUGHNESS) ? toughness : power;
     switch (step)
     {
     case FIRST_STRIKE:
     case END_FIRST_STRIKE:
         if (has(Constants::FIRSTSTRIKE) || has(Constants::DOUBLESTRIKE))
-            return MAX(0, power);
+            return MAX(0, damage);
         else
             return 0;
     case DAMAGE:
@@ -1431,7 +1697,7 @@ int MTGCardInstance::stepPower(CombatStep step)
         if (has(Constants::FIRSTSTRIKE) && !has(Constants::DOUBLESTRIKE))
             return 0;
         else
-            return MAX(0, power);
+            return MAX(0, damage);
     }
 }
 

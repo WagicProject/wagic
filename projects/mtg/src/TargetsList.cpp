@@ -20,9 +20,15 @@ int TargetsList::addTarget(Targetable * target)
 {
     if (!alreadyHasTarget(target))
     {
+        
         TargetChooser * tc = target->getObserver()->getCurrentTargetChooser();
         if(!tc || (tc && tc->maxtargets == 1))
         {
+            if (dynamic_cast<TargetChooser*>(this)->maxtargets > int(getNbTargets()))
+            {
+                targets.push_back(target);
+                return 1;
+            }
             //because this was originally coded with targets as an array
             //we have to add this conditional to insure that cards with single target effects
             //and abilities that seek the nextcardtarget still work correctly.

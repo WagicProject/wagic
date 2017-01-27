@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Conflux
+block=Shards of Alara
 year=2009
-block=Shards
+total=145
 [/meta]
 [card]
 primitive=Absorb Vis
@@ -72,11 +74,6 @@ rarity=C
 primitive=Brackwater Elemental
 id=180147
 rarity=C
-[/card]
-[card]
-primitive=Brackwater Elemental Unearthed
-id=18014711
-rarity=T
 [/card]
 [card]
 primitive=Canyon Minotaur
@@ -209,11 +206,6 @@ id=189082
 rarity=R
 [/card]
 [card]
-primitive=Extractor Demon Unearthed
-id=18908211
-rarity=T
-[/card]
-[card]
 primitive=Faerie Mechanist
 id=182608
 rarity=C
@@ -284,11 +276,6 @@ id=179804
 rarity=U
 [/card]
 [card]
-primitive=Grixis Slavedriver Unearthed
-id=17980411
-rarity=T
-[/card]
-[card]
 primitive=Gwafa Hazid, Profiteer
 id=185811
 rarity=R
@@ -302,11 +289,6 @@ rarity=U
 primitive=Hellspark Elemental
 id=174799
 rarity=U
-[/card]
-[card]
-primitive=Hellspark Elemental Unearthed
-id=17479911
-rarity=T
 [/card]
 [card]
 primitive=Ignite Disorder
@@ -577,11 +559,6 @@ rarity=C
 primitive=Shambling Remains
 id=184991
 rarity=U
-[/card]
-[card]
-primitive=Shambling Remains Unearthed
-id=18499111
-rarity=T
 [/card]
 [card]
 primitive=Shard Convergence

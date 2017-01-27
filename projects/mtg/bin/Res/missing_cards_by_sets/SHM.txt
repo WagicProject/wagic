@@ -1,0 +1,268 @@
+[card]
+name=Boon Reflection
+text=If you would gain life, you gain twice that much life instead.
+mana={4}{W}
+type=Enchantment
+[/card]
+[card]
+name=Cemetery Puca
+text=Whenever a creature dies, you may pay {1}. If you do, Cemetery Puca becomes a copy of that creature and gains this ability.
+mana={1}{UB}{UB}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=2
+[/card]
+[card]
+name=Cragganwick Cremator
+text=When Cragganwick Cremator enters the battlefield, discard a card at random. If you discard a creature card this way, Cragganwick Cremator deals damage equal to that card's power to target player.
+mana={2}{R}{R}
+type=Creature
+subtype=Giant Shaman
+power=5
+toughness=4
+[/card]
+[card]
+name=Dream Salvage
+text=Draw cards equal to the number of cards target opponent discarded this turn.
+mana={UB}
+type=Instant
+[/card]
+[card]
+name=Everlasting Torment
+text=Players can't gain life. -- Damage can't be prevented. -- All damage is dealt as though its source had wither. (A source with wither deals damage to creatures in the form of -1/-1 counters.)
+mana={2}{BR}
+type=Enchantment
+[/card]
+[card]
+name=Fate Transfer
+text=Move all counters from target creature onto another target creature.
+mana={1}{UB}
+type=Instant
+[/card]
+[card]
+name=Glamer Spinners
+text=Flash -- Flying -- When Glamer Spinners enters the battlefield, attach all Auras enchanting target permanent to another permanent with the same controller.
+mana={4}{WU}
+type=Creature
+subtype=Faerie Wizard
+power=2
+toughness=4
+[/card]
+[card]
+name=Illuminated Folio
+text={1}, {T}, Reveal two cards from your hand that share a color: Draw a card.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Incremental Blight
+text=Put a -1/-1 counter on target creature, two -1/-1 counters on another target creature, and three -1/-1 counters on a third target creature.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Inescapable Brute
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Inescapable Brute must be blocked if able.
+mana={5}{R}
+type=Creature
+subtype=Giant Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Jaws of Stone
+text=Jaws of Stone deals X damage divided as you choose among any number of target creatures and/or players, where X is the number of Mountains you control as you cast Jaws of Stone.
+mana={5}{R}
+type=Sorcery
+[/card]
+[card]
+name=Knacksaw Clique
+text=Flying -- {1}{U}, {Q}: Target opponent exiles the top card of his or her library. Until end of turn, you may play that card. ({Q} is the untap symbol.)
+mana={3}{U}
+type=Creature
+subtype=Faerie Rogue
+power=1
+toughness=4
+[/card]
+[card]
+name=Leech Bonder
+text=Leech Bonder enters the battlefield with two -1/-1 counters on it. -- {U}, {Q}: Move a counter from target creature onto another target creature. ({Q} is the untap symbol.)
+mana={2}{U}
+type=Creature
+subtype=Merfolk Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Mana Reflection
+text=If you tap a permanent for mana, it produces twice as much of that mana instead.
+mana={4}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Medicine Runner
+text=When Medicine Runner enters the battlefield, you may remove a counter from target permanent.
+mana={1}{GW}
+type=Creature
+subtype=Elf Cleric
+power=2
+toughness=1
+[/card]
+[card]
+name=Mine Excavation
+text=Return target artifact or enchantment card from a graveyard to its owner's hand. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
+name=Mirrorweave
+text=Each other creature becomes a copy of target nonlegendary creature until end of turn.
+mana={2}{WU}{WU}
+type=Instant
+[/card]
+[card]
+name=Mossbridge Troll
+text=If Mossbridge Troll would be destroyed, regenerate it. -- Tap any number of untapped creatures you control other than Mossbridge Troll with total power 10 or greater: Mossbridge Troll gets +20/+20 until end of turn.
+mana={5}{G}{G}
+type=Creature
+subtype=Troll
+power=5
+toughness=5
+[/card]
+[card]
+name=Painter's Servant
+text=As Painter's Servant enters the battlefield, choose a color. -- All cards that aren't on the battlefield, spells, and permanents are the chosen color in addition to their other colors.
+mana={2}
+type=Artifact Creature
+subtype=Scarecrow
+power=1
+toughness=3
+[/card]
+[card]
+name=Plague of Vermin
+text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
+mana={6}{B}
+type=Sorcery
+[/card]
+[card]
+name=Puca's Mischief
+text=At the beginning of your upkeep, you may exchange control of target nonland permanent you control and target nonland permanent an opponent controls with an equal or lesser converted mana cost.
+mana={3}{U}
+type=Enchantment
+[/card]
+[card]
+name=Put Away
+text=Counter target spell. You may shuffle up to one target card from your graveyard into your library.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Repel Intruders
+text=Put two 1/1 white Kithkin Soldier creature tokens onto the battlefield if {W} was spent to cast Repel Intruders. Counter up to one target creature spell if {U} was spent to cast Repel Intruders. (Do both if {W}{U} was spent.)
+mana={3}{WU}
+type=Instant
+[/card]
+[card]
+name=River Kelpie
+text=Whenever River Kelpie or another permanent is put onto the battlefield from a graveyard, draw a card. -- Whenever a player casts a spell from a graveyard, draw a card. -- Persist (When this creature dies, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+mana={3}{U}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=River's Grasp
+text=If {U} was spent to cast River's Grasp, return up to one target creature to its owner's hand. If {B} was spent to cast River's Grasp, target player reveals his or her hand, you choose a nonland card from it, then that player discards that card. (Do both if {U}{B} was spent.)
+mana={3}{UB}
+type=Sorcery
+[/card]
+[card]
+name=Rosheen Meanderer
+text={T}: Add {4} to your mana pool. Spend this mana only on costs that contain {X}.
+mana={3}{RG}
+type=Legendary Creature
+subtype=Giant Shaman
+power=4
+toughness=4
+[/card]
+[card]
+name=Runed Halo
+text=As Runed Halo enters the battlefield, name a card. -- You have protection from the chosen name. (You can't be targeted, dealt damage, or enchanted by anything with that name.)
+mana={W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Spell Syphon
+text=Counter target spell unless its controller pays {1} for each blue permanent you control.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Strip Bare
+text=Destroy all Auras and Equipment attached to target creature.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Swans of Bryn Argoll
+text=Flying -- If a source would deal damage to Swans of Bryn Argoll, prevent that damage. The source's controller draws cards equal to the damage prevented this way.
+mana={2}{WU}{WU}
+type=Creature
+subtype=Bird Spirit
+power=4
+toughness=3
+[/card]
+[card]
+name=Tower Above
+text=({2G} can be paid with any two mana or with {G}. This card's converted mana cost is 6.) -- Until end of turn, target creature gets +4/+4 and gains trample, wither, and "When this creature attacks, target creature blocks it this turn if able." (It deals damage to creatures in the form of -1/-1 counters.)
+mana={2G}{2G}{2G}
+type=Sorcery
+[/card]
+[card]
+name=Vexing Shusher
+text=Vexing Shusher can't be countered. -- {R/G}: Target spell can't be countered by spells or abilities.
+mana={RG}{RG}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Wheel of Sun and Moon
+text=Enchant player -- If a card would be put into enchanted player's graveyard from anywhere, instead that card is revealed and put on the bottom of that player's library.
+mana={GW}{GW}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Wild Swing
+text=Choose three target nonenchantment permanents. Destroy one of them at random.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Wilt-Leaf Liege
+text=Other green creatures you control get +1/+1. -- Other white creatures you control get +1/+1. -- If a spell or ability an opponent controls causes you to discard Wilt-Leaf Liege, put it onto the battlefield instead of putting it into your graveyard.
+mana={1}{GW}{GW}{GW}
+type=Creature
+subtype=Elf Knight
+power=4
+toughness=4
+[/card]
+[card]
+name=Worldpurge
+text=Return all permanents to their owners' hands. Each player chooses up to seven cards in his or her hand, then shuffles the rest into his or her library. Empty all mana pools.
+mana={4}{WU}{WU}{WU}{WU}
+type=Sorcery
+[/card]
+[card]
+name=Wort, the Raidmother
+text=When Wort, the Raidmother enters the battlefield, put two 1/1 red and green Goblin Warrior creature tokens onto the battlefield. -- Each red or green instant or sorcery spell you cast has conspire. (As you cast the spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose new targets for the copy.)
+mana={4}{RG}{RG}
+type=Legendary Creature
+subtype=Goblin Shaman
+power=3
+toughness=3
+[/card]

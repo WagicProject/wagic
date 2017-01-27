@@ -52,7 +52,10 @@ int Damage::resolve()
     damage = ev->damage->damage;
     target = ev->damage->target;
     if (!damage)
+    {
+        delete (e);
         return 0;
+    }
 
     //asorbing effects for cards controller-----------
 
@@ -71,6 +74,9 @@ int Damage::resolve()
     }
 
     //-------------------------------------------------
+    //Ajani Steadfast ---
+    if(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType("planeswalker") && ((MTGCardInstance*)target)->controller()->forcefield)
+        damage = 1;
     if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
@@ -127,7 +133,9 @@ int Damage::resolve()
         _target->doDamageTest = 1;
     }
     if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
-    {
+    {//Ajani Steadfast
+        if(((Player*)target)->forcefield)
+            damage = 1;
         if(source->has(Constants::LIBRARYEATER) && typeOfDamage == 1)
         {
             for (int j = damage; j > 0; j--)
@@ -176,6 +184,8 @@ int Damage::resolve()
         if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
             _target->poisonCount += damage;//this will be changed to poison counters.
         _target->damageCount += damage;
+        if(typeOfDamage == 2)
+            _target->nonCombatDamage += damage;
         if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
         {
             vector<string> values = MTGAllCards::getCreatureValuesById();
@@ -191,8 +201,11 @@ int Damage::resolve()
     {
         //Damage + 1, 2, or 3 poison counters on player
         Player * _target = (Player *) target;
-        a = target->dealDamage(damage);
+        if(!_target->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            a = target->dealDamage(damage);
         target->damageCount += damage;
+        if(typeOfDamage == 2)
+            target->nonCombatDamage += damage;
         if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
         {
             vector<string> values = MTGAllCards::getCreatureValuesById();
@@ -223,8 +236,13 @@ int Damage::resolve()
     {
         // "Normal" case,
         //return the left over amount after effects have been applied to them.
-        a = target->dealDamage(damage);
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && ((Player *)target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+            ;//do nothing
+        else
+            a = target->dealDamage(damage);
         target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
+        if(typeOfDamage == 2)
+            target->nonCombatDamage += damage;
         if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE){
             ((MTGCardInstance*)target)->wasDealtDamage = true;
             ((MTGCardInstance*)source)->damageToCreature = true;
@@ -242,7 +260,9 @@ int Damage::resolve()
             target->lifeLostThisTurn += damage;
             if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
             {
-                vector<string> values = MTGAllCards::getCreatureValuesById();
+                source->controller()->dealsdamagebycombat = 1; // for restriction check
+                ((MTGCardInstance*)source)->combatdamageToOpponent = true; //check
+                vector<string> values = MTGAllCards::getCreatureValuesById();//getting a weird crash here. rarely.
                 for (size_t i = 0; i < values.size(); ++i)
                 {
                     if ( source->hasSubtype( values[i] ) && find(source->controller()->prowledTypes.begin(), source->controller()->prowledTypes.end(), values[i])==source->controller()->prowledTypes.end() )
@@ -265,28 +285,44 @@ void Damage::Render()
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
     sprintf(buffer, _("Deals %i damage to").c_str(), damage);
-    mFont->DrawString(buffer, x + 20, y, JGETEXT_LEFT);
+    //mFont->DrawString(buffer, x + 20, y, JGETEXT_LEFT);
+    mFont->DrawString(buffer, x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
     JRenderer * renderer = JRenderer::GetInstance();
     JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
     if (quad.get())
     {
-        float scale = 30 / quad->mHeight;
-        renderer->RenderQuad(quad.get(), x, y, 0, scale, scale);
+        //float scale = 30 / quad->mHeight;
+        //renderer->RenderQuad(quad.get(), x, y, 0, scale, scale);
+        quad->SetColor(ARGB(255,255,255,255));
+        float scale = mHeight / quad->mHeight;
+        renderer->RenderQuad(quad.get(), x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, scale, scale);
     }
     else
     {
-        mFont->DrawString(_(source->getName()).c_str(), x, y - 15);
+        //mFont->DrawString(_(source->getName()).c_str(), x, y - 15);
+        mFont->DrawString(_(source->getName()).c_str(), x, y + GetVerticalTextOffset() - 15);
     }
     quad = target->getIcon();
     if (quad.get())
     {
-        float scale = 30 / quad->mHeight;
-        renderer->RenderQuad(quad.get(), x + 150, y, 0, scale, scale);
+        //float scale = 30 / quad->mHeight;
+        //renderer->RenderQuad(quad.get(), x + 150, y, 0, scale, scale);
+        float backupX = quad->mHotSpotX;
+        float backupY = quad->mHotSpotY;
+        quad->SetColor(ARGB(255,255,255,255));
+        quad->SetHotSpot(quad->mWidth / 2, quad->mHeight / 2);
+        float scale = mHeight / quad->mHeight;
+        renderer->RenderQuad(quad.get(), x + 130, y - 0.5f + ((mHeight - quad->mHeight) / 2) + quad->mHotSpotY, 0, scale, scale);
+        quad->SetHotSpot(backupX, backupY);
     }
     else
     {
+        //if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
+            //mFont->DrawString(_(((MTGCardInstance *) target)->getName()).c_str(), x + 120, y);
         if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
-            mFont->DrawString(_(((MTGCardInstance *) target)->getName()).c_str(), x + 120, y);
+            mFont->DrawString(_(((MTGCardInstance *) target)->getName()).c_str(), x + 35, y+15 + GetVerticalTextOffset());
+        else if(target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+            mFont->DrawString(_(((Player *) target)->getDisplayName()).c_str(), x + 35, y+15 + GetVerticalTextOffset());
     }
 
 }

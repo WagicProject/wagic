@@ -108,6 +108,12 @@ void GameStateAwards::Start()
 
         if (!si->author.size())
             sprintf(buf, _("%i cards.").c_str(), si->totalCards());
+        else if (si->year > 0 && si->total > 0)
+        {
+            int pr = 0;
+            pr = (si->totalCards()*100)/si->total;
+            sprintf(buf, _("%s (%i): %i%s : %i/%i cards").c_str(), si->author.c_str(), si->year, pr,"%", si->totalCards(), si->total);
+        }
         else if (si->year > 0)
             sprintf(buf, _("%s (%i): %i cards").c_str(), si->author.c_str(), si->year, si->totalCards());
         else
@@ -146,7 +152,7 @@ void GameStateAwards::Render()
 
     JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
     if (background.get())
-        r->RenderQuad(background.get(), 0, 0);
+        r->RenderQuad(background.get(), 0, 0, 0, SCREEN_WIDTH_F / background->mWidth, SCREEN_HEIGHT_F / background->mHeight);
 
     switch (mState)
     {

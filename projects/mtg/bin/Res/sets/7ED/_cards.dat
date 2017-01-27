@@ -1,8 +1,14 @@
 [meta]
 author=Wagic Team
-name=7th Edition
+name=Seventh Edition
 year=2001
+total=350
 [/meta]
+[card]
+primitive=AEther Flash
+id=25678
+rarity=U
+[/card]
 [card]
 primitive=Abyssal Horror
 id=13111
@@ -17,11 +23,6 @@ rarity=U
 primitive=Adarkar Wastes
 id=11140
 rarity=R
-[/card]
-[card]
-primitive=AEther Flash
-id=25678
-rarity=U
 [/card]
 [card]
 primitive=Agonizing Memories

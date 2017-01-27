@@ -9,6 +9,7 @@ manapool:{G}{G}{G}{G}
 [PLAYER2]
 [DO]
 Ivy Elemental
+choice 3
 next
 #begin
 next

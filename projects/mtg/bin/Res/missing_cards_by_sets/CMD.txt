@@ -1,0 +1,295 @@
+[card]
+name=Alliance of Arms
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player puts X 1/1 white Soldier creature tokens onto the battlefield, where X is the total amount of mana paid this way.
+mana={W}
+type=Sorcery
+[/card]
+[card]
+name=Archangel of Strife
+text=Flying -- As Archangel of Strife enters the battlefield, each player chooses war or peace. -- Creatures controlled by players who chose war get +3/+0. -- Creatures controlled by players who chose peace get +0/+3.
+mana={5}{W}{W}
+type=Creature
+subtype=Angel
+power=6
+toughness=6
+[/card]
+[card]
+name=Azorius Guildmage
+text={2}{W}: Tap target creature. -- {2}{U}: Counter target activated ability. (Mana abilities can't be targeted.)
+mana={WU}{WU}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Chorus of the Conclave
+text=Forestwalk -- As an additional cost to cast creature spells, you may pay any amount of mana. If you do, that creature enters the battlefield with that many additional +1/+1 counters on it.
+mana={4}{G}{G}{W}{W}
+type=Legendary Creature
+subtype=Dryad
+power=3
+toughness=8
+[/card]
+[card]
+name=Chromeshell Crab
+text=Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Chromeshell Crab is turned face up, you may exchange control of target creature you control and target creature an opponent controls.
+mana={4}{U}
+type=Creature
+subtype=Crab Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Cobra Trap
+text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. -- Put four 1/1 green Snake creature tokens onto the battlefield.
+mana={4}{G}{G}
+type=Instant
+subtype=Trap
+[/card]
+[card]
+name=Collective Voyage
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Comet Storm
+text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature or player, then choose another target creature or player for each time Comet Storm was kicked. Comet Storm deals X damage to each of them.
+mana={X}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Command Tower
+text={T}: Add to your mana pool one mana of any color in your commander's color identity.
+type=Land
+[/card]
+[card]
+name=Conundrum Sphinx
+text=Flying -- Whenever Conundrum Sphinx attacks, each player names a card. Then each player reveals the top card of his or her library. If the card a player revealed is the card he or she named, that player puts it into his or her hand. If it's not, that player puts it on the bottom of his or her library.
+mana={2}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
+name=Disaster Radius
+text=As an additional cost to cast Disaster Radius, reveal a creature card from your hand. -- Disaster Radius deals X damage to each creature your opponents control, where X is the revealed card's converted mana cost.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Dreadship Reef
+text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Dreadship Reef. -- {1}, Remove X storage counters from Dreadship Reef: Add X mana in any combination of {U} and/or {B} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Fact or Fiction
+text=Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Fire // Ice
+text=Fire deals 2 damage divided as you choose among one or two target creatures and/or players. --  //  -- Tap target permanent. -- Draw a card.
+mana={1}{R} // {1}{U}
+type=Instant // Instant
+[/card]
+[card]
+name=Flusterstorm
+text=Counter target instant or sorcery spell unless its controller pays {1}. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Fungal Reaches
+text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Fungal Reaches. -- {1}, Remove X storage counters from Fungal Reaches: Add X mana in any combination of {R} and/or {G} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Gomazoa
+text=Defender, flying -- {T}: Put Gomazoa and each creature it's blocking on top of their owners' libraries, then those players shuffle their libraries.
+mana={2}{U}
+type=Creature
+subtype=Jellyfish
+power=0
+toughness=3
+[/card]
+[card]
+name=Hull Breach
+text=Choose one — -- • Destroy target artifact. -- • Destroy target enchantment. -- • Destroy target artifact and target enchantment.
+mana={R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Intet, the Dreamer
+text=Flying -- Whenever Intet, the Dreamer deals combat damage to a player, you may pay {2}{U}. If you do, exile the top card of your library face down. You may look at that card for as long as it remains exiled. You may play that card without paying its mana cost for as long as Intet remains on the battlefield.
+mana={3}{U}{R}{G}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
+name=Jotun Grunt
+text=Cumulative upkeep—Put two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{W}
+type=Creature
+subtype=Giant Soldier
+power=4
+toughness=4
+[/card]
+[card]
+name=Karador, Ghost Chieftain
+text=Karador, Ghost Chieftain costs {1} less to cast for each creature card in your graveyard. -- During each of your turns, you may cast one creature card from your graveyard.
+mana={5}{B}{G}{W}
+type=Legendary Creature
+subtype=Centaur Spirit
+power=3
+toughness=4
+[/card]
+[card]
+name=Lash Out
+text=Lash Out deals 3 damage to target creature. Clash with an opponent. If you win, Lash Out deals 3 damage to that creature's controller. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Mana-Charged Dragon
+text=Flying, trample -- Join forces — Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Martyr's Bond
+text=Whenever Martyr's Bond or another nonland permanent you control is put into a graveyard from the battlefield, each opponent sacrifices a permanent that shares a card type with it.
+mana={4}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Master Warcraft
+text=Cast Master Warcraft only before attackers are declared. -- You choose which creatures attack this turn. -- You choose which creatures block this turn and how those creatures block.
+mana={2}{RW}{RW}
+type=Instant
+[/card]
+[card]
+name=Minds Aglow
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Molten Slagheap
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Put a storage counter on Molten Slagheap. -- {1}, Remove X storage counters from Molten Slagheap: Add X mana in any combination of {B} and/or {R} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Murmurs from Beyond
+text=Reveal the top three cards of your library. An opponent chooses one of them. Put that card into your graveyard and the rest into your hand.
+mana={2}{U}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Pollen Lullaby
+text=Prevent all combat damage that would be dealt this turn. Clash with an opponent. If you win, creatures that player controls don't untap during the player's next untap step. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Scattering Stroke
+text=Counter target spell. Clash with an opponent. If you win, at the beginning of your next main phase, you may add {X} to your mana pool, where X is that spell's converted mana cost. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Shared Trauma
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Skullbriar, the Walking Grave
+text=Haste -- Whenever Skullbriar, the Walking Grave deals combat damage to a player, put a +1/+1 counter on it. -- Counters remain on Skullbriar as it moves to any zone other than a player's hand or library.
+mana={B}{G}
+type=Legendary Creature
+subtype=Zombie Elemental
+power=1
+toughness=1
+[/card]
+[card]
+name=Spell Crumple
+text=Counter target spell. If that spell is countered this way, put it on the bottom of its owner's library instead of into that player's graveyard. Put Spell Crumple on the bottom of its owner's library.
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Squallmonger
+text={2}: Squallmonger deals 1 damage to each creature with flying and each player. Any player may activate this ability.
+mana={3}{G}
+type=Creature
+subtype=Monger
+power=3
+toughness=3
+[/card]
+[card]
+name=Stranglehold
+text=Your opponents can't search libraries. -- If an opponent would begin an extra turn, that player skips that turn instead.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=The Mimeoplasm
+text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
+mana={2}{G}{U}{B}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
+[/card]
+[card]
+name=Trade Secrets
+text=Target opponent draws two cards, then you draw up to four cards. That opponent may repeat this process as many times as he or she chooses.
+mana={1}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Vedalken Plotter
+text=When Vedalken Plotter enters the battlefield, exchange control of target land you control and target land an opponent controls.
+mana={2}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Vengeful Rebirth
+text=Return target card from your graveyard to your hand. If you return a nonland card to your hand this way, Vengeful Rebirth deals damage equal to that card's converted mana cost to target creature or player. -- Exile Vengeful Rebirth.
+mana={4}{R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Whirlpool Whelm
+text=Clash with an opponent, then return target creature to its owner's hand. If you win, you may put that creature on top of its owner's library instead. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Wild Ricochet
+text=You may choose new targets for target instant or sorcery spell. Then copy that spell. You may choose new targets for the copy.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Zedruu the Greathearted
+text=At the beginning of your upkeep, you gain X life and draw X cards, where X is the number of permanents you own that your opponents control. -- {R}{W}{U}: Target opponent gains control of target permanent you control.
+mana={1}{R}{W}{U}
+type=Legendary Creature
+subtype=Minotaur Monk
+power=2
+toughness=4
+[/card]

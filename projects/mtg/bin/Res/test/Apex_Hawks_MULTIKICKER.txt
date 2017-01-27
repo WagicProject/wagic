@@ -9,7 +9,10 @@ manapool:{W}{W}{W}{W}{W}{W}{W}
 [PLAYER2]
 life:20
 [DO]
+#apex hawks is {2}{W} so the mana remaining will be {W}{W}{W}{W}
 Apex Hawks
+#apex hawks has {1}{W} multikicker so we can afford {2}{W}{W} since our mana is {W}{W}{W}{W}
+#it will come with two +1/+1 counters making it 1 4/4 Flyer
 choice 1
 next
 next
@@ -22,5 +25,6 @@ COMBATDAMAGE
 inplay:Apex Hawks,Fervor
 manapool:{0}
 [PLAYER2]
-life:17
+#life must be 16 not 17.....(20 - 4)
+life:16
 [END]

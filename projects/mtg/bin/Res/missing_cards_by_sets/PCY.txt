@@ -1,0 +1,255 @@
+[card]
+name=Avatar of Hope
+text=If you have 3 or less life, Avatar of Hope costs {6} less to cast. -- Flying -- Avatar of Hope can block any number of creatures.
+mana={6}{W}{W}
+type=Creature
+subtype=Avatar
+power=4
+toughness=9
+[/card]
+[card]
+name=Brutal Suppression
+text=Activated abilities of nontoken Rebels cost an additional "Sacrifice a land" to activate.
+mana={R}
+type=Enchantment
+[/card]
+[card]
+name=Celestial Convergence
+text=Celestial Convergence enters the battlefield with seven omen counters on it. -- At the beginning of your upkeep, remove an omen counter from Celestial Convergence. If there are no omen counters on Celestial Convergence, the player with the highest life total wins the game. If two or more players are tied for highest life total, the game is a draw.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Dual Nature
+text=Whenever a nontoken creature enters the battlefield, its controller puts a token that's a copy of that creature onto the battlefield. -- Whenever a nontoken creature leaves the battlefield, exile all tokens with the same name as that creature. -- When Dual Nature leaves the battlefield, exile all tokens put onto the battlefield with Dual Nature.
+mana={4}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Endbringer's Revel
+text={4}: Return target creature card from a graveyard to its owner's hand. Any player may activate this ability but only any time he or she could cast a sorcery.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Entangler
+text=Enchant creature -- Enchanted creature can block any number of creatures.
+mana={2}{W}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Excavation
+text={1}, Sacrifice a land: Draw a card. Any player may activate this ability.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+name=Excise
+text=Exile target attacking creature unless its controller pays {X}.
+mana={X}{W}
+type=Instant
+[/card]
+[card]
+name=Flameshot
+text=You may discard a Mountain card rather than pay Flameshot's mana cost. -- Flameshot deals 3 damage divided as you choose among one, two, or three target creatures.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Glittering Lion
+text=Prevent all damage that would be dealt to Glittering Lion. -- {3}: Until end of turn, Glittering Lion loses "Prevent all damage that would be dealt to Glittering Lion." Any player may activate this ability.
+mana={2}{W}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+[/card]
+[card]
+name=Glittering Lynx
+text=Prevent all damage that would be dealt to Glittering Lynx. -- {2}: Until end of turn, Glittering Lynx loses "Prevent all damage that would be dealt to Glittering Lynx." Any player may activate this ability.
+mana={W}
+type=Creature
+subtype=Cat
+power=1
+toughness=1
+[/card]
+[card]
+name=Hollow Warrior
+text=Hollow Warrior can't attack or block unless you tap an untapped creature you control not declared as an attacking or blocking creature this combat.
+mana={4}
+type=Artifact Creature
+subtype=Golem Warrior
+power=4
+toughness=4
+[/card]
+[card]
+name=Infernal Genesis
+text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard. Then he or she puts X 1/1 black Minion creature tokens onto the battlefield, where X is that card's converted mana cost.
+mana={4}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Mirror Strike
+text=All combat damage that would be dealt to you this turn by target unblocked creature is dealt to its controller instead.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Mungha Wurm
+text=You can't untap more than one land during your untap step.
+mana={2}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=5
+[/card]
+[card]
+name=Nakaya Shade
+text={B}: Nakaya Shade gets +1/+1 until end of turn unless any player pays {2}.
+mana={1}{B}
+type=Creature
+subtype=Shade
+power=1
+toughness=1
+[/card]
+[card]
+name=Psychic Theft
+text=Target player reveals his or her hand. You choose an instant or sorcery card from it and exile that card. You may cast that card for as long as it remains exiled. At the beginning of the next end step, if you haven't cast the card, return it to its owner's hand.
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
+name=Quicksilver Wall
+text=Defender (This creature can't attack.) -- {4}: Return Quicksilver Wall to its owner's hand. Any player may activate this ability.
+mana={2}{U}
+type=Creature
+subtype=Wall
+power=1
+toughness=6
+[/card]
+[card]
+name=Rhystic Cave
+text={T}: Choose a color. Add one mana of that color to your mana pool unless any player pays {1}. Activate this ability only any time you could cast an instant.
+type=Land
+[/card]
+[card]
+name=Rhystic Circle
+text={1}: Any player may pay {1}. If no one does, the next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rhystic Lightning
+text=Rhystic Lightning deals 4 damage to target creature or player unless that creature's controller or that player pays {2}. If he or she does, Rhystic Lightning deals 2 damage to the creature or player.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Rhystic Scrying
+text=Draw three cards. Then, if any player pays {2}, discard three cards.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Rhystic Syphon
+text=Unless target player pays {3}, he or she loses 5 life and you gain 5 life.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Rhystic Tutor
+text=Unless any player pays {2}, search your library for a card, put that card into your hand, then shuffle your library.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Ribbon Snake
+text=Flying -- {2}: Ribbon Snake loses flying until end of turn. Any player may activate this ability.
+mana={1}{U}{U}
+type=Creature
+subtype=Snake
+power=2
+toughness=3
+[/card]
+[card]
+name=Samite Sanctuary
+text={2}: Prevent the next 1 damage that would be dealt to target creature this turn. Any player may activate this ability.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Search for Survivors
+text=Reorder your graveyard at random. An opponent chooses a card at random in your graveyard. If it's a creature card, put it onto the battlefield. Otherwise, exile it.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Shield Dancer
+text={2}{W}: The next time target attacking creature would deal combat damage to Shield Dancer this turn, that creature deals that damage to itself instead.
+mana={2}{W}
+type=Creature
+subtype=Human Rebel
+power=1
+toughness=3
+[/card]
+[card]
+name=Shrouded Serpent
+text=Whenever Shrouded Serpent attacks, defending player may pay {4}. If he or she doesn't, Shrouded Serpent is unblockable this turn.
+mana={4}{U}{U}{U}
+type=Creature
+subtype=Serpent
+power=4
+toughness=4
+[/card]
+[card]
+name=Soul Strings
+text=Return two target creature cards from your graveyard to your hand unless any player pays {X}.
+mana={X}{B}
+type=Sorcery
+[/card]
+[card]
+name=Task Mage Assembly
+text=When there are no creatures on the battlefield, sacrifice Task Mage Assembly. -- {2}: Task Mage Assembly deals 1 damage to target creature. Any player may activate this ability but only any time he or she could cast a sorcery.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Vintara Elephant
+text=Trample -- {3}: Vintara Elephant loses trample until end of turn. Any player may activate this ability.
+mana={4}{G}
+type=Creature
+subtype=Elephant
+power=4
+toughness=3
+[/card]
+[card]
+name=Wall of Vipers
+text=Defender (This creature can't attack.) -- {3}: Destroy Wall of Vipers and target creature it's blocking. Any player may activate this ability.
+mana={2}{B}
+type=Creature
+subtype=Snake Wall
+power=2
+toughness=4
+[/card]
+[card]
+name=Wild Might
+text=Target creature gets +1/+1 until end of turn. That creature gets an additional +4/+4 until end of turn unless any player pays {2}.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Withdraw
+text=Return target creature to its owner's hand. Then return another target creature to its owner's hand unless its controller pays {1}.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+name=Zerapa Minotaur
+text=First strike -- {2}: Zerapa Minotaur loses first strike until end of turn. Any player may activate this ability.
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur
+power=3
+toughness=3
+[/card]

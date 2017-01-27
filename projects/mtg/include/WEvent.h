@@ -127,6 +127,7 @@ struct WEventCardChangeType : public WEventCardUpdate {
 struct WEventCardTap : public WEventCardUpdate {
   bool before;
   bool after;
+  bool noTrigger;
   WEventCardTap(MTGCardInstance * card, bool before, bool after);
   virtual Targetable * getTarget(int target);
 };
@@ -248,6 +249,14 @@ struct WEventCombatStepChange : public WEvent
   WEventCombatStepChange(CombatStep);
 };
 
+//Event when a mana is engaged
+//color : color
+struct WEventEngageManaExtra : public WEvent {
+  int color;
+  MTGCardInstance* card;
+  ManaPool * destination;
+  WEventEngageManaExtra(int color, MTGCardInstance* card, ManaPool * destination);
+};
 
 //Event when a mana is engaged
 //color : color
@@ -289,6 +298,21 @@ struct WEventCardEquipped : public WEventCardUpdate {
 struct WEventCardControllerChange : public WEventCardUpdate {
   WEventCardControllerChange(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);
+};
+
+//event when card transforms
+struct WEventCardTransforms : public WEventCardUpdate {
+  WEventCardTransforms(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//alterenergy event
+struct WEventplayerEnergized : public WEvent {
+    WEventplayerEnergized(Player * player,int nb_count);
+    Player * player;
+    int nb_count;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
 };
 
 std::ostream& operator<<(std::ostream&, const WEvent&);

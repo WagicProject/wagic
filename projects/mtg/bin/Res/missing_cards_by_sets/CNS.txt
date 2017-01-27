@@ -1,0 +1,342 @@
+[card]
+name=AEther Searcher
+text=Reveal AEther Searcher as you draft it. Reveal the next card you draft and note its name.  -- When AEther Searcher enters the battlefield, you may search your hand and/or library for a card with a name noted as you drafted cards named AEther Searcher. You may cast it without paying its mana cost. If you searched your library this way, shuffle it.
+mana={7}
+type=Artifact Creature
+subtype=Construct
+power=6
+toughness=4
+[/card]
+[card]
+name=Agent of Acquisitions
+text=Draft Agent of Acquisitions face up. -- Instead of drafting a card from a booster pack, you may draft each card in that booster pack, one at a time. If you do, turn Agent of Acquisitions face down and you can't draft cards for the rest of this draft round. (You may look at booster packs passed to you.)
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=1
+[/card]
+[card]
+name=Bite of the Black Rose
+text=Will of the council — Starting with you, each player votes for sickness or psychosis. If sickness gets more votes, creatures your opponents control get -2/-2 until end of turn. If psychosis gets more votes or the vote is tied, each opponent discards two cards.
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
+name=Brago's Representative
+text=While voting, you get an additional vote. (The votes can be for different choices or for the same choice.)
+mana={2}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=4
+[/card]
+[card]
+name=Canal Dredger
+text=Draft Canal Dredger face up. -- Each player passes the last card from each booster pack to a player who drafted a card named Canal Dredger. -- {T}: Put target card from your graveyard on the bottom of your library.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=5
+[/card]
+[card]
+name=Coercive Portal
+text=Will of the council — At the beginning of your upkeep, starting with you, each player votes for carnage or homage. If carnage gets more votes, sacrifice Coercive Portal and destroy all nonland permanents. If homage gets more votes or the vote is tied, draw a card.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Cogwork Grinder
+text=Draft Cogwork Grinder face up. -- As you draft a card, you may remove it from the draft face down. (Those cards aren't in your card pool.) -- Cogwork Grinder enters the battlefield with X +1/+1 counters on it, where X is the number of cards you removed from the draft with cards named Cogwork Grinder.
+mana={6}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=0
+[/card]
+[card]
+name=Cogwork Librarian
+text=Draft Cogwork Librarian face up. -- As you draft a card, you may draft an additional card from that booster pack. If you do, put Cogwork Librarian into that booster pack.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=3
+[/card]
+[card]
+name=Cogwork Spy
+text=Reveal Cogwork Spy as you draft it. You may look at the next card drafted from this booster pack. -- Flying
+mana={3}
+type=Artifact Creature
+subtype=Bird Construct
+power=2
+toughness=1
+[/card]
+[card]
+name=Cogwork Tracker
+text=Reveal Cogwork Tracker as you draft it and note the player who passed it to you. -- Cogwork Tracker attacks each turn if able. -- Cogwork Tracker attacks a player you noted for cards named Cogwork Tracker each turn if able.
+mana={4}
+type=Artifact Creature
+subtype=Hound Construct
+power=4
+toughness=4
+[/card]
+[card]
+name=Council Guardian
+text=Will of the council — When Council Guardian enters the battlefield, starting with you, each player votes for blue, black, red, or green. Council Guardian gains protection from each color with the most votes or tied for most votes.
+mana={5}{W}
+type=Creature
+subtype=Giant Soldier
+power=5
+toughness=5
+[/card]
+[card]
+name=Council's Judgment
+text=Will of the council — Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Custodi Squire
+text=Flying -- Will of the council — When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
+mana={4}{W}
+type=Creature
+subtype=Spirit Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Dack Fayden
+text=+1: Target player draws two cards, then discards two cards. -- -2: Gain control of target artifact. -- -6: You get an emblem with "Whenever you cast a spell that targets one or more permanents, gain control of those permanents."
+mana={1}{U}{R}
+type=Planeswalker
+subtype=Dack
+[/card]
+[card]
+name=Deal Broker
+text=Draft Deal Broker face up. -- Immediately after the draft, you may reveal a card in your card pool. Each other player may offer you one card in his or her card pool in exchange. You may accept any one offer. -- {T}: Draw a card, then discard a card.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=3
+[/card]
+[card]
+name=Decimate
+text=Destroy target artifact, target creature, target enchantment, and target land.
+mana={2}{R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Dimir Doppelganger
+text={1}{U}{B}: Exile target creature card from a graveyard. Dimir Doppelganger becomes a copy of that card and gains this ability.
+mana={1}{U}{B}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=2
+[/card]
+[card]
+name=Fact or Fiction
+text=Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Grenzo's Rebuttal
+text=Put a 4/4 red Ogre creature token onto the battlefield. Starting with you, each player chooses an artifact, a creature, and a land from among the permanents controlled by the player to his or her left. Destroy each permanent chosen this way.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Grenzo, Dungeon Warden
+text=Grenzo, Dungeon Warden enters the battlefield with X +1/+1 counters on it. -- {2}: Put the bottom card of your library into your graveyard. If it's a creature card with power less than or equal to Grenzo's power, put it onto the battlefield.
+mana={X}{B}{R}
+type=Legendary Creature
+subtype=Goblin Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Grudge Keeper
+text=Whenever players finish voting, each opponent who voted for a choice you didn't vote for loses 2 life.
+mana={1}{B}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Jetting Glasskite
+text=Flying -- Whenever Jetting Glasskite becomes the target of a spell or ability for the first time in a turn, counter that spell or ability.
+mana={4}{U}{U}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+[card]
+name=Kor Chant
+text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Lore Seeker
+text=Reveal Lore Seeker as you draft it. After you draft Lore Seeker, you may add a booster pack to the draft. (Your next pick is from that booster pack. Pass it to the next player and it's drafted this draft round.)
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=2
+[/card]
+[card]
+name=Lurking Automaton
+text=Reveal Lurking Automaton as you draft it and note how many cards you've drafted this draft round, including Lurking Automaton. -- Lurking Automaton enters the battlefield with X +1/+1 counters on it, where X is the highest number you noted for cards named Lurking Automaton.
+mana={5}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=0
+[/card]
+[card]
+name=Magister of Worth
+text=Flying -- Will of the council — When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
+mana={4}{W}{B}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Misdirection
+text=You may exile a blue card from your hand rather than pay Misdirection's mana cost. -- Change the target of target spell with a single target.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Paliano, the High City
+text=Reveal Paliano, the High City as you draft it. The player to your right chooses a color, you choose another color, then the player to your left chooses a third color. -- {T}: Add one mana to your mana pool of any color chosen as you drafted cards named Paliano, the High City.
+type=Legendary Land
+[/card]
+[card]
+name=Plea for Power
+text=Will of the council — Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Reign of the Pit
+text=Each player sacrifices a creature. Put an X/X black Demon creature token with flying onto the battlefield, where X is the total power of the creatures sacrificed this way.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Rousing of Souls
+text=Parley — Each player reveals the top card of his or her library. For each nonland card revealed this way, you put a 1/1 white Spirit creature token with flying onto the battlefield. Then each player draws a card.
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
+name=Rout
+text=You may cast Rout any time you could cast an instant if you pay {2} more to cast it. -- Destroy all creatures. They can't be regenerated.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Selvala's Charge
+text=Parley — Each player reveals the top card of his or her library. For each nonland card revealed this way, you put a 3/3 green Elephant creature token onto the battlefield. Then each player draws a card.
+mana={4}{G}
+type=Sorcery
+[/card]
+[card]
+name=Selvala's Enforcer
+text=Parley — When Selvala's Enforcer enters the battlefield, each player reveals the top card of his or her library. For each nonland card revealed this way, put a +1/+1 counter on Selvala's Enforcer. Then each player draws a card.
+mana={3}{G}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=2
+[/card]
+[card]
+name=Selvala, Explorer Returned
+text=Parley — {T}: Each player reveals the top card of his or her library. For each nonland card revealed this way, add {G} to your mana pool and you gain 1 life. Then each player draws a card.
+mana={1}{G}{W}
+type=Legendary Creature
+subtype=Elf Scout
+power=2
+toughness=4
+[/card]
+[card]
+name=Silent Arbiter
+text=No more than one creature can attack each combat. -- No more than one creature can block each combat.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=5
+[/card]
+[card]
+name=Skeletal Scrying
+text=As an additional cost to cast Skeletal Scrying, exile X cards from your graveyard. -- You draw X cards and you lose X life.
+mana={X}{B}
+type=Instant
+[/card]
+[card]
+name=Split Decision
+text=Will of the council — Choose target instant or sorcery spell. Starting with you, each player votes for denial or duplication. If denial gets more votes, counter the spell. If duplication gets more votes or the vote is tied, copy the spell. You may choose new targets for the copy.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Stifle
+text=Counter target activated or triggered ability. (Mana abilities can't be targeted.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Tyrant's Choice
+text=Will of the council — Starting with you, each player votes for death or torture. If death gets more votes, each opponent sacrifices a creature. If torture gets more votes or the vote is tied, each opponent loses 4 life.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Valor Made Real
+text=Target creature can block any number of creatures this turn.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Victimize
+text=Choose two target creature cards in your graveyard. Sacrifice a creature. If you do, return the chosen cards to the battlefield tapped.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Whispergear Sneak
+text=Draft Whispergear Sneak face up. -- During the draft, you may turn Whispergear Sneak face down. If you do, look at any unopened booster pack in the draft or any booster pack not being looked at by another player.
+mana={1}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+name=Wood Sage
+text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
+mana={G}{U}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+[/card]
+[card]
+name=Woodvine Elemental
+text=Trample -- Parley — Whenever Woodvine Elemental attacks, each player reveals the top card of his or her library. For each nonland card revealed this way, attacking creatures you control get +1/+1 until end of turn. Then each player draws a card.
+mana={4}{G}{W}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]

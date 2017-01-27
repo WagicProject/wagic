@@ -72,6 +72,14 @@ class MTGGameZone {
     OWNER_STACK = 66,
     TARGETED_PLAYER_STACK = 67,
 
+    MY_REVEAL = 71,
+    OPPONENT_REVEAL = 72,
+    TARGET_OWNER_REVEAL = 73,
+    TARGET_CONTROLLER_REVEAL = 74,
+    REVEAL = 75,
+    OWNER_REVEAL = 76,
+    TARGETED_PLAYER_REVEAL = 77,
+
    };
 
    Player * owner;
@@ -94,11 +102,12 @@ class MTGGameZone {
    size_t getIndex(MTGCardInstance * card);
    void cleanupPhase();
    void beforeBeginPhase();
-
+   
+   unsigned int countByAlias(int number = 0);
    unsigned int countByType(const string &value);
    unsigned int countByCanTarget(TargetChooser * tc);
    unsigned int countTotalManaSymbols(TargetChooser * tc, int color);
-   unsigned int countDevotion(TargetChooser * tc, int color); //devotion for gods
+   unsigned int countDevotion(TargetChooser * tc, int color1, int color2); //devotion for gods
    MTGCardInstance * findByName(string name);
 
     //returns true if one of the cards in the zone has the ability
@@ -194,6 +203,7 @@ public:
     MTGRemovedFromGame * exile; //alias to removedFromZone
     MTGGameZone * garbage;
     MTGGameZone * garbageLastTurn;
+    MTGGameZone * reveal;
     MTGGameZone * temp;
 
     MTGPlayerCards();

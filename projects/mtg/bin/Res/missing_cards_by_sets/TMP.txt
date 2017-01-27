@@ -1,0 +1,350 @@
+[card]
+name=Abandon Hope
+text=As an additional cost to cast Abandon Hope, discard X cards. -- Look at target opponent's hand and choose X cards from it. That player discards those cards.
+mana={X}{1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Booby Trap
+text=As Booby Trap enters the battlefield, name a card other than a basic land card and choose an opponent. -- The chosen player reveals each card he or she draws. -- When the chosen player draws the named card, sacrifice Booby Trap. If you do, Booby Trap deals 10 damage to that player.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Carrionette
+text={2}{B}{B}: Exile Carrionette and target creature unless that creature's controller pays {2}. Activate this ability only if Carrionette is in your graveyard.
+mana={1}{B}
+type=Creature
+subtype=Skeleton
+power=1
+toughness=1
+[/card]
+[card]
+name=Coffin Queen
+text=You may choose not to untap Coffin Queen during your untap step. -- {2}{B}, {T}: Put target creature card from a graveyard onto the battlefield under your control. When Coffin Queen becomes untapped or you lose control of Coffin Queen, exile that creature.
+mana={2}{B}
+type=Creature
+subtype=Zombie Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Corpse Dance
+text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+name=Cursed Scroll
+text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Cursed Scroll deals 2 damage to target creature or player.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Dracoplasm
+text=Flying -- As Dracoplasm enters the battlefield, sacrifice any number of creatures. Dracoplasm's power becomes the total power of those creatures and its toughness becomes their total toughness. -- {R}: Dracoplasm gets +1/+0 until end of turn.
+mana={U}{R}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Duplicity
+text=When Duplicity enters the battlefield, exile the top five cards of your library face down. -- At the beginning of your upkeep, you may exile all cards from your hand face down. If you do, put all other cards you own exiled with Duplicity into your hand. -- At the beginning of your end step, discard a card. -- When you lose control of Duplicity, put all cards exiled with Duplicity into their owner's graveyard.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Echo Chamber
+text={4}, {T}: An opponent chooses target creature he or she controls. Put a token that's a copy of that creature onto the battlefield. That token gains haste until end of turn. Exile the token at the beginning of the next end step. Activate this ability only any time you could cast a sorcery.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Enraging Licid
+text={R}, {T}: Enraging Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {R} to end this effect. -- Enchanted creature has haste.
+mana={1}{R}
+type=Creature
+subtype=Licid
+power=1
+toughness=1
+[/card]
+[card]
+name=Ertai's Meddling
+text=X can't be 0.  -- Target spell's controller exiles it with X delay counters on it. -- At the beginning of each of that player's upkeeps, if that card is exiled, remove a delay counter from it. If the card has no delay counters on it, he or she puts it onto the stack as a copy of the original spell.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Excavator
+text={T}, Sacrifice a basic land: Target creature gains landwalk of each of the land types of the sacrificed land until end of turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Flowstone Salamander
+text={R}: Flowstone Salamander deals 1 damage to target creature blocking it.
+mana={3}{R}{R}
+type=Creature
+subtype=Salamander
+power=3
+toughness=4
+[/card]
+[card]
+name=Furnace of Rath
+text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={1}{R}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Hand to Hand
+text=During combat, players can't cast instant spells or activate abilities that aren't mana abilities.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Humility
+text=All creatures lose all abilities and have base power and toughness 1/1.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Interdict
+text=Counter target activated ability from an artifact, creature, enchantment, or land. That permanent's activated abilities can't be activated this turn. (Mana abilities can't be targeted.) -- Draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Intuition
+text=Search your library for any three cards and reveal them. Target opponent chooses one. Put that card into your hand and the rest into your graveyard. Then shuffle your library.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Invulnerability
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- The next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Knight of Dusk
+text={B}{B}: Destroy target creature blocking Knight of Dusk.
+mana={1}{B}{B}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Leeching Licid
+text={B}, {T}: Leeching Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {B} to end this effect. -- At the beginning of the upkeep of enchanted creature's controller, Leeching Licid deals 1 damage to that player.
+mana={1}{B}
+type=Creature
+subtype=Licid
+power=1
+toughness=1
+[/card]
+[card]
+name=Legerdemain
+text=Exchange control of target artifact or creature and another target permanent that shares one of those types with it. (This effect lasts indefinitely.)
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Maddening Imp
+text=Flying  -- {T}: Non-Wall creatures the active player controls attack this turn if able. At the beginning of the next end step, destroy each of those creatures that didn't attack this turn. Activate this ability only during an opponent's turn and only before combat.
+mana={2}{B}
+type=Creature
+subtype=Imp
+power=1
+toughness=1
+[/card]
+[card]
+name=Magnetic Web
+text=If a creature with a magnet counter on it attacks, all creatures with magnet counters on them attack if able. -- Whenever a creature with a magnet counter on it attacks, all creatures with magnet counters on them block that creature this turn if able. -- {1}, {T}: Put a magnet counter on target creature.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Minion of the Wastes
+text=Trample -- As Minion of the Wastes enters the battlefield, pay any amount of life. -- Minion of the Wastes's power and toughness are each equal to the life paid as it entered the battlefield.
+mana={3}{B}{B}{B}
+type=Creature
+subtype=Minion
+power=*
+toughness=*
+[/card]
+[card]
+name=Mounted Archers
+text=Reach (This creature can block creatures with flying.) -- {W}: Mounted Archers can block an additional creature this turn.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier Archer
+power=2
+toughness=3
+[/card]
+[card]
+name=No Quarter
+text=Whenever a creature becomes blocked by a creature with lesser power, destroy the blocking creature. --  -- Whenever a creature blocks a creature with lesser power, destroy the attacking creature.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Nurturing Licid
+text={G}, {T}: Nurturing Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {G} to end this effect. -- {G}: Regenerate enchanted creature.
+mana={1}{G}
+type=Creature
+subtype=Licid
+power=1
+toughness=1
+[/card]
+[card]
+name=Oracle en-Vec
+text={T}: Target opponent chooses any number of creatures he or she controls. During that player's next turn, the chosen creatures attack if able, and other creatures can't attack. At the beginning of that turn's end step, destroy each of the chosen creatures that didn't attack. Activate this ability only during your turn.
+mana={1}{W}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Phyrexian Grimoire
+text={4}, {T}: Target opponent chooses one of the top two cards of your graveyard. Exile that card and put the other one into your hand.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Phyrexian Splicer
+text={2}, {T}: Choose one — flying; first strike; shadow; or trample. Target creature with that ability loses it until end of turn and another target creature gains it until end of turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Quickening Licid
+text={1}{W}, {T}: Quickening Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {W} to end this effect. -- Enchanted creature has first strike.
+mana={1}{W}
+type=Creature
+subtype=Licid
+power=1
+toughness=1
+[/card]
+[card]
+name=Recycle
+text=Skip your draw step. -- Whenever you play a card, draw a card. -- Your maximum hand size is two.
+mana={4}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Rolling Thunder
+text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Rootwater Matriarch
+text={T}: Gain control of target creature for as long as that creature is enchanted.
+mana={2}{U}{U}
+type=Creature
+subtype=Merfolk
+power=2
+toughness=3
+[/card]
+[card]
+name=Rootwater Shaman
+text=You may cast Aura cards with enchant creature as though they had flash.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Scorched Earth
+text=As an additional cost to cast Scorched Earth, discard X land cards. -- Destroy X target lands.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Scroll Rack
+text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Soltari Guerrillas
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- {0}: The next time Soltari Guerrillas would deal combat damage to an opponent this turn, it deals that damage to target creature instead.
+mana={2}{R}{W}
+type=Creature
+subtype=Soltari Soldier
+power=3
+toughness=2
+[/card]
+[card]
+name=Static Orb
+text=As long as Static Orb is untapped, players can't untap more than two permanents during their untap steps.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Stinging Licid
+text={1}{U}, {T}: Stinging Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {U} to end this effect. -- Whenever enchanted creature becomes tapped, Stinging Licid deals 2 damage to that creature's controller.
+mana={1}{U}
+type=Creature
+subtype=Licid
+power=1
+toughness=1
+[/card]
+[card]
+name=Trumpeting Armodon
+text={1}{G}: Target creature blocks Trumpeting Armodon this turn if able.
+mana={3}{G}
+type=Creature
+subtype=Elephant
+power=3
+toughness=3
+[/card]
+[card]
+name=Unstable Shapeshifter
+text=Whenever another creature enters the battlefield, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
+mana={3}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=1
+[/card]
+[card]
+name=Volrath's Curse
+text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. That creature's controller may sacrifice a permanent for that player to ignore this effect until end of turn. -- {1}{U}: Return Volrath's Curse to its owner's hand.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Whim of Volrath
+text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Change the text of target permanent by replacing all instances of one color word or basic land type with another until end of turn. (For example, you may change "nonred creature" to "nongreen creature" or "plainswalk" to "swampwalk.")
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Wood Sage
+text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
+mana={G}{U}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+[/card]
+
+
+
+
+
+
+

@@ -253,8 +253,14 @@ void WGuiMenu::subBack(WGuiBase * item)
         if (split->right) subBack(split->right);//renderer->FillRoundRect(split->right->getX()-2,split->getY()-2,split->right->getWidth(),split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
     }
     else
-        renderer->FillRoundRect(item->getX(), item->getY(), item->getWidth() - 4, item->getHeight() - 2, 2, item->getColor(
+    {
+        renderer->FillRoundRect(item->getX(), item->getY(), item->getWidth() - 4, item->getHeight() - 2, 1, item->getColor(
                         WGuiColor::BACK));
+        //inner border
+        renderer->DrawRoundRect(item->getX(), item->getY(), item->getWidth() - 4, item->getHeight() - 2, 1, ARGB(255,89,89,89));
+        //outer border
+        //renderer->DrawRect(item->getX()-1.5f, item->getY()-1, item->getWidth()+1, item->getHeight() +2, ARGB(80,240,240,240));
+    }
 
 }
 
@@ -408,7 +414,7 @@ void WGuiList::Render()
             float barLength = static_cast<float> ((SCREEN_HEIGHT - y) / listSelectable);
             if (barLength < 4) barLength = 4;
             renderer->FillRect(x + width - 2, y - 1, 2, SCREEN_HEIGHT - y, getColor(WGuiColor::SCROLLBAR));
-            renderer->FillRoundRect(x + width - 5, barPosition, 5, barLength, 2, getColor(WGuiColor::SCROLLBUTTON));
+            renderer->FillRoundRect(x + width - 5, barPosition, 5, barLength, 1, getColor(WGuiColor::SCROLLBUTTON));
         }
 
         //Render current overlay.
@@ -1190,7 +1196,11 @@ void WGuiTabMenu::Render()
     {
         float w = mFont->GetStringWidth(_((*it)->getDisplay()).c_str());
         mFont->SetColor((*it)->getColor(WGuiColor::TEXT_TAB));
-        renderer->FillRoundRect(offset + 5, 5, w + 5, 25, 2, (*it)->getColor(WGuiColor::BACK_TAB));
+        renderer->FillRoundRect(offset + 6.5f, 5, w + 6.5f, 25, 0, (*it)->getColor(WGuiColor::BACK_TAB));
+        //inside border
+        renderer->DrawRoundRect(offset + 6.5f, 5, w + 6.5f, 25, 0, ARGB(180,89,89,89));
+        //outside border
+        //renderer->DrawRoundRect(offset + 5.5f, 4, w + 8.5f, 27, 0, ARGB(180,240,240,240));
         mFont->DrawString(_((*it)->getDisplay()).c_str(), offset + 10, 10);
         offset += w + 10 + 2;
     }
@@ -1320,7 +1330,14 @@ void WGuiAward::Underlay()
 
     if (trophy.get())
     {
-        JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT - trophy->mHeight);
+        trophy->SetHotSpot(0,trophy->mHeight);
+        if(trophy->mHeight == 268.f && trophy->mWidth == 203.f)
+        {
+            trophy->SetHotSpot(0,0);
+            JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT-trophy->mHeight);
+        }
+        else
+            JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT, 0, 171.f / trophy->mWidth, 192.f / trophy->mHeight);
     }
 
 }

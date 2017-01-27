@@ -1,8 +1,14 @@
 [meta]
 author=Wagic Team
-name=Wagic 2012
+name=Magic 2012
 year=2011
+total=249
 [/meta]
+[card]
+primitive=AEther Adept
+id=227222
+rarity=C
+[/card]
 [card]
 primitive=Acidic Slime
 id=226906
@@ -24,11 +30,6 @@ id=220086
 rarity=R
 [/card]
 [card]
-primitive=AEther Adept
-id=227222
-rarity=C
-[/card]
-[card]
 primitive=Alabaster Mage
 id=220264
 rarity=U
@@ -44,11 +45,6 @@ id=220218
 rarity=C
 [/card]
 [card]
-primitive=Angelic Destiny
-id=220230
-rarity=M
-[/card]
-[card]
 primitive=Angel's Feather
 id=221520
 rarity=U
@@ -57,6 +53,11 @@ rarity=U
 primitive=Angel's Mercy
 id=238569
 rarity=C
+[/card]
+[card]
+primitive=Angelic Destiny
+id=220230
+rarity=M
 [/card]
 [card]
 primitive=Arachnus Spinner
@@ -194,11 +195,6 @@ id=234070
 rarity=R
 [/card]
 [card]
-primitive=Chandra, the Firebrand
-id=220146
-rarity=M
-[/card]
-[card]
 primitive=Chandra's Outrage
 id=226585
 rarity=C
@@ -207,6 +203,11 @@ rarity=C
 primitive=Chandra's Phoenix
 id=220298
 rarity=R
+[/card]
+[card]
+primitive=Chandra, the Firebrand
+id=220146
+rarity=M
 [/card]
 [card]
 primitive=Chasm Drake
@@ -454,16 +455,6 @@ id=220103
 rarity=M
 [/card]
 [card]
-primitive=Garruk, Primal Hunter
-id=220100
-rarity=M
-[/card]
-[card]
-primitive=Wurm Token
-id=-22010012
-rarity=T
-[/card]
-[card]
 primitive=Garruk's Companion
 id=226896
 rarity=C
@@ -472,6 +463,21 @@ rarity=C
 primitive=Garruk's Horde
 id=220077
 rarity=R
+[/card]
+[card]
+primitive=Garruk, Primal Hunter
+id=220100
+rarity=M
+[/card]
+[card]
+primitive=Beast Token
+id=-220100
+rarity=T
+[/card]
+[card]
+primitive=Wurm Token
+id=-22010012
+rarity=T
 [/card]
 [card]
 primitive=Giant Spider
@@ -635,6 +641,11 @@ rarity=L
 [/card]
 [card]
 primitive=Island
+id=244324
+rarity=L
+[/card]
+[card]
+primitive=Island
 id=244325
 rarity=L
 [/card]
@@ -642,16 +653,6 @@ rarity=L
 primitive=Island
 id=244326
 rarity=L
-[/card]
-[card]
-primitive=Island
-id=244324
-rarity=L
-[/card]
-[card]
-primitive=Jace, Memory Adept
-id=238263
-rarity=M
 [/card]
 [card]
 primitive=Jace's Archivist
@@ -662,6 +663,11 @@ rarity=R
 primitive=Jace's Erasure
 id=227227
 rarity=C
+[/card]
+[card]
+primitive=Jace, Memory Adept
+id=238263
+rarity=M
 [/card]
 [card]
 primitive=Jade Mage
@@ -785,7 +791,7 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
-id=244330
+id=244327
 rarity=L
 [/card]
 [card]
@@ -800,7 +806,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=244327
+id=244330
 rarity=L
 [/card]
 [card]
@@ -870,17 +876,17 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
+id=244332
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=244333
 rarity=L
 [/card]
 [card]
 primitive=Plains
 id=244334
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=244332
 rarity=L
 [/card]
 [card]
@@ -959,14 +965,14 @@ id=236464
 rarity=R
 [/card]
 [card]
-primitive=Runeclaw Bear
-id=221893
-rarity=C
-[/card]
-[card]
 primitive=Rune-Scarred Demon
 id=220130
 rarity=R
+[/card]
+[card]
+primitive=Runeclaw Bear
+id=221893
+rarity=C
 [/card]
 [card]
 primitive=Rusted Sentinel
@@ -1110,22 +1116,22 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=244337
-rarity=L
-[/card]
-[card]
-primitive=Swamp
 id=244335
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=244338
+id=244336
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=244336
+id=244337
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=244338
 rarity=L
 [/card]
 [card]

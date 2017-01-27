@@ -1,7 +1,8 @@
 [meta]
-author=Wagic Team 
-name=Magic Origins 
-year=2015 
+author=Wagic Team
+name=Magic Origins
+year=2015
+total=293
 [/meta]
 [card]
 primitive=Abbot of Keral Keep
@@ -17,6 +18,11 @@ rarity=U
 primitive=Act of Treason
 id=398578
 rarity=C
+[/card]
+[card]
+primitive=Aegis Angel
+id=401452
+rarity=R
 [/card]
 [card]
 primitive=Aerial Volley
@@ -39,14 +45,14 @@ id=398640
 rarity=C
 [/card]
 [card]
-primitive=Alhammarret, High Arbiter
-id=398436
-rarity=R
-[/card]
-[card]
 primitive=Alhammarret's Archive
 id=398564
 rarity=M
+[/card]
+[card]
+primitive=Alhammarret, High Arbiter
+id=398436
+rarity=R
 [/card]
 [card]
 primitive=Ampryn Tactician
@@ -189,16 +195,6 @@ id=398488
 rarity=C
 [/card]
 [card]
-primitive=Chandra, Fire of Kaladesh
-id=398422
-rarity=M
-[/card]
-[card]
-primitive=Chandra, Roaring Flame
-id=398423
-rarity=T
-[/card]
-[card]
 primitive=Chandra's Fury
 id=398632
 rarity=C
@@ -207,6 +203,16 @@ rarity=C
 primitive=Chandra's Ignition
 id=398416
 rarity=R
+[/card]
+[card]
+primitive=Chandra, Fire of Kaladesh
+id=398422
+rarity=M
+[/card]
+[card]
+primitive=Chandra, Roaring Flame
+id=398423
+rarity=T
 [/card]
 [card]
 primitive=Charging Griffin
@@ -319,6 +325,11 @@ id=398580
 rarity=R
 [/card]
 [card]
+primitive=Divine Verdict
+id=401453
+rarity=C
+[/card]
+[card]
 primitive=Dragon Fodder
 id=398647
 rarity=C
@@ -329,14 +340,19 @@ id=398405
 rarity=C
 [/card]
 [card]
+primitive=Dwynen's Elite
+id=398609
+rarity=U
+[/card]
+[card]
 primitive=Dwynen, Gilt-Leaf Daen
 id=398546
 rarity=R
 [/card]
 [card]
-primitive=Dwynen's Elite
-id=398609
-rarity=U
+primitive=Eagle of the Watch
+id=401454
+rarity=C
 [/card]
 [card]
 primitive=Elemental Bond
@@ -414,6 +430,11 @@ id=398497
 rarity=U
 [/card]
 [card]
+primitive=Fiery Hellhound
+id=401463
+rarity=C
+[/card]
+[card]
 primitive=Fiery Impulse
 id=398516
 rarity=C
@@ -429,14 +450,34 @@ id=398547
 rarity=R
 [/card]
 [card]
+primitive=Flesh to Dust
+id=401459
+rarity=C
+[/card]
+[card]
 primitive=Fleshbag Marauder
 id=398625
 rarity=U
 [/card]
 [card]
 primitive=Forest
+id=398421
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=398454
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=398570
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=398617
+rarity=L
 [/card]
 [card]
 primitive=Foundry of the Consuls
@@ -464,14 +505,14 @@ id=398681
 rarity=C
 [/card]
 [card]
-primitive=Gideon, Battle-Forged
-id=398429
-rarity=T
-[/card]
-[card]
 primitive=Gideon's Phalanx
 id=398471
 rarity=R
+[/card]
+[card]
+primitive=Gideon, Battle-Forged
+id=398429
+rarity=T
 [/card]
 [card]
 primitive=Gilt-Leaf Winnower
@@ -589,14 +630,39 @@ id=398503
 rarity=R
 [/card]
 [card]
+primitive=Into the Void
+id=401456
+rarity=U
+[/card]
+[card]
 primitive=Iroas's Champion
 id=398653
 rarity=U
 [/card]
 [card]
 primitive=Island
+id=398431
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=398477
+rarity=L
+[/card]
+[card]
+primitive=Island
 id=398586
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=398664
+rarity=L
+[/card]
+[card]
+primitive=Jace's Sanctum
+id=398614
+rarity=R
 [/card]
 [card]
 primitive=Jace, Telepath Unbound
@@ -607,11 +673,6 @@ rarity=T
 primitive=Jace, Vryn's Prodigy
 id=398434
 rarity=M
-[/card]
-[card]
-primitive=Jace's Sanctum
-id=398614
-rarity=R
 [/card]
 [card]
 primitive=Jayemdae Tome
@@ -649,11 +710,6 @@ id=398443
 rarity=R
 [/card]
 [card]
-primitive=Kytheon, Hero of Akros
-id=398428
-rarity=M
-[/card]
-[card]
 primitive=Kytheon's Irregulars
 id=398561
 rarity=R
@@ -662,6 +718,11 @@ rarity=R
 primitive=Kytheon's Tactics
 id=398470
 rarity=C
+[/card]
+[card]
+primitive=Kytheon, Hero of Akros
+id=398428
+rarity=M
 [/card]
 [card]
 primitive=Languish
@@ -724,6 +785,11 @@ id=398496
 rarity=U
 [/card]
 [card]
+primitive=Mahamoti Djinn
+id=401457
+rarity=R
+[/card]
+[card]
 primitive=Malakir Cullblade
 id=398556
 rarity=U
@@ -759,6 +825,11 @@ id=398630
 rarity=C
 [/card]
 [card]
+primitive=Mind Rot
+id=401460
+rarity=C
+[/card]
+[card]
 primitive=Mizzium Meddler
 id=398596
 rarity=R
@@ -770,8 +841,23 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
+id=398412
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=398425
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=398490
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=398510
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Murder Investigation
@@ -794,19 +880,14 @@ id=398629
 rarity=C
 [/card]
 [card]
+primitive=Nightmare
+id=401461
+rarity=R
+[/card]
+[card]
 primitive=Nightsnare
 id=398562
 rarity=C
-[/card]
-[card]
-primitive=Nissa, Sage Animist
-id=398432
-rarity=T
-[/card]
-[card]
-primitive=Nissa, Vastwood Seer
-id=398438
-rarity=M
 [/card]
 [card]
 primitive=Nissa's Pilgrimage
@@ -817,6 +898,16 @@ rarity=C
 primitive=Nissa's Revelation
 id=398506
 rarity=R
+[/card]
+[card]
+primitive=Nissa, Sage Animist
+id=398432
+rarity=T
+[/card]
+[card]
+primitive=Nissa, Vastwood Seer
+id=398438
+rarity=M
 [/card]
 [card]
 primitive=Nivix Barrier
@@ -855,7 +946,27 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
+id=398534
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=398541
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=398550
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=398675
+rarity=L
+[/card]
+[card]
+primitive=Plummet
+id=401465
 rarity=C
 [/card]
 [card]
@@ -876,6 +987,11 @@ rarity=R
 [card]
 primitive=Prism Ring
 id=398646
+rarity=U
+[/card]
+[card]
+primitive=Prized Unicorn
+id=401466
 rarity=U
 [/card]
 [card]
@@ -984,6 +1100,11 @@ id=398545
 rarity=C
 [/card]
 [card]
+primitive=Sengir Vampire
+id=401462
+rarity=U
+[/card]
+[card]
 primitive=Sentinel of the Eternal Watch
 id=398659
 rarity=U
@@ -992,6 +1113,11 @@ rarity=U
 primitive=Separatist Voidmage
 id=398608
 rarity=C
+[/card]
+[card]
+primitive=Serra Angel
+id=401455
+rarity=U
 [/card]
 [card]
 primitive=Shadows of the Past
@@ -1009,19 +1135,24 @@ id=398552
 rarity=C
 [/card]
 [card]
-primitive=Shivan Reef
-id=398444
+primitive=Shivan Dragon
+id=401464
 rarity=R
 [/card]
 [card]
-primitive=Sigil of the Empty Throne
-id=398524
+primitive=Shivan Reef
+id=398444
 rarity=R
 [/card]
 [card]
 primitive=Sigil of Valor
 id=398515
 rarity=U
+[/card]
+[card]
+primitive=Sigil of the Empty Throne
+id=398524
+rarity=R
 [/card]
 [card]
 primitive=Sigiled Starfish
@@ -1090,8 +1221,23 @@ rarity=C
 [/card]
 [card]
 primitive=Swamp
+id=398472
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=398507
+rarity=L
+[/card]
+[card]
+primitive=Swamp
 id=398555
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=398677
+rarity=L
 [/card]
 [card]
 primitive=Swift Reckoning
@@ -1116,6 +1262,11 @@ rarity=R
 [card]
 primitive=Talent of the Telepath
 id=398483
+rarity=R
+[/card]
+[card]
+primitive=Terra Stomper
+id=401467
 rarity=R
 [/card]
 [card]
@@ -1154,13 +1305,13 @@ id=398445
 rarity=C
 [/card]
 [card]
-primitive=Titanic Growth
-id=398648
+primitive=Titan's Strength
+id=398680
 rarity=C
 [/card]
 [card]
-primitive=Titan's Strength
-id=398680
+primitive=Titanic Growth
+id=398648
 rarity=C
 [/card]
 [card]
@@ -1264,6 +1415,11 @@ id=398540
 rarity=C
 [/card]
 [card]
+primitive=Weave Fate
+id=401458
+rarity=C
+[/card]
+[card]
 primitive=Weight of the Underworld
 id=398544
 rarity=C
@@ -1313,79 +1469,3 @@ primitive=Zendikar's Roil
 id=398518
 rarity=U
 [/card]
-[card]
-primitive=Forest
-id=398421
-rarity=C
-[/card]
-[card]
-primitive=Forest
-id=398454
-rarity=C
-[/card]
-[card]
-primitive=Forest
-id=398617
-rarity=C
-[/card]
-[card]
-primitive=Island
-id=398431
-rarity=C
-[/card]
-[card]
-primitive=Island
-id=398477
-rarity=C
-[/card]
-[card]
-primitive=Island
-id=398664
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=398412
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=398425
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=398490
-rarity=C
-[/card]
-[card]
-primitive=Plains
-id=398534
-rarity=C
-[/card]
-[card]
-primitive=Plains
-id=398541
-rarity=C
-[/card]
-[card]
-primitive=Plains
-id=398550
-rarity=C
-[/card]
-[card]
-primitive=Swamp
-id=398472
-rarity=C
-[/card]
-[card]
-primitive=Swamp
-id=398507
-rarity=C
-[/card]
-[card]
-primitive=Swamp
-id=398677
-rarity=C
-[/card]
-

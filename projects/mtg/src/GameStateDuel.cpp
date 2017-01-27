@@ -1037,7 +1037,14 @@ void GameStateDuel::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
-
+#if !defined (PSP)
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
+#endif
     //render the game until someone did win the game (otherwise it crashes sometimes under linux)
     if (game && !game->didWin())
         game->Render();
@@ -1165,7 +1172,7 @@ void GameStateDuel::Render()
                 opponentMenu->Render();
                 // display the selected player deck name too
                 string selectedPlayerDeckName = _("Player Deck: ").c_str() + game->players[0]->deckName;
-                mFont->DrawString( selectedPlayerDeckName.c_str(), 30, 40);
+                mFont->DrawString( selectedPlayerDeckName.c_str(),  (SCREEN_WIDTH / 4) - (mFont->GetStringWidth(selectedPlayerDeckName.c_str())/2)-3, 32);
             }
             else if (deckmenu && !deckmenu->isClosed()) deckmenu->Render();
 

@@ -58,7 +58,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     switch (key[0])
     {
     case 'a':
-        if (key == "auto")
+        if (key == "aicode")//replacement code for AI. for reveal:number basic version only
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            primitive->setAICustomCode(val);
+        }
+        else if (key == "auto")
         {
             if (!primitive) primitive = NEW CardPrimitive();
             primitive->addMagicText(val);
@@ -105,8 +110,19 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
 
-    case 'b': //buyback
+    case 'b': //buyback/Bestow
         if (!primitive) primitive = NEW CardPrimitive();
+        if (key[1] == 'e' && key[2] == 's')
+        { //bestow
+            if (!primitive) primitive = NEW CardPrimitive();
+            if (ManaCost * cost = primitive->getManaCost())
+            {
+                string value = val;
+                std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                cost->setBestow(ManaCost::parseManaCost(value));
+            }
+        }
+        else//buyback
         if (ManaCost * cost = primitive->getManaCost())
         {
             string value = val;
@@ -129,8 +145,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             }
         }
         break;
-    case 'd'://dredge
-        if (!primitive) primitive = NEW CardPrimitive();
+    case 'd'://double faced card /dredge
+        if (key == "doublefaced")
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            {
+                primitive->setdoubleFaced(val);
+                break;
+            }
+        }
+        else if (!primitive) primitive = NEW CardPrimitive();
         {
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
@@ -1372,6 +1396,7 @@ MTGSetInfo::MTGSetInfo(const string& _id)
     id = _id;
     block = -1;
     year = -1;
+    total = -1;
 
     for (int i = 0; i < MTGSetInfo::MAX_COUNT; i++)
         counts[i] = 0;
@@ -1447,5 +1472,8 @@ void MTGSetInfo::processConfLine(string line)
         author = value;
     else if (key.compare("block") == 0)
         block = setlist.findBlock(value.c_str());
-    else if (key.compare("year") == 0) year = atoi(value.c_str());
+    else if (key.compare("year") == 0) 
+        year = atoi(value.c_str());
+    else if (key.compare("total") == 0) 
+        total = atoi(value.c_str());
 }

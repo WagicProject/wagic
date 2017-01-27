@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-name=MBS
+name=Mirrodin Besieged
+block=Scars of Mirrodin
 year=2011
+total=155
 [/meta]
 [card]
 primitive=Accorder Paladin
@@ -165,12 +167,12 @@ rarity=U
 [/card]
 [card]
 primitive=Forest
-id=214075
+id=214031
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=214031
+id=214075
 rarity=L
 [/card]
 [card]
@@ -189,14 +191,14 @@ id=214053
 rarity=R
 [/card]
 [card]
-primitive=Glissa, the Traitor
-id=214072
-rarity=M
-[/card]
-[card]
 primitive=Glissa's Courier
 id=213783
 rarity=C
+[/card]
+[card]
+primitive=Glissa, the Traitor
+id=214072
+rarity=M
 [/card]
 [card]
 primitive=Gnathosaur
@@ -395,12 +397,12 @@ rarity=U
 [/card]
 [card]
 primitive=Mountain
-id=214066
+id=214045
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=214045
+id=214066
 rarity=L
 [/card]
 [card]
@@ -515,12 +517,12 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
-id=220366
+id=214057
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=214057
+id=220366
 rarity=L
 [/card]
 [card]
@@ -665,12 +667,12 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=220368
+id=220367
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=220367
+id=220368
 rarity=L
 [/card]
 [card]

@@ -1,0 +1,127 @@
+[card]
+name=Conjured Currency
+text=At the beginning of your upkeep, you may exchange control of Conjured Currency and target permanent you neither own nor control.
+mana={5}{U}
+type=Enchantment
+[/card]
+[card]
+name=Corpsejack Menace
+text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
+mana={2}{B}{G}
+type=Creature
+subtype=Fungus
+power=4
+toughness=4
+[/card]
+[card]
+name=Desecration Demon
+text=Flying -- At the beginning of each combat, any opponent may sacrifice a creature. If a player does, tap Desecration Demon and put a +1/+1 counter on it.
+mana={2}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
+name=Epic Experiment
+text=Exile the top X cards of your library. For each instant and sorcery card with converted mana cost X or less among them, you may cast that card without paying its mana cost. Then put all cards exiled this way that weren't cast into your graveyard.
+mana={X}{U}{R}
+type=Sorcery
+[/card]
+[card]
+name=Grave Betrayal
+text=Whenever a creature you don't control dies, return it to the battlefield under your control with an additional +1/+1 counter on it at the beginning of the next end step. That creature is a black Zombie in addition to its other colors and types.
+mana={5}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Guild Feud
+text=At the beginning of your upkeep, target opponent reveals the top three cards of his or her library, may put a creature card from among them onto the battlefield, then puts the rest into his or her graveyard. You do the same with the top three cards of your library. If two creatures are put onto the battlefield this way, those creatures fight each other.
+mana={5}{R}
+type=Enchantment
+[/card]
+[card]
+name=Izzet Charm
+text=Choose one — Counter target noncreature spell unless its controller pays {2}; or Izzet Charm deals 2 damage to target creature; or draw two cards, then discard two cards.
+mana={U}{R}
+type=Instant
+[/card]
+[card]
+name=Jace, Architect of Thought
+text=+1: Until your next turn, whenever a creature an opponent controls attacks, it gets -1/-0 until end of turn. -- -2: Reveal the top three cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other on the bottom of your library in any order. -- -8: For each player, search that player's library for a nonland card and exile it, then that player shuffles his or her library. You may cast those cards without paying their mana costs.
+mana={2}{U}{U}
+type=Planeswalker
+subtype=Jace
+[/card]
+[card]
+name=Loxodon Smiter
+text=Loxodon Smiter can't be countered. -- If a spell or ability an opponent controls causes you to discard Loxodon Smiter, put it onto the battlefield instead of putting it into your graveyard.
+mana={1}{G}{W}
+type=Creature
+subtype=Elephant Soldier
+power=4
+toughness=4
+[/card]
+[card]
+name=Palisade Giant
+text=All damage that would be dealt to you or another permanent you control is dealt to Palisade Giant instead.
+mana={4}{W}{W}
+type=Creature
+subtype=Giant Soldier
+power=2
+toughness=7
+[/card]
+[card]
+name=Pithing Needle
+text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Rakdos, Lord of Riots
+text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
+mana={B}{B}{R}{R}
+type=Legendary Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
+name=Rites of Reaping
+text=Target creature gets +3/+3 until end of turn. Another target creature gets -3/-3 until end of turn.
+mana={4}{B}{G}
+type=Sorcery
+[/card]
+[card]
+name=Search the City
+text=When Search the City enters the battlefield, exile the top five cards of your library. -- Whenever you play a card with the same name as one of the exiled cards, you may put one of those cards with that name into its owner's hand. Then if there are no cards exiled with Search the City, sacrifice it. If you do, take an extra turn after this one.
+mana={4}{U}
+type=Enchantment
+[/card]
+[card]
+name=Slaughter Games
+text=Slaughter Games can't be countered by spells or abilities. -- Name a nonland card. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={2}{B}{R}
+type=Sorcery
+[/card]
+[card]
+name=Sphere of Safety
+text=Creatures can't attack you or a planeswalker you control unless their controller pays {X} for each of those creatures, where X is the number of enchantments you control.
+mana={4}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sphinx of the Chimes
+text=Flying -- Discard two nonland cards with the same name: Draw four cards.
+mana={4}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=6
+[/card]
+[card]
+name=Tablet of the Guilds
+text=As Tablet of the Guilds enters the battlefield, choose two colors. -- Whenever you cast a spell, if it's at least one of the chosen colors, you gain 1 life for each of the chosen colors it is.
+mana={2}
+type=Artifact
+[/card]

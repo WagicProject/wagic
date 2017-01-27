@@ -156,6 +156,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 zones[nbzones++] = MTGGameZone::ALL_ZONES;
             }
+            else if (zoneName.compare("reveal") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_REVEAL;
+                zones[nbzones++] = MTGGameZone::OPPONENT_REVEAL;
+            }
             else if (zoneName.compare("graveyard") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
@@ -195,6 +200,50 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             else if (zoneName.compare("exile") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+            }
+            else if (zoneName.compare("mycastingzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+            }
+            else if (zoneName.compare("opponentcastingzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+            }
+            else if (zoneName.compare("mynonplaynonexile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+            }
+            else if (zoneName.compare("opponentnonplaynonexile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+            }
+            else if (zoneName.compare("myzones") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::MY_STACK;
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+            }
+            else if (zoneName.compare("opponentzones") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_STACK;
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
             }
             else
@@ -389,6 +438,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->defenser = &MTGCardInstance::AnyCard;
                     }
                 }
+                //Blocked
+                else if (attribute.find("blocked") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDblocked = -1;
+                    }
+                    else
+                    {
+                        cd->CDblocked = 1;
+                    }
+                }
                 //Tapped, untapped
                 else if (attribute.find("tapped") != string::npos)
                 {
@@ -423,6 +484,28 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else
                     {
                         cd->unsecuresetfresh(1);
+                    }
+                }
+                else if (attribute.find("recent") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecuresetrecent(-1);
+                    }
+                    else
+                    {
+                        cd->unsecuresetrecent(1);
+                    }
+                }
+                else if (attribute.find("geared") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDgeared = -1;
+                    }
+                    else
+                    {
+                        cd->CDgeared = 1;
                     }
                 }
                 //creature is a level up creature
@@ -495,6 +578,73 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else 
                     {
                         cd->CDdamager = 1;
+                    }
+                }
+                //can produce mana
+                else if (attribute.find("cmana") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceC = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceC = 1;
+                    }
+                }
+                else if (attribute.find("manag") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceG = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceG = 1;
+                    }
+                }
+                else if (attribute.find("manau") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceU = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceU = 1;
+                    }
+                }
+                else if (attribute.find("manar") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceR = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceR = 1;
+                    }
+                }
+                else if (attribute.find("manab") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceB = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceB = 1;
+                    }
+                }
+                else if (attribute.find("manaw") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceW = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceW = 1;
                     }
                 }
                 else if (attribute.find("multicolor") != string::npos)
@@ -596,6 +746,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->anyCounter = 1;
                     }
+                    else if (attribute.find("{notany}") != string::npos)
+                    {
+                        cd->anyCounter = -1;
+                    }
                     else
                     {
                         size_t start = attribute.find("{");
@@ -637,14 +791,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         }
                     }
 
-                    if (attribute.find("iscolorless") != string::npos)
+                    if (attribute.find("colorless") != string::npos)
                     {
-                         attributefound = 1;
-                        for (int cid = 1; cid < Constants::NB_Colors; cid++)
-                        { 
+                        attributefound = 1;
+                        /*for (int cid = 1; cid < Constants::NB_Colors; cid++)
+                        {
                             cd->SetExclusionColor(cid);
                         }
-                        cd->mode = CardDescriptor::CD_OR;
+                        cd->mode = CardDescriptor::CD_OR;*/
+                        if (minus)
+                            cd->CDnocolor = -1;
+                        else
+                            cd->CDnocolor = 1;
                     }
 
                     if (attribute.find("chosencolor") != string::npos)
@@ -817,6 +975,7 @@ TargetChooser::TargetChooser(GameObserver *observer, MTGCardInstance * card, int
     TargetsList(), observer(observer)
 {
     forceTargetListReady = 0;
+    forceTargetListReadyByPlayer = 0;
     source = card;
     targetter = card;
     maxtargets = _maxtargets;
@@ -899,6 +1058,10 @@ int TargetChooser::ForceTargetListReady()
 
 int TargetChooser::targetsReadyCheck()
 {
+    if (targetMin == false && !targets.size() && forceTargetListReadyByPlayer)
+    {
+        return TARGET_OK_FULL;//we have no min amount for targets and 0 targets is a valid amount player called for a forced finish.
+    }
     if (!targets.size())
     {
         return TARGET_NOK;
@@ -931,8 +1094,8 @@ bool TargetChooser::validTargetsExist(int maxTargets)
         int maxAmount = 0;
         Player *p = observer->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack };
-        for (int k = 0; k < 6; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal };
+        for (int k = 0; k < 7; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -965,8 +1128,8 @@ int TargetChooser::countValidTargets(bool withoutProtections)
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack };
-        for (int k = 0; k < 6; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal };
+        for (int k = 0; k < 7; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))

@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Ravnica: City of Guilds
+block=Ravnica
 year=2005
-block=Guild
+total=306
 [/meta]
 [card]
 primitive=Agrus Kos, Wojek Veteran
@@ -490,12 +492,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=95099
+id=95098
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=95098
+id=95099
 rarity=L
 [/card]
 [card]
@@ -720,17 +722,17 @@ rarity=U
 [/card]
 [card]
 primitive=Island
+id=95100
+rarity=L
+[/card]
+[card]
+primitive=Island
 id=95103
 rarity=L
 [/card]
 [card]
 primitive=Island
 id=95107
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=95100
 rarity=L
 [/card]
 [card]
@@ -865,12 +867,12 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=95104
+id=95102
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=95102
+id=95104
 rarity=L
 [/card]
 [card]
@@ -975,17 +977,17 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
+id=95105
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=95108
 rarity=L
 [/card]
 [card]
 primitive=Plains
 id=95112
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=95105
 rarity=L
 [/card]
 [card]
@@ -1034,13 +1036,13 @@ id=83680
 rarity=C
 [/card]
 [card]
-primitive=Razia, Boros Archangel
-id=89061
+primitive=Razia's Purification
+id=89115
 rarity=R
 [/card]
 [card]
-primitive=Razia's Purification
-id=89115
+primitive=Razia, Boros Archangel
+id=89061
 rarity=R
 [/card]
 [card]
@@ -1300,7 +1302,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=95111
+id=95101
 rarity=L
 [/card]
 [card]
@@ -1310,7 +1312,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=95101
+id=95111
 rarity=L
 [/card]
 [card]
@@ -1474,14 +1476,14 @@ id=89082
 rarity=R
 [/card]
 [card]
-primitive=Warp World
-id=89084
-rarity=R
-[/card]
-[card]
 primitive=War-Torch Goblin
 id=87971
 rarity=C
+[/card]
+[card]
+primitive=Warp World
+id=89084
+rarity=R
 [/card]
 [card]
 primitive=Watchwolf

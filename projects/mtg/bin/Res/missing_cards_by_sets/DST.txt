@@ -1,0 +1,189 @@
+[card]
+name=Arcbound Overseer
+text=At the beginning of your upkeep, put a +1/+1 counter on each creature with modular you control. -- Modular 6 (This enters the battlefield with six +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.)
+mana={8}
+type=Artifact Creature
+subtype=Golem
+power=0
+toughness=0
+[/card]
+[card]
+name=Auriok Siege Sled
+text={1}: Target artifact creature blocks Auriok Siege Sled this turn if able. -- {1}: Target artifact creature can't block Auriok Siege Sled this turn.
+mana={6}
+type=Artifact Creature
+subtype=Juggernaut
+power=3
+toughness=5
+[/card]
+[card]
+name=Barbed Lightning
+text=Choose one — Barbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. -- Entwine {2} (Choose both if you pay the entwine cost.)
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Carry Away
+text=Enchant Equipment -- When Carry Away enters the battlefield, unattach enchanted Equipment. -- You control enchanted Equipment.
+mana={U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Death-Mask Duplicant
+text=Imprint — {1}: Exile target creature card from your graveyard. -- As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
+mana={7}
+type=Artifact Creature
+subtype=Shapeshifter
+power=5
+toughness=5
+[/card]
+[card]
+name=Dismantle
+text=Destroy target artifact. If that artifact had counters on it, put that many +1/+1 counters or charge counters on an artifact you control.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Hallow
+text=Prevent all damage target spell would deal this turn. You gain life equal to the damage prevented this way.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Leonin Shikari
+text=You may activate equip abilities any time you could cast an instant.
+mana={1}{W}
+type=Creature
+subtype=Cat Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Murderous Spoils
+text=Destroy target nonblack creature. It can't be regenerated. You gain control of all Equipment that was attached to it. (This effect lasts indefinitely.)
+mana={5}{B}
+type=Instant
+[/card]
+[card]
+name=Mycosynth Lattice
+text=All permanents are artifacts in addition to their other types. -- All cards that aren't on the battlefield, spells, and permanents are colorless. -- Players may spend mana as though it were mana of any color.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Neurok Transmuter
+text={U}: Target creature becomes an artifact in addition to its other types until end of turn. -- {U}: Until end of turn, target artifact creature becomes blue and isn't an artifact.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Panoptic Mirror
+text=Imprint — {X}, {T}: You may exile an instant or sorcery card with converted mana cost X from your hand. -- At the beginning of your upkeep, you may copy a card exiled with Panoptic Mirror. If you do, you may cast the copy without paying its mana cost.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Reap and Sow
+text=Choose one — Destroy target land; or search your library for a land card, put that card onto the battlefield, then shuffle your library. -- Entwine {1}{G} (Choose both if you pay the entwine cost.)
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Screams from Within
+text=Enchant creature -- Enchanted creature gets -1/-1. -- When enchanted creature dies, return Screams from Within from your graveyard to the battlefield.
+mana={1}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Second Sight
+text=Choose one — Look at the top five cards of target opponent's library, then put them back in any order; or look at the top five cards of your library, then put them back in any order. -- Entwine {U} (Choose both if you pay the entwine cost.)
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Shriveling Rot
+text=Choose one — Until end of turn, whenever a creature is dealt damage, destroy it; or until end of turn, whenever a creature dies, that creature's controller loses life equal to its toughness. -- Entwine {2}{B} (Choose both if you pay the entwine cost.)
+mana={2}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Shunt
+text=Change the target of target spell with a single target.
+mana={1}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Sundering Titan
+text=When Sundering Titan enters the battlefield or leaves the battlefield, choose a land of each basic land type, then destroy those lands.
+mana={8}
+type=Artifact Creature
+subtype=Golem
+power=7
+toughness=10
+[/card]
+[card]
+name=Surestrike Trident
+text=Equipped creature has first strike and "{T}, Unattach Surestrike Trident: This creature deals damage equal to its power to target player." -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Synod Artificer
+text={X}, {T}: Tap X target noncreature artifacts. -- {X}, {T}: Untap X target noncreature artifacts.
+mana={2}{U}
+type=Creature
+subtype=Vedalken Artificer
+power=1
+toughness=2
+[/card]
+[card]
+name=Test of Faith
+text=Prevent the next 3 damage that would be dealt to target creature this turn, and put a +1/+1 counter on that creature for each 1 damage prevented this way.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Thought Dissector
+text={X}, {T}: Target opponent reveals cards from the top of his or her library until an artifact card or X cards are revealed, whichever comes first. If an artifact card is revealed this way, put it onto the battlefield under your control and sacrifice Thought Dissector. Put the rest of the revealed cards into that player's graveyard.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Thunderstaff
+text=As long as Thunderstaff is untapped, if a creature would deal combat damage to you, prevent 1 of that damage. -- {2}, {T}: Attacking creatures get +1/+0 until end of turn.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Trinisphere
+text=As long as Trinisphere is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Turn the Tables
+text=All combat damage that would be dealt to you this turn is dealt to target attacking creature instead.
+mana={3}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Vedalken Engineer
+text={T}: Add two mana of any one color to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
+mana={1}{U}
+type=Creature
+subtype=Vedalken Artificer
+power=1
+toughness=1
+[/card]
+[card]
+name=Well of Lost Dreams
+text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
+mana={4}
+type=Artifact
+[/card]

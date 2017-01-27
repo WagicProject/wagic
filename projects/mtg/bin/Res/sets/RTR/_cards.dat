@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-name=RTR
+name=Return to Ravnica
+block=Return to Ravnica
 year=2012
+total=274
 [/meta]
 [card]
 primitive=Abrupt Decay
@@ -84,6 +86,11 @@ id=265383
 rarity=C
 [/card]
 [card]
+primitive=Azor's Elocutors
+id=265418
+rarity=R
+[/card]
+[card]
 primitive=Azorius Arrester
 id=270972
 rarity=C
@@ -107,11 +114,6 @@ rarity=U
 primitive=Azorius Keyrune
 id=253519
 rarity=U
-[/card]
-[card]
-primitive=Azor's Elocutors
-id=265418
-rarity=R
 [/card]
 [card]
 primitive=Batterhorn
@@ -299,13 +301,13 @@ id=270970
 rarity=R
 [/card]
 [card]
-primitive=Deathrite Shaman
-id=290529
+primitive=Death's Presence
+id=270793
 rarity=R
 [/card]
 [card]
-primitive=Death's Presence
-id=270793
+primitive=Deathrite Shaman
+id=290529
 rarity=R
 [/card]
 [card]
@@ -435,6 +437,11 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
+id=289325
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=289326
 rarity=L
 [/card]
@@ -445,17 +452,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=289325
+id=289328
 rarity=L
 [/card]
 [card]
 primitive=Forest
 id=333718
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=289328
 rarity=L
 [/card]
 [card]
@@ -605,17 +607,17 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=289315
-rarity=L
-[/card]
-[card]
-primitive=Island
 id=289313
 rarity=L
 [/card]
 [card]
 primitive=Island
 id=289314
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=289315
 rarity=L
 [/card]
 [card]
@@ -629,14 +631,14 @@ id=333719
 rarity=L
 [/card]
 [card]
-primitive=Isperia, Supreme Judge
-id=290531
-rarity=M
-[/card]
-[card]
 primitive=Isperia's Skywatch
 id=270958
 rarity=C
+[/card]
+[card]
+primitive=Isperia, Supreme Judge
+id=290531
+rarity=M
 [/card]
 [card]
 primitive=Izzet Charm
@@ -664,14 +666,14 @@ id=253653
 rarity=M
 [/card]
 [card]
-primitive=Jarad, Golgari Lich Lord
-id=290534
-rarity=M
-[/card]
-[card]
 primitive=Jarad's Orders
 id=253633
 rarity=R
+[/card]
+[card]
+primitive=Jarad, Golgari Lich Lord
+id=290534
+rarity=M
 [/card]
 [card]
 primitive=Judge's Familiar
@@ -760,7 +762,7 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=289324
+id=289321
 rarity=L
 [/card]
 [card]
@@ -770,17 +772,17 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=289321
+id=289323
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=289324
 rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=333720
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=289323
 rarity=L
 [/card]
 [card]
@@ -794,6 +796,11 @@ id=270367
 rarity=U
 [/card]
 [card]
+primitive=Niv-Mizzet, Dracogenius
+id=253626
+rarity=M
+[/card]
+[card]
 primitive=Nivix Guildmage
 id=270366
 rarity=U
@@ -802,11 +809,6 @@ rarity=U
 primitive=Nivmagus Elemental
 id=290526
 rarity=R
-[/card]
-[card]
-primitive=Niv-Mizzet, Dracogenius
-id=253626
-rarity=M
 [/card]
 [card]
 primitive=Oak Street Innkeeper
@@ -855,7 +857,7 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
-id=289311
+id=289309
 rarity=L
 [/card]
 [card]
@@ -865,7 +867,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=289309
+id=289311
 rarity=L
 [/card]
 [card]
@@ -939,13 +941,13 @@ id=253591
 rarity=C
 [/card]
 [card]
-primitive=Rakdos, Lord of Riots
-id=253532
+primitive=Rakdos's Return
+id=253574
 rarity=M
 [/card]
 [card]
-primitive=Rakdos's Return
-id=253574
+primitive=Rakdos, Lord of Riots
+id=253532
 rarity=M
 [/card]
 [card]
@@ -999,14 +1001,14 @@ id=265388
 rarity=U
 [/card]
 [card]
-primitive=Search the City
-id=265404
-rarity=R
-[/card]
-[card]
 primitive=Search Warrant
 id=253614
 rarity=C
+[/card]
+[card]
+primitive=Search the City
+id=265404
+rarity=R
 [/card]
 [card]
 primitive=Security Blockade
@@ -1180,12 +1182,7 @@ rarity=C
 [/card]
 [card]
 primitive=Swamp
-id=289320
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=289319
+id=289317
 rarity=L
 [/card]
 [card]
@@ -1195,12 +1192,17 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=333722
+id=289319
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=289317
+id=289320
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=333722
 rarity=L
 [/card]
 [card]
@@ -1289,14 +1291,14 @@ id=289220
 rarity=C
 [/card]
 [card]
-primitive=Trostani, Selesnya's Voice
-id=253641
-rarity=M
-[/card]
-[card]
 primitive=Trostani's Judgment
 id=289225
 rarity=C
+[/card]
+[card]
+primitive=Trostani, Selesnya's Voice
+id=253641
+rarity=M
 [/card]
 [card]
 primitive=Ultimate Price

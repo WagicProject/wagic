@@ -10,7 +10,11 @@
 #include "JLogger.h"
 #include <sstream>
 
-#define HUGE_CACHE_LIMIT 20000000  // Size of the cache for Windows and Linux (in bytes)
+#if defined (PSP) 
+#define HUGE_CACHE_LIMIT 25000000  // Size of the cache for PSP (in bytes) - old value is 20mb - reverted
+#else
+#define HUGE_CACHE_LIMIT 60000000  // Size of the cache for Windows and Linux (in bytes) - old value is 20mb increased to 60mb
+#endif
 #define SAMPLES_CACHE_SIZE 1500000  // Size in bytes of the cached samples
 #define PSI_CACHE_SIZE 500000  // Size in bytes of the cached particles
 #define TEXTURES_CACHE_MINSIZE 2000000  // Minimum size of the cache on the PSP. The program should complain if the cache ever gets smaller than this
@@ -137,6 +141,7 @@ public:
     bool IsThreaded();
 
     JQuadPtr RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL);
+    JQuadPtr RetrieveCardToken(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL, int tId = 0);
     JSample * RetrieveSample(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
     JTexture * RetrieveTexture(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
     JQuadPtr RetrieveQuad(const string& filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,  string resname="",  int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL, int id = 0);

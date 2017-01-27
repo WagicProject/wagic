@@ -1,10 +1,12 @@
 [meta]
 author=Wagic Team
-block=Duel Decks
+name=Duel Decks: Venser vs. Koth
+block=Duel
 year=2012
+total=77
 [/meta]
 [card]
-primitive=Æther Membrane
+primitive=AEther Membrane
 id=270856
 rarity=U
 [/card]
@@ -110,8 +112,18 @@ rarity=U
 [/card]
 [card]
 primitive=Island
+id=284490
+rarity=L
+[/card]
+[card]
+primitive=Island
 id=284491
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=284492
+rarity=L
 [/card]
 [card]
 primitive=Jaws of Stone
@@ -155,8 +167,23 @@ rarity=U
 [/card]
 [card]
 primitive=Mountain
+id=284493
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=284494
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=284495
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=284496
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Neurok Invisimancer
@@ -191,7 +218,17 @@ rarity=C
 [card]
 primitive=Plains
 id=284497
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=284498
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=284499
+rarity=L
 [/card]
 [card]
 primitive=Plated Geopede
@@ -352,39 +389,4 @@ rarity=C
 primitive=Windreaver
 id=270835
 rarity=R
-[/card]
-[card]
-primitive=Island
-id=284490
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=284492
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=284495
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=284494
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=284493
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=284498
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=284499
-rarity=L
 [/card]

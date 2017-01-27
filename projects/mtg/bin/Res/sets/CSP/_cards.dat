@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Coldsnap
+block=Ice Age
 year=2006
-block=Ice
+total=155
 [/meta]
 [card]
 primitive=Adarkar Valkyrie
@@ -309,16 +311,6 @@ id=121199
 rarity=C
 [/card]
 [card]
-primitive=Jester's Scepter
-id=122066
-rarity=R
-[/card]
-[card]
-primitive=Jokulmorder
-id=121198
-rarity=R
-[/card]
-[card]
 primitive=Jotun Grunt
 id=122075
 rarity=U
@@ -327,6 +319,16 @@ rarity=U
 primitive=Jotun Owl Keeper
 id=121236
 rarity=U
+[/card]
+[card]
+primitive=Jester's Scepter
+id=122066
+rarity=R
+[/card]
+[card]
+primitive=Jokulmorder
+id=121198
+rarity=R
 [/card]
 [card]
 primitive=Juniper Order Ranger
@@ -601,27 +603,27 @@ rarity=C
 [card]
 primitive=Snow-Covered Forest
 id=121192
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Snow-Covered Island
 id=121130
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Snow-Covered Mountain
 id=121233
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Snow-Covered Plains
 id=121267
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Snow-Covered Swamp
 id=121256
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Soul Spike
@@ -767,11 +769,6 @@ rarity=U
 primitive=Woolly Razorback
 id=121230
 rarity=R
-[/card]
-[card]
-primitive=Wolf T1
-id=-121156
-rarity=T
 [/card]
 [card]
 primitive=Zombie Musher

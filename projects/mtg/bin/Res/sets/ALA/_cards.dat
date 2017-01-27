@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Shards of Alara
+block=Shards of Alara
 year=2008
-block=Shards
+total=249
 [/meta]
 [card]
 primitive=Ad Nauseam
@@ -29,13 +31,13 @@ id=174986
 rarity=U
 [/card]
 [card]
-primitive=Angelic Benediction
-id=174826
+primitive=Angel's Herald
+id=175141
 rarity=U
 [/card]
 [card]
-primitive=Angel's Herald
-id=175141
+primitive=Angelic Benediction
+id=174826
 rarity=U
 [/card]
 [card]
@@ -184,11 +186,6 @@ id=176448
 rarity=U
 [/card]
 [card]
-primitive=Corpse Connoisseur Unearthed
-id=17644811
-rarity=T
-[/card]
-[card]
 primitive=Courier's Capsule
 id=174800
 rarity=C
@@ -284,11 +281,6 @@ id=174835
 rarity=C
 [/card]
 [card]
-primitive=Dregscape Zombie Unearthed
-id=17483511
-rarity=T
-[/card]
-[card]
 primitive=Druid of the Anima
 id=174903
 rarity=C
@@ -364,11 +356,6 @@ id=176456
 rarity=U
 [/card]
 [card]
-primitive=Fatestitcher Unearthed
-id=17645611
-rarity=T
-[/card]
-[card]
 primitive=Feral Hydra
 id=174973
 rarity=R
@@ -382,11 +369,6 @@ rarity=U
 primitive=Fire-Field Ogre
 id=176447
 rarity=U
-[/card]
-[card]
-primitive=Fire-Field Ogre Unearthed
-id=17644711
-rarity=T
 [/card]
 [card]
 primitive=Flameblast Dragon
@@ -405,12 +387,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=174929
+id=174928
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=174928
+id=174929
 rarity=L
 [/card]
 [card]
@@ -484,19 +466,14 @@ id=174805
 rarity=C
 [/card]
 [card]
-primitive=Hellkite Overlord
-id=175057
-rarity=M
-[/card]
-[card]
 primitive=Hell's Thunder
 id=176455
 rarity=R
 [/card]
 [card]
-primitive=Hell's Thunder Unearthed
-id=17645511
-rarity=T
+primitive=Hellkite Overlord
+id=175057
+rarity=M
 [/card]
 [card]
 primitive=Hindering Light
@@ -540,12 +517,12 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=174980
+id=174979
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=174979
+id=174980
 rarity=L
 [/card]
 [card]
@@ -589,11 +566,6 @@ id=174837
 rarity=C
 [/card]
 [card]
-primitive=Kathari Screecher Unearthed
-id=17483711
-rarity=T
-[/card]
-[card]
 primitive=Kederekt Creeper
 id=179430
 rarity=C
@@ -602,11 +574,6 @@ rarity=C
 primitive=Kederekt Leviathan
 id=174882
 rarity=R
-[/card]
-[card]
-primitive=Kederekt Leviathan Unearthed
-id=17488211
-rarity=T
 [/card]
 [card]
 primitive=Keeper of Progenitus
@@ -710,7 +677,7 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=175019
+id=175017
 rarity=L
 [/card]
 [card]
@@ -720,7 +687,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=175017
+id=175019
 rarity=L
 [/card]
 [card]
@@ -984,11 +951,6 @@ id=174845
 rarity=U
 [/card]
 [card]
-primitive=Scourge Devil Unearthed
-id=17484511
-rarity=T
-[/card]
-[card]
 primitive=Scourglass
 id=174853
 rarity=R
@@ -1135,7 +1097,7 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=175090
+id=175088
 rarity=L
 [/card]
 [card]
@@ -1145,7 +1107,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=175088
+id=175090
 rarity=L
 [/card]
 [card]
@@ -1219,11 +1181,6 @@ id=176452
 rarity=C
 [/card]
 [card]
-primitive=Undead Leotau Unearthed
-id=17645211
-rarity=T
-[/card]
-[card]
 primitive=Vectis Silencers
 id=175147
 rarity=C
@@ -1254,19 +1211,9 @@ id=175144
 rarity=C
 [/card]
 [card]
-primitive=Viscera Dragger Unearthed
-id=175144111
-rarity=T
-[/card]
-[card]
 primitive=Vithian Stinger
 id=174922
 rarity=C
-[/card]
-[card]
-primitive=Vithian Stinger Unearthed
-id=174922111
-rarity=T
 [/card]
 [card]
 primitive=Volcanic Submersion

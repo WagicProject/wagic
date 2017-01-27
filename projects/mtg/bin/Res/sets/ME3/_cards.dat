@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-block=Master
+name=Masters Edition III
+block=MTGO
 year=2009
+total=230
 [/meta]
 [card]
 primitive=Active Volcano
@@ -219,14 +221,14 @@ id=201131
 rarity=U
 [/card]
 [card]
-primitive=Dance of Many
-id=201253
-rarity=U
-[/card]
-[card]
 primitive=D'Avenant Archer
 id=201134
 rarity=C
+[/card]
+[card]
+primitive=Dance of Many
+id=201253
+rarity=U
 [/card]
 [card]
 primitive=Demonic Torment
@@ -414,14 +416,14 @@ id=201409
 rarity=R
 [/card]
 [card]
-primitive=Guan Yu, Sainted Warrior
-id=201280
-rarity=U
-[/card]
-[card]
 primitive=Guan Yu's 1,000-Li March
 id=201284
 rarity=R
+[/card]
+[card]
+primitive=Guan Yu, Sainted Warrior
+id=201280
+rarity=U
 [/card]
 [card]
 primitive=Gwendlyn Di Corci
@@ -495,7 +497,7 @@ rarity=C
 [/card]
 [card]
 primitive=Island
-id=206074
+id=206072
 rarity=L
 [/card]
 [card]
@@ -505,7 +507,7 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=206072
+id=206074
 rarity=L
 [/card]
 [card]
@@ -674,14 +676,14 @@ id=201222
 rarity=U
 [/card]
 [card]
-primitive=Meng Huo, Barbarian King
-id=201287
-rarity=R
-[/card]
-[card]
 primitive=Meng Huo's Horde
 id=201219
 rarity=C
+[/card]
+[card]
+primitive=Meng Huo, Barbarian King
+id=201287
+rarity=R
 [/card]
 [card]
 primitive=Mind Twist
@@ -695,7 +697,7 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=206077
+id=206075
 rarity=L
 [/card]
 [card]
@@ -705,7 +707,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=206075
+id=206077
 rarity=L
 [/card]
 [card]
@@ -750,17 +752,17 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=206080
-rarity=L
-[/card]
-[card]
-primitive=Plains
 id=206078
 rarity=L
 [/card]
 [card]
 primitive=Plains
 id=206079
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=206080
 rarity=L
 [/card]
 [card]
@@ -960,17 +962,17 @@ rarity=U
 [/card]
 [card]
 primitive=Swamp
-id=206083
-rarity=L
-[/card]
-[card]
-primitive=Swamp
 id=206081
 rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=206082
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=206083
 rarity=L
 [/card]
 [card]

@@ -1,0 +1,348 @@
+[card]
+name=Angel of Salvation
+text=Flash; convoke (Each creature you tap while casting this spell reduces its cost by {1} or by one mana of that creature's color.) -- Flying -- When Angel of Salvation enters the battlefield, prevent the next 5 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose.
+mana={6}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Arc Blade
+text=Arc Blade deals 2 damage to target creature or player. Exile Arc Blade with three time counters on it. -- Suspend 3—{2}{R} (Rather than cast this card from your hand, you may pay {2}{R} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Arcanum Wings
+text=Enchant creature -- Enchanted creature has flying. -- Aura swap {2}{U} ({2}{U}: Exchange this Aura with an Aura card in your hand.)
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Aven Mindcensor
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- If an opponent would search a library, that player searches the top four cards of that library instead.
+mana={2}{W}
+type=Creature
+subtype=Bird Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Bitter Ordeal
+text=Search target player's library for a card and exile it. Then that player shuffles his or her library. -- Gravestorm (When you cast this spell, copy it for each permanent put into a graveyard this turn. You may choose new targets for the copies.)
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Chronomantic Escape
+text=Until your next turn, creatures can't attack you. Exile Chronomantic Escape with three time counters on it. -- Suspend 3—{2}{W} (Rather than cast this card from your hand, you may pay {2}{W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Cryptic Annelid
+text=When Cryptic Annelid enters the battlefield, scry 1, then scry 2, then scry 3. (To scry X, look at the top X cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={3}{U}
+type=Creature
+subtype=Worm Beast
+power=1
+toughness=4
+[/card]
+[card]
+name=Cyclical Evolution
+text=Target creature gets +3/+3 until end of turn. Exile Cyclical Evolution with three time counters on it. -- Suspend 3—{2}{G} (Rather than cast this card from your hand, you may pay {2}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Delay
+text=Counter target spell. If the spell is countered this way, exile it with three time counters on it instead of putting it into its owner's graveyard. If it doesn't have suspend, it gains suspend. (At the beginning of its owner's upkeep, remove a counter from that card. When the last is removed, the player plays it without paying its mana cost. If it's a creature, it has haste.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Dust of Moments
+text=Choose one — Remove two time counters from each permanent and each suspended card; or put two time counters on each permanent with a time counter on it and each suspended card.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Epochrasite
+text=Epochrasite enters the battlefield with three +1/+1 counters on it if you didn't cast it from your hand. -- When Epochrasite dies, exile it with three time counters on it and it gains suspend. (At the beginning of your upkeep, remove a time counter. When the last is removed, cast this card without paying its mana cost. It has haste.)
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+name=Festering March
+text=Creatures your opponents control get -1/-1 until end of turn. Exile Festering March with three time counters on it. -- Suspend 3—{2}{B} (Rather than cast this card from your hand, you may pay {2}{B} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Glittering Wish
+text=You may choose a multicolored card you own from outside the game, reveal that card, and put it into your hand. Exile Glittering Wish.
+mana={G}{W}
+type=Sorcery
+[/card]
+[card]
+name=Homing Sliver
+text=Each Sliver card in each player's hand has slivercycling {3}. -- Slivercycling {3} ({3}, Discard this card: Search your library for a Sliver card, reveal it, and put it into your hand. Then shuffle your library.)
+mana={2}{R}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
+name=Imperiosaur
+text=Spend only mana produced by basic lands to cast Imperiosaur.
+mana={2}{G}{G}
+type=Creature
+subtype=Lizard
+power=5
+toughness=5
+[/card]
+[card]
+name=Intervention Pact
+text=The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way. -- At the beginning of your next upkeep, pay {1}{W}{W}. If you don't, you lose the game.
+mana={0}
+type=Instant
+[/card]
+[card]
+name=Jhoira of the Ghitu
+text={2}, Exile a nonland card from your hand: Put four time counters on the exiled card. If it doesn't have suspend, it gains suspend. (At the beginning of your upkeep, remove a time counter from that card. When the last is removed, cast it without paying its mana cost. If it's a creature, it has haste.)
+mana={1}{U}{R}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Kavu Primarch
+text=Convoke (Each creature you tap while casting this spell reduces its total cost by {1} or by one mana of that creature's color.) -- Kicker {4} (You may pay an additional {4} as you cast this spell.) -- If Kavu Primarch was kicked, it enters the battlefield with four +1/+1 counters on it.
+mana={3}{G}
+type=Creature
+subtype=Kavu
+power=3
+toughness=3
+[/card]
+[card]
+name=Linessa, Zephyr Mage
+text={X}{U}{U}, {T}: Return target creature with converted mana cost X to its owner's hand. -- Grandeur — Discard another card named Linessa, Zephyr Mage: Target player returns a creature he or she controls to its owner's hand, then repeats this process for an artifact, an enchantment, and a land.
+mana={3}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Logic Knot
+text=Delve (You may exile any number of cards from your graveyard as you cast this spell. It costs {1} less to cast for each card exiled this way.) -- Counter target spell unless its controller pays {X}.
+mana={X}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Lost Hours
+text=Target player reveals his or her hand. You choose a nonland card from it. That player puts that card into his or her library third from the top.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Magus of the Future
+text=Play with the top card of your library revealed. -- You may play the top card of your library.
+mana={2}{U}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Mesmeric Sliver
+#ai don't know reveal cards
+auto=lord(sliver) transforms((,newability[name(fateseal) reveal:1 revealzone(opponentlibrary) optionone name(Put On Top) target(*|reveal) moveto(ownerlibrary) optiononeend optiontwo name(put on bottom) target(<1>*|reveal) bottomoflibrary optiontwoend revealend]))
+text=All Slivers have "When this permanent enters the battlefield, you may fateseal 1." (To fateseal 1, its controller looks at the top card of an opponent's library, then he or she may put that card on the bottom of that library.)
+mana={3}{U}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
+name=Molten Disaster
+text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- If Molten Disaster was kicked, it has split second. (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Molten Disaster deals X damage to each creature without flying and each player.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Muraganda Petroglyphs
+text=Creatures with no abilities get +2/+2.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Nacatl War-Pride
+text=Nacatl War-Pride must be blocked by exactly one creature if able. -- Whenever Nacatl War-Pride attacks, put X tokens that are copies of Nacatl War-Pride onto the battlefield tapped and attacking, where X is the number of creatures defending player controls. Exile the tokens at the beginning of the next end step.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Cat Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Nix
+text=Counter target spell if no mana was spent to cast it.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Petrified Plating
+text=Enchant creature -- Enchanted creature gets +2/+2. -- Suspend 2—{G} (Rather than cast this card from your hand, you may pay {G} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Phosphorescent Feast
+text=Chroma — Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
+mana={2}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Pyromancer's Swath
+text=If an instant or sorcery source you control would deal damage to a creature or player, it deals that much damage plus 2 to that creature or player instead. -- At the beginning of each end step, discard your hand.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Quagnoth
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Shroud (This permanent can't be the target of spells or abilities.) -- When a spell or ability an opponent controls causes you to discard Quagnoth, return it to your hand.
+mana={5}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=5
+[/card]
+[card]
+name=Quiet Disrepair
+text=Enchant artifact or enchantment -- At the beginning of your upkeep, choose one — Destroy enchanted permanent; or you gain 2 life.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Reality Strobe
+text=Return target permanent to its owner's hand. Exile Reality Strobe with three time counters on it. -- Suspend 3—{2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Rift Elemental
+text={1}{R}, Remove a time counter from a permanent you control or suspended card you own: Rift Elemental gets +2/+0 until end of turn.
+mana={R}
+type=Creature
+subtype=Elemental
+power=1
+toughness=1
+[/card]
+[card]
+name=Riftsweeper
+text=When Riftsweeper enters the battlefield, choose target face-up exiled card. Its owner shuffles it into his or her library.
+mana={1}{G}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Seht's Tiger
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Seht's Tiger enters the battlefield, you gain protection from the color of your choice until end of turn. (You can't be targeted, dealt damage, or enchanted by anything of the chosen color.)
+mana={2}{W}{W}
+type=Creature
+subtype=Cat
+power=3
+toughness=3
+[/card]
+[card]
+name=Shah of Naar Isle
+text=Trample -- Echo {0} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Shah of Naar Isle's echo cost is paid, each opponent may draw up to three cards.
+mana={3}{R}
+type=Creature
+subtype=Efreet
+power=6
+toughness=6
+[/card]
+[card]
+name=Shapeshifter's Marrow
+text=At the beginning of each opponent's upkeep, that player reveals the top card of his or her library. If it's a creature card, the player puts the card into his or her graveyard and Shapeshifter's Marrow becomes a copy of that card. (If it does, it loses this ability.)
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Shivan Sand-Mage
+text=When Shivan Sand-Mage enters the battlefield, choose one — Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card. -- Suspend 4—{R} (Rather than cast this card from your hand, you may pay {R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={2}{R}{R}
+type=Creature
+subtype=Viashino Shaman
+power=3
+toughness=2
+[/card]
+[card]
+name=Spellweaver Volute
+text=Enchant instant card in a graveyard -- Whenever you cast a sorcery spell, copy the enchanted instant card. You may cast the copy without paying its mana cost. If you do, exile the enchanted card and attach Spellweaver Volute to another instant card in a graveyard.
+mana={3}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Spellwild Ouphe
+text=Spells that target Spellwild Ouphe cost {2} less to cast.
+mana={1}{G}
+type=Creature
+subtype=Ouphe
+power=1
+toughness=3
+[/card]
+[card]
+name=Sprout Swarm
+text=Convoke (Each creature you tap while casting this spell reduces its total cost by {1} or by one mana of that creature's color.) -- Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 green Saproling creature token onto the battlefield.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Unblinking Bleb
+text=Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- Whenever Unblinking Bleb or another permanent is turned face up, you may scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=3
+[/card]
+[card]
+name=Venser's Diffusion
+text=Return target nonland permanent or suspended card to its owner's hand.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Venser, Shaper Savant
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Venser, Shaper Savant enters the battlefield, return target spell or permanent to its owner's hand.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Yixlid Jailer
+text=Cards in graveyards lose all abilities.
+mana={1}{B}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=1
+[/card]

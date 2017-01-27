@@ -8,6 +8,7 @@ hand:Flowstone slide
 [PLAYER2]
 [DO]
 Flowstone slide
+choice 1
 next
 #begin
 next

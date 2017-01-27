@@ -1,6 +1,9 @@
 [meta]
 author=Wagic Team
+name=Khans of Tarkir
+block=Khans of Tarkir
 year=2014
+total=269
 [/meta]
 [card]
 primitive=Abomination of Gudul
@@ -313,14 +316,14 @@ id=386524
 rarity=U
 [/card]
 [card]
-primitive=Dragonscale Boon
-id=386525
-rarity=C
-[/card]
-[card]
 primitive=Dragon-Style Twins
 id=386526
 rarity=R
+[/card]
+[card]
+primitive=Dragonscale Boon
+id=386525
+rarity=C
 [/card]
 [card]
 primitive=Duneblast
@@ -634,7 +637,7 @@ rarity=C
 [/card]
 [card]
 primitive=Mantis Rider
-id=3865889
+id=386589
 rarity=R
 [/card]
 [card]
@@ -657,7 +660,7 @@ primitive=Mardu Charm
 id=386593
 rarity=U
 [/card]
-[card
+[card]
 primitive=Mardu Warrior token
 id=-386593
 rarity=T
@@ -935,7 +938,7 @@ rarity=R
 [card]
 primitive=Salt Road Patrol
 id=386648
-rarity=R
+rarity=C
 [/card]
 [card]
 primitive=Sandsteppe Citadel
@@ -1013,14 +1016,14 @@ id=386663
 rarity=C
 [/card]
 [card]
-primitive=Sidisi, Brood Tyrant
-id=386664
-rarity=M
-[/card]
-[card]
 primitive=Sidisi's Pet
 id=386665
 rarity=C
+[/card]
+[card]
+primitive=Sidisi, Brood Tyrant
+id=386664
+rarity=M
 [/card]
 [card]
 primitive=Siege Rhino
@@ -1273,13 +1276,13 @@ id=386715
 rarity=C
 [/card]
 [card]
-primitive=Warden of the Eye
-id=386716
+primitive=War-Name Aspirant
+id=386717
 rarity=U
 [/card]
 [card]
-primitive=War-Name Aspirant
-id=386717
+primitive=Warden of the Eye
+id=386716
 rarity=U
 [/card]
 [card]

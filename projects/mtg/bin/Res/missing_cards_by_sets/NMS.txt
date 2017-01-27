@@ -1,0 +1,103 @@
+[card]
+name=Divining Witch
+text={1}{B}, {T}, Discard a card: Name a card. Exile the top six cards of your library. Reveal cards from the top of your library until you reveal the named card, then put that card into your hand. Exile all other cards revealed this way.
+mana={1}{B}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=1
+[/card]
+[card]
+name=Fog Patch
+text=Cast Fog Patch only during the declare blockers step. -- Attacking creatures become blocked. (This spell works on unblockable creatures.)
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Harvest Mage
+text={G}, {T}, Discard a card: Until end of turn, if you tap a land for mana, it produces one mana of a color of your choice instead of any other type and amount.
+mana={G}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=1
+[/card]
+[card]
+name=Kill Switch
+text={2}, {T}: Tap all other artifacts. They don't untap during their controllers' untap steps for as long as Kill Switch remains tapped.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Laccolith Rig
+text=Enchant creature -- Whenever enchanted creature becomes blocked, you may have it deal damage equal to its power to target creature. If you do, the first creature assigns no combat damage this turn.
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Mana Cache
+text=At the beginning of each player's end step, put a charge counter on Mana Cache for each untapped land that player controls. -- Remove a charge counter from Mana Cache: Add {1} to your mana pool. Any player may activate this ability but only during his or her turn before the end step.
+mana={1}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Murderous Betrayal
+text={B}{B}, Pay half your life, rounded up: Destroy target nonblack creature. It can't be regenerated.
+mana={B}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Oracle's Attendants
+text={T}: All damage that would be dealt to target creature this turn by a source of your choice is dealt to Oracle's Attendants instead.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=5
+[/card]
+[card]
+name=Pale Moon
+text=Until end of turn, if a player taps a nonbasic land for mana, it produces colorless mana instead of any other type.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Saproling Burst
+text=Fading 7 (This enchantment enters the battlefield with seven fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Saproling Burst: Put a green Saproling creature token onto the battlefield. It has "This creature's power and toughness are each equal to the number of fade counters on Saproling Burst." -- When Saproling Burst leaves the battlefield, destroy all tokens put onto the battlefield with Saproling Burst. They can't be regenerated.
+mana={4}{G}
+type=Enchantment
+[/card]
+[card]
+name=Saproling Cluster
+text={1}, Discard a card: Put a 1/1 green Saproling creature token onto the battlefield. Any player may activate this ability.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Sivvi's Valor
+text=If you control a Plains, you may tap an untapped creature you control rather than pay Sivvi's Valor's mana cost. -- All damage that would be dealt to target creature this turn is dealt to you instead.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Stronghold Gambit
+text=Each player chooses a card in his or her hand. Then each player reveals his or her chosen card. The owner of each creature card revealed this way with the lowest converted mana cost puts it onto the battlefield.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Tangle Wire
+text=Fading 4 (This artifact enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- At the beginning of each player's upkeep, that player taps an untapped artifact, creature, or land he or she controls for each fade counter on Tangle Wire.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Wandering Eye
+text=Flying -- Players play with their hands revealed.
+mana={2}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=3
+[/card]

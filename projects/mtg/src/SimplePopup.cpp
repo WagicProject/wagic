@@ -34,12 +34,19 @@ SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const
 void SimplePopup::Render()
 {
     mClosed = false;
+    float modX = (SCREEN_WIDTH_F / 2)-5;
 
     JRenderer *r = JRenderer::GetInstance();
     string detailedInformation = getDetailedInformation(mDeckInformation->getFilename());
-
-    const float textHeight = mTextFont->GetHeight() * mMaxLines;
-    r->FillRoundRect(mX, mY + 2, mWidth + 11, textHeight - 12, 2.0f, ARGB( 255, 0, 0, 0 ) );
+#if !defined (PSP)
+    
+    JQuadPtr statsholder = WResourceManager::Instance()->RetrieveTempQuad("statsholder.png");//new graphics statsholder
+    //const float textHeight = mTextFont->GetHeight() * mMaxLines;
+    //r->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(220,15,15,15));
+    if(statsholder.get())
+        r->RenderQuad(statsholder.get(),0,0,0,SCREEN_WIDTH_F/statsholder->mWidth,SCREEN_HEIGHT_F/statsholder->mHeight);
+#endif
+    r->FillRoundRect(mX+modX+3, mY + 7, 190.f, 148.f, 0, ARGB( 240, 15, 15, 15 ) );
 
     // currently causes a crash on the PSP when drawing the corners.
     // TODO: clean up the image ot make it loook cleaner. Find solution to load gfx to not crash PSP
@@ -47,7 +54,7 @@ void SimplePopup::Render()
     r->DrawRoundRect(mX, mY + 2, mWidth + 11, textHeight - 12, 2.0f, ARGB( 255, 125, 255, 0) );
     drawBoundingBox( mX-3, mY, mWidth + 3, textHeight );
 #endif
-    mTextFont->DrawString(detailedInformation.c_str(), mX + 9 , mY + 10);
+    mTextFont->DrawString(detailedInformation.c_str(), modX+mX + 9 , mY + 15);
 
 }
 

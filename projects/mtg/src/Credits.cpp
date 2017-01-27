@@ -505,6 +505,14 @@ void Credits::Render()
     if (!p1)
         return;
     JRenderer * r = JRenderer::GetInstance();
+#if !defined (PSP)
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        r->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
+#endif
     WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     WFont * f2 = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
     WFont * f3 = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
@@ -531,7 +539,8 @@ void Credits::Render()
                 if (unlockedQuad)
                 {
                     showMsg = 0;
-                    r->RenderQuad(unlockedQuad.get(), 20, 20);
+                    unlockedQuad->SetHotSpot(unlockedQuad->mWidth/2,0);
+                    r->RenderQuad(unlockedQuad.get(), SCREEN_WIDTH_F/2, 20, 0, 400.f / unlockedQuad->mWidth, 100.f / unlockedQuad->mHeight);
                 }
                 if (unlockedString.size())
                 {

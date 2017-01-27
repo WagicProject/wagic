@@ -1,16 +1,13 @@
 [meta]
 author=Wagic Team
+name=Arabian Nights
 year=1993
+total=92
 [/meta]
 [card]
 primitive=Abu Ja'far
 id=968
 rarity=U
-[/card]
-[card]
-primitive=Aladdin
-id=955
-rarity=R
 [/card]
 [card]
 primitive=Aladdin's Lamp
@@ -20,6 +17,11 @@ rarity=R
 [card]
 primitive=Aladdin's Ring
 id=901
+rarity=R
+[/card]
+[card]
+primitive=Aladdin
+id=955
 rarity=R
 [/card]
 [card]
@@ -34,12 +36,12 @@ rarity=R
 [/card]
 [card]
 primitive=Army of Allah
-id=970
+id=969
 rarity=C
 [/card]
 [card]
 primitive=Army of Allah
-id=969
+id=970
 rarity=C
 [/card]
 [card]
@@ -49,12 +51,12 @@ rarity=U
 [/card]
 [card]
 primitive=Bird Maiden
-id=959
+id=958
 rarity=C
 [/card]
 [card]
 primitive=Bird Maiden
-id=958
+id=959
 rarity=C
 [/card]
 [card]
@@ -103,11 +105,6 @@ id=929
 rarity=C
 [/card]
 [card]
-primitive=Desert
-id=986
-rarity=C
-[/card]
-[card]
 primitive=Desert Nomads
 id=960
 rarity=C
@@ -116,6 +113,11 @@ rarity=C
 primitive=Desert Twister
 id=943
 rarity=U
+[/card]
+[card]
+primitive=Desert
+id=986
+rarity=C
 [/card]
 [card]
 primitive=Diamond Valley
@@ -133,23 +135,23 @@ id=906
 rarity=R
 [/card]
 [card]
-primitive=Elephant Graveyard
-id=988
-rarity=R
-[/card]
-[card]
 primitive=El-Hajjaj
 id=915
 rarity=R
 [/card]
 [card]
-primitive=Erg Raiders
-id=917
-rarity=C
+primitive=Elephant Graveyard
+id=988
+rarity=R
 [/card]
 [card]
 primitive=Erg Raiders
 id=916
+rarity=C
+[/card]
+[card]
+primitive=Erg Raiders
+id=917
 rarity=C
 [/card]
 [card]
@@ -164,12 +166,12 @@ rarity=U
 [/card]
 [card]
 primitive=Fishliver Oil
-id=931
+id=930
 rarity=C
 [/card]
 [card]
 primitive=Fishliver Oil
-id=930
+id=931
 rarity=C
 [/card]
 [card]
@@ -189,12 +191,12 @@ rarity=C
 [/card]
 [card]
 primitive=Giant Tortoise
-id=934
+id=933
 rarity=C
 [/card]
 [card]
 primitive=Giant Tortoise
-id=933
+id=934
 rarity=C
 [/card]
 [card]
@@ -204,12 +206,12 @@ rarity=R
 [/card]
 [card]
 primitive=Hasran Ogress
-id=920
+id=919
 rarity=C
 [/card]
 [card]
 primitive=Hasran Ogress
-id=919
+id=920
 rarity=C
 [/card]
 [card]
@@ -304,27 +306,27 @@ rarity=R
 [/card]
 [card]
 primitive=Moorish Cavalry
-id=976
+id=975
 rarity=C
 [/card]
 [card]
 primitive=Moorish Cavalry
-id=975
+id=976
 rarity=C
 [/card]
 [card]
 primitive=Mountain
 id=983
+rarity=L
+[/card]
+[card]
+primitive=Nafs Asp
+id=949
 rarity=C
 [/card]
 [card]
 primitive=Nafs Asp
 id=950
-rarity=C
-[/card]
-[card]
-primitive=Nafs Asp
-id=949
 rarity=C
 [/card]
 [card]
@@ -339,22 +341,22 @@ rarity=R
 [/card]
 [card]
 primitive=Oubliette
-id=925
-rarity=C
-[/card]
-[card]
-primitive=Oubliette
 id=924
 rarity=C
 [/card]
 [card]
-primitive=Piety
-id=978
+primitive=Oubliette
+id=925
 rarity=C
 [/card]
 [card]
 primitive=Piety
 id=977
+rarity=C
+[/card]
+[card]
+primitive=Piety
+id=978
 rarity=C
 [/card]
 [card]
@@ -374,12 +376,12 @@ rarity=R
 [/card]
 [card]
 primitive=Rukh Egg
-id=966
+id=965
 rarity=C
 [/card]
 [card]
 primitive=Rukh Egg
-id=965
+id=966
 rarity=C
 [/card]
 [card]
@@ -424,12 +426,12 @@ rarity=U
 [/card]
 [card]
 primitive=Stone-Throwing Devils
-id=928
+id=927
 rarity=C
 [/card]
 [card]
 primitive=Stone-Throwing Devils
-id=927
+id=928
 rarity=C
 [/card]
 [card]
@@ -439,22 +441,22 @@ rarity=C
 [/card]
 [card]
 primitive=War Elephant
-id=982
-rarity=C
-[/card]
-[card]
-primitive=War Elephant
 id=981
 rarity=C
 [/card]
 [card]
-primitive=Wyluli Wolf
-id=954
+primitive=War Elephant
+id=982
 rarity=C
 [/card]
 [card]
 primitive=Wyluli Wolf
 id=953
+rarity=C
+[/card]
+[card]
+primitive=Wyluli Wolf
+id=954
 rarity=C
 [/card]
 [card]

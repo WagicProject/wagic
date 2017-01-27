@@ -139,16 +139,37 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         }
                         break;
                     case 's':
-                        if (value == "s2l")
+                        if (value.find("s2l") != string::npos)
                         { //Send To Library Cost (move from anywhere to Library)
                             manaCost->addExtraCost(NEW ToLibraryCost(tc));
+                        }
+                        else if (value.find("s2g") != string::npos)
+                        { //Send to Graveyard Cost (move from anywhere to Graveyard)
+                            manaCost->addExtraCost(NEW ToGraveCost(tc));
                         }
                         else
                         { //Sacrifice
                             manaCost->addExtraCost(NEW SacrificeCost(tc));
                         }
                         break;
-                    case 'e': //Exile
+                    case 'e': 
+                        if (value == "emerge")
+                        {
+                            if (!tc)
+                                tc = tcf.createTargetChooser("creature|mybattlefield", c);
+                            manaCost->addExtraCost(NEW Offering(tc,true));
+                        }
+                        else if(value.substr(0,2) == "e:")
+                        {//Energy Cost
+                            vector<string>valSplit = parseBetween(value,"e:"," ",false);
+                            if (valSplit.size()) {
+                                WParsedInt* energytopay = NEW WParsedInt(valSplit[1], NULL, c);
+                                manaCost->addExtraCost(NEW EnergyCost(energytopay->getValue()));
+                                SAFE_DELETE(energytopay);
+                            }
+                        }
+                        else
+                        //Exile
                         manaCost->addExtraCost(NEW ExileTargetCost(tc));
                         break;
                     case 'h': //bounce (move to Hand)
@@ -174,7 +195,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         }
                         break;
                     case 'd': //DiscardRandom cost
-                        if (value == "d")
+                        if (value.find("delve") != string::npos)
+                        {
+                            if(!tc)
+                                tc = tcf.createTargetChooser("*|mygraveyard", c);
+                            manaCost->addExtraCost(NEW Delve(tc));
+                        }
+                        else if (value == "d")
                         {
                             manaCost->addExtraCost(NEW DiscardRandomCost(tc));
                         }
@@ -229,6 +256,20 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             manaCost->addExtraCost(NEW LifeorManaCost(NULL,manaType));
                             break;
                         }
+                    case 'i' :
+                        if(value == "improvise")
+                        {
+                            if(!tc)
+                                tc = tcf.createTargetChooser("artifact[-tapped]|myBattlefield", c);
+                            manaCost->addExtraCost(NEW Improvise(tc));
+                        }
+                        else
+                        {
+                            SAFE_DELETE(tc);
+                            manaCost->add(0,1);
+                            manaCost->addExtraCost(NEW SnowCost);
+                        }
+                        break;
                     case 'q':
                         if(value == "q")
                         {
@@ -241,7 +282,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         break;
                     case 'c': //Counters or cycle
                         {
-                            if(value == "chosencolor")
+                            if (value.find("convoke") != string::npos)
+                            {
+                                if (!tc)
+                                    tc = tcf.createTargetChooser("creature|mybattlefield", c);
+                                manaCost->addExtraCost(NEW Convoke(tc));
+                            }
+                            else if(value == "chosencolor")
                             {
                                 if(c)
                                 manaCost->add(c->chooseacolor, 1);
@@ -250,7 +297,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             {
                                 manaCost->addExtraCost(NEW CycleCost(tc));
                             }
-                            else
+                            else if(value.find("(") != string::npos)
                             {
                                 size_t counter_start = value.find("(");
                                 size_t counter_end = value.find(")", counter_start);
@@ -276,9 +323,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                     tc = tcf.createTargetChooser(target, c);
                                 }
                                 manaCost->addExtraCost(NEW CounterCost(counter, tc));
+                                break;
                             }
-                            break;
-                        }
+                            else if(value == "c")
+                            {
+                                manaCost->add(Constants::MTG_COLOR_WASTE, 1);
+                                break;
+                            }
+                        break;
+                    }
                     default: //uncolored cost and hybrid costs and special cost
                     {
                         if(value == "unattach")
@@ -360,18 +413,21 @@ ManaCost::ManaCost(ManaCost * manaCost)
         cost[i] = manaCost->getCost(i);
     }
     hybrids = manaCost->hybrids;
-
-    kicker = NEW ManaCost( manaCost->kicker );
-    if(kicker)
-    kicker->isMulti = manaCost->isMulti;
+    kicker = NEW ManaCost(manaCost->kicker);
+    if (kicker)
+            kicker->isMulti = manaCost->isMulti;
     Retrace = NEW ManaCost( manaCost->Retrace );
     BuyBack = NEW ManaCost( manaCost->BuyBack );
     alternative = NEW ManaCost( manaCost->alternative );
     FlashBack = NEW ManaCost( manaCost->FlashBack );
     morph = NEW ManaCost( manaCost->morph );
     suspend = NEW ManaCost( manaCost->suspend );
-
-    extraCosts = manaCost->extraCosts ? manaCost->extraCosts->clone() : NULL;
+    Bestow = NEW ManaCost(manaCost->Bestow);
+    extraCosts = NULL;
+    if (manaCost->extraCosts)
+    {
+        extraCosts = manaCost->extraCosts->clone();
+    }
     manaUsedToCast = NULL;
     xColor = manaCost->xColor;
 }
@@ -398,8 +454,13 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     FlashBack = NEW ManaCost( manaCost.FlashBack );
     morph = NEW ManaCost( manaCost.morph );
     suspend = NEW ManaCost( manaCost.suspend );
-    
-    extraCosts = manaCost.extraCosts ? manaCost.extraCosts->clone() : NULL;
+    Bestow = NEW ManaCost(manaCost.Bestow);
+    extraCosts = NULL;
+    if (manaCost.extraCosts)
+    {
+        extraCosts = manaCost.extraCosts->clone();
+    }
+
     manaUsedToCast = NULL;
     xColor = manaCost.xColor;
 }
@@ -421,6 +482,7 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
         FlashBack = manaCost.FlashBack;
         morph = manaCost.morph;
         suspend = manaCost.suspend;
+        Bestow = manaCost.Bestow;
         manaUsedToCast = manaCost.manaUsedToCast;
         xColor = manaCost.xColor;
     }
@@ -437,6 +499,7 @@ ManaCost::~ManaCost()
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
     SAFE_DELETE(suspend);
+    SAFE_DELETE(Bestow);
     SAFE_DELETE(manaUsedToCast);
 
     cost.erase(cost.begin() ,cost.end());
@@ -446,7 +509,6 @@ void ManaCost::x()
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
         return;
     }
 
@@ -457,7 +519,6 @@ int ManaCost::hasX()
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
         return 0;
     }
     if (xColor > 0)
@@ -470,7 +531,6 @@ void ManaCost::specificX(int color)
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
         return;
     }
     xColor = color;
@@ -481,7 +541,6 @@ int ManaCost::hasSpecificX()
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
         return 0;
     }
     if(xColor > 0)
@@ -522,6 +581,7 @@ void ManaCost::init()
     Retrace = NULL;
     morph = NULL;
     suspend = NULL;
+    Bestow = NULL;
     manaUsedToCast = NULL;
     isMulti = false;
     xColor = -1;
@@ -546,6 +606,7 @@ void ManaCost::resetCosts()
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
     SAFE_DELETE(suspend);
+    SAFE_DELETE(Bestow);
 }
 
 void ManaCost::copy(ManaCost * _manaCost)
@@ -563,6 +624,7 @@ void ManaCost::copy(ManaCost * _manaCost)
     hybrids = _manaCost->hybrids;
 
     SAFE_DELETE(extraCosts);
+
     if (_manaCost->extraCosts)
     {
         extraCosts = _manaCost->extraCosts->clone();
@@ -611,6 +673,36 @@ void ManaCost::copy(ManaCost * _manaCost)
         suspend = NEW ManaCost();
         suspend->copy(_manaCost->suspend);
     }
+    SAFE_DELETE(Bestow);
+    if (_manaCost->Bestow)
+    {
+        Bestow = NEW ManaCost();
+        Bestow->copy(_manaCost->Bestow);
+    }
+    xColor = _manaCost->xColor;
+}
+
+void ManaCost::changeCostTo(ManaCost * _manaCost)
+{
+    if (!_manaCost)
+        return;
+
+    cost.erase(cost.begin() ,cost.end());
+
+    for (int i = 0; i <= Constants::NB_Colors; i++)
+    {
+        cost.push_back(_manaCost->getCost(i));
+    }
+
+    hybrids = _manaCost->hybrids;
+
+    SAFE_DELETE(extraCosts);
+
+    if (_manaCost->extraCosts)
+    {
+        extraCosts = _manaCost->extraCosts->clone();
+    }
+    
     xColor = _manaCost->xColor;
 }
 
@@ -650,7 +742,7 @@ int ManaCost::getManaSymbolsHybridMerged(int color)
     int result = cost[color];
     for (size_t i = 0; i < hybrids.size(); ++i)
     {
-        result = hybrids[i].getManaSymbolsHybridMerged(color);//removed +
+        result += hybrids[i].getManaSymbolsHybridMerged(color);
     }
     if (extraCosts && extraCosts->costs.size())
     {
@@ -664,6 +756,45 @@ int ManaCost::getManaSymbolsHybridMerged(int color)
         }
     }
     return result;
+}
+
+int ManaCost::countHybridsNoPhyrexian()
+{
+    int result = 0;
+    for (size_t i = 0; i < hybrids.size(); i++)
+        result ++;
+    return result;
+}
+
+void ManaCost::removeHybrid(ManaCost * _manaCost)
+{
+    if (!_manaCost)
+        return;
+
+    vector<int> colors;
+    int match = 0;
+
+    for(int j = 0; j < 7; j++)
+    {//populate colors values
+        colors.push_back(_manaCost->getCost(j));
+    }
+
+    for (size_t i = 0; i < hybrids.size(); i++)
+    {
+        for(int j = 0; j < 7; j++)
+        {
+            if(colors[j])
+            {
+                if(hybrids[i].hasColor(j))
+                {
+                    hybrids[i].reduceValue(j, colors[j]);
+                    colors[j] -= 1;
+                    match++;
+                }
+            }
+        }
+    }
+    return;
 }
 
 int ManaCost::parseManaSymbol(char symbol)
@@ -741,6 +872,10 @@ int ManaCost::getConvertedCost()
         {
             ExtraCost * pMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
             if (pMana)
+                result++;
+            //snow cost???
+            ExtraCost * sMana = dynamic_cast<SnowCost*>(extraCosts->costs[i]);
+            if (sMana)
                 result++;
         }
     }
@@ -1063,6 +1198,7 @@ void ManaPool::Empty()
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
     SAFE_DELETE(suspend);
+    SAFE_DELETE(Bestow);
     SAFE_DELETE(manaUsedToCast);
     init();
     WEvent * e = NEW WEventEmptyManaPool(this);
@@ -1090,12 +1226,20 @@ int ManaPool::remove(int color, int value)
     return result;
 }
 
-int ManaPool::add(int color, int value, MTGCardInstance * source)
+int ManaPool::add(int color, int value, MTGCardInstance * source, bool extra)
 {
+    if (color == Constants::MTG_COLOR_ARTIFACT)
+        color = Constants::MTG_COLOR_WASTE;
     int result = ManaCost::add(color, value);
     for (int i = 0; i < value; ++i)
     {
-        WEvent * e = NEW WEventEngageMana(color, source, this);
+        WEvent * e = NEW WEvent;
+
+        if(extra)
+            e = NEW WEventEngageManaExtra(color, source, this);
+        else
+            e = NEW WEventEngageMana(color, source, this);
+
         player->getObserver()->receiveEvent(e);
     }
     return result;
@@ -1105,6 +1249,15 @@ int ManaPool::add(ManaCost * _cost, MTGCardInstance * source)
 {
     if (!_cost)
         return 0;
+    //while colorless is still exactly the same, there are now cards that require 
+    //true colorless mana, ei:eldrazi. so whenever we add mana, we now replace it with the
+    //new type. keeping the old type intact for payment methods {1}{c} ....
+    int replaceArtifact = _cost->getCost(Constants::MTG_COLOR_ARTIFACT);
+    if (replaceArtifact)
+    {
+        _cost->add(Constants::MTG_COLOR_WASTE, replaceArtifact);
+        _cost->remove(Constants::MTG_COLOR_ARTIFACT, replaceArtifact);
+    }
     int result = ManaCost::add(_cost);
     for (int i = 0; i < Constants::NB_Colors; i++)
     {

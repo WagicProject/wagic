@@ -1,6 +1,9 @@
 [meta]
 author=Wagic Team
+name=Fate Reforged
+block=Khans of Tarkir
 year=2015
+total=185
 [/meta]
 [card]
 primitive=Abzan Advantage
@@ -33,14 +36,14 @@ id=391786
 rarity=C
 [/card]
 [card]
-primitive=Alesha, Who Smiles at Death
-id=391787
-rarity=R
-[/card]
-[card]
 primitive=Alesha's Vanguard
 id=391788
 rarity=C
+[/card]
+[card]
+primitive=Alesha, Who Smiles at Death
+id=391787
+rarity=R
 [/card]
 [card]
 primitive=Ambush Krotiq
@@ -274,8 +277,13 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
+id=391835
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=391836
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Formless Nurturing
@@ -390,7 +398,12 @@ rarity=C
 [card]
 primitive=Island
 id=391859
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=391860
+rarity=L
 [/card]
 [card]
 primitive=Jeskai Barricade
@@ -508,11 +521,6 @@ id=391883
 rarity=M
 [/card]
 [card]
-primitive=Monk Token
-id=-391883
-rarity=T
-[/card]
-[card]
 primitive=Monastery Siege
 id=391884
 rarity=R
@@ -520,7 +528,12 @@ rarity=R
 [card]
 primitive=Mountain
 id=391885
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=391886
+rarity=L
 [/card]
 [card]
 primitive=Neutralizing Blast
@@ -559,8 +572,13 @@ rarity=U
 [/card]
 [card]
 primitive=Plains
+id=391894
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=391895
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Pressure Point
@@ -633,14 +651,14 @@ id=391909
 rarity=U
 [/card]
 [card]
-primitive=Sage-Eye Avengers
-id=391911
-rarity=R
-[/card]
-[card]
 primitive=Sage's Reverie
 id=391910
 rarity=U
+[/card]
+[card]
+primitive=Sage-Eye Avengers
+id=391911
+rarity=R
 [/card]
 [card]
 primitive=Sandblast
@@ -755,7 +773,12 @@ rarity=R
 [card]
 primitive=Swamp
 id=391934
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=391935
+rarity=L
 [/card]
 [card]
 primitive=Swiftwater Cliffs
@@ -763,14 +786,14 @@ id=391936
 rarity=C
 [/card]
 [card]
-primitive=Tasigur, the Golden Fang
-id=391937
-rarity=R
-[/card]
-[card]
 primitive=Tasigur's Cruelty
 id=391938
 rarity=C
+[/card]
+[card]
+primitive=Tasigur, the Golden Fang
+id=391937
+rarity=R
 [/card]
 [card]
 primitive=Temporal Trespass
@@ -818,14 +841,14 @@ id=391947
 rarity=C
 [/card]
 [card]
-primitive=Ugin, the Spirit Dragon
-id=391948
-rarity=M
-[/card]
-[card]
 primitive=Ugin's Construct
 id=391949
 rarity=U
+[/card]
+[card]
+primitive=Ugin, the Spirit Dragon
+id=391948
+rarity=M
 [/card]
 [card]
 primitive=Valorous Stance
@@ -888,14 +911,14 @@ id=391961
 rarity=C
 [/card]
 [card]
-primitive=Winds of Qal Sisma
-id=391962
-rarity=U
-[/card]
-[card]
 primitive=Wind-Scarred Crag
 id=391963
 rarity=C
+[/card]
+[card]
+primitive=Winds of Qal Sisma
+id=391962
+rarity=U
 [/card]
 [card]
 primitive=Write into Being
@@ -906,29 +929,4 @@ rarity=C
 primitive=Yasova Dragonclaw
 id=391965
 rarity=R
-[/card]
-[card]
-primitive=Forest
-id=391835
-rarity=C
-[/card]
-[card]
-primitive=Island
-id=391860
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=391886
-rarity=C
-[/card]
-[card]
-primitive=Plains
-id=391894
-rarity=C
-[/card]
-[card]
-primitive=Swamp
-id=391935
-rarity=C
 [/card]

@@ -58,7 +58,6 @@ public:
     uint8_t colors;
     typedef std::bitset<Constants::NB_BASIC_ABILITIES> BasicAbilitiesSet;
     BasicAbilitiesSet basicAbilities;
-    BasicAbilitiesSet origbasicAbilities;
     BasicAbilitiesSet LKIbasicAbilities;
 
     map<string,string> magicTexts;
@@ -69,6 +68,12 @@ public:
     int toughness;
     int suspendedTime;
     int dredgeAmount;
+    string doubleFaced;
+    void setdoubleFaced(const string& value);
+    const string& getdoubleFaced() const;
+    string AICustomCode;
+    void setAICustomCode(const string& value);
+    const string& getAICustomCode() const;
 
     vector<int>types;
     CardPrimitive();
@@ -112,6 +117,8 @@ public:
     bool isCreature();
     bool isLand();
     bool isSpell();
+    bool isPermanent();
+    bool isSorceryorInstant();
     int dredge();
     void setPower(int _power);
     int getPower();

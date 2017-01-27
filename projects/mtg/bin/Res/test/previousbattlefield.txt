@@ -1,0 +1,65 @@
+#TEST: Act of Treason vs Blind with Anger testing "previousbattlefield"
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:grizzly bears, tundra, bayou, volcanic island, badlands
+hand:Blind with Anger
+[PLAYER2]
+hand:act of treason
+inplay:mountain,plains,swamp
+[DO]
+grizzly bears
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+mountain
+plains
+swamp
+act of treason
+#player 2 controls grizzly bears it should be returned to player 1
+grizzly bears
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+next
+next
+yes
+no
+tundra
+choice 1
+bayou
+choice 1
+badlands
+choice 1
+volcanic island
+choice 1
+Blind with Anger
+grizzly bears
+#player 1 gains control grizzly bears, so previous battlefield will be player 2
+# if grizzly bear is returned in player 2 then its a bug but when it return to player 1 its ok
+endinterruption
+next
+next
+[ASSERT]
+UNTAP
+[PLAYER1]
+life:18
+inplay:grizzly bears, tundra, bayou, volcanic island, badlands
+graveyard:blind with anger
+[PLAYER2]
+inplay:mountain,plains,swamp
+graveyard:act of treason
+life:18
+[END]

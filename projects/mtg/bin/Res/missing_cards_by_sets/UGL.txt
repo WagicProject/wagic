@@ -1,0 +1,533 @@
+[card]
+name=Ashnod's Coupon
+text=ocT, Sacrifice Ashnod's Coupon: Target player gets you target drink. -- Errata: You pay any costs for the drink.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=B.F.M.
+text=You must play both B.F.M. cards to put -- leaves play, sacrifice the other. -- B.F.M. can be blocked only by three or
+mana={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}
+type=Summon
+subtype=The Biggest, Baddest, Nastiest,
+[/card]
+[card]
+name=Blacker Lotus
+text={T}: Tear Blacker Lotus into pieces. Add four mana of any one color to your mana pool. Play this ability as a mana source. Remove the pieces from the game afterwards.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Bronze Calendar
+text=Your spells cost {1} less to play as long as you speak in a voice other than your normal voice. -- If you speak in your normal voice, sacrifice Bronze Calendar.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Bureaucracy
+text=Pursuant to subsection 3.1(4) of Richard's Rules of Order, during the upkeep of each participant in this game of the Magic: The Gathering® trading card game (hereafter known as "PLAYER"), that PLAYER performs all actions in the sequence of previously added actions (hereafter known as "ACTION QUEUE"), in the order those actions were added, then adds another action to the end of the ACTION QUEUE. All actions must be simple physical or verbal actions that a player can perform while sitting in a chair, without jeopardizing the health and security of said PLAYER. -- If any PLAYER does not perform all the prescribed actions in the correct order, sacrifice Bureaucracy and said PLAYER discards his or her complement of cards in hand (hereafter known as "HAND").
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Burning Cinder Fury of Crimson Chaos Fire
+text=Whenever any player taps a card, that player gives control of that card to an opponent at end of turn. -- If a player does not tap any nonland cards during his or her turn, Burning Cinder Fury of Crimson Chaos Fire deals 3 damage to that player at end of turn.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Cardboard Carapace
+text=For each other Cardboard Carapace card you have with you, enchanted creature gets +1/+1. -- Errata: This does not count any Cardboard Carapace cards in play that you control or in your graveyard, hand, or library.
+mana={5}{G}
+type=Enchant Creature
+power=
+toughness=
+[/card]
+[card]
+name=Censorship
+text=When Censorship comes into play, choose a CENSORED word. -- Whenever any CENSORED player says the chosen CENSORED word, Censorship deals 2 CENSORED damage to him or her.
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Chaos Confetti
+text={4}, {T}: Tear Chaos Confetti into pieces. Throw the pieces onto the playing area from a distance of at least five feet. Destroy each card in play that a piece touches. Remove the pieces from the game afterwards.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Charm School
+text=When Charm School comes into play, choose a color and balance Charm School on your head. -- Prevent all damage to you of the chosen color. -- If Charm School falls off your head, sacrifice Charm School.
+mana={2}{W}
+type=Enchant Player
+[/card]
+[card]
+name=Checks and Balances
+text=Whenever any spell is played, counter that spell if each player, other than the caster and his or her teammates, agrees to choose and discard a card. Those players must discard those cards after agreeing. -- Checks and Balances may be played only in a game with three or more players.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Chicken a la King
+text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Chicken in play. (You may roll dice only when a card instructs you to.) -- Tap a Chicken you control: Roll a six-sided die.
+mana={1}{U}{U}
+type=Summon
+subtype=Chicken
+[/card]
+[card]
+name=Chicken Egg
+text=During your upkeep, roll a six-sided die. On a 6, sacrifice Chicken Egg and put a Giant Chicken token into play. Treat this token as a 4/4 red creature that counts as a Chicken.
+mana={1}{R}
+type=Summon
+subtype=Egg
+[/card]
+[card]
+name=Clam Session
+text=When Clam Session comes into play, choose a word.  -- During your upkeep, sing at least six words of a song, one of which must be the chosen word, or sacrifice Clam Session. You cannot repeat a song.
+mana={1}{U}{U}
+type=Summon
+subtype=Clamfolk
+[/card]
+[card]
+name=Clam-I-Am
+text=Whenever you roll a 3 on a six-sided die, you may reroll that die.
+mana={2}{U}
+type=Summon
+subtype=Clamfolk
+[/card]
+[card]
+name=Clambassadors
+text=If Clambassadors damages any player, choose an artifact, creature, or land you control. That player gains control of that artifact, creature, or land.
+mana={3}{U}
+type=Summon
+subtype=Clamfolk
+[/card]
+[card]
+name=Clay Pigeon
+text=Flying -- {1}, Throw Clay Pigeon into the air at least two feet above your head while seated, Attempt to catch it with one hand: If you catch Clay Pigeon, prevent all damage to you from any one source and return Clay Pigeon to play, tapped. Otherwise, sacrifice it.
+mana={3}
+type=Artifact Creature
+power=1
+toughness=1
+[/card]
+[card]
+name=Common Courtesy
+text=Counter any spell unless its caster asks your permission to play that spell. If you refuse permission, Sacrifice Common Courtesy and counter the spell.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Deadhead
+text=Put Deadhead into play. Use this ability only if any opponent loses contact with his or her hand of cards and only if Deadhead is in your graveyard.
+mana={3}{B}
+type=Summon
+subtype=Zombie
+[/card]
+[card]
+name=Denied!
+text=Play Denied only as any opponent casts target spell. Name a card, then look at all cards in that player's hand. If the named card is in the player's hand, counter target spell.
+mana={U}
+type=Interrupt
+[/card]
+[card]
+name=Double Cross
+text=Choose another player. Look at that player's hand and choose one of those cards other than a basic land. He or she discards that card. At the beginning of the next game with the player, look at the player's hand and choose one of those cards other than a basic land. He or she discards that card.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Double Deal
+text=Choose another player. Double Deal deals 3 damage to that player now and deals an additional 3 damage to the player at the beginning of the next game with the player.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Double Dip
+text=Choose another player. Gain 5 life now and an additional 5 life at the beginning of the next game with that player.
+mana={4}{W}
+type=Instant
+[/card]
+[card]
+name=Double Play
+text=Choose another player. Search your library for a basic land and put that land into play. At the beginning of the next game with that player, search your library for an additional basic land and put that land into play. In both cases, shuffle your library afterwards.
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Double Take
+text=Choose another player. Draw two cards now and draw an additional two cards at the beginning of the next game with that player.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Elvish Impersonators
+text=When you play Elvish Impersonators, roll two six-sided dice one after the other. Elvish Impersonators comes into play with power equal to the first die roll and toughness equal to the second.
+mana={3}{G}
+type=Summon
+subtype=Elves
+[/card]
+[card]
+name=Flock of Rabid Sheep
+text=Flip X coins; an opponent calls heads or tails. For each flip you win, put a Rabid Sheep token into play. Treat these tokens as 2/2 green creatures that count as Sheep.
+mana={X}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Fowl Play
+text=Enchanted creature loses all abilities and is a 1/1 creature that counts as a Chicken.
+mana={2}{U}
+type=Enchant Creature
+power=
+toughness=
+[/card]
+[card]
+name=Free-Range Chicken
+text={1}{G}: Roll two six-sided dice. If both die rolls are the same, Free-Range Chicken gets +X/+X until end of turn, where X is the number rolled on each die. Otherwise, if the total rolled is equal to any other total you have rolled this turn for Free-Range Chicken, sacrifice it. (For example, if you roll two 3s, Free-Range Chicken gets +3/+3. If you roll a total of 6 for Free-Range Chicken later in that turn, sacrifice it.)
+mana={3}{G}
+type=Summon
+subtype=Chicken
+[/card]
+[card]
+name=Free-for-All
+text=When Free-for-All comes into play, set aside all creatures in play, face down. -- During each player's upkeep, that player chooses a creature card at random from those set aside in this way and puts that creature into play under his or her control. -- If Free-for-All leaves play, put each creature still set aside this way into its owner's graveyard.
+mana={3}{U}
+type=Enchantment
+[/card]
+[card]
+name=Gerrymandering
+text=Remove all lands from play and shuffle them together. Randomly deal to each player one land card for each land he or she had before. Each player puts those lands into play under his or her control, untapped.
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+name=Get a Life
+text=Target player and each of his or her teammates exchange life totals.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Ghazban Ogress
+text=When Ghazban Ogress comes into play, the player who has won the most Magic games that day gains control of it. If more than one player has won the same number of games, you retain control of Ghazban Ogress.
+mana={G}
+type=Summon
+subtype=Ogre
+[/card]
+[card]
+name=Giant Fan
+text={2}, {T}: Move target counter from one card to another. If the second card's rules text refers to any type of counters, the moved counter becomes one of those counters. Otherwise, it becomes a +1/+1 counter.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Goblin Bookie
+text={R}, {T}: Reflip any coin or reroll any die.
+mana={R}
+type=Summon
+subtype=Goblin
+[/card]
+[card]
+name=Goblin Bowling Team
+text=Whenever Goblin Bowling Team damages any creature or player, roll a six-sided die. Goblin Bowling Team deals to that creature or player additional damage equal to the die roll.
+mana={3}{R}
+type=Summon
+subtype=Goblins
+[/card]
+[card]
+name=Goblin Tutor
+text=Roll a six-sided die for Goblin Tutor. On a 1, Goblin Tutor has no effect. Otherwise, search your library for the indicated card, reveal that card to all players, and put it into your hand. Shuffle your library afterwards. -- 2 Any Goblin Tutor -- 3 Any enchantment -- 4 Any artifact -- 5 Any creature -- 6 Any sorcery, instant, or interrupt
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Growth Spurt
+text=Roll a six-sided die. Target creature gets +X/+X until end of turn, where X is equal to the die roll.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Gus
+text=Gus comes into play with one +1/+1 counter on it for each game you have lost to your opponent since you last won a Magic game against him or her.
+mana={2}{G}
+type=Summon
+subtype=Gus
+[/card]
+[card]
+name=Handcuffs
+text=Target player keeps both hands in contact with each other. If he or she does not, sacrifice Handcuffs and that player sacrifices three cards in play.
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Hungry Hungry Heifer
+text=During your upkeep, remove a counter from any card you control or sacrifice Hungry Hungry Heifer.
+mana={2}{G}
+type=Summon
+subtype=Cow
+[/card]
+[card]
+name=Hurloon Wrangler
+text=Denimwalk (If defending player is wearing any clothing made of denim, this creature is unblockable.)
+mana={2}{R}
+type=Summon
+subtype=Minotaur
+[/card]
+[card]
+name=I'm Rubber, You're Glue
+text=Speak only in rhyming sentences. If you do not, sacrifice I'm Rubber, You're Glue. -- Say "I'm rubber, you're glue. Everything bounces off me and sticks to you": Target spell or ability, which targets only you, targets another player of your choice instead. (The new target must be legal.)
+mana={W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Incoming!
+text=Each player searches his or her library for any number of artifacts, creatures, enchantments, and lands and puts those cards into play. Each player shuffles his or her library afterwards.
+mana={4}{G}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Infernal Spawn of Evil
+text=Flying, first strike -- {1}{B}, Reveal Infernal Spawn of Evil from your hand, Say "It's coming": Infernal Spawn of Evil deals 1 damage to target opponent. Use this ability only during your upkeep and only once each upkeep.
+mana={6}{B}{B}{B}
+type=Summon
+subtype=Demon Beast
+[/card]
+[card]
+name=Jack-in-the-Mox
+text={T}: Roll a six-sided die for Jack-in-the-Mox. On a 1, sacrifice Jack-in-the-Mox and lose 5 life. Otherwise, Jack-in-the-Mox has one of the following effects. Treat this ability as a mana source. -- 2 Add {W} to your mana pool. -- 3 Add {U} to your mana pool. -- 4 Add {B} to your mana pool. -- 5 Add {R} to your mana pool. -- 6 Add {G} to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Jalum Grifter
+text={1}{R}, {T}: Put Jalum Grifter and two lands you control face down in front of target opponent after revealing each card to him or her. Then, rearrange the order of the three cards as often as you wish, keeping them on the table at all times. That opponent then chooses one of those cards. If a land is chosen, destroy target card in play. Otherwise, sacrifice Jalum Grifter.
+mana={3}{R}{R}
+type=Summon
+subtype=Legend
+[/card]
+[card]
+name=Jester's Sombrero
+text={2}, {T}, Sacrifice Jester's Sombrero: Look through target player's sideboard and remove any three of those cards from it for the remainder of the match.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Jumbo Imp
+text=Flying -- When you play Jumbo Imp, roll a six-sided die. Jumbo Imp comes into play with a number of +1/+1 counters on it equal to the die roll. -- During your upkeep, roll a six-sided die and put on Jumbo Imp a number of +1/+1 counters equal to the die roll. -- At the end of your turn, roll a six-sided die and remove from Jumbo Imp a number of +1/+1 counters equal to the die roll.
+mana={2}{B}
+type=Summon
+subtype=Imp
+[/card]
+[card]
+name=Knight of the Hokey Pokey
+text=First strike -- {1}{W}, Do the Hokey Pokey (Stand up, wiggle your butt, raise your hands above your head, and shake them wildly as you rotate 360 degrees): Prevent all damage to Knight of the Hokey Pokey from any one source.
+mana={W}{W}
+type=Summon
+subtype=Knight
+[/card]
+[card]
+name=Krazy Kow
+text=During your upkeep, roll a six-sided die. On a 1, sacrifice Krazy Kow and it deals 3 damage to each creature and player.
+mana={3}{R}
+type=Summon
+subtype=Cow
+[/card]
+[card]
+name=Landfill
+text=Choose a land type. Remove from play all lands of that type that you control. Drop those cards, one at a time, onto the playing area from a height of at least one foot. Destroy each card in play that is completely covered by those cards. Then return to play, tapped, all lands dropped in this way.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Lexivore
+text=If Lexivore damages any player, destroy target card in play, other than Lexivore, with the most lines of text in its text box. (If more than one card has the most lines of text, you choose which of those cards to destroy.)
+mana={3}{W}
+type=Summon
+subtype=Beast
+[/card]
+[card]
+name=Look at Me, I'm the DCI
+text=Ban one card, other than a basic land, for the remainder of the match. (For the remainder of the match, each player removes from the game all copies of that card in play or in any graveyard, hand, library, or sideboard.)
+mana={5}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Mesa Chicken
+text=Stand up, Flap your arms, Cluck like a chicken: Mesa Chicken gains flying until end of turn.
+mana={W}{W}
+type=Summon
+subtype=Chicken
+[/card]
+[card]
+name=Mine, Mine, Mine!
+text=When Mine, Mine, Mine comes into play, each player puts his or her library into his or her hand. -- Each player skips his or her discard phase and does not lose as a result of being unable to draw a card. -- Each player cannot play more than one spell each turn. -- If Mine, Mine, Mine leaves play, each player shuffles his or her hand and graveyard into his or her library.
+mana={4}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Mirror Mirror
+text=Mirror Mirror comes into play tapped. -- {7}, {T}, Sacrifice Mirror Mirror: At end of turn, exchange life totals with target player and exchange all cards in play that you control, and all cards in your hand, library, and graveyard, with that player until end of game.
+mana={7}
+type=Artifact
+[/card]
+[card]
+name=Miss Demeanor
+text=Flying, first strike -- During each other player's turn, compliment that player on his or her game play or sacrifice Miss Demeanor.
+mana={3}{W}
+type=Summon
+subtype=Lady of Proper Etiquette
+[/card]
+[card]
+name=Once More with Feeling
+text=Remove Once More with Feeling from the game as well as all cards in play and in all graveyards. Each player shuffles his or her hand into her or his library, then draws seven cards. Each player's life total is set to 10. -- DCI ruling: This card is restricted. (You cannot play with more than one in a deck.)
+mana={W}{W}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Organ Harvest
+text=You and your teammates may sacrifice any number of creatures. For each creature sacrificed in this way, add {B}{B} to your mana pool.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Ow
+text=Whenever any creature damages a player, for each Ow card in play, that player says "Ow" once or Ow deals 1 damage to him or her.
+mana={B}
+type=Enchantment
+[/card]
+[card]
+name=Paper Tiger
+text=Rock Lobsters cannot attack or block.
+mana={4}
+type=Artifact Creature
+power=4
+toughness=3
+[/card]
+[card]
+name=Poultrygeist
+text=Flying -- Whenever a creature is put into any graveyard from play, you may roll a six-sided die. On a 1, sacrifice Poultrygeist. Otherwise, put a +1/+1 counter on Poultrygeist.
+mana={2}{B}
+type=Summon
+subtype=Chicken
+[/card]
+[card]
+name=Prismatic Wardrobe
+text=Destroy target card that does not share a color with clothing worn by its controller. You cannot choose an artifact or land card.
+mana={W}
+type=Sorcery
+[/card]
+[card]
+name=Psychic Network
+text=Each player reveals the top card of his or her library to all other players by continuously holding it against his or her forehead. This does not allow a player to look at his or her own card. (That card still counts as the top card of your library. Whenever you draw a card, draw that one and replace it with the next card of your library.)
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Ricochet
+text=Whenever any spell targets a single player, each player rolls a six-sided die. That spell is redirected to the player or players with the lowest die roll. If two or more players tie for the lowest die roll, they reroll until there is no tie.
+mana={R}
+type=Enchantment
+[/card]
+[card]
+name=Rock Lobster
+text=Scissors Lizards cannot attack or block.
+mana={4}
+type=Artifact Creature
+power=4
+toughness=3
+[/card]
+[card]
+name=Scissors Lizard
+text=Paper Tigers cannot attack or block.
+mana={4}
+type=Artifact Creature
+power=4
+toughness=3
+[/card]
+[card]
+name=Sex Appeal
+text=Prevent up to 3 damage total to any number of creatures and/or players. If there are more players in the room of the opposite sex, prevent up to 3 additional damage total to any number of creatures and/or players.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Sorry
+text=Before playing any spell, if a copy of that spell card is in any graveyard, the spell's caster may say "Sorry." If he or she does not, any other player may counter the spell by saying "Sorry" as it is cast. -- If any player says "Sorry" at any other time, Sorry deals 2 damage to that player.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Spark Fiend
+text=When Spark Fiend comes into play, roll two six-sided dice. On a total of 2, 3, or 12, sacrifice Spark Fiend. On a total of 7 or 11, do not roll dice for Spark Fiend during any of your following upkeep phases. If you roll any other total, note it. -- During your upkeep, roll two six-sided dice. On a total of 7, sacrifice Spark Fiend. If you roll the noted total, do not roll dice for Spark Fiend during any of your following upkeep phases. On any other roll, there is no effect.
+mana={4}{R}
+type=Summon
+subtype=Beast
+[/card]
+[card]
+name=Spatula of the Ages
+text={4}, {T}, Sacrifice Spatula of the Ages: Put into play from your hand any card from an Unglued supplement.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Squirrel Farm
+text={1}{G}: Choose a card in your hand. Covering the artist's name, reveal the card to target player. If that player cannot name the artist, reveal the artist's name and put a Squirrel token into play. Treat this token as a 1/1 green creature.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Strategy, Schmategy
+text=Roll a six-sided die for Strategy, Schmategy. On a 1, Strategy, Schmategy has no effect. Otherwise, it has one of the following effects. -- 2 Destroy all artifacts. -- 3 Destroy all lands. -- 4 Strategy, Schmategy deals 3 damage to each creature and player. -- 5 Each player discards his or her hand and draws seven cards.  -- 6 Roll the die two more times.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Team Spirit
+text=All creatures controlled by target player and his or her teammates get +1/+1 until end of turn.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Temp of the Damned
+text=When you play Temp of the Damned, roll a six-sided die. Temp of the Damned comes into play with a number of funk counters on it equal to the die roll. -- During your upkeep, remove a funk counter from Temp of the Damned or sacrifice Temp of the Damned.
+mana={2}{B}
+type=Summon
+subtype=Zombie
+[/card]
+[card]
+name=The Cheese Stands Alone
+text=If you control no cards in play other than The Cheese Stands Alone and have no cards in your hand, you win the game.
+mana={4}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=The Ultimate Nightmare of Wizards of the Coast® Customer Service
+text=The Ultimate Nightmare of Wizards of the Coast® Customer Service deals X damage to each of Y target creatures and Z target players.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Timmy, Power Gamer
+text={4}: Put a creature into play from your hand.
+mana={2}{G}{G}
+type=Summon
+subtype=Legend
+[/card]
+[card]
+name=Urza's Contact Lenses
+text=Urza's Contact Lenses comes into play tapped and does not untap during its controller's untap phase. -- All players play with their hands face up. -- Clap your hands twice: Tap or untap Urza's Contact Lenses.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Urza's Science Fair Project
+text={2}: Roll a six-sided die for Urza's Science Fair Project. -- 1 It gets -2/-2 until end of turn. -- 2 It deals no combat damage this turn. -- 3 Attacking does not cause it to tap this turn. -- 4 It gains first strike until end of turn. -- 5 It gains flying until end of turn. -- 6 It gets +2/+2 until end of turn.
+mana={6}
+type=Artifact Creature
+power=4
+toughness=4
+[/card]
+[card]
+name=Volrath's Motion Sensor
+text=When Volrath's Motion Sensor comes into play, choose target hand controlled by an opponent. Enchanted player balances Volrath's Motion Sensor on the back of that hand. -- If Volrath's Motion Sensor falls off the hand, sacrifice Volrath's Motion Sensor and that player loses 3 life.
+mana={B}
+type=Enchant Player
+[/card]

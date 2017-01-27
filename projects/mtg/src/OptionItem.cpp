@@ -466,6 +466,7 @@ void OptionTheme::updateValue()
 void OptionTheme::Render()
 {
     JRenderer * renderer = JRenderer::GetInstance();
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     char buf[512];
     if (!bChecked)
     {
@@ -493,12 +494,12 @@ void OptionTheme::Render()
     JQuadPtr q = getImage();
     if (q)
     {
-        float scale = 128 / q->mHeight;
-        renderer->RenderQuad(q.get(), x, y, 0, scale, scale);
+        float yscale = 128 / q->mHeight;
+        float xscale = 227 / q->mWidth;
+        renderer->RenderQuad(q.get(), x, y, 0, xscale, yscale);
     }
-
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
+    renderer->FillRect(x+2, y+2, mFont->GetStringWidth(buf), mFont->GetHeight(),ARGB(220,5,5,5));
     mFont->DrawString(buf, x + 2, y + 2);
     if (bChecked && author.size())
     {
@@ -506,6 +507,7 @@ void OptionTheme::Render()
         mFont->SetScale(0.8f);
         float hi = mFont->GetHeight();
         sprintf(buf, _("Artist: %s").c_str(), author.c_str());
+        renderer->FillRect(x+2, y + getHeight() - hi, mFont->GetStringWidth(buf), mFont->GetHeight(),ARGB(220,5,5,5));
         mFont->DrawString(buf, x + 2, y + getHeight() - hi);
         mFont->SetScale(1);
     }

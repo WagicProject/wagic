@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
-name=Wagic 2010
+name=Magic 2010
 year=2009
+total=249
 [/meta]
 [card]
 primitive=Acidic Slime
@@ -730,6 +731,11 @@ rarity=U
 [/card]
 [card]
 primitive=Mountain
+id=191401
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=191402
 rarity=L
 [/card]
@@ -741,11 +747,6 @@ rarity=L
 [card]
 primitive=Mountain
 id=191404
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=191401
 rarity=L
 [/card]
 [card]
@@ -815,17 +816,17 @@ rarity=R
 [/card]
 [card]
 primitive=Plains
-id=191395
-rarity=L
-[/card]
-[card]
-primitive=Plains
 id=191382
 rarity=L
 [/card]
 [card]
 primitive=Plains
 id=191385
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=191395
 rarity=L
 [/card]
 [card]
@@ -1060,7 +1061,7 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=191399
+id=191381
 rarity=L
 [/card]
 [card]
@@ -1070,12 +1071,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=191381
+id=191398
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=191398
+id=191399
 rarity=L
 [/card]
 [card]
@@ -1247,9 +1248,4 @@ rarity=C
 primitive=Zombie Goliath
 id=190545
 rarity=C
-[/card]
-[card]
-primitive=Avatar Token
-id=-191239
-rarity=T
 [/card]

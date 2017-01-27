@@ -2,8 +2,10 @@
 
 const float GridDeckView::scroll_animation_duration = 0.3f;
 const float GridDeckView::slide_animation_duration =  0.6f;
-const float GridDeckView::card_scale_small = 0.48f;
-const float GridDeckView::card_scale_big = 0.7f;
+//const float GridDeckView::card_scale_small = 0.47f;
+//const float GridDeckView::card_scale_big = 0.6f;
+const float GridDeckView::card_scale_small = 0.42f;
+const float GridDeckView::card_scale_big = 0.52f;
 
 GridDeckView::GridDeckView()
     : DeckView(16), mCols(8), mRows(2), mScrollOffset(0), mSlideOffset(0),
@@ -123,9 +125,17 @@ void GridDeckView::Render()
         {
             if (WResourceManager::Instance()->IsThreaded())
             {
+#if !defined (PSP)
+                WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_NORMAL);
+#else
                 WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_THUMB);
+#endif
             }
+#if !defined (PSP)
+            renderCard(i, 255, false);//for psp, use lowres images if you can.
+#else
             renderCard(i, 255, true);
+#endif
         }
         else
         {

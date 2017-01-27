@@ -1,6 +1,8 @@
 [meta]
 author=Wagic Team
+name=Fallen Empires
 year=1994
+total=187
 [/meta]
 [card]
 primitive=Aeolipile
@@ -9,12 +11,7 @@ rarity=R
 [/card]
 [card]
 primitive=Armor Thrull
-id=1841
-rarity=C
-[/card]
-[card]
-primitive=Armor Thrull
-id=1840
+id=1838
 rarity=C
 [/card]
 [card]
@@ -24,7 +21,12 @@ rarity=C
 [/card]
 [card]
 primitive=Armor Thrull
-id=1838
+id=1840
+rarity=C
+[/card]
+[card]
+primitive=Armor Thrull
+id=1841
 rarity=C
 [/card]
 [card]
@@ -34,12 +36,7 @@ rarity=R
 [/card]
 [card]
 primitive=Basal Thrull
-id=1845
-rarity=C
-[/card]
-[card]
-primitive=Basal Thrull
-id=1844
+id=1842
 rarity=C
 [/card]
 [card]
@@ -49,7 +46,12 @@ rarity=C
 [/card]
 [card]
 primitive=Basal Thrull
-id=1842
+id=1844
+rarity=C
+[/card]
+[card]
+primitive=Basal Thrull
+id=1845
 rarity=C
 [/card]
 [card]
@@ -59,12 +61,7 @@ rarity=R
 [/card]
 [card]
 primitive=Brassclaw Orcs
-id=1966
-rarity=C
-[/card]
-[card]
-primitive=Brassclaw Orcs
-id=1940
+id=1937
 rarity=C
 [/card]
 [card]
@@ -74,7 +71,12 @@ rarity=C
 [/card]
 [card]
 primitive=Brassclaw Orcs
-id=1937
+id=1940
+rarity=C
+[/card]
+[card]
+primitive=Brassclaw Orcs
+id=1966
 rarity=C
 [/card]
 [card]
@@ -84,12 +86,7 @@ rarity=U
 [/card]
 [card]
 primitive=Combat Medic
-id=1973
-rarity=C
-[/card]
-[card]
-primitive=Combat Medic
-id=1972
+id=1970
 rarity=C
 [/card]
 [card]
@@ -99,7 +96,12 @@ rarity=C
 [/card]
 [card]
 primitive=Combat Medic
-id=1970
+id=1972
+rarity=C
+[/card]
+[card]
+primitive=Combat Medic
+id=1973
 rarity=C
 [/card]
 [card]
@@ -159,7 +161,7 @@ rarity=U
 [/card]
 [card]
 primitive=Dwarven Soldier
-id=1946
+id=1944
 rarity=C
 [/card]
 [card]
@@ -169,7 +171,7 @@ rarity=C
 [/card]
 [card]
 primitive=Dwarven Soldier
-id=1944
+id=1946
 rarity=C
 [/card]
 [card]
@@ -184,12 +186,7 @@ rarity=U
 [/card]
 [card]
 primitive=Elven Fortress
-id=1907
-rarity=C
-[/card]
-[card]
-primitive=Elven Fortress
-id=1906
+id=1904
 rarity=C
 [/card]
 [card]
@@ -199,7 +196,12 @@ rarity=C
 [/card]
 [card]
 primitive=Elven Fortress
-id=1904
+id=1906
+rarity=C
+[/card]
+[card]
+primitive=Elven Fortress
+id=1907
 rarity=C
 [/card]
 [card]
@@ -214,7 +216,7 @@ rarity=R
 [/card]
 [card]
 primitive=Elvish Hunter
-id=1911
+id=1909
 rarity=C
 [/card]
 [card]
@@ -224,12 +226,12 @@ rarity=C
 [/card]
 [card]
 primitive=Elvish Hunter
-id=1909
+id=1911
 rarity=C
 [/card]
 [card]
 primitive=Elvish Scout
-id=1914
+id=1912
 rarity=C
 [/card]
 [card]
@@ -239,13 +241,8 @@ rarity=C
 [/card]
 [card]
 primitive=Elvish Scout
-id=1912
+id=1914
 rarity=C
-[/card]
-[card]
-primitive=Farrelite Priest
-id=1978
-rarity=U
 [/card]
 [card]
 primitive=Farrel's Mantle
@@ -254,7 +251,7 @@ rarity=U
 [/card]
 [card]
 primitive=Farrel's Zealot
-id=1977
+id=1975
 rarity=C
 [/card]
 [card]
@@ -264,8 +261,13 @@ rarity=C
 [/card]
 [card]
 primitive=Farrel's Zealot
-id=1975
+id=1977
 rarity=C
+[/card]
+[card]
+primitive=Farrelite Priest
+id=1978
+rarity=U
 [/card]
 [card]
 primitive=Feral Thallid
@@ -279,7 +281,7 @@ rarity=R
 [/card]
 [card]
 primitive=Goblin Chirurgeon
-id=1949
+id=1947
 rarity=C
 [/card]
 [card]
@@ -289,7 +291,7 @@ rarity=C
 [/card]
 [card]
 primitive=Goblin Chirurgeon
-id=1947
+id=1949
 rarity=C
 [/card]
 [card]
@@ -299,7 +301,7 @@ rarity=R
 [/card]
 [card]
 primitive=Goblin Grenade
-id=1953
+id=1951
 rarity=C
 [/card]
 [card]
@@ -309,7 +311,7 @@ rarity=C
 [/card]
 [card]
 primitive=Goblin Grenade
-id=1951
+id=1953
 rarity=C
 [/card]
 [card]
@@ -319,12 +321,7 @@ rarity=U
 [/card]
 [card]
 primitive=Goblin War Drums
-id=1958
-rarity=C
-[/card]
-[card]
-primitive=Goblin War Drums
-id=1957
+id=1955
 rarity=C
 [/card]
 [card]
@@ -334,7 +331,12 @@ rarity=C
 [/card]
 [card]
 primitive=Goblin War Drums
-id=1955
+id=1957
+rarity=C
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1958
 rarity=C
 [/card]
 [card]
@@ -359,7 +361,7 @@ rarity=U
 [/card]
 [card]
 primitive=High Tide
-id=1874
+id=1872
 rarity=C
 [/card]
 [card]
@@ -369,33 +371,13 @@ rarity=C
 [/card]
 [card]
 primitive=High Tide
-id=1872
+id=1874
 rarity=C
 [/card]
 [card]
 primitive=Hollow Trees
 id=2008
 rarity=R
-[/card]
-[card]
-primitive=Homarid
-id=1878
-rarity=C
-[/card]
-[card]
-primitive=Homarid
-id=1877
-rarity=C
-[/card]
-[card]
-primitive=Homarid
-id=1876
-rarity=C
-[/card]
-[card]
-primitive=Homarid
-id=1875
-rarity=C
 [/card]
 [card]
 primitive=Homarid Shaman
@@ -409,7 +391,7 @@ rarity=U
 [/card]
 [card]
 primitive=Homarid Warrior
-id=1883
+id=1881
 rarity=C
 [/card]
 [card]
@@ -419,17 +401,32 @@ rarity=C
 [/card]
 [card]
 primitive=Homarid Warrior
-id=1881
+id=1883
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1875
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1876
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1877
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1878
 rarity=C
 [/card]
 [card]
 primitive=Hymn to Tourach
-id=1852
-rarity=C
-[/card]
-[card]
-primitive=Hymn to Tourach
-id=1851
+id=1849
 rarity=C
 [/card]
 [card]
@@ -439,17 +436,17 @@ rarity=C
 [/card]
 [card]
 primitive=Hymn to Tourach
-id=1849
+id=1851
+rarity=C
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=1852
 rarity=C
 [/card]
 [card]
 primitive=Icatian Infantry
-id=1984
-rarity=C
-[/card]
-[card]
-primitive=Icatian Infantry
-id=1983
+id=1981
 rarity=C
 [/card]
 [card]
@@ -459,12 +456,17 @@ rarity=C
 [/card]
 [card]
 primitive=Icatian Infantry
-id=1981
+id=1983
+rarity=C
+[/card]
+[card]
+primitive=Icatian Infantry
+id=1984
 rarity=C
 [/card]
 [card]
 primitive=Icatian Javelineers
-id=1987
+id=1985
 rarity=C
 [/card]
 [card]
@@ -474,7 +476,7 @@ rarity=C
 [/card]
 [card]
 primitive=Icatian Javelineers
-id=1985
+id=1987
 rarity=C
 [/card]
 [card]
@@ -484,7 +486,7 @@ rarity=R
 [/card]
 [card]
 primitive=Icatian Moneychanger
-id=1991
+id=1989
 rarity=C
 [/card]
 [card]
@@ -494,7 +496,7 @@ rarity=C
 [/card]
 [card]
 primitive=Icatian Moneychanger
-id=1989
+id=1991
 rarity=C
 [/card]
 [card]
@@ -509,12 +511,7 @@ rarity=U
 [/card]
 [card]
 primitive=Icatian Scout
-id=1997
-rarity=C
-[/card]
-[card]
-primitive=Icatian Scout
-id=1996
+id=1994
 rarity=C
 [/card]
 [card]
@@ -524,7 +521,12 @@ rarity=C
 [/card]
 [card]
 primitive=Icatian Scout
-id=1994
+id=1996
+rarity=C
+[/card]
+[card]
+primitive=Icatian Scout
+id=1997
 rarity=C
 [/card]
 [card]
@@ -549,7 +551,7 @@ rarity=R
 [/card]
 [card]
 primitive=Initiates of the Ebon Hand
-id=1855
+id=1853
 rarity=C
 [/card]
 [card]
@@ -559,17 +561,12 @@ rarity=C
 [/card]
 [card]
 primitive=Initiates of the Ebon Hand
-id=1853
+id=1855
 rarity=C
 [/card]
 [card]
 primitive=Merseine
-id=1887
-rarity=C
-[/card]
-[card]
-primitive=Merseine
-id=1886
+id=1884
 rarity=C
 [/card]
 [card]
@@ -579,12 +576,17 @@ rarity=C
 [/card]
 [card]
 primitive=Merseine
-id=1884
+id=1886
+rarity=C
+[/card]
+[card]
+primitive=Merseine
+id=1887
 rarity=C
 [/card]
 [card]
 primitive=Mindstab Thrull
-id=1858
+id=1856
 rarity=C
 [/card]
 [card]
@@ -594,12 +596,12 @@ rarity=C
 [/card]
 [card]
 primitive=Mindstab Thrull
-id=1856
+id=1858
 rarity=C
 [/card]
 [card]
 primitive=Necrite
-id=1861
+id=1859
 rarity=C
 [/card]
 [card]
@@ -609,12 +611,12 @@ rarity=C
 [/card]
 [card]
 primitive=Necrite
-id=1859
+id=1861
 rarity=C
 [/card]
 [card]
 primitive=Night Soil
-id=1919
+id=1917
 rarity=C
 [/card]
 [card]
@@ -624,7 +626,7 @@ rarity=C
 [/card]
 [card]
 primitive=Night Soil
-id=1917
+id=1919
 rarity=C
 [/card]
 [card]
@@ -634,7 +636,7 @@ rarity=U
 [/card]
 [card]
 primitive=Orcish Spy
-id=1963
+id=1961
 rarity=C
 [/card]
 [card]
@@ -644,17 +646,12 @@ rarity=C
 [/card]
 [card]
 primitive=Orcish Spy
-id=1961
+id=1963
 rarity=C
 [/card]
 [card]
 primitive=Orcish Veteran
-id=1967
-rarity=C
-[/card]
-[card]
-primitive=Orcish Veteran
-id=1965
+id=1939
 rarity=C
 [/card]
 [card]
@@ -664,12 +661,17 @@ rarity=C
 [/card]
 [card]
 primitive=Orcish Veteran
-id=1939
+id=1965
+rarity=C
+[/card]
+[card]
+primitive=Orcish Veteran
+id=1967
 rarity=C
 [/card]
 [card]
 primitive=Order of Leitbur
-id=2002
+id=2000
 rarity=C
 [/card]
 [card]
@@ -679,12 +681,12 @@ rarity=C
 [/card]
 [card]
 primitive=Order of Leitbur
-id=2000
+id=2002
 rarity=C
 [/card]
 [card]
 primitive=Order of the Ebon Hand
-id=1864
+id=1862
 rarity=C
 [/card]
 [card]
@@ -694,7 +696,7 @@ rarity=C
 [/card]
 [card]
 primitive=Order of the Ebon Hand
-id=1862
+id=1864
 rarity=C
 [/card]
 [card]
@@ -749,7 +751,7 @@ rarity=R
 [/card]
 [card]
 primitive=Spore Cloud
-id=1922
+id=1920
 rarity=C
 [/card]
 [card]
@@ -759,7 +761,7 @@ rarity=C
 [/card]
 [card]
 primitive=Spore Cloud
-id=1920
+id=1922
 rarity=C
 [/card]
 [card]
@@ -778,13 +780,13 @@ id=2013
 rarity=U
 [/card]
 [card]
-primitive=Thallid
-id=1927
-rarity=C
+primitive=Thallid Devourer
+id=1928
+rarity=U
 [/card]
 [card]
 primitive=Thallid
-id=1926
+id=1924
 rarity=C
 [/card]
 [card]
@@ -794,23 +796,13 @@ rarity=C
 [/card]
 [card]
 primitive=Thallid
-id=1924
+id=1926
 rarity=C
 [/card]
 [card]
-primitive=Thallid Devourer
-id=1928
-rarity=U
-[/card]
-[card]
-primitive=Thelonite Druid
-id=1931
-rarity=U
-[/card]
-[card]
-primitive=Thelonite Monk
-id=1932
-rarity=R
+primitive=Thallid
+id=1927
+rarity=C
 [/card]
 [card]
 primitive=Thelon's Chant
@@ -823,13 +815,18 @@ id=1930
 rarity=R
 [/card]
 [card]
-primitive=Thorn Thallid
-id=1936
-rarity=C
+primitive=Thelonite Druid
+id=1931
+rarity=U
+[/card]
+[card]
+primitive=Thelonite Monk
+id=1932
+rarity=R
 [/card]
 [card]
 primitive=Thorn Thallid
-id=1935
+id=1933
 rarity=C
 [/card]
 [card]
@@ -839,7 +836,12 @@ rarity=C
 [/card]
 [card]
 primitive=Thorn Thallid
-id=1933
+id=1935
+rarity=C
+[/card]
+[card]
+primitive=Thorn Thallid
+id=1936
 rarity=C
 [/card]
 [card]
@@ -859,7 +861,7 @@ rarity=U
 [/card]
 [card]
 primitive=Tidal Flats
-id=1893
+id=1891
 rarity=C
 [/card]
 [card]
@@ -869,7 +871,7 @@ rarity=C
 [/card]
 [card]
 primitive=Tidal Flats
-id=1891
+id=1893
 rarity=C
 [/card]
 [card]
@@ -894,7 +896,7 @@ rarity=R
 [/card]
 [card]
 primitive=Vodalian Mage
-id=1898
+id=1896
 rarity=C
 [/card]
 [card]
@@ -904,17 +906,12 @@ rarity=C
 [/card]
 [card]
 primitive=Vodalian Mage
-id=1896
+id=1898
 rarity=C
 [/card]
 [card]
 primitive=Vodalian Soldiers
-id=1902
-rarity=C
-[/card]
-[card]
-primitive=Vodalian Soldiers
-id=1901
+id=1899
 rarity=C
 [/card]
 [card]
@@ -924,7 +921,12 @@ rarity=C
 [/card]
 [card]
 primitive=Vodalian Soldiers
-id=1899
+id=1901
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Soldiers
+id=1902
 rarity=C
 [/card]
 [card]

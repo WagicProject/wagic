@@ -58,6 +58,10 @@ public:
     int Angel[2];
     bool dragonbonusgranted[2];
     int dragon[2];
+    bool eldrazibonusgranted[2];
+    int eldrazi[2];
+    bool werewolfbonusgranted[2];
+    int werewolf[2];
 
     int receiveEvent(WEvent * event);
     void grantAward(string awardName,int amount);
@@ -69,6 +73,8 @@ public:
 
 class MTGPutInPlayRule: public PermanentAbility
 {
+protected:
+    string defaultPlayName;
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
@@ -76,8 +82,8 @@ public:
     MTGPutInPlayRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        if(game && game->gameType() == GAME_TYPE_MOMIR)
-            return "Play Land";
+        if(defaultPlayName.size())
+            return defaultPlayName.c_str();
         return "Cast Card Normally";
     }
     virtual MTGPutInPlayRule * clone() const;
@@ -146,6 +152,21 @@ public:
     virtual MTGFlashBackRule * clone() const;
 };
 
+class MTGTempFlashBackRule: public MTGAlternativeCostRule
+{
+public:
+
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGTempFlashBackRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "Flashback Manacost";
+    }
+    virtual MTGTempFlashBackRule * clone() const;
+};
+
 class MTGRetraceRule: public MTGAlternativeCostRule
 {
 public:
@@ -206,6 +227,21 @@ public:
     virtual MTGOverloadRule * clone() const;
 };
 
+class MTGBestowRule : public MTGAlternativeCostRule
+{
+public:
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGBestowRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "Bestow";
+    }
+    virtual MTGBestowRule * clone() const;
+};
+
+
 class MTGSuspendRule: public MTGAlternativeCostRule
 {
 public:
@@ -217,6 +253,18 @@ public:
     MTGSuspendRule(GameObserver* observer, int _id);
     const string getMenuText();
     virtual MTGSuspendRule * clone() const;
+};
+
+class MTGAttackCostRule: public PermanentAbility
+{
+public:
+    string scost;
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGAttackCostRule(GameObserver* observer, int _id);
+    const string getMenuText();
+    virtual MTGAttackCostRule * clone() const;
 };
 
 class MTGAttackRule: public PermanentAbility, public Limitor
@@ -272,6 +320,18 @@ public:
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
     virtual MTGCombatTriggersRule * clone() const;
+};
+
+class MTGBlockCostRule: public PermanentAbility
+{
+public:
+    string scost;
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGBlockCostRule(GameObserver* observer, int _id);
+    const string getMenuText();
+    virtual MTGBlockCostRule * clone() const;
 };
 
 class MTGBlockRule: public PermanentAbility

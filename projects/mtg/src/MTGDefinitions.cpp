@@ -4,7 +4,7 @@ using std::string;
 
 #include "MTGDefinitions.h"
 
-char Constants::MTGColorChars[] = {'x','g','u','r','b','w','l'};
+char Constants::MTGColorChars[] = {'x','g','u','r','b','w','c','l'};
 vector <const char*> Constants::MTGColorStrings;
 
 const string Constants::kManaColorless      = "colorless";
@@ -13,6 +13,7 @@ const string Constants::kManaBlue           = "blue";
 const string Constants::kManaRed            = "red";
 const string Constants::kManaBlack          = "black";
 const string Constants::kManaWhite          = "white";
+const string Constants::kManaWaste          = "waste";
 
 int Constants::_r[7] = {75,20,20,200,50,255,128};
 int Constants::_g[7] = {30,140,30,15,50,255,128};
@@ -25,6 +26,7 @@ const string Constants::kFlashBackKeyword = "flashback";
 const string Constants::kRetraceKeyword = "retrace";
 const string Constants::kKickerKeyword = "kicker";
 const string Constants::kMorphKeyword = "facedown";
+const string Constants::kBestowKeyword = "bestow";
 
 int Constants::NB_Colors = 0; //Store the Max number of colors.
 
@@ -151,7 +153,30 @@ const char* Constants::MTGBasicAbilities[] = {
     "zerocast",
     "trinisphere",
     "canplayfromexile",
-    "libraryeater"
+    "libraryeater",
+    "devoid",
+    "cantchangelife",
+    "combattoughness",
+    "cantpaylife",
+    "cantbesacrified",
+    "skulk",
+    "menace",
+    "nosolo",
+    "mustblock",
+    "dethrone",
+    "overload",
+    "shackler",
+    "flyersonly",
+    "tempflashback",
+    "legendruleremove",
+    "canttransform",
+    "asflash",
+    "conduited",
+    "canblocktapped",
+    "oppnomaxhand",
+    "cantcrew",
+    "hiddenface",//test for facedown
+    "anytypeofmana"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

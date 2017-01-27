@@ -121,6 +121,7 @@ public:
     ManaCost* BuyBack;
     ManaCost* FlashBack;
     ManaCost* Retrace;
+    ManaCost* Bestow;
     ManaCost* morph;
     ManaCost* suspend;
 
@@ -216,6 +217,9 @@ public:
         PAYZERO_COST = 33,
         OVERLOAD_COST = 34,
         BESTOW_COST = 35,
+        ATTACK_COST = 36,
+        BLOCK_COST = 37,
+        GRANTEDFLASHBACK_COST = 38,
     };
 };
 
@@ -417,6 +421,19 @@ public:
     bool once,activeTrigger;
     TriggerNextPhase(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0,bool sourceUntapped = false,bool sourceTap = false,bool once = false);
     virtual TriggerNextPhase* clone() const;
+    virtual int testDestroy();
+
+};
+
+class TriggerRebound : public TriggerAtPhase
+{
+public:
+    int destroyActivated;
+    bool sourceUntapped;
+    bool sourceTap;
+    bool once,activeTrigger;
+    TriggerRebound(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0,bool sourceUntapped = false,bool sourceTap = false,bool once = false);
+    virtual TriggerRebound* clone() const;
     virtual int testDestroy();
 
 };

@@ -1,0 +1,938 @@
+[meta]
+author=Wagic Team
+name=Oath of the Gatewatch
+block=Battle for Zendikar
+year=2016
+total=186
+[/meta]
+[card]
+primitive=Abstruse Interference
+id=407550
+rarity=C
+[/card]
+[card]
+primitive=Affa Protector
+id=407524
+rarity=C
+[/card]
+[card]
+primitive=Akoum Flameseeker
+id=407611
+rarity=C
+[/card]
+[card]
+primitive=Allied Reinforcements
+id=407525
+rarity=U
+[/card]
+[card]
+primitive=Ancient Crab
+id=407560
+rarity=C
+[/card]
+[card]
+primitive=Ayli, Eternal Pilgrim
+id=407661
+rarity=R
+[/card]
+[card]
+primitive=Baloth Null
+id=407662
+rarity=U
+[/card]
+[card]
+primitive=Baloth Pup
+id=407637
+rarity=U
+[/card]
+[card]
+primitive=Bearer of Silence
+id=407577
+rarity=R
+[/card]
+[card]
+primitive=Birthing Hulk
+id=407631
+rarity=U
+[/card]
+[card]
+primitive=Blinding Drone
+id=407551
+rarity=C
+[/card]
+[card]
+primitive=Bonds of Mortality
+id=407638
+rarity=U
+[/card]
+[card]
+primitive=Bone Saw
+id=407671
+rarity=C
+[/card]
+[card]
+primitive=Boulder Salvo
+id=407612
+rarity=C
+[/card]
+[card]
+primitive=Brute Strength
+id=407613
+rarity=C
+[/card]
+[card]
+primitive=Call the Gatewatch
+id=407526
+rarity=R
+[/card]
+[card]
+primitive=Canopy Gorger
+id=407639
+rarity=C
+[/card]
+[card]
+primitive=Captain's Claws
+id=407672
+rarity=R
+[/card]
+[card]
+primitive=Chandra, Flamecaller
+id=407614
+rarity=M
+[/card]
+[card]
+primitive=Chitinous Cloak
+id=407673
+rarity=U
+[/card]
+[card]
+primitive=Cinder Barrens
+id=407678
+rarity=U
+[/card]
+[card]
+primitive=Cinder Hellion
+id=407615
+rarity=C
+[/card]
+[card]
+primitive=Cliffhaven Vampire
+id=407663
+rarity=U
+[/card]
+[card]
+primitive=Comparative Analysis
+id=407561
+rarity=C
+[/card]
+[card]
+primitive=Consuming Sinkhole
+id=407604
+rarity=C
+[/card]
+[card]
+primitive=Containment Membrane
+id=407562
+rarity=C
+[/card]
+[card]
+primitive=Corpse Churn
+id=407593
+rarity=C
+[/card]
+[card]
+primitive=Corrupted Crossroads
+id=407679
+rarity=R
+[/card]
+[card]
+primitive=Crumbling Vestige
+id=407680
+rarity=C
+[/card]
+[card]
+primitive=Crush of Tentacles
+id=407563
+rarity=M
+[/card]
+[card]
+primitive=Cultivator Drone
+id=407552
+rarity=C
+[/card]
+[card]
+primitive=Cyclone Sire
+id=407564
+rarity=U
+[/card]
+[card]
+primitive=Dazzling Reflection
+id=407527
+rarity=C
+[/card]
+[card]
+primitive=Deceiver of Form
+id=407511
+rarity=R
+[/card]
+[card]
+primitive=Deepfathom Skulker
+id=407553
+rarity=R
+[/card]
+[card]
+primitive=Devour in Flames
+id=407616
+rarity=U
+[/card]
+[card]
+primitive=Dimensional Infiltrator
+id=407554
+rarity=R
+[/card]
+[card]
+primitive=Drana's Chosen
+id=407594
+rarity=R
+[/card]
+[card]
+primitive=Dread Defiler
+id=407578
+rarity=R
+[/card]
+[card]
+primitive=Eldrazi Aggressor
+id=407605
+rarity=C
+[/card]
+[card]
+primitive=Eldrazi Displacer
+id=407523
+rarity=R
+[/card]
+[card]
+primitive=Eldrazi Mimic
+id=407512
+rarity=R
+[/card]
+[card]
+primitive=Eldrazi Obligator
+id=407606
+rarity=R
+[/card]
+[card]
+primitive=Elemental Uprising
+id=407640
+rarity=C
+[/card]
+[card]
+primitive=Embodiment of Fury
+id=407617
+rarity=U
+[/card]
+[card]
+primitive=Embodiment of Insight
+id=407641
+rarity=U
+[/card]
+[card]
+primitive=Endbringer
+id=407513
+rarity=R
+[/card]
+[card]
+primitive=Essence Depleter
+id=407579
+rarity=U
+[/card]
+[card]
+primitive=Expedite
+id=407618
+rarity=C
+[/card]
+[card]
+primitive=Expedition Raptor
+id=407528
+rarity=C
+[/card]
+[card]
+primitive=Fall of the Titans
+id=407619
+rarity=R
+[/card]
+[card]
+primitive=Flayer Drone
+id=407658
+rarity=U
+[/card]
+[card]
+primitive=Flaying Tendrils
+id=407580
+rarity=U
+[/card]
+[card]
+primitive=General Tazri
+id=407529
+rarity=M
+[/card]
+[card]
+primitive=Gift of Tusks
+id=407565
+rarity=U
+[/card]
+[card]
+primitive=Gladehart Cavalry
+id=407642
+rarity=R
+[/card]
+[card]
+primitive=Goblin Dark-Dwellers
+id=407620
+rarity=R
+[/card]
+[card]
+primitive=Goblin Freerunner
+id=407621
+rarity=C
+[/card]
+[card]
+primitive=Grasp of Darkness
+id=407595
+rarity=U
+[/card]
+[card]
+primitive=Gravity Negator
+id=407555
+rarity=C
+[/card]
+[card]
+primitive=Grip of the Roil
+id=407566
+rarity=U
+[/card]
+[card]
+primitive=Harvester Troll
+id=407643
+rarity=U
+[/card]
+[card]
+primitive=Havoc Sower
+id=407581
+rarity=U
+[/card]
+[card]
+primitive=Hedron Alignment
+id=407567
+rarity=R
+[/card]
+[card]
+primitive=Hedron Crawler
+id=407674
+rarity=C
+[/card]
+[card]
+primitive=Hissing Quagmire
+id=407681
+rarity=R
+[/card]
+[card]
+primitive=Holdout Settlement
+id=407682
+rarity=C
+[/card]
+[card]
+primitive=Immobilizer Eldrazi
+id=407607
+rarity=U
+[/card]
+[card]
+primitive=Immolating Glare
+id=407530
+rarity=U
+[/card]
+[card]
+primitive=Inverter of Truth
+id=407582
+rarity=M
+[/card]
+[card]
+primitive=Iona's Blessing
+id=407531
+rarity=U
+[/card]
+[card]
+primitive=Isolation Zone
+id=407532
+rarity=C
+[/card]
+[card]
+primitive=Joraga Auxiliary
+id=407664
+rarity=U
+[/card]
+[card]
+primitive=Jori En, Ruin Diver
+id=407665
+rarity=R
+[/card]
+[card]
+primitive=Jwar Isle Avenger
+id=407568
+rarity=C
+[/card]
+[card]
+primitive=Kalitas, Traitor of Ghet
+id=407596
+rarity=M
+[/card]
+[card]
+primitive=Kazuul's Toll Collector
+id=407622
+rarity=U
+[/card]
+[card]
+primitive=Kor Scythemaster
+id=407533
+rarity=C
+[/card]
+[card]
+primitive=Kor Sky Climber
+id=407534
+rarity=C
+[/card]
+[card]
+primitive=Kozilek's Pathfinder
+id=407515
+rarity=C
+[/card]
+[card]
+primitive=Kozilek's Return
+id=407608
+rarity=M
+[/card]
+[card]
+primitive=Kozilek's Shrieker
+id=407583
+rarity=C
+[/card]
+[card]
+primitive=Kozilek's Translator
+id=407584
+rarity=C
+[/card]
+[card]
+primitive=Kozilek, the Great Distortion
+id=407514
+rarity=M
+[/card]
+[card]
+primitive=Lead by Example
+id=407644
+rarity=C
+[/card]
+[card]
+primitive=Linvala, the Preserver
+id=407535
+rarity=M
+[/card]
+[card]
+primitive=Loam Larva
+id=407645
+rarity=C
+[/card]
+[card]
+primitive=Make a Stand
+id=407536
+rarity=U
+[/card]
+[card]
+primitive=Makindi Aeronaut
+id=407537
+rarity=C
+[/card]
+[card]
+primitive=Malakir Soothsayer
+id=407597
+rarity=U
+[/card]
+[card]
+primitive=Matter Reshaper
+id=407516
+rarity=R
+[/card]
+[card]
+primitive=Maw of Kozilek
+id=407609
+rarity=C
+[/card]
+[card]
+primitive=Meandering River
+id=407683
+rarity=U
+[/card]
+[card]
+primitive=Mighty Leap
+id=407538
+rarity=C
+[/card]
+[card]
+primitive=Mina and Denn, Wildborn
+id=407666
+rarity=R
+[/card]
+[card]
+primitive=Mindmelter
+id=407659
+rarity=U
+[/card]
+[card]
+primitive=Mirrorpool
+id=407684
+rarity=M
+[/card]
+[card]
+primitive=Munda's Vanguard
+id=407539
+rarity=R
+[/card]
+[card]
+primitive=Natural State
+id=407646
+rarity=C
+[/card]
+[card]
+primitive=Needle Spires
+id=407685
+rarity=R
+[/card]
+[card]
+primitive=Negate
+id=407569
+rarity=C
+[/card]
+[card]
+primitive=Netcaster Spider
+id=407647
+rarity=C
+[/card]
+[card]
+primitive=Nissa's Judgment
+id=407649
+rarity=U
+[/card]
+[card]
+primitive=Nissa, Voice of Zendikar
+id=407648
+rarity=M
+[/card]
+[card]
+primitive=Null Caller
+id=407598
+rarity=U
+[/card]
+[card]
+primitive=Oath of Chandra
+id=407623
+rarity=R
+[/card]
+[card]
+primitive=Oath of Gideon
+id=407540
+rarity=R
+[/card]
+[card]
+primitive=Oath of Jace
+id=407570
+rarity=R
+[/card]
+[card]
+primitive=Oath of Nissa
+id=407650
+rarity=R
+[/card]
+[card]
+primitive=Oblivion Strike
+id=407585
+rarity=C
+[/card]
+[card]
+primitive=Ondu War Cleric
+id=407541
+rarity=C
+[/card]
+[card]
+primitive=Overwhelming Denial
+id=407571
+rarity=R
+[/card]
+[card]
+primitive=Press into Service
+id=407624
+rarity=U
+[/card]
+[card]
+primitive=Prophet of Distortion
+id=407556
+rarity=U
+[/card]
+[card]
+primitive=Pulse of Murasa
+id=407651
+rarity=C
+[/card]
+[card]
+primitive=Pyromancer's Assault
+id=407625
+rarity=U
+[/card]
+[card]
+primitive=Reality Hemorrhage
+id=407610
+rarity=C
+[/card]
+[card]
+primitive=Reality Smasher
+id=407517
+rarity=R
+[/card]
+[card]
+primitive=Reaver Drone
+id=407586
+rarity=U
+[/card]
+[card]
+primitive=Reckless Bushwhacker
+id=407626
+rarity=U
+[/card]
+[card]
+primitive=Reflector Mage
+id=407667
+rarity=U
+[/card]
+[card]
+primitive=Relentless Hunter
+id=407668
+rarity=U
+[/card]
+[card]
+primitive=Relief Captain
+id=407542
+rarity=U
+[/card]
+[card]
+primitive=Remorseless Punishment
+id=407599
+rarity=R
+[/card]
+[card]
+primitive=Roiling Waters
+id=407572
+rarity=U
+[/card]
+[card]
+primitive=Ruin in Their Wake
+id=407632
+rarity=U
+[/card]
+[card]
+primitive=Ruins of Oran-Rief
+id=407686
+rarity=R
+[/card]
+[card]
+primitive=Saddleback Lagac
+id=407652
+rarity=C
+[/card]
+[card]
+primitive=Scion Summoner
+id=407633
+rarity=C
+[/card]
+[card]
+primitive=Sea Gate Wreckage
+id=407687
+rarity=R
+[/card]
+[card]
+primitive=Searing Light
+id=407543
+rarity=C
+[/card]
+[card]
+primitive=Seed Guardian
+id=407653
+rarity=U
+[/card]
+[card]
+primitive=Seer's Lantern
+id=407675
+rarity=C
+[/card]
+[card]
+primitive=Shoulder to Shoulder
+id=407544
+rarity=C
+[/card]
+[card]
+primitive=Sifter of Skulls
+id=407587
+rarity=R
+[/card]
+[card]
+primitive=Sky Scourer
+id=407588
+rarity=C
+[/card]
+[card]
+primitive=Slaughter Drone
+id=407589
+rarity=C
+[/card]
+[card]
+primitive=Slip Through Space
+id=407557
+rarity=C
+[/card]
+[card]
+primitive=Sparkmage's Gambit
+id=407627
+rarity=C
+[/card]
+[card]
+primitive=Spatial Contortion
+id=407518
+rarity=U
+[/card]
+[card]
+primitive=Spawnbinder Mage
+id=407545
+rarity=C
+[/card]
+[card]
+primitive=Sphinx of the Final Word
+id=407573
+rarity=M
+[/card]
+[card]
+primitive=Stalking Drone
+id=407634
+rarity=C
+[/card]
+[card]
+primitive=Steppe Glider
+id=407546
+rarity=U
+[/card]
+[card]
+primitive=Stone Haven Outfitter
+id=407547
+rarity=R
+[/card]
+[card]
+primitive=Stoneforge Acolyte
+id=407548
+rarity=U
+[/card]
+[card]
+primitive=Stoneforge Masterwork
+id=407676
+rarity=R
+[/card]
+[card]
+primitive=Stormchaser Mage
+id=407669
+rarity=U
+[/card]
+[card]
+primitive=Strider Harness
+id=407677
+rarity=U
+[/card]
+[card]
+primitive=Submerged Boneyard
+id=407688
+rarity=U
+[/card]
+[card]
+primitive=Sweep Away
+id=407574
+rarity=C
+[/card]
+[card]
+primitive=Sylvan Advocate
+id=407654
+rarity=R
+[/card]
+[card]
+primitive=Tajuru Pathwarden
+id=407655
+rarity=C
+[/card]
+[card]
+primitive=Tar Snare
+id=407600
+rarity=C
+[/card]
+[card]
+primitive=Tears of Valakut
+id=407628
+rarity=U
+[/card]
+[card]
+primitive=Thought Harvester
+id=407558
+rarity=U
+[/card]
+[card]
+primitive=Thought-Knot Seer
+id=407519
+rarity=R
+[/card]
+[card]
+primitive=Timber Gorge
+id=407689
+rarity=U
+[/card]
+[card]
+primitive=Tranquil Expanse
+id=407690
+rarity=U
+[/card]
+[card]
+primitive=Tyrant of Valakut
+id=407629
+rarity=R
+[/card]
+[card]
+primitive=Umara Entangler
+id=407575
+rarity=C
+[/card]
+[card]
+primitive=Unity of Purpose
+id=407576
+rarity=U
+[/card]
+[card]
+primitive=Unknown Shores
+id=407691
+rarity=C
+[/card]
+[card]
+primitive=Unnatural Endurance
+id=407590
+rarity=C
+[/card]
+[card]
+primitive=Untamed Hunger
+id=407601
+rarity=C
+[/card]
+[card]
+primitive=Vampire Envoy
+id=407602
+rarity=C
+[/card]
+[card]
+primitive=Vile Redeemer
+id=407635
+rarity=R
+[/card]
+[card]
+primitive=Vines of the Recluse
+id=407656
+rarity=C
+[/card]
+[card]
+primitive=Visions of Brutality
+id=407591
+rarity=U
+[/card]
+[card]
+primitive=Void Grafter
+id=407660
+rarity=U
+[/card]
+[card]
+primitive=Void Shatter
+id=407559
+rarity=U
+[/card]
+[card]
+primitive=Walker of the Wastes
+id=407520
+rarity=U
+[/card]
+[card]
+primitive=Wall of Resurgence
+id=407549
+rarity=U
+[/card]
+[card]
+primitive=Wandering Fumarole
+id=407692
+rarity=R
+[/card]
+[card]
+primitive=Warden of Geometries
+id=407521
+rarity=C
+[/card]
+[card]
+primitive=Warping Wail
+id=407522
+rarity=U
+[/card]
+[card]
+primitive=Wastes
+id=407693
+rarity=L
+[/card]
+[card]
+primitive=Wastes
+id=407694
+rarity=L
+[/card]
+[card]
+primitive=Wastes
+id=407695
+rarity=L
+[/card]
+[card]
+primitive=Wastes
+id=407696
+rarity=L
+[/card]
+[card]
+primitive=Weapons Trainer
+id=407670
+rarity=U
+[/card]
+[card]
+primitive=Witness the End
+id=407592
+rarity=C
+[/card]
+[card]
+primitive=World Breaker
+id=407636
+rarity=M
+[/card]
+[card]
+primitive=Zada's Commando
+id=407630
+rarity=C
+[/card]
+[card]
+primitive=Zendikar Resurgent
+id=407657
+rarity=R
+[/card]
+[card]
+primitive=Zulaport Chainmage
+id=407603
+rarity=C
+[/card]
+

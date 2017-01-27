@@ -1,12 +1,18 @@
 package org.libsdl.app;
 
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -16,6 +22,7 @@ import javax.microedition.khronos.egl.EGLSurface;
 
 import net.wagic.app.R;
 import net.wagic.utils.StorageOptions;
+import net.wagic.utils.DeckImporter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -59,9 +66,11 @@ import android.widget.FrameLayout.LayoutParams;
  */
 public class SDLActivity extends Activity implements OnKeyListener
 {
+    private static final String TAG                                  = SDLActivity.class.getCanonicalName();
 
-    // TAG used for debugging in DDMS
-    public static String       TAG                                   = Activity.class.getCanonicalName();
+    //import deck globals
+    public ArrayList<String>   myresult                              = new ArrayList<String>();
+    public String              myclickedItem                         = "";
 
     // Main components
     private static SDLActivity mSingleton;
@@ -200,7 +209,60 @@ public class SDLActivity extends Activity implements OnKeyListener
 
         setStorage.create().show();
     }
+    
+    private void importDeckOptions()
+    {
+        AlertDialog.Builder importDeck = new AlertDialog.Builder(this);
+        importDeck.setTitle("Choose Deck to Import:");
+        File root = new File(System.getenv("EXTERNAL_STORAGE")+"/Download");
+        File[] files = root.listFiles();
+        for( File f : files) 
+        {
+            if( !myresult.contains(f.toString()) && (f.toString().contains(".txt")||f.toString().contains(".dck")||f.toString().contains(".dec")))
+                myresult.add(f.toString());
+        }
+        
+        //get first item?
+        if(!myresult.isEmpty())
+            myclickedItem = myresult.get(0).toString();
+        
+        importDeck.setSingleChoiceItems(myresult.toArray(new String[myresult.size()]), 0, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int item)
+            {
+                myclickedItem = myresult.get(item).toString();
+            }
+        });
 
+        importDeck.setPositiveButton("Import Deck", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int which)
+            {
+                processSelectedDeck( myclickedItem );
+                if (mSurface == null)
+                    mSingleton.initializeGame();
+            }
+        });
+
+        importDeck.create().show();
+    }
+    
+    private void processSelectedDeck(String mypath)
+    {
+        AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+        infoDialog.setTitle("Imported Deck:");
+        String activePath = sdcardPath;
+        if(activePath == ""){
+            activePath = internalPath;
+        }
+            
+        File f = new File(mypath);
+        //Call the deck importer....
+        String state = DeckImporter.importDeck(f, mypath, activePath);
+        infoDialog.setMessage(state);
+        infoDialog.show();
+    }
+  
     private void checkStorageLocationPreference()
     {
         SharedPreferences settings = getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE);
@@ -287,7 +349,7 @@ public class SDLActivity extends Activity implements OnKeyListener
             updateStorageLocations();
         } catch (Exception ioex)
         {
-            Log.e("SDL", "An error occurred in setting up the storage locations.");
+            Log.e(TAG, "An error occurred in setting up the storage locations.");
         }
     }
 
@@ -334,7 +396,8 @@ public class SDLActivity extends Activity implements OnKeyListener
     public boolean onCreateOptionsMenu(Menu menu)
     {
         SubMenu settingsMenu = menu.addSubMenu(Menu.NONE, 1, 1, "Settings");
-        menu.add(Menu.NONE, 2, 2, "About");
+        menu.add(Menu.NONE, 2, 2, "Import");
+        menu.add(Menu.NONE, 3, 3, "About");
         settingsMenu.add(kStorageDataOptionsMenuId, kStorageDataOptionsMenuId, Menu.NONE, "Storage Data Options");
         // buildStorageOptionsMenu(settingsMenu);
 
@@ -350,6 +413,9 @@ public class SDLActivity extends Activity implements OnKeyListener
         {
             displayStorageOptions();
         } else if (itemId == 2)
+        {
+            importDeckOptions();
+        } else if (itemId == 3)
         {
             // display some info about the app
             AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
@@ -428,14 +494,12 @@ public class SDLActivity extends Activity implements OnKeyListener
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        // Log.v("SDL", "onCreate()");
+        //Log.d(TAG, "onCreate()");
         super.onCreate(savedInstanceState);
 
         // So we can call stuff from static callbacks
         mSingleton = this;
         mContext = this.getApplicationContext();
-        // get the current version of the app to set the core filename
-        String versionCodeString = getApplicationCode();
         RES_FILENAME = getResourceName();
 
         StorageOptions.determineStorageOptions();
@@ -463,7 +527,7 @@ public class SDLActivity extends Activity implements OnKeyListener
     @Override
     protected void onPause()
     {
-        // Log.v("SDL", "onPause()");
+        // Log.d(TAG, "onPause()");
         super.onPause();
         SDLActivity.nativePause();
     }
@@ -471,7 +535,7 @@ public class SDLActivity extends Activity implements OnKeyListener
     @Override
     protected void onResume()
     {
-        // Log.v("SDL", "onResume()");
+        // Log.d(TAG, "onResume()");
         super.onResume();
         SDLActivity.nativeResume();
     }
@@ -479,8 +543,7 @@ public class SDLActivity extends Activity implements OnKeyListener
     @Override
     public void onDestroy()
     {
-        // Log.v("SDL", "onDestroy()");
-
+        // Log.d(TAG, "onDestroy()");
         super.onDestroy();
         mSurface.onDestroy();
     }
@@ -591,7 +654,7 @@ public class SDLActivity extends Activity implements OnKeyListener
         int audioFormat = is16Bit ? AudioFormat.ENCODING_PCM_16BIT : AudioFormat.ENCODING_PCM_8BIT;
         int frameSize = (isStereo ? 2 : 1) * (is16Bit ? 2 : 1);
 
-        // Log.v("SDL", "SDL audio: wanted " + (isStereo ? "stereo" : "mono") + " " + (is16Bit ? "16-bit" : "8-bit") + " " + ((float)sampleRate / 1000f) + "kHz, " + desiredFrames + " frames buffer");
+        // Log.d(TAG, "SDL audio: wanted " + (isStereo ? "stereo" : "mono") + " " + (is16Bit ? "16-bit" : "8-bit") + " " + ((float)sampleRate / 1000f) + "kHz, " + desiredFrames + " frames buffer");
 
         // Let the user pick a larger buffer if they really want -- but ye
         // gods they probably shouldn't, the minimums are horrifyingly high
@@ -602,7 +665,7 @@ public class SDLActivity extends Activity implements OnKeyListener
 
         audioStartThread();
 
-        // Log.v("SDL", "SDL audio: got " + ((mAudioTrack.getChannelCount() >= 2) ? "stereo" : "mono") + " " + ((mAudioTrack.getAudioFormat() == AudioFormat.ENCODING_PCM_16BIT) ? "16-bit" : "8-bit") + " " + ((float)mAudioTrack.getSampleRate() / 1000f) +
+        // Log.d(TAG, "SDL audio: got " + ((mAudioTrack.getChannelCount() >= 2) ? "stereo" : "mono") + " " + ((mAudioTrack.getAudioFormat() == AudioFormat.ENCODING_PCM_16BIT) ? "16-bit" : "8-bit") + " " + ((float)mAudioTrack.getSampleRate() / 1000f) +
         // "kHz, " + desiredFrames + " frames buffer");
 
         if (is16Bit)
@@ -650,7 +713,7 @@ public class SDLActivity extends Activity implements OnKeyListener
                 }
             } else
             {
-                Log.w("SDL", "SDL audio: error return from write(short)");
+                Log.w(TAG, "SDL audio: error return from write(short)");
                 return;
             }
         }
@@ -675,7 +738,7 @@ public class SDLActivity extends Activity implements OnKeyListener
                 }
             } else
             {
-                Log.w("SDL", "SDL audio: error return from write(short)");
+                Log.w(TAG, "SDL audio: error return from write(short)");
                 return;
             }
         }
@@ -690,11 +753,11 @@ public class SDLActivity extends Activity implements OnKeyListener
                 mAudioThread.join();
             } catch (Exception e)
             {
-                Log.v("SDL", "Problem stopping audio thread: " + e);
+                Log.e(TAG, "Problem stopping audio thread: " + e);
             }
             mAudioThread = null;
 
-            // Log.v("SDL", "Finished waiting for audio thread");
+            // Log.d(TAG, "Finished waiting for audio thread");
         }
 
         if (mAudioTrack != null)
@@ -706,7 +769,7 @@ public class SDLActivity extends Activity implements OnKeyListener
 
     class DownloadFileAsync extends AsyncTask<String, Integer, Long>
     {
-        final String TAG1 = DownloadFileAsync.class.getCanonicalName();
+        private final String TAG = DownloadFileAsync.class.getCanonicalName();
 
         @Override
         protected void onPreExecute()
@@ -725,7 +788,6 @@ public class SDLActivity extends Activity implements OnKeyListener
 
             try
             {
-
                 //
                 // Prepare the sdcard folders in order to download the resource file
                 //
@@ -746,7 +808,7 @@ public class SDLActivity extends Activity implements OnKeyListener
                 conexion.connect();
 
                 int lengthOfFile = conexion.getContentLength();
-                // Log.d("Wagic - " + TAG1, " Length of file: " + lengthOfFile);
+                // Log.d(TAG, " Length of file: " + lengthOfFile);
 
                 input = new BufferedInputStream(url.openStream());
                 // create a File object for the output file
@@ -769,8 +831,8 @@ public class SDLActivity extends Activity implements OnKeyListener
             {
                 String errorMessage = "An error happened while downloading the resources. It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + mSingleton.getSystemStorageLocation() + ". Please check your phone settings and try again. For more help please go to http://wagic.net";
                 mSingleton.downloadError(errorMessage);
-                Log.e(TAG1, errorMessage);
-                Log.e(TAG1, e.getMessage());
+                Log.e(TAG, errorMessage);
+                Log.e(TAG, e.getMessage());
             }
 
             return Long.valueOf(totalBytes);
@@ -780,7 +842,7 @@ public class SDLActivity extends Activity implements OnKeyListener
         {
             if (progress[0] != mProgressDialog.getProgress())
             {
-                // Log.d("Wagic - " + TAG1, "current progress : " + progress[0]);
+                // Log.d(TAG, "current progress : " + progress[0]);
                 mProgressDialog.setProgress(progress[0]);
             }
         }
@@ -853,6 +915,7 @@ public class SDLActivity extends Activity implements OnKeyListener
  */
 class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnKeyListener, View.OnTouchListener, SensorEventListener
 {
+    private static final String    TAG = SDLSurface.class.getCanonicalName();
 
     // This is what SDL runs in. It invokes SDL_main(), eventually
     private Thread                 mSDLThread;
@@ -892,7 +955,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
 
             SDLActivity.nativeQuit();
 
-            Log.v("SDL", "SDL thread terminated");
+            Log.d(TAG, "SDL thread terminated");
 
             // On exit, tear everything down for a fresh restart next time.
             System.exit(0);
@@ -919,7 +982,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
     // Called when we have a valid drawing surface
     public void surfaceCreated(SurfaceHolder holder)
     {
-        Log.v("SDL", "surfaceCreated()");
+        //Log.d(TAG, "surfaceCreated()");
 
         enableSensor(Sensor.TYPE_ACCELEROMETER, true);
     }
@@ -939,18 +1002,18 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
                 mSDLThread.join();
             } catch (Exception e)
             {
-                Log.v("SDL", "Problem stopping thread: " + e);
+                Log.e(TAG, "Problem stopping thread: " + e);
             }
             mSDLThread = null;
 
-            // Log.v("SDL", "Finished waiting for SDL thread");
+            // Log.d(TAG, "Finished waiting for SDL thread");
         }
     }
 
     // Called when we lose the surface
     public void surfaceDestroyed(SurfaceHolder holder)
     {
-        Log.v("SDL", "surfaceDestroyed()");
+        Log.d(TAG, "surfaceDestroyed()");
         synchronized (mSemSurface)
         {
             mSurfaceValid = false;
@@ -962,51 +1025,51 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
     // Called when the surface is resized
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
     {
-        Log.d("SDL", "surfaceChanged()");
+        Log.d(TAG, "surfaceChanged()");
 
         int sdlFormat = 0x85151002; // SDL_PIXELFORMAT_RGB565 by default
         switch (format)
         {
         case PixelFormat.A_8:
-            Log.d("SDL", "pixel format A_8");
+            Log.d("TAG", "pixel format A_8");
             break;
         case PixelFormat.LA_88:
-            Log.d("SDL", "pixel format LA_88");
+            Log.d("TAG", "pixel format LA_88");
             break;
         case PixelFormat.L_8:
-            Log.d("SDL", "pixel format L_8");
+            Log.d("TAG", "pixel format L_8");
             break;
         case PixelFormat.RGBA_4444:
-            Log.d("SDL", "pixel format RGBA_4444");
+            Log.d("TAG", "pixel format RGBA_4444");
             sdlFormat = 0x85421002; // SDL_PIXELFORMAT_RGBA4444
             break;
         case PixelFormat.RGBA_5551:
-            Log.d("SDL", "pixel format RGBA_5551");
+            Log.d(TAG, "pixel format RGBA_5551");
             sdlFormat = 0x85441002; // SDL_PIXELFORMAT_RGBA5551
             break;
         case PixelFormat.RGBA_8888:
-            Log.d("SDL", "pixel format RGBA_8888");
+            Log.d(TAG, "pixel format RGBA_8888");
             sdlFormat = 0x86462004; // SDL_PIXELFORMAT_RGBA8888
             break;
         case PixelFormat.RGBX_8888:
-            Log.d("SDL", "pixel format RGBX_8888");
+            Log.d(TAG, "pixel format RGBX_8888");
             sdlFormat = 0x86262004; // SDL_PIXELFORMAT_RGBX8888
             break;
         case PixelFormat.RGB_332:
-            Log.d("SDL", "pixel format RGB_332");
+            Log.d(TAG, "pixel format RGB_332");
             sdlFormat = 0x84110801; // SDL_PIXELFORMAT_RGB332
             break;
         case PixelFormat.RGB_565:
-            Log.d("SDL", "pixel format RGB_565");
+            Log.d(TAG, "pixel format RGB_565");
             sdlFormat = 0x85151002; // SDL_PIXELFORMAT_RGB565
             break;
         case PixelFormat.RGB_888:
-            Log.d("SDL", "pixel format RGB_888");
+            Log.d(TAG, "pixel format RGB_888");
             // Not sure this is right, maybe SDL_PIXELFORMAT_RGB24 instead?
             sdlFormat = 0x86161804; // SDL_PIXELFORMAT_RGB888
             break;
         default:
-            Log.d("SDL", "pixel format unknown " + format);
+            Log.d(TAG, "pixel format unknown " + format);
             break;
         }
         SDLActivity.onNativeResize(width, height, sdlFormat);
@@ -1023,11 +1086,10 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
     // EGL functions
     public boolean initEGL(int majorVersion, int minorVersion)
     {
-        Log.d("SDL", "Starting up OpenGL ES " + majorVersion + "." + minorVersion);
+        Log.d(TAG, "Starting up OpenGL ES " + majorVersion + "." + minorVersion);
 
         try
         {
-
             EGL10 egl = (EGL10) EGLContext.getEGL();
 
             EGLDisplay dpy = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
@@ -1053,7 +1115,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
             int[] num_config = new int[1];
             if (!egl.eglChooseConfig(dpy, configSpec, configs, 1, num_config) || num_config[0] == 0)
             {
-                Log.e("SDL", "No EGL config available");
+                Log.e(TAG, "No EGL config available");
                 return false;
             }
             mEGLConfig = configs[0];
@@ -1061,7 +1123,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
             EGLContext ctx = egl.eglCreateContext(dpy, mEGLConfig, EGL10.EGL_NO_CONTEXT, null);
             if (ctx == EGL10.EGL_NO_CONTEXT)
             {
-                Log.e("SDL", "Couldn't create context");
+                Log.e(TAG, "Couldn't create context");
                 return false;
             }
 
@@ -1075,10 +1137,10 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
 
         } catch (Exception e)
         {
-            Log.e("SDL", e + "");
+            Log.e(TAG, e + "");
             for (StackTraceElement s : e.getStackTrace())
             {
-                Log.e("SDL", s.toString());
+                Log.e(TAG, s.toString());
             }
         }
 
@@ -1093,7 +1155,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
         EGL10 egl = (EGL10) EGLContext.getEGL();
         if (mEGLSurface != null)
         {
-
             /*
              * Unbind and destroy the old EGL surface, if there is one.
              */
@@ -1107,7 +1168,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
         mEGLSurface = egl.eglCreateWindowSurface(mEGLDisplay, mEGLConfig, holder, null);
         if (mEGLSurface == EGL10.EGL_NO_SURFACE)
         {
-            Log.e("SDL", "Couldn't create surface");
+            Log.e(TAG, "Couldn't create surface");
             return false;
         }
 
@@ -1116,7 +1177,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
          */
         if (!egl.eglMakeCurrent(mEGLDisplay, mEGLSurface, mEGLSurface, mEGLContext))
         {
-            Log.e("SDL", "Couldn't make context current");
+            Log.e(TAG, "Couldn't make context current");
             return false;
         }
 
@@ -1128,7 +1189,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
     // EGL buffer flip
     public void flipEGL()
     {
-
         if (!mSurfaceValid)
         {
             createSurface(this.getHolder());
@@ -1138,7 +1198,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
         {
             EGL10 egl = (EGL10) EGLContext.getEGL();
 
-            egl.eglWaitNative(EGL10.EGL_NATIVE_RENDERABLE, null);
+            egl.eglWaitNative(EGL10.EGL_CORE_NATIVE_ENGINE, null);
 
             // drawing here
 
@@ -1148,13 +1208,12 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
 
         } catch (Exception e)
         {
-            Log.e("SDL", "flipEGL(): " + e);
+            Log.e(TAG, "flipEGL(): " + e);
             for (StackTraceElement s : e.getStackTrace())
             {
-                Log.e("SDL", s.toString());
+                Log.e(TAG, s.toString());
             }
         }
-
     }
 
     // Key events
@@ -1165,14 +1224,15 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
 
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
             return false;
+
         if (event.getAction() == KeyEvent.ACTION_DOWN)
         {
-            // Log.d("SDL", "key down: " + keyCode);
+            // Log.d(TAG, "key down: " + keyCode);
             SDLActivity.onNativeKeyDown(keyCode);
             return true;
         } else if (event.getAction() == KeyEvent.ACTION_UP)
         {
-            // Log.d("SDL", "key up: " + keyCode);
+            // Log.d(TAG, "key up: " + keyCode);
             SDLActivity.onNativeKeyUp(keyCode);
             return true;
         }
@@ -1183,7 +1243,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
     // Touch events
     public boolean onTouch(View v, MotionEvent event)
     {
-
         for (int index = 0; index < event.getPointerCount(); ++index)
         {
             int action = event.getActionMasked();

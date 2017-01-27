@@ -1,0 +1,412 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Speed vs. Cunning
+block=Duel
+year=2014
+total=81
+[/meta]
+[card]
+primitive=Act of Treason
+id=386299
+rarity=C
+[/card]
+[card]
+primitive=Aquamorph Entity
+id=386300
+rarity=C
+[/card]
+[card]
+primitive=Arc Trail
+id=386301
+rarity=U
+[/card]
+[card]
+primitive=Arcanis the Omnipotent
+id=386302
+rarity=M
+[/card]
+[card]
+primitive=Arrow Volley Trap
+id=386303
+rarity=U
+[/card]
+[card]
+primitive=Banefire
+id=386304
+rarity=R
+[/card]
+[card]
+primitive=Beetleback Chief
+id=386305
+rarity=U
+[/card]
+[card]
+primitive=Bone Splinters
+id=386306
+rarity=C
+[/card]
+[card]
+primitive=Coral Trickster
+id=386307
+rarity=C
+[/card]
+[card]
+primitive=Dauntless Onslaught
+id=386308
+rarity=U
+[/card]
+[card]
+primitive=Dregscape Zombie
+id=386309
+rarity=C
+[/card]
+[card]
+primitive=Echo Tracer
+id=386310
+rarity=C
+[/card]
+[card]
+primitive=Evolving Wilds
+id=386311
+rarity=C
+[/card]
+[card]
+primitive=Faerie Impostor
+id=386312
+rarity=U
+[/card]
+[card]
+primitive=Faerie Invaders
+id=386313
+rarity=C
+[/card]
+[card]
+primitive=Fathom Seer
+id=386314
+rarity=C
+[/card]
+[card]
+primitive=Fiery Fall
+id=386315
+rarity=C
+[/card]
+[card]
+primitive=Flame-Kin Zealot
+id=386316
+rarity=U
+[/card]
+[card]
+primitive=Fleeting Distraction
+id=386317
+rarity=C
+[/card]
+[card]
+primitive=Fleshbag Marauder
+id=386318
+rarity=U
+[/card]
+[card]
+primitive=Frenzied Goblin
+id=386319
+rarity=U
+[/card]
+[card]
+primitive=Fury of the Horde
+id=386320
+rarity=R
+[/card]
+[card]
+primitive=Ghitu Encampment
+id=386321
+rarity=U
+[/card]
+[card]
+primitive=Goblin Bombardment
+id=386323
+rarity=U
+[/card]
+[card]
+primitive=Goblin Deathraiders
+id=386324
+rarity=C
+[/card]
+[card]
+primitive=Goblin Warchief
+id=386325
+rarity=U
+[/card]
+[card]
+primitive=Hell's Thunder
+id=386326
+rarity=R
+[/card]
+[card]
+primitive=Hellraiser Goblin
+id=386327
+rarity=U
+[/card]
+[card]
+primitive=Hold the Line
+id=386328
+rarity=R
+[/card]
+[card]
+primitive=Hussar Patrol
+id=386329
+rarity=C
+[/card]
+[card]
+primitive=Impulse
+id=386330
+rarity=C
+[/card]
+[card]
+primitive=Infantry Veteran
+id=386331
+rarity=C
+[/card]
+[card]
+primitive=Inferno Trap
+id=386332
+rarity=U
+[/card]
+[card]
+primitive=Island
+id=386333
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=386334
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=386335
+rarity=L
+[/card]
+[card]
+primitive=Jeskai Elder
+id=386336
+rarity=U
+[/card]
+[card]
+primitive=Kathari Bomber
+id=386337
+rarity=C
+[/card]
+[card]
+primitive=Kor Hookmaster
+id=386338
+rarity=C
+[/card]
+[card]
+primitive=Krenko's Command
+id=386340
+rarity=C
+[/card]
+[card]
+primitive=Krenko, Mob Boss
+id=386339
+rarity=R
+[/card]
+[card]
+primitive=Leonin Snarecaster
+id=386341
+rarity=C
+[/card]
+[card]
+primitive=Lightning Angel
+id=386342
+rarity=R
+[/card]
+[card]
+primitive=Lightning Helix
+id=386343
+rarity=U
+[/card]
+[card]
+primitive=Lone Missionary
+id=386344
+rarity=C
+[/card]
+[card]
+primitive=Mana Leak
+id=386345
+rarity=C
+[/card]
+[card]
+primitive=Mardu Heart-Piercer
+id=386346
+rarity=U
+[/card]
+[card]
+primitive=Master Decoy
+id=386347
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=386348
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=386349
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=386350
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=386351
+rarity=L
+[/card]
+[card]
+primitive=Mystic Monastery
+id=386352
+rarity=U
+[/card]
+[card]
+primitive=Nomad Outpost
+id=386353
+rarity=U
+[/card]
+[card]
+primitive=Ogre Battledriver
+id=386354
+rarity=R
+[/card]
+[card]
+primitive=Oni of Wild Places
+id=386355
+rarity=U
+[/card]
+[card]
+primitive=Orcish Cannonade
+id=386356
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=386357
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=386358
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=386359
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=386360
+rarity=L
+[/card]
+[card]
+primitive=Reckless Abandon
+id=386361
+rarity=C
+[/card]
+[card]
+primitive=Repeal
+id=386362
+rarity=C
+[/card]
+[card]
+primitive=Scourge Devil
+id=386363
+rarity=U
+[/card]
+[card]
+primitive=Shambling Remains
+id=386364
+rarity=U
+[/card]
+[card]
+primitive=Shock
+id=386365
+rarity=C
+[/card]
+[card]
+primitive=Sparkmage Apprentice
+id=386366
+rarity=C
+[/card]
+[card]
+primitive=Sphinx of Uthuun
+id=386367
+rarity=R
+[/card]
+[card]
+primitive=Stave Off
+id=386368
+rarity=C
+[/card]
+[card]
+primitive=Steam Augury
+id=386369
+rarity=R
+[/card]
+[card]
+primitive=Stonecloaker
+id=386370
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=386371
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=386372
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=386373
+rarity=L
+[/card]
+[card]
+primitive=Swift Justice
+id=386374
+rarity=C
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=386375
+rarity=C
+[/card]
+[card]
+primitive=Thousand Winds
+id=386376
+rarity=R
+[/card]
+[card]
+primitive=Traumatic Visions
+id=386377
+rarity=C
+[/card]
+[card]
+primitive=Whiplash Trap
+id=386378
+rarity=C
+[/card]
+[card]
+primitive=Willbender
+id=386379
+rarity=U
+[/card]
+[card]
+primitive=Zurgo Helmsmasher
+id=386380
+rarity=M
+[/card]

@@ -1,0 +1,234 @@
+[card]
+name=Alms
+text={1}, Exile the top card of your graveyard: Prevent the next 1 damage that would be dealt to target creature this turn.
+mana={W}
+type=Enchantment
+[/card]
+[card]
+name=Bosium Strip
+text={3}, {T}: Until end of turn, if the top card of your graveyard is an instant or sorcery card, you may cast that card. If a card cast this way would be put into a graveyard this turn, exile it instead.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Benalish Infantry
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=3
+[/card]
+[card]
+name=Benalish Missionary
+text={1}{W}, {T}: Prevent all combat damage that would be dealt by target blocked creature this turn.
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Bone Dancer
+text=Whenever Bone Dancer attacks and isn't blocked, you may put the top creature card of defending player's graveyard onto the battlefield under your control. If you do, Bone Dancer assigns no combat damage this turn.
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
+name=Choking Vines
+text=Cast Choking Vines only during the declare blockers step. -- X target attacking creatures become blocked. Choking Vines deals 1 damage to each of those creatures. (This spell works on unblockable creatures.)
+mana={X}{G}
+type=Instant
+[/card]
+[card]
+name=Circling Vultures
+text=Flying -- You may discard Circling Vultures any time you could cast an instant. -- At the beginning of your upkeep, sacrifice Circling Vultures unless you exile the top creature card of your graveyard.
+mana={B}
+type=Creature
+subtype=Bird
+power=3
+toughness=2
+[/card]
+[card]
+name=Coils of the Medusa
+text=Enchant creature -- Enchanted creature gets +1/-1. -- Sacrifice Coils of the Medusa: Destroy all non-Wall creatures blocking enchanted creature.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Cone of Flame
+text=Cone of Flame deals 1 damage to target creature or player, 2 damage to another target creature or player, and 3 damage to a third target creature or player.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Debt of Loyalty
+text=Regenerate target creature. You gain control of that creature if it regenerates this way.
+mana={1}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Desperate Gambit
+text=Choose a source you control and flip a coin. If you win the flip, the next time that source would deal damage this turn, it deals double that damage instead. If you lose the flip, the next time it would deal damage this turn, prevent that damage.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Doomsday
+text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
+mana={B}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Ertai's Familiar
+text=Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- When Ertai's Familiar phases out or leaves the battlefield, put the top three cards of your library into your graveyard. -- {U}: Until your next upkeep, Ertai's Familiar can't phase out.
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=2
+toughness=2
+[/card]
+[card]
+name=Firestorm
+text=As an additional cost to cast Firestorm, discard X cards. -- Firestorm deals X damage to each of X target creatures and/or players.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Foriysian Brigade
+text=Foriysian Brigade can block an additional creature.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
+name=Goblin Grenadiers
+text=Whenever Goblin Grenadiers attacks and isn't blocked, you may sacrifice it. If you do, destroy target creature and target land.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
+name=Haunting Misery
+text=As an additional cost to cast Haunting Misery, exile X creature cards from your graveyard. -- Haunting Misery deals X damage to target player.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Kithkin Armor
+text=Enchant creature -- Enchanted creature can't be blocked by creatures with power 3 or greater. -- Sacrifice Kithkin Armor: The next time a source of your choice would deal damage to enchanted creature this turn, prevent that damage.
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Liege of the Hollows
+text=When Liege of the Hollows dies, each player may pay any amount of mana. Then each player who paid mana this way puts that many 1/1 green Squirrel creature tokens onto the battlefield.
+mana={2}{G}{G}
+type=Creature
+subtype=Spirit
+power=3
+toughness=4
+[/card]
+[card]
+name=Mana Web
+text=Whenever a land an opponent controls is tapped for mana, tap all lands that player controls that could produce any type of mana that land could produce.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Master of Arms
+text=First strike -- {1}{W}: Tap target creature blocking Master of Arms.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Mistmoon Griffin
+text=Flying -- When Mistmoon Griffin dies, exile Mistmoon Griffin, then return the top creature card of your graveyard to the battlefield.
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+[/card]
+[card]
+name=Nature's Kiss
+text=Enchant creature -- {1}, Exile the top card of your graveyard: Enchanted creature gets +1/+1 until end of turn.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Necratog
+text=Exile the top creature card of your graveyard: Necratog gets +2/+2 until end of turn.
+mana={1}{B}{B}
+type=Creature
+subtype=Atog
+power=1
+toughness=2
+[/card]
+[card]
+name=Phyrexian Furnace
+text={T}: Exile the bottom card of target player's graveyard. -- {1}, Sacrifice Phyrexian Furnace: Exile target card from a graveyard. Draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Spinning Darkness
+text=You may exile the top three black cards of your graveyard rather than pay Spinning Darkness's mana cost. -- Spinning Darkness deals 3 damage to target nonblack creature. You gain 3 life.
+mana={4}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Tariff
+text=Each player sacrifices the creature he or she controls with the highest converted mana cost unless he or she pays that creature's mana cost. If two creatures a player controls are tied for highest cost, that player chooses one.
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
+name=Thran Tome
+text={5}, {T}: Reveal the top three cards of your library. Target opponent chooses one of those cards. Put that card into your graveyard, then draw two cards.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Volunteer Reserves
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
+name=Wave of Terror
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your draw step, destroy each creature with converted mana cost equal to the number of age counters on Wave of Terror. They can't be regenerated.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Well of Knowledge
+text={2}: Draw a card. Any player may activate this ability but only during his or her draw step.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Zombie Scavengers
+text=Exile the top creature card of your graveyard: Regenerate Zombie Scavengers.
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=1
+[/card]

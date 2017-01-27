@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
-name=4th Edition
+name=Fourth Edition
 year=1995
+total=378
 [/meta]
 [card]
 primitive=Abomination
@@ -74,13 +75,13 @@ id=2144
 rarity=C
 [/card]
 [card]
-primitive=Armageddon
-id=2320
+primitive=Armageddon Clock
+id=2018
 rarity=R
 [/card]
 [card]
-primitive=Armageddon Clock
-id=2018
+primitive=Armageddon
+id=2320
 rarity=R
 [/card]
 [card]
@@ -509,13 +510,13 @@ id=2041
 rarity=R
 [/card]
 [card]
-primitive=Elder Land Wurm
-id=2339
+primitive=El-Hajjaj
+id=2101
 rarity=R
 [/card]
 [card]
-primitive=El-Hajjaj
-id=2101
+primitive=Elder Land Wurm
+id=2339
 rarity=R
 [/card]
 [card]
@@ -630,7 +631,7 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
-id=2379
+id=2377
 rarity=L
 [/card]
 [card]
@@ -640,7 +641,7 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=2377
+id=2379
 rarity=L
 [/card]
 [card]
@@ -839,8 +840,18 @@ id=2220
 rarity=C
 [/card]
 [card]
+primitive=Island Fish Jasconius
+id=2161
+rarity=R
+[/card]
+[card]
+primitive=Island Sanctuary
+id=2346
+rarity=R
+[/card]
+[card]
 primitive=Island
-id=2391
+id=2389
 rarity=L
 [/card]
 [card]
@@ -850,18 +861,8 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=2389
+id=2391
 rarity=L
-[/card]
-[card]
-primitive=Island Fish Jasconius
-id=2161
-rarity=R
-[/card]
-[card]
-primitive=Island Sanctuary
-id=2346
-rarity=R
 [/card]
 [card]
 primitive=Ivory Cup
@@ -1105,7 +1106,7 @@ rarity=C
 [/card]
 [card]
 primitive=Mountain
-id=2383
+id=2381
 rarity=L
 [/card]
 [card]
@@ -1115,7 +1116,7 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=2381
+id=2383
 rarity=L
 [/card]
 [card]
@@ -1245,7 +1246,7 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=2386
+id=2384
 rarity=L
 [/card]
 [card]
@@ -1255,7 +1256,7 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=2384
+id=2386
 rarity=L
 [/card]
 [card]
@@ -1545,7 +1546,7 @@ rarity=C
 [/card]
 [card]
 primitive=Swamp
-id=2376
+id=2374
 rarity=L
 [/card]
 [card]
@@ -1555,7 +1556,7 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=2374
+id=2376
 rarity=L
 [/card]
 [card]

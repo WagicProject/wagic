@@ -1,0 +1,112 @@
+[card]
+name=Auratouched Mage
+text=When Auratouched Mage enters the battlefield, search your library for an Aura card that could enchant it. If Auratouched Mage is still on the battlefield, put that Aura card onto the battlefield attached to it. Otherwise, reveal the Aura card and put it into your hand. Then shuffle your library.
+mana={5}{W}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Boar Umbra
+text=Enchant creature -- Enchanted creature gets +3/+3. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Elderwood Scion
+text=Trample, lifelink -- Spells you cast that target Elderwood Scion cost {2} less to cast. -- Spells your opponents cast that target Elderwood Scion cost {2} more to cast.
+mana={3}{G}{W}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]
+[card]
+name=Enigma Sphinx
+text=Flying -- When Enigma Sphinx is put into your graveyard from the battlefield, put it into your library third from the top. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
+mana={4}{W}{U}{B}
+type=Artifact Creature
+subtype=Sphinx
+power=5
+toughness=4
+[/card]
+[card]
+name=Felidar Umbra
+text=Enchant creature -- Enchanted creature has lifelink. -- {1}{W}: Attach Felidar Umbra to target creature you control. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Fractured Powerstone
+text={T}: Add {1} to your mana pool. -- {T}: Roll the planar die. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Hyena Umbra
+text=Enchant creature -- Enchanted creature gets +1/+1 and has first strike. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Indrik Umbra
+text=Enchant creature -- Enchanted creature gets +4/+4 and has first strike, and all creatures able to block it do so. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={4}{G}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Maelstrom Wanderer
+text=Creatures you control have haste. -- Cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order. Then do it again.)
+mana={5}{U}{R}{G}
+type=Legendary Creature
+subtype=Elemental
+power=7
+toughness=5
+[/card]
+[card]
+name=Mammoth Umbra
+text=Enchant creature -- Enchanted creature gets +3/+3 and has vigilance. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={4}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Quiet Disrepair
+text=Enchant artifact or enchantment -- At the beginning of your upkeep, choose one — Destroy enchanted permanent; or you gain 2 life.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Rivals' Duel
+text=Choose two target creatures that share no creature types. Those creatures fight each other. (Each deals damage equal to its power to the other.)
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Snake Umbra
+text=Enchant creature -- Enchanted creature gets +1/+1 and has "Whenever this creature deals damage to an opponent, you may draw a card." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Three Dreams
+text=Search your library for up to three Aura cards with different names, reveal them, and put them into your hand. Then shuffle your library.
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
+name=Thromok the Insatiable
+text=Devour X, where X is the number of creatures devoured this way (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with X +1/+1 counters on it for each of those creatures.)
+mana={3}{R}{G}
+type=Legendary Creature
+subtype=Hellion
+power=0
+toughness=0
+[/card]

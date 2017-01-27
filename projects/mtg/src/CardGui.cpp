@@ -148,12 +148,22 @@ void CardGui::Render()
         MTGCard * fcard = MTGCollection()->getCardByName(card->name);
         quad = game->getResourceManager()->RetrieveCard(fcard, CACHE_THUMB);
     }
+    if (game && card->hasCopiedToken && !quad.get())
+    {
+        MTGCard * tcard = MTGCollection()->getCardById(abs(card->copiedID));
+        quad = game->getResourceManager()->RetrieveCardToken(tcard, CACHE_THUMB, 1, abs(card->copiedID));
+    }
     if (quad.get())
         alternate = false;
     else
         quad = AlternateThumbQuad(card);
 
-    float cardScale = quad ? 40 / quad->mHeight : 1;
+    float cardScale = quad ? 38 / quad->mHeight : 1;
+    //I want the below for melded cards but I dont know how to adjust everything else
+    //to look neat and clean. leaving this here incase someone else wants to pretty up the p/t box
+    //and line up the position.
+   /* if (card->MeldedFrom.size())
+        cardScale = cardScale + (10 / quad->mHeight);*/
     float scale = actZ * cardScale;
 
     JQuadPtr shadow;
@@ -244,7 +254,11 @@ void CardGui::Render()
         highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
         if(fakeborder)
         {
-            fakeborder->SetColor(ARGB((int)(actA),15,15,15));
+            if(card->has(Constants::CANPLAYFROMGRAVEYARD)||card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO)
+                ||((card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)))
+                fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
+            else
+                fakeborder->SetColor(ARGB((int)(actA),15,15,15));
             renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
         }
         //draw border for highlighting
@@ -259,6 +273,46 @@ void CardGui::Render()
             {
                 highlightborder->SetColor(ARGB(95,0,245,0));
                 renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+            }
+            if(card->myPair && card->myPair->isInPlay(game) && highlightborder)
+            {
+                if(mHasFocus)
+                {
+                    highlightborder->SetColor(ARGB(200,7,98,248));
+                    renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                }
+                if(CardView* cv = dynamic_cast<CardView*>(card->myPair->view))
+                {
+                    if(cv->mHasFocus)
+                    {
+                        highlightborder->SetColor(ARGB(200,57,28,248));
+                        renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                    }
+                }
+            }
+            if(card->shackled && card->shackled->isInPlay(game) && highlightborder)
+            {
+                if(mHasFocus)
+                {
+                    if(card->has(Constants::SHACKLER))
+                        highlightborder->SetColor(ARGB(200,7,98,248));
+                    else
+                        highlightborder->SetColor(ARGB(200,57,28,248));
+
+                    renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                }
+                if(CardView* cv = dynamic_cast<CardView*>(card->shackled->view))
+                {
+                    if(cv->mHasFocus)
+                    {
+                        if(!card->shackled->has(Constants::SHACKLER))
+                            highlightborder->SetColor(ARGB(200,7,98,248));
+                        else
+                            highlightborder->SetColor(ARGB(200,57,28,248));
+
+                        renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                    }
+                }
             }
         }
         //draw the card image
@@ -337,9 +391,11 @@ void CardGui::Render()
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
         sprintf(buffer, "%i/%i", card->power, card->life);
-        renderer->FillRect(actX - (13 * actZ), actY + 4 * actZ, 25.5f * actZ, 14 * actZ,
+         //move up the p/t box by increasing ymody
+         float ymody = ((card->isAttacker()||card->isDefenser())&&card->isTapped())?-6.0f:0.0f;
+        renderer->FillRect(actX - (13 * actZ), actY + ymody + 4 * actZ, 25.5f * actZ, 14 * actZ,
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
-        renderer->DrawRect(actX - (13 * actZ), actY + 4 * actZ, 25.5f * actZ, 14 * actZ,
+        renderer->DrawRect(actX - (13 * actZ), actY + ymody + 4 * actZ, 25.5f * actZ, 14 * actZ,
             ARGB(((static_cast<unsigned char>(actA))),20,20,20));
         //damaged or buffed or powered down        
         if(card->wasDealtDamage && card->life <= 2)
@@ -354,7 +410,8 @@ void CardGui::Render()
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
         mFont->SetScale(actZ);
         mFont->SetScale(actZ);
-        mFont->DrawString(buffer, actX - 10 * actZ, actY + 7 * actZ);
+        float halfbufferW = (mFont->GetStringWidth(buffer))/2;
+        mFont->DrawString(buffer, actX - halfbufferW, actY + ymody + 7 * actZ);
         mFont->SetScale(1);
     }
 
@@ -365,9 +422,9 @@ void CardGui::Render()
         buff = "CT";
     if(!card->isToken && card->isACopier)
         buff = "C";
-    if(card->has(Constants::PAYZERO))
-        buff += "Z";
-    if(card->alias == 1000)
+    //if(card->has(Constants::PAYZERO))
+        //buff += "Z";
+    if(card->chooseacolor >= 1)
     {
         if(card->chooseacolor == 1)
             buff += "\n-Green";
@@ -481,6 +538,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     // Draw the "unknown" card model
     JRenderer * renderer = JRenderer::GetInstance();
     JQuadPtr q;
+    MTGCardInstance * thiscard = dynamic_cast<MTGCardInstance*> (card);
 
     float x = pos.actX;
    
@@ -501,6 +559,14 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     items.clear();
     if (q.get() && q->mTex)
     {
+        //test
+        //draw black border ingame only
+        if(thiscard && thiscard->getObserver())
+        {
+            renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
+            renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
+        }
+
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
 
         float scale = pos.actZ * 250 / q->mHeight;
@@ -654,6 +720,14 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                     st << _(card->data->name);
                     formattedfield = FormattedData(formattedfield, "title", st.str());
                 
+                }
+
+                found = Carditem->mName.find("cardid"); // Write the cardid
+                if (found != string::npos)
+                {
+                    stringstream st;
+                    st << card->getMTGId();
+                    formattedfield = FormattedData(formattedfield, "mtgid", st.str());
                 }
 
                 found = Carditem->mName.find("power"); // Write the strength
@@ -1066,7 +1140,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
     //    card = (MTGCard*)game->mLayers->actionLayer()->currentActionCard;
     //i want this but ai targets cards so quickly that it can crash the game.
     float x = pos.actX;
-
+    JQuadPtr alphabeta = WResourceManager::Instance()->RetrieveTempQuad("alphabeta.png");
     JQuadPtr quad = thumb ? WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_THUMB)
                           : WResourceManager::Instance()->RetrieveCard(card);
     MTGCardInstance * kcard =  dynamic_cast<MTGCardInstance*>(card);
@@ -1074,6 +1148,12 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
     {
         MTGCard * fcard = MTGCollection()->getCardByName(kcard->name);
         quad = WResourceManager::Instance()->RetrieveCard(fcard);
+    }
+    if (kcard && kcard->hasCopiedToken)
+    {
+        MTGCard * tcard = MTGCollection()->getCardById(abs(kcard->copiedID));
+        quad = thumb ? WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_THUMB, 1, abs(kcard->copiedID))
+                     : WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_NORMAL, 1, abs(kcard->copiedID));
     }
     if (quad.get())
     {
@@ -1087,25 +1167,40 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         string cardsetname = setlist[card->setId].c_str();
         if(!noborder)
         {
-            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR")
-            {
-                //like white border
-                renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,248,248,255));
-                //black thin line to simulate card edge
-                renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(150,20,20,20));
+            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+            {//Draw white border
+                renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,248,248,255));
+                renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(150,20,20,20));
             }
             else
             {
-                //like black border
-                renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,10,10,10));
-                //white thin line to simulate card edge
-                renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(50,240,240,240));
+                if(cardsetname == "LEA")
+                {//BETA HAS REGULAR BORDER
+                    //Draw more rounder black border
+                    renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f - 0.5f,pos.actZ * 239.4f + 8.f,10.f,ARGB(255,5,5,5));
+                    renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-10.f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f - 0.5f,pos.actZ * 239.4f + 8.f,10.f,ARGB(50,240,240,240));
+                }
+                else
+                {//draw black border
+                    renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
+                    renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
+                }
             }
-            //render card image
-            renderer->RenderQuad(quad.get(), x, pos.actY-2, pos.actT, scale-0.02f, scale-0.02f);
         }
-        else
-            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+        //draw inner border
+        if(cardsetname == "LEA"||cardsetname == "LEB")
+        {
+            if(alphabeta.get())
+            {
+                alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
+                float myscale = pos.actZ * 255 / alphabeta->mHeight;
+                alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
+                renderer->RenderQuad(alphabeta.get(), x, pos.actY+0.2f, pos.actT, myscale, myscale);
+            }
+        }
+        float modxscale = (cardsetname =="UNH")?0.02f:0.0f;
+        float modyscale = (cardsetname =="UNH")?0.015f:0.0f;
+        renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale+modxscale, scale+modyscale);
 
         RenderCountersBig(card, pos);
         return;
@@ -1285,6 +1380,28 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     else
                     {
                         cd.unsecuresetfresh(1);
+                    }
+                }
+                else if (attribute.find("recent") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecuresetrecent(-1);
+                    }
+                    else
+                    {
+                        cd.unsecuresetrecent(1);
+                    }
+                }
+                else if (attribute.find("geared") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDgeared = -1;
+                    }
+                    else
+                    {
+                        cd.CDgeared = 1;
                     }
                 }
                 //creature is a level up creature

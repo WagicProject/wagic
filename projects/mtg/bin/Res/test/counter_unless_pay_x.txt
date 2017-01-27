@@ -14,7 +14,9 @@ think twice
 no
 yes
 syncopate
+choice 3
 think twice
+syncopate
 choice 0
 [ASSERT]
 firstmain

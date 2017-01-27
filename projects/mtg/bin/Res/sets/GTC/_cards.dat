@@ -1,9 +1,15 @@
 [meta]
 author=Wagic Team
-name=GTC
+name=Gatecrash
+block=Return to Ravnica
 year=2013
-block=RTR
+total=249
 [/meta]
+[card]
+primitive=AEtherize
+id=366273
+rarity=U
+[/card]
 [card]
 primitive=Act of Treason
 id=366305
@@ -18,11 +24,6 @@ rarity=C
 primitive=Aerial Maneuver
 id=366294
 rarity=C
-[/card]
-[card]
-primitive=AEtherize
-id=366273
-rarity=U
 [/card]
 [card]
 primitive=Agoraphobia
@@ -70,13 +71,13 @@ id=366470
 rarity=R
 [/card]
 [card]
-primitive=Aurelia, the Warleader
-id=366448
+primitive=Aurelia's Fury
+id=366384
 rarity=M
 [/card]
 [card]
-primitive=Aurelia's Fury
-id=366384
+primitive=Aurelia, the Warleader
+id=366448
 rarity=M
 [/card]
 [card]
@@ -255,6 +256,11 @@ id=366251
 rarity=C
 [/card]
 [card]
+primitive=Death's Approach
+id=366300
+rarity=C
+[/card]
+[card]
 primitive=Deathcult Rogue
 id=366254
 rarity=C
@@ -263,11 +269,6 @@ rarity=C
 primitive=Deathpact Angel
 id=366278
 rarity=M
-[/card]
-[card]
-primitive=Death's Approach
-id=366300
-rarity=C
 [/card]
 [card]
 primitive=Debtor's Pulpit
@@ -610,14 +611,14 @@ id=366361
 rarity=C
 [/card]
 [card]
-primitive=Knight of Obligation
-id=366237
-rarity=U
-[/card]
-[card]
 primitive=Knight Watch
 id=366477
 rarity=C
+[/card]
+[card]
+primitive=Knight of Obligation
+id=366237
+rarity=U
 [/card]
 [card]
 primitive=Last Thoughts

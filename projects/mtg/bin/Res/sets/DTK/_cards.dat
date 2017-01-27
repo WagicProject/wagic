@@ -1,6 +1,9 @@
 [meta]
 author=Wagic Team
+name=Dragons of Tarkir
+block=Khans of Tarkir
 year=2015
+total=264
 [/meta]
 [card]
 primitive=Acid-Spewer Dragon
@@ -298,6 +301,16 @@ id=394543
 rarity=M
 [/card]
 [card]
+primitive=Dragon's Eye Sentry
+id=394544
+rarity=C
+[/card]
+[card]
+primitive=Dragon-Scarred Bear
+id=394553
+rarity=C
+[/card]
+[card]
 primitive=Dragonloft Idol
 id=394545
 rarity=U
@@ -336,16 +349,6 @@ rarity=R
 primitive=Dragonlord's Servant
 id=394552
 rarity=U
-[/card]
-[card]
-primitive=Dragon's Eye Sentry
-id=394544
-rarity=C
-[/card]
-[card]
-primitive=Dragon-Scarred Bear
-id=394553
-rarity=C
 [/card]
 [card]
 primitive=Dromoka Captain
@@ -444,8 +447,18 @@ rarity=R
 [/card]
 [card]
 primitive=Forest
+id=394573
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=394574
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=394575
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Foul Renewal
@@ -584,8 +597,18 @@ rarity=R
 [/card]
 [card]
 primitive=Island
+id=394603
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=394604
+rarity=L
+[/card]
+[card]
+primitive=Island
 id=394605
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Keeper of the Lens
@@ -700,7 +723,17 @@ rarity=C
 [card]
 primitive=Mountain
 id=394628
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=394629
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=394630
+rarity=L
 [/card]
 [card]
 primitive=Mystic Meditation
@@ -733,7 +766,7 @@ id=394636
 rarity=C
 [/card]
 [card]
-primitive=Obscuring Æther
+primitive=Obscuring AEther
 id=394637
 rarity=R
 [/card]
@@ -795,7 +828,17 @@ rarity=R
 [card]
 primitive=Plains
 id=394649
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=394650
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=394651
+rarity=L
 [/card]
 [card]
 primitive=Press the Advantage
@@ -1013,14 +1056,14 @@ id=394694
 rarity=C
 [/card]
 [card]
-primitive=Sidisi, Undead Vizier
-id=394695
-rarity=R
-[/card]
-[card]
 primitive=Sidisi's Faithful
 id=394696
 rarity=C
+[/card]
+[card]
+primitive=Sidisi, Undead Vizier
+id=394695
+rarity=R
 [/card]
 [card]
 primitive=Sight Beyond Sight
@@ -1150,7 +1193,17 @@ rarity=R
 [card]
 primitive=Swamp
 id=394722
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=394723
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=394724
+rarity=L
 [/card]
 [card]
 primitive=Swift Warkite
@@ -1271,54 +1324,4 @@ rarity=C
 primitive=Zurgo Bellstriker
 id=394748
 rarity=R
-[/card]
-[card]
-primitive=Forest
-id=394573
-rarity=C
-[/card]
-[card]
-primitive=Forest
-id=394574
-rarity=C
-[/card]
-[card]
-primitive=Island
-id=394603
-rarity=C
-[/card]
-[card]
-primitive=Island
-id=394604
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=394629
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=394630
-rarity=C
-[/card]
-[card]
-primitive=Plains
-id=394650
-rarity=C
-[/card]
-[card]
-primitive=Plains
-id=394651
-rarity=C
-[/card]
-[card]
-primitive=Swamp
-id=394723
-rarity=C
-[/card]
-[card]
-primitive=Swamp
-id=394724
-rarity=C
 [/card]

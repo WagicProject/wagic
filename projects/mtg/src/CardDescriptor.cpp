@@ -24,6 +24,15 @@ CardDescriptor::CardDescriptor()
     CDopponentDamaged = 0;
     CDcontrollerDamaged = 0;
     CDdamager = 0;
+    CDgeared = 0;
+    CDblocked = 0;
+    CDcanProduceC = 0;
+    CDcanProduceG = 0;
+    CDcanProduceU = 0;
+    CDcanProduceR = 0;
+    CDcanProduceB = 0;
+    CDcanProduceW = 0;
+    CDnocolor = 0;
 }
 
 int CardDescriptor::init()
@@ -49,11 +58,16 @@ void CardDescriptor::unsecuresetfresh(int k)
     fresh = k;
 }
 
+void CardDescriptor::unsecuresetrecent(int j)
+{
+    entersBattlefield = j;
+}
+
 void CardDescriptor::setisMultiColored(int w)
 {
     isMultiColored = w;
 }
-    
+
 void CardDescriptor::setNegativeSubtype(string value)
 {
     int id = MTGAllCards::findType(value);
@@ -211,6 +225,79 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         match = NULL;
     }
 
+    if ((entersBattlefield == -1 && card->entersBattlefield) || (entersBattlefield == 1 && !card->entersBattlefield))
+    {
+        match = NULL;
+    }
+    
+    if ((CDgeared == -1 && card->equipment > 0) || (CDgeared == 1 && card->equipment < 1))
+    {
+        match = NULL;
+    }
+    
+    if (CDblocked == -1)
+    {
+        if(!card->isAttacker())
+            match = NULL;
+        else
+        {
+            if(card->isBlocked())
+                match = NULL;
+        }
+    }
+
+    if (CDblocked == 1)
+    {
+        if(!card->isAttacker())
+            match = NULL;
+        else
+        {
+            if(!card->isBlocked())
+                match = NULL;
+        }
+    }
+    
+    if ((CDcanProduceC == -1 && card->canproduceC == 1) || (CDcanProduceC == 1 && card->canproduceC == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceG == -1 && card->canproduceG == 1) || (CDcanProduceG == 1 && card->canproduceG == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceU == -1 && card->canproduceU == 1) || (CDcanProduceU == 1 && card->canproduceU == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceR == -1 && card->canproduceR == 1) || (CDcanProduceR == 1 && card->canproduceR == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceB == -1 && card->canproduceB == 1) || (CDcanProduceB == 1 && card->canproduceB == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceW == -1 && card->canproduceW == 1) || (CDcanProduceW == 1 && card->canproduceW == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDnocolor == -1 && card->getColor() == 0))
+    {
+        match = NULL;
+    }
+    else if(CDnocolor == 1)
+    {
+        if(!card->has(Constants::DEVOID))
+            if(card->getColor()>0)
+                match = NULL;
+    }
+
     if ((isMultiColored == -1 && card->isMultiColored) || (isMultiColored == 1 && !card->isMultiColored))
     {
         match = NULL;
@@ -301,7 +388,14 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     //Counters
-    if (anyCounter)
+    if (anyCounter == -1)
+    {
+        if (card->counters->mCount)
+        {
+            match = NULL;
+        }
+    }
+    else if (anyCounter)
     {
         if (!(card->counters->mCount))
         {

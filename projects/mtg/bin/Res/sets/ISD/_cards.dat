@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Innistrad
+block=Innistrad
 year=2011
-block=Inni
+total=284
 [/meta]
 [card]
 primitive=Abattoir Ghoul
@@ -49,23 +51,18 @@ id=229968
 rarity=M
 [/card]
 [card]
-primitive=Zombie Token
-id=-229968
-rarity=T
-[/card]
-[card]
 primitive=Ashmouth Hound
 id=233255
 rarity=C
 [/card]
 [card]
-primitive=Avacynian Priest
-id=220380
+primitive=Avacyn's Pilgrim
+id=243212
 rarity=C
 [/card]
 [card]
-primitive=Avacyn's Pilgrim
-id=243212
+primitive=Avacynian Priest
+id=220380
 rarity=C
 [/card]
 [card]
@@ -77,6 +74,11 @@ rarity=R
 primitive=Balefire Dragon
 id=230774
 rarity=M
+[/card]
+[card]
+primitive=Bane of Hanweir
+id=244687
+rarity=T
 [/card]
 [card]
 primitive=Battleground Geist
@@ -112,11 +114,6 @@ rarity=R
 primitive=Bloodline Keeper
 id=227061
 rarity=R
-[/card]
-[card]
-primitive=Lord of Lineage
-id=227072
-rarity=T
 [/card]
 [card]
 primitive=Bonds of Faith
@@ -194,11 +191,6 @@ id=221209
 rarity=U
 [/card]
 [card]
-primitive=Homicidal Brute
-id=221185
-rarity=T
-[/card]
-[card]
 primitive=Claustrophobia
 id=235601
 rarity=C
@@ -212,11 +204,6 @@ rarity=R
 primitive=Cloistered Youth
 id=221212
 rarity=U
-[/card]
-[card]
-primitive=Unholy Fiend
-id=221222
-rarity=T
 [/card]
 [card]
 primitive=Cobbled Wings
@@ -289,11 +276,6 @@ id=222118
 rarity=R
 [/card]
 [card]
-primitive=Nightfall Predator
-id=222114
-rarity=T
-[/card]
-[card]
 primitive=Dead Weight
 id=220393
 rarity=C
@@ -307,11 +289,6 @@ rarity=R
 primitive=Delver of Secrets
 id=226749
 rarity=C
-[/card]
-[card]
-primitive=Insectile Aberration
-id=226755
-rarity=T
 [/card]
 [card]
 primitive=Demonmail Hauberk
@@ -430,17 +407,17 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
+id=245246
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=245247
 rarity=L
 [/card]
 [card]
 primitive=Forest
 id=245248
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=245246
 rarity=L
 [/card]
 [card]
@@ -479,19 +456,19 @@ id=245250
 rarity=M
 [/card]
 [card]
-primitive=Garruk the Veil-Cursed
+primitive=Garruk, the Veil-Cursed
 id=245251
+rarity=T
+[/card]
+[card]
+primitive=Gatstaf Howler
+id=227290
 rarity=T
 [/card]
 [card]
 primitive=Gatstaf Shepherd
 id=227409
 rarity=U
-[/card]
-[card]
-primitive=Gatstaf Howler
-id=227290
-rarity=T
 [/card]
 [card]
 primitive=Gavony Township
@@ -504,6 +481,11 @@ id=247236
 rarity=M
 [/card]
 [card]
+primitive=Geist-Honored Monk
+id=230787
+rarity=R
+[/card]
+[card]
 primitive=Geistcatcher's Rig
 id=234445
 rarity=U
@@ -512,11 +494,6 @@ rarity=U
 primitive=Geistflame
 id=247427
 rarity=C
-[/card]
-[card]
-primitive=Geist-Honored Monk
-id=230787
-rarity=R
 [/card]
 [card]
 primitive=Ghost Quarter
@@ -579,11 +556,6 @@ id=222124
 rarity=C
 [/card]
 [card]
-primitive=Krallenhorde Wantons
-id=222123
-rarity=T
-[/card]
-[card]
 primitive=Gruesome Deformity
 id=246945
 rarity=C
@@ -602,11 +574,6 @@ rarity=U
 primitive=Hanweir Watchkeep
 id=244683
 rarity=U
-[/card]
-[card]
-primitive=Bane of Hanweir
-id=244687
-rarity=T
 [/card]
 [card]
 primitive=Harvest Pyre
@@ -634,6 +601,21 @@ id=226883
 rarity=U
 [/card]
 [card]
+primitive=Homicidal Brute
+id=221185
+rarity=T
+[/card]
+[card]
+primitive=Howlpack Alpha
+id=222183
+rarity=T
+[/card]
+[card]
+primitive=Howlpack of Estwald
+id=222906
+rarity=T
+[/card]
+[card]
 primitive=Hysterical Blindness
 id=234433
 rarity=C
@@ -649,14 +631,14 @@ id=222196
 rarity=U
 [/card]
 [card]
+primitive=Insectile Aberration
+id=226755
+rarity=T
+[/card]
+[card]
 primitive=Instigator Gang
 id=227415
 rarity=R
-[/card]
-[card]
-primitive=Wildblood Pack
-id=227419
-rarity=T
 [/card]
 [card]
 primitive=Intangible Virtue
@@ -674,18 +656,23 @@ id=220041
 rarity=U
 [/card]
 [card]
+primitive=Ironfang
+id=222107
+rarity=T
+[/card]
+[card]
 primitive=Island
 id=245235
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=245237
+id=245236
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=245236
+id=245237
 rarity=L
 [/card]
 [card]
@@ -699,14 +686,14 @@ id=249868
 rarity=R
 [/card]
 [card]
-primitive=Kessig Wolf
-id=220040
-rarity=C
-[/card]
-[card]
 primitive=Kessig Wolf Run
 id=233256
 rarity=R
+[/card]
+[card]
+primitive=Kessig Wolf
+id=220040
+rarity=C
 [/card]
 [card]
 primitive=Kindercatch
@@ -714,14 +701,14 @@ id=227088
 rarity=C
 [/card]
 [card]
+primitive=Krallenhorde Wantons
+id=222123
+rarity=T
+[/card]
+[card]
 primitive=Kruin Outlaw
 id=227084
 rarity=R
-[/card]
-[card]
-primitive=Terror of Kruin Pass
-id=227090
-rarity=T
 [/card]
 [card]
 primitive=Laboratory Maniac
@@ -739,19 +726,24 @@ id=235597
 rarity=M
 [/card]
 [card]
+primitive=Lord of Lineage
+id=227072
+rarity=T
+[/card]
+[card]
 primitive=Lost in the Mist
 id=241982
 rarity=C
 [/card]
 [card]
-primitive=Ludevic's Test Subject
-id=221179
-rarity=R
-[/card]
-[card]
 primitive=Ludevic's Abomination
 id=221173
 rarity=T
+[/card]
+[card]
+primitive=Ludevic's Test Subject
+id=221179
+rarity=R
 [/card]
 [card]
 primitive=Lumberknot
@@ -804,11 +796,6 @@ id=222189
 rarity=R
 [/card]
 [card]
-primitive=Howlpack Alpha
-id=222183
-rarity=T
-[/card]
-[card]
 primitive=Memory's Journey
 id=254134
 rarity=U
@@ -817,6 +804,11 @@ rarity=U
 primitive=Mentor of the Meek
 id=244682
 rarity=R
+[/card]
+[card]
+primitive=Merciless Predator
+id=222115
+rarity=T
 [/card]
 [card]
 primitive=Midnight Haunting
@@ -880,12 +872,12 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=245245
+id=245243
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=245243
+id=245245
 rarity=L
 [/card]
 [card]
@@ -927,6 +919,11 @@ rarity=C
 primitive=Nightbird's Clutches
 id=220386
 rarity=C
+[/card]
+[card]
+primitive=Nightfall Predator
+id=222114
+rarity=T
 [/card]
 [card]
 primitive=Olivia Voldaren
@@ -1004,6 +1001,11 @@ id=237361
 rarity=U
 [/card]
 [card]
+primitive=Rampaging Werewolf
+id=222117
+rarity=T
+[/card]
+[card]
 primitive=Ranger's Guile
 id=249973
 rarity=C
@@ -1022,11 +1024,6 @@ rarity=C
 primitive=Reckless Waif
 id=222111
 rarity=U
-[/card]
-[card]
-primitive=Merciless Predator
-id=222115
-rarity=T
 [/card]
 [card]
 primitive=Riot Devils
@@ -1069,11 +1066,6 @@ id=221211
 rarity=U
 [/card]
 [card]
-primitive=Stalking Vampire
-id=221215
-rarity=T
-[/card]
-[card]
 primitive=Selfless Cathar
 id=221219
 rarity=C
@@ -1109,14 +1101,14 @@ id=220047
 rarity=C
 [/card]
 [card]
-primitive=Silverchase Fox
-id=234848
-rarity=C
-[/card]
-[card]
 primitive=Silver-Inlaid Dagger
 id=222190
 rarity=U
+[/card]
+[card]
+primitive=Silverchase Fox
+id=234848
+rarity=C
 [/card]
 [card]
 primitive=Skaab Goliath
@@ -1194,6 +1186,11 @@ id=227301
 rarity=R
 [/card]
 [card]
+primitive=Stalking Vampire
+id=221215
+rarity=T
+[/card]
+[card]
 primitive=Stensia Bloodhall
 id=233244
 rarity=R
@@ -1235,12 +1232,12 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=245240
+id=245239
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=245239
+id=245240
 rarity=L
 [/card]
 [card]
@@ -1249,9 +1246,19 @@ id=245241
 rarity=L
 [/card]
 [card]
+primitive=Terror of Kruin Pass
+id=227090
+rarity=T
+[/card]
+[card]
 primitive=Think Twice
 id=230626
 rarity=C
+[/card]
+[card]
+primitive=Thraben Militia
+id=221190
+rarity=T
 [/card]
 [card]
 primitive=Thraben Purebloods
@@ -1264,19 +1271,9 @@ id=222016
 rarity=C
 [/card]
 [card]
-primitive=Thraben Militia
-id=221190
-rarity=T
-[/card]
-[card]
 primitive=Tormented Pariah
 id=222186
 rarity=C
-[/card]
-[card]
-primitive=Rampaging Werewolf
-id=222117
-rarity=T
 [/card]
 [card]
 primitive=Traitorous Blood
@@ -1339,6 +1336,11 @@ id=244684
 rarity=R
 [/card]
 [card]
+primitive=Unholy Fiend
+id=221222
+rarity=T
+[/card]
+[card]
 primitive=Unruly Mob
 id=220389
 rarity=C
@@ -1379,19 +1381,9 @@ id=222112
 rarity=C
 [/card]
 [card]
-primitive=Ironfang
-id=222107
-rarity=T
-[/card]
-[card]
 primitive=Villagers of Estwald
 id=222915
 rarity=C
-[/card]
-[card]
-primitive=Howlpack of Estwald
-id=222906
-rarity=T
 [/card]
 [card]
 primitive=Voiceless Spirit
@@ -1402,6 +1394,11 @@ rarity=C
 primitive=Walking Corpse
 id=243210
 rarity=C
+[/card]
+[card]
+primitive=Wildblood Pack
+id=227419
+rarity=T
 [/card]
 [card]
 primitive=Witchbane Orb

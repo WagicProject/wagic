@@ -1,0 +1,12 @@
+card]
+name=Forked Lightning
+text=Forked Lightning deals 4 damage divided as you choose among one, two, or three target creatures.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Taunt
+text=During target player's next turn, creatures that player controls attack you if able.
+mana={U}
+type=Sorcery
+[/card]

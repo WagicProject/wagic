@@ -80,6 +80,8 @@ class GameObserver{
   ExtraCosts * mExtraPayment;
   int oldGamePhase;
   TargetChooser * targetChooser;
+  CardDisplay * OpenedDisplay;
+  GuiGameZone * guiOpenDisplay;
   DuelLayers * mLayers;
   ReplacementEffects *replacementEffects;
   vector<Player *> players; //created outside
@@ -122,6 +124,9 @@ class GameObserver{
   void gameStateBasedEffects();
   void enchantmentStatus();
   void Affinity();
+  bool AffinityNeedsUpdate;
+  bool foundlegendrule;
+  void checkLegendary(MTGCardInstance * card);
   void addObserver(MTGAbility * observer);
   bool removeObserver(ActionElement * observer);
   void startGame(GameType, Rules * rules);
@@ -130,6 +135,7 @@ class GameObserver{
   int isInPlay(MTGCardInstance *  card);
   int isInGrave(MTGCardInstance *  card);
   int isInExile(MTGCardInstance *  card);
+  int isInHand(MTGCardInstance *  card);
   virtual void Update(float dt);
   void Render();
   void ButtonPressed(PlayGuiObject*);

@@ -77,7 +77,7 @@ void ActionLayer::cleanGarbage()
 
 int ActionLayer::reactToClick(ActionElement * ability, MTGCardInstance * card)
 {
-    int result = ability->reactToClick(card);
+    int result = ability?ability->reactToClick(card):0;
     if (result)
         stuffHappened = 1;
     return result;
@@ -104,6 +104,11 @@ bool ActionLayer::CheckUserInput(JButton key)
                 //check first with a mock up to see if any abilities will care about the extra payment
                 //being cancelled. currently only menuability and paidability will care.
             }
+        }
+        if (observer->mExtraPayment->costs.size() && observer->mExtraPayment->costs[0]->tc)
+        {
+            //if we cancel, clear the targets list so that when you try again you dont already have targets from before.
+            observer->mExtraPayment->costs[0]->tc->initTargets();
         }
         observer->mExtraPayment = NULL;
         return 1;
@@ -186,8 +191,11 @@ void ActionLayer::Update(float dt)
                 without this, the game locks into a freeze state while you try to select the targets and dont have enough to
                 fill the maxtargets list.
                 */
-                if(int(ae->getActionTc()->getNbTargets()) == countTargets-1)
-                    ae->getActionTc()->done = true;
+                if (int(ae->getActionTc()->getNbTargets()) == countTargets)//if the amount of targets is equal the all we can target
+                {
+                    ae->getActionTc()->done = true;//were done
+                    ae->getActionTc()->source->getObserver()->cardClick(ae->getActionTc()->source, 0, false);//click source.
+                }
             }
         }
     }
@@ -459,6 +467,10 @@ void ActionLayer::doReactTo(int menuIndex)
     {
         int controlid = abilitiesMenu->mObjects[menuIndex]->GetId();
         DebugTrace("ActionLayer::doReactTo " << controlid);
+        if (abilitiesMenu && abilitiesMenu->isMultipleChoice)
+        {
+            return ButtonPressedOnMultipleChoice(menuIndex);
+        }
         ButtonPressed(0, controlid);
     }
 }

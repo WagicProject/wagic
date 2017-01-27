@@ -31,6 +31,7 @@ void GuiAvatar::Render()
     JRenderer * r = JRenderer::GetInstance();
     int life = player->life;
     int poisonCount = player->poisonCount;
+    int energyCount = player->energyCount;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     //Avatar
@@ -108,10 +109,10 @@ void GuiAvatar::Render()
     {
     case TOP_LEFT:
         mFont->SetColor(ARGB((int)actA / 4, 0, 0, 0));
-        mFont->DrawString(buffer, actX + 2, actY + 2);
+        mFont->DrawString(buffer, actX + 2, actY - 2);
         mFont->SetScale(1.3f);
         mFont->SetColor(ARGB((int)actA, lx, ly, lz));
-        mFont->DrawString(buffer, actX + 1, actY + 1);
+        mFont->DrawString(buffer, actX + 1, actY - 1);
         mFont->SetScale(1);
         break;
     case BOTTOM_RIGHT:
@@ -122,8 +123,8 @@ void GuiAvatar::Render()
         break;
     }
     //poison
-    char poison[5];
-    if (poisonCount > 0)
+    char poison[10];
+    if (poisonCount >= 0)
     {
         sprintf(poison, "%i", poisonCount);
         switch (corner)
@@ -135,6 +136,23 @@ void GuiAvatar::Render()
         case BOTTOM_RIGHT:
             mFont->SetColor(ARGB((int)actA / 1 ,0, 255, 0));
             mFont->DrawString(poison, actX, actY - 20, JGETEXT_RIGHT);
+            break;
+        }
+    }
+    //energy
+    char energy[15];
+    if (energyCount >= 0)
+    {
+        sprintf(energy, "%i", energyCount);
+        switch (corner)
+        {
+        case TOP_LEFT:
+            mFont->SetColor(ARGB((int)actA / 1, 255, 255, 0));
+            mFont->DrawString(energy, actX + 2, actY + 17);
+            break;
+        case BOTTOM_RIGHT:
+            mFont->SetColor(ARGB((int)actA / 1 ,255, 255, 0));
+            mFont->DrawString(energy, actX, actY - 27, JGETEXT_RIGHT);
             break;
         }
     }
@@ -150,11 +168,17 @@ ostream& GuiAvatar::toString(ostream& out) const
 void GuiGameZone::toggleDisplay()
 {
     if (showCards)
-        showCards = 0;
-    else
     {
+        cd->zone->owner->getObserver()->guiOpenDisplay = NULL;
+        showCards = 0;
+        cd->zone->owner->getObserver()->OpenedDisplay = NULL;
+    }
+    else if(!cd->zone->owner->getObserver()->OpenedDisplay)//one display at a time please.
+    {
+        cd->zone->owner->getObserver()->guiOpenDisplay = this;
         showCards = 1;
         cd->init(zone);
+        cd->zone->owner->getObserver()->OpenedDisplay = cd;
     }
 }
 

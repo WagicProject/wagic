@@ -1,0 +1,82 @@
+[meta]
+author=Wagic Team
+name=From the Vault: Annihilation
+block=Vault
+year=2014
+total=15
+[/meta]
+[card]
+primitive=Armageddon
+id=386284
+rarity=M
+[/card]
+[card]
+primitive=Burning of Xinye
+id=386285
+rarity=M
+[/card]
+[card]
+primitive=Cataclysm
+id=386286
+rarity=M
+[/card]
+[card]
+primitive=Child of Alara
+id=386287
+rarity=M
+[/card]
+[card]
+primitive=Decree of Annihilation
+id=386288
+rarity=M
+[/card]
+[card]
+primitive=Firespout
+id=386289
+rarity=M
+[/card]
+[card]
+primitive=Fracturing Gust
+id=386290
+rarity=M
+[/card]
+[card]
+primitive=Living Death
+id=386291
+rarity=M
+[/card]
+[card]
+primitive=Martial Coup
+id=386292
+rarity=M
+[/card]
+[card]
+primitive=Rolling Earthquake
+id=386293
+rarity=M
+[/card]
+[card]
+primitive=Smokestack
+id=386294
+rarity=M
+[/card]
+[card]
+primitive=Terminus
+id=386295
+rarity=M
+[/card]
+[card]
+primitive=Upheaval
+id=386296
+rarity=M
+[/card]
+[card]
+primitive=Virtue's Ruin
+id=386297
+rarity=M
+[/card]
+[card]
+primitive=Wrath of God
+id=386298
+rarity=M
+[/card]

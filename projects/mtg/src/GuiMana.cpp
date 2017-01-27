@@ -346,6 +346,16 @@ int GuiMana::receiveEventPlus(WEvent* e)
             manas.push_back(NEW ManaIcon(event->color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, x, y));
         return 1;
     }
+    else if (WEventEngageManaExtra *event = dynamic_cast<WEventEngageManaExtra*>(e))
+    {
+        if (event->destination != owner->getManaPool())
+            return 0;
+        if (event->card && event->card->view)
+            manas.push_back(NEW ManaIcon(event->color, event->card->view->actX, event->card->view->actY, x, y));
+        else
+            manas.push_back(NEW ManaIcon(event->color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, x, y));
+        return 1;
+    }
     else
         return 0;
 }

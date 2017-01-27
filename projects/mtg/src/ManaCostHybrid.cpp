@@ -66,6 +66,24 @@ int ManaCostHybrid::getManaSymbolsHybridMerged(int color)
     return 0;
 }
 
+void ManaCostHybrid::reduceValue(int color, int value)
+{
+    if(((color1 == color) && value1))
+    {
+        if((value1 - value) < 0)
+            value1 = 0;
+        else
+            value1 -= value;
+    }
+    else if(((color2 == color) && value2))
+    {
+        if((value2 - value) < 0)
+            value2 = 0;
+        else
+            value2 -= value;        
+    }
+}
+
 int ManaCostHybrid::hasColor(int color)
 {
     if (((color1 == color) && value1) || ((color2 == color) && value2))

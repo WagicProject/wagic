@@ -1,0 +1,412 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Heroes vs. Monsters
+block=Duel
+year=2013
+total=81
+[/meta]
+[card]
+primitive=Anax and Cymede
+id=373396
+rarity=R
+[/card]
+[card]
+primitive=Armory Guard
+id=373415
+rarity=C
+[/card]
+[card]
+primitive=Auramancer
+id=373402
+rarity=C
+[/card]
+[card]
+primitive=Battle Mastery
+id=373358
+rarity=U
+[/card]
+[card]
+primitive=Beast Within
+id=373352
+rarity=U
+[/card]
+[card]
+primitive=Blood Ogre
+id=373383
+rarity=C
+[/card]
+[card]
+primitive=Bonds of Faith
+id=373354
+rarity=C
+[/card]
+[card]
+primitive=Boros Guildgate
+id=373389
+rarity=C
+[/card]
+[card]
+primitive=Cavalry Pegasus
+id=373353
+rarity=C
+[/card]
+[card]
+primitive=Condemn
+id=373407
+rarity=U
+[/card]
+[card]
+primitive=Conquering Manticore
+id=373366
+rarity=R
+[/card]
+[card]
+primitive=Crater Hellion
+id=373345
+rarity=R
+[/card]
+[card]
+primitive=Crowned Ceratok
+id=373409
+rarity=U
+[/card]
+[card]
+primitive=Daily Regimen
+id=373360
+rarity=U
+[/card]
+[card]
+primitive=Dawnstrike Paladin
+id=373371
+rarity=C
+[/card]
+[card]
+primitive=Deadly Recluse
+id=373350
+rarity=C
+[/card]
+[card]
+primitive=Destructive Revelry
+id=373351
+rarity=U
+[/card]
+[card]
+primitive=Deus of Calamity
+id=373363
+rarity=R
+[/card]
+[card]
+primitive=Dragon Blood
+id=373362
+rarity=U
+[/card]
+[card]
+primitive=Fencing Ace
+id=373367
+rarity=U
+[/card]
+[card]
+primitive=Figure of Destiny
+id=373388
+rarity=R
+[/card]
+[card]
+primitive=Fires of Yavimaya
+id=373397
+rarity=U
+[/card]
+[card]
+primitive=Forest
+id=373349
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=373374
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=373375
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=373404
+rarity=L
+[/card]
+[card]
+primitive=Freewind Equenaut
+id=373376
+rarity=C
+[/card]
+[card]
+primitive=Ghor-Clan Savage
+id=373373
+rarity=C
+[/card]
+[card]
+primitive=Gorehorn Minotaurs
+id=373398
+rarity=C
+[/card]
+[card]
+primitive=Griffin Guide
+id=373337
+rarity=U
+[/card]
+[card]
+primitive=Gustcloak Sentinel
+id=373364
+rarity=U
+[/card]
+[card]
+primitive=Kamahl, Pit Fighter
+id=373338
+rarity=R
+[/card]
+[card]
+primitive=Kavu Predator
+id=373377
+rarity=U
+[/card]
+[card]
+primitive=Kazandu Refuge
+id=373412
+rarity=U
+[/card]
+[card]
+primitive=Krosan Tusker
+id=373394
+rarity=C
+[/card]
+[card]
+primitive=Llanowar Reborn
+id=373368
+rarity=U
+[/card]
+[card]
+primitive=Magma Jet
+id=373400
+rarity=U
+[/card]
+[card]
+primitive=Miraculous Recovery
+id=373370
+rarity=U
+[/card]
+[card]
+primitive=Moment of Heroism
+id=373344
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=373346
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=373359
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=373378
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=373382
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=373387
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=373392
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=373403
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=373411
+rarity=L
+[/card]
+[card]
+primitive=New Benalia
+id=373401
+rarity=U
+[/card]
+[card]
+primitive=Nobilis of War
+id=373336
+rarity=R
+[/card]
+[card]
+primitive=Orcish Lumberjack
+id=373399
+rarity=C
+[/card]
+[card]
+primitive=Ordeal of Purphoros
+id=373406
+rarity=U
+[/card]
+[card]
+primitive=Pay No Heed
+id=373405
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=373341
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=373361
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=373369
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=373386
+rarity=L
+[/card]
+[card]
+primitive=Polukranos, World Eater
+id=373384
+rarity=M
+[/card]
+[card]
+primitive=Prey Upon
+id=373348
+rarity=C
+[/card]
+[card]
+primitive=Pyroclasm
+id=373365
+rarity=U
+[/card]
+[card]
+primitive=Pyrokinesis
+id=373356
+rarity=U
+[/card]
+[card]
+primitive=Regrowth
+id=373408
+rarity=U
+[/card]
+[card]
+primitive=Righteousness
+id=373381
+rarity=U
+[/card]
+[card]
+primitive=Satyr Hedonist
+id=373340
+rarity=C
+[/card]
+[card]
+primitive=Shower of Sparks
+id=373355
+rarity=C
+[/card]
+[card]
+primitive=Skarrg, the Rage Pits
+id=373357
+rarity=U
+[/card]
+[card]
+primitive=Skarrgan Firebird
+id=373393
+rarity=R
+[/card]
+[card]
+primitive=Skarrgan Skybreaker
+id=373413
+rarity=U
+[/card]
+[card]
+primitive=Smite the Monstrous
+id=373372
+rarity=C
+[/card]
+[card]
+primitive=Somberwald Vigilante
+id=373385
+rarity=C
+[/card]
+[card]
+primitive=Stand Firm
+id=373343
+rarity=C
+[/card]
+[card]
+primitive=Stun Sniper
+id=373391
+rarity=U
+[/card]
+[card]
+primitive=Sun Titan
+id=373379
+rarity=M
+[/card]
+[card]
+primitive=Terrifying Presence
+id=373380
+rarity=C
+[/card]
+[card]
+primitive=Thraben Valiant
+id=373342
+rarity=C
+[/card]
+[card]
+primitive=Troll Ascetic
+id=373416
+rarity=R
+[/card]
+[card]
+primitive=Truefire Paladin
+id=373395
+rarity=U
+[/card]
+[card]
+primitive=Undying Rage
+id=373347
+rarity=U
+[/card]
+[card]
+primitive=Valley Rannet
+id=373390
+rarity=C
+[/card]
+[card]
+primitive=Volt Charge
+id=373414
+rarity=C
+[/card]
+[card]
+primitive=Winds of Rath
+id=373410
+rarity=R
+[/card]
+[card]
+primitive=Zhur-Taa Druid
+id=373339
+rarity=C
+[/card]

@@ -131,6 +131,7 @@ void SimpleMenu::Render()
     WFont * titleFont = WResourceManager::Instance()->GetWFont(fontId);
     titleFont->SetColor(ARGB(250,255,255,255));//reseting color on passes as this is a shared font now.
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+    float adjustme = 0.f;
     if (0 == mWidth)
     {
         float sY = mY + SimpleMenuConst::kVerticalMargin;
@@ -172,14 +173,35 @@ void SimpleMenu::Render()
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
     float heightPadding = SimpleMenuConst::kLineHeight/2; // this to reduce the bottom padding of the menu
-    renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(180,0,0,0));
+    
+    if(!title.empty())
+        adjustme += 3.f;
+    else
+        adjustme += 5.f;
+
+    //renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(180,0,0,0));
+    
+    //menu black bg fill
+    renderer->FillRect(mX-3, (mY+adjustme-2)-3, mWidth+6, (height - heightPadding)+6, ARGB(225,5,5,5));
+    renderer->DrawRect(mX-3, (mY+adjustme-2)-3, mWidth+6, (height - heightPadding)+6, ARGB(255,25,25,25));
+    //menu border
+    renderer->DrawRect(mX-1, (mY+adjustme-2)-1, mWidth+2, (height - heightPadding)+2, ARGB(255,240,240,240));
+    //another border
+    renderer->DrawRect(mX+1, mY+1+adjustme-2, mWidth-2, (height - heightPadding)-2, ARGB(255,89,89,89));
+
+    if(!title.empty())
+    {//title border and fill
+        renderer->FillRect(mX+1, mY+1+adjustme-2, mWidth-2, titleFont->GetHeight(), ARGB(25,205,0,0));
+        renderer->DrawRect(mX+1, mY+1+adjustme-2, mWidth-2, titleFont->GetHeight(), ARGB(255,89,89,89));
+    }
 
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-    
+    /*
     drawVertPole(mX, mY, height - heightPadding);
     drawVertPole(mX + mWidth, mY, height - heightPadding);
     drawHorzPole(mX, mY, mWidth);
-    drawHorzPole(mX, mY + height - heightPadding, mWidth);
+    drawHorzPole(mX, mY + height - heightPadding, mWidth);*///horizontal and vertical disabled
+
     //drawVertPole(mX, mY - 16, height + 32);
     //drawVertPole(mX + mWidth, mY - 16, height + 32);
     //drawHorzPole(mX - 16, mY, mWidth + 32);
@@ -188,12 +210,11 @@ void SimpleMenu::Render()
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
     stars->Render();
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-
     if (!title.empty()) 
     {
         float scaleFactor = titleFont->GetScale();
         titleFont->SetScale(SCALE_NORMAL);
-        titleFont->DrawString(title.c_str(), mX + mWidth / 2, mY - 3, JGETEXT_CENTER);
+        titleFont->DrawString(title.c_str(), mX + mWidth / 2, mY+adjustme-1.5f, JGETEXT_CENTER);
         titleFont->SetScale(scaleFactor);
     }
     for (int i = startId; i < startId + maxItems; i++)

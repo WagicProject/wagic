@@ -17,6 +17,7 @@ manapool:{3}{G}
 [PLAYER2]
 [DO]
 Ivy Elemental
+choice 3
 # add mana to pool
 plains
 mountain

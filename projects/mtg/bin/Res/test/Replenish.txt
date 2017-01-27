@@ -1,0 +1,37 @@
+#Put in play Fists of Ironwood via Replenish
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+life:20
+hand:Replenish, 4683, Replenish
+graveyard:83672, Mass Hysteria
+inplay:Swamp, Forest, Island, Mountain, Plains
+manapool:{3}{W}
+[PLAYER2]
+life:20
+[DO]
+Replenish
+#Fists of Ironwood remains on graveyard since there are no valid targets
+Swamp
+4683
+Forest
+Island
+Plains
+Mountain
+Replenish
+#Fists of Ironwood attach on Zombie Token created by Sarcomancy, Then produces 2 Saproling Tokens
+-4683
+next
+next
+-83672
+-4683
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+graveyard:Replenish, Replenish
+inplay:Sarcomancy, Mass Hysteria, Swamp, Forest, Island, Mountain, Plains, -4683, -83672, -83672, 83672
+life:20
+[PLAYER2]
+life:17
+[END]

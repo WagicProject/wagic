@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
-block=Plane
+name=Planechase
+block=Planechase
 year=2009
+total=169
 [/meta]
 [card]
 primitive=Akroma's Vengeance
@@ -39,16 +41,10 @@ id=205263
 rarity=R
 [/card]
 [card]
-primitive=Assault // Battery (Assault)
+primitive=Assault // Battery
 id=205409
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Assault // Battery (Battery)
-#id=205409
-#rarity=U
-#[/card]
 [card]
 primitive=Balefire Liege
 id=205377
@@ -281,7 +277,17 @@ rarity=U
 [/card]
 [card]
 primitive=Forest
+id=205279
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=205464
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=205465
 rarity=L
 [/card]
 [card]
@@ -292,16 +298,6 @@ rarity=L
 [card]
 primitive=Forest
 id=205467
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=205465
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=205279
 rarity=L
 [/card]
 [card]
@@ -481,32 +477,7 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
-id=205468
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=205471
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=205470
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=205469
-rarity=L
-[/card]
-[card]
-primitive=Mountain
 id=205292
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=205447
 rarity=L
 [/card]
 [card]
@@ -516,12 +487,37 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
+id=205435
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=205441
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=205435
+id=205447
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=205468
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=205469
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=205470
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=205471
 rarity=L
 [/card]
 [card]
@@ -550,16 +546,10 @@ id=205396
 rarity=C
 [/card]
 [card]
-primitive=Order // Chaos (Chaos)
+primitive=Order // Chaos
 id=205384
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Order // Chaos (Order)
-#id=205384
-#rarity=U
-#[/card]
 [card]
 primitive=Orim's Thunder
 id=205385
@@ -592,12 +582,12 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=205430
+id=205428
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=205428
+id=205430
 rarity=L
 [/card]
 [card]
@@ -767,17 +757,17 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=205443
-rarity=L
-[/card]
-[card]
-primitive=Swamp
 id=205434
 rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=205442
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=205443
 rarity=L
 [/card]
 [card]

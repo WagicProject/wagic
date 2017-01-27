@@ -26,6 +26,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     nomaxhandsize = false;
     poisonCount = 0;
     damageCount = 0;
+    nonCombatDamage = 0;
     preventable = 0;
     mAvatarTex = NULL;
     type_as_damageable = DAMAGEABLE_PLAYER;
@@ -33,9 +34,18 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     skippingTurn = 0;
     extraTurn = 0;
     drawCounter = 0;
+    energyCount = 0;
     epic = 0;
+    forcefield = 0;
+    dealsdamagebycombat = 0;
     raidcount = 0;
     handmodifier = 0;
+    snowManaG = 0;
+    snowManaR = 0;
+    snowManaB = 0;
+    snowManaU = 0;
+    snowManaW = 0;
+    snowManaC = 0;
     prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();
@@ -155,9 +165,14 @@ int Player::gainOrLoseLife(int value)
     thatmuch = abs(value); //the value that much is a variable to be used with triggered abilities.
     //ie:when ever you gain life, draw that many cards. when used in a trigger draw:thatmuch, will return the value
     //that the triggered event stored in the card for "that much".
-    life+=value;
+    if (!inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+        life+=value;
     if (value<0)
         lifeLostThisTurn += abs(value);
+    else if (value > 0)
+    {
+        lifeGainedThisTurn += abs(value);
+    }
 
     //Send life event to listeners
     WEvent * lifed = NEW WEventLife(this,value);
@@ -236,6 +251,26 @@ void Player::serumMulligan()
     for (int i = 0; i < (cardsinhand); i++)
         game->drawFromLibrary();
          //Draw hand no penalty
+}
+
+bool Player::hasPossibleAttackers()
+{
+    MTGGameZone * z = game->inPlay;
+    int nbcards = z->nb_cards;
+    for (int j = 0; j < nbcards; ++j)
+    {
+        MTGCardInstance * c = z->cards[j];
+        if (!c->isTapped() &&
+            !c->hasSummoningSickness() &&
+            c->isCreature())
+            return true;
+    }
+    return false;
+}
+
+bool Player::noPossibleAttackers()
+{
+    return !hasPossibleAttackers();
 }
 
 bool Player::DeadLifeState(bool check)

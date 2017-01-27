@@ -76,6 +76,7 @@ class SacrificeCost : public ExtraCost
 {
 public:
   SacrificeCost(TargetChooser *_tc = NULL);
+  virtual int canPay();
   virtual int doPay();
   virtual SacrificeCost * clone() const;
 };
@@ -155,6 +156,15 @@ public:
   virtual ToLibraryCost * clone() const;
 };
 
+//toGraveyard cost 
+class ToGraveCost : public ExtraCost
+{
+public:
+  ToGraveCost(TargetChooser *_tc = NULL);
+  virtual int doPay();
+  virtual ToGraveCost * clone() const;
+};
+
 //Millyourself cost 
 class MillCost : public ExtraCost
 {
@@ -193,6 +203,30 @@ public:
     virtual int canPay();
     virtual int doPay();
     virtual TapCost * clone() const;
+};
+
+//Snow  cost
+class SnowCost : public ExtraCost
+{
+public:
+    SnowCost();
+    virtual int isPaymentSet();
+    virtual int canPay();
+    virtual int doPay();
+    virtual SnowCost * clone() const;
+};
+
+//Energy  cost
+class EnergyCost : public ExtraCost
+{
+private:
+    int enc;
+
+public:
+  EnergyCost(int enc = 0);
+  virtual int canPay();
+  virtual int doPay();
+  virtual EnergyCost * clone() const;
 };
 
 //untap  cost
@@ -253,12 +287,43 @@ public:
   virtual int doPay();
   virtual Ninja * clone() const;
 };
-
+//Convoke
+class Convoke : public ExtraCost
+{
+public:
+    ManaCost * getReduction();
+    Convoke(TargetChooser *_tc = NULL);
+    virtual int canPay();
+    virtual int isPaymentSet();
+    virtual int doPay();
+    virtual Convoke * clone() const;
+};
+//delve
+class Delve : public ExtraCost
+{
+public:
+    Delve(TargetChooser *_tc = NULL);
+    virtual int canPay();
+    virtual int isPaymentSet();
+    virtual int doPay();
+    virtual Delve * clone() const;
+};
+//improvise
+class Improvise : public ExtraCost
+{
+public:
+    Improvise(TargetChooser *_tc = NULL);
+    virtual int canPay();
+    virtual int isPaymentSet();
+    virtual int doPay();
+    virtual Improvise * clone() const;
+};
 //offering cost
 class Offering : public ExtraCost
 {
 public:
-  Offering(TargetChooser *_tc = NULL);
+    bool emerge;
+  Offering(TargetChooser *_tc = NULL, bool emerge = false);
   virtual int canPay();
   virtual int isPaymentSet();
   virtual int doPay();

@@ -72,6 +72,7 @@ class Constants
   static const string kManaRed;     
   static const string kManaBlack;   
   static const string kManaWhite;
+  static const string kManaWaste;
 
   // alternative costs constants
 
@@ -81,6 +82,7 @@ class Constants
   static const string kRetraceKeyword;
   static const string kKickerKeyword;
   static const string kMorphKeyword;
+  static const string kBestowKeyword;
 
   // used for deck statistics
   static const int STATS_FOR_TURNS = 8;
@@ -94,9 +96,11 @@ class Constants
       MTG_COLOR_RED = 3,
       MTG_COLOR_BLACK = 4,
       MTG_COLOR_WHITE = 5,
-      MTG_COLOR_LAND = 6,
+      MTG_COLOR_WASTE = 6,
+      MTG_COLOR_LAND = 7,
+      
 
-      MTG_NB_COLORS = 7,
+      MTG_NB_COLORS = 8,
 
 
       MTG_UNCOLORED = 0,
@@ -238,8 +242,30 @@ class Constants
       TRINISPHERE = 120,
       CANPLAYFROMEXILE = 121,
       LIBRARYEATER = 122,
-      NB_BASIC_ABILITIES = 123,
-
+      DEVOID = 123,
+      CANTCHANGELIFE = 124,
+      COMBATTOUGHNESS = 125,
+      CANTPAYLIFE = 126,
+      CANTBESACRIFIED = 127,
+      SKULK = 128,
+      MENACE = 129,
+      NOSOLO = 130,//cant attack alone
+      MUSTBLOCK = 131,//blocks each turn
+      DETHRONE = 132,
+      OVERLOAD = 133,
+      SHACKLER = 134,
+      FLYERSONLY = 135,//can attack only if it has flying
+      TEMPFLASHBACK = 136,
+      NOLEGENDRULE =137,
+      CANTTRANSFORM =138,
+      ASFLASH =139,
+      CONDUITED = 140,
+      CANBLOCKTAPPED = 141,
+      OPPNOMAXHAND = 142,
+      CANTCREW = 143,
+      HIDDENFACE = 144,
+      ANYTYPEOFMANA = 145,
+      NB_BASIC_ABILITIES = 146,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
@@ -300,6 +326,7 @@ class Constants
         CAST_WITH_RETRACE = 6,
         CAST_WITH_MORPH = 7,
         CAST_WITH_SUSPEND = 8,
+        CAST_WITH_BESTOW = 9,
 
         CAST_ALTERNATE = -1, //matches all alternate costs, including itself
         CAST_ALL = -2, // matches everything except NOT_CAST

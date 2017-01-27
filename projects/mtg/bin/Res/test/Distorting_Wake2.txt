@@ -9,6 +9,7 @@ manapool:{3}{U}{U}{U}
 [PLAYER2]
 [DO]
 Distorting Wake
+choice 3
 choice 0
 Mox Pearl
 Ornithopter

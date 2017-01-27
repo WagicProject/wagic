@@ -44,12 +44,16 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     deckMenu = NULL;
     mStatsWrapper = NULL;
     
-    statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "Stats",  SCREEN_WIDTH_F - 50, SCREEN_HEIGHT_F - 20, JGE_BTN_PREV);
+    statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "Stats",  SCREEN_WIDTH_F - 35, SCREEN_HEIGHT_F - 20, JGE_BTN_PREV);
     toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
     sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
-    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 110), SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
+    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "Filter", (SCREEN_WIDTH_F - 116), SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
     //TODO: Check if that button is available:
     toggleViewButton = NEW InteractiveButton(NULL, kSwitchViewButton, Fonts::MAIN_FONT, "Grid", (SCREEN_WIDTH_F/ 2) + 50, SCREEN_HEIGHT_F - 20, JGE_BTN_MAX);
+    toggleUpButton = NEW InteractiveButton(NULL, kToggleUpButton, Fonts::MAIN_FONT, "UP", 10, 25, JGE_BTN_DOWN);
+    toggleDownButton = NEW InteractiveButton(NULL, kToggleDownButton, Fonts::MAIN_FONT, "DN", SCREEN_WIDTH_F-25, 25, JGE_BTN_UP);
+    toggleLeftButton = NEW InteractiveButton(NULL, kToggleLeftButton, Fonts::MAIN_FONT, "<<", 10, SCREEN_HEIGHT_F/2, JGE_BTN_LEFT);
+    toggleRightButton = NEW InteractiveButton(NULL, kToggleRightButton, Fonts::MAIN_FONT, ">>", SCREEN_WIDTH_F-20, SCREEN_HEIGHT_F/2, JGE_BTN_RIGHT);
 }
 
 GameStateDeckViewer::~GameStateDeckViewer()
@@ -61,6 +65,10 @@ GameStateDeckViewer::~GameStateDeckViewer()
     SAFE_DELETE(filterButton);
     SAFE_DELETE(toggleViewButton);
     SAFE_DELETE(mView);
+    SAFE_DELETE(toggleUpButton);
+    SAFE_DELETE(toggleDownButton);
+    SAFE_DELETE(toggleLeftButton);
+    SAFE_DELETE(toggleRightButton);
     
     if (myDeck)
     {
@@ -143,11 +151,11 @@ void GameStateDeckViewer::buildEditorMenu()
     deckMenu = NEW DeckEditorMenu(MENU_DECK_BUILDER, this, Fonts::OPTION_FONT, "Deck Editor", myDeck, mStatsWrapper);
 
     deckMenu->Add(MENU_ITEM_FILTER_BY, _("Filter By..."), _("Narrow down the list of cards. "));
-    deckMenu->Add(MENU_ITEM_SWITCH_DECKS_NO_SAVE, _("Switch Decks"), _("Do not make any changes. View another deck."));
+    deckMenu->Add(MENU_ITEM_SWITCH_DECKS_NO_SAVE, _("Switch Decks"), _("No changes. View another deck."));
     deckMenu->Add(MENU_ITEM_SAVE_RENAME, _("Rename Deck"), _("Change the name of the deck"));
     deckMenu->Add(MENU_ITEM_SAVE_RETURN_MAIN_MENU, _("Save & Quit Editor"), _("Save changes. Return to the main menu"));
     deckMenu->Add(MENU_ITEM_SAVE_AS_AI_DECK, _("Save As AI Deck"), _("All changes are final."));
-    deckMenu->Add(MENU_ITEM_MAIN_MENU, _("Quit Editor"), _("Do not make any changes to deck. Return to the main menu."));
+    deckMenu->Add(MENU_ITEM_MAIN_MENU, _("Quit Editor"), _("No changes. Return to the main menu."));
     deckMenu->Add(MENU_ITEM_EDITOR_CANCEL, _("Cancel"), _("Close menu."));
 }
 
@@ -309,6 +317,10 @@ bool GameStateDeckViewer::userPressedButton()
             || (statsPrevButton->ButtonPressed())
             || (filterButton->ButtonPressed())
             || (toggleViewButton->ButtonPressed())
+            || (toggleUpButton->ButtonPressed())
+            || (toggleDownButton->ButtonPressed())
+            || (toggleLeftButton->ButtonPressed())
+            || (toggleRightButton->ButtonPressed())
             );
 }
 
@@ -319,7 +331,10 @@ void GameStateDeckViewer::setButtonState(bool state)
     statsPrevButton->setIsSelectionValid(state);
     filterButton->setIsSelectionValid(state);
     toggleViewButton->setIsSelectionValid(state);
-    
+    toggleUpButton->setIsSelectionValid(state);
+    toggleDownButton->setIsSelectionValid(state);
+    toggleLeftButton->setIsSelectionValid(state);
+    toggleRightButton->setIsSelectionValid(state);
 }
 
 void GameStateDeckViewer::RenderButtons()
@@ -329,6 +344,10 @@ void GameStateDeckViewer::RenderButtons()
     filterButton->Render();
     statsPrevButton->Render();
     toggleViewButton->Render();
+    toggleUpButton->Render();
+    toggleDownButton->Render();
+    toggleLeftButton->Render();
+    toggleRightButton->Render();
 }
 
 void GameStateDeckViewer::setupView(GameStateDeckViewer::AvailableView view, DeckDataWrapper *deck)
@@ -596,19 +615,20 @@ void GameStateDeckViewer::renderSlideBar()
     int total = mView->deck()->Size();
     if (total == 0) return;
 
-    float filler = 15;
-    float y = SCREEN_HEIGHT_F - 25;
+    float filler = 25;
+    float y = SCREEN_HEIGHT_F - 30;
     float bar_size = SCREEN_WIDTH_F - 2 * filler;
     JRenderer * r = JRenderer::GetInstance();
     int currentPos = mView->getPosition();
 
     float cursor_pos = bar_size * currentPos / total;
 
-    r->FillRoundRect(filler + 5, y + 5, bar_size, 0, 3, ARGB(hudAlpha/2,0,0,0));
-    r->DrawLine(filler + cursor_pos + 5, y + 5, filler + cursor_pos + 5, y + 10, ARGB(hudAlpha/2,0,0,0));
+    //r->FillRoundRect(filler + 5, y + 5, bar_size, 0, 4, ARGB(hudAlpha/2,0,0,0));
+    //r->DrawLine(filler + cursor_pos + 5, y + 5, filler + cursor_pos + 5, y + 10, ARGB(hudAlpha/2,0,0,0));
 
-    r->FillRoundRect(filler, y, bar_size, 0, 3, ARGB(hudAlpha/2,128,128,128));
-    r->DrawLine(filler + cursor_pos, y, filler + cursor_pos, y + 5, ARGB(hudAlpha,255,255,255));
+    r->FillRoundRect(filler, y, bar_size, 0, 4, ARGB(hudAlpha/2,128,128,128));
+    r->DrawRoundRect(filler, y, bar_size, 0, 4, ARGB(hudAlpha/2,0,0,0));
+    r->DrawLine(filler + cursor_pos, y, filler + cursor_pos, y + 8, ARGB(hudAlpha,0,255,0));
     char buffer[256];
     string deckname = _("Collection");
     if (mView->deck() == myDeck)
@@ -617,7 +637,7 @@ void GameStateDeckViewer::renderSlideBar()
     }
     sprintf(buffer, "%s - %i/%i", deckname.c_str(), currentPos, total);
     mFont->SetColor(ARGB(hudAlpha,255,255,255));
-    mFont->DrawString(buffer, SCREEN_WIDTH / 2, y, JGETEXT_CENTER);
+    mFont->DrawString(buffer, SCREEN_WIDTH / 2, y-2, JGETEXT_CENTER);
 
     mFont->SetColor(ARGB(255,255,255,255));
 }
@@ -1265,9 +1285,16 @@ void GameStateDeckViewer::Render()
     setButtonState(false);
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
+#if !defined (PSP)
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }/*
     if (mView->deck() == myDeck && mStage != STAGE_MENU)
-        renderDeckBackground();
-
+        renderDeckBackground();*/
+#endif
     mView->Render();
 
     if (mView->deck()->Size() > 0)

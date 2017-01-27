@@ -9,6 +9,7 @@ MTGGamePhase::MTGGamePhase(GameObserver* g, int id) :
     animation = 0;
     currentState = -1;
     mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    if(mFont)
     mFont->SetBase(0); // using 2nd font
 }
 

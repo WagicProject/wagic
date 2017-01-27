@@ -42,10 +42,19 @@ public:
     int skippingTurn;
     int extraTurn;
     int drawCounter;
+    int energyCount;
     int epic;
+    int forcefield;
+    int dealsdamagebycombat;
     int initLife;
     int raidcount;
     int handmodifier;
+    int snowManaG;
+    int snowManaR;
+    int snowManaB;
+    int snowManaU;
+    int snowManaW;
+    int snowManaC;
     vector<string> prowledTypes;
     vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
@@ -73,6 +82,8 @@ public:
     ManaPool * getManaPool();
     void takeMulligan();
     void serumMulligan();
+    bool hasPossibleAttackers();
+    bool noPossibleAttackers();
     bool DeadLifeState(bool check = false);
     ManaCost * doesntEmpty;
     ManaCost * poolDoesntEmpty;

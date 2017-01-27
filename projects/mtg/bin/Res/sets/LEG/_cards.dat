@@ -1,7 +1,14 @@
 [meta]
 author=Wagic Team
+name=Legends
 year=1994
+total=310
 [/meta]
+[card]
+primitive=AErathi Berserker
+id=1557
+rarity=U
+[/card]
 [card]
 primitive=Abomination
 id=1427
@@ -25,11 +32,6 @@ rarity=R
 [card]
 primitive=Adventurers' Guildhouse
 id=1698
-rarity=U
-[/card]
-[card]
-primitive=AErathi Berserker
-id=1557
 rarity=U
 [/card]
 [card]
@@ -283,6 +285,11 @@ id=1433
 rarity=C
 [/card]
 [card]
+primitive=D'Avenant Archer
+id=1605
+rarity=C
+[/card]
+[card]
 primitive=Dakkon Blackblade
 id=1651
 rarity=R
@@ -290,11 +297,6 @@ rarity=R
 [card]
 primitive=Darkness
 id=1434
-rarity=C
-[/card]
-[card]
-primitive=D'Avenant Archer
-id=1605
 rarity=C
 [/card]
 [card]
@@ -598,13 +600,13 @@ id=1443
 rarity=C
 [/card]
 [card]
-primitive=Hellfire
-id=1445
+primitive=Hell's Caretaker
+id=1444
 rarity=R
 [/card]
 [card]
-primitive=Hell's Caretaker
-id=1444
+primitive=Hellfire
+id=1445
 rarity=R
 [/card]
 [card]
@@ -1413,14 +1415,14 @@ id=1550
 rarity=U
 [/card]
 [card]
-primitive=Urborg
-id=1707
-rarity=U
-[/card]
-[card]
 primitive=Ur-Drago
 id=1695
 rarity=R
+[/card]
+[card]
+primitive=Urborg
+id=1707
+rarity=U
 [/card]
 [card]
 primitive=Vaevictis Asmadi

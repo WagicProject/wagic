@@ -13,6 +13,7 @@ library:Mountain
 Forbidden Orchard
 choice 2
 Black Sun's Zenith
+choice 13
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

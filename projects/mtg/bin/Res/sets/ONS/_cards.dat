@@ -1,17 +1,19 @@
 [meta]
 author=Wagic Team
+name=Onslaught
+block=Onslaught
 year=2002
-block=Slaughter
+total=350
 [/meta]
-[card]
-primitive=Accursed Centaur
-id=26715
-rarity=C
-[/card]
 [card]
 primitive=AEther Charge
 id=12425
 rarity=U
+[/card]
+[card]
+primitive=Accursed Centaur
+id=26715
+rarity=C
 [/card]
 [card]
 primitive=Aggravated Assault
@@ -625,12 +627,7 @@ rarity=C
 [/card]
 [card]
 primitive=Forest
-id=40116
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=40115
+id=40105
 rarity=L
 [/card]
 [card]
@@ -640,7 +637,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=40105
+id=40115
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=40116
 rarity=L
 [/card]
 [card]
@@ -865,12 +867,7 @@ rarity=U
 [/card]
 [card]
 primitive=Island
-id=40120
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=40119
+id=40117
 rarity=L
 [/card]
 [card]
@@ -880,18 +877,23 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=40117
+id=40119
 rarity=L
 [/card]
 [card]
-primitive=Ixidor, Reality Sculptor
-id=40578
-rarity=R
+primitive=Island
+id=40120
+rarity=L
 [/card]
 [card]
 primitive=Ixidor's Will
 id=39843
 rarity=C
+[/card]
+[card]
+primitive=Ixidor, Reality Sculptor
+id=40578
+rarity=R
 [/card]
 [card]
 primitive=Jareth, Leonine Titan
@@ -904,14 +906,14 @@ id=39559
 rarity=R
 [/card]
 [card]
-primitive=Kamahl, Fist of Krosa
-id=40538
-rarity=R
-[/card]
-[card]
 primitive=Kamahl's Summons
 id=34228
 rarity=U
+[/card]
+[card]
+primitive=Kamahl, Fist of Krosa
+id=40538
+rarity=R
 [/card]
 [card]
 primitive=Krosan Colossus
@@ -1020,12 +1022,7 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
-id=40110
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=40109
+id=40107
 rarity=L
 [/card]
 [card]
@@ -1035,7 +1032,12 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=40107
+id=40109
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=40110
 rarity=L
 [/card]
 [card]
@@ -1115,12 +1117,7 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=40124
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=40123
+id=40121
 rarity=L
 [/card]
 [card]
@@ -1130,7 +1127,12 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=40121
+id=40123
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=40124
 rarity=L
 [/card]
 [card]
@@ -1269,14 +1271,14 @@ id=39455
 rarity=C
 [/card]
 [card]
-primitive=Searing Flesh
-id=35386
-rarity=U
-[/card]
-[card]
 primitive=Sea's Claim
 id=39446
 rarity=C
+[/card]
+[card]
+primitive=Searing Flesh
+id=35386
+rarity=U
 [/card]
 [card]
 primitive=Seaside Haven
@@ -1480,12 +1482,7 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
-id=40114
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=40113
+id=40111
 rarity=L
 [/card]
 [card]
@@ -1495,7 +1492,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=40111
+id=40113
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=40114
 rarity=L
 [/card]
 [card]

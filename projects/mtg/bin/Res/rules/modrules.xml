@@ -42,6 +42,10 @@
   	<item name="types" >
   	    <position x="22" y="49"/>
   	</item>
+  	<item name="cardid" >
+	    <position x="22" y="237"/>
+  	    <formattedtext>mtgid</formattedtext>
+  	</item>
   	<item name="expansionrarity" >
 	    <position x="22" y="255"/>
   	    <formattedtext>expansion rarity</formattedtext>

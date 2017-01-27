@@ -223,6 +223,7 @@ civic_wayfinder.txt
 clone.txt
 clone2.txt
 clone3.txt
+clone4.txt
 cockatrice.txt
 cockatrice_i228.txt
 colossus_of_sardia1.txt
@@ -275,6 +276,7 @@ dingus_staff_i153.txt
 Distorting_Wake.txt
 Distorting_Wake2.txt
 divergent_growth.txt
+Doran.txt
 doomed_necromancer.txt
 double_strike_i145.txt
 double_strike2_i145.txt
@@ -453,6 +455,7 @@ library_of_alexandria3.txt
 lifeforce.txt
 lifeline.txt
 lifetap.txt
+lifetap2.txt
 lightmine_field.txt
 lightmine_field2.txt
 living_artifact_i169.txt
@@ -460,6 +463,7 @@ living_lands.txt
 livingweapon.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
+Living_Death.txt
 magma_spray.txt
 manabarbs_dual_lands_i562.txt
 master_decoy.txt
@@ -531,6 +535,7 @@ pledge_protection.txt
 plumes_of_peace_i260.txt
 pouncing_jaguar_i425.txt
 power_armor.txt
+previousbattlefield.txt
 promise_of_bunrei_i305.txt
 prosperity.txt
 protomatter_powder.txt
@@ -575,6 +580,7 @@ regal_force.txt
 reinforcements_1.txt
 Rending_Vines.txt
 Rending_Vines2.txt
+Replenish.txt
 resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
@@ -621,6 +627,7 @@ shimmer_myr_FORCEDALIVE.txt
 shivan_hellkite.txt
 shock.txt
 shock2.txt
+Show_and_Tell.txt
 siege_gang_commander.txt
 simic_initiate.txt
 slate_of_ancestry.txt
@@ -635,6 +642,7 @@ spark_elemental.txt
 spectral_shield_CANTBETARGETOF.txt
 spell_rupture.txt
 spell_rupture_2.txt
+Sphere_of_Resistance.txt
 sphinx_summoner.txt
 spirit_link.txt
 spirit_link_i173.txt
@@ -674,6 +682,8 @@ tidal_warrior_i646.txt
 tidal_warrior_i649.txt
 tidal_warrior_i652.txt
 Timely_Reinforcements.txt
+TirelessTracker.txt
+TirelessGraf.txt
 titanic_ultimatum.txt
 tokenizer.txt
 tokenizer2.txt

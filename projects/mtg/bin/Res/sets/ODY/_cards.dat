@@ -1,22 +1,29 @@
 [meta]
 author=Wagic Team
-year=2001
+name=Odyssey
 block=Odyssey
+year=2001
+total=350
 [/meta]
+[card]
+primitive=AEther Burst
+id=29725
+rarity=C
+[/card]
 [card]
 primitive=Abandoned Outpost
 id=31761
 rarity=C
 [/card]
 [card]
-primitive=Aboshan, Cephalid Emperor
-id=31821
-rarity=R
-[/card]
-[card]
 primitive=Aboshan's Desire
 id=29728
 rarity=C
+[/card]
+[card]
+primitive=Aboshan, Cephalid Emperor
+id=31821
+rarity=R
 [/card]
 [card]
 primitive=Acceptable Losses
@@ -27,11 +34,6 @@ rarity=C
 primitive=Aegis of Honor
 id=29922
 rarity=R
-[/card]
-[card]
-primitive=AEther Burst
-id=29725
-rarity=C
 [/card]
 [card]
 primitive=Afflict
@@ -154,14 +156,14 @@ id=30569
 rarity=U
 [/card]
 [card]
-primitive=Battle of Wits
-id=29942
-rarity=R
-[/card]
-[card]
 primitive=Battle Strain
 id=29861
 rarity=U
+[/card]
+[card]
+primitive=Battle of Wits
+id=29942
+rarity=R
 [/card]
 [card]
 primitive=Bearscape
@@ -769,14 +771,14 @@ id=29997
 rarity=R
 [/card]
 [card]
-primitive=Kamahl, Pit Fighter
-id=29963
-rarity=R
-[/card]
-[card]
 primitive=Kamahl's Desire
 id=29761
 rarity=C
+[/card]
+[card]
+primitive=Kamahl, Pit Fighter
+id=29963
+rarity=R
 [/card]
 [card]
 primitive=Karmic Justice
@@ -1354,14 +1356,14 @@ id=30573
 rarity=R
 [/card]
 [card]
-primitive=Seton, Krosan Protector
-id=29985
-rarity=R
-[/card]
-[card]
 primitive=Seton's Desire
 id=29791
 rarity=C
+[/card]
+[card]
+primitive=Seton, Krosan Protector
+id=29985
+rarity=R
 [/card]
 [card]
 primitive=Shadowblood Egg

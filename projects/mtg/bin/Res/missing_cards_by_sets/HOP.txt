@@ -1,0 +1,108 @@
+[card]
+name=Assault // Battery
+text=Assault deals 2 damage to target creature or player. --  //  -- Put a 3/3 green Elephant creature token onto the battlefield.
+mana={R} // {3}{G}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Branching Bolt
+text=Choose one or both — Branching Bolt deals 3 damage to target creature with flying; and/or Branching Bolt deals 3 damage to target creature without flying.
+mana={1}{R}{G}
+type=Instant
+[/card]
+[card]
+name=Browbeat
+text=Any player may have Browbeat deal 5 damage to him or her. If no one does, target player draws three cards.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Captain's Maneuver
+text=The next X damage that would be dealt to target creature or player this turn is dealt to another target creature or player instead.
+mana={X}{R}{W}
+type=Instant
+[/card]
+[card]
+name=Cone of Flame
+text=Cone of Flame deals 1 damage to target creature or player, 2 damage to another target creature or player, and 3 damage to a third target creature or player.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Furnace of Rath
+text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={1}{R}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Hull Breach
+text=Choose one — -- • Destroy target artifact. -- • Destroy target enchantment. -- • Destroy target artifact and target enchantment.
+mana={R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Incremental Blight
+text=Put a -1/-1 counter on target creature, two -1/-1 counters on another target creature, and three -1/-1 counters on a third target creature.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Menacing Ogre
+text=Trample, haste -- When Menacing Ogre enters the battlefield, each player secretly chooses a number. Then those numbers are revealed. Each player with the highest number loses that much life. If you are one of those players, put two +1/+1 counters on Menacing Ogre.
+mana={3}{R}{R}
+type=Creature
+subtype=Ogre
+power=3
+toughness=3
+[/card]
+[card]
+name=Order // Chaos
+text=Exile target attacking creature. --  //  -- Creatures can't block this turn.
+mana={3}{W} // {2}{R}
+type=Instant // Instant
+[/card]
+[card]
+name=Profane Command
+text=Choose two — -- • Target player loses X life.  -- • Return target creature card with converted mana cost X or less from your graveyard to the battlefield. -- • Target creature gets -X/-X until end of turn. -- • Up to X target creatures gain fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.)
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Pyrotechnics
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Razia, Boros Archangel
+text=Flying, vigilance, haste -- {T}: The next 3 damage that would be dealt to target creature you control this turn is dealt to another target creature instead.
+mana={4}{R}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=6
+toughness=3
+[/card]
+[card]
+name=Rolling Thunder
+text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Smokebraider
+text={T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast Elemental spells or activate abilities of Elementals.
+mana={1}{R}
+type=Creature
+subtype=Elemental Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Vedalken Engineer
+text={T}: Add two mana of any one color to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
+mana={1}{U}
+type=Creature
+subtype=Vedalken Artificer
+power=1
+toughness=1
+[/card]

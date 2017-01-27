@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
+name=Alliances
+block=Ice Age
 year=1996
-block=Ice
+total=199
 [/meta]
 [card]
 primitive=Aesthir Glider
@@ -15,22 +17,22 @@ rarity=C
 [/card]
 [card]
 primitive=Agent of Stromgald
-id=3160
-rarity=C
-[/card]
-[card]
-primitive=Agent of Stromgald
 id=3159
 rarity=C
 [/card]
 [card]
-primitive=Arcane Denial
-id=3098
+primitive=Agent of Stromgald
+id=3160
 rarity=C
 [/card]
 [card]
 primitive=Arcane Denial
 id=3097
+rarity=C
+[/card]
+[card]
+primitive=Arcane Denial
+id=3098
 rarity=C
 [/card]
 [card]
@@ -40,22 +42,22 @@ rarity=R
 [/card]
 [card]
 primitive=Astrolabe
-id=3044
-rarity=C
-[/card]
-[card]
-primitive=Astrolabe
 id=3043
 rarity=C
 [/card]
 [card]
-primitive=Awesome Presence
-id=3100
+primitive=Astrolabe
+id=3044
 rarity=C
 [/card]
 [card]
 primitive=Awesome Presence
 id=3099
+rarity=C
+[/card]
+[card]
+primitive=Awesome Presence
+id=3100
 rarity=C
 [/card]
 [card]
@@ -75,17 +77,12 @@ rarity=R
 [/card]
 [card]
 primitive=Balduvian War-Makers
-id=3163
-rarity=C
-[/card]
-[card]
-primitive=Balduvian War-Makers
 id=3162
 rarity=C
 [/card]
 [card]
-primitive=Benthic Explorers
-id=3102
+primitive=Balduvian War-Makers
+id=3163
 rarity=C
 [/card]
 [card]
@@ -94,13 +91,18 @@ id=3101
 rarity=C
 [/card]
 [card]
-primitive=Bestial Fury
-id=3165
+primitive=Benthic Explorers
+id=3102
 rarity=C
 [/card]
 [card]
 primitive=Bestial Fury
 id=3164
+rarity=C
+[/card]
+[card]
+primitive=Bestial Fury
+id=3165
 rarity=C
 [/card]
 [card]
@@ -120,22 +122,22 @@ rarity=U
 [/card]
 [card]
 primitive=Carrier Pigeons
-id=3191
-rarity=C
-[/card]
-[card]
-primitive=Carrier Pigeons
 id=3190
 rarity=C
 [/card]
 [card]
-primitive=Casting of Bones
-id=3068
+primitive=Carrier Pigeons
+id=3191
 rarity=C
 [/card]
 [card]
 primitive=Casting of Bones
 id=3067
+rarity=C
+[/card]
+[card]
+primitive=Casting of Bones
+id=3068
 rarity=C
 [/card]
 [card]
@@ -150,12 +152,12 @@ rarity=U
 [/card]
 [card]
 primitive=Deadly Insect
-id=3130
+id=3129
 rarity=C
 [/card]
 [card]
 primitive=Deadly Insect
-id=3129
+id=3130
 rarity=C
 [/card]
 [card]
@@ -185,12 +187,12 @@ rarity=U
 [/card]
 [card]
 primitive=Elvish Ranger
-id=3133
+id=3132
 rarity=C
 [/card]
 [card]
 primitive=Elvish Ranger
-id=3132
+id=3133
 rarity=C
 [/card]
 [card]
@@ -205,22 +207,22 @@ rarity=U
 [/card]
 [card]
 primitive=Enslaved Scout
-id=3170
-rarity=C
-[/card]
-[card]
-primitive=Enslaved Scout
 id=3169
 rarity=C
 [/card]
 [card]
-primitive=Errand of Duty
-id=3193
+primitive=Enslaved Scout
+id=3170
 rarity=C
 [/card]
 [card]
 primitive=Errand of Duty
 id=3192
+rarity=C
+[/card]
+[card]
+primitive=Errand of Duty
+id=3193
 rarity=C
 [/card]
 [card]
@@ -230,12 +232,12 @@ rarity=R
 [/card]
 [card]
 primitive=False Demise
-id=3106
+id=3105
 rarity=C
 [/card]
 [card]
 primitive=False Demise
-id=3105
+id=3106
 rarity=C
 [/card]
 [card]
@@ -245,22 +247,22 @@ rarity=R
 [/card]
 [card]
 primitive=Feast or Famine
-id=3074
-rarity=C
-[/card]
-[card]
-primitive=Feast or Famine
 id=3073
 rarity=C
 [/card]
 [card]
-primitive=Fevered Strength
-id=3076
+primitive=Feast or Famine
+id=3074
 rarity=C
 [/card]
 [card]
 primitive=Fevered Strength
 id=3075
+rarity=C
+[/card]
+[card]
+primitive=Fevered Strength
+id=3076
 rarity=C
 [/card]
 [card]
@@ -275,22 +277,22 @@ rarity=U
 [/card]
 [card]
 primitive=Foresight
-id=3109
-rarity=C
-[/card]
-[card]
-primitive=Foresight
 id=3108
 rarity=C
 [/card]
 [card]
-primitive=Fyndhorn Druid
-id=3136
+primitive=Foresight
+id=3109
 rarity=C
 [/card]
 [card]
 primitive=Fyndhorn Druid
 id=3135
+rarity=C
+[/card]
+[card]
+primitive=Fyndhorn Druid
+id=3136
 rarity=C
 [/card]
 [card]
@@ -300,17 +302,12 @@ rarity=R
 [/card]
 [card]
 primitive=Gift of the Woods
-id=3139
-rarity=C
-[/card]
-[card]
-primitive=Gift of the Woods
 id=3138
 rarity=C
 [/card]
 [card]
-primitive=Gorilla Berserkers
-id=3141
+primitive=Gift of the Woods
+id=3139
 rarity=C
 [/card]
 [card]
@@ -319,8 +316,8 @@ id=3140
 rarity=C
 [/card]
 [card]
-primitive=Gorilla Chieftain
-id=3143
+primitive=Gorilla Berserkers
+id=3141
 rarity=C
 [/card]
 [card]
@@ -329,8 +326,8 @@ id=3142
 rarity=C
 [/card]
 [card]
-primitive=Gorilla Shaman
-id=3172
+primitive=Gorilla Chieftain
+id=3143
 rarity=C
 [/card]
 [card]
@@ -339,8 +336,8 @@ id=3171
 rarity=C
 [/card]
 [card]
-primitive=Gorilla War Cry
-id=3174
+primitive=Gorilla Shaman
+id=3172
 rarity=C
 [/card]
 [card]
@@ -349,18 +346,23 @@ id=3173
 rarity=C
 [/card]
 [card]
-primitive=Graveborn Token Balduvian Dead
-id=3066111111
+primitive=Gorilla War Cry
+id=3174
+rarity=C
+[/card]
+[card]
+primitive=Graveborn Token
+id=-3066
 rarity=T
 [/card]
 [card]
 primitive=Guerrilla Tactics
-id=3176
+id=3175
 rarity=C
 [/card]
 [card]
 primitive=Guerrilla Tactics
-id=3175
+id=3176
 rarity=C
 [/card]
 [card]
@@ -390,12 +392,12 @@ rarity=U
 [/card]
 [card]
 primitive=Insidious Bookworms
-id=3078
+id=3077
 rarity=C
 [/card]
 [card]
 primitive=Insidious Bookworms
-id=3077
+id=3078
 rarity=C
 [/card]
 [card]
@@ -420,12 +422,12 @@ rarity=R
 [/card]
 [card]
 primitive=Kjeldoran Escort
-id=3199
+id=3198
 rarity=C
 [/card]
 [card]
 primitive=Kjeldoran Escort
-id=3198
+id=3199
 rarity=C
 [/card]
 [card]
@@ -440,12 +442,12 @@ rarity=R
 [/card]
 [card]
 primitive=Kjeldoran Pride
-id=3202
+id=3201
 rarity=C
 [/card]
 [card]
 primitive=Kjeldoran Pride
-id=3201
+id=3202
 rarity=C
 [/card]
 [card]
@@ -465,12 +467,12 @@ rarity=R
 [/card]
 [card]
 primitive=Lat-Nam's Legacy
-id=3111
+id=3110
 rarity=C
 [/card]
 [card]
 primitive=Lat-Nam's Legacy
-id=3110
+id=3111
 rarity=C
 [/card]
 [card]
@@ -480,12 +482,12 @@ rarity=R
 [/card]
 [card]
 primitive=Lim-Dul's High Guard
-id=3083
+id=3082
 rarity=C
 [/card]
 [card]
 primitive=Lim-Dul's High Guard
-id=3082
+id=3083
 rarity=C
 [/card]
 [card]
@@ -510,12 +512,12 @@ rarity=R
 [/card]
 [card]
 primitive=Martyrdom
-id=3204
+id=3203
 rarity=C
 [/card]
 [card]
 primitive=Martyrdom
-id=3203
+id=3204
 rarity=C
 [/card]
 [card]
@@ -555,12 +557,12 @@ rarity=R
 [/card]
 [card]
 primitive=Noble Steeds
-id=3206
+id=3205
 rarity=C
 [/card]
 [card]
 primitive=Noble Steeds
-id=3205
+id=3206
 rarity=C
 [/card]
 [card]
@@ -570,12 +572,12 @@ rarity=R
 [/card]
 [card]
 primitive=Phantasmal Fiend
-id=3086
+id=3085
 rarity=C
 [/card]
 [card]
 primitive=Phantasmal Fiend
-id=3085
+id=3086
 rarity=C
 [/card]
 [card]
@@ -590,12 +592,12 @@ rarity=R
 [/card]
 [card]
 primitive=Phyrexian Boon
-id=3088
+id=3087
 rarity=C
 [/card]
 [card]
 primitive=Phyrexian Boon
-id=3087
+id=3088
 rarity=C
 [/card]
 [card]
@@ -610,12 +612,12 @@ rarity=R
 [/card]
 [card]
 primitive=Phyrexian War Beast
-id=3054
+id=3053
 rarity=C
 [/card]
 [card]
 primitive=Phyrexian War Beast
-id=3053
+id=3054
 rarity=C
 [/card]
 [card]
@@ -635,22 +637,22 @@ rarity=U
 [/card]
 [card]
 primitive=Reinforcements
-id=3208
-rarity=C
-[/card]
-[card]
-primitive=Reinforcements
 id=3207
 rarity=C
 [/card]
 [card]
-primitive=Reprisal
-id=3210
+primitive=Reinforcements
+id=3208
 rarity=C
 [/card]
 [card]
 primitive=Reprisal
 id=3209
+rarity=C
+[/card]
+[card]
+primitive=Reprisal
+id=3210
 rarity=C
 [/card]
 [card]
@@ -670,12 +672,12 @@ rarity=R
 [/card]
 [card]
 primitive=Royal Herbalist
-id=3213
+id=3212
 rarity=C
 [/card]
 [card]
 primitive=Royal Herbalist
-id=3212
+id=3213
 rarity=C
 [/card]
 [card]
@@ -715,12 +717,12 @@ rarity=U
 [/card]
 [card]
 primitive=Soldevi Adnate
-id=3091
+id=3090
 rarity=C
 [/card]
 [card]
 primitive=Soldevi Adnate
-id=3090
+id=3091
 rarity=C
 [/card]
 [card]
@@ -735,17 +737,12 @@ rarity=R
 [/card]
 [card]
 primitive=Soldevi Heretic
-id=3115
-rarity=C
-[/card]
-[card]
-primitive=Soldevi Heretic
 id=3114
 rarity=C
 [/card]
 [card]
-primitive=Soldevi Sage
-id=3117
+primitive=Soldevi Heretic
+id=3115
 rarity=C
 [/card]
 [card]
@@ -754,8 +751,8 @@ id=3116
 rarity=C
 [/card]
 [card]
-primitive=Soldevi Sentry
-id=3060
+primitive=Soldevi Sage
+id=3117
 rarity=C
 [/card]
 [card]
@@ -764,13 +761,18 @@ id=3059
 rarity=C
 [/card]
 [card]
-primitive=Soldevi Steam Beast
-id=3062
+primitive=Soldevi Sentry
+id=3060
 rarity=C
 [/card]
 [card]
 primitive=Soldevi Steam Beast
 id=3061
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Steam Beast
+id=3062
 rarity=C
 [/card]
 [card]
@@ -784,23 +786,18 @@ id=3118
 rarity=U
 [/card]
 [card]
-primitive=Splinter Token
-id=-3148
-rarity=T
-[/card]
-[card]
 primitive=Splintering Wind
 id=3148
 rarity=R
 [/card]
 [card]
 primitive=Stench of Decay
-id=3093
+id=3092
 rarity=C
 [/card]
 [card]
 primitive=Stench of Decay
-id=3092
+id=3093
 rarity=C
 [/card]
 [card]
@@ -810,12 +807,12 @@ rarity=R
 [/card]
 [card]
 primitive=Storm Crow
-id=3120
+id=3119
 rarity=C
 [/card]
 [card]
 primitive=Storm Crow
-id=3119
+id=3120
 rarity=C
 [/card]
 [card]
@@ -825,12 +822,12 @@ rarity=U
 [/card]
 [card]
 primitive=Storm Shaman
-id=3184
+id=3183
 rarity=C
 [/card]
 [card]
 primitive=Storm Shaman
-id=3183
+id=3184
 rarity=C
 [/card]
 [card]
@@ -855,12 +852,12 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp Mosquito
-id=3096
+id=3095
 rarity=C
 [/card]
 [card]
 primitive=Swamp Mosquito
-id=3095
+id=3096
 rarity=C
 [/card]
 [card]
@@ -870,12 +867,12 @@ rarity=R
 [/card]
 [card]
 primitive=Taste of Paradise
-id=3150
+id=3149
 rarity=C
 [/card]
 [card]
 primitive=Taste of Paradise
-id=3149
+id=3150
 rarity=C
 [/card]
 [card]
@@ -900,12 +897,12 @@ rarity=R
 [/card]
 [card]
 primitive=Undergrowth
-id=3153
+id=3152
 rarity=C
 [/card]
 [card]
 primitive=Undergrowth
-id=3152
+id=3153
 rarity=C
 [/card]
 [card]
@@ -920,12 +917,12 @@ rarity=U
 [/card]
 [card]
 primitive=Varchild's Crusader
-id=3186
+id=3185
 rarity=C
 [/card]
 [card]
 primitive=Varchild's Crusader
-id=3185
+id=3186
 rarity=C
 [/card]
 [card]
@@ -940,22 +937,22 @@ rarity=T
 [/card]
 [card]
 primitive=Veteran's Voice
-id=3189
-rarity=C
-[/card]
-[card]
-primitive=Veteran's Voice
 id=3188
 rarity=C
 [/card]
 [card]
-primitive=Viscerid Armor
-id=3126
+primitive=Veteran's Voice
+id=3189
 rarity=C
 [/card]
 [card]
 primitive=Viscerid Armor
 id=3125
+rarity=C
+[/card]
+[card]
+primitive=Viscerid Armor
+id=3126
 rarity=C
 [/card]
 [card]
@@ -970,12 +967,12 @@ rarity=R
 [/card]
 [card]
 primitive=Whip Vine
-id=3155
+id=3154
 rarity=C
 [/card]
 [card]
 primitive=Whip Vine
-id=3154
+id=3155
 rarity=C
 [/card]
 [card]
@@ -985,12 +982,12 @@ rarity=U
 [/card]
 [card]
 primitive=Wild Aesthir
-id=3220
+id=3219
 rarity=C
 [/card]
 [card]
 primitive=Wild Aesthir
-id=3219
+id=3220
 rarity=C
 [/card]
 [card]
@@ -1000,12 +997,12 @@ rarity=R
 [/card]
 [card]
 primitive=Yavimaya Ancients
-id=3157
+id=3156
 rarity=C
 [/card]
 [card]
 primitive=Yavimaya Ancients
-id=3156
+id=3157
 rarity=C
 [/card]
 [card]

@@ -123,7 +123,15 @@ void GuiPlay::BattleField::reset(float x, float y)
 }
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
-    card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
+    //card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
+    card->x = x-4 + baseX;
+    if (attackers+1 < 8)
+        x += CARD_WIDTH;
+    else if (attackers+1 < 24)
+        x += (SCREEN_WIDTH - 200 - baseX) / attackers+1;
+    else
+        x += (HORZWIDTH - baseX) / attackers+1;
+
     card->y = baseY + (card->card->getObserver()->getView()->getRenderedPlayer() == card->card->controller() ? 20 + y : -20 - y);
     ++currentAttacker;
     //  JRenderer::GetInstance()->RenderQuad(WResourceManager::Instance()->GetQuad("BattleIcon"), card->actX, card->actY, 0, 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()), 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()));
@@ -415,6 +423,8 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     else if (dynamic_cast<WEventCardEquipped*> (e))
         Replace();
     else if (dynamic_cast<WEventCardControllerChange*> (e))
+        Replace();
+    else if (dynamic_cast<WEventCardTransforms*> (e))
         Replace();
     Replace();
     return 0;

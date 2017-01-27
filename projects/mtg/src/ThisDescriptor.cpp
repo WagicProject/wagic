@@ -293,6 +293,19 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(GameObserver* obser
         return NULL;
     }
 
+    //controller creature spells - conduit of ruin
+    found = s.find("creaturespells");
+    if (found != string::npos)
+    {
+        ThisCreatureSpells * td = NEW ThisCreatureSpells(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
+
     //power
     found = s.find("power");
     if (found != string::npos)
@@ -468,6 +481,21 @@ int ThisControllerlife::match(MTGCardInstance * card)
 ThisControllerlife* ThisControllerlife::clone() const 
 {
     return NEW ThisControllerlife(*this);
+}
+
+ThisCreatureSpells::ThisCreatureSpells(int count)
+{
+    comparisonCriterion = count;
+}
+
+int ThisCreatureSpells::match(MTGCardInstance * card)
+{
+    return matchValue(card->controller()->game->stack->seenThisTurn("creature", Constants::CAST_ALL));
+}
+
+ThisCreatureSpells* ThisCreatureSpells::clone() const 
+{
+    return NEW ThisCreatureSpells(*this);
 }
 
 ThisPower::ThisPower(int power)

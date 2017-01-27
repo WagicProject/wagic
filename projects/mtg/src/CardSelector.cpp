@@ -339,8 +339,14 @@ void CardSelector::Render()
         active->Render();
         if (CardView* card = dynamic_cast<CardView*>(active) )
         {
+            //if(timer > 0)
+                //card->DrawCard(bigpos, mDrawMode);
             if(timer > 0)
-                card->DrawCard(bigpos, mDrawMode);
+             {
+                 float modx = 14.f;
+                 Pos npos = Pos(bigpos.x+modx,bigpos.y-4.f,bigpos.zoom-(bigpos.zoom/5),bigpos.t,bigpos.alpha);
+                 card->DrawCard(npos, mDrawMode);
+             }
         }
     }
 }
