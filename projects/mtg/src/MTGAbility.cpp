@@ -389,7 +389,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         if (check != string::npos)//for opponent creatures
         {
             Player * checkCurrent = card->controller();
-            if(card->getCurrentPower() <= checkCurrent->opponent()->game->hand->nb_cards)
+            if(card->power <= checkCurrent->opponent()->game->hand->nb_cards)
                 return 0;
         }
 
@@ -397,7 +397,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         if (check != string::npos)//for controller creatures
         {
             Player * checkCurrent = card->controller();
-            if(card->getCurrentPower() <= checkCurrent->game->hand->nb_cards)
+            if(card->power <= checkCurrent->game->hand->nb_cards)
                 return 0;
         }
         //end
