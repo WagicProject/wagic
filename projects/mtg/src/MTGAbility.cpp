@@ -1410,13 +1410,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("legendrule");
     if(found != string::npos)
     {
-        //I replaced this rule since it broke cards with copy effects and with andability and other
-        //complex cards. So I moved it to gameobserver state based effects, if there are no more
-        //abilities that needs resolving then trigger this legend check... example bug:
-        //cast Phantasmal Image, then copy Vendilion Clique in play, after you choose target player
-        //there will be infinite menu for legendary rule that conflicts with Phantasmal andAbility
-        //observer->addObserver(NEW MTGLegendRule(observer, -1));
-        observer->foundlegendrule = true;
+        observer->addObserver(NEW MTGLegendRule(observer, -1));
+        //observer->foundlegendrule = true;
         return NULL;
     }
     //this handles the planeswalker named legend rule which is dramatically different from above.

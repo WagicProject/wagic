@@ -1543,11 +1543,10 @@ AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, M
 
 int AACopier::resolve()
 {
-    bool tokencopied = false;
-    AbilityFactory af(game);
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        bool tokencopied = false;
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
             tokencopied = true;
 
@@ -1557,38 +1556,6 @@ int AACopier::resolve()
         {
             source->copy(_target);
         }
-        //abilities
-        for(unsigned int i = 0;i < source->cardsAbilities.size();i++)
-        {
-            MTGAbility * a = dynamic_cast<MTGAbility *>(source->cardsAbilities[i]);
-
-            if(a) game->removeObserver(a);
-        }
-        source->cardsAbilities.clear();
-        af.getAbilities(&currentAbilities, NULL, source);
-        for (size_t i = 0; i < currentAbilities.size(); ++i)
-        {
-            MTGAbility * a = currentAbilities[i];
-            a->source = (MTGCardInstance *) source;
-            if (a)
-            {
-                if (a->oneShot)
-                {
-                    a->resolve();
-                    SAFE_DELETE(a);
-                }
-                else
-                {
-                    a->addToGame();
-                    MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
-                    if(!dontAdd)
-                    {
-                        source->cardsAbilities.push_back(a);
-                    }
-                }
-            }
-        }
-        //
         source->isACopier = true;
         source->hasCopiedToken = tokencopied;
         source->copiedID = _target->copiedID;
@@ -1605,35 +1572,9 @@ int AACopier::resolve()
             source->basicAbilities.reset();
             source->getManaCost()->resetCosts();
         }
-        if(_target->TokenAndAbility)
-        {//the source copied a token with andAbility
-            MTGAbility * TokenandAbilityClone = _target->TokenAndAbility->clone();
-            TokenandAbilityClone->target = source;
-            if(_target->TokenAndAbility->oneShot)
-            {
-                TokenandAbilityClone->resolve();
-                SAFE_DELETE(TokenandAbilityClone);
-            }
-            else
-            {
-                TokenandAbilityClone->addToGame();
-            }
-        }
-        if(andAbility)
-        {
-            MTGAbility * andAbilityClone = andAbility->clone();
-            andAbilityClone->target = source;
-            if(andAbility->oneShot)
-            {
-                andAbilityClone->resolve();
-                SAFE_DELETE(andAbilityClone);
-            }
-            else
-            {
-                andAbilityClone->addToGame();
-            }
-        }
-        //source->mPropertiesChangedSinceLastUpdate = true;
+        //todo andAbility and tokenandAbility
+        //
+        //
         return 1;
     }
     return 0;

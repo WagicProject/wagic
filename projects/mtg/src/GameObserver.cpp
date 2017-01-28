@@ -1069,7 +1069,7 @@ void GameObserver::checkLegendary(MTGCardInstance *  card)
 {
     if(!foundlegendrule)
         return;
-    if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
+    if(card->isPhased||card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
         return;
     int destroy = 0;
     vector<MTGCardInstance*>oldCards;
