@@ -73,7 +73,9 @@ PSP_EBOOT_PIC1 = pic1.png
 INCDIR = ../../JGE/include ../../JGE/src/zipFS ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src ../../projects/mtg/include ../../Boost
 LIBDIR = ../../JGE/lib/psp
 CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK -DUSE_PRECOMPILED_HEADERS=1 -DPSP -DTIXML_USE_STL
-endif
+
+else
+
 ifeq ($(MAKECMDGOALS),x11)
 
 OBJS += objs/TestSuiteAI.o
@@ -97,6 +99,7 @@ ASFLAGS = $(CXXFLAGS)
 
 all: $(DEFAULT_RULE)
 
+endif
 endif
 
 CFLAGS := -Wall -W -Werror -Wno-unused -Wno-deprecated-declarations $(CFLAGS)
