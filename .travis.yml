@@ -64,3 +64,4 @@ after_success:
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l qt-gui-build/wagic -r Wagic-linux-QT -b $TRAVIS_BRANCH
