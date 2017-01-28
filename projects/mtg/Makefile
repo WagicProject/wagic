@@ -80,7 +80,7 @@ OBJS += objs/TestSuiteAI.o
 INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include -I/usr/include/boost -I../../JGE/src/zipFS
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 -lpthread $(FMOD)
-CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1 -DTIXML_USE_STL
+CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1 -DTIXML_USE_STL -Wno-nonnull-compare 
 
 ASFLAGS = $(CXXFLAGS)
 
@@ -91,7 +91,7 @@ OBJS += objs/TestSuiteAI.o
 INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include -I../../Boost -I../../JGE/src/zipFS
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib -L../../Boost/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 -lboost_thread $(FMOD)
-CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1
+CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1 -Wno-nonnull-compare 
 
 ASFLAGS = $(CXXFLAGS)
 
@@ -99,7 +99,7 @@ all: $(DEFAULT_RULE)
 
 endif
 
-CFLAGS := -Wall -W -Werror -Wno-unused -Wno-deprecated-declarations -Wno-nonnull-compare $(CFLAGS)
+CFLAGS := -Wall -W -Werror -Wno-unused -Wno-deprecated-declarations $(CFLAGS)
 CXXFLAGS += $(CFLAGS)
 # -fno-exceptions
 
