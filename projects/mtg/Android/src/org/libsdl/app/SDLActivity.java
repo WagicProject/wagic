@@ -1227,58 +1227,12 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
 
         if (event.getAction() == KeyEvent.ACTION_DOWN)
         {
-            Log.d(TAG, "key down: " + keyCode);
-            // HACK: keycode translation for GameStick (assuming default key bindings)
-//            switch(keyCode) {
-//                case KeyEvent.KEYCODE_BUTTON_A:
-//                    keyCode = KeyEvent.KEYCODE_K;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_B:
-//                    keyCode = KeyEvent.KEYCODE_L;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_X:
-//                    keyCode = KeyEvent.KEYCODE_J;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_Y:
-//                    keyCode = KeyEvent.KEYCODE_I;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_L1:
-//                    keyCode = KeyEvent.KEYCODE_A;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_R1:
-//                    keyCode = KeyEvent.KEYCODE_E;
-//                    break;
-//            }
-//            Log.d(TAG, "key down: " + keyCode);
-
+            // Log.d(TAG, "key down: " + keyCode);
             SDLActivity.onNativeKeyDown(keyCode);
             return true;
         } else if (event.getAction() == KeyEvent.ACTION_UP)
         {
-            Log.d(TAG, "key up:   " + keyCode);
-            // HACK: keycode translation for GameStick (assuming default key bindings)
-//            switch(keyCode) {
-//                case KeyEvent.KEYCODE_BUTTON_A:
-//                    keyCode = KeyEvent.KEYCODE_K;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_B:
-//                    keyCode = KeyEvent.KEYCODE_L;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_X:
-//                    keyCode = KeyEvent.KEYCODE_J;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_Y:
-//                    keyCode = KeyEvent.KEYCODE_I;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_L1:
-//                    keyCode = KeyEvent.KEYCODE_A;
-//                    break;
-//                case KeyEvent.KEYCODE_BUTTON_R1:
-//                    keyCode = KeyEvent.KEYCODE_E;
-//                    break;
-//            }
-//            Log.d(TAG, "key up:   " + keyCode);
-
+            // Log.d(TAG, "key up:   " + keyCode);
             SDLActivity.onNativeKeyUp(keyCode);
             return true;
         }
