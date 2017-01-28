@@ -1,0 +1,234 @@
+[card]
+name=Ancient Excavation
+text=Draw cards equal to the number of cards in your hand, then discard a card for each card drawn this way. -- Basic landcycling {2} ({2}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+mana={2}{U}{B}
+type=Instant
+[/card]
+[card]
+name=Assault Suit
+text=Equipped creature gets +2/+2, has haste, can't attack you or a planeswalker you control, and can't be sacrificed. -- At the beginning of each opponent's upkeep, you may have that player gain control of equipped creature until end of turn. If you do, untap it. -- Equip {3}
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Chain of Vapor
+text=Return target nonland permanent to its owner's hand. Then that permanent's controller may sacrifice a land. If the player does, he or she may copy this spell and may choose a new target for that copy.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Charging Cinderhorn
+text=Haste -- At the beginning of each player's end step, if no creatures attacked this turn, put a fury counter on Charging Cinderhorn. Then Charging Cinderhorn deals damage equal to the number of fury counters on it to that player.
+mana={3}{R}
+type=Creature
+subtype=Elemental Ox
+power=4
+toughness=2
+[/card]
+[card]
+name=Collective Voyage
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Command Tower
+text={T}: Add to your mana pool one mana of any color in your commander's color identity.
+type=Land
+[/card]
+[card]
+name=Commander's Sphere
+text={T}: Add to your mana pool one mana of any color in your commander's color identity. -- Sacrifice Commander's Sphere: Draw a card.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Conqueror's Flail
+text=Equipped creature gets +1/+1 for each color among permanents you control. -- As long as Conqueror's Flail is attached to a creature, your opponents can't cast spells during your turn. -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Cruel Entertainment
+text=Choose target player and another target player. The first player controls the second player during the second player's next turn, and the second player controls the first player during the first player's next turn.
+mana={6}{B}
+type=Sorcery
+[/card]
+[card]
+name=Curse of Vengeance
+text=Enchant player -- Whenever enchanted player casts a spell, put a spite counter on Curse of Vengeance. -- When enchanted player loses the game, you gain X life and draw X cards, where X is the number of spite counters on Curse of Vengeance.
+mana={B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Decimate
+text=Destroy target artifact, target creature, target enchantment, and target land.
+mana={2}{R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Deepglow Skate
+text=When Deepglow Skate enters the battlefield, double the number of each kind of counter on any number of target permanents.
+mana={4}{U}
+type=Creature
+subtype=Fish
+power=3
+toughness=3
+[/card]
+[card]
+name=Divergent Transformations
+anyzone=changecost(colorless:-1) forcedalive
+text=Undaunted (This spell costs {1} less to cast for each opponent.) -- Exile two target creatures. For each of those creatures, its controller reveals cards from the top of his or her library until he or she reveals a creature card, puts that card onto the battlefield, then shuffles the rest into his or her library.
+mana={6}{R}
+type=Instant
+[/card]
+[card]
+name=Entrapment Maneuver
+text=Target player sacrifices an attacking creature. You create X 1/1 white Soldier creature tokens, where X is that creature's toughness.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Faerie Artisans
+abilities=flying
+text=Flying -- Whenever a nontoken creature enters the battlefield under an opponent's control, create a token that's a copy of that creature except it's an artifact in addition to its other types. Then exile all other tokens created with Faerie Artisans.
+mana={3}{U}
+type=Creature
+subtype=Faerie Artificer
+power=2
+toughness=2
+[/card]
+[card]
+name=Manifold Insights
+text=Reveal the top ten cards of your library. Starting with the next opponent in turn order, each opponent chooses a different nonland card from among them. Put the chosen cards into your hand and the rest on the bottom of your library in a random order.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Minds Aglow
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Oath of Druids
+text=At the beginning of each player's upkeep, that player chooses target player who controls more creatures than he or she does and is his or her opponent. The first player may reveal cards from the top of his or her library until he or she reveals a creature card. If he or she does, that player puts that card onto the battlefield and all other cards revealed this way into his or her graveyard.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Opal Palace
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Add to your mana pool one mana of any color in your commander's color identity. If you spend this mana to cast your commander, it enters the battlefield with a number of additional +1/+1 counters on it equal to the number of times it's been cast from the command zone this game.
+type=Land
+[/card]
+[card]
+name=Orzhov Advokist
+text=At the beginning of your upkeep, each player may put two +1/+1 counters on a creature he or she controls. If a player does, creatures that player controls can't attack you or a planeswalker you control until your next turn.
+mana={2}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=4
+[/card]
+[card]
+name=Parting Thoughts
+text=Destroy target creature. You draw X cards and you lose X life, where X is the number of counters on that creature.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Read the Runes
+text=Draw X cards. For each card drawn this way, discard a card unless you sacrifice a permanent.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Reyhan, Last of the Abzan
+#wagic don't support commander atm
+auto=counter(1/1,3)
+text=Reyhan, Last of the Abzan enters the battlefield with three +1/+1 counters on it. -- Whenever a creature you control dies or is put into the command zone, if it had one or more +1/+1 counters on it, you may put that many +1/+1 counters on target creature. -- Partner (You can have two commanders if both have partner.)
+mana={1}{B}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=0
+toughness=0
+[/card]
+[card]
+name=Selfless Squire
+abilities=flash
+text=Flash -- When Selfless Squire enters the battlefield, prevent all damage that would be dealt to you this turn. -- Whenever damage that would be dealt to you is prevented, put that many +1/+1 counters on Selfless Squire.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Selvala, Explorer Returned
+text=Parley — {T}: Each player reveals the top card of his or her library. For each nonland card revealed this way, add {G} to your mana pool and you gain 1 life. Then each player draws a card.
+mana={1}{G}{W}
+type=Legendary Creature
+subtype=Elf Scout
+power=2
+toughness=4
+[/card]
+[card]
+name=Tempt with Discovery
+text=Tempting offer — Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Thrasios, Triton Hero
+#wagic don't support commander atm
+text={4}: Scry 1, then reveal the top card of your library. If it's a land card, put it onto the battlefield tapped. Otherwise, draw a card. -- Partner (You can have two commanders if both have partner.)
+mana={G}{U}
+type=Legendary Creature
+subtype=Merfolk Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Thunderfoot Baloth
+abilities=trample
+#wagic doesnt have commander zone
+text=Trample -- Lieutenant — As long as you control your commander, Thunderfoot Baloth gets +2/+2 and other creatures you control get +2/+2 and have trample.
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
+name=Tymna the Weaver
+abilities=lifelink
+#wagic don't support commander atm
+text=Lifelink -- At the beginning of your postcombat main phase, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards. -- Partner (You can have two commanders if both have partner.)
+mana={1}{W}{B}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Vial Smasher the Fierce
+#wagic don't support commander atm
+text=Whenever you cast your first spell each turn, Vial Smasher the Fierce deals damage equal to that spell's converted mana cost to an opponent chosen at random. -- Partner (You can have two commanders if both have partner.)
+mana={1}{B}{R}
+type=Legendary Creature
+subtype=Goblin Berserker
+power=2
+toughness=3
+[/card]
+[card]
+name=Zedruu the Greathearted
+text=At the beginning of your upkeep, you gain X life and draw X cards, where X is the number of permanents you own that your opponents control. -- {R}{W}{U}: Target opponent gains control of target permanent you control.
+mana={1}{R}{W}{U}
+type=Legendary Creature
+subtype=Minotaur Monk
+power=2
+toughness=4
+[/card]

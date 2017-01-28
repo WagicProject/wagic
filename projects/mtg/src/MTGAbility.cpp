@@ -384,6 +384,23 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
         
+        //Ensnaring Bridge
+        check = restriction[i].find("powermorethanopponenthand");
+        if (check != string::npos)//for opponent creatures
+        {
+            Player * checkCurrent = card->controller();
+            if(card->power <= checkCurrent->opponent()->game->hand->nb_cards)
+                return 0;
+        }
+
+        check = restriction[i].find("powermorethancontrollerhand");
+        if (check != string::npos)//for controller creatures
+        {
+            Player * checkCurrent = card->controller();
+            if(card->power <= checkCurrent->game->hand->nb_cards)
+                return 0;
+        }
+        //end
 
         check = restriction[i].find("morecardsthanopponent");
         if (check != string::npos)

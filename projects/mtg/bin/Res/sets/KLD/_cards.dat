@@ -1,0 +1,1376 @@
+[meta]
+author=Wagic Team
+name=Kaladesh
+year=2016
+total=274
+[/meta]
+[card]
+primitive=Accomplished Automaton
+id=417764
+rarity=C
+[/card]
+[card]
+primitive=Acrobatic Maneuver
+id=417574
+rarity=C
+[/card]
+[card]
+primitive=Aerial Responder
+id=417575
+rarity=U
+[/card]
+[card]
+primitive=Aether Hub
+id=417815
+rarity=U
+[/card]
+[card]
+primitive=Aether Meltdown
+id=417609
+rarity=U
+[/card]
+[card]
+primitive=Aether Theorist
+id=417610
+rarity=C
+[/card]
+[card]
+primitive=Aether Tradewinds
+id=417611
+rarity=C
+[/card]
+[card]
+primitive=Aetherborn Marauder
+id=417644
+rarity=U
+[/card]
+[card]
+primitive=Aetherflux Reservoir
+id=417765
+rarity=R
+[/card]
+[card]
+primitive=Aethersquall Ancient
+id=417612
+rarity=R
+[/card]
+[card]
+primitive=Aetherstorm Roc
+id=417576
+rarity=R
+[/card]
+[card]
+primitive=Aethertorch Renegade
+id=417679
+rarity=U
+[/card]
+[card]
+primitive=Aetherworks Marvel
+id=417766
+rarity=M
+[/card]
+[card]
+primitive=Ambitious Aetherborn
+id=417645
+rarity=C
+[/card]
+[card]
+primitive=Angel of Invention
+id=417577
+rarity=M
+[/card]
+[card]
+primitive=Animation Module
+id=417767
+rarity=R
+[/card]
+[card]
+primitive=Appetite for the Unnatural
+id=417714
+rarity=C
+[/card]
+[card]
+primitive=Aradara Express
+id=417768
+rarity=C
+[/card]
+[card]
+primitive=Arborback Stomper
+id=417715
+rarity=U
+[/card]
+[card]
+primitive=Architect of the Untamed
+id=417716
+rarity=R
+[/card]
+[card]
+primitive=Armorcraft Judge
+id=417717
+rarity=U
+[/card]
+[card]
+primitive=Attune with Aether
+id=417718
+rarity=C
+[/card]
+[card]
+primitive=Authority of the Consuls
+id=417578
+rarity=R
+[/card]
+[card]
+primitive=Aviary Mechanic
+id=417579
+rarity=C
+[/card]
+[card]
+primitive=Ballista Charger
+id=417769
+rarity=U
+[/card]
+[card]
+primitive=Bastion Mastodon
+id=417770
+rarity=C
+[/card]
+[card]
+primitive=Blooming Marsh
+id=417816
+rarity=R
+[/card]
+[card]
+primitive=Blossoming Defense
+id=417719
+rarity=U
+[/card]
+[card]
+primitive=Bomat Bazaar Barge
+id=417771
+rarity=U
+[/card]
+[card]
+primitive=Bomat Courier
+id=417772
+rarity=R
+[/card]
+[card]
+primitive=Botanical Sanctum
+id=417817
+rarity=R
+[/card]
+[card]
+primitive=Brazen Scourge
+id=417680
+rarity=U
+[/card]
+[card]
+primitive=Bristling Hydra
+id=417720
+rarity=R
+[/card]
+[card]
+primitive=Built to Last
+id=417580
+rarity=C
+[/card]
+[card]
+primitive=Built to Smash
+id=417681
+rarity=C
+[/card]
+[card]
+primitive=Captured by the Consulate
+id=417581
+rarity=R
+[/card]
+[card]
+primitive=Cataclysmic Gearhulk
+id=417582
+rarity=M
+[/card]
+[card]
+primitive=Cathartic Reunion
+id=417682
+rarity=C
+[/card]
+[card]
+primitive=Ceremonious Rejection
+id=417613
+rarity=U
+[/card]
+[card]
+primitive=Chandra's Pyrohelix
+id=417684
+rarity=C
+[/card]
+[card]
+primitive=Chandra, Pyrogenius
+id=420478
+rarity=M
+[/card]
+[card]
+primitive=Chandra, Torch of Defiance
+id=417683
+rarity=M
+[/card]
+[card]
+primitive=Chief of the Foundry
+id=417773
+rarity=U
+[/card]
+[card]
+primitive=Cloudblazer
+id=417749
+rarity=U
+[/card]
+[card]
+primitive=Cogworker's Puzzleknot
+id=417774
+rarity=C
+[/card]
+[card]
+primitive=Combustible Gearhulk
+id=417685
+rarity=M
+[/card]
+[card]
+primitive=Commencement of Festivities
+id=417721
+rarity=C
+[/card]
+[card]
+primitive=Concealed Courtyard
+id=417818
+rarity=R
+[/card]
+[card]
+primitive=Confiscation Coup
+id=417614
+rarity=R
+[/card]
+[card]
+primitive=Consul's Shieldguard
+id=417584
+rarity=U
+[/card]
+[card]
+primitive=Consulate Skygate
+id=417775
+rarity=C
+[/card]
+[card]
+primitive=Consulate Surveillance
+id=417583
+rarity=U
+[/card]
+[card]
+primitive=Contraband Kingpin
+id=417750
+rarity=U
+[/card]
+[card]
+primitive=Cowl Prowler
+id=417722
+rarity=C
+[/card]
+[card]
+primitive=Creeping Mold
+id=417723
+rarity=U
+[/card]
+[card]
+primitive=Cultivator of Blades
+id=417724
+rarity=R
+[/card]
+[card]
+primitive=Cultivator's Caravan
+id=417776
+rarity=R
+[/card]
+[card]
+primitive=Curio Vendor
+id=417615
+rarity=C
+[/card]
+[card]
+primitive=Deadlock Trap
+id=417777
+rarity=R
+[/card]
+[card]
+primitive=Decoction Module
+id=417778
+rarity=U
+[/card]
+[card]
+primitive=Demolish
+id=417686
+rarity=C
+[/card]
+[card]
+primitive=Demolition Stomper
+id=417779
+rarity=U
+[/card]
+[card]
+primitive=Demon of Dark Schemes
+id=417646
+rarity=M
+[/card]
+[card]
+primitive=Depala, Pilot Exemplar
+id=417751
+rarity=R
+[/card]
+[card]
+primitive=Dhund Operative
+id=417647
+rarity=C
+[/card]
+[card]
+primitive=Diabolic Tutor
+id=417648
+rarity=U
+[/card]
+[card]
+primitive=Die Young
+id=417649
+rarity=C
+[/card]
+[card]
+primitive=Disappearing Act
+id=417616
+rarity=U
+[/card]
+[card]
+primitive=Dovin Baan
+id=417752
+rarity=M
+[/card]
+[card]
+primitive=Dramatic Reversal
+id=417617
+rarity=C
+[/card]
+[card]
+primitive=Dubious Challenge
+id=417725
+rarity=R
+[/card]
+[card]
+primitive=Dukhara Peafowl
+id=417780
+rarity=C
+[/card]
+[card]
+primitive=Dukhara Scavenger
+id=417650
+rarity=C
+[/card]
+[card]
+primitive=Durable Handicraft
+id=417726
+rarity=U
+[/card]
+[card]
+primitive=Dynavolt Tower
+id=417781
+rarity=R
+[/card]
+[card]
+primitive=Eager Construct
+id=417782
+rarity=C
+[/card]
+[card]
+primitive=Eddytrail Hawk
+id=417585
+rarity=C
+[/card]
+[card]
+primitive=Electrostatic Pummeler
+id=417783
+rarity=R
+[/card]
+[card]
+primitive=Elegant Edgecrafters
+id=417727
+rarity=U
+[/card]
+[card]
+primitive=Eliminate the Competition
+id=417651
+rarity=R
+[/card]
+[card]
+primitive=Embraal Bruiser
+id=417652
+rarity=U
+[/card]
+[card]
+primitive=Empyreal Voyager
+id=417753
+rarity=U
+[/card]
+[card]
+primitive=Engineered Might
+id=417754
+rarity=U
+[/card]
+[card]
+primitive=Era of Innovation
+id=417618
+rarity=U
+[/card]
+[card]
+primitive=Essence Extraction
+id=417653
+rarity=U
+[/card]
+[card]
+primitive=Experimental Aviator
+id=417619
+rarity=U
+[/card]
+[card]
+primitive=Fabrication Module
+id=417784
+rarity=U
+[/card]
+[card]
+primitive=Failed Inspection
+id=417620
+rarity=C
+[/card]
+[card]
+primitive=Fairgrounds Trumpeter
+id=417728
+rarity=U
+[/card]
+[card]
+primitive=Fairgrounds Warden
+id=417586
+rarity=U
+[/card]
+[card]
+primitive=Fateful Showdown
+id=417687
+rarity=R
+[/card]
+[card]
+primitive=Filigree Familiar
+id=417785
+rarity=U
+[/card]
+[card]
+primitive=Fireforger's Puzzleknot
+id=417786
+rarity=C
+[/card]
+[card]
+primitive=Flame Lash
+id=420479
+rarity=C
+[/card]
+[card]
+primitive=Fleetwheel Cruiser
+id=417787
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=417835
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=417836
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=417837
+rarity=L
+[/card]
+[card]
+primitive=Fortuitous Find
+id=417654
+rarity=C
+[/card]
+[card]
+primitive=Foundry Inspector
+id=417788
+rarity=U
+[/card]
+[card]
+primitive=Foundry Screecher
+id=417655
+rarity=C
+[/card]
+[card]
+primitive=Fragmentize
+id=417587
+rarity=C
+[/card]
+[card]
+primitive=Fretwork Colony
+id=417656
+rarity=U
+[/card]
+[card]
+primitive=Fumigate
+id=417588
+rarity=R
+[/card]
+[card]
+primitive=Furious Reprisal
+id=417688
+rarity=U
+[/card]
+[card]
+primitive=Gearseeker Serpent
+id=417621
+rarity=C
+[/card]
+[card]
+primitive=Gearshift Ace
+id=417589
+rarity=U
+[/card]
+[card]
+primitive=Ghirapur Guide
+id=417729
+rarity=U
+[/card]
+[card]
+primitive=Ghirapur Orrery
+id=417789
+rarity=R
+[/card]
+[card]
+primitive=Giant Spectacle
+id=417689
+rarity=C
+[/card]
+[card]
+primitive=Glassblower's Puzzleknot
+id=417790
+rarity=C
+[/card]
+[card]
+primitive=Glimmer of Genius
+id=417622
+rarity=U
+[/card]
+[card]
+primitive=Glint-Nest Crane
+id=417623
+rarity=U
+[/card]
+[card]
+primitive=Glint-Sleeve Artisan
+id=417590
+rarity=C
+[/card]
+[card]
+primitive=Gonti, Lord of Luxury
+id=417657
+rarity=R
+[/card]
+[card]
+primitive=Guardian of the Great Conduit
+id=420484
+rarity=U
+[/card]
+[card]
+primitive=Harnessed Lightning
+id=417690
+rarity=U
+[/card]
+[card]
+primitive=Harsh Scrutiny
+id=417658
+rarity=U
+[/card]
+[card]
+primitive=Hazardous Conditions
+id=417755
+rarity=U
+[/card]
+[card]
+primitive=Herald of the Fair
+id=417591
+rarity=C
+[/card]
+[card]
+primitive=Highspire Artisan
+id=417730
+rarity=C
+[/card]
+[card]
+primitive=Hightide Hermit
+id=417624
+rarity=C
+[/card]
+[card]
+primitive=Hijack
+id=417691
+rarity=C
+[/card]
+[card]
+primitive=Hunt the Weak
+id=417731
+rarity=C
+[/card]
+[card]
+primitive=Impeccable Timing
+id=417592
+rarity=C
+[/card]
+[card]
+primitive=Incendiary Sabotage
+id=417692
+rarity=U
+[/card]
+[card]
+primitive=Insidious Will
+id=417625
+rarity=R
+[/card]
+[card]
+primitive=Inspired Charge
+id=417593
+rarity=C
+[/card]
+[card]
+primitive=Inspiring Vantage
+id=417819
+rarity=R
+[/card]
+[card]
+primitive=Inventor's Apprentice
+id=417693
+rarity=U
+[/card]
+[card]
+primitive=Inventor's Goggles
+id=417791
+rarity=C
+[/card]
+[card]
+primitive=Inventors' Fair
+id=417820
+rarity=R
+[/card]
+[card]
+primitive=Iron League Steed
+id=417792
+rarity=U
+[/card]
+[card]
+primitive=Island
+id=417826
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=417827
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=417828
+rarity=L
+[/card]
+[card]
+primitive=Janjeet Sentry
+id=417626
+rarity=U
+[/card]
+[card]
+primitive=Kambal, Consul of Allocation
+id=417756
+rarity=R
+[/card]
+[card]
+primitive=Key to the City
+id=417793
+rarity=R
+[/card]
+[card]
+primitive=Kujar Seedsculptor
+id=417732
+rarity=C
+[/card]
+[card]
+primitive=Larger Than Life
+id=417733
+rarity=C
+[/card]
+[card]
+primitive=Lathnu Hellion
+id=417694
+rarity=R
+[/card]
+[card]
+primitive=Lawless Broker
+id=417659
+rarity=C
+[/card]
+[card]
+primitive=Liberating Combustion
+id=420480
+rarity=R
+[/card]
+[card]
+primitive=Live Fast
+id=417660
+rarity=C
+[/card]
+[card]
+primitive=Long-Finned Skywhale
+id=417627
+rarity=U
+[/card]
+[card]
+primitive=Longtusk Cub
+id=417734
+rarity=U
+[/card]
+[card]
+primitive=Lost Legacy
+id=417661
+rarity=R
+[/card]
+[card]
+primitive=Madcap Experiment
+id=417695
+rarity=R
+[/card]
+[card]
+primitive=Make Obsolete
+id=417662
+rarity=U
+[/card]
+[card]
+primitive=Malfunction
+id=417628
+rarity=C
+[/card]
+[card]
+primitive=Marionette Master
+id=417663
+rarity=R
+[/card]
+[card]
+primitive=Master Trinketeer
+id=417594
+rarity=R
+[/card]
+[card]
+primitive=Maulfist Doorbuster
+id=417696
+rarity=U
+[/card]
+[card]
+primitive=Maulfist Squad
+id=417664
+rarity=C
+[/card]
+[card]
+primitive=Metallurgic Summonings
+id=417629
+rarity=M
+[/card]
+[card]
+primitive=Metalspinner's Puzzleknot
+id=417794
+rarity=C
+[/card]
+[card]
+primitive=Metalwork Colossus
+id=417795
+rarity=R
+[/card]
+[card]
+primitive=Midnight Oil
+id=417665
+rarity=R
+[/card]
+[card]
+primitive=Mind Rot
+id=417666
+rarity=C
+[/card]
+[card]
+primitive=Minister of Inquiries
+id=417630
+rarity=U
+[/card]
+[card]
+primitive=Morbid Curiosity
+id=417667
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=417832
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=417833
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=417834
+rarity=L
+[/card]
+[card]
+primitive=Multiform Wonder
+id=417796
+rarity=R
+[/card]
+[card]
+primitive=Narnam Cobra
+id=417797
+rarity=C
+[/card]
+[card]
+primitive=Nature's Way
+id=417735
+rarity=U
+[/card]
+[card]
+primitive=Night Market Lookout
+id=417668
+rarity=C
+[/card]
+[card]
+primitive=Nimble Innovator
+id=417631
+rarity=C
+[/card]
+[card]
+primitive=Ninth Bridge Patrol
+id=417595
+rarity=C
+[/card]
+[card]
+primitive=Nissa, Nature's Artisan
+id=420483
+rarity=M
+[/card]
+[card]
+primitive=Nissa, Vital Force
+id=417736
+rarity=M
+[/card]
+[card]
+primitive=Noxious Gearhulk
+id=417669
+rarity=M
+[/card]
+[card]
+primitive=Ornamental Courage
+id=417737
+rarity=C
+[/card]
+[card]
+primitive=Ovalchase Daredevil
+id=417670
+rarity=U
+[/card]
+[card]
+primitive=Ovalchase Dragster
+id=417798
+rarity=U
+[/card]
+[card]
+primitive=Oviya Pashiri, Sage Lifecrafter
+id=417738
+rarity=R
+[/card]
+[card]
+primitive=Padeem, Consul of Innovation
+id=417632
+rarity=R
+[/card]
+[card]
+primitive=Panharmonicon
+id=417799
+rarity=R
+[/card]
+[card]
+primitive=Paradoxical Outcome
+id=417633
+rarity=R
+[/card]
+[card]
+primitive=Peema Outrider
+id=417739
+rarity=C
+[/card]
+[card]
+primitive=Perpetual Timepiece
+id=417800
+rarity=U
+[/card]
+[card]
+primitive=Pia Nalaar
+id=417697
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=417823
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=417824
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=417825
+rarity=L
+[/card]
+[card]
+primitive=Prakhata Club Security
+id=417671
+rarity=C
+[/card]
+[card]
+primitive=Prakhata Pillar-Bug
+id=417801
+rarity=C
+[/card]
+[card]
+primitive=Pressure Point
+id=417596
+rarity=C
+[/card]
+[card]
+primitive=Propeller Pioneer
+id=417597
+rarity=C
+[/card]
+[card]
+primitive=Prophetic Prism
+id=417802
+rarity=C
+[/card]
+[card]
+primitive=Quicksmith Genius
+id=417698
+rarity=U
+[/card]
+[card]
+primitive=Rashmi, Eternities Crafter
+id=417757
+rarity=M
+[/card]
+[card]
+primitive=Reckless Fireweaver
+id=417699
+rarity=C
+[/card]
+[card]
+primitive=Refurbish
+id=417598
+rarity=U
+[/card]
+[card]
+primitive=Renegade Firebrand
+id=420481
+rarity=U
+[/card]
+[card]
+primitive=Renegade Freighter
+id=417803
+rarity=C
+[/card]
+[card]
+primitive=Renegade Tactics
+id=417700
+rarity=C
+[/card]
+[card]
+primitive=Restoration Gearsmith
+id=417758
+rarity=U
+[/card]
+[card]
+primitive=Revoke Privileges
+id=417599
+rarity=C
+[/card]
+[card]
+primitive=Revolutionary Rebuff
+id=417634
+rarity=C
+[/card]
+[card]
+primitive=Riparian Tiger
+id=417740
+rarity=C
+[/card]
+[card]
+primitive=Ruinous Gremlin
+id=417701
+rarity=C
+[/card]
+[card]
+primitive=Rush of Vitality
+id=417672
+rarity=C
+[/card]
+[card]
+primitive=Sage of Shaila's Claim
+id=417741
+rarity=C
+[/card]
+[card]
+primitive=Saheeli Rai
+id=417759
+rarity=M
+[/card]
+[card]
+primitive=Saheeli's Artistry
+id=417635
+rarity=R
+[/card]
+[card]
+primitive=Salivating Gremlins
+id=417702
+rarity=C
+[/card]
+[card]
+primitive=Scrapheap Scrounger
+id=417804
+rarity=R
+[/card]
+[card]
+primitive=Select for Inspection
+id=417636
+rarity=C
+[/card]
+[card]
+primitive=Self-Assembler
+id=417805
+rarity=C
+[/card]
+[card]
+primitive=Sequestered Stash
+id=417821
+rarity=U
+[/card]
+[card]
+primitive=Servant of the Conduit
+id=417742
+rarity=U
+[/card]
+[card]
+primitive=Servo Exhibition
+id=417600
+rarity=U
+[/card]
+[card]
+primitive=Shrewd Negotiation
+id=417637
+rarity=U
+[/card]
+[card]
+primitive=Sky Skiff
+id=417806
+rarity=C
+[/card]
+[card]
+primitive=Skyship Stalker
+id=417703
+rarity=R
+[/card]
+[card]
+primitive=Skysovereign, Consul Flagship
+id=417807
+rarity=M
+[/card]
+[card]
+primitive=Skyswirl Harrier
+id=417601
+rarity=C
+[/card]
+[card]
+primitive=Skywhaler's Shot
+id=417602
+rarity=U
+[/card]
+[card]
+primitive=Smuggler's Copter
+id=417808
+rarity=R
+[/card]
+[card]
+primitive=Snare Thopter
+id=417809
+rarity=U
+[/card]
+[card]
+primitive=Spark of Creativity
+id=417704
+rarity=U
+[/card]
+[card]
+primitive=Speedway Fanatic
+id=417705
+rarity=U
+[/card]
+[card]
+primitive=Spirebluff Canal
+id=417822
+rarity=R
+[/card]
+[card]
+primitive=Spireside Infiltrator
+id=417706
+rarity=C
+[/card]
+[card]
+primitive=Spontaneous Artist
+id=417707
+rarity=C
+[/card]
+[card]
+primitive=Start Your Engines
+id=417708
+rarity=U
+[/card]
+[card]
+primitive=Stone Quarry
+id=420482
+rarity=C
+[/card]
+[card]
+primitive=Subtle Strike
+id=417673
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=417829
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=417830
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=417831
+rarity=L
+[/card]
+[card]
+primitive=Syndicate Trafficker
+id=417674
+rarity=R
+[/card]
+[card]
+primitive=Take Down
+id=417743
+rarity=C
+[/card]
+[card]
+primitive=Tasseled Dromedary
+id=417603
+rarity=C
+[/card]
+[card]
+primitive=Terrain Elemental
+id=420485
+rarity=C
+[/card]
+[card]
+primitive=Territorial Gorger
+id=417709
+rarity=R
+[/card]
+[card]
+primitive=Terror of the Fairgrounds
+id=417710
+rarity=C
+[/card]
+[card]
+primitive=Tezzeret's Ambition
+id=417638
+rarity=C
+[/card]
+[card]
+primitive=Thriving Grubs
+id=417711
+rarity=C
+[/card]
+[card]
+primitive=Thriving Ibex
+id=417604
+rarity=C
+[/card]
+[card]
+primitive=Thriving Rats
+id=417675
+rarity=C
+[/card]
+[card]
+primitive=Thriving Rhino
+id=417744
+rarity=C
+[/card]
+[card]
+primitive=Thriving Turtle
+id=417639
+rarity=C
+[/card]
+[card]
+primitive=Tidy Conclusion
+id=417676
+rarity=C
+[/card]
+[card]
+primitive=Toolcraft Exemplar
+id=417605
+rarity=R
+[/card]
+[card]
+primitive=Torch Gauntlet
+id=417810
+rarity=C
+[/card]
+[card]
+primitive=Torrential Gearhulk
+id=417640
+rarity=M
+[/card]
+[card]
+primitive=Trusty Companion
+id=417606
+rarity=U
+[/card]
+[card]
+primitive=Underhanded Designs
+id=417677
+rarity=U
+[/card]
+[card]
+primitive=Unlicensed Disintegration
+id=417760
+rarity=U
+[/card]
+[card]
+primitive=Vedalken Blademaster
+id=417641
+rarity=C
+[/card]
+[card]
+primitive=Verdant Crescendo
+id=420486
+rarity=R
+[/card]
+[card]
+primitive=Verdurous Gearhulk
+id=417745
+rarity=M
+[/card]
+[card]
+primitive=Veteran Motorist
+id=417761
+rarity=U
+[/card]
+[card]
+primitive=Visionary Augmenter
+id=417607
+rarity=U
+[/card]
+[card]
+primitive=Voltaic Brawler
+id=417762
+rarity=U
+[/card]
+[card]
+primitive=Wayward Giant
+id=417712
+rarity=C
+[/card]
+[card]
+primitive=Weaponcraft Enthusiast
+id=417678
+rarity=U
+[/card]
+[card]
+primitive=Weldfast Monitor
+id=417811
+rarity=C
+[/card]
+[card]
+primitive=Weldfast Wingsmith
+id=417642
+rarity=C
+[/card]
+[card]
+primitive=Welding Sparks
+id=417713
+rarity=C
+[/card]
+[card]
+primitive=Whirler Virtuoso
+id=417763
+rarity=U
+[/card]
+[card]
+primitive=Whirlermaker
+id=417812
+rarity=U
+[/card]
+[card]
+primitive=Wild Wanderer
+id=417746
+rarity=C
+[/card]
+[card]
+primitive=Wildest Dreams
+id=417747
+rarity=R
+[/card]
+[card]
+primitive=Wily Bandar
+id=417748
+rarity=C
+[/card]
+[card]
+primitive=Wind Drake
+id=417643
+rarity=C
+[/card]
+[card]
+primitive=Wispweaver Angel
+id=417608
+rarity=U
+[/card]
+[card]
+primitive=Woodland Stream
+id=420487
+rarity=C
+[/card]
+[card]
+primitive=Woodweaver's Puzzleknot
+id=417813
+rarity=C
+[/card]
+[card]
+primitive=Workshop Assistant
+id=417814
+rarity=C
+[/card]
