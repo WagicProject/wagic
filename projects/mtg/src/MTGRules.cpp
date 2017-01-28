@@ -2316,7 +2316,7 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
 
             if(lured && currentOpponent && !currentOpponent->has(Constants::LURE))
                 currentOpponent = game->currentPlayer->game->inPlay->getNextLurer(currentOpponent);
-                canDefend = card->toggleDefenser(currentOpponent);
+            canDefend = card->toggleDefenser(currentOpponent);
 
             DebugTrace("Defenser Toggle: " << card->getName() << endl
                 << "- canDefend: " << (canDefend == 0) << endl

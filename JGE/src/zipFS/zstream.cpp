@@ -76,8 +76,8 @@ bool zbuffer::use(std::streamoff Offset, std::streamoff Size)
 		return false;
 
     //Don't use a buffer already used;
-    if (m_Used)
-        return false;
+	if (m_Used)
+		return false;
 
 	// adjust file position
 	if (! m_ZipFile.seekg(Offset, ios::beg))

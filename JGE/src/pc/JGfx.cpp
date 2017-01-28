@@ -1804,7 +1804,7 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
 {
     png_size_t check;
 
-    JFileSystem *fileSystem = (JFileSystem*)png_ptr->io_ptr;
+    JFileSystem *fileSystem = (JFileSystem*)png_get_io_ptr(png_ptr);
 
     check = fileSystem->ReadFile(data, length);
 
@@ -1887,7 +1887,7 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
         //fclose(fp);
         fileSystem->CloseFile();
 
-        png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
+        png_destroy_read_struct(&png_ptr, NULL, NULL);
 
         return JGE_ERR_PNG;
     }
@@ -1896,11 +1896,15 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
 
     png_set_sig_bytes(png_ptr, sig_read);
     png_read_info(png_ptr, info_ptr);
-    png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, int_p_NULL, int_p_NULL);
+    png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
     png_set_strip_16(png_ptr);
     png_set_packing(png_ptr);
     if (color_type == PNG_COLOR_TYPE_PALETTE) png_set_palette_to_rgb(png_ptr);
+#if PNG_LIBPNG_VER >= 10400
+    if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8) png_set_expand_gray_1_2_4_to_8(png_ptr);
+#else
     if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8) png_set_gray_1_2_4_to_8(png_ptr);
+#endif
     if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)) png_set_tRNS_to_alpha(png_ptr);
     png_set_filler(png_ptr, 0xff, PNG_FILLER_AFTER);
 
@@ -1910,7 +1914,7 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
         //fclose(fp);
         fileSystem->CloseFile();
 
-        png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
+        png_destroy_read_struct(&png_ptr, NULL, NULL);
         return JGE_ERR_MALLOC_FAILED;
     }
 
@@ -1932,7 +1936,7 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
 
         for (y = 0; y < (int)height; y++)
         {
-            png_read_row(png_ptr, (BYTE*) line, png_bytep_NULL);
+            png_read_row(png_ptr, (BYTE*) line, NULL);
             for (x = 0; x < (int)width; x++)
             {
                 DWORD color32 = line[x];
@@ -1955,7 +1959,7 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
     free (line);
 
     png_read_end(png_ptr, info_ptr);
-    png_destroy_read_struct(&png_ptr, &info_ptr, png_infopp_NULL);
+    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
 
     fileSystem->CloseFile();
 
@@ -1998,8 +2002,15 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
     GifFileType *GifFileIn = NULL;
     ColorMapObject *palette;
     int ExtCode;
+
+#if GIFLIB_MAJOR >= 5
+    if ((GifFileIn = DGifOpen(handle, readFunc, NULL)) == NULL)
+        return 1;
+#else
     if ((GifFileIn = DGifOpen(handle, readFunc)) == NULL)
         return 1;
+#endif
+
     *bgcolor = 0;
     textureInfo.mWidth = 0;
     textureInfo.mHeight = 0;
@@ -2008,7 +2019,11 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
     do {
         if (DGifGetRecordType(GifFileIn, &RecordType) == GIF_ERROR)
         {
+#if GIFLIB_MAJOR >= 5
+            DGifCloseFile(GifFileIn, NULL);
+#else
             DGifCloseFile(GifFileIn);
+#endif
             return 1;
         }
 
@@ -2017,12 +2032,20 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
             {
                 if (DGifGetImageDesc(GifFileIn) == GIF_ERROR)
                 {
+#if GIFLIB_MAJOR >= 5
+                    DGifCloseFile(GifFileIn, NULL);
+#else
                     DGifCloseFile(GifFileIn);
+#endif
                     return 1;
                 }
                 if((palette = (GifFileIn->SColorMap != NULL) ? GifFileIn->SColorMap : GifFileIn->Image.ColorMap) == NULL)
                 {
+#if GIFLIB_MAJOR >= 5
+                    DGifCloseFile(GifFileIn, NULL);
+#else
                     DGifCloseFile(GifFileIn);
+#endif
                     return 1;
                 }
                 textureInfo.mWidth = GifFileIn->Image.Width;
@@ -2030,7 +2053,11 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
                 *bgcolor = gif_color32(GifFileIn->SBackGroundColor);
                 if((LineIn = (GifRowType) malloc(GifFileIn->Image.Width * sizeof(GifPixelType))) == NULL)
                 {
+#if GIFLIB_MAJOR >= 5
+                    DGifCloseFile(GifFileIn, NULL);
+#else
                     DGifCloseFile(GifFileIn);
+#endif
                     return 1;
                 }
                 textureInfo.mTexWidth = getNextPower2(GifFileIn->Image.Width);
@@ -2040,7 +2067,11 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
                 if((p32 = (DWORD *)malloc(sizeof(PIXEL_TYPE) * textureInfo.mTexWidth * textureInfo.mTexHeight)) == NULL)
                 {
                     free((void *)LineIn);
+#if GIFLIB_MAJOR >= 5
+                    DGifCloseFile(GifFileIn, NULL);
+#else
                     DGifCloseFile(GifFileIn);
+#endif
                     return 1;
                 }
                 DWORD * curr = p32;
@@ -2052,7 +2083,11 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
                     {
                         free((void *)p32);
                         free((void *)LineIn);
+#if GIFLIB_MAJOR >= 5
+                        DGifCloseFile(GifFileIn, NULL);
+#else
                         DGifCloseFile(GifFileIn);
+#endif
                         return 1;
                     }
                     for (GifWord j = 0; j < GifFileIn->Image.Width; j ++)
@@ -2081,7 +2116,11 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
                 }
                 if(LineIn != NULL)
                     free((void *)LineIn);
+#if GIFLIB_MAJOR >= 5
+                DGifCloseFile(GifFileIn, NULL);
+#else
                 DGifCloseFile(GifFileIn);
+#endif
                 return 1;
             }
             while (Extension != NULL) {
@@ -2094,7 +2133,11 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
                     }
                     if(LineIn != NULL)
                         free((void *)LineIn);
+#if GIFLIB_MAJOR >= 5
+                    DGifCloseFile(GifFileIn, NULL);
+#else
                     DGifCloseFile(GifFileIn);
+#endif
                     return 1;
                 }
             }
@@ -2109,7 +2152,11 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
 
     if(LineIn != NULL)
         free((void *)LineIn);
+#if GIFLIB_MAJOR >= 5
+    DGifCloseFile(GifFileIn, NULL);
+#else
     DGifCloseFile(GifFileIn);
+#endif
 
     return 0;
 }

@@ -305,8 +305,8 @@ void GuiMana::Render()
     for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
         (*it)->Render();
 
-        if (OptionManaDisplay::DYNAMIC != options[Options::MANADISPLAY].number && OptionManaDisplay::NOSTARSDYNAMIC != options[Options::MANADISPLAY].number )
-        RenderStatic();
+    if (OptionManaDisplay::DYNAMIC != options[Options::MANADISPLAY].number && OptionManaDisplay::NOSTARSDYNAMIC != options[Options::MANADISPLAY].number )
+    RenderStatic();
 }
 
 bool remove_dead(ManaIcon* m)
