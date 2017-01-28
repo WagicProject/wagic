@@ -1232,7 +1232,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
             return true;
         } else if (event.getAction() == KeyEvent.ACTION_UP)
         {
-            // Log.d(TAG, "key up: " + keyCode);
+            // Log.d(TAG, "key up:   " + keyCode);
             SDLActivity.onNativeKeyUp(keyCode);
             return true;
         }
@@ -1309,3 +1309,4 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnK
         }
     }
 }
+

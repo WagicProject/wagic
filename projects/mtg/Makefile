@@ -59,7 +59,6 @@ endif
 
 ifeq ($(TARGET_ARCHITECTURE),psp)
 DEFAULT_RULE = 3xx
-TARGET_ARCHITECTURE = psp
 PSP_FW_VERSION=371
 BUILD_PRX = 1
 SIGN_PRX = 1
@@ -74,19 +73,36 @@ PSP_EBOOT_PIC1 = pic1.png
 INCDIR = ../../JGE/include ../../JGE/src/zipFS ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src ../../projects/mtg/include ../../Boost
 LIBDIR = ../../JGE/lib/psp
 CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK -DUSE_PRECOMPILED_HEADERS=1 -DPSP -DTIXML_USE_STL
+
 else
+
+ifeq ($(MAKECMDGOALS),x11)
+
+OBJS += objs/TestSuiteAI.o
+INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include -I/usr/include/boost -I../../JGE/src/zipFS
+LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib
+LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 -lpthread $(FMOD)
+CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1 -DTIXML_USE_STL -Wno-nonnull-compare 
+
+ASFLAGS = $(CXXFLAGS)
+
+all: $(DEFAULT_RULE)
+else
+
 OBJS += objs/TestSuiteAI.o
 INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include -I../../Boost -I../../JGE/src/zipFS
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib -L../../Boost/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 -lboost_thread $(FMOD)
-CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1
+CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1 -Wno-nonnull-compare 
+
 ASFLAGS = $(CXXFLAGS)
 
 all: $(DEFAULT_RULE)
 
 endif
+endif
 
-CFLAGS := -Wall -W -Werror -Wno-unused $(CFLAGS)
+CFLAGS := -Wall -W -Werror -Wno-unused -Wno-deprecated-declarations $(CFLAGS)
 CXXFLAGS += $(CFLAGS)
 # -fno-exceptions
 
@@ -109,8 +125,6 @@ debug: all
 	@echo Rule 3xx is deprecated. Did you want to use just "make" ?
 
 else
-
-
 
 $(TARGET): Makefile.$(TARGET_ARCHITECTURE) $(OBJS) ../../JGE/lib/linux/libjge.a
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) $(LIBDIR)

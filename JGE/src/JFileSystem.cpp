@@ -16,9 +16,14 @@ User folder is the only one that is really needed to guarantee both read and wri
 The content that users should not be touching.
 */
 
-#ifndef PSP
+#if defined (ANDROID)
 #include "PrecompiledHeader.h"
-#endif //PSP
+#endif //ANDROID
+
+#if defined (LINUX)
+#include "../../projects/mtg/include/PrecompiledHeader.h"
+#endif //LINUX
+
 
 #ifdef WIN32
 #pragma warning(disable : 4786)

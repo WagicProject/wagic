@@ -6636,7 +6636,7 @@ public:
                 else
                     source->removeptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
 
-                    nbOpponents = 0;
+                nbOpponents = 0;
             }
         }
         return 1;
@@ -6659,8 +6659,8 @@ public:
         int receiveEvent(WEvent * event)
         {
             WEventZoneChange * enters = dynamic_cast<WEventZoneChange *> (event);
-            if (enters && enters->to == enters->card->controller()->game->inPlay)
-                if(enters->from != enters->card->controller()->game->inPlay && enters->from != enters->card->controller()->opponent()->game->inPlay) //cards changing from inplay to inplay don't re-enter battlefield
+            if (enters && enters->to == enters->card->controller()->game->inPlay) {
+                if(enters->from != enters->card->controller()->game->inPlay && enters->from != enters->card->controller()->opponent()->game->inPlay) { //cards changing from inplay to inplay don't re-enter battlefield
                     if(enters->card->controller() == source->controller() && enters->card->isCreature())
                     {
                         if(enters->card != source && (enters->card->power > source->power || enters->card->toughness > source->toughness))
@@ -6668,7 +6668,9 @@ public:
                             source->counters->addCounter(1,1);
                         }
                     }
-                    return 1;
+                }
+            }
+            return 1;
         }
 
     AEvolveAbility * clone() const
