@@ -1418,7 +1418,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if(found != string::npos)
     {
         observer->addObserver(NEW MTGLegendRule(observer, -1));
-        //observer->foundlegendrule = true;
         return NULL;
     }
     //this handles the planeswalker named legend rule which is dramatically different from above.
