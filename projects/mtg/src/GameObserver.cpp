@@ -110,7 +110,6 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     mLayers = NULL;
     mTrash = new Trash();
     mDeckManager = new DeckManager();
-    foundlegendrule = false;
 }
 
 GamePhase GameObserver::getCurrentGamePhase()
@@ -889,7 +888,6 @@ void GameObserver::gameStateBasedEffects()
                     if(card->life < 1 && !card->has(Constants::INDESTRUCTIBLE))
                         card->destroy();//manor gargoyle... recheck
                 }
-                checkLegendary(card); //legendary rule as state based effect
             }
 
             if(card->childrenCards.size())
@@ -1063,51 +1061,6 @@ void GameObserver::gameStateBasedEffects()
             || mCurrentGamePhase == MTG_PHASE_COMBATDAMAGE))
             userRequestNextGamePhase();
     }
-}
-
-void GameObserver::checkLegendary(MTGCardInstance *  card)
-{
-    if(!foundlegendrule)
-        return;
-    if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
-        return;
-    int destroy = 0;
-    vector<MTGCardInstance*>oldCards;
-
-     MTGGameZone * z = card->controller()->game->inPlay;
-     int nbcards = z->nb_cards-1;
-
-    for (int r = 0;  r < nbcards; r++)
-    {
-        MTGCardInstance * comparison = z->cards[r];
-        if (comparison != card && comparison->hasType("legendary") && !(comparison->getName().compare(card->getName())))
-        {
-            oldCards.push_back(comparison);
-            destroy = 1;
-        }
-    }
-
-    if(destroy)
-    {
-        vector<MTGAbility*>selection;
-        MultiAbility * multi = NEW MultiAbility(this, this->mLayers->actionLayer()->getMaxId(), card, card, NULL);
-        for(unsigned int i = 0;i < oldCards.size();i++)
-        {
-            AAMover *a = NEW AAMover(this, this->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
-            a->oneShot = true;
-            multi->Add(a);
-        }
-        multi->oneShot = 1;
-        MTGAbility * a1 = multi;
-        selection.push_back(a1);
-        AAMover *b = NEW AAMover(this, this->mLayers->actionLayer()->getMaxId(), card, card,"ownergraveyard","Keep Old");
-        b->oneShot = true;
-        MTGAbility * b1 = b;
-        selection.push_back(b1);
-        MTGAbility * menuChoice = NEW MenuAbility(this, this->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
-        menuChoice->addToGame();
-    }
-    return;
 }
 
 void GameObserver::enchantmentStatus()

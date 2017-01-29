@@ -3239,6 +3239,12 @@ int MTGLegendRule::added(MTGCardInstance * card)
             destroy = 1;
         }
     }
+    if (game->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+        destroy = 0;
+    if (game->mLayers->actionLayer()->menuObject) 
+        destroy = 0;
+    if (game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()) 
+        destroy = 0;
     if(destroy)
     {
         vector<MTGAbility*>selection;
@@ -3313,6 +3319,12 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
             destroy = 1;
         }
     }
+    if (game->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+        destroy = 0;
+    if (game->mLayers->actionLayer()->menuObject) 
+        destroy = 0;
+    if (game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()) 
+        destroy = 0;
     if (destroy)
     {
         vector<MTGAbility*>selection;
