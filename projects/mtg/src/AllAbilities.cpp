@@ -1551,7 +1551,27 @@ int AACopier::resolve()
             tokencopied = true;
 
         if(tokencopied && !_target->isACopier)
-            source->copy(_target->clone());
+        {
+            source->copy(_target);
+            //if the token doesn't have cda/dynamic pt then allow this...
+            if(!_target->isCDA)
+            {
+                if(_target->pbonus > 0)
+                    source->power = _target->power - _target->pbonus;
+                else
+                    source->power = _target->power + abs(_target->pbonus);
+                if(_target->tbonus > 0)
+                {
+                    source->toughness = _target->toughness - _target->tbonus;
+                    source->life = _target->toughness - _target->tbonus;
+                }
+                else
+                {
+                    source->toughness = _target->toughness + abs(_target->tbonus);
+                    source->life = _target->toughness + abs(_target->tbonus);
+                }
+            }
+        }
         else
         {
             source->copy(_target);
@@ -1573,8 +1593,35 @@ int AACopier::resolve()
             source->getManaCost()->resetCosts();
         }
         //todo andAbility and tokenandAbility
-        //
-        //
+        if(_target->TokenAndAbility)
+        {//the source copied a token with andAbility
+            MTGAbility * TokenandAbilityClone = _target->TokenAndAbility->clone();
+            TokenandAbilityClone->target = source;
+            if(_target->TokenAndAbility->oneShot)
+            {
+                TokenandAbilityClone->resolve();
+                SAFE_DELETE(TokenandAbilityClone);
+            }
+            else
+            {
+                TokenandAbilityClone->addToGame();
+            }
+        }/*
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = source;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
+        */
         return 1;
     }
     return 0;

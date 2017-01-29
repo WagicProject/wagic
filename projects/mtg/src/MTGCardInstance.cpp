@@ -133,6 +133,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     AICustomCode = data->AICustomCode;
     origpower = card->origpower;//for flip
     origtoughness = card->origtoughness;//for flip
+    TokenAndAbility = card->TokenAndAbility;//token andAbility
 
     //Now this is dirty...
     int backupid = mtgid;
