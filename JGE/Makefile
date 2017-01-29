@@ -32,6 +32,7 @@ HGE_OBJS = src/hge/hgecolor.o src/hge/hgeparticle.o \
 
 CXXFLAGS = -W -Wall -Werror -Wno-unused
 CXXFLAGS += -DTIXML_USE_STL
+CXXFLAGS += -Wno-deprecated-declarations -Wno-sign-compare
 
 ifdef DEBUG
 CXXFLAGS += -ggdb3
@@ -82,7 +83,7 @@ ifeq ($(TARGET_ARCHITECTURE),linux)
 OBJS = $(GENERIC_OBJS) $(LINUX_OBJS)
 TARGET_LIB = libjge.a
 TARGET_HGE = libhgetools.a
-INCDIR = $(shell freetype-config --cflags 2> /dev/null) -I/usr/X11/include -I../Boost -Isrc/zipFS -Iinclude/
+INCDIR = $(shell freetype-config --cflags 2> /dev/null) -I/usr/X11/include -I/usr/include/boost -Isrc/zipFS -Iinclude/
 CXXFLAGS += -DLINUX $(FMOD)
 CXXFLAGS += $(INCDIR)
 LIBDIR = lib/linux

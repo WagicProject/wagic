@@ -258,8 +258,8 @@ inline void izfstream::open(const char * FilePath, filesystem * pFS) {
     if (pFS)
         m_pFS = pFS;
 
-	if (m_pFS != NULL)
-		m_pFS->Open(* this, FilePath);
+    if (m_pFS != NULL)
+        m_pFS->Open(* this, FilePath);
 }
 
 inline void izfstream::close() {

@@ -71,6 +71,8 @@ if [ "$BUILD_Qt" = "YES" ]; then
     cd qt-gui-build
     $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
     make -j 4
+    chmod -R 775 wagic
+    zip linuxqtrelease.zip ./wagic
     cd ..
     # let's try an Intel linux binary in debug text-mode-only
     $QMAKE projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR

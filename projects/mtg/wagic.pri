@@ -9,6 +9,7 @@ unix:!*macx*:QMAKE_CXXFLAGS += -Wno-unused-but-set-variable
 unix|*macx*:QMAKE_CXXFLAGS += -Wno-unused-value
 unix:!*macx*:QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
 unix:!*macx*:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
+unix|macx:QMAKE_CXXFLAGS += -Wno-nonnull-compare
 
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 windows|winrt:DEFINES += NOMINMAX

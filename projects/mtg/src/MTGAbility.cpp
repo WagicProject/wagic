@@ -5383,7 +5383,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     case OPPONENT_TURN_ONLY:
         if (player == game->currentPlayer)
             return 0;
-            break;
+        break;
     case AS_SORCERY:
         if (player != game->currentPlayer)
             return 0;
@@ -5555,7 +5555,7 @@ int ActivatedAbility::activateAbility()
             ExtraCost * tapper = dynamic_cast<TapCost*>(cost->extraCosts->costs[i]);
             if(tapper)
                 needsTapping = 1;
-                wasTappedForMana = true;
+            wasTappedForMana = true;
         }
     }
     else if(amp||femp)

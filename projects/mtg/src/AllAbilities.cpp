@@ -7962,78 +7962,78 @@ int AACastCard::resolveSpell()
         if (_target->isLand())
             putinplay = true;
 
-            Spell * spell = NULL;
-            MTGCardInstance * copy = NULL;
-            if ((normal || asNormalMadness)||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
+        Spell * spell = NULL;
+        MTGCardInstance * copy = NULL;
+        if ((normal || asNormalMadness)||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
+        {
+            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
+                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
+            else
+                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
+            copy->changeController(source->controller(),true);
+            if(asNormalMadness)
+            copy->MadnessPlay = true;
+        }
+        else
+        {
+            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
+                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
+            else
+                copy =_target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->stack,noEvent);
+            copy->changeController(source->controller(),true);
+        }
+        if (game->targetChooser)
+        {
+            game->targetChooser->Owner = source->controller();
+            if(putinplay)
             {
-                if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
-                    copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
-                else
-                    copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
-                copy->changeController(source->controller(),true);
-                if(asNormalMadness)
-                copy->MadnessPlay = true;
+                spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
+                spell->resolve();
+            }
+            else
+                spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+            game->targetChooser = NULL;
+        }
+        else
+        {
+            if(putinplay)
+            {
+                spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
+                spell->resolve();
+            }
+            else
+                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+        }
+
+        if (copy->has(Constants::STORM))
+        {
+            int storm = _target->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + source->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+            
+            for (int i = storm; i > 1; i--)
+            {
+                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, 0, 1, 1);
+
+            }
+        }
+        if (!copy->has(Constants::STORM))
+        {
+            copy->X = _target->X;
+            copy->castX = copy->X;
+        }
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = copy;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
             }
             else
             {
-                if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
-                    copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
-                else
-                    copy =_target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->stack,noEvent);
-                copy->changeController(source->controller(),true);
+                andAbilityClone->addToGame();
             }
-            if (game->targetChooser)
-            {
-                game->targetChooser->Owner = source->controller();
-                if(putinplay)
-                {
-                    spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
-                    spell->resolve();
-                }
-                else
-                    spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
-                game->targetChooser = NULL;
-            }
-            else
-            {
-                if(putinplay)
-                {
-                    spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
-                    spell->resolve();
-                }
-                else
-                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
-            }
-
-            if (copy->has(Constants::STORM))
-            {
-                int storm = _target->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + source->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
-                
-                for (int i = storm; i > 1; i--)
-                {
-                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, 0, 1, 1);
-
-                }
-            }
-            if (!copy->has(Constants::STORM))
-            {
-                copy->X = _target->X;
-                copy->castX = copy->X;
-            }
-            if(andAbility)
-            {
-                MTGAbility * andAbilityClone = andAbility->clone();
-                andAbilityClone->target = copy;
-                if(andAbility->oneShot)
-                {
-                    andAbilityClone->resolve();
-                    SAFE_DELETE(andAbilityClone);
-                }
-                else
-                {
-                    andAbilityClone->addToGame();
-                }
-            }
+        }
 
         this->forceDestroy = true;
         processed = true;

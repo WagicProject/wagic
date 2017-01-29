@@ -631,8 +631,8 @@ streamoff filesystem::CentralDirZipped(std::istream & File, std::streamoff begin
     std::streamoff eof = begin + size;
 
 	// Look for the "end of central dir" header. Start minimum 22 bytes before end.
-    if (! File.seekg(eof - 22, ios::beg))
-        return -1;
+	if (! File.seekg(eof - 22, ios::beg))
+		return -1;
 
 	streamoff EndPos;
 	streamoff StartPos = File.tellg();

@@ -45,7 +45,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
 
     for (size_t i = 0; i < source->types.size(); ++i)
         types.push_back(source->types[i]);
-        colors = source->colors;
+    colors = source->colors;
     manaCost.copy(source->getManaCost());
     //reducedCost.copy(source->getReducedManaCost());
     //increasedCost.copy(source->getIncreasedManaCost());
