@@ -537,6 +537,13 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
 
+        check = restriction[i].find("copiedacard");
+        if(check != string::npos)
+        {
+            if(!card->isACopier)
+                return 0;
+        }
+
         check = restriction[i].find("geared");
         if (check != string::npos)
         {

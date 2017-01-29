@@ -1592,9 +1592,8 @@ int AACopier::resolve()
             source->basicAbilities.reset();
             source->getManaCost()->resetCosts();
         }
-        //todo andAbility and tokenandAbility
         if(_target->TokenAndAbility)
-        {//the source copied a token with andAbility
+        {//the source copied a token with tokenandAbility
             MTGAbility * TokenandAbilityClone = _target->TokenAndAbility->clone();
             TokenandAbilityClone->target = source;
             if(_target->TokenAndAbility->oneShot)
@@ -1606,22 +1605,7 @@ int AACopier::resolve()
             {
                 TokenandAbilityClone->addToGame();
             }
-        }/*
-        if(andAbility)
-        {
-            MTGAbility * andAbilityClone = andAbility->clone();
-            andAbilityClone->target = source;
-            if(andAbility->oneShot)
-            {
-                andAbilityClone->resolve();
-                SAFE_DELETE(andAbilityClone);
-            }
-            else
-            {
-                andAbilityClone->addToGame();
-            }
         }
-        */
         return 1;
     }
     return 0;
