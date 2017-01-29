@@ -7953,7 +7953,7 @@ int AACastCard::resolveSpell()
             if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
                 copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
             else
-                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
+               copy =_target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->stack,noEvent);
             copy->changeController(source->controller(),true);
             if(asNormalMadness)
             copy->MadnessPlay = true;
