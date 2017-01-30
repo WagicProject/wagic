@@ -136,12 +136,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Harnessed Lightning
-text=Choose target creature. You get {E}{E}{E} (three energy counters), then you may pay any amount of {E}. Harnessed Lightning deals that much damage to that creature.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
 name=Insidious Will
 text=Choose one — -- • Counter target spell. -- • You may choose new targets for target spell. -- • Copy target instant or sorcery spell. You may choose new targets for the copy.
 mana={2}{U}{U}
