@@ -92,16 +92,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Cemetery Puca
-text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, Cemetery Puca becomes a copy of that creature and gains this ability.
-auto=@movedto(creature|graveyard) from(battlefield):all(trigger[from]) pay[[{1}]] copy
-mana={1}{UB}{UB}
-type=Creature
-subtype=Shapeshifter
-power=1
-toughness=2
-[/card]
-[card]
 name=Conflux
 auto=ability$!name(white card) moveto(myhand) notatarget(*[white]|mylibrary)!$ controller
 auto=ability$!name(blue card) moveto(myhand) notatarget(*[blue]|mylibrary)!$ controller
@@ -121,16 +111,6 @@ auto=target(creature) -2/-2 ueot
 text=Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
 mana={1}{B}{G}
 type=Instant
-[/card]
-[card]
-name=Cryptoplasm
-auto=@each my upkeep:may copy target(other creature|battlefield)
-text=At the beginning of your upkeep, you may have Cryptoplasm become a copy of another target creature. If you do, Cryptoplasm gains this ability.
-mana={1}{U}{U}
-type=Creature
-subtype=Shapeshifter
-power=2
-toughness=2
 [/card]
 [card]
 name=Demon of Wailing Agonies
@@ -155,16 +135,6 @@ type=Legendary Creature
 subtype=Bird Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Dimir Doppelganger
-auto={1}{U}{B}:target(creature|graveyard) moveto(exile) and!(copy)!
-text={1}{U}{B}: Exile target creature card from a graveyard. Dimir Doppelganger becomes a copy of that card and gains this ability.
-mana={1}{U}{B}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=2
 [/card]
 [card]
 name=Eureka
@@ -762,13 +732,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Thespian's Stage
-auto={T}:Add{1}
-auto={2}{T}:copy target(land|battlefield)
-text={T}: Add {1} to your mana pool. -- {2}, {T}: Thespian's Stage becomes a copy of target land and gains this ability.
-type=Land
-[/card]
-[card]
 name=Thunderfoot Baloth
 abilities=trample
 #wagic doesnt have commander zone
@@ -812,16 +775,6 @@ auto=reveal:1 optionone transforms((,newability[if type(land|reveal)~morethan~0 
 text=Shuffle your library, then reveal the top card. If it's a nonland card, you may cast it without paying its mana cost. If it's a land card, you may put it onto the battlefield and return Unexpected Results to its owner's hand.
 mana={2}{G}{U}
 type=Sorcery
-[/card]
-[card]
-name=Unstable Shapeshifter
-auto=@movedto(other creature|battlefield):all(trigger[from]) copy
-text=Whenever another creature enters the battlefield, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
-mana={3}{U}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=1
 [/card]
 [card]
 name=Venser's Diffusion
