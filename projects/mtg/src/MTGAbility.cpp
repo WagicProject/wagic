@@ -536,6 +536,14 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!card->discarded)
                 return 0;
         }
+        
+        check = restriction[i].find("cardistargeted");
+        if(check != string::npos)
+        {
+            bool istarget = card->isTargetted();
+            if(!istarget)
+                return 0;
+        }
 
         check = restriction[i].find("copiedacard");
         if(check != string::npos)
