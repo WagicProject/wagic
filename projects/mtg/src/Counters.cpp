@@ -129,8 +129,9 @@ int Counters::addCounter(const char * _name, int _power, int _toughness, bool _n
             g->receiveEvent(w);
         }
         mCount++;
-        this->target->doDamageTest = 1;
-        this->target->afterDamage();
+        /*the damage test should be handled on game state based effect i think*/
+        //this->target->doDamageTest = 1;
+        //this->target->afterDamage();
     }
     delete(e);
     return mCount;
