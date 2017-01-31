@@ -140,11 +140,15 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
-    Spell * spell = NEW Spell(observer, this);
-    observer = card->observer;
-    AbilityFactory af(observer);
-    af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
-    delete spell;
+    if(!isPhased)
+    {
+        Spell * spell = NEW Spell(observer, this);
+        observer = card->observer;
+        AbilityFactory af(observer);
+        af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
+        delete spell;
+    }
+
     if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
         mtgid = backupid; // there must be a way to get the token id...
     else
@@ -284,6 +288,7 @@ void MTGCardInstance::initMTGCI()
     previous = NULL;
     next = NULL;
     TokenAndAbility = NULL;
+    GrantedAndAbility = NULL;
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;

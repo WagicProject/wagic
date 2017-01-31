@@ -2781,6 +2781,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW AACopier(observer, id, card, target);
         a->oneShot = 1;
         a->canBeInterrupted = false;
+        ((AACopier*)a)->isactivated = activated;
         //andability
         if(storedAndAbility.size())
         {

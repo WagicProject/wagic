@@ -123,6 +123,7 @@ public:
     MTGCardInstance * previous;
     MTGCardInstance * next;
     MTGAbility * TokenAndAbility;
+    MTGAbility * GrantedAndAbility;
     int doDamageTest;
     bool skipDamageTestOnce;
     int summoningSickness;
