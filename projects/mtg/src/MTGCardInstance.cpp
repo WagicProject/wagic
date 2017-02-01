@@ -131,6 +131,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     copiedID = card->copiedID;
     doubleFaced = data->doubleFaced;
     AICustomCode = data->AICustomCode;
+    CrewAbility = data->CrewAbility;
     origpower = card->origpower;//for flip
     origtoughness = card->origtoughness;//for flip
     TokenAndAbility = card->TokenAndAbility;//token andAbility
@@ -140,14 +141,14 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
-    if(!isPhased)
+    /*if(!isPhased)
     {
         Spell * spell = NEW Spell(observer, this);
         observer = card->observer;
         AbilityFactory af(observer);
         af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
         delete spell;
-    }
+    }*/
 
     if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
         mtgid = backupid; // there must be a way to get the token id...

@@ -297,6 +297,10 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             {
                                 manaCost->addExtraCost(NEW CycleCost(tc));
                             }
+                            else if(value.substr(0,4) == "crew")
+                            {//tap crew
+                                manaCost->addExtraCost(NEW TapTargetCost(tc,true));
+                            }
                             else if(value.find("(") != string::npos)
                             {
                                 size_t counter_start = value.find("(");

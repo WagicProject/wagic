@@ -116,16 +116,6 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Gearshift Ace
-abilities=first strike
-text=First strike -- Whenever Gearshift Ace crews a Vehicle, that Vehicle gains first strike until end of turn.
-mana={1}{W}
-type=Creature
-subtype=Dwarf Pilot
-power=2
-toughness=1
-[/card]
-[card]
 name=Gonti, Lord of Luxury
 abilities=deathtouch
 text=Deathtouch -- When Gonti, Lord of Luxury enters the battlefield, look at the top four cards of target opponent's library, exile one of them face down, then put the rest on the bottom of that library in a random order. For as long as that card remains exiled, you may look at it, you may cast it, and you may spend mana as though it were mana of any type to cast it.
@@ -172,13 +162,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Revoke Privileges
-text=Enchant creature -- Enchanted creature can't attack, block, or crew Vehicles.
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Saheeli Rai
 auto=counter(0/0,3,loyalty)
 text=+1: Scry 1. Saheeli Rai deals 1 damage to each opponent. -- -2: Create a token that's a copy of target artifact or creature you control, except it's an artifact in addition to its other types. That token gains haste. Exile it at the beginning of the next end step. -- -7: Search your library for up to three artifact cards with different names, put them onto the battlefield, then shuffle your library.
@@ -208,15 +191,6 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
-name=Speedway Fanatic
-text=Haste -- Whenever Speedway Fanatic crews a Vehicle, that Vehicle gains haste until end of turn.
-mana={1}{R}
-type=Creature
-subtype=Human Pilot
-power=2
-toughness=1
-[/card]
-[card]
 name=Subtle Strike
 text=Choose one or both — -- • Target creature gets -1/-1 until end of turn. -- • Put a +1/+1 counter on target creature.
 mana={1}{B}
@@ -233,13 +207,4 @@ name=Verdant Crescendo
 text=Search your library for a basic land card and put it onto the battlefield tapped. Search your library and graveyard for a card named Nissa, Nature's Artisan, reveal it, and put it into your hand. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
-[/card]
-[card]
-name=Veteran Motorist
-text=When Veteran Motorist enters the battlefield, scry 2. -- Whenever Veteran Motorist crews a Vehicle, that Vehicle gets +1/+1 until end of turn.
-mana={R}{W}
-type=Creature
-subtype=Dwarf Pilot
-power=3
-toughness=1
 [/card]

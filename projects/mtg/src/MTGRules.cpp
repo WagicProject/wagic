@@ -3227,29 +3227,30 @@ int MTGLegendRule::receiveEvent(WEvent * event)
                 MTGCardInstance * card = zone->cards[k];
                 if (card && card->hasType(Subtypes::TYPE_LEGENDARY) && !card->isPhased)
                 {
-                    if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
-                        ;
-                    else
-                        if(card->countDuplicateCardNames() > 1)
-                        {
-                            vector<MTGAbility*>selection;
-                            TargetChooserFactory tfL(game);
-                            tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",card->clone());
-                            tcL->targetter = NULL;
-                            tcL->maxtargets = card->countDuplicateCardNames()-1;
-                            Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, NULL,"ownergraveyard","Put in Graveyard");
-                            Legendrule->oneShot = true;
-                            Legendrule->canBeInterrupted = false;
-                            LegendruleAbility = NEW GenericTargetAbility(game, "","",game->mLayers->actionLayer()->getMaxId(), card,tcL, Legendrule->clone());
-                            LegendruleAbility->oneShot = true;
-                            LegendruleAbility->canBeInterrupted = false;
-                            LegendruleGeneric = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,LegendruleAbility->clone());
-                            LegendruleGeneric->oneShot = true;
-                            selection.push_back(LegendruleGeneric->clone());
-                            MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
-                            menuChoice->addToGame();
-                            return 1;
-                        }
+                    bool condition = (card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))?false:true;
+                    if(condition && card->countDuplicateCardNames() > 1)
+                    {
+                        vector<MTGAbility*>selection;
+                        TargetChooserFactory tfL(game);
+                        tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",card);
+                        tcL->targetter = NULL;
+                        tcL->maxtargets = card->countDuplicateCardNames()-1;
+                        Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, NULL,"ownergraveyard","Put in Graveyard");
+                        Legendrule->oneShot = true;
+                        Legendrule->canBeInterrupted = false;
+                        LegendruleAbility = NEW GenericTargetAbility(game, "","",game->mLayers->actionLayer()->getMaxId(), card,tcL, Legendrule->clone());
+                        SAFE_DELETE(Legendrule);
+                        LegendruleAbility->oneShot = true;
+                        LegendruleAbility->canBeInterrupted = false;
+                        LegendruleGeneric = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,LegendruleAbility->clone());
+                        SAFE_DELETE(LegendruleAbility);
+                        LegendruleGeneric->oneShot = true;
+                        selection.push_back(LegendruleGeneric->clone());
+                        SAFE_DELETE(LegendruleGeneric);
+                        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
+                        menuChoice->addToGame();
+                        return 1;
+                    }
                 }
             }
         }

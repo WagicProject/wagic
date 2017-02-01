@@ -1547,8 +1547,6 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if(isactivated)
-            source->isPhased = true;
         bool tokencopied = false;
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
             tokencopied = true;
@@ -1609,8 +1607,8 @@ int AACopier::resolve()
                 TokenandAbilityClone->addToGame();
             }
         }
-        if(isactivated)
-        {//activated version grant
+        if(source->isACopier)
+        {
             source->GrantedAndAbility = andAbility;
             AbilityFactory af(game);
             for(unsigned int i = 0;i < source->cardsAbilities.size();i++)
@@ -1631,6 +1629,8 @@ int AACopier::resolve()
                 {
                     if (a->oneShot)
                     {
+                        if(a->source->entersBattlefield)
+                            a->resolve();
                         SAFE_DELETE(a);
                     }
                     else
@@ -1658,7 +1658,6 @@ int AACopier::resolve()
                     andAbilityClone->addToGame();
                 }
             }
-            source->isPhased = false;
         }
         return 1;
     }

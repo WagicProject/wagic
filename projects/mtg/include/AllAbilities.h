@@ -875,6 +875,16 @@ private:
             else
                 intValue = 0;
         }
+        else if (s == "crewtotalpower")//crew count total power
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                MTGCardInstance * crew = card->controller()->game->battlefield->cards[j];
+                if (crew != card && crew->isCreature() && !crew->isTapped() && !crew->isPhased && !crew->has(Constants::CANTCREW))
+                    intValue += crew->power;
+            }
+        }
         else if (s == "pancientooze")//Ancient Ooze
         {
             intValue = 0;
