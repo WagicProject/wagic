@@ -140,11 +140,15 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
-    Spell * spell = NEW Spell(observer, this);
-    observer = card->observer;
-    AbilityFactory af(observer);
-    af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
-    delete spell;
+    if(!isPhased)
+    {
+        Spell * spell = NEW Spell(observer, this);
+        observer = card->observer;
+        AbilityFactory af(observer);
+        af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
+        delete spell;
+    }
+
     if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
         mtgid = backupid; // there must be a way to get the token id...
     else
@@ -284,6 +288,7 @@ void MTGCardInstance::initMTGCI()
     previous = NULL;
     next = NULL;
     TokenAndAbility = NULL;
+    GrantedAndAbility = NULL;
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;
@@ -821,6 +826,22 @@ int MTGCardInstance::getCurrentToughness()
     if(observer && !isInPlay(observer))
         return LKItoughness;
     return toughness;
+}
+
+int MTGCardInstance::countDuplicateCardNames()
+{
+    int count = 0;
+
+    if(observer)
+    {
+        int nb_cards = controller()->game->battlefield->nb_cards;
+        for(int x = 0; x < nb_cards; x++)
+        {
+            if(controller()->game->battlefield->cards[x]->name == this->name)
+                count+=1;
+        }
+    }
+    return count;
 }
 
 //check stack

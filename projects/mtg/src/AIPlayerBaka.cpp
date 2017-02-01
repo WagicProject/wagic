@@ -2768,7 +2768,7 @@ int AIPlayerBaka::chooseAttackers()
         opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES, -1);
         opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER, -1);
         attack = (myCreatures >= opponentCreatures && myForce > opponentForce)
-                || (myForce > opponentForce) || (myForce > opponent()->life);
+                || (myForce > opponentForce) || (myForce > opponent()->life) || ((life - opponentForce) > 30) ;
     }
     printf("Choose attackers : %i %i %i %i -> %i\n", opponentForce, opponentCreatures, myForce, myCreatures, attack);
 

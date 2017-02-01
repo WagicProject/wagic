@@ -536,6 +536,14 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!card->discarded)
                 return 0;
         }
+        
+        check = restriction[i].find("cardistargeted");
+        if(check != string::npos)
+        {
+            bool istarget = card->isTargetted();
+            if(!istarget)
+                return 0;
+        }
 
         check = restriction[i].find("copiedacard");
         if(check != string::npos)
@@ -2781,6 +2789,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW AACopier(observer, id, card, target);
         a->oneShot = 1;
         a->canBeInterrupted = false;
+        ((AACopier*)a)->isactivated = activated;
         //andability
         if(storedAndAbility.size())
         {

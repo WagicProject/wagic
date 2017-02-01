@@ -3205,76 +3205,55 @@ MTGTokensCleanup * MTGTokensCleanup::clone() const
 
 /* Legend Rule */
 MTGLegendRule::MTGLegendRule(GameObserver* observer, int _id) :
-ListMaintainerAbility(observer, _id)
+PermanentAbility(observer, _id)
 {
+    tcL = NULL;
+    Legendrule = NULL;
+    LegendruleAbility = NULL;
+    LegendruleGeneric = NULL;
 }
 ;
 
-int MTGLegendRule::canBeInList(MTGCardInstance * card)
+int MTGLegendRule::receiveEvent(WEvent * event)
 {
-    if(card->isPhased)
-        return 0;
-    if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
+    WEventGameStateBasedChecked * e = dynamic_cast<WEventGameStateBasedChecked*> (event);
+    if (e)
     {
-        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
-            return 0;
-        else
-            return 1;
-    }
-    return 0;
-}
-
-int MTGLegendRule::added(MTGCardInstance * card)
-{
-    map<MTGCardInstance *, bool>::iterator it;
-    int destroy = 0;
-
-    vector<MTGCardInstance*>oldCards;
-    for (it = cards.begin(); it != cards.end(); it++)
-    {
-        MTGCardInstance * comparison = (*it).first;
-        if (comparison != card && comparison->controller() == card->controller() && !(comparison->getName().compare(card->getName())))
+        for (int i = 0; i < 2; i++)
         {
-            oldCards.push_back(comparison);
-            destroy = 1;
+            MTGGameZone * zone = game->players[i]->game->inPlay;
+            for (int k = zone->nb_cards - 1; k >= 0; k--)
+            {
+                MTGCardInstance * card = zone->cards[k];
+                if (card && card->hasType(Subtypes::TYPE_LEGENDARY) && !card->isPhased)
+                {
+                    if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
+                        ;
+                    else
+                        if(card->countDuplicateCardNames() > 1)
+                        {
+                            vector<MTGAbility*>selection;
+                            TargetChooserFactory tfL(game);
+                            tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",card->clone());
+                            tcL->targetter = NULL;
+                            tcL->maxtargets = card->countDuplicateCardNames()-1;
+                            Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, NULL,"ownergraveyard","Put in Graveyard");
+                            Legendrule->oneShot = true;
+                            Legendrule->canBeInterrupted = false;
+                            LegendruleAbility = NEW GenericTargetAbility(game, "","",game->mLayers->actionLayer()->getMaxId(), card,tcL, Legendrule->clone());
+                            LegendruleAbility->oneShot = true;
+                            LegendruleAbility->canBeInterrupted = false;
+                            LegendruleGeneric = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,LegendruleAbility->clone());
+                            LegendruleGeneric->oneShot = true;
+                            selection.push_back(LegendruleGeneric->clone());
+                            MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
+                            menuChoice->addToGame();
+                            return 1;
+                        }
+                }
+            }
         }
     }
-    if (game->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-        destroy = 0;
-    if (game->mLayers->actionLayer()->menuObject) 
-        destroy = 0;
-    if (game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()) 
-        destroy = 0;
-    if(destroy)
-    {
-        vector<MTGAbility*>selection;
-        MultiAbility * multi = NEW MultiAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
-        for(unsigned int i = 0;i < oldCards.size();i++)
-        {
-            AAMover *a = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
-            a->oneShot = true;
-            multi->Add(a);
-        }
-        multi->oneShot = 1;
-        MTGAbility * a1 = multi;
-        selection.push_back(a1);
-        AAMover *b = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, card,"ownergraveyard","Keep Old");
-        b->oneShot = true;
-        MTGAbility * b1 = b;
-        selection.push_back(b1);
-        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
-        menuChoice->addToGame();
-    }
-    return 1;
-}
-
-int MTGLegendRule::removed(MTGCardInstance *)
-{
-    return 0;
-}
-
-int MTGLegendRule::testDestroy()
-{
     return 0;
 }
 

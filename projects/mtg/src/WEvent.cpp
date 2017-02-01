@@ -31,6 +31,11 @@ WEventDamageStackResolved::WEventDamageStackResolved() :
 {
 }
 
+WEventGameStateBasedChecked::WEventGameStateBasedChecked() :
+    WEvent()
+{
+}
+
 WEventCardUpdate::WEventCardUpdate(MTGCardInstance * card) :
     WEvent(), card(card)
 {

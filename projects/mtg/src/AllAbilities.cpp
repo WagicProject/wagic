@@ -1539,6 +1539,7 @@ AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, M
 {
     target = _target;
     andAbility = NULL;
+    isactivated = false;
 }
 
 int AACopier::resolve()
@@ -1546,6 +1547,8 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(isactivated)
+            source->isPhased = true;
         bool tokencopied = false;
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
             tokencopied = true;
@@ -1605,6 +1608,57 @@ int AACopier::resolve()
             {
                 TokenandAbilityClone->addToGame();
             }
+        }
+        if(isactivated)
+        {//activated version grant
+            source->GrantedAndAbility = andAbility;
+            AbilityFactory af(game);
+            for(unsigned int i = 0;i < source->cardsAbilities.size();i++)
+            {
+                MTGAbility * a = dynamic_cast<MTGAbility *>(source->cardsAbilities[i]);
+
+                if(a) game->removeObserver(a);
+            }
+            source->cardsAbilities.clear();
+            source->magicText = _target->magicText;
+
+            af.getAbilities(&currentAbilities, NULL, source);
+            for (size_t i = 0; i < currentAbilities.size(); ++i)
+            {
+                MTGAbility * a = currentAbilities[i];
+                a->source = (MTGCardInstance *) source;
+                if (a)
+                {
+                    if (a->oneShot)
+                    {
+                        SAFE_DELETE(a);
+                    }
+                    else
+                    {
+                        a->addToGame();
+                        MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
+                        if(!dontAdd)
+                        {
+                            source->cardsAbilities.push_back(a);
+                        }
+                    }
+                }
+            }
+            if(source->GrantedAndAbility)
+            {
+                MTGAbility * andAbilityClone = source->GrantedAndAbility->clone();
+                andAbilityClone->target = source;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+            source->isPhased = false;
         }
         return 1;
     }
@@ -7953,7 +8007,7 @@ int AACastCard::resolveSpell()
             if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
                 copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
             else
-                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
+               copy =_target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->stack,noEvent);
             copy->changeController(source->controller(),true);
             if(asNormalMadness)
             copy->MadnessPlay = true;

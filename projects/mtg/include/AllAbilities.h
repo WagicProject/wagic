@@ -2055,6 +2055,7 @@ public:
 class AACopier: public ActivatedAbility
 {
 public:
+    bool isactivated;
     vector<MTGAbility *> currentAbilities;
     MTGAbility * andAbility;
     AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);

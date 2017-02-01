@@ -79,6 +79,11 @@ struct WEventDamageStackResolved : public WEvent {
   WEventDamageStackResolved();
 };
 
+
+struct WEventGameStateBasedChecked : public WEvent {
+  WEventGameStateBasedChecked();
+};
+
 struct WEventPhasePreChange : public WEvent {
   Phase * from;
   Phase * to;
