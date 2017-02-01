@@ -771,14 +771,21 @@ TapTargetCost * TapTargetCost::clone() const
     return ec;
 }
 
-TapTargetCost::TapTargetCost(TargetChooser *_tc)
-    : ExtraCost("Tap Target", _tc)
+TapTargetCost::TapTargetCost(TargetChooser *_tc, bool crew)
+    : ExtraCost("Tap Target", _tc), crew(crew)
 {
 }
 
 int TapTargetCost::isPaymentSet()
 {
     if (target && target->isTapped())
+    {
+        tc->removeTarget(target);
+        target->isExtraCostTarget = false;
+        target = NULL;
+        return 0;
+    }
+    if (crew && target && target->has(Constants::CANTCREW))
     {
         tc->removeTarget(target);
         target->isExtraCostTarget = false;
@@ -798,6 +805,20 @@ int TapTargetCost::doPay()
     {
         source->storedCard = target->createSnapShot();
         _target->tap();
+        //crew ability
+        if(crew)
+        {
+            if(_target->getCrewAbility().size())
+            {
+                AbilityFactory af(_target->getObserver());
+                MTGAbility * crewAbility = af.parseMagicLine(_target->getCrewAbility(), -1, NULL, source,false,true);
+                crewAbility->oneShot = true;
+                crewAbility->canBeInterrupted = false;
+                crewAbility->target = source;
+                crewAbility->resolve();
+            }
+        }
+        //end
         target = NULL;
         if (tc)
             tc->initTargets();

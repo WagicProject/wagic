@@ -131,6 +131,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     copiedID = card->copiedID;
     doubleFaced = data->doubleFaced;
     AICustomCode = data->AICustomCode;
+    CrewAbility = data->CrewAbility;
     origpower = card->origpower;//for flip
     origtoughness = card->origtoughness;//for flip
     TokenAndAbility = card->TokenAndAbility;//token andAbility

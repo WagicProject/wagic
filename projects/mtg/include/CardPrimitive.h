@@ -74,6 +74,9 @@ public:
     string AICustomCode;
     void setAICustomCode(const string& value);
     const string& getAICustomCode() const;
+    string CrewAbility;
+    void setCrewAbility(const string& value);
+    const string& getCrewAbility() const;
 
     vector<int>types;
     CardPrimitive();

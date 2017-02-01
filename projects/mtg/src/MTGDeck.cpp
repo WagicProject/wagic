@@ -131,9 +131,17 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
 
-    case 'c': //color
-        if (!primitive) primitive = NEW CardPrimitive();
+    case 'c': //crew ability
+        if (key == "crewbonus")
         {
+            if (!primitive) primitive = NEW CardPrimitive();
+            {
+                primitive->setCrewAbility(val);
+                break;
+            }
+        }
+        else if (!primitive) primitive = NEW CardPrimitive();
+        {//color
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
             vector<string> values = split(value, ',');
@@ -143,8 +151,8 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 primitive->setColor(values[values_i], removeAllOthers);
                 removeAllOthers = 0;
             }
+            break;
         }
-        break;
     case 'd'://double faced card /dredge
         if (key == "doublefaced")
         {

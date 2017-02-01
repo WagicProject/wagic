@@ -244,7 +244,8 @@ public:
 class TapTargetCost : public ExtraCost
 {
 public:
-    TapTargetCost(TargetChooser *_tc = NULL);
+    bool crew;
+    TapTargetCost(TargetChooser *_tc = NULL, bool crew = false);
     virtual int isPaymentSet();
     virtual int doPay();
     virtual TapTargetCost * clone() const;
