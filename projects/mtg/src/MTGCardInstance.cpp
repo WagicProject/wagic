@@ -828,6 +828,22 @@ int MTGCardInstance::getCurrentToughness()
     return toughness;
 }
 
+int MTGCardInstance::countDuplicateCardNames()
+{
+    int count = 0;
+
+    if(observer)
+    {
+        int nb_cards = controller()->game->battlefield->nb_cards;
+        for(int x = 0; x < nb_cards; x++)
+        {
+            if(controller()->game->battlefield->cards[x]->name == this->name)
+                count+=1;
+        }
+    }
+    return count;
+}
+
 //check stack
 bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 {
