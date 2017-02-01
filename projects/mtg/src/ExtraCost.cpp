@@ -811,11 +811,14 @@ int TapTargetCost::doPay()
             if(_target->getCrewAbility().size())
             {
                 AbilityFactory af(_target->getObserver());
-                MTGAbility * crewAbility = af.parseMagicLine(_target->getCrewAbility(), -1, NULL, source,false,true);
+                MTGAbility * a = af.parseMagicLine(_target->getCrewAbility(), -1, NULL, source,false,true);
+                MTGAbility * crewAbility = a->clone();
+                SAFE_DELETE(a);
                 crewAbility->oneShot = true;
                 crewAbility->canBeInterrupted = false;
                 crewAbility->target = source;
                 crewAbility->resolve();
+                SAFE_DELETE(crewAbility);
             }
         }
         //end
