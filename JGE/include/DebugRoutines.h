@@ -18,9 +18,9 @@ using namespace std;
 template <class T>
 std::string ToHex(T* pointer)
 {
-    std::ostringstream stream;
-    stream << hex << showbase << setfill('0') << setw(8) << (uint64_t) pointer;
-    return stream.str();
+	std::ostringstream stream;
+	stream << hex << showbase << setfill('0') << setw(8) << (uint64_t) pointer;
+	return stream.str();
 }
 
 #ifdef LINUX
@@ -42,9 +42,9 @@ std::string ToHex(T* pointer)
 #else // CAPTURE_STDERR
 #define DebugTrace(inString)								\
 {															\
-  std::ostringstream stream;								\
-  stream << inString;					    \
-  qDebug("%s", stream.str().c_str()); \
+	std::ostringstream stream;								\
+	stream << inString;					    \
+	qDebug("%s", stream.str().c_str()); \
 }
 #endif // CAPTURE_STDERR
 
@@ -52,16 +52,16 @@ std::string ToHex(T* pointer)
 #include <android/log.h>
 #define DebugTrace(inString)								\
 {															\
-  std::ostringstream stream;								\
-  stream << inString;					    \
-  __android_log_write(ANDROID_LOG_DEBUG, "Wagic", stream.str().c_str());\
+	std::ostringstream stream;								\
+	stream << inString;					    \
+	__android_log_write(ANDROID_LOG_DEBUG, "Wagic", stream.str().c_str());\
 }
 #else
 #define DebugTrace(inString)								\
 {															\
 	std::ostringstream stream;								\
 	stream << inString << std::endl;					    \
-  OutputDebugStringA(stream.str().c_str());  \
+	OutputDebugStringA(stream.str().c_str());  \
 }
 #endif // QT_CONFIG
 #endif // Win32, Linux
@@ -71,7 +71,7 @@ std::string ToHex(T* pointer)
 #ifndef DebugTrace
 #define DebugTrace(inString)								\
 {															\
-  std::cerr << inString << std::endl;					    \
+	std::cerr << inString << std::endl;					    \
 }
 #endif //DEBUG
 #endif

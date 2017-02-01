@@ -49,9 +49,9 @@ ostream& RandomGenerator::saveUsedRandValues(ostream& out) const
     return out;
 }
 
-ostream& RandomGenerator::saveLoadedRandValues(ostream& out)
+ostream& RandomGenerator::saveLoadedRandValues(ostream& out) const
 {
-    list<int>::iterator ite;
+    list<int>::const_iterator ite;
     for(ite=loadedRandomValues.begin(); ite != loadedRandomValues.end(); ite++)
     {
         out << *ite << ",";
