@@ -3232,7 +3232,7 @@ int MTGLegendRule::receiveEvent(WEvent * event)
                     {
                         vector<MTGAbility*>selection;
                         TargetChooserFactory tfL(game);
-                        tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",card->clone());
+                        tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",card);
                         tcL->targetter = NULL;
                         tcL->maxtargets = card->countDuplicateCardNames()-1;
                         Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, NULL,"ownergraveyard","Put in Graveyard");
