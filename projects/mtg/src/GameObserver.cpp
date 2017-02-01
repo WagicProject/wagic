@@ -1061,6 +1061,9 @@ void GameObserver::gameStateBasedEffects()
             || mCurrentGamePhase == MTG_PHASE_COMBATDAMAGE))
             userRequestNextGamePhase();
     }
+
+    //WEventGameStateBasedChecked event checked
+    receiveEvent(NEW WEventGameStateBasedChecked());
 }
 
 void GameObserver::enchantmentStatus()
