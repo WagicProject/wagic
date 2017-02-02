@@ -427,7 +427,7 @@ public:
  * that player chooses one of them, and the rest are put into their owners’ graveyards. 
  * This is called the “legend rule.” 
  */
-class MTGLegendRule: public PermanentAbility
+class MTGLegendRule: public ListMaintainerAbility
 {
 public:
     TargetChooser * tcL;
@@ -435,13 +435,20 @@ public:
     MTGAbility * LegendruleAbility;
     MTGAbility * LegendruleGeneric;
     MTGLegendRule(GameObserver* observer, int _id);
-    int receiveEvent(WEvent * event);
+    int canBeInList(MTGCardInstance * card);
+    int added(MTGCardInstance * card);
+    int removed(MTGCardInstance * card);
+    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     virtual MTGLegendRule * clone() const;
 };
 class MTGPlaneWalkerRule: public ListMaintainerAbility
 {
 public:
+    TargetChooser * tcP;
+    MTGAbility * PWrule;
+    MTGAbility * PWruleAbility;
+    MTGAbility * PWruleGeneric;
     MTGPlaneWalkerRule(GameObserver* observer, int _id);
     int canBeInList(MTGCardInstance * card);
     int added(MTGCardInstance * card);
