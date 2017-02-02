@@ -2276,22 +2276,17 @@ WGuiKeyBinder::WGuiKeyBinder(string name, GameStateOptions* parent) :
     WGuiList(name), parent(parent), confirmMenu(NULL), modal(false), confirmed(CONFIRM_NEED), confirmingKey(LOCAL_KEY_NONE),
                     confirmingButton(JGE_BTN_NONE), confirmationString("")
 {
-    JGE* j = JGE::GetInstance();
-    JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
-
-    Add(NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
-    for (JGE::keybindings_it it = start; it != end; ++it)
-        Add(NEW OptionKey(parent, it->first, it->second));
+    populateKeyBindingList();
 }
 
 void WGuiKeyBinder::Update(float dt)
 {
-    OptionKey* o = dynamic_cast<OptionKey*> (items[0]);
+    OptionKey* o = dynamic_cast<OptionKey*> (items[1]);
     if (!o) return;
     if (LOCAL_KEY_NONE != o->from)
     {
-        items.insert(items.begin(), NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
-        if (0 == currentItem) ++currentItem;
+        items.insert(items.begin() + 1, NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
+        if (1 == currentItem) ++currentItem;
     }
     for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
         (*it)->Update(dt);
@@ -2416,7 +2411,11 @@ WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm()
 
 void WGuiKeyBinder::ButtonPressed(int controllerId, int controlId)
 {
-    if (2 == controlId)
+    if (1 == controlId)
+    {
+        confirmed = CONFIRM_CANCEL;
+    }
+    else if (2 == controlId) {
         switch (controllerId)
         {
         case 0:
@@ -2426,8 +2425,16 @@ void WGuiKeyBinder::ButtonPressed(int controllerId, int controlId)
             confirmedButtons.insert(confirmingButton);
             break;
         }
-    else
-        confirmed = CONFIRM_CANCEL;
+    }
+    else if (3 == controlId) {
+        switch (controllerId)
+        {
+        case -102:
+            JGE::GetInstance()->ResetBindings();
+            populateKeyBindingList();
+            break;
+        }
+    }
     SAFE_DELETE(confirmMenu);
     confirmMenu = NULL;
 }
@@ -2459,4 +2466,16 @@ void WGuiKeyBinder::Render()
 bool WGuiKeyBinder::yieldFocus()
 {
     return true;
+}
+
+void WGuiKeyBinder::populateKeyBindingList()
+{
+    items.clear();
+    Add(NEW WGuiButton(NEW WGuiItem("Load Defaults..."), -102, 3, this));
+    Add(NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
+
+    JGE* j = JGE::GetInstance();
+    JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
+    for (JGE::keybindings_it it = start; it != end; ++it)
+        Add(NEW OptionKey(parent, it->first, it->second));
 }
