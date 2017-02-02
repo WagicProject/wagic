@@ -12,7 +12,7 @@ using std::map;
 static map<const LocalKeySym, KeyRep> fattable;
 static map<const JButton, KeyRep> slimtable;
 
-#if defined(LINUX) || defined (IOS) || defined (ANDROID) ||  defined (SDL_CONFIG) || defined (QT_CONFIG)
+#if defined(LINUX) || defined (IOS) || defined (ANDROID) || defined (SDL_CONFIG) || defined (QT_CONFIG)
 const KeyRep& translateKey(LocalKeySym key)
 {
     {
@@ -135,33 +135,34 @@ const KeyRep& translateKey(LocalKeySym key)
 #endif
 
 const KeyRep& translateKey(JButton key) {
-  /*
+
   {
     map<const JButton, KeyRep>::iterator res;
     if ((res = slimtable.find(key)) != slimtable.end())
       return res->second;
   }
 
-  slimtable[JGE_BTN_NONE] =   make_pair(_("None"),                     static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_QUIT] =   make_pair(_("Quit"),                     static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_MENU] =   make_pair(_("Menu"),                     static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_CTRL] =   make_pair(_("Control"),                  static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_POWER] =  make_pair(_("Power"),                    static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_SOUND] =  make_pair(_("Sound"),                    static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_RIGHT] =  make_pair(_("Right"),                    static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_LEFT] =   make_pair(_("Left"),                     static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_UP] =     make_pair(_("Up"),                       static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_DOWN] =   make_pair(_("Down"),                     static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_OK] =     make_pair(_("Ok"),                       static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_CANCEL] = make_pair(_("Cancel"),                   static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_PRI] =    make_pair(_("Primary"),                  static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_SEC] =    make_pair(_("Secondary"),                static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_PREV] =   make_pair(_("Next phase/Previous item"), static_cast<JQuad*>(NULL));
-  slimtable[JGE_BTN_NEXT] =   make_pair(_("Open hand/Next item"),      static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_NONE] =         make_pair(_("Delete this binding"),         static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_QUIT] =         make_pair(_("Quit"),                        static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_MENU] =         make_pair(_("Menu"),                        static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_CTRL] =         make_pair(_("Control"),                     static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_POWER] =        make_pair(_("Power"),                       static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_SOUND] =        make_pair(_("Sound"),                       static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_RIGHT] =        make_pair(_("Right"),                       static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_LEFT] =         make_pair(_("Left"),                        static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_UP] =           make_pair(_("Up"),                          static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_DOWN] =         make_pair(_("Down"),                        static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_OK] =           make_pair(_("Ok"),                          static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_CANCEL] =       make_pair(_("Cancel"),                      static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_PRI] =          make_pair(_("Primary"),                     static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_SEC] =          make_pair(_("Secondary"),                   static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_PREV] =         make_pair(_("Next phase/Previous item"),    static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_NEXT] =         make_pair(_("Open hand/Next item"),         static_cast<JQuad*>(NULL));
+  slimtable[JGE_BTN_FULLSCREEN] =   make_pair(_("Fullscreen"),                  static_cast<JQuad*>(NULL));
 
   return slimtable[key];
-  */
 
+/*
   map<const JButton, KeyRep>::iterator res;
     if ((res = slimtable.find(key)) == slimtable.end())
     {
@@ -205,7 +206,8 @@ const KeyRep& translateKey(JButton key) {
         case JGE_BTN_OK :     k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)4*32,  0, 32, 32, "PSP_CTRL_CIRCLE",   RETRIEVE_NORMAL).get(); break;
         case JGE_BTN_SEC :    k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)7*32,  0, 32, 32, "PSP_CTRL_CROSS",    RETRIEVE_NORMAL).get(); break;
         case JGE_BTN_PRI :    k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)6*32,  0, 32, 32, "PSP_CTRL_SQUARE",   RETRIEVE_NORMAL).get(); break;
-        default: /* Unknown key : no icon */ ;
+        default: ; // Unknown key : no icon
     }
     return k;
+  */
 }
