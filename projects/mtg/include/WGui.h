@@ -998,6 +998,8 @@ protected:
     set<LocalKeySym> confirmedKeys;
     set<JButton> confirmedButtons;
     string confirmationString;
+private:
+    void populateKeyBindingList();
 };
 
 /**@} This comment used by Doxyyen. */
