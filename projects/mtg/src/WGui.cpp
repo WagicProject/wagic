@@ -2471,7 +2471,6 @@ bool WGuiKeyBinder::yieldFocus()
 void WGuiKeyBinder::populateKeyBindingList()
 {
     items.clear();
-     DebugTrace(items.empty());
     Add(NEW WGuiButton(NEW WGuiItem("Load Defaults..."), -102, 3, this));
     Add(NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
 
