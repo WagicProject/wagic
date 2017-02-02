@@ -3347,6 +3347,7 @@ InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isfl
 int AAFlip::resolve()
 {
     int cdaDamage = 0;
+    int activatedanyability = 0;
     MTGCardInstance * Flipper = (MTGCardInstance*)source;
     this->oneShot = true;
     if(Flipper->isFlipped)
@@ -3397,6 +3398,17 @@ int AAFlip::resolve()
                 _target->setMTGId(myFlip->getMTGId());
                 _target->setId = myFlip->setId;
             }
+            //check pw
+            if(_target->hasType(Subtypes::TYPE_PLANESWALKER))
+            {
+                for(unsigned int k = 0;k < _target->cardsAbilities.size();++k)
+                {
+                    ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(_target->cardsAbilities[k]);
+                    if(check && check->counters)
+                        activatedanyability++;
+                }
+            }
+            //
             for(unsigned int i = 0;i < _target->cardsAbilities.size();i++)
             {
                 MTGAbility * a = dynamic_cast<MTGAbility *>(_target->cardsAbilities[i]);
@@ -3425,6 +3437,19 @@ int AAFlip::resolve()
                         {
                             _target->cardsAbilities.push_back(a);
                         }
+                    }
+                }
+            }
+            //limit pw abi
+            if(activatedanyability)
+            {
+                if(_target->hasType(Subtypes::TYPE_PLANESWALKER))
+                {
+                    for(unsigned int k = 0;k < _target->cardsAbilities.size();++k)
+                    {
+                        ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(_target->cardsAbilities[k]);
+                        if(check)//is there a better way?
+                            check->counters++;
                     }
                 }
             }

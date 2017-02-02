@@ -445,6 +445,10 @@ public:
 class MTGPlaneWalkerRule: public ListMaintainerAbility
 {
 public:
+    TargetChooser * tcP;
+    MTGAbility * PWrule;
+    MTGAbility * PWruleAbility;
+    MTGAbility * PWruleGeneric;
     MTGPlaneWalkerRule(GameObserver* observer, int _id);
     int canBeInList(MTGCardInstance * card);
     int added(MTGCardInstance * card);
