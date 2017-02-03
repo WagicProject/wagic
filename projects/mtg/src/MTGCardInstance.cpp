@@ -99,10 +99,19 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     MTGCard * source = NULL;
     if(card->isToken || card->hasCopiedToken)
     {
-        source = card;
+        if(card->getMTGId() > 0)//not generated token
+            source = MTGCollection()->getCardById(card->getMTGId());
+        else
+        {
+            source = card->tokCard;
+            source->data = card->tokCard;//?wtf
+        }
     }
     else
          source = MTGCollection()->getCardById(card->copiedID);
+
+    if(!source)
+        source = card;
 
     CardPrimitive * data = source->data;
     basicAbilities = data->basicAbilities;
@@ -135,6 +144,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     origpower = card->origpower;//for flip
     origtoughness = card->origtoughness;//for flip
     TokenAndAbility = card->TokenAndAbility;//token andAbility
+    tokCard = card->tokCard;
 
     //Now this is dirty...
     int backupid = mtgid;
@@ -288,6 +298,7 @@ void MTGCardInstance::initMTGCI()
     owner = NULL;
     counters = NEW Counters(this);
     previousZone = NULL;
+    tokCard = NULL;
     previous = NULL;
     next = NULL;
     TokenAndAbility = NULL;

@@ -121,6 +121,7 @@ public:
     Player * previousController;
     MTGGameZone * getCurrentZone();
     MTGGameZone * previousZone;
+    MTGCardInstance * tokCard;
     MTGCardInstance * previous;
     MTGCardInstance * next;
     MTGAbility * TokenAndAbility;

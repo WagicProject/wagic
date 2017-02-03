@@ -1550,10 +1550,13 @@ int AACopier::resolve()
         bool tokencopied = false;
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
             tokencopied = true;
-
-        if(tokencopied && !_target->isACopier)
+        /*this solves one thing.. if you copy a nontoken card with dragon breath attached that gives haste*/
+        source->hasCopiedToken = tokencopied;
+        /*since we look for the real card it will not copy granted haste ability however for token we copy all*/
+        /*but how to do backup for token so we just copy the backup???*/
+        if(tokencopied && !_target->isACopier && !_target->getMTGId())
         {
-            source->copy(_target);
+            source->copy(_target->tokCard);
             //if the token doesn't have cda/dynamic pt then allow this...
             if(!_target->isCDA)
             {
@@ -1578,7 +1581,6 @@ int AACopier::resolve()
             source->copy(_target);
         }
         source->isACopier = true;
-        source->hasCopiedToken = tokencopied;
         source->copiedID = _target->copiedID;
         if(_target->isMorphed)
         {
@@ -1607,7 +1609,7 @@ int AACopier::resolve()
                 TokenandAbilityClone->addToGame();
             }
         }
-        if(source->isACopier)
+        if(source)
         {
             source->GrantedAndAbility = andAbility;
             AbilityFactory af(game);
@@ -4102,12 +4104,23 @@ int AACloner::resolve()
     if (!_target)
         return 0;
 
-    // Use id of the card to have the same image as the original
-    MTGCard* clone = (_target->isToken ? _target: MTGCollection()->getCardById(_target->getId()));
+    MTGCard * clone = NULL;
 
-    // If its a copier and copied a token then copy what it is
-    if(_target->isACopier && _target->hasCopiedToken)
-        clone = _target;
+    if(_target->isToken || _target->hasCopiedToken)
+    {
+        if(_target->getMTGId() > 0)//not generated token
+            clone = MTGCollection()->getCardById(_target->getMTGId());
+        else
+        {
+            clone = _target->tokCard;
+            clone->data = _target->tokCard;//?wtf
+        }
+    }
+    else
+         clone = MTGCollection()->getCardById(_target->copiedID);
+
+    if(!clone)
+        source = _target;
 
     Player * targetPlayer = who == 1 ? source->controller()->opponent() : source->controller();
 
@@ -4134,6 +4147,8 @@ int AACloner::resolve()
         spell->source->entersBattlefield = 1;
         spell->source->model = spell->source;
         spell->source->model->data = spell->source;
+        spell->source->tokCard = spell->source->clone();
+        spell->source->TokenAndAbility = _target->TokenAndAbility;//token andAbility
         //if the token doesn't have cda/dynamic pt then allow this...
         if((_target->isToken) && (!_target->isCDA))
         {
@@ -4165,11 +4180,11 @@ int AACloner::resolve()
         {
             spell->source->addType(*it);
         }
-        if(_target->TokenAndAbility)
+        if(spell->source->TokenAndAbility)
         {//the source copied a token with andAbility
-            MTGAbility * TokenandAbilityClone = _target->TokenAndAbility->clone();
+            MTGAbility * TokenandAbilityClone = spell->source->TokenAndAbility->clone();
             TokenandAbilityClone->target = spell->source;
-            if(_target->TokenAndAbility->oneShot)
+            if(spell->source->TokenAndAbility->oneShot)
             {
                 TokenandAbilityClone->resolve();
                 SAFE_DELETE(TokenandAbilityClone);
