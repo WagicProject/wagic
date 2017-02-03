@@ -1610,7 +1610,7 @@ int AACopier::resolve()
         if(source->isACopier)
         {
             source->GrantedAndAbility = andAbility;
-
+            AbilityFactory af(game);
             for(unsigned int i = 0;i < source->cardsAbilities.size();i++)
             {
                 MTGAbility * a = dynamic_cast<MTGAbility *>(source->cardsAbilities[i]);
@@ -1620,9 +1620,10 @@ int AACopier::resolve()
             source->cardsAbilities.clear();
             source->magicText = _target->magicText;
 
-            for (size_t i = 0; i < source->cardsAbilitiesFilter.size(); ++i)
+            af.getAbilities(&currentAbilities, NULL, source);
+            for (size_t i = 0; i < currentAbilities.size(); ++i)
             {
-                MTGAbility * a = source->cardsAbilitiesFilter[i];
+                MTGAbility * a = currentAbilities[i];
                 a->source = (MTGCardInstance *) source;
                 if (a)
                 {
