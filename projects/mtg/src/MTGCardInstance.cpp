@@ -99,10 +99,19 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     MTGCard * source = NULL;
     if(card->isToken || card->hasCopiedToken)
     {
-        source = card;
+        if(card->getMTGId() > 0)//not generated token
+            source = MTGCollection()->getCardById(card->getMTGId());
+        else
+        {
+            source = card->tokCard;
+            source->data = card->tokCard;//?wtf
+        }
     }
     else
          source = MTGCollection()->getCardById(card->copiedID);
+
+    if(!source)
+        source = card;
 
     CardPrimitive * data = source->data;
     basicAbilities = data->basicAbilities;
@@ -135,6 +144,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     origpower = card->origpower;//for flip
     origtoughness = card->origtoughness;//for flip
     TokenAndAbility = card->TokenAndAbility;//token andAbility
+    tokCard = card->tokCard;
 
     //Now this is dirty...
     int backupid = mtgid;
@@ -142,7 +152,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
     //test copy filtered
-    cardsAbilitiesFilter.clear();
+    /*cardsAbilitiesFilter.clear();
     for(unsigned int i = 0;i < card->cardsAbilities.size();i++)
     {
         MTGAbility * a = dynamic_cast<MTGAbility *>(card->cardsAbilities[i]);
@@ -150,7 +160,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
         {
             cardsAbilitiesFilter.push_back(a);
         }
-    }
+    }*/
 
     if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
         mtgid = backupid; // there must be a way to get the token id...
@@ -288,6 +298,7 @@ void MTGCardInstance::initMTGCI()
     owner = NULL;
     counters = NEW Counters(this);
     previousZone = NULL;
+    tokCard = NULL;
     previous = NULL;
     next = NULL;
     TokenAndAbility = NULL;
@@ -299,7 +310,7 @@ void MTGCardInstance::initMTGCI()
     exileEffects = false;
     currentZone = NULL;
     cardsAbilities = vector<MTGAbility *>();
-    cardsAbilitiesFilter = vector<MTGAbility *>();
+    //cardsAbilitiesFilter = vector<MTGAbility *>();
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
 
     if (observer && basicAbilities[(int)Constants::CHANGELING])
