@@ -581,6 +581,22 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
 
+        check = restriction[i].find("lessorequalcreatures");
+        if(check != string::npos)
+        {
+            bool condition = (card->controller()->opponent()->inPlay()->countByType("creature") >= card->controller()->inPlay()->countByType("creature"));
+            if(!condition)
+                return 0;
+        }
+
+        check = restriction[i].find("lessorequallands");
+        if(check != string::npos)
+        {
+            bool condition = (card->controller()->opponent()->inPlay()->countByType("land") >= card->controller()->inPlay()->countByType("land"));
+            if(!condition)
+                return 0;
+        }
+
         check = restriction[i].find("outnumbered");//opponent controls atleast 4 or more creatures than you
         if(check != string::npos)
         {
@@ -593,6 +609,13 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         if(check != string::npos)
         {
             if(!card->has(Constants::DEFENDER))
+                return 0;
+        }
+
+        check = restriction[i].find("didblock");
+        if(check != string::npos)
+        {
+            if(!card->didblocked)
                 return 0;
         }
 
@@ -686,6 +709,21 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         if(check != string::npos)
         {
             restriction.push_back("type(creature|mybattlefield)~lessthan~type(creature|opponentbattlefield)");
+        }
+        check = restriction[i].find("control less lands");
+        if(check != string::npos)
+        {
+            restriction.push_back("type(land|mybattlefield)~lessthan~type(land|opponentbattlefield)");
+        }
+        check = restriction[i].find("control more creatures");
+        if(check != string::npos)
+        {
+            restriction.push_back("type(creature|mybattlefield)~morethan~type(creature|opponentbattlefield)");
+        }
+        check = restriction[i].find("control more lands");
+        if(check != string::npos)
+        {
+            restriction.push_back("type(land|mybattlefield)~morethan~type(land|opponentbattlefield)");
         }
 
         check = restriction[i].find("paid(");

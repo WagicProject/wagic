@@ -141,14 +141,16 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
-    /*if(!isPhased)
+    //test copy filtered
+    cardsAbilitiesFilter.clear();
+    for(unsigned int i = 0;i < card->cardsAbilities.size();i++)
     {
-        Spell * spell = NEW Spell(observer, this);
-        observer = card->observer;
-        AbilityFactory af(observer);
-        af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
-        delete spell;
-    }*/
+        MTGAbility * a = dynamic_cast<MTGAbility *>(card->cardsAbilities[i]);
+        if(a && a->source == card) 
+        {
+            cardsAbilitiesFilter.push_back(a);
+        }
+    }
 
     if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
         mtgid = backupid; // there must be a way to get the token id...
@@ -297,6 +299,7 @@ void MTGCardInstance::initMTGCI()
     exileEffects = false;
     currentZone = NULL;
     cardsAbilities = vector<MTGAbility *>();
+    cardsAbilitiesFilter = vector<MTGAbility *>();
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
 
     if (observer && basicAbilities[(int)Constants::CHANGELING])
