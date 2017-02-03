@@ -48,7 +48,7 @@ public:
     vector<MTGCardInstance*>parentCards;
     vector<MTGCardInstance*>childrenCards;
     vector<MTGAbility *>cardsAbilities;
-    vector<MTGAbility *>cardsAbilitiesFilter;
+    //vector<MTGAbility *>cardsAbilitiesFilter;
 
     int setAttacker(int value);
     int setDefenser(MTGCardInstance * c);
