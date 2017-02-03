@@ -781,53 +781,53 @@ private:
         }
         else if (s == "olandg")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller()->opponent());
         }
         else if (s == "olandu")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target, target->controller()->opponent());
         }
         else if (s == "olandr")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target, target->controller()->opponent());
         }
         else if (s == "olandb")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target, target->controller()->opponent());
         }
         else if (s == "olandw")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller()->opponent());
         }
         else if (s == "olandc")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target->controller()->opponent()) +
-                countManaProducedby(Constants::MTG_COLOR_WASTE, target->controller()->opponent());
+            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()->opponent()) +
+                countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller()->opponent());
         }
         else if (s == "plandg")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller());
         }
         else if (s == "plandu")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target, target->controller());
         }
         else if (s == "plandr")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target, target->controller());
         }
         else if (s == "plandb")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target, target->controller());
         }
         else if (s == "plandw")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller());
         }
         else if (s == "plandc")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target->controller()) +
-                countManaProducedby(Constants::MTG_COLOR_WASTE, target->controller());
+            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()) +
+                countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller());
         }
         else if (s == "cantargetmycre")// can target my creature
         {
@@ -1122,7 +1122,7 @@ public:
         return count;
     }
 
-    /*int countManaProducedby(int color, MTGCardInstance * target, Player * player)
+    int countManaProducedby(int color, MTGCardInstance * target, Player * player)
     {
         int count = 0;
         for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
@@ -1134,9 +1134,9 @@ public:
                     count += 1;
             }
         return count;
-    }*/
+    }
 
-    int countManaProducedby(int color, Player * player)
+    /*int countManaProducedby(int color, Player * player)
     {
         int count = 0;
         for (int i = 0; i < player->game->battlefield->nb_cards; i++)
@@ -1155,7 +1155,7 @@ public:
                 count += 1;
         }
         return count;
-    }
+    }*/
 
     WParsedInt(int value = 0)
     {
@@ -2066,7 +2066,7 @@ class AACopier: public ActivatedAbility
 {
 public:
     bool isactivated;
-    vector<MTGAbility *> currentAbilities;
+    //vector<MTGAbility *> currentAbilities;
     MTGAbility * andAbility;
     AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
     int resolve();
