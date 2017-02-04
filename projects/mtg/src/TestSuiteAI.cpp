@@ -8,6 +8,7 @@
 #include "Rules.h"
 #include "GameObserver.h"
 #include "GameStateShop.h"
+#include <QThread>
 
 using std::string;
 
