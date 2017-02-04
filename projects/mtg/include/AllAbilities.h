@@ -1125,7 +1125,6 @@ public:
     int countManaProducedby(int color, MTGCardInstance * target, Player * player)
     {
         int count = 0;
-        GameObserver * observer = player->getObserver();
         MTGGameZone * zone = player->game->battlefield;
         for(int k = 0; k < zone->nb_cards; k++)
         {
