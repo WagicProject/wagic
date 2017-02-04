@@ -8,6 +8,9 @@
 #include "Rules.h"
 #include "GameObserver.h"
 #include "GameStateShop.h"
+#ifdef QT_CONFIG
+#include <QThread>
+#endif
 
 using std::string;
 
