@@ -1125,14 +1125,30 @@ public:
     int countManaProducedby(int color, MTGCardInstance * target, Player * player)
     {
         int count = 0;
-        for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+        GameObserver * observer = player->getObserver();
+        MTGGameZone * zone = player->game->battlefield;
+        for(int k = 0; k < zone->nb_cards; k++)
+        {
+            MTGCardInstance * card = zone->cards[k];
+            if(card->isLand() && (card != target) && card->hasSubtype("forest") && color == 1)
+                count++;
+            if(card->isLand() && (card != target) && card->hasSubtype("island") && color == 2)
+                count++;
+            if(card->isLand() && (card != target) && card->hasSubtype("mountain") && color == 3)
+                count++;
+            if(card->isLand() && (card != target) && card->hasSubtype("swamp") && color == 4)
+                count++;
+            if(card->isLand() && (card != target) && card->hasSubtype("plains") && color == 5)
+                count++;
+            if(card->isLand() && (card != target) && card->cardsAbilities.size())
             {
-                if (dynamic_cast<AManaProducer*> (((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i])) && 
-                    (dynamic_cast<AManaProducer*> (((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i])))->source->isLand() && 
-                    (dynamic_cast<AManaProducer*> (((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i])))->source->controller() == player && 
-                    (dynamic_cast<AManaProducer*> (((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i])))->output->hasColor(color))
-                    count += 1;
+                for(unsigned int j = 0; j < card->cardsAbilities.size(); j++)
+                {
+                    if(dynamic_cast<AManaProducer*> (card->cardsAbilities[j]) && dynamic_cast<AManaProducer*> (card->cardsAbilities[j])->output->hasColor(color) )
+                        count++;
+                }
             }
+        }
         return count;
     }
 

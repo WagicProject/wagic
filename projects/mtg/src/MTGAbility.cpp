@@ -3760,21 +3760,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool doesntEmptyTilueot = s.find("doesntempty") != string::npos;
         ManaCost * output = ManaCost::parseManaCost(s.substr(found),NULL,card);
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        if(output->getConvertedCost() > 0)
-        {
-            if(output->hasColor(Constants::MTG_COLOR_ARTIFACT)||output->hasColor(Constants::MTG_COLOR_WASTE))
-                card->canproduceC = 1;
-            if(output->hasColor(Constants::MTG_COLOR_GREEN))
-                card->canproduceG = 1;
-            if(output->hasColor(Constants::MTG_COLOR_BLUE))
-                card->canproduceU = 1;
-            if(output->hasColor(Constants::MTG_COLOR_RED))
-                card->canproduceR = 1;
-            if(output->hasColor(Constants::MTG_COLOR_BLACK))
-                card->canproduceB = 1;
-            if(output->hasColor(Constants::MTG_COLOR_WHITE))
-                card->canproduceW = 1;
-        }
         MTGAbility * a = NEW AManaProducer(observer, id, card, t, output, NULL, who,s.substr(found),doesntEmptyTilueot);
         a->oneShot = 1;
         if(newName.size())
