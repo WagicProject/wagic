@@ -11,9 +11,9 @@ before_install:
 - cd theos
 - git clone --recursive https://github.com/theos/theos.git
 - export THEOS="$TRAVIS_BUILD_DIR/theos"
+- cd ..
 - pwd
 - ls
-
 env:
   global:
     secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
