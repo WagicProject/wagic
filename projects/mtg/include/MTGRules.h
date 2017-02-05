@@ -480,7 +480,8 @@ public:
 
     int alreadyplayed;
     MTGAllCards * collection;
-    MTGCardInstance * genCreature(int id);
+    MTGAbility * tokCreate;
+    MTGCardInstance * genCreature(int id, Player * p);
     void Update(float dt);
     void Render();
     MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _collection);

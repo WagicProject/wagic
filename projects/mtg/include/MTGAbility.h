@@ -220,6 +220,7 @@ public:
         ATTACK_COST = 36,
         BLOCK_COST = 37,
         GRANTEDFLASHBACK_COST = 38,
+        FORCED_TOKEN_CREATOR,
     };
 };
 

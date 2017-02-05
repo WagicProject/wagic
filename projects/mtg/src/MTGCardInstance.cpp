@@ -114,7 +114,12 @@ void MTGCardInstance::copy(MTGCardInstance * card)
         source = card;
 
     CardPrimitive * data = source->data;
-    basicAbilities = data->basicAbilities;
+    //basicAbilities = data->basicAbilities;
+    for(unsigned int j = 0; j < data->basicAbilities.size(); j++)
+    {
+        if(data->basicAbilities[j])
+            basicAbilities[j] = data->basicAbilities[j];
+    }
     types.clear();//reset types.. fix copying man lands... the copier becomes an unanimated land...
     for (size_t i = 0; i < data->types.size(); i++)
     {
