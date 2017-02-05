@@ -5,8 +5,12 @@ before_install:
 - brew install qt5
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
-- brew install dpkg
-- curl -s -f -L https://raw.github.com/r-plus/dotfiles/master/install_theos.sh | bash
+- brew install dpkg ldid
+#- curl -s -f -L https://raw.github.com/r-plus/dotfiles/master/install_theos.sh | bash
+- mkdir theos
+- cd theos
+- git clone --recursive https://github.com/theos/theos.git
+- export THEOS="$TRAVIS_BUILD_DIR/theos"
 - pwd
 - ls
 
