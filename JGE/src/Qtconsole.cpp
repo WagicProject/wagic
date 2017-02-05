@@ -87,8 +87,6 @@ WagicWrapper::~WagicWrapper()
 
 int main(int argc, char* argv[])
 {
-    QCoreApplication a(argc, argv);
-
     int result = 0;
     WagicWrapper* wagicCore =  new WagicWrapper();
     MTGCollection()->loadFolder("sets/primitives/");
