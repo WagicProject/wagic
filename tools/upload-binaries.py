@@ -52,8 +52,9 @@ def main():
     if (options.token and options.sha and options.local and options.remote and (options.branch == 'master' or options.branch == 'travis_mac_osx')):
         gh = login(token = options.token)
     elif (options.branch != 'master' and options.branch != 'travis_mac_osx'):
-       print '!branch is not master or travis_mac_osx! -> ' + options.branch
-       print '-will not upload-'
+        print '!branch is not master or travis_mac_osx! -> ' + options.branch
+        print '-will not upload-'
+        return
     else:
         parser.print_help()
         return
