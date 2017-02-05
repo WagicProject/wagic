@@ -2230,25 +2230,25 @@ int MTGBlockRule::receiveEvent(WEvent *e)
                 //but this action can not be ignored.
             }
         }
-
+    }
+    if (dynamic_cast<WEventBlockersChosen*>(e))
+    {
         //if a card with menace is not blocked by 2 or more, remove any known blockers and attacking as normal.
         MTGGameZone * z = p->game->inPlay;
         for (int i = 0; i < z->nb_cards; i++)
         {
             MTGCardInstance * card = z->cards[i];
-            if (card->has(Constants::MENACE) && card->blockers.size() < 2)
+            if (card->isAttacker() && card->has(Constants::MENACE) && card->blockers.size() < 2)
             {
                 while (card->blockers.size())
                 {
                     MTGCardInstance * blockingCard = card->blockers.front();
-                    blockingCard->toggleDefenser(NULL);
-                    
+                    if(blockingCard->getNextOpponent() == card)
+                        blockingCard->toggleDefenser(NULL);
                 }
             }
          }
-
     }
-
         return 1;
 
     }
