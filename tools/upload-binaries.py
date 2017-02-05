@@ -13,9 +13,11 @@ def checkRelease(repository, remote):
             for a in r.assets :
                 if a.name == remote :
                     # need to delete the old release
+                    print '!deleting old release! -> ' + r.name
                     r.delete()
                     # need also to delete the tag (reference)
                     ref = repository.ref('tags/latest-master')
+                    print '!deleting old tag! -> ' + ref.name
                     ref.delete()
                     release = None
 
@@ -51,6 +53,10 @@ def main():
 
     if (options.token and options.sha and options.local and options.remote and (options.branch == 'master' or options.branch == 'travis_mac_osx')):
         gh = login(token = options.token)
+    elif (options.branch != 'master' and options.branch != 'travis_mac_osx'):
+        print '!branch is not master or travis_mac_osx! -> ' + options.branch
+        print '-will not upload-'
+        return
     else:
         parser.print_help()
         return
