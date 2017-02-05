@@ -69,6 +69,8 @@ after_deploy:
 
 # to run your custom scripts instead of provider deployments
 deploy_script:
+  - echo %APPVEYOR_REPO_COMMIT%
+  - echo %APPVEYOR_REPO_BRANCH%
   - "C:/Python27/python.exe tools/upload-binaries.py -t %GH_TOKEN% -s %APPVEYOR_REPO_COMMIT% -l projects/mtg/bin/Wagic-windows.zip -r Wagic-windows.zip -b %APPVEYOR_REPO_BRANCH%"
 
 # to disable deployment
