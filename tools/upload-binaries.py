@@ -13,9 +13,11 @@ def checkRelease(repository, remote):
             for a in r.assets :
                 if a.name == remote :
                     # need to delete the old release
+                    print '!deleting old release! -> ' + r.name
                     r.delete()
                     # need also to delete the tag (reference)
                     ref = repository.ref('tags/latest-master')
+                    print '!deleting old tag! -> ' + ref.name
                     ref.delete()
                     release = None
 
