@@ -88,7 +88,7 @@ float Interruptible::GetVerticalTextOffset() const
 }
 
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action,
-    bool bigQuad)
+    bool bigQuad, int aType)
 {
     WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,255,255));
@@ -132,9 +132,19 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     {
         /*Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
         CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());*/
-        Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
-        pos.actY = 142;//adjust y a little bit
-        CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
+        if(observer->gameType() == GAME_TYPE_MOMIR && aType == MTGAbility::FORCED_TOKEN_CREATOR)
+        {
+            Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
+            pos.actY = 142;//adjust y a little bit
+            CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
+        }
+        else if (observer->gameType() != GAME_TYPE_MOMIR)
+        {
+            Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
+            pos.actY = 142;//adjust y a little bit
+            CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
+        }
+
     }
 
     if (targetQuad)
@@ -188,7 +198,10 @@ void StackAbility::Render()
         }
     }
 
-    Interruptible::Render(source, quad.get(), alt1, alt2, action);
+    if(observer->gameType() == GAME_TYPE_MOMIR)
+        Interruptible::Render(source, quad.get(), alt1, alt2, action, true, ability->aType);
+    else
+        Interruptible::Render(source, quad.get(), alt1, alt2, action);
 }
 StackAbility::StackAbility(GameObserver* observer, int id, MTGAbility * _ability) :
 Interruptible(observer, id), ability(_ability)

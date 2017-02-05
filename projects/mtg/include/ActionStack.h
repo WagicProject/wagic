@@ -77,7 +77,7 @@ public:
     }
     
     virtual const string getDisplayName() const;
-    void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false);
+    void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false, int aType = 0);
     
     virtual int receiveEvent(WEvent *)
     {

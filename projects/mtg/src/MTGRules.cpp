@@ -2381,13 +2381,14 @@ MTGMomirRule::MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _colle
     alreadyplayed = 0;
     aType = MTGAbility::MOMIR;
     textAlpha = 0;
+    tokCreate = NULL;
 }
 
 int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     if (alreadyplayed)
         return 0;
-    Player * player = game->currentlyActing();
+    Player * player = card->controller();
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
         return 0;
@@ -2403,7 +2404,7 @@ int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 
 int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard)
 {
-    Player * player = game->currentlyActing();
+    Player * player = card_to_discard->controller();
     ManaCost * cost = player->getManaPool();
     int converted = cost->getConvertedCost();
     int id = genRandomCreatureId(converted);
@@ -2414,29 +2415,53 @@ int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard, int cardId)
 {
     if (!isReactingToClick(card_to_discard))
         return 0;
-    Player * player = game->currentlyActing();
+    Player * player = card_to_discard->controller();
     ManaCost * cost = player->getManaPool();
     player->getManaPool()->pay(cost);
-    MTGCardInstance * card = genCreature(cardId);
+    MTGCardInstance * card = genCreature(cardId, player);
+    card->owner = player;
     player->game->putInZone(card_to_discard, card_to_discard->currentZone, player->game->graveyard);
 
-    player->game->stack->addCard(card);
+    /*player->game->stack->addCard(card);
     Spell * spell = NEW Spell(game, card);
     spell->resolve();
     spell->source->isToken = 1;
-    delete spell;
+    delete spell;*/
+
+    string abi = "token(";
+    ostringstream tokID;
+    tokID << abs(cardId);
+    abi.append(tokID.str());
+    abi.append(") controller");
+
+    AbilityFactory af(game);
+    tokCreate = af.parseMagicLine(abi,game->mLayers->actionLayer()->getMaxId(),NULL, card->clone());
+    tokCreate->aType = MTGAbility::FORCED_TOKEN_CREATOR;
+    if(tokCreate)
+        tokCreate->fireAbility();
+    
     alreadyplayed = 1;
     textAlpha = 255;
     text = card->name;
+    
+    SAFE_DELETE(card);
     return 1;
 }
 
-MTGCardInstance * MTGMomirRule::genCreature(int id)
+MTGCardInstance * MTGMomirRule::genCreature(int id, Player * p)
 {
     if (!id)
         return NULL;
-    Player * p = game->currentlyActing();
+    //Player * p = game->currentlyActing();
     MTGCard * card = collection->getCardById(id);
+    int myCC = card->data->getManaCost()->getConvertedCost();
+    int myId = 0;
+    while(card->getRarity() == Constants::RARITY_T)
+    {
+        myId = genRandomCreatureId(myCC);
+        card = collection->getCardById(myId);
+    }
+
     return NEW MTGCardInstance(card, p->game);
 }
 
