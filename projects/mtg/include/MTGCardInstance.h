@@ -48,7 +48,6 @@ public:
     vector<MTGCardInstance*>parentCards;
     vector<MTGCardInstance*>childrenCards;
     vector<MTGAbility *>cardsAbilities;
-    //vector<MTGAbility *>cardsAbilitiesFilter;
 
     int setAttacker(int value);
     int setDefenser(MTGCardInstance * c);
@@ -263,6 +262,7 @@ public:
     bool bypassTC;
     bool discarded;
     int copiedID;
+    int copiedSetID;
     bool StackIsEmptyandSorcerySpeed();
     bool isTargetted();
     int cardistargetted;
