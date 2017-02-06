@@ -64,6 +64,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     bypassTC = false;
     discarded = false;
     copiedID = getId();
+    copiedSetID = 0;
     LKIpower = power;
     LKItoughness = toughness;
     cardistargetted = 0;
@@ -143,6 +144,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     spellTargetType = data->spellTargetType;
     alias = data->alias;
     copiedID = card->copiedID;
+    copiedSetID = card->setId;
     doubleFaced = data->doubleFaced;
     AICustomCode = data->AICustomCode;
     CrewAbility = data->CrewAbility;
@@ -156,25 +158,9 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
-    //test copy filtered
-    /*cardsAbilitiesFilter.clear();
-    for(unsigned int i = 0;i < card->cardsAbilities.size();i++)
-    {
-        MTGAbility * a = dynamic_cast<MTGAbility *>(card->cardsAbilities[i]);
-        if(a && a->source == card) 
-        {
-            cardsAbilitiesFilter.push_back(a);
-        }
-    }*/
 
-    if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
-        mtgid = backupid; // there must be a way to get the token id...
-    else
-    {
-        mtgid = card->getMTGId();   ///////////////////////////////////////////////////
-        setId = card->setId;        // Copier/Cloner cards produces the same token...//
-        rarity = card->getRarity(); ///////////////////////////////////////////////////
-    }
+    mtgid = backupid; // found a way :)
+
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
     storedCard = oldStored;

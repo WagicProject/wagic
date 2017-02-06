@@ -3262,7 +3262,8 @@ int MTGLegendRule::added(MTGCardInstance * card)
     {
         MTGCardInstance * comparison = (*it).first;
         if (comparison != card && comparison->controller() == card->controller() && !(comparison->getName().compare(card->getName())))
-            destroy = 1;
+            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())) 
+                destroy = 1;
     }
     if(destroy)
     {
@@ -3340,7 +3341,8 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
     {
         MTGCardInstance * comparison = (*it).first;
         if (comparison != card && comparison->types == card->types && comparison->controller() == card->controller())
-            destroy = 1;
+            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())) 
+                destroy = 1;
     }
     if (destroy)
     {

@@ -1799,6 +1799,18 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     while (_target->next)
                         _target = _target->next;
 
+                    
+                    if(_target->getCurrentZone() != _target->controller()->game->battlefield ||
+                        _target->getCurrentZone() != _target->controller()->opponent()->game->battlefield)
+                    {
+                        if(power||toughness)
+                        {
+                            if(_target->previousZone == _target->controller()->game->battlefield ||
+                                _target->previousZone == _target->controller()->opponent()->game->battlefield)
+                                return 0;
+                        }
+                    }
+
                     Counter * targetCounter = NULL;
                     int currentAmount = 0;
                     if (_target->counters && _target->counters->hasCounter(name.c_str(), power, toughness))
