@@ -3638,18 +3638,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         a->canBeInterrupted = false;
         a->named = newName;
-        /***********do nothing***********/
-        if((card->controller()->isAI() &&
-            card->controller()->opponent()->isAI())||
-            !card->getAICustomCode().size())
-        {
-            MTGAbility * a2 = parseMagicLine("activate donothing", id, spell, card);
-            a2->oneShot = 1;
-            a2->canBeInterrupted = false;
-            return a2;
-        }
-        /*******************************/
-        else if(card->getAICustomCode().size() && card->controller()->isAI())
+        if(card->getAICustomCode().size() && card->controller()->isAI())
         {
             MTGAbility * a3 = parseMagicLine(card->getAICustomCode(), id, spell, card);
             a3->oneShot = 1;
