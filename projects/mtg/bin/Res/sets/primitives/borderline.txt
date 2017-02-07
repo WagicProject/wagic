@@ -80,6 +80,18 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
+name=Blood Tyrant
+abilities=flying,trample
+auto=@each my upkeep:life:-1 opponent && life:-1 controller
+auto=@each my upkeep:counter(1/1,2)
+text=Flying, trample -- At the beginning of your upkeep, each player loses 1 life. Put a +1/+1 counter on Blood Tyrant for each 1 life lost this way. -- Whenever a player loses the game, put five +1/+1 counters on Blood Tyrant.
+mana={4}{U}{B}{R}
+type=Creature
+subtype=Vampire
+power=5
+toughness=5
+[/card]
+[card]
 name=Bruse Tarl, Boorish Herder
 #wagic don't support commander atm
 auto=name(double strike & lifelink) target(creature|mybattlefield) transforms((,newability[double strike],newability[lifelink])) ueot
@@ -394,7 +406,7 @@ type=Sorcery
 [card]
 name=Mogg Infestation
 target=player
-auto=all(creature|targetedpersonsbattlefield) destroy and!( if cantargetcard(creature|graveyard) then makecardt(Goblin:Creature Goblin:1/1:red)*2 )!
+auto=all(creature|targetedpersonsbattlefield) destroy and!( if cantargetcard(creature|graveyard) then create(Goblin:Creature Goblin:1/1:red)*2 )!
 mana={3}{R}{R}
 type=Sorcery
 text=Destroy all creatures target player controls. For each creature that died this way, put two 1/1 red Goblin creature tokens onto the battlefield under that player's control.
@@ -711,7 +723,7 @@ type=Sorcery
 name=Tana, the Bloodsower
 abilities=trample
 #wagic don't support commander atm
-auto=@combatdamaged(player) from(this):makecardt(Saproling:Creature Saproling:1/1:green)*thatmuch
+auto=@combatdamaged(player) from(this):create(Saproling:Creature Saproling:1/1:green)*thatmuch
 text=Trample -- Whenever Tana, the Bloodsower deals combat damage to a player, create that many 1/1 green Saproling creature tokens. -- Partner (You can have two commanders if both have partner.)
 mana={2}{R}{G}
 type=Legendary Creature

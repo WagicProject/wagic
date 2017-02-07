@@ -3936,8 +3936,8 @@ AADynamic::~AADynamic()
 }
 
 //AALifer
-AALifer::AALifer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, string life_s, ManaCost * _cost, int who) :
-ActivatedAbilityTP(observer, _id, card, _target, _cost, who),life_s(life_s)
+AALifer::AALifer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, string life_s, bool siphon, ManaCost * _cost, int who) :
+ActivatedAbilityTP(observer, _id, card, _target, _cost, who),life_s(life_s),siphon(siphon)
 {
     aType = MTGAbility::LIFER;
 }
@@ -3954,7 +3954,9 @@ int AALifer::resolve()
         _target = ((MTGCardInstance *) _target)->controller();
     }
     Player *player = (Player*)_target;
-    player->gainOrLoseLife(life.getValue());
+    int slife = abs(player->gainOrLoseLife(life.getValue()));
+    if(siphon && (slife > 0) && (life.getValue() < 0))
+        source->controller()->gainOrLoseLife(slife);
 
     return 1;
 }

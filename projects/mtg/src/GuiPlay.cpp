@@ -124,7 +124,7 @@ void GuiPlay::BattleField::reset(float x, float y)
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
     //card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
-    card->x = x-4 + baseX;
+    card->x = x + (CARD_WIDTH/2.5f) + baseX;
     if (attackers+1 < 8)
         x += CARD_WIDTH;
     else if (attackers+1 < 24)
