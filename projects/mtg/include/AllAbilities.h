@@ -2338,7 +2338,8 @@ class AALifer: public ActivatedAbilityTP
 {
 public:
     string life_s;
-    AALifer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string life_s, ManaCost * _cost = NULL,
+    bool siphon;
+    AALifer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string life_s, bool siphon = false, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
     const string getMenuText();

@@ -1729,8 +1729,8 @@ void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity)
         else if(flickLeft && OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number)
         {
 #if defined (ANDROID)
-            JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_UP : JGE_BTN_DOWN);
-            mEngine->HoldKey_NoRepeat(trigger);
+            //JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_UP : JGE_BTN_DOWN);
+            mEngine->HoldKey_NoRepeat(JGE_BTN_DOWN);
 #endif
         }
     }

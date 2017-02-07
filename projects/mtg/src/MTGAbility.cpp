@@ -2653,7 +2653,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //Alternative Token creator. Name, type, p/t, abilities - uses ":" as delimeter
-    vector<string> makeToken = parseBetween(s, "makecardt(", ")");
+    vector<string> makeToken = parseBetween(s, "create(", ")");
     if (makeToken.size())
     {
         WParsedInt * multiplier = NULL;
@@ -3147,7 +3147,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitLife.size())
     {
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AALifer(observer, id, card, t, splitLife[1], NULL, who);
+        MTGAbility * a = NEW AALifer(observer, id, card, t, splitLife[1], false, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //siphon life - gain life lost this way
+    vector<string> splitSiphonLife = parseBetween(s, "lifeleech:", " ", false);
+    if (splitSiphonLife.size())
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AALifer(observer, id, card, t, splitSiphonLife[1], true, NULL, who);
         a->oneShot = 1;
         return a;
     }
