@@ -1041,6 +1041,11 @@ int TargetChooser::addTarget(Targetable * target)
     if (canTarget(target))
     {
         TargetsList::addTarget(target);
+#if defined (ANDROID) //auto close... we need to close gui like swipe left...
+        if (target->getObserver()->guiOpenDisplay && getNbTargets() == maxtargets)
+            target->getObserver()->ButtonPressed(target->getObserver()->guiOpenDisplay);
+#endif//example bug, cast Snapcaster Mage during a spell of opponent and target a Mana Leak..
+      //how can you cast the Mana Leak? If you can't close the graveyard window to tap for mana???
     }
 
     return targetsReadyCheck();
