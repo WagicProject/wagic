@@ -1726,6 +1726,13 @@ void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity)
             JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_PREV : JGE_BTN_NEXT);
             mEngine->HoldKey_NoRepeat(trigger);
         }
+        else if(flickLeft && OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number)
+        {
+#if defined (ANDROID)
+            JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_UP : JGE_BTN_DOWN);
+            mEngine->HoldKey_NoRepeat(trigger);
+#endif
+        }
     }
 }
 
