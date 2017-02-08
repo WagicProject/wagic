@@ -17,7 +17,7 @@ def checkRelease(repository, remote):
                     r.delete()
                     # need also to delete the tag (reference)
                     ref = repository.ref('tags/latest-master')
-                    print '!deleting old tag! -> ' + ref.name
+                    print '!deleting old tag! -> latest-master'
                     ref.delete()
                     release = None
 
