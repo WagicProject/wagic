@@ -3896,7 +3896,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->canBeInterrupted = false;
         return a;
     }
-
+    //proliferate all counters
+    found = s.find("propagate");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AAProliferate(observer, id, card, target);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        ((AAProliferate*)a)->allcounters = true;
+        return a;
+    }
+    
     //frozen, next untap this does not untap.
     found = s.find("frozen");
     if (found != string::npos)

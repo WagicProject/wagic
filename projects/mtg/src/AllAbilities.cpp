@@ -998,7 +998,8 @@ int AAAlterPoison::resolve()
 
 const string AAAlterPoison::getMenuText()
 {
-    return "Poison";
+    WParsedInt parsedNum(poison);
+    return _(parsedNum.getStringValue() + " Poison ").c_str();
 }
 
 AAAlterPoison * AAAlterPoison::clone() const
@@ -1469,7 +1470,7 @@ AAModTurn::AAModTurn(GameObserver* observer, int _id, MTGCardInstance * card, Ta
     {
         WParsedInt numTurns(nbTurnStr, NULL, source);
         if(numTurns.getValue() > 0)
-            return "Take Extra Turn(s)";
+            return _("Take " + numTurns.getStringValue() + " Extra Turn(s)").c_str();
         else
             return "Skip A Turn(s)";
     }
@@ -2088,6 +2089,7 @@ AAProliferate::AAProliferate(GameObserver* observer, int id, MTGCardInstance * s
 ActivatedAbility(observer, id, source, cost, 0)
 {
     this->GetId();
+    allcounters = false;
 }
  
 int AAProliferate::resolve()
@@ -2125,8 +2127,18 @@ int AAProliferate::resolve()
     }
     if(pcounters.size())
     {
-        MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
-        a->resolve();
+        if(allcounters)
+        {
+             for(size_t j = 0; j < pcounters.size(); j++)
+             {
+                 pcounters[j]->resolve();
+             }
+        }
+        else
+        {
+            MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
+            a->resolve();
+        }
     }
     return 1;
 
@@ -2134,6 +2146,8 @@ int AAProliferate::resolve()
 
 const string AAProliferate::getMenuText()
 {
+    if(allcounters)
+        return "Add Any Counters";
     return "Proliferate";
 }
 
@@ -4493,7 +4507,7 @@ const string AAMover::getMenuText()
 {
     if(named.size())
         return named.c_str();
-    return "Move";
+    return "Put in Zone";
 }
 
 const char* AAMover::getMenuText(TargetChooser * tc)
