@@ -1998,6 +1998,7 @@ public:
 class AAProliferate: public ActivatedAbility
 {
 public:
+    bool allcounters;
     AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
