@@ -4569,7 +4569,7 @@ const char* AAMover::getMenuText(TargetChooser * tc)
         }
     }
 
-    return "Move";
+    return "Put in Zone";
 }
 
 AAMover * AAMover::clone() const
