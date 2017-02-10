@@ -359,6 +359,22 @@ void CardGui::Render()
     //draw line
     if (game)
     {
+        JQuadPtr ssMask = card->getObserver()->getResourceManager()->GetQuad("white");
+
+        //choose attacker mask
+        if(card->isInPlay(game) && (card->hasSummoningSickness() || card->attackCost > 0) && !card->isPhased && card->isCreature())
+        {
+            if(game->getCurrentGamePhase() > MTG_PHASE_FIRSTMAIN && game->getCurrentGamePhase() < MTG_PHASE_SECONDMAIN &&
+                card->controller() == game->currentPlayer && game->currentPlayer->hasPossibleAttackers())
+            {
+                if(card->controller()->isHuman() && ssMask)
+                {
+                    ssMask->SetColor(ARGB(170,64,64,64));
+                    renderer->RenderQuad(ssMask.get(), actX, actY, actT, (27 * actZ + 1) / 16, 40 * actZ / 16);
+                }
+            }
+        }
+
         if (card && card->isTargetted())
         {
             if(card->isTapped())

@@ -3546,6 +3546,42 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return  NEW ATransformer(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
     }
 
+    //Remake... (animate artifact...: Remake(Creature: manacost/manacost) - alternative
+    vector<string> splitRemake = parseBetween(s, "remake(", ")");
+    if (splitRemake.size())
+    {
+        vector<string> RemakeParameters = split(splitRemake[1], ':');
+        string stypes = RemakeParameters[0];
+        string newPower = "";
+        string newToughness = "";
+        bool ptFound = false;
+        if(RemakeParameters.size() >1)
+        {
+            vector<string> pt = split(RemakeParameters[1], '/');
+            if(pt.size() > 1)
+            {
+                newPower = pt[0];
+                newToughness = pt[1];
+                ptFound = true;
+            }
+        }
+        string sabilities = "";
+        unsigned int RemakeSize = ptFound?2:1;
+        if(RemakeParameters.size() > RemakeSize)
+        {
+            for(unsigned int i = RemakeSize;i < RemakeParameters.size();i++)
+            { 
+                sabilities.append(RemakeParameters[i].c_str());
+                if(i+1 < RemakeParameters.size())
+                    sabilities.append(",");
+            }
+        }
+        if (oneShot || forceUEOT || forceForever)
+            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
+
+        return  NEW ATransformer(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
+    }
+
     //bloodthirst
     vector<string> splitBloodthirst = parseBetween(s, "bloodthirst:", " ", false);
     if (splitBloodthirst.size())

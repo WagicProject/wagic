@@ -3862,6 +3862,7 @@ public:
             spell->resolve();
             myToken = spell->source;
             spell->source->owner = tokenReciever;
+            spell->source->lastController = tokenReciever;
             spell->source->isToken = 1;
             spell->source->fresh = 1;
             spell->source->entersBattlefield = 1;
