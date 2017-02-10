@@ -3686,7 +3686,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->named = newName;
         if(card->getAICustomCode().size() && card->controller()->isAI())
         {
-            MTGAbility * a3 = parseMagicLine(card->getAICustomCode(), id, spell, card);
+            string abi = card->getAICustomCode();
+            std::transform(abi.begin(), abi.end(), abi.begin(), ::tolower);//fix crash
+            MTGAbility * a3 = parseMagicLine(abi, id, spell, card);
             a3->oneShot = 1;
             a3->canBeInterrupted = false;
             return a3;
