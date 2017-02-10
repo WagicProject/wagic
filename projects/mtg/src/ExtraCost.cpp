@@ -95,7 +95,7 @@ ExtraManaCost * ExtraManaCost::clone() const
 }
 
 ExtraManaCost::ExtraManaCost(ManaCost * costToPay)
-    : ExtraCost("Pay The Cost",NULL, costToPay)
+    : ExtraCost("",NULL, costToPay)
 {
 }
 
@@ -321,13 +321,19 @@ SpecificLifeCost::SpecificLifeCost(TargetChooser *_tc, int slc)
 
 int SpecificLifeCost::canPay()
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(source->controller()->life >= slc && !source->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
+       !source->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
+       !source->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
+        {
+            return 1;
+        }
+    /*MTGCardInstance * _target = (MTGCardInstance *) target;
     if(_target->controller()->life >= slc && !_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
        !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
        !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
     {
         return 1;
-    }
+    }*/
     return 0;
 }
 
