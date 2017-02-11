@@ -254,8 +254,8 @@ void CardGui::Render()
         highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
         if(fakeborder)
         {
-            if(card->has(Constants::CANPLAYFROMGRAVEYARD)||card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO)
-                ||((card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)))
+            if(card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO)
+                ||(card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback() && game->isInGrave(card)))
                 fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
             else
                 fakeborder->SetColor(ARGB((int)(actA),15,15,15));
@@ -401,6 +401,23 @@ void CardGui::Render()
        }
     }
 
+    // Render a mask over the card, if set
+    if (mask && quad)
+        JRenderer::GetInstance()->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, mask);
+
+    if ((tc && tc->alreadyHasTarget(card)) || (game && card == game->mLayers->actionLayer()->currentActionCard))//paint targets red.
+    {
+        JQuadPtr rMask = card->getObserver()->getResourceManager()->GetQuad("white");
+        rMask->SetColor(ARGB(128,255,0,0));//red
+        renderer->RenderQuad(rMask.get(), actX, actY, actT, (27 * actZ + 1) / 16, 40 * actZ / 16);
+    }
+    if(tc && tc->source && tc->source->view && tc->source->view->actZ >= 1.3 && card == tc->source)//paint the source green while infocus.
+    {
+        JQuadPtr gMask = card->getObserver()->getResourceManager()->GetQuad("white");
+        gMask->SetColor(ARGB(128,0,255,0));//green
+        renderer->RenderQuad(gMask.get(), actX, actY, actT, (27 * actZ + 1) / 16, 40 * actZ / 16);
+    }
+
     //draws the numbers power/toughness
     if (card->isCreature())
     {
@@ -493,33 +510,6 @@ void CardGui::Render()
         {
             shadow->SetColor(ARGB(200,255,255,255));
             renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
-        }
-    }
-
-    // Render a mask over the card, if set
-    if (mask && quad)
-        JRenderer::GetInstance()->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, mask);
-
-    if ((tc && tc->alreadyHasTarget(card)) || (game && card == game->mLayers->actionLayer()->currentActionCard))//paint targets red.
-    {
-        if (card->isTapped())
-        {
-            renderer->FillRect(actX - (scale * quad->mWidth / 2)-7,actY - (scale * quad->mHeight / 2)+7,scale* quad->mHeight,scale * quad->mWidth, ARGB(128,255,0,0));
-        }
-        else
-        {
-            renderer->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, ARGB(128,255,0,0));
-        }
-    }
-    if(tc && tc->source && tc->source->view && tc->source->view->actZ >= 1.3 && card == tc->source)//paint the source green while infocus.
-    {
-        if (tc->source->isTapped())
-        {
-            renderer->FillRect(actX - (scale * quad->mWidth / 2)-7,actY - (scale * quad->mHeight / 2)+7,scale* quad->mHeight,scale * quad->mWidth, ARGB(128,0,255,0));
-        }
-        else
-        {
-            renderer->FillRect(tc->source->view->actX - (scale * quad->mWidth / 2),tc->source->view->actY - (scale * quad->mHeight / 2), scale*quad->mWidth, scale*quad->mHeight, ARGB(128,0,255,0));
         }
     }
 
