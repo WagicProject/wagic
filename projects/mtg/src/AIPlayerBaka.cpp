@@ -657,6 +657,10 @@ int OrderedAIAction::getEfficiency()
     {
         efficiency += 55;
     }
+    else if (dynamic_cast<GenericRevealAbility *>(a))
+    {
+        efficiency += 55;
+    }
     SAFE_DELETE(transAbility);
     return efficiency;
 }
