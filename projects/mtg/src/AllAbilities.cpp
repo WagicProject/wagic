@@ -4377,6 +4377,25 @@ AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTG
     if (_target)
         target = _target;
     andAbility = NULL;
+    if(destination.size() && !named.size() && source->controller()->isAI())
+    {
+        if(destination.find("library") != string::npos)
+            named = "Put in Library";
+        else if(destination.find("hand") != string::npos)
+            named = "Put in Hand";
+        else if(destination.find("exile") != string::npos)
+            named = "Put in Exile";
+        else if(destination.find("removedfromgame") != string::npos)
+            named = "Put in Exile";
+        else if(destination.find("graveyard") != string::npos)
+            named = "Put in Graveyard";
+        else if(destination.find("previous") != string::npos)
+            named = "Put in Battlefield";
+        else if(destination.find("inplay") != string::npos)
+            named = "Put in Play";
+        else if(destination.find("battlefield") != string::npos)
+            named = "Put in Play";
+    }
 }
 
 MTGGameZone * AAMover::destinationZone(Targetable * target)
@@ -4479,13 +4498,13 @@ int AAMover::resolve()
                     else
                         return 0;
                 }
-                p->game->putInZone(_target, fromZone, destZone);
-                while(_target->next)
-                    _target = _target->next;
+                MTGCardInstance *newTarget = p->game->putInZone(_target, fromZone, destZone);
+                /*while(_target->next)
+                    _target = _target->next;*/
                 if(andAbility)
                 {
                     MTGAbility * andAbilityClone = andAbility->clone();
-                    andAbilityClone->target = _target;
+                    andAbilityClone->target = newTarget;
                     if(andAbility->oneShot)
                     {
                         andAbilityClone->resolve();
