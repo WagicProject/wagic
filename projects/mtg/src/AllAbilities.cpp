@@ -4402,7 +4402,7 @@ AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTG
         else if(destination.find("graveyard") != string::npos)
             named = "Put in Graveyard";
         else if(destination.find("previous") != string::npos)
-            named = "Put in Battlefield";
+            named = "Previous Zone";
         else if(destination.find("inplay") != string::npos)
             named = "Put in Play";
         else if(destination.find("battlefield") != string::npos)

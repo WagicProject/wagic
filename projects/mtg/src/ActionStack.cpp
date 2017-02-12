@@ -118,7 +118,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
             {
                 if(k > 10)
                     break;
-                xnadj+=3;
+                xnadj+=4;
             }
         }
 
@@ -126,13 +126,13 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
             aa << action << " " << "(" << count << ")";
 
             if(count > 1)
-                xnadj -= 3;
+                xnadj -= 4;
 
-            renderer->FillRect(x-1.8f,y-16 + GetVerticalTextOffset(), 73 + xnadj, 43, ARGB(235,10,10,10));//box
+            //renderer->FillRect(x-1.8f,y-16 + GetVerticalTextOffset(), 73 + xnadj, 43, ARGB(235,10,10,10));//box
 
-            mFont->SetColor(ARGB(255,128,255,0));//recolor
+            //mFont->SetColor(ARGB(255,128,255,128));//recolor
             mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
-            mFont->SetColor(ARGB(255,255,255,255));//reset color
+            //mFont->SetColor(ARGB(255,255,255,255));//reset color
 
             if(count > 1)
             {
@@ -143,12 +143,19 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     }
 
     JQuadPtr quad = observer->getResourceManager()->RetrieveCard(source, CACHE_THUMB);
+    JQuadPtr fakeborder = observer->getResourceManager()->GetQuad("white");
     if (!quad.get())
         quad = CardGui::AlternateThumbQuad(source);
     if (quad.get())
     {
         quad->SetColor(ARGB(255,255,255,255));
         float scale = mHeight / quad->mHeight;
+        if (fakeborder.get())
+        {
+            fakeborder->SetColor(ARGB(255,15,15,15));
+            renderer->RenderQuad(fakeborder.get(), x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, (29 * actZ + 1) / 16, 42 * actZ / 16);
+        }
+        
         renderer->RenderQuad(quad.get(), x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, scale, scale);
     }
     else if (alt1.size())
@@ -191,9 +198,14 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
                 multiQ->SetColor(ARGB(255,255,255,255));
                 multiQ->SetHotSpot(multiQ->mWidth / 2, multiQ->mHeight / 2);
                 float scale = mHeight / multiQ->mHeight;
+                if (fakeborder.get())
+                {
+                    fakeborder->SetColor(ARGB(255,15,15,15));
+                    renderer->RenderQuad(fakeborder.get(), x + 55 + xadj, y + ((mHeight - multiQ->mHeight) / 2) + multiQ->mHotSpotY, 0, (29 * actZ + 1) / 16, 42 * actZ / 16);
+                }
                 renderer->RenderQuad(multiQ.get(), x + 55 + xadj, y + ((mHeight - multiQ->mHeight) / 2) + multiQ->mHotSpotY, 0, scale, scale);
                 multiQ->SetHotSpot(backupX, backupY);
-                xadj+=3;
+                xadj+=4;
             }
         }
     }
