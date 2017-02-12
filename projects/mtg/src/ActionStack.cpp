@@ -88,7 +88,7 @@ float Interruptible::GetVerticalTextOffset() const
 }
 
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action,
-    bool bigQuad, int aType)
+    bool bigQuad, int aType, vector<JQuadPtr> mytargetsQuad)
 {
     WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,255,255));
@@ -105,13 +105,41 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     }
     else
     {
-        renderer->FillRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(235,10,10,10));
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI())
             renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,0,255,0));
         else
             renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,255,0,0));*/
-        mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
-        mFont->DrawString(_(action).c_str(), x + 75, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+        float xnadj = 0;
+        int count = 1;
+        if(mytargetsQuad.size())
+        {
+            count = mytargetsQuad.size();
+            for(unsigned int k = 0; k < mytargetsQuad.size(); k++)
+            {
+                if(k > 10)
+                    break;
+                xnadj+=3;
+            }
+        }
+
+            ostringstream aa;
+            aa << action << " " << "(" << count << ")";
+
+            if(count > 1)
+                xnadj -= 3;
+
+            renderer->FillRect(x-1.8f,y-16 + GetVerticalTextOffset(), 73 + xnadj, 43, ARGB(235,10,10,10));//box
+
+            mFont->SetColor(ARGB(255,128,255,0));//recolor
+            mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+            mFont->SetColor(ARGB(255,255,255,255));//reset color
+
+            if(count > 1)
+            {
+                mFont->DrawString(_(aa.str()).c_str(), x + 75 + xnadj, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+            }
+            else
+                mFont->DrawString(_(action).c_str(), x + 75 + xnadj, y + GetVerticalTextOffset(), JGETEXT_LEFT);
     }
 
     JQuadPtr quad = observer->getResourceManager()->RetrieveCard(source, CACHE_THUMB);
@@ -147,19 +175,44 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
 
     }
 
-    if (targetQuad)
+    if(mytargetsQuad.size())
     {
-        float backupX = targetQuad->mHotSpotX;
-        float backupY = targetQuad->mHotSpotY;
-        targetQuad->SetColor(ARGB(255,255,255,255));
-        targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
-        float scale = mHeight / targetQuad->mHeight;
-        renderer->RenderQuad(targetQuad, x + 55, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
-        targetQuad->SetHotSpot(backupX, backupY);
+        float xadj = 0;
+        for(unsigned int k = 0; k < mytargetsQuad.size(); k++)
+        {
+            if(k > 10)
+                break;
+
+            JQuadPtr multiQ = mytargetsQuad[k];
+            if(multiQ.get())
+            {
+                float backupX = multiQ->mHotSpotX;
+                float backupY = multiQ->mHotSpotY;
+                multiQ->SetColor(ARGB(255,255,255,255));
+                multiQ->SetHotSpot(multiQ->mWidth / 2, multiQ->mHeight / 2);
+                float scale = mHeight / multiQ->mHeight;
+                renderer->RenderQuad(multiQ.get(), x + 55 + xadj, y + ((mHeight - multiQ->mHeight) / 2) + multiQ->mHotSpotY, 0, scale, scale);
+                multiQ->SetHotSpot(backupX, backupY);
+                xadj+=3;
+            }
+        }
     }
-    else if (alt2.size())
+    else
     {
-        mFont->DrawString(_(alt2).c_str(), x + 35, y+15 + GetVerticalTextOffset());
+        if (targetQuad)
+        {
+            float backupX = targetQuad->mHotSpotX;
+            float backupY = targetQuad->mHotSpotY;
+            targetQuad->SetColor(ARGB(255,255,255,255));
+            targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
+            float scale = mHeight / targetQuad->mHeight;
+            renderer->RenderQuad(targetQuad, x + 55, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
+            targetQuad->SetHotSpot(backupX, backupY);
+        }
+        else if (alt2.size())
+        {
+            mFont->DrawString(_(alt2).c_str(), x + 35, y+15 + GetVerticalTextOffset());
+        }
     }
 }
 
@@ -173,6 +226,7 @@ void StackAbility::Render()
     string action = ability->getMenuText();
     MTGCardInstance * source = ability->source;
     string alt1 = source->getName();
+    vector<JQuadPtr> mytargetQuads;
 
     Targetable * _target = ability->target;
     if (ability->getActionTc())
@@ -180,6 +234,19 @@ void StackAbility::Render()
         Targetable * t = ability->getActionTc()->getNextTarget();
         if (t)
             _target = t;
+
+        
+    //test vector quads
+        if(ability->getActionTc()->getTargetsFrom().size())
+        {
+            for(size_t i = 0; i < ability->getActionTc()->getTargetsFrom().size(); i++)
+            {
+                Targetable * tt = ability->getActionTc()->getTargetsFrom()[i];
+                if(tt)
+                    mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+            }
+        }
+    //end
     }
     Damageable * target = NULL;
     if (_target != ability->source && (dynamic_cast<MTGCardInstance *>(_target) || dynamic_cast<Player *>(_target)))
@@ -199,9 +266,9 @@ void StackAbility::Render()
     }
 
     if(observer->gameType() == GAME_TYPE_MOMIR)
-        Interruptible::Render(source, quad.get(), alt1, alt2, action, true, ability->aType);
+        Interruptible::Render(source, quad.get(), alt1, alt2, action, true, ability->aType, mytargetQuads);
     else
-        Interruptible::Render(source, quad.get(), alt1, alt2, action);
+        Interruptible::Render(source, quad.get(), alt1, alt2, action, false, 0, mytargetQuads);
 }
 StackAbility::StackAbility(GameObserver* observer, int id, MTGAbility * _ability) :
 Interruptible(observer, id), ability(_ability)
