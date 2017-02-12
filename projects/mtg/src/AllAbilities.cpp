@@ -4389,7 +4389,7 @@ AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTG
     if (_target)
         target = _target;
     andAbility = NULL;
-    if(destination.size() && !named.size() && source->controller()->isAI())
+    if(destination.size() && !named.size())
     {
         if(destination.find("library") != string::npos)
             named = "Put in Library";
