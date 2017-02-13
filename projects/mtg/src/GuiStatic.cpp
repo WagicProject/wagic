@@ -397,9 +397,14 @@ int GuiOpponentHand::receiveEventPlus(WEvent* e)
                 t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
             else
                 t = NEW CardView(CardView::nullZone, event->card, x, y);
-            t->x = x + Width / 2;
-            t->y = y + Height / 2;
-            t->zoom = 0.6f;
+            //t->x = x + Width / 2;
+            //t->y = y + Height / 2;
+            //t->zoom = 0.6f;
+            //I set to negative so we don't see the face when the cards move...
+            t->x = -400.f;
+            t->y = -400.f;
+            t->mask = ARGB(0,0,0,0);
+            t->zoom = -0.6f;
             t->alpha = 0;
             cards.push_back(t);
             return 1;
