@@ -2119,6 +2119,7 @@ public:
     AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL, bool undying = false, bool persist = false);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
+    string overrideNamed(string destination = "");
     const string getMenuText();
     const char * getMenuText(TargetChooser * fromTc);
     AAMover * clone() const;

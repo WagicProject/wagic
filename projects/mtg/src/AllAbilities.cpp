@@ -4389,25 +4389,8 @@ AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTG
     if (_target)
         target = _target;
     andAbility = NULL;
-    if(destination.size() && !named.size())
-    {
-        if(destination.find("library") != string::npos)
-            named = "Put in Library";
-        else if(destination.find("hand") != string::npos)
-            named = "Put in Hand";
-        else if(destination.find("exile") != string::npos)
-            named = "Put in Exile";
-        else if(destination.find("removedfromgame") != string::npos)
-            named = "Put in Exile";
-        else if(destination.find("graveyard") != string::npos)
-            named = "Put in Graveyard";
-        else if(destination.find("previous") != string::npos)
-            named = "Previous Zone";
-        else if(destination.find("inplay") != string::npos)
-            named = "Put in Play";
-        else if(destination.find("battlefield") != string::npos)
-            named = "Put in Play";
-    }
+    if(!named.size() && source->controller()->isAI())
+        named = overrideNamed(destination);
 }
 
 MTGGameZone * AAMover::destinationZone(Targetable * target)
@@ -4534,11 +4517,36 @@ int AAMover::resolve()
     return 0;
 }
 
+string AAMover::overrideNamed(string destination)
+{
+    string name = "Move";
+    if(destination.size())
+    {
+        if(destination.find("library") != string::npos)
+            name = "Put in Library";
+        else if(destination.find("hand") != string::npos)
+            name = "Put in Hand";
+        else if(destination.find("exile") != string::npos)
+            name = "Put in Exile";
+        else if(destination.find("removedfromgame") != string::npos)
+            name = "Put in Exile";
+        else if(destination.find("graveyard") != string::npos)
+            name = "Put in Graveyard";
+        else if(destination.find("previous") != string::npos)
+            name = "Previous Zone";
+        else if(destination.find("inplay") != string::npos)
+            name = "Put in Play";
+        else if(destination.find("battlefield") != string::npos)
+            name = "Put in Play";
+    }
+    return name;
+}
+
 const string AAMover::getMenuText()
 {
     if(named.size())
         return named.c_str();
-    return "Put in Zone";
+    return "Move";
 }
 
 const char* AAMover::getMenuText(TargetChooser * tc)
@@ -4600,7 +4608,7 @@ const char* AAMover::getMenuText(TargetChooser * tc)
         }
     }
 
-    return "Put in Zone";
+    return "Move";
 }
 
 AAMover * AAMover::clone() const
