@@ -94,7 +94,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     JRenderer * renderer = JRenderer::GetInstance();
-    bool hiddenview = source->has(Constants::HIDDENFACE)?true:false;
+    bool hiddenview = aType == MTGAbility::HIDDENVIEW?true:false;
 
     if (!targetQuad)
     {
@@ -241,6 +241,8 @@ void StackAbility::Render()
     MTGCardInstance * source = ability->source;
     string alt1 = source->getName();
     vector<JQuadPtr> mytargetQuads;
+    int fmLibrary = 0;
+    int force = 0;
 
     Targetable * _target = ability->target;
     if (ability->getActionTc())
@@ -257,7 +259,19 @@ void StackAbility::Render()
             {
                 Targetable * tt = ability->getActionTc()->getTargetsFrom()[i];
                 if(tt)
-                    mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                {
+                    if( ((Damageable *)(tt))->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE )
+                    {
+                        if( source->has(Constants::HIDDENFACE) && !observer->isInLibrary(((MTGCardInstance *)(tt))) )
+                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                        else if ( !source->has(Constants::HIDDENFACE) )
+                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                        else
+                            fmLibrary++;
+                    }
+                    else
+                        mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                }
             }
         }
     //end
@@ -279,10 +293,13 @@ void StackAbility::Render()
         }
     }
 
+    if(source->has(Constants::HIDDENFACE) && fmLibrary)
+        force = MTGAbility::HIDDENVIEW;
+
     if(observer->gameType() == GAME_TYPE_MOMIR)
         Interruptible::Render(source, quad.get(), alt1, alt2, action, true, ability->aType, mytargetQuads);
     else
-        Interruptible::Render(source, quad.get(), alt1, alt2, action, false, 0, mytargetQuads);
+        Interruptible::Render(source, quad.get(), alt1, alt2, action, false, force, mytargetQuads);
 }
 StackAbility::StackAbility(GameObserver* observer, int id, MTGAbility * _ability) :
 Interruptible(observer, id), ability(_ability)

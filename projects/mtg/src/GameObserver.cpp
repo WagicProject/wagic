@@ -1630,6 +1630,17 @@ int GameObserver::isInHand(MTGCardInstance * card)
     }
     return 0;
 }
+int GameObserver::isInLibrary(MTGCardInstance * card)
+{
+
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * library = players[i]->game->library;
+        if (players[i]->game->isInZone(card, library))
+            return 1;
+    }
+    return 0;
+}
 void GameObserver::cleanupPhase()
 {
     currentPlayer->cleanupPhase();
