@@ -94,7 +94,8 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     JRenderer * renderer = JRenderer::GetInstance();
-    
+    bool hiddenview = source->has(Constants::HIDDENFACE)?true:false;
+
     if (!targetQuad)
     {
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI() && !alt2.size() && _(action).c_str() == source->name)
@@ -122,24 +123,25 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
             }
         }
 
-            ostringstream aa;
-            aa << action << " " << "(" << count << ")";
+        ostringstream aa;
+        aa << action << " " << "(" << count << ")";
 
-            if(count > 1)
-                xnadj -= 4;
+        if(count > 1)
+            xnadj -= 4;
 
-            //renderer->FillRect(x-1.8f,y-16 + GetVerticalTextOffset(), 73 + xnadj, 43, ARGB(235,10,10,10));//box
-
-            //mFont->SetColor(ARGB(255,128,255,128));//recolor
+        if(!hiddenview)
+        {
             mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
-            //mFont->SetColor(ARGB(255,255,255,255));//reset color
-
             if(count > 1)
             {
                 mFont->DrawString(_(aa.str()).c_str(), x + 75 + xnadj, y + GetVerticalTextOffset(), JGETEXT_LEFT);
             }
             else
                 mFont->DrawString(_(action).c_str(), x + 75 + xnadj, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+        }
+        else
+            mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+
     }
 
     JQuadPtr quad = observer->getResourceManager()->RetrieveCard(source, CACHE_THUMB);
@@ -182,7 +184,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
 
     }
 
-    if(mytargetsQuad.size())
+    if(mytargetsQuad.size() && !hiddenview)
     {
         float xadj = 0;
         for(unsigned int k = 0; k < mytargetsQuad.size(); k++)
@@ -209,7 +211,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
             }
         }
     }
-    else
+    else if(!hiddenview)
     {
         if (targetQuad)
         {
