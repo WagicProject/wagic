@@ -426,6 +426,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->attacker = 1;
                     }
                 }
+				//Find position of card in zone
+				if ( attribute.find( "pos" ) != string::npos ) {
+					cd->zonePosition = comparisonCriterion;
+					continue;   //prevent "pos" from being added as a type
+				}				
                 //Blocker
                 else if (attribute.find("blocking") != string::npos)
                 {

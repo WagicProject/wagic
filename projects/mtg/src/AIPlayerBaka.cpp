@@ -453,10 +453,15 @@ int OrderedAIAction::getEfficiency()
             //this should help a little, tho ultimately it will be decided later what the best course of action is.
             //eff of drawing ability is calculated by base 20 + the amount of cards in library minus the amount of cards in hand times 7.
             //drawing is never going to return a hundred eff because later eff is multiplied by 1.3 if no cards in hand.
-            efficiency = int(20 + p->game->library->nb_cards) - int(p->game->hand->nb_cards * 7);
-            if (p->game->hand->nb_cards > 8)//reduce by 50 if cards in hand are over 8, high chance ai cant play them.
+			//efficiency = int(20 + p->game->library->nb_cards) - int(p->game->hand->nb_cards * 7);
+            if (p->game->hand->nb_cards < 8)
             {
-                efficiency -= 70;
+            //if the a.i. has ness than 8 cards the ai will draw.
+                efficiency = 100;
+            }
+            if (p->game->hand->nb_cards > 7)//if the a.i. has more than 7 cards in hadn they will not draw.
+            {
+                efficiency = 0;
             }
             if ((drawer->getNumCards() >= p->game->library->nb_cards && (Targetable*)p == drawer->getTarget()) || (p->game->hand->nb_cards > 10 && (Targetable*)p == drawer->getTarget()))
             {

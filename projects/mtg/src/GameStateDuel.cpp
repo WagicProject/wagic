@@ -757,6 +757,10 @@ void GameStateDuel::Update(float dt)
 
             //start of in game music code
             musictrack = "";
+			//Create random track variable
+			int deckNumber =0;
+			deckNumber = rand()%20 + 1;
+			
             //check opponent id and choose the music track based on it
             if (OpponentsDeckid)
             {
@@ -768,8 +772,50 @@ void GameStateDuel::Update(float dt)
                 musictrack = "ai_baka_music.mp3";
             else if (mParent->gameType == GAME_TYPE_MOMIR)
                 musictrack = "ai_baka_music_momir.mp3";
-            else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2) musictrack
-                = "ai_baka_music_random.mp3";
+            else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2) 
+				musictrack = "ai_baka_music_random.mp3";
+			
+			//check for random deck music
+			if (deckNumber ==1)
+				musictrack = "deck_music1.mp3";
+			else if (deckNumber ==2)
+				musictrack = "deck_music2.mp3";
+			else if (deckNumber ==3)
+				musictrack = "deck_music3.mp3";
+			else if (deckNumber ==4)
+				musictrack = "deck_music4.mp3";
+			else if (deckNumber ==5)
+				musictrack = "deck_music5.mp3";
+			else if (deckNumber ==6)
+				musictrack = "deck_music6.mp3";
+			else if (deckNumber ==7)
+				musictrack = "deck_music7.mp3";
+			else if (deckNumber ==8)
+				musictrack = "deck_music8.mp3";
+			else if (deckNumber ==9)
+				musictrack = "deck_music9.mp3";
+			else if (deckNumber ==10)
+				musictrack = "deck_music10.mp3";
+			else if (deckNumber ==11)
+				musictrack = "deck_music11.mp3";
+			else if (deckNumber ==12)
+				musictrack = "deck_music12.mp3";
+			else if (deckNumber ==13)
+				musictrack = "deck_music13.mp3";
+			else if (deckNumber ==14)
+				musictrack = "deck_music14.mp3";
+			else if (deckNumber ==15)
+				musictrack = "deck_music15.mp3";
+			else if (deckNumber ==16)
+				musictrack = "deck_music16.mp3";
+			else if (deckNumber ==17)
+				musictrack = "deck_music17.mp3";
+			else if (deckNumber ==18)
+				musictrack = "deck_music18.mp3";
+			else if (deckNumber ==19)
+				musictrack = "deck_music19.mp3";
+			else if (deckNumber ==20)
+				musictrack = "deck_music20.mp3";
 
             if (!MusicExist(musictrack)) 
                 musictrack = "ai_baka_music.mp3";
@@ -925,16 +971,18 @@ void GameStateDuel::Update(float dt)
                 menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25);
                 int cardsinhand = game->currentPlayer->game->hand->nb_cards;
 
-                //almosthumane - mulligan
-                if ((game->turn < 1) && (cardsinhand != 0) && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-                    && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
-                    && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
-                    //IF there was no play at the moment automatically mulligan
+                //almosthumane - mulligan (modded by Tacoghandi for Mulligan if not first player)
+                if ((cardsinhand != 0) && ((game->turn == 0 && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN) || (game->turn == 1 && game->getCurrentGamePhase() == MTG_PHASE_UPKEEP))
+					&& game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //Modified 1st Play Check
+
+				//IF there was no play at the moment automatically mulligan
                 {
                     menu->Add(MENUITEM_MULLIGAN, "Mulligan");
                 }
                 //END almosthumane - mulligan
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
+				menu->Add(MENUITEM_CONCEDE_GAME, "Concede Game");
+				
 #ifdef TESTSUITE
                 menu->Add(MENUITEM_UNDO, "Undo");
 #endif
@@ -1666,6 +1714,13 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             //delete menu and display score
             setGamePhase(DUEL_STATE_MENU_TO_SCORE);
             break;
+        case MENUITEM_CONCEDE_GAME:
+          // This is a hack for 1-Player mode, it won't work in 2-player mode:
+          //if (mParent->players[0] ==  PLAYER_TYPE_HUMAN) {
+            game->players[0]->life = -99;
+			menu->Close();
+			setGamePhase(DUEL_STATE_CANCEL);
+			break;
         case MENUITEM_MAIN_MENU:
             menu->Close();
             setGamePhase(DUEL_STATE_BACK_TO_MAIN_MENU);

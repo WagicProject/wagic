@@ -202,7 +202,7 @@ void GameStateDeckViewer::Start()
     //init welcome menu
     updateDecks();
 
-    GameApp::playMusic("Track1.mp3");
+    GameApp::playMusic("Track2.mp3");
 
     mEngine->ResetInput();
     JRenderer::GetInstance()->EnableVSync(true);

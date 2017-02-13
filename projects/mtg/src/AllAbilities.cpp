@@ -2990,7 +2990,22 @@ int AADiscardCard::resolve()
         Player * p = _target->controller();
         WEvent * e = NEW WEventCardDiscard(_target);
         game->receiveEvent(e);
-        p->game->putInGraveyard(_target);
+		//Hack to check discard source's controller (only affects 4 cards)
+        if ( _target->name.find( "Loxodon Smiter" ) != string::npos && source->controller() != _target->controller()) {
+			p->game->putInZone(_target, _target->currentZone, p->game->battlefield);
+		}
+		else if ( _target->name.find( "Dodecapod" ) != string::npos && source->controller() != _target->controller()) {
+			p->game->putInZone(_target, _target->currentZone, p->game->battlefield);
+		}
+		else if ( _target->name.find( "Obsinate Baloth" ) != string::npos && source->controller() != _target->controller()) {
+			p->game->putInZone(_target, _target->currentZone, p->game->battlefield);
+		}
+		else if ( _target->name.find( "Wilt-Leaf Liege" ) != string::npos && source->controller() != _target->controller()) {
+			p->game->putInZone(_target, _target->currentZone, p->game->battlefield);
+		}
+		else {
+			p->game->putInGraveyard(_target);
+		}
         while(_target->next)
             _target = _target->next;
         if(andAbility)

@@ -1,19 +1,17 @@
-#NAME:Premade G/R
-#DESC:A Red/Green deck with simple mechanics to get you started. We recommend you create your own decks to get the full Wagic experience!
+#NAME:Black Blue Precon
+#DESC:A Black/Blue deck with simple mechanics to get you started. We recommend you create your own decks to get the full Wagic experience!
 
-Forest (10E) *11
-Mountain (10E) *12
-
-Aggressive Urge (10E) *4
-Wall of Wood (10E) *4
-Llanowar Elves (10E) *4
-Mirri, Cat Warrior (10E)
-Scion of the Wild (10E) *4
-Primal Rage (10E) *2
-
-Lightning Elemental (10E) *4
-Shock (10E) *4
-Firebreathing (10E) *2
-Raging Goblin (10E) *4
-Anaba Bodyguard (10E) *4
-
+Swamp (LEA) *9
+Island (LEA) *10
+Salt Marsh (8ed) *4
+Unsummon (LEA) *4
+Wall of Air (LEA) *4
+Drudge Skeletons (LEA) *4
+Terror (LEA) *4
+Mortivore *1
+Cloud Elemental (m11) *4
+Liliana's Caress (M11) *2
+Blizzard Specter (CSP) *4
+Paralyze (LEA) *2
+Duress (M13) *4
+Black Knight (LEA) *4

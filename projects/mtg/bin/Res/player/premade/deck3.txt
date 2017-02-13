@@ -1,0 +1,19 @@
+#NAME:Red Black Precon
+#DESC:A Red/Black deck with simple mechanics to get you started. We recommend you create your own decks to get the full Wagic experience!
+
+Mountain (LEA) *9
+Swamp (LEA) *10
+Urborg Volcano (8ed) *4
+
+Lightning Bolt (LEA) *4
+Wall of Bone (LEA) *4
+Raging Goblin (M10) *4
+Visara the Dreadful
+Anaba Bodyguard (10e) *4
+Phyrexian Arena (PVC) *2
+
+Vicious Kavu (INV) *4
+Terror (LEA) *4
+Paralyze (LEA) *2
+Ravenous Rats (IVG) *4
+Black Knight (LEA) *4
