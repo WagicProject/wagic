@@ -672,6 +672,16 @@ void GameObserver::gameStateBasedEffects()
                     for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
                         card->alternateCostPaid[i] = 0;
                 }
+                //test zone position
+                if(card && (isInGrave(card)||isInHand(card)||isInExile(card)))
+                {
+                    card->zpos = w+1;
+                }
+                else if(card && (isInLibrary(card)))
+                {//invert so we get the top one...
+                    int onum = w+1;
+                    card->zpos = abs(onum - zone->nb_cards)+1;
+                }
             }
 
 

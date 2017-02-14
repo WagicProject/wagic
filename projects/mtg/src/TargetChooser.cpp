@@ -579,7 +579,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->CDdamager = 1;
                     }
-                }
+                }/*
                 //can produce mana
                 else if (attribute.find("cmana") != string::npos)
                 {
@@ -646,7 +646,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->CDcanProduceW = 1;
                     }
-                }
+                }*/
                 else if (attribute.find("multicolor") != string::npos)
                 {
                     //card is multicolored?
@@ -674,6 +674,12 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 {
                     cd->setToughness(comparisonCriterion);
                     cd->toughnessComparisonMode = comparisonMode;
+                    //zpos restrictions
+                }
+                else if (attribute.find("zpos") != string::npos)
+                {
+                    cd->zposition = comparisonCriterion;
+                    cd->zposComparisonMode = comparisonMode;
                     //Manacost restrictions
                 }
                 else if (attribute.find("manacost") != string::npos)

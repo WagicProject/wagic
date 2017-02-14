@@ -545,7 +545,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     JRenderer * renderer = JRenderer::GetInstance();
     JQuadPtr q;
     MTGCardInstance * thiscard = dynamic_cast<MTGCardInstance*> (card);
-
+    int zpos = 0;
     float x = pos.actX;
    
     vector<ModRulesBackGroundCardGuiItem *>items = gModRules.cardgui.background;
@@ -569,6 +569,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
         //draw black border ingame only
         if(thiscard && thiscard->getObserver())
         {
+            zpos = thiscard->zpos;
             renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
             renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
         }
@@ -732,7 +733,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 if (found != string::npos)
                 {
                     stringstream st;
-                    st << card->getMTGId();
+                    st << "id:" << card->getMTGId() << " zpos:" << zpos;
                     formattedfield = FormattedData(formattedfield, "mtgid", st.str());
                 }
 
@@ -1509,6 +1510,12 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                 {
                     cd.setToughness(comparisonCriterion);
                     cd.toughnessComparisonMode = comparisonMode;
+                    //zpos restrictions
+                }
+                else if (attribute.find("zpos") != string::npos)
+                {//using > or < don't have effect unless like this: >= or <= or =
+                    cd.zposition = comparisonCriterion;
+                    cd.zposComparisonMode = comparisonMode;
                     //Manacost restrictions
                 }
                 else if (attribute.find("manacost") != string::npos)

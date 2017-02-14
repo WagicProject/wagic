@@ -237,6 +237,7 @@ void MTGCardInstance::initMTGCI()
     stillNeeded = true;
     kicked = 0;
     dredge = 0;
+    zpos = 0;
     chooseacolor = -1;
     chooseasubtype = "";
     coinSide = -1;

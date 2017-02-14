@@ -3257,14 +3257,17 @@ int MTGLegendRule::added(MTGCardInstance * card)
 {
     map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
-
+     vector<MTGCardInstance*>oldCards;
     for (it = cards.begin(); it != cards.end(); it++)
     {
         MTGCardInstance * comparison = (*it).first;
         if (comparison != card && comparison->controller() == card->controller() && !(comparison->getName().compare(card->getName())))
-            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())) 
+            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()))
+            {
+                oldCards.push_back(comparison);
                 destroy = 1;
-    }
+            }
+    }/*
     if(destroy)
     {
         vector<MTGAbility*>selection;
@@ -3286,6 +3289,27 @@ int MTGLegendRule::added(MTGCardInstance * card)
         selection.push_back(LegendruleGeneric->clone());
         SAFE_DELETE(LegendruleGeneric);
         MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), NULL, myClone,true,selection,card->controller(),"Legendary Rule");
+        menuChoice->addToGame();
+    }*/
+    //reverted to old since this new code conflicts with reveal targetchooser
+    if(destroy)
+    {
+        vector<MTGAbility*>selection;
+        MultiAbility * multi = NEW MultiAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        for(unsigned int i = 0;i < oldCards.size();i++)
+        {
+            AAMover *a = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
+            a->oneShot = true;
+            multi->Add(a);
+        }
+        multi->oneShot = 1;
+        MTGAbility * a1 = multi;
+        selection.push_back(a1);
+        AAMover *b = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, card,"ownergraveyard","Keep Old");
+        b->oneShot = true;
+        MTGAbility * b1 = b;
+        selection.push_back(b1);
+        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
         menuChoice->addToGame();
     }
     return 1;
@@ -3341,9 +3365,12 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
     {
         MTGCardInstance * comparison = (*it).first;
         if (comparison != card && comparison->types == card->types && comparison->controller() == card->controller())
-            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())) 
+            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()))
+            {
+                oldCards.push_back(comparison);
                 destroy = 1;
-    }
+            }
+    }/*
     if (destroy)
     {
         vector<MTGAbility*>selection;
@@ -3365,6 +3392,28 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
         selection.push_back(PWruleGeneric->clone());
         SAFE_DELETE(PWruleGeneric);
         MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), NULL, myClone,true,selection,card->controller(),"Planeswalker Uniqueness Rule");
+        menuChoice->addToGame();
+    }*/
+    //reverted to old since this new code conflicts with reveal targetchooser
+    if (destroy)
+    {
+        vector<MTGAbility*>selection;
+
+        MultiAbility * multi = NEW MultiAbility(game,game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        for(unsigned int i = 0;i < oldCards.size();i++)
+        {
+            AAMover *a = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
+            a->oneShot = true;
+            multi->Add(a);
+        }
+        multi->oneShot = 1;
+        MTGAbility * a1 = multi;
+        selection.push_back(a1);
+        AAMover *b = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, card,"ownergraveyard","Keep Old");
+        b->oneShot = true;
+        MTGAbility * b1 = b;
+        selection.push_back(b1);
+        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Planeswalker Rule");
         menuChoice->addToGame();
     }
     return 1;

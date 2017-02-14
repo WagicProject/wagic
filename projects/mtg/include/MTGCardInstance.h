@@ -114,6 +114,7 @@ public:
     int CountedObjects;
     int kicked;
     int dredge;
+    int zpos;
     bool isDualWielding;
     bool stillNeeded;
     Player * lastController;

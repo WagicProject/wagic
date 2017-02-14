@@ -44,9 +44,11 @@ void CardDisplay::init(MTGGameZone * zone)
     resetObjects();
     if (!zone) return;
     start_item = 0;
-    for (int i = 0; i < zone->nb_cards; i++)
+    vector<MTGCardInstance*> newCD (zone->cards.rbegin(), zone->cards.rend());
+    for (int i = 0; i < zone->nb_cards; i++)//invert display so the top will always be the first one to show
     {
-        AddCard(zone->cards[i]);
+        //AddCard(zone->cards[i]);
+        AddCard(newCD[i]);
     }
     if (mObjects.size()) mObjects[0]->Entering();
 }
@@ -78,7 +80,8 @@ void CardDisplay::Update(float dt)
     bool update = false;
 
     if (zone)
-    {
+    {//invert display so the top will always be the first one to show
+        vector<MTGCardInstance*> newCD (zone->cards.rbegin(), zone->cards.rend());
         int size = zone->cards.size();
         for (int i = start_item; i < start_item + nb_displayed_items && i < (int)(mObjects.size()); i++)
         {
@@ -88,7 +91,7 @@ void CardDisplay::Update(float dt)
                 break;
             }
             CardGui * cardg = (CardGui *) mObjects[i];
-            if (cardg->card != zone->cards[i]) update = true;
+            if (cardg->card != newCD[i]) update = true;
         }
     }
     PlayGuiObjectController::Update(dt);

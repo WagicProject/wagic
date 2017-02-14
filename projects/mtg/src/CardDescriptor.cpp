@@ -18,6 +18,8 @@ CardDescriptor::CardDescriptor()
     manacostComparisonMode = COMPARISON_NONE;
     counterComparisonMode = COMPARISON_NONE;
     convertedManacost = -1;
+    zposComparisonMode = COMPARISON_NONE;
+    zposition = -1;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
@@ -26,12 +28,12 @@ CardDescriptor::CardDescriptor()
     CDdamager = 0;
     CDgeared = 0;
     CDblocked = 0;
-    CDcanProduceC = 0;
+    /*CDcanProduceC = 0;
     CDcanProduceG = 0;
     CDcanProduceU = 0;
     CDcanProduceR = 0;
     CDcanProduceB = 0;
-    CDcanProduceW = 0;
+    CDcanProduceW = 0;*/
     CDnocolor = 0;
 }
 
@@ -145,6 +147,8 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         return NULL;
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         return NULL;
+    if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
+        return NULL;
     if (nameComparisonMode && compareName != card->name)
         return NULL;
     return card;
@@ -185,6 +189,8 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
         match = NULL;
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
+        match = NULL;
+    if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
         match = NULL;
     if(nameComparisonMode && compareName != card->name)
         match = NULL;
@@ -256,7 +262,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
                 match = NULL;
         }
     }
-    
+    /*
     if ((CDcanProduceC == -1 && card->canproduceC == 1) || (CDcanProduceC == 1 && card->canproduceC == 0))
     {
         match = NULL;
@@ -286,7 +292,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = NULL;
     }
-    
+    */
     if ((CDnocolor == -1 && card->getColor() == 0))
     {
         match = NULL;
