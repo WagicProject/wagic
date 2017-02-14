@@ -997,6 +997,10 @@ private:
                     intValue += card->controller()->game->inPlay->cards[j]->power;
             }
         }
+        else if (s == "mypos")
+        {//hand,exile,grave & library only (library zpos is inverted so the recent one is always the top)
+            intValue = card->zpos;
+        }
         else if (s == "revealedp")
         {
             if (card->revealedLast)
