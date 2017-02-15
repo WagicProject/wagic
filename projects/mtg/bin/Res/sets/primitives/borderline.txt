@@ -412,16 +412,6 @@ type=Sorcery
 text=Destroy all creatures target player controls. For each creature that died this way, put two 1/1 red Goblin creature tokens onto the battlefield under that player's control.
 [/card]
 [card]
-name=Necropotence
-#exile cards are faceup
-auto=@movedTo(*|mygraveyard):all(trigger[to]) moveTo(exile)
-auto=phasealter(remove,draw,controller)
-auto={L:1}:name(exile) reveal:1 optionone all(*|reveal) transforms((,newability[moveto(exile)],newability[phaseaction[my endofturn once checkex] moveto(ownerhand)])) optiononeend revealend
-text=Skip your draw step. -- Whenever you discard a card, exile that card from your graveyard. -- Pay 1 life: Exile the top card of your library face down. Put that card into your hand at the beginning of your next end step.
-mana={B}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Nightshade Seer
 auto={2}{B}{T}:foreach(*[black]|myhand) -1/-1 target(creature)
 text={2}{B}, {T}: Reveal any number of black cards in your hand. Target creature gets -X/-X until end of turn, where X is the number of cards revealed this way.
