@@ -620,7 +620,7 @@ int OrderedAIAction::getEfficiency()
     else if (GenericRevealAbility * grA = dynamic_cast<GenericRevealAbility *>(a))
     {
         if(grA->source->getAICustomCode().size())
-            efficiency = 50 + (owner->getRandomGenerator()->random() % 50);
+            efficiency = 45 + (owner->getRandomGenerator()->random() % 50);
         else
             efficiency = 0;
     }
