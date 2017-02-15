@@ -460,15 +460,30 @@ void CardGui::Render()
     if(card->chooseacolor >= 1)
     {
         if(card->chooseacolor == 1)
-            buff += "\n-Green";
+        {
+            renderer->FillRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(255,0,255,0));
+            renderer->DrawRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(180,10,10,10));
+        }
         else if(card->chooseacolor == 2)
-            buff += "\n-Blue";
+        {
+            renderer->FillRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(255,0,206,209));
+            renderer->DrawRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(180,10,10,10));
+        }
         else if(card->chooseacolor == 3)
-            buff += "\n-Red";
+        {
+            renderer->FillRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(255,255,0,0));
+            renderer->DrawRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(180,10,10,10));
+        }
         else if(card->chooseacolor == 4)
-            buff += "\n-Black";
+        {
+            renderer->FillRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(255,20,20,20));
+            renderer->DrawRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(180,210,210,210));
+        }
         else if(card->chooseacolor == 5)
-            buff += "\n-White";
+        {
+            renderer->FillRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(255,250,235,215));
+            renderer->DrawRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(180,10,10,10));
+        }
     }
     if(!alternate && buff != "" && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
     {
@@ -476,8 +491,8 @@ void CardGui::Render()
         char buffer[200];
         sprintf(buffer, "%s", buff.c_str());
         mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,215,0));//Gold indicator
-        mFont->SetScale(0.8f);
-        mFont->DrawString(buffer, actX - 10 * actZ, actY - (16 * actZ));
+        mFont->SetScale(actZ);
+        mFont->DrawString(buffer, actX - 10 * actZ, actY - (18.3f * actZ));
         mFont->SetScale(1);
     }
 
@@ -497,7 +512,7 @@ void CardGui::Render()
             sprintf(buffer, "%i", card->counters->counters[0]->nb);
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
             mFont->SetScale(actZ);
-            mFont->DrawString(buffer, actX - 10 * actZ, actY - (12 * actZ));
+            mFont->DrawString(buffer, actX - 10 * actZ, actY - (10.8f * actZ));
             mFont->SetScale(1);
         }
     }

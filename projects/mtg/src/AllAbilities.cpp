@@ -4183,6 +4183,8 @@ int AACloner::resolve()
         Spell * spell = NEW Spell(game, myClone);
         spell->source->isToken = 1;
         spell->resolve();
+        spell->source->owner = targetPlayer;
+        spell->source->lastController = targetPlayer;
         spell->source->fresh = 1;
         spell->source->entersBattlefield = 1;
         spell->source->model = spell->source;
