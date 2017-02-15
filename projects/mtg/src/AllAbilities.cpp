@@ -192,7 +192,7 @@ void MTGRevealingCards::Update(float dt)
         //if any carddisplays are open, dont do anything until theyre closed, then wait your turn if multiple reveals trigger.
         return;
     }
-    if (game->mLayers->actionLayer()->menuObject)
+    if (game->mLayers->actionLayer()->menuObject || game->LPWeffect)
         return;//dont do any of this if a menuobject exist.
     if (!source->getObserver()->mLayers->actionLayer()->getCurrentTargetChooser() && !revealDisplay && !initCD)
     {

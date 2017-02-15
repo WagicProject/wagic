@@ -3257,17 +3257,18 @@ int MTGLegendRule::added(MTGCardInstance * card)
 {
     map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
-     vector<MTGCardInstance*>oldCards;
+    //vector<MTGCardInstance*>oldCards;
     for (it = cards.begin(); it != cards.end(); it++)
     {
         MTGCardInstance * comparison = (*it).first;
         if (comparison != card && comparison->controller() == card->controller() && !(comparison->getName().compare(card->getName())))
             if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()))
             {
-                oldCards.push_back(comparison);
+                //oldCards.push_back(comparison);
                 destroy = 1;
+                game->LPWeffect = true;
             }
-    }/*
+    }
     if(destroy)
     {
         vector<MTGAbility*>selection;
@@ -3290,9 +3291,9 @@ int MTGLegendRule::added(MTGCardInstance * card)
         SAFE_DELETE(LegendruleGeneric);
         MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), NULL, myClone,true,selection,card->controller(),"Legendary Rule");
         menuChoice->addToGame();
-    }*/
+    }
     //reverted to old since this new code conflicts with reveal targetchooser
-    if(destroy)
+    /*if(destroy)
     {
         vector<MTGAbility*>selection;
         MultiAbility * multi = NEW MultiAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
@@ -3311,7 +3312,7 @@ int MTGLegendRule::added(MTGCardInstance * card)
         selection.push_back(b1);
         MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
         menuChoice->addToGame();
-    }
+    }*/
     return 1;
 }
 
@@ -3360,17 +3361,18 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
 {
     map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
-    vector<MTGCardInstance*>oldCards;
+    //vector<MTGCardInstance*>oldCards;
     for (it = cards.begin(); it != cards.end(); it++)
     {
         MTGCardInstance * comparison = (*it).first;
         if (comparison != card && comparison->types == card->types && comparison->controller() == card->controller())
             if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()))
             {
-                oldCards.push_back(comparison);
+                //oldCards.push_back(comparison);
                 destroy = 1;
+                game->LPWeffect = true;
             }
-    }/*
+    }
     if (destroy)
     {
         vector<MTGAbility*>selection;
@@ -3393,9 +3395,9 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
         SAFE_DELETE(PWruleGeneric);
         MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), NULL, myClone,true,selection,card->controller(),"Planeswalker Uniqueness Rule");
         menuChoice->addToGame();
-    }*/
+    }
     //reverted to old since this new code conflicts with reveal targetchooser
-    if (destroy)
+    /*if (destroy)
     {
         vector<MTGAbility*>selection;
 
@@ -3415,7 +3417,7 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
         selection.push_back(b1);
         MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Planeswalker Rule");
         menuChoice->addToGame();
-    }
+    }*/
     return 1;
 }
 

@@ -142,6 +142,7 @@ class GameObserver{
 
   int receiveEvent(WEvent * event);
   bool connectRule;
+  bool LPWeffect;
 
   void logAction(Player* player, const string& s="");
   void logAction(int playerId, const string& s="") {

@@ -50,6 +50,7 @@ void GameObserver::cleanup()
     replacementEffects = NEW ReplacementEffects();
     combatStep = BLOCKERS;
     connectRule = false;
+    LPWeffect = false;
     actionsList.clear();
     gameTurn.clear();
     OpenedDisplay = NULL;
@@ -106,6 +107,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     combatStep = BLOCKERS;
     mRules = NULL;
     connectRule = false;
+    LPWeffect = false;
     mLoading = false;
     mLayers = NULL;
     mTrash = new Trash();
@@ -1052,6 +1054,7 @@ void GameObserver::gameStateBasedEffects()
             userRequestNextGamePhase();
     }
 
+    this->LPWeffect = false;
     //WEventGameStateBasedChecked event checked
     receiveEvent(NEW WEventGameStateBasedChecked());
 }
