@@ -4391,6 +4391,7 @@ AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTG
     andAbility = NULL;
     if(!named.size() && source->controller()->isAI())
         named = overrideNamed(destination);
+    necro = false;
 }
 
 MTGGameZone * AAMover::destinationZone(Targetable * target)
@@ -4411,6 +4412,8 @@ int AAMover::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
+        if(necro)
+            _target->basicAbilities[Constants::NECROED] = 1;
         Player* p = _target->controller();
         if (p)
         {
@@ -4496,18 +4499,23 @@ int AAMover::resolve()
                 MTGCardInstance *newTarget = p->game->putInZone(_target, fromZone, destZone);
                 /*while(_target->next)
                     _target = _target->next;*/
-                if(andAbility)
+                if(newTarget)
                 {
-                    MTGAbility * andAbilityClone = andAbility->clone();
-                    andAbilityClone->target = newTarget;
-                    if(andAbility->oneShot)
+                    if(necro)
+                        newTarget->basicAbilities[Constants::NECROED] = 1;
+                    if(andAbility)
                     {
-                        andAbilityClone->resolve();
-                        SAFE_DELETE(andAbilityClone);
-                    }
-                    else
-                    {
-                        andAbilityClone->addToGame();
+                        MTGAbility * andAbilityClone = andAbility->clone();
+                        andAbilityClone->target = newTarget;
+                        if(andAbility->oneShot)
+                        {
+                            andAbilityClone->resolve();
+                            SAFE_DELETE(andAbilityClone);
+                        }
+                        else
+                        {
+                            andAbilityClone->addToGame();
+                        }
                     }
                 }
             }
@@ -8104,7 +8112,13 @@ int AACastCard::resolveSpell()
     if (_target)
     {
         if (_target->isLand())
-            putinplay = true;
+        {
+            MTGCardInstance * copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
+            copy->changeController(source->controller(),true);
+            this->forceDestroy = true;
+            processed = true;
+            return 1;
+        }
 
         Spell * spell = NULL;
         MTGCardInstance * copy = NULL;

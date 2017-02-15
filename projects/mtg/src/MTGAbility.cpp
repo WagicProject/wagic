@@ -2797,6 +2797,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
         MTGAbility * a = NEW AAMover(observer, id, card, target, splitMove[1],newName);
         a->oneShot = true;
+        ((AAMover*)a)->necro = s.find("hiddenmoveto") != string::npos?true:false;
         if(storedAndAbility.size())
         {
             string stored = storedAndAbility;

@@ -2115,6 +2115,7 @@ public:
 class AAMover: public ActivatedAbility
 {
 public:
+    bool necro;
     string destination;
     MTGAbility * andAbility;
     string named;

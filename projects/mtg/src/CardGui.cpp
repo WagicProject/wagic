@@ -502,15 +502,31 @@ void CardGui::Render()
         }
     }
 
+    //shadow that covers the whole card for targetchooser...
     if (tc && !tc->canTarget(card))
     {
         if (!shadow)
             shadow = card->getObserver()->getResourceManager()->GetQuad("shadow");
         if (shadow)
         {
-            shadow->SetColor(ARGB(200,255,255,255));
+            shadow->SetColor(ARGB(190,255,255,255));
             renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
         }
+    }
+    
+    //for necro
+    if (!shadow)
+        shadow = card->getObserver()->getResourceManager()->GetQuad("shadow");
+    if (shadow)
+    {
+        int myA = 0;
+        if(game && card->has(Constants::NECROED))//no peeking...
+            myA = 255;
+        else
+            myA = 0;
+            
+        shadow->SetColor(ARGB(myA,255,255,255));
+        renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
     }
 
     PlayGuiObject::Render();
@@ -1151,6 +1167,20 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
     JQuadPtr quad = thumb ? WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_THUMB)
                           : WResourceManager::Instance()->RetrieveCard(card);
     MTGCardInstance * kcard =  dynamic_cast<MTGCardInstance*>(card);
+    GameObserver * game = NULL;
+    //TargetChooser * tc = NULL;
+    bool myA = true;
+    if(kcard)
+    {
+        game = kcard->getObserver();
+        if(game)
+        {
+            if(kcard->has(Constants::NECROED))
+                myA = false;
+            else
+                myA = true;
+        }
+    }
     if(kcard && !kcard->isToken && kcard->name != kcard->model->data->name)
     {
         MTGCard * fcard = MTGCollection()->getCardByName(kcard->name);
@@ -1162,7 +1192,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         quad = thumb ? WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_THUMB, 1, abs(kcard->copiedID))
                      : WResourceManager::Instance()->RetrieveCardToken(tcard, RETRIEVE_NORMAL, 1, abs(kcard->copiedID));
     }
-    if (quad.get())
+    if (quad.get() && myA)
     {
         if (quad->mHeight < quad->mWidth)
         {
@@ -1216,7 +1246,8 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
     //DebugTrace("Unable to fetch image: " << card->getImageName());
 
     // If we come here, we do not have the picture.
-    AlternateRender(card, pos);
+    if(myA)
+        AlternateRender(card, pos);
 }
 
 string CardGui::FormattedData(string data, string replace, string value)
