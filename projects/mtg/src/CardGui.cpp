@@ -254,8 +254,8 @@ void CardGui::Render()
         highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
         if(fakeborder)
         {
-            if(card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO)
-                ||(card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback() && game->isInGrave(card)))
+            if((card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))||
+              ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)))
                 fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
             else
                 fakeborder->SetColor(ARGB((int)(actA),15,15,15));
