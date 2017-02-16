@@ -8115,11 +8115,29 @@ int AACastCard::resolveSpell()
     {
         if (_target->isLand())
         {
-            MTGCardInstance * copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
-            copy->changeController(source->controller(),true);
-            this->forceDestroy = true;
-            processed = true;
-            return 1;
+            if(theNamedCard)
+            {
+                MTGCardInstance * copy =  _target->controller()->game->putInZone(_target, _target->currentZone,  _target->controller()->game->temp);
+                copy->changeController(source->controller(),true);
+                Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, 1);
+                spell->resolve();
+                delete spell;
+
+                this->forceDestroy = true;
+                processed = true;
+                return 1;
+            }
+            else
+            {
+                MTGAbility * a = NEW AAMover(game, -1, source, _target, "mybattlefield", "");
+                a->oneShot = true;
+                a->resolve();
+                SAFE_DELETE(a);
+
+                this->forceDestroy = true;
+                processed = true;
+                return 1;
+            }
         }
 
         Spell * spell = NULL;
