@@ -285,12 +285,7 @@ public:
     int imprintR;
     int imprintB;
     int imprintW;
-    int canproduceG;
-    int canproduceU;
-    int canproduceR;
-    int canproduceB;
-    int canproduceW;
-    int canproduceC;
+    int canproduceMana(int color = -1);
     int entersBattlefield;
     string currentimprintName;
     vector<string>imprintedNames;
