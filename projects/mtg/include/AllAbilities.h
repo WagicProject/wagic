@@ -997,6 +997,10 @@ private:
                     intValue += card->controller()->game->inPlay->cards[j]->power;
             }
         }
+        else if (s == "mypos")
+        {//hand,exile,grave & library only (library zpos is inverted so the recent one is always the top)
+            intValue = card->zpos;
+        }
         else if (s == "revealedp")
         {
             if (card->revealedLast)
@@ -1325,6 +1329,50 @@ public:
     TrCardTappedformana * clone() const
     {
         return NEW TrCardTappedformana(*this);
+    }
+};
+
+class TrCardPhasesIn: public Trigger
+{
+public:
+    TrCardPhasesIn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+        Trigger(observer, id, source, once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardPhasesIn * e = dynamic_cast<WEventCardPhasesIn *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrCardPhasesIn * clone() const
+    {
+        return NEW TrCardPhasesIn(*this);
+    }
+};
+
+class TrCardFaceUp: public Trigger
+{
+public:
+    TrCardFaceUp(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+        Trigger(observer, id, source, once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardFaceUp * e = dynamic_cast<WEventCardFaceUp *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrCardFaceUp * clone() const
+    {
+        return NEW TrCardFaceUp(*this);
     }
 };
 
@@ -2111,6 +2159,7 @@ public:
 class AAMover: public ActivatedAbility
 {
 public:
+    bool necro;
     string destination;
     MTGAbility * andAbility;
     string named;
@@ -2119,6 +2168,7 @@ public:
     AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL, bool undying = false, bool persist = false);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
+    string overrideNamed(string destination = "");
     const string getMenuText();
     const char * getMenuText(TargetChooser * fromTc);
     AAMover * clone() const;

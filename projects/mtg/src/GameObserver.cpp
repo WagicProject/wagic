@@ -50,6 +50,7 @@ void GameObserver::cleanup()
     replacementEffects = NEW ReplacementEffects();
     combatStep = BLOCKERS;
     connectRule = false;
+    LPWeffect = false;
     actionsList.clear();
     gameTurn.clear();
     OpenedDisplay = NULL;
@@ -106,6 +107,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     combatStep = BLOCKERS;
     mRules = NULL;
     connectRule = false;
+    LPWeffect = false;
     mLoading = false;
     mLayers = NULL;
     mTrash = new Trash();
@@ -672,6 +674,16 @@ void GameObserver::gameStateBasedEffects()
                     for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
                         card->alternateCostPaid[i] = 0;
                 }
+                //test zone position
+                if(card && (isInGrave(card)||isInHand(card)||isInExile(card)))
+                {
+                    card->zpos = w+1;
+                }
+                else if(card && (isInLibrary(card)))
+                {//invert so we get the top one...
+                    int onum = w+1;
+                    card->zpos = abs(onum - zone->nb_cards)+1;
+                }
             }
 
 
@@ -847,6 +859,9 @@ void GameObserver::gameStateBasedEffects()
                 card->phasedTurn = turn;
                 if(card->view)
                     card->view->alpha = 255;
+                //add event phases in here
+                WEvent * evphasein = NEW WEventCardPhasesIn(card);
+                receiveEvent(evphasein);
             }
             if (card->target && isInPlay(card->target) && (card->hasSubtype(Subtypes::TYPE_EQUIPMENT) || card->hasSubtype(Subtypes::TYPE_AURA)))
             {
@@ -1042,6 +1057,7 @@ void GameObserver::gameStateBasedEffects()
             userRequestNextGamePhase();
     }
 
+    this->LPWeffect = false;
     //WEventGameStateBasedChecked event checked
     receiveEvent(NEW WEventGameStateBasedChecked());
 }
@@ -1626,6 +1642,17 @@ int GameObserver::isInHand(MTGCardInstance * card)
     {
         MTGGameZone * hand = players[i]->game->hand;
         if (players[i]->game->isInZone(card, hand))
+            return 1;
+    }
+    return 0;
+}
+int GameObserver::isInLibrary(MTGCardInstance * card)
+{
+
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * library = players[i]->game->library;
+        if (players[i]->game->isInZone(card, library))
             return 1;
     }
     return 0;

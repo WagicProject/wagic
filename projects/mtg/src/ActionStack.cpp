@@ -88,13 +88,14 @@ float Interruptible::GetVerticalTextOffset() const
 }
 
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action,
-    bool bigQuad, int aType)
+    bool bigQuad, int aType, vector<JQuadPtr> mytargetsQuad)
 {
     WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     JRenderer * renderer = JRenderer::GetInstance();
-    
+    bool hiddenview = aType == MTGAbility::HIDDENVIEW?true:false;
+
     if (!targetQuad)
     {
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI() && !alt2.size() && _(action).c_str() == source->name)
@@ -105,22 +106,58 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     }
     else
     {
-        renderer->FillRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(235,10,10,10));
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI())
             renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,0,255,0));
         else
             renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,255,0,0));*/
-        mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
-        mFont->DrawString(_(action).c_str(), x + 75, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+        float xnadj = 0;
+        int count = 1;
+        if(mytargetsQuad.size())
+        {
+            count = mytargetsQuad.size();
+            for(unsigned int k = 0; k < mytargetsQuad.size(); k++)
+            {
+                if(k > 10)
+                    break;
+                xnadj+=4;
+            }
+        }
+
+        ostringstream aa;
+        aa << action << " " << "(" << count << ")";
+
+        if(count > 1)
+            xnadj -= 4;
+
+        if(!hiddenview)
+        {
+            mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+            if(count > 1)
+            {
+                mFont->DrawString(_(aa.str()).c_str(), x + 75 + xnadj, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+            }
+            else
+                mFont->DrawString(_(action).c_str(), x + 75 + xnadj, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+        }
+        else
+            mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+
     }
 
     JQuadPtr quad = observer->getResourceManager()->RetrieveCard(source, CACHE_THUMB);
+    JQuadPtr fakeborder = observer->getResourceManager()->GetQuad("white");
     if (!quad.get())
         quad = CardGui::AlternateThumbQuad(source);
     if (quad.get())
     {
         quad->SetColor(ARGB(255,255,255,255));
         float scale = mHeight / quad->mHeight;
+        if (fakeborder.get())
+        {
+            fakeborder->SetColor(ARGB(255,15,15,15));
+            renderer->RenderQuad(fakeborder.get(), x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, (29 * actZ + 1) / 16, 42 * actZ / 16);
+        }
+        
         renderer->RenderQuad(quad.get(), x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, scale, scale);
     }
     else if (alt1.size())
@@ -147,19 +184,49 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
 
     }
 
-    if (targetQuad)
+    if(mytargetsQuad.size() && !hiddenview)
     {
-        float backupX = targetQuad->mHotSpotX;
-        float backupY = targetQuad->mHotSpotY;
-        targetQuad->SetColor(ARGB(255,255,255,255));
-        targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
-        float scale = mHeight / targetQuad->mHeight;
-        renderer->RenderQuad(targetQuad, x + 55, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
-        targetQuad->SetHotSpot(backupX, backupY);
+        float xadj = 0;
+        for(unsigned int k = 0; k < mytargetsQuad.size(); k++)
+        {
+            if(k > 10)
+                break;
+
+            JQuadPtr multiQ = mytargetsQuad[k];
+            if(multiQ.get())
+            {
+                float backupX = multiQ->mHotSpotX;
+                float backupY = multiQ->mHotSpotY;
+                multiQ->SetColor(ARGB(255,255,255,255));
+                multiQ->SetHotSpot(multiQ->mWidth / 2, multiQ->mHeight / 2);
+                float scale = mHeight / multiQ->mHeight;
+                if (fakeborder.get())
+                {
+                    fakeborder->SetColor(ARGB(255,15,15,15));
+                    renderer->RenderQuad(fakeborder.get(), x + 55 + xadj, y + ((mHeight - multiQ->mHeight) / 2) + multiQ->mHotSpotY, 0, (29 * actZ + 1) / 16, 42 * actZ / 16);
+                }
+                renderer->RenderQuad(multiQ.get(), x + 55 + xadj, y + ((mHeight - multiQ->mHeight) / 2) + multiQ->mHotSpotY, 0, scale, scale);
+                multiQ->SetHotSpot(backupX, backupY);
+                xadj+=4;
+            }
+        }
     }
-    else if (alt2.size())
+    else if(!hiddenview)
     {
-        mFont->DrawString(_(alt2).c_str(), x + 35, y+15 + GetVerticalTextOffset());
+        if (targetQuad)
+        {
+            float backupX = targetQuad->mHotSpotX;
+            float backupY = targetQuad->mHotSpotY;
+            targetQuad->SetColor(ARGB(255,255,255,255));
+            targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
+            float scale = mHeight / targetQuad->mHeight;
+            renderer->RenderQuad(targetQuad, x + 55, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
+            targetQuad->SetHotSpot(backupX, backupY);
+        }
+        else if (alt2.size())
+        {
+            mFont->DrawString(_(alt2).c_str(), x + 35, y+15 + GetVerticalTextOffset());
+        }
     }
 }
 
@@ -173,6 +240,9 @@ void StackAbility::Render()
     string action = ability->getMenuText();
     MTGCardInstance * source = ability->source;
     string alt1 = source->getName();
+    vector<JQuadPtr> mytargetQuads;
+    int fmLibrary = 0;
+    int force = 0;
 
     Targetable * _target = ability->target;
     if (ability->getActionTc())
@@ -180,6 +250,31 @@ void StackAbility::Render()
         Targetable * t = ability->getActionTc()->getNextTarget();
         if (t)
             _target = t;
+
+        
+    //test vector quads
+        if(ability->getActionTc()->getTargetsFrom().size())
+        {
+            for(size_t i = 0; i < ability->getActionTc()->getTargetsFrom().size(); i++)
+            {
+                Targetable * tt = ability->getActionTc()->getTargetsFrom()[i];
+                if(tt)
+                {
+                    if( ((Damageable *)(tt))->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE )
+                    {
+                        if( source->has(Constants::HIDDENFACE) && !observer->isInLibrary(((MTGCardInstance *)(tt))) )
+                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                        else if ( !source->has(Constants::HIDDENFACE) )
+                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                        else
+                            fmLibrary++;
+                    }
+                    else
+                        mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                }
+            }
+        }
+    //end
     }
     Damageable * target = NULL;
     if (_target != ability->source && (dynamic_cast<MTGCardInstance *>(_target) || dynamic_cast<Player *>(_target)))
@@ -198,10 +293,13 @@ void StackAbility::Render()
         }
     }
 
+    if(source->has(Constants::HIDDENFACE) && fmLibrary)
+        force = MTGAbility::HIDDENVIEW;
+
     if(observer->gameType() == GAME_TYPE_MOMIR)
-        Interruptible::Render(source, quad.get(), alt1, alt2, action, true, ability->aType);
+        Interruptible::Render(source, quad.get(), alt1, alt2, action, true, ability->aType, mytargetQuads);
     else
-        Interruptible::Render(source, quad.get(), alt1, alt2, action);
+        Interruptible::Render(source, quad.get(), alt1, alt2, action, false, force, mytargetQuads);
 }
 StackAbility::StackAbility(GameObserver* observer, int id, MTGAbility * _ability) :
 Interruptible(observer, id), ability(_ability)

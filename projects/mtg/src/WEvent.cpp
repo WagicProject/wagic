@@ -236,7 +236,22 @@ WEventCardControllerChange::WEventCardControllerChange(MTGCardInstance * card) :
 {
 }
 
+WEventCardPhasesIn::WEventCardPhasesIn(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardFaceUp::WEventCardFaceUp(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardTransforms::WEventCardTransforms(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardCopiedACard::WEventCardCopiedACard(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
 }
@@ -412,7 +427,25 @@ Targetable * WEventCardControllerChange::getTarget(int target)
     return NULL;
 }
 
+Targetable * WEventCardPhasesIn::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardFaceUp::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
 Targetable * WEventCardTransforms::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardCopiedACard::getTarget(int target)
 {
     if (target) return card;
     return NULL;

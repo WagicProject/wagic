@@ -54,6 +54,18 @@ GenericRevealAbility::GenericRevealAbility(GameObserver* observer, int id, MTGCa
 
 int GenericRevealAbility::resolve()
 {
+    if(source->lastController->isAI() && source->getAICustomCode().size())
+    {
+            string abi = source->getAICustomCode();
+            std::transform(abi.begin(), abi.end(), abi.begin(), ::tolower);//fix crash
+            AbilityFactory af(game);
+            MTGAbility * a3 = af.parseMagicLine(abi, this->GetId(), NULL, source);
+            a3->oneShot = 1;
+            a3->canBeInterrupted = false;
+            a3->resolve();
+            SAFE_DELETE(a3);
+            return 1;
+    }
     MTGAbility * ability = NEW MTGRevealingCards(game, this->GetId(), source, howMany);
     ability->addToGame();
     return 1;
@@ -180,7 +192,7 @@ void MTGRevealingCards::Update(float dt)
         //if any carddisplays are open, dont do anything until theyre closed, then wait your turn if multiple reveals trigger.
         return;
     }
-    if (game->mLayers->actionLayer()->menuObject)
+    if (game->mLayers->actionLayer()->menuObject || game->LPWeffect)
         return;//dont do any of this if a menuobject exist.
     if (!source->getObserver()->mLayers->actionLayer()->getCurrentTargetChooser() && !revealDisplay && !initCD)
     {
@@ -1662,6 +1674,7 @@ int AACopier::resolve()
                 }
             }
         }
+        currentAbilities.clear();
         return 1;
     }
     return 0;
@@ -3272,6 +3285,8 @@ int AAMorph::resolve()
                 }
             }
         }
+        WEvent * e = NEW WEventCardFaceUp(_target);
+        game->receiveEvent(e);
         currentAbilities.clear();
         testDestroy();
     }
@@ -4171,6 +4186,8 @@ int AACloner::resolve()
         Spell * spell = NEW Spell(game, myClone);
         spell->source->isToken = 1;
         spell->resolve();
+        spell->source->owner = targetPlayer;
+        spell->source->lastController = targetPlayer;
         spell->source->fresh = 1;
         spell->source->entersBattlefield = 1;
         spell->source->model = spell->source;
@@ -4377,6 +4394,9 @@ AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTG
     if (_target)
         target = _target;
     andAbility = NULL;
+    if(!named.size() && source->controller()->isAI())
+        named = overrideNamed(destination);
+    necro = false;
 }
 
 MTGGameZone * AAMover::destinationZone(Targetable * target)
@@ -4397,6 +4417,8 @@ int AAMover::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
+        if(necro)
+            _target->basicAbilities[Constants::NECROED] = 1;
         Player* p = _target->controller();
         if (p)
         {
@@ -4479,21 +4501,26 @@ int AAMover::resolve()
                     else
                         return 0;
                 }
-                p->game->putInZone(_target, fromZone, destZone);
-                while(_target->next)
-                    _target = _target->next;
-                if(andAbility)
+                MTGCardInstance *newTarget = p->game->putInZone(_target, fromZone, destZone);
+                /*while(_target->next)
+                    _target = _target->next;*/
+                if(newTarget)
                 {
-                    MTGAbility * andAbilityClone = andAbility->clone();
-                    andAbilityClone->target = _target;
-                    if(andAbility->oneShot)
+                    if(necro)
+                        newTarget->basicAbilities[Constants::NECROED] = 1;
+                    if(andAbility)
                     {
-                        andAbilityClone->resolve();
-                        SAFE_DELETE(andAbilityClone);
-                    }
-                    else
-                    {
-                        andAbilityClone->addToGame();
+                        MTGAbility * andAbilityClone = andAbility->clone();
+                        andAbilityClone->target = newTarget;
+                        if(andAbility->oneShot)
+                        {
+                            andAbilityClone->resolve();
+                            SAFE_DELETE(andAbilityClone);
+                        }
+                        else
+                        {
+                            andAbilityClone->addToGame();
+                        }
                     }
                 }
             }
@@ -4503,11 +4530,36 @@ int AAMover::resolve()
     return 0;
 }
 
+string AAMover::overrideNamed(string destination)
+{
+    string name = "Move";
+    if(destination.size())
+    {
+        if(destination.find("library") != string::npos)
+            name = "Put in Library";
+        else if(destination.find("hand") != string::npos)
+            name = "Put in Hand";
+        else if(destination.find("exile") != string::npos)
+            name = "Put in Exile";
+        else if(destination.find("removedfromgame") != string::npos)
+            name = "Put in Exile";
+        else if(destination.find("graveyard") != string::npos)
+            name = "Put in Graveyard";
+        else if(destination.find("previous") != string::npos)
+            name = "Previous Zone";
+        else if(destination.find("inplay") != string::npos)
+            name = "Put in Play";
+        else if(destination.find("battlefield") != string::npos)
+            name = "Put in Play";
+    }
+    return name;
+}
+
 const string AAMover::getMenuText()
 {
     if(named.size())
         return named.c_str();
-    return "Put in Zone";
+    return "Move";
 }
 
 const char* AAMover::getMenuText(TargetChooser * tc)
@@ -4569,7 +4621,7 @@ const char* AAMover::getMenuText(TargetChooser * tc)
         }
     }
 
-    return "Put in Zone";
+    return "Move";
 }
 
 AAMover * AAMover::clone() const
@@ -8065,7 +8117,31 @@ int AACastCard::resolveSpell()
     if (_target)
     {
         if (_target->isLand())
-            putinplay = true;
+        {
+            if(theNamedCard)
+            {
+                MTGCardInstance * copy =  _target->controller()->game->putInZone(_target, _target->currentZone,  _target->controller()->game->temp);
+                copy->changeController(source->controller(),true);
+                Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, 1);
+                spell->resolve();
+                delete spell;
+
+                this->forceDestroy = true;
+                processed = true;
+                return 1;
+            }
+            else
+            {
+                MTGAbility * a = NEW AAMover(game, -1, source, _target, "mybattlefield", "");
+                a->oneShot = true;
+                a->resolve();
+                SAFE_DELETE(a);
+
+                this->forceDestroy = true;
+                processed = true;
+                return 1;
+            }
+        }
 
         Spell * spell = NULL;
         MTGCardInstance * copy = NULL;

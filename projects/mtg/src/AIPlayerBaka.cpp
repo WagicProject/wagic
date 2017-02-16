@@ -617,6 +617,13 @@ int OrderedAIAction::getEfficiency()
             efficiency = 0;
         
     }
+    else if (GenericRevealAbility * grA = dynamic_cast<GenericRevealAbility *>(a))
+    {
+        if(grA->source->getAICustomCode().size())
+            efficiency = 45 + (owner->getRandomGenerator()->random() % 50);
+        else
+            efficiency = 0;
+    }
     //At this point the "basic" efficiency is computed, we further tweak it depending on general decisions, independent of theAbility type
 
     MayAbility * may = dynamic_cast<MayAbility*>(ability);

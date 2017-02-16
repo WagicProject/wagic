@@ -18,6 +18,8 @@ CardDescriptor::CardDescriptor()
     manacostComparisonMode = COMPARISON_NONE;
     counterComparisonMode = COMPARISON_NONE;
     convertedManacost = -1;
+    zposComparisonMode = COMPARISON_NONE;
+    zposition = -1;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
@@ -145,6 +147,8 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         return NULL;
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         return NULL;
+    if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
+        return NULL;
     if (nameComparisonMode && compareName != card->name)
         return NULL;
     return card;
@@ -185,6 +189,8 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
         match = NULL;
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
+        match = NULL;
+    if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
         match = NULL;
     if(nameComparisonMode && compareName != card->name)
         match = NULL;
@@ -256,37 +262,45 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
                 match = NULL;
         }
     }
-    
-    if ((CDcanProduceC == -1 && card->canproduceC == 1) || (CDcanProduceC == 1 && card->canproduceC == 0))
+
+    if (CDcanProduceC == -1)
+    {
+        int count = card->canproduceMana(Constants::MTG_COLOR_ARTIFACT) + card->canproduceMana(Constants::MTG_COLOR_WASTE);
+        if (count)
+            match = NULL;
+    }
+    if (CDcanProduceC == 1)
+    {
+        int count = card->canproduceMana(Constants::MTG_COLOR_ARTIFACT) + card->canproduceMana(Constants::MTG_COLOR_WASTE);
+        if (!count)
+            match = NULL;
+    }
+
+    if ((CDcanProduceG == -1 && card->canproduceMana(Constants::MTG_COLOR_GREEN) == 1) || (CDcanProduceG == 1 && card->canproduceMana(Constants::MTG_COLOR_GREEN) == 0))
     {
         match = NULL;
     }
     
-    if ((CDcanProduceG == -1 && card->canproduceG == 1) || (CDcanProduceG == 1 && card->canproduceG == 0))
+    if ((CDcanProduceU == -1 && card->canproduceMana(Constants::MTG_COLOR_BLUE) == 1) || (CDcanProduceU == 1 && card->canproduceMana(Constants::MTG_COLOR_BLUE) == 0))
     {
         match = NULL;
     }
     
-    if ((CDcanProduceU == -1 && card->canproduceU == 1) || (CDcanProduceU == 1 && card->canproduceU == 0))
+    if ((CDcanProduceR == -1 && card->canproduceMana(Constants::MTG_COLOR_RED) == 1) || (CDcanProduceR == 1 && card->canproduceMana(Constants::MTG_COLOR_RED) == 0))
     {
         match = NULL;
     }
     
-    if ((CDcanProduceR == -1 && card->canproduceR == 1) || (CDcanProduceR == 1 && card->canproduceR == 0))
+    if ((CDcanProduceB == -1 && card->canproduceMana(Constants::MTG_COLOR_BLACK) == 1) || (CDcanProduceB == 1 && card->canproduceMana(Constants::MTG_COLOR_BLACK) == 0))
     {
         match = NULL;
     }
     
-    if ((CDcanProduceB == -1 && card->canproduceB == 1) || (CDcanProduceB == 1 && card->canproduceB == 0))
+    if ((CDcanProduceW == -1 && card->canproduceMana(Constants::MTG_COLOR_WHITE) == 1) || (CDcanProduceW == 1 && card->canproduceMana(Constants::MTG_COLOR_WHITE) == 0))
     {
         match = NULL;
     }
-    
-    if ((CDcanProduceW == -1 && card->canproduceW == 1) || (CDcanProduceW == 1 && card->canproduceW == 0))
-    {
-        match = NULL;
-    }
-    
+
     if ((CDnocolor == -1 && card->getColor() == 0))
     {
         match = NULL;

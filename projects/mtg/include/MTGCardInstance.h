@@ -114,6 +114,7 @@ public:
     int CountedObjects;
     int kicked;
     int dredge;
+    int zpos;
     bool isDualWielding;
     bool stillNeeded;
     Player * lastController;
@@ -252,6 +253,7 @@ public:
     int LKIpower;
     int LKItoughness;
     int countDuplicateCardNames();
+    int countDuplicateCardTypes();
     void cdaPT(int p = 0, int t = 0);
     bool isCDA;
     void switchPT(bool apply = false);
@@ -284,12 +286,7 @@ public:
     int imprintR;
     int imprintB;
     int imprintW;
-    int canproduceG;
-    int canproduceU;
-    int canproduceR;
-    int canproduceB;
-    int canproduceW;
-    int canproduceC;
+    int canproduceMana(int color = -1);
     int entersBattlefield;
     string currentimprintName;
     vector<string>imprintedNames;

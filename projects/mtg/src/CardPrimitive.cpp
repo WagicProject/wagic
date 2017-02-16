@@ -334,8 +334,8 @@ void CardPrimitive::addMagicText(string value, string key)
 
 void CardPrimitive::setdoubleFaced(const string& value)
 {
-    std::transform(doubleFaced.begin(), doubleFaced.end(), doubleFaced.begin(), ::tolower);
     doubleFaced = value;
+    std::transform(doubleFaced.begin(), doubleFaced.end(), doubleFaced.begin(), ::tolower);
 }
 
 const string& CardPrimitive::getdoubleFaced() const
@@ -345,8 +345,8 @@ const string& CardPrimitive::getdoubleFaced() const
 
 void CardPrimitive::setAICustomCode(const string& value)
 {
-    std::transform(AICustomCode.begin(), AICustomCode.end(), AICustomCode.begin(), ::tolower);
     AICustomCode = value;
+    std::transform(AICustomCode.begin(), AICustomCode.end(), AICustomCode.begin(), ::tolower);
 }
 
 const string& CardPrimitive::getAICustomCode() const
@@ -356,8 +356,8 @@ const string& CardPrimitive::getAICustomCode() const
 
 void CardPrimitive::setCrewAbility(const string& value)
 {
-    std::transform(CrewAbility.begin(), CrewAbility.end(), CrewAbility.begin(), ::tolower);
     CrewAbility = value;
+    std::transform(CrewAbility.begin(), CrewAbility.end(), CrewAbility.begin(), ::tolower);
 }
 
 const string& CardPrimitive::getCrewAbility() const

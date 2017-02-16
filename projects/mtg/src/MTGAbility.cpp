@@ -314,6 +314,21 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                     return 0;
             }
         }
+        check = restriction[i].find("gravecast");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
+                    if(stackCard->next && stackCard->next == card && (card->previousZone == card->controller()->game->graveyard||card->previousZone == card->controller()->opponent()->game->graveyard))
+                        count++;
+                    if(stackCard == card && (card->previousZone == card->controller()->game->graveyard||card->previousZone == card->controller()->opponent()->game->graveyard))
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
         check = restriction[i].find("rebound");
         if(check != string::npos)
         {
@@ -321,9 +336,9 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
                 {
                     MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
-                    if(stackCard->next && stackCard->next == card && card->previousZone == card->controller()->game->hand)
+                    if(stackCard->next && stackCard->next == card && (card->previousZone == card->controller()->game->hand||card->previousZone == card->controller()->opponent()->game->hand))
                         count++;
-                    if(stackCard == card && card->previousZone == card->controller()->game->hand)
+                    if(stackCard == card && (card->previousZone == card->controller()->game->hand||card->previousZone == card->controller()->opponent()->game->hand))
                         count++;
                 }
                 if(!count)
@@ -1021,6 +1036,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser *tc = parseSimpleTC(s,"transformed", card))
         return NEW TrCardTransformed(observer, id, card, tc,once);
 
+    //Card Faces Up
+    if (TargetChooser *tc = parseSimpleTC(s,"facedup", card))
+        return NEW TrCardFaceUp(observer, id, card, tc,once);
+
+    //Card Phases In
+    if (TargetChooser *tc = parseSimpleTC(s,"phasedin", card))
+        return NEW TrCardPhasesIn(observer, id, card, tc,once);
+
 //CombatTrigger
     //Card card attacked and is blocked
     found = s.find("combat(");
@@ -1463,14 +1486,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("legendrule");
     if(found != string::npos)
     {
-        observer->addObserver(NEW MTGLegendRule(observer, -1));
+        //observer->addObserver(NEW MTGLegendRule(observer, -1));
+        observer->addObserver(NEW MTGNewLegend(observer, -1));
         return NULL;
     }
     //this handles the planeswalker named legend rule which is dramatically different from above.
     found = s.find("planeswalkerrule");
     if(found != string::npos)
     {
-        observer->addObserver(NEW MTGPlaneWalkerRule(observer, -1));
+        //observer->addObserver(NEW MTGPlaneWalkerRule(observer, -1));
+        observer->addObserver(NEW MTGNewPlaneswalker(observer, -1));
         return NULL;
     }
     found = s.find("planeswalkerdamage");
@@ -2782,6 +2807,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
         MTGAbility * a = NEW AAMover(observer, id, card, target, splitMove[1],newName);
         a->oneShot = true;
+        ((AAMover*)a)->necro = s.find("hiddenmoveto") != string::npos?true:false;
         if(storedAndAbility.size())
         {
             string stored = storedAndAbility;
@@ -3684,17 +3710,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         a->canBeInterrupted = false;
         a->named = newName;
-        if(card->getAICustomCode().size() && card->controller()->isAI())
-        {
-            string abi = card->getAICustomCode();
-            std::transform(abi.begin(), abi.end(), abi.begin(), ::tolower);//fix crash
-            MTGAbility * a3 = parseMagicLine(abi, id, spell, card);
-            a3->oneShot = 1;
-            a3->canBeInterrupted = false;
-            return a3;
-        }
-        else
-            return a;
+        return a;
     }
 
     //scry:x (activate aility) 

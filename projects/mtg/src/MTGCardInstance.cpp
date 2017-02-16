@@ -98,7 +98,11 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
 void MTGCardInstance::copy(MTGCardInstance * card)
 {
     MTGCard * source = NULL;
-    if(card->isToken || card->hasCopiedToken)
+    if(card->isACopier && card->copiedID)
+    {
+        source = MTGCollection()->getCardById(card->copiedID);
+    }
+    else if(card->isToken || card->hasCopiedToken)
     {
         if(card->getMTGId() > 0)//not generated token
             source = MTGCollection()->getCardById(card->getMTGId());
@@ -165,6 +169,11 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     backupTargets = this->backupTargets;
     storedCard = oldStored;
     miracle = false;
+
+    
+    //add event here copied a card...
+    WEvent * e = NEW WEventCardCopiedACard(this);
+    getObserver()->receiveEvent(e);
 }
 
 MTGCardInstance::~MTGCardInstance()
@@ -237,6 +246,7 @@ void MTGCardInstance::initMTGCI()
     stillNeeded = true;
     kicked = 0;
     dredge = 0;
+    zpos = 0;
     chooseacolor = -1;
     chooseasubtype = "";
     coinSide = -1;
@@ -262,12 +272,6 @@ void MTGCardInstance::initMTGCI()
     imprintR = 0;
     imprintB = 0;
     imprintW = 0;
-    canproduceG = 0;
-    canproduceU = 0;
-    canproduceR = 0;
-    canproduceB = 0;
-    canproduceW = 0;
-    canproduceC = 0;
     entersBattlefield = 0;
     currentimprintName = "";
     imprintedNames.clear();
@@ -848,6 +852,53 @@ int MTGCardInstance::countDuplicateCardNames()
         }
     }
     return count;
+}
+
+int MTGCardInstance::countDuplicateCardTypes()
+{
+    int count = 0;
+
+    if(observer)
+    {
+        int nb_cards = controller()->game->battlefield->nb_cards;
+        for(int x = 0; x < nb_cards; x++)
+        {
+            if(controller()->game->battlefield->cards[x] != this && controller()->game->battlefield->cards[x]->types == this->types)
+                count+=1;
+        }
+    }
+    return count;
+}
+
+//check can produce mana
+int MTGCardInstance::canproduceMana(int color)
+{
+    int count = 0;
+
+    //start
+    if(hasSubtype("forest") && color == 1)
+        count++;
+    if(hasSubtype("island") && color == 2)
+        count++;
+    if(hasSubtype("mountain") && color == 3)
+        count++;
+    if(hasSubtype("swamp") && color == 4)
+        count++;
+    if(hasSubtype("plains") && color == 5)
+        count++;
+    if(cardsAbilities.size())
+    {
+        for(unsigned int j = 0; j < cardsAbilities.size(); j++)
+        {
+            if(dynamic_cast<AManaProducer*> (cardsAbilities[j]) && dynamic_cast<AManaProducer*> (cardsAbilities[j])->output->hasColor(color))
+                count++;
+        }
+    }
+
+    if(count)
+        return 1;
+
+    return 0;
 }
 
 //check stack

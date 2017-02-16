@@ -9,7 +9,7 @@ hand:shock
 [DO]
 shock
 welkin hawk
-choice 1
+choice 0
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

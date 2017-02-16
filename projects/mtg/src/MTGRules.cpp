@@ -3228,14 +3228,243 @@ MTGTokensCleanup * MTGTokensCleanup::clone() const
     return NEW MTGTokensCleanup(*this);
 }
 
-/* Legend Rule */
-MTGLegendRule::MTGLegendRule(GameObserver* observer, int _id) :
-ListMaintainerAbility(observer, _id)
+//new legend rule
+MTGNewLegend::MTGNewLegend(GameObserver* observer, int _id) :
+PermanentAbility(observer, _id)
 {
     tcL = NULL;
     Legendrule = NULL;
     LegendruleAbility = NULL;
     LegendruleGeneric = NULL;
+}
+
+int MTGNewLegend::receiveEvent(WEvent * e)
+{
+    if(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())
+            return 0;
+    if (WEventZoneChange* ev1 = dynamic_cast<WEventZoneChange*>(e))
+    {
+        if (ev1->to == game->players[0]->game->inPlay || ev1->to == game->players[1]->game->inPlay)
+        {
+            MTGCardInstance * card = ev1->card;
+             if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
+            {
+                CheckLegend(card);
+                return 1;
+            }
+        }
+    }
+    else if(WEventCardControllerChange* ev2 = dynamic_cast<WEventCardControllerChange*>(e))
+    {
+        MTGCardInstance * card = ev2->card;
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
+        {
+            CheckLegend(card);
+            return 1;
+        }
+    }
+    else if(WEventCardTransforms* ev3 =  dynamic_cast<WEventCardTransforms*>(e))
+    {
+        MTGCardInstance * card = ev3->card;
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
+        {
+            CheckLegend(card);
+            return 1;
+        }
+    }
+    else if(WEventCardCopiedACard* ev4 =  dynamic_cast<WEventCardCopiedACard*>(e))
+    {
+        MTGCardInstance * card = ev4->card;
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
+        {
+            CheckLegend(card);
+            return 1;
+        }
+    }
+    else if(WEventCardFaceUp* ev5 =  dynamic_cast<WEventCardFaceUp*>(e))
+    {
+        MTGCardInstance * card = ev5->card;
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
+        {
+            CheckLegend(card);
+            return 1;
+        }
+    }
+    else if(WEventCardPhasesIn* ev6 =  dynamic_cast<WEventCardPhasesIn*>(e))
+    {
+        MTGCardInstance * card = ev6->card;
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
+        {
+            CheckLegend(card);
+            return 1;
+        }
+    }
+    return 0;
+}
+int MTGNewLegend::CheckLegend(MTGCardInstance * card)
+{
+    if(!card)
+        return 0;
+    if(card->isPhased)
+        return 0;
+    if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
+        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
+            return 0;
+    if(card->countDuplicateCardNames() <= 1)
+        return 0;
+
+    MoveLegend(card);
+    return 1;
+}
+void MTGNewLegend::MoveLegend(MTGCardInstance * card)
+{
+    game->LPWeffect = true;
+    vector<MTGAbility*>selection;
+    MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
+    TargetChooserFactory tfL(game);
+    tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",myClone);
+    tcL->targetter = NULL;
+    tcL->maxtargets = 1;
+    Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
+    Legendrule->oneShot = true;
+    Legendrule->canBeInterrupted = false;
+    LegendruleAbility = NEW GenericTargetAbility(game, "","",game->mLayers->actionLayer()->getMaxId(), myClone,tcL, Legendrule->clone());
+    SAFE_DELETE(Legendrule);
+    LegendruleAbility->oneShot = true;
+    LegendruleAbility->canBeInterrupted = false;
+    LegendruleGeneric = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), myClone,NULL,LegendruleAbility->clone());
+    SAFE_DELETE(LegendruleAbility);
+    LegendruleGeneric->oneShot = true;
+    selection.push_back(LegendruleGeneric->clone());
+    SAFE_DELETE(LegendruleGeneric);
+    MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), NULL, myClone,true,selection,card->controller(),"Legendary Rule");
+    menuChoice->addToGame();
+    return;
+}
+MTGNewLegend * MTGNewLegend::clone() const
+{
+    return NEW MTGNewLegend(*this);
+}
+//new pw rule
+MTGNewPlaneswalker::MTGNewPlaneswalker(GameObserver* observer, int _id) :
+PermanentAbility(observer, _id)
+{
+    tcP = NULL;
+    PWrule = NULL;
+    PWruleAbility = NULL;
+    PWruleGeneric = NULL;
+}
+
+int MTGNewPlaneswalker::receiveEvent(WEvent * e)
+{
+    if(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())
+            return 0;
+    if (WEventZoneChange* ev1 = dynamic_cast<WEventZoneChange*>(e))
+    {
+        if (ev1->to == game->players[0]->game->inPlay || ev1->to == game->players[1]->game->inPlay)
+        {
+            MTGCardInstance * card = ev1->card;
+            if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+            {
+                CheckPW(card);
+                return 1;
+            }
+        }
+    }
+    else if(WEventCardControllerChange* ev2 = dynamic_cast<WEventCardControllerChange*>(e))
+    {
+        MTGCardInstance * card = ev2->card;
+        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        {
+            CheckPW(card);
+            return 1;
+        }
+    }
+    else if(WEventCardTransforms* ev3 =  dynamic_cast<WEventCardTransforms*>(e))
+    {
+        MTGCardInstance * card = ev3->card;
+        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        {
+            CheckPW(card);
+            return 1;
+        }
+    }
+    else if(WEventCardCopiedACard* ev4 =  dynamic_cast<WEventCardCopiedACard*>(e))
+    {
+        MTGCardInstance * card = ev4->card;
+        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        {
+            CheckPW(card);
+            return 1;
+        }
+    }
+    else if(WEventCardFaceUp* ev5 =  dynamic_cast<WEventCardFaceUp*>(e))
+    {
+        MTGCardInstance * card = ev5->card;
+        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        {
+            CheckPW(card);
+            return 1;
+        }
+    }
+    else if(WEventCardPhasesIn* ev6 =  dynamic_cast<WEventCardPhasesIn*>(e))
+    {
+        MTGCardInstance * card = ev6->card;
+        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        {
+            CheckPW(card);
+            return 1;
+        }
+    }
+    return 0;
+}
+int MTGNewPlaneswalker::CheckPW(MTGCardInstance * card)
+{
+    if(!card)
+        return 0;
+    if(card->isPhased)
+        return 0;
+    if(card->countDuplicateCardTypes() < 1)
+        return 0;
+
+    MovePW(card);
+    return 1;
+}
+void MTGNewPlaneswalker::MovePW(MTGCardInstance * card)
+{
+    game->LPWeffect = true;
+    vector<MTGAbility*>selection;
+    MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
+    TargetChooserFactory tfL(game);
+    tcP = tfL.createTargetChooser("planeswalker[share!types!]|mybattlefield",myClone);
+    tcP->targetter = NULL;
+    tcP->maxtargets = 1;
+    PWrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
+    PWrule->oneShot = true;
+    PWrule->canBeInterrupted = false;
+    PWruleAbility = NEW GenericTargetAbility(game, "","",game->mLayers->actionLayer()->getMaxId(), myClone,tcP, PWrule->clone());
+    SAFE_DELETE(PWrule);
+    PWruleAbility->oneShot = true;
+    PWruleAbility->canBeInterrupted = false;
+    PWruleGeneric = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), myClone,NULL,PWruleAbility->clone());
+    SAFE_DELETE(PWruleAbility);
+    PWruleGeneric->oneShot = true;
+    selection.push_back(PWruleGeneric->clone());
+    SAFE_DELETE(PWruleGeneric);
+    MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), NULL, myClone,true,selection,card->controller(),"Planeswalker Uniqueness Rule");
+    menuChoice->addToGame();
+    return;
+}
+MTGNewPlaneswalker * MTGNewPlaneswalker::clone() const
+{
+    return NEW MTGNewPlaneswalker(*this);
+}
+////end new////
+///old below///
+/* Legend Rule */
+MTGLegendRule::MTGLegendRule(GameObserver* observer, int _id) :
+ListMaintainerAbility(observer, _id)
+{
 }
 ;
 
@@ -3257,35 +3486,36 @@ int MTGLegendRule::added(MTGCardInstance * card)
 {
     map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
-
+    vector<MTGCardInstance*>oldCards;
     for (it = cards.begin(); it != cards.end(); it++)
     {
         MTGCardInstance * comparison = (*it).first;
         if (comparison != card && comparison->controller() == card->controller() && !(comparison->getName().compare(card->getName())))
-            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())) 
+            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()))
+            {
+                oldCards.push_back(comparison);
                 destroy = 1;
+                game->LPWeffect = true;
+            }
     }
     if(destroy)
     {
         vector<MTGAbility*>selection;
-        MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
-        TargetChooserFactory tfL(game);
-        tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",myClone);
-        tcL->targetter = NULL;
-        tcL->maxtargets = 1;
-        Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
-        Legendrule->oneShot = true;
-        Legendrule->canBeInterrupted = false;
-        LegendruleAbility = NEW GenericTargetAbility(game, "","",game->mLayers->actionLayer()->getMaxId(), myClone,tcL, Legendrule->clone());
-        SAFE_DELETE(Legendrule);
-        LegendruleAbility->oneShot = true;
-        LegendruleAbility->canBeInterrupted = false;
-        LegendruleGeneric = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), myClone,NULL,LegendruleAbility->clone());
-        SAFE_DELETE(LegendruleAbility);
-        LegendruleGeneric->oneShot = true;
-        selection.push_back(LegendruleGeneric->clone());
-        SAFE_DELETE(LegendruleGeneric);
-        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), NULL, myClone,true,selection,card->controller(),"Legendary Rule");
+        MultiAbility * multi = NEW MultiAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        for(unsigned int i = 0;i < oldCards.size();i++)
+        {
+            AAMover *a = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
+            a->oneShot = true;
+            multi->Add(a);
+        }
+        multi->oneShot = 1;
+        MTGAbility * a1 = multi;
+        selection.push_back(a1);
+        AAMover *b = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, card,"ownergraveyard","Keep Old");
+        b->oneShot = true;
+        MTGAbility * b1 = b;
+        selection.push_back(b1);
+        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
         menuChoice->addToGame();
     }
     return 1;
@@ -3314,10 +3544,6 @@ MTGLegendRule * MTGLegendRule::clone() const
 MTGPlaneWalkerRule::MTGPlaneWalkerRule(GameObserver* observer, int _id) :
 ListMaintainerAbility(observer, _id)
 {
-    tcP = NULL;
-    PWrule = NULL;
-    PWruleAbility = NULL;
-    PWruleGeneric = NULL;
 }
 ;
 
@@ -3341,30 +3567,32 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
     {
         MTGCardInstance * comparison = (*it).first;
         if (comparison != card && comparison->types == card->types && comparison->controller() == card->controller())
-            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())) 
+            if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()))
+            {
+                oldCards.push_back(comparison);
                 destroy = 1;
+                game->LPWeffect = true;
+            }
     }
     if (destroy)
     {
         vector<MTGAbility*>selection;
-        MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
-        TargetChooserFactory tfL(game);
-        tcP = tfL.createTargetChooser("planeswalker[share!types!]|mybattlefield",myClone);
-        tcP->targetter = NULL;
-        tcP->maxtargets = 1;
-        PWrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
-        PWrule->oneShot = true;
-        PWrule->canBeInterrupted = false;
-        PWruleAbility = NEW GenericTargetAbility(game, "","",game->mLayers->actionLayer()->getMaxId(), myClone,tcP, PWrule->clone());
-        SAFE_DELETE(PWrule);
-        PWruleAbility->oneShot = true;
-        PWruleAbility->canBeInterrupted = false;
-        PWruleGeneric = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), myClone,NULL,PWruleAbility->clone());
-        SAFE_DELETE(PWruleAbility);
-        PWruleGeneric->oneShot = true;
-        selection.push_back(PWruleGeneric->clone());
-        SAFE_DELETE(PWruleGeneric);
-        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), NULL, myClone,true,selection,card->controller(),"Planeswalker Uniqueness Rule");
+
+        MultiAbility * multi = NEW MultiAbility(game,game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        for(unsigned int i = 0;i < oldCards.size();i++)
+        {
+            AAMover *a = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
+            a->oneShot = true;
+            multi->Add(a);
+        }
+        multi->oneShot = 1;
+        MTGAbility * a1 = multi;
+        selection.push_back(a1);
+        AAMover *b = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, card,"ownergraveyard","Keep Old");
+        b->oneShot = true;
+        MTGAbility * b1 = b;
+        selection.push_back(b1);
+        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Planeswalker Rule");
         menuChoice->addToGame();
     }
     return 1;

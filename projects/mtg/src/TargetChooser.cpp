@@ -591,6 +591,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->CDcanProduceC = 1;
                     }
+                    cd->mode = CardDescriptor::CD_OR;
                 }
                 else if (attribute.find("manag") != string::npos)
                 {
@@ -602,6 +603,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->CDcanProduceG = 1;
                     }
+                    cd->mode = CardDescriptor::CD_OR;
                 }
                 else if (attribute.find("manau") != string::npos)
                 {
@@ -613,6 +615,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->CDcanProduceU = 1;
                     }
+                    cd->mode = CardDescriptor::CD_OR;
                 }
                 else if (attribute.find("manar") != string::npos)
                 {
@@ -624,6 +627,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->CDcanProduceR = 1;
                     }
+                    cd->mode = CardDescriptor::CD_OR;
                 }
                 else if (attribute.find("manab") != string::npos)
                 {
@@ -635,6 +639,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->CDcanProduceB = 1;
                     }
+                    cd->mode = CardDescriptor::CD_OR;
                 }
                 else if (attribute.find("manaw") != string::npos)
                 {
@@ -646,6 +651,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->CDcanProduceW = 1;
                     }
+                    cd->mode = CardDescriptor::CD_OR;
                 }
                 else if (attribute.find("multicolor") != string::npos)
                 {
@@ -674,6 +680,12 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 {
                     cd->setToughness(comparisonCriterion);
                     cd->toughnessComparisonMode = comparisonMode;
+                    //zpos restrictions
+                }
+                else if (attribute.find("zpos") != string::npos)
+                {
+                    cd->zposition = comparisonCriterion;
+                    cd->zposComparisonMode = comparisonMode;
                     //Manacost restrictions
                 }
                 else if (attribute.find("manacost") != string::npos)

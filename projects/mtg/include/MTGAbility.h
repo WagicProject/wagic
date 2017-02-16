@@ -221,6 +221,7 @@ public:
         BLOCK_COST = 37,
         GRANTEDFLASHBACK_COST = 38,
         FORCED_TOKEN_CREATOR = 39,
+        HIDDENVIEW = 40,
     };
 };
 

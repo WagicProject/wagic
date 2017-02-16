@@ -39,6 +39,8 @@ class CardDescriptor: public MTGCardInstance
   int manacostComparisonMode;
   int counterComparisonMode;
   int convertedManacost; // might fit better into MTGCardInstance?
+  int zposComparisonMode;
+  int zposition;
   int anyCounter;
   int init();
   CardDescriptor();
