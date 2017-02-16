@@ -421,7 +421,36 @@ public:
     int receiveEvent(WEvent * event);
     virtual MTGTokensCleanup * clone() const;
 };
-
+//New Legend Rule
+class MTGNewLegend: public PermanentAbility
+{
+public:
+    TargetChooser * tcL;
+    MTGAbility * Legendrule;
+    MTGAbility * LegendruleAbility;
+    MTGAbility * LegendruleGeneric;
+    //vector<MTGCardInstance *> list;
+    MTGNewLegend(GameObserver* observer, int _id);
+    int CheckLegend(MTGCardInstance * card);
+    void MoveLegend(MTGCardInstance * card);
+    int receiveEvent(WEvent * event);
+    virtual MTGNewLegend * clone() const;
+};
+//New Planeswalker Rule
+class MTGNewPlaneswalker: public PermanentAbility
+{
+public:
+    TargetChooser * tcP;
+    MTGAbility * PWrule;
+    MTGAbility * PWruleAbility;
+    MTGAbility * PWruleGeneric;
+    //vector<MTGCardInstance *> list;
+    MTGNewPlaneswalker(GameObserver* observer, int _id);
+    int CheckPW(MTGCardInstance * card);
+    void MovePW(MTGCardInstance * card);
+    int receiveEvent(WEvent * event);
+    virtual MTGNewPlaneswalker * clone() const;
+};
 /*
  * 704.5k If a player controls two or more legendary permanents with the same name, 
  * that player chooses one of them, and the rest are put into their owners’ graveyards. 
@@ -430,10 +459,6 @@ public:
 class MTGLegendRule: public ListMaintainerAbility
 {
 public:
-    TargetChooser * tcL;
-    MTGAbility * Legendrule;
-    MTGAbility * LegendruleAbility;
-    MTGAbility * LegendruleGeneric;
     MTGLegendRule(GameObserver* observer, int _id);
     int canBeInList(MTGCardInstance * card);
     int added(MTGCardInstance * card);
@@ -445,10 +470,6 @@ public:
 class MTGPlaneWalkerRule: public ListMaintainerAbility
 {
 public:
-    TargetChooser * tcP;
-    MTGAbility * PWrule;
-    MTGAbility * PWruleAbility;
-    MTGAbility * PWruleGeneric;
     MTGPlaneWalkerRule(GameObserver* observer, int _id);
     int canBeInList(MTGCardInstance * card);
     int added(MTGCardInstance * card);

@@ -1036,6 +1036,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser *tc = parseSimpleTC(s,"transformed", card))
         return NEW TrCardTransformed(observer, id, card, tc,once);
 
+    //Card Faces Up
+    if (TargetChooser *tc = parseSimpleTC(s,"facedup", card))
+        return NEW TrCardFaceUp(observer, id, card, tc,once);
+
+    //Card Phases In
+    if (TargetChooser *tc = parseSimpleTC(s,"phasedin", card))
+        return NEW TrCardPhasesIn(observer, id, card, tc,once);
+
 //CombatTrigger
     //Card card attacked and is blocked
     found = s.find("combat(");
@@ -1478,14 +1486,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("legendrule");
     if(found != string::npos)
     {
-        observer->addObserver(NEW MTGLegendRule(observer, -1));
+        //observer->addObserver(NEW MTGLegendRule(observer, -1));
+        observer->addObserver(NEW MTGNewLegend(observer, -1));
         return NULL;
     }
     //this handles the planeswalker named legend rule which is dramatically different from above.
     found = s.find("planeswalkerrule");
     if(found != string::npos)
     {
-        observer->addObserver(NEW MTGPlaneWalkerRule(observer, -1));
+        //observer->addObserver(NEW MTGPlaneWalkerRule(observer, -1));
+        observer->addObserver(NEW MTGNewPlaneswalker(observer, -1));
         return NULL;
     }
     found = s.find("planeswalkerdamage");

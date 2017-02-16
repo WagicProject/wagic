@@ -305,9 +305,27 @@ struct WEventCardControllerChange : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//event when card with phases in
+struct WEventCardPhasesIn : public WEventCardUpdate {
+  WEventCardPhasesIn(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card with morph faces up
+struct WEventCardFaceUp : public WEventCardUpdate {
+  WEventCardFaceUp(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 //event when card transforms
 struct WEventCardTransforms : public WEventCardUpdate {
   WEventCardTransforms(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card copies a card
+struct WEventCardCopiedACard : public WEventCardUpdate {
+  WEventCardCopiedACard(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);
 };
 

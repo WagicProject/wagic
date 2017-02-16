@@ -169,6 +169,11 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     backupTargets = this->backupTargets;
     storedCard = oldStored;
     miracle = false;
+
+    
+    //add event here copied a card...
+    WEvent * e = NEW WEventCardCopiedACard(this);
+    getObserver()->receiveEvent(e);
 }
 
 MTGCardInstance::~MTGCardInstance()
@@ -843,6 +848,22 @@ int MTGCardInstance::countDuplicateCardNames()
         for(int x = 0; x < nb_cards; x++)
         {
             if(controller()->game->battlefield->cards[x]->name == this->name)
+                count+=1;
+        }
+    }
+    return count;
+}
+
+int MTGCardInstance::countDuplicateCardTypes()
+{
+    int count = 0;
+
+    if(observer)
+    {
+        int nb_cards = controller()->game->battlefield->nb_cards;
+        for(int x = 0; x < nb_cards; x++)
+        {
+            if(controller()->game->battlefield->cards[x] != this && controller()->game->battlefield->cards[x]->types == this->types)
                 count+=1;
         }
     }

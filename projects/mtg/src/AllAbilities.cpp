@@ -1674,6 +1674,7 @@ int AACopier::resolve()
                 }
             }
         }
+        currentAbilities.clear();
         return 1;
     }
     return 0;
@@ -3284,6 +3285,8 @@ int AAMorph::resolve()
                 }
             }
         }
+        WEvent * e = NEW WEventCardFaceUp(_target);
+        game->receiveEvent(e);
         currentAbilities.clear();
         testDestroy();
     }

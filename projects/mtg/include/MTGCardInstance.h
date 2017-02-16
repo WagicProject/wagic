@@ -253,6 +253,7 @@ public:
     int LKIpower;
     int LKItoughness;
     int countDuplicateCardNames();
+    int countDuplicateCardTypes();
     void cdaPT(int p = 0, int t = 0);
     bool isCDA;
     void switchPT(bool apply = false);

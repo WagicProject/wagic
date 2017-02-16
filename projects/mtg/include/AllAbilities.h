@@ -1332,6 +1332,50 @@ public:
     }
 };
 
+class TrCardPhasesIn: public Trigger
+{
+public:
+    TrCardPhasesIn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+        Trigger(observer, id, source, once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardPhasesIn * e = dynamic_cast<WEventCardPhasesIn *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrCardPhasesIn * clone() const
+    {
+        return NEW TrCardPhasesIn(*this);
+    }
+};
+
+class TrCardFaceUp: public Trigger
+{
+public:
+    TrCardFaceUp(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+        Trigger(observer, id, source, once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardFaceUp * e = dynamic_cast<WEventCardFaceUp *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrCardFaceUp * clone() const
+    {
+        return NEW TrCardFaceUp(*this);
+    }
+};
+
 class TrCardTransformed: public Trigger
 {
 public:

@@ -859,6 +859,9 @@ void GameObserver::gameStateBasedEffects()
                 card->phasedTurn = turn;
                 if(card->view)
                     card->view->alpha = 255;
+                //add event phases in here
+                WEvent * evphasein = NEW WEventCardPhasesIn(card);
+                receiveEvent(evphasein);
             }
             if (card->target && isInPlay(card->target) && (card->hasSubtype(Subtypes::TYPE_EQUIPMENT) || card->hasSubtype(Subtypes::TYPE_AURA)))
             {
