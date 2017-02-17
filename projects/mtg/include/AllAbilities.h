@@ -1332,6 +1332,28 @@ public:
     }
 };
 
+class TrCardPhasesOut: public Trigger
+{
+public:
+    TrCardPhasesOut(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+        Trigger(observer, id, source, once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardPhasesOut * e = dynamic_cast<WEventCardPhasesOut *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrCardPhasesOut * clone() const
+    {
+        return NEW TrCardPhasesOut(*this);
+    }
+};
+
 class TrCardPhasesIn: public Trigger
 {
 public:

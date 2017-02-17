@@ -1044,6 +1044,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser *tc = parseSimpleTC(s,"phasedin", card))
         return NEW TrCardPhasesIn(observer, id, card, tc,once);
 
+    //Card Phases Out
+    if (TargetChooser *tc = parseSimpleTC(s,"phasedout", card))
+        return NEW TrCardPhasesOut(observer, id, card, tc,once);
+
 //CombatTrigger
     //Card card attacked and is blocked
     found = s.find("combat(");
