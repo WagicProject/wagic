@@ -183,6 +183,15 @@ public:
   virtual int doPay();
 };
 
+//Sacrifice all Lands cost 
+class SacLandsCost : public ExtraCost
+{
+public:
+    SacLandsCost(TargetChooser *_tc = NULL);
+    virtual int doPay();
+    virtual SacLandsCost * clone() const;
+};
+
 //unattach cost
 class UnattachCost : public ExtraCost
 {

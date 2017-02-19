@@ -641,6 +641,43 @@ int MillExileCost::doPay()
     }
     return 0;
 }
+
+//sac all lands cost
+SacLandsCost * SacLandsCost::clone() const
+{
+    SacLandsCost * ec = NEW SacLandsCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+SacLandsCost::SacLandsCost(TargetChooser *_tc)
+    : ExtraCost("Sacrifice All Lands", _tc)
+{
+}
+
+int SacLandsCost::doPay()
+{
+    MTGGameZone * zone = source->controller()->game->inPlay;
+    for (int j = zone->nb_cards - 1; j >= 0; j--)
+    {
+        MTGCardInstance * card = zone->cards[j];
+        if(card->isLand() && !card->has(Constants::CANTBESACRIFIED))
+        {        
+            if (card)
+            {
+                MTGCardInstance * beforeCard = card;
+                source->storedCard = card->createSnapShot();
+                card->controller()->game->putInGraveyard(card);
+                WEvent * e = NEW WEventCardSacrifice(beforeCard,card);
+                GameObserver * game = card->owner->getObserver();
+                game->receiveEvent(e);
+            }
+        }
+    }
+    return 1;
+}
+
 //unattach cost
 
 UnattachCost * UnattachCost::clone() const
