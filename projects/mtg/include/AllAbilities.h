@@ -2889,6 +2889,11 @@ public:
     {
         if(!nonstatic)
             return;
+        if(game)
+        {//bypass
+            if(game->OpenedDisplay && (game->players[0]->game->reveal->cards.size()||game->players[1]->game->reveal->cards.size()))
+                return;
+        }
         if(source->isToken && !source->isInPlay(game) && cda)
         {
             this->forceDestroy = 1;
