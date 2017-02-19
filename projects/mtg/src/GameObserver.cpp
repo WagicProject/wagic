@@ -693,7 +693,7 @@ void GameObserver::gameStateBasedEffects()
     ////////////////////////////////////
     //i think this must be limited to reveal display only but we can make an auto close like on android after a targetchooser...
     //lets see so far... adding this fixes some cards that rely on card count in hand or library or any zone the needs constant card count...
-    if (OpenedDisplay)
+    if (OpenedDisplay && (players[0]->game->reveal->cards.size() || players[1]->game->reveal->cards.size()))
         return;
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
         return;
