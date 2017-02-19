@@ -875,22 +875,13 @@ int MTGCardInstance::canproduceMana(int color)
 {
     int count = 0;
 
-    //start
-    if(hasSubtype("forest") && color == 1)
-        count++;
-    if(hasSubtype("island") && color == 2)
-        count++;
-    if(hasSubtype("mountain") && color == 3)
-        count++;
-    if(hasSubtype("swamp") && color == 4)
-        count++;
-    if(hasSubtype("plains") && color == 5)
-        count++;
     if(cardsAbilities.size())
     {
         for(unsigned int j = 0; j < cardsAbilities.size(); j++)
         {
-            if(dynamic_cast<AManaProducer*> (cardsAbilities[j]) && dynamic_cast<AManaProducer*> (cardsAbilities[j])->output->hasColor(color))
+            AbilityFactory af(observer);
+            MTGAbility * toCheck = af.getCoreAbility(cardsAbilities[j]);
+            if(dynamic_cast<AManaProducer*> (toCheck) && dynamic_cast<AManaProducer*> (toCheck)->output->hasColor(color))
                 count++;
         }
     }
