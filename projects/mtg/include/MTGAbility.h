@@ -538,6 +538,7 @@ protected:
     Player * controller;
 
 public:
+    MTGAbility * andAbility;
     string menutext;
     ManaCost * output;
     int tap;

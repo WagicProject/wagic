@@ -111,17 +111,17 @@ void CardGui::Update(float dt)
     PlayGuiObject::Update(dt);
 }
 
-void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder)
+void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder, bool gdv)
 {
     DrawCard(card, inPosition, inMode, thumb, noborder);
 }
 
-void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder)
+void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder, bool gdv)
 {
     switch (inMode)
     {
     case DrawMode::kNormal:
-        RenderBig(inCard, inPosition, thumb, noborder);
+        RenderBig(inCard, inPosition, thumb, noborder, gdv);
         break;
     case DrawMode::kText:
         AlternateRender(inCard, inPosition);
@@ -596,19 +596,19 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     items.clear();
     if (q.get() && q->mTex)
     {
-        //test
-        //draw black border ingame only
         if(thiscard && thiscard->getObserver())
         {
             zpos = thiscard->zpos;
-            renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,5,5,5));
-            renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
         }
 
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
 
         float scale = pos.actZ * 250 / q->mHeight;
         q->SetColor(ARGB((int)pos.actA,255,255,255));
+        //new border
+        renderer->FillRoundRect(pos.actX - (scale * q->mWidth / 2)-5.8f,pos.actY - (scale * q->mHeight / 2)-5.8f, (scale * q->mWidth)-0.02f, (scale * q->mHeight)-0.02f, 5.8f,ARGB(255,5,5,5));
+        renderer->DrawRoundRect(pos.actX - (scale * q->mWidth / 2)-5.8f,pos.actY - (scale * q->mHeight / 2)-5.8f, (scale * q->mWidth)-0.02f, (scale * q->mHeight)-0.02f, 5.8f,ARGB(50,240,240,240));
+        //end
         renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
     }
 
@@ -1170,7 +1170,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
-void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder)
+void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder, bool gdv)
 {
     JRenderer * renderer = JRenderer::GetInstance();
     //GameObserver * game = GameObserver::GetInstance();
@@ -1217,7 +1217,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         float scale = pos.actZ * 250.f / quad->mHeight;
         //init setname
         string cardsetname = setlist[card->setId].c_str();
-        if(!noborder)
+        /*if(!noborder)
         {
             if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
             {//Draw white border
@@ -1238,7 +1238,19 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
                     renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(50,240,240,240));
                 }
             }
+        }*///disabled this for universal border across game, deck editor, etc...
+        //universal border
+        if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+        {//white border
+            renderer->FillRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(255,248,248,255));
+            renderer->DrawRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(150,20,20,20));
         }
+        else
+        {//black border
+            renderer->FillRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(255,5,5,5));
+            renderer->DrawRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(50,240,240,240));
+        }
+        //end new border
         //draw inner border
         if(cardsetname == "LEA"||cardsetname == "LEB")
         {
@@ -1250,9 +1262,10 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
                 renderer->RenderQuad(alphabeta.get(), x, pos.actY+0.2f, pos.actT, myscale, myscale);
             }
         }
-        float modxscale = (cardsetname =="UNH")?0.02f:0.0f;
-        float modyscale = (cardsetname =="UNH")?0.015f:0.0f;
-        renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale+modxscale, scale+modyscale);
+        float modxscale = (cardsetname =="UNH")?0.015f:0.0f;
+        float modyscale = (cardsetname =="UNH")?0.010f:0.0f;
+        float gdvadd = gdv?0.008f:0.0f;//scale add grid deck view
+        renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, (scale-0.005f)+modxscale+gdvadd, (scale-0.005f)+modyscale+gdvadd);
 
         RenderCountersBig(card, pos);
         return;

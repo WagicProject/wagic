@@ -146,7 +146,8 @@ void GuiPhaseBar::Render()
     //running this string through translate returns gibberish even though we defined the variables in the lang.txt
     //the conversion from phase bar phases to mtg phases is x%kPhases + 1
     //todo: just to this when the displayedPhaseId updates
-    string phaseNameToTranslate = observer->phaseRing->phaseName(displayedPhaseId%kPhases + 1);
+    //string phaseNameToTranslate = observer->phaseRing->phaseName(displayedPhaseId%kPhases + 1);
+    string phaseNameToTranslate = observer->phaseRing->phaseName(observer->phaseRing->getCurrentPhase()->id);
     phaseNameToTranslate = _(phaseNameToTranslate);
     sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(),phaseNameToTranslate.c_str());
 #if !defined (PSP)

@@ -1044,6 +1044,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser *tc = parseSimpleTC(s,"phasedin", card))
         return NEW TrCardPhasesIn(observer, id, card, tc,once);
 
+    //Card Phases Out
+    if (TargetChooser *tc = parseSimpleTC(s,"phasedout", card))
+        return NEW TrCardPhasesOut(observer, id, card, tc,once);
+
 //CombatTrigger
     //Card card attacked and is blocked
     found = s.find("combat(");
@@ -3828,6 +3832,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         if(newName.size())
             ((AManaProducer*)a)->menutext = newName;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AManaProducer*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 
@@ -6469,6 +6479,7 @@ AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * c
     Producing = producing;
     menutext = "";
     DoesntEmpty = doesntEmpty;
+    andAbility = NULL;
 }
 
 int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
@@ -6508,6 +6519,20 @@ int AManaProducer::resolve()
     player->getManaPool()->add(output, source);
     if(DoesntEmpty)
         player->doesntEmpty->add(output);
+    if(andAbility)
+    {
+        MTGAbility * andAbilityClone = andAbility->clone();
+        andAbilityClone->target = source;
+        if(andAbility->oneShot)
+        {
+            andAbilityClone->resolve();
+            SAFE_DELETE(andAbilityClone);
+        }
+        else
+        {
+            andAbilityClone->addToGame();
+        }
+    }
     return 1;
 }
 

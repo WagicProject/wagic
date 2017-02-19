@@ -691,7 +691,10 @@ void GameObserver::gameStateBasedEffects()
         players[d]->DeadLifeState();
     }
     ////////////////////////////////////
-
+    //i think this must be limited to reveal display only but we can make an auto close like on android after a targetchooser...
+    //lets see so far... adding this fixes some cards that rely on card count in hand or library or any zone the needs constant card count...
+    if (OpenedDisplay && (players[0]->game->reveal->cards.size() || players[1]->game->reveal->cards.size()))
+        return;
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
         return;
     if (mLayers->actionLayer()->menuObject) 
@@ -852,6 +855,9 @@ void GameObserver::gameStateBasedEffects()
                 if(card->view)
                     card->view->alpha = 50;
                 card->initAttackersDefensers();
+                //add event phases out here
+                WEvent * evphaseout = NEW WEventCardPhasesOut(card);
+                receiveEvent(evphaseout);
             }
             else if((card->has(Constants::PHASING) || card->isPhased)&& mCurrentGamePhase == MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)
             {
@@ -1040,13 +1046,13 @@ void GameObserver::gameStateBasedEffects()
     //Auto skip Phases
     int skipLevel = (currentPlayer->playMode == Player::MODE_TEST_SUITE || mLoading) ? Constants::ASKIP_NONE
         : options[Options::ASPHASES].number;
-
+    bool noattackers = currentPlayer->noPossibleAttackers();
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
         if ((opponent()->isAI() && !(isInterrupting)) && ((mCurrentGamePhase == MTG_PHASE_UNTAP)
             || (mCurrentGamePhase == MTG_PHASE_DRAW) || (mCurrentGamePhase == MTG_PHASE_COMBATBEGIN)
-            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (currentPlayer->noPossibleAttackers()))
-            || mCurrentGamePhase == MTG_PHASE_COMBATEND || mCurrentGamePhase == MTG_PHASE_ENDOFTURN
+            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (noattackers))
+            || (mCurrentGamePhase == MTG_PHASE_COMBATEND) || (mCurrentGamePhase == MTG_PHASE_ENDOFTURN)
             || ((mCurrentGamePhase == MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
             userRequestNextGamePhase();
     }

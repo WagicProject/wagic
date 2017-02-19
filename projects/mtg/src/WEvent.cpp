@@ -236,6 +236,11 @@ WEventCardControllerChange::WEventCardControllerChange(MTGCardInstance * card) :
 {
 }
 
+WEventCardPhasesOut::WEventCardPhasesOut(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardPhasesIn::WEventCardPhasesIn(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -422,6 +427,12 @@ Targetable * WEventCardEquipped::getTarget(int target)
 }
 
 Targetable * WEventCardControllerChange::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardPhasesOut::getTarget(int target)
 {
     if (target) return card;
     return NULL;

@@ -305,7 +305,13 @@ struct WEventCardControllerChange : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
-//event when card with phases in
+//event when card phases out
+struct WEventCardPhasesOut : public WEventCardUpdate {
+  WEventCardPhasesOut(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card phases in
 struct WEventCardPhasesIn : public WEventCardUpdate {
   WEventCardPhasesIn(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);

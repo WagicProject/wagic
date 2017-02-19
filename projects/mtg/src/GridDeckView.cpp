@@ -132,9 +132,9 @@ void GridDeckView::Render()
 #endif
             }
 #if !defined (PSP)
-            renderCard(i, 255, false);//for psp, use lowres images if you can.
+            renderCard(i, 255, false, true);//for psp, use lowres images if you can.
 #else
-            renderCard(i, 255, true);
+            renderCard(i, 255, true, true);
 #endif
         }
         else

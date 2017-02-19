@@ -147,6 +147,10 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         { //Send to Graveyard Cost (move from anywhere to Graveyard)
                             manaCost->addExtraCost(NEW ToGraveCost(tc));
                         }
+                        else if (value.find("saclands") != string::npos)
+                        { //Sac all lands
+                            manaCost->addExtraCost(NEW SacLandsCost(tc));
+                        }
                         else
                         { //Sacrifice
                             manaCost->addExtraCost(NEW SacrificeCost(tc));

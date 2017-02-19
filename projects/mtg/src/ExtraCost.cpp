@@ -62,7 +62,7 @@ void ExtraCost::Render()
         WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         mFont->SetColor(ARGB(255,255,255,255));
-        mFont->DrawString(mCostRenderString, 20, 20, JGETEXT_LEFT);
+        mFont->DrawString(mCostRenderString, 40, 20, JGETEXT_LEFT);
     }
 }
 
@@ -95,7 +95,7 @@ ExtraManaCost * ExtraManaCost::clone() const
 }
 
 ExtraManaCost::ExtraManaCost(ManaCost * costToPay)
-    : ExtraCost("",NULL, costToPay)
+    : ExtraCost("\nCost:",NULL, costToPay)
 {
 }
 
@@ -240,7 +240,7 @@ EnergyCost * EnergyCost::clone() const
 }
 
 EnergyCost::EnergyCost(int enc) :
-ExtraCost("Energy Cost"),enc(enc)
+ExtraCost("Energy"),enc(enc)
 {
 }
 
@@ -465,7 +465,7 @@ DiscardCost * DiscardCost::clone() const
 }
 
 DiscardCost::DiscardCost(TargetChooser *_tc) :
-ExtraCost("Choose card to Discard", _tc)
+ExtraCost("Discard", _tc)
 {
 }
 
@@ -529,7 +529,7 @@ ToLibraryCost * ToLibraryCost::clone() const
 }
 
 ToLibraryCost::ToLibraryCost(TargetChooser *_tc)
-    : ExtraCost("Put a card on top of Library", _tc)
+    : ExtraCost("Move to Library", _tc)
 {
 }
 
@@ -558,7 +558,7 @@ ToGraveCost * ToGraveCost::clone() const
 }
 
 ToGraveCost::ToGraveCost(TargetChooser *_tc)
-    : ExtraCost("Move a card to Graveyard", _tc)
+    : ExtraCost("Move to Graveyard", _tc)
 {
 }
 
@@ -641,6 +641,43 @@ int MillExileCost::doPay()
     }
     return 0;
 }
+
+//sac all lands cost
+SacLandsCost * SacLandsCost::clone() const
+{
+    SacLandsCost * ec = NEW SacLandsCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+SacLandsCost::SacLandsCost(TargetChooser *_tc)
+    : ExtraCost("Sacrifice All Lands", _tc)
+{
+}
+
+int SacLandsCost::doPay()
+{
+    MTGGameZone * zone = source->controller()->game->inPlay;
+    for (int j = zone->nb_cards - 1; j >= 0; j--)
+    {
+        MTGCardInstance * card = zone->cards[j];
+        if(card->isLand() && !card->has(Constants::CANTBESACRIFIED))
+        {        
+            if (card)
+            {
+                MTGCardInstance * beforeCard = card;
+                source->storedCard = card->createSnapShot();
+                card->controller()->game->putInGraveyard(card);
+                WEvent * e = NEW WEventCardSacrifice(beforeCard,card);
+                GameObserver * game = card->owner->getObserver();
+                game->receiveEvent(e);
+            }
+        }
+    }
+    return 1;
+}
+
 //unattach cost
 
 UnattachCost * UnattachCost::clone() const
@@ -734,7 +771,7 @@ UnTapCost * UnTapCost::clone() const
 }
 
 UnTapCost::UnTapCost() :
-ExtraCost("UnTap")
+ExtraCost("Untap")
 {
 }
 
@@ -919,7 +956,7 @@ BounceTargetCost * BounceTargetCost::clone() const
 }
 
 BounceTargetCost::BounceTargetCost(TargetChooser *_tc)
-    : ExtraCost("Return Target to Hand", _tc)
+    : ExtraCost("Move to Hand", _tc)
 {
 }
 
@@ -948,7 +985,7 @@ Ninja * Ninja::clone() const
 }
 
 Ninja::Ninja(TargetChooser *_tc) :
-ExtraCost("Select unblocked attacker", _tc)
+ExtraCost("Choose Unblocked Card", _tc)
 {
 }
 
@@ -999,7 +1036,7 @@ Convoke * Convoke::clone() const
 }
 
 Convoke::Convoke(TargetChooser *_tc) :
-    ExtraCost("Select Cards To Tap", _tc)
+    ExtraCost("Choose Cards To Tap", _tc)
 {
 }
 
@@ -1121,7 +1158,7 @@ Delve * Delve::clone() const
 }
 
 Delve::Delve(TargetChooser *_tc) :
-    ExtraCost("Select Cards To Exile", _tc)
+    ExtraCost("Choose Cards To Exile", _tc)
 {
 }
 
@@ -1189,7 +1226,7 @@ Improvise * Improvise::clone() const
 }
 
 Improvise::Improvise(TargetChooser *_tc) :
-    ExtraCost("Select Artifacts To Tap", _tc)
+    ExtraCost("Choose Artifacts to Tap", _tc)
 {
 }
 
@@ -1258,7 +1295,7 @@ Offering * Offering::clone() const
 }
 
 Offering::Offering(TargetChooser *_tc,bool emerge) :
-ExtraCost("Select creature to offer", _tc), emerge(emerge)
+ExtraCost("Choose Creature to Offer", _tc), emerge(emerge)
 {
 }
 
