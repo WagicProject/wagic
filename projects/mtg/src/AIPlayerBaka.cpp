@@ -619,7 +619,7 @@ int OrderedAIAction::getEfficiency()
     }
     else if (GenericRevealAbility * grA = dynamic_cast<GenericRevealAbility *>(a))
     {
-        if(grA->source->getAICustomCode().size())
+        if(grA->source->getAICustomCode().size() && grA->source->alias != 185709)//Sphinx of Jwar Isle so the ai will ignore it
             efficiency = 45 + (owner->getRandomGenerator()->random() % 50);
         else
             efficiency = 0;
