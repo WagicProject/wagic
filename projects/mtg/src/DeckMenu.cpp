@@ -276,11 +276,7 @@ void DeckMenu::Render()
 
     RenderBackground();//background deck menu
     mScroller->Render();
-#else
-    mScroller->Render();
-    RenderBackground();//background deck menu
-#endif
-#if !defined (PSP)
+
     if (menuholder.get() && inDeckMenu)//menuholder
          renderer->RenderQuad(menuholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / menuholder.get()->mWidth, SCREEN_HEIGHT_F / menuholder.get()->mHeight);
 #endif
@@ -373,7 +369,11 @@ void DeckMenu::Render()
             currentMenuItem->RenderWithOffset(-DeckMenuConst::kLineHeight * startId);
         }
     }
-    
+    //psp
+#if defined (PSP)
+    mScroller->Render();
+    RenderBackground();//background deck menu
+#endif
     RenderDeckManaColors();
 
     if (!title.empty())
