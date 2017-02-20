@@ -545,8 +545,19 @@ MTGGameZone::~MTGGameZone()
     for (size_t i = 0; i < cards.size(); i++)
     {
         cards[i]->stillNeeded = false;
-        SAFE_DELETE(cards[i]->previous);
-        SAFE_DELETE( cards[i] );
+        //SAFE_DELETE(cards[i]->previous);
+        //SAFE_DELETE( cards[i] );
+        //cause crashes for generated cards using castcard named card...??? test fix for now
+        if(cards[i]->previous)
+        {
+            cards[i]->previous = NULL;
+            delete cards[i]->previous;
+        }
+        if(cards[i])
+        {
+            cards[i] = NULL;
+            delete cards[i];
+        }
     }
     cards.clear();
     cardsMap.clear();
