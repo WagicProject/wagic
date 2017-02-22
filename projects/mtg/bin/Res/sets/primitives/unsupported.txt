@@ -4718,12 +4718,6 @@ mana={1}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Extraplanar Lens
-text=Imprint — When Extraplanar Lens enters the battlefield, you may exile target land you control. -- Whenever a land with the same name as the exiled card is tapped for mana, its controller adds one mana to his or her mana pool of any type that land produced.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Eye of the Storm
 text=Whenever a player casts an instant or sorcery card, exile it. Then that player copies each instant or sorcery card exiled with Eye of the Storm. For each copy, the player may cast the copy without paying its mana cost.
 mana={5}{U}{U}
@@ -16065,15 +16059,6 @@ type=Planeswalker
 subtype=Teferi
 [/card]
 [card]
-name=Teferi's Imp
-text=Flying -- Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- Whenever Teferi's Imp phases out, discard a card. -- Whenever Teferi's Imp phases in, draw a card.
-mana={2}{U}
-type=Creature
-subtype=Imp
-power=1
-toughness=1
-[/card]
-[card]
 name=Teferi's Response
 text=Counter target spell or ability an opponent controls that targets a land you control. If a permanent's ability is countered this way, destroy that permanent. --  -- Draw two cards.
 mana={1}{U}
@@ -17714,15 +17699,6 @@ name=Warping Wail
 text=({C} represents colorless mana.) -- Choose one — -- • Exile target creature with power or toughness 1 or less. -- • Counter target sorcery spell. -- • Put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {C} to your mana pool."
 mana={1}{C}
 type=Instant
-[/card]
-[card]
-name=Warping Wurm
-text=Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- At the beginning of your upkeep, Warping Wurm phases out unless you pay {2}{G}{U}. -- When Warping Wurm phases in, put a +1/+1 counter on it.
-mana={2}{G}{U}
-type=Creature
-subtype=Wurm
-power=1
-toughness=1
 [/card]
 [card]
 name=Warrior en-Kor

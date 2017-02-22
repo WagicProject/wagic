@@ -264,7 +264,15 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         break;
 
     case 'p':
-        if (key[1] == 'r')
+        if (key == "phasedoutbonus")
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            {
+                primitive->setPhasedOutAbility(val);
+                break;
+            }
+        }
+        else if (key[1] == 'r')
         { // primitive
             if (!card) card = NEW MTGCard();
             map<string, CardPrimitive*>::iterator it = primitives.find(val);

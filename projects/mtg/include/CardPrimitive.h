@@ -77,6 +77,9 @@ public:
     string CrewAbility;
     void setCrewAbility(const string& value);
     const string& getCrewAbility() const;
+    string PhasedOutAbility;
+    void setPhasedOutAbility(const string& value);
+    const string& getPhasedOutAbility() const;
 
     vector<int>types;
     CardPrimitive();

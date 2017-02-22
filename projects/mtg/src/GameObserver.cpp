@@ -856,7 +856,7 @@ void GameObserver::gameStateBasedEffects()
                     card->view->alpha = 50;
                 card->initAttackersDefensers();
                 //add event phases out here
-                WEvent * evphaseout = NEW WEventCardPhasesOut(card);
+                WEvent * evphaseout = NEW WEventCardPhasesOut(card, turn);
                 receiveEvent(evphaseout);
             }
             else if((card->has(Constants::PHASING) || card->isPhased)&& mCurrentGamePhase == MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)

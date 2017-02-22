@@ -152,6 +152,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     doubleFaced = data->doubleFaced;
     AICustomCode = data->AICustomCode;
     CrewAbility = data->CrewAbility;
+    PhasedOutAbility = data->PhasedOutAbility;
     origpower = card->origpower;//for flip
     origtoughness = card->origtoughness;//for flip
     TokenAndAbility = card->TokenAndAbility;//token andAbility
