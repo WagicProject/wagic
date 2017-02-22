@@ -1709,7 +1709,7 @@ int AAPhaseOut::resolve()
             _target->view->alpha = 50;
         _target->initAttackersDefensers();
         //add event phases out here
-        WEvent * e = NEW WEventCardPhasesOut(_target);
+        WEvent * e = NEW WEventCardPhasesOut(_target,game->turn);
         game->receiveEvent(e);
         return 1;
     }

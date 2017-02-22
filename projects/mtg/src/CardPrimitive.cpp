@@ -59,6 +59,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     setdoubleFaced(source->doubleFaced);
     setAICustomCode(source->AICustomCode);
     setCrewAbility(source->CrewAbility);
+    setPhasedOutAbility(source->PhasedOutAbility);
     power = source->power;
     toughness = source->toughness;
     restrictions = source->restrictions ? source->restrictions->clone() : NULL;
@@ -363,6 +364,17 @@ void CardPrimitive::setCrewAbility(const string& value)
 const string& CardPrimitive::getCrewAbility() const
 {
     return CrewAbility;
+}
+
+void CardPrimitive::setPhasedOutAbility(const string& value)
+{
+    PhasedOutAbility = value;
+    std::transform(PhasedOutAbility.begin(), PhasedOutAbility.end(), PhasedOutAbility.begin(), ::tolower);
+}
+
+const string& CardPrimitive::getPhasedOutAbility() const
+{
+    return PhasedOutAbility;
 }
 
 void CardPrimitive::setName(const string& value)
