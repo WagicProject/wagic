@@ -5544,7 +5544,12 @@ MenuAbility::~MenuAbility()
     else
         SAFE_DELETE(ability);
     SAFE_DELETE(toPay);
-    SAFE_DELETE(mClone);
+    //SAFE_DELETE(mClone);//crash fix with generated castcard with pay ability
+    if(mClone)
+    {
+        mClone = NULL;
+        delete mClone;
+    }
     if(optionalCosts.size())
         for(int i = 0;i < int(optionalCosts.size());i++)
         {
