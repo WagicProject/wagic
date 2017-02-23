@@ -567,12 +567,12 @@ int PutInGraveyard::resolve()
     MTGGameZone * zone = card->getCurrentZone();
     if (card->basicAbilities[(int)Constants::EXILEDEATH])
     {
-        card->owner->game->putInZone(card, zone, card->owner->game->exile);
+        card->controller()->game->putInZone(card, zone, card->owner->game->exile);
         return 1;
     }
     if (zone == observer->players[0]->game->inPlay || zone == observer->players[1]->game->inPlay)
     {
-        card->owner->game->putInZone(card, zone, card->owner->game->graveyard);
+        card->controller()->game->putInZone(card, zone, card->owner->game->graveyard);
         return 1;
     }
     return 0;
