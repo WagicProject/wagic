@@ -45,6 +45,8 @@ public:
     // Functions depending on the type of Ability
     int getEfficiency(AADamager * aad);
 
+    int getRevealedEfficiency(MTGAbility * ability);
+
 };
 
 // compares Abilities efficiency

@@ -56,6 +56,7 @@ void GameStateOptions::Start()
 
     optionsList = NEW WGuiList("Game");
     optionsList->Add(NEW WGuiHeader("Interface Options"));
+    optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Border"));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::CLOSEDHAND, "Closed hand", 1, 1, 0)));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::HANDDIRECTION, "Hand direction", 1, 1, 0)));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MANADISPLAY, "Mana display", 3, 1, 0)));
