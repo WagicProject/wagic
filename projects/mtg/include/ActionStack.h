@@ -230,7 +230,7 @@ public:
     Player * askIfWishesToInterrupt;
     int garbageCollect();
     int addAction(Interruptible * interruptible);
-    Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult, int storm);
+    Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult, int storm, bool forcedinterrupt = false);
     int AddNextGamePhase();
     int AddNextCombatStep();
     int addPutInGraveyard(MTGCardInstance * card);
