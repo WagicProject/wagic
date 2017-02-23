@@ -45,6 +45,7 @@ public:
         OPTIMIZE_HAND,
         CHEATMODEAIDECK,
         OSD,
+        BLKBORDER,
         CLOSEDHAND,
         HANDDIRECTION,
         MANADISPLAY,

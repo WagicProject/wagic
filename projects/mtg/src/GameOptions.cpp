@@ -21,6 +21,7 @@ const string Options::optionNames[] = {
     "optimizedhand",
     "cheatmodedecks",
   "displayOSD",
+  "BlackBorder",
   "closed_hand",
   "hand_direction",
   "mana_display",

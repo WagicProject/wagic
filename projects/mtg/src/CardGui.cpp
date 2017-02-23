@@ -1240,7 +1240,8 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
             }
         }*///disabled this for universal border across game, deck editor, etc...
         //universal border
-        if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+        if((cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+            && !options[Options::BLKBORDER].number)
         {//white border
             renderer->FillRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(255,248,248,255));
             renderer->DrawRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(150,20,20,20));
