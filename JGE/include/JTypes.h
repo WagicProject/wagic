@@ -172,7 +172,7 @@ typedef uint32_t u32;
 #define MASK_BLUE				0x00FF0000
 #define MASK_GREEN				0x0000FF00
 #define MASK_RED				0x000000FF
-
+#define PIXEL_TYPE				u32
 #define PIXEL_SIZE				4
 #define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_8888
 
