@@ -827,12 +827,12 @@ void GameStateDeckViewer::renderOnScreenMenu()
         case 1: // Counts, price
             // Title
             sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Statistics Summary").c_str());
-            font->DrawString(buffer, 10 + leftTransition, 10);
+            font->DrawString(buffer, 10 + 20 + leftTransition, 10);
 
             posY = 30;
             posX = 180;
             sprintf(buffer, _("Your Deck: %i cards").c_str(), mStatsWrapper->cardCount);
-            font->DrawString(buffer, 20 + leftTransition, posY);
+            font->DrawString(buffer, 20 + 20 + leftTransition, posY);
             posY += 10;
 
             // Counts by color
@@ -842,8 +842,8 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 if (value > 0)
                 {
                     sprintf(buffer, "%i", value);
-                    font->DrawString(buffer, 38 + nb_letters * 13 + leftTransition, posY + 5);
-                    r->RenderQuad(mIcons[j].get(), 30 + nb_letters * 13 + leftTransition, posY + 11, 0, 0.5, 0.5);
+                    font->DrawString(buffer, 38 + nb_letters * 13 + 20 + leftTransition, posY + 5);
+                    r->RenderQuad(mIcons[j].get(), 30 + nb_letters * 13 + 20 + leftTransition, posY + 11, 0, 0.5, 0.5);
                     if (value > 9)
                     {
                         nb_letters += 3;
@@ -856,132 +856,132 @@ void GameStateDeckViewer::renderOnScreenMenu()
             }
             posY += 25;
 
-            r->DrawLine(posX - 4 + leftTransition, posY - 1, posX - 4 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
-            r->DrawLine(19 + leftTransition, posY - 1, 19 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
-            r->DrawLine(posX + 40 + leftTransition, posY - 1, posX + 40 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
+            r->DrawLine(posX - 4 + 20 + leftTransition, posY - 1, posX - 4 + 20 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
+            r->DrawLine(19 + 20 + leftTransition, posY - 1, 19 + 20 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
+            r->DrawLine(posX + 40 + 20 + leftTransition, posY - 1, posX + 40 + 20 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
 
-            r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
+            r->DrawLine(20 + 20 + leftTransition, posY - 1, posX + 40 + 20 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
 
-            font->DrawString(_("Lands"), 20 + leftTransition, posY);
+            font->DrawString(_("Lands"), 20 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i").c_str(), mStatsWrapper->countLands);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 14;
-            r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-            font->DrawString(_("Creatures"), 20 + leftTransition, posY);
+            r->DrawLine(20 + 20 + leftTransition, posY - 1, posX + 40 + 20 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
+            font->DrawString(_("Creatures"), 20 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i").c_str(), mStatsWrapper->countCreatures);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 14;
-            r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-            font->DrawString(_("Spells"), 20 + leftTransition, posY);
+            r->DrawLine(20 + 20 + leftTransition, posY - 1, posX + 40 + 20 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
+            font->DrawString(_("Spells"), 20 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i").c_str(), mStatsWrapper->countSpells);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 10;
-            font->DrawString(_("Instants"), 30 + leftTransition, posY);
+            font->DrawString(_("Instants"), 30 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i").c_str(), mStatsWrapper->countInstants);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 10;
-            font->DrawString(_("Enchantments"), 30 + leftTransition, posY);
+            font->DrawString(_("Enchantments"), 30 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i").c_str(), mStatsWrapper->countEnchantments);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 10;
-            font->DrawString(_("Sorceries"), 30 + leftTransition, posY);
+            font->DrawString(_("Sorceries"), 30 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i").c_str(), mStatsWrapper->countSorceries);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
             //sprintf(buffer, "Artifacts: %i", stw->countArtifacts);
             //mFont->DrawString(buffer, 20, 123);
 
             posY += 14;
-            r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
+            r->DrawLine(20 + 20 + leftTransition, posY - 1, posX + 40 + 20 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
 
-            font->DrawString(_("Average converted mana cost"), 20 + leftTransition, posY);
+            font->DrawString(_("Average converted mana cost"), 20 + 20 + leftTransition, posY);
             sprintf(buffer, _("%2.2f").c_str(), mStatsWrapper->avgManaCost);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 14;
-            r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-            font->DrawString(_("Probabilities"), 20 + leftTransition, posY);
+            r->DrawLine(20 + 20 + leftTransition, posY - 1, posX + 40 + 20 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
+            font->DrawString(_("Probabilities"), 20 + 20 + leftTransition, posY);
 
             posY += 10;
-            font->DrawString(_("No land in 1st hand"), 30 + leftTransition, posY);
+            font->DrawString(_("No land in 1st hand"), 30 + 20 + leftTransition, posY);
             sprintf(buffer, _("%2.2f%%").c_str(), mStatsWrapper->noLandsProbInTurn[0]);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 10;
-            font->DrawString(_("No land in 9 cards"), 30 + leftTransition, posY);
+            font->DrawString(_("No land in 9 cards"), 30 + 20 + leftTransition, posY);
             sprintf(buffer, _("%2.2f%%").c_str(), mStatsWrapper->noLandsProbInTurn[2]);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 10;
-            font->DrawString(_("No creatures in 1st hand"), 30 + leftTransition, posY);
+            font->DrawString(_("No creatures in 1st hand"), 30 + 20 + leftTransition, posY);
             sprintf(buffer, _("%2.2f%%").c_str(), mStatsWrapper->noCreaturesProbInTurn[0]);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             // Playgame Statistics
             posY += 14;
-            r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-            font->DrawString(_("Playgame statistics"), 20 + leftTransition, posY);
+            r->DrawLine(20 + 20 + leftTransition, posY - 1, posX + 40 + 20 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
+            font->DrawString(_("Playgame statistics"), 20 + 20 + leftTransition, posY);
 
             posY += 10;
-            font->DrawString(_("Games played"), 30 + leftTransition, posY);
+            font->DrawString(_("Games played"), 30 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i").c_str(), mStatsWrapper->gamesPlayed);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 10;
-            font->DrawString(_("Victory ratio"), 30 + leftTransition, posY);
+            font->DrawString(_("Victory ratio"), 30 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i%%").c_str(), mStatsWrapper->percentVictories);
-            font->DrawString(buffer, posX + leftTransition, posY);
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
 
             posY += 15;
-            r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
-            font->DrawString(_("Total price (credits)"), 20 + leftTransition, posY);
+            r->DrawLine(20 + 20 + leftTransition, posY - 1, posX + 40 + 20 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
+            font->DrawString(_("Total price (credits)"), 20 + 20 + leftTransition, posY);
             sprintf(buffer, _("%i ").c_str(), mStatsWrapper->totalPrice);
-            font->DrawString(buffer, posX + leftTransition, posY);
-            r->DrawLine(20 + leftTransition, posY + 13, posX + 40 + leftTransition, posY + 13, ARGB(128, 255, 255, 255));
+            font->DrawString(buffer, posX + 20 + leftTransition, posY);
+            r->DrawLine(20 + 20 + leftTransition, posY + 13, posX + 40 + 20 + leftTransition, posY + 13, ARGB(128, 255, 255, 255));
 
             break;
 
         case 5: // Land statistics
             sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Mana production").c_str());
-            font->DrawString(buffer, 10 + leftTransition, 10);
+            font->DrawString(buffer, 10 + 20 + leftTransition, 10);
 
-            font->DrawString(_("Counts of manasources per type and color:"), 20 + leftTransition, 30);
+            font->DrawString(_("Counts of manasources per type and color:"), 20 + 20 + leftTransition, 30);
 
             posY = 70;
 
             // Column titles
             for (int j = 0; j < Constants::NB_Colors - 1; j++)
             {
-                r->RenderQuad(mIcons[j].get(), 52 + j * 15 + leftTransition, posY - 10, 0, 0.5, 0.5);
+                r->RenderQuad(mIcons[j].get(), 52 + j * 15 + 20 + leftTransition, posY - 10, 0, 0.5, 0.5);
             }
 
             //font->DrawString(_("C"), 30 + leftTransition, posY-16);
             //font->DrawString(_("Ty"), 27 + leftTransition, posY-16);
 
             // Horizontal table lines
-            r->DrawLine(27 + leftTransition, posY - 20, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 20,
+            r->DrawLine(27 + 20 + leftTransition, posY - 20, 60 + (Constants::NB_Colors - 2) * 15 + 20 + leftTransition, posY - 20,
                         ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, posY - 1, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 1,
+            r->DrawLine(27 + 20 + leftTransition, posY - 1, 60 + (Constants::NB_Colors - 2) * 15 + 20 + leftTransition, posY - 1,
                         ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, 2 * 10 + posY + 12, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, 2 * 10
+            r->DrawLine(27 + 20 + leftTransition, 2 * 10 + posY + 12, 60 + (Constants::NB_Colors - 2) * 15 + 20 + leftTransition, 2 * 10
                         + posY + 12, ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, 3 * 10 + posY + 14, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, 3 * 10
+            r->DrawLine(27 + 20 + leftTransition, 3 * 10 + posY + 14, 60 + (Constants::NB_Colors - 2) * 15 + 20 + leftTransition, 3 * 10
                         + posY + 14, ARGB(128, 255, 255, 255));
 
             // Vertical table lines
-            r->DrawLine(26 + leftTransition, posY - 20, 26 + leftTransition, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
-            r->DrawLine(43 + leftTransition, posY - 20, 43 + leftTransition, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
-            r->DrawLine(60 + leftTransition + (Constants::NB_Colors - 2) * 15, posY - 20, 60 + leftTransition
+            r->DrawLine(26 + 20 + leftTransition, posY - 20, 26 + 20 + leftTransition, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
+            r->DrawLine(43 + 20 + leftTransition, posY - 20, 43 + 20 + leftTransition, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
+            r->DrawLine(60 + 20 + leftTransition + (Constants::NB_Colors - 2) * 15, posY - 20, 60 + 20 + leftTransition
                         + (Constants::NB_Colors - 2) * 15, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
 
-            font->DrawString(_("BL"), 27 + leftTransition, posY);
-            font->DrawString(_("NB"), 27 + leftTransition, posY + 10);
-            font->DrawString(_("O"), 30 + leftTransition, posY + 20);
-            font->DrawString(_("T"), 30 + leftTransition, posY + 33);
+            font->DrawString(_("BL"), 27 + 20 + leftTransition, posY);
+            font->DrawString(_("NB"), 27 + 20 + leftTransition, posY + 10);
+            font->DrawString(_("O"), 30 + 20 + leftTransition, posY + 20);
+            font->DrawString(_("T"), 30 + 20 + leftTransition, posY + 33);
 
             int curCount;
 
@@ -993,7 +993,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 } else {
                     sprintf(buffer, "%i", curCount);
                 }
-                font->DrawString(buffer, 49 + leftTransition + j * 15, posY);
+                font->DrawString(buffer, 49 + 20 + leftTransition + j * 15, posY);
 
                 curCount = mStatsWrapper->countLandsPerColor[j];
                 if(curCount == 0) {
@@ -1001,7 +1001,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 } else {
                     sprintf(buffer, "%i", curCount);
                 }
-                font->DrawString(buffer, 49 + leftTransition + j * 15, posY + 10);
+                font->DrawString(buffer, 49 + 20 + leftTransition + j * 15, posY + 10);
 
                 curCount = mStatsWrapper->countNonLandProducersPerColor[j];
                 if(curCount == 0) {
@@ -1009,7 +1009,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 } else {
                     sprintf(buffer, "%i", curCount);
                 }
-                font->DrawString(buffer, 49 + leftTransition + j * 15, posY + 20);
+                font->DrawString(buffer, 49 + 20 + leftTransition + j * 15, posY + 20);
 
                 curCount = mStatsWrapper->countLandsPerColor[j] + mStatsWrapper->countBasicLandsPerColor[j] + mStatsWrapper->countNonLandProducersPerColor[j];
                 if(curCount == 0) {
@@ -1017,24 +1017,24 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 } else {
                     sprintf(buffer, "%i", curCount);
                 }
-                font->DrawString(buffer, 49 + leftTransition + j * 15, posY + 33);
+                font->DrawString(buffer, 49 + 20 + leftTransition + j * 15, posY + 33);
             }
 
             posY += 55;
-            font->DrawString(_("BL - Basic lands"), 20 + leftTransition, posY);
+            font->DrawString(_("BL - Basic lands"), 20 + 20 + leftTransition, posY);
             posY += 10;
-            font->DrawString(_("NB - Non-basic lands"), 20 + leftTransition, posY);
+            font->DrawString(_("NB - Non-basic lands"), 20 + 20 + leftTransition, posY);
             posY += 10;
-            font->DrawString(_("O - Other (non-land) manasources"), 26 + leftTransition, posY);
+            font->DrawString(_("O - Other (non-land) manasources"), 26 + 20 + leftTransition, posY);
             posY += 10;
-            font->DrawString(_("T - Totals"), 26 + leftTransition, posY);
+            font->DrawString(_("T - Totals"), 26 + 20 + leftTransition, posY);
 
             break;
 
         case 6: // Land statistics - in symbols
             sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Mana production - in mana symbols").c_str());
-            font->DrawString(buffer, 10 + leftTransition, 10);
-            font->DrawString(_("Total colored manasymbols in lands' production:"), 20 + leftTransition, 30);
+            font->DrawString(buffer, 10 + 20 + leftTransition, 10);
+            font->DrawString(_("Total colored mana symbols in lands' production:"), 20 + 20 + leftTransition, 30);
 
             int totalProducedSymbols;
             totalProducedSymbols = 0;
@@ -1052,11 +1052,11 @@ void GameStateDeckViewer::renderOnScreenMenu()
                     font->DrawString(buffer, 20 + leftTransition, posY);
                     sprintf(buffer, _("(%i%%)").c_str(), (int) (100 * (float) (mStatsWrapper->countLandsPerColor[i]
                                                                                + mStatsWrapper->countBasicLandsPerColor[i]) / totalProducedSymbols));
-                    font->DrawString(buffer, 33 + leftTransition, posY);
+                    font->DrawString(buffer, 33 + 20 + leftTransition, posY);
                     posX = 72;
                     for (int j = 0; j < mStatsWrapper->countLandsPerColor[i] + mStatsWrapper->countBasicLandsPerColor[i]; j++)
                     {
-                        r->RenderQuad(mIcons[i].get(), posX + leftTransition, posY + 6, 0, 0.5, 0.5);
+                        r->RenderQuad(mIcons[i].get(), posX + 20 + leftTransition, posY + 6, 0, 0.5, 0.5);
                         posX += ((j + 1) % 10 == 0) ? 17 : 13;
                         if ((((j + 1) % 30) == 0) && (j < mStatsWrapper->countLandsPerColor[i] + mStatsWrapper->countBasicLandsPerColor[i] - 1))
                         {
@@ -1082,8 +1082,8 @@ void GameStateDeckViewer::renderOnScreenMenu()
             case 2: // Total counts
                 // Title
                 sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Mana cost detail").c_str());
-                font->DrawString(buffer, 10 + leftTransition, 10);
-                font->DrawString(_("Card counts per mana cost:"), 20 + leftTransition, 30);
+                font->DrawString(buffer, 10 + 20 + leftTransition, 10);
+                font->DrawString(_("Card counts per mana cost:"), 20 + 20 + leftTransition, 30);
                 avgCost = mStatsWrapper->avgManaCost;
                 countPerCost = &mStatsWrapper->countCardsPerCost;
                 countPerCostAndColor = &mStatsWrapper->countCardsPerCostAndColor;
@@ -1091,8 +1091,8 @@ void GameStateDeckViewer::renderOnScreenMenu()
             case 3: // Creature counts
                 // Title
                 sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Mana cost detail - Creatures").c_str());
-                font->DrawString(buffer, 10 + leftTransition, 10);
-                font->DrawString(_("Creature counts per mana cost:"), 20 + leftTransition, 30);
+                font->DrawString(buffer, 10 + 20 + leftTransition, 10);
+                font->DrawString(_("Creature counts per mana cost:"), 20 + 20 + leftTransition, 30);
                 avgCost = mStatsWrapper->avgCreatureCost;
                 countPerCost = &mStatsWrapper->countCreaturesPerCost;
                 countPerCostAndColor = &mStatsWrapper->countCreaturesPerCostAndColor;
@@ -1100,8 +1100,8 @@ void GameStateDeckViewer::renderOnScreenMenu()
             case 4: // Spell counts
                 // Title
                 sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Mana cost detail - Spells").c_str());
-                font->DrawString(buffer, 10 + leftTransition, 10);
-                font->DrawString(_("Non-creature spell counts per mana cost:"), 20 + leftTransition, 30);
+                font->DrawString(buffer, 10 + 20 + leftTransition, 10);
+                font->DrawString(_("Non-creature spell counts per mana cost:"), 20 + 20 + leftTransition, 30);
                 avgCost = mStatsWrapper->avgSpellCost;
                 countPerCost = &mStatsWrapper->countSpellsPerCost;
                 countPerCostAndColor = &mStatsWrapper->countSpellsPerCostAndColor;
@@ -1118,94 +1118,94 @@ void GameStateDeckViewer::renderOnScreenMenu()
             // Column titles
             for (int j = 0; j < Constants::NB_Colors - 1; j++)
             {
-                r->RenderQuad(mIcons[j].get(), 67 + j * 15 + leftTransition, posY - 10, 0, 0.5, 0.5);
+                r->RenderQuad(mIcons[j].get(), 67 + j * 15 + 20 + leftTransition, posY - 10, 0, 0.5, 0.5);
             }
 
-            font->DrawString(_("C"), 30 + leftTransition, posY - 16);
-            font->DrawString(_("#"), 45 + leftTransition, posY - 16);
+            font->DrawString(_("C"), 30 + 20 + leftTransition, posY - 16);
+            font->DrawString(_("#"), 45 + 20 + leftTransition, posY - 16);
 
             // Horizontal table lines
-            r->DrawLine(27 + leftTransition, posY - 20, 75 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 20,
+            r->DrawLine(27 + 20 + leftTransition, posY - 20, 75 + (Constants::NB_Colors - 2) * 15 + 20 + leftTransition, posY - 20,
                         ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, posY - 1, 75 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 1,
+            r->DrawLine(27 + 20 + leftTransition, posY - 1, 75 + (Constants::NB_Colors - 2) * 15 + 20 + leftTransition, posY - 1,
                         ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, 75 + (Constants::NB_Colors - 2)
-                        * 15 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, ARGB(128, 255, 255, 255));
+            r->DrawLine(27 + 20 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, 75 + (Constants::NB_Colors - 2)
+                        * 15 + 20 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, ARGB(128, 255, 255, 255));
 
             // Vertical table lines
-            r->DrawLine(26 + leftTransition, posY - 20, 26 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
+            r->DrawLine(26 + 20 + leftTransition, posY - 20, 26 + 20 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
                         ARGB(128, 255, 255, 255));
-            r->DrawLine(41 + leftTransition, posY - 20, 41 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
+            r->DrawLine(41 + 20 + leftTransition, posY - 20, 41 + 20 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
                         ARGB(128, 255, 255, 255));
-            r->DrawLine(58 + leftTransition, posY - 20, 58 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
+            r->DrawLine(58 + 20 + leftTransition, posY - 20, 58 + 20 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
                         ARGB(128, 255, 255, 255));
-            r->DrawLine(75 + leftTransition + (Constants::NB_Colors - 2) * 15, posY - 20, 75 + leftTransition
+            r->DrawLine(75 + 20 + leftTransition + (Constants::NB_Colors - 2) * 15, posY - 20, 75 + 20 + leftTransition
                         + (Constants::NB_Colors - 2) * 15, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
                         ARGB(128, 255, 255, 255));
 
             for (int i = 0; i <= Constants::STATS_MAX_MANA_COST; i++)
             {
                 sprintf(buffer, _("%i").c_str(), i);
-                font->DrawString(buffer, 30 + leftTransition, posY);
+                font->DrawString(buffer, 30 + 20 + leftTransition, posY);
                 sprintf(buffer, ((*countPerCost)[i] > 0) ? _("%i").c_str() : ".", (*countPerCost)[i]);
-                font->DrawString(buffer, 45 + leftTransition, posY);
+                font->DrawString(buffer, 45 + 20 + leftTransition, posY);
                 for (int j = 0; j < Constants::NB_Colors - 1; j++)
                 {
                     sprintf(buffer, ((*countPerCostAndColor)[i][j] > 0) ? _("%i").c_str() : ".", (*countPerCostAndColor)[i][j]);
-                    font->DrawString(buffer, 64 + leftTransition + j * 15, posY);
+                    font->DrawString(buffer, 64 + 20 + leftTransition + j * 15, posY);
                 }
-                r->FillRect(77.f + leftTransition + (Constants::NB_Colors - 2) * 15.0f, posY + 2.0f, (*countPerCost)[i] * 5.0f,
+                r->FillRect(77.f + 20 + leftTransition + (Constants::NB_Colors - 2) * 15.0f, posY + 2.0f, (*countPerCost)[i] * 5.0f,
                             8.0f, graphColor);
                 posY += 10;
             }
 
             posY += 10;
             sprintf(buffer, _("Average converted mana cost: %2.2f").c_str(), avgCost);
-            font->DrawString(buffer, 20 + leftTransition, posY);
+            font->DrawString(buffer, 20 + 20 + leftTransition, posY);
             posY += 15;
             sprintf(buffer, _("C - Converted mana cost. Cards with cost>%i are included in the last row.").c_str(),
                     Constants::STATS_MAX_MANA_COST);
-            font->DrawString(buffer, 20 + leftTransition, posY);
+            font->DrawString(buffer, 20 + 20 + leftTransition, posY);
             posY += 10;
-            font->DrawString(_("# - Total number of cards with given cost"), 20 + leftTransition, posY);
+            font->DrawString(_("# - Total number of cards with given cost"), 20 + 20 + leftTransition, posY);
 
             break;
 
         case 8:
             // Title
             sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Probabilities").c_str());
-            font->DrawString(buffer, 10 + leftTransition, 10);
+            font->DrawString(buffer, 10 + 20 + leftTransition, 10);
 
             // No lands detail
             float graphScale, graphWidth;
             graphWidth = 100;
             graphScale = (mStatsWrapper->noLandsProbInTurn[0] == 0) ? 0 : (graphWidth / mStatsWrapper->noLandsProbInTurn[0]);
-            font->DrawString(_("No lands in first n cards:"), 20 + leftTransition, 30);
+            font->DrawString(_("No lands in first n cards:"), 20 + 20 + leftTransition, 30);
 
             posY = 50;
             for (int i = 0; i < Constants::STATS_FOR_TURNS; i++)
             {
                 sprintf(buffer, _("%i:").c_str(), i + 7);
-                font->DrawString(buffer, 30 + leftTransition, posY);
+                font->DrawString(buffer, 30 + 20 + leftTransition, posY);
                 sprintf(buffer, _("%2.2f%%").c_str(), mStatsWrapper->noLandsProbInTurn[i]);
-                font->DrawString(buffer, 45 + leftTransition, posY);
-                r->FillRect(84 + leftTransition, posY + 2, graphScale * mStatsWrapper->noLandsProbInTurn[i], 8, graphColor);
+                font->DrawString(buffer, 45 + 20 + leftTransition, posY);
+                r->FillRect(84 + 20 + leftTransition, posY + 2, graphScale * mStatsWrapper->noLandsProbInTurn[i], 8, graphColor);
                 posY += 10;
             }
 
             // No creatures probability detail
             posY += 10;
-            font->DrawString(_("No creatures in first n cards:"), 20 + leftTransition, posY);
+            font->DrawString(_("No creatures in first n cards:"), 20 + 20 + leftTransition, posY);
             posY += 20;
             graphScale = (mStatsWrapper->noCreaturesProbInTurn[0] == 0) ? 0 : (graphWidth / mStatsWrapper->noCreaturesProbInTurn[0]);
 
             for (int i = 0; i < Constants::STATS_FOR_TURNS; i++)
             {
                 sprintf(buffer, _("%i:").c_str(), i + 7);
-                font->DrawString(buffer, 30 + leftTransition, posY);
+                font->DrawString(buffer, 30 + 20 + leftTransition, posY);
                 sprintf(buffer, _("%2.2f%%").c_str(), mStatsWrapper->noCreaturesProbInTurn[i]);
-                font->DrawString(buffer, 45 + leftTransition, posY);
-                r->FillRect(84 + leftTransition, posY + 2, graphScale * mStatsWrapper->noCreaturesProbInTurn[i], 8, graphColor);
+                font->DrawString(buffer, 45 + 20 + leftTransition, posY);
+                r->FillRect(84 + 20 + leftTransition, posY + 2, graphScale * mStatsWrapper->noCreaturesProbInTurn[i], 8, graphColor);
                 posY += 10;
             }
 
@@ -1214,9 +1214,9 @@ void GameStateDeckViewer::renderOnScreenMenu()
         case 7: // Total mana cost per color
             // Title
             sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Mana cost per color").c_str());
-            font->DrawString(buffer, 10 + leftTransition, 10);
+            font->DrawString(buffer, 10 + 20 + leftTransition, 10);
 
-            font->DrawString(_("Total colored manasymbols in cards' casting costs:"), 20 + leftTransition, 30);
+            font->DrawString(_("Total colored manasymbols in cards' casting costs:"), 20 + 20 + leftTransition, 30);
 
             posY = 50;
             for (int i = 1; i < Constants::NB_Colors - 1; i++)
@@ -1230,7 +1230,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                     posX = 72;
                     for (int j = 0; j < mStatsWrapper->totalCostPerColor[i]; j++)
                     {
-                        r->RenderQuad(mIcons[i].get(), posX + leftTransition, posY + 6, 0, 0.5, 0.5);
+                        r->RenderQuad(mIcons[i].get(), posX + 20 + leftTransition, posY + 6, 0, 0.5, 0.5);
                         posX += ((j + 1) % 10 == 0) ? 17 : 13;
                         if ((((j + 1) % 30) == 0) && (j < mStatsWrapper->totalCostPerColor[i] - 1))
                         {
@@ -1246,14 +1246,14 @@ void GameStateDeckViewer::renderOnScreenMenu()
         case 9: // Victory statistics
             // Title
             sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Victory statistics").c_str());
-            font->DrawString(buffer, 10 + leftTransition, 10);
+            font->DrawString(buffer, 10 + 20 + leftTransition, 10);
 
-            font->DrawString(_("Victories against AI:"), 20 + leftTransition, 30);
+            font->DrawString(_("Victories against AI:"), 20 + 20 + leftTransition, 30);
 
             sprintf(buffer, _("Games played: %i").c_str(), mStatsWrapper->gamesPlayed);
-            font->DrawString(buffer, 20 + leftTransition, 45);
+            font->DrawString(buffer, 20 + 20 + leftTransition, 45);
             sprintf(buffer, _("Victory ratio: %i%%").c_str(), mStatsWrapper->percentVictories);
-            font->DrawString(buffer, 20 + leftTransition, 55);
+            font->DrawString(buffer, 20 + 20 + leftTransition, 55);
 
             int AIsPerColumn = 19;
             posY = 70;
