@@ -298,16 +298,19 @@ void CardPrimitive::setText(const string& value)
 * Instead, we format when requested, but only once, and cache the result.
 * To avoid memory to blow up, in exchange of the cached result, we erase the original string
 */
-const vector<string>& CardPrimitive::getFormattedText()
+const vector<string>& CardPrimitive::getFormattedText(bool noremove)
 {
     if (!text.size())
         return formattedText;
 
     std::string::size_type found = text.find_first_of("{}");
-    while (found != string::npos)
+    if(!noremove)
     {
-        text[found] = '/';
-        found = text.find_first_of("{}", found + 1);
+        while (found != string::npos)
+        {
+            text[found] = '/';
+            found = text.find_first_of("{}", found + 1);
+        }
     }
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
     mFont->FormatText(text, formattedText);

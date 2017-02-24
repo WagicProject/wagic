@@ -237,12 +237,22 @@ bool CardDisplay::CheckUserInput(JButton key)
 void CardDisplay::Render(bool norect)
 {
     //norect - code shop
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
-    if(norect)
-        r->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(180,5,5,5));
+    //if(norect)
+       // r->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(180,5,5,5));
 
     if(norect)
     {
+        //info
+        r->FillRect(static_cast<float> (x), static_cast<float> (10), static_cast<float> (nb_displayed_items * 30 + 20), 192,
+                    ARGB(200,5,5,5));
+        r->DrawRect(static_cast<float> (x), static_cast<float> (10), static_cast<float> (nb_displayed_items * 30 + 20), 192,
+                    ARGB(255,240,240,240));
+        r->DrawRect(static_cast<float> (x)+1, static_cast<float> (10)+1, static_cast<float> (nb_displayed_items * 30 + 20)-2, 192-2,
+                    ARGB(255,89,89,89));
+
+        //navi
         r->FillRect(static_cast<float> (x), static_cast<float> (y), static_cast<float> (nb_displayed_items * 30 + 20), 50,
                     ARGB(200,5,5,5));
         r->DrawRect(static_cast<float> (x), static_cast<float> (y), static_cast<float> (nb_displayed_items * 30 + 20), 50,
@@ -293,7 +303,23 @@ void CardDisplay::Render(bool norect)
             if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
             drawMode = observer->getCardSelector()->GetDrawMode();
         }
+        if(norect)
+        {
+            mFont->SetColor(ARGB(255,240,230,140));
+            mFont->SetScale(1.5f);
+            mFont->DrawString(cardg->card->data->name.c_str(),SCREEN_WIDTH_F/2,20);
+            mFont->SetColor(ARGB(255,255,255,255));
+            mFont->SetScale(1.0f);
+            string details = "";
+            std::vector<string> txt = cardg->card->data->getFormattedText(true);
 
+            for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it)
+            {
+                details.append("\n");
+                details.append(it->c_str());
+            }
+            mFont->DrawString(details.c_str(),SCREEN_WIDTH_F/2,25);
+        }
         cardg->DrawCard(pos, drawMode);
     }
 }

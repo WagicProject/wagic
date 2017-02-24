@@ -308,7 +308,7 @@ void GameStateShop::purchaseBooster(int controlId)
     SAFE_DELETE(booster);
     deleteDisplay();
     booster = NEW MTGDeck(MTGCollection());
-    boosterDisplay = NEW BoosterDisplay(12, NULL, SCREEN_WIDTH - 255, (SCREEN_HEIGHT/2)-20, this, NULL, 7);
+    boosterDisplay = NEW BoosterDisplay(12, NULL, SCREEN_WIDTH - 255, SCREEN_HEIGHT-65, this, NULL, 7);
     mBooster[controlId].addToDeck(booster, srcCards);
 
     string sort = mBooster[controlId].getSort();
