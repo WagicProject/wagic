@@ -23,7 +23,7 @@ public:
     void rotateRight();
     bool CheckUserInput(JButton key);
     virtual void Update(float dt);
-    void Render();
+    void Render(bool norect = false);
     void init(MTGGameZone * zone);
     virtual ostream& toString(ostream& out) const;
 };

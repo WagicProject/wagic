@@ -543,7 +543,8 @@ void CardGui::Render()
                 myA = 0;
             
             shadow->SetColor(ARGB(myA,255,255,255));
-            renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
+            if(myA > 0)
+                renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
         }
     }
 

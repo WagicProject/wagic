@@ -308,7 +308,7 @@ void GameStateShop::purchaseBooster(int controlId)
     SAFE_DELETE(booster);
     deleteDisplay();
     booster = NEW MTGDeck(MTGCollection());
-    boosterDisplay = NEW BoosterDisplay(12, NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT / 2, this, NULL, 5);
+    boosterDisplay = NEW BoosterDisplay(12, NULL, 30, SCREEN_HEIGHT/2, this, NULL, 7);
     mBooster[controlId].addToDeck(booster, srcCards);
 
     string sort = mBooster[controlId].getSort();
@@ -726,7 +726,7 @@ void GameStateShop::Render()
     else
     {
         if (boosterDisplay)
-            boosterDisplay->Render();
+            boosterDisplay->Render(true);
         else if (bigDisplay)
         {
             if (bigDisplay->mOffset.getPos() >= 0)
@@ -743,7 +743,9 @@ void GameStateShop::Render()
                 {
                     alpha = static_cast<int> (800 * (elp - LIST_FADEIN));
                 }
-                r->FillRoundRect(300, 10, 160, SHOP_SLOTS * 20 + 15, 5, ARGB(alpha,0,0,0));
+                //r->FillRoundRect(300, 10, 160, SHOP_SLOTS * 20 + 15, 5, ARGB(alpha,0,0,0));
+                r->FillRect(297, 9.5f, 175, SHOP_SLOTS * 20 + 31, ARGB(alpha,0,0,0));
+                r->DrawRect(297, 9.5f, 175, SHOP_SLOTS * 20 + 31, ARGB(alpha,20,20,20));
                 alpha += 55;
                 for (int i = 0; i < SHOP_SLOTS; i++)
                 {
@@ -788,7 +790,7 @@ void GameStateShop::Render()
     if (menu)
         menu->Render();
     
-    if (!filterMenu || (filterMenu && filterMenu->isFinished()))
+    if ((!filterMenu || (filterMenu && filterMenu->isFinished()))&&!boosterDisplay)
         renderButtons();
 }
 

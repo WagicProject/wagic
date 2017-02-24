@@ -234,11 +234,24 @@ bool CardDisplay::CheckUserInput(JButton key)
     return false;
 }
 
-void CardDisplay::Render()
+void CardDisplay::Render(bool norect)
 {
-
+    //norect - code shop
     JRenderer * r = JRenderer::GetInstance();
-    r->DrawRect(static_cast<float> (x), static_cast<float> (y), static_cast<float> (nb_displayed_items * 30 + 20), 50,
+    if(norect)
+        r->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(180,5,5,5));
+
+    if(norect)
+    {
+        r->FillRect(static_cast<float> (x), static_cast<float> (y), static_cast<float> (nb_displayed_items * 30 + 20), 50,
+                    ARGB(200,5,5,5));
+        r->DrawRect(static_cast<float> (x), static_cast<float> (y), static_cast<float> (nb_displayed_items * 30 + 20), 50,
+                    ARGB(255,240,240,240));
+        r->DrawRect(static_cast<float> (x)+1, static_cast<float> (y)+1, static_cast<float> (nb_displayed_items * 30 + 20)-2, 50-2,
+                    ARGB(255,89,89,89));
+    }
+    else
+        r->DrawRect(static_cast<float> (x), static_cast<float> (y), static_cast<float> (nb_displayed_items * 30 + 20), 50,
                     ARGB(255,255,255,255));
     if (!mObjects.size()) return;
     for (int i = start_item; i < start_item + nb_displayed_items && i < (int)(mObjects.size()); i++)
@@ -268,6 +281,10 @@ void CardDisplay::Render()
         CardGui * cardg = ((CardGui *) mObjects[mCurr]);
         //Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
         Pos pos = Pos((CardGui::BigWidth / 2), CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
+        
+        if(norect)
+            pos = Pos((SCREEN_WIDTH - CardGui::BigWidth / 2)+5, CardGui::BigHeight / 2 - 7, 1.0, 0.0, 220);
+
         int drawMode = DrawMode::kNormal;
         if (observer)
         {
