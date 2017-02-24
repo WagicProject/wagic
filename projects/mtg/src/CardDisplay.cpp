@@ -283,7 +283,7 @@ void CardDisplay::Render(bool norect)
         Pos pos = Pos((CardGui::BigWidth / 2), CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
         
         if(norect)
-            pos = Pos((SCREEN_WIDTH - CardGui::BigWidth / 2)+5, CardGui::BigHeight / 2 - 7, 1.0, 0.0, 220);
+            pos = Pos((CardGui::BigWidth / 2), CardGui::BigHeight / 2 - 7, 1.0, 0.0, 220);
 
         int drawMode = DrawMode::kNormal;
         if (observer)
