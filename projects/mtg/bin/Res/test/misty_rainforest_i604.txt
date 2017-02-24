@@ -9,6 +9,7 @@ hand:forest
 [PLAYER2]
 [DO]
 misty rainforest
+choice 0
 island
 forest
 [ASSERT]

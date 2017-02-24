@@ -789,7 +789,7 @@ int ActionStack::addAction(Interruptible * action)
 }
 
 Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana, int payResult,
-    int storm)
+    int storm, bool forcedinterrupt)
 {
     DebugTrace("ACTIONSTACK Add spell");
     if (storm > 0)
@@ -799,7 +799,12 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, Man
     Spell * spell = NEW Spell(observer, mObjects.size(), _source, tc, mana, payResult);
     addAction(spell);
     if (!observer->players[0]->isAI() && _source->controller() == observer->players[0] && 0 == options[Options::INTERRUPTMYSPELLS].number)
-        interruptDecision[0] = DONT_INTERRUPT;
+    {
+        if(forcedinterrupt)
+            interruptDecision[0] = INTERRUPT;
+        else
+            interruptDecision[0] = DONT_INTERRUPT;
+    }
     return spell;
 }
 
