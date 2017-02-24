@@ -98,7 +98,7 @@ public:
     int has(int ability);
 
     void setText(const string& value);
-    const vector<string>& getFormattedText();
+    const vector<string>& getFormattedText(bool noremove = false);
 
     void addMagicText(string value);
     void addMagicText(string value, string zone);

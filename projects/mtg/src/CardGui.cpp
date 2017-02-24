@@ -254,11 +254,17 @@ void CardGui::Render()
         highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
         if(fakeborder)
         {
-            if((card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))||
-              ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)))
-                fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
+            if(game)
+            {
+                if((card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))||
+                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)))
+                    fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
+                else
+                    fakeborder->SetColor(ARGB((int)(actA),15,15,15));
+            }
             else
                 fakeborder->SetColor(ARGB((int)(actA),15,15,15));
+
             renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
         }
         //draw border for highlighting
@@ -530,18 +536,22 @@ void CardGui::Render()
     }
     
     //for necro
-    if (!shadow)
-        shadow = card->getObserver()->getResourceManager()->GetQuad("shadow");
-    if (shadow)
+    if(game)
     {
-        int myA = 0;
-        if(game && card->has(Constants::NECROED))//no peeking...
-            myA = 255;
-        else
-            myA = 0;
+        if (!shadow)
+            shadow = card->getObserver()->getResourceManager()->GetQuad("shadow");
+        if (shadow)
+        {
+            int myA = 0;
+            if(game && card->has(Constants::NECROED))//no peeking...
+                myA = 255;
+            else
+                myA = 0;
             
-        shadow->SetColor(ARGB(myA,255,255,255));
-        renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
+            shadow->SetColor(ARGB(myA,255,255,255));
+            if(myA > 0)
+                renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
+        }
     }
 
     PlayGuiObject::Render();
