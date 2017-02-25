@@ -312,8 +312,9 @@ const vector<string>& CardPrimitive::getFormattedText(bool noremove)
             found = text.find_first_of("{}", found + 1);
         }
     }
+    int defL = noremove?44:0;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
-    mFont->FormatText(text, formattedText);
+    mFont->FormatText(text, formattedText, defL);
 
     text = "";
 
