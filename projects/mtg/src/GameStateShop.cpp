@@ -271,7 +271,7 @@ void GameStateShop::cancelBooster(int)
 void GameStateShop::purchaseCard(int controlId)
 {
     MTGCard * c = srcCards->getCard(controlId - BOOSTER_SLOTS);
-    if (!c || !c->data || playerdata->credits - mPrices[controlId] < 0)
+    if (!c || !c->data || playerdata->credits - mPrices[controlId] < 0 || (c && c->getRarity() != Constants::RARITY_T))//cant buy tokens....
         return;
     myCollection->Add(c);
     int price = mPrices[controlId];

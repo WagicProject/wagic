@@ -1770,12 +1770,14 @@ void WGuiFilters::buildList()
 {
     list = NEW WGuiList("");
     WGuiButton * l = NEW WGuiButton(NEW WGuiItem("Add Filter"), -102, -10, this);
-    WGuiButton * r = NEW WGuiButton(NEW WGuiItem("Done"), -102, -11, this);
+    WGuiButton * r = NEW WGuiButton(NEW WGuiItem("Search"), -102, -11, this);
     WGuiButton * mid = NEW WGuiButton(NEW WGuiItem("Clear"), -102, -66, this);
-    WGuiSplit * sub = NEW WGuiSplit(mid, r);
-    WGuiSplit * wgs = NEW WGuiSplit(l, sub);
+    //WGuiSplit * sub = NEW WGuiSplit(mid, r);
+    //WGuiSplit * wgs = NEW WGuiSplit(l, sub);
+    WGuiSplit * wgs = NEW WGuiSplit(mid, r);
     subMenu = NULL;
     list->Add(NEW WGuiHeader(displayValue));
+    list->Add(l);
     list->Add(wgs);
     list->Entering(JGE_BTN_NONE);
 }
