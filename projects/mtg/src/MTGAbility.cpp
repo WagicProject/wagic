@@ -5931,6 +5931,19 @@ int TriggeredAbility::receiveEvent(WEvent * e)
         resolve();
         return 1;
     }
+    WEventCardCycle * cycleCheck = dynamic_cast<WEventCardCycle*>(e);
+    if(cycleCheck && cycleCheck->card == source)
+    {
+        resolve();
+        return 1;
+        //When you cycle this card, first the cycling ability goes on the stack, 
+        //then the triggered ability goes on the stack on top of it. 
+        //The triggered ability will resolve before you draw a card from the cycling ability.
+        //
+        //The cycling ability and the triggered ability are separate. 
+        //If the triggered ability is countered (with Stifle, for example, or if all its targets have become illegal), 
+        //the cycling ability will still resolve and you'll draw a card.
+    }
     WEventZoneChange * stackCheck = dynamic_cast<WEventZoneChange*>(e);
     if(stackCheck && (stackCheck->to == game->currentPlayer->game->stack||stackCheck->to == game->currentPlayer->opponent()->game->stack))
     {

@@ -235,6 +235,7 @@ void GameStateDeckViewer::End()
 void GameStateDeckViewer::addRemove(MTGCard * card)
 {
     if (!card) return;
+    if ((card->getRarity() == Constants::RARITY_T) || (card->getId() < 1)) return;
     if (mView->deck()->Remove(card, 1, (mView->deck() == myDeck)))
     {
         if (mView->deck() == myCollection)

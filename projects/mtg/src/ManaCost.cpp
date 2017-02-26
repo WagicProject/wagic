@@ -39,6 +39,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                 string value = s.substr(start -1,end);
                 if(value == "n{")//"restrictio n{m orbid} would read the n{m as {m} millcost
                     return manaCost;
+                else if(value == "e{")//"variable{ test fix
+                    return manaCost;
             }
             if (start == string::npos)
             {

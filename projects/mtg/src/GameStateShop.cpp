@@ -271,7 +271,7 @@ void GameStateShop::cancelBooster(int)
 void GameStateShop::purchaseCard(int controlId)
 {
     MTGCard * c = srcCards->getCard(controlId - BOOSTER_SLOTS);
-    if (!c || !c->data || playerdata->credits - mPrices[controlId] < 0)
+    if (!c || !c->data || playerdata->credits - mPrices[controlId] < 0 || (c && c->getRarity() == Constants::RARITY_T))//cant buy tokens....
         return;
     myCollection->Add(c);
     int price = mPrices[controlId];
@@ -487,7 +487,7 @@ void GameStateShop::Update(float dt)
             menu->Add(22, _("Ask about...").c_str());
             menu->Add(14, _("Check task board").c_str());
             if (options[Options::CHEATMODE].number)
-                menu->Add(-2, _("Steal 1,000 credits").c_str());
+                menu->Add(-2, _("Steal 2,000 credits").c_str());
             menu->Add(12, _("Save And Exit").c_str());
             menu->Add(kCancelMenuID, _("Cancel").c_str());
         }
@@ -860,7 +860,7 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
         beginFilters();
         break;
     case -2:
-        playerdata->credits += 1000;
+        playerdata->credits += 2000;
     default:
         mStage = STAGE_SHOP_SHOP;
     }

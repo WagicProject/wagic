@@ -272,7 +272,7 @@ bool WCFilterProducesColor::isMatch(MTGCard * c)
 
     //Retrieve non basic Mana abilities
     string s = c->data->magicText;
-    size_t t = s.find("add");
+    size_t t = s.find("add{");
     while (t != string::npos)
     {
         s = s.substr(t + 3);
