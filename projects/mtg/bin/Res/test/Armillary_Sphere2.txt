@@ -4,20 +4,20 @@ Wished result's answer: YES.
 [INIT]
 FIRSTMAIN
 [PLAYER1]
-library:forest,island
+library:tundra,island
 inplay:Armillary Sphere
 manapool:{2}
 [PLAYER2]
 [DO]
 Armillary Sphere
+choice 0
 island
-Armillary Sphere
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
 graveyard:Armillary Sphere
 hand:island
-library:forest
+library:tundra
 manapool:{0}
 [PLAYER2]
 [END]

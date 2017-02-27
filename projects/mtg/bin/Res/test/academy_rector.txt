@@ -10,6 +10,7 @@ manapool:{R}
 Shock
 Academy Rector
 choice 0
+choice 0
 Gaea'S Anthem
 [ASSERT]
 firstmain
