@@ -28,12 +28,18 @@ GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner co
 
 void GuiAvatar::Render()
 {
+    GameObserver * game = player->getObserver();
     JRenderer * r = JRenderer::GetInstance();
     int life = player->life;
     int poisonCount = player->poisonCount;
     int energyCount = player->energyCount;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    TargetChooser * tc = NULL;
+
+    if (game)
+        tc = game->getCurrentTargetChooser();
+
     //Avatar
     int lifeDiff = life - currentLife;
     if (lifeDiff < 0 && currentLife > 0)
@@ -74,6 +80,10 @@ void GuiAvatar::Render()
             break;
         }
         player->getIcon()->SetColor(ARGB((int)actA, 255, avatarRed, avatarRed));
+        if (tc && !tc->canTarget(player))
+        {
+            player->getIcon()->SetColor(ARGB((int)actA, 50, 50, 50));
+        }
         r->RenderQuad(player->getIcon().get(), actX, actY, actT, Width/player->getIcon()->mWidth*actZ, Height/player->getIcon()->mHeight*actZ);
         if (mHasFocus)
         {
