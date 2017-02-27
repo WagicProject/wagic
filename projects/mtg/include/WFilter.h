@@ -233,8 +233,8 @@ public:
     ;
     WCFilterSet(string arg);
     bool isMatch(MTGCard *c)
-    {
-        return (setid == MTGSets::ALL_SETS || c->setId == setid) && (c->getRarity() != Constants::RARITY_T); //removes viewing of card tokens. tokens will not display on spoiler and should not affect gameplay :)
+    {//exclude negative id's and tokens
+        return (setid == MTGSets::ALL_SETS || c->setId == setid) && ((c->getId() > 0) && (c->getRarity() != Constants::RARITY_T)); 
     }
     ;
     string getCode();

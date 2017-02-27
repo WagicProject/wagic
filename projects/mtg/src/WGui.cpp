@@ -692,13 +692,16 @@ PIXEL_TYPE WGuiButton::getColor(int type)
 }
 ;
 
-WGuiSplit::WGuiSplit(WGuiBase* _left, WGuiBase* _right) :
+WGuiSplit::WGuiSplit(WGuiBase* _left, WGuiBase* _right, bool custom) :
     WGuiItem("")
 {
     right = _right;
     left = _left;
     bRight = false;
-    percentRight = 0.5f;
+    if(!custom)
+        percentRight = 0.5f;
+    else
+        percentRight = 0.67f;
     if (!left->Selectable()) bRight = true;
 }
 WGuiSplit::~WGuiSplit()
@@ -1770,14 +1773,18 @@ void WGuiFilters::buildList()
 {
     list = NEW WGuiList("");
     WGuiButton * l = NEW WGuiButton(NEW WGuiItem("Add Filter"), -102, -10, this);
-    WGuiButton * r = NEW WGuiButton(NEW WGuiItem("Search"), -102, -11, this);
+    WGuiButton * r = NEW WGuiButton(NEW WGuiItem("Return"), -102, -11, this);
     WGuiButton * mid = NEW WGuiButton(NEW WGuiItem("Clear"), -102, -66, this);
-    //WGuiSplit * sub = NEW WGuiSplit(mid, r);
-    //WGuiSplit * wgs = NEW WGuiSplit(l, sub);
-    WGuiSplit * wgs = NEW WGuiSplit(mid, r);
+    WGuiSplit * sub = NEW WGuiSplit(mid, r);
+    sub->setHeight(25);
+    sub->setWidth(240);
+    l->setHeight(25);
+    l->setWidth(160);
+    WGuiSplit * wgs = NEW WGuiSplit(l, sub, true);
+    //WGuiSplit * wgs = NEW WGuiSplit(mid, r);
     subMenu = NULL;
     list->Add(NEW WGuiHeader(displayValue));
-    list->Add(l);
+    //list->Add(l);
     list->Add(wgs);
     list->Entering(JGE_BTN_NONE);
 }
