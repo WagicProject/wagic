@@ -626,7 +626,7 @@ protected:
 class WGuiSplit: public WGuiItem
 {
 public:
-    WGuiSplit(WGuiBase* _left, WGuiBase* _right);
+    WGuiSplit(WGuiBase* _left, WGuiBase* _right, bool custom = false);
     virtual ~WGuiSplit();
 
     virtual bool yieldFocus();

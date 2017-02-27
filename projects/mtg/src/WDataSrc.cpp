@@ -295,8 +295,8 @@ void WSrcCards::validate()
     updateCounts();
     if (!filtersRoot) return;
     for (size_t t = 0; t < cards.size(); t++)
-    {
-        if (matchesFilters(cards[t])) validated.push_back(t);
+    {//don't add tokens or negative id
+        if (matchesFilters(cards[t]) && (cards[t]->getId() > 0) && (cards[t]->getRarity() != Constants::RARITY_T)) validated.push_back(t);
     }
 }
 
@@ -391,8 +391,8 @@ WSrcUnlockedCards::WSrcUnlockedCards(float delay) :
     }
 
     for (it = ac->collection.begin(); it != ac->collection.end(); it++)
-    {
-        if (it->second && unlocked[it->second->setId]) cards.push_back(it->second);
+    {//no tokens or negative id's
+        if (it->second && unlocked[it->second->setId] && (it->second->getId() > 0) && (it->second->getRarity() != Constants::RARITY_T)) cards.push_back(it->second);
     }
     if (unlocked)
     {
@@ -416,7 +416,7 @@ int WSrcDeck::loadMatches(MTGDeck * deck)
     for (it = deck->cards.begin(); it != deck->cards.end(); it++)
     {
         MTGCard * c = deck->getCardById(it->first);
-        if (c && matchesFilters(c))
+        if (c && matchesFilters(c) && (c->getId() > 0) && (c->getRarity() != Constants::RARITY_T))
         {
             Add(c, it->second);
             count++;
