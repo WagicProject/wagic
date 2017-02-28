@@ -338,7 +338,10 @@ void GuiPlay::Update(float dt)
 {
     battleField.Update(dt);
     for (iterator it = cards.begin(); it != cards.end(); ++it)
-        (*it)->Update(dt);
+    {
+        if((*it))
+            (*it)->Update(dt);
+    }
 }
 
 int GuiPlay::receiveEventPlus(WEvent * e)
