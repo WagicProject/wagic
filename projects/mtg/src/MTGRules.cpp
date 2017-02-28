@@ -1862,8 +1862,10 @@ int MTGAttackRule::receiveEvent(WEvent *e)
                     card->setAttacker(0);
                 if (card->isAttacker() && !card->has(Constants::VIGILANCE))
                     card->tap();
-                if (card->isAttacker() && card->has(Constants::CANTATTACK))
+                if (card->isAttacker() && card->has(Constants::CANTATTACK) && (card->isAttacking && ((Damageable*)card->isAttacking)->type_as_damageable == Damageable::DAMAGEABLE_PLAYER))
                     card->toggleAttacker();//if a card has cantattack, then you cant
+                if (card->isAttacker() && card->has(Constants::CANTATTACKPW) && (card->isAttacking && ((Damageable*)card->isAttacking)->type_as_damageable == Damageable::DAMAGEABLE_PLAYER))
+                    card->toggleAttacker();
             }
             return 1;
         }
@@ -1915,7 +1917,7 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
             return 0;
         if (card->isAttacker())
             return 1;
-        if (card->canAttack() && card->attackPlaneswalkerCost < 1)
+        if (card->canPWAttack() && card->attackPlaneswalkerCost < 1)
             return 1;
     }
     return 0;
@@ -1972,7 +1974,7 @@ bool MTGPlaneswalkerAttackRule::select(Target* t)
     if (CardView* c = dynamic_cast<CardView*>(t))
     {
         MTGCardInstance * card = c->getCard();
-        if (card->canAttack() && !card->isPhased)
+        if (card->canPWAttack() && !card->isPhased)
             return true;
     }
     return false;

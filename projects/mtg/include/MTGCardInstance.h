@@ -171,6 +171,7 @@ public:
     int canBlock();
     int canBlock(MTGCardInstance * opponent);
     int canAttack();
+    int canPWAttack();
     int isAttacker();
     Targetable * isAttacking;
     MTGCardInstance * storedCard;

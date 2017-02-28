@@ -690,6 +690,25 @@ int MTGCardInstance::canAttack()
     return 1;
 }
 
+int MTGCardInstance::canPWAttack()
+{
+    if (has(Constants::CANTATTACKPW))
+        return 0;
+    if (has(Constants::FLYERSONLY) && !has(Constants::FLYING))
+        return 0;
+    if (tapped)
+        return 0;
+    if (hasSummoningSickness())
+        return 0;
+    if (has(Constants::DEFENSER) && !has(Constants::CANATTACK))
+        return 0;
+    if (!isCreature())
+        return 0;
+    if (!isInPlay(observer))
+        return 0;
+    return 1;
+}
+
 int MTGCardInstance::addToToughness(int value)
 {
     toughness += value;

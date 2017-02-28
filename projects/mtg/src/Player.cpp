@@ -262,6 +262,8 @@ bool Player::hasPossibleAttackers()
         MTGCardInstance * c = z->cards[j];
         if (c->canAttack() && c->isCreature())
             return true;
+        if (c->canPWAttack() && c->isCreature() && c->controller()->opponent()->inPlay()->hasType("planeswalker"))
+            return true;
     }
     return false;
 }
