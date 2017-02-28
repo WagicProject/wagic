@@ -491,7 +491,7 @@ void CardGui::Render()
             renderer->DrawRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(180,10,10,10));
         }
     }
-    if(!alternate && buff != "" && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
+    if(!alternate && buff != "" && game && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
     {
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
@@ -501,7 +501,30 @@ void CardGui::Render()
         mFont->DrawString(buffer, actX - 10 * actZ, actY - (18.3f * actZ));
         mFont->SetScale(1);
     }
-
+#if !defined (PSP)
+    if(game && game->gameType() == GAME_TYPE_MOMIR)
+    {
+        if(game->isInHand(card) && !card->controller()->isAI())
+        {
+            if ((game->currentPlayer != card->controller()) || (card->controller()->game->playRestrictions->canPutIntoZone(card, card->controller()->game->inPlay) == PlayRestriction::CANT_PLAY))
+            {
+                mFont->SetScale(0.4f);
+                mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));
+                mFont->SetScale(actZ);
+                mFont->DrawString("+", actX - 12 * actZ, actY - (18.8f * actZ));
+                mFont->SetScale(1);
+            }
+            else
+            {
+                mFont->SetScale(0.4f);
+                mFont->SetColor(ARGB(static_cast<unsigned char>(actA),0,255,0));
+                mFont->SetScale(actZ);
+                mFont->DrawString("+", actX - 12 * actZ, actY - (18.8f * actZ));
+                mFont->SetScale(1);
+            }
+        }
+    }
+#endif
     if (card->counters->mCount > 0)
     {
         unsigned c = -1;
