@@ -8046,10 +8046,25 @@ void AACastCard::Update(float dt)
        toCheck = theNamedCard;
    if(toCheck && toCheck->spellTargetType.size())
    {
+       string backupST = toCheck->spellTargetType;
+       if((toCheck->spellTargetType == "opponent") && (toCheck->owner != source->controller()))
+           toCheck->spellTargetType = "controller";
+       else if((toCheck->spellTargetType.find("|opponent") != string::npos) && (toCheck->owner != source->controller()))
+       {
+           string replaceMe = backupST;
+           toCheck->spellTargetType = cReplaceString(replaceMe, "|opponent", "|my");
+       }
+       //Since we control the card to cast, if the card should target an opponent,
+       //direct it to source ability controller->opponent
+       //example card is Bribery, if we cast it targeting from opponent's library,
+       //we should target the source ability controller->opponent
+
        TargetChooserFactory tcf(game);
        TargetChooser * stc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
        if (!stc->validTargetsExist()||toCheck->isToken)
        {
+           toCheck->spellTargetType = backupST;
+
            processed = true;
            this->forceDestroy = 1;
            return;
