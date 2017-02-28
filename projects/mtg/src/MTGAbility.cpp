@@ -740,6 +740,11 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         {
             restriction.push_back("type(land|mybattlefield)~morethan~type(land|opponentbattlefield)");
         }
+        check = restriction[i].find("didnotcastnontoken");
+        if(check != string::npos)
+        {
+            restriction.push_back("lastturn(*[-token]|mystack,mybattlefield)~lessthan~1");
+        }
 
         check = restriction[i].find("paid(");
         if(check != string::npos)
