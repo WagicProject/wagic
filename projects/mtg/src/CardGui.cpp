@@ -368,10 +368,13 @@ void CardGui::Render()
         JQuadPtr ssMask = card->getObserver()->getResourceManager()->GetQuad("white");
 
         //choose attacker mask
-        if(card->isInPlay(game) && (card->hasSummoningSickness() || card->attackCost > 0) && !card->isPhased && card->isCreature())
+        if(card->isInPlay(game) && card->isCreature() 
+            && ((!card->canAttack() || (card->attackCost > 0)) && (!card->canAttack(true) || (card->attackPlaneswalkerCost > 0)))
+            && !card->isPhased && !card->didattacked )
         {
-            if(game->getCurrentGamePhase() > MTG_PHASE_FIRSTMAIN && game->getCurrentGamePhase() < MTG_PHASE_SECONDMAIN &&
-                card->controller() == game->currentPlayer && game->currentPlayer->hasPossibleAttackers())
+            if(game->getCurrentGamePhase() > MTG_PHASE_FIRSTMAIN 
+                && game->getCurrentGamePhase() < MTG_PHASE_SECONDMAIN 
+                && card->controller() == game->currentPlayer )
             {
                 if(card->controller()->isHuman() && ssMask)
                 {

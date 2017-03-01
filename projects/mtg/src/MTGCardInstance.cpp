@@ -671,12 +671,20 @@ Player * MTGCardInstance::controller()
     return lastController;
 }
 
-int MTGCardInstance::canAttack()
+int MTGCardInstance::canAttack( bool pwcheck )
 {
-    if (has(Constants::CANTATTACK))
-        return 0;
-    if (has(Constants::FLYERSONLY) && !has(Constants::FLYING))
-        return 0;
+    if(!pwcheck)
+    {
+        if (has(Constants::CANTATTACK))
+            return 0;
+        if (has(Constants::FLYERSONLY) && !has(Constants::FLYING))
+            return 0;
+    }
+    else
+    {
+        if (has(Constants::CANTPWATTACK))
+            return 0;
+    }
     if (tapped)
         return 0;
     if (hasSummoningSickness())

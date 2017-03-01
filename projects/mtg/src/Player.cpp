@@ -260,7 +260,7 @@ bool Player::hasPossibleAttackers()
     for (int j = 0; j < nbcards; ++j)
     {
         MTGCardInstance * c = z->cards[j];
-        if (c->canAttack() && c->isCreature())
+        if ((c->canAttack(true) || c->canAttack()) && c->isCreature())
             return true;
     }
     return false;
