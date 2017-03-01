@@ -1142,6 +1142,8 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
     else
         p2 = target->controller();
 
+    if(p2 != p && p2 != p->opponent())//should match at least one
+        p2 = p;
 
     MTGGameZone * result = intToZone(zoneId, p, p2);
     if (result) return result;

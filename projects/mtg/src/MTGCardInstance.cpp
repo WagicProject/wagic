@@ -694,8 +694,6 @@ int MTGCardInstance::canPWAttack()
 {
     if (has(Constants::CANTATTACKPW))
         return 0;
-    if (has(Constants::FLYERSONLY) && !has(Constants::FLYING))
-        return 0;
     if (tapped)
         return 0;
     if (hasSummoningSickness())
