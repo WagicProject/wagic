@@ -1863,7 +1863,27 @@ int MTGAttackRule::receiveEvent(WEvent *e)
                 if (card->isAttacker() && !card->has(Constants::VIGILANCE))
                     card->tap();
                 if (card->isAttacker() && card->has(Constants::CANTATTACK))
-                    card->toggleAttacker();//if a card has cantattack, then you cant
+                {
+                    if(card->isAttacking)
+                    {
+                        Damageable * dtarget = ((Damageable *)card->isAttacking);
+                        if(dtarget->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+                            card->toggleAttacker();//if a card has cantattack, then you cant
+                    }
+                }
+                else if (card->isAttacker() && card->has(Constants::CANTPWATTACK))
+                {
+                    if(card->isAttacking)
+                    {
+                        Damageable * dtarget = ((Damageable *)card->isAttacking);
+                        if(dtarget->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
+                        {
+                            MTGCardInstance * ctarget = ((MTGCardInstance *)card->isAttacking);
+                            if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER))
+                                card->toggleAttacker();//if a card has cantpwattack, then you cant
+                        }
+                    }
+                }
             }
             return 1;
         }
@@ -1915,7 +1935,7 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
             return 0;
         if (card->isAttacker())
             return 1;
-        if (card->canAttack() && card->attackPlaneswalkerCost < 1)
+        if (card->canAttack(true) && card->attackPlaneswalkerCost < 1)
             return 1;
     }
     return 0;
@@ -1972,7 +1992,7 @@ bool MTGPlaneswalkerAttackRule::select(Target* t)
     if (CardView* c = dynamic_cast<CardView*>(t))
     {
         MTGCardInstance * card = c->getCard();
-        if (card->canAttack() && !card->isPhased)
+        if (card->canAttack(true) && !card->isPhased)
             return true;
     }
     return false;

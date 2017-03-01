@@ -170,7 +170,7 @@ public:
     MTGCardInstance * banding; // If belongs to a band when attacking
     int canBlock();
     int canBlock(MTGCardInstance * opponent);
-    int canAttack();
+    int canAttack( bool pwcheck = false );
     int isAttacker();
     Targetable * isAttacking;
     MTGCardInstance * storedCard;
