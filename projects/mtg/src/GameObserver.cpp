@@ -661,6 +661,7 @@ void GameObserver::gameStateBasedEffects()
             for (int w = 0; w < zone->nb_cards; w++)
             {
                 MTGCardInstance * card = zone->cards[w];
+                Player * zPlayer = zone->owner;
                 for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
                 {
                     if (card->has(Constants::DEVOID))
@@ -683,6 +684,10 @@ void GameObserver::gameStateBasedEffects()
                 {//invert so we get the top one...
                     int onum = w+1;
                     card->zpos = abs(onum - zone->nb_cards)+1;
+                }
+                else if(card && (isInPlay(card)))
+                {//lastcontroller override
+                    card->lastController = zPlayer;
                 }
             }
 
