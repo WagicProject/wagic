@@ -1864,8 +1864,11 @@ int MTGAttackRule::receiveEvent(WEvent *e)
                     card->tap();
                 if (card->isAttacker() && card->has(Constants::CANTATTACK) && (card->isAttacking && ((Damageable*)card->isAttacking)->type_as_damageable == Damageable::DAMAGEABLE_PLAYER))
                     card->toggleAttacker();//if a card has cantattack, then you cant
-                if (card->isAttacker() && card->has(Constants::CANTATTACKPW) && (card->isAttacking && ((Damageable*)card->isAttacking)->type_as_damageable == Damageable::DAMAGEABLE_PLAYER))
-                    card->toggleAttacker();
+                if (card->isAttacker() && card->has(Constants::CANTATTACKPW) && (card->isAttacking && ((Damageable*)card->isAttacking)->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE))
+                {
+                    if(((MTGCardInstance *)card->isAttacking)->hasType("planeswalker"))
+                        card->toggleAttacker();
+                }
             }
             return 1;
         }
