@@ -684,6 +684,8 @@ void GameObserver::gameStateBasedEffects()
                     int onum = w+1;
                     card->zpos = abs(onum - zone->nb_cards)+1;
                 }
+                if(card && zone->owner)//last controller
+                    card->lastController = zone->owner;
             }
 
 
@@ -712,8 +714,6 @@ void GameObserver::gameStateBasedEffects()
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
-            //lastcontroller zone update
-            card->lastController = players[i];
             card->entersBattlefield = 0;
             card->LKIpower = card->power;
             card->LKItoughness = card->toughness;
@@ -1049,10 +1049,12 @@ void GameObserver::gameStateBasedEffects()
     int skipLevel = (currentPlayer->playMode == Player::MODE_TEST_SUITE || mLoading) ? Constants::ASKIP_NONE
         : options[Options::ASPHASES].number;
     bool noattackers = currentPlayer->noPossibleAttackers();
+    bool hasdiaochan = currentPlayer->game->inPlay->hasAlias(10544);//diaochan activated ability combat begins
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
         if ((opponent()->isAI() && !(isInterrupting)) && ((mCurrentGamePhase == MTG_PHASE_UNTAP)
-            || (mCurrentGamePhase == MTG_PHASE_DRAW) || (mCurrentGamePhase == MTG_PHASE_COMBATBEGIN)
+            || (mCurrentGamePhase == MTG_PHASE_DRAW) 
+            || ((mCurrentGamePhase == MTG_PHASE_COMBATBEGIN) && (!hasdiaochan))
             || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (noattackers))
             || (mCurrentGamePhase == MTG_PHASE_COMBATEND) || (mCurrentGamePhase == MTG_PHASE_ENDOFTURN)
             || ((mCurrentGamePhase == MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
