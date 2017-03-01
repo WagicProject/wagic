@@ -266,8 +266,7 @@ class Constants
       HIDDENFACE = 144,
       ANYTYPEOFMANA = 145,
       NECROED = 146,
-      CANTATTACKPW = 147,
-      NB_BASIC_ABILITIES = 148,
+      NB_BASIC_ABILITIES = 147,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

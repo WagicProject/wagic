@@ -1158,14 +1158,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
     {
         MTGCardInstance * _target = dynamic_cast<MTGCardInstance*>(target);
         if(_target && _target->hasType(Subtypes::TYPE_PLANESWALKER))
-        {
-            if(d.size())
-            {
-                WParsedInt parsedNum(d, NULL, source);
-                return _("Deal " + parsedNum.getStringValue() + " Damage to " + _target->name).c_str();
-            }
             return _target->name.c_str();
-        }
         if(redirected)
         {
             if(d.size())

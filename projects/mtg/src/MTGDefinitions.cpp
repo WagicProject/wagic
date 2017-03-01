@@ -177,8 +177,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "cantcrew",
     "hiddenface",//test for hiding card
     "anytypeofmana",
-    "necroed"//hide necored,
-    "cantpwattack"
+    "necroed"//hide necored
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

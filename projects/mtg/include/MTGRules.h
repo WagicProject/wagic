@@ -279,7 +279,7 @@ public:
     MTGAttackRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "Attack Player";
+        return "Attacker";
     }
     int receiveEvent(WEvent * event);
     virtual MTGAttackRule * clone() const;
