@@ -8111,6 +8111,7 @@ MTGCardInstance * AACastCard::makeCard()
    if(!cardData) return NULL;
    card = NEW MTGCardInstance(cardData, source->controller()->game);
    card->owner = source->controller();
+   card->lastController = source->controller();
    source->controller()->game->temp->addCard(card);
    return card;
 }
@@ -8143,9 +8144,9 @@ int AACastCard::resolveSpell()
         {
             if(theNamedCard)
             {
-                MTGCardInstance * copy =  _target->controller()->game->putInZone(_target, _target->currentZone,  _target->controller()->game->temp);
-                copy->changeController(source->controller(),true);
-                Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, 1);
+                //MTGCardInstance * copy =  source->controller()->game->putInZone(_target, _target->currentZone,  source->controller()->game->temp);
+                //copy->changeController(source->controller(),true);
+                Spell * spell = NEW Spell(game, -1,theNamedCard,NULL,NULL, 1);
                 spell->resolve();
                 delete spell;
 
@@ -8165,6 +8166,61 @@ int AACastCard::resolveSpell()
                 return 1;
             }
         }
+
+        //
+        if(theNamedCard)
+        {
+            //MTGCardInstance * copy =  source->controller()->game->putInZone(_target, _target->currentZone,  source->controller()->game->temp);
+            //copy->changeController(source->controller(),true);
+            Spell * spell = NULL;
+            MTGCardInstance * copy = source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack);
+
+            if (game->targetChooser)
+            {
+                game->targetChooser->Owner = source->controller();
+                spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                game->targetChooser = NULL;
+            }
+            else
+            {
+                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+            }
+
+            if (copy->has(Constants::STORM))
+            {
+                int storm = source->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + source->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+            
+                for (int i = storm; i > 1; i--)
+                {
+                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, 0, 1, 1);
+
+                }
+            }
+            if (!copy->has(Constants::STORM))
+            {
+                copy->X = 0;
+                copy->castX = copy->X;
+            }
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = copy;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+
+            this->forceDestroy = true;
+            processed = true;
+            return 1;
+        }
+        //
 
         Spell * spell = NULL;
         MTGCardInstance * copy = NULL;

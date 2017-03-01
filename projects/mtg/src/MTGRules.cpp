@@ -3201,7 +3201,8 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
                 Player * p = game->players[i];
                 if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library)
                 {
-                    p->game->putInExile(e->card);
+                    //p->game->putInExile(e->card);
+                    e->to->owner->game->putInExile(e->card);
                     return 1;
                 }
             }
