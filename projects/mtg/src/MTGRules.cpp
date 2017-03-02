@@ -1663,6 +1663,13 @@ int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiCh
             return 0;
         if(card->attackCost < 1)
             return 0;
+        if(card->attackCost)
+        {
+            int number = card->attackCost;
+            WParsedInt parsedNum(number);
+            scost = _("Pay " + parsedNum.getStringValue() + " to attack").c_str();
+        }
+
         ManaCost * playerMana = card->controller()->getManaPool();
         ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
         attackcost->add(0,card->attackCostBackup);
@@ -1671,7 +1678,6 @@ int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiCh
             {
                 attackcost->extraCosts->costs[i]->setSource(card);
             }
-        scost = attackcost->getConvertedCost();
         if ((aiCheck && aiCheck->canAfford(attackcost)) || playerMana->canAfford(attackcost))
         {
             SAFE_DELETE(attackcost);
@@ -1711,7 +1717,7 @@ ostream& MTGAttackCostRule::toString(ostream& out) const
 
 const string MTGAttackCostRule::getMenuText()
 {
-    sprintf(menuText, "Pay to attack");
+    sprintf(menuText, "%s", scost.c_str());
     return menuText;
 }
 
@@ -1737,7 +1743,13 @@ int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiChe
             return 0;
         if(card->blockCost < 1)
             return 0;
-        
+        if(card->blockCost)
+        {
+            int number = card->blockCost;
+            WParsedInt parsedNum(number);
+            scost = _("Pay " + parsedNum.getStringValue() + " to block").c_str();
+        }
+
         ManaCost * playerMana = card->controller()->getManaPool();
         ManaCost * blockcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
         blockcost->add(0,card->blockCostBackup);
@@ -1746,7 +1758,6 @@ int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiChe
             {
                 blockcost->extraCosts->costs[i]->setSource(card);
             }
-        scost = blockcost->getConvertedCost();
         if ((aiCheck && aiCheck->canAfford(blockcost)) || playerMana->canAfford(blockcost))
         {
             SAFE_DELETE(blockcost);
@@ -1785,7 +1796,7 @@ ostream& MTGBlockCostRule::toString(ostream& out) const
 
 const string MTGBlockCostRule::getMenuText()
 {
-    sprintf(menuText, "Pay to block");
+    sprintf(menuText, "%s", scost.c_str());
     return menuText;
 }
 
@@ -1814,6 +1825,7 @@ MTGAttackRule::MTGAttackRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MTG_ATTACK_RULE;
+    attackmenu = "";
 }
 
 int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
@@ -1822,10 +1834,18 @@ int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     {
         if(card->isPhased)
             return 0;
-        if (card->isAttacker())
+        if ((card->isAttacker()) || (card->canAttack() && card->attackCost < 1))
+        {
+            if(!card->isAttacker())
+                attackmenu = "Attack Player";
+            else
+                attackmenu = "Remove Attacker";
+
+            if(card->willattackpw)
+                return 0;
+
             return 1;
-        if (card->canAttack() && card->attackCost < 1)
-            return 1;
+        }
     }
     return 0;
 }
@@ -1904,8 +1924,14 @@ int MTGAttackRule::reactToClick(MTGCardInstance * card)
         game->getCardSelector()->Limit(NULL, CardView::playZone);
         game->getCardSelector()->PopLimitor();
     }
+    
     card->toggleAttacker();
     return 1;
+}
+
+const string MTGAttackRule::getMenuText()
+{
+    return attackmenu;
 }
 
 ostream& MTGAttackRule::toString(ostream& out) const
@@ -1923,6 +1949,7 @@ MTGPlaneswalkerAttackRule::MTGPlaneswalkerAttackRule(GameObserver* observer, int
 PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MTG_ATTACK_RULE;
+    attackpwmenu = "";
 }
 
 int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
@@ -1933,10 +1960,18 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
             return 0;
         if(card->isPhased)
             return 0;
-        if (card->isAttacker())
+        if ((card->isAttacker()) || (card->canAttack(true) && card->attackPlaneswalkerCost < 1))
+        {
+            if(!card->isAttacker())
+                attackpwmenu = "Attack Planeswalker";
+            else
+                attackpwmenu = "Remove Attacker";
+
+            if(card->willattackplayer)
+                return 0;
+
             return 1;
-        if (card->canAttack(true) && card->attackPlaneswalkerCost < 1)
-            return 1;
+        }
     }
     return 0;
 }
@@ -1953,6 +1988,12 @@ int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
         game->getCardSelector()->CheckUserInput(JGE_BTN_RIGHT);
         game->getCardSelector()->Limit(NULL, CardView::playZone);
         game->getCardSelector()->PopLimitor();
+    }
+
+    if(card->willattackpw)
+    {
+        card->toggleAttacker(true);
+        return 1;
     }
 
     vector<MTGAbility*>selection;
@@ -1978,8 +2019,13 @@ int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
         game->mLayers->actionLayer()->currentActionCard = card;
         a1->resolve();
     }
-
+    
     return 1;
+}
+
+const string MTGPlaneswalkerAttackRule::getMenuText()
+{
+    return attackpwmenu;
 }
 
 MTGPlaneswalkerAttackRule * MTGPlaneswalkerAttackRule::clone() const
@@ -2016,7 +2062,7 @@ int AAPlaneswalkerAttacked::resolve()
     if(!attacker)
         return 0;
     attacker->isAttacking = this->target;
-    attacker->toggleAttacker();
+    attacker->toggleAttacker(true);
     return 1;
 }
 

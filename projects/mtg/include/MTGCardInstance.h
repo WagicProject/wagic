@@ -161,12 +161,14 @@ public:
     MTGCardInstance * defenser;
     list<MTGCardInstance *>blockers;
     int attacker;
+    int willattackplayer;
+    int willattackpw;
     int toggleDefenser(MTGCardInstance * opponent);
     int raiseBlockerRankOrder(MTGCardInstance * blocker);
 
     //Returns rank of the card in blockers if it is a blocker of this (starting at 1), 0 otherwise
     int getDefenserRank(MTGCardInstance * blocker);
-    int toggleAttacker();
+    int toggleAttacker(bool pw = false);
     MTGCardInstance * banding; // If belongs to a band when attacking
     int canBlock();
     int canBlock(MTGCardInstance * opponent);
