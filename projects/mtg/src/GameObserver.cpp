@@ -770,7 +770,7 @@ void GameObserver::gameStateBasedEffects()
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//
             ////////////////////////////////////////////////////
-            if (card->hasType(Subtypes::TYPE_EQUIPMENT))
+            if (card->hasType(Subtypes::TYPE_EQUIPMENT)||card->hasType("fortification"))
             {
                 if(isInPlay(card))
                 {
@@ -782,7 +782,9 @@ void GameObserver::gameStateBasedEffects()
                         {
                             if(card->target)//unattach equipments from cards that has protection from quality ex. protection from artifacts
                             {
-                                if((card->target)->protectedAgainst(card)||card->isCreature())
+                                if((card->target)->protectedAgainst(card)||card->isCreature()||(!card->target->isCreature()))
+                                    ((AEquip*)a)->unequip();
+                                else if((!card->target->isLand() && card->hasType("fortification")))
                                     ((AEquip*)a)->unequip();
                             }
                             if(card->controller())
@@ -808,21 +810,6 @@ void GameObserver::gameStateBasedEffects()
             {
                 if(card->target && !isInPlay(card->target))
                     players[i]->game->putInGraveyard(card);
-                /*if(card->target && isInPlay(card->target))
-                {//what exactly does this section do?
-                    if(card->spellTargetType.find("creature") != string::npos && !card->target->hasType("creature"))
-                        players[i]->game->putInGraveyard(card);
-                    if(card->spellTargetType.find("artifact") != string::npos && !card->target->hasType("artifact"))
-                        players[i]->game->putInGraveyard(card);
-                    if(card->spellTargetType.find("enchantment") != string::npos && !card->target->hasType("enchantment"))
-                        players[i]->game->putInGraveyard(card);
-                    if(card->spellTargetType.find("land") != string::npos && !card->target->hasType("land"))
-                        players[i]->game->putInGraveyard(card);
-                    if(card->spellTargetType.find("planeswalker") != string::npos && !card->target->hasType("planeswalker"))
-                        players[i]->game->putInGraveyard(card);
-                }*/
-                if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card) && !card->has(Constants::AURAWARD))//protection from quality except aura cards like flickering ward
-                    players[i]->game->putInGraveyard(card);
             }
             card->enchanted = false;
             if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
@@ -834,6 +821,41 @@ void GameObserver::gameStateBasedEffects()
                 card->playerTarget->curses.push_back(card);
             }
 
+            //704.5n If an Aura is attached to an illegal object or player,
+            //or is not attached to an object or player, that Aura is put into its owner’s graveyard.
+            if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
+            {
+                bool unattachB = (!card->target->isCreature() && card->isBestowed)?true:false;
+                bool protectionfromQ = ((card->target)->protectedAgainst(card) && !card->has(Constants::AURAWARD))?true:false;
+                int found = 0;
+                string stypes = card->spellTargetType;
+                if(stypes.size() && !card->hasType("curse"))
+                {
+                    if(stypes.find("artifact") != string::npos && card->target->hasType("artifact"))
+                        found++;
+                    if(stypes.find("creature") != string::npos && card->target->hasType("creature"))
+                        found++;
+                    if(stypes.find("enchantment") != string::npos && card->target->hasType("enchantment"))
+                        found++;
+                    if(stypes.find("land") != string::npos && card->target->hasType("land"))
+                        found++;
+                    if(stypes.find("planeswalker") != string::npos && card->target->hasType("planeswalker"))
+                        found++;
+                }
+
+                if((!found || protectionfromQ) && !card->isBestowed)
+                {
+                    players[i]->game->putInGraveyard(card);
+                }
+                else if(card->isBestowed && (protectionfromQ || unattachB))
+                {
+                    card->removeType("aura");
+                    card->addType("creature");
+                    card->target = NULL;
+                    card->isBestowed = false;
+                }
+                
+            }
             //////////////////////
             //reset morph hiding//
             //////////////////////
