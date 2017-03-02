@@ -1663,6 +1663,13 @@ int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiCh
             return 0;
         if(card->attackCost < 1)
             return 0;
+        if(card->attackCost)
+        {
+            int number = card->attackCost;
+            WParsedInt parsedNum(number);
+            scost = _("Pay " + parsedNum.getStringValue() + " to attack").c_str();
+        }
+
         ManaCost * playerMana = card->controller()->getManaPool();
         ManaCost * attackcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
         attackcost->add(0,card->attackCostBackup);
@@ -1671,7 +1678,6 @@ int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiCh
             {
                 attackcost->extraCosts->costs[i]->setSource(card);
             }
-        scost = attackcost->getConvertedCost();
         if ((aiCheck && aiCheck->canAfford(attackcost)) || playerMana->canAfford(attackcost))
         {
             SAFE_DELETE(attackcost);
@@ -1711,7 +1717,7 @@ ostream& MTGAttackCostRule::toString(ostream& out) const
 
 const string MTGAttackCostRule::getMenuText()
 {
-    sprintf(menuText, "Pay to attack");
+    sprintf(menuText, "%s", scost.c_str());
     return menuText;
 }
 
@@ -1737,7 +1743,13 @@ int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiChe
             return 0;
         if(card->blockCost < 1)
             return 0;
-        
+        if(card->blockCost)
+        {
+            int number = card->blockCost;
+            WParsedInt parsedNum(number);
+            scost = _("Pay " + parsedNum.getStringValue() + " to block").c_str();
+        }
+
         ManaCost * playerMana = card->controller()->getManaPool();
         ManaCost * blockcost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
         blockcost->add(0,card->blockCostBackup);
@@ -1746,7 +1758,6 @@ int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiChe
             {
                 blockcost->extraCosts->costs[i]->setSource(card);
             }
-        scost = blockcost->getConvertedCost();
         if ((aiCheck && aiCheck->canAfford(blockcost)) || playerMana->canAfford(blockcost))
         {
             SAFE_DELETE(blockcost);
@@ -1785,7 +1796,7 @@ ostream& MTGBlockCostRule::toString(ostream& out) const
 
 const string MTGBlockCostRule::getMenuText()
 {
-    sprintf(menuText, "Pay to block");
+    sprintf(menuText, "%s", scost.c_str());
     return menuText;
 }
 
