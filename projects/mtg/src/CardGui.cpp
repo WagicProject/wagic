@@ -113,7 +113,7 @@ void CardGui::Update(float dt)
 
 void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder, bool gdv)
 {
-    DrawCard(card, inPosition, inMode, thumb, noborder);
+    DrawCard(card, inPosition, inMode, thumb, noborder, gdv);
 }
 
 void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder, bool gdv)
