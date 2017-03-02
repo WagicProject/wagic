@@ -431,7 +431,8 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
                 {
                     if (zone == p->game->inPlay)
                     {
-                        MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
+                        //MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
+                        MTGCardInstance * copy = zone->owner->game->putInZone(card, p->game->library, p->game->stack);
                         Spell * spell = NEW Spell(g, copy);
                         spell->resolve();
                         delete spell;
@@ -442,7 +443,8 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
                         {
                             LOG ("RULES ERROR, CARD NOT FOUND IN LIBRARY\n");
                         }
-                        p->game->putInZone(card, p->game->library, zone);
+                        //p->game->putInZone(card, p->game->library, zone);
+                        zone->owner->game->putInZone(card, p->game->library, zone);
                     }
                 }
                 else

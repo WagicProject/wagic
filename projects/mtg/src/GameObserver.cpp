@@ -807,7 +807,7 @@ void GameObserver::gameStateBasedEffects()
             if ((card->target||card->playerTarget) && !card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
                 if(card->target && !isInPlay(card->target))
-                players[i]->game->putInGraveyard(card);
+                    players[i]->game->putInGraveyard(card);
                 /*if(card->target && isInPlay(card->target))
                 {//what exactly does this section do?
                     if(card->spellTargetType.find("creature") != string::npos && !card->target->hasType("creature"))
@@ -822,7 +822,7 @@ void GameObserver::gameStateBasedEffects()
                         players[i]->game->putInGraveyard(card);
                 }*/
                 if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card) && !card->has(Constants::AURAWARD))//protection from quality except aura cards like flickering ward
-                players[i]->game->putInGraveyard(card);
+                    players[i]->game->putInGraveyard(card);
             }
             card->enchanted = false;
             if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
@@ -940,7 +940,6 @@ void GameObserver::gameStateBasedEffects()
         //checks if a player has a card which has the stated ability in play.
         Player * p = players[i];
         MTGGameZone * z = players[i]->game->inPlay;
-        int nbcards = z->nb_cards;
         //------------------------------
         if(z->hasAbility(Constants::NOMAXHAND)||p->opponent()->inPlay()->hasAbility(Constants::OPPNOMAXHAND))
             p->nomaxhandsize = true;
@@ -951,7 +950,7 @@ void GameObserver::gameStateBasedEffects()
         /////////////////////////////////////////////////
         if (mCurrentGamePhase == MTG_PHASE_ENDOFTURN+1)
         {
-            for (int j = 0; j < nbcards; ++j)
+            for (int j = z->nb_cards - 1; j >= 0; j--)
             {
                 MTGCardInstance * c = z->cards[j];
 
@@ -974,31 +973,25 @@ void GameObserver::gameStateBasedEffects()
                 c->damageToCreature = false;
                 c->isAttacking = NULL;
             }
-            for (int t = 0; t < nbcards; t++)
+            for (int jj = z->nb_cards - 1; jj >= 0; jj--)
             {
-                MTGCardInstance * c = z->cards[t];
+                MTGCardInstance * c = z->cards[jj];
 
-                if(!c->isPhased)
+                if(c && !c->isPhased)
                 {
                     if (c->has(Constants::TREASON))
                     {
                         MTGCardInstance * beforeCard = c;
-                        p->game->putInGraveyard(c);
+                        p->game->putInZone(c, c->currentZone, c->owner->game->graveyard);
                         WEvent * e = NEW WEventCardSacrifice(beforeCard,c);
                         receiveEvent(e);
                     }
                     if (c->has(Constants::UNEARTH))
                     {
-                        p->game->putInExile(c);
-
+                        p->game->putInZone(c, c->currentZone, c->owner->game->exile);
                     }
                 }
 
-                if(nbcards > z->nb_cards)
-                {
-                    t = 0;
-                    nbcards = z->nb_cards;
-                }
             }
 
             MTGGameZone * f = p->game->graveyard;
