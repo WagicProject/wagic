@@ -1814,6 +1814,7 @@ MTGAttackRule::MTGAttackRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MTG_ATTACK_RULE;
+    attackmenu = "";
 }
 
 int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
@@ -1822,10 +1823,18 @@ int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     {
         if(card->isPhased)
             return 0;
-        if (card->isAttacker())
+        if ((card->isAttacker()) || (card->canAttack() && card->attackCost < 1))
+        {
+            if(!card->isAttacker())
+                attackmenu = "Attack Player";
+            else
+                attackmenu = "Remove Attacker";
+
+            if(card->willattackpw)
+                return 0;
+
             return 1;
-        if (card->canAttack() && card->attackCost < 1)
-            return 1;
+        }
     }
     return 0;
 }
@@ -1904,8 +1913,14 @@ int MTGAttackRule::reactToClick(MTGCardInstance * card)
         game->getCardSelector()->Limit(NULL, CardView::playZone);
         game->getCardSelector()->PopLimitor();
     }
+    
     card->toggleAttacker();
     return 1;
+}
+
+const string MTGAttackRule::getMenuText()
+{
+    return attackmenu;
 }
 
 ostream& MTGAttackRule::toString(ostream& out) const
@@ -1923,6 +1938,7 @@ MTGPlaneswalkerAttackRule::MTGPlaneswalkerAttackRule(GameObserver* observer, int
 PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MTG_ATTACK_RULE;
+    attackpwmenu = "";
 }
 
 int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
@@ -1933,10 +1949,18 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
             return 0;
         if(card->isPhased)
             return 0;
-        if (card->isAttacker())
+        if ((card->isAttacker()) || (card->canAttack(true) && card->attackPlaneswalkerCost < 1))
+        {
+            if(!card->isAttacker())
+                attackpwmenu = "Attack Planeswalker";
+            else
+                attackpwmenu = "Remove Attacker";
+
+            if(card->willattackplayer)
+                return 0;
+
             return 1;
-        if (card->canAttack(true) && card->attackPlaneswalkerCost < 1)
-            return 1;
+        }
     }
     return 0;
 }
@@ -1953,6 +1977,12 @@ int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
         game->getCardSelector()->CheckUserInput(JGE_BTN_RIGHT);
         game->getCardSelector()->Limit(NULL, CardView::playZone);
         game->getCardSelector()->PopLimitor();
+    }
+
+    if(card->willattackpw)
+    {
+        card->toggleAttacker(true);
+        return 1;
     }
 
     vector<MTGAbility*>selection;
@@ -1978,8 +2008,13 @@ int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
         game->mLayers->actionLayer()->currentActionCard = card;
         a1->resolve();
     }
-
+    
     return 1;
+}
+
+const string MTGPlaneswalkerAttackRule::getMenuText()
+{
+    return attackpwmenu;
 }
 
 MTGPlaneswalkerAttackRule * MTGPlaneswalkerAttackRule::clone() const
@@ -2016,7 +2051,7 @@ int AAPlaneswalkerAttacked::resolve()
     if(!attacker)
         return 0;
     attacker->isAttacking = this->target;
-    attacker->toggleAttacker();
+    attacker->toggleAttacker(true);
     return 1;
 }
 

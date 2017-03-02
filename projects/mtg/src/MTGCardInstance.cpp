@@ -37,6 +37,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     initMTGCI();
     model = card;
     attacker = 0;
+    willattackplayer = 0;
+    willattackpw = 0;
     lifeOrig = life;
     origpower = power;
     basepower = origpower;
@@ -1338,17 +1340,27 @@ int MTGCardInstance::setAttacker(int value)
     return 1;
 }
 
-int MTGCardInstance::toggleAttacker()
+int MTGCardInstance::toggleAttacker(bool pw)
 {
     if (!attacker)
     {
         //if (!basicAbilities[Constants::VIGILANCE]) tap();
+        if(pw)
+        {
+            willattackpw = 1;
+        }
+        else
+        {
+            willattackplayer = 1;
+        }
         setAttacker(1);
         return 1;
     }
     else
     {
         //untap();
+        willattackpw = 0;
+        willattackplayer = 0;
         setAttacker(0);
         isAttacking = NULL;
         return 1;

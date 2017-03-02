@@ -270,17 +270,14 @@ public:
 class MTGAttackRule: public PermanentAbility, public Limitor
 {
 public:
- 
+    string attackmenu;
     virtual bool select(Target*);
     virtual bool greyout(Target*);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGAttackRule(GameObserver* observer, int _id);
-    const string getMenuText()
-    {
-        return "Attacker";
-    }
+    const string getMenuText();
     int receiveEvent(WEvent * event);
     virtual MTGAttackRule * clone() const;
 };
@@ -289,16 +286,13 @@ public:
 class MTGPlaneswalkerAttackRule: public PermanentAbility, public Limitor
 {
 public:
- 
+    string attackpwmenu;
     virtual bool select(Target*);
     virtual bool greyout(Target*);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     MTGPlaneswalkerAttackRule(GameObserver* observer, int _id);
-    const string getMenuText()
-    {
-        return "Attack Planeswalker";
-    }
+    const string getMenuText();
     virtual MTGPlaneswalkerAttackRule * clone() const;
 };
 class AAPlaneswalkerAttacked: public InstantAbility
