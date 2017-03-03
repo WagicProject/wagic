@@ -967,6 +967,21 @@ void GameObserver::gameStateBasedEffects()
             p->nomaxhandsize = true;
         else
             p->nomaxhandsize = false;
+        //////////////////////////////////
+        //clear will attack player or pw//
+        //////////////////////////////////
+        if (mCurrentGamePhase == MTG_PHASE_COMBATBLOCKERS)
+        {
+            for (int l = z->nb_cards - 1; l >= 0; l--)
+            {
+                MTGCardInstance * c = z->cards[l];
+                if(c)
+                {
+                    c->willattackplayer = 0;
+                    c->willattackpw = 0;
+                }
+            }
+        }
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
         /////////////////////////////////////////////////
