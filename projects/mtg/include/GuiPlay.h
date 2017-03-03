@@ -80,6 +80,7 @@ protected:
     vector<CardView*> cards;
 
 public:
+    int wave;
     GuiPlay(DuelLayers*);
     ~GuiPlay();
     virtual void Render();

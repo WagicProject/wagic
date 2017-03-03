@@ -178,6 +178,7 @@ void GuiPlay::BattleField::Render()
 GuiPlay::GuiPlay(DuelLayers* view) :
     GuiLayer(view)
 {
+    wave = 0;
     end_spells = cards.end();
 }
 
@@ -298,6 +299,20 @@ void GuiPlay::Render()
 
     for (iterator it = cards.begin(); it != cards.end(); ++it)
     {
+        //draw line when attacking planeswalker
+        if((*it)->card && (*it)->card->isAttacker())
+        {
+            Damageable * dtarget = ((Damageable *)(*it)->card->isAttacking); 
+            if(dtarget && dtarget->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
+            {
+                MTGCardInstance * ctarget = ((MTGCardInstance *)(*it)->card->isAttacking);
+                if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER) && observer->isInPlay(ctarget) && observer->getCurrentGamePhase() < MTG_PHASE_COMBATEND)
+                {
+                    JRenderer::GetInstance()->DrawLine((*it)->actX,(*it)->actY,ctarget->view->actX,ctarget->view->actY,0.5f,ARGB(128 - wave, 255, 20, 0));
+                }
+            }
+        }
+
         if ((*it)->card->isLand())
         {
             if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
@@ -342,6 +357,7 @@ void GuiPlay::Update(float dt)
         if((*it))
             (*it)->Update(dt);
     }
+    wave = (wave + 2 * (int) (100 * dt)) % 255;
 }
 
 int GuiPlay::receiveEventPlus(WEvent * e)
