@@ -196,9 +196,12 @@ void GuiGameZone::Render()
 {
     //Texture
     JQuadPtr quad = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
+    JQuadPtr overlay;
     float scale = defaultHeight / quad->mHeight;
+    float scale2 = scale;
     float modx = 0;
     float mody = 0;
+
     bool replaced = false;
     bool showtop = (zone && zone->owner->game->battlefield->nb_cards && zone->owner->game->battlefield->hasAbility(Constants::SHOWFROMTOPLIBRARY))?true:false;
     bool showopponenttop = (zone && zone->owner->opponent()->game->battlefield->nb_cards && zone->owner->opponent()->game->battlefield->hasAbility(Constants::SHOWOPPONENTTOPLIBRARY))?true:false;
@@ -208,6 +211,46 @@ void GuiGameZone::Render()
     {
         quad->SetColor(ARGB((int)(actA),255,240,255));
     }
+    
+    //overlay
+    JQuadPtr iconcard = WResourceManager::Instance()->RetrieveTempQuad("iconcard.png");
+    JQuadPtr iconhand = WResourceManager::Instance()->RetrieveTempQuad("iconhand.png");
+    JQuadPtr iconlibrary = WResourceManager::Instance()->RetrieveTempQuad("iconlibrary.png");
+    JQuadPtr iconexile = WResourceManager::Instance()->RetrieveTempQuad("iconexile.png");
+    
+    if(iconlibrary && type == GUI_LIBRARY)
+    {
+        scale2 = defaultHeight / iconlibrary->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconlibrary->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconlibrary;
+    }
+    if(iconhand && type == GUI_OPPONENTHAND)
+    {
+        scale2 = defaultHeight / iconhand->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconhand->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconhand;
+    }
+    if(iconcard && type == GUI_GRAVEYARD)
+    {
+        scale2 = defaultHeight / iconcard->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconcard->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconcard;
+    }
+    if(iconexile && type == GUI_EXILE)
+    {
+        scale2 = defaultHeight / iconexile->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconexile->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconexile;
+    }
+    //
 
     if(type == GUI_LIBRARY && zone->nb_cards && !showCards)
     {
@@ -227,7 +270,7 @@ void GuiGameZone::Render()
                     if(kquad)
                     {
                         kquad->SetColor(ARGB((int)(actA),255,255,255));
-                        scale = defaultHeight / kquad->mHeight;
+                        scale2 = defaultHeight / kquad->mHeight;
                         modx = (35/4)+1;
                         mody = (50/4)+1;
                         quad = kquad;
@@ -238,7 +281,7 @@ void GuiGameZone::Render()
                         if(quad)
                         {
                             quad->SetColor(ARGB((int)(actA),255,255,255));
-                            scale = defaultHeight / quad->mHeight;
+                            scale2 = defaultHeight / quad->mHeight;
                             modx = (35/4)+1;
                             mody = (50/4)+1;
                         }
@@ -250,7 +293,9 @@ void GuiGameZone::Render()
 
     //render small card quad
     if(quad)
-        JRenderer::GetInstance()->RenderQuad(quad.get(), actX+modx, actY+mody, 0.0, scale * actZ, scale * actZ);
+        JRenderer::GetInstance()->RenderQuad(quad.get(), actX+modx, actY+mody, 0.0, scale2 * actZ, scale2 * actZ);
+    /*if(overlay)
+        JRenderer::GetInstance()->RenderQuad(overlay.get(), actX, actY, 0.0, scale2 * actZ, scale2 * actZ);*/
 
     float x0 = actX;
     if (x0 < SCREEN_WIDTH / 2)
@@ -261,7 +306,7 @@ void GuiGameZone::Render()
     if (mHasFocus)
     {
         if(!replaced)
-            JRenderer::GetInstance()->FillRect(actX, actY, quad->mWidth * scale * actZ, quad->mHeight * scale * actZ,
+            JRenderer::GetInstance()->FillRect(actX, actY, quad->mWidth * scale2 * actZ, quad->mHeight * scale2 * actZ,
                 ARGB(abs(128 - wave),255,255,255));
     }
 
@@ -279,14 +324,14 @@ void GuiGameZone::Render()
     else if(type == GUI_EXILE)
         sprintf(buffer, "%i\ne", zone->nb_cards);
     else*/
-        sprintf(buffer, "%i", zone->nb_cards);
+    sprintf(buffer, "%i", zone->nb_cards);
     mFont->SetColor(ARGB(mAlpha,0,0,0));
     mFont->DrawString(buffer, x0 + 1, actY + 1);
     if (actA > 120)
         mAlpha = 255;
     mFont->SetColor(ARGB(mAlpha,255,255,255));
     mFont->DrawString(buffer, x0, actY);
-
+    
     //show top library - big card display
     if(type == GUI_LIBRARY && mHasFocus && zone->nb_cards && !showCards && replaced)
     {
