@@ -178,7 +178,14 @@ const char* Constants::MTGBasicAbilities[] = {
     "hiddenface",//test for hiding card
     "anytypeofmana",
     "necroed",//hide necored
-    "cantpwattack"
+    "cantpwattack",
+    "canplayfromlibrarytop",//all
+    "canplaylandlibrarytop",//land
+    "canplaycreaturelibrarytop",//creature
+    "canplayartifactlibrarytop",//artifact
+    "canplayinstantsorcerylibrarytop",//instant or sorcery
+    "showfromtoplibrary",
+    "showopponenttoplibrary"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

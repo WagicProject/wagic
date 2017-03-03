@@ -903,6 +903,32 @@ int MTGCardInstance::canproduceMana(int color)
     return 0;
 }
 
+//check can be played from library top
+bool MTGCardInstance::canPlayFromLibrary()
+{
+    int found = 0;
+    if(has(Constants::CANPLAYFROMLIBRARYTOP) 
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYFROMLIBRARYTOP)))
+        found++;
+    if(isLand() && (has(Constants::CANPLAYLANDTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYLANDTOPLIBRARY))))
+        found++;
+    if(hasSubtype(Subtypes::TYPE_ARTIFACT) && (has(Constants::CANPLAYARTIFACTTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYARTIFACTTOPLIBRARY))))
+        found++;
+    if(isCreature() && (has(Constants::CANPLAYCREATURETOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYCREATURETOPLIBRARY))))
+        found++;
+    if(isSorceryorInstant() && (has(Constants::CANPLAYINSTANTSORCERYTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYINSTANTSORCERYTOPLIBRARY))))
+        found++;
+
+    if(found > 0)
+        return true;
+
+    return false;
+}
+
 //check stack
 bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 {

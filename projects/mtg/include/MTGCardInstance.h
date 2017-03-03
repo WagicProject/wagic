@@ -267,6 +267,7 @@ public:
     bool discarded;
     int copiedID;
     int copiedSetID;
+    bool canPlayFromLibrary();
     bool StackIsEmptyandSorcerySpeed();
     bool isTargetted();
     int cardistargetted;

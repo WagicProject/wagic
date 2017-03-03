@@ -2866,15 +2866,6 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Courser of Kruphix
-text=Play with the top card of your library revealed. -- You may play the top card of your library if it's a land card. -- Whenever a land enters the battlefield under your control, you gain 1 life.
-mana={1}{G}{G}
-type=Enchantment Creature
-subtype=Centaur
-power=2
-toughness=4
-[/card]
-[card]
 name=Covenant of Minds
 text=Reveal the top three cards of your library. Target opponent may choose to put those cards into your hand. If he or she doesn't, put those cards into your graveyard and draw five cards.
 mana={4}{U}
@@ -2989,12 +2980,6 @@ toughness=5
 name=Crooked Scales
 text={4}, {T}: Flip a coin. If you win the flip, destroy target creature an opponent controls. If you lose the flip, destroy target creature you control unless you pay {3} and repeat this process.
 mana={4}
-type=Artifact
-[/card]
-[card]
-name=Crown of Convergence
-text=Play with the top card of your library revealed. -- As long as the top card of your library is a creature card, creatures you control that share a color with that card get +1/+1. -- {G}{W}: Put the top card of your library on the bottom of your library.
-mana={2}
 type=Artifact
 [/card]
 [card]
@@ -5455,12 +5440,6 @@ mana={1}{R}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Future Sight
-text=Play with the top card of your library revealed. -- You may play the top card of your library.
-mana={2}{U}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Gabriel Angelfire
 text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep. (Whenever a creature with rampage 3 becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
 mana={3}{G}{G}{W}{W}
@@ -5543,15 +5522,6 @@ name=Garbage Fire
 text=Reveal Garbage Fire as you draft it and note how many cards you've drafted this draft round, including Garbage Fire. -- Garbage Fire deals damage to target creature equal to the highest number you noted for cards named Garbage Fire.
 mana={2}{R}
 type=Instant
-[/card]
-[card]
-name=Garruk's Horde
-text=Trample  -- Play with the top card of your library revealed. -- You may cast the top card of your library if it's a creature card. (Do this only any time you could cast that creature card. You still pay the spell's costs.)
-mana={5}{G}{G}
-type=Creature
-subtype=Beast
-power=7
-toughness=7
 [/card]
 [card]
 name=Garrulous Sycophant
@@ -6068,15 +6038,6 @@ text=Whenever Goblin Snowman blocks, prevent all combat damage that would be dea
 mana={3}{R}
 type=Creature
 subtype=Goblin
-power=1
-toughness=1
-[/card]
-[card]
-name=Goblin Spy
-text=Play with the top card of your library revealed.
-mana={R}
-type=Creature
-subtype=Goblin Rogue
 power=1
 toughness=1
 [/card]
@@ -8562,12 +8523,6 @@ mana={1}{R}{R}
 type=World Enchantment
 [/card]
 [card]
-name=Lantern of Insight
-text=Each player plays with the top card of his or her library revealed. -- {T}, Sacrifice Lantern of Insight: Target player shuffles his or her library.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Laquatus's Disdain
 text=Counter target spell cast from a graveyard. -- Draw a card.
 mana={1}{U}
@@ -9152,15 +9107,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Magus of the Future
-text=Play with the top card of your library revealed. -- You may play the top card of your library.
-mana={2}{U}{U}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=3
-[/card]
-[card]
 name=Magus of the Scroll
 text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Magus of the Scroll deals 2 damage to target creature or player.
 mana={R}
@@ -9501,15 +9447,6 @@ mana={4}{W}{U}
 type=Legendary Creature
 subtype=Sphinx
 power=4
-toughness=4
-[/card]
-[card]
-name=Melek, Izzet Paragon
-text=Play with the top card of your library revealed. -- You may cast the top card of your library if it's an instant or sorcery card. -- Whenever you cast an instant or sorcery spell from your library, copy it. You may choose new targets for the copy.
-mana={4}{U}{R}
-type=Legendary Creature
-subtype=Weird Wizard
-power=2
 toughness=4
 [/card]
 [card]
@@ -10054,15 +9991,6 @@ type=Creature
 subtype=Beast
 power=3
 toughness=3
-[/card]
-[card]
-name=Mul Daya Channelers
-text=Play with the top card of your library revealed. -- As long as the top card of your library is a creature card, Mul Daya Channelers gets +3/+3. -- As long as the top card of your library is a land card, Mul Daya Channelers has "{T}: Add two mana of any one color to your mana pool."
-mana={1}{G}{G}
-type=Creature
-subtype=Elf Druid Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Multani's Presence
@@ -10954,15 +10882,6 @@ type=Creature
 subtype=Minotaur Shaman
 power=3
 toughness=1
-[/card]
-[card]
-name=Oracle of Mul Daya
-text=You may play an additional land on each of your turns. -- Play with the top card of your library revealed. -- You may play the top card of your library if it's a land card.
-mana={3}{G}
-type=Creature
-subtype=Elf Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Oracle's Attendants
@@ -16080,12 +15999,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Temporal Aperture
-text={5}, {T}: Shuffle your library, then reveal the top card. Until end of turn, for as long as that card remains on top of your library, play with the top card of your library revealed and you may play that card without paying its mana cost. (If it has X in its mana cost, X is 0.)
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Temporal Extortion
 text=When you cast Temporal Extortion, any player may pay half his or her life, rounded up. If a player does, counter Temporal Extortion. -- Take an extra turn after this one.
 mana={B}{B}{B}{B}
@@ -17125,15 +17038,6 @@ name=Valor Made Real
 text=Target creature can block any number of creatures this turn.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Vampire Nocturnus
-text=Play with the top card of your library revealed. -- As long as the top card of your library is black, Vampire Nocturnus and other Vampire creatures you control get +2/+1 and have flying.
-mana={1}{B}{B}{B}
-type=Creature
-subtype=Vampire
-power=3
-toughness=3
 [/card]
 [card]
 name=Vandalize

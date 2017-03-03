@@ -304,9 +304,9 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     int cardsinhand = game->players[0]->game->hand->nb_cards;
     defaultPlayName = card->isLand()?"Play Land":"Cast Card Normally";
     Player * player = game->currentlyActing();
-    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card))
          return 0;
-    if ((player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
+    if ((player->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
     if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[(int)Constants::LEYLINE])
         && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
@@ -574,9 +574,9 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
         return 0;
     Player * player = game->currentlyActing();
-    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card))
          return 0;
-    if ((player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
+    if ((player->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
     if(!allowedToCast(card,player))
         return 0;
@@ -739,9 +739,9 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         {
             alternateCost->extraCosts->costs[i]->setSource(card);
         }
-    if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card))
+    if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card) && !game->currentlyActing()->game->library->hasCard(card))
          return 0;
-    if ((game->currentlyActing()->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (game->currentlyActing()->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
+    if ((game->currentlyActing()->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (game->currentlyActing()->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (game->currentlyActing()->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
     return isReactingToClick( card, mana, alternateCost );
 }
@@ -758,10 +758,12 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     
     alternativeName = "Pay Alternative Cost";
 
-    if(card->has(Constants::CANPLAYFROMGRAVEYARD))
+    if(card->has(Constants::CANPLAYFROMGRAVEYARD) && game->isInGrave(card))
         alternativeName = "Alternate Cast From Graveyard";
-    else if(card->has(Constants::CANPLAYFROMEXILE))
+    else if(card->has(Constants::CANPLAYFROMEXILE) && game->isInExile(card))
         alternativeName = "Alternate Cast From Exile";
+    else if(card->canPlayFromLibrary() && game->isInLibrary(card))
+        alternativeName = "Alternate Cast From Library";
     else if(card->model->data->getManaCost()->getAlternative() && card->model->data->getManaCost()->getAlternative()->alternativeName.size())
         alternativeName = card->model->data->getManaCost()->getAlternative()->alternativeName;
 
@@ -1330,9 +1332,9 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 
     Player * player = game->currentlyActing();
     //Player * currentPlayer = game->currentPlayer;
-    if (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
+    if (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
         return 0;
-    if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
+    if ((!card->canPlayFromLibrary() && player->game->library->hasCard(card))||(!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
         return 0;
     if (!card->getManaCost()->getMorph())
         return 0;
@@ -1468,12 +1470,12 @@ int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (!card->has(Constants::PAYZERO))
         return 0;
     Player * player = game->currentlyActing();
-    if (card->isLand() || (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card)))
+    if (card->isLand() || (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card)))
     {
         //only allowed to pay zero for cards in library??? above is "if you dont have it in hand, grave, or exile"
         return 0;
     }
-    if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
+    if ((!card->canPlayFromLibrary() && player->game->library->hasCard(card))||(!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
     {
         return 0;
     }
@@ -1538,11 +1540,11 @@ int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     }
     Player * player = card->controller();
-    if (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
+    if (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
     {
         return 0;
     }
-    if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
+    if ((!card->canPlayFromLibrary() && player->game->library->hasCard(card)) || (!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
     {
         return 0;
     }

@@ -197,12 +197,60 @@ void GuiGameZone::Render()
     //Texture
     JQuadPtr quad = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
     float scale = defaultHeight / quad->mHeight;
+    float modx = 0;
+    float mody = 0;
+    bool replaced = false;
+    bool showtop = (zone && zone->owner->game->battlefield->nb_cards && zone->owner->game->battlefield->hasAbility(Constants::SHOWFROMTOPLIBRARY))?true:false;
+    bool showopponenttop = (zone && zone->owner->opponent()->game->battlefield->nb_cards && zone->owner->opponent()->game->battlefield->hasAbility(Constants::SHOWOPPONENTTOPLIBRARY))?true:false;
+
     quad->SetColor(ARGB((int)(actA),255,255,255));
     if(type == GUI_EXILE)
     {
         quad->SetColor(ARGB((int)(actA),255,240,255));
     }
-    JRenderer::GetInstance()->RenderQuad(quad.get(), actX, actY, 0.0, scale * actZ, scale * actZ);
+
+    if(type == GUI_LIBRARY && zone->nb_cards && !showCards)
+    {
+        int top = zone->nb_cards - 1;
+        if(zone->cards[top] && (zone->cards[top]->canPlayFromLibrary()||showtop||showopponenttop))
+        {
+            MTGCardInstance * card = zone->cards[top];
+            if(card && card->getObserver())
+            {
+                replaced = true;
+                /*TargetChooser * tc = card->getObserver()->getCurrentTargetChooser();
+                if(tc && tc->canTarget(card) && !tc->done)
+                    replaced = false;
+                else
+                {*/
+                    JQuadPtr kquad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+                    if(kquad)
+                    {
+                        kquad->SetColor(ARGB((int)(actA),255,255,255));
+                        scale = defaultHeight / kquad->mHeight;
+                        modx = (35/4)+1;
+                        mody = (50/4)+1;
+                        quad = kquad;
+                    }
+                    else
+                    {
+                        quad = CardGui::AlternateThumbQuad(card);
+                        if(quad)
+                        {
+                            quad->SetColor(ARGB((int)(actA),255,255,255));
+                            scale = defaultHeight / quad->mHeight;
+                            modx = (35/4)+1;
+                            mody = (50/4)+1;
+                        }
+                    }
+                //}
+            }
+        }
+    }
+
+    //render small card quad
+    if(quad)
+        JRenderer::GetInstance()->RenderQuad(quad.get(), actX+modx, actY+mody, 0.0, scale * actZ, scale * actZ);
 
     float x0 = actX;
     if (x0 < SCREEN_WIDTH / 2)
@@ -211,8 +259,11 @@ void GuiGameZone::Render()
     }
 
     if (mHasFocus)
-        JRenderer::GetInstance()->FillRect(actX, actY, quad->mWidth * scale * actZ, quad->mHeight * scale * actZ,
+    {
+        if(!replaced)
+            JRenderer::GetInstance()->FillRect(actX, actY, quad->mWidth * scale * actZ, quad->mHeight * scale * actZ,
                 ARGB(abs(128 - wave),255,255,255));
+    }
 
     //Number of cards
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
@@ -236,10 +287,24 @@ void GuiGameZone::Render()
     mFont->SetColor(ARGB(mAlpha,255,255,255));
     mFont->DrawString(buffer, x0, actY);
 
+    //show top library - big card display
+    if(type == GUI_LIBRARY && mHasFocus && zone->nb_cards && !showCards && replaced)
+    {
+        int top = zone->nb_cards - 1;
+        if(zone->cards[top])
+        {
+            Pos pos = Pos(SCREEN_WIDTH - 35 - CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 15, 0.80f, 0.0, 220);
+            pos.actY = 165;
+            if (x < (CardGui::BigWidth / 2)) pos.actX = CardGui::BigWidth / 2;
+            CardGui::DrawCard(zone->cards[top], pos);
+        }
+    }
+
     if (showCards)
         cd->Render();
     for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
         (*it)->Render();
+
     PlayGuiObject::Render();
 }
 
@@ -252,6 +317,26 @@ bool GuiGameZone::CheckUserInput(JButton key)
 {
     if (showCards)
         return cd->CheckUserInput(key);
+    else if(type == GUI_LIBRARY && zone->nb_cards && !showCards && key == JGE_BTN_OK && mHasFocus)
+    {
+        bool activateclick = true;
+        
+        int top = zone->nb_cards - 1;
+        MTGCardInstance * card = zone->cards[top];
+        GameObserver * game = card->getObserver();
+        if(game)
+        {
+            TargetChooser * tc = game->getCurrentTargetChooser();
+            if(tc && (tc->canTarget(card) || !tc->done || tc->Owner->isHuman()))
+                activateclick = false;
+        }
+
+        if(card && activateclick)
+        {
+            card->getObserver()->cardClick(card);
+            return true;
+        }
+    }
     return false;
 }
 
