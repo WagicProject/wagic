@@ -123,6 +123,8 @@ void GuiPlay::BattleField::reset(float x, float y)
 }
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
+    if(card->card->getObserver() && card->card->getObserver()->getCurrentGamePhase() == MTG_PHASE_COMBATDAMAGE)
+        return;
     //card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
     card->x = x + (CARD_WIDTH/2.5f) + baseX;
     if (attackers+1 < 8)
@@ -138,6 +140,8 @@ void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 }
 void GuiPlay::BattleField::EnstackBlocker(CardView* card)
 {
+    if(card->card->getObserver() && card->card->getObserver()->getCurrentGamePhase() == MTG_PHASE_COMBATDAMAGE)
+        return;
     MTGCardInstance * c = card->card;
     if (!c)
         return;
