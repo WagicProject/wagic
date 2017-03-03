@@ -20,17 +20,17 @@ GuiAvatars::GuiAvatars(DuelLayers* duelLayers) :
     Add(opponent = NEW GuiAvatar(0, 0, false, mpDuelLayers->getRenderedPlayerOpponent(), GuiAvatar::TOP_LEFT, this));
     opponent->zoom = 0.9f;
     //opponentExile
-    Add(opponentExile = NEW GuiExile(-30 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10,
-                    false, mpDuelLayers->getRenderedPlayerOpponent(), this));
+    Add(opponentExile = NEW GuiExile(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
+                    mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponentGraveyard
     Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5, false,
                     mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponentHand
-    Add(opponentHand = NEW GuiOpponentHand(-15 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10, false,
+    Add(opponentHand = NEW GuiOpponentHand(-15 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 43 + GuiGameZone::Height - 10, false,
                     mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponentLibrary
-    Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
-                    mpDuelLayers->getRenderedPlayerOpponent(), this));
+    Add(opponentLibrary = NEW GuiLibrary(-30 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 43 + GuiGameZone::Height - 10,
+                    false, mpDuelLayers->getRenderedPlayerOpponent(), this));
 
     observer->getCardSelector()->Add(self);
     observer->getCardSelector()->Add(selfGraveyard);
@@ -149,7 +149,7 @@ void GuiAvatars::Render()
     float h = 54;
     if (opponent == active)
     {
-        r->FillRect(opponent->actX, opponent->actY, 40 * opponent->actZ, h+20 * opponent->actZ, ARGB(200,0,0,0));
+        r->FillRect(opponent->actX, opponent->actY, 40 * opponent->actZ, h+25 * opponent->actZ, ARGB(200,0,0,0));
         r->FillRect(opponent->actX, opponent->actY, w * opponent->actZ, h * opponent->actZ, ARGB(200,0,0,0));
     }
     else if (self == active)
