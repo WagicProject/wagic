@@ -82,7 +82,8 @@ void GameStateOptions::Start()
     optionsList->Add(NEW WGuiSplit(cPrf, cThm));
     optionsList->Add(cStyle);
     optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"), -102, GameStateOptionsConst::kNewProfileID, this));
-
+    //show large images
+    optionsList->Add(NEW OptionInteger(Options::GDVLARGEIMAGE, "Show Large Images in Grid Deck View (could crash PSP!)"));
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable Cheat Mode")));
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::OPTIMIZE_HAND, "Optimize Starting Hand")));
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODEAIDECK, "Unlock All Ai Decks")));

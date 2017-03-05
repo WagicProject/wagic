@@ -1,3 +1,4 @@
+#include "PrecompiledHeader.h"
 #include "GridDeckView.h"
 
 const float GridDeckView::scroll_animation_duration = 0.3f;
@@ -125,17 +126,10 @@ void GridDeckView::Render()
         {
             if (WResourceManager::Instance()->IsThreaded())
             {
-#if !defined (PSP)
                 WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_NORMAL);
-#else
-                WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_THUMB);
-#endif
             }
-#if !defined (PSP)
-            renderCard(i, 255, false, true);//for psp, use lowres images if you can.
-#else
-            renderCard(i, 255, true, true);
-#endif
+            bool mode = options[Options::GDVLARGEIMAGE].number?false:true;
+            renderCard(i, 255, mode);//WARNING FOR PSP!!!
         }
         else
         {

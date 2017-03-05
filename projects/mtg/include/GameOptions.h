@@ -46,6 +46,7 @@ public:
         CHEATMODEAIDECK,
         OSD,
         BLKBORDER,
+        GDVLARGEIMAGE,
         SHOWTOKENS,
         CLOSEDHAND,
         HANDDIRECTION,
