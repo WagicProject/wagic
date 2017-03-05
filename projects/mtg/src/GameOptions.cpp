@@ -22,6 +22,7 @@ const string Options::optionNames[] = {
     "cheatmodedecks",
   "displayOSD",
   "BlackBorder",
+  "GDVLargeImages"
   "ShowTokens",
   "closed_hand",
   "hand_direction",
