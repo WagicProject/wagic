@@ -270,12 +270,12 @@ void CardGui::Render()
         //draw border for highlighting
         if (game)
         {
-            if (card && (card->isTargetted()||card->forcedBorder) && highlightborder)
+            if (card && (card->isTargetted()||card->forcedBorderA) && highlightborder)
             {
                 highlightborder->SetColor(ARGB(95,255,0,0));
                 renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
             }
-            if (card && (card->isTargetter()||card->forcedBorder2) && highlightborder)
+            if (card && (card->isTargetter()||card->forcedBorderB) && highlightborder)
             {
                 highlightborder->SetColor(ARGB(95,0,245,0));
                 renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
@@ -387,7 +387,7 @@ void CardGui::Render()
             }
         }
 
-        if (card && (card->isTargetted()||card->forcedBorder))
+        if (card && (card->isTargetted()||card->forcedBorderA))
         {
             if(card->isTapped())
             {
@@ -399,7 +399,7 @@ void CardGui::Render()
             else
                 renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(250,255,0,0));
         }
-        if (card && (card->isTargetter()||card->forcedBorder2))
+        if (card && (card->isTargetter()||card->forcedBorderB))
         {
             if(card->isTapped())
             {

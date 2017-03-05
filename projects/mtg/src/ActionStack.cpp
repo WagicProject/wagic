@@ -241,7 +241,6 @@ void StackAbility::Render()
     MTGCardInstance * source = ability->source;
     string alt1 = source->getName();
     vector<JQuadPtr> mytargetQuads;
-    vector<MTGCardInstance*> myClones;
 
     int fmLibrary = 0;
     int force = 0;
@@ -251,7 +250,10 @@ void StackAbility::Render()
     {
         Targetable * t = ability->getActionTc()->getNextTarget();
         if (t)
+        {
+            source->forcedBorderA = 1;
             _target = t;
+        }
 
         
     //test vector quads
@@ -264,8 +266,7 @@ void StackAbility::Render()
                 {
                     if( ((Damageable *)(tt))->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE )
                     {
-                        //fill vector
-                        myClones.push_back(((MTGCardInstance*)(tt)));
+                        ((MTGCardInstance*)(tt))->forcedBorderB = 1;
 
                         if( source->has(Constants::HIDDENFACE) && !observer->isInLibrary(((MTGCardInstance *)(tt))) )
                             mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
@@ -295,20 +296,6 @@ void StackAbility::Render()
         if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         {
             alt2 = ((MTGCardInstance *) target)->name;
-        }
-    }
-
-    //setborder test
-    if(myClones.size())
-    {
-        source->forcedBorder2 = 1;
-        for(unsigned int kk = 0; kk < myClones.size(); kk++)
-        {
-            if(myClones[kk])
-            {
-                myClones[kk]->forcedBorder = 1;
-                //JRenderer::GetInstance()->DrawLine(myClones[kk]->view->actX,myClones[kk]->view->actY,source->view->actX,source->view->actY,0.5f,ARGB(120, 255, 0, 0));
-            }
         }
     }
 

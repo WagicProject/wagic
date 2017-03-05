@@ -654,8 +654,8 @@ void GameObserver::gameStateBasedEffects()
                 {
                     zone->cards[c]->cardistargetted = 0;
                     zone->cards[c]->cardistargetter = 0;
-                    zone->cards[c]->forcedBorder = 0;
-                    zone->cards[c]->forcedBorder2 = 0;
+                    zone->cards[c]->forcedBorderA = 0;
+                    zone->cards[c]->forcedBorderB = 0;
                 }
             }
 
