@@ -273,6 +273,8 @@ public:
     int cardistargetted;
     bool isTargetter();
     int cardistargetter;
+    int forcedBorderA;
+    int forcedBorderB;
     int myconvertedcost;
     ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false);
     int countTrini;

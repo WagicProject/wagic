@@ -51,13 +51,21 @@ void GameStateOptions::Start()
    // optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));
     //this is a dev option, not meant for standard play. uncomment if you need to see abilities you own hitting the stack.
     optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDMAIN, "Interrupt opponent's end of turn"));
-    optionsList->Add(NEW OptionInteger(Options::SHOWTOKENS, "Show Tokens in Editor"));
     optionsTabs = NEW WGuiTabMenu();
+    optionsTabs->Add(optionsList);
+
+    optionsList = NEW WGuiList("Misc");
+    optionsList->Add(NEW WGuiHeader("Card Display Options"));
+    //black border
+    optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Border"));
+    //show tokens in editor
+    optionsList->Add(NEW OptionInteger(Options::SHOWTOKENS, "Show Tokens in Editor"));
+    //show large images
+    optionsList->Add(NEW OptionInteger(Options::GDVLARGEIMAGE, "Show Large Images in Grid Deck View (could crash PSP!)"));
     optionsTabs->Add(optionsList);
 
     optionsList = NEW WGuiList("Game");
     optionsList->Add(NEW WGuiHeader("Interface Options"));
-    optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Border"));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::CLOSEDHAND, "Closed hand", 1, 1, 0)));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::HANDDIRECTION, "Hand direction", 1, 1, 0)));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MANADISPLAY, "Mana display", 3, 1, 0)));
@@ -82,7 +90,6 @@ void GameStateOptions::Start()
     optionsList->Add(NEW WGuiSplit(cPrf, cThm));
     optionsList->Add(cStyle);
     optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"), -102, GameStateOptionsConst::kNewProfileID, this));
-
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable Cheat Mode")));
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::OPTIMIZE_HAND, "Optimize Starting Hand")));
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODEAIDECK, "Unlock All Ai Decks")));
