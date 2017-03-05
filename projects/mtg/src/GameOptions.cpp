@@ -20,10 +20,10 @@ const string Options::optionNames[] = {
   "cheatmode",
     "optimizedhand",
     "cheatmodedecks",
-  "displayOSD",
   "BlackBorder",
-  "GDVLargeImages"
   "ShowTokens",
+  "GDVLargeImages",
+  "displayOSD",
   "closed_hand",
   "hand_direction",
   "mana_display",
