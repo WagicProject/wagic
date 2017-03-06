@@ -60,8 +60,14 @@ void GameStateOptions::Start()
     optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Border"));
     //show tokens in editor
     optionsList->Add(NEW OptionInteger(Options::SHOWTOKENS, "Show Tokens in Editor"));
+    WDecoStyled * wMisc = NEW WDecoStyled(NEW WGuiHeader("Warning!!!"));
+    wMisc->mStyle = WDecoStyled::DS_STYLE_ALERT;
+    optionsList->Add(wMisc);
     //show large images
-    optionsList->Add(NEW OptionInteger(Options::GDVLARGEIMAGE, "Show Large Images in Grid Deck View (could crash PSP!)"));
+    optionsList->Add(NEW OptionInteger(Options::GDVLARGEIMAGE, "Show Large Images in Grid Deck View"));
+    //prefetch
+    if(WResourceManager::Instance()->IsThreaded())
+        optionsList->Add(NEW OptionInteger(Options::CARDPREFETCHING, "Enable Prefetching"));
     optionsTabs->Add(optionsList);
 
     optionsList = NEW WGuiList("Game");

@@ -47,6 +47,7 @@ public:
         BLKBORDER,
         SHOWTOKENS,
         GDVLARGEIMAGE,
+        CARDPREFETCHING,
         OSD,
         CLOSEDHAND,
         HANDDIRECTION,
