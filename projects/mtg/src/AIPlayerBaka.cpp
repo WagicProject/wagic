@@ -2542,6 +2542,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
         if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
             continue;
+        //glimmervoid alias to avoid ai stalling the game as the hint combo is stuck
+        //next card to play was galvanic blast but on activate combo it clashes with glimmervoid...
+        if ((card->alias == 48132) && (card->controller()->game->inPlay->countByType("artifact") < 1))
+            continue;
 
         if (card->has(Constants::TREASON) && observer->getCurrentGamePhase() != MTG_PHASE_FIRSTMAIN)
             continue;
@@ -2693,6 +2697,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
         if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
             continue;
+        //glimmervoid alias to avoid ai stalling the game as the hint combo is stuck
+        //next card to play was galvanic blast but on activate combo it clashes with glimmervoid...
+        if ((card->alias == 48132) && (card->controller()->game->inPlay->countByType("artifact") < 1))
+            continue;
 
         if (card->has(Constants::TREASON) && observer->getCurrentGamePhase() != MTG_PHASE_FIRSTMAIN)
             continue;
@@ -2842,6 +2850,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         }
 
         if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
+            continue;
+        //glimmervoid alias to avoid ai stalling the game as the hint combo is stuck
+        //next card to play was galvanic blast but on activate combo it clashes with glimmervoid...
+        if ((card->alias == 48132) && (card->controller()->game->inPlay->countByType("artifact") < 1))
             continue;
 
         if (card->has(Constants::TREASON) && observer->getCurrentGamePhase() != MTG_PHASE_FIRSTMAIN)
