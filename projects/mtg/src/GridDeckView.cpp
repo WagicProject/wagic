@@ -107,6 +107,8 @@ void GridDeckView::Render()
 {
     int firstVisibleCard = 2;
     int lastVisibleCard = mCards.size() - 2;
+    bool mode = options[Options::GDVLARGEIMAGE].number?false:true;
+    bool prefetch = options[Options::CARDPREFETCHING].number?false:true;
 
     if(!mScrollEasing.finished())
     {
@@ -121,28 +123,15 @@ void GridDeckView::Render()
 
     for(int i = firstVisibleCard; i < lastVisibleCard; ++i)
     {
+        if(prefetch && WResourceManager::Instance()->IsThreaded())
+            WResourceManager::Instance()->RetrieveCard(mCards[i].card);
 
-        if(mCurrentSelection != i)
-        {
-            if (WResourceManager::Instance()->IsThreaded())
-            {
-                WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_NORMAL);
-            }
-            bool mode = options[Options::GDVLARGEIMAGE].number?false:true;
-            renderCard(i, 255, mode);//WARNING FOR PSP!!!
-        }
-        else
-        {
-            if (WResourceManager::Instance()->IsThreaded())
-            {
-                WResourceManager::Instance()->RetrieveCard(mCards[i].card);
-            }
-        }
+        renderCard(i, 255, mode,true);//the last value is to resize scale in drawcard so we don't have large borders on grid deck view
     }
 
     if(2 <= mCurrentSelection && mCurrentSelection < 12)
     {
-        renderCard(mCurrentSelection, 255, false);
+        renderCard(mCurrentSelection, 255, false,true);
     }
 }
 

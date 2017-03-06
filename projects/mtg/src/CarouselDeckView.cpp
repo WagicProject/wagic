@@ -1,3 +1,4 @@
+#include "PrecompiledHeader.h"
 #include "CarouselDeckView.h"
 
 const float CarouselDeckView::max_scale = 0.82f;
@@ -85,7 +86,8 @@ void CarouselDeckView::Render()
 {
     // even though we want to draw the cards in a particular z order for layering, we want to prefetch them
     // in a different order, ie the center card should appear first, then the adjacent ones
-    if (WResourceManager::Instance()->IsThreaded())
+    bool prefetch = options[Options::CARDPREFETCHING].number?false:true;
+    if (prefetch && WResourceManager::Instance()->IsThreaded())
     {
         WResourceManager::Instance()->RetrieveCard(mCards[0].card);
         WResourceManager::Instance()->RetrieveCard(mCards[3].card);

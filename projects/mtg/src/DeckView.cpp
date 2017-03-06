@@ -146,18 +146,6 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail, bool griddeckv
     else
     {//NORMAL VIEW WITH IMAGES
         int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
-        /*//border for editor && others???
-        string cardsetname = setlist[cardPosition.card->setId].c_str();
-        if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
-        {
-            JRenderer::GetInstance()->FillRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-5.f,(cardPosition.y - cardPosition.scale * 142.5f)-5.f,cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f,ARGB(255,248,248,255));
-            JRenderer::GetInstance()->DrawRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-5.f,(cardPosition.y - cardPosition.scale * 142.5f)-5.f,cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f,ARGB(150,20,20,20));
-        }
-        else
-        {
-            JRenderer::GetInstance()->FillRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-5.f,(cardPosition.y - cardPosition.scale * 142.5f)-5.f,cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f,ARGB(255,10,10,10));
-            JRenderer::GetInstance()->DrawRoundRect((cardPosition.x - cardPosition.scale * 100.0f)-5.f,(cardPosition.y - cardPosition.scale * 142.5f)-5.f,cardPosition.scale * 200.0f,cardPosition.scale * 285.0f,5.f,ARGB(50,240,240,240));
-        }*///disabled this for universal border
         Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
         CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail, true, griddeckview);
     }

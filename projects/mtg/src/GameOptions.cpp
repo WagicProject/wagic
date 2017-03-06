@@ -23,6 +23,7 @@ const string Options::optionNames[] = {
   "BlackBorder",
   "ShowTokens",
   "GDVLargeImages",
+  "CardPrefetching",
   "displayOSD",
   "closed_hand",
   "hand_direction",
