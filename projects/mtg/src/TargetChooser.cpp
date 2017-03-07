@@ -156,6 +156,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 zones[nbzones++] = MTGGameZone::ALL_ZONES;
             }
+            else if (zoneName.compare("sideboard") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
+            }
             else if (zoneName.compare("reveal") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_REVEAL;
@@ -1111,8 +1116,8 @@ bool TargetChooser::validTargetsExist(int maxTargets)
         int maxAmount = 0;
         Player *p = observer->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal };
-        for (int k = 0; k < 7; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard };
+        for (int k = 0; k < 8; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -1145,8 +1150,8 @@ int TargetChooser::countValidTargets(bool withoutProtections)
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal };
-        for (int k = 0; k < 7; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard };
+        for (int k = 0; k < 8; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))

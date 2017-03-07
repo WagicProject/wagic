@@ -414,13 +414,14 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->reveal };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->reveal, p->game->sideboard };
         MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
                                               initState.playerData[i].player->game->library,
                                               initState.playerData[i].player->game->hand,
                                               initState.playerData[i].player->game->inPlay,
                                               initState.playerData[i].player->game->exile,
-                                              initState.playerData[i].player->game->reveal };
+                                              initState.playerData[i].player->game->reveal,
+                                              initState.playerData[i].player->game->sideboard };
         for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];

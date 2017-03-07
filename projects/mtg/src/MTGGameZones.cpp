@@ -63,6 +63,21 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
             }
         }
     }
+    //sb init
+    if(deck->Sideboard.size())
+    {
+        for(unsigned int j = 0; j < deck->Sideboard.size(); j++)
+        {
+            string cardID = deck->Sideboard[j];
+            MTGCard * card = MTGCollection()->getCardById(atoi(cardID.c_str()));
+            if(card)
+            {
+                MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+                //sb zone
+                sideboard->addCard(newCard);
+            }
+        }
+    }
 }
 
 MTGPlayerCards::~MTGPlayerCards()
@@ -75,6 +90,7 @@ MTGPlayerCards::~MTGPlayerCards()
     SAFE_DELETE(removedFromGame);
     SAFE_DELETE(garbage);
     SAFE_DELETE(reveal);
+    SAFE_DELETE(sideboard);
     SAFE_DELETE(temp);
     SAFE_DELETE(playRestrictions);
 }
@@ -93,6 +109,7 @@ void MTGPlayerCards::beforeBeginPhase()
     removedFromGame->beforeBeginPhase();
     garbage->beforeBeginPhase();
     reveal->beforeBeginPhase();
+    sideboard->beforeBeginPhase();
     temp->beforeBeginPhase();
 }
 
@@ -108,6 +125,7 @@ void MTGPlayerCards::setOwner(Player * player)
     garbage->setOwner(player);
     garbageLastTurn->setOwner(player);
     reveal->setOwner(player);
+    sideboard->setOwner(player);
     temp->setOwner(player);
 }
 
@@ -276,6 +294,7 @@ void MTGPlayerCards::init()
     garbage = NEW MTGGameZone();
     garbageLastTurn = garbage;
     reveal = NEW MTGGameZone();
+    sideboard = NEW MTGGameZone();
     temp = NEW MTGGameZone();
 
     playRestrictions = NEW PlayRestrictions();
@@ -1084,6 +1103,13 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     case REVEAL:
         return p->game->reveal;
 
+    case MY_SIDEBOARD:
+        return p->game->sideboard;
+    case OPPONENT_SIDEBOARD:
+        return p->opponent()->game->sideboard;
+    case SIDEBOARD:
+        return p->game->sideboard;
+
     }
     if (!p2) return NULL;
     switch (zoneId)
@@ -1108,6 +1134,9 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
 
     case TARGET_CONTROLLER_REVEAL:
         return p2->game->reveal;
+
+    case TARGET_CONTROLLER_SIDEBOARD:
+        return p2->game->sideboard;
 
     default:
         return NULL;
@@ -1218,6 +1247,17 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
             return source->playerTarget->game->reveal;
         else return source->controller()->game->reveal;
 
+    case TARGET_OWNER_SIDEBOARD:
+        return target->owner->game->sideboard;
+    case SIDEBOARD:
+        return target->owner->game->sideboard;
+    case OWNER_SIDEBOARD:
+        return target->owner->game->sideboard;
+    case TARGETED_PLAYER_SIDEBOARD:
+        if (source->playerTarget)
+            return source->playerTarget->game->sideboard;
+        else return source->controller()->game->sideboard;
+
     default:
         return NULL;
     }
@@ -1245,7 +1285,9 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     "mystack", "opponentstack", "targetownerstack", "targetcontrollerstack", "ownerstack", "stack","targetedpersonsstack",
 
-        "myreveal", "opponentreveal", "targetownerreveal", "targetcontrollerreveal", "ownerreveal", "reveal","targetedpersonsreveal",
+                    "myreveal", "opponentreveal", "targetownerreveal", "targetcontrollerreveal", "ownerreveal", "reveal","targetedpersonsreveal",
+
+                    "mysideboard", "opponentsideboard", "targetownersideboard", "targetcontrollersideboard", "ownersideboard", "sideboard","targetedpersonssideboard",
 
     };
 
@@ -1268,7 +1310,9 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     MY_STACK, OPPONENT_STACK, TARGET_OWNER_STACK, TARGET_CONTROLLER_STACK, OWNER_STACK, STACK,TARGETED_PLAYER_STACK,
 
-        MY_REVEAL, OPPONENT_REVEAL, TARGET_OWNER_REVEAL, TARGET_CONTROLLER_REVEAL, OWNER_REVEAL, REVEAL,TARGETED_PLAYER_REVEAL };
+                    MY_REVEAL, OPPONENT_REVEAL, TARGET_OWNER_REVEAL, TARGET_CONTROLLER_REVEAL, OWNER_REVEAL, REVEAL,TARGETED_PLAYER_REVEAL,
+
+                    MY_SIDEBOARD, OPPONENT_SIDEBOARD, TARGET_OWNER_SIDEBOARD, TARGET_CONTROLLER_SIDEBOARD, OWNER_SIDEBOARD, SIDEBOARD,TARGETED_PLAYER_SIDEBOARD };
 
     int max = sizeof(values) / sizeof *(values);
 

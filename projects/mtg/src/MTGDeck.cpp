@@ -880,6 +880,12 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                     meta_unlockRequirements = s.substr(found + 7);
                     continue;
                 }
+                found = s.find("SB:");
+                if (found != string::npos)
+                {
+                    Sideboard.push_back(s.substr(found + 3));
+                    continue;
+                }
                 continue;
             }
             if (meta_only) break;
@@ -1101,6 +1107,16 @@ int MTGDeck::removeAll()
     return 1;
 }
 
+void MTGDeck::replaceSB(vector<string> newSB)
+{
+    if(newSB.size())
+    {
+        Sideboard.clear();
+        Sideboard = newSB;
+    }
+    return;
+}
+
 int MTGDeck::remove(int cardid)
 {
     if (cards.find(cardid) == cards.end() || cards[cardid] == 0) return 0;
@@ -1170,6 +1186,18 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
                 }
             }
         }
+        //save sideboards
+        if(Sideboard.size())
+        {
+            sort(Sideboard.begin(), Sideboard.end());
+            for(unsigned int k = 0; k < Sideboard.size(); k++)
+            {
+                int checkID = atoi(Sideboard[k].c_str());
+                if(checkID)
+                    file << "#SB:" << checkID << "\n";
+            }
+        }
+
         file.close();
         JFileSystem::GetInstance()->Rename(tmp, destFileName);
     }

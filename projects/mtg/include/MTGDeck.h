@@ -214,6 +214,7 @@ public:
     string meta_desc;
     string meta_name;
     vector<string> meta_AIHints;
+    vector<string> Sideboard;
     string meta_unlockRequirements;
 
     int meta_id;
@@ -230,6 +231,7 @@ public:
     int removeAll();
     int add(MTGCard * card);
     int remove(MTGCard * card);
+    void replaceSB(vector<string> newSB = vector<string>());
     string getFilename();
     int save();
     int save(const string& destFileName, bool useExpandedDescriptions, const string& deckTitle, const string& deckDesc);
