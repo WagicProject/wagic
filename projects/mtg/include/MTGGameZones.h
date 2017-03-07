@@ -80,6 +80,13 @@ class MTGGameZone {
     OWNER_REVEAL = 76,
     TARGETED_PLAYER_REVEAL = 77,
 
+    MY_SIDEBOARD = 81,
+    OPPONENT_SIDEBOARD = 82,
+    TARGET_OWNER_SIDEBOARD = 83,
+    TARGET_CONTROLLER_SIDEBOARD = 84,
+    SIDEBOARD = 85,
+    OWNER_SIDEBOARD = 86,
+    TARGETED_PLAYER_SIDEBOARD = 87,
    };
 
    Player * owner;
@@ -204,6 +211,7 @@ public:
     MTGGameZone * garbage;
     MTGGameZone * garbageLastTurn;
     MTGGameZone * reveal;
+    MTGGameZone * sideboard;
     MTGGameZone * temp;
 
     MTGPlayerCards();

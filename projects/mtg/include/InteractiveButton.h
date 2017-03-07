@@ -22,17 +22,18 @@ using std::string;
 const int kDismissButtonId       = 10000;
 const int kToggleDeckActionId    = 10001;
 const int kSellCardActionId      = 10002;
-const int kMenuButtonId          = 10003;
-const int kFilterButtonId        = 10004;
-const int kNextStatsButtonId     = 10005;
-const int kPrevStatsButtonId     = 10006;
-const int kCycleCardsButtonId    = 10007;
-const int kShowCardListButtonId  = 10008;
-const int kSwitchViewButton      = 10009;
-const int kToggleUpButton        = 10010;
-const int kToggleDownButton      = 10011;
-const int kToggleLeftButton      = 10012;
-const int kToggleRightButton     = 10013;
+const int kSBActionId            = 10003;
+const int kMenuButtonId          = 10004;
+const int kFilterButtonId        = 10005;
+const int kNextStatsButtonId     = 10006;
+const int kPrevStatsButtonId     = 10007;
+const int kCycleCardsButtonId    = 10008;
+const int kShowCardListButtonId  = 10009;
+const int kSwitchViewButton      = 10010;
+const int kToggleUpButton        = 10011;
+const int kToggleDownButton      = 10012;
+const int kToggleLeftButton      = 10013;
+const int kToggleRightButton     = 10014;
 
 class InteractiveButton: public SimpleButton
 {

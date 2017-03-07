@@ -6081,8 +6081,8 @@ void ListMaintainerAbility::updateTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile ,p->game->reveal };
-        for (int k = 0; k < 7; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile ,p->game->reveal, p->game->sideboard };
+        for (int k = 0; k < 8; k++)
         {
             MTGGameZone * zone = zones[k];
             if (canTarget(zone))
@@ -6153,8 +6153,8 @@ void ListMaintainerAbility::checkTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->reveal };
-        for (int k = 0; k < 7; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->reveal, p->game->sideboard };
+        for (int k = 0; k < 8; k++)
         {
             MTGGameZone * zone = zones[k];
             if (canTarget(zone))

@@ -1668,12 +1668,6 @@ mana={2}{R}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Burning Wish
-text=You may choose a sorcery card you own from outside the game, reveal that card, and put it into your hand. Exile Burning Wish.
-mana={1}{R}
-type=Sorcery
-[/card]
-[card]
 name=Burning-Eye Zubera
 text=When Burning-Eye Zubera dies, if 4 or more damage was dealt to it this turn, Burning-Eye Zubera deals 3 damage to target creature or player.
 mana={2}{R}{R}
@@ -3087,12 +3081,6 @@ mana={4}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Cunning Wish
-text=You may choose an instant card you own from outside the game, reveal that card, and put it into your hand. Exile Cunning Wish.
-mana={2}{U}
-type=Instant
-[/card]
-[card]
 name=Curious Homunculus
 text={T}: Add {C} to your mana pool. Spend this mana only to cast an instant or sorcery spell. -- At the beginning of your upkeep, if there are three or more instant and/or sorcery cards in your graveyard, transform Curious Homunculus.
 mana={1}{U}
@@ -3458,12 +3446,6 @@ toughness=3
 name=Death or Glory
 text=Separate all creature cards in your graveyard into two piles. Exile the pile of an opponent's choice and return the other to the battlefield.
 mana={4}{W}
-type=Sorcery
-[/card]
-[card]
-name=Death Wish
-text=You may choose a card you own from outside the game and put it into your hand. You lose half your life, rounded up. Exile Death Wish.
-mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -5865,12 +5847,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Glittering Wish
-text=You may choose a multicolored card you own from outside the game, reveal that card, and put it into your hand. Exile Glittering Wish.
-mana={G}{W}
-type=Sorcery
-[/card]
-[card]
 name=Global Ruin
 text=Each player chooses from the lands he or she controls a land of each basic land type, then sacrifices the rest.
 mana={4}{W}
@@ -6071,12 +6047,6 @@ text=Equipped creature gets +3/+3. -- Whenever equipped creature blocks or becom
 mana={1}{W}{W}
 type=Legendary Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Golden Wish
-text=You may choose an artifact or enchantment card you own from outside the game, reveal that card, and put it into your hand. Exile Golden Wish.
-mana={3}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Goldenhide Ox
@@ -8877,12 +8847,6 @@ type=Creature
 subtype=Avatar
 power=*
 toughness=*
-[/card]
-[card]
-name=Living Wish
-text=You may choose a creature or land card you own from outside the game, reveal that card, and put it into your hand. Exile Living Wish.
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
 name=Loafing Giant

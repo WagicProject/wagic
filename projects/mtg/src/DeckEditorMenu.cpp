@@ -58,10 +58,11 @@ void DeckEditorMenu::Render()
     DeckMenu::Render();
     if (deckTitle.size() > 0)
     {
+        float modt = (float)deckTitle.size()/2;
         WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
         DWORD currentColor = mainFont->GetColor();
         mainFont->SetColor(ARGB(255,255,255,255));
-        mainFont->DrawString(deckTitle.c_str(), (SCREEN_WIDTH_F / 2)-15, (statsHeight / 2)+4, JGETEXT_CENTER);
+        mainFont->DrawString(deckTitle.c_str(), (SCREEN_WIDTH_F / 2)-modt, (statsHeight / 2)+4, JGETEXT_CENTER);
         mainFont->SetColor(currentColor);
     }
 
@@ -75,7 +76,7 @@ void DeckEditorMenu::drawDeckStatistics()
 
     deckStatsString
         << _("------- Deck Summary -----") << endl
-        << _("Cards: ") << stw->cardCount << endl
+        << _("Cards: ") << stw->cardCount << "      Sideboard: " << selectedDeck->parent->Sideboard.size() << endl
         << _("Creatures: ") << setw(2) << stw->countCreatures
         << _("  Enchantments: ") << stw->countEnchantments << endl
         << _("Instants: ") << setw(4) << stw->countInstants
