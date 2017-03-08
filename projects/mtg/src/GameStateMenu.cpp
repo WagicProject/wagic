@@ -187,6 +187,12 @@ void GameStateMenu::genNbCardsStr()
             sprintf(GameApp::mynbcardsStr, _("%i cards").c_str(),totalPrints);
     }
 
+    if(playerdata)
+    { 
+        if(playerdata->credits > 0)
+            GameApp::mycredits = playerdata->credits;
+    }
+
     SAFE_DELETE(playerdata);
 }
 
@@ -835,7 +841,17 @@ void GameStateMenu::Render()
             renderer->RenderQuad(mBg.get(), SCREEN_WIDTH_F/2, 2, 0, 256 / mBg->mWidth, 166 / mBg->mHeight);
 
         RenderTopMenu();
-
+        //credits on lower left if available
+        std::ostringstream streamC;
+        streamC << "Credits: " << GameApp::mycredits;
+        mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+        mFont->SetScale(1.f);
+        mFont->SetColor(ARGB(200,248,248,255));
+        mFont->DrawString(streamC.str(), 12, SCREEN_HEIGHT - 16);
+        mFont->SetColor(ARGB(255,255,255,255));
+        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+        mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
+        //end
     }
     if (subMenuController)
     {

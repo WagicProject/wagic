@@ -183,9 +183,9 @@ void Credits::compute(GameObserver* g, GameApp * _app)
     if (p2->isAI() && g->didWin(p1))
     {
         gameLength = time(0) - g->startedAt;
-        value = 400;
-        if (app->gameType != GAME_TYPE_CLASSIC)
-            value = 200;
+        value = 500;
+        if (app->gameType == GAME_TYPE_MOMIR)
+            value = 800;//800 credits for momir
         int difficulty = options[Options::DIFFICULTY].number;
         if (options[Options::DIFFICULTY_MODE_UNLOCKED].number && difficulty)
         {
@@ -360,9 +360,9 @@ void Credits::computeTournament(GameObserver* g, GameApp * _app,bool tournament,
     PlayerData * playerdata = NEW PlayerData(MTGCollection());
     if (p2->isAI() && mPlayerWin)
     {
-        value = 400;
-        if (app->gameType != GAME_TYPE_CLASSIC)
-            value = 200;
+        value = 500;
+        if (app->gameType == GAME_TYPE_MOMIR)
+            value = 800;
         int difficulty = options[Options::DIFFICULTY].number;
         if (options[Options::DIFFICULTY_MODE_UNLOCKED].number && difficulty)
         {
