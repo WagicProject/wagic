@@ -1394,6 +1394,8 @@ void ActionStack::Render()
         //renderer->FillRoundRect(x0 - 7, y0+2, width + 17, height + 2, 9.0f, ARGB(128,0,0,0));
         //stack fill
         renderer->FillRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(225,5,5,5));
+        //top stack fill
+        renderer->FillRect(x0 - 6, y0+37, width + 15, 40.5f, ARGB(60,135,206,235));
         //stack highlight
         renderer->FillRect(x0 - 6, y0+3, width + 15, 30, ARGB(255,89,89,89));
         //another border
@@ -1453,13 +1455,30 @@ void ActionStack::Render()
 
         currenty += kIconVerticalOffset + kSpacer;
 
+        float totalmHeight = 0.f;
+        for (size_t i = 0; i < mObjects.size(); i++)
+        {
+            Interruptible * current = (Interruptible *) mObjects[i];
+            if (current && current->state == NOT_RESOLVED)
+                totalmHeight += current->mHeight;
+        }
+        int sC = 0;//stack Count
         for (size_t i = 0; i < mObjects.size(); i++)
         {
             Interruptible * current = (Interruptible *) mObjects[i];
             if (current && current->state == NOT_RESOLVED)
             {
+                /*
                 current->x = x0;
                 current->y = currenty;
+                current->Render();
+
+                currenty += current->mHeight;*/
+                sC+=1;
+                float cH = current->mHeight*sC;
+                current->x = x0;
+                current->y = (5+kIconVerticalOffset + kSpacer) + (totalmHeight - cH);
+                //render the stack object
                 current->Render();
 
                 currenty += current->mHeight;
