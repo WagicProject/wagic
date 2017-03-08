@@ -2895,6 +2895,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //manifest
+    found = s.find("manifest");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AManifest(observer, id, card, target);
+        a->oneShot = 1;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AManifest*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return a;
+    }
+
     //clone
     found = s.find("clone");
     if (found != string::npos)
@@ -4019,7 +4034,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
-    
+    //morph
+    found = s.find("manafaceup");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AAMorph(observer, id, card, target);
+        a->oneShot = 1;
+        ((AAMorph*)a)->face = true;
+        return a;
+    }
+
     //identify what a leveler creature will max out at.
     vector<string> splitMaxlevel = parseBetween(s, "maxlevel:", " ", false);
     if (splitMaxlevel.size())

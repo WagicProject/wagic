@@ -4553,12 +4553,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Ethereal Ambush
-text=Manifest the top two cards of your library. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={3}{G}{U}
-type=Instant
-[/card]
-[card]
 name=Eureka
 text=Starting with you, each player may put a permanent card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
 mana={2}{G}{G}
@@ -4933,12 +4927,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Fierce Invocation
-text=Manifest the top card of your library, then put two +1/+1 counters on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={4}{R}
-type=Sorcery
-[/card]
-[card]
 name=Fiery Bombardment
 text=Chroma — {2}, Sacrifice a creature: Fiery Bombardment deals damage to target creature or player equal to the number of red mana symbols in the sacrificed creature's mana cost.
 mana={1}{R}
@@ -5282,12 +5270,6 @@ type=Artifact
 name=Forked Lightning
 text=Forked Lightning deals 4 damage divided as you choose among one, two, or three target creatures.
 mana={3}{R}
-type=Sorcery
-[/card]
-[card]
-name=Formless Nurturing
-text=Manifest the top card of your library, then put a +1/+1 counter on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={3}{G}
 type=Sorcery
 [/card]
 [card]
@@ -9347,12 +9329,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Mastery of the Unseen
-text=Whenever a permanent you control is turned face up, you gain 1 life for each creature you control. -- {3}{W}: Manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Matsu-Tribe Decoy
 text={2}{G}: Target creature blocks Matsu-Tribe Decoy this turn if able. -- Whenever Matsu-Tribe Decoy deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 mana={2}{G}
@@ -12093,15 +12069,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Qarsi High Priest
-text={1}{B}, {T}, Sacrifice another creature: Manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={B}
-type=Creature
-subtype=Human Cleric
-power=0
-toughness=2
-[/card]
-[card]
 name=Qasali Ambusher
 text=Reach -- If a creature is attacking you and you control a Forest and a Plains, you may cast Qasali Ambusher without paying its mana cost and as though it had flash.
 mana={1}{G}{W}
@@ -14734,12 +14701,6 @@ mana={X}{B}
 type=Sorcery
 [/card]
 [card]
-name=Soul Summons
-text=Manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={1}{W}
-type=Sorcery
-[/card]
-[card]
 name=Soulfire Grand Master
 text=Lifelink -- Instant and sorcery spells you control have lifelink. -- {2}{UR}{UR}: The next time you cast an instant or sorcery spell from your hand this turn, put that card into your hand instead of into your graveyard as it resolves.
 mana={1}{W}
@@ -15557,15 +15518,6 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
-name=Sultai Emissary
-text=When Sultai Emissary dies, manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={1}{B}
-type=Creature
-subtype=Zombie Warrior
-power=1
-toughness=1
-[/card]
-[card]
 name=Summary Dismissal
 text=Exile all other spells and counter all abilities.
 mana={2}{U}{U}
@@ -16015,15 +15967,6 @@ type=Creature
 subtype=Horse
 power=3
 toughness=1
-[/card]
-[card]
-name=Temur War Shaman
-text=When Temur War Shaman enters the battlefield, manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Whenever a permanent you control is turned face up, if it's a creature, you may have it fight target creature you don't control.
-mana={4}{G}{G}
-type=Creature
-subtype=Human Shaman
-power=4
-toughness=5
 [/card]
 [card]
 name=Teremko Griffin
@@ -17819,12 +17762,6 @@ type=Instant
 name=Wild Swing
 text=Choose three target nonenchantment permanents. Destroy one of them at random.
 mana={3}{R}
-type=Sorcery
-[/card]
-[card]
-name=Wildcall
-text=Manifest the top card of your library, then put X +1/+1 counters on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={X}{G}{G}
 type=Sorcery
 [/card]
 [card]

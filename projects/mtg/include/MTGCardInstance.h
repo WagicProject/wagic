@@ -101,6 +101,7 @@ public:
     bool miracle;
     bool hasCopiedToken;
     bool isBestowed;
+    bool isFacedown;
     int chooseacolor;
     string chooseasubtype;
     int coinSide;//1 = tails
