@@ -841,6 +841,7 @@ void GameStateMenu::Render()
             renderer->RenderQuad(mBg.get(), SCREEN_WIDTH_F/2, 2, 0, 256 / mBg->mWidth, 166 / mBg->mHeight);
 
         RenderTopMenu();
+        /*
         //credits on lower left if available
         std::ostringstream streamC;
         streamC << "Credits: " << GameApp::mycredits;
@@ -852,6 +853,7 @@ void GameStateMenu::Render()
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
         //end
+        */
     }
     if (subMenuController)
     {

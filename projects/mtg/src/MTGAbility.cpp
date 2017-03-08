@@ -673,6 +673,12 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(player->game->inPlay->hasName(card->name))
                 return 0;
         }
+        check = restriction[i].find("before attackers");
+        if(check != string::npos)
+        {
+            if(cPhase > MTG_PHASE_COMBATBEGIN)
+                return 0;
+        }
         check = restriction[i].find("before battle damage");
         if(check != string::npos)
         {
