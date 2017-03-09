@@ -15486,31 +15486,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Surging AEther
-text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Return target permanent to its owner's hand.
-mana={3}{U}
-type=Instant
-[/card]
-[card]
-name=Surging Dementia
-text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Target player discards a card.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
-name=Surging Flame
-text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Surging Flame deals 2 damage to target creature or player.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
-name=Surging Might
-text=Enchant creature -- Enchanted creature gets +2/+2. -- Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.)
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Surrak Dragonclaw
 text=Flash -- Surrak Dragonclaw can't be countered. -- Creature spells you control can't be countered. -- Other creatures you control have trample.
 mana={2}{G}{U}{R}
