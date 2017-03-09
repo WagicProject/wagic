@@ -277,6 +277,7 @@ void GameStateShop::purchaseCard(int controlId)
     int price = mPrices[controlId];
     pricelist->setPrice(c->getMTGId(), price); // In case they changed their minds after cancelling.
     playerdata->credits -= price;
+    GameApp::mycredits = playerdata->credits;
     //Update prices
     int rnd;
     switch (options[Options::ECON_DIFFICULTY].number)
@@ -304,6 +305,7 @@ void GameStateShop::purchaseBooster(int controlId)
     if (playerdata->credits - mPrices[controlId] < 0)
         return;
     playerdata->credits -= mPrices[controlId];
+    GameApp::mycredits = playerdata->credits;
     mInventory[controlId]--;
     SAFE_DELETE(booster);
     deleteDisplay();
@@ -819,7 +821,10 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
         if (sel > -1 && sel < SHOP_ITEMS)
         {
             if (controlId == -2)
+            {
                 playerdata->credits += mPrices[sel]; //We stole it.
+                GameApp::mycredits = playerdata->credits;
+            }
             if (sel < BOOSTER_SLOTS) //Clicked a booster.
                 purchaseBooster(sel);
             else
@@ -860,7 +865,10 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
         beginFilters();
         break;
     case -2:
+        {
         playerdata->credits += 2000;
+        GameApp::mycredits = playerdata->credits;
+        }
     default:
         mStage = STAGE_SHOP_SHOP;
     }

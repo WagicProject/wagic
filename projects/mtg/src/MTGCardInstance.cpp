@@ -246,6 +246,7 @@ void MTGCardInstance::initMTGCI()
     isDualWielding = false;
     suspended = false;
     isBestowed = false;
+    isFacedown = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;
     stillNeeded = true;

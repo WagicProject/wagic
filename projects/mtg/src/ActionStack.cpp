@@ -1395,11 +1395,11 @@ void ActionStack::Render()
         //stack fill
         renderer->FillRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(225,5,5,5));
         //top stack fill
-        renderer->FillRect(x0 - 6, y0+37, width + 15, 40.5f, ARGB(60,135,206,235));
+        renderer->FillRect(x0 - 6, y0+37, width + 15, 40.5f, ARGB(20,135,206,235));
         //stack highlight
-        renderer->FillRect(x0 - 6, y0+3, width + 15, 30, ARGB(255,89,89,89));
+        renderer->FillRect(x0 - 6, y0+3, width + 15, 31.f, ARGB(255,89,89,89));
         //another border
-        renderer->DrawRect(x0 - 6, y0+33, width + 15, height - 18, ARGB(255,89,89,89));
+        renderer->DrawRect(x0 - 6, y0+34.5f, width + 15, height - 19.5f, ARGB(255,89,89,89));
         //stack border
         renderer->DrawRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(255,240,240,240));
         

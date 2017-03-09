@@ -315,6 +315,7 @@ void Credits::compute(GameObserver* g, GameApp * _app)
         }
 
         playerdata->credits += value;
+        GameApp::mycredits = playerdata->credits;
         PriceList::updateKey();
         playerdata->taskList->passOneDay();
         if (playerdata->taskList->getTaskCount() < 6)
@@ -464,6 +465,7 @@ void Credits::computeTournament(GameObserver* g, GameApp * _app,bool tournament,
         }
 
         playerdata->credits += value;
+        GameApp::mycredits = playerdata->credits;
         PriceList::updateKey();
         playerdata->taskList->passOneDay();
         if (playerdata->taskList->getTaskCount() < 6)
@@ -675,6 +677,7 @@ int Credits::addCreditBonus(int value)
 {
     PlayerData * playerdata = NEW PlayerData();
     playerdata->credits += value;
+    GameApp::mycredits = playerdata->credits;
     playerdata->save();
     SAFE_DELETE(playerdata);
     return value;

@@ -4748,6 +4748,7 @@ class AAMorph: public ActivatedAbility
 {
 public:
     vector<MTGAbility *> currentAbilities;
+    bool face;
     AAMorph(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     int testDestroy();
@@ -7067,6 +7068,104 @@ public:
     ~GenericPaidAbility();
 
 };
+//--------manifest
+class AManifest: public InstantAbility
+{
+public:
+    MTGAbility * andAbility;
+    AManifest(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+        InstantAbility(observer, _id, _source)
+    {
+        target = _target;
+        andAbility = NULL;
+    }
+
+    int resolve()
+    {
+        MTGCardInstance * card = (MTGCardInstance *) target;
+        if (card)
+        {
+            bool isCreature = card->isCreature();
+            string mt = card->magicTexts["facedown"];
+            card->morphed = true;
+            card->isMorphed = true;
+            MTGCardInstance * copy = card->controller()->game->putInZone(card, card->currentZone, card->controller()->game->battlefield);
+            copy->getManaCost()->resetCosts();
+            copy->setColor(0,1);
+            copy->types.clear();
+            string cre = "Creature";
+            copy->setType(cre.c_str());
+            copy->basicAbilities.reset();
+            copy->name = "Morph";
+            copy->morphed = true;
+            copy->isMorphed = true;
+            copy->setPower(2);
+            copy->setToughness(2);
+            copy->isFacedown = true;
+            AbilityFactory af(game);
+            MTGAbility * aam = af.parseMagicLine("{mycost}:manafaceup", GetId(), NULL, copy);
+            if(aam && isCreature)
+            {
+                aam->target = copy;
+                if(aam->oneShot)
+                {
+                    aam->resolve();
+                    SAFE_DELETE(aam);
+                }
+                else
+                {
+                    aam->addToGame();
+                }
+            }
+            if(mt.size())
+            {
+                MTGAbility * fd = af.parseMagicLine(mt, GetId(), NULL, copy);
+                if(fd && isCreature)
+                {
+                    fd->target = copy;
+                    if(fd->oneShot)
+                    {
+                        fd->resolve();
+                        SAFE_DELETE(fd);
+                    }
+                    else
+                    {
+                        fd->addToGame();
+                    }
+                }
+            }
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = copy;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+        }
+        return 1;
+    }
+    const string getMenuText()
+    {
+        return "Manifest";
+    }
+    virtual ostream& toString(ostream& out) const
+    {
+        out << "AAManifest ::: (";
+        return InstantAbility::toString(out) << ")";
+    }
+    AManifest * clone() const
+    {
+        return NEW AManifest(*this);
+    }
+};
+//------------------
 // utility functions
 
 void PopulateColorIndexVector(list<int>& colors, const string& colorsString, char delimiter = ',');

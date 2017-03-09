@@ -447,12 +447,12 @@ int GuiPlay::receiveEventPlus(WEvent * e)
         Replace();
     else if (dynamic_cast<WEventCardControllerChange*> (e))
         Replace();
-    else if (dynamic_cast<WEventCardTransforms*> (e))
+    /*else if (dynamic_cast<WEventCardTransforms*> (e))
         Replace();
     else if (dynamic_cast<WEventCardCopiedACard*> (e))
         Replace();
     else if (dynamic_cast<WEventCardFaceUp*> (e))
-        Replace();
+        Replace();*/
     Replace();
     return 0;
 }

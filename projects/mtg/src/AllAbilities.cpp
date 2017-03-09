@@ -3243,6 +3243,7 @@ AAMorph::AAMorph(GameObserver* observer, int id, MTGCardInstance * card, MTGCard
 ActivatedAbility(observer, id, card, _cost, restrictions)
 {
     target = _target;
+    face = false;
 }
 
 int AAMorph::resolve()
@@ -3288,6 +3289,7 @@ int AAMorph::resolve()
                 }
             }
         }
+        _target->isFacedown = false;
         WEvent * e = NEW WEventCardFaceUp(_target);
         game->receiveEvent(e);
         currentAbilities.clear();
@@ -3312,6 +3314,16 @@ int AAMorph::testDestroy()
 
 const string AAMorph::getMenuText()
 {
+    if(face && target)
+    {
+        MTGCardInstance * _target = (MTGCardInstance *) target;
+        if(_target && _target->model)
+        {
+            std::ostringstream abname;
+            abname << "Face Up " << _target->model->data->getManaCost()->toString();
+        return abname.str();
+        }
+    }
     return "Morph";
 }
 
@@ -3544,6 +3556,11 @@ int AAFlip::resolve()
             _target->mPropertiesChangedSinceLastUpdate = true;
             if(!isflipcard)
             {
+                if(_target->isFacedown)
+                    _target->isFacedown = false;
+                else
+                    _target->isFacedown = true;
+
                 WEvent * e = NEW WEventCardTransforms(_target);
                 game->receiveEvent(e);
             }

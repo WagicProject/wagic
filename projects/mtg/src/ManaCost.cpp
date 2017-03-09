@@ -217,7 +217,17 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         }
                         break;
                     case 'm': //Mill yourself as a cost
-                        manaCost->addExtraCost(NEW MillCost(tc));
+                        {
+                            if (value == "mycost")
+                            {
+                                if(c && c->model)
+                                    manaCost->add(c->model->data->getManaCost());
+                                else
+                                    break;
+                            }
+                            else
+                                manaCost->addExtraCost(NEW MillCost(tc));
+                        }
                         break;
                     case 'n': //return unblocked attacker cost
                         {

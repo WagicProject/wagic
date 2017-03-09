@@ -1711,6 +1711,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
                 int rnd = (rand() % 25);
                 int price = pricelist->getSellPrice(card);
                 playerdata->credits += price;
+                GameApp::mycredits = playerdata->credits;
                 price = price - (rnd * price) / 100;
                 pricelist->setPrice(card->getMTGId(), price);
                 playerdata->collection->remove(card->getMTGId());
