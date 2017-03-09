@@ -686,6 +686,9 @@ void GameObserver::gameStateBasedEffects()
                     int onum = w+1;
                     card->zpos = abs(onum - zone->nb_cards)+1;
                 }
+                //last controller override
+                if(card && zone->owner)
+                    card->lastController = zone->owner;
             }
 
 
@@ -714,8 +717,6 @@ void GameObserver::gameStateBasedEffects()
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
-            //lastcontroller zone update
-            card->lastController = players[i];
             card->entersBattlefield = 0;
             card->LKIpower = card->power;
             card->LKItoughness = card->toughness;
