@@ -1584,15 +1584,6 @@ mana={4}{B}
 type=Instant
 [/card]
 [card]
-name=Brontotherium
-text=Trample -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=5
-toughness=3
-[/card]
-[card]
 name=Bronze Bombshell
 text=When a player other than Bronze Bombshell's owner controls it, that player sacrifices it. If the player does, Bronze Bombshell deals 7 damage to him or her.
 mana={4}
@@ -1675,15 +1666,6 @@ type=Creature
 subtype=Zubera Spirit
 power=3
 toughness=3
-[/card]
-[card]
-name=Burning-Tree Bloodscale
-text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- {2}{R}: Target creature can't block Burning-Tree Bloodscale this turn. -- {2}{G}: Target creature blocks Burning-Tree Bloodscale this turn if able.
-mana={2}{R}{G}
-type=Creature
-subtype=Viashino Berserker
-power=2
-toughness=2
 [/card]
 [card]
 name=Burning-Tree Shaman
@@ -2947,15 +2929,6 @@ mana={3}{B}
 type=Enchantment
 [/card]
 [card]
-name=Crested Craghorn
-text=Haste -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{R}
-type=Creature
-subtype=Goat Beast
-power=4
-toughness=1
-[/card]
-[card]
 name=Crime // Punishment
 text=Put target creature or enchantment card from an opponent's graveyard onto the battlefield under your control. --  //  -- Destroy each artifact, creature, and enchantment with converted mana cost X.
 mana={3}{W}{B} // {X}{B}{G}
@@ -3531,15 +3504,6 @@ name=Deflection
 text=Change the target of target spell with a single target.
 mana={3}{U}
 type=Instant
-[/card]
-[card]
-name=Deftblade Elite
-text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.) -- {1}{W}: Prevent all combat damage that would be dealt to and dealt by Deftblade Elite this turn.
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
 [/card]
 [card]
 name=Degavolver
@@ -4873,15 +4837,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Feral Throwback
-text=Amplify 2 (As this creature enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-[/card]
-[card]
 name=Ferropede
 text=Ferropede is unblockable. -- Whenever Ferropede deals combat damage to a player, you may remove a counter from target permanent.
 mana={3}
@@ -5605,15 +5560,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Giant Ambush Beetle
-text=Haste -- When Giant Ambush Beetle enters the battlefield, you may have target creature block it this turn if able.
-mana={3}{BG}{R}
-type=Creature
-subtype=Insect
-power=4
-toughness=3
-[/card]
-[card]
 name=Giant Oyster
 text=You may choose not to untap Giant Oyster during your untap step. -- {T}: For as long as Giant Oyster remains tapped, target tapped creature doesn't untap during its controller's untap step, and at the beginning of each of your draw steps, put a -1/-1 counter on that creature. When Giant Oyster leaves the battlefield or becomes untapped, remove all -1/-1 counters from the creature.
 mana={2}{U}{U}
@@ -5944,15 +5890,6 @@ name=Goblin Game
 text=Each player hides at least one item, then all players reveal them simultaneously. Each player loses life equal to the number of items he or she revealed. The player who revealed the fewest items then loses half his or her life, rounded up. If two or more players are tied for fewest, each loses half his or her life, rounded up.
 mana={5}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Goblin Grappler
-text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
 [/card]
 [card]
 name=Goblin Grenadiers
@@ -6983,15 +6920,6 @@ name=Hunt Down
 text=Target creature blocks target creature this turn if able.
 mana={G}
 type=Sorcery
-[/card]
-[card]
-name=Hunter Sliver
-text=All Sliver creatures have provoke. (When a Sliver attacks, its controller may have target creature defending player controls untap and block it if able.)
-mana={1}{R}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
 [/card]
 [card]
 name=Hushwing Gryff
@@ -8365,15 +8293,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Krosan Vorine
-text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.) -- Krosan Vorine can't be blocked by more than one creature.
-mana={3}{G}
-type=Creature
-subtype=Cat Beast
-power=3
-toughness=2
-[/card]
-[card]
 name=Krovikan Vampire
 text=At the beginning of each end step, if a creature dealt damage by Krovikan Vampire this turn died, put that card onto the battlefield under your control. Sacrifice it when you lose control of Krovikan Vampire.
 mana={3}{B}{B}
@@ -8909,15 +8828,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Lowland Tracker
-text=First strike -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Loxodon Smiter
 text=Loxodon Smiter can't be countered. -- If a spell or ability an opponent controls causes you to discard Loxodon Smiter, put it onto the battlefield instead of putting it into your graveyard.
 mana={1}{G}{W}
@@ -9327,15 +9237,6 @@ text=You may have Masterwork of Ingenuity enter the battlefield as a copy of any
 mana={1}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Matsu-Tribe Decoy
-text={2}{G}: Target creature blocks Matsu-Tribe Decoy this turn if able. -- Whenever Matsu-Tribe Decoy deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
-mana={2}{G}
-type=Creature
-subtype=Snake Warrior
-power=1
-toughness=3
 [/card]
 [card]
 name=May Civilization Collapse
@@ -12282,15 +12183,6 @@ name=Rally the Horde
 text=Exile the top card of your library. Exile the top card of your library. Exile the top card of your library. If the last card exiled isn't a land, repeat this process. Put a 1/1 red Warrior creature token onto the battlefield for each nonland card exiled this way.
 mana={5}{R}
 type=Sorcery
-[/card]
-[card]
-name=Rampant Elephant
-text={G}: Target creature blocks Rampant Elephant this turn if able.
-mana={3}{W}
-type=Creature
-subtype=Elephant
-power=2
-toughness=2
 [/card]
 [card]
 name=Rapid Fire
@@ -15675,15 +15567,6 @@ mana={4}{U}
 type=Sorcery
 [/card]
 [card]
-name=Swooping Talon
-text=Flying -- {1}: Swooping Talon loses flying until end of turn. -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{W}{W}
-type=Creature
-subtype=Bird Soldier
-power=2
-toughness=6
-[/card]
-[card]
 name=Sword of the Ages
 text=Sword of the Ages enters the battlefield tapped. -- {T}, Sacrifice Sword of the Ages and any number of creatures you control: Sword of the Ages deals X damage to target creature or player, where X is the total power of the creatures sacrificed this way, then exile Sword of the Ages and those creature cards.
 mana={6}
@@ -15825,15 +15708,6 @@ text=+1: Choose up to two target creatures. Until your next turn, whenever eithe
 mana={1}{G}{W}{U}
 type=Planeswalker
 subtype=Tamiyo
-[/card]
-[card]
-name=Tangle Angler
-text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- {G}: Target creature blocks Tangle Angler this turn if able.
-mana={3}{G}
-type=Creature
-subtype=Horror
-power=1
-toughness=5
 [/card]
 [card]
 name=Tangle Wire
@@ -16593,15 +16467,6 @@ type=Plane
 subtype=Ergamon
 [/card]
 [card]
-name=Trumpeting Armodon
-text={1}{G}: Target creature blocks Trumpeting Armodon this turn if able.
-mana={3}{G}
-type=Creature
-subtype=Elephant
-power=3
-toughness=3
-[/card]
-[card]
 name=Truth or Tale
 text=Reveal the top five cards of your library and separate them into two piles. An opponent chooses one of those piles. Put a card from the chosen pile into your hand, then put all other cards revealed this way on the bottom of your library in any order.
 mana={1}{U}
@@ -16660,15 +16525,6 @@ name=Turn the Tables
 text=All combat damage that would be dealt to you this turn is dealt to target attacking creature instead.
 mana={3}{W}{W}
 type=Instant
-[/card]
-[card]
-name=Turntimber Basilisk
-text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- Landfall — Whenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
-mana={1}{G}{G}
-type=Creature
-subtype=Basilisk
-power=2
-toughness=1
 [/card]
 [card]
 name=Turri Island

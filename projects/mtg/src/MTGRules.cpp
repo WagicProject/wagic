@@ -2259,23 +2259,31 @@ int MTGBlockRule::receiveEvent(WEvent *e)
             for (size_t i = 0; i < tf->cards.size(); i++)
             {
                 MTGCardInstance * card = tf->cards[i];
-                if (card->has(Constants::MUSTBLOCK) && !card->defenser && card->canBlock())
+                if ((card->has(Constants::MUSTBLOCK) || card->isProvoked) && !card->defenser && card->canBlock())
                 {//force mustblockers to block the first thing theyre allowed to block if player leaves blockers with them
                     //unassigned as a block.
-                    for (size_t i = 0; i < Attacker.size(); i++)
+                    if(!card->isProvoked)
                     {
-                        if (card->canBlock(Attacker[i]) && !card->defenser)
+                        for (size_t i = 0; i < Attacker.size(); i++)
                         {
-                            blocker = NEW AABlock(card->getObserver(), -1, card, NULL);
-                            blocker->oneShot = true;
-                            blocker->forceDestroy = 1;
-                            blocker->canBeInterrupted = false;
-                            blocker->target = Attacker[i];
-                            blocker->resolve();
-                            SAFE_DELETE(blocker);
+                            if (card->canBlock(Attacker[i]) && !card->defenser)
+                            {
+                                blocker = NEW AABlock(card->getObserver(), -1, card, NULL);
+                                blocker->oneShot = true;
+                                blocker->forceDestroy = 1;
+                                blocker->canBeInterrupted = false;
+                                blocker->target = Attacker[i];
+                                blocker->resolve();
+                                SAFE_DELETE(blocker);
+                            }
                         }
                     }
-
+                    else
+                    {
+                        MTGCardInstance * provoker = card->Provoker;
+                            if(provoker && card->canBlock(provoker) && card->blockCost < 1)
+                                card->setDefenser(provoker);
+                    }
                 }
             }
 
@@ -2369,6 +2377,19 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
         }
         else
             card->toggleDefenser(NULL);
+    }
+    else if(card->isProvoked)
+    {
+        while (!result)
+        {
+            currentOpponent = game->currentPlayer->game->inPlay->getNextProvoker(currentOpponent, card);
+            canDefend = card->toggleDefenser(currentOpponent);
+
+            DebugTrace("Defenser Toggle: " << card->getName() << endl
+                << "- canDefend: " << (canDefend == 0) << endl
+                << "- currentOpponent: " << currentOpponent);
+            result = (canDefend || currentOpponent == NULL);
+        }
     }
     else
     {

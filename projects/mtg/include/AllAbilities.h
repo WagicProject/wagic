@@ -7120,8 +7120,8 @@ public:
             if(mt.size())
             {
                 MTGAbility * fd = af.parseMagicLine(mt, GetId(), NULL, copy);
-                if(fd && isCreature)
-                {
+                if(fd)
+                {//allow morph to all if it exists
                     fd->target = copy;
                     if(fd->oneShot)
                     {
@@ -7163,6 +7163,63 @@ public:
     AManifest * clone() const
     {
         return NEW AManifest(*this);
+    }
+};
+//provoke
+class AProvoke: public InstantAbility
+{
+public:
+    bool setblocker;
+    MTGAbility * andAbility;
+    AProvoke(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+        InstantAbility(observer, _id, _source)
+    {
+        target = _target;
+        andAbility = NULL;
+        setblocker = false;
+    }
+
+    int resolve()
+    {
+        MTGCardInstance * card = (MTGCardInstance *) target;
+        if (card)
+        {
+            card->isProvoked = true;
+            card->Provoker = source;
+            if(!setblocker)//not provoke
+                card->untap();
+            source->ProvokeTarget = card;
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = card;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+        }
+        return 1;
+    }
+    const string getMenuText()
+    {
+        if(setblocker)
+            return "Set Blocker";
+        return "Provoke";
+    }
+    virtual ostream& toString(ostream& out) const
+    {
+        out << "AAProvoke ::: (";
+        return InstantAbility::toString(out) << ")";
+    }
+    AProvoke * clone() const
+    {
+        return NEW AProvoke(*this);
     }
 };
 //------------------

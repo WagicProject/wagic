@@ -242,6 +242,9 @@ void MTGCardInstance::initMTGCI()
     damageToOpponent = false;
     damageToController = false;
     damageToCreature = false;
+    isProvoked = false;
+    ProvokeTarget = NULL;
+    Provoker = NULL;
     wasDealtDamage = false;
     isDualWielding = false;
     suspended = false;
