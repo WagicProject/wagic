@@ -984,6 +984,20 @@ void GameObserver::gameStateBasedEffects()
                 }
             }
         }
+        ///provoke clear///
+        if (mCurrentGamePhase == MTG_PHASE_COMBATEND)
+        {
+            for (int l = z->nb_cards - 1; l >= 0; l--)
+            {
+                MTGCardInstance * c = z->cards[l];
+                if(c)
+                {
+                    c->isProvoked = false;
+                    c->ProvokeTarget = NULL;
+                    c->Provoker = NULL;
+                }
+            }
+        }
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
         /////////////////////////////////////////////////
@@ -1011,6 +1025,9 @@ void GameObserver::gameStateBasedEffects()
                 c->combatdamageToOpponent = false;
                 c->damageToCreature = false;
                 c->isAttacking = NULL;
+                c->isProvoked = false;
+                c->ProvokeTarget = NULL;
+                c->Provoker = NULL;
             }
             for (int jj = z->nb_cards - 1; jj >= 0; jj--)
             {

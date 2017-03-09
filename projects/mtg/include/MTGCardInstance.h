@@ -68,6 +68,9 @@ public:
     bool damageToOpponent;
     bool damageToController;
     bool damageToCreature;
+    bool isProvoked;
+    MTGCardInstance * ProvokeTarget;
+    MTGCardInstance * Provoker;
     bool mPropertiesChangedSinceLastUpdate;
     int reduxamount;
     int flanked;

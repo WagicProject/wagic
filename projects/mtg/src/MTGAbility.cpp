@@ -2910,6 +2910,36 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //provoke
+    found = s.find("provoke");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AProvoke(observer, id, card, target);
+        a->oneShot = 1;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AProvoke*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return a;
+    }
+    //setblocker
+    found = s.find("setblocker");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AProvoke(observer, id, card, target);
+        a->oneShot = 1;
+        ((AProvoke*)a)->setblocker = true;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AProvoke*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return a;
+    }
+
     //clone
     found = s.find("clone");
     if (found != string::npos)

@@ -186,7 +186,9 @@ public:
     void untapAll();
     MTGCardInstance * getNextAttacker(MTGCardInstance * previous);
     MTGCardInstance * getNextLurer(MTGCardInstance * previous);
+    MTGCardInstance * getNextProvoker(MTGCardInstance * previous, MTGCardInstance * source);
     MTGCardInstance * findALurer();
+    MTGCardInstance * findAProvoker(MTGCardInstance * source);
     virtual ostream& toString(ostream&) const;
     const char * getName(){return "battlefield";}
 };

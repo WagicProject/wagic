@@ -1819,9 +1819,20 @@ bool BlockableChooser::canTarget(Targetable * target,bool withoutProtections)
         }
         if(lured && card->controller()->inPlay()->hasAbility(Constants::LURE) && !card->has(Constants::LURE))
             return false;
+        //provoke
+        bool provoked = false;
+        MTGCardInstance * provoker = observer->currentPlayer->game->inPlay->findAProvoker(source);
+        if(provoker)
+        {
+            provoked = true;
+        }
+        if(provoked && source->isProvoked && !card->ProvokeTarget)
+            return false;
+        if(provoked && source->isProvoked && card->ProvokeTarget && card->ProvokeTarget != source)
+            return false;
         return true;
     }
-    return TypeTargetChooser::canTarget(target,withoutProtections);
+    return false;//TypeTargetChooser::canTarget(target,withoutProtections);
 }
 
 BlockableChooser* BlockableChooser::clone() const

@@ -1015,6 +1015,43 @@ MTGCardInstance * MTGInPlay::getNextLurer(MTGCardInstance * previous)
     return NULL;
 }
 
+MTGCardInstance * MTGInPlay::getNextProvoker(MTGCardInstance * previous, MTGCardInstance * thiscard)
+{
+    int foundprevious = 0;
+    if (previous == NULL)
+    {
+        foundprevious = 1;
+    }
+    for (int i = 0; i < nb_cards; i++)
+    {
+        MTGCardInstance * current = cards[i];
+        if (current == previous)
+        {
+            foundprevious = 1;
+        }
+        else if (foundprevious && current->isAttacker() && thiscard->isProvoked && current->ProvokeTarget)
+        {
+            if(thiscard == current->ProvokeTarget)
+                return current;
+        }
+    }
+    return NULL;
+}
+
+MTGCardInstance * MTGInPlay::findAProvoker(MTGCardInstance * thiscard)
+{
+    for (int i = 0; i < nb_cards; i++)
+    {
+        MTGCardInstance * current = cards[i];
+        if (current->isAttacker() && current->ProvokeTarget)
+        {
+            if(current->ProvokeTarget == thiscard)
+                return current;
+        }
+    }
+    return NULL;
+}
+
 MTGCardInstance * MTGInPlay::findALurer()
 {
     for (int i = 0; i < nb_cards; i++)
