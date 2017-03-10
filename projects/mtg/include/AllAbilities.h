@@ -6555,7 +6555,7 @@ public:
 
     const string getMenuText()
     {
-        return "phase alter";
+        return "Phase Alter";
     }
 
     APhaseAlter * clone() const

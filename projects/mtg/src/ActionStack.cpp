@@ -96,7 +96,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     JRenderer * renderer = JRenderer::GetInstance();
     bool hiddenview = aType == MTGAbility::HIDDENVIEW?true:false;
 
-    if (!targetQuad)
+    if (!targetQuad && !mytargetsQuad.size())
     {
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI() && !alt2.size() && _(action).c_str() == source->name)
             mFont->DrawString("You play ", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
@@ -1039,6 +1039,9 @@ void ActionStack::Update(float dt)
     //No need for Tuto when no human in game
     if (getCurrentTutorial() && (observer->players[0]->isHuman() || observer->players[1]->isHuman() ) )
         return;
+
+    if (observer->mLayers->actionLayer()->menuObject || observer->LPWeffect)
+        return;//dont do any of this if a menuobject exist.
 
     askIfWishesToInterrupt = NULL;
     //modal = 0;
