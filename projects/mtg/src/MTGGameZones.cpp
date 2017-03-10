@@ -569,13 +569,13 @@ MTGGameZone::~MTGGameZone()
         //cause crashes for generated cards using castcard named card...??? test fix for now
         if(cards[i]->previous)
         {
-            cards[i]->previous = NULL;
             delete cards[i]->previous;
+            cards[i]->previous = NULL;
         }
         if(cards[i])
         {
-            cards[i] = NULL;
             delete cards[i];
+            cards[i] = NULL;
         }
     }
     cards.clear();
