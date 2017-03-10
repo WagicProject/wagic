@@ -8894,15 +8894,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Maelstrom Wanderer
-text=Creatures you control have haste. -- Cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order. Then do it again.)
-mana={5}{U}{R}{G}
-type=Legendary Creature
-subtype=Elemental
-power=7
-toughness=5
-[/card]
-[card]
 name=Mages' Contest
 text=You and target spell's controller bid life. You start the bidding with a bid of 1. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid. If you win the bidding, counter that spell.
 mana={1}{R}{R}
