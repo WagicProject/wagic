@@ -2102,6 +2102,7 @@ public:
     int resolve();
     const string getMenuText();
     AALibraryBottom * clone() const;
+    ~AALibraryBottom();
 };
 
 //Copier. ActivatedAbility
@@ -2115,6 +2116,7 @@ public:
     int resolve();
     const string getMenuText();
     AACopier * clone() const;
+    ~AACopier();
 };
 //phaseout
 class AAPhaseOut: public ActivatedAbility

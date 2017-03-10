@@ -1543,7 +1543,15 @@ const string AALibraryBottom::getMenuText()
 
 AALibraryBottom * AALibraryBottom::clone() const
 {
-    return NEW AALibraryBottom(*this);
+    AALibraryBottom * a = NEW AALibraryBottom(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AALibraryBottom::~AALibraryBottom()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //AACopier
@@ -1687,7 +1695,15 @@ const string AACopier::getMenuText()
 
 AACopier * AACopier::clone() const
 {
-    return NEW AACopier(*this);
+    AACopier * a = NEW AACopier(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AACopier::~AACopier()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //phaseout
@@ -4295,10 +4311,14 @@ ostream& AACloner::toString(ostream& out) const
 
 AACloner * AACloner::clone() const
 {
-    return NEW AACloner(*this);
+    AACloner * a = NEW AACloner(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
 }
 AACloner::~AACloner()
 {
+    SAFE_DELETE(andAbility);
 }
 
 // Cast/Play Restriction modifier
