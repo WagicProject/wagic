@@ -7074,12 +7074,14 @@ public:
 class AManifest: public InstantAbility
 {
 public:
+    bool withenchant;
     MTGAbility * andAbility;
     AManifest(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
         InstantAbility(observer, _id, _source)
     {
         target = _target;
         andAbility = NULL;
+        withenchant = false;
     }
 
     int resolve()
@@ -7148,6 +7150,15 @@ public:
                 else
                 {
                     andAbilityClone->addToGame();
+                }
+            }
+            if(withenchant)
+            {
+                if(source->hasType(Subtypes::TYPE_ENCHANTMENT))
+                {
+                    source->target = copy;
+                    source->spellTargetType = "creature";
+                    source->addType("aura");
                 }
             }
         }

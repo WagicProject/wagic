@@ -2898,7 +2898,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //manifest
     found = s.find("manifest");
     if (found != string::npos)
-    {
+    {//for cloudform, rageform and lightform
+        bool withenchant = s.find("withenchant") != string::npos;
         MTGAbility * a = NEW AManifest(observer, id, card, target);
         a->oneShot = 1;
         if(storedAndAbility.size())
@@ -2907,6 +2908,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             storedAndAbility.clear();
             ((AManifest*)a)->andAbility = parseMagicLine(stored, id, spell, card);
         }
+        if(withenchant)
+            ((AManifest*)a)->withenchant = true;
         return a;
     }
 
