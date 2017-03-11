@@ -2177,9 +2177,19 @@ void WGuiFilterItem::updateValue()
         else if (filterType == FILTER_BASIC)
         {
             char buf[512];
+            vector<string> baString;
             for (int i = 0; i < Constants::NB_BASIC_ABILITIES; i++)
+            {//remove some others
+                if(i != 119 || i != 120 || i != 135 || i != 136 || i != 137 || i != 139 || i != 140 || i != 141 || i != 143 
+                    || i != 144 || i != 145 || i != 146 || i != 147 || i != 148 || i != 149 || i != 150 
+                    || i != 151 || i != 152 || i != 153 || i != 154)
+                    baString.push_back(Constants::MTGBasicAbilities[i]);
+            }
+            //sort
+            sort(baString.begin(),baString.end());
+            for (unsigned int i = 0; i < baString.size(); i++)
             {
-                string s = Constants::MTGBasicAbilities[i];
+                string s = baString[i];
                 sprintf(buf, "a:%s;", s.c_str());
                 s[0] = toupper(s[0]);
                 mParent->addArg(s, buf);

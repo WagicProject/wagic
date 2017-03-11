@@ -2425,12 +2425,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Cloudform
-text=When Cloudform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Cloudform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has flying and hexproof.
-mana={1}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Coalition Flag
 text=Enchant creature you control -- Enchanted creature is a Flagbearer. -- While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
 mana={W}
@@ -8623,12 +8617,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Lightform
-text=When Lightform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Lightform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has flying and lifelink.
-mana={1}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Lightning Reflexes
 text=You may cast Lightning Reflexes as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +1/+0 and has first strike.
 mana={1}{R}
@@ -8904,15 +8892,6 @@ type=Creature
 subtype=Imp
 power=1
 toughness=1
-[/card]
-[card]
-name=Maelstrom Wanderer
-text=Creatures you control have haste. -- Cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order. Then do it again.)
-mana={5}{U}{R}{G}
-type=Legendary Creature
-subtype=Elemental
-power=7
-toughness=5
 [/card]
 [card]
 name=Mages' Contest
@@ -12107,12 +12086,6 @@ name=Rage Extractor
 text=({PR} can be paid with either {R} or 2 life.) -- Whenever you cast a spell with <img src="/Handlers/Image.ashx?size=small&amp;name=p&amp;type=symbol" alt="Phyrexian" align="absbottom" /> in its mana cost, Rage Extractor deals damage equal to that spell's converted mana cost to target creature or player.
 mana={4}{PR}
 type=Artifact
-[/card]
-[card]
-name=Rageform
-text=When Rageform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Rageform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has double strike. (It deals both first-strike and regular combat damage.)
-mana={2}{R}{R}
-type=Enchantment
 [/card]
 [card]
 name=Raging River
