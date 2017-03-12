@@ -69,8 +69,6 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     copiedSetID = 0;
     LKIpower = power;
     LKItoughness = toughness;
-    cardistargetted = 0;
-    cardistargetter = 0;
     forcedBorderA = 0;
     forcedBorderB = 0;
     myconvertedcost = getManaCost()->getConvertedCost();
@@ -948,62 +946,6 @@ bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
     {
         return true;
     }
-    return false;
-}
-
-//check targetted?
-bool MTGCardInstance::isTargetted()
-{
-    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
-        return false;
-
-    if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-    {
-        ActionStack * stack = observer->mLayers->stackLayer();
-        for (int i = stack->mObjects.size() - 1; i >= 0; i--)
-        {
-            Interruptible * current = ((Interruptible *) stack->mObjects[i]);
-            if ((current->type == ACTION_SPELL || current->type == ACTION_ABILITY) && current->state == NOT_RESOLVED)
-            {
-                if(current->type == ACTION_SPELL)
-                {
-                    Spell * spell = (Spell *) current;
-                    if(spell->getNextTarget() && spell->getNextTarget() == (Targetable*)this)
-                        return true;
-                }
-            }
-        }
-    }        
-    if(cardistargetted)
-        return true;
-    return false;
-}
-
-//check targetter?
-bool MTGCardInstance::isTargetter()
-{
-    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
-        return false;
-
-    if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-    {
-        ActionStack * stack = observer->mLayers->stackLayer();
-        for (int i = stack->mObjects.size() - 1; i >= 0; i--)
-        {
-            Interruptible * current = ((Interruptible *) stack->mObjects[i]);
-            if ((current->type == ACTION_SPELL || current->type == ACTION_ABILITY) && current->state == NOT_RESOLVED)
-            {
-                if(current->type == ACTION_SPELL)
-                {
-                    Spell * spell = (Spell *) current;
-                    if(spell && spell->source == this)
-                        return true;
-                }
-            }
-        }
-    }        
-    if(cardistargetter)
-        return true;
     return false;
 }
 

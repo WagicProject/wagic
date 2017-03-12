@@ -435,7 +435,7 @@ ManaCost::ManaCost(ManaCost * manaCost)
     hybrids = manaCost->hybrids;
     kicker = NEW ManaCost(manaCost->kicker);
     if (kicker)
-            kicker->isMulti = manaCost->isMulti;
+        kicker->isMulti = manaCost->isMulti;
     Retrace = NEW ManaCost( manaCost->Retrace );
     BuyBack = NEW ManaCost( manaCost->BuyBack );
     alternative = NEW ManaCost( manaCost->alternative );

@@ -497,7 +497,17 @@ void CardGui::Render()
             renderer->DrawRect(actX - 10 * actZ, actY - (1 * actZ), 6.f,6.f,ARGB(180,10,10,10));
         }
     }
-    if(!alternate && buff != "" && game && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
+    if(card->chooseasubtype.size() && !alternate && game)
+    {
+        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+        char buffer[200];
+        sprintf(buffer, "%s", card->chooseasubtype.c_str());
+        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,215,0));//Gold indicator
+        mFont->SetScale(0.8f);
+        mFont->DrawString(buffer, actX - 10 * actZ, actY - (25.3f * actZ));
+        mFont->SetScale(1);
+    }
+    if(!alternate && buff != "" && game)
     {
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
