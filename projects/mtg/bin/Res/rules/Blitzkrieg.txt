@@ -32,6 +32,7 @@ auto=lifelinkrule
 auto=deathtouchrule
 auto=soulbondrule
 auto=dredgerule
+auto=bestowrule
 
 [PLAYERS]
 life:20
@@ -48,11 +49,11 @@ auto=maxPlay(land)1000
 
 
 #Lands Mana Rules
-auto=lord(Plains|MyBattlefield) {T}:Add{W}
-auto=lord(Island|MyBattlefield) {T}:Add{U}
-auto=lord(Swamp|MyBattlefield) {T}:Add{B}
-auto=lord(Mountain|MyBattlefield) {T}:Add{R}
-auto=lord(Forest|MyBattlefield) {T}:Add{G}
+auto=lord(Plains[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{W}
+auto=lord(Island[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{U}
+auto=lord(Swamp[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{B}
+auto=lord(Mountain[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{R}
+auto=lord(Forest[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{G}
 
 
 #Mana Empties from manapool at the end of each phase

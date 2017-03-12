@@ -129,9 +129,6 @@ WEventVampire::WEventVampire(MTGCardInstance * card,MTGCardInstance * source,MTG
 WEventTarget::WEventTarget(MTGCardInstance * card,MTGCardInstance * source) :
     WEventCardUpdate(card),card(card),source(source)
 {
-    card->cardistargetted = 1;
-    if(source)
-    source->cardistargetter = 1;
 }
 
 WEventCardChangeType::WEventCardChangeType(MTGCardInstance * card, int type, bool before, bool after) :

@@ -273,10 +273,6 @@ public:
     int copiedSetID;
     bool canPlayFromLibrary();
     bool StackIsEmptyandSorcerySpeed();
-    bool isTargetted();
-    int cardistargetted;
-    bool isTargetter();
-    int cardistargetter;
     int forcedBorderA;
     int forcedBorderB;
     int myconvertedcost;

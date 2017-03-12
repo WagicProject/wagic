@@ -1521,6 +1521,7 @@ void ActionStack::Render()
                     ((Interruptible *) mObjects[i])->y = currenty + 40;
                     currenty += ((Interruptible *) mObjects[i])->mHeight + 40;
                 }
+                current->mHasFocus = false;//fix stack display
                 mObjects[i]->Render();
             }
         }

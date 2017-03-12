@@ -8149,7 +8149,8 @@ MTGCardInstance * AACastCard::makeCard()
    card = NEW MTGCardInstance(cardData, source->controller()->game);
    card->owner = source->controller();
    card->lastController = source->controller();
-   source->controller()->game->temp->addCard(card);
+   //source->controller()->game->temp->addCard(card);
+   source->controller()->game->sideboard->addCard(card);
    return card;
 }
 
