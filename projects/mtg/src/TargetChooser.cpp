@@ -48,6 +48,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW CardTargetChooser(observer, target, card);
     };
 
+    found = s.find("mychild");
+    if (found == 0)
+    {
+        int maxtargets = 1;
+        return NEW ChildrenChooser(observer, card, maxtargets);
+    };
+
     found = s.find("targetedplayer");
     if (found == 0)
     {
@@ -2014,4 +2021,43 @@ bool ParentChildChooser::equals(TargetChooser * tc)
 ParentChildChooser::~ParentChildChooser()
 {
     SAFE_DELETE(deeperTargeting);
+}
+
+//child only
+bool ChildrenChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if(card == source)
+            return false;
+        if(!card->isInPlay(observer))
+            return false;
+        if(card->auraParent)
+        {
+            if(card->auraParent == source)
+                return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+ChildrenChooser* ChildrenChooser::clone() const
+{
+    ChildrenChooser * a = NEW ChildrenChooser(*this);
+    return a;
+}
+
+bool ChildrenChooser::equals(TargetChooser * tc)
+{
+
+    ChildrenChooser  * dtc = dynamic_cast<ChildrenChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+ChildrenChooser::~ChildrenChooser()
+{
 }

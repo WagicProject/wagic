@@ -303,6 +303,7 @@ void MTGCardInstance::initMTGCI()
     tokCard = NULL;
     previous = NULL;
     next = NULL;
+    auraParent = NULL;
     TokenAndAbility = NULL;
     GrantedAndAbility = NULL;
     lastController = NULL;

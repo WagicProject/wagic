@@ -128,6 +128,7 @@ public:
     MTGCardInstance * tokCard;
     MTGCardInstance * previous;
     MTGCardInstance * next;
+    MTGCardInstance * auraParent;
     MTGAbility * TokenAndAbility;
     MTGAbility * GrantedAndAbility;
     int doDamageTest;
