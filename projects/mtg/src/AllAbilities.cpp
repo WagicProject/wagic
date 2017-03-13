@@ -2855,7 +2855,13 @@ int AABuryCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        _target->bury();
+        //Bury (Obsolete)
+        //A term that meant “put [a permanent] into its owner’s graveyard.”
+        //In general, cards that were printed with the term “bury” have received errata 
+        //in the Oracle card reference to read, “Destroy [a permanent]. It can’t be regenerated,” 
+        //or “Sacrifice [a permanent].”
+        //_target->bury();
+        _target->destroyNoRegen();//so totem armor will take effect on wrath effects since totem armor is not regeneration..
         while(_target->next)
             _target = _target->next;
         if(andAbility)
@@ -3220,6 +3226,10 @@ int AANewTarget::resolve()
         {
             while (_target->next)
                 _target = _target->next;  
+        }
+        if(_target->hasSubtype(Subtypes::TYPE_AURA))
+        {
+            _target->target = source;
         }
         if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
         {

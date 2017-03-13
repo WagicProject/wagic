@@ -55,6 +55,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW ChildrenChooser(observer, card, maxtargets);
     };
 
+    found = s.find("mytotem");
+    if (found == 0)
+    {
+        int maxtargets = 1;
+        return NEW TotemChooser(observer, card, maxtargets);
+    };
+
     found = s.find("targetedplayer");
     if (found == 0)
     {
@@ -220,6 +227,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
             }
             else if (zoneName.compare("opponentcastingzone") == 0)
             {
@@ -2059,5 +2067,44 @@ bool ChildrenChooser::equals(TargetChooser * tc)
 }
 
 ChildrenChooser::~ChildrenChooser()
+{
+}
+
+//totem armor chooser
+bool TotemChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if(card == source)
+            return false;
+        if(!card->isInPlay(observer))
+            return false;
+        if(card->auraParent)
+        {
+            if((card->auraParent) == source && (card->has(Constants::TOTEMARMOR)))
+                return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+TotemChooser* TotemChooser::clone() const
+{
+    TotemChooser * a = NEW TotemChooser(*this);
+    return a;
+}
+
+bool TotemChooser::equals(TargetChooser * tc)
+{
+
+    TotemChooser  * dtc = dynamic_cast<TotemChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+TotemChooser::~TotemChooser()
 {
 }

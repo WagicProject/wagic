@@ -3741,7 +3741,7 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
         if(removel->removed && removel->targetCard && removel->targetCard->hasType(Subtypes::TYPE_PLANESWALKER))
             if(!removel->targetCard->counters->hasCounter("loyalty",0,0))
             {
-                removel->targetCard->bury();
+                removel->targetCard->toGrave(true);
                 return 1;
             }
 

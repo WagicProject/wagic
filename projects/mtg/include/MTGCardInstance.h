@@ -139,6 +139,7 @@ public:
     ManaCost * getReducedManaCost();
     ManaCost * getIncreasedManaCost();
     bool matchesCastFilter(int castMethod);
+    bool hasTotemArmor();
 
     // The recommended method to test for summoning Sickness !
     int hasSummoningSickness();
@@ -203,8 +204,10 @@ public:
     Player * controller();
 
     virtual ~MTGCardInstance();
-    int bury();
+    int totem( bool noregen = false );
+    int toGrave( bool forced = false );
     int destroy();
+    int destroyNoRegen();
 
     int addToToughness(int value);
     int setToughness(int value);

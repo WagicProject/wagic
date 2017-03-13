@@ -1018,13 +1018,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Bear Umbra
-text=Enchant creature -- Enchanted creature gets +2/+2 and has "Whenever this creature attacks, untap all lands you control." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={2}{G}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Bearer of Silence
 text=Devoid (This card has no color.) -- When you cast Bearer of Silence, you may pay {1}{C}. If you do, target opponent sacrifices a creature. ({C} represents colorless mana.) -- Flying -- Bearer of Silence can't block.
 mana={1}{B}
@@ -1292,13 +1285,6 @@ name=Bludgeon Brawl
 text=Each noncreature, non-Equipment artifact is an Equipment with equip {X} and "Equipped creature gets +X/+0," where X is that artifact's converted mana cost.
 mana={2}{R}
 type=Enchantment
-[/card]
-[card]
-name=Boar Umbra
-text=Enchant creature -- Enchanted creature gets +3/+3. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={2}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Bog Hoodlums
@@ -2864,13 +2850,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Crab Umbra
-text=Enchant creature -- {2}{U}: Untap enchanted creature. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Cragganwick Cremator
 text=When Cragganwick Cremator enters the battlefield, discard a card at random. If you discard a creature card this way, Cragganwick Cremator deals damage equal to that card's power to target player.
 mana={2}{R}{R}
@@ -3978,13 +3957,6 @@ mana={U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Drake Umbra
-text=Enchant creature -- Enchanted creature gets +3/+3 and has flying. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={4}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Dralnu, Lich Lord
 text=If damage would be dealt to Dralnu, Lich Lord, sacrifice that many permanents instead.  -- {T}: Target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (You may cast that card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}{B}
@@ -4160,20 +4132,6 @@ name=Edge of Malacol
 text=If a creature you control would untap during your untap step, put two +1/+1 counters on it instead. -- Whenever you roll {K}, untap each creature you control.
 type=Plane
 subtype=Belenon
-[/card]
-[card]
-name=Eel Umbra
-text=Flash (You may cast this spell any time you could cast an instant.) -- Enchant creature -- Enchanted creature gets +1/+1. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Eland Umbra
-text=Enchant creature -- Enchanted creature gets +0/+4. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Elderwood Scion
@@ -4801,13 +4759,6 @@ name=Feint
 text=Tap all creatures blocking target attacking creature. Prevent all combat damage that would be dealt this turn by that creature and each creature blocking it.
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Felidar Umbra
-text=Enchant creature -- Enchanted creature has lifelink. -- {1}{W}: Attach Felidar Umbra to target creature you control. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Fell the Mighty
@@ -6943,13 +6894,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Hyena Umbra
-text=Enchant creature -- Enchanted creature gets +1/+1 and has first strike. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Hymn of the Wilds
 text=(Start the game with this conspiracy face up in the command zone.) -- The first creature spell you cast each turn costs {1} less to cast. -- You can't cast instant or sorcery spells.
 type=Conspiracy
@@ -7251,13 +7195,6 @@ name=Incremental Growth
 text=Put a +1/+1 counter on target creature, two +1/+1 counters on another target creature, and three +1/+1 counters on a third target creature.
 mana={3}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Indrik Umbra
-text=Enchant creature -- Enchanted creature gets +4/+4 and has first strike, and all creatures able to block it do so. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={4}{G}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Induce Despair
@@ -8964,13 +8901,6 @@ type=Creature
 subtype=Elemental Spirit
 power=*
 toughness=*
-[/card]
-[card]
-name=Mammoth Umbra
-text=Enchant creature -- Enchanted creature gets +3/+3 and has vigilance. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={4}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Mana Cache
@@ -14358,13 +14288,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Snake Umbra
-text=Enchant creature -- Enchanted creature gets +1/+1 and has "Whenever this creature deals damage to an opponent, you may draw a card." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Snow Mercy
 text=Whenever a creature deals damage to you, put a globe counter on it. -- {T}, {untap}, {T}, {untap}, {T}: Tap all creatures with globe counters on them.
 mana={2}{W}{W}
@@ -14806,13 +14729,6 @@ toughness=6
 [card]
 name=Spider Climb
 text=You may cast Spider Climb as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+3 and has reach. (It can block creatures with flying.)
-mana={G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Spider Umbra
-text=Enchant creature -- Enchanted creature gets +1/+1 and has reach. (It can block creatures with flying.) -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 mana={G}
 type=Enchantment
 subtype=Aura

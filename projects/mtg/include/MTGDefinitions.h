@@ -274,7 +274,8 @@ class Constants
       CANPLAYINSTANTSORCERYTOPLIBRARY = 152,//instantorsorcery
       SHOWFROMTOPLIBRARY = 153,
       SHOWOPPONENTTOPLIBRARY = 154,
-      NB_BASIC_ABILITIES = 155,
+      TOTEMARMOR = 155,
+      NB_BASIC_ABILITIES = 156,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
