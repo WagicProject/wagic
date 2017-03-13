@@ -4044,6 +4044,80 @@ AALifer * AALifer::clone() const
     return NEW AALifer(*this);
 }
 
+//Extra for Bestow ... partial fix since there's no update when react to click for bestow cards...
+//There should be no problem if the bestow cards has chosen mode then update its bestow code on react to click but
+//I cant find alternate way... This Ability is general for enchantments since aura is an enchantment type however
+//it can't target card specific attributes... This one adds on the players side...
+AAuraIncreaseReduce::AAuraIncreaseReduce(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int amount, int color, int who) :
+    AbilityTP(observer, _id, _source, _target, who), amount(amount), color(color)
+{
+    manaReducer = source;
+}
+
+int AAuraIncreaseReduce::addToGame()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    Player * p = getPlayerFromDamageable(_target);
+
+    if (!p)
+        return 0;
+
+    if (amount > 0)
+    {
+        p->AuraIncreased->add(color,amount);
+    }
+    else
+    {
+        p->AuraReduced->add(color,abs(amount));
+    }
+
+    return MTGAbility::addToGame();
+}
+
+int AAuraIncreaseReduce::destroy()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    Player * p = getPlayerFromDamageable(_target);
+
+    if (!p)
+        return 0;
+
+    if(!this->manaReducer->isInPlay(game))
+    {
+        if (amount > 0)
+        {
+            p->AuraIncreased->remove(color,amount);
+        }
+        else
+        {
+            p->AuraReduced->remove(color,abs(amount));
+        }
+        return MTGAbility::testDestroy();
+    }
+
+    return 0;
+}
+
+int AAuraIncreaseReduce::testDestroy()
+{
+    if(!this->manaReducer->isInPlay(game))
+    {
+        return MTGAbility::testDestroy();
+    }
+
+    return 0;
+}
+
+const string AAuraIncreaseReduce::getMenuText()
+{
+    return "Aura Increaser/Reducer";
+}
+
+AAuraIncreaseReduce * AAuraIncreaseReduce::clone() const
+{
+    return NEW AAuraIncreaseReduce(*this);
+}
+
 //players modify hand size
 AModifyHand::AModifyHand(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, string hand, int who) :
     AbilityTP(observer, _id, _source, _target, who), hand(hand)

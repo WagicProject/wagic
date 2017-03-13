@@ -276,7 +276,7 @@ public:
     int forcedBorderA;
     int forcedBorderB;
     int myconvertedcost;
-    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false);
+    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false, bool bestow = false);
     int countTrini;
     bool anymanareplacement;
     vector<MTGCardInstance*>imprintedCards;

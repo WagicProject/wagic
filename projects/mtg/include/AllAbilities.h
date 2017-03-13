@@ -4539,6 +4539,23 @@ public:
     }
 };
 
+//Extra for Bestow cards
+class AAuraIncreaseReduce: public AbilityTP
+{
+public:
+    MTGCardInstance * manaReducer;
+    int amount;
+    int color;
+    AAuraIncreaseReduce(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int amount, int color, int who = TargetChooser::UNSET);
+    int addToGame();
+    int destroy();
+    int testDestroy();
+    const string getMenuText();
+    AAuraIncreaseReduce * clone() const;
+    //~AAuraIncreaseReduce();
+
+};
+
 //Modify Hand
 class AModifyHand: public AbilityTP
 {

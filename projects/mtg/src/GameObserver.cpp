@@ -1244,6 +1244,8 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYPLAINS) ||
                     card->has(Constants::AFFINITYSWAMP) ||
                     card->has(Constants::CONDUITED) ||
+                    card->controller()->AuraIncreased->getConvertedCost() ||
+                    card->controller()->AuraReduced->getConvertedCost() ||
                     card->getIncreasedManaCost()->getConvertedCost() ||
                     card->getReducedManaCost()->getConvertedCost() ||
                     NewAffinityFound)
@@ -1272,10 +1274,10 @@ void GameObserver::Affinity()
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getBestow())
-                {
+                {//NOTE: there should be a limitation when the spell is cast with bestow its not both creature and aura...
                     card->getManaCost()->getBestow()->resetCosts();
                     ManaCost * newCost = NEW ManaCost();
-                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getBestow(), card->model->data->getManaCost()->getBestow()));
+                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getBestow(), card->model->data->getManaCost()->getBestow(), false, true));
                     card->getManaCost()->getBestow()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }

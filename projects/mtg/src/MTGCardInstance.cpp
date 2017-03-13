@@ -1059,7 +1059,7 @@ JQuadPtr MTGCardInstance::getIcon()
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }
 
-ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cost, ManaCost * Data, bool noTrinisphere)
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cost, ManaCost * Data, bool noTrinisphere, bool bestow)
 {
     int color = 0;
     string type = "";
@@ -1074,10 +1074,13 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             Cost->extraCosts->costs[i]->setSource(card);
         }
     }
-    if (card->getIncreasedManaCost()->getConvertedCost() || card->getReducedManaCost()->getConvertedCost())
+    if (card->getIncreasedManaCost()->getConvertedCost() || card->getReducedManaCost()->getConvertedCost()
+        || card->controller()->AuraReduced->getConvertedCost() || card->controller()->AuraIncreased->getConvertedCost())
     {//start1
         if (card->getIncreasedManaCost()->getConvertedCost())
             original->add(card->getIncreasedManaCost());
+        if(bestow && card->controller()->AuraIncreased->getConvertedCost())
+            original->add(card->controller()->AuraIncreased);
         //before removing get the diff for excess
         if(card->getReducedManaCost()->getConvertedCost())
         {
@@ -1093,6 +1096,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         //apply reduced
         if (card->getReducedManaCost()->getConvertedCost())
             original->remove(card->getReducedManaCost());
+        if(bestow && card->controller()->AuraReduced->getConvertedCost())
+            original->remove(card->controller()->AuraReduced);
         //try to reduce hybrid
         if (excess->getConvertedCost())
         {

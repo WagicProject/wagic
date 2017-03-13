@@ -939,7 +939,11 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         copy->alternateCostPaid[alternateCostType] = 1;
         game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
         game->targetChooser = NULL;
-
+        if(alternateCostType == ManaCost::MANA_PAID_WITH_BESTOW)
+        {
+            copy->removeType("creature");
+            copy->addType("aura");
+        }
         if (card->has(Constants::STORM))
         {
            int storm = player->game->stack->seenThisTurn("*", Constants::CAST_ALL) + player->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
