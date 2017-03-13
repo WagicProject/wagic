@@ -3196,6 +3196,26 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //Extra for Bestow
+    vector<string> splitAuraIncreaseReduce = parseBetween(s, "modbenchant(", ")", true);
+    if(splitAuraIncreaseReduce.size())
+    {
+        if(splitAuraIncreaseReduce[1].size())
+        {
+            Damageable * t = spell ? spell->getNextDamageableTarget() : NULL;
+            vector<string> ccParameters = split( splitAuraIncreaseReduce[1], ':');
+            int amount = atoi(ccParameters[1].c_str());
+            int color = Constants::GetColorStringIndex(ccParameters[0]);
+            if(ccParameters[0] == "colorless")
+                color = 0;
+            if(ccParameters[0].size() && ccParameters[1].size())
+            {
+                MTGAbility * a = NEW AAuraIncreaseReduce(observer, id, card, t, amount, color, who);
+                return a;
+            }
+        }
+    }
+
     //set hand size
     vector<string> splitSetHand = parseBetween(s, "sethand:", " ", false);
     if (splitSetHand.size())

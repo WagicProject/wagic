@@ -4539,6 +4539,23 @@ public:
     }
 };
 
+//Extra for Bestow cards
+class AAuraIncreaseReduce: public AbilityTP
+{
+public:
+    MTGCardInstance * manaReducer;
+    int amount;
+    int color;
+    AAuraIncreaseReduce(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int amount, int color, int who = TargetChooser::UNSET);
+    int addToGame();
+    int destroy();
+    int testDestroy();
+    const string getMenuText();
+    AAuraIncreaseReduce * clone() const;
+    //~AAuraIncreaseReduce();
+
+};
+
 //Modify Hand
 class AModifyHand: public AbilityTP
 {
@@ -7236,6 +7253,90 @@ public:
     }
 };
 //------------------
+//trigger regen
+class ATriggerRegen: public InstantAbility
+{
+public:
+    ATriggerRegen(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+        InstantAbility(observer, _id, _source)
+    {
+        target = _target;
+    }
+
+    int resolve()
+    {
+        MTGCardInstance * card = (MTGCardInstance *) target;
+        if (card)
+        {
+            if (!card->regenerateTokens)
+                return 0;
+            if (card->has(Constants::CANTREGEN))
+                return 0;
+            card->regenerateTokens--;
+            card->tap();
+            if(card->isCreature())
+            {
+                card->life = card->toughness;
+                card->initAttackersDefensers();
+                if (card->life < 1)
+                    return 0; //regeneration didn't work (wither ?)
+            }
+        }
+        return 1;
+    }
+    const string getMenuText()
+    {
+        return "Regenerate";
+    }
+    virtual ostream& toString(ostream& out) const
+    {
+        out << "AATriggerRegen ::: (";
+        return InstantAbility::toString(out) << ")";
+    }
+    ATriggerRegen * clone() const
+    {
+        return NEW ATriggerRegen(*this);
+    }
+};
+//trigger totem
+class ATriggerTotem: public InstantAbility
+{
+public:
+    ATriggerTotem(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+        InstantAbility(observer, _id, _source)
+    {
+        target = _target;
+    }
+
+    int resolve()
+    {
+        MTGCardInstance * card = (MTGCardInstance *) target;
+        if (card)
+        {
+            card->destroy();
+            if(source->isCreature())
+            {
+                source->life = source->toughness;
+                if (source->life < 1)
+                    return 0; //regeneration didn't work (wither ?)
+            }
+        }
+        return 1;
+    }
+    const string getMenuText()
+    {
+        return "Totem Armor";
+    }
+    virtual ostream& toString(ostream& out) const
+    {
+        out << "AATriggerTotem ::: (";
+        return InstantAbility::toString(out) << ")";
+    }
+    ATriggerTotem * clone() const
+    {
+        return NEW ATriggerTotem(*this);
+    }
+};
 // utility functions
 
 void PopulateColorIndexVector(list<int>& colors, const string& colorsString, char delimiter = ',');

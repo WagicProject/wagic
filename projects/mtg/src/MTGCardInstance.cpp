@@ -303,6 +303,7 @@ void MTGCardInstance::initMTGCI()
     tokCard = NULL;
     previous = NULL;
     next = NULL;
+    auraParent = NULL;
     TokenAndAbility = NULL;
     GrantedAndAbility = NULL;
     lastController = NULL;
@@ -444,7 +445,51 @@ int MTGCardInstance::afterDamage()
     return 0;
 }
 
-int MTGCardInstance::bury()
+int MTGCardInstance::totem(bool noregen)
+{
+    int testToughness = toughness;
+    testToughness += tbonus;
+    if(testToughness < 1)
+    {
+        if(noregen)
+            return toGrave();
+        else if (!triggerRegenerate())
+            return toGrave();
+        return 0;
+    }
+    bool canregen = (regenerateTokens && !has(Constants::CANTREGEN) && !noregen);
+    vector<MTGAbility*>selection;
+    TargetChooserFactory tf(getObserver());
+    TargetChooser * tcb = tf.createTargetChooser("mytotem",this);
+    tcb->targetter = NULL;
+    tcb->maxtargets = 1;
+    MTGAbility * destroyTotem = NEW ATriggerTotem(getObserver(), getObserver()->mLayers->actionLayer()->getMaxId(),this,NULL);
+    destroyTotem->oneShot = true;
+    destroyTotem->canBeInterrupted = false;
+    MTGAbility * dtTarget = NEW GenericTargetAbility(getObserver(), "","",getObserver()->mLayers->actionLayer()->getMaxId(), this,tcb->clone(), destroyTotem->clone());
+    SAFE_DELETE(destroyTotem);
+    dtTarget->oneShot = true;
+    dtTarget->canBeInterrupted = false;
+    MTGAbility * addTotemtoGame = NEW GenericAddToGame(getObserver(), getObserver()->mLayers->actionLayer()->getMaxId(), this,NULL,dtTarget->clone());
+    SAFE_DELETE(dtTarget);
+    addTotemtoGame->oneShot = true;
+    addTotemtoGame->canBeInterrupted = false;
+    selection.push_back(addTotemtoGame->clone());
+    SAFE_DELETE(addTotemtoGame);
+    SAFE_DELETE(tcb);
+    if(canregen)
+    {
+        MTGAbility * triggerRegen = NEW ATriggerRegen(getObserver(), getObserver()->mLayers->actionLayer()->getMaxId(), this, this);
+        triggerRegen->oneShot = true;
+        triggerRegen->canBeInterrupted = false;
+        selection.push_back(triggerRegen->clone());
+        SAFE_DELETE(triggerRegen);
+    }
+    MTGAbility * menuChoice = NEW MenuAbility(getObserver(), getObserver()->mLayers->actionLayer()->getMaxId(), NULL, this,true,selection,this->controller(),"");
+    menuChoice->addToGame();
+    return 1;
+}
+int MTGCardInstance::toGrave( bool forced )
 {
     Player * p = controller();
     if (basicAbilities[(int)Constants::EXILEDEATH])
@@ -457,15 +502,29 @@ int MTGCardInstance::bury()
         p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
         return 1;
     }
+    if (forced)
+    {
+        p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
+        return 1;
+    }
     return 0;
 }
 int MTGCardInstance::destroy()
 {
-    if (!triggerRegenerate())
-        return bury();
+    if (hasTotemArmor())
+        return totem();
+    else if (!triggerRegenerate())
+        return toGrave();
     return 0;
 }
-
+int MTGCardInstance::destroyNoRegen()
+{
+    if (hasTotemArmor())
+        return totem(true);
+    else
+        return toGrave();
+    return 0;
+}
 MTGGameZone * MTGCardInstance::getCurrentZone()
 {
     return currentZone;
@@ -1059,7 +1118,7 @@ JQuadPtr MTGCardInstance::getIcon()
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }
 
-ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cost, ManaCost * Data, bool noTrinisphere)
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cost, ManaCost * Data, bool noTrinisphere, bool bestow)
 {
     int color = 0;
     string type = "";
@@ -1074,10 +1133,13 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             Cost->extraCosts->costs[i]->setSource(card);
         }
     }
-    if (card->getIncreasedManaCost()->getConvertedCost() || card->getReducedManaCost()->getConvertedCost())
+    if (card->getIncreasedManaCost()->getConvertedCost() || card->getReducedManaCost()->getConvertedCost()
+        || card->controller()->AuraReduced->getConvertedCost() || card->controller()->AuraIncreased->getConvertedCost())
     {//start1
         if (card->getIncreasedManaCost()->getConvertedCost())
             original->add(card->getIncreasedManaCost());
+        if(bestow && card->controller()->AuraIncreased->getConvertedCost())
+            original->add(card->controller()->AuraIncreased);
         //before removing get the diff for excess
         if(card->getReducedManaCost()->getConvertedCost())
         {
@@ -1093,6 +1155,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         //apply reduced
         if (card->getReducedManaCost()->getConvertedCost())
             original->remove(card->getReducedManaCost());
+        if(bestow && card->controller()->AuraReduced->getConvertedCost())
+            original->remove(card->controller()->AuraReduced);
         //try to reduce hybrid
         if (excess->getConvertedCost())
         {
@@ -1518,6 +1582,32 @@ bool MTGCardInstance::matchesCastFilter(int castFilter) {
         return true; //all alternate casts
     return (castFilter == castMethod);
 };
+
+bool MTGCardInstance::hasTotemArmor()
+{
+    int count = 0;
+    if(observer)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            int nb_cards = observer->players[i]->game->battlefield->nb_cards;
+            for(int x = 0; x < nb_cards; x++)
+            {
+                if(observer->players[i]->game->battlefield->cards[x]->auraParent)
+                {
+                    if(observer->players[i]->game->battlefield->cards[x]->auraParent == this && 
+                        observer->players[i]->game->battlefield->cards[x]->has(Constants::TOTEMARMOR))
+                        count+=1;
+                }
+            }
+        }
+    }
+
+    if(count)
+        return true;
+
+    return false;
+}
 
 int MTGCardInstance::addProtection(TargetChooser * tc)
 {

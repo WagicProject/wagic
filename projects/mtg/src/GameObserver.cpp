@@ -1142,6 +1142,7 @@ void GameObserver::enchantmentStatus()
             {
                 card->target->enchanted = true;
                 card->target->auras += 1;
+                card->auraParent = card->target;
             }
         }
     }
@@ -1161,6 +1162,7 @@ void GameObserver::Affinity()
                 if (!card)
                     continue;
 
+                bool checkAuraP = false;
                 ///////////////////////////
                 //reset extracost shadows//
                 ///////////////////////////
@@ -1185,6 +1187,10 @@ void GameObserver::Affinity()
                 ///we handle trisnisphere seperately because its a desaster.
                 if(card->getManaCost())//make sure we check, abiliy$!/token dont have a mancost object.
                 {
+                    if (card->controller()->AuraIncreased->getConvertedCost() || card->controller()->AuraReduced->getConvertedCost())
+                        if(card->model->data->getManaCost()->getBestow())
+                            checkAuraP = true;
+
                     //change cost to colorless for anytypeofmana ability
                     if(card->has(Constants::ANYTYPEOFMANA))
                     {
@@ -1246,7 +1252,7 @@ void GameObserver::Affinity()
                     card->has(Constants::CONDUITED) ||
                     card->getIncreasedManaCost()->getConvertedCost() ||
                     card->getReducedManaCost()->getConvertedCost() ||
-                    NewAffinityFound)
+                    NewAffinityFound || checkAuraP)
                     &&
                     AffinityNeedsUpdate
                     )
@@ -1258,60 +1264,52 @@ void GameObserver::Affinity()
                 //only do any of the following if a card with the stated ability is in your hand.
                 //kicker is an addon to normal cost, suspend is not casting. add cost as needed EXACTLY as seen below.
                 card->getManaCost()->resetCosts();
-                ManaCost *newCost = NEW ManaCost();
-                newCost->changeCostTo(card->computeNewCost(card, card->getManaCost(), card->model->data->getManaCost()));
-
+                ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost(), card->model->data->getManaCost()));
                 card->getManaCost()->changeCostTo(newCost);
                 SAFE_DELETE(newCost);
                 if (card->getManaCost()->getAlternative())
                 {
                     card->getManaCost()->getAlternative()->resetCosts();
-                    ManaCost * newCost = NEW ManaCost();
-                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getAlternative(), card->model->data->getManaCost()->getAlternative()));
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getAlternative(), card->model->data->getManaCost()->getAlternative()));
                     card->getManaCost()->getAlternative()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getBestow())
                 {
                     card->getManaCost()->getBestow()->resetCosts();
-                    ManaCost * newCost = NEW ManaCost();
-                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getBestow(), card->model->data->getManaCost()->getBestow()));
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getBestow(), card->model->data->getManaCost()->getBestow(),false,true));
                     card->getManaCost()->getBestow()->changeCostTo(newCost);
-                    SAFE_DELETE(newCost);
-                }
-                if (card->getManaCost()->getRetrace())
-                {
-                    card->getManaCost()->getRetrace()->resetCosts();
-                    ManaCost * newCost = NEW ManaCost();
-                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getRetrace(), card->model->data->getManaCost()->getRetrace()));
-                    card->getManaCost()->getRetrace()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getBuyback())
                 {
                     card->getManaCost()->getBuyback()->resetCosts();
-                    ManaCost * newCost = NEW ManaCost();
-                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getBuyback(), card->model->data->getManaCost()->getBuyback()));
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getBuyback(), card->model->data->getManaCost()->getBuyback()));
                     card->getManaCost()->getBuyback()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getFlashback())
                 {
                     card->getManaCost()->getFlashback()->resetCosts();
-                    ManaCost * newCost = NEW ManaCost();
-                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getFlashback(), card->model->data->getManaCost()->getFlashback()));
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getFlashback(), card->model->data->getManaCost()->getFlashback()));
                     card->getManaCost()->getFlashback()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
                 if (card->getManaCost()->getMorph())
                 {
                     card->getManaCost()->getMorph()->resetCosts();
-                    ManaCost * newCost = NEW ManaCost();
-                    newCost->changeCostTo(card->computeNewCost(card, card->getManaCost()->getMorph(), card->model->data->getManaCost()->getMorph()));
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getMorph(), card->model->data->getManaCost()->getMorph()));
                     card->getManaCost()->getMorph()->changeCostTo(newCost);
                     SAFE_DELETE(newCost);
                 }
-
+                if (card->getManaCost()->getRetrace())
+                {
+                    card->getManaCost()->getRetrace()->resetCosts();
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getRetrace(), card->model->data->getManaCost()->getRetrace()));
+                    card->getManaCost()->getRetrace()->changeCostTo(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                
             }//end
         }
     }

@@ -2855,7 +2855,13 @@ int AABuryCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        _target->bury();
+        //Bury (Obsolete)
+        //A term that meant “put [a permanent] into its owner’s graveyard.”
+        //In general, cards that were printed with the term “bury” have received errata 
+        //in the Oracle card reference to read, “Destroy [a permanent]. It can’t be regenerated,” 
+        //or “Sacrifice [a permanent].”
+        //_target->bury();
+        _target->destroyNoRegen();//so totem armor will take effect on wrath effects since totem armor is not regeneration..
         while(_target->next)
             _target = _target->next;
         if(andAbility)
@@ -3220,6 +3226,10 @@ int AANewTarget::resolve()
         {
             while (_target->next)
                 _target = _target->next;  
+        }
+        if(_target->hasSubtype(Subtypes::TYPE_AURA))
+        {
+            _target->target = source;
         }
         if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
         {
@@ -4042,6 +4052,80 @@ const string AALifer::getMenuText()
 AALifer * AALifer::clone() const
 {
     return NEW AALifer(*this);
+}
+
+//Extra for Bestow ... partial fix since there's no update when react to click for bestow cards...
+//There should be no problem if the bestow cards has chosen mode then update its bestow code on react to click but
+//I cant find alternate way... This Ability is general for enchantments since aura is an enchantment type however
+//it can't target card specific attributes... This one adds on the players side...
+AAuraIncreaseReduce::AAuraIncreaseReduce(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int amount, int color, int who) :
+    AbilityTP(observer, _id, _source, _target, who), amount(amount), color(color)
+{
+    manaReducer = source;
+}
+
+int AAuraIncreaseReduce::addToGame()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    Player * p = getPlayerFromDamageable(_target);
+
+    if (!p)
+        return 0;
+
+    if (amount > 0)
+    {
+        p->AuraIncreased->add(color,amount);
+    }
+    else
+    {
+        p->AuraReduced->add(color,abs(amount));
+    }
+
+    return MTGAbility::addToGame();
+}
+
+int AAuraIncreaseReduce::destroy()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    Player * p = getPlayerFromDamageable(_target);
+
+    if (!p)
+        return 0;
+
+    if(!this->manaReducer->isInPlay(game))
+    {
+        if (amount > 0)
+        {
+            p->AuraIncreased->remove(color,amount);
+        }
+        else
+        {
+            p->AuraReduced->remove(color,abs(amount));
+        }
+        return MTGAbility::testDestroy();
+    }
+
+    return 0;
+}
+
+int AAuraIncreaseReduce::testDestroy()
+{
+    if(!this->manaReducer->isInPlay(game))
+    {
+        return MTGAbility::testDestroy();
+    }
+
+    return 0;
+}
+
+const string AAuraIncreaseReduce::getMenuText()
+{
+    return "Aura Increaser/Reducer";
+}
+
+AAuraIncreaseReduce * AAuraIncreaseReduce::clone() const
+{
+    return NEW AAuraIncreaseReduce(*this);
 }
 
 //players modify hand size

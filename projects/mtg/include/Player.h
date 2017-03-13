@@ -87,6 +87,8 @@ public:
     bool DeadLifeState(bool check = false);
     ManaCost * doesntEmpty;
     ManaCost * poolDoesntEmpty;
+    ManaCost * AuraIncreased;
+    ManaCost * AuraReduced;
     void cleanupPhase();
     virtual int Act(float)
     {
