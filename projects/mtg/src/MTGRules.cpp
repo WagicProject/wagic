@@ -2531,7 +2531,11 @@ int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard, int cardId)
     tokCreate = af.parseMagicLine(abi,game->mLayers->actionLayer()->getMaxId(),NULL, card->clone());
     tokCreate->aType = MTGAbility::FORCED_TOKEN_CREATOR;
     if(tokCreate)
+    {
+        if(tokCreate->source)
+            tokCreate->source->owner = player;
         tokCreate->fireAbility();
+    }
     
     alreadyplayed = 1;
     textAlpha = 255;
@@ -3280,6 +3284,39 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
                 }
             }
         }
+    }
+    else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
+    {
+        if (MTG_PHASE_ENDOFTURN == pe->from->id)
+        {
+            bool found = false;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = game->players[i];
+                MTGGameZone * z = game->players[i]->game->inPlay;
+
+                for (int j = z->nb_cards - 1; j >= 0; j--)
+                {
+                    MTGCardInstance * c = z->cards[j];
+                    if(c && c->has(Constants::UNEARTH) && !c->isPhased)
+                    {
+                        found = true;
+                        c->controller()->game->putInZone(c, c->currentZone, c->owner->game->exile);
+                    }
+                    else if(c && c->has(Constants::TREASON) && !c->isPhased)
+                    {
+                        found = true;
+                        MTGCardInstance * beforeCard = c;
+                        c->controller()->game->putInZone(c, c->currentZone, c->owner->game->graveyard);
+                        WEvent * e = NEW WEventCardSacrifice(beforeCard,c);
+                        game->receiveEvent(e);
+                    }
+                }
+            }
+            if(found)
+                return 1;
+        }
+        return 0;
     }
     return 0;
 }
