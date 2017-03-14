@@ -19,23 +19,27 @@ int AIPlayer::totalAIDecks = -1;
 AIAction::AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t)
     : owner(owner), ability(NULL), player(NULL), click(c), target(t)
 {
-    // useability tweak - assume that the user is probably going to want to see the full res card,
-    // so prefetch it. The idea is that we do it here as we want to start the prefetch before it's time to render,
-    // and waiting for it to actually go into play is too late, as we start drawing the card during the interrupt window.
-    // This is a good intercept point, as the AI has committed to using this card.
-
-    // if we're not in text mode, always get the thumb
-    if (owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText)
+    bool prefetch = options[Options::CARDPREFETCHING].number?true:false;
+    if (prefetch && WResourceManager::Instance()->IsThreaded())
     {
-        //DebugTrace("Prefetching AI card going into play: " << c->getImageName());
-        if(owner->getObserver()->getResourceManager())
-            owner->getObserver()->getResourceManager()->RetrieveCard(c, RETRIEVE_THUMB);
-        
-        // also cache the large image if we're using kNormal mode
-        if (owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
+        // useability tweak - assume that the user is probably going to want to see the full res card,
+        // so prefetch it. The idea is that we do it here as we want to start the prefetch before it's time to render,
+        // and waiting for it to actually go into play is too late, as we start drawing the card during the interrupt window.
+        // This is a good intercept point, as the AI has committed to using this card.
+
+        // if we're not in text mode, always get the thumb
+        if (owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText)
         {
+            //DebugTrace("Prefetching AI card going into play: " << c->getImageName());
             if(owner->getObserver()->getResourceManager())
-                owner->getObserver()->getResourceManager()->RetrieveCard(c);
+                owner->getObserver()->getResourceManager()->RetrieveCard(c, RETRIEVE_THUMB);
+        
+            // also cache the large image if we're using kNormal mode
+            if (owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
+            {
+                if(owner->getObserver()->getResourceManager())
+                    owner->getObserver()->getResourceManager()->RetrieveCard(c);
+            }
         }
     }
 }

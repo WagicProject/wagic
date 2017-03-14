@@ -249,27 +249,31 @@ void MTGPlayerCards::drawFromLibrary()
         toMove->miracle = true;
     }
 
-    // useability tweak - assume that the user is probably going to want to see the new card,
-    // so prefetch it.
-
-    // if we're not in text mode, always get the thumb
-    if (library->owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText
-            && library->owner->getObserver()->getResourceManager())
+    bool prefetch = options[Options::CARDPREFETCHING].number?true:false;
+    if (prefetch && WResourceManager::Instance()->IsThreaded())
     {
-        DebugTrace("Prefetching AI card going into play: " << toMove->getImageName());
-        library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove, RETRIEVE_THUMB);
+        // useability tweak - assume that the user is probably going to want to see the new card,
+        // so prefetch it.
 
-        // also cache the large image if we're using kNormal mode
-        if (library->owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
+        // if we're not in text mode, always get the thumb
+        if (library->owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText
+                && library->owner->getObserver()->getResourceManager())
         {
-            library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove);
+            DebugTrace("Prefetching AI card going into play: " << toMove->getImageName());
+            library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove, RETRIEVE_THUMB);
+
+            // also cache the large image if we're using kNormal mode
+            if (library->owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
+            {
+                library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove);
+            }
         }
     }
 
     if(putInZone(toMove, library, hand))
     {
         toMove->currentZone = hand;
-        }
+    }
 }
 
 void MTGPlayerCards::resetLibrary()
