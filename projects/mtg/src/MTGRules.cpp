@@ -3292,7 +3292,6 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
             bool found = false;
             for (int i = 0; i < 2; i++)
             {
-                Player * p = game->players[i];
                 MTGGameZone * z = game->players[i]->game->inPlay;
 
                 for (int j = z->nb_cards - 1; j >= 0; j--)
