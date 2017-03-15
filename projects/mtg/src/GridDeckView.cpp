@@ -108,7 +108,7 @@ void GridDeckView::Render()
     int firstVisibleCard = 2;
     int lastVisibleCard = mCards.size() - 2;
     bool mode = options[Options::GDVLARGEIMAGE].number?false:true;
-    bool prefetch = options[Options::CARDPREFETCHING].number?false:true;
+    bool prefetch = options[Options::CARDPREFETCHING].number?true:false;
 
     if(!mScrollEasing.finished())
     {

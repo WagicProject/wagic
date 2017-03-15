@@ -40,26 +40,26 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW dredgeChooser(observer,zones,nbzones, card, maxtargets);
     }
 
-    found = s.find("mytgt");
-    if (found == 0)
-    {
-        MTGCardInstance * target = card->target;
-        if (ability) target = (MTGCardInstance *) (ability->target);
-        return NEW CardTargetChooser(observer, target, card);
-    };
-
     found = s.find("mychild");
-    if (found == 0)
+    if (found != string::npos)
     {
         int maxtargets = 1;
         return NEW ChildrenChooser(observer, card, maxtargets);
     };
 
     found = s.find("mytotem");
-    if (found == 0)
+    if (found != string::npos)
     {
         int maxtargets = 1;
         return NEW TotemChooser(observer, card, maxtargets);
+    };
+
+    found = s.find("mytgt");
+    if (found == 0)
+    {
+        MTGCardInstance * target = card->target;
+        if (ability) target = (MTGCardInstance *) (ability->target);
+        return NEW CardTargetChooser(observer, target, card);
     };
 
     found = s.find("targetedplayer");

@@ -1028,26 +1028,6 @@ void GameObserver::gameStateBasedEffects()
                 c->ProvokeTarget = NULL;
                 c->Provoker = NULL;
             }
-            for (int jj = z->nb_cards - 1; jj >= 0; jj--)
-            {
-                MTGCardInstance * c = z->cards[jj];
-
-                if(c && !c->isPhased)
-                {
-                    if (c->has(Constants::TREASON))
-                    {
-                        MTGCardInstance * beforeCard = c;
-                        p->game->putInZone(c, c->currentZone, c->owner->game->graveyard);
-                        WEvent * e = NEW WEventCardSacrifice(beforeCard,c);
-                        receiveEvent(e);
-                    }
-                    if (c->has(Constants::UNEARTH))
-                    {
-                        p->game->putInZone(c, c->currentZone, c->owner->game->exile);
-                    }
-                }
-
-            }
 
             MTGGameZone * f = p->game->graveyard;
             for (int k = 0; k < f->nb_cards; k++)

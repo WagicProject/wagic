@@ -1041,7 +1041,8 @@ void ActionStack::Update(float dt)
         return;
 
     if (observer->mLayers->actionLayer()->menuObject || observer->LPWeffect)
-        return;//dont do any of this if a menuobject exist.
+        if(observer->players[0]->isHuman() || observer->players[1]->isHuman())
+            return;//dont do any of this if a menuobject exist.
 
     askIfWishesToInterrupt = NULL;
     //modal = 0;

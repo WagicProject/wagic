@@ -86,7 +86,7 @@ void CarouselDeckView::Render()
 {
     // even though we want to draw the cards in a particular z order for layering, we want to prefetch them
     // in a different order, ie the center card should appear first, then the adjacent ones
-    bool prefetch = options[Options::CARDPREFETCHING].number?false:true;
+    bool prefetch = options[Options::CARDPREFETCHING].number?true:false;
     if (prefetch && WResourceManager::Instance()->IsThreaded())
     {
         WResourceManager::Instance()->RetrieveCard(mCards[0].card);
