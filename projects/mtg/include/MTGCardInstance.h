@@ -121,6 +121,7 @@ public:
     int zpos;
     bool isDualWielding;
     bool stillNeeded;
+    Player * discarderOwner;
     Player * lastController;
     Player * previousController;
     MTGGameZone * getCurrentZone();
@@ -295,6 +296,8 @@ public:
     int imprintR;
     int imprintB;
     int imprintW;
+    int bushidoPoints;
+    int modularPoints;
     int canproduceMana(int color = -1);
     int entersBattlefield;
     string currentimprintName;

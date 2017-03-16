@@ -186,7 +186,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "canplayinstantsorcerylibrarytop",//instant or sorcery
     "showfromtoplibrary",
     "showopponenttoplibrary",
-    "totemarmor"
+    "totemarmor",
+    "discardtoplaybyopponent",
+    "modular"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

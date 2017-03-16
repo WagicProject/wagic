@@ -1001,6 +1001,10 @@ private:
         {//hand,exile,grave & library only (library zpos is inverted so the recent one is always the top)
             intValue = card->zpos;
         }
+        else if (s == "bushidopoints")
+        {//bushido point
+            intValue = card->bushidoPoints;
+        }
         else if (s == "revealedp")
         {
             if (card->revealedLast)
@@ -6843,30 +6847,50 @@ public:
     }
 };
 
-//Bushido ability todo:add bushido count.
+//Bushido ability
 class ABushidoAbility: public MTGAbility
 {
 public:
     string PowerToughnessModifier;
-
-    ABushidoAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _PowerToughnessModifier) :
-        MTGAbility(observer, _id, _source)
+    string bpoints;
+    ABushidoAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string PowerToughnessModifier, string bpoints) :
+        MTGAbility(observer, _id, _source),PowerToughnessModifier(PowerToughnessModifier),bpoints(bpoints)
     {
-        PowerToughnessModifier = _PowerToughnessModifier;
     }
-        int receiveEvent(WEvent * event)
-        {
-            if (dynamic_cast<WEventBlockersChosen*> (event))
-            {
-                MTGCardInstance * opponent = source->getNextOpponent();
-                if (!opponent) return 0;
-                PTInstant * a = NEW PTInstant(game, this->GetId(), source, source,NEW WParsedPT(PowerToughnessModifier,NULL,source));
-                GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,source, a);
-                wrapper->addToGame();
-            }
-            return 1;
+    void Update(float dt)
+    {
+        if(source->alias == 74534)
+        {//fumiko the lowblood has dynamic bushido
+            source->bushidoPoints = 0;
+            WParsedInt bushidoPoint(bpoints, NULL, source);
+            source->bushidoPoints += bushidoPoint.getValue();
         }
-
+        MTGAbility::Update(dt);
+    }
+    int receiveEvent(WEvent * event)
+    {
+        if (dynamic_cast<WEventBlockersChosen*> (event))
+        {
+            MTGCardInstance * opponent = source->getNextOpponent();
+            if (!opponent) return 0;
+            PTInstant * a = NEW PTInstant(game, this->GetId(), source, source,NEW WParsedPT(PowerToughnessModifier,NULL,source));
+            GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,source, a);
+            wrapper->addToGame();
+        }
+        return 1;
+    }
+    int addToGame()
+    {
+        WParsedInt bushidoPoint(bpoints, NULL, source);
+        source->bushidoPoints += bushidoPoint.getValue();
+        return MTGAbility::addToGame();
+    }
+    int destroy()
+    {
+        WParsedInt bushidoPoint(bpoints, NULL, source);
+        source->attackCost -= bushidoPoint.getValue();
+        return 1;
+    }
     ABushidoAbility * clone() const
     {
         return NEW ABushidoAbility(*this);
@@ -7335,6 +7359,51 @@ public:
     ATriggerTotem * clone() const
     {
         return NEW ATriggerTotem(*this);
+    }
+};
+//Modular Ability
+class AModularAbility: public InstantAbility
+{
+public:
+    string modularpoint;
+    AModularAbility(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string modularpoint) :
+        InstantAbility(observer, _id, _source),modularpoint(modularpoint)
+    {
+        target = _target;
+    }
+
+    int resolve()
+    {
+        MTGCardInstance * card = (MTGCardInstance *) target;
+        if (card)
+        {
+            if(modularpoint == "")
+                modularpoint = "0";
+            string counterString = "counter(1/1,";
+            counterString.append(modularpoint);
+            counterString.append(")");
+            AbilityFactory af(card->getObserver());
+            MTGAbility * modCounter = af.parseMagicLine(counterString,this->GetId(),NULL,card);
+            modCounter->oneShot = true;
+            modCounter->canBeInterrupted = false;
+            modCounter->resolve();
+            SAFE_DELETE(modCounter);
+            card->modularPoints += atoi(modularpoint.c_str());
+        }
+        return 1;
+    }
+    const string getMenuText()
+    {
+        return "Modular";
+    }
+    virtual ostream& toString(ostream& out) const
+    {
+        out << "AAModularAbility ::: (";
+        return InstantAbility::toString(out) << ")";
+    }
+    AModularAbility * clone() const
+    {
+        return NEW AModularAbility(*this);
     }
 };
 // utility functions

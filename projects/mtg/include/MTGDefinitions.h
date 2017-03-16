@@ -275,7 +275,9 @@ class Constants
       SHOWFROMTOPLIBRARY = 153,
       SHOWOPPONENTTOPLIBRARY = 154,
       TOTEMARMOR = 155,
-      NB_BASIC_ABILITIES = 156,
+      DISCARDTOPLAYBYOPPONENT = 156,
+      MODULAR = 157,
+      NB_BASIC_ABILITIES = 158,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

@@ -224,9 +224,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     case 'm': //mana
         if (!primitive) primitive = NEW CardPrimitive();
         {
-            string value = val;
-            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            primitive->setManaCost(value);
+            if( key == "modular")//modular
+            {
+                primitive->setModularValue(val);
+            }
+            else
+            {
+                string value = val;
+                std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                primitive->setManaCost(value);
+            }
         }
         break;
 
