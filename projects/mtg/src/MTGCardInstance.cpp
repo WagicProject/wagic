@@ -154,6 +154,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     doubleFaced = data->doubleFaced;
     AICustomCode = data->AICustomCode;
     CrewAbility = data->CrewAbility;
+    ModularValue = data->ModularValue;
     PhasedOutAbility = data->PhasedOutAbility;
     origpower = card->origpower;//for flip
     origtoughness = card->origtoughness;//for flip
@@ -279,6 +280,8 @@ void MTGCardInstance::initMTGCI()
     imprintR = 0;
     imprintB = 0;
     imprintW = 0;
+    bushidoPoints = 0;
+    modularPoints = 0;
     entersBattlefield = 0;
     currentimprintName = "";
     imprintedNames.clear();

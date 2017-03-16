@@ -556,15 +556,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Arcbound Overseer
-text=At the beginning of your upkeep, put a +1/+1 counter on each creature with modular you control. -- Modular 6 (This enters the battlefield with six +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.)
-mana={8}
-type=Artifact Creature
-subtype=Golem
-power=0
-toughness=0
-[/card]
-[card]
 name=Archangel of Strife
 abilities=flying
 text=Flying -- As Archangel of Strife enters the battlefield, each player chooses war or peace. -- Creatures controlled by players who chose war get +3/+0. -- Creatures controlled by players who chose peace get +0/+3.
@@ -9343,15 +9334,6 @@ power=4
 toughness=6
 [/card]
 [card]
-name=Kentaro, the Smiling Cat
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- You may pay {X} rather than pay the mana cost for Samurai spells you cast, where X is that spell's converted mana cost.
-mana={1}{W}
-type=Legendary Creature
-subtype=Human Samurai
-power=2
-toughness=1
-[/card]
-[card]
 name=Keranos, God of Storms
 abilities=indestructible
 text=Indestructible -- As long as your devotion to blue and red is less than seven, Keranos isn't a creature. -- Reveal the first card you draw on each of your turns. Whenever you reveal a land card this way, draw a card. Whenever you reveal a nonland card this way, Keranos deals 3 damage to target creature or player.
@@ -18055,15 +18037,6 @@ name=Take Down
 text=Choose one — -- • Take Down deals 4 damage to target creature with flying. -- • Take Down deals 1 damage to each creature with flying.
 mana={G}
 type=Sorcery
-[/card]
-[card]
-name=Takeno, Samurai General
-text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) -- Each other Samurai creature you control gets +1/+1 for each point of bushido it has.
-mana={5}{W}
-type=Legendary Creature
-subtype=Human Samurai
-power=3
-toughness=3
 [/card]
 [card]
 name=Takklemaggot

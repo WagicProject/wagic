@@ -187,7 +187,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "showfromtoplibrary",
     "showopponenttoplibrary",
     "totemarmor",
-    "discardtoplaybyopponent"
+    "discardtoplaybyopponent",
+    "modular"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

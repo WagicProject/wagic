@@ -3501,7 +3501,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         vector<string>splitPT = split(splitBushido[1],'/');
         if(!splitPT.size())
             return NULL;
-        return NEW ABushidoAbility(observer, id, card,splitBushido[1]);
+        return NEW ABushidoAbility(observer, id, card,splitBushido[1],splitPT[0]);
     }
     vector<string> splitPhaseAlter = parseBetween(s, "phasealter(", ")");
     if (splitPhaseAlter.size())
@@ -5325,6 +5325,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     if (card->basicAbilities[(int)Constants::FLANKING])
     {
         observer->addObserver(NEW AFlankerAbility(observer, _id, card));
+    }
+
+    if(card->basicAbilities[(int)Constants::MODULAR])
+    {
+        AModularAbility * ability = NEW AModularAbility(observer, _id, card, card, card->getModularValue());
+        observer->addObserver(ability);
     }
 
     const int HomeAbilities[] = {(int)Constants::FORESTHOME, (int)Constants::ISLANDHOME, (int)Constants::MOUNTAINHOME, (int)Constants::SWAMPHOME, (int)Constants::PLAINSHOME};

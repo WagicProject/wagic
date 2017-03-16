@@ -296,6 +296,8 @@ public:
     int imprintR;
     int imprintB;
     int imprintW;
+    int bushidoPoints;
+    int modularPoints;
     int canproduceMana(int color = -1);
     int entersBattlefield;
     string currentimprintName;

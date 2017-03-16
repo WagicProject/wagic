@@ -60,6 +60,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     setAICustomCode(source->AICustomCode);
     setCrewAbility(source->CrewAbility);
     setPhasedOutAbility(source->PhasedOutAbility);
+    setModularValue(source->ModularValue);
     power = source->power;
     toughness = source->toughness;
     restrictions = source->restrictions ? source->restrictions->clone() : NULL;
@@ -379,6 +380,17 @@ void CardPrimitive::setPhasedOutAbility(const string& value)
 const string& CardPrimitive::getPhasedOutAbility() const
 {
     return PhasedOutAbility;
+}
+
+void CardPrimitive::setModularValue(const string& value)
+{
+    ModularValue = value;
+    std::transform(ModularValue.begin(), ModularValue.end(), ModularValue.begin(), ::tolower);
+}
+
+const string& CardPrimitive::getModularValue() const
+{
+    return ModularValue;
 }
 
 void CardPrimitive::setName(const string& value)

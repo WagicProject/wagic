@@ -80,6 +80,9 @@ public:
     string PhasedOutAbility;
     void setPhasedOutAbility(const string& value);
     const string& getPhasedOutAbility() const;
+    string ModularValue;
+    void setModularValue(const string& value);
+    const string& getModularValue() const;
 
     vector<int>types;
     CardPrimitive();
