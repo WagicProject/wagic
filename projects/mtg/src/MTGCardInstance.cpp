@@ -306,6 +306,7 @@ void MTGCardInstance::initMTGCI()
     auraParent = NULL;
     TokenAndAbility = NULL;
     GrantedAndAbility = NULL;
+    discarderOwner = NULL;
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;

@@ -3028,6 +3028,10 @@ int AADiscardCard::resolve()
         Player * p = _target->controller();
         WEvent * e = NEW WEventCardDiscard(_target);
         game->receiveEvent(e);
+        if(this->source->storedSourceCard)
+            _target->discarderOwner = this->source->storedSourceCard->controller();
+        else
+            _target->discarderOwner = this->source->controller();
         p->game->putInGraveyard(_target);
         while(_target->next)
             _target = _target->next;
@@ -4852,12 +4856,19 @@ int AARandomDiscarder::resolve()
 {
     Targetable * _target = getTarget();
     Player * player = getPlayerFromTarget(_target);
+    MTGCardInstance * _stored = NULL;
+
+    if(this->source->storedSourceCard)
+        _stored = this->source->storedSourceCard;
+    else
+        _stored = this->source;
+
     if (player)
     {
         WParsedInt numCards(nbcardsStr, NULL, source);
         for (int i = 0; i < numCards.intValue; i++)
         {
-            player->game->discardRandom(player->game->hand, source);
+            player->game->discardRandom(player->game->hand, _stored);
         }
     }
             

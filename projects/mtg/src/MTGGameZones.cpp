@@ -343,6 +343,7 @@ MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card)
 MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to,bool asCopy)
 {
     MTGCardInstance * copy = NULL;
+    Player * discarderOwner = NULL;
     GameObserver *g = owner->getObserver();
     if (!from || !to)
         return card; //Error check
@@ -351,6 +352,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
     bool inplaytoinplay = false;
     bool ripToken = false;
+    if (card->discarderOwner)
+        discarderOwner = card->discarderOwner;
     if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
         ripToken = true;
     //Madness or Put in Play...
@@ -419,6 +422,33 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (card->miracle)
     {
         copy->miracle = true;
+    }
+    //reset discarder Owner
+    if(to == g->players[0]->game->hand || to == g->players[0]->game->stack || to == g->players[0]->game->library ||
+        to == g->players[1]->game->hand || to == g->players[1]->game->stack || to == g->players[1]->game->library)
+    {
+        card->discarderOwner = NULL;
+        copy->discarderOwner = NULL;
+    }
+    //copy discarderowner
+    if (discarderOwner)
+    {
+        copy->discarderOwner = discarderOwner;
+        //change to
+        if(to == g->players[0]->game->graveyard)
+        {
+            if(card->has(Constants::DISCARDTOPLAYBYOPPONENT) && discarderOwner == card->controller()->opponent())
+            {
+                to = g->players[0]->game->battlefield;
+            }
+        }
+        else if(to == g->players[1]->game->graveyard)
+        {
+            if(card->has(Constants::DISCARDTOPLAYBYOPPONENT) && discarderOwner == card->controller()->opponent())
+            {
+                to = g->players[1]->game->battlefield;
+            }
+        }
     }
     if(from == g->players[0]->game->battlefield || from == g->players[1]->game->battlefield)
         if(to != g->players[0]->game->battlefield || to != g->players[1]->game->battlefield)
@@ -509,6 +539,21 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             SAFE_DELETE(previous);
         }
 
+        if(to == g->players[0]->game->battlefield || to == g->players[1]->game->battlefield)
+        {
+            if(ret->alias == 109736 && discarderOwner)
+            {
+                if(discarderOwner == ret->controller()->opponent())
+                {
+                    AbilityFactory af(g);
+                    MTGAbility * dodeCounter = af.parseMagicLine("counter(1/1,2)",-1,NULL,ret);
+                    dodeCounter->oneShot = true;
+                    dodeCounter->canBeInterrupted = false;
+                    dodeCounter->resolve();
+                    SAFE_DELETE(dodeCounter);
+                }
+            }
+        }
     }
     if(!asCopy)
     {
@@ -527,7 +572,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
 }
 
-void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance *)
+void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance * _stored)
 {
     if (!from->nb_cards)
         return;
@@ -535,6 +580,8 @@ void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance *)
     WEvent * e = NEW WEventCardDiscard(from->cards[r]);
     GameObserver * game = owner->getObserver();
     game->receiveEvent(e);
+    if(_stored)
+        from->cards[r]->discarderOwner = _stored->controller();
     putInZone(from->cards[r], from, graveyard);
 }
 

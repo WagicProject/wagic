@@ -552,6 +552,18 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
 
+        check = restriction[i].find("discardbyopponent");
+        if(check != string::npos)
+        {
+            bool matchOpponent = false;
+            if(card->discarderOwner)
+                if(card->controller()->opponent() == card->discarderOwner)
+                    matchOpponent = true;
+
+            if(!matchOpponent)
+                return 0;
+        }
+
         check = restriction[i].find("copiedacard");
         if(check != string::npos)
         {

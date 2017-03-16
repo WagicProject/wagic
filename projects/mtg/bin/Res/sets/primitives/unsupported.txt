@@ -1205,13 +1205,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Bear Umbra
-text=Enchant creature -- Enchanted creature gets +2/+2 and has "Whenever this creature attacks, untap all lands you control." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={2}{G}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Bearer of Silence
 text=Devoid (This card has no color.) -- When you cast Bearer of Silence, you may pay {1}{C}. If you do, target opponent sacrifices a creature. ({C} represents colorless mana.) -- Flying -- Bearer of Silence can't block.
 mana={1}{B}
@@ -1520,13 +1513,6 @@ name=Bludgeon Brawl
 text=Each noncreature, non-Equipment artifact is an Equipment with equip {X} and "Equipped creature gets +X/+0," where X is that artifact's converted mana cost.
 mana={2}{R}
 type=Enchantment
-[/card]
-[card]
-name=Boar Umbra
-text=Enchant creature -- Enchanted creature gets +3/+3. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={2}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Bog Hoodlums
@@ -1845,16 +1831,6 @@ name=Broken Visage
 text=Destroy target nonartifact attacking creature. It can't be regenerated. Put a black Spirit creature token with that creature's power and toughness onto the battlefield. Sacrifice the token at the beginning of the next end step.
 mana={4}{B}
 type=Instant
-[/card]
-[card]
-name=Brontotherium
-abilities=trample
-text=Trample -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=5
-toughness=3
 [/card]
 [card]
 name=Bronze Bombshell
@@ -2915,12 +2891,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Cloudform
-text=When Cloudform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Cloudform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has flying and hexproof.
-mana={1}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Coalition Flag
 text=Enchant creature you control -- Enchanted creature is a Flagbearer. -- While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
 mana={W}
@@ -3416,13 +3386,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Crab Umbra
-text=Enchant creature -- {2}{U}: Untap enchanted creature. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Crackdown Construct
 text=Whenever you activate an ability of an artifact or creature that isn't a mana ability, Crackdown Construct gets +1/+1 until end of turn.
 mana={4}
@@ -3491,15 +3454,6 @@ name=Creeping Dread
 text=At the beginning of your upkeep, each player discards a card. Each opponent who discarded a card that shares a card type with the card you discarded loses 3 life. (Players reveal the discarded cards simultaneously.)
 mana={3}{B}
 type=Enchantment
-[/card]
-[card]
-name=Crested Craghorn
-text=Haste -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{R}
-type=Creature
-subtype=Goat Beast
-power=4
-toughness=1
 [/card]
 [card]
 name=Crime // Punishment
@@ -4170,15 +4124,6 @@ mana={3}{W}
 type=Instant
 [/card]
 [card]
-name=Deftblade Elite
-text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.) -- {1}{W}: Prevent all combat damage that would be dealt to and dealt by Deftblade Elite this turn.
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Degavolver
 text=Kicker {1}{B} and/or {R} (You may pay an additional {1}{B} and/or {R} as you cast this spell.) -- If Degavolver was kicked with its {1}{B} kicker, it enters the battlefield with two +1/+1 counters on it and with "Pay 3 life: Regenerate Degavolver." -- If Degavolver was kicked with its {R} kicker, it enters the battlefield with a +1/+1 counter on it and with first strike.
 mana={1}{W}
@@ -4584,15 +4529,6 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
-name=Dodecapod
-text=If a spell or ability an opponent controls causes you to discard Dodecapod, put it onto the battlefield with two +1/+1 counters on it instead of putting it into your graveyard.
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=3
-[/card]
-[card]
 name=Domesticated Hydra
 text={X}{G}{G}{G}: Monstrosity X. (If this creature isn't monstrous, put X +1/+1 counters on it and it becomes monstrous.) -- As long as Domesticated Hydra is monstrous, it has trample.
 mana={2}{G}{G}
@@ -4774,13 +4710,6 @@ name=Drain Power
 text=Target player activates a mana ability of each land he or she controls. Then put all mana from that player's mana pool into yours.
 mana={U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Drake Umbra
-text=Enchant creature -- Enchanted creature gets +3/+3 and has flying. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={4}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Dralnu, Lich Lord
@@ -5004,20 +4933,6 @@ name=Edge of Malacol
 text=If a creature you control would untap during your untap step, put two +1/+1 counters on it instead. -- Whenever you roll {K}, untap each creature you control.
 type=Plane
 subtype=Belenon
-[/card]
-[card]
-name=Eel Umbra
-text=Flash (You may cast this spell any time you could cast an instant.) -- Enchant creature -- Enchanted creature gets +1/+1. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Eland Umbra
-text=Enchant creature -- Enchanted creature gets +0/+4. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Elderwood Scion
@@ -5409,12 +5324,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Ethereal Ambush
-text=Manifest the top two cards of your library. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={3}{G}{U}
-type=Instant
-[/card]
-[card]
 name=Eureka
 text=Starting with you, each player may put a permanent card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
 mana={2}{G}{G}
@@ -5779,13 +5688,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Felidar Umbra
-text=Enchant creature -- Enchanted creature has lifelink. -- {1}{W}: Attach Felidar Umbra to target creature you control. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Fell the Mighty
 text=Destroy all creatures with power greater than target creature's power.
 mana={4}{W}
@@ -5805,15 +5707,6 @@ type=Creature
 subtype=Hydra Beast
 power=0
 toughness=0
-[/card]
-[card]
-name=Feral Throwback
-text=Amplify 2 (As this creature enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
 [/card]
 [card]
 name=Ferropede
@@ -5841,12 +5734,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Field of Dreams
-text=Players play with the top card of their libraries revealed.
-mana={U}
-type=World Enchantment
-[/card]
-[card]
 name=Fields of Summer
 text=Whenever a player casts a spell, that player may gain 2 life. -- Whenever you roll {C}, you may gain 10 life.
 type=Plane
@@ -5861,12 +5748,6 @@ type=Creature
 subtype=Vampire Wizard
 power=3
 toughness=3
-[/card]
-[card]
-name=Fierce Invocation
-text=Manifest the top card of your library, then put two +1/+1 counters on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={4}{R}
-type=Sorcery
 [/card]
 [card]
 name=Fiery Bombardment
@@ -6260,12 +6141,6 @@ name=Formation
 text=Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- Draw a card at the beginning of the next turn's upkeep.
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Formless Nurturing
-text=Manifest the top card of your library, then put a +1/+1 counter on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
 name=Fortified Area
@@ -7115,15 +6990,6 @@ mana={5}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Goblin Grappler
-text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-[/card]
-[card]
 name=Goblin Grenadiers
 text=Whenever Goblin Grenadiers attacks and isn't blocked, you may sacrifice it. If you do, destroy target creature and target land.
 mana={3}{R}
@@ -7607,12 +7473,6 @@ type=Creature
 subtype=Angel
 power=3
 toughness=4
-[/card]
-[card]
-name=Guerrilla Tactics
-text=Guerrilla Tactics deals 2 damage to target creature or player. -- When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
-mana={1}{R}
-type=Instant
 [/card]
 [card]
 name=Guiding Spirit
@@ -8308,15 +8168,6 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
-name=Hunter Sliver
-text=All Sliver creatures have provoke. (When a Sliver attacks, its controller may have target creature defending player controls untap and block it if able.)
-mana={1}{R}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-[/card]
-[card]
 name=Hurloon Wrangler
 text=Denimwalk (If defending player is wearing any clothing made of denim, this creature is unblockable.)
 mana={2}{R}
@@ -8351,13 +8202,6 @@ type=Creature
 subtype=Elemental Bird
 power=3
 toughness=3
-[/card]
-[card]
-name=Hyena Umbra
-text=Enchant creature -- Enchanted creature gets +1/+1 and has first strike. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Hymn of the Wilds
@@ -8701,13 +8545,6 @@ name=Indomitable Creativity
 text=Destroy X target artifacts and/or creatures. For each permanent destroyed this way, its controller reveals cards from the top of his or her library until an artifact or creature card is revealed and exiles that card. Those players put the exiled cards onto the battlefield, then shuffle their libraries.
 mana={X}{R}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Indrik Umbra
-text=Enchant creature -- Enchanted creature gets +4/+4 and has first strike, and all creatures able to block it do so. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={4}{G}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Induce Despair
@@ -9875,15 +9712,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Krosan Vorine
-text=Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.) -- Krosan Vorine can't be blocked by more than one creature.
-mana={3}{G}
-type=Creature
-subtype=Cat Beast
-power=3
-toughness=2
-[/card]
-[card]
 name=Krovikan Horror
 text=At the beginning of the end step, if Krovikan Horror is in your graveyard with a creature card directly above it, you may return Krovikan Horror to your hand. -- {1}, Sacrifice a creature: Krovikan Horror deals 1 damage to target creature or player.
 mana={3}{B}
@@ -10288,12 +10116,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Lightform
-text=When Lightform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Lightform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has flying and lifelink.
-mana={1}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Lightning Reflexes
 text=You may cast Lightning Reflexes as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +1/+0 and has first strike.
 mana={1}{R}
@@ -10536,25 +10358,6 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Lowland Tracker
-abilities=first strike
-text=First strike -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
-name=Loxodon Smiter
-text=Loxodon Smiter can't be countered. -- If a spell or ability an opponent controls causes you to discard Loxodon Smiter, put it onto the battlefield instead of putting it into your graveyard.
-mana={1}{G}{W}
-type=Creature
-subtype=Elephant Soldier
-power=4
-toughness=4
-[/card]
-[card]
 name=Lullmage Mentor
 text=Whenever a spell or ability you control counters a spell, you may put a 1/1 blue Merfolk creature token onto the battlefield. -- Tap seven untapped Merfolk you control: Counter target spell.
 mana={1}{U}{U}
@@ -10623,15 +10426,6 @@ type=Creature
 subtype=Imp
 power=1
 toughness=1
-[/card]
-[card]
-name=Maelstrom Wanderer
-text=Creatures you control have haste. -- Cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order. Then do it again.)
-mana={5}{U}{R}{G}
-type=Legendary Creature
-subtype=Elemental
-power=7
-toughness=5
 [/card]
 [card]
 name=Mages' Contest
@@ -10725,13 +10519,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Mammoth Umbra
-text=Enchant creature -- Enchanted creature gets +3/+3 and has vigilance. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={4}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Man of Measure
 text=As long as you're shorter than an opponent, Man of Measure has first strike and gets +0/+1. -- As long as you're taller than an opponent, Man of Measure gets +1/+0.
 mana={1}{W}{W}
@@ -10803,12 +10590,6 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
-[/card]
-[card]
-name=Mangara's Blessing
-text=You gain 5 life. -- When a spell or ability an opponent controls causes you to discard Mangara's Blessing, you gain 2 life, and you return Mangara's Blessing from your graveyard to your hand at the beginning of the next end step.
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Mangara's Tome
@@ -11264,12 +11045,6 @@ name=Meteor Shower
 text=Meteor Shower deals X plus 1 damage divided as you choose among any number of target creatures and/or players.
 mana={X}{X}{R}
 type=Sorcery
-[/card]
-[card]
-name=Metrognome
-text=When a spell or ability an opponent controls causes you to discard Metrognome, put four 1/1 colorless Gnome artifact creature tokens onto the battlefield. -- {4}, {T}: Put a 1/1 colorless Gnome artifact creature token onto the battlefield.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Midnight Oil
@@ -12530,15 +12305,6 @@ name=Obscuring AEther
 text=Face-down creature spells you cast cost {1} less to cast. -- {1}{G}: Turn Obscuring AEther face down. (It becomes a 2/2 creature.)
 mana={G}
 type=Enchantment
-[/card]
-[card]
-name=Obstinate Baloth
-text=When Obstinate Baloth enters the battlefield, you gain 4 life. -- If a spell or ability an opponent controls causes you to discard Obstinate Baloth, put it onto the battlefield instead of putting it into your graveyard.
-mana={2}{G}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
 [/card]
 [card]
 name=Odds // Ends
@@ -13928,12 +13694,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Psychic Purge
-text=Psychic Purge deals 1 damage to target creature or player. -- When a spell or ability an opponent controls causes you to discard Psychic Purge, that player loses 5 life.
-mana={U}
-type=Sorcery
-[/card]
-[card]
 name=Psychic Rebuttal
 text=Counter target instant or sorcery spell that targets you. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, you may copy the spell countered this way. You may choose new targets for the copy.
 mana={1}{U}
@@ -14144,15 +13904,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Qarsi High Priest
-text={1}{B}, {T}, Sacrifice another creature: Manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={B}
-type=Creature
-subtype=Human Cleric
-power=0
-toughness=2
-[/card]
-[card]
 name=Qasali Ambusher
 abilities=reach
 text=Reach -- If a creature is attacking you and you control a Forest and a Plains, you may cast Qasali Ambusher without paying its mana cost and as though it had flash.
@@ -14161,16 +13912,6 @@ type=Creature
 subtype=Cat Warrior
 power=2
 toughness=3
-[/card]
-[card]
-name=Quagnoth
-abilities=split second
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Shroud (This permanent can't be the target of spells or abilities.) -- When a spell or ability an opponent controls causes you to discard Quagnoth, return it to your hand.
-mana={5}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=5
 [/card]
 [card]
 name=Quarry Colossus
@@ -14315,12 +14056,6 @@ name=Rage Extractor
 text=({PR} can be paid with either {R} or 2 life.) -- Whenever you cast a spell with <img src="/Handlers/Image.ashx?size=small&amp;name=p&amp;type=symbol" alt="Phyrexian" align="absbottom" /> in its mana cost, Rage Extractor deals damage equal to that spell's converted mana cost to target creature or player.
 mana={4}{PR}
 type=Artifact
-[/card]
-[card]
-name=Rageform
-text=When Rageform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Rageform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has double strike. (It deals both first-strike and regular combat damage.)
-mana={2}{R}{R}
-type=Enchantment
 [/card]
 [card]
 name=Raging River
@@ -15558,15 +15293,6 @@ type=Creature
 subtype=Human Cleric
 power=2
 toughness=2
-[/card]
-[card]
-name=Sand Golem
-text=When a spell or ability an opponent controls causes you to discard Sand Golem, return Sand Golem from your graveyard to the battlefield with a +1/+1 counter on it at the beginning of the next end step.
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=3
 [/card]
 [card]
 name=Sandals of Abdallah
@@ -16911,13 +16637,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Snake Umbra
-text=Enchant creature -- Enchanted creature gets +1/+1 and has "Whenever this creature deals damage to an opponent, you may draw a card." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Snow Mercy
 text=Whenever a creature deals damage to you, put a globe counter on it. -- {T}, {untap}, {T}, {untap}, {T}: Tap all creatures with globe counters on them.
 mana={2}{W}{W}
@@ -17134,12 +16853,6 @@ type=Artifact
 name=Soul Strings
 text=Return two target creature cards from your graveyard to your hand unless any player pays {X}.
 mana={X}{B}
-type=Sorcery
-[/card]
-[card]
-name=Soul Summons
-text=Manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={1}{W}
 type=Sorcery
 [/card]
 [card]
@@ -17416,13 +17129,6 @@ toughness=6
 [card]
 name=Spider Climb
 text=You may cast Spider Climb as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+3 and has reach. (It can block creatures with flying.)
-mana={G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Spider Umbra
-text=Enchant creature -- Enchanted creature gets +1/+1 and has reach. (It can block creatures with flying.) -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 mana={G}
 type=Enchantment
 subtype=Aura
@@ -18054,15 +17760,6 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
-name=Sultai Emissary
-text=When Sultai Emissary dies, manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={1}{B}
-type=Creature
-subtype=Zombie Warrior
-power=1
-toughness=1
-[/card]
-[card]
 name=Summary Dismissal
 text=Exile all other spells and counter all abilities.
 mana={2}{U}{U}
@@ -18238,16 +17935,6 @@ name=Switcheroo
 text=Exchange control of two target creatures.
 mana={4}{U}
 type=Sorcery
-[/card]
-[card]
-name=Swooping Talon
-abilities=flying
-text=Flying -- {1}: Swooping Talon loses flying until end of turn. -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-mana={4}{W}{W}
-type=Creature
-subtype=Bird Soldier
-power=2
-toughness=6
 [/card]
 [card]
 name=Sword of the Ages
@@ -18599,15 +18286,6 @@ type=Creature
 subtype=Horse
 power=3
 toughness=1
-[/card]
-[card]
-name=Temur War Shaman
-text=When Temur War Shaman enters the battlefield, manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Whenever a permanent you control is turned face up, if it's a creature, you may have it fight target creature you don't control.
-mana={4}{G}{G}
-type=Creature
-subtype=Human Shaman
-power=4
-toughness=5
 [/card]
 [card]
 name=Teremko Griffin
@@ -20673,12 +20351,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=Wildcall
-text=Manifest the top card of your library, then put X +1/+1 counters on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={X}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Willbender
 text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
 mana={1}{U}
@@ -20695,15 +20367,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Wilt-Leaf Liege
-text=Other green creatures you control get +1/+1. -- Other white creatures you control get +1/+1. -- If a spell or ability an opponent controls causes you to discard Wilt-Leaf Liege, put it onto the battlefield instead of putting it into your graveyard.
-mana={1}{GW}{GW}{GW}
-type=Creature
-subtype=Elf Knight
-power=4
-toughness=4
 [/card]
 [card]
 name=Windbrisk Heights
@@ -20753,12 +20416,6 @@ mana={X}{U}
 type=Instant
 [/card]
 [card]
-name=Winter's Night
-text=Whenever a player taps a snow land for mana, that player adds one mana to his or her mana pool of any type that land produced. That land doesn't untap during its controller's next untap step.
-mana={R}{G}{W}
-type=World Enchantment
-[/card]
-[card]
 name=Wishmonger
 text={2}: Target creature gains protection from the color of its controller's choice until end of turn. Any player may activate this ability.
 mana={3}{W}
@@ -20768,26 +20425,10 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Witch Hunt
-text=Players can't gain life. -- At the beginning of your upkeep, Witch Hunt deals 4 damage to you. -- At the beginning of your end step, target opponent chosen at random gains control of Witch Hunt.
-mana={4}{R}
-type=Enchantment
-[/card]
-[card]
 name=Withdraw
 text=Return target creature to its owner's hand. Then return another target creature to its owner's hand unless its controller pays {1}.
 mana={U}{U}
 type=Instant
-[/card]
-[card]
-name=Wizened Snitches
-abilities=flying
-text=Flying -- Players play with the top card of their libraries revealed.
-mana={3}{U}
-type=Creature
-subtype=Faerie Rogue
-power=1
-toughness=3
 [/card]
 [card]
 name=Wojek Apothecary
@@ -20806,12 +20447,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=2
-[/card]
-[card]
-name=Wolfcaller's Howl
-text=At the beginning of your upkeep, put X 2/2 green Wolf creature tokens onto the battlefield, where X is the number of your opponents with four or more cards in hand.
-mana={3}{G}
-type=Enchantment
 [/card]
 [card]
 name=Wood Sage

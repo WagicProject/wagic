@@ -121,6 +121,7 @@ public:
     int zpos;
     bool isDualWielding;
     bool stillNeeded;
+    Player * discarderOwner;
     Player * lastController;
     Player * previousController;
     MTGGameZone * getCurrentZone();
