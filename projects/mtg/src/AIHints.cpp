@@ -1,5 +1,5 @@
 #include "PrecompiledHeader.h"
-
+ 
 #include "AIHints.h"
 #include "AIPlayerBaka.h"
 #include "utils.h"
