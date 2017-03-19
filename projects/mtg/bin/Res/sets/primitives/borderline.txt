@@ -796,6 +796,20 @@ mana={X}{B}{G}{U}
 type=Sorcery
 [/card]
 [card]
+name=Watcher of the Roost
+#missing reveal card
+abilities=flying
+autofaceup=life:2 controller
+facedown={3}
+autofacedown={0}:morph restriction{type(*[white]|myhand)~morethan~0}
+text=Flying -- Morph—Reveal a white card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Watcher of the Roost is turned face up, you gain 2 life.
+mana={2}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=1
+[/card]
+[card]
 name=Wolfcaller's Howl
 #wagic supports one opponent only
 auto=@each my upkeep restriction{type(*|opponenthand)~morethan~3}:token(Wolf,Creature Wolf,2/2,green)

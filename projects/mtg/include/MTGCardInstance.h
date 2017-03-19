@@ -116,6 +116,7 @@ public:
     int fresh;
     int MaxLevelUp;
     int CountedObjects;
+    int CountedObjectsB;
     int kicked;
     int dredge;
     int zpos;

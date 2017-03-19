@@ -4118,6 +4118,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    vector<string> splitCountObjectB = parseBetween(s, "countb(", ")", false);
+    if (splitCountObjectB.size())
+    {
+        MTGAbility * a = NEW AACountObjectB(observer, id, card, card, NULL, splitCountObjectB[1]);
+        a->oneShot = 1;
+        return a;
+    }
+
     //switch targest power with toughness
     found = s.find("swap");
     if (found != string::npos)
