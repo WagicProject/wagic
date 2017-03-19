@@ -5209,6 +5209,30 @@ AACountObject * AACountObject::clone() const
 {
     return NEW AACountObject(*this);
 }
+//count objects on field before doing an effect
+AACountObjectB::AACountObjectB(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance *, ManaCost * _cost, string value) :
+    ActivatedAbility(observer, id, card, _cost, 0), value(value)
+{
+}
+
+int AACountObjectB::resolve()
+{
+
+    if (source)
+    {
+        int amount = 0;
+        WParsedInt * use = NEW WParsedInt(value, NULL, source);
+        amount = use->getValue();
+        source->CountedObjectsB = amount;
+        SAFE_DELETE(use);
+    }
+    return 1;
+}
+
+AACountObjectB * AACountObjectB::clone() const
+{
+    return NEW AACountObjectB(*this);
+}
 
 // Win Game
 AAWinGame::AAWinGame(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int who) :

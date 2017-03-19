@@ -286,6 +286,7 @@ void MTGCardInstance::initMTGCI()
     currentimprintName = "";
     imprintedNames.clear();
     CountedObjects = 0;
+    CountedObjectsB = 0;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;

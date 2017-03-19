@@ -20012,25 +20012,10 @@ mana={5}{R}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Warpath
-text=Warpath deals 3 damage to each blocking creature and each blocked creature.
-mana={3}{R}
-type=Instant
-[/card]
-[card]
 name=Warping Wail
 text=({C} represents colorless mana.) -- Choose one — -- • Exile target creature with power or toughness 1 or less. -- • Counter target sorcery spell. -- • Put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {C} to your mana pool."
 mana={1}{C}
 type=Instant
-[/card]
-[card]
-name=Warping Wurm
-text=Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- At the beginning of your upkeep, Warping Wurm phases out unless you pay {2}{G}{U}. -- When Warping Wurm phases in, put a +1/+1 counter on it.
-mana={2}{G}{U}
-type=Creature
-subtype=Wurm
-power=1
-toughness=1
 [/card]
 [card]
 name=Warrior en-Kor
@@ -20054,6 +20039,9 @@ toughness=5
 [card]
 name=Watcher of the Roost
 abilities=flying
+autofaceup=life:2 controller
+facedown={3}
+autofacedown={0}:morph restriction{type(*[white]|myhand)~morethan~0}
 text=Flying -- Morph—Reveal a white card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Watcher of the Roost is turned face up, you gain 2 life.
 mana={2}{W}
 type=Creature
@@ -20066,12 +20054,6 @@ name=Water Gun Balloon Game
 text=As Water Gun Balloon Game comes into play, each player puts a pop counter on a 0. -- Whenever a player plays a spell, move that player's pop counter up 1. -- Whenever a player's pop counter hits 5, that player puts a 5/5 pink Giant Teddy Bear creature token into play and resets all pop counters to 0.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Wave of Terror
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your draw step, destroy each creature with converted mana cost equal to the number of age counters on Wave of Terror. They can't be regenerated.
-mana={2}{B}
-type=Enchantment
 [/card]
 [card]
 name=Wave of Vitriol

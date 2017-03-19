@@ -771,6 +771,10 @@ private:
         {
             intValue = target->CountedObjects;
         }
+        else if (s == "countedbamount")
+        {
+            intValue = target->CountedObjectsB;
+        }
         else if (s == "kicked")
         {
             intValue = target->kicked;
@@ -4743,6 +4747,16 @@ public:
     AACountObject(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost = NULL, string value ="");
     int resolve();
     AACountObject * clone() const;
+};
+//counts a targetchooser for use later by other effects
+class AACountObjectB : public ActivatedAbility
+{
+public:
+    string value;
+
+    AACountObjectB(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost = NULL, string value ="");
+    int resolve();
+    AACountObjectB * clone() const;
 };
 /* Can prevent a card from untapping next untap */
 class AAFrozen: public ActivatedAbility
