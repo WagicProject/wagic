@@ -6,6 +6,9 @@
 #ifdef SDL_CONFIG
 #include <SDL.h>
 #endif
+#ifdef QT_CONFIG
+#include <QKeySequence>
+#endif
 using std::string;
 using std::map;
 
