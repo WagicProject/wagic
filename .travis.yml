@@ -1,67 +1,30 @@
-language: cpp
-branches:
-  except:
-    - latest-master
+language: objective-c
 
 before_install:
-  - export BUILD_PSP=YES
-  - export BUILD_ANDROID=YES
-  - export BUILD_Qt=YES
-  - export BUILD_MAC=NO
-# Only building on Mac when not handling pull request
-  - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
-      export BUILD_MAC=YES;
-    fi
-  - sudo apt-get update -qq
-# Building for PSP here
-  - if [ "$BUILD_PSP" == "YES" ]; then
-      export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
-      export PSPSDK="$PSPDEV/psp/sdk" &&
-      export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin" &&
-      wget -O sdk.lzma http://superb-sea2.dl.sourceforge.net/project/minpspw/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma;
-    fi
-# Building for Qt here
-  - if [ "$BUILD_Qt" == "YES" ]; then
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
-      sudo apt-get -qq update &&
-      sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
-      export QMAKE="qmake -qt=qt5";
-    fi
-# Building for Android here
-  - if [ "$BUILD_ANDROID" == "YES" ]; then
-      export ANDROID="android-sdk-linux/tools/android" &&
-      if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch jq; fi &&
-      wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
-      wget http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz -nv;
-    fi
-    
-install:
-- if [ "$BUILD_PSP" == "YES" ]; then
-    tar -x --xz -f sdk.lzma;
-  fi
-- if [ "$BUILD_ANDROID" == "YES" ]; then
-    tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
-    tar -zxf android-sdk_r24.3.4-linux.tgz &&
-    $ANDROID list sdk --extended -a &&
-    echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-10 --no-ui --force --no-https;
-  fi
+- brew update
+- brew install qt5
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
-- sudo pip install cpp-coveralls
-
+- brew install dpkg ldid
+#- curl -s -f -L https://raw.github.com/r-plus/dotfiles/master/install_theos.sh | bash
+- mkdir theos
+- cd theos
+- git clone --recursive https://github.com/theos/theos.git
+- export THEOS="$TRAVIS_BUILD_DIR/theos"
+- cd ..
+- pwd
+- ls
 env:
   global:
-  - JAVA_HOME=/usr/lib/jvm/java-7-oracle # Force set JVM version to comply with Travis Ant version (1.8.2)
-  - secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
-  - secure: "X5dTQfofqAutnXxmu11Ep2MQ5QYnMN8m0AITRtwymhEF2UclcOudI1+skPtuhAGbWQnSO+lhunV3cvMfw2/Ml3k/VDz6VdFSKFrzAu7ja1VLJfcxr7chi0s8q30pVBb66tGydjIBac3B+RQyqgmZQW1frbRrhC/kPFQ6wPWOJdQ="
-  - secure: "T97NUPnxCpVZ/c5HH0zfo0FO3DPSRMSmze58ubW5EUTZOjAMtEt+OFdsrNZvUTCugUj2M1agtonZbAbczpaAL+lgZcHDgXgWMkfO0pMnsWX1yyCNqMuE/iTMpJr/xsLQeyWlftWjJLsseQU45abZsd1XVmda/G+ZhrDLF1y55SA="
+    secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
 
-script: "tools/travis-script.sh"
+script:
+- /usr/local/opt/qt5/bin/qmake projects/mtg/wagic-qt.pro CONFIG+=graphics
+- make -j 4 dmg
+- cd projects/mtg/iOS
+- make -j 4 package
+- cd ../../..
 
 after_success:
-- coveralls -b . -e JGE/src -e JGE/include -i projects/mtg/include -i projects/mtg/src --gcov-options '\-lp'
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l wagic.dmg -r Wagic-macosx.dmg -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/iOS/net.wagic_0.19.2-1_iphoneos-arm.deb -r Wagic-iOS.deb -b $TRAVIS_BRANCH
