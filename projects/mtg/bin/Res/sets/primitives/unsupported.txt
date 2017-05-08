@@ -19841,12 +19841,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Wake the Dead
-text=Cast Wake the Dead only during combat on an opponent's turn. -- Return X target creature cards from your graveyard to the battlefield. Sacrifice those creatures at the beginning of the next end step.
-mana={X}{B}{B}
-type=Instant
-[/card]
-[card]
 name=Wall of Caltrops
 abilities=defender
 text=Defender (This creature can't attack.) -- Whenever Wall of Caltrops blocks a creature, if no non-Wall creatures are blocking that creature, Wall of Caltrops gains banding until end of turn. (If any creatures with banding you control are blocking a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by.)
@@ -19907,16 +19901,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Wall of Vapor
-abilities=defender
-text=Defender (This creature can't attack.) -- Prevent all damage that would be dealt to Wall of Vapor by creatures it's blocking.
-mana={3}{U}
-type=Creature
-subtype=Wall
-power=0
-toughness=1
-[/card]
-[card]
 name=Wall of Vipers
 abilities=defender
 text=Defender (This creature can't attack.) -- {3}: Destroy Wall of Vipers and target creature it's blocking. Any player may activate this ability.
@@ -19975,12 +19959,6 @@ type=Creature
 subtype=Giant Warrior
 power=5
 toughness=3
-[/card]
-[card]
-name=Ward of Bones
-text=Each opponent who controls more creatures than you can't play creature cards. The same is true for artifacts, enchantments, and lands.
-mana={6}
-type=Artifact
 [/card]
 [card]
 name=Ward of Lights

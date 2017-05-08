@@ -730,6 +730,16 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         {
             restriction.push_back("type(vampire|mybattlefield)~morethan~1");
         }
+        check = restriction[i].find("control less artifacts");
+        if(check != string::npos)
+        {
+            restriction.push_back("type(artifact|mybattlefield)~lessthan~type(artifact|opponentbattlefield)");
+        }
+        check = restriction[i].find("control less enchantments");
+        if(check != string::npos)
+        {
+            restriction.push_back("type(enchantment|mybattlefield)~lessthan~type(enchantment|opponentbattlefield)");
+        }
         check = restriction[i].find("control less creatures");
         if(check != string::npos)
         {
