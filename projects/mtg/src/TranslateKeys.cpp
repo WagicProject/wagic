@@ -6,6 +6,9 @@
 #ifdef SDL_CONFIG
 #include <SDL.h>
 #endif
+#ifdef QT_CONFIG
+#include <QKeySequence>
+#endif
 using std::string;
 using std::map;
 
@@ -27,6 +30,8 @@ const KeyRep& translateKey(LocalKeySym key)
     str = XKeysymToString(key);
 #elif defined (SDL_CONFIG)
     str = (char*)SDL_GetKeyName(key);
+#elif defined (QT_CONFIG)
+	str = (char*)QKeySequence(key).toString().toUtf8().constData();
 #endif
     if (!str)
     {
