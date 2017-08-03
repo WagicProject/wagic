@@ -554,6 +554,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
                 }
             }
         }
+        //remove exerted if changing controls 
+        if((to == g->players[0]->game->battlefield && from == g->players[1]->game->battlefield)||
+            (to == g->players[1]->game->battlefield && from == g->players[0]->game->battlefield))
+        {
+            if(ret->exerted)
+                ret->exerted = false;
+        }
     }
     if(!asCopy)
     {
@@ -1125,13 +1132,25 @@ void MTGInPlay::untapAll()
         card->setUntapping();
         if (!card->basicAbilities[(int)Constants::DOESNOTUNTAP] && !card->basicAbilities[(int)Constants::SHACKLER])
         {
-            if (card->frozen < 1)
+            if(card->exerted)
             {
-                card->attemptUntap();
+                card->exerted = false;
+                if (card->frozen >= 1)
+                {
+                    card->frozen = 0;
+                }
             }
-            if (card->frozen >= 1)
+            else
             {
-                card->frozen = 0;
+                card->exerted = false;
+                if (card->frozen < 1)
+                {
+                    card->attemptUntap();
+                }
+                if (card->frozen >= 1)
+                {
+                    card->frozen = 0;
+                }
             }
         }
     }

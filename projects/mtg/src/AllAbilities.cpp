@@ -6046,6 +6046,7 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
     }
     myCurrentTurn = 1000;
     //this subkeyword adds a color without removing the existing colors.
+    removemc = (sabilities.find("removemc") != string::npos);
     addNewColors = (sabilities.find("newcolors") != string::npos);
     remove = (stypes.find("removealltypes") != string::npos);
     removeCreatureSubtypes = (stypes.find("removecreaturesubtypes") != string::npos);
@@ -6235,6 +6236,9 @@ for (it = types.begin(); it != types.end(); it++)
             _target->addbaseT(val->getValue());
         delete val;
     }
+    //remove manacost
+    if(removemc)
+        _target->getManaCost()->resetCosts();
 
     return MTGAbility::addToGame();
 }
