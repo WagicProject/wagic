@@ -386,7 +386,10 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 for(unsigned int gy = 0;gy < grave->cardsSeenThisTurn.size();gy++)
                 {
                     MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
-                    if(checkCard->isCreature())
+                    if(checkCard->isCreature() &&
+                        ((checkCard->previousZone == checkCurrent->game->battlefield)||
+                        (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
+                        )
                     {
                         isMorbid = true;
                         break;
@@ -398,7 +401,26 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!isMorbid)
                 return 0;
         }
-        
+        check = restriction[i].find("zerodead");
+        if(check != string::npos)//returns true if zero
+        {
+            bool hasDeadCreature = false;
+            Player * checkCurrent = card->controller();
+            MTGGameZone * grave = checkCurrent->game->graveyard;
+            for(unsigned int gy = 0;gy < grave->cardsSeenThisTurn.size();gy++)
+            {
+                MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+                if(checkCard->isCreature() &&
+                    ((checkCard->previousZone == checkCurrent->game->battlefield))//died from your battlefield
+                    )
+                {
+                    hasDeadCreature = true;
+                    break;
+                }
+            }
+            if(hasDeadCreature)
+                return 0;
+        }
         //Ensnaring Bridge
         check = restriction[i].find("powermorethanopponenthand");
         if (check != string::npos)//for opponent creatures
