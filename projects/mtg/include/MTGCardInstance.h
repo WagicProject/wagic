@@ -90,6 +90,7 @@ public:
     bool blinked;
     bool isExtraCostTarget;
     bool morphed;
+    bool exerted;
     bool turningOver;
     bool isMorphed;
     bool isFlipped;

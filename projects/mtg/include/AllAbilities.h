@@ -1406,6 +1406,28 @@ public:
     }
 };
 
+class TrCardExerted: public Trigger
+{
+public:
+    TrCardExerted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+        Trigger(observer, id, source, once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardExerted * e = dynamic_cast<WEventCardExerted *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrCardExerted * clone() const
+    {
+        return NEW TrCardExerted(*this);
+    }
+};
+
 class TrCombatTrigger: public Trigger
 {
 public:
@@ -5174,6 +5196,7 @@ public:
     list<int> oldcolors;
     list<int> oldtypes;
     vector<int> dontremove;
+    bool removemc;
     bool addNewColors;
     bool remove;
     bool removeCreatureSubtypes;
@@ -7288,6 +7311,57 @@ public:
     AProvoke * clone() const
     {
         return NEW AProvoke(*this);
+    }
+};
+//exert
+class AExert: public InstantAbility
+{
+public:
+    MTGAbility * andAbility;
+    AExert(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+        InstantAbility(observer, _id, _source)
+    {
+        target = _target;
+        andAbility = NULL;
+    }
+
+    int resolve()
+    {
+        MTGCardInstance * card = (MTGCardInstance *) target;
+        if (card)
+        {
+            card->exerted = true;
+            WEvent * e = NEW WEventCardExerted(card);
+            game->receiveEvent(e);
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = card;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+        }
+        return 1;
+    }
+    const string getMenuText()
+    {
+        return "Exert";
+    }
+    virtual ostream& toString(ostream& out) const
+    {
+        out << "AAExert ::: (";
+        return InstantAbility::toString(out) << ")";
+    }
+    AExert * clone() const
+    {
+        return NEW AExert(*this);
     }
 };
 //------------------

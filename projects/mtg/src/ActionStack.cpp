@@ -1040,7 +1040,7 @@ void ActionStack::Update(float dt)
     if (getCurrentTutorial() && (observer->players[0]->isHuman() || observer->players[1]->isHuman() ) )
         return;
 
-    if (observer->mLayers->actionLayer()->menuObject || observer->LPWeffect)
+    if (observer->mLayers->actionLayer()->menuObject)// || observer->LPWeffect) //test fix for hang for both legendary with action/reveal
         if(observer->players[0]->isHuman() || observer->players[1]->isHuman())
             return;//dont do any of this if a menuobject exist.
 

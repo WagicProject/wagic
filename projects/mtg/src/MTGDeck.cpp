@@ -1219,12 +1219,12 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
 void MTGDeck::printDetailedDeckText(std::ofstream& file )
 {
     ostringstream currentCard, creatures, lands, spells, types;
-	ostringstream ss_creatures, ss_lands, ss_spells;
-	int numberOfCreatures = 0;
-	int numberOfSpells = 0;
-	int numberOfLands = 0;
+    ostringstream ss_creatures, ss_lands, ss_spells;
+    int numberOfCreatures = 0;
+    int numberOfSpells = 0;
+    int numberOfLands = 0;
 
-	map<int, int>::iterator it;
+    map<int, int>::iterator it;
     for (it = cards.begin(); it != cards.end(); it++)
     {
         int cardId = it->first;
@@ -1271,29 +1271,29 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
 
         currentCard <<endl;
         setInfo = NULL;
-		// Add counter to know number of creatures, non-creature spells and lands present in the deck
+        // Add counter to know number of creatures, non-creature spells and lands present in the deck
         if ( card->data->isLand() )
-		{
+        {
             lands<< currentCard.str();
-			numberOfLands+=nbCards;
-		}
+            numberOfLands+=nbCards;
+        }
         else if ( card->data->isCreature() )
-		{
+        {
             creatures << currentCard.str();
-			numberOfCreatures+=nbCards;
-		}
+            numberOfCreatures+=nbCards;
+        }
         else
-		{
+        {
             spells << currentCard.str();
-			numberOfSpells+=nbCards;
-		}
+            numberOfSpells+=nbCards;
+        }
         currentCard.str("");
     }
-	ss_creatures << numberOfCreatures;
-	ss_spells << numberOfSpells;
-	ss_lands <<	numberOfLands;
+    ss_creatures << numberOfCreatures;
+    ss_spells << numberOfSpells;
+    ss_lands <<	numberOfLands;
 
-	file << getCardBlockText( "Creatures x " + ss_creatures.str(), creatures.str() ) << endl;
+    file << getCardBlockText( "Creatures x " + ss_creatures.str(), creatures.str() ) << endl;
     file << getCardBlockText( "Spells x " + ss_spells.str(), spells.str() ) << endl;
     file << getCardBlockText( "Lands x " + ss_lands.str(), lands.str() ) << endl;
     creatures.str("");

@@ -224,6 +224,7 @@ void MTGCardInstance::initMTGCI()
     blinked = false;
     isExtraCostTarget = false;
     morphed = false;
+    exerted = false;
     turningOver = false;
     isMorphed = false;
     MeldedFrom = "";

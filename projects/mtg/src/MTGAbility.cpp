@@ -439,7 +439,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 if (grave->hasType("land")) checkTypesAmount++;
                 if (grave->hasType("artifact")) checkTypesAmount++;
                 if (grave->hasType("planeswalker")) checkTypesAmount++;
-				if (grave->hasType("tribal")) checkTypesAmount++;
+                if (grave->hasType("tribal")) checkTypesAmount++;
                 if (checkTypesAmount < 4)
                 return 0;
         }
@@ -458,7 +458,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 if (grave->hasType("land")) checkTypesAmount++;
                 if (grave->hasType("artifact")) checkTypesAmount++;
                 if (grave->hasType("planeswalker")) checkTypesAmount++;
-				if (grave->hasType("tribal")) checkTypesAmount++;
+                if (grave->hasType("tribal")) checkTypesAmount++;
                 if (checkTypesAmount > 3)
                 return 0;
         }
@@ -1069,6 +1069,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     //Card Phases In
     if (TargetChooser *tc = parseSimpleTC(s,"phasedin", card))
         return NEW TrCardPhasesIn(observer, id, card, tc,once);
+
+    //Card Exerted
+    if (TargetChooser *tc = parseSimpleTC(s,"exerted", card))
+        return NEW TrCardExerted(observer, id, card, tc,once);
 
 //CombatTrigger
     //Card card attacked and is blocked
@@ -2928,7 +2932,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             ((AManifest*)a)->withenchant = true;
         return a;
     }
-
+    //exert
+    found = s.find("exert");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AExert(observer, id, card, target);
+        a->oneShot = 1;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AExert*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return a;
+    }
     //provoke
     found = s.find("provoke");
     if (found != string::npos)
