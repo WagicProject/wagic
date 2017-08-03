@@ -134,7 +134,7 @@ void GuiAvatar::Render()
     }
     //poison
     char poison[10];
-    if (poisonCount >= 0)
+    if (poisonCount > 0)
     {
         sprintf(poison, "%i", poisonCount);
         switch (corner)
@@ -151,7 +151,7 @@ void GuiAvatar::Render()
     }
     //energy
     char energy[15];
-    if (energyCount >= 0)
+    if (energyCount > 0)
     {
         sprintf(energy, "%i", energyCount);
         switch (corner)

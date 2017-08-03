@@ -432,13 +432,14 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 MTGGameZone * grave = checkCurrent->game->graveyard;
 
                 int checkTypesAmount = 0;
-                if(grave->hasType("creature")) checkTypesAmount++;
+                if (grave->hasType("creature")) checkTypesAmount++;
                 if (grave->hasType("enchantment")) checkTypesAmount++;
                 if (grave->hasType("sorcery")) checkTypesAmount++;
                 if (grave->hasType("instant")) checkTypesAmount++;
                 if (grave->hasType("land")) checkTypesAmount++;
                 if (grave->hasType("artifact")) checkTypesAmount++;
                 if (grave->hasType("planeswalker")) checkTypesAmount++;
+				if (grave->hasType("tribal")) checkTypesAmount++;
                 if (checkTypesAmount < 4)
                 return 0;
         }
@@ -450,13 +451,14 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 MTGGameZone * grave = checkCurrent->game->graveyard;
 
                 int checkTypesAmount = 0;
-                if(grave->hasType("creature")) checkTypesAmount++;
+                if (grave->hasType("creature")) checkTypesAmount++;
                 if (grave->hasType("enchantment")) checkTypesAmount++;
                 if (grave->hasType("sorcery")) checkTypesAmount++;
                 if (grave->hasType("instant")) checkTypesAmount++;
                 if (grave->hasType("land")) checkTypesAmount++;
                 if (grave->hasType("artifact")) checkTypesAmount++;
                 if (grave->hasType("planeswalker")) checkTypesAmount++;
+				if (grave->hasType("tribal")) checkTypesAmount++;
                 if (checkTypesAmount > 3)
                 return 0;
         }

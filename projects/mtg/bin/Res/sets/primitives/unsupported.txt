@@ -1936,12 +1936,6 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
-name=Burning Wish
-text=You may choose a sorcery card you own from outside the game, reveal that card, and put it into your hand. Exile Burning Wish.
-mana={1}{R}
-type=Sorcery
-[/card]
-[card]
 name=Burning-Eye Zubera
 text=When Burning-Eye Zubera dies, if 4 or more damage was dealt to it this turn, Burning-Eye Zubera deals 3 damage to target creature or player.
 mana={2}{R}{R}
@@ -3340,15 +3334,6 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Courser of Kruphix
-text=Play with the top card of your library revealed. -- You may play the top card of your library if it's a land card. -- Whenever a land enters the battlefield under your control, you gain 1 life.
-mana={1}{G}{G}
-type=Enchantment Creature
-subtype=Centaur
-power=2
-toughness=4
-[/card]
-[card]
 name=Covenant of Minds
 text=Reveal the top three cards of your library. Target opponent may choose to put those cards into your hand. If he or she doesn't, put those cards into your graveyard and draw five cards.
 mana={4}{U}
@@ -3468,12 +3453,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Crown of Convergence
-text=Play with the top card of your library revealed. -- As long as the top card of your library is a creature card, creatures you control that share a color with that card get +1/+1. -- {G}{W}: Put the top card of your library on the bottom of your library.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Crown of Doom
 text=Whenever a creature attacks you or a planeswalker you control, it gets +2/+0 until end of turn. -- {2}: Target player other than Crown of Doom's owner gains control of it. Activate this ability only during your turn.
 mana={3}
@@ -3583,12 +3562,6 @@ name=Cultural Exchange
 text=Choose any number of creatures target player controls. Choose the same number of creatures another target player controls. Those players exchange control of those creatures. (This effect lasts indefinitely.)
 mana={4}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Cunning Wish
-text=You may choose an instant card you own from outside the game, reveal that card, and put it into your hand. Exile Cunning Wish.
-mana={2}{U}
-type=Instant
 [/card]
 [card]
 name=Curious Homunculus
@@ -4006,12 +3979,6 @@ name=Death Spark
 text=Death Spark deals 1 damage to target creature or player. -- At the beginning of your upkeep, if Death Spark is in your graveyard with a creature card directly above it, you may pay {1}. If you do, return Death Spark to your hand.
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Death Wish
-text=You may choose a card you own from outside the game and put it into your hand. You lose half your life, rounded up. Exile Death Wish.
-mana={1}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Death-Mask Duplicant
@@ -5321,7 +5288,7 @@ mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Evasive Action
+name= 
 text=Domain — Counter target spell unless its controller pays {1} for each basic land type among lands you control.
 mana={1}{U}
 type=Instant
@@ -6325,12 +6292,6 @@ mana={1}{R}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Future Sight
-text=Play with the top card of your library revealed. -- You may play the top card of your library.
-mana={2}{U}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Gabriel Angelfire
 text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep. (Whenever a creature with rampage 3 becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
 mana={3}{G}{G}{W}{W}
@@ -6353,15 +6314,6 @@ name=Gaea's Balance
 text=As an additional cost to cast Gaea's Balance, sacrifice five lands. -- Search your library for a land card of each basic land type and put them onto the battlefield. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
-[/card]
-[card]
-name=Gaea's Herald
-text=Creature spells can't be countered.
-mana={1}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
 [/card]
 [card]
 name=Gaea's Liege
@@ -6413,16 +6365,6 @@ name=Garbage Fire
 text=Reveal Garbage Fire as you draft it and note how many cards you've drafted this draft round, including Garbage Fire. -- Garbage Fire deals damage to target creature equal to the highest number you noted for cards named Garbage Fire.
 mana={2}{R}
 type=Instant
-[/card]
-[card]
-name=Garruk's Horde
-abilities=trample 
-text=Trample  -- Play with the top card of your library revealed. -- You may cast the top card of your library if it's a creature card. (Do this only any time you could cast that creature card. You still pay the spell's costs.)
-mana={5}{G}{G}
-type=Creature
-subtype=Beast
-power=7
-toughness=7
 [/card]
 [card]
 name=Garrulous Sycophant
@@ -6701,16 +6643,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Gisela, the Broken Blade
-abilities=flying,first strike,lifelink
-text=Flying, first strike, lifelink -- At the beginning of your end step, if you both own and control Gisela, the Broken Blade and a creature named Bruna, the Fading Light, exile them, then meld them into Brisela, Voice of Nightmares.
-mana={2}{W}{W}
-type=Legendary Creature
-subtype=Angel Horror
-power=4
-toughness=3
-[/card]
-[card]
 name=Give // Take
 text=Put three +1/+1 counters on target creature. --  //  -- Remove all +1/+1 counters from target creature you control. Draw that many cards. --  -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={2}{G} // {2}{U}
@@ -6826,12 +6758,6 @@ type=Creature
 subtype=Cat
 power=1
 toughness=1
-[/card]
-[card]
-name=Glittering Wish
-text=You may choose a multicolored card you own from outside the game, reveal that card, and put it into your hand. Exile Glittering Wish.
-mana={G}{W}
-type=Sorcery
 [/card]
 [card]
 name=Global Ruin
@@ -7045,15 +6971,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Goblin Spy
-text=Play with the top card of your library revealed.
-mana={R}
-type=Creature
-subtype=Goblin Rogue
-power=1
-toughness=1
-[/card]
-[card]
 name=Goblin Test Pilot
 abilities=flying
 text=Flying -- {T}: Goblin Test Pilot deals 2 damage to target creature or player chosen at random.
@@ -7090,12 +7007,6 @@ text=Equipped creature gets +3/+3. -- Whenever equipped creature blocks or becom
 mana={1}{W}{W}
 type=Legendary Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Golden Wish
-text=You may choose an artifact or enchantment card you own from outside the game, reveal that card, and put it into your hand. Exile Golden Wish.
-mana={3}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Goldenhide Ox
@@ -7622,15 +7533,6 @@ text=Equipped creature has "{T}: Put an aim counter on Hankyu" and "{T}, Remove 
 mana={1}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Hanweir, the Writhing Township
-text=Whenever Hanweir Garrison attacks, put two 1/1 red Human creature tokens onto the battlefield tapped and attacking. -- (Melds with Hanweir Battlements.)
-mana={2}{R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=3
 [/card]
 [card]
 name=Harbinger of the Tides
@@ -9828,12 +9730,6 @@ mana={1}{R}{R}
 type=World Enchantment
 [/card]
 [card]
-name=Lantern of Insight
-text=Each player plays with the top card of his or her library revealed. -- {T}, Sacrifice Lantern of Insight: Target player shuffles his or her library.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Laquatus's Disdain
 text=Counter target spell cast from a graveyard. -- Draw a card.
 mana={1}{U}
@@ -10230,12 +10126,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Living Wish
-text=You may choose a creature or land card you own from outside the game, reveal that card, and put it into your hand. Exile Living Wish.
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
 name=Loafing Giant
 text=Whenever Loafing Giant attacks or blocks, put the top card of your library into your graveyard. If that card is a land card, prevent all combat damage Loafing Giant would deal this turn.
 mana={4}{R}
@@ -10466,15 +10356,6 @@ type=Creature
 subtype=Human Wizard
 power=5
 toughness=5
-[/card]
-[card]
-name=Magus of the Future
-text=Play with the top card of your library revealed. -- You may play the top card of your library.
-mana={2}{U}{U}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=3
 [/card]
 [card]
 name=Magus of the Scroll
@@ -10852,15 +10733,6 @@ name=Melee
 text=Cast Melee only during your turn and only during combat before blockers are declared. -- You choose which creatures block this combat and how those creatures block. -- Whenever a creature attacks and isn't blocked this combat, untap it and remove it from combat.
 mana={4}{R}
 type=Instant
-[/card]
-[card]
-name=Melek, Izzet Paragon
-text=Play with the top card of your library revealed. -- You may cast the top card of your library if it's an instant or sorcery card. -- Whenever you cast an instant or sorcery spell from your library, copy it. You may choose new targets for the copy.
-mana={4}{U}{R}
-type=Legendary Creature
-subtype=Weird Wizard
-power=2
-toughness=4
 [/card]
 [card]
 name=Meletis Charlatan
@@ -11509,15 +11381,6 @@ type=Creature
 subtype=Beast
 power=3
 toughness=3
-[/card]
-[card]
-name=Mul Daya Channelers
-text=Play with the top card of your library revealed. -- As long as the top card of your library is a creature card, Mul Daya Channelers gets +3/+3. -- As long as the top card of your library is a land card, Mul Daya Channelers has "{T}: Add two mana of any one color to your mana pool."
-mana={1}{G}{G}
-type=Creature
-subtype=Elf Druid Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Multani's Presence
@@ -12473,15 +12336,6 @@ type=Creature
 subtype=Minotaur Shaman
 power=3
 toughness=1
-[/card]
-[card]
-name=Oracle of Mul Daya
-text=You may play an additional land on each of your turns. -- Play with the top card of your library revealed. -- You may play the top card of your library if it's a land card.
-mana={3}{G}
-type=Creature
-subtype=Elf Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Oracle's Attendants
@@ -18201,12 +18055,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Temporal Aperture
-text={5}, {T}: Shuffle your library, then reveal the top card. Until end of turn, for as long as that card remains on top of your library, play with the top card of your library revealed and you may play that card without paying its mana cost. (If it has X in its mana cost, X is 0.)
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Temporal Extortion
 text=When you cast Temporal Extortion, any player may pay half his or her life, rounded up. If a player does, counter Temporal Extortion. -- Take an extra turn after this one.
 mana={B}{B}{B}{B}
@@ -19378,15 +19226,6 @@ name=Valor Made Real
 text=Target creature can block any number of creatures this turn.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Vampire Nocturnus
-text=Play with the top card of your library revealed. -- As long as the top card of your library is black, Vampire Nocturnus and other Vampire creatures you control get +2/+1 and have flying.
-mana={1}{B}{B}{B}
-type=Creature
-subtype=Vampire
-power=3
-toughness=3
 [/card]
 [card]
 name=Vandalize
