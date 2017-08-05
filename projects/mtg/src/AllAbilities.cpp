@@ -7733,11 +7733,14 @@ void ABlink::resolveBlink()
             this->forceDestroy = 1;
             return;
         }
-
         if (_target && _target->next)
             _target = _target->next;
         _target->blinked = true;
         Blinked = _target;
+        if(source->isPermanent()&&!source->isInPlay(game))
+        {
+            Blinked->blinked = false;
+        }
         if (!blinkueot && !blinkForSource)
         {
             returnCardIntoPlay(_target);
