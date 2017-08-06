@@ -461,12 +461,16 @@ void CardGui::Render()
     }
 
     string buff = "";
+    string starMark = "";
+    if(card->exerted)
+        starMark += "*";
     if(card->isToken && !card->isACopier)
         buff = "T";
     if(card->isToken && card->isACopier)
         buff = "CT";
     if(!card->isToken && card->isACopier)
         buff = "C";
+    buff = starMark + buff;
     //if(card->has(Constants::PAYZERO))
         //buff += "Z";
     if(card->chooseacolor >= 1)
