@@ -626,7 +626,7 @@ protected:
 class WGuiSplit: public WGuiItem
 {
 public:
-    WGuiSplit(WGuiBase* _left, WGuiBase* _right);
+    WGuiSplit(WGuiBase* _left, WGuiBase* _right, bool custom = false);
     virtual ~WGuiSplit();
 
     virtual bool yieldFocus();
@@ -998,6 +998,8 @@ protected:
     set<LocalKeySym> confirmedKeys;
     set<JButton> confirmedButtons;
     string confirmationString;
+private:
+    void populateKeyBindingList();
 };
 
 /**@} This comment used by Doxyyen. */

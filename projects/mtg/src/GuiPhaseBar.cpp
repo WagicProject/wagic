@@ -95,6 +95,7 @@ bool GuiPhaseBar::Leaving(JButton)
 void GuiPhaseBar::Render()
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
+    JQuadPtr phaseinfo = WResourceManager::Instance()->RetrieveTempQuad("fakebar.png"); //new fakebar graphics
     //uncomment to draw a hideous line across hires screens.
     // JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
 
@@ -145,9 +146,18 @@ void GuiPhaseBar::Render()
     //running this string through translate returns gibberish even though we defined the variables in the lang.txt
     //the conversion from phase bar phases to mtg phases is x%kPhases + 1
     //todo: just to this when the displayedPhaseId updates
-    string phaseNameToTranslate = observer->phaseRing->phaseName(displayedPhaseId%kPhases + 1);
+    //string phaseNameToTranslate = observer->phaseRing->phaseName(displayedPhaseId%kPhases + 1);
+    string phaseNameToTranslate = observer->phaseRing->phaseName(observer->phaseRing->getCurrentPhase()->id);
     phaseNameToTranslate = _(phaseNameToTranslate);
     sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(),phaseNameToTranslate.c_str());
+#if !defined (PSP)
+    if(phaseinfo.get())
+    {//fix phaseinfo graphics... should look nice now...
+        float testW = ((font->GetStringWidth(buf))*2) - SCREEN_WIDTH_F;
+        phaseinfo->SetHotSpot(testW+40.f, 0);
+        JRenderer::GetInstance()->RenderQuad(phaseinfo.get(),0,0,0,SCREEN_WIDTH_F / phaseinfo->mWidth, SCREEN_HEIGHT_F / phaseinfo->mHeight);
+    }
+#endif
     font->DrawString(buf, SCREEN_WIDTH - 5, 2, JGETEXT_RIGHT);
 }
 

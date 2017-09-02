@@ -78,6 +78,7 @@ if [ "$BUILD_TYPE" = "Qt" ]; then
     cd build_qt_widget
     cmake -Dbackend_qt_widget=ON -Dbackend_qt_console=OFF ..
     make -j4 wagic
+    chmod -R 775 wagic
     cd ..
 
     # let's try an Intel linux binary in debug text-mode-only

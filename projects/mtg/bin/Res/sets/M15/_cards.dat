@@ -805,11 +805,6 @@ id=383323
 rarity=R
 [/card]
 [card]
-primitive=Zombie Token
-id=-383323
-rarity=T
-[/card]
-[card]
 primitive=Negate
 id=383324
 rarity=C

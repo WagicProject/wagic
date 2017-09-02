@@ -115,10 +115,12 @@ WLBFont::WLBFont(int inFontID, const char *fontname, int lineheight, bool useVid
     it = NEW JLBFont(path.c_str(), lineheight, useVideoRAM);
 }
 
-void WLBFont::FormatText(string &s, vector<string>& output)
+void WLBFont::FormatText(string &s, vector<string>& output, int customLen)
 {
+    int defL = (customLen>0)?customLen:30;
     // The way of CardPrimitive::formattedText() in r2081.
-    std::string::size_type len = 30;
+    //std::string::size_type len = 30;
+    std::string::size_type len = defL;
     while (s.length() > 0)
     {
         std::string::size_type cut = s.find_first_of("., \t)", 0);
@@ -1055,7 +1057,7 @@ int WGBKFont::GetMana(const u8 *ch) const
     return mana;
 }
 
-void WGBKFont::FormatText(string &s, vector<string>& output)
+void WGBKFont::FormatText(string &s, vector<string>& output, int customLen)
 {
     while (s.length() > 0)
     {
@@ -1196,7 +1198,7 @@ int WUFont::GetMana(const u8 *ch) const
     return -1;
 }
 
-void WUFont::FormatText(string &s, vector<string>& output)
+void WUFont::FormatText(string &s, vector<string>& output, int customLen)
 {
     std::string::size_type limit = 22; //28
     string delim("., \t)");

@@ -1,0 +1,192 @@
+[card]
+name=Artisan of Forms
+text=Heroic — Whenever you cast a spell that targets Artisan of Forms, you may have Artisan of Forms become a copy of target creature and gain this ability.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Ashiok, Nightmare Weaver
+text=+2: Exile the top three cards of target opponent's library. -- -X: Put a creature card with converted mana cost X exiled with Ashiok, Nightmare Weaver onto the battlefield under your control. That creature is a Nightmare in addition to its other types. -- -10: Exile all cards from all opponents' hands and graveyards.
+mana={1}{U}{B}
+type=Planeswalker
+subtype=Ashiok
+[/card]
+[card]
+name=Coastline Chimera
+text=Flying -- {1}{W}: Coastline Chimera can block an additional creature this turn.
+mana={3}{U}
+type=Creature
+subtype=Chimera
+power=1
+toughness=5
+[/card]
+[card]
+name=Daxos of Meletis
+text=Daxos of Meletis can't be blocked by creatures with power 3 or greater. -- Whenever Daxos of Meletis deals combat damage to a player, exile the top card of that player's library. You gain life equal to that card's converted mana cost. Until end of turn, you may cast that card and you may spend mana as though it were mana of any color to cast it.
+mana={1}{W}{U}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Decorated Griffin
+text=Flying -- {1}{W}: Prevent the next 1 combat damage that would be dealt to you this turn.
+mana={4}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=3
+[/card]
+[card]
+name=Flamespeaker Adept
+text=Whenever you scry, Flamespeaker Adept gets +2/+0 and gains first strike until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=3
+[/card]
+[card]
+name=Hundred-Handed One
+text=Vigilance -- {3}{W}{W}{W}: Monstrosity 3. (If this creature isn't monstrous, put three +1/+1 counters on it and it becomes monstrous.) -- As long as Hundred-Handed One is monstrous, it has reach and can block an additional ninety-nine creatures each combat.
+mana={2}{W}{W}
+type=Creature
+subtype=Giant
+power=3
+toughness=5
+[/card]
+[card]
+name=Loathsome Catoblepas
+text={2}{G}: Loathsome Catoblepas must be blocked this turn if able. -- When Loathsome Catoblepas dies, target creature an opponent controls gets -3/-3 until end of turn.
+mana={5}{B}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Medomai the Ageless
+text=Flying -- Whenever Medomai the Ageless deals combat damage to a player, take an extra turn after this one. -- Medomai the Ageless can't attack during extra turns.
+mana={4}{W}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
+name=Meletis Charlatan
+text={2}{U}, {T}: The controller of target instant or sorcery spell copies it. That player may choose new targets for the copy.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Nemesis of Mortals
+text=Nemesis of Mortals costs {1} less to cast for each creature card in your graveyard. -- {7}{G}{G}: Monstrosity 5. This ability costs {1} less to activate for each creature card in your graveyard. (If this creature isn't monstrous, put five +1/+1 counters on it and it becomes monstrous.)
+mana={4}{G}{G}
+type=Creature
+subtype=Snake
+power=5
+toughness=5
+[/card]
+[card]
+name=Ordeal of Erebos
+text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Erebos. -- When you sacrifice Ordeal of Erebos, target player discards two cards.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Ordeal of Heliod
+text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Heliod. -- When you sacrifice Ordeal of Heliod, you gain 10 life.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Ordeal of Nylea
+text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Nylea. -- When you sacrifice Ordeal of Nylea, search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Ordeal of Purphoros
+text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Purphoros. -- When you sacrifice Ordeal of Purphoros, it deals 3 damage to target creature or player.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Ordeal of Thassa
+text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Thassa. -- When you sacrifice Ordeal of Thassa, draw two cards.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Polukranos, World Eater
+text={X}{X}{G}: Monstrosity X. (If this creature isn't monstrous, put X +1/+1 counters on it and it becomes monstrous.) -- When Polukranos, World Eater becomes monstrous, it deals X damage divided as you choose among any number of target creatures your opponents control. Each of those creatures deals damage equal to its power to Polukranos.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Hydra
+power=5
+toughness=5
+[/card]
+[card]
+name=Psychic Intrusion
+text=Target opponent reveals his or her hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
+mana={3}{U}{B}
+type=Sorcery
+[/card]
+[card]
+name=Pyxis of Pandemonium
+text={T}: Each player exiles the top card of his or her library face down. -- {7}, {T}, Sacrifice Pyxis of Pandemonium: Each player turns face up all cards he or she owns exiled with Pyxis of Pandemonium, then puts all permanent cards among them onto the battlefield.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Rescue from the Underworld
+text=As an additional cost to cast Rescue from the Underworld, sacrifice a creature. -- Choose target creature card in your graveyard. Return that card and the sacrificed card to the battlefield under your control at the beginning of your next upkeep. Exile Rescue from the Underworld.
+mana={4}{B}
+type=Instant
+[/card]
+[card]
+name=Satyr Piper
+text={3}{G}: Target creature must be blocked this turn if able.
+mana={2}{G}
+type=Creature
+subtype=Satyr Rogue
+power=2
+toughness=1
+[/card]
+[card]
+name=Shipbreaker Kraken
+text={6}{U}{U}: Monstrosity 4. (If this creature isn't monstrous, put four +1/+1 counters on it and it becomes monstrous.) -- When Shipbreaker Kraken becomes monstrous, tap up to four target creatures. Those creatures don't untap during their controllers' untap steps for as long as you control Shipbreaker Kraken.
+mana={4}{U}{U}
+type=Creature
+subtype=Kraken
+power=6
+toughness=6
+[/card]
+[card]
+name=Steam Augury
+text=Reveal the top five cards of your library and separate them into two piles. An opponent chooses one of those piles. Put that pile into your hand and the other into your graveyard.
+mana={2}{U}{R}
+type=Instant
+[/card]
+[card]
+name=Underworld Cerberus
+text=Underworld Cerberus can't be blocked except by three or more creatures. -- Cards in graveyards can't be the targets of spells or abilities. -- When Underworld Cerberus dies, exile it and each player returns all creature cards from his or her graveyard to his or her hand.
+mana={3}{B}{R}
+type=Creature
+subtype=Hound
+power=6
+toughness=6
+[/card]

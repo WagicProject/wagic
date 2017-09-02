@@ -1,0 +1,120 @@
+[card]
+name=Bogardan Hellkite
+text=Flash -- Flying -- When Bogardan Hellkite enters the battlefield, it deals 5 damage divided as you choose among any number of target creatures and/or players.
+mana={6}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Capricious Efreet
+text=At the beginning of your upkeep, choose target nonland permanent you control and up to two target nonland permanents you don't control. Destroy one of them at random.
+mana={4}{R}{R}
+type=Creature
+subtype=Efreet
+power=6
+toughness=4
+[/card]
+[card]
+name=Coat of Arms
+text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, if two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Guardian Seraph
+text=Flying -- If a source an opponent controls would deal damage to you, prevent 1 of that damage.
+mana={2}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=4
+[/card]
+[card]
+name=Harm's Way
+text=The next 2 damage that a source of your choice would deal to you and/or permanents you control this turn is dealt to target creature or player instead.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Hive Mind
+text=Whenever a player casts an instant or sorcery spell, each other player copies that spell. Each of those players may choose new targets for his or her copy.
+mana={5}{U}
+type=Enchantment
+[/card]
+[card]
+name=Ignite Disorder
+text=Ignite Disorder deals 3 damage divided as you choose among one, two, or three target white and/or blue creatures.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Master of the Wild Hunt
+text=At the beginning of your upkeep, put a 2/2 green Wolf creature token onto the battlefield. -- {T}: Tap all untapped Wolf creatures you control. Each Wolf tapped this way deals damage equal to its power to target creature. That creature deals damage equal to its power divided as its controller chooses among any number of those Wolves.
+mana={2}{G}{G}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Mirror of Fate
+text={T}, Sacrifice Mirror of Fate: Choose up to seven face-up exiled cards you own. Exile all the cards from your library, then put the chosen cards on top of your library.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Palace Guard
+text=Palace Guard can block any number of creatures.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=4
+[/card]
+[card]
+name=Pithing Needle
+text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Sphinx Ambassador
+text=Flying -- Whenever Sphinx Ambassador deals combat damage to a player, search that player's library for a card, then that player names a card. If you searched for a creature card that isn't the named card, you may put it onto the battlefield under your control. Then that player shuffles his or her library.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=5
+[/card]
+[card]
+name=Stone Giant
+text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
+mana={2}{R}{R}
+type=Creature
+subtype=Giant
+power=3
+toughness=4
+[/card]
+[card]
+name=Telepathy
+text=Your opponents play with their hands revealed.
+mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Vampire Nocturnus
+text=Play with the top card of your library revealed. -- As long as the top card of your library is black, Vampire Nocturnus and other Vampire creatures you control get +2/+1 and have flying.
+mana={1}{B}{B}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=3
+[/card]
+[card]
+name=Warp World
+text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way onto the battlefield, then does the same for enchantment cards, then puts all cards revealed this way that weren't put onto the battlefield on the bottom of his or her library.
+mana={5}{R}{R}{R}
+type=Sorcery
+[/card]

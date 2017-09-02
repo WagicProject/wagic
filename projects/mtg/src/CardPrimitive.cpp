@@ -41,12 +41,11 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     if(!source)
         return;
     basicAbilities = source->basicAbilities;
-    origbasicAbilities = source->basicAbilities;
     LKIbasicAbilities = source->basicAbilities;
 
     for (size_t i = 0; i < source->types.size(); ++i)
         types.push_back(source->types[i]);
-        colors = source->colors;
+    colors = source->colors;
     manaCost.copy(source->getManaCost());
     //reducedCost.copy(source->getReducedManaCost());
     //increasedCost.copy(source->getIncreasedManaCost());
@@ -57,6 +56,11 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     formattedText = source->formattedText;
     setName(source->name);
 
+    setdoubleFaced(source->doubleFaced);
+    setAICustomCode(source->AICustomCode);
+    setCrewAbility(source->CrewAbility);
+    setPhasedOutAbility(source->PhasedOutAbility);
+    setModularValue(source->ModularValue);
     power = source->power;
     toughness = source->toughness;
     restrictions = source->restrictions ? source->restrictions->clone() : NULL;
@@ -78,7 +82,6 @@ CardPrimitive::~CardPrimitive()
 int CardPrimitive::init()
 {
     basicAbilities.reset();
-    origbasicAbilities.reset();
 
     types.clear();
 
@@ -107,6 +110,18 @@ bool CardPrimitive::isLand()
 bool CardPrimitive::isSpell()
 {
     return (!isCreature() && !isLand());
+}
+
+bool CardPrimitive::isPermanent()
+{
+    return (!isSorceryorInstant());
+}
+
+bool CardPrimitive::isSorceryorInstant()
+{
+    if(hasSubtype(Subtypes::TYPE_SORCERY)||hasSubtype(Subtypes::TYPE_INSTANT))
+        return true;
+    return false;
 }
 
 int CardPrimitive::dredge()
@@ -284,19 +299,23 @@ void CardPrimitive::setText(const string& value)
 * Instead, we format when requested, but only once, and cache the result.
 * To avoid memory to blow up, in exchange of the cached result, we erase the original string
 */
-const vector<string>& CardPrimitive::getFormattedText()
+const vector<string>& CardPrimitive::getFormattedText(bool noremove)
 {
     if (!text.size())
         return formattedText;
 
     std::string::size_type found = text.find_first_of("{}");
-    while (found != string::npos)
+    if(!noremove)
     {
-        text[found] = '/';
-        found = text.find_first_of("{}", found + 1);
+        while (found != string::npos)
+        {
+            text[found] = '/';
+            found = text.find_first_of("{}", found + 1);
+        }
     }
+    int defL = noremove?44:0;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
-    mFont->FormatText(text, formattedText);
+    mFont->FormatText(text, formattedText, defL);
 
     text = "";
 
@@ -317,6 +336,61 @@ void CardPrimitive::addMagicText(string value, string key)
     if (magicTexts[key].size())
         magicTexts[key].append("\n");
     magicTexts[key].append(value);
+}
+
+void CardPrimitive::setdoubleFaced(const string& value)
+{
+    doubleFaced = value;
+    std::transform(doubleFaced.begin(), doubleFaced.end(), doubleFaced.begin(), ::tolower);
+}
+
+const string& CardPrimitive::getdoubleFaced() const
+{
+    return doubleFaced;
+}
+
+void CardPrimitive::setAICustomCode(const string& value)
+{
+    AICustomCode = value;
+    std::transform(AICustomCode.begin(), AICustomCode.end(), AICustomCode.begin(), ::tolower);
+}
+
+const string& CardPrimitive::getAICustomCode() const
+{
+    return AICustomCode;
+}
+
+void CardPrimitive::setCrewAbility(const string& value)
+{
+    CrewAbility = value;
+    std::transform(CrewAbility.begin(), CrewAbility.end(), CrewAbility.begin(), ::tolower);
+}
+
+const string& CardPrimitive::getCrewAbility() const
+{
+    return CrewAbility;
+}
+
+void CardPrimitive::setPhasedOutAbility(const string& value)
+{
+    PhasedOutAbility = value;
+    std::transform(PhasedOutAbility.begin(), PhasedOutAbility.end(), PhasedOutAbility.begin(), ::tolower);
+}
+
+const string& CardPrimitive::getPhasedOutAbility() const
+{
+    return PhasedOutAbility;
+}
+
+void CardPrimitive::setModularValue(const string& value)
+{
+    ModularValue = value;
+    std::transform(ModularValue.begin(), ModularValue.end(), ModularValue.begin(), ::tolower);
+}
+
+const string& CardPrimitive::getModularValue() const
+{
+    return ModularValue;
 }
 
 void CardPrimitive::setName(const string& value)
@@ -424,6 +498,9 @@ uint8_t CardPrimitive::ConvertColorToBitMask(int inColor)
         break;
 
     case Constants::MTG_COLOR_LAND:
+        value = kColorBitMask_Land;
+        break;
+    case Constants::MTG_COLOR_WASTE://the true colorless mana shares the kbitmask of land. kbitmask dictates the color of the quad(no image boarder), and the symbol. nothing more.
         value = kColorBitMask_Land;
         break;
 

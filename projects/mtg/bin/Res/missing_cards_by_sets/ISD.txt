@@ -1,0 +1,90 @@
+[card]
+name=Back from the Brink
+text=Exile a creature card from your graveyard and pay its mana cost: Put a token onto the battlefield that's a copy of that card. Activate this ability only any time you could cast a sorcery.
+mana={4}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Blazing Torch
+text=Equipped creature can't be blocked by Vampires or Zombies. -- Equipped creature has "{T}, Sacrifice Blazing Torch: Blazing Torch deals 2 damage to target creature or player." -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Cellar Door
+text={3}, {T}: Target player puts the bottom card of his or her library into his or her graveyard. If it's a creature card, you put a 2/2 black Zombie creature token onto the battlefield.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Divine Reckoning
+text=Each player chooses a creature he or she controls. Destroy the rest. -- Flashback {5}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Essence of the Wild
+text=Creatures you control enter the battlefield as a copy of Essence of the Wild.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Avatar
+power=6
+toughness=6
+[/card]
+[card]
+name=Frightful Delusion
+text=Counter target spell unless its controller pays {1}. That player discards a card.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Gutter Grime
+text=Whenever a nontoken creature you control dies, put a slime counter on Gutter Grime, then put a green Ooze creature token onto the battlefield with "This creature's power and toughness are each equal to the number of slime counters on Gutter Grime."
+mana={4}{G}
+type=Enchantment
+[/card]
+[card]
+name=Harvest Pyre
+text=As an additional cost to cast Harvest Pyre, exile X cards from your graveyard. -- Harvest Pyre deals X damage to target creature.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Heretic's Punishment
+text={3}{R}: Choose target creature or player, then put the top three cards of your library into your graveyard.Heretic's Punishment deals damage to that creature or player equal to the highest converted mana cost among those cards.
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
+name=Inquisitor's Flail
+text=If equipped creature would deal combat damage, it deals double that damage instead. -- If another creature would deal combat damage to equipped creature, it deals double that damage to equipped creature instead. -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Liliana of the Veil
+text=+1: Each player discards a card. -- -2: Target player sacrifices a creature. -- -6: Separate all permanents target player controls into two piles. That player sacrifices all permanents in the pile of his or her choice.
+mana={1}{B}{B}
+type=Planeswalker
+subtype=Liliana
+[/card]
+[card]
+name=Moonmist
+text=Transform all Humans. Prevent all combat damage that would be dealt this turn by creatures other than Werewolves and Wolves. (Only double-faced cards can be transformed.)
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Nevermore
+text=As Nevermore enters the battlefield, name a nonland card. -- The named card can't be cast.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Runic Repetition
+text=Return target exiled card with flashback you own to your hand.
+mana={2}{U}
+type=Sorcery
+[/card]

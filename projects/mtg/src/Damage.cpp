@@ -52,7 +52,10 @@ int Damage::resolve()
     damage = ev->damage->damage;
     target = ev->damage->target;
     if (!damage)
+    {
+        delete (e);
         return 0;
+    }
 
     //asorbing effects for cards controller-----------
 
@@ -181,6 +184,8 @@ int Damage::resolve()
         if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
             _target->poisonCount += damage;//this will be changed to poison counters.
         _target->damageCount += damage;
+        if(typeOfDamage == 2)
+            _target->nonCombatDamage += damage;
         if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
         {
             vector<string> values = MTGAllCards::getCreatureValuesById();
@@ -199,6 +204,8 @@ int Damage::resolve()
         if(!_target->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
             a = target->dealDamage(damage);
         target->damageCount += damage;
+        if(typeOfDamage == 2)
+            target->nonCombatDamage += damage;
         if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
         {
             vector<string> values = MTGAllCards::getCreatureValuesById();
@@ -234,6 +241,8 @@ int Damage::resolve()
         else
             a = target->dealDamage(damage);
         target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
+        if(typeOfDamage == 2)
+            target->nonCombatDamage += damage;
         if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE){
             ((MTGCardInstance*)target)->wasDealtDamage = true;
             ((MTGCardInstance*)source)->damageToCreature = true;
@@ -251,7 +260,9 @@ int Damage::resolve()
             target->lifeLostThisTurn += damage;
             if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
             {
-                vector<string> values = MTGAllCards::getCreatureValuesById();
+                source->controller()->dealsdamagebycombat = 1; // for restriction check
+                ((MTGCardInstance*)source)->combatdamageToOpponent = true; //check
+                vector<string> values = MTGAllCards::getCreatureValuesById();//getting a weird crash here. rarely.
                 for (size_t i = 0; i < values.size(); ++i)
                 {
                     if ( source->hasSubtype( values[i] ) && find(source->controller()->prowledTypes.begin(), source->controller()->prowledTypes.end(), values[i])==source->controller()->prowledTypes.end() )

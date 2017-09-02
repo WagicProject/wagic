@@ -47,11 +47,11 @@ auto=maxPlay(land)1
 
 
 #Lands Mana Rules
-auto=lord(Plains[land]|MyBattlefield) {T}:Add{W}
-auto=lord(Island[land]|MyBattlefield) {T}:Add{U}
-auto=lord(Swamp[land]|MyBattlefield) {T}:Add{B}
-auto=lord(Mountain[land]|MyBattlefield) {T}:Add{R}
-auto=lord(Forest[land]|MyBattlefield) {T}:Add{G}
+auto=lord(Plains[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{W}
+auto=lord(Island[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{U}
+auto=lord(Swamp[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{B}
+auto=lord(Mountain[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{R}
+auto=lord(Forest[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{G}
 
 
 #Mana Empties from manapool at the end of each phase

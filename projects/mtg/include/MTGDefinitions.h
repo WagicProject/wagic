@@ -98,7 +98,7 @@ class Constants
       MTG_COLOR_WHITE = 5,
       MTG_COLOR_WASTE = 6,
       MTG_COLOR_LAND = 7,
-	  
+      
 
       MTG_NB_COLORS = 8,
 
@@ -248,10 +248,36 @@ class Constants
       CANTPAYLIFE = 126,
       CANTBESACRIFIED = 127,
       SKULK = 128,
-	  MENACE = 129,
-	  NOSOLO = 130,//cant attack alone
-	  MUSTBLOCK = 131,//blocks each turn
-	  NB_BASIC_ABILITIES = 132,
+      MENACE = 129,
+      NOSOLO = 130,//cant attack alone
+      MUSTBLOCK = 131,//blocks each turn
+      DETHRONE = 132,
+      OVERLOAD = 133,
+      SHACKLER = 134,
+      FLYERSONLY = 135,//can attack only if it has flying
+      TEMPFLASHBACK = 136,
+      NOLEGENDRULE =137,
+      CANTTRANSFORM =138,
+      ASFLASH =139,
+      CONDUITED = 140,
+      CANBLOCKTAPPED = 141,
+      OPPNOMAXHAND = 142,
+      CANTCREW = 143,
+      HIDDENFACE = 144,
+      ANYTYPEOFMANA = 145,
+      NECROED = 146,
+      CANTPWATTACK = 147,
+      CANPLAYFROMLIBRARYTOP = 148,//all
+      CANPLAYLANDTOPLIBRARY = 149,//land
+      CANPLAYCREATURETOPLIBRARY = 150,//creature
+      CANPLAYARTIFACTTOPLIBRARY = 151,//artifact
+      CANPLAYINSTANTSORCERYTOPLIBRARY = 152,//instantorsorcery
+      SHOWFROMTOPLIBRARY = 153,
+      SHOWOPPONENTTOPLIBRARY = 154,
+      TOTEMARMOR = 155,
+      DISCARDTOPLAYBYOPPONENT = 156,
+      MODULAR = 157,
+      NB_BASIC_ABILITIES = 158,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
@@ -312,7 +338,7 @@ class Constants
         CAST_WITH_RETRACE = 6,
         CAST_WITH_MORPH = 7,
         CAST_WITH_SUSPEND = 8,
-		CAST_WITH_BESTOW = 9,
+        CAST_WITH_BESTOW = 9,
 
         CAST_ALTERNATE = -1, //matches all alternate costs, including itself
         CAST_ALL = -2, // matches everything except NOT_CAST

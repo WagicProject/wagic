@@ -5,6 +5,7 @@
 #include "MTGGameZones.h"
 #include "Damage.h"
 #include "PhaseRing.h"
+#include "AllAbilities.h"
 
 WEvent::WEvent(int type) :
     type(type)
@@ -27,6 +28,11 @@ WEventLife::WEventLife(Player * player,int amount) :
 }
 
 WEventDamageStackResolved::WEventDamageStackResolved() :
+    WEvent()
+{
+}
+
+WEventGameStateBasedChecked::WEventGameStateBasedChecked() :
     WEvent()
 {
 }
@@ -56,6 +62,7 @@ WEvent(CHANGE_PHASE), from(from), to(to)
 WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after) :
     WEventCardUpdate(card), before(before), after(after)
 {
+    noTrigger = false;
 }
 
 WEventCardTappedForMana::WEventCardTappedForMana(MTGCardInstance * card, bool before, bool after) :
@@ -114,6 +121,11 @@ WEventCardUpdate(card)
 {
 }
 
+WEventCardExerted::WEventCardExerted(MTGCardInstance * card) :
+WEventCardUpdate(card)
+{
+}
+
 WEventVampire::WEventVampire(MTGCardInstance * card,MTGCardInstance * source,MTGCardInstance * victem) :
     WEventCardUpdate(card),source(source),victem(victem)
 {
@@ -122,9 +134,6 @@ WEventVampire::WEventVampire(MTGCardInstance * card,MTGCardInstance * source,MTG
 WEventTarget::WEventTarget(MTGCardInstance * card,MTGCardInstance * source) :
     WEventCardUpdate(card),card(card),source(source)
 {
-    card->cardistargetted = 1;
-	if(source)
-    source->cardistargetter = 1;
 }
 
 WEventCardChangeType::WEventCardChangeType(MTGCardInstance * card, int type, bool before, bool after) :
@@ -230,8 +239,51 @@ WEventCardControllerChange::WEventCardControllerChange(MTGCardInstance * card) :
 {
 }
 
+WEventCardPhasesOut::WEventCardPhasesOut(MTGCardInstance * card, int turn) :
+    WEventCardUpdate(card)
+{
+    if(card->getPhasedOutAbility().size())
+    {
+        AbilityFactory af(card->getObserver());
+        MTGAbility * a = af.parseMagicLine(card->getPhasedOutAbility(), card->getObserver()->mLayers->actionLayer()->getMaxId(), NULL, card->clone());
+        MTGAbility * poA = a->clone();
+        SAFE_DELETE(a);
+        poA->oneShot = true;
+        poA->canBeInterrupted = false;
+        MTGAbility *gatg = NEW GenericAddToGame(card->getObserver(), card->getObserver()->mLayers->actionLayer()->getMaxId(), card,NULL,poA->clone());
+        SAFE_DELETE(poA);
+        gatg->fireAbility();
+        //SAFE_DELETE(gatg);
+    }
+}
+
+WEventCardPhasesIn::WEventCardPhasesIn(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardFaceUp::WEventCardFaceUp(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardTransforms::WEventCardTransforms(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardCopiedACard::WEventCardCopiedACard(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCombatStepChange::WEventCombatStepChange(CombatStep step) :
     WEvent(), step(step)
+{
+}
+
+WEventplayerEnergized::WEventplayerEnergized(Player * player, int nb_count) :
+    player(player), nb_count(nb_count)
 {
 }
 ;
@@ -330,6 +382,12 @@ Targetable * WEventCardCycle::getTarget(int target)
     return NULL;
 }
 
+Targetable * WEventCardExerted::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
 Targetable * WEventCardAttackedNotBlocked::getTarget(int target)
 {
     if (target) return card;
@@ -393,6 +451,42 @@ Targetable * WEventCardEquipped::getTarget(int target)
 Targetable * WEventCardControllerChange::getTarget(int target)
 {
     if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardPhasesOut::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardPhasesIn::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardFaceUp::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardTransforms::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardCopiedACard::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventplayerEnergized::getTarget(Player * player)
+{
+    if (player) return player;
     return NULL;
 }
 

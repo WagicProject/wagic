@@ -81,6 +81,7 @@ class GameObserver{
   int oldGamePhase;
   TargetChooser * targetChooser;
   CardDisplay * OpenedDisplay;
+  GuiGameZone * guiOpenDisplay;
   DuelLayers * mLayers;
   ReplacementEffects *replacementEffects;
   vector<Player *> players; //created outside
@@ -123,6 +124,7 @@ class GameObserver{
   void gameStateBasedEffects();
   void enchantmentStatus();
   void Affinity();
+  bool AffinityNeedsUpdate;
   void addObserver(MTGAbility * observer);
   bool removeObserver(ActionElement * observer);
   void startGame(GameType, Rules * rules);
@@ -131,6 +133,8 @@ class GameObserver{
   int isInPlay(MTGCardInstance *  card);
   int isInGrave(MTGCardInstance *  card);
   int isInExile(MTGCardInstance *  card);
+  int isInHand(MTGCardInstance *  card);
+  int isInLibrary(MTGCardInstance *  card);
   virtual void Update(float dt);
   void Render();
   void ButtonPressed(PlayGuiObject*);
@@ -138,6 +142,7 @@ class GameObserver{
 
   int receiveEvent(WEvent * event);
   bool connectRule;
+  bool LPWeffect;
 
   void logAction(Player* player, const string& s="");
   void logAction(int playerId, const string& s="") {

@@ -10,6 +10,7 @@ manapool:{2}
 [PLAYER2]
 [DO]
 Armillary Sphere
+choice 0
 island
 forest
 [ASSERT]

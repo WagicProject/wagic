@@ -58,6 +58,10 @@ public:
     int Angel[2];
     bool dragonbonusgranted[2];
     int dragon[2];
+    bool eldrazibonusgranted[2];
+    int eldrazi[2];
+    bool werewolfbonusgranted[2];
+    int werewolf[2];
 
     int receiveEvent(WEvent * event);
     void grantAward(string awardName,int amount);
@@ -69,6 +73,8 @@ public:
 
 class MTGPutInPlayRule: public PermanentAbility
 {
+protected:
+    string defaultPlayName;
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
@@ -76,8 +82,8 @@ public:
     MTGPutInPlayRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        if(game && game->gameType() == GAME_TYPE_MOMIR)
-            return "Play Land";
+        if(defaultPlayName.size())
+            return defaultPlayName.c_str();
         return "Cast Card Normally";
     }
     virtual MTGPutInPlayRule * clone() const;
@@ -146,6 +152,21 @@ public:
     virtual MTGFlashBackRule * clone() const;
 };
 
+class MTGTempFlashBackRule: public MTGAlternativeCostRule
+{
+public:
+
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGTempFlashBackRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "Flashback Manacost";
+    }
+    virtual MTGTempFlashBackRule * clone() const;
+};
+
 class MTGRetraceRule: public MTGAlternativeCostRule
 {
 public:
@@ -209,15 +230,15 @@ public:
 class MTGBestowRule : public MTGAlternativeCostRule
 {
 public:
-	int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
-	int reactToClick(MTGCardInstance * card);
-	virtual ostream& toString(ostream& out) const;
-	MTGBestowRule(GameObserver* observer, int _id);
-	const string getMenuText()
-	{
-		return "Bestow";
-	}
-	virtual MTGBestowRule * clone() const;
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGBestowRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "Bestow";
+    }
+    virtual MTGBestowRule * clone() const;
 };
 
 
@@ -249,17 +270,14 @@ public:
 class MTGAttackRule: public PermanentAbility, public Limitor
 {
 public:
- 
+    string attackmenu;
     virtual bool select(Target*);
     virtual bool greyout(Target*);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGAttackRule(GameObserver* observer, int _id);
-    const string getMenuText()
-    {
-        return "Attacker";
-    }
+    const string getMenuText();
     int receiveEvent(WEvent * event);
     virtual MTGAttackRule * clone() const;
 };
@@ -268,16 +286,13 @@ public:
 class MTGPlaneswalkerAttackRule: public PermanentAbility, public Limitor
 {
 public:
- 
+    string attackpwmenu;
     virtual bool select(Target*);
     virtual bool greyout(Target*);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     MTGPlaneswalkerAttackRule(GameObserver* observer, int _id);
-    const string getMenuText()
-    {
-        return "Attack Planeswalker";
-    }
+    const string getMenuText();
     virtual MTGPlaneswalkerAttackRule * clone() const;
 };
 class AAPlaneswalkerAttacked: public InstantAbility
@@ -400,12 +415,40 @@ public:
     int receiveEvent(WEvent * event);
     virtual MTGTokensCleanup * clone() const;
 };
-
+//New Legend Rule
+class MTGNewLegend: public PermanentAbility
+{
+public:
+    TargetChooser * tcL;
+    MTGAbility * Legendrule;
+    MTGAbility * LegendruleAbility;
+    MTGAbility * LegendruleGeneric;
+    //vector<MTGCardInstance *> list;
+    MTGNewLegend(GameObserver* observer, int _id);
+    int CheckLegend(MTGCardInstance * card);
+    void MoveLegend(MTGCardInstance * card);
+    int receiveEvent(WEvent * event);
+    virtual MTGNewLegend * clone() const;
+};
+//New Planeswalker Rule
+class MTGNewPlaneswalker: public PermanentAbility
+{
+public:
+    TargetChooser * tcP;
+    MTGAbility * PWrule;
+    MTGAbility * PWruleAbility;
+    MTGAbility * PWruleGeneric;
+    //vector<MTGCardInstance *> list;
+    MTGNewPlaneswalker(GameObserver* observer, int _id);
+    int CheckPW(MTGCardInstance * card);
+    void MovePW(MTGCardInstance * card);
+    int receiveEvent(WEvent * event);
+    virtual MTGNewPlaneswalker * clone() const;
+};
 /*
- * Rule 420.5e (Legend Rule)
- * If two or more legendary permanents with the same name are in play, all are put into their
- * owners' graveyards. This is called the "legend rule." If only one of those permanents is
- * legendary, this rule doesn't apply.
+ * 704.5k If a player controls two or more legendary permanents with the same name, 
+ * that player chooses one of them, and the rest are put into their owners’ graveyards. 
+ * This is called the “legend rule.” 
  */
 class MTGLegendRule: public ListMaintainerAbility
 {
@@ -452,7 +495,8 @@ public:
 
     int alreadyplayed;
     MTGAllCards * collection;
-    MTGCardInstance * genCreature(int id);
+    MTGAbility * tokCreate;
+    MTGCardInstance * genCreature(int id, Player * p);
     void Update(float dt);
     void Render();
     MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _collection);

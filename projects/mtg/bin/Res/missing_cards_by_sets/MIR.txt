@@ -1,0 +1,380 @@
+[card]
+name=Acidic Dagger
+text={4}, {T}: Whenever target creature deals combat damage to a non-Wall creature this turn, destroy that non-Wall creature. When the targeted creature leaves the battlefield this turn, sacrifice Acidic Dagger. Activate this ability only before blockers are declared.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Armor of Thorns
+text=You may cast Armor of Thorns as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant nonblack creature -- Enchanted creature gets +2/+2.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Barbed-Back Wurm
+text={B}: Target green creature blocking Barbed-Back Wurm gets -1/-1 until end of turn.
+mana={4}{B}
+type=Creature
+subtype=Wurm
+power=4
+toughness=3
+[/card]
+[card]
+name=Bazaar of Wonders
+text=When Bazaar of Wonders enters the battlefield, exile all cards from all graveyards. -- Whenever a player casts a spell, counter it if a card with the same name is in a graveyard or a nontoken permanent with the same name is on the battlefield.
+mana={3}{U}{U}
+type=World Enchantment
+[/card]
+[card]
+name=Benevolent Unicorn
+text=If a spell would deal damage to a creature or player, it deals that much damage minus 1 to that creature or player instead.
+mana={1}{W}
+type=Creature
+subtype=Unicorn
+power=1
+toughness=2
+[/card]
+[card]
+name=Blind Fury
+text=Cast Blind Fury only before the combat damage step. -- All creatures lose trample until end of turn. If a creature would deal combat damage to a creature this turn, it deals double that damage to that creature instead.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Bone Mask
+text={2}, {T}: The next time a source of your choice would deal damage to you this turn, prevent that damage. Exile cards from the top of your library equal to the damage prevented this way.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Celestial Dawn
+text=Lands you control are Plains. -- Nonland cards you own that aren't on the battlefield, spells you control, and nonland permanents you control are white. -- You may spend white mana as though it were mana of any color. You may spend other mana only as though it were colorless mana.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Circle of Despair
+text={1}, Sacrifice a creature: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
+mana={1}{W}{B}
+type=Enchantment
+[/card]
+[card]
+name=Cycle of Life
+text=Return Cycle of Life to its owner's hand: Target creature you cast this turn becomes 0/1 until your next upkeep. At the beginning of your next upkeep, put a +1/+1 counter on that creature.
+mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Dazzling Beauty
+text=Cast Dazzling Beauty only during the declare blockers step. -- Target unblocked attacking creature becomes blocked. (This spell works on unblockable creatures.) -- Draw a card at the beginning of the next turn's upkeep.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Emberwilde Djinn
+text=Flying --  -- At the beginning of each player's upkeep, that player may pay {R}{R} or 2 life. If he or she does, the player gains control of Emberwilde Djinn.
+mana={2}{R}{R}
+type=Creature
+subtype=Djinn
+power=5
+toughness=4
+[/card]
+[card]
+name=Energy Vortex
+text=As Energy Vortex enters the battlefield, choose an opponent. -- At the beginning of your upkeep, remove all energy counters from Energy Vortex. -- At the beginning of the chosen player's upkeep, Energy Vortex deals 3 damage to that player unless he or she pays {1} for each energy counter on Energy Vortex. -- {X}: Put X energy counters on Energy Vortex. Activate this ability only during your upkeep.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Flash
+text=You may put a creature card from your hand onto the battlefield. If you do, sacrifice it unless you pay its mana cost reduced by up to {2}.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Grave Servitude
+text=You may cast Grave Servitude as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +3/-1 and is black.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Grinning Totem
+text={2}, {T}, Sacrifice Grinning Totem: Search target opponent's library for a card and exile it. Then that player shuffles his or her library. Until the beginning of your next upkeep, you may play that card. At the beginning of your next upkeep, if you haven't played it, put it into its owner's graveyard.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Hakim, Loreweaver
+text=Flying -- {U}{U}: Return target Aura card from your graveyard to the battlefield attached to Hakim, Loreweaver. Activate this ability only during your upkeep and only if Hakim isn't enchanted. -- {U}{U}, {T}: Destroy all Auras attached to Hakim.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=4
+[/card]
+[card]
+name=Hall of Gemstone
+text=At the beginning of each player's upkeep, that player chooses a color. Until end of turn, lands tapped for mana produce mana of the chosen color instead of any other color.
+mana={1}{G}{G}
+type=World Enchantment
+[/card]
+[card]
+name=Illicit Auction
+text=Each player may bid life for control of target creature. You start the bidding with a bid of 0. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and gains control of the creature. (This effect lasts indefinitely.)
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Jabari's Influence
+text=Cast Jabari's Influence only after combat. -- Gain control of target nonartifact, nonblack creature that attacked you this turn and put a -1/-0 counter on it.
+mana={3}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Kaervek's Torch
+text=As long as Kaervek's Torch is on the stack, spells that target it cost {2} more to cast. -- Kaervek's Torch deals X damage to target creature or player.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Lightning Reflexes
+text=You may cast Lightning Reflexes as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +1/+0 and has first strike.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Mangara's Blessing
+text=You gain 5 life. -- When a spell or ability an opponent controls causes you to discard Mangara's Blessing, you gain 2 life, and you return Mangara's Blessing from your graveyard to your hand at the beginning of the next end step.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Mangara's Tome
+text=When Mangara's Tome enters the battlefield, search your library for five cards, exile them in a face-down pile, and shuffle that pile. Then shuffle your library. -- {2}: The next time you would draw a card this turn, instead put the top card of the exiled pile into its owner's hand.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Meddle
+text=If target spell has only one target and that target is a creature, change that spell's target to another creature.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Mind Bend
+text=Change the text of target permanent by replacing all instances of one color word with another or one basic land type with another. (For example, you may change "nonblack creature" to "nongreen creature" or "forestwalk" to "islandwalk." This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Noble Elephant
+text=Trample; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={3}{W}
+type=Creature
+subtype=Elephant
+power=2
+toughness=2
+[/card]
+[card]
+name=Null Chamber
+text=As Null Chamber enters the battlefield, you and an opponent each name a card other than a basic land card. -- The named cards can't be played.
+mana={3}{W}
+type=World Enchantment
+[/card]
+[card]
+name=Phyrexian Dreadnought
+text=Trample -- When Phyrexian Dreadnought enters the battlefield, sacrifice it unless you sacrifice any number of creatures with total power 12 or greater.
+mana={1}
+type=Artifact Creature
+subtype=Dreadnought
+power=12
+toughness=12
+[/card]
+[card]
+name=Phyrexian Purge
+text=Destroy any number of target creatures. -- Phyrexian Purge costs 3 life more to cast for each target.
+mana={2}{B}{R}
+type=Sorcery
+[/card]
+[card]
+name=Political Trickery
+text=Exchange control of target land you control and target land an opponent controls. (This effect lasts indefinitely.)
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Preferred Selection
+text=At the beginning of your upkeep, look at the top two cards of your library. You may sacrifice Preferred Selection and pay {2}{G}{G}. If you do, put one of those cards into your hand. If you don't, put one of those cards on the bottom of your library.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Prismatic Circle
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- As Prismatic Circle enters the battlefield, choose a color. -- {1}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Psychic Transfer
+text=If the difference between your life total and target player's life total is 5 or less, exchange life totals with that player.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Purgatory
+text=Whenever a nontoken creature is put into your graveyard from the battlefield, exile that card. -- At the beginning of your upkeep, you may pay {4} and 2 life. If you do, return a card exiled with Purgatory to the battlefield.
+mana={2}{W}{B}
+type=Enchantment
+[/card]
+[card]
+name=Reflect Damage
+text=The next time a source of your choice would deal damage this turn, that damage is dealt to that source's controller instead.
+mana={3}{R}{W}
+type=Instant
+[/card]
+[card]
+name=Reign of Chaos
+text=Choose one — Destroy target Plains and target white creature; or destroy target Island and target blue creature.
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Sabertooth Cobra
+text=Whenever Sabertooth Cobra deals damage to a player, he or she gets a poison counter. That player gets another poison counter at the beginning of his or her next upkeep unless he or she pays {2} before that turn. (A player with ten or more poison counters loses the game.)
+mana={2}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=2
+[/card]
+[card]
+name=Sand Golem
+text=When a spell or ability an opponent controls causes you to discard Sand Golem, return Sand Golem from your graveyard to the battlefield with a +1/+1 counter on it at the beginning of the next end step.
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+name=Sapphire Charm
+text=Choose one — Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Shadowbane
+text=The next time a source of your choice would deal damage to you and/or creatures you control this turn, prevent that damage. If damage from a black source is prevented this way, you gain that much life.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Shallow Grave
+text=Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Sirocco
+text=Target player reveals his or her hand. For each blue instant card revealed this way, that player discards that card unless he or she pays 4 life.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Soar
+text=You may cast Soar as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+1 and has flying.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Soul Echo
+text=Soul Echo enters the battlefield with X echo counters on it. -- You don't lose the game for having 0 or less life. -- At the beginning of your upkeep, sacrifice Soul Echo if there are no echo counters on it. Otherwise, target opponent may choose that for each 1 damage that would be dealt to you until your next upkeep, you remove an echo counter from Soul Echo instead.
+mana={X}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Spatial Binding
+text=Pay 1 life: Until your next upkeep, target permanent can't phase out.
+mana={U}{B}
+type=Enchantment
+[/card]
+[card]
+name=Superior Numbers
+text=Superior Numbers deals damage to target creature equal to the number of creatures you control in excess of the number of creatures target opponent controls.
+mana={G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Teferi's Imp
+text=Flying -- Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- Whenever Teferi's Imp phases out, discard a card. -- Whenever Teferi's Imp phases in, draw a card.
+mana={2}{U}
+type=Creature
+subtype=Imp
+power=1
+toughness=1
+[/card]
+[card]
+name=Teremko Griffin
+text=Flying; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+[/card]
+[card]
+name=Torrent of Lava
+text=Torrent of Lava deals X damage to each creature without flying. -- As long as Torrent of Lava is on the stack, each creature has "{T}: Prevent the next 1 damage that would be dealt to this creature by Torrent of Lava this turn."
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Urborg Panther
+text={B}, Sacrifice Urborg Panther: Destroy target creature blocking Urborg Panther. -- Sacrifice a creature named Feral Shadow, a creature named Breathstealer, and Urborg Panther: Search your library for a card named Spirit of the Night and put that card onto the battlefield. Then shuffle your library.
+mana={2}{B}
+type=Creature
+subtype=Nightstalker Cat
+power=2
+toughness=2
+[/card]
+[card]
+name=Wall of Corpses
+text=Defender (This creature can't attack.) -- {B}, Sacrifice Wall of Corpses: Destroy target creature Wall of Corpses is blocking.
+mana={1}{B}
+type=Creature
+subtype=Wall
+power=0
+toughness=2
+[/card]
+[card]
+name=Ward of Lights
+text=You may cast Ward of Lights as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- As Ward of Lights enters the battlefield, choose a color. -- Enchanted creature has protection from the chosen color. This effect doesn't remove Ward of Lights.
+mana={W}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Warping Wurm
+text=Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- At the beginning of your upkeep, Warping Wurm phases out unless you pay {2}{G}{U}. -- When Warping Wurm phases in, put a +1/+1 counter on it.
+mana={2}{G}{U}
+type=Creature
+subtype=Wurm
+power=1
+toughness=1
+[/card]
+[card]
+name=Yare
+text=Target creature defending player controls gets +3/+0 until end of turn. That creature can block up to two additional creatures this turn.
+mana={2}{W}
+type=Instant
+[/card]

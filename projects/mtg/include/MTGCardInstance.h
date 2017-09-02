@@ -55,6 +55,7 @@ public:
     Pos* view;
     int X;
     int castX;
+    int setX;
     int alternateCostPaid[ManaCost::MANA_PAID_WITH_BESTOW + 1]; 
     int paymenttype;
     int castMethod; /* Tells if the card reached its current zone by being cast or not (brought into the zone by an effect). non 0 == cast, 0 == not cast */
@@ -63,9 +64,13 @@ public:
     int equipment;
     int auras;
     bool wasDealtDamage;
+    bool combatdamageToOpponent;
     bool damageToOpponent;
     bool damageToController;
     bool damageToCreature;
+    bool isProvoked;
+    MTGCardInstance * ProvokeTarget;
+    MTGCardInstance * Provoker;
     bool mPropertiesChangedSinceLastUpdate;
     int reduxamount;
     int flanked;
@@ -85,17 +90,22 @@ public:
     bool blinked;
     bool isExtraCostTarget;
     bool morphed;
+    bool exerted;
     bool turningOver;
     bool isMorphed;
     bool isFlipped;
+    string MeldedFrom;
     bool isPhased;
     bool isCascaded;
     int phasedTurn;
+    bool handEffects;
     bool graveEffects;
     bool exileEffects;
     bool suspended;
     bool miracle;
-	bool isBestowed;
+    bool hasCopiedToken;
+    bool isBestowed;
+    bool isFacedown;
     int chooseacolor;
     string chooseasubtype;
     int coinSide;//1 = tails
@@ -106,16 +116,24 @@ public:
     int notblocked;
     int fresh;
     int MaxLevelUp;
-	int CountedObjects;
+    int CountedObjects;
+    int CountedObjectsB;
     int kicked;
     int dredge;
+    int zpos;
     bool isDualWielding;
     bool stillNeeded;
+    Player * discarderOwner;
     Player * lastController;
+    Player * previousController;
     MTGGameZone * getCurrentZone();
     MTGGameZone * previousZone;
+    MTGCardInstance * tokCard;
     MTGCardInstance * previous;
     MTGCardInstance * next;
+    MTGCardInstance * auraParent;
+    MTGAbility * TokenAndAbility;
+    MTGAbility * GrantedAndAbility;
     int doDamageTest;
     bool skipDamageTestOnce;
     int summoningSickness;
@@ -124,6 +142,7 @@ public:
     ManaCost * getReducedManaCost();
     ManaCost * getIncreasedManaCost();
     bool matchesCastFilter(int castMethod);
+    bool hasTotemArmor();
 
     // The recommended method to test for summoning Sickness !
     int hasSummoningSickness();
@@ -151,22 +170,26 @@ public:
     MTGCardInstance * defenser;
     list<MTGCardInstance *>blockers;
     int attacker;
+    int willattackplayer;
+    int willattackpw;
     int toggleDefenser(MTGCardInstance * opponent);
     int raiseBlockerRankOrder(MTGCardInstance * blocker);
 
     //Returns rank of the card in blockers if it is a blocker of this (starting at 1), 0 otherwise
     int getDefenserRank(MTGCardInstance * blocker);
-    int toggleAttacker();
+    int toggleAttacker(bool pw = false);
     MTGCardInstance * banding; // If belongs to a band when attacking
     int canBlock();
     int canBlock(MTGCardInstance * opponent);
-    int canAttack();
+    int canAttack( bool pwcheck = false );
     int isAttacker();
     Targetable * isAttacking;
     MTGCardInstance * storedCard;
     MTGCardInstance * myPair;
     MTGCardInstance * createSnapShot();
     MTGCardInstance * storedSourceCard;
+    MTGCardInstance * shackled;
+    MTGCardInstance * seized;
     MTGCardInstance * isDefenser();
     int initAttackersDefensers();
     MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);
@@ -184,8 +207,10 @@ public:
     Player * controller();
 
     virtual ~MTGCardInstance();
-    int bury();
+    int totem( bool noregen = false );
+    int toGrave( bool forced = false );
     int destroy();
+    int destroyNoRegen();
 
     int addToToughness(int value);
     int setToughness(int value);
@@ -220,7 +245,7 @@ public:
     int isUntapping();
     int isTapped();
     void untap();
-    void tap();
+    void tap(bool sendNoEvent = false);
     void attemptUntap();
 
     //cda and other func
@@ -240,6 +265,8 @@ public:
     int getCurrentToughness();
     int LKIpower;
     int LKItoughness;
+    int countDuplicateCardNames();
+    int countDuplicateCardTypes();
     void cdaPT(int p = 0, int t = 0);
     bool isCDA;
     void switchPT(bool apply = false);
@@ -250,15 +277,15 @@ public:
     bool bypassTC;
     bool discarded;
     int copiedID;
-    int modifiedbAbi;
+    int copiedSetID;
+    bool canPlayFromLibrary();
     bool StackIsEmptyandSorcerySpeed();
-    bool isTargetted();
-    int cardistargetted;
-    bool isTargetter();
-    int cardistargetter;
+    int forcedBorderA;
+    int forcedBorderB;
     int myconvertedcost;
-    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false);
+    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false, bool bestow = false);
     int countTrini;
+    bool anymanareplacement;
     vector<MTGCardInstance*>imprintedCards;
     int attackCost;
     int attackCostBackup;
@@ -271,11 +298,15 @@ public:
     int imprintR;
     int imprintB;
     int imprintW;
+    int bushidoPoints;
+    int modularPoints;
+    int canproduceMana(int color = -1);
+    int entersBattlefield;
     string currentimprintName;
     vector<string>imprintedNames;
 
-	MTGCardInstance * revealedLast;//last card revealed by a ability this card owns.
-	bool MadnessPlay;
+    MTGCardInstance * revealedLast;//last card revealed by a ability this card owns.
+    bool MadnessPlay;
     void eventattacked();
     void eventattackedAlone();
     void eventattackednotblocked();

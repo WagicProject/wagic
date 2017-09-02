@@ -1,0 +1,39 @@
+#Tireless Tracker counters vs Graf Mole opponents
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Concordant Crossroads, Swamp, Tireless Tracker, Mortician Beetle
+library:Mountain
+hand:Plains
+[PLAYER2]
+inplay:Graf Mole
+[DO]
+Plains
+Swamp
+Plains
+Clue
+#Tireless Tracker gets a counter
+#Mortician sacrificed event must not trigger
+#Graf Mole in opponents must not trigger and his life must not change
+#begins
+next
+#attack
+next
+Tireless Tracker
+Mortician Beetle
+next
+#damage
+next
+#end
+eot
+#untap
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Concordant Crossroads, Swamp, Tireless Tracker, Plains, Mortician Beetle
+hand:Mountain
+life:20
+[PLAYER2]
+inplay:Graf Mole
+life:15
+[END]

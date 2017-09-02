@@ -10,6 +10,7 @@ unlock_condition=type(land|myBattlefield)~equalto~8
 [award]
 name=Hermit Druid Mode
 id=prx_timreh
+unlock_img=hermit_unlocked.png
 unlock_text=Hermit Druid Basic Unlocked
 trophyroom_text=Won with less than 10 lands.
 unlock_condition=type(land|myBattlefield)~lessthan~10
@@ -18,6 +19,7 @@ unlock_condition=type(land|myBattlefield)~lessthan~10
 [award]
 name=Stone Hewer Mode
 id=prx_rewehenots
+unlock_img=stonehewer_unlocked.png
 unlock_text=Stone Hewer Basic Unlocked
 teaser=Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)
 trophyroom_text=Won with more than 10 equipments.
@@ -27,6 +29,7 @@ unlock_condition=type(equipment|Battlefield)~morethan~10
 [award]
 name=Blitzkrieg Mode
 id=prx_geirkztilb
+unlock_img=blitz_unlocked.png
 unlock_text=Blitzkrieg Mode Unlocked
 teaser=Like to play fast? Unlock Blitzkrieg Mode :)
 trophyroom_text=Won with more than 18 lands.

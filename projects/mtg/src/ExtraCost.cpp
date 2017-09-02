@@ -65,7 +65,7 @@ void ExtraCost::Render()
         WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         mFont->SetColor(ARGB(255,255,255,255));
-        mFont->DrawString(mCostRenderString, 20, 20, JGETEXT_LEFT);
+        mFont->DrawString(mCostRenderString, 40, 20, JGETEXT_LEFT);
     }
 }
 
@@ -75,6 +75,10 @@ int ExtraCost::setPayment(MTGCardInstance * card)
     if (tc)
     {
         result = tc->addTarget(card);
+        //this is flawed logic, we need to fix. if there is a target in list
+        //we return targetready instead, the card is not pushed back into list
+        //how ever, it is made the target becuase the result is 1 even if we couldnt
+        //target it with the targetchooser.
         if (result)
         {
             target = card;
@@ -94,7 +98,7 @@ ExtraManaCost * ExtraManaCost::clone() const
 }
 
 ExtraManaCost::ExtraManaCost(ManaCost * costToPay)
-    : ExtraCost("Pay The Cost",NULL, costToPay)
+    : ExtraCost("\nCost:",NULL, costToPay)
 {
 }
 
@@ -165,7 +169,7 @@ int SnowCost::isPaymentSet()
                 return 1;
             else
                 return 0;
-		}
+        }
     }
     return 0;
 }
@@ -231,6 +235,37 @@ int SnowCost::doPay()
     return 0;
 }
 
+//Energy Cost
+EnergyCost * EnergyCost::clone() const
+{
+    EnergyCost * ec = NEW EnergyCost(*this);
+    return ec;
+}
+
+EnergyCost::EnergyCost(int enc) :
+ExtraCost("Energy"),enc(enc)
+{
+}
+
+int EnergyCost::canPay()
+{
+    if(source->controller()->energyCount >= enc)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int EnergyCost::doPay()
+{
+    if(source->controller()->energyCount)
+    {
+        source->controller()->energyCount -= enc;
+        return 1;
+    }
+    return 0;
+}
+
 //life cost
 LifeCost * LifeCost::clone() const
 {
@@ -248,6 +283,8 @@ LifeCost::LifeCost(TargetChooser *_tc)
 int LifeCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (!_target)
+        return 0;
     if (_target->controller()->life <= 0 || _target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) ||
         _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) ||
         _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
@@ -287,13 +324,19 @@ SpecificLifeCost::SpecificLifeCost(TargetChooser *_tc, int slc)
 
 int SpecificLifeCost::canPay()
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(source->controller()->life >= slc && !source->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
+       !source->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
+       !source->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
+        {
+            return 1;
+        }
+    /*MTGCardInstance * _target = (MTGCardInstance *) target;
     if(_target->controller()->life >= slc && !_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
        !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
        !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
     {
         return 1;
-    }
+    }*/
     return 0;
 }
 
@@ -425,7 +468,7 @@ DiscardCost * DiscardCost::clone() const
 }
 
 DiscardCost::DiscardCost(TargetChooser *_tc) :
-ExtraCost("Choose card to Discard", _tc)
+ExtraCost("Discard", _tc)
 {
 }
 
@@ -489,7 +532,7 @@ ToLibraryCost * ToLibraryCost::clone() const
 }
 
 ToLibraryCost::ToLibraryCost(TargetChooser *_tc)
-    : ExtraCost("Put a card on top of Library", _tc)
+    : ExtraCost("Move to Library", _tc)
 {
 }
 
@@ -518,7 +561,7 @@ ToGraveCost * ToGraveCost::clone() const
 }
 
 ToGraveCost::ToGraveCost(TargetChooser *_tc)
-    : ExtraCost("Move a card to Graveyard", _tc)
+    : ExtraCost("Move to Graveyard", _tc)
 {
 }
 
@@ -601,6 +644,43 @@ int MillExileCost::doPay()
     }
     return 0;
 }
+
+//sac all lands cost
+SacLandsCost * SacLandsCost::clone() const
+{
+    SacLandsCost * ec = NEW SacLandsCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+SacLandsCost::SacLandsCost(TargetChooser *_tc)
+    : ExtraCost("Sacrifice All Lands", _tc)
+{
+}
+
+int SacLandsCost::doPay()
+{
+    MTGGameZone * zone = source->controller()->game->inPlay;
+    for (int j = zone->nb_cards - 1; j >= 0; j--)
+    {
+        MTGCardInstance * card = zone->cards[j];
+        if(card->isLand() && !card->has(Constants::CANTBESACRIFIED))
+        {        
+            if (card)
+            {
+                MTGCardInstance * beforeCard = card;
+                source->storedCard = card->createSnapShot();
+                card->controller()->game->putInGraveyard(card);
+                WEvent * e = NEW WEventCardSacrifice(beforeCard,card);
+                GameObserver * game = card->owner->getObserver();
+                game->receiveEvent(e);
+            }
+        }
+    }
+    return 1;
+}
+
 //unattach cost
 
 UnattachCost * UnattachCost::clone() const
@@ -694,7 +774,7 @@ UnTapCost * UnTapCost::clone() const
 }
 
 UnTapCost::UnTapCost() :
-ExtraCost("UnTap")
+ExtraCost("Untap")
 {
 }
 
@@ -737,14 +817,21 @@ TapTargetCost * TapTargetCost::clone() const
     return ec;
 }
 
-TapTargetCost::TapTargetCost(TargetChooser *_tc)
-    : ExtraCost("Tap Target", _tc)
+TapTargetCost::TapTargetCost(TargetChooser *_tc, bool crew)
+    : ExtraCost("Tap Target", _tc), crew(crew)
 {
 }
 
 int TapTargetCost::isPaymentSet()
 {
     if (target && target->isTapped())
+    {
+        tc->removeTarget(target);
+        target->isExtraCostTarget = false;
+        target = NULL;
+        return 0;
+    }
+    if (crew && target && target->has(Constants::CANTCREW))
     {
         tc->removeTarget(target);
         target->isExtraCostTarget = false;
@@ -762,8 +849,25 @@ int TapTargetCost::doPay()
     
     if (target)
     {
-		source->storedCard = target->createSnapShot();
+        source->storedCard = target->createSnapShot();
         _target->tap();
+        //crew ability
+        if(crew)
+        {
+            if(_target->getCrewAbility().size())
+            {
+                AbilityFactory af(_target->getObserver());
+                MTGAbility * a = af.parseMagicLine(_target->getCrewAbility(), -1, NULL, source,false,true);
+                MTGAbility * crewAbility = a->clone();
+                SAFE_DELETE(a);
+                crewAbility->oneShot = true;
+                crewAbility->canBeInterrupted = false;
+                crewAbility->target = source;
+                crewAbility->resolve();
+                SAFE_DELETE(crewAbility);
+            }
+        }
+        //end
         target = NULL;
         if (tc)
             tc->initTargets();
@@ -806,7 +910,7 @@ int UnTapTargetCost::doPay()
     
     if (target)
     {
-		source->storedCard = target->createSnapShot();
+        source->storedCard = target->createSnapShot();
         _target->untap();
         target = NULL;
         if (tc)
@@ -855,7 +959,7 @@ BounceTargetCost * BounceTargetCost::clone() const
 }
 
 BounceTargetCost::BounceTargetCost(TargetChooser *_tc)
-    : ExtraCost("Return Target to Hand", _tc)
+    : ExtraCost("Move to Hand", _tc)
 {
 }
 
@@ -884,7 +988,7 @@ Ninja * Ninja::clone() const
 }
 
 Ninja::Ninja(TargetChooser *_tc) :
-ExtraCost("Select unblocked attacker", _tc)
+ExtraCost("Choose Unblocked Card", _tc)
 {
 }
 
@@ -925,6 +1029,265 @@ int Ninja::doPay()
 
 //endbouncetargetcostforninja
 
+//Convoke
+Convoke * Convoke::clone() const
+{
+    Convoke * ec = NEW Convoke(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+Convoke::Convoke(TargetChooser *_tc) :
+    ExtraCost("Choose Cards To Tap", _tc)
+{
+}
+
+int Convoke::canPay()
+{
+    return isPaymentSet();
+}
+
+int Convoke::isPaymentSet()
+{
+    if (target && target->isTapped())
+    {
+        tc->removeTarget(target);
+        target->isExtraCostTarget = false;
+        target = NULL;
+        return 0;
+    }
+    ManaCost * toReduce = getReduction();
+    if (target && (!source->controller()->getManaPool()->canAfford(toReduce)))
+    {
+        target = NULL;
+        SAFE_DELETE(toReduce);
+        return 0;
+    }
+    if (target && (source->controller()->getManaPool()->canAfford(toReduce)))
+    {
+        SAFE_DELETE(toReduce);
+        return 1;
+    }
+    SAFE_DELETE(toReduce);
+    return 0;
+}
+
+ManaCost * Convoke::getReduction()
+{
+    ManaCost * toReduce = NEW ManaCost(source->getManaCost());
+    tc->maxtargets = source->getManaCost()->getConvertedCost();
+    if (tc->getNbTargets())
+    {
+        vector<Targetable*>targetlist = tc->getTargetsFrom();
+        for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+        {
+            bool next = false;
+            for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+            {
+                if (next == true)
+                    break;
+                MTGCardInstance * targetCard = dynamic_cast<MTGCardInstance*>(*it);
+                if ((targetCard->getManaCost()->hasColor(i) || targetCard->hasColor(i)) && toReduce->hasColor(i))
+                {
+                    toReduce->remove(i, 1);
+                    next = true;
+                }
+                else
+                {
+                    toReduce->remove(Constants::MTG_COLOR_ARTIFACT, 1);
+                    next = true;
+                }
+            }
+        }
+        //if we didnt find it payable one way, lets try again backwards.
+        if (!source->controller()->getManaPool()->canAfford(toReduce))
+        {
+            SAFE_DELETE(toReduce);
+            toReduce = NEW ManaCost(source->getManaCost());
+            for (vector<Targetable*>::reverse_iterator it = targetlist.rbegin(); it != targetlist.rend(); it++)
+            {
+                bool next = false;
+                for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+                {
+                    if (next == true)
+                        break;
+                    MTGCardInstance * targetCard = dynamic_cast<MTGCardInstance*>(*it);
+                    if ((targetCard->getManaCost()->hasColor(i) || targetCard->hasColor(i)) && toReduce->hasColor(i))
+                    {
+                        toReduce->remove(i, 1);
+                        next = true;
+                    }
+                    else
+                    {
+                        toReduce->remove(Constants::MTG_COLOR_ARTIFACT, 1);
+                        next = true;
+                    }
+                }
+            }
+        }
+    }
+    return toReduce;
+}
+
+int Convoke::doPay()
+{
+    if (target && tc->getNbTargets())
+    {
+        ManaCost * toReduce = getReduction();
+        target->controller()->getManaPool()->pay(toReduce);
+        SAFE_DELETE(toReduce);
+        vector<Targetable*>targetlist = tc->getTargetsFrom();
+        for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+        {
+            MTGCardInstance * targetCard = dynamic_cast<MTGCardInstance*>(*it);
+            source->storedCard = targetCard->createSnapShot();
+            targetCard->tap();
+        }
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+
+//DELVE
+Delve * Delve::clone() const
+{
+    Delve * ec = NEW Delve(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+Delve::Delve(TargetChooser *_tc) :
+    ExtraCost("Choose Cards To Exile", _tc)
+{
+}
+
+int Delve::canPay()
+{
+    return isPaymentSet();
+}
+
+int Delve::isPaymentSet()
+{
+    ManaCost * toReduce = NEW ManaCost(source->getManaCost());
+    tc->maxtargets = source->getManaCost()->getCost(Constants::MTG_COLOR_ARTIFACT);
+    if (tc->getNbTargets())
+    {
+        toReduce->remove(Constants::MTG_COLOR_ARTIFACT, tc->getNbTargets());
+    }
+    if (target && (!source->controller()->getManaPool()->canAfford(toReduce)))
+    {
+        target = NULL;
+        SAFE_DELETE(toReduce);
+        return 0;
+    }
+    if (target && (source->controller()->getManaPool()->canAfford(toReduce)))
+    {
+        if (target->getObserver()->guiOpenDisplay)
+            target->getObserver()->ButtonPressed(target->getObserver()->guiOpenDisplay);
+        SAFE_DELETE(toReduce);
+        return 1;
+    }
+    SAFE_DELETE(toReduce);
+    return 0;
+}
+
+int Delve::doPay()
+{
+    if (target && tc->getNbTargets())
+    {
+        ManaCost * toReduce = NEW ManaCost(source->getManaCost());
+
+        toReduce->remove(Constants::MTG_COLOR_ARTIFACT, tc->getNbTargets());
+
+        target->controller()->getManaPool()->pay(toReduce);
+        SAFE_DELETE(toReduce);
+        vector<Targetable*>targetlist = tc->getTargetsFrom();
+        for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+        {
+            MTGCardInstance * targetCard = dynamic_cast<MTGCardInstance*>(*it);
+            source->storedCard = targetCard->createSnapShot();
+            targetCard->controller()->game->putInExile(targetCard);
+        }
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+
+//IMPROVISE
+Improvise * Improvise::clone() const
+{
+    Improvise * ec = NEW Improvise(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+Improvise::Improvise(TargetChooser *_tc) :
+    ExtraCost("Choose Artifacts to Tap", _tc)
+{
+}
+
+int Improvise::canPay()
+{
+    return isPaymentSet();
+}
+
+int Improvise::isPaymentSet()
+{
+    ManaCost * toReduce = NEW ManaCost(source->getManaCost());
+    tc->maxtargets = source->getManaCost()->getCost(Constants::MTG_COLOR_ARTIFACT);
+    if (tc->getNbTargets())
+    {
+        toReduce->remove(Constants::MTG_COLOR_ARTIFACT, tc->getNbTargets());
+    }
+    if (target && (!source->controller()->getManaPool()->canAfford(toReduce)))
+    {
+        target = NULL;
+        SAFE_DELETE(toReduce);
+        return 0;
+    }
+    if (target && (source->controller()->getManaPool()->canAfford(toReduce)))
+    {
+        /*if (target->getObserver()->guiOpenDisplay)
+            target->getObserver()->ButtonPressed(target->getObserver()->guiOpenDisplay);*/
+        SAFE_DELETE(toReduce);
+        return 1;
+    }
+    SAFE_DELETE(toReduce);
+    return 0;
+}
+
+int Improvise::doPay()
+{
+    if (target && tc->getNbTargets())
+    {
+        ManaCost * toReduce = NEW ManaCost(source->getManaCost());
+
+        toReduce->remove(Constants::MTG_COLOR_ARTIFACT, tc->getNbTargets());
+
+        target->controller()->getManaPool()->pay(toReduce);
+        SAFE_DELETE(toReduce);
+        vector<Targetable*>targetlist = tc->getTargetsFrom();
+        for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+        {
+            MTGCardInstance * targetCard = dynamic_cast<MTGCardInstance*>(*it);
+            source->storedCard = targetCard->createSnapShot();
+            targetCard->tap();
+        }
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+
+///////////////
 //Sacrifice target as cost for Offering
 Offering * Offering::clone() const
 {
@@ -934,8 +1297,8 @@ Offering * Offering::clone() const
     return ec;
 }
 
-Offering::Offering(TargetChooser *_tc) :
-ExtraCost("Select creature to offer", _tc)
+Offering::Offering(TargetChooser *_tc,bool emerge) :
+ExtraCost("Choose Creature to Offer", _tc), emerge(emerge)
 {
 }
 
@@ -943,28 +1306,95 @@ int Offering::canPay()
 {
     if (target && target->has(Constants::CANTBESACRIFIED))
         return 0;
-
-    if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+    if (emerge)
     {
-        tc->removeTarget(target);
-        target = NULL;
-        return 0;
+        if (target)
+        {
+            ManaCost * reduced = NEW ManaCost(source->getManaCost()->getAlternative());
+            reduced->extraCosts = NULL;
+            reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
+
+            if (target && (!source->controller()->getManaPool()->canAfford(reduced)))
+            {
+                tc->removeTarget(target);
+                target = NULL;
+                SAFE_DELETE(reduced);
+                return 0;
+            }
+            if (target && source->controller()->getManaPool()->canAfford(reduced))
+            {
+                SAFE_DELETE(reduced);
+                return 1;
+            }
+        }
+
     }
-    if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
-        return 1;
+    else
+    {
+        if (target)
+        {
+            ManaCost * diff = source->getManaCost()->Diff(target->getManaCost());
+            if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+            {
+                SAFE_DELETE(diff);
+                tc->removeTarget(target);
+                target = NULL;
+                return 0;
+            }
+            if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+            {
+                SAFE_DELETE(diff);
+                return 1;
+            }
+        }
+    }
     return 0;
 }
 
 int Offering::isPaymentSet()
 {
-    if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+    if (emerge)
     {
-        tc->removeTarget(target);
-        target = NULL;
-        return 0;
+        if (target)
+        {
+            ManaCost * reduced = NEW ManaCost(source->getManaCost()->getAlternative());
+            reduced->extraCosts = NULL;
+            reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
+
+            if (target && (!source->controller()->getManaPool()->canAfford(reduced)))
+            {
+                tc->removeTarget(target);
+                target = NULL;
+                SAFE_DELETE(reduced);
+                return 0;
+            }
+            if (target && source->controller()->getManaPool()->canAfford(reduced))
+            {
+                SAFE_DELETE(reduced);
+                return 1;
+            }
+        }
+
     }
-    if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
-        return 1;
+    else
+    {
+        if (target)
+        {
+            ManaCost * diff = source->getManaCost()->Diff(target->getManaCost());
+            if (target && (!source->controller()->getManaPool()->canAfford(diff)))
+            {
+                SAFE_DELETE(diff);
+                tc->removeTarget(target);
+                target = NULL;
+                return 0;
+            }
+            if (target && (source->controller()->getManaPool()->canAfford(diff)))
+            {
+                SAFE_DELETE(diff);
+                return 1;
+            }
+        }
+    }
     return 0;
 }
 
@@ -972,7 +1402,20 @@ int Offering::doPay()
 {
     if (target)
     {
-        target->controller()->getManaPool()->pay(source->getManaCost()->Diff(target->getManaCost()));
+        if (emerge)
+        {
+            ManaCost * reduced = NEW ManaCost(source->getManaCost()->getAlternative());
+            reduced->extraCosts = NULL;
+            reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
+            target->controller()->getManaPool()->pay(reduced);
+            SAFE_DELETE(reduced);
+        }
+        else
+        {
+            ManaCost * diff = source->getManaCost()->Diff(target->getManaCost());
+            target->controller()->getManaPool()->pay(diff);
+            SAFE_DELETE(diff);
+        }
         MTGCardInstance * beforeCard = target;
         source->storedCard = target->createSnapShot();
         target->controller()->game->putInGraveyard(target);
@@ -1212,12 +1655,45 @@ int ExtraCosts::tryToSetPayment(MTGCardInstance * card)
         {
             for(size_t k = 0; k < costs.size(); k++)
             {
-                if(card == costs[k]->target)
+                if (card == costs[k]->target)
+                {
+                    //tapping or sacrificing a target to pay for its own cost
+                    //is allowed, unless the source is already being tapped and contains a tap target
+                    //or sacced and contains a sactarget
+                    //cost like {t}{s(creature)} the source is allowed to be targeted for this
+                    //if it is a creature. these cases below should be added whenever we a need
+                    //for extra cost that have both a source and target version used on cards.
+                    if (dynamic_cast<TapCost*>(costs[k]))
+                    {
+                        for (size_t tapCheck = 0; tapCheck < costs.size(); tapCheck++)
+                        {
+                            if (dynamic_cast<TapTargetCost*>(costs[tapCheck]))
+                            {
+                                return 0;//{t}{t(creature)}
+                            }
+                        }
+
+                    }
+                    else if (SacrificeCost * checking = dynamic_cast<SacrificeCost*>(costs[k]))
+                    {
+                        for (size_t sacCheck = 0; sacCheck < costs.size(); sacCheck++)
+                        {
+                            SacrificeCost * checking2 = dynamic_cast<SacrificeCost*>(costs[sacCheck]);
+                            if (checking2)
+                            if ((checking->tc != NULL && checking2->tc == NULL)
+                                || (checking->tc == NULL && checking2->tc != NULL))
+                            {
+                                return 0; //{s}{s(creature)}
+                            }
+                        }
+                    }
+                    else
                     return 0;
+                }
             }
             if (int result = costs[i]->setPayment(card))
             {
-                card->isExtraCostTarget = true;
+                //card->isExtraCostTarget = true;//moved to gameobserver, flawed logic was setting this to true even when it wasnt really a target
                 return result;
             }
         }
@@ -1254,10 +1730,20 @@ int ExtraCosts::doPay()
     int result = 0;
     for (size_t i = 0; i < costs.size(); i++)
     {
-        if(costs[i]->target)
+        if(costs[i]->target)//todo deprecate this let gameobserver control this.
         {
             costs[i]->target->isExtraCostTarget = false;
         }
+        if (costs[i]->tc)
+        {
+            vector<Targetable*>targetlist = costs[i]->tc->getTargetsFrom();
+            for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+            {
+                costs[i]->target = dynamic_cast<MTGCardInstance*>(*it);
+                costs[i]->doPay();
+            }
+        }
+        else
         result += costs[i]->doPay();
     }
     return result;

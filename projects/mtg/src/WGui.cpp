@@ -253,8 +253,14 @@ void WGuiMenu::subBack(WGuiBase * item)
         if (split->right) subBack(split->right);//renderer->FillRoundRect(split->right->getX()-2,split->getY()-2,split->right->getWidth(),split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
     }
     else
-        renderer->FillRoundRect(item->getX(), item->getY(), item->getWidth() - 4, item->getHeight() - 2, 2, item->getColor(
+    {
+        renderer->FillRoundRect(item->getX(), item->getY(), item->getWidth() - 4, item->getHeight() - 2, 1, item->getColor(
                         WGuiColor::BACK));
+        //inner border
+        renderer->DrawRoundRect(item->getX(), item->getY(), item->getWidth() - 4, item->getHeight() - 2, 1, ARGB(255,89,89,89));
+        //outer border
+        //renderer->DrawRect(item->getX()-1.5f, item->getY()-1, item->getWidth()+1, item->getHeight() +2, ARGB(80,240,240,240));
+    }
 
 }
 
@@ -408,7 +414,7 @@ void WGuiList::Render()
             float barLength = static_cast<float> ((SCREEN_HEIGHT - y) / listSelectable);
             if (barLength < 4) barLength = 4;
             renderer->FillRect(x + width - 2, y - 1, 2, SCREEN_HEIGHT - y, getColor(WGuiColor::SCROLLBAR));
-            renderer->FillRoundRect(x + width - 5, barPosition, 5, barLength, 2, getColor(WGuiColor::SCROLLBUTTON));
+            renderer->FillRoundRect(x + width - 5, barPosition, 5, barLength, 1, getColor(WGuiColor::SCROLLBUTTON));
         }
 
         //Render current overlay.
@@ -686,13 +692,16 @@ PIXEL_TYPE WGuiButton::getColor(int type)
 }
 ;
 
-WGuiSplit::WGuiSplit(WGuiBase* _left, WGuiBase* _right) :
+WGuiSplit::WGuiSplit(WGuiBase* _left, WGuiBase* _right, bool custom) :
     WGuiItem("")
 {
     right = _right;
     left = _left;
     bRight = false;
-    percentRight = 0.5f;
+    if(!custom)
+        percentRight = 0.5f;
+    else
+        percentRight = 0.67f;
     if (!left->Selectable()) bRight = true;
 }
 WGuiSplit::~WGuiSplit()
@@ -1190,7 +1199,11 @@ void WGuiTabMenu::Render()
     {
         float w = mFont->GetStringWidth(_((*it)->getDisplay()).c_str());
         mFont->SetColor((*it)->getColor(WGuiColor::TEXT_TAB));
-        renderer->FillRoundRect(offset + 5, 5, w + 5, 25, 2, (*it)->getColor(WGuiColor::BACK_TAB));
+        renderer->FillRoundRect(offset + 6.5f, 5, w + 6.5f, 25, 0, (*it)->getColor(WGuiColor::BACK_TAB));
+        //inside border
+        renderer->DrawRoundRect(offset + 6.5f, 5, w + 6.5f, 25, 0, ARGB(180,89,89,89));
+        //outside border
+        //renderer->DrawRoundRect(offset + 5.5f, 4, w + 8.5f, 27, 0, ARGB(180,240,240,240));
         mFont->DrawString(_((*it)->getDisplay()).c_str(), offset + 10, 10);
         offset += w + 10 + 2;
     }
@@ -1320,7 +1333,14 @@ void WGuiAward::Underlay()
 
     if (trophy.get())
     {
-        JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT - trophy->mHeight);
+        trophy->SetHotSpot(0,trophy->mHeight);
+        if(trophy->mHeight == 268.f && trophy->mWidth == 203.f)
+        {
+            trophy->SetHotSpot(0,0);
+            JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT-trophy->mHeight);
+        }
+        else
+            JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT, 0, 171.f / trophy->mWidth, 192.f / trophy->mHeight);
     }
 
 }
@@ -1753,12 +1773,18 @@ void WGuiFilters::buildList()
 {
     list = NEW WGuiList("");
     WGuiButton * l = NEW WGuiButton(NEW WGuiItem("Add Filter"), -102, -10, this);
-    WGuiButton * r = NEW WGuiButton(NEW WGuiItem("Done"), -102, -11, this);
+    WGuiButton * r = NEW WGuiButton(NEW WGuiItem("Return"), -102, -11, this);
     WGuiButton * mid = NEW WGuiButton(NEW WGuiItem("Clear"), -102, -66, this);
     WGuiSplit * sub = NEW WGuiSplit(mid, r);
-    WGuiSplit * wgs = NEW WGuiSplit(l, sub);
+    sub->setHeight(25);
+    sub->setWidth(240);
+    l->setHeight(25);
+    l->setWidth(160);
+    WGuiSplit * wgs = NEW WGuiSplit(l, sub, true);
+    //WGuiSplit * wgs = NEW WGuiSplit(mid, r);
     subMenu = NULL;
     list->Add(NEW WGuiHeader(displayValue));
+    //list->Add(l);
     list->Add(wgs);
     list->Entering(JGE_BTN_NONE);
 }
@@ -2151,9 +2177,19 @@ void WGuiFilterItem::updateValue()
         else if (filterType == FILTER_BASIC)
         {
             char buf[512];
+            vector<string> baString;
             for (int i = 0; i < Constants::NB_BASIC_ABILITIES; i++)
+            {//remove some others
+                if(i != 119 || i != 120 || i != 135 || i != 136 || i != 137 || i != 139 || i != 140 || i != 141 || i != 143 
+                    || i != 144 || i != 145 || i != 146 || i != 147 || i != 148 || i != 149 || i != 150 
+                    || i != 151 || i != 152 || i != 153 || i != 154)
+                    baString.push_back(Constants::MTGBasicAbilities[i]);
+            }
+            //sort
+            sort(baString.begin(),baString.end());
+            for (unsigned int i = 0; i < baString.size(); i++)
             {
-                string s = Constants::MTGBasicAbilities[i];
+                string s = baString[i];
                 sprintf(buf, "a:%s;", s.c_str());
                 s[0] = toupper(s[0]);
                 mParent->addArg(s, buf);
@@ -2259,22 +2295,17 @@ WGuiKeyBinder::WGuiKeyBinder(string name, GameStateOptions* parent) :
     WGuiList(name), parent(parent), confirmMenu(NULL), modal(false), confirmed(CONFIRM_NEED), confirmingKey(LOCAL_KEY_NONE),
                     confirmingButton(JGE_BTN_NONE), confirmationString("")
 {
-    JGE* j = JGE::GetInstance();
-    JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
-
-    Add(NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
-    for (JGE::keybindings_it it = start; it != end; ++it)
-        Add(NEW OptionKey(parent, it->first, it->second));
+    populateKeyBindingList();
 }
 
 void WGuiKeyBinder::Update(float dt)
 {
-    OptionKey* o = dynamic_cast<OptionKey*> (items[0]);
+    OptionKey* o = dynamic_cast<OptionKey*> (items[1]);
     if (!o) return;
     if (LOCAL_KEY_NONE != o->from)
     {
-        items.insert(items.begin(), NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
-        if (0 == currentItem) ++currentItem;
+        items.insert(items.begin() + 1, NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
+        if (1 == currentItem) ++currentItem;
     }
     for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
         (*it)->Update(dt);
@@ -2399,7 +2430,11 @@ WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm()
 
 void WGuiKeyBinder::ButtonPressed(int controllerId, int controlId)
 {
-    if (2 == controlId)
+    if (1 == controlId)
+    {
+        confirmed = CONFIRM_CANCEL;
+    }
+    else if (2 == controlId) {
         switch (controllerId)
         {
         case 0:
@@ -2409,8 +2444,16 @@ void WGuiKeyBinder::ButtonPressed(int controllerId, int controlId)
             confirmedButtons.insert(confirmingButton);
             break;
         }
-    else
-        confirmed = CONFIRM_CANCEL;
+    }
+    else if (3 == controlId) {
+        switch (controllerId)
+        {
+        case -102:
+            JGE::GetInstance()->ResetBindings();
+            populateKeyBindingList();
+            break;
+        }
+    }
     SAFE_DELETE(confirmMenu);
     confirmMenu = NULL;
 }
@@ -2442,4 +2485,16 @@ void WGuiKeyBinder::Render()
 bool WGuiKeyBinder::yieldFocus()
 {
     return true;
+}
+
+void WGuiKeyBinder::populateKeyBindingList()
+{
+    items.clear();
+    Add(NEW WGuiButton(NEW WGuiItem("Load Defaults..."), -102, 3, this));
+    Add(NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
+
+    JGE* j = JGE::GetInstance();
+    JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
+    for (JGE::keybindings_it it = start; it != end; ++it)
+        Add(NEW OptionKey(parent, it->first, it->second));
 }

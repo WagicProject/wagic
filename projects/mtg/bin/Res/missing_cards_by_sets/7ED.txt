@@ -1,0 +1,103 @@
+[card]
+name=Coat of Arms
+text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, if two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Deflection
+text=Change the target of target spell with a single target.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Kjeldoran Royal Guard
+text={T}: All combat damage that would be dealt to you by unblocked creatures this turn is dealt to Kjeldoran Royal Guard instead.
+mana={3}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=5
+[/card]
+[card]
+name=Mana Clash
+text=You and target opponent each flip a coin. Mana Clash deals 1 damage to each player whose coin comes up tails. Repeat this process until both players' coins come up heads on the same flip.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Necrologia
+text=Cast Necrologia only during your end step. -- As an additional cost to cast Necrologia, pay X life. -- Draw X cards.
+mana={3}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Okk
+text=Okk can't attack unless a creature with greater power also attacks. -- Okk can't block unless a creature with greater power also blocks.
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=4
+toughness=4
+[/card]
+[card]
+name=Pariah
+text=Enchant creature -- All damage that would be dealt to you is dealt to enchanted creature instead.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Phyrexian Colossus
+text=Phyrexian Colossus doesn't untap during your untap step. -- Pay 8 life: Untap Phyrexian Colossus. -- Phyrexian Colossus can't be blocked except by three or more creatures.
+mana={7}
+type=Artifact Creature
+subtype=Golem
+power=8
+toughness=8
+[/card]
+[card]
+name=Pyrotechnics
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Rag Man
+text={B}{B}{B}, {T}: Target opponent reveals his or her hand and discards a creature card at random. Activate this ability only during your turn.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Minion
+power=2
+toughness=1
+[/card]
+[card]
+name=Reverse Damage
+text=The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.
+mana={1}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Rowen
+text=Reveal the first card you draw each turn. Whenever you reveal a basic land card this way, draw a card.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Sacred Ground
+text=Whenever a spell or ability an opponent controls causes a land to be put into your graveyard from the battlefield, return that card to the battlefield.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Static Orb
+text=As long as Static Orb is untapped, players can't untap more than two permanents during their untap steps.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Telepathy
+text=Your opponents play with their hands revealed.
+mana={U}
+type=Enchantment
+[/card]

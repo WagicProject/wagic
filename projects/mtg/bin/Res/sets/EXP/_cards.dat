@@ -1,0 +1,231 @@
+[meta]
+author=Wagic Team
+name=Zendikar Expeditions
+year=2016
+total=45
+[/meta]
+[card]
+primitive=Ancient Tomb
+id=409567
+rarity=M
+[/card]
+[card]
+primitive=Arid Mesa
+id=405092
+rarity=M
+[/card]
+[card]
+primitive=Blood Crypt
+id=405093
+rarity=M
+[/card]
+[card]
+primitive=Bloodstained Mire
+id=405094
+rarity=M
+[/card]
+[card]
+primitive=Breeding Pool
+id=405095
+rarity=M
+[/card]
+[card]
+primitive=Canopy Vista
+id=405096
+rarity=M
+[/card]
+[card]
+primitive=Cascade Bluffs
+id=409563
+rarity=M
+[/card]
+[card]
+primitive=Cinder Glade
+id=405097
+rarity=M
+[/card]
+[card]
+primitive=Dust Bowl
+id=409568
+rarity=M
+[/card]
+[card]
+primitive=Eye of Ugin
+id=409569
+rarity=M
+[/card]
+[card]
+primitive=Fetid Heath
+id=409562
+rarity=M
+[/card]
+[card]
+primitive=Fire-Lit Thicket
+id=409560
+rarity=M
+[/card]
+[card]
+primitive=Flooded Grove
+id=409566
+rarity=M
+[/card]
+[card]
+primitive=Flooded Strand
+id=405098
+rarity=M
+[/card]
+[card]
+primitive=Forbidden Orchard
+id=409570
+rarity=M
+[/card]
+[card]
+primitive=Godless Shrine
+id=405099
+rarity=M
+[/card]
+[card]
+primitive=Graven Cairns
+id=409559
+rarity=M
+[/card]
+[card]
+primitive=Hallowed Fountain
+id=405100
+rarity=M
+[/card]
+[card]
+primitive=Horizon Canopy
+id=409571
+rarity=M
+[/card]
+[card]
+primitive=Kor Haven
+id=409572
+rarity=M
+[/card]
+[card]
+primitive=Mana Confluence
+id=409573
+rarity=M
+[/card]
+[card]
+primitive=Marsh Flats
+id=405101
+rarity=M
+[/card]
+[card]
+primitive=Misty Rainforest
+id=405102
+rarity=M
+[/card]
+[card]
+primitive=Mystic Gate
+id=409557
+rarity=M
+[/card]
+[card]
+primitive=Overgrown Tomb
+id=405103
+rarity=M
+[/card]
+[card]
+primitive=Polluted Delta
+id=405104
+rarity=M
+[/card]
+[card]
+primitive=Prairie Stream
+id=405105
+rarity=M
+[/card]
+[card]
+primitive=Rugged Prairie
+id=409565
+rarity=M
+[/card]
+[card]
+primitive=Sacred Foundry
+id=405106
+rarity=M
+[/card]
+[card]
+primitive=Scalding Tarn
+id=405107
+rarity=M
+[/card]
+[card]
+primitive=Smoldering Marsh
+id=405108
+rarity=M
+[/card]
+[card]
+primitive=Steam Vents
+id=405109
+rarity=M
+[/card]
+[card]
+primitive=Stomping Ground
+id=405110
+rarity=M
+[/card]
+[card]
+primitive=Strip Mine
+id=409574
+rarity=M
+[/card]
+[card]
+primitive=Sunken Hollow
+id=405111
+rarity=M
+[/card]
+[card]
+primitive=Sunken Ruins
+id=409558
+rarity=M
+[/card]
+[card]
+primitive=Tectonic Edge
+id=409575
+rarity=M
+[/card]
+[card]
+primitive=Temple Garden
+id=405112
+rarity=M
+[/card]
+[card]
+primitive=Twilight Mire
+id=409564
+rarity=M
+[/card]
+[card]
+primitive=Verdant Catacombs
+id=405113
+rarity=M
+[/card]
+[card]
+primitive=Wasteland
+id=409576
+rarity=M
+[/card]
+[card]
+primitive=Watery Grave
+id=405114
+rarity=M
+[/card]
+[card]
+primitive=Windswept Heath
+id=405115
+rarity=M
+[/card]
+[card]
+primitive=Wooded Bastion
+id=409561
+rarity=M
+[/card]
+[card]
+primitive=Wooded Foothills
+id=405116
+rarity=M
+[/card]

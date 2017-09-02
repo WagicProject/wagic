@@ -1,0 +1,138 @@
+[card]
+name=Celestial Dawn
+text=Lands you control are Plains. -- Nonland cards you own that aren't on the battlefield, spells you control, and nonland permanents you control are white. -- You may spend white mana as though it were mana of any color. You may spend other mana only as though it were colorless mana.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Deflection
+text=Change the target of target spell with a single target.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Desertion
+text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Doomsday
+text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
+mana={B}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Flash
+text=You may put a creature card from your hand onto the battlefield. If you do, sacrifice it unless you pay its mana cost reduced by up to {2}.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Grinning Totem
+text={2}, {T}, Sacrifice Grinning Totem: Search target opponent's library for a card and exile it. Then that player shuffles his or her library. Until the beginning of your next upkeep, you may play that card. At the beginning of your next upkeep, if you haven't played it, put it into its owner's graveyard.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Illicit Auction
+text=Each player may bid life for control of target creature. You start the bidding with a bid of 0. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and gains control of the creature. (This effect lasts indefinitely.)
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Jade Monolith
+text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Juxtapose
+text=You and target player exchange control of the creature you each control with the highest converted mana cost. Then exchange control of artifacts the same way. If two or more permanents a player controls are tied for highest cost, their controller chooses one of them.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Kjeldoran Royal Guard
+text={T}: All combat damage that would be dealt to you by unblocked creatures this turn is dealt to Kjeldoran Royal Guard instead.
+mana={3}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=5
+[/card]
+[card]
+name=Library of Lat-Nam
+text=An opponent chooses one — You draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Pentagram of the Ages
+text={4}, {T}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Psychic Transfer
+text=If the difference between your life total and target player's life total is 5 or less, exchange life totals with that player.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Pyrotechnics
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Rag Man
+text={B}{B}{B}, {T}: Target opponent reveals his or her hand and discards a creature card at random. Activate this ability only during your turn.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Minion
+power=2
+toughness=1
+[/card]
+[card]
+name=Recall
+text=Discard X cards, then return a card from your graveyard to your hand for each card discarded this way. Exile Recall.
+mana={X}{X}{U}
+type=Sorcery
+[/card]
+[card]
+name=Remedy
+text=Prevent the next 5 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Reverse Damage
+text=The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.
+mana={1}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Rowen
+text=Reveal the first card you draw each turn. Whenever you reveal a basic land card this way, draw a card.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Tariff
+text=Each player sacrifices the creature he or she controls with the highest converted mana cost unless he or she pays that creature's mana cost. If two creatures a player controls are tied for highest cost, that player chooses one.
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
+name=Zur's Weirding
+text=Players play with their hands revealed. -- If a player would draw a card, he or she reveals it instead. Then any other player may pay 2 life. If a player does, put that card into its owner's graveyard. Otherwise, that player draws a card.
+mana={3}{U}
+type=Enchantment
+[/card]

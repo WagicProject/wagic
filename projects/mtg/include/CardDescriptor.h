@@ -39,11 +39,14 @@ class CardDescriptor: public MTGCardInstance
   int manacostComparisonMode;
   int counterComparisonMode;
   int convertedManacost; // might fit better into MTGCardInstance?
+  int zposComparisonMode;
+  int zposition;
   int anyCounter;
   int init();
   CardDescriptor();
   void unsecureSetTapped(int i);
   void unsecuresetfresh(int k);
+  void unsecuresetrecent(int j);
   void setisMultiColored(int w);
   void setNegativeSubtype( string value);
   int counterPower;
@@ -65,6 +68,15 @@ class CardDescriptor: public MTGCardInstance
   int CDopponentDamaged;
   int CDcontrollerDamaged;
   int CDdamager;
+  int CDgeared;
+  int CDblocked;
+  int CDcanProduceC;
+  int CDcanProduceG;
+  int CDcanProduceU;
+  int CDcanProduceR;
+  int CDcanProduceB;
+  int CDcanProduceW;
+  int CDnocolor;
 };
 
 #endif

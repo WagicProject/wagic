@@ -1,0 +1,183 @@
+[card]
+name=Chandra, Pyromaster
+text=+1: Chandra, Pyromaster deals 1 damage to target player and 1 damage to up to one target creature that player controls. That creature can't block this turn. -- 0: Exile the top card of your library. You may play it this turn. -- -7: Exile the top ten cards of your library. Choose an instant or sorcery card exiled this way and copy it three times. You may cast the copies without paying their mana costs.
+mana={2}{R}{R}
+type=Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Chief Engineer
+text=Artifact spells you cast have convoke. (Your creatures can help cast those spells. Each creature you tap while casting an artifact spell pays for {1} or one mana of that creature's color.)
+mana={1}{U}
+type=Creature
+subtype=Vedalken Artificer
+power=1
+toughness=3
+[/card]
+[card]
+name=Chord of Calling
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Search your library for a creature card with converted mana cost X or less and put it onto the battlefield. Then shuffle your library.
+mana={X}{G}{G}{G}
+type=Instant
+[/card]
+[card]
+name=Chronostutter
+text=Put target creature into its owner's library second from the top.
+mana={5}{U}
+type=Instant
+[/card]
+[card]
+name=Cone of Flame
+text=Cone of Flame deals 1 damage to target creature or player, 2 damage to another target creature or player, and 3 damage to a third target creature or player.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Diffusion Sliver
+text=Whenever a Sliver creature you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}.
+mana={1}{U}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+[/card]
+[card]
+name=Feast on the Fallen
+text=At the beginning of each upkeep, if an opponent lost life last turn, put a +1/+1 counter on target creature you control.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=First Response
+text=At the beginning of each upkeep, if you lost life last turn, put a 1/1 white Soldier creature token onto the battlefield.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Generator Servant
+text={T}, Sacrifice Generator Servant: Add {2} to your mana pool. If that mana is spent on a creature spell, it gains haste until end of turn. (That creature can attack and {T} as soon as it comes under your control.)
+mana={1}{R}
+type=Creature
+subtype=Elemental
+power=2
+toughness=1
+[/card]
+[card]
+name=Hushwing Gryff
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- Creatures entering the battlefield don't cause abilities to trigger.
+mana={2}{W}
+type=Creature
+subtype=Hippogriff
+power=2
+toughness=1
+[/card]
+[card]
+name=Indulgent Tormentor
+text=Flying -- At the beginning of your upkeep, draw a card unless target opponent sacrifices a creature or pays 3 life.
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=3
+[/card]
+[card]
+name=Jace, the Living Guildpact
+text=+1: Look at the top two cards of your library. Put one of them into your graveyard. -- -3: Return another target nonland permanent to its owner's hand. -- -8: Each player shuffles his or her hand and graveyard into his or her library. You draw seven cards.
+mana={2}{U}{U}
+type=Planeswalker
+subtype=Jace
+[/card]
+[card]
+name=Kurkesh, Onakke Ancient
+text=Whenever you activate an ability of an artifact, if it isn't a mana ability, you may pay {R}. If you do, copy that ability. You may choose new targets for the copy.
+mana={2}{R}{R}
+type=Legendary Creature
+subtype=Ogre Spirit
+power=4
+toughness=3
+[/card]
+[card]
+name=Master of Predicaments
+text=Flying -- Whenever Master of Predicaments deals combat damage to a player, choose a card in your hand. That player guesses whether the card's converted mana cost is greater than 4. If the player guessed wrong, you may cast the card without paying its mana cost.
+mana={3}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
+name=Might Makes Right
+text=At the beginning of combat on your turn, if you control each creature on the battlefield with the greatest power, gain control of target creature an opponent controls until end of turn. Untap that creature. It gains haste until end of turn. (It can attack and {T} this turn.)
+mana={5}{R}
+type=Enchantment
+[/card]
+[card]
+name=Ob Nixilis, Unshackled
+text=Flying, trample -- Whenever an opponent searches his or her library, that player sacrifices a creature and loses 10 life. -- Whenever another creature dies, put a +1/+1 counter on Ob Nixilis, Unshackled.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Demon
+power=4
+toughness=4
+[/card]
+[card]
+name=Oppressive Rays
+text=Enchant creature -- Enchanted creature can't attack or block unless its controller pays {3}. -- Activated abilities of enchanted creature cost {3} more to activate.
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Phyrexian Revoker
+text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
+mana={2}
+type=Artifact Creature
+subtype=Horror
+power=2
+toughness=1
+[/card]
+[card]
+name=Polymorphist's Jest
+text=Until end of turn, each creature target player controls loses all abilities and becomes a blue Frog with base power and toughness 1/1.
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Return to the Ranks
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Return X target creature cards with converted mana cost 2 or less from your graveyard to the battlefield.
+mana={X}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Shield of the Avatar
+text=If a source would deal damage to equipped creature, prevent X of that damage, where X is the number of creatures you control. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Sliver Hive
+text={T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a Sliver spell. -- {5}, {T}: Put a 1/1 colorless Sliver creature token onto the battlefield. Activate this ability only if you control a Sliver.
+type=Land
+[/card]
+[card]
+name=Soul of Shandalar
+text=First strike -- {3}{R}{R}: Soul of Shandalar deals 3 damage to target player and 3 damage to up to one target creature that player controls. -- {3}{R}{R}, Exile Soul of Shandalar from your graveyard: Soul of Shandalar deals 3 damage to target player and 3 damage to up to one target creature that player controls.
+mana={4}{R}{R}
+type=Creature
+subtype=Avatar
+power=6
+toughness=6
+[/card]
+[card]
+name=Stain the Mind
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=The Chain Veil
+text=At the beginning of your end step, if you didn't activate a loyalty ability of a planeswalker this turn, you lose 2 life. -- {4}, {T}: For each planeswalker you control, you may activate one of its loyalty abilities once this turn as though none of its loyalty abilities have been activated this turn.
+mana={4}
+type=Legendary Artifact
+[/card]

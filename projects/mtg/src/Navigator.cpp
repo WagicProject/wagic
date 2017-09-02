@@ -43,6 +43,10 @@ public:
         mCurrentCard(0)
     {
     }
+    
+    virtual ~CardZone()
+    {
+    }
 
     /*
      **

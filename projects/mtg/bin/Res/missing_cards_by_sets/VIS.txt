@@ -1,0 +1,241 @@
+[card]
+name=Breathstealer's Crypt
+text=If a player would draw a card, instead he or she draws a card and reveals it. If it's a creature card, that player discards it unless he or she pays 3 life.
+mana={2}{U}{B}
+type=Enchantment
+[/card]
+[card]
+name=Corrosion
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, put a rust counter on each artifact target opponent controls. Then destroy each artifact with converted mana cost less than or equal to the number of rust counters on it. Artifacts destroyed this way can't be regenerated. -- When Corrosion leaves the battlefield, remove all rust counters from all permanents.
+mana={1}{B}{R}
+type=Enchantment
+[/card]
+[card]
+name=Desolation
+text=At the beginning of each end step, each player who tapped a land for mana this turn sacrifices a land. If a Plains is sacrificed this way, Desolation deals 2 damage to that Plains's controller.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Dream Tides
+text=Creatures don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player may choose any number of tapped nongreen creatures he or she controls and pay {2} for each creature chosen this way. If the player does, untap those creatures.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Elkin Lair
+text=At the beginning of each player's upkeep, that player exiles a card at random from his or her hand. The player may play that card this turn. At the beginning of the next end step, if the player hasn't played the card, he or she puts it into his or her graveyard.
+mana={3}{R}
+type=World Enchantment
+[/card]
+[card]
+name=Equipoise
+text=At the beginning of your upkeep, for each land target player controls in excess of the number you control, choose a land he or she controls, then the chosen permanents phase out. Repeat this process for artifacts and creatures. (While they're phased out, they're treated as though they don't exist. They phase in before that player untaps during his or her next untap step.)
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Forbidden Ritual
+text=Sacrifice a nontoken permanent. If you do, target opponent loses 2 life unless he or she sacrifices a permanent or discards a card. You may repeat this process any number of times.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Foreshadow
+text=Name a card, then put the top card of target opponent's library into his or her graveyard. If that card is the named card, you draw a card. -- Draw a card at the beginning of the next turn's upkeep.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Gossamer Chains
+text=Return Gossamer Chains to its owner's hand: Prevent all combat damage that would be dealt by target unblocked creature this turn.
+mana={W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Guiding Spirit
+text=Flying -- {T}: If the top card of target player's graveyard is a creature card, put that card on top of that player's library.
+mana={1}{W}{U}
+type=Creature
+subtype=Angel Spirit
+power=1
+toughness=2
+[/card]
+[card]
+name=Heat Wave
+text=Cumulative upkeep {R} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Blue creatures can't block creatures you control. -- Nonblue creatures can't block creatures you control unless their controller pays 1 life for each blocking creature he or she controls.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Honorable Passage
+text=The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage. If damage from a red source is prevented this way, Honorable Passage deals that much damage to the source's controller.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Infernal Harvest
+text=As an additional cost to cast Infernal Harvest, return X Swamps you control to their owner's hand. -- Infernal Harvest deals X damage divided as you choose among any number of target creatures.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Kaervek's Spite
+text=As an additional cost to cast Kaervek's Spite, sacrifice all permanents you control and discard your hand. -- Target player loses 5 life.
+mana={B}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Knight of Valor
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {1}{W}: Each creature without flanking blocking Knight of Valor gets -1/-1 until end of turn. Activate this ability only once each turn.
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Mob Mentality
+text=Enchant creature -- Enchanted creature has trample. -- Whenever all non-Wall creatures you control attack, enchanted creature gets +X/+0 until end of turn, where X is the number of attacking creatures.
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Mystic Veil
+text=You may cast Mystic Veil as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Necromancy
+text=You may cast Necromancy as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- When Necromancy enters the battlefield, if it's on the battlefield, it becomes an Aura with "enchant creature put onto the battlefield with Necromancy." Put target creature card from a graveyard onto the battlefield under your control and attach Necromancy to it. When Necromancy leaves the battlefield, that creature's controller sacrifices it.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Ogre Enforcer
+text=Ogre Enforcer can't be destroyed by lethal damage unless lethal damage dealt by a single source is marked on it.
+mana={3}{R}{R}
+type=Creature
+subtype=Ogre
+power=4
+toughness=4
+[/card]
+[card]
+name=Parapet
+text=You may cast Parapet as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Creatures you control get +0/+1.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Peace Talks
+text=This turn and next turn, creatures can't attack, and players and permanents can't be the targets of spells or activated abilities.
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
+name=Pygmy Hippo
+text=Whenever Pygmy Hippo attacks and isn't blocked, you may have defending player activate a mana ability of each land he or she controls and empty his or her mana pool. If you do, Pygmy Hippo assigns no combat damage this turn and at the beginning of your postcombat main phase, you add {X} to your mana pool, where X is the amount of mana emptied from defending player's mana pool this way.
+mana={G}{U}
+type=Creature
+subtype=Hippo
+power=2
+toughness=2
+[/card]
+[card]
+name=Relic Ward
+text=You may cast Relic Ward as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant artifact -- Enchanted artifact has shroud. (It can't be the target of spells or abilities.)
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Remedy
+text=Prevent the next 5 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Righteous Aura
+text={W}, Pay 2 life: The next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rock Slide
+text=Rock Slide deals X damage divided as you choose among any number of target attacking or blocking creatures without flying.
+mana={X}{R}
+type=Instant
+[/card]
+[card]
+name=Rowen
+text=Reveal the first card you draw each turn. Whenever you reveal a basic land card this way, draw a card.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Sands of Time
+text=Each player skips his or her untap step. -- At the beginning of each player's upkeep, that player simultaneously untaps each tapped artifact, creature, and land he or she controls and taps each untapped artifact, creature, and land he or she controls.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Shimmering Efreet
+text=Flying -- Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- Whenever Shimmering Efreet phases in, target creature phases out. (It phases in before its controller untaps during his or her next untap step.)
+mana={2}{U}
+type=Creature
+subtype=Efreet
+power=2
+toughness=2
+[/card]
+[card]
+name=Song of Blood
+text=Put the top four cards of your library into your graveyard. -- Whenever a creature attacks this turn, it gets +1/+0 until end of turn for each creature card put into your graveyard this way.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Spider Climb
+text=You may cast Spider Climb as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+3 and has reach. (It can block creatures with flying.)
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Talruum Piper
+text=All creatures with flying able to block Talruum Piper do so.
+mana={4}{R}
+type=Creature
+subtype=Minotaur
+power=3
+toughness=3
+[/card]
+[card]
+name=Three Wishes
+text=Exile the top three cards of your library face down. You may look at those cards for as long as they remain exiled. Until your next turn, you may play those cards. At the beginning of your next upkeep, put any of those cards you didn't play into your graveyard.
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Time and Tide
+text=Simultaneously, all phased-out creatures phase in and all creatures with phasing phase out.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+name=Vision Charm
+text=Choose one — Target player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Zhalfirin Crusader
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {1}{W}: The next 1 damage that would be dealt to Zhalfirin Crusader this turn is dealt to target creature or player instead.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]

@@ -183,6 +183,15 @@ public:
   virtual int doPay();
 };
 
+//Sacrifice all Lands cost 
+class SacLandsCost : public ExtraCost
+{
+public:
+    SacLandsCost(TargetChooser *_tc = NULL);
+    virtual int doPay();
+    virtual SacLandsCost * clone() const;
+};
+
 //unattach cost
 class UnattachCost : public ExtraCost
 {
@@ -216,6 +225,19 @@ public:
     virtual SnowCost * clone() const;
 };
 
+//Energy  cost
+class EnergyCost : public ExtraCost
+{
+private:
+    int enc;
+
+public:
+  EnergyCost(int enc = 0);
+  virtual int canPay();
+  virtual int doPay();
+  virtual EnergyCost * clone() const;
+};
+
 //untap  cost
 class UnTapCost : public ExtraCost
 {
@@ -231,7 +253,8 @@ public:
 class TapTargetCost : public ExtraCost
 {
 public:
-    TapTargetCost(TargetChooser *_tc = NULL);
+    bool crew;
+    TapTargetCost(TargetChooser *_tc = NULL, bool crew = false);
     virtual int isPaymentSet();
     virtual int doPay();
     virtual TapTargetCost * clone() const;
@@ -274,12 +297,43 @@ public:
   virtual int doPay();
   virtual Ninja * clone() const;
 };
-
+//Convoke
+class Convoke : public ExtraCost
+{
+public:
+    ManaCost * getReduction();
+    Convoke(TargetChooser *_tc = NULL);
+    virtual int canPay();
+    virtual int isPaymentSet();
+    virtual int doPay();
+    virtual Convoke * clone() const;
+};
+//delve
+class Delve : public ExtraCost
+{
+public:
+    Delve(TargetChooser *_tc = NULL);
+    virtual int canPay();
+    virtual int isPaymentSet();
+    virtual int doPay();
+    virtual Delve * clone() const;
+};
+//improvise
+class Improvise : public ExtraCost
+{
+public:
+    Improvise(TargetChooser *_tc = NULL);
+    virtual int canPay();
+    virtual int isPaymentSet();
+    virtual int doPay();
+    virtual Improvise * clone() const;
+};
 //offering cost
 class Offering : public ExtraCost
 {
 public:
-  Offering(TargetChooser *_tc = NULL);
+    bool emerge;
+  Offering(TargetChooser *_tc = NULL, bool emerge = false);
   virtual int canPay();
   virtual int isPaymentSet();
   virtual int doPay();

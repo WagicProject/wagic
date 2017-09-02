@@ -159,10 +159,36 @@ const char* Constants::MTGBasicAbilities[] = {
     "combattoughness",
     "cantpaylife",
     "cantbesacrified",
-	"skulk",
-	"menace",
-	"nosolo",
-	"mustblock"
+    "skulk",
+    "menace",
+    "nosolo",
+    "mustblock",
+    "dethrone",
+    "overload",
+    "shackler",
+    "flyersonly",
+    "tempflashback",
+    "legendruleremove",
+    "canttransform",
+    "asflash",
+    "conduited",
+    "canblocktapped",
+    "oppnomaxhand",
+    "cantcrew",
+    "hiddenface",//test for hiding card
+    "anytypeofmana",
+    "necroed",//hide necored
+    "cantpwattack",
+    "canplayfromlibrarytop",//all
+    "canplaylandlibrarytop",//land
+    "canplaycreaturelibrarytop",//creature
+    "canplayartifactlibrarytop",//artifact
+    "canplayinstantsorcerylibrarytop",//instant or sorcery
+    "showfromtoplibrary",
+    "showopponenttoplibrary",
+    "totemarmor",
+    "discardtoplaybyopponent",
+    "modular"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

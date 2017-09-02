@@ -1,0 +1,154 @@
+[card]
+name=Artifact Possession
+text=Enchant artifact -- Whenever enchanted artifact becomes tapped or a player activates an ability of enchanted artifact without {T} in its activation cost, Artifact Possession deals 2 damage to that artifact's controller.
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Battering Ram
+text=At the beginning of combat on your turn, Battering Ram gains banding until end of combat. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's blocking.) -- Whenever Battering Ram becomes blocked by a Wall, destroy that Wall at end of combat.
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+name=Bronze Tablet
+text=Remove Bronze Tablet from your deck before playing if you're not playing for ante. -- Bronze Tablet enters the battlefield tapped. -- {4}, {T}: Exile Bronze Tablet and target nontoken permanent an opponent owns. That player may pay 10 life. If he or she does, put Bronze Tablet into its owner's graveyard. Otherwise, that player owns Bronze Tablet and you own the other exiled card.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Circle of Protection: Artifacts
+text={2}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Cursed Rack
+text=As Cursed Rack enters the battlefield, choose an opponent. -- The chosen player's maximum hand size is four.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Damping Field
+text=Players can't untap more than one artifact during their untap steps.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Goblin Artisans
+text={T}: Flip a coin. If you win the flip, draw a card. If you lose the flip, counter target artifact spell you control that isn't the target of an ability from another creature named Goblin Artisans.
+mana={R}
+type=Creature
+subtype=Goblin Artificer
+power=1
+toughness=1
+[/card]
+[card]
+name=Golgothian Sylex
+text={1}, {T}: Each nontoken permanent from the Antiquities expansion is sacrificed by its controller.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Haunting Wind
+text=Whenever an artifact becomes tapped or a player activates an artifact's ability without {T} in its activation cost, Haunting Wind deals 1 damage to that artifact's controller.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
+name=Martyrs of Korlis
+text=As long as Martyrs of Korlis is untapped, all damage that would be dealt to you by artifacts is dealt to Martyrs of Korlis instead.
+mana={3}{W}{W}
+type=Creature
+subtype=Human
+power=1
+toughness=6
+[/card]
+[card]
+name=Mishra's War Machine
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- At the beginning of your upkeep, unless you discard a card, tap Mishra's War Machine and it deals 3 damage to you.
+mana={7}
+type=Artifact Creature
+subtype=Juggernaut
+power=5
+toughness=5
+[/card]
+[card]
+name=Mishra's Workshop
+text={T}: Add {3} to your mana pool. Spend this mana only to cast artifact spells.
+type=Land
+[/card]
+[card]
+name=Power Artifact
+text=Enchant artifact -- Enchanted artifact's activated abilities cost {2} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
+mana={U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Powerleech
+text=Whenever an artifact an opponent controls becomes tapped or an opponent activates an artifact's ability without {T} in its activation cost, you gain 1 life.
+mana={G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Reverse Polarity
+text=You gain X life, where X is twice the damage dealt to you so far this turn by artifacts.
+mana={W}{W}
+type=Instant
+[/card]
+[card]
+name=Shapeshifter
+text=As Shapeshifter enters the battlefield, choose a number between 0 and 7. -- At the beginning of your upkeep, you may choose a number between 0 and 7. -- Shapeshifter's power is equal to the last chosen number and its toughness is equal to 7 minus that number.
+mana={6}
+type=Artifact Creature
+subtype=Shapeshifter
+power=*
+toughness=7-*
+[/card]
+[card]
+name=Tawnos's Coffin
+text=You may choose not to untap Tawnos's Coffin during your untap step. -- {3}, {T}: Exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. When Tawnos's Coffin leaves the battlefield or becomes untapped, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it, and if you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Titania's Song
+text=Each noncreature artifact loses all abilities and becomes an artifact creature with power and toughness each equal to its converted mana cost. If Titania's Song leaves the battlefield, this effect continues until end of turn.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Transmute Artifact
+text=Sacrifice an artifact. If you do, search your library for an artifact card. If that card's converted mana cost is less than or equal to the sacrificed artifact's converted mana cost, put it onto the battlefield. If it's greater, you may pay {X}, where X is the difference. If you do, put it onto the battlefield. If you don't, put it into its owner's graveyard. Then shuffle your library.
+mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Urza's Avenger
+text={0}: Urza's Avenger gets -1/-1 and gains your choice of banding, flying, first strike, or trample until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={6}
+type=Artifact Creature
+subtype=Shapeshifter
+power=4
+toughness=4
+[/card]
+[card]
+name=Urza's Miter
+text=Whenever an artifact you control is put into a graveyard from the battlefield, if it wasn't sacrificed, you may pay {3}. If you do, draw a card.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Xenic Poltergeist
+text={T}: Until your next upkeep, target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost.
+mana={1}{B}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]

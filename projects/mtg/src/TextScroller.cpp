@@ -66,7 +66,25 @@ void TextScroller::Update(float dt)
 
 void TextScroller::Render()
 {
+    
+    JQuadPtr fakebar;
+    JTexture * tex = WResourceManager::Instance()->RetrieveTexture("phaseinfo.png");
+        if (tex)
+        {
+            fakebar = WResourceManager::Instance()->RetrieveQuad("phaseinfo.png", 0.0f, 0.0f, tex->mWidth - 3.5f, tex->mHeight - 2.0f); //avoids weird rectangle around the texture because of bilinear filtering
+        }
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+    mFont->SetColor(ARGB(128,255,255,255));
+    if(fakebar.get())
+    {
+        if(mText.length() > 1)
+        {
+            float xscale = (SCREEN_WIDTH_F/2.6f) / fakebar->mWidth;
+            float yscale = (mFont->GetHeight()+(mFont->GetHeight()/3.5f)) / fakebar->mHeight;
+            fakebar->SetHotSpot(fakebar->mWidth-8.f,0);
+            JRenderer::GetInstance()->RenderQuad(fakebar.get(),SCREEN_WIDTH_F, 4,0,xscale,yscale);
+        }
+    }
     mFont->DrawString(mText.c_str(), mX, mY, JGETEXT_LEFT, start, mWidth);
 }
 
@@ -145,5 +163,19 @@ void VerticalTextScroller::Update(float dt)
 void VerticalTextScroller::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+    JQuadPtr textscroller;
+    JQuadPtr textscrollershadow;
+#if !defined (PSP)
+    textscroller = WResourceManager::Instance()->RetrieveTempQuad("textscroller.png");//new graphics textscroller
+    textscrollershadow = WResourceManager::Instance()->RetrieveTempQuad("textscrollershadow.png");//new graphics textscroller shadow
+    if(!mText.empty() && mText.length() > 1)
+        if (textscrollershadow.get())
+            JRenderer::GetInstance()->RenderQuad(textscrollershadow.get(), 0, 0, 0 ,SCREEN_WIDTH_F / textscrollershadow->mWidth, SCREEN_HEIGHT_F / textscrollershadow->mHeight);
+#endif
     mFont->DrawString(mText.c_str(), mX, mY);
+#if !defined (PSP)
+    if(!mText.empty() && mText.length() > 1)
+        if (textscroller.get())
+            JRenderer::GetInstance()->RenderQuad(textscroller.get(), 0, 0, 0 ,SCREEN_WIDTH_F / textscroller->mWidth, SCREEN_HEIGHT_F / textscroller->mHeight);
+#endif
 }

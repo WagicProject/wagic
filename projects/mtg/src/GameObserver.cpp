@@ -50,9 +50,11 @@ void GameObserver::cleanup()
     replacementEffects = NEW ReplacementEffects();
     combatStep = BLOCKERS;
     connectRule = false;
+    LPWeffect = false;
     actionsList.clear();
     gameTurn.clear();
-	OpenedDisplay = NULL;
+    OpenedDisplay = NULL;
+    AffinityNeedsUpdate = false;
 }
 
 GameObserver::~GameObserver()
@@ -97,13 +99,15 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
     mExtraPayment = NULL;
-	OpenedDisplay = NULL;
+    OpenedDisplay = NULL;
+    guiOpenDisplay = NULL;
     gameOver = NULL;
     phaseRing = NULL;
     replacementEffects = NEW ReplacementEffects();
     combatStep = BLOCKERS;
     mRules = NULL;
     connectRule = false;
+    LPWeffect = false;
     mLoading = false;
     mLayers = NULL;
     mTrash = new Trash();
@@ -208,11 +212,14 @@ void GameObserver::nextGamePhase()
     {
         cleanupPhase();
         currentPlayer->damageCount = 0;
+        currentPlayer->nonCombatDamage = 0;
         currentPlayer->drawCounter = 0;
         currentPlayer->raidcount = 0;
+        currentPlayer->dealsdamagebycombat = 0; //clear check for restriction
         currentPlayer->opponent()->raidcount = 0;
         currentPlayer->prowledTypes.clear();
         currentPlayer->opponent()->damageCount = 0; //added to clear odcount
+        currentPlayer->opponent()->nonCombatDamage = 0;
         currentPlayer->preventable = 0;
         mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
         mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
@@ -246,6 +253,8 @@ void GameObserver::nextGamePhase()
         currentPlayer->prowledTypes.clear();
         currentPlayer->lifeLostThisTurn = 0;
         currentPlayer->opponent()->lifeLostThisTurn = 0;
+        currentPlayer->lifeGainedThisTurn = 0;
+        currentPlayer->opponent()->lifeGainedThisTurn = 0;
         currentPlayer->doesntEmpty->remove(currentPlayer->doesntEmpty);
         currentPlayer->opponent()->doesntEmpty->remove(currentPlayer->opponent()->doesntEmpty);
         nextPlayer();
@@ -327,11 +336,11 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
     // Here's what I find weird - if the extra cost is something like a sacrifice, doesn't that imply a TargetChooser?
     if (WaitForExtraPayment(NULL)) 
         return;
-	/*if (OpenedDisplay)//dont let us fly through all the phases with grave and library box still open.
-	{
-		return;//I want this here, but it locks up on opponents turn, we need to come up with a clever way to close opened
-		//displays, it makes no sense that you travel through 4 or 5 phases with library or grave still open.
-	}*/
+    /*if (OpenedDisplay)//dont let us fly through all the phases with grave and library box still open.
+    {
+        return;//I want this here, but it locks up on opponents turn, we need to come up with a clever way to close opened
+        //displays, it makes no sense that you travel through 4 or 5 phases with library or grave still open.
+    }*/
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
     if (allowInterrupt && ((cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER)
         || (cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS)
@@ -635,16 +644,16 @@ void GameObserver::gameStateBasedEffects()
         if (players[d]->snowManaW < 0)
             players[d]->snowManaW = 0;
 
-        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile };
-        for (int k = 0; k < 5; k++)
+        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile, players[d]->game->stack };
+        for (int k = 0; k < 6; k++)
         {
             MTGGameZone * zone = dzones[k];
             if (mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
             {
                 for (int c = zone->nb_cards - 1; c >= 0; c--)
                 {
-                    zone->cards[c]->cardistargetted = 0;
-                    zone->cards[c]->cardistargetter = 0;
+                    zone->cards[c]->forcedBorderA = 0;
+                    zone->cards[c]->forcedBorderB = 0;
                 }
             }
 
@@ -659,6 +668,25 @@ void GameObserver::gameStateBasedEffects()
                         card->removeColor(i);
                     }
                 }
+                //reset alternate paid
+                if(card && (isInGrave(card)||isInHand(card)||isInExile(card)))
+                {
+                    for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
+                        card->alternateCostPaid[i] = 0;
+                }
+                //test zone position
+                if(card && (isInGrave(card)||isInHand(card)||isInExile(card)))
+                {
+                    card->zpos = w+1;
+                }
+                else if(card && (isInLibrary(card)))
+                {//invert so we get the top one...
+                    int onum = w+1;
+                    card->zpos = abs(onum - zone->nb_cards)+1;
+                }
+                //last controller override
+                if(card && zone->owner)
+                    card->lastController = zone->owner;
             }
 
 
@@ -666,7 +694,10 @@ void GameObserver::gameStateBasedEffects()
         players[d]->DeadLifeState();
     }
     ////////////////////////////////////
-
+    //i think this must be limited to reveal display only but we can make an auto close like on android after a targetchooser...
+    //lets see so far... adding this fixes some cards that rely on card count in hand or library or any zone the needs constant card count...
+    if (OpenedDisplay && (players[0]->game->reveal->cards.size() || players[1]->game->reveal->cards.size()))
+        return;
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
         return;
     if (mLayers->actionLayer()->menuObject) 
@@ -684,6 +715,7 @@ void GameObserver::gameStateBasedEffects()
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
+            card->entersBattlefield = 0;
             card->LKIpower = card->power;
             card->LKItoughness = card->toughness;
             card->LKIbasicAbilities = card->basicAbilities;
@@ -715,12 +747,33 @@ void GameObserver::gameStateBasedEffects()
                 }
             }
             card->bypassTC = false; //turn off bypass
+            ///////////////////////////
+            //reset extracost shadows//
+            ///////////////////////////
+            card->isExtraCostTarget = false;
+            if (mExtraPayment != NULL)
+            {
+                for (unsigned int ec = 0; ec < mExtraPayment->costs.size(); ec++)
+                {
+
+                    if (mExtraPayment->costs[ec]->tc)
+                    {
+                        vector<Targetable*>targetlist = mExtraPayment->costs[ec]->tc->getTargetsFrom();
+                        for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
+                        {
+                            Targetable * cardMasked = *it;
+                            dynamic_cast<MTGCardInstance*>(cardMasked)->isExtraCostTarget = true;
+                        }
+
+                    }
+                }
+            }
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//
             ////////////////////////////////////////////////////
-            if ((card->target) && card->hasType(Subtypes::TYPE_EQUIPMENT))
+            if (card->hasType(Subtypes::TYPE_EQUIPMENT)||card->hasType("fortification"))
             {
-                if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card))//protection from quality
+                if(isInPlay(card))
                 {
                     for (size_t i = 1; i < mLayers->actionLayer()->mObjects.size(); i++)
                     {
@@ -728,41 +781,36 @@ void GameObserver::gameStateBasedEffects()
                         AEquip * eq = dynamic_cast<AEquip*> (a);
                         if (eq && eq->source == card)
                         {
-                            ((AEquip*)a)->unequip();
+                            if(card->target)//unattach equipments from cards that has protection from quality ex. protection from artifacts
+                            {
+                                if((card->target)->protectedAgainst(card)||card->isCreature()||(!card->target->isCreature()))
+                                    ((AEquip*)a)->unequip();
+                                else if((!card->target->isLand() && card->hasType("fortification")))
+                                    ((AEquip*)a)->unequip();
+                            }
+                            if(card->controller())
+                                ((AEquip*)a)->getActionTc()->Owner = card->controller();
+                            //fix for equip ability when the equipment changed controller... 
                         }
                     }
                 }
             }
+
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////
-			if (card->target && !isInPlay(card->target) && card->isBestowed && card->hasType("aura"))
-			{
-				card->removeType("aura");
-				card->addType("creature");
-				card->target = NULL;
-				card->isBestowed = false;
-			}
+            if (card->target && !isInPlay(card->target) && card->isBestowed && card->hasType("aura"))
+            {
+                card->removeType("aura");
+                card->addType("creature");
+                card->target = NULL;
+                card->isBestowed = false;
+            }
 
             if ((card->target||card->playerTarget) && !card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
                 if(card->target && !isInPlay(card->target))
-                players[i]->game->putInGraveyard(card);
-                if(card->target && isInPlay(card->target))
-                {//what exactly does this section do?
-                    if(card->spellTargetType.find("creature") != string::npos && !card->target->hasType("creature"))
-                        players[i]->game->putInGraveyard(card);
-                    if(card->spellTargetType.find("artifact") != string::npos && !card->target->hasType("artifact"))
-                        players[i]->game->putInGraveyard(card);
-                    if(card->spellTargetType.find("enchantment") != string::npos && !card->target->hasType("enchantment"))
-                        players[i]->game->putInGraveyard(card);
-                    if(card->spellTargetType.find("land") != string::npos && !card->target->hasType("land"))
-                        players[i]->game->putInGraveyard(card);
-                    if(card->spellTargetType.find("planeswalker") != string::npos && !card->target->hasType("planeswalker"))
-                        players[i]->game->putInGraveyard(card);
-                }
-                if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card) && !card->has(Constants::AURAWARD))//protection from quality except aura cards like flickering ward
-                players[i]->game->putInGraveyard(card);
+                    players[i]->game->putInGraveyard(card);
             }
             card->enchanted = false;
             if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
@@ -773,17 +821,41 @@ void GameObserver::gameStateBasedEffects()
             {
                 card->playerTarget->curses.push_back(card);
             }
-            ///////////////////////////
-            //reset extracost shadows//
-            ///////////////////////////
-            card->isExtraCostTarget = false;
-            if(mExtraPayment != NULL)
+
+            //704.5n If an Aura is attached to an illegal object or player,
+            //or is not attached to an object or player, that Aura is put into its owner’s graveyard.
+            if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
             {
-                for(unsigned int ec = 0;ec < mExtraPayment->costs.size();ec++)
+                bool unattachB = (!card->target->isCreature() && card->isBestowed)?true:false;
+                bool protectionfromQ = ((card->target)->protectedAgainst(card) && !card->has(Constants::AURAWARD))?true:false;
+                int found = 0;
+                string stypes = card->spellTargetType;
+                if(stypes.size() && !card->hasType("curse"))
                 {
-                    if( mExtraPayment->costs[ec]->target)
-                        mExtraPayment->costs[ec]->target->isExtraCostTarget = true;
+                    if(stypes.find("artifact") != string::npos && card->target->hasType("artifact"))
+                        found++;
+                    if(stypes.find("creature") != string::npos && card->target->hasType("creature"))
+                        found++;
+                    if(stypes.find("enchantment") != string::npos && card->target->hasType("enchantment"))
+                        found++;
+                    if(stypes.find("land") != string::npos && card->target->hasType("land"))
+                        found++;
+                    if(stypes.find("planeswalker") != string::npos && card->target->hasType("planeswalker"))
+                        found++;
                 }
+
+                if((!found || protectionfromQ) && !card->isBestowed)
+                {
+                    players[i]->game->putInGraveyard(card);
+                }
+                else if(card->isBestowed && (protectionfromQ || unattachB))
+                {
+                    card->removeType("aura");
+                    card->addType("creature");
+                    card->target = NULL;
+                    card->isBestowed = false;
+                }
+                
             }
             //////////////////////
             //reset morph hiding//
@@ -808,6 +880,9 @@ void GameObserver::gameStateBasedEffects()
                 if(card->view)
                     card->view->alpha = 50;
                 card->initAttackersDefensers();
+                //add event phases out here
+                WEvent * evphaseout = NEW WEventCardPhasesOut(card, turn);
+                receiveEvent(evphaseout);
             }
             else if((card->has(Constants::PHASING) || card->isPhased)&& mCurrentGamePhase == MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)
             {
@@ -815,6 +890,9 @@ void GameObserver::gameStateBasedEffects()
                 card->phasedTurn = turn;
                 if(card->view)
                     card->view->alpha = 255;
+                //add event phases in here
+                WEvent * evphasein = NEW WEventCardPhasesIn(card);
+                receiveEvent(evphasein);
             }
             if (card->target && isInPlay(card->target) && (card->hasSubtype(Subtypes::TYPE_EQUIPMENT) || card->hasSubtype(Subtypes::TYPE_AURA)))
             {
@@ -830,6 +908,12 @@ void GameObserver::gameStateBasedEffects()
             {
                 card->graveEffects = false;
                 card->exileEffects = false;
+
+                if(card->isCreature())
+                {
+                    if(card->life < 1 && !card->has(Constants::INDESTRUCTIBLE))
+                        card->destroy();//manor gargoyle... recheck
+                }
             }
 
             if(card->childrenCards.size())
@@ -879,16 +963,46 @@ void GameObserver::gameStateBasedEffects()
         //checks if a player has a card which has the stated ability in play.
         Player * p = players[i];
         MTGGameZone * z = players[i]->game->inPlay;
-        int nbcards = z->nb_cards;
         //------------------------------
-        p->nomaxhandsize = (z->hasAbility(Constants::NOMAXHAND));
-
+        if(z->hasAbility(Constants::NOMAXHAND)||p->opponent()->inPlay()->hasAbility(Constants::OPPNOMAXHAND))
+            p->nomaxhandsize = true;
+        else
+            p->nomaxhandsize = false;
+        //////////////////////////////////
+        //clear will attack player or pw//
+        //////////////////////////////////
+        if (mCurrentGamePhase == MTG_PHASE_COMBATBLOCKERS)
+        {
+            for (int l = z->nb_cards - 1; l >= 0; l--)
+            {
+                MTGCardInstance * c = z->cards[l];
+                if(c)
+                {
+                    c->willattackplayer = 0;
+                    c->willattackpw = 0;
+                }
+            }
+        }
+        ///provoke clear///
+        if (mCurrentGamePhase == MTG_PHASE_COMBATEND)
+        {
+            for (int l = z->nb_cards - 1; l >= 0; l--)
+            {
+                MTGCardInstance * c = z->cards[l];
+                if(c)
+                {
+                    c->isProvoked = false;
+                    c->ProvokeTarget = NULL;
+                    c->Provoker = NULL;
+                }
+            }
+        }
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
         /////////////////////////////////////////////////
         if (mCurrentGamePhase == MTG_PHASE_ENDOFTURN+1)
         {
-            for (int j = 0; j < nbcards; ++j)
+            for (int j = z->nb_cards - 1; j >= 0; j--)
             {
                 MTGCardInstance * c = z->cards[j];
 
@@ -907,38 +1021,12 @@ void GameObserver::gameStateBasedEffects()
                     c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
+                c->combatdamageToOpponent = false;
                 c->damageToCreature = false;
                 c->isAttacking = NULL;
-            }
-            for (int t = 0; t < nbcards; t++)
-            {
-                MTGCardInstance * c = z->cards[t];
-
-                if(!c->isPhased)
-                {
-                    if (c->has(Constants::TREASON))
-                    {
-                        MTGCardInstance * beforeCard = c;
-                        p->game->putInGraveyard(c);
-                        WEvent * e = NEW WEventCardSacrifice(beforeCard,c);
-                        receiveEvent(e);
-                    }
-                    if (c->has(Constants::UNEARTH))
-                    {
-                        p->game->putInExile(c);
-
-                    }
-                }
-                if(c->modifiedbAbi > 0)
-                {
-                    c->modifiedbAbi = 0;
-                    c->basicAbilities = c->origbasicAbilities;
-                }
-                if(nbcards > z->nb_cards)
-                {
-                    t = 0;
-                    nbcards = z->nb_cards;
-                }
+                c->isProvoked = false;
+                c->ProvokeTarget = NULL;
+                c->Provoker = NULL;
             }
 
             MTGGameZone * f = p->game->graveyard;
@@ -988,13 +1076,16 @@ void GameObserver::gameStateBasedEffects()
     //Auto skip Phases
     int skipLevel = (currentPlayer->playMode == Player::MODE_TEST_SUITE || mLoading) ? Constants::ASKIP_NONE
         : options[Options::ASPHASES].number;
-
+    bool noattackers = currentPlayer->noPossibleAttackers();
+    bool nodiaochan = (currentPlayer->game->battlefield->countByAlias(10544)<1)?true:false;
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
         if ((opponent()->isAI() && !(isInterrupting)) && ((mCurrentGamePhase == MTG_PHASE_UNTAP)
-            || (mCurrentGamePhase == MTG_PHASE_DRAW) || (mCurrentGamePhase == MTG_PHASE_COMBATBEGIN)
-            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (currentPlayer->noPossibleAttackers()))
-            || mCurrentGamePhase == MTG_PHASE_COMBATEND || mCurrentGamePhase == MTG_PHASE_ENDOFTURN
+            || (mCurrentGamePhase == MTG_PHASE_DRAW) 
+            || ((mCurrentGamePhase == MTG_PHASE_COMBATBEGIN) && (nodiaochan))
+            || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (noattackers))
+            || (mCurrentGamePhase == MTG_PHASE_COMBATEND) 
+            || (mCurrentGamePhase == MTG_PHASE_ENDOFTURN)
             || ((mCurrentGamePhase == MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
             userRequestNextGamePhase();
     }
@@ -1004,6 +1095,10 @@ void GameObserver::gameStateBasedEffects()
             || mCurrentGamePhase == MTG_PHASE_COMBATDAMAGE))
             userRequestNextGamePhase();
     }
+
+    this->LPWeffect = false;
+    //WEventGameStateBasedChecked event checked
+    receiveEvent(NEW WEventGameStateBasedChecked());
 }
 
 void GameObserver::enchantmentStatus()
@@ -1027,6 +1122,7 @@ void GameObserver::enchantmentStatus()
             {
                 card->target->enchanted = true;
                 card->target->auras += 1;
+                card->auraParent = card->target;
             }
         }
     }
@@ -1038,7 +1134,7 @@ void GameObserver::Affinity()
     {
         MTGGameZone * dzones[] = { players[dd]->game->graveyard, players[dd]->game->hand, players[dd]->game->library, players[dd]->game->exile };
         for (int kk = 0; kk < 4; kk++)
-        {
+        { 
             MTGGameZone * zone = dzones[kk];
             for (int cc = zone->nb_cards - 1; cc >= 0; cc--)
             {//start
@@ -1046,189 +1142,158 @@ void GameObserver::Affinity()
                 if (!card)
                     continue;
 
-				bool NewAffinityFound = false;
-				for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
-				{
-					if (!card->cardsAbilities[na])
-						break;
-					ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
-					if (newAff)
-					{
-						NewAffinityFound = true;
-					}
-				}
-				bool DoReduceIncrease = false;
-				if (card->has(Constants::AFFINITYARTIFACTS) ||
-					card->has(Constants::AFFINITYFOREST) ||
-					card->has(Constants::AFFINITYGREENCREATURES) ||
-					card->has(Constants::AFFINITYISLAND) ||
-					card->has(Constants::AFFINITYMOUNTAIN) ||
-					card->has(Constants::AFFINITYPLAINS) ||
-					card->has(Constants::AFFINITYSWAMP) ||
-					card->has(Constants::TRINISPHERE) ||
-					card->getIncreasedManaCost()->getConvertedCost() ||
-					card->getReducedManaCost()->getConvertedCost() ||
-					NewAffinityFound)
-					DoReduceIncrease = true;
-				if (!DoReduceIncrease)
-					continue;
-				//above we check if there are even any cards that effect cards manacost
-				//if there are none, leave this function. manacost->copy( is a very expensive funtion
-				//1mb a sec to run at all time even when no known reducers or increasers are in play.
-				//memory snapshot shots pointed to this as such a heavy load that games with many cards inplay
-				//would slow to a crawl.
-                //only do any of the following if a card with the stated ability is in your hand.
-                int color = 0;
-                string type = "";
-                
-                ManaCost * original = NEW ManaCost();
-                original->copy(card->model->data->getManaCost());
-                if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
-                {//start1
-                    if(card->getIncreasedManaCost()->getConvertedCost())
-                        original->add(card->getIncreasedManaCost());
-                    if(card->getReducedManaCost()->getConvertedCost())
-                        original->remove(card->getReducedManaCost());
-                    if(card->getManaCost())
-                        card->getManaCost()->copy(original);
-                    if(card->getManaCost()->extraCosts)
+                bool checkAuraP = false;
+                ///////////////////////////
+                //reset extracost shadows//
+                ///////////////////////////
+                card->isExtraCostTarget = false;
+                if (mExtraPayment != NULL)
+                {
+                    for (unsigned int ec = 0; ec < mExtraPayment->costs.size(); ec++)
                     {
-                        for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
-                        {
-                            card->getManaCost()->extraCosts->costs[i]->setSource(card);
-                        }
-                    }
-                }//end1
-                int reducem = 0;
-                bool resetCost = false;
-                for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
-                {//start2
-					if (!card->cardsAbilities[na])
-						break;
-                    ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
-                    if(newAff)
-                    {
-                        if(!resetCost)
-                        {
-                            resetCost = true;
-                            card->getManaCost()->copy(original);
-                            if(card->getManaCost()->extraCosts)
-                            {
-                                for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
-                                {
-                                    card->getManaCost()->extraCosts->costs[i]->setSource(card);
-                                }
-                            }
-                        }
-                        TargetChooserFactory tf(this);
-                        TargetChooser * tcn = tf.createTargetChooser(newAff->tcString,card,NULL);
 
-                        for (int w = 0; w < 2; ++w)
+                        if (mExtraPayment->costs[ec]->tc)
                         {
-                            Player *p = this->players[w];
-                            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
-                            for (int k = 0; k < 6; k++)
+                            vector<Targetable*>targetlist = mExtraPayment->costs[ec]->tc->getTargetsFrom();
+                            for (vector<Targetable*>::iterator it = targetlist.begin(); it != targetlist.end(); it++)
                             {
-                                MTGGameZone * z = zones[k];
-                                if (tcn->targetsZone(z))
-                                {
-                                    reducem += z->countByCanTarget(tcn);
-                                }
+                                Targetable * cardMasked = *it;
+                                dynamic_cast<MTGCardInstance*>(cardMasked)->isExtraCostTarget = true;
                             }
+
                         }
-                        SAFE_DELETE(tcn);
-                        ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
-                        for(int j = 0; j < reducem; j++)
-                            card->getManaCost()->remove(removingCost);
-                        SAFE_DELETE(removingCost);
-                    }
-                }//end2
-                if(card->has(Constants::AFFINITYARTIFACTS)||
-                    card->has(Constants::AFFINITYFOREST)||
-                    card->has(Constants::AFFINITYGREENCREATURES)||
-                    card->has(Constants::AFFINITYISLAND)||
-                    card->has(Constants::AFFINITYMOUNTAIN)||
-                    card->has(Constants::AFFINITYPLAINS)||
-                    card->has(Constants::AFFINITYSWAMP))
-                    {//start3
-                        if (card->has(Constants::AFFINITYARTIFACTS))
-                        {
-                            type = "artifact";
-                        }
-                        else if (card->has(Constants::AFFINITYSWAMP))
-                        {
-                            type = "swamp";
-                        }
-                        else if (card->has(Constants::AFFINITYMOUNTAIN))
-                        {
-                            type = "mountain";
-                        }
-                        else if (card->has(Constants::AFFINITYPLAINS))
-                        {
-                            type = "plains";
-                        }
-                        else if (card->has(Constants::AFFINITYISLAND))
-                        {
-                            type = "island";
-                        }
-                        else if (card->has(Constants::AFFINITYFOREST))
-                        {
-                            type = "forest";
-                        }
-                        else if (card->has(Constants::AFFINITYGREENCREATURES))
-                        {
-                            color = 1;
-                            type = "creature";
-                        }
-                        card->getManaCost()->copy(original);
-                        if(card->getManaCost()->extraCosts)
-                        {
-                            for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
-                            {
-                                card->getManaCost()->extraCosts->costs[i]->setSource(card);
-                            }
-                        }
-                        int reduce = 0;
-                        if(card->has(Constants::AFFINITYGREENCREATURES))
-                        {
-                            TargetChooserFactory tf(this);
-                            TargetChooser * tc = tf.createTargetChooser("creature[green]",NULL);
-                            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
-                            SAFE_DELETE(tc);
-                        }
-                        else
-                        {
-                            reduce = card->controller()->game->battlefield->countByType(type);
-                        }
-                        for(int i = 0; i < reduce;i++)
-                        {
-                            if(card->getManaCost()->getCost(color) > 0)
-                                card->getManaCost()->remove(color,1);
-                        }
-                    }//end3
-                //trinisphere... now how to implement kicker recomputation
-                
-                if(card->has(Constants::TRINISPHERE))
-                {
-                    for(int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
-                    {
-                        card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                        card->countTrini++;
                     }
                 }
-                else
+                ///we handle trisnisphere seperately because its a desaster.
+                if(card->getManaCost())//make sure we check, abiliy$!/token dont have a mancost object.
                 {
-                    if(card->countTrini)
+                    if (card->controller()->AuraIncreased->getConvertedCost() || card->controller()->AuraReduced->getConvertedCost())
+                        if(card->model->data->getManaCost()->getBestow())
+                            checkAuraP = true;
+
+                    //change cost to colorless for anytypeofmana ability
+                    if(card->has(Constants::ANYTYPEOFMANA))
                     {
-                        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
-                        card->countTrini=0;
+                        card->anymanareplacement = true;
+                        int convertedC = card->getManaCost()->getConvertedCost();
+                        card->getManaCost()->changeCostTo( NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, card)) );
+                        for (int jj = 0; jj < convertedC; jj++)
+                        {
+                            card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                        }
+                    }
+                    else
+                    {
+                        if (card->anymanareplacement)
+                        {
+                            card->getManaCost()->changeCostTo( card->model->data->getManaCost() );
+                            card->anymanareplacement = false;
+                        }
+                    }
+
+                    if (card->has(Constants::TRINISPHERE))
+                    {
+                        for (int jj = card->getManaCost()->getConvertedCost(); jj < 3; jj++)
+                        {
+                            card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                            card->countTrini++;
+                        }
+                    }
+                    else
+                    {
+                        if (card->countTrini)
+                        {
+                            card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+                            card->countTrini = 0;
+                        }
                     }
                 }
+                ///////////////////////
+                bool NewAffinityFound = false;
+                for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
+                {
+                    if (!card->cardsAbilities[na])
+                        break;
+                    ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
+                    if (newAff)
+                    {
+                        NewAffinityFound = true;
+                    }
+                }
+                bool DoReduceIncrease = false;
+                if (
+                    (card->has(Constants::AFFINITYARTIFACTS) ||
+                    card->has(Constants::AFFINITYFOREST) ||
+                    card->has(Constants::AFFINITYGREENCREATURES) ||
+                    card->has(Constants::AFFINITYISLAND) ||
+                    card->has(Constants::AFFINITYMOUNTAIN) ||
+                    card->has(Constants::AFFINITYPLAINS) ||
+                    card->has(Constants::AFFINITYSWAMP) ||
+                    card->has(Constants::CONDUITED) ||
+                    card->getIncreasedManaCost()->getConvertedCost() ||
+                    card->getReducedManaCost()->getConvertedCost() ||
+                    NewAffinityFound || checkAuraP)
+                    &&
+                    AffinityNeedsUpdate
+                    )
+                    DoReduceIncrease = true;
+                if (!DoReduceIncrease)
+                    continue;
+
+                //above we check if there are even any cards that effect cards manacost
+                //only do any of the following if a card with the stated ability is in your hand.
+                //kicker is an addon to normal cost, suspend is not casting. add cost as needed EXACTLY as seen below.
+                card->getManaCost()->resetCosts();
+                ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost(), card->model->data->getManaCost()));
+                card->getManaCost()->changeCostTo(newCost);
+                SAFE_DELETE(newCost);
+                if (card->getManaCost()->getAlternative())
+                {
+                    card->getManaCost()->getAlternative()->resetCosts();
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getAlternative(), card->model->data->getManaCost()->getAlternative()));
+                    card->getManaCost()->getAlternative()->changeCostTo(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getBestow())
+                {
+                    card->getManaCost()->getBestow()->resetCosts();
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getBestow(), card->model->data->getManaCost()->getBestow(),false,true));
+                    card->getManaCost()->getBestow()->changeCostTo(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getBuyback())
+                {
+                    card->getManaCost()->getBuyback()->resetCosts();
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getBuyback(), card->model->data->getManaCost()->getBuyback()));
+                    card->getManaCost()->getBuyback()->changeCostTo(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getFlashback())
+                {
+                    card->getManaCost()->getFlashback()->resetCosts();
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getFlashback(), card->model->data->getManaCost()->getFlashback()));
+                    card->getManaCost()->getFlashback()->changeCostTo(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getMorph())
+                {
+                    card->getManaCost()->getMorph()->resetCosts();
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getMorph(), card->model->data->getManaCost()->getMorph()));
+                    card->getManaCost()->getMorph()->changeCostTo(newCost);
+                    SAFE_DELETE(newCost);
+                }
+                if (card->getManaCost()->getRetrace())
+                {
+                    card->getManaCost()->getRetrace()->resetCosts();
+                    ManaCost *newCost = NEW ManaCost(card->computeNewCost(card, card->getManaCost()->getRetrace(), card->model->data->getManaCost()->getRetrace()));
+                    card->getManaCost()->getRetrace()->changeCostTo(newCost);
+                    SAFE_DELETE(newCost);
+                }
                 
-                SAFE_DELETE(original);
             }//end
         }
     }
+    AffinityNeedsUpdate = false;
 }
 
 void GameObserver::Render()
@@ -1607,7 +1672,28 @@ int GameObserver::isInExile(MTGCardInstance * card)
     }
     return 0;
 }
+int GameObserver::isInHand(MTGCardInstance * card)
+{
 
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * hand = players[i]->game->hand;
+        if (players[i]->game->isInZone(card, hand))
+            return 1;
+    }
+    return 0;
+}
+int GameObserver::isInLibrary(MTGCardInstance * card)
+{
+
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * library = players[i]->game->library;
+        if (players[i]->game->isInZone(card, library))
+            return 1;
+    }
+    return 0;
+}
 void GameObserver::cleanupPhase()
 {
     currentPlayer->cleanupPhase();
@@ -1638,6 +1724,7 @@ int GameObserver::receiveEvent(WEvent * e)
         SAFE_DELETE(ev);
         eventsQueue.pop();
     }
+    AffinityNeedsUpdate = true;
     return result;
 }
 

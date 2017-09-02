@@ -31,7 +31,7 @@ protected:
     ManaCost * manaUsedToCast;
     ManaCost * morph;
     ManaCost * Retrace;
-	ManaCost * Bestow;
+    ManaCost * Bestow;
     ManaCost * FlashBack;
     ManaCost * BuyBack;
     ManaCost * kicker;
@@ -76,8 +76,8 @@ public:
     ManaCost * getSuspend(){ return suspend; };
     void setSuspend(ManaCost * aMana){ SAFE_DELETE(suspend); suspend = aMana;};
 
-	ManaCost * getBestow() { return Bestow; };
-	void setBestow(ManaCost * aMana) { SAFE_DELETE(Bestow); Bestow = aMana; };
+    ManaCost * getBestow() { return Bestow; };
+    void setBestow(ManaCost * aMana) { SAFE_DELETE(Bestow); Bestow = aMana; };
 
     ManaCost * getManaUsedToCast(){ return manaUsedToCast; };
     void setManaUsedToCast(ManaCost * aMana){ SAFE_DELETE(manaUsedToCast); manaUsedToCast = aMana;};
@@ -101,6 +101,7 @@ public:
     ManaCost(const ManaCost& manaCost);
     ManaCost& operator= (const ManaCost& manaCost);
     void copy(ManaCost * _manaCost);
+    void changeCostTo(ManaCost * _manaCost);
     int isNull();
     int getConvertedCost();
     string toString();
@@ -108,6 +109,7 @@ public:
     int getManaSymbols(int color);
     int getManaSymbolsHybridMerged(int color);
     int countHybridsNoPhyrexian();
+    void removeHybrid(ManaCost * _cost);
 
     //Returns NULL if i is greater than nbhybrids
     ManaCostHybrid * getHybridCost(unsigned int i);

@@ -2,6 +2,7 @@
 
 #include "Counters.h"
 #include "MTGCardInstance.h"
+#include "AllAbilities.h"
 
 Counter::Counter(MTGCardInstance * _target, int _power, int _toughness)
 {
@@ -128,8 +129,9 @@ int Counters::addCounter(const char * _name, int _power, int _toughness, bool _n
             g->receiveEvent(w);
         }
         mCount++;
-        this->target->doDamageTest = 1;
-        this->target->afterDamage();
+        /*the damage test should be handled on game state based effect i think*/
+        //this->target->doDamageTest = 1;
+        //this->target->afterDamage();
     }
     delete(e);
     return mCount;
@@ -187,10 +189,13 @@ int Counters::removeCounter(const char * _name, int _power, int _toughness)
             if (target->suspended && !target->counters->hasCounter("time",0,0))
             {
                 GameObserver * game = target->getObserver();
-                MTGCardInstance * copy = target->controller()->game->putInZone(target, target->currentZone, target->controller()->game->stack);
-
-                game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL,1, 0);
-                game->targetChooser = NULL;
+                MTGAbility *ac = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), target, target, false, false, true, "", "", false, false);
+                MayAbility *ma1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ac->clone(), target, true);
+                MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), target, NULL, ma1->clone());
+                SAFE_DELETE(ac);
+                SAFE_DELETE(ma1);
+                ga1->resolve();
+                SAFE_DELETE(ga1);
             }
             return mCount;
         }

@@ -77,7 +77,7 @@ public:
     }
     
     virtual const string getDisplayName() const;
-    void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false);
+    void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false, int aType = 0, vector<JQuadPtr> targetIcons = vector<JQuadPtr>());
     
     virtual int receiveEvent(WEvent *)
     {
@@ -230,7 +230,7 @@ public:
     Player * askIfWishesToInterrupt;
     int garbageCollect();
     int addAction(Interruptible * interruptible);
-    Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult, int storm);
+    Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult, int storm, bool forcedinterrupt = false);
     int AddNextGamePhase();
     int AddNextCombatStep();
     int addPutInGraveyard(MTGCardInstance * card);

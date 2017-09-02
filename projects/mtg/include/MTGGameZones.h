@@ -72,14 +72,21 @@ class MTGGameZone {
     OWNER_STACK = 66,
     TARGETED_PLAYER_STACK = 67,
 
-	MY_REVEAL = 71,
-	OPPONENT_REVEAL = 72,
-	TARGET_OWNER_REVEAL = 73,
-	TARGET_CONTROLLER_REVEAL = 74,
-	REVEAL = 75,
-	OWNER_REVEAL = 76,
-	TARGETED_PLAYER_REVEAL = 77,
+    MY_REVEAL = 71,
+    OPPONENT_REVEAL = 72,
+    TARGET_OWNER_REVEAL = 73,
+    TARGET_CONTROLLER_REVEAL = 74,
+    REVEAL = 75,
+    OWNER_REVEAL = 76,
+    TARGETED_PLAYER_REVEAL = 77,
 
+    MY_SIDEBOARD = 81,
+    OPPONENT_SIDEBOARD = 82,
+    TARGET_OWNER_SIDEBOARD = 83,
+    TARGET_CONTROLLER_SIDEBOARD = 84,
+    SIDEBOARD = 85,
+    OWNER_SIDEBOARD = 86,
+    TARGETED_PLAYER_SIDEBOARD = 87,
    };
 
    Player * owner;
@@ -102,7 +109,8 @@ class MTGGameZone {
    size_t getIndex(MTGCardInstance * card);
    void cleanupPhase();
    void beforeBeginPhase();
-
+   
+   unsigned int countByAlias(int number = 0);
    unsigned int countByType(const string &value);
    unsigned int countByCanTarget(TargetChooser * tc);
    unsigned int countTotalManaSymbols(TargetChooser * tc, int color);
@@ -178,7 +186,9 @@ public:
     void untapAll();
     MTGCardInstance * getNextAttacker(MTGCardInstance * previous);
     MTGCardInstance * getNextLurer(MTGCardInstance * previous);
+    MTGCardInstance * getNextProvoker(MTGCardInstance * previous, MTGCardInstance * source);
     MTGCardInstance * findALurer();
+    MTGCardInstance * findAProvoker(MTGCardInstance * source);
     virtual ostream& toString(ostream&) const;
     const char * getName(){return "battlefield";}
 };
@@ -202,7 +212,8 @@ public:
     MTGRemovedFromGame * exile; //alias to removedFromZone
     MTGGameZone * garbage;
     MTGGameZone * garbageLastTurn;
-	MTGGameZone * reveal;
+    MTGGameZone * reveal;
+    MTGGameZone * sideboard;
     MTGGameZone * temp;
 
     MTGPlayerCards();

@@ -80,6 +80,7 @@ public:
         }
     };
     virtual JQuadPtr RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL) = 0;
+    virtual JQuadPtr RetrieveCardToken(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL, int tId = 0) = 0;
     virtual JSample * RetrieveSample(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;
     virtual JTexture * RetrieveTexture(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;
     virtual JQuadPtr RetrieveQuad(const string& filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,  string resname="",  int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL, int id = 0) = 0;

@@ -26,6 +26,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     nomaxhandsize = false;
     poisonCount = 0;
     damageCount = 0;
+    nonCombatDamage = 0;
     preventable = 0;
     mAvatarTex = NULL;
     type_as_damageable = DAMAGEABLE_PLAYER;
@@ -33,8 +34,10 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     skippingTurn = 0;
     extraTurn = 0;
     drawCounter = 0;
+    energyCount = 0;
     epic = 0;
     forcefield = 0;
+    dealsdamagebycombat = 0;
     raidcount = 0;
     handmodifier = 0;
     snowManaG = 0;
@@ -46,6 +49,8 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();
+    AuraIncreased = NEW ManaCost();
+    AuraReduced = NEW ManaCost();
     if (deck != NULL)
     {
         game = NEW MTGPlayerCards(deck);
@@ -79,6 +84,8 @@ Player::~Player()
     SAFE_DELETE(manaPool);
     SAFE_DELETE(doesntEmpty);
     SAFE_DELETE(poolDoesntEmpty);
+    SAFE_DELETE(AuraIncreased);
+    SAFE_DELETE(AuraReduced);
     SAFE_DELETE(game);
     if(mAvatarTex && observer->getResourceManager())
         observer->getResourceManager()->Release(mAvatarTex);
@@ -166,6 +173,10 @@ int Player::gainOrLoseLife(int value)
         life+=value;
     if (value<0)
         lifeLostThisTurn += abs(value);
+    else if (value > 0)
+    {
+        lifeGainedThisTurn += abs(value);
+    }
 
     //Send life event to listeners
     WEvent * lifed = NEW WEventLife(this,value);
@@ -253,9 +264,7 @@ bool Player::hasPossibleAttackers()
     for (int j = 0; j < nbcards; ++j)
     {
         MTGCardInstance * c = z->cards[j];
-        if (!c->isTapped() &&
-            !c->hasSummoningSickness() &&
-            c->isCreature())
+        if ((c->canAttack(true) || c->canAttack()) && c->isCreature())
             return true;
     }
     return false;

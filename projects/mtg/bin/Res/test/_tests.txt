@@ -455,6 +455,7 @@ library_of_alexandria3.txt
 lifeforce.txt
 lifeline.txt
 lifetap.txt
+lifetap2.txt
 lightmine_field.txt
 lightmine_field2.txt
 living_artifact_i169.txt
@@ -462,6 +463,7 @@ living_lands.txt
 livingweapon.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
+Living_Death.txt
 magma_spray.txt
 manabarbs_dual_lands_i562.txt
 master_decoy.txt
@@ -533,6 +535,7 @@ pledge_protection.txt
 plumes_of_peace_i260.txt
 pouncing_jaguar_i425.txt
 power_armor.txt
+previousbattlefield.txt
 promise_of_bunrei_i305.txt
 prosperity.txt
 protomatter_powder.txt
@@ -679,6 +682,8 @@ tidal_warrior_i646.txt
 tidal_warrior_i649.txt
 tidal_warrior_i652.txt
 Timely_Reinforcements.txt
+TirelessTracker.txt
+TirelessGraf.txt
 titanic_ultimatum.txt
 tokenizer.txt
 tokenizer2.txt

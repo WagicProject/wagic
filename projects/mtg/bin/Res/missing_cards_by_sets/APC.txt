@@ -1,0 +1,217 @@
+[card]
+name=Anavolver
+text=Kicker {1}{U} and/or {B} (You may pay an additional {1}{U} and/or {B} as you cast this spell.) -- If Anavolver was kicked with its {1}{U} kicker, it enters the battlefield with two +1/+1 counters on it and with flying. -- If Anavolver was kicked with its {B} kicker, it enters the battlefield with a +1/+1 counter on it and with "Pay 3 life: Regenerate Anavolver."
+mana={3}{G}
+type=Creature
+subtype=Volver
+power=3
+toughness=3
+[/card]
+[card]
+name=Captain's Maneuver
+text=The next X damage that would be dealt to target creature or player this turn is dealt to another target creature or player instead.
+mana={X}{R}{W}
+type=Instant
+[/card]
+[card]
+name=Cetavolver
+text=Kicker {1}{R} and/or {G} (You may pay an additional {1}{R} and/or {G} as you cast this spell.) -- If Cetavolver was kicked with its {1}{R} kicker, it enters the battlefield with two +1/+1 counters on it and with first strike. -- If Cetavolver was kicked with its {G} kicker, it enters the battlefield with a +1/+1 counter on it and with trample.
+mana={1}{U}
+type=Creature
+subtype=Volver
+power=1
+toughness=1
+[/card]
+[card]
+name=Coalition Flag
+text=Enchant creature you control -- Enchanted creature is a Flagbearer. -- While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Coalition Honor Guard
+text=While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
+mana={3}{W}
+type=Creature
+subtype=Human Flagbearer
+power=2
+toughness=4
+[/card]
+[card]
+name=Consume Strength
+text=Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
+mana={1}{B}{G}
+type=Instant
+[/card]
+[card]
+name=Cromat
+text={W}{B}: Destroy target creature blocking or blocked by Cromat. -- {U}{R}: Cromat gains flying until end of turn. -- {B}{G}: Regenerate Cromat. -- {R}{W}: Cromat gets +1/+1 until end of turn. -- {G}{U}: Put Cromat on top of its owner's library.
+mana={W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Illusion
+power=5
+toughness=5
+[/card]
+[card]
+name=Dead Ringers
+text=Destroy two target nonblack creatures unless either one is a color the other isn't. They can't be regenerated.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Degavolver
+text=Kicker {1}{B} and/or {R} (You may pay an additional {1}{B} and/or {R} as you cast this spell.) -- If Degavolver was kicked with its {1}{B} kicker, it enters the battlefield with two +1/+1 counters on it and with "Pay 3 life: Regenerate Degavolver." -- If Degavolver was kicked with its {R} kicker, it enters the battlefield with a +1/+1 counter on it and with first strike.
+mana={1}{W}
+type=Creature
+subtype=Volver
+power=1
+toughness=1
+[/card]
+[card]
+name=Dodecapod
+text=If a spell or ability an opponent controls causes you to discard Dodecapod, put it onto the battlefield with two +1/+1 counters on it instead of putting it into your graveyard.
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+name=Emblazoned Golem
+text=Kicker {X} (You may pay an additional {X} as you cast this spell.) -- Spend only colored mana on X. No more than one mana of each color may be spent this way. -- If Emblazoned Golem was kicked, it enters the battlefield with X +1/+1 counters on it.
+mana={2}
+type=Artifact Creature
+subtype=Golem
+power=1
+toughness=2
+[/card]
+[card]
+name=Evasive Action
+text=Domain — Counter target spell unless its controller pays {1} for each basic land type among lands you control.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=False Dawn
+text=Until end of turn, spells and abilities you control that would add colored mana to your mana pool add that much white mana instead. Until end of turn, you may spend white mana as though it were mana of any color. --  -- Draw a card.
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
+name=Fire // Ice
+text=Fire deals 2 damage divided as you choose among one or two target creatures and/or players. --  //  -- Tap target permanent. -- Draw a card.
+mana={1}{R} // {1}{U}
+type=Instant // Instant
+[/card]
+[card]
+name=Gaea's Balance
+text=As an additional cost to cast Gaea's Balance, sacrifice five lands. -- Search your library for a land card of each basic land type and put them onto the battlefield. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Gerrard's Verdict
+text=Target player discards two cards. You gain 3 life for each land card discarded this way.
+mana={W}{B}
+type=Sorcery
+[/card]
+[card]
+name=Ice Cave
+text=Whenever a player casts a spell, any other player may pay that spell's mana cost. If a player does, counter the spell. (Mana cost includes color.)
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Illuminate
+text=Kicker {2}{R} and/or {3}{U} (You may pay an additional {2}{R} and/or {3}{U} as you cast this spell.) -- Illuminate deals X damage to target creature. If Illuminate was kicked with its {2}{R} kicker, it deals X damage to that creature's controller. If Illuminate was kicked with its {3}{U} kicker, you draw X cards.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Illusion // Reality
+text=Target spell or permanent becomes the color of your choice until end of turn. --  //  -- Destroy target artifact.
+mana={U} // {2}{G}
+type=Instant // Instant
+[/card]
+[card]
+name=Jaded Response
+text=Counter target spell if it shares a color with a creature you control.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Life // Death
+text=All lands you control become 1/1 creatures until end of turn. They're still lands. --  //  -- Return target creature card from your graveyard to the battlefield. You lose life equal to its converted mana cost.
+mana={G} // {1}{B}
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Mind Extraction
+text=As an additional cost to cast Mind Extraction, sacrifice a creature. -- Target player reveals his or her hand and discards all cards of each of the sacrificed creature's colors.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Necravolver
+text=Kicker {1}{G} and/or {W} (You may pay an additional {1}{G} and/or {W} as you cast this spell.) -- If Necravolver was kicked with its {1}{G} kicker, it enters the battlefield with two +1/+1 counters on it and with trample. -- If Necravolver was kicked with its {W} kicker, it enters the battlefield with a +1/+1 counter on it and with "Whenever Necravolver deals damage, you gain that much life."
+mana={2}{B}
+type=Creature
+subtype=Volver
+power=2
+toughness=2
+[/card]
+[card]
+name=Night // Day
+text=Target creature gets -1/-1 until end of turn. --  //  -- Creatures target player controls get +1/+1 until end of turn.
+mana={B} // {2}{W}
+type=Instant // Instant
+[/card]
+[card]
+name=Order // Chaos
+text=Exile target attacking creature. --  //  -- Creatures can't block this turn.
+mana={3}{W} // {2}{R}
+type=Instant // Instant
+[/card]
+[card]
+name=Rakavolver
+text=Kicker {1}{W} and/or {U} (You may pay an additional {1}{W} and/or {U} as you cast this spell.) -- If Rakavolver was kicked with its {1}{W} kicker, it enters the battlefield with two +1/+1 counters on it and with "Whenever Rakavolver deals damage, you gain that much life." -- If Rakavolver was kicked with its {U} kicker, it enters the battlefield with a +1/+1 counter on it and with flying.
+mana={2}{R}
+type=Creature
+subtype=Volver
+power=2
+toughness=2
+[/card]
+[card]
+name=Squee's Revenge
+text=Choose a number. Flip a coin that many times or until you lose a flip, whichever comes first. If you win all the flips, draw two cards for each flip.
+mana={1}{U}{R}
+type=Sorcery
+[/card]
+[card]
+name=Standard Bearer
+text=While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
+mana={1}{W}
+type=Creature
+subtype=Human Flagbearer
+power=1
+toughness=1
+[/card]
+[card]
+name=Suffocating Blast
+text=Counter target spell and Suffocating Blast deals 3 damage to target creature.
+mana={1}{U}{U}{R}
+type=Instant
+[/card]
+[card]
+name=Suppress
+text=Target player exiles all cards from his or her hand face down. At the beginning of the end step of that player's next turn, that player returns those cards to his or her hand.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Tahngarth's Glare
+text=Look at the top three cards of target opponent's library, then put them back in any order. That player looks at the top three cards of your library, then puts them back in any order.
+mana={R}
+type=Sorcery
+[/card]

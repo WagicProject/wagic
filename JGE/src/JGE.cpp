@@ -249,6 +249,7 @@ u32 JGE::BindKey(LocalKeySym sym, JButton button)
 u32 JGE::UnbindKey(LocalKeySym sym, JButton button)
 {
     for (keycodes_it it = keyBinds.begin(); it != keyBinds.end(); )
+    {
         if (sym == it->first && button == it->second)
         {
             keycodes_it er = it;
@@ -256,7 +257,8 @@ u32 JGE::UnbindKey(LocalKeySym sym, JButton button)
             keyBinds.erase(er);
         }
         else ++it;
-        return keyBinds.size();
+    }
+    return keyBinds.size();
 }
 
 u32 JGE::UnbindKey(LocalKeySym sym)

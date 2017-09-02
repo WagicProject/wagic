@@ -86,7 +86,10 @@ void GuiHandOpponent::Render()
         (*it)->y = 2;
         (*it)->zoom = 0.3f;
         (*it)->Render(quad.get());
-        x += 18;
+        if(cards.size() > 12)
+            x += 240/cards.size();
+        else
+            x += 18;
     }
 }
 

@@ -68,15 +68,16 @@ void InteractiveButton::Render()
     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
     float pspIconsSize = 0.5;
     float mainFontHeight = mainFont->GetHeight();
-    float boxStartX =  getX() - 5;
+    float boxStartX =  getX() - 4;
     mXOffset = 0;
     mYOffset = 0;
 
 #ifndef TOUCH_ENABLED
     renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 9, 5, ARGB(0, 0, 0, 0));
 #else
-    renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 5, 5, ARGB(255, 192, 172, 119));
-    renderer->DrawRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 5, 5, ARGB(255, 255, 255, 255));
+    renderer->FillRoundRect(boxStartX+1, getY()+1, stringWidth - 3, mainFontHeight - 4, 5, ARGB(220, 5, 5, 5));
+    renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 4, 5, ARGB(255, 140, 23, 23));
+    renderer->DrawRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 4, 5, ARGB(255, 5, 5, 5));
     mYOffset += 2;
 #endif
 
@@ -86,7 +87,7 @@ void InteractiveButton::Render()
     {
         renderer->RenderQuad(buttonImage.get(), buttonXOffset - buttonImage.get()->mWidth/2, buttonYOffset + mainFontHeight/2, 0, pspIconsSize, pspIconsSize);
     }
-    mainFont->SetColor(ARGB(255, 0, 0, 0));
+    //mainFont->SetColor(ARGB(255, 0, 0, 0));
     mainFont->DrawString(detailedInfoString, buttonXOffset, buttonYOffset);
 }
 

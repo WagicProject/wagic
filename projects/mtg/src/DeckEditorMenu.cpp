@@ -10,7 +10,7 @@
 DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const string& _title, DeckDataWrapper *_selectedDeck, StatsWrapper *stats) :
     DeckMenu(id, listener, fontId, _title), selectedDeck(_selectedDeck), stw(stats)
 {
-    backgroundName = "DeckEditorMenuBackdrop";
+    backgroundName = "menubgdeckeditor";
     mShowDetailsScreen = false;
     deckTitle = selectedDeck ? selectedDeck->parent->meta_name : "";
 
@@ -18,8 +18,17 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
     mY = 70;
     starsOffsetX = 50;
 
-    titleX = 110; // center point in title box
-    titleY = 25;
+    //titleX = 110; // center point in title box
+    if(selectedDeck)
+    {
+        titleX = (SCREEN_WIDTH_F/2.f);
+        titleY = 13;
+    }
+    else
+    {
+        titleX = SCREEN_WIDTH_F/6.5f; // center point in title box
+        titleY = 25;
+    }
     titleWidth = 180; // width of inner box of title
 
     descX = 275;
@@ -44,15 +53,16 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
 void DeckEditorMenu::Render()
 {
     JRenderer *r = JRenderer::GetInstance();
-    r->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(200,0,0,0));
+    r->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(200,0,0,0));//bg??
 
     DeckMenu::Render();
     if (deckTitle.size() > 0)
     {
+        float modt = (float)deckTitle.size()/2;
         WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
         DWORD currentColor = mainFont->GetColor();
         mainFont->SetColor(ARGB(255,255,255,255));
-        mainFont->DrawString(deckTitle.c_str(), statsX + (statsWidth / 2), statsHeight / 2, JGETEXT_CENTER);
+        mainFont->DrawString(deckTitle.c_str(), (SCREEN_WIDTH_F / 2)-modt, (statsHeight / 2)+4, JGETEXT_CENTER);
         mainFont->SetColor(currentColor);
     }
 
@@ -66,7 +76,7 @@ void DeckEditorMenu::drawDeckStatistics()
 
     deckStatsString
         << _("------- Deck Summary -----") << endl
-        << _("Cards: ") << stw->cardCount << endl
+        << _("Cards: ") << stw->cardCount << "      Sideboard: " << selectedDeck->parent->Sideboard.size() << endl
         << _("Creatures: ") << setw(2) << stw->countCreatures
         << _("  Enchantments: ") << stw->countEnchantments << endl
         << _("Instants: ") << setw(4) << stw->countInstants

@@ -8,6 +8,7 @@ manapool:{6}{G}
 [PLAYER2]
 [DO]
 Gelatinous Genesis
+choice 6
 Mox Ruby
 Mox Emerald
 Pyroclasm

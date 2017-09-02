@@ -40,6 +40,7 @@ JMusic * GameApp::music = NULL;
 string GameApp::currentMusicFile = "";
 string GameApp::systemError = "";
 char GameApp::mynbcardsStr[512] = {0};
+int GameApp::mycredits = 0;
 
 vector<JQuadPtr > manaIcons;
 
@@ -228,10 +229,15 @@ void GameApp::Create()
     LOG("--Loading various textures");
     // Load in this function only textures that are used frequently throughout the game. These textures will constantly stay in Ram, so be frugal
     WResourceManager::Instance()->RetrieveTexture("phasebar.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("wood.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("gold.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("goldglow.png", RETRIEVE_MANAGE);
+    //WResourceManager::Instance()->RetrieveTexture("wood.png", RETRIEVE_MANAGE);
+    //WResourceManager::Instance()->RetrieveTexture("gold.png", RETRIEVE_MANAGE);
+    //WResourceManager::Instance()->RetrieveTexture("goldglow.png", RETRIEVE_MANAGE);
+#if !defined (PSP)
     WResourceManager::Instance()->RetrieveTexture("backdrop.jpg", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("backdropframe.png", RETRIEVE_MANAGE);
+#else
+    WResourceManager::Instance()->RetrieveTexture("pspbackdrop.jpg", RETRIEVE_MANAGE);
+#endif
     WResourceManager::Instance()->RetrieveTexture("handback.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("shadows.png", RETRIEVE_MANAGE);
 

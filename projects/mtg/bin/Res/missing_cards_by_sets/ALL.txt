@@ -1,0 +1,256 @@
+[card]
+name=Awesome Presence
+text=Enchant creature -- Enchanted creature can't be blocked unless defending player pays {3} for each creature he or she controls that's blocking it.
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Bounty of the Hunt
+text=You may exile a green card from your hand rather than pay Bounty of the Hunt's mana cost. -- Distribute three +1/+1 counters among one, two, or three target creatures. For each +1/+1 counter you put on a creature this way, remove a +1/+1 counter from that creature at the beginning of the next cleanup step.
+mana={3}{G}{G}
+type=Instant
+[/card]
+[card]
+name=Chaos Harlequin
+text={R}: Exile the top card of your library. If that card is a land card, Chaos Harlequin gets -4/-0 until end of turn. Otherwise, Chaos Harlequin gets +2/+0 until end of turn.
+mana={2}{R}{R}
+type=Creature
+subtype=Human
+power=2
+toughness=4
+[/card]
+[card]
+name=Death Spark
+text=Death Spark deals 1 damage to target creature or player. -- At the beginning of your upkeep, if Death Spark is in your graveyard with a creature card directly above it, you may pay {1}. If you do, return Death Spark to your hand.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Diminishing Returns
+text=Each player shuffles his or her hand and graveyard into his or her library. You exile the top ten cards of your library. Then each player draws up to seven cards.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Errand of Duty
+text=Put a 1/1 white Knight creature token with banding onto the battlefield. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Fatal Lore
+text=An opponent chooses one — You draw three cards; or you destroy up to two target creatures that opponent controls and that player draws up to three cards. Those creatures can't be regenerated.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Gorilla Berserkers
+text=Trample; rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) -- Gorilla Berserkers can't be blocked except by three or more creatures.
+mana={3}{G}{G}
+type=Creature
+subtype=Ape Berserker
+power=2
+toughness=3
+[/card]
+[card]
+name=Guerrilla Tactics
+text=Guerrilla Tactics deals 2 damage to target creature or player. -- When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Gustha's Scepter
+text={T}: Exile a card from your hand face down. You may look at it for as long as it remains exiled. -- {T}: Return a card you own exiled with Gustha's Scepter to your hand. -- When you lose control of Gustha's Scepter, put all cards exiled with Gustha's Scepter into their owner's graveyard.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Helm of Obedience
+text={X}, {T}: Target opponent puts cards from the top of his or her library into his or her graveyard until a creature card or X cards are put into that graveyard this way, whichever comes first. If a creature card is put into that graveyard this way, sacrifice Helm of Obedience and put that card onto the battlefield under your control. X can't be 0.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Kjeldoran Escort
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+[/card]
+[card]
+name=Krovikan Horror
+text=At the beginning of the end step, if Krovikan Horror is in your graveyard with a creature card directly above it, you may return Krovikan Horror to your hand. -- {1}, Sacrifice a creature: Krovikan Horror deals 1 damage to target creature or player.
+mana={3}{B}
+type=Creature
+subtype=Horror Spirit
+power=2
+toughness=2
+[/card]
+[card]
+name=Library of Lat-Nam
+text=An opponent chooses one — You draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Lim-Dul's Vault
+text=Look at the top five cards of your library. As many times as you choose, you may pay 1 life, put those cards on the bottom of your library in any order, then look at the top five cards of your library. Then shuffle your library and put the last cards you looked at this way on top of it in any order.
+mana={U}{B}
+type=Instant
+[/card]
+[card]
+name=Martyrdom
+text=Until end of turn, target creature you control gains "{0}: The next 1 damage that would be dealt to target creature or player this turn is dealt to this creature instead." Only you may activate this ability.
+mana={1}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Nature's Blessing
+text={G}{W}, Discard a card: Put a +1/+1 counter on target creature or that creature gains banding, first strike, or trample. (This effect lasts indefinitely. Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}{G}{W}
+type=Enchantment
+[/card]
+[card]
+name=Omen of Fire
+text=Return all Islands to their owners' hands. --  -- Each player sacrifices a Plains or a white permanent for each white permanent he or she controls.
+mana={3}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Phyrexian Portal
+text={3}: If your library has ten or more cards in it, target opponent looks at the top ten cards of your library and separates them into two face-down piles. Exile one of those piles. Search the other pile for a card, put it into your hand, then shuffle the rest of that pile into your library.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Primitive Justice
+text=As an additional cost to cast Primitive Justice, you may pay {1}{R} and/or {1}{G} any number of times. -- Destroy target artifact. For each additional {1}{R} you paid, destroy another target artifact. For each additional {1}{G} you paid, destroy another target artifact, and you gain 1 life.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Pyrokinesis
+text=You may exile a red card from your hand rather than pay Pyrokinesis's mana cost. -- Pyrokinesis deals 4 damage divided as you choose among any number of target creatures.
+mana={4}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Scarab of the Unseen
+text={T}, Sacrifice Scarab of the Unseen: Return all Auras attached to target permanent you own to their owners' hands. Draw a card at the beginning of the next turn's upkeep.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Scars of the Veteran
+text=You may exile a white card from your hand rather than pay Scars of the Veteran's mana cost. -- Prevent the next 7 damage that would be dealt to target creature or player this turn. At the beginning of the next end step, put a +0/+1 counter on that creature for each 1 damage prevented this way.
+mana={4}{W}
+type=Instant
+[/card]
+[card]
+name=Seasoned Tactician
+text={3}, Exile the top four cards of your library: The next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={2}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=3
+[/card]
+[card]
+name=Soldevi Adnate
+text={T}, Sacrifice a black or artifact creature: Add to your mana pool an amount of {B} equal to the sacrificed creature's converted mana cost.
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+[/card]
+[card]
+name=Soldevi Digger
+text={2}: Put the top card of your graveyard on the bottom of your library.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Soldevi Sentry
+text={1}: Choose target opponent. Regenerate Soldevi Sentry. When it regenerates this way, that player may draw a card.
+mana={1}
+type=Artifact Creature
+subtype=Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Spiny Starfish
+text={U}: Regenerate Spiny Starfish. -- At the beginning of each end step, if Spiny Starfish regenerated this turn, put a 0/1 blue Starfish creature token onto the battlefield for each time it regenerated this turn.
+mana={2}{U}
+type=Creature
+subtype=Starfish
+power=0
+toughness=1
+[/card]
+[card]
+name=Storm Elemental
+text=Flying -- {U}, Exile the top card of your library: Tap target creature with flying. -- {U}, Exile the top card of your library: If the exiled card is a snow land, Storm Elemental gets +1/+1 until end of turn.
+mana={5}{U}
+type=Creature
+subtype=Elemental
+power=3
+toughness=4
+[/card]
+[card]
+name=Stromgald Spy
+text=Whenever Stromgald Spy attacks and isn't blocked, you may have defending player play with his or her hand revealed for as long as Stromgald Spy remains on the battlefield. If you do, Stromgald Spy assigns no combat damage this turn.
+mana={3}{B}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=4
+[/card]
+[card]
+name=Suffocation
+text=Cast Suffocation only if you were dealt damage this turn by a red instant or sorcery spell. -- Suffocation deals 4 damage to the controller of the last red instant or sorcery spell that dealt damage to you this turn. -- Draw a card at the beginning of the next turn's upkeep.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Sworn Defender
+text={1}: Sworn Defender's power becomes the toughness of target creature blocking or being blocked by Sworn Defender minus 1 until end of turn, and Sworn Defender's toughness becomes 1 plus the power of that creature until end of turn.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=3
+[/card]
+[card]
+name=Tidal Control
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Pay 2 life or {2}: Counter target red or green spell. Any player may activate this ability.
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Urza's Engine
+text=Trample -- {3}: Urza's Engine gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- {3}: Attacking creatures banded with Urza's Engine gain trample until end of turn.
+mana={5}
+type=Artifact Creature
+subtype=Juggernaut
+power=1
+toughness=5
+[/card]
+[card]
+name=Whip Vine
+text=Defender; reach (This creature can block creatures with flying.) -- You may choose not to untap Whip Vine during your untap step. -- {T}: Tap target creature with flying blocked by Whip Vine. That creature doesn't untap during its controller's untap step for as long as Whip Vine remains tapped.
+mana={2}{G}
+type=Creature
+subtype=Plant Wall
+power=1
+toughness=4
+[/card]
+[card]
+name=Winter's Night
+text=Whenever a player taps a snow land for mana, that player adds one mana to his or her mana pool of any type that land produced. That land doesn't untap during its controller's next untap step.
+mana={R}{G}{W}
+type=World Enchantment
+[/card]

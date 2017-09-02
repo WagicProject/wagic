@@ -45,6 +45,8 @@ public:
     // Functions depending on the type of Ability
     int getEfficiency(AADamager * aad);
 
+    int getRevealedEfficiency(MTGAbility * ability);
+
 };
 
 // compares Abilities efficiency
@@ -108,6 +110,7 @@ class AIPlayerBaka: public AIPlayer{
     virtual int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
     virtual ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
     virtual int selectAbility();
+    virtual int doAbility(MTGAbility * Specific = NULL, MTGCardInstance * withCard = NULL);
 
  public:
     enum {

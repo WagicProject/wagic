@@ -1,0 +1,282 @@
+[card]
+name=Arashin War Beast
+text=Whenever Arashin War Beast deals combat damage to one or more blocking creatures, manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
+[/card]
+[card]
+name=Archfiend of Depravity
+text=Flying -- At the beginning of each opponent's end step, that player chooses up to two creatures he or she controls, then sacrifices the rest.
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=4
+[/card]
+[card]
+name=Brutal Hordechief
+text=Whenever a creature you control attacks, defending player loses 1 life and you gain 1 life. -- {3}{RW}{RW}: Creatures your opponents control block this turn if able, and you choose how those creatures block.
+mana={3}{B}
+type=Creature
+subtype=Orc Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Channel Harm
+text=Prevent all damage that would be dealt to you and permanents you control this turn by sources you don't control. If damage is prevented this way, you may have Channel Harm deal that much damage to target creature.
+mana={5}{W}
+type=Instant
+[/card]
+[card]
+name=Cloudform
+text=When Cloudform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Cloudform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has flying and hexproof.
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Crucible of the Spirit Dragon
+text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Crucible of the Spirit Dragon. -- {T}, Remove X storage counters from Crucible of the Spirit Dragon: Add X mana in any combination of colors to your mana pool. Spend this mana only to cast Dragon spells or activate abilities of Dragons.
+type=Land
+[/card]
+[card]
+name=Daghatar the Adamant
+text=Vigilance -- Daghatar the Adamant enters the battlefield with four +1/+1 counters on it. -- {1}{BG}{BG}: Move a +1/+1 counter from target creature onto a second target creature.
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Warrior
+power=0
+toughness=0
+[/card]
+[card]
+name=Ethereal Ambush
+text=Manifest the top two cards of your library. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={3}{G}{U}
+type=Instant
+[/card]
+[card]
+name=Fierce Invocation
+text=Manifest the top card of your library, then put two +1/+1 counters on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Flamerush Rider
+text=Whenever Flamerush Rider attacks, put a token onto the battlefield tapped and attacking that's a copy of another target attacking creature. Exile the token at end of combat. -- Dash {2}{R}{R} (You may cast this spell for its dash cost. If you do, it gains haste, and it's returned from the battlefield to its owner's hand at the beginning of the next end step.)
+mana={4}{R}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Formless Nurturing
+text=Manifest the top card of your library, then put a +1/+1 counter on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Friendly Fire
+text=Target creature's controller reveals a card at random from his or her hand. Friendly Fire deals damage to that creature and that player equal to the revealed card's converted mana cost.
+mana={3}{R}
+type=Instant
+[/card]
+[card]
+name=Frontier Siege
+text=As Frontier Siege enters the battlefield, choose Khans or Dragons. -- • Khans — At the beginning of each of your main phases, add {G}{G} to your mana pool. -- • Dragons — Whenever a creature with flying enters the battlefield under your control, you may have it fight target creature you don't control.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Ghastly Conscription
+text=Exile all creature cards from target player's graveyard in a face-down pile, shuffle that pile, then manifest those cards. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={5}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Hungering Yeti
+text=As long as you control a green or blue permanent, you may cast Hungering Yeti as though it had flash. (You may cast it any time you could cast an instant.)
+mana={4}{R}
+type=Creature
+subtype=Yeti
+power=4
+toughness=4
+[/card]
+[card]
+name=Jeskai Infiltrator
+text=Jeskai Infiltrator can't be blocked as long as you control no other creatures. -- When Jeskai Infiltrator deals combat damage to a player, exile it and the top card of your library in a face-down pile, shuffle that pile, then manifest those cards. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={2}{U}
+type=Creature
+subtype=Human Monk
+power=2
+toughness=3
+[/card]
+[card]
+name=Lightform
+text=When Lightform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Lightform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has flying and lifelink.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Mastery of the Unseen
+text=Whenever a permanent you control is turned face up, you gain 1 life for each creature you control. -- {3}{W}: Manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Monastery Siege
+text=As Monastery Siege enters the battlefield, choose Khans or Dragons. -- • Khans — At the beginning of your draw step, draw an additional card, then discard a card. -- • Dragons — Spells your opponents cast that target you or a permanent you control cost {2} more to cast.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Outpost Siege
+text=As Outpost Siege enters the battlefield, choose Khans or Dragons. -- • Khans — At the beginning of your upkeep, exile the top card of your library. Until end of turn, you may play that card. -- • Dragons — Whenever a creature you control leaves the battlefield, Outpost Siege deals 1 damage to target creature or player.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Pyrotechnics
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Qarsi High Priest
+text={1}{B}, {T}, Sacrifice another creature: Manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={B}
+type=Creature
+subtype=Human Cleric
+power=0
+toughness=2
+[/card]
+[card]
+name=Rageform
+text=When Rageform enters the battlefield, it becomes an Aura with enchant creature. Manifest the top card of your library and attach Rageform to it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Enchanted creature has double strike. (It deals both first-strike and regular combat damage.)
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Reality Shift
+text=Exile target creature. Its controller manifests the top card of his or her library. (That player puts the top card of his or her library onto the battlefield face down as a 2/2 creature. If it's a creature card, it can be turned face up any time for its mana cost.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Renowned Weaponsmith
+text={T}: Add {2} to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts. -- {U}, {T}: Search your library for a card named Heart-Piercer Bow or Vial of Dragonfire, reveal it, put it into your hand, then shuffle your library.
+mana={1}{U}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=3
+[/card]
+[card]
+name=Rite of Undoing
+text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- Return target nonland permanent you control and target nonland permanent you don't control to their owners' hands.
+mana={4}{U}
+type=Instant
+[/card]
+[card]
+name=Sage's Reverie
+text=Enchant creature -- When Sage's Reverie enters the battlefield, draw a card for each Aura you control that's attached to a creature. -- Enchanted creature gets +1/+1 for each Aura you control that's attached to a creature.
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Sage-Eye Avengers
+text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Sage-Eye Avengers attacks, you may return target creature to its owner's hand if its power is less than Sage-Eye Avengers's power.
+mana={4}{U}{U}
+type=Creature
+subtype=Djinn Monk
+power=4
+toughness=5
+[/card]
+[card]
+name=Shifting Loyalties
+text=Exchange control of two target permanents that share a card type. (Artifact, creature, enchantment, land, and planeswalker are card types.)
+mana={5}{U}
+type=Sorcery
+[/card]
+[card]
+name=Soul Summons
+text=Manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
+name=Soulfire Grand Master
+text=Lifelink -- Instant and sorcery spells you control have lifelink. -- {2}{UR}{UR}: The next time you cast an instant or sorcery spell from your hand this turn, put that card into your hand instead of into your graveyard as it resolves.
+mana={1}{W}
+type=Creature
+subtype=Human Monk
+power=2
+toughness=2
+[/card]
+[card]
+name=Soulflayer
+text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- If a creature card with flying was exiled with Soulflayer's delve ability, Soulflayer has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, reach, trample, and vigilance.
+mana={4}{B}{B}
+type=Creature
+subtype=Demon
+power=4
+toughness=4
+[/card]
+[card]
+name=Sultai Emissary
+text=When Sultai Emissary dies, manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={1}{B}
+type=Creature
+subtype=Zombie Warrior
+power=1
+toughness=1
+[/card]
+[card]
+name=Temur War Shaman
+text=When Temur War Shaman enters the battlefield, manifest the top card of your library. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Whenever a permanent you control is turned face up, if it's a creature, you may have it fight target creature you don't control.
+mana={4}{G}{G}
+type=Creature
+subtype=Human Shaman
+power=4
+toughness=5
+[/card]
+[card]
+name=Whisperwood Elemental
+text=At the beginning of your end step, manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Sacrifice Whisperwood Elemental: Until end of turn, face-up nontoken creatures you control gain "When this creature dies, manifest the top card of your library."
+mana={3}{G}{G}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]
+[card]
+name=Wild Slash
+text=Ferocious — If you control a creature with power 4 or greater, damage can't be prevented this turn. -- Wild Slash deals 2 damage to target creature or player.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Wildcall
+text=Manifest the top card of your library, then put X +1/+1 counters on it. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={X}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Write into Being
+text=Look at the top two cards of your library. Manifest one of those cards, then put the other on the top or bottom of your library. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Yasova Dragonclaw
+text=Trample -- At the beginning of combat on your turn, you may pay {1}{UR}{UR}. If you do, gain control of target creature an opponent controls with power less than Yasova Dragonclaw's power until end of turn, untap that creature, and it gains haste until end of turn.
+mana={2}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=4
+toughness=2
+[/card]

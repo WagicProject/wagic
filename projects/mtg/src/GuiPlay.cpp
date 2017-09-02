@@ -123,13 +123,25 @@ void GuiPlay::BattleField::reset(float x, float y)
 }
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
-    card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
+    if(card->card->getObserver() && ((card->card->getObserver()->getCurrentGamePhase() >= MTG_PHASE_COMBATDAMAGE) && (card->card->getObserver()->getCurrentGamePhase() < MTG_PHASE_ENDOFTURN)))
+        return;
+    //card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
+    card->x = x + (CARD_WIDTH/2.5f) + baseX;
+    if (attackers+1 < 8)
+        x += CARD_WIDTH;
+    else if (attackers+1 < 24)
+        x += (SCREEN_WIDTH - 200 - baseX) / attackers+1;
+    else
+        x += (HORZWIDTH - baseX) / attackers+1;
+
     card->y = baseY + (card->card->getObserver()->getView()->getRenderedPlayer() == card->card->controller() ? 20 + y : -20 - y);
     ++currentAttacker;
     //  JRenderer::GetInstance()->RenderQuad(WResourceManager::Instance()->GetQuad("BattleIcon"), card->actX, card->actY, 0, 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()), 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()));
 }
 void GuiPlay::BattleField::EnstackBlocker(CardView* card)
 {
+    if(card->card->getObserver() && ((card->card->getObserver()->getCurrentGamePhase() >= MTG_PHASE_COMBATDAMAGE) && (card->card->getObserver()->getCurrentGamePhase() < MTG_PHASE_ENDOFTURN)))
+        return;
     MTGCardInstance * c = card->card;
     if (!c)
         return;
@@ -170,6 +182,7 @@ void GuiPlay::BattleField::Render()
 GuiPlay::GuiPlay(DuelLayers* view) :
     GuiLayer(view)
 {
+    wave = 0;
     end_spells = cards.end();
 }
 
@@ -290,6 +303,20 @@ void GuiPlay::Render()
 
     for (iterator it = cards.begin(); it != cards.end(); ++it)
     {
+        //draw line when attacking planeswalker
+        if((*it)->card && (*it)->card->isAttacker())
+        {
+            Damageable * dtarget = ((Damageable *)(*it)->card->isAttacking); 
+            if(dtarget && dtarget->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
+            {
+                MTGCardInstance * ctarget = ((MTGCardInstance *)(*it)->card->isAttacking);
+                if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER) && observer->isInPlay(ctarget) && observer->getCurrentGamePhase() < MTG_PHASE_COMBATEND)
+                {
+                    JRenderer::GetInstance()->DrawLine((*it)->actX,(*it)->actY,ctarget->view->actX,ctarget->view->actY,0.5f,ARGB(128 - wave, 255, 20, 0));
+                }
+            }
+        }
+
         if ((*it)->card->isLand())
         {
             if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
@@ -330,7 +357,11 @@ void GuiPlay::Update(float dt)
 {
     battleField.Update(dt);
     for (iterator it = cards.begin(); it != cards.end(); ++it)
-        (*it)->Update(dt);
+    {
+        if((*it))
+            (*it)->Update(dt);
+    }
+    wave = (wave + 2 * (int) (100 * dt)) % 255;
 }
 
 int GuiPlay::receiveEventPlus(WEvent * e)
@@ -416,6 +447,12 @@ int GuiPlay::receiveEventPlus(WEvent * e)
         Replace();
     else if (dynamic_cast<WEventCardControllerChange*> (e))
         Replace();
+    /*else if (dynamic_cast<WEventCardTransforms*> (e))
+        Replace();
+    else if (dynamic_cast<WEventCardCopiedACard*> (e))
+        Replace();
+    else if (dynamic_cast<WEventCardFaceUp*> (e))
+        Replace();*/
     Replace();
     return 0;
 }

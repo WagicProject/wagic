@@ -1,0 +1,210 @@
+[card]
+name=Aetherborn Marauder
+text=Flying, lifelink -- When Aetherborn Marauder enters the battlefield, move any number of +1/+1 counters from other permanents you control onto Aetherborn Marauder.
+mana={3}{B}
+type=Creature
+subtype=Aetherborn Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Aetherstorm Roc
+text=Flying -- Whenever Aetherstorm Roc or another creature enters the battlefield under your control, you get {E} (an energy counter). -- Whenever Aetherstorm Roc attacks, you may pay {E}{E}. If you do, put a +1/+1 counter on it and tap up to one target creature defending player controls.
+mana={2}{W}{W}
+type=Creature
+subtype=Bird
+power=3
+toughness=3
+[/card]
+[card]
+name=Animation Module
+text=Whenever one or more +1/+1 counters are placed on a permanent you control, you may pay {1}. If you do, create a 1/1 colorless Servo artifact creature token. -- {3}, {T}: Choose a counter on target permanent or player. Give that permanent or player another counter of that kind.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Bomat Courier
+text=Haste -- Whenever Bomat Courier attacks, exile the top card of your library face down. (You can't look at it.) -- {R}, Discard your hand, Sacrifice Bomat Courier: Put all cards exiled with Bomat Courier into their owners' hands.
+mana={1}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+name=Captured by the Consulate
+text=Enchant creature you don't control -- Enchanted creature can't attack. -- Whenever an opponent casts a spell, if it has a single target, change the target to enchanted creature if able.
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Combustible Gearhulk
+abilities=first strike
+text=First strike -- When Combustible Gearhulk enters the battlefield, target opponent may have you draw three cards. If the player doesn't, put the top three cards of your library into your graveyard, then Combustible Gearhulk deals damage to that player equal to the total converted mana cost of those cards.
+mana={4}{R}{R}
+type=Artifact Creature
+subtype=Construct
+power=6
+toughness=6
+[/card]
+[card]
+name=Confiscation Coup
+text=Choose target artifact or creature. You get {E}{E}{E}{E} (four energy counters), then you may pay an amount of {E} equal to that permanent's converted mana cost. If you do, gain control of it.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Consulate Surveillance
+text=When Consulate Surveillance enters the battlefield, you get {E}{E}{E}{E} (four energy counters). -- Pay {E}{E}: Prevent all damage that would be dealt to you this turn by a source of your choice.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Die Young
+text=Choose target creature. You get {E}{E} (two energy counters), then you may pay any amount of {E}. The creature gets -1/-1 until end of turn for each {E} paid this way.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Dovin Baan
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: loyalty) donothing restriction{compare(cantargetoppocre)~lessthan~1}
+auto={C(0/0,1,Loyalty)}:name(+1: -3/0 target creature) target(creature) transforms((,newability[-3/0],newability[noactivatedability])) uynt restriction{compare(cantargetoppocre)~morethan~0}
+auto={C(0/0,-1,Loyalty)}:name(-1: gain 2 life and draw a card) life:2 && draw:1
+text=+1: Until your next turn, up to one target creature gets -3/-0 and its activated abilities can't be activated. -- -1: You gain 2 life and draw a card. -- -7: You get an emblem with "Your opponents can't untap more than two permanents during their untap steps."
+mana={2}{W}{U}
+type=Planeswalker
+subtype=Dovin
+[/card]
+[card]
+name=Dubious Challenge
+text=Look at the top ten cards of your library, exile up to two creature cards from among them, then shuffle your library. Target opponent may choose one of the exiled cards and put it onto the battlefield under his or her control. Put the rest onto the battlefield under your control.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Eager Construct
+text=When Eager Construct enters the battlefield, each player may scry 1. (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=2
+[/card]
+[card]
+name=Eliminate the Competition
+text=As an additional cost to cast Eliminate the Competition, sacrifice X creatures. -- Destroy X target creatures.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Fairgrounds Trumpeter
+#buggy must set custom restriction
+auto=@counteradded(1/1) from(*|mybattlefield) turnlimited:phaseaction[endofturn sourceinplay] counter(1/1,1)
+text=At the beginning of each end step, if a +1/+1 counter was placed on a permanent under your control this turn, put a +1/+1 counter on Fairgrounds Trumpeter.
+mana={2}{G}
+type=Creature
+subtype=Elephant
+power=2
+toughness=2
+[/card]
+[card]
+name=Fortuitous Find
+text=Choose one or both — -- • Return target artifact card from your graveyard to your hand. -- • Return target creature card from your graveyard to your hand.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Gonti, Lord of Luxury
+abilities=deathtouch
+text=Deathtouch -- When Gonti, Lord of Luxury enters the battlefield, look at the top four cards of target opponent's library, exile one of them face down, then put the rest on the bottom of that library in a random order. For as long as that card remains exiled, you may look at it, you may cast it, and you may spend mana as though it were mana of any type to cast it.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Aetherborn Rogue
+power=2
+toughness=3
+[/card]
+[card]
+name=Insidious Will
+text=Choose one — -- • Counter target spell. -- • You may choose new targets for target spell. -- • Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Liberating Combustion
+text=Liberating Combustion deals 6 damage to target creature. You may search your library and/or graveyard for a card named Chandra, Pyrogenius, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Lost Legacy
+text=Name a nonartifact, nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles his or her library, then draws a card for each card exiled from hand this way.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Midnight Oil
+text=Midnight Oil enters the battlefield with seven hour counters on it. -- At the beginning of your draw step, draw an additional card and remove two hour counters from Midnight Oil. -- Your maximum hand size is equal to the number of hour counters on Midnight Oil. -- Whenever you discard a card, you lose 1 life.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Nature's Way
+text=Target creature you control gains vigilance and trample until end of turn. It deals damage equal to its power to target creature you don't control.
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+name=Panharmonicon
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Saheeli Rai
+auto=counter(0/0,3,loyalty)
+text=+1: Scry 1. Saheeli Rai deals 1 damage to each opponent. -- -2: Create a token that's a copy of target artifact or creature you control, except it's an artifact in addition to its other types. That token gains haste. Exile it at the beginning of the next end step. -- -7: Search your library for up to three artifact cards with different names, put them onto the battlefield, then shuffle your library.
+mana={1}{U}{R}
+type=Planeswalker
+subtype=Saheeli
+[/card]
+[card]
+name=Saheeli's Artistry
+target=*[artifact;creature]
+auto=if cantargetcard(artifact) then choice name(clone artifact) clone
+auto=if cantargetcard(creature) then choice name(clone creature) clone addtype(artifact)
+text=Choose one or both — -- • Create a token that's a copy of target artifact. -- • Create a token that's a copy of target creature, except it's an artifact in addition to its other types.
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Shrewd Negotiation
+text=Exchange control of target artifact you control and target artifact or creature you don't control.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Spark of Creativity
+text=Choose target creature. Exile the top card of your library. You may have Spark of Creativity deal damage to that creature equal to the exiled card's converted mana cost. If you don't, you may play that card until end of turn.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Subtle Strike
+text=Choose one or both — -- • Target creature gets -1/-1 until end of turn. -- • Put a +1/+1 counter on target creature.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Take Down
+text=Choose one — -- • Take Down deals 4 damage to target creature with flying. -- • Take Down deals 1 damage to each creature with flying.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Verdant Crescendo
+text=Search your library for a basic land card and put it onto the battlefield tapped. Search your library and graveyard for a card named Nissa, Nature's Artisan, reveal it, and put it into your hand. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
+[/card]

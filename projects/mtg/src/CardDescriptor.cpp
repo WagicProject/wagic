@@ -18,12 +18,23 @@ CardDescriptor::CardDescriptor()
     manacostComparisonMode = COMPARISON_NONE;
     counterComparisonMode = COMPARISON_NONE;
     convertedManacost = -1;
+    zposComparisonMode = COMPARISON_NONE;
+    zposition = -1;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
     CDopponentDamaged = 0;
     CDcontrollerDamaged = 0;
     CDdamager = 0;
+    CDgeared = 0;
+    CDblocked = 0;
+    CDcanProduceC = 0;
+    CDcanProduceG = 0;
+    CDcanProduceU = 0;
+    CDcanProduceR = 0;
+    CDcanProduceB = 0;
+    CDcanProduceW = 0;
+    CDnocolor = 0;
 }
 
 int CardDescriptor::init()
@@ -49,11 +60,16 @@ void CardDescriptor::unsecuresetfresh(int k)
     fresh = k;
 }
 
+void CardDescriptor::unsecuresetrecent(int j)
+{
+    entersBattlefield = j;
+}
+
 void CardDescriptor::setisMultiColored(int w)
 {
     isMultiColored = w;
 }
-    
+
 void CardDescriptor::setNegativeSubtype(string value)
 {
     int id = MTGAllCards::findType(value);
@@ -131,6 +147,8 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         return NULL;
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         return NULL;
+    if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
+        return NULL;
     if (nameComparisonMode && compareName != card->name)
         return NULL;
     return card;
@@ -172,6 +190,8 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
         match = NULL;
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         match = NULL;
+    if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
+        match = NULL;
     if(nameComparisonMode && compareName != card->name)
         match = NULL;
 
@@ -209,6 +229,87 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if ((fresh == -1 && card->fresh) || (fresh == 1 && !card->fresh))
     {
         match = NULL;
+    }
+
+    if ((entersBattlefield == -1 && card->entersBattlefield) || (entersBattlefield == 1 && !card->entersBattlefield))
+    {
+        match = NULL;
+    }
+    
+    if ((CDgeared == -1 && card->equipment > 0) || (CDgeared == 1 && card->equipment < 1))
+    {
+        match = NULL;
+    }
+    
+    if (CDblocked == -1)
+    {
+        if(!card->isAttacker())
+            match = NULL;
+        else
+        {
+            if(card->isBlocked())
+                match = NULL;
+        }
+    }
+
+    if (CDblocked == 1)
+    {
+        if(!card->isAttacker())
+            match = NULL;
+        else
+        {
+            if(!card->isBlocked())
+                match = NULL;
+        }
+    }
+
+    if (CDcanProduceC == -1)
+    {
+        int count = card->canproduceMana(Constants::MTG_COLOR_ARTIFACT) + card->canproduceMana(Constants::MTG_COLOR_WASTE);
+        if (count)
+            match = NULL;
+    }
+    if (CDcanProduceC == 1)
+    {
+        int count = card->canproduceMana(Constants::MTG_COLOR_ARTIFACT) + card->canproduceMana(Constants::MTG_COLOR_WASTE);
+        if (!count)
+            match = NULL;
+    }
+
+    if ((CDcanProduceG == -1 && card->canproduceMana(Constants::MTG_COLOR_GREEN) == 1) || (CDcanProduceG == 1 && card->canproduceMana(Constants::MTG_COLOR_GREEN) == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceU == -1 && card->canproduceMana(Constants::MTG_COLOR_BLUE) == 1) || (CDcanProduceU == 1 && card->canproduceMana(Constants::MTG_COLOR_BLUE) == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceR == -1 && card->canproduceMana(Constants::MTG_COLOR_RED) == 1) || (CDcanProduceR == 1 && card->canproduceMana(Constants::MTG_COLOR_RED) == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceB == -1 && card->canproduceMana(Constants::MTG_COLOR_BLACK) == 1) || (CDcanProduceB == 1 && card->canproduceMana(Constants::MTG_COLOR_BLACK) == 0))
+    {
+        match = NULL;
+    }
+    
+    if ((CDcanProduceW == -1 && card->canproduceMana(Constants::MTG_COLOR_WHITE) == 1) || (CDcanProduceW == 1 && card->canproduceMana(Constants::MTG_COLOR_WHITE) == 0))
+    {
+        match = NULL;
+    }
+
+    if ((CDnocolor == -1 && card->getColor() == 0))
+    {
+        match = NULL;
+    }
+    else if(CDnocolor == 1)
+    {
+        if(!card->has(Constants::DEVOID))
+            if(card->getColor()>0)
+                match = NULL;
     }
 
     if ((isMultiColored == -1 && card->isMultiColored) || (isMultiColored == 1 && !card->isMultiColored))
@@ -301,7 +402,14 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     //Counters
-    if (anyCounter)
+    if (anyCounter == -1)
+    {
+        if (card->counters->mCount)
+        {
+            match = NULL;
+        }
+    }
+    else if (anyCounter)
     {
         if (!(card->counters->mCount))
         {

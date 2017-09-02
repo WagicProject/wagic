@@ -1,0 +1,199 @@
+[card]
+name=Bludgeon Brawl
+text=Each noncreature, non-Equipment artifact is an Equipment with equip {X} and "Equipped creature gets +X/+0," where X is that artifact's converted mana cost.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Caged Sun
+text=As Caged Sun enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+1. -- Whenever a land's ability adds one or more mana of the chosen color to your mana pool, add one additional mana of that color to your mana pool.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Cathedral Membrane
+text=({PW} can be paid with either {W} or 2 life.) -- Defender -- When Cathedral Membrane dies during combat, it deals 6 damage to each creature it blocked this combat.
+mana={1}{PW}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=3
+[/card]
+[card]
+name=Chancellor of the Annex
+text=You may reveal this card from your opening hand. If you do, when each opponent casts his or her first spell of the game, counter that spell unless that player pays {1}. -- Flying -- Whenever an opponent casts a spell, counter it unless that player pays {1}.
+mana={4}{W}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=6
+[/card]
+[card]
+name=Chancellor of the Dross
+text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, each opponent loses 3 life, then you gain life equal to the life lost this way. -- Flying, lifelink
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Vampire
+power=6
+toughness=6
+[/card]
+[card]
+name=Chancellor of the Forge
+text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, put a 1/1 red Goblin creature token with haste onto the battlefield. -- When Chancellor of the Forge enters the battlefield, put X 1/1 red Goblin creature tokens with haste onto the battlefield, where X is the number of creatures you control.
+mana={4}{R}{R}{R}
+type=Creature
+subtype=Giant
+power=5
+toughness=5
+[/card]
+[card]
+name=Chancellor of the Spires
+text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, each opponent puts the top seven cards of his or her library into his or her graveyard. -- Flying -- When Chancellor of the Spires enters the battlefield, you may cast target instant or sorcery card from an opponent's graveyard without paying its mana cost.
+mana={4}{U}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=7
+[/card]
+[card]
+name=Chancellor of the Tangle
+text=You may reveal this card from your opening hand. If you do, at the beginning of your first main phase, add {G} to your mana pool. -- Vigilance, reach
+mana={4}{G}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=7
+[/card]
+[card]
+name=Exclusion Ritual
+text=Imprint — When Exclusion Ritual enters the battlefield, exile target nonland permanent. -- Players can't cast spells with the same name as the exiled card.
+mana={4}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Geosurge
+text=Add {R}{R}{R}{R}{R}{R}{R} to your mana pool. Spend this mana only to cast artifact or creature spells.
+mana={R}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Gremlin Mine
+text={1}, {T}, Sacrifice Gremlin Mine: Gremlin Mine deals 4 damage to target artifact creature. -- {1}, {T}, Sacrifice Gremlin Mine: Remove up to four charge counters from target noncreature artifact.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Hex Parasite
+text={X}{PB}: Remove up to X counters from target permanent. For each counter removed this way, Hex Parasite gets +1/+0 until end of turn. ({PB} can be paid with either {B} or 2 life.)
+mana={1}
+type=Artifact Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
+name=Invader Parasite
+text=Imprint — When Invader Parasite enters the battlefield, exile target land. -- Whenever a land with the same name as the exiled card enters the battlefield under an opponent's control, Invader Parasite deals 2 damage to that player.
+mana={3}{R}{R}
+type=Creature
+subtype=Insect
+power=3
+toughness=2
+[/card]
+[card]
+name=Karn Liberated
+text=+4: Target player exiles a card from his or her hand. -- -3: Exile target permanent. -- -14: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.
+mana={7}
+type=Planeswalker
+subtype=Karn
+[/card]
+[card]
+name=Leeching Bite
+text=Target creature gets +1/+1 until end of turn. Another target creature gets -1/-1 until end of turn.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Myr Superion
+text=Spend only mana produced by creatures to cast Myr Superion.
+mana={2}
+type=Artifact Creature
+subtype=Myr
+power=5
+toughness=6
+[/card]
+[card]
+name=Norn's Annex
+text=({PW} can be paid with either {W} or 2 life.) -- Creatures can't attack you or a planeswalker you control unless their controller pays {PW} for each of those creatures.
+mana={3}{PW}{PW}
+type=Artifact
+[/card]
+[card]
+name=Omen Machine
+text=Players can't draw cards. -- At the beginning of each player's draw step, that player exiles the top card of his or her library. If it's a land card, the player puts it onto the battlefield. Otherwise, the player casts it without paying its mana cost if able.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Phyrexian Ingester
+text=Imprint — When Phyrexian Ingester enters the battlefield, you may exile target nontoken creature. -- Phyrexian Ingester gets +X/+Y, where X is the exiled creature card's power and Y is its toughness.
+mana={6}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Phyrexian Metamorph
+text=({PU} can be paid with either {U} or 2 life.) -- You may have Phyrexian Metamorph enter the battlefield as a copy of any artifact or creature on the battlefield, except it's an artifact in addition to its other types.
+mana={3}{p(B)}
+type=Artifact Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Postmortem Lunge
+text=({PB} can be paid with either {B} or 2 life.) -- Return target creature card with converted mana cost X from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step.
+mana={X}{p(B)}
+type=Sorcery
+[/card]
+[card]
+name=Praetor's Grasp
+text=Search target opponent's library for a card and exile it face down. Then that player shuffles his or her library. You may look at and play that card for as long as it remains exiled.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Psychic Surgery
+text=Whenever an opponent shuffles his or her library, you may look at the top two cards of that library. You may exile one of those cards. Then put the rest on top of that library in any order.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+name=Rage Extractor
+text=({PR} can be paid with either {R} or 2 life.) -- Whenever you cast a spell with <img src="/Handlers/Image.ashx?size=small&amp;name=p&amp;type=symbol" alt="Phyrexian" align="absbottom" /> in its mana cost, Rage Extractor deals damage equal to that spell's converted mana cost to target creature or player.
+mana={4}{PR}
+type=Artifact
+[/card]
+[card]
+name=Remember the Fallen
+text=Choose one or both — Return target creature card from your graveyard to your hand; and/or return target artifact card from your graveyard to your hand.
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
+name=Spellskite
+text={PU}: Change a target of target spell or ability to Spellskite. ({PU} can be paid with either {U} or 2 life.)
+mana={2}
+type=Artifact Creature
+subtype=Horror
+power=0
+toughness=4
+[/card]
+[card]
+name=Torpor Orb
+text=Creatures entering the battlefield don't cause abilities to trigger.
+mana={2}
+type=Artifact
+[/card]

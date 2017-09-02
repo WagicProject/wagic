@@ -521,11 +521,6 @@ id=391883
 rarity=M
 [/card]
 [card]
-primitive=Monk Token
-id=-391883
-rarity=T
-[/card]
-[card]
 primitive=Monastery Siege
 id=391884
 rarity=R

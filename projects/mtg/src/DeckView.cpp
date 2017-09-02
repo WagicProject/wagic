@@ -2,6 +2,7 @@
 
 #include "GameOptions.h"
 #include "CardGui.h"
+#include "CardDescriptor.h"
 
 const float DeckView::no_user_activity_show_card_delay = 0.1f;
 
@@ -92,7 +93,7 @@ void DeckView::reloadIndexes()
     }
 }
 
-void DeckView::renderCard(int index, int alpha, bool asThumbnail)
+void DeckView::renderCard(int index, int alpha, bool asThumbnail, bool griddeckview)
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
@@ -143,14 +144,11 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail)
         }
     }
     else
-    {
+    {//NORMAL VIEW WITH IMAGES
         int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
-
         Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
-        CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail, true);
+        CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail, true, griddeckview);
     }
-    //the three DrawCard function above, I intentionally disabled the rendered border when in Deck Editor since the border must be dynamically resized
-    //we can pass variables so the DrawCard method knows what to do to the border but... there must be a better way to do it...
     int quadAlpha = alpha;
     if (!deck()->count(cardPosition.card)) quadAlpha /= 2;
     quadAlpha = 255 - quadAlpha;
@@ -167,12 +165,15 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail)
         char buffer[4096];
         sprintf(buffer, "x%i", deck()->count(cardPosition.card));
         WFont * font = mFont;
+        font->SetScale(1.4f);
         font->SetColor(ARGB(fontAlpha/2,0,0,0));
-        JRenderer::GetInstance()->FillRect(qtX, qtY, font->GetStringWidth(buffer) + 6, 16, ARGB(fontAlpha/2,0,0,0));
-        font->DrawString(buffer, qtX + 4, qtY + 4);
+        JRenderer::GetInstance()->FillRect(qtX, qtY, font->GetStringWidth(buffer) + 6, 18, ARGB(fontAlpha/2,0,0,0));
+        JRenderer::GetInstance()->DrawRect(qtX, qtY, font->GetStringWidth(buffer) + 6, 18, ARGB(fontAlpha/2,240,240,240));
+        font->DrawString(buffer, qtX + 5, qtY + 3);
         font->SetColor(ARGB(fontAlpha,255,255,255));
-        font->DrawString(buffer, qtX + 2, qtY + 2);
+        font->DrawString(buffer, qtX + 4, qtY + 2);
         font->SetColor(ARGB(255,255,255,255));
+        font->SetScale(1.0f);
     }
 }
 

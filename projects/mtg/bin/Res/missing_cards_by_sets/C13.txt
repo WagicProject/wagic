@@ -1,0 +1,421 @@
+[card]
+name=Act of Authority
+text=When Act of Authority enters the battlefield, you may exile target artifact or enchantment. -- At the beginning of your upkeep, you may exile target artifact or enchantment. If you do, its controller gains control of Act of Authority.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Capricious Efreet
+text=At the beginning of your upkeep, choose target nonland permanent you control and up to two target nonland permanents you don't control. Destroy one of them at random.
+mana={4}{R}{R}
+type=Creature
+subtype=Efreet
+power=6
+toughness=4
+[/card]
+[card]
+name=Command Tower
+text={T}: Add to your mana pool one mana of any color in your commander's color identity.
+type=Land
+[/card]
+[card]
+name=Crawlspace
+text=No more than two creatures can attack you each combat.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Curse of Chaos
+text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may discard a card. If the player does, he or she draws a card.
+mana={2}{R}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of Inertia
+text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may tap or untap target permanent of his or her choice.
+mana={2}{U}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of Predation
+text=Enchant player -- Whenever a creature attacks enchanted player, put a +1/+1 counter on it.
+mana={2}{G}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of Shallow Graves
+text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may put a 2/2 black Zombie creature token onto the battlefield tapped.
+mana={2}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of the Forsaken
+text=Enchant player -- Whenever a creature attacks enchanted player, its controller gains 1 life.
+mana={2}{W}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Darksteel Mutation
+text=Enchant creature -- Enchanted creature is an Insect artifact creature with base power and toughness 0/1 and has indestructible, and it loses all other abilities, card types, and creature types.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Derevi, Empyrial Tactician
+text=Flying -- Whenever Derevi, Empyrial Tactician enters the battlefield or a creature you control deals combat damage to a player, you may tap or untap target permanent. -- {1}{G}{W}{U}: Put Derevi onto the battlefield from the command zone.
+mana={G}{W}{U}
+type=Legendary Creature
+subtype=Bird Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Djinn of Infinite Deceits
+text=Flying -- {T}: Exchange control of two target nonlegendary creatures. You can't activate this ability during combat.
+mana={4}{U}{U}
+type=Creature
+subtype=Djinn
+power=2
+toughness=7
+[/card]
+[card]
+name=Fiery Justice
+text=Fiery Justice deals 5 damage divided as you choose among any number of target creatures and/or players. Target opponent gains 5 life.
+mana={R}{G}{W}
+type=Sorcery
+[/card]
+[card]
+name=Fissure Vent
+text=Choose one or both — -- • Destroy target artifact. -- • Destroy target nonbasic land.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Flickerform
+text=Enchant creature -- {2}{W}{W}: Exile enchanted creature and all Auras attached to it. At the beginning of the next end step, return that card to the battlefield under its owner's control. If you do, return the other cards exiled this way to the battlefield under their owners' control attached to that creature.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=From the Ashes
+text=Destroy all nonbasic lands. For each land destroyed this way, its controller may search his or her library for a basic land card and put it onto the battlefield. Then each player who searched his or her library this way shuffles it.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Gahiji, Honored One
+text=Whenever a creature attacks one of your opponents or a planeswalker an opponent controls, that creature gets +2/+0 until end of turn.
+mana={2}{R}{G}{W}
+type=Legendary Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+[card]
+name=Hooded Horror
+text=Hooded Horror can't be blocked as long as defending player controls the most creatures or is tied for the most.
+mana={4}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=4
+[/card]
+[card]
+name=Hull Breach
+text=Choose one — -- • Destroy target artifact. -- • Destroy target enchantment. -- • Destroy target artifact and target enchantment.
+mana={R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Illusionist's Gambit
+text=Cast Illusionist's Gambit only during the declare blockers step on an opponent's turn. -- Remove all attacking creatures from combat and untap them. After this phase, there is an additional combat phase. Each of those creatures attacks that combat if able. They can't attack you or a planeswalker you control that combat.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Incendiary Command
+text=Choose two — -- • Incendiary Command deals 4 damage to target player. -- • Incendiary Command deals 2 damage to each creature. -- • Destroy target nonbasic land. -- • Each player discards all the cards in his or her hand, then draws that many cards.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Inferno Titan
+text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
+mana={4}{R}{R}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Jar of Eyeballs
+text=Whenever a creature you control dies, put two eyeball counters on Jar of Eyeballs. -- {3}, {T}, Remove all eyeball counters from Jar of Eyeballs: Look at the top X cards of your library, where X is the number of eyeball counters removed this way. Put one of them into your hand and the rest on the bottom of your library in any order.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Jeleva, Nephalia's Scourge
+text=Flying -- When Jeleva, Nephalia's Scourge enters the battlefield, each player exiles the top X cards of his or her library, where X is the amount of mana spent to cast Jeleva. -- Whenever Jeleva attacks, you may cast an instant or sorcery card exiled with it without paying its mana cost.
+mana={1}{U}{B}{R}
+type=Legendary Creature
+subtype=Vampire Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Lim-Dul's Vault
+text=Look at the top five cards of your library. As many times as you choose, you may pay 1 life, put those cards on the bottom of your library in any order, then look at the top five cards of your library. Then shuffle your library and put the last cards you looked at this way on top of it in any order.
+mana={U}{B}
+type=Instant
+[/card]
+[card]
+name=Magus of the Arena
+text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Those creatures fight each other. (Each deals damage equal to its power to the other.)
+mana={4}{R}{R}
+type=Creature
+subtype=Human Wizard
+power=5
+toughness=5
+[/card]
+[card]
+name=Marath, Will of the Wild
+text=Marath, Will of the Wild enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- {X}, Remove X +1/+1 counters from Marath: Choose one — -- • Put X +1/+1 counters on target creature. X can't be 0. -- • Marath deals X damage to target creature or player. X can't be 0. -- • Put an X/X green Elemental creature token onto the battlefield. X can't be 0.
+mana={R}{G}{W}
+type=Legendary Creature
+subtype=Elemental Beast
+power=0
+toughness=0
+[/card]
+[card]
+name=Molten Disaster
+text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- If Molten Disaster was kicked, it has split second. (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Molten Disaster deals X damage to each creature without flying and each player.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Molten Slagheap
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Put a storage counter on Molten Slagheap. -- {1}, Remove X storage counters from Molten Slagheap: Add X mana in any combination of {B} and/or {R} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Mosswort Bridge
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {G} to your mana pool. -- {G}, {T}: You may play the exiled card without paying its mana cost if creatures you control have total power 10 or greater.
+type=Land
+[/card]
+[card]
+name=Mystic Barrier
+text=When Mystic Barrier enters the battlefield or at the beginning of your upkeep, choose left or right. -- Each player may attack only the opponent seated nearest him or her in the last chosen direction and planeswalkers controlled by that player.
+mana={4}{W}
+type=Enchantment
+[/card]
+[card]
+name=Naya Soulbeast
+text=Trample -- When you cast Naya Soulbeast, each player reveals the top card of his or her library. Naya Soulbeast enters the battlefield with X +1/+1 counters on it, where X is the total converted mana cost of all cards revealed this way.
+mana={6}{G}{G}
+type=Creature
+subtype=Beast
+power=0
+toughness=0
+[/card]
+[card]
+name=Oloro, Ageless Ascetic
+text=At the beginning of your upkeep, you gain 2 life. -- Whenever you gain life, you may pay {1}. If you do, draw a card and each opponent loses 1 life. -- At the beginning of your upkeep, if Oloro, Ageless Ascetic is in the command zone, you gain 2 life.
+mana={3}{W}{U}{B}
+type=Legendary Creature
+subtype=Giant Soldier
+power=4
+toughness=5
+[/card]
+[card]
+name=Opal Palace
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Add to your mana pool one mana of any color in your commander's color identity. If you spend this mana to cast your commander, it enters the battlefield with a number of additional +1/+1 counters on it equal to the number of times it's been cast from the command zone this game.
+type=Land
+[/card]
+[card]
+name=Order of Succession
+text=Choose left or right. Starting with you and proceeding in the chosen direction, each player chooses a creature controlled by the next player in that direction. Each player gains control of the creature he or she chose.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Primal Vigor
+text=If one or more tokens would be put onto the battlefield, twice that many of those tokens are put onto the battlefield instead. -- If one or more +1/+1 counters would be placed on a creature, twice that many +1/+1 counters are placed on that creature instead.
+mana={4}{G}
+type=Enchantment
+[/card]
+[card]
+name=Rain of Thorns
+text=Choose one or more — Destroy target artifact; destroy target enchantment; and/or destroy target land.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Reincarnation
+text=Choose target creature. When that creature dies this turn, return a creature card from its owner's graveyard to the battlefield under the control of that creature's owner.
+mana={1}{G}{G}
+type=Instant
+[/card]
+[card]
+name=Rough // Tumble
+text=Rough deals 2 damage to each creature without flying. --  //  -- Tumble deals 6 damage to each creature with flying.
+mana=//
+type=Sorcery // Sorcery
+[/card]
+[card]
+name=Saltcrusted Steppe
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Put a storage counter on Saltcrusted Steppe. -- {1}, Remove X storage counters from Saltcrusted Steppe: Add X mana in any combination of {G} and/or {W} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Serene Master
+text=Whenever Serene Master blocks, exchange its power and the power of target creature it's blocking until end of combat.
+mana={1}{W}
+type=Creature
+subtype=Human Monk
+power=0
+toughness=2
+[/card]
+[card]
+name=Soul Manipulation
+text=Choose one or both — Counter target creature spell; and/or return target creature card from your graveyard to your hand.
+mana={1}{U}{B}
+type=Instant
+[/card]
+[card]
+name=Spellbreaker Behemoth
+text=Spellbreaker Behemoth can't be countered. -- Creature spells you control with power 5 or greater can't be countered.
+mana={1}{R}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
+name=Springjack Pasture
+text={T}: Add {C} to your mana pool. -- {4}, {T}: Put a 0/1 white Goat creature token onto the battlefield. -- {T}, Sacrifice X Goats: Add X mana of any one color to your mana pool. You gain X life.
+type=Land
+[/card]
+[card]
+name=Stormscape Battlemage
+text=Kicker {W} and/or {2}{B}(You may pay an additional {W} and/or {2}{B} as you cast this spell.) -- When Stormscape Battlemage enters the battlefield, if it was kicked with its {W} kicker, you gain 3 life. -- When Stormscape Battlemage enters the battlefield, if it was kicked with its {2}{B} kicker, destroy target nonblack creature. That creature can't be regenerated.
+mana={2}{U}
+type=Creature
+subtype=Metathran Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Sudden Demise
+text=Choose a color. Sudden Demise deals X damage to each creature of the chosen color.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Surveyor's Scope
+text={T}, Exile Surveyor's Scope: Search your library for up to X basic land cards, where X is the number of players who control at least two more lands than you. Put those cards onto the battlefield, then shuffle your library.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Sydri, Galvanic Genius
+text={U}: Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. -- {W}{B}: Target artifact creature gains deathtouch and lifelink until end of turn.
+mana={W}{U}{B}
+type=Legendary Creature
+subtype=Human Artificer
+power=2
+toughness=2
+[/card]
+[card]
+name=Tempt with Discovery
+text=Tempting offer — Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Tempt with Glory
+text=Tempting offer — Put a +1/+1 counter on each creature you control. Each opponent may put a +1/+1 counter on each creature he or she controls. For each opponent who does, put a +1/+1 counter on each creature you control.
+mana={5}{W}
+type=Sorcery
+[/card]
+[card]
+name=Tempt with Immortality
+text=Tempting offer — Return a creature card from your graveyard to the battlefield. Each opponent may return a creature card from his or her graveyard to the battlefield. For each player who does, return a creature card from your graveyard to the battlefield.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Tempt with Reflections
+text=Tempting offer — Choose target creature you control. Put a token onto the battlefield that's a copy of that creature. Each opponent may put a token onto the battlefield that's a copy of that creature. For each opponent who does, put a token onto the battlefield that's a copy of that creature.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Tempt with Vengeance
+text=Tempting offer — Put X 1/1 red Elemental creature tokens with haste onto the battlefield. Each opponent may put X 1/1 red Elemental creature tokens with haste onto the battlefield. For each player who does, put X 1/1 red Elemental creature tokens with haste onto the battlefield.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Thousand-Year Elixir
+text=You may activate abilities of creatures you control as though those creatures had haste. -- {1}, {T}: Untap target creature.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Thunderstaff
+text=As long as Thunderstaff is untapped, if a creature would deal combat damage to you, prevent 1 of that damage. -- {2}, {T}: Attacking creatures get +1/+0 until end of turn.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Toxic Deluge
+text=As an additional cost to cast Toxic Deluge, pay X life. -- All creatures get -X/-X until end of turn.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=True-Name Nemesis
+text=As True-Name Nemesis enters the battlefield, choose a player. -- True-Name Nemesis has protection from the chosen player. (This creature can't be blocked, targeted, dealt damage, or enchanted by anything controlled by that player.)
+mana={1}{U}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Unexpectedly Absent
+text=Put target nonland permanent into its owner's library just beneath the top X cards of that library.
+mana={X}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Well of Lost Dreams
+text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Widespread Panic
+text=Whenever a spell or ability causes its controller to shuffle his or her library, that player puts a card from his or her hand on top of his or her library.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Wild Ricochet
+text=You may choose new targets for target instant or sorcery spell. Then copy that spell. You may choose new targets for the copy.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Witch Hunt
+text=Players can't gain life. -- At the beginning of your upkeep, Witch Hunt deals 4 damage to you. -- At the beginning of your end step, target opponent chosen at random gains control of Witch Hunt.
+mana={4}{R}
+type=Enchantment
+[/card]

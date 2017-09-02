@@ -42,8 +42,10 @@ public:
     int skippingTurn;
     int extraTurn;
     int drawCounter;
+    int energyCount;
     int epic;
     int forcefield;
+    int dealsdamagebycombat;
     int initLife;
     int raidcount;
     int handmodifier;
@@ -85,6 +87,8 @@ public:
     bool DeadLifeState(bool check = false);
     ManaCost * doesntEmpty;
     ManaCost * poolDoesntEmpty;
+    ManaCost * AuraIncreased;
+    ManaCost * AuraReduced;
     void cleanupPhase();
     virtual int Act(float)
     {

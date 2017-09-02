@@ -49,9 +49,25 @@ void GameStateOptions::Start()
     optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
     optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
    // optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));
-	//this is a dev option, not meant for standard play. uncomment if you need to see abilities you own hitting the stack.
+    //this is a dev option, not meant for standard play. uncomment if you need to see abilities you own hitting the stack.
     optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDMAIN, "Interrupt opponent's end of turn"));
     optionsTabs = NEW WGuiTabMenu();
+    optionsTabs->Add(optionsList);
+
+    optionsList = NEW WGuiList("Misc");
+    optionsList->Add(NEW WGuiHeader("Card Display Options"));
+    //black border
+    optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Border"));
+    //show tokens in editor
+    optionsList->Add(NEW OptionInteger(Options::SHOWTOKENS, "Show Tokens in Editor"));
+    WDecoStyled * wMisc = NEW WDecoStyled(NEW WGuiHeader("Warning!!!"));
+    wMisc->mStyle = WDecoStyled::DS_STYLE_ALERT;
+    optionsList->Add(wMisc);
+    //show large images
+    optionsList->Add(NEW OptionInteger(Options::GDVLARGEIMAGE, "Show Large Images in Grid Deck View"));
+    //prefetch
+    if(WResourceManager::Instance()->IsThreaded())
+        optionsList->Add(NEW OptionInteger(Options::CARDPREFETCHING, "Enable Prefetching"));
     optionsTabs->Add(optionsList);
 
     optionsList = NEW WGuiList("Game");
@@ -80,10 +96,9 @@ void GameStateOptions::Start()
     optionsList->Add(NEW WGuiSplit(cPrf, cThm));
     optionsList->Add(cStyle);
     optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"), -102, GameStateOptionsConst::kNewProfileID, this));
-
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable Cheat Mode")));
-        optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::OPTIMIZE_HAND, "Optimize Starting Hand")));
-        optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODEAIDECK, "Unlock All Ai Decks")));
+    optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::OPTIMIZE_HAND, "Optimize Starting Hand")));
+    optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODEAIDECK, "Unlock All Ai Decks")));
 
     optionsTabs->Add(optionsList);
 
@@ -214,7 +229,14 @@ void GameStateOptions::Render()
 {
     //Erase
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
-
+#if !defined (PSP)
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
+#endif
     const char * const CreditsText[] = {
         "Wagic, The Homebrew?! by Wololo",
         "",

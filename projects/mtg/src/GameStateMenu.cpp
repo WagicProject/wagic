@@ -117,7 +117,7 @@ void GameStateMenu::Create()
     {
         currentState = MENU_STATE_MAJOR_LANG | MENU_STATE_MINOR_NONE;
     }
-    scroller = NEW TextScroller(Fonts::MAIN_FONT, SCREEN_WIDTH / 2 - 90, SCREEN_HEIGHT - 17, 180);
+    scroller = NEW TextScroller(Fonts::MAIN_FONT, SCREEN_WIDTH / 2 + 65, 5, 180);
     scrollerSet = 0;
     splashTex = NULL;
 
@@ -153,7 +153,7 @@ void GameStateMenu::Start()
     mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 0, 0); // Create background quad for rendering.
 
     if (mBg)
-        mBg->SetHotSpot(0, 0);
+        mBg->SetHotSpot(mBg->mWidth/2, 0);
 
     if (MENU_STATE_MAJOR_MAINMENU == currentState)
         currentState = currentState | MENU_STATE_MINOR_FADEIN;
@@ -185,6 +185,12 @@ void GameStateMenu::genNbCardsStr()
                             playerdata->collection->totalCards(), totalPrints);
         else
             sprintf(GameApp::mynbcardsStr, _("%i cards").c_str(),totalPrints);
+    }
+
+    if(playerdata)
+    { 
+        if(playerdata->credits > 0)
+            GameApp::mycredits = playerdata->credits;
     }
 
     SAFE_DELETE(playerdata);
@@ -445,9 +451,11 @@ void GameStateMenu::ensureMGuiController()
                     (i == 0)));
             }
 
-            JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
+            JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");//I set this transparent, don't remove button_shoulder.png
             if (!jq.get()) return;
             jq->SetHFlip(false);
+            jq->mWidth = 64.f;
+            jq->mHeight = 32.f;
             jq->SetColor(ARGB(abs(255),255,255,255));
             mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
             vector<ModRulesOtherMenuItem *>otherItems = gModRules.menu.other;
@@ -455,7 +463,7 @@ void GameStateMenu::ensureMGuiController()
                 mGuiController->Add(NEW OtherMenuItem(
                                        otherItems[0]->mActionId,
                                        mFont, otherItems[0]->mDisplayName,
-                                       SCREEN_WIDTH - 64, 2,
+                                       SCREEN_WIDTH - 64, SCREEN_HEIGHT_F-26.f,
                                        jq.get(), jq.get(), otherItems[0]->mKey, false
                                        ));
             }
@@ -733,8 +741,21 @@ void GameStateMenu::RenderTopMenu()
 
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-    mFont->SetColor(ARGB(128,255,255,255));
-    mFont->DrawString(GAME_VERSION, rightTextPos, 5, JGETEXT_RIGHT);
+    //mFont->SetColor(ARGB(128,255,255,255));
+    mFont->SetColor(ARGB(220,255,255,255));
+    /*//tooltip
+    JQuadPtr tooltips;
+    tooltips = WResourceManager::Instance()->RetrieveTempQuad("tooltips.png");//new graphics tooltips
+    if (tooltips.get())
+    {
+        float xscale = (mFont->GetStringWidth(GAME_VERSION)+(mFont->GetStringWidth(GAME_VERSION)/18)) / tooltips->mWidth;
+        float yscale = mFont->GetHeight() / tooltips->mHeight;
+        tooltips->SetHotSpot(tooltips->mWidth / 2,0);
+        JRenderer::GetInstance()->RenderQuad(tooltips.get(), SCREEN_WIDTH_F/2, SCREEN_HEIGHT_F-17,0,xscale,yscale);
+    }
+    //end tooltip*/
+    mFont->DrawString(GAME_VERSION, (SCREEN_WIDTH_F/2) - (mFont->GetStringWidth(GAME_VERSION))/2, SCREEN_HEIGHT_F-17, JGETEXT_LEFT);
+    mFont->SetColor(ARGB(128,255,255,255));//reset color
     mFont->DrawString(GameApp::mynbcardsStr, leftTextPos, 5);
     renderer->FillRect(leftTextPos, 26, 104, 8, ARGB(255, 100, 90, 60));
     renderer->FillRect(leftTextPos + 2, 28, (float)(gamePercentComplete()), 4, ARGB(255,220,200, 125));
@@ -780,6 +801,24 @@ void GameStateMenu::Render()
             else
                 sprintf(text, "%s", _("LOADING...").c_str());
         }
+#if !defined (PSP)
+        //tooltip & overlay
+        JQuadPtr menubar;
+        menubar = WResourceManager::Instance()->RetrieveTempQuad("menubar.png");//new graphics menubar
+        if (menubar.get())
+        {
+            float xscale = SCREEN_WIDTH / menubar->mWidth;
+            float yscale = mFont->GetHeight() / menubar->mHeight;
+            renderer->RenderQuad(menubar.get(), 0, (SCREEN_HEIGHT - menubar->mHeight) - 18,0,xscale,yscale);
+        }
+        else
+        {
+        //rectangle
+            renderer->FillRect(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH + 1.5f, mFont->GetHeight(),ARGB(225,5,5,5));;
+            renderer->DrawRect(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH + 1.5f, mFont->GetHeight(),ARGB(200, 204, 153, 0));
+        //end
+        }
+#endif
         mFont->SetColor(ARGB(170,0,0,0));
         mFont->DrawString(text, SCREEN_WIDTH / 2 + 2, SCREEN_HEIGHT - 50 + 2, JGETEXT_CENTER);
         mFont->SetColor(ARGB(255,255,255,255));
@@ -799,10 +838,22 @@ void GameStateMenu::Render()
         scroller->Render();
 
         if (mBg.get())
-            renderer->RenderQuad(mBg.get(), (SCREEN_WIDTH/4)-6, 2, 0, 256 / mBg->mWidth, 166 / mBg->mHeight);
+            renderer->RenderQuad(mBg.get(), SCREEN_WIDTH_F/2, 2, 0, 256 / mBg->mWidth, 166 / mBg->mHeight);
 
         RenderTopMenu();
-
+        
+        //credits on lower left if available
+        std::ostringstream streamC;
+        streamC << "Credits: " << GameApp::mycredits;
+        mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+        mFont->SetScale(0.9f);
+        mFont->SetColor(ARGB(150,248,248,255));
+        mFont->DrawString(streamC.str(), 12, SCREEN_HEIGHT - 16);
+        mFont->SetColor(ARGB(255,255,255,255));
+        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+        mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
+        //end
+        
     }
     if (subMenuController)
     {

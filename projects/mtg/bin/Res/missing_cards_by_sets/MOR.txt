@@ -1,0 +1,145 @@
+[card]
+name=Battletide Alchemist
+text=If a source would deal damage to a player, you may prevent X of that damage, where X is the number of Clerics you control.
+mana={3}{W}{W}
+type=Creature
+subtype=Kithkin Cleric
+power=3
+toughness=4
+[/card]
+[card]
+name=Cenn's Tactician
+text={W}, {T}: Put a +1/+1 counter on target Soldier creature. -- Each creature you control with a +1/+1 counter on it can block an additional creature.
+mana={W}
+type=Creature
+subtype=Kithkin Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Cream of the Crop
+text=Whenever a creature enters the battlefield under your control, you may look at the top X cards of your library, where X is that creature's power. If you do, put one of those cards on top of your library and the rest on the bottom of your library in any order.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Declaration of Naught
+text=As Declaration of Naught enters the battlefield, name a card. -- {U}: Counter target spell with the chosen name.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Fire Juggler
+text=Whenever Fire Juggler becomes blocked, clash with an opponent. If you win, Fire Juggler deals 4 damage to each creature blocking it. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={2}{R}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Grimoire Thief
+text=Whenever Grimoire Thief becomes tapped, exile the top three cards of target opponent's library face down. -- You may look at cards exiled with Grimoire Thief. -- {U}, Sacrifice Grimoire Thief: Turn all cards exiled with Grimoire Thief face up. Counter all spells with those names.
+mana={U}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Maralen of the Mornsong
+text=Players can't draw cards. -- At the beginning of each player's draw step, that player loses 3 life, searches his or her library for a card, puts it into his or her hand, then shuffles his or her library.
+mana={1}{B}{B}
+type=Legendary Creature
+subtype=Elf Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Primal Beyond
+text=As Primal Beyond enters the battlefield, you may reveal an Elemental card from your hand. If you don't, Primal Beyond enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast an Elemental spell or activate an ability of an Elemental.
+type=Land
+[/card]
+[card]
+name=Pulling Teeth
+text=Clash with an opponent. If you win, target player discards two cards. Otherwise, that player discards a card. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Recross the Paths
+text=Reveal cards from the top of your library until you reveal a land card. Put that card onto the battlefield and the rest on the bottom of your library in any order. Clash with an opponent. If you win, return Recross the Paths to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+name=Redeem the Lost
+text=Target creature you control gains protection from the color of your choice until end of turn. Clash with an opponent. If you win, return Redeem the Lost to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Reins of the Vinesteed
+text=Enchant creature -- Enchanted creature gets +2/+2. -- When enchanted creature dies, you may return Reins of the Vinesteed from your graveyard to the battlefield attached to a creature that shares a creature type with that creature.
+mana={3}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Release the Ants
+text=Release the Ants deals 1 damage to target creature or player. Clash with an opponent. If you win, return Release the Ants to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Research the Deep
+text=Draw a card. Clash with an opponent. If you win, return Research the Deep to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
+name=Revive the Fallen
+text=Return target creature card from a graveyard to its owner's hand. Clash with an opponent. If you win, return Revive the Fallen to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Rivals' Duel
+text=Choose two target creatures that share no creature types. Those creatures fight each other. (Each deals damage equal to its power to the other.)
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Scapeshift
+text=Sacrifice any number of lands. Search your library for that many land cards, put them onto the battlefield tapped, then shuffle your library.
+mana={2}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Shared Animosity
+text=Whenever a creature you control attacks, it gets +1/+0 until end of turn for each other attacking creature that shares a creature type with it.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Slithermuse
+text=When Slithermuse leaves the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference. -- Evoke {3}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
+mana={2}{U}{U}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
+name=Titan's Revenge
+text=Titan's Revenge deals X damage to target creature or player. Clash with an opponent. If you win, return Titan's Revenge to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Weight of Conscience
+text=Enchant creature -- Enchanted creature can't attack. -- Tap two untapped creatures you control that share a creature type: Exile enchanted creature.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]

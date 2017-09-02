@@ -31,11 +31,6 @@ id=407560
 rarity=C
 [/card]
 [card]
-primitive=Angel
-id=-407535
-rarity=T
-[/card]
-[card]
 primitive=Ayli, Eternal Pilgrim
 id=407661
 rarity=R
@@ -226,46 +221,6 @@ id=407606
 rarity=R
 [/card]
 [card]
-primitive=Eldrazi Scion
-id=-407522
-rarity=T
-[/card]
-[card]
-primitive=Eldrazi Scion
-id=-407587
-rarity=T
-[/card]
-[card]
-primitive=Eldrazi Scion
-id=-407635
-rarity=T
-[/card]
-[card]
-primitive=Eldrazi Scion
-id=-407550
-rarity=T
-[/card]
-[card]
-primitive=Eldrazi Scion
-id=-407633
-rarity=T
-[/card]
-[card]
-primitive=Eldrazi Scion
-id=-407631
-rarity=T
-[/card]
-[card]
-primitive=Elemental
-id=-407614
-rarity=T
-[/card]
-[card]
-primitive=Elemental
-id=-407653
-rarity=T
-[/card]
-[card]
 primitive=Elemental Uprising
 id=407640
 rarity=C
@@ -436,21 +391,6 @@ id=407622
 rarity=U
 [/card]
 [card]
-primitive=Knight Ally
-id=-407525
-rarity=T
-[/card]
-[card]
-primitive=Kor Ally
-id=-407540
-rarity=T
-[/card]
-[card]
-primitive=Kor Ally
-id=-407672
-rarity=T
-[/card]
-[card]
 primitive=Kor Scythemaster
 id=407533
 rarity=C
@@ -616,11 +556,6 @@ id=407585
 rarity=C
 [/card]
 [card]
-primitive=Octopus
-id=-407563
-rarity=T
-[/card]
-[card]
 primitive=Ondu War Cleric
 id=407541
 rarity=C
@@ -629,11 +564,6 @@ rarity=C
 primitive=Overwhelming Denial
 id=407571
 rarity=R
-[/card]
-[card]
-primitive=Plant
-id=-407648
-rarity=T
 [/card]
 [card]
 primitive=Press into Service
@@ -1001,22 +931,8 @@ id=407657
 rarity=R
 [/card]
 [card]
-primitive=Zombie
-id=-407594
-rarity=T
-[/card]
-[card]
-primitive=Zombie
-id=-407596
-rarity=T
-[/card]
-[card]
-primitive=Zombie
-id=-407598
-rarity=T
-[/card]
-[card]
 primitive=Zulaport Chainmage
 id=407603
 rarity=C
 [/card]
+

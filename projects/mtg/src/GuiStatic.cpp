@@ -28,11 +28,18 @@ GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner co
 
 void GuiAvatar::Render()
 {
+    GameObserver * game = player->getObserver();
     JRenderer * r = JRenderer::GetInstance();
     int life = player->life;
     int poisonCount = player->poisonCount;
+    int energyCount = player->energyCount;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    TargetChooser * tc = NULL;
+
+    if (game)
+        tc = game->getCurrentTargetChooser();
+
     //Avatar
     int lifeDiff = life - currentLife;
     if (lifeDiff < 0 && currentLife > 0)
@@ -73,6 +80,10 @@ void GuiAvatar::Render()
             break;
         }
         player->getIcon()->SetColor(ARGB((int)actA, 255, avatarRed, avatarRed));
+        if (tc && !tc->canTarget(player))
+        {
+            player->getIcon()->SetColor(ARGB((int)actA, 50, 50, 50));
+        }
         r->RenderQuad(player->getIcon().get(), actX, actY, actT, Width/player->getIcon()->mWidth*actZ, Height/player->getIcon()->mHeight*actZ);
         if (mHasFocus)
         {
@@ -108,10 +119,10 @@ void GuiAvatar::Render()
     {
     case TOP_LEFT:
         mFont->SetColor(ARGB((int)actA / 4, 0, 0, 0));
-        mFont->DrawString(buffer, actX + 2, actY + 2);
+        mFont->DrawString(buffer, actX + 2, actY - 2);
         mFont->SetScale(1.3f);
         mFont->SetColor(ARGB((int)actA, lx, ly, lz));
-        mFont->DrawString(buffer, actX + 1, actY + 1);
+        mFont->DrawString(buffer, actX + 1, actY - 1);
         mFont->SetScale(1);
         break;
     case BOTTOM_RIGHT:
@@ -122,7 +133,7 @@ void GuiAvatar::Render()
         break;
     }
     //poison
-    char poison[5];
+    char poison[10];
     if (poisonCount > 0)
     {
         sprintf(poison, "%i", poisonCount);
@@ -138,6 +149,23 @@ void GuiAvatar::Render()
             break;
         }
     }
+    //energy
+    char energy[15];
+    if (energyCount > 0)
+    {
+        sprintf(energy, "%i", energyCount);
+        switch (corner)
+        {
+        case TOP_LEFT:
+            mFont->SetColor(ARGB((int)actA / 1, 255, 255, 0));
+            mFont->DrawString(energy, actX + 2, actY + 17);
+            break;
+        case BOTTOM_RIGHT:
+            mFont->SetColor(ARGB((int)actA / 1 ,255, 255, 0));
+            mFont->DrawString(energy, actX, actY - 27, JGETEXT_RIGHT);
+            break;
+        }
+    }
     PlayGuiObject::Render();
 }
 
@@ -149,16 +177,18 @@ ostream& GuiAvatar::toString(ostream& out) const
 
 void GuiGameZone::toggleDisplay()
 {
-	if (showCards)
-	{
-		showCards = 0;
-		cd->zone->owner->getObserver()->OpenedDisplay = NULL;
-	}
+    if (showCards)
+    {
+        cd->zone->owner->getObserver()->guiOpenDisplay = NULL;
+        showCards = 0;
+        cd->zone->owner->getObserver()->OpenedDisplay = NULL;
+    }
     else if(!cd->zone->owner->getObserver()->OpenedDisplay)//one display at a time please.
     {
+        cd->zone->owner->getObserver()->guiOpenDisplay = this;
         showCards = 1;
         cd->init(zone);
-		cd->zone->owner->getObserver()->OpenedDisplay = cd;
+        cd->zone->owner->getObserver()->OpenedDisplay = cd;
     }
 }
 
@@ -166,13 +196,106 @@ void GuiGameZone::Render()
 {
     //Texture
     JQuadPtr quad = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
+    JQuadPtr overlay;
     float scale = defaultHeight / quad->mHeight;
+    float scale2 = scale;
+    float modx = 0;
+    float mody = 0;
+
+    bool replaced = false;
+    bool showtop = (zone && zone->owner->game->battlefield->nb_cards && zone->owner->game->battlefield->hasAbility(Constants::SHOWFROMTOPLIBRARY))?true:false;
+    bool showopponenttop = (zone && zone->owner->opponent()->game->battlefield->nb_cards && zone->owner->opponent()->game->battlefield->hasAbility(Constants::SHOWOPPONENTTOPLIBRARY))?true:false;
+
     quad->SetColor(ARGB((int)(actA),255,255,255));
     if(type == GUI_EXILE)
     {
         quad->SetColor(ARGB((int)(actA),255,240,255));
     }
-    JRenderer::GetInstance()->RenderQuad(quad.get(), actX, actY, 0.0, scale * actZ, scale * actZ);
+    
+    //overlay
+    JQuadPtr iconcard = WResourceManager::Instance()->RetrieveTempQuad("iconcard.png");
+    JQuadPtr iconhand = WResourceManager::Instance()->RetrieveTempQuad("iconhand.png");
+    JQuadPtr iconlibrary = WResourceManager::Instance()->RetrieveTempQuad("iconlibrary.png");
+    JQuadPtr iconexile = WResourceManager::Instance()->RetrieveTempQuad("iconexile.png");
+    
+    if(iconlibrary && type == GUI_LIBRARY)
+    {
+        scale2 = defaultHeight / iconlibrary->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconlibrary->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconlibrary;
+    }
+    if(iconhand && type == GUI_OPPONENTHAND)
+    {
+        scale2 = defaultHeight / iconhand->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconhand->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconhand;
+    }
+    if(iconcard && type == GUI_GRAVEYARD)
+    {
+        scale2 = defaultHeight / iconcard->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconcard->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconcard;
+    }
+    if(iconexile && type == GUI_EXILE)
+    {
+        scale2 = defaultHeight / iconexile->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconexile->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconexile;
+    }
+    //
+
+    if(type == GUI_LIBRARY && zone->nb_cards && !showCards)
+    {
+        int top = zone->nb_cards - 1;
+        if(zone->cards[top] && (zone->cards[top]->canPlayFromLibrary()||showtop||showopponenttop))
+        {
+            MTGCardInstance * card = zone->cards[top];
+            if(card && card->getObserver())
+            {
+                replaced = true;
+                /*TargetChooser * tc = card->getObserver()->getCurrentTargetChooser();
+                if(tc && tc->canTarget(card) && !tc->done)
+                    replaced = false;
+                else
+                {*/
+                    JQuadPtr kquad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+                    if(kquad)
+                    {
+                        kquad->SetColor(ARGB((int)(actA),255,255,255));
+                        scale2 = defaultHeight / kquad->mHeight;
+                        modx = (35/4)+1;
+                        mody = (50/4)+1;
+                        quad = kquad;
+                    }
+                    else
+                    {
+                        quad = CardGui::AlternateThumbQuad(card);
+                        if(quad)
+                        {
+                            quad->SetColor(ARGB((int)(actA),255,255,255));
+                            scale2 = defaultHeight / quad->mHeight;
+                            modx = (35/4)+1;
+                            mody = (50/4)+1;
+                        }
+                    }
+                //}
+            }
+        }
+    }
+
+    //render small card quad
+    if(quad)
+        JRenderer::GetInstance()->RenderQuad(quad.get(), actX+modx, actY+mody, 0.0, scale2 * actZ, scale2 * actZ);
+    /*if(overlay)
+        JRenderer::GetInstance()->RenderQuad(overlay.get(), actX, actY, 0.0, scale2 * actZ, scale2 * actZ);*/
 
     float x0 = actX;
     if (x0 < SCREEN_WIDTH / 2)
@@ -181,8 +304,11 @@ void GuiGameZone::Render()
     }
 
     if (mHasFocus)
-        JRenderer::GetInstance()->FillRect(actX, actY, quad->mWidth * scale * actZ, quad->mHeight * scale * actZ,
+    {
+        if(!replaced)
+            JRenderer::GetInstance()->FillRect(actX, actY, quad->mWidth * scale2 * actZ, quad->mHeight * scale2 * actZ,
                 ARGB(abs(128 - wave),255,255,255));
+    }
 
     //Number of cards
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
@@ -198,18 +324,32 @@ void GuiGameZone::Render()
     else if(type == GUI_EXILE)
         sprintf(buffer, "%i\ne", zone->nb_cards);
     else*/
-        sprintf(buffer, "%i", zone->nb_cards);
+    sprintf(buffer, "%i", zone->nb_cards);
     mFont->SetColor(ARGB(mAlpha,0,0,0));
     mFont->DrawString(buffer, x0 + 1, actY + 1);
     if (actA > 120)
         mAlpha = 255;
     mFont->SetColor(ARGB(mAlpha,255,255,255));
     mFont->DrawString(buffer, x0, actY);
+    
+    //show top library - big card display
+    if(type == GUI_LIBRARY && mHasFocus && zone->nb_cards && !showCards && replaced)
+    {
+        int top = zone->nb_cards - 1;
+        if(zone->cards[top])
+        {
+            Pos pos = Pos(SCREEN_WIDTH - 35 - CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 15, 0.80f, 0.0, 220);
+            pos.actY = 165;
+            if (x < (CardGui::BigWidth / 2)) pos.actX = CardGui::BigWidth / 2;
+            CardGui::DrawCard(zone->cards[top], pos);
+        }
+    }
 
     if (showCards)
         cd->Render();
     for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
         (*it)->Render();
+
     PlayGuiObject::Render();
 }
 
@@ -222,6 +362,26 @@ bool GuiGameZone::CheckUserInput(JButton key)
 {
     if (showCards)
         return cd->CheckUserInput(key);
+    else if(type == GUI_LIBRARY && zone->nb_cards && !showCards && key == JGE_BTN_OK && mHasFocus)
+    {
+        bool activateclick = true;
+        
+        int top = zone->nb_cards - 1;
+        MTGCardInstance * card = zone->cards[top];
+        GameObserver * game = card->getObserver();
+        if(game)
+        {
+            TargetChooser * tc = game->getCurrentTargetChooser();
+            if(tc && (tc->canTarget(card) || !tc->done || tc->Owner->isHuman()))
+                activateclick = false;
+        }
+
+        if(card && activateclick)
+        {
+            card->getObserver()->cardClick(card);
+            return true;
+        }
+    }
     return false;
 }
 
@@ -377,9 +537,14 @@ int GuiOpponentHand::receiveEventPlus(WEvent* e)
                 t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
             else
                 t = NEW CardView(CardView::nullZone, event->card, x, y);
-            t->x = x + Width / 2;
-            t->y = y + Height / 2;
-            t->zoom = 0.6f;
+            //t->x = x + Width / 2;
+            //t->y = y + Height / 2;
+            //t->zoom = 0.6f;
+            //I set to negative so we don't see the face when the cards move...
+            t->x = -400.f;
+            t->y = -400.f;
+            t->mask = ARGB(0,0,0,0);
+            t->zoom = -0.6f;
             t->alpha = 0;
             cards.push_back(t);
             return 1;

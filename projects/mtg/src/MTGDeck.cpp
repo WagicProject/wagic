@@ -58,7 +58,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     switch (key[0])
     {
     case 'a':
-        if (key == "auto")
+        if (key == "aicode")//replacement code for AI. for reveal:number basic version only
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            primitive->setAICustomCode(val);
+        }
+        else if (key == "auto")
         {
             if (!primitive) primitive = NEW CardPrimitive();
             primitive->addMagicText(val);
@@ -107,17 +112,17 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 
     case 'b': //buyback/Bestow
         if (!primitive) primitive = NEW CardPrimitive();
-		if (key[1] == 'e' && key[2] == 's')
-		{ //bestow
-			if (!primitive) primitive = NEW CardPrimitive();
-			if (ManaCost * cost = primitive->getManaCost())
-			{
-				string value = val;
-				std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-				cost->setBestow(ManaCost::parseManaCost(value));
-			}
-		}
-		else//buyback
+        if (key[1] == 'e' && key[2] == 's')
+        { //bestow
+            if (!primitive) primitive = NEW CardPrimitive();
+            if (ManaCost * cost = primitive->getManaCost())
+            {
+                string value = val;
+                std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                cost->setBestow(ManaCost::parseManaCost(value));
+            }
+        }
+        else//buyback
         if (ManaCost * cost = primitive->getManaCost())
         {
             string value = val;
@@ -126,9 +131,17 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
 
-    case 'c': //color
-        if (!primitive) primitive = NEW CardPrimitive();
+    case 'c': //crew ability
+        if (key == "crewbonus")
         {
+            if (!primitive) primitive = NEW CardPrimitive();
+            {
+                primitive->setCrewAbility(val);
+                break;
+            }
+        }
+        else if (!primitive) primitive = NEW CardPrimitive();
+        {//color
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
             vector<string> values = split(value, ',');
@@ -138,10 +151,18 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 primitive->setColor(values[values_i], removeAllOthers);
                 removeAllOthers = 0;
             }
+            break;
         }
-        break;
-    case 'd'://dredge
-        if (!primitive) primitive = NEW CardPrimitive();
+    case 'd'://double faced card /dredge
+        if (key == "doublefaced")
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            {
+                primitive->setdoubleFaced(val);
+                break;
+            }
+        }
+        else if (!primitive) primitive = NEW CardPrimitive();
         {
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
@@ -203,9 +224,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     case 'm': //mana
         if (!primitive) primitive = NEW CardPrimitive();
         {
-            string value = val;
-            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            primitive->setManaCost(value);
+            if( key == "modular")//modular
+            {
+                primitive->setModularValue(val);
+            }
+            else
+            {
+                string value = val;
+                std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                primitive->setManaCost(value);
+            }
         }
         break;
 
@@ -243,7 +271,15 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         break;
 
     case 'p':
-        if (key[1] == 'r')
+        if (key == "phasedoutbonus")
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            {
+                primitive->setPhasedOutAbility(val);
+                break;
+            }
+        }
+        else if (key[1] == 'r')
         { // primitive
             if (!card) card = NEW MTGCard();
             map<string, CardPrimitive*>::iterator it = primitives.find(val);
@@ -851,6 +887,12 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                     meta_unlockRequirements = s.substr(found + 7);
                     continue;
                 }
+                found = s.find("SB:");
+                if (found != string::npos)
+                {
+                    Sideboard.push_back(s.substr(found + 3));
+                    continue;
+                }
                 continue;
             }
             if (meta_only) break;
@@ -1072,6 +1114,16 @@ int MTGDeck::removeAll()
     return 1;
 }
 
+void MTGDeck::replaceSB(vector<string> newSB)
+{
+    if(newSB.size())
+    {
+        Sideboard.clear();
+        Sideboard = newSB;
+    }
+    return;
+}
+
 int MTGDeck::remove(int cardid)
 {
     if (cards.find(cardid) == cards.end() || cards[cardid] == 0) return 0;
@@ -1141,6 +1193,18 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
                 }
             }
         }
+        //save sideboards
+        if(Sideboard.size())
+        {
+            sort(Sideboard.begin(), Sideboard.end());
+            for(unsigned int k = 0; k < Sideboard.size(); k++)
+            {
+                int checkID = atoi(Sideboard[k].c_str());
+                if(checkID)
+                    file << "#SB:" << checkID << "\n";
+            }
+        }
+
         file.close();
         JFileSystem::GetInstance()->Rename(tmp, destFileName);
     }
@@ -1155,6 +1219,11 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
 void MTGDeck::printDetailedDeckText(std::ofstream& file )
 {
     ostringstream currentCard, creatures, lands, spells, types;
+    ostringstream ss_creatures, ss_lands, ss_spells;
+    int numberOfCreatures = 0;
+    int numberOfSpells = 0;
+    int numberOfLands = 0;
+
     map<int, int>::iterator it;
     for (it = cards.begin(); it != cards.end(); it++)
     {
@@ -1202,17 +1271,31 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
 
         currentCard <<endl;
         setInfo = NULL;
+        // Add counter to know number of creatures, non-creature spells and lands present in the deck
         if ( card->data->isLand() )
+        {
             lands<< currentCard.str();
+            numberOfLands+=nbCards;
+        }
         else if ( card->data->isCreature() )
+        {
             creatures << currentCard.str();
-        else 
+            numberOfCreatures+=nbCards;
+        }
+        else
+        {
             spells << currentCard.str();
+            numberOfSpells+=nbCards;
+        }
         currentCard.str("");
     }
-    file << getCardBlockText( "Creatures", creatures.str() ) << endl;
-    file << getCardBlockText( "Spells", spells.str() ) << endl;
-    file << getCardBlockText( "Lands", lands.str() ) << endl;
+    ss_creatures << numberOfCreatures;
+    ss_spells << numberOfSpells;
+    ss_lands <<	numberOfLands;
+
+    file << getCardBlockText( "Creatures x " + ss_creatures.str(), creatures.str() ) << endl;
+    file << getCardBlockText( "Spells x " + ss_spells.str(), spells.str() ) << endl;
+    file << getCardBlockText( "Lands x " + ss_lands.str(), lands.str() ) << endl;
     creatures.str("");
     spells.str("");
     lands.str("");

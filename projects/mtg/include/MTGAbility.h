@@ -121,7 +121,7 @@ public:
     ManaCost* BuyBack;
     ManaCost* FlashBack;
     ManaCost* Retrace;
-	ManaCost* Bestow;
+    ManaCost* Bestow;
     ManaCost* morph;
     ManaCost* suspend;
 
@@ -219,6 +219,9 @@ public:
         BESTOW_COST = 35,
         ATTACK_COST = 36,
         BLOCK_COST = 37,
+        GRANTEDFLASHBACK_COST = 38,
+        FORCED_TOKEN_CREATOR = 39,
+        HIDDENVIEW = 40,
     };
 };
 
@@ -424,6 +427,19 @@ public:
 
 };
 
+class TriggerRebound : public TriggerAtPhase
+{
+public:
+    int destroyActivated;
+    bool sourceUntapped;
+    bool sourceTap;
+    bool once,activeTrigger;
+    TriggerRebound(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0,bool sourceUntapped = false,bool sourceTap = false,bool once = false);
+    virtual TriggerRebound* clone() const;
+    virtual int testDestroy();
+
+};
+
 
 class GenericTriggeredAbility : public TriggeredAbility, public NestedAbility
 {
@@ -522,6 +538,7 @@ protected:
     Player * controller;
 
 public:
+    MTGAbility * andAbility;
     string menutext;
     ManaCost * output;
     int tap;

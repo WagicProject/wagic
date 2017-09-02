@@ -88,14 +88,15 @@ float Interruptible::GetVerticalTextOffset() const
 }
 
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action,
-    bool bigQuad)
+    bool bigQuad, int aType, vector<JQuadPtr> mytargetsQuad)
 {
     WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     JRenderer * renderer = JRenderer::GetInstance();
-    
-    if (!targetQuad)
+    bool hiddenview = aType == MTGAbility::HIDDENVIEW?true:false;
+
+    if (!targetQuad && !mytargetsQuad.size())
     {
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI() && !alt2.size() && _(action).c_str() == source->name)
             mFont->DrawString("You play ", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
@@ -105,22 +106,58 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     }
     else
     {
-        renderer->FillRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(235,10,10,10));
         /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI())
             renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,0,255,0));
         else
             renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,255,0,0));*/
-        mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
-        mFont->DrawString(_(action).c_str(), x + 75, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+        float xnadj = 0;
+        int count = 1;
+        if(mytargetsQuad.size())
+        {
+            count = mytargetsQuad.size();
+            for(unsigned int k = 0; k < mytargetsQuad.size(); k++)
+            {
+                if(k > 10)
+                    break;
+                xnadj+=4;
+            }
+        }
+
+        ostringstream aa;
+        aa << action << " " << "(" << count << ")";
+
+        if(count > 1)
+            xnadj -= 4;
+
+        if(!hiddenview)
+        {
+            mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+            if(count > 1)
+            {
+                mFont->DrawString(_(aa.str()).c_str(), x + 75 + xnadj, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+            }
+            else
+                mFont->DrawString(_(action).c_str(), x + 75 + xnadj, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+        }
+        else
+            mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+
     }
 
     JQuadPtr quad = observer->getResourceManager()->RetrieveCard(source, CACHE_THUMB);
+    JQuadPtr fakeborder = observer->getResourceManager()->GetQuad("white");
     if (!quad.get())
         quad = CardGui::AlternateThumbQuad(source);
     if (quad.get())
     {
         quad->SetColor(ARGB(255,255,255,255));
         float scale = mHeight / quad->mHeight;
+        if (fakeborder.get())
+        {
+            fakeborder->SetColor(ARGB(255,15,15,15));
+            renderer->RenderQuad(fakeborder.get(), x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, (29 * actZ + 1) / 16, 42 * actZ / 16);
+        }
+        
         renderer->RenderQuad(quad.get(), x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, scale, scale);
     }
     else if (alt1.size())
@@ -130,23 +167,66 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
 
     if (bigQuad)
     {
-        Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
-        CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
+        /*Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
+        CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());*/
+        if(observer->gameType() == GAME_TYPE_MOMIR && aType == MTGAbility::FORCED_TOKEN_CREATOR)
+        {
+            Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
+            pos.actY = 142;//adjust y a little bit
+            CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
+        }
+        else if (observer->gameType() != GAME_TYPE_MOMIR)
+        {
+            Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 0.80f, 0.0, 220);
+            pos.actY = 142;//adjust y a little bit
+            CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
+        }
+
     }
 
-    if (targetQuad)
+    if(mytargetsQuad.size() && !hiddenview)
     {
-        float backupX = targetQuad->mHotSpotX;
-        float backupY = targetQuad->mHotSpotY;
-        targetQuad->SetColor(ARGB(255,255,255,255));
-        targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
-        float scale = mHeight / targetQuad->mHeight;
-        renderer->RenderQuad(targetQuad, x + 55, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
-        targetQuad->SetHotSpot(backupX, backupY);
+        float xadj = 0;
+        for(unsigned int k = 0; k < mytargetsQuad.size(); k++)
+        {
+            if(k > 10)
+                break;
+
+            JQuadPtr multiQ = mytargetsQuad[k];
+            if(multiQ.get())
+            {
+                float backupX = multiQ->mHotSpotX;
+                float backupY = multiQ->mHotSpotY;
+                multiQ->SetColor(ARGB(255,255,255,255));
+                multiQ->SetHotSpot(multiQ->mWidth / 2, multiQ->mHeight / 2);
+                float scale = mHeight / multiQ->mHeight;
+                if (fakeborder.get())
+                {
+                    fakeborder->SetColor(ARGB(255,15,15,15));
+                    renderer->RenderQuad(fakeborder.get(), x + 55 + xadj, y + ((mHeight - multiQ->mHeight) / 2) + multiQ->mHotSpotY, 0, (29 * actZ + 1) / 16, 42 * actZ / 16);
+                }
+                renderer->RenderQuad(multiQ.get(), x + 55 + xadj, y + ((mHeight - multiQ->mHeight) / 2) + multiQ->mHotSpotY, 0, scale, scale);
+                multiQ->SetHotSpot(backupX, backupY);
+                xadj+=4;
+            }
+        }
     }
-    else if (alt2.size())
+    else if(!hiddenview)
     {
-        mFont->DrawString(_(alt2).c_str(), x + 35, y+15 + GetVerticalTextOffset());
+        if (targetQuad)
+        {
+            float backupX = targetQuad->mHotSpotX;
+            float backupY = targetQuad->mHotSpotY;
+            targetQuad->SetColor(ARGB(255,255,255,255));
+            targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
+            float scale = mHeight / targetQuad->mHeight;
+            renderer->RenderQuad(targetQuad, x + 55, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
+            targetQuad->SetHotSpot(backupX, backupY);
+        }
+        else if (alt2.size())
+        {
+            mFont->DrawString(_(alt2).c_str(), x + 35, y+15 + GetVerticalTextOffset());
+        }
     }
 }
 
@@ -160,6 +240,11 @@ void StackAbility::Render()
     string action = ability->getMenuText();
     MTGCardInstance * source = ability->source;
     string alt1 = source->getName();
+    vector<JQuadPtr> mytargetQuads;
+    vector<MTGCardInstance*> myClones;
+
+    int fmLibrary = 0;
+    int force = 0;
 
     Targetable * _target = ability->target;
     if (ability->getActionTc())
@@ -167,6 +252,34 @@ void StackAbility::Render()
         Targetable * t = ability->getActionTc()->getNextTarget();
         if (t)
             _target = t;
+
+        
+    //test vector quads
+        if(ability->getActionTc()->getTargetsFrom().size())
+        {
+            for(size_t i = 0; i < ability->getActionTc()->getTargetsFrom().size(); i++)
+            {
+                Targetable * tt = ability->getActionTc()->getTargetsFrom()[i];
+                if(tt)
+                {
+                    if( ((Damageable *)(tt))->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE )
+                    {
+                        //fill vector
+                        myClones.push_back(((MTGCardInstance*)(tt)));
+
+                        if( source->has(Constants::HIDDENFACE) && !observer->isInLibrary(((MTGCardInstance *)(tt))) )
+                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                        else if ( !source->has(Constants::HIDDENFACE) )
+                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                        else
+                            fmLibrary++;
+                    }
+                    else
+                        mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                }
+            }
+        }
+    //end
     }
     Damageable * target = NULL;
     if (_target != ability->source && (dynamic_cast<MTGCardInstance *>(_target) || dynamic_cast<Player *>(_target)))
@@ -185,7 +298,27 @@ void StackAbility::Render()
         }
     }
 
-    Interruptible::Render(source, quad.get(), alt1, alt2, action);
+    //setborder test
+    if(myClones.size())
+    {
+        source->forcedBorderB = 1;
+        for(unsigned int kk = 0; kk < myClones.size(); kk++)
+        {
+            if(myClones[kk])
+            {
+                myClones[kk]->forcedBorderA = 1;
+                //JRenderer::GetInstance()->DrawLine(myClones[kk]->view->actX,myClones[kk]->view->actY,source->view->actX,source->view->actY,0.5f,ARGB(120, 255, 0, 0));
+            }
+        }
+    }
+
+    if(source->has(Constants::HIDDENFACE) && fmLibrary)
+        force = MTGAbility::HIDDENVIEW;
+
+    if(observer->gameType() == GAME_TYPE_MOMIR)
+        Interruptible::Render(source, quad.get(), alt1, alt2, action, true, ability->aType, mytargetQuads);
+    else
+        Interruptible::Render(source, quad.get(), alt1, alt2, action, false, force, mytargetQuads);
 }
 StackAbility::StackAbility(GameObserver* observer, int id, MTGAbility * _ability) :
 Interruptible(observer, id), ability(_ability)
@@ -453,12 +586,12 @@ int PutInGraveyard::resolve()
     MTGGameZone * zone = card->getCurrentZone();
     if (card->basicAbilities[(int)Constants::EXILEDEATH])
     {
-        card->owner->game->putInZone(card, zone, card->owner->game->exile);
+        card->controller()->game->putInZone(card, zone, card->owner->game->exile);
         return 1;
     }
     if (zone == observer->players[0]->game->inPlay || zone == observer->players[1]->game->inPlay)
     {
-        card->owner->game->putInZone(card, zone, card->owner->game->graveyard);
+        card->controller()->game->putInZone(card, zone, card->owner->game->graveyard);
         return 1;
     }
     return 0;
@@ -577,11 +710,17 @@ int ActionStack::addAbility(MTGAbility * ability)
     int result = addAction(stackAbility);
     if (!observer->players[0]->isAI() && ability->source->controller() == observer->players[0] && 0
         == options[Options::INTERRUPTMYABILITIES].number)
+    {
+        if((observer->gameType() == GAME_TYPE_MOMIR && ability->aType == MTGAbility::FORCED_TOKEN_CREATOR)||
+            (dynamic_cast<GenericTargetAbility *>(ability) && ability->canBeInterrupted && !observer->OpenedDisplay && !observer->players[0]->game->reveal->cards.size()))//test interrupt...
+            interruptDecision[0] = NOT_DECIDED;
+        else
+            interruptDecision[0] = DONT_INTERRUPT;
+    }
+    if (observer->OpenedDisplay && observer->players[0]->game->reveal->cards.size())
+    {
         interruptDecision[0] = DONT_INTERRUPT;
-	if (observer->OpenedDisplay && observer->players[0]->game->reveal->cards.size())
-	{
-		interruptDecision[0] = DONT_INTERRUPT;
-	}
+    }
     return result;
 }
 
@@ -670,7 +809,7 @@ int ActionStack::addAction(Interruptible * action)
 }
 
 Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana, int payResult,
-    int storm)
+    int storm, bool forcedinterrupt)
 {
     DebugTrace("ACTIONSTACK Add spell");
     if (storm > 0)
@@ -680,7 +819,12 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, Man
     Spell * spell = NEW Spell(observer, mObjects.size(), _source, tc, mana, payResult);
     addAction(spell);
     if (!observer->players[0]->isAI() && _source->controller() == observer->players[0] && 0 == options[Options::INTERRUPTMYSPELLS].number)
-        interruptDecision[0] = DONT_INTERRUPT;
+    {
+        if(forcedinterrupt)
+            interruptDecision[0] = INTERRUPT;
+        else
+            interruptDecision[0] = DONT_INTERRUPT;
+    }
     return spell;
 }
 
@@ -896,6 +1040,10 @@ void ActionStack::Update(float dt)
     //No need for Tuto when no human in game
     if (getCurrentTutorial() && (observer->players[0]->isHuman() || observer->players[1]->isHuman() ) )
         return;
+
+    if (observer->mLayers->actionLayer()->menuObject)// || observer->LPWeffect) //test fix for hang for both legendary with action/reveal
+        if(observer->players[0]->isHuman() || observer->players[1]->isHuman())
+            return;//dont do any of this if a menuobject exist.
 
     askIfWishesToInterrupt = NULL;
     //modal = 0;
@@ -1251,10 +1399,12 @@ void ActionStack::Render()
         //renderer->FillRoundRect(x0 - 7, y0+2, width + 17, height + 2, 9.0f, ARGB(128,0,0,0));
         //stack fill
         renderer->FillRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(225,5,5,5));
+        //top stack fill
+        renderer->FillRect(x0 - 6, y0+37, width + 15, 40.5f, ARGB(20,135,206,235));
         //stack highlight
-        renderer->FillRect(x0 - 6, y0+3, width + 15, 30, ARGB(255,89,89,89));
+        renderer->FillRect(x0 - 6, y0+3, width + 15, 31.f, ARGB(255,89,89,89));
         //another border
-        renderer->DrawRect(x0 - 6, y0+33, width + 15, height - 18, ARGB(255,89,89,89));
+        renderer->DrawRect(x0 - 6, y0+34.5f, width + 15, height - 19.5f, ARGB(255,89,89,89));
         //stack border
         renderer->DrawRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(255,240,240,240));
         
@@ -1310,13 +1460,30 @@ void ActionStack::Render()
 
         currenty += kIconVerticalOffset + kSpacer;
 
+        float totalmHeight = 0.f;
+        for (size_t i = 0; i < mObjects.size(); i++)
+        {
+            Interruptible * current = (Interruptible *) mObjects[i];
+            if (current && current->state == NOT_RESOLVED)
+                totalmHeight += current->mHeight;
+        }
+        int sC = 0;//stack Count
         for (size_t i = 0; i < mObjects.size(); i++)
         {
             Interruptible * current = (Interruptible *) mObjects[i];
             if (current && current->state == NOT_RESOLVED)
             {
+                /*
                 current->x = x0;
                 current->y = currenty;
+                current->Render();
+
+                currenty += current->mHeight;*/
+                sC+=1;
+                float cH = current->mHeight*sC;
+                current->x = x0;
+                current->y = (5+kIconVerticalOffset + kSpacer) + (totalmHeight - cH);
+                //render the stack object
                 current->Render();
 
                 currenty += current->mHeight;
@@ -1356,6 +1523,7 @@ void ActionStack::Render()
                     ((Interruptible *) mObjects[i])->y = currenty + 40;
                     currenty += ((Interruptible *) mObjects[i])->mHeight + 40;
                 }
+                current->mHasFocus = false;//fix stack display
                 mObjects[i]->Render();
             }
         }

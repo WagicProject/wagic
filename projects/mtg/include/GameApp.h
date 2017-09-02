@@ -74,6 +74,7 @@ public:
     static bool HasMusic;
     static string systemError;
     static char mynbcardsStr[512];
+    static int mycredits;
     static JMusic* music;
     static string currentMusicFile;
     static void playMusic(string filename = "", bool loop = true);

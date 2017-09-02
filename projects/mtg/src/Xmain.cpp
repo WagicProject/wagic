@@ -185,9 +185,9 @@ static const int doubleBufferAttributes[] = {
     GLX_RED_SIZE,      1,     /* the maximum number of bits per component    */
     GLX_GREEN_SIZE,    1,
     GLX_BLUE_SIZE,     1,
-    None
+    0L /* None */
 };
-static Bool WaitForNotify(Display *dpy, XEvent *event, XPointer arg)
+static int WaitForNotify(Display *dpy, XEvent *event, XPointer arg)
 {
   return (event->type == MapNotify) && (event->xmap.window == (Window) arg);
 }
@@ -387,13 +387,13 @@ int main(int argc, char* argv[])
       if (XCheckWindowEvent(gXDisplay, gXWindow, KeyPressMask | KeyReleaseMask | StructureNotifyMask, &event))
 	switch (event.type)
 	  {
-	  case KeyPress:
+	  case 2: /* KeyPress */
             {
               const KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
               g_engine->HoldKey_NoRepeat(sym);
             }
             break;
-	  case KeyRelease:
+	  case 3: /* KeyRelease */
             g_engine->ReleaseKey(XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1));
             break;
 	  case ConfigureNotify:

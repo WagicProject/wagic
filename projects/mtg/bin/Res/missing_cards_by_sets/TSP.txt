@@ -1,0 +1,312 @@
+[card]
+name=Angel's Grace
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- You can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Bogardan Hellkite
+text=Flash -- Flying -- When Bogardan Hellkite enters the battlefield, it deals 5 damage divided as you choose among any number of target creatures and/or players.
+mana={6}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Calciform Pools
+text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Calciform Pools. -- {1}, Remove X storage counters from Calciform Pools: Add X mana in any combination of {W} and/or {U} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Clockspinning
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Choose a counter on target permanent or suspended card. Remove that counter from that permanent or card or put another of those counters on it.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Conflagrate
+text=Conflagrate deals X damage divided as you choose among any number of target creatures and/or players. -- Flashback—{R}{R}, Discard X cards. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={X}{X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Curse of the Cabal
+text=Target player sacrifices half the permanents he or she controls, rounded down. -- Suspend 2—{2}{B}{B} (Rather than cast this card from your hand, you may pay {2}{B}{B} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- At the beginning of each player's upkeep, if Curse of the Cabal is suspended, that player may sacrifice a permanent. If he or she does, put two time counters on Curse of the Cabal.
+mana={9}{B}
+type=Sorcery
+[/card]
+[card]
+name=Cyclopean Giant
+text=When Cyclopean Giant dies, target land becomes a Swamp. Exile Cyclopean Giant.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Giant
+power=4
+toughness=2
+[/card]
+[card]
+name=Dementia Sliver
+text=All Slivers have "{T}: Name a card. Target opponent reveals a card at random from his or her hand. If it's the named card, that player discards it. Activate this ability only during your turn."
+mana={3}{U}{B}
+type=Creature
+subtype=Sliver
+power=3
+toughness=3
+[/card]
+[card]
+name=Dralnu, Lich Lord
+text=If damage would be dealt to Dralnu, Lich Lord, sacrifice that many permanents instead.  -- {T}: Target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (You may cast that card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{U}{B}
+type=Legendary Creature
+subtype=Zombie Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Dreadship Reef
+text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Dreadship Reef. -- {1}, Remove X storage counters from Dreadship Reef: Add X mana in any combination of {U} and/or {B} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Foriysian Interceptor
+text=Flash (You may cast this spell any time you could cast an instant.) -- Defender -- Foriysian Interceptor can block an additional creature.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=0
+toughness=5
+[/card]
+[card]
+name=Foriysian Totem
+text={T}: Add {R} to your mana pool. -- {4}{R}: Foriysian Totem becomes a 4/4 red Giant artifact creature with trample until end of turn. -- As long as Foriysian Totem is a creature, it can block an additional creature.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Fungal Reaches
+text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Fungal Reaches. -- {1}, Remove X storage counters from Fungal Reaches: Add X mana in any combination of {R} and/or {G} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Gemstone Caverns
+text=If Gemstone Caverns is in your opening hand and you're not playing first, you may begin the game with Gemstone Caverns on the battlefield with a luck counter on it. If you do, exile a card from your hand. -- {T}: Add {1} to your mana pool. If Gemstone Caverns has a luck counter on it, instead add one mana of any color to your mana pool.
+type=Legendary Land
+[/card]
+[card]
+name=Glass Asp
+text=Whenever Glass Asp deals combat damage to a player, that player loses 2 life at the beginning of his or her next draw step unless he or she pays {2} before that step.
+mana={1}{G}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=1
+[/card]
+[card]
+name=Greater Gargadon
+text=Suspend 10—{R} -- Sacrifice an artifact, creature, or land: Remove a time counter from Greater Gargadon. Activate this ability only if Greater Gargadon is suspended.
+mana={9}{R}
+type=Creature
+subtype=Beast
+power=9
+toughness=7
+[/card]
+[card]
+name=Hypergenesis
+text=Suspend 3—{1}{G}{G} (Rather than cast this card from your hand, pay {1}{G}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
+type=Sorcery
+[/card]
+[card]
+name=Ignite Memories
+text=Target player reveals a card at random from his or her hand. Ignite Memories deals damage to that player equal to that card's converted mana cost. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Ixidron
+text=As Ixidron enters the battlefield, turn all other nontoken creatures face down. (They're 2/2 creatures.) -- Ixidron's power and toughness are each equal to the number of face-down creatures on the battlefield.
+mana={3}{U}{U}
+type=Creature
+subtype=Illusion
+power=*
+toughness=*
+[/card]
+[card]
+name=Jhoira's Timebug
+text={T}: Choose target permanent you control or suspended card you own. If that permanent or card has a time counter on it, you may remove a time counter from it or put another time counter on it.
+mana={2}
+type=Artifact Creature
+subtype=Insect
+power=1
+toughness=2
+[/card]
+[card]
+name=Knight of the Holy Nimbus
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- If Knight of the Holy Nimbus would be destroyed, regenerate it. -- {2}: Knight of the Holy Nimbus can't be regenerated this turn. Only any opponent may activate this ability.
+mana={W}{W}
+type=Creature
+subtype=Human Rebel Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Lim-Dul the Necromancer
+text=Whenever a creature an opponent controls dies, you may pay {1}{B}. If you do, return that card to the battlefield under your control. If it's a creature, it's a Zombie in addition to its other creature types. -- {1}{B}: Regenerate target Zombie.
+mana={5}{B}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=4
+toughness=4
+[/card]
+[card]
+name=Locket of Yesterdays
+text=Spells you cast cost {1} less to cast for each card with the same name as that spell in your graveyard.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Magus of the Scroll
+text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Magus of the Scroll deals 2 damage to target creature or player.
+mana={R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Molten Slagheap
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Put a storage counter on Molten Slagheap. -- {1}, Remove X storage counters from Molten Slagheap: Add X mana in any combination of {B} and/or {R} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Nightshade Assassin
+text=First strike -- When Nightshade Assassin enters the battlefield, you may reveal X black cards in your hand. If you do, target creature gets -X/-X until end of turn. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{B}{B}
+type=Creature
+subtype=Human Assassin
+power=2
+toughness=1
+[/card]
+[card]
+name=Outrider en-Kor
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {0}: The next 1 damage that would be dealt to Outrider en-Kor this turn is dealt to target creature you control instead.
+mana={2}{W}
+type=Creature
+subtype=Kor Rebel Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Paradox Haze
+text=Enchant player -- At the beginning of enchanted player's first upkeep each turn, that player gets an additional upkeep step after this step.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Pardic Dragon
+text=Flying -- {R}: Pardic Dragon gets +1/+0 until end of turn. -- Suspend 2—{R}{R} -- Whenever an opponent casts a spell, if Pardic Dragon is suspended, that player may put a time counter on Pardic Dragon.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Plated Pegasus
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- If a spell would deal damage to a creature or player, prevent 1 damage that spell would deal to that creature or player.
+mana={2}{W}
+type=Creature
+subtype=Pegasus
+power=1
+toughness=2
+[/card]
+[card]
+name=Premature Burial
+text=Destroy target nonblack creature that entered the battlefield since your last turn ended.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Psychotic Episode
+text=Target player reveals his or her hand and the top card of his or her library. You choose a card revealed this way. That player puts the chosen card on the bottom of his or her library. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Pull from Eternity
+text=Put target face-up exiled card into its owner's graveyard.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Saltcrusted Steppe
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Put a storage counter on Saltcrusted Steppe. -- {1}, Remove X storage counters from Saltcrusted Steppe: Add X mana in any combination of {G} and/or {W} to your mana pool.
+type=Land
+[/card]
+[card]
+name=Scion of the Ur-Dragon
+text=Flying -- {2}: Search your library for a Dragon permanent card and put it into your graveyard. If you do, Scion of the Ur-Dragon becomes a copy of that card until end of turn. Then shuffle your library.
+mana={W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Dragon Avatar
+power=4
+toughness=4
+[/card]
+[card]
+name=Teferi, Mage of Zhalfir
+text=Flash (You may cast this spell any time you could cast an instant.) -- Creature cards you own that aren't on the battlefield have flash. -- Each opponent can cast spells only any time he or she could cast a sorcery.
+mana={2}{U}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
+[/card]
+[card]
+name=Thick-Skinned Goblin
+text=You may pay {0} rather than pay the echo cost for permanents you control. -- {R}: Thick-Skinned Goblin gains protection from red until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=1
+[/card]
+[card]
+name=Trickbind
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Counter target activated or triggered ability. If a permanent's ability is countered this way, activated abilities of that permanent can't be activated this turn. (Mana abilities can't be targeted.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Truth or Tale
+text=Reveal the top five cards of your library and separate them into two piles. An opponent chooses one of those piles. Put a card from the chosen pile into your hand, then put all other cards revealed this way on the bottom of your library in any order.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Vesuvan Shapeshifter
+text=As Vesuvan Shapeshifter enters the battlefield or is turned face up, you may choose another creature on the battlefield. If you do, until Vesuvan Shapeshifter is turned face down, it becomes a copy of that creature and gains "At the beginning of your upkeep, you may turn this creature face down." -- Morph {1}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Voidmage Husher
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Voidmage Husher enters the battlefield, counter target activated ability. (Mana abilities can't be targeted.) -- Whenever you cast a spell, you may return Voidmage Husher to its owner's hand.
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Weathered Bodyguards
+text=As long as Weathered Bodyguards is untapped, all combat damage that would be dealt to you by unblocked creatures is dealt to Weathered Bodyguards instead. -- Morph {3}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={5}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=5
+[/card]

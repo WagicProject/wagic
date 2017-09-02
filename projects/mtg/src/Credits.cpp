@@ -183,9 +183,9 @@ void Credits::compute(GameObserver* g, GameApp * _app)
     if (p2->isAI() && g->didWin(p1))
     {
         gameLength = time(0) - g->startedAt;
-        value = 400;
-        if (app->gameType != GAME_TYPE_CLASSIC)
-            value = 200;
+        value = 500;
+        if (app->gameType == GAME_TYPE_MOMIR)
+            value = 800;//800 credits for momir
         int difficulty = options[Options::DIFFICULTY].number;
         if (options[Options::DIFFICULTY_MODE_UNLOCKED].number && difficulty)
         {
@@ -315,6 +315,7 @@ void Credits::compute(GameObserver* g, GameApp * _app)
         }
 
         playerdata->credits += value;
+        GameApp::mycredits = playerdata->credits;
         PriceList::updateKey();
         playerdata->taskList->passOneDay();
         if (playerdata->taskList->getTaskCount() < 6)
@@ -360,9 +361,9 @@ void Credits::computeTournament(GameObserver* g, GameApp * _app,bool tournament,
     PlayerData * playerdata = NEW PlayerData(MTGCollection());
     if (p2->isAI() && mPlayerWin)
     {
-        value = 400;
-        if (app->gameType != GAME_TYPE_CLASSIC)
-            value = 200;
+        value = 500;
+        if (app->gameType == GAME_TYPE_MOMIR)
+            value = 800;
         int difficulty = options[Options::DIFFICULTY].number;
         if (options[Options::DIFFICULTY_MODE_UNLOCKED].number && difficulty)
         {
@@ -464,6 +465,7 @@ void Credits::computeTournament(GameObserver* g, GameApp * _app,bool tournament,
         }
 
         playerdata->credits += value;
+        GameApp::mycredits = playerdata->credits;
         PriceList::updateKey();
         playerdata->taskList->passOneDay();
         if (playerdata->taskList->getTaskCount() < 6)
@@ -505,6 +507,14 @@ void Credits::Render()
     if (!p1)
         return;
     JRenderer * r = JRenderer::GetInstance();
+#if !defined (PSP)
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        r->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
+#endif
     WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     WFont * f2 = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
     WFont * f3 = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
@@ -531,7 +541,8 @@ void Credits::Render()
                 if (unlockedQuad)
                 {
                     showMsg = 0;
-                    r->RenderQuad(unlockedQuad.get(), 20, 20);
+                    unlockedQuad->SetHotSpot(unlockedQuad->mWidth/2,0);
+                    r->RenderQuad(unlockedQuad.get(), SCREEN_WIDTH_F/2, 20, 0, 400.f / unlockedQuad->mWidth, 100.f / unlockedQuad->mHeight);
                 }
                 if (unlockedString.size())
                 {
@@ -666,6 +677,7 @@ int Credits::addCreditBonus(int value)
 {
     PlayerData * playerdata = NEW PlayerData();
     playerdata->credits += value;
+    GameApp::mycredits = playerdata->credits;
     playerdata->save();
     SAFE_DELETE(playerdata);
     return value;

@@ -79,6 +79,11 @@ struct WEventDamageStackResolved : public WEvent {
   WEventDamageStackResolved();
 };
 
+
+struct WEventGameStateBasedChecked : public WEvent {
+  WEventGameStateBasedChecked();
+};
+
 struct WEventPhasePreChange : public WEvent {
   Phase * from;
   Phase * to;
@@ -127,6 +132,7 @@ struct WEventCardChangeType : public WEventCardUpdate {
 struct WEventCardTap : public WEventCardUpdate {
   bool before;
   bool after;
+  bool noTrigger;
   WEventCardTap(MTGCardInstance * card, bool before, bool after);
   virtual Targetable * getTarget(int target);
 };
@@ -196,6 +202,12 @@ struct WEventCardDiscard : public WEventCardUpdate {
 //event when card is cycled.
 struct WEventCardCycle : public WEventCardUpdate {
   WEventCardCycle(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card is exerted.
+struct WEventCardExerted : public WEventCardUpdate {
+  WEventCardExerted(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);
 };
 
@@ -297,6 +309,45 @@ struct WEventCardEquipped : public WEventCardUpdate {
 struct WEventCardControllerChange : public WEventCardUpdate {
   WEventCardControllerChange(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);
+};
+
+//event when card phases out
+struct WEventCardPhasesOut : public WEventCardUpdate {
+  WEventCardPhasesOut(MTGCardInstance * card, int turn);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card phases in
+struct WEventCardPhasesIn : public WEventCardUpdate {
+  WEventCardPhasesIn(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card with morph faces up
+struct WEventCardFaceUp : public WEventCardUpdate {
+  WEventCardFaceUp(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card transforms
+struct WEventCardTransforms : public WEventCardUpdate {
+  WEventCardTransforms(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card copies a card
+struct WEventCardCopiedACard : public WEventCardUpdate {
+  WEventCardCopiedACard(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//alterenergy event
+struct WEventplayerEnergized : public WEvent {
+    WEventplayerEnergized(Player * player,int nb_count);
+    Player * player;
+    int nb_count;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
 };
 
 std::ostream& operator<<(std::ostream&, const WEvent&);

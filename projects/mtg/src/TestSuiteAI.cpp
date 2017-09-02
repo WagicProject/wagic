@@ -8,6 +8,9 @@
 #include "Rules.h"
 #include "GameObserver.h"
 #include "GameStateShop.h"
+#ifdef QT_CONFIG
+#include <QThread>
+#endif
 
 #ifdef QT_CONFIG
 #include <QThread>
@@ -874,7 +877,8 @@ void TestSuiteGame::initGame()
                 {
                     if (zone == p->game->inPlay)
                     {
-                        MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
+                        //MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
+                        MTGCardInstance * copy = zone->owner->game->putInZone(card, p->game->library, p->game->stack);
                         Spell * spell = NEW Spell(observer, copy);
                         spell->resolve();
                         if (!summoningSickness && (size_t)p->game->inPlay->nb_cards > k) p->game->inPlay->cards[k]->summoningSickness = 0;
@@ -886,7 +890,8 @@ void TestSuiteGame::initGame()
                         {
                             LOG ("TESTUITE ERROR, CARD NOT FOUND IN LIBRARY\n");
                         }
-                        p->game->putInZone(card, p->game->library, zone);
+                        //p->game->putInZone(card, p->game->library, zone);
+                        zone->owner->game->putInZone(card, p->game->library, zone);
                     }
                 }
                 else

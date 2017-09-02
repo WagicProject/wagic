@@ -271,12 +271,13 @@ void GameStateShop::cancelBooster(int)
 void GameStateShop::purchaseCard(int controlId)
 {
     MTGCard * c = srcCards->getCard(controlId - BOOSTER_SLOTS);
-    if (!c || !c->data || playerdata->credits - mPrices[controlId] < 0)
+    if (!c || !c->data || playerdata->credits - mPrices[controlId] < 0 || (c && c->getRarity() == Constants::RARITY_T))//cant buy tokens....
         return;
     myCollection->Add(c);
     int price = mPrices[controlId];
     pricelist->setPrice(c->getMTGId(), price); // In case they changed their minds after cancelling.
     playerdata->credits -= price;
+    GameApp::mycredits = playerdata->credits;
     //Update prices
     int rnd;
     switch (options[Options::ECON_DIFFICULTY].number)
@@ -304,11 +305,12 @@ void GameStateShop::purchaseBooster(int controlId)
     if (playerdata->credits - mPrices[controlId] < 0)
         return;
     playerdata->credits -= mPrices[controlId];
+    GameApp::mycredits = playerdata->credits;
     mInventory[controlId]--;
     SAFE_DELETE(booster);
     deleteDisplay();
     booster = NEW MTGDeck(MTGCollection());
-    boosterDisplay = NEW BoosterDisplay(12, NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT / 2, this, NULL, 5);
+    boosterDisplay = NEW BoosterDisplay(12, NULL, SCREEN_WIDTH - 255, SCREEN_HEIGHT-65, this, NULL, 7);
     mBooster[controlId].addToDeck(booster, srcCards);
 
     string sort = mBooster[controlId].getSort();
@@ -487,7 +489,7 @@ void GameStateShop::Update(float dt)
             menu->Add(22, _("Ask about...").c_str());
             menu->Add(14, _("Check task board").c_str());
             if (options[Options::CHEATMODE].number)
-                menu->Add(-2, _("Steal 1,000 credits").c_str());
+                menu->Add(-2, _("Steal 2,000 credits").c_str());
             menu->Add(12, _("Save And Exit").c_str());
             menu->Add(kCancelMenuID, _("Cancel").c_str());
         }
@@ -704,7 +706,7 @@ void GameStateShop::Render()
 
     JQuadPtr mBg = WResourceManager::Instance()->RetrieveTempQuad("shop.jpg", TEXTURE_SUB_5551);
     if (mBg.get())
-        r->RenderQuad(mBg.get(), 0, 0);
+        r->RenderQuad(mBg.get(), 0, 0, 0, SCREEN_WIDTH_F / mBg->mWidth, SCREEN_HEIGHT_F / mBg->mHeight);
 
     JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad("shop_light.jpg", TEXTURE_SUB_5551);
     if (quad.get())
@@ -712,7 +714,8 @@ void GameStateShop::Render()
         r->EnableTextureFilter(false);
         r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
         quad->SetColor(ARGB(lightAlpha,255,255,255));
-        r->RenderQuad(quad.get(), 0, 0);
+        quad->SetHotSpot(0,quad->mHeight);
+        r->RenderQuad(quad.get(), 0, SCREEN_HEIGHT, 0, 255.f / quad->mWidth, 272.f / quad->mHeight);
         r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
         r->EnableTextureFilter(true);
     }
@@ -725,7 +728,7 @@ void GameStateShop::Render()
     else
     {
         if (boosterDisplay)
-            boosterDisplay->Render();
+            boosterDisplay->Render(true);
         else if (bigDisplay)
         {
             if (bigDisplay->mOffset.getPos() >= 0)
@@ -742,7 +745,9 @@ void GameStateShop::Render()
                 {
                     alpha = static_cast<int> (800 * (elp - LIST_FADEIN));
                 }
-                r->FillRoundRect(300, 10, 160, SHOP_SLOTS * 20 + 15, 5, ARGB(alpha,0,0,0));
+                //r->FillRoundRect(300, 10, 160, SHOP_SLOTS * 20 + 15, 5, ARGB(alpha,0,0,0));
+                r->FillRect(297, 9.5f, 175, SHOP_SLOTS * 20 + 31, ARGB(alpha,0,0,0));
+                r->DrawRect(297, 9.5f, 175, SHOP_SLOTS * 20 + 31, ARGB(alpha,20,20,20));
                 alpha += 55;
                 for (int i = 0; i < SHOP_SLOTS; i++)
                 {
@@ -787,7 +792,7 @@ void GameStateShop::Render()
     if (menu)
         menu->Render();
     
-    if (!filterMenu || (filterMenu && filterMenu->isFinished()))
+    if ((!filterMenu || (filterMenu && filterMenu->isFinished()))&&!boosterDisplay)
         renderButtons();
 }
 
@@ -816,7 +821,10 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
         if (sel > -1 && sel < SHOP_ITEMS)
         {
             if (controlId == -2)
+            {
                 playerdata->credits += mPrices[sel]; //We stole it.
+                GameApp::mycredits = playerdata->credits;
+            }
             if (sel < BOOSTER_SLOTS) //Clicked a booster.
                 purchaseBooster(sel);
             else
@@ -857,7 +865,10 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
         beginFilters();
         break;
     case -2:
-        playerdata->credits += 1000;
+        {
+        playerdata->credits += 2000;
+        GameApp::mycredits = playerdata->credits;
+        }
     default:
         mStage = STAGE_SHOP_SHOP;
     }

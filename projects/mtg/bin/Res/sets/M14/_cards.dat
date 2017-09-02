@@ -625,11 +625,6 @@ id=370740
 rarity=R
 [/card]
 [card]
-primitive=Liliana's Reaver Zombie
-id=-370740
-rarity=T
-[/card]
-[card]
 primitive=Liturgy of Blood
 id=370652
 rarity=C
@@ -1248,11 +1243,6 @@ rarity=C
 primitive=Xathrid Necromancer
 id=370619
 rarity=R
-[/card]
-[card]
-primitive=Xathrid Necromancer Zombie
-id=-370619
-rarity=T
 [/card]
 [card]
 primitive=Young Pyromancer

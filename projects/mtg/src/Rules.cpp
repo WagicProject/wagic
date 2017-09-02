@@ -409,17 +409,19 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         p->poisonCount = initState.playerData[i].player->poisonCount;
         p->damageCount = initState.playerData[i].player->damageCount;
         p->preventable = initState.playerData[i].player->preventable;
+        p->energyCount = initState.playerData[i].player->energyCount;
         if (initState.playerData[i].player->mAvatarName.size())
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->reveal };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->reveal, p->game->sideboard };
         MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
                                               initState.playerData[i].player->game->library,
                                               initState.playerData[i].player->game->hand,
                                               initState.playerData[i].player->game->inPlay,
                                               initState.playerData[i].player->game->exile,
-			                                  initState.playerData[i].player->game->reveal };
+                                              initState.playerData[i].player->game->reveal,
+                                              initState.playerData[i].player->game->sideboard };
         for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
@@ -430,7 +432,8 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
                 {
                     if (zone == p->game->inPlay)
                     {
-                        MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
+                        //MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
+                        MTGCardInstance * copy = zone->owner->game->putInZone(card, p->game->library, p->game->stack);
                         Spell * spell = NEW Spell(g, copy);
                         spell->resolve();
                         delete spell;
@@ -441,7 +444,8 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
                         {
                             LOG ("RULES ERROR, CARD NOT FOUND IN LIBRARY\n");
                         }
-                        p->game->putInZone(card, p->game->library, zone);
+                        //p->game->putInZone(card, p->game->library, zone);
+                        zone->owner->game->putInZone(card, p->game->library, zone);
                     }
                 }
                 else

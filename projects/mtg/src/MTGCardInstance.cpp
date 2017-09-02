@@ -37,6 +37,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     initMTGCI();
     model = card;
     attacker = 0;
+    willattackplayer = 0;
+    willattackpw = 0;
     lifeOrig = life;
     origpower = power;
     basepower = origpower;
@@ -49,6 +51,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     if (arg_belongs_to)
         owner = arg_belongs_to->library->owner;
     lastController = owner;
+    previousController = owner;
     defenser = NULL;
     banding = NULL;
     life = toughness;
@@ -63,33 +66,68 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     bypassTC = false;
     discarded = false;
     copiedID = getId();
-    modifiedbAbi = 0;
+    copiedSetID = 0;
     LKIpower = power;
     LKItoughness = toughness;
-    cardistargetted = 0;
-    cardistargetter = 0;
+    forcedBorderA = 0;
+    forcedBorderB = 0;
     myconvertedcost = getManaCost()->getConvertedCost();
-	revealedLast = NULL;
-	MadnessPlay = false;
+    revealedLast = NULL;
+    MadnessPlay = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
     {
-        MTGCardInstance * snapShot = NEW MTGCardInstance(*this);
-        snapShot->previous = NULL;
-        snapShot->counters = NEW Counters(snapShot);
-        controller()->game->garbage->addCard(snapShot);
+        //the below section of code was changed without all possible side effects checked
+        //the reason was becuase while NEW MTGCardInstance(*this); does indeed return an exact copy
+        //the lower layer cardprimitive data is pointed to from the original source.
+        //this would cause cards like lotus bloom, which contain a restriction, to already has deleted the restriction
+        //which belonged to the original card before getting to the safe_delete, 
+        //it was leaving a dangling pointer which leads to
+        //a total crash on "cleanup()" calls from garbage zone.
+        //snapshots are created for extra cost, they are used for abilities contained after the cost through storecard variable.
+        //TODO:fix this correctly. I want this to use an exact copy of the card in its current state for stored.
+        //making it safe_delete these "copies" leads to the same crash, as they are still pointing to the original data.
+        MTGCardInstance * snapShot = this;
+        //below is how we used to handle this.
+       // MTGCardInstance * snapShot = NEW MTGCardInstance(*this);
+        //snapShot->previous = NULL;
+       // snapShot->counters = NEW Counters(snapShot);
+        //controller()->game->garbage->addCard(snapShot);
         return snapShot;
     }
 
 void MTGCardInstance::copy(MTGCardInstance * card)
 {
-    MTGCard * source = card->model;
-    CardPrimitive * data = source->data;
+    MTGCard * source = NULL;
+    if(card->isACopier && card->copiedID)
+    {
+        source = MTGCollection()->getCardById(card->copiedID);
+    }
+    else if(card->isToken || card->hasCopiedToken)
+    {
+        if(card->getMTGId() > 0)//not generated token
+            source = MTGCollection()->getCardById(card->getMTGId());
+        else
+        {
+            source = card->tokCard;
+            source->data = card->tokCard;//?wtf
+        }
+    }
+    else
+         source = MTGCollection()->getCardById(card->copiedID);
 
-    basicAbilities = card->basicAbilities;
-    origbasicAbilities = card->origbasicAbilities;
-    modifiedbAbi = card->modifiedbAbi;
+    if(!source)
+        source = card;
+
+    CardPrimitive * data = source->data;
+    //basicAbilities = data->basicAbilities;
+    for(unsigned int j = 0; j < data->basicAbilities.size(); j++)
+    {
+        if(data->basicAbilities[j])
+            basicAbilities[j] = data->basicAbilities[j];
+    }
+    types.clear();//reset types.. fix copying man lands... the copier becomes an unanimated land...
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -99,7 +137,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 
     manaCost.copy(data->getManaCost());
 
-    setText(""); //The text is retrieved from the data anyways
+    setText(data->text); //The text is retrieved from the data anyways
     setName(data->name);
 
     power = data->power;//layer 7a
@@ -111,29 +149,35 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     magicText = data->magicText;
     spellTargetType = data->spellTargetType;
     alias = data->alias;
+    copiedID = card->copiedID;
+    copiedSetID = card->setId;
+    doubleFaced = data->doubleFaced;
+    AICustomCode = data->AICustomCode;
+    CrewAbility = data->CrewAbility;
+    ModularValue = data->ModularValue;
+    PhasedOutAbility = data->PhasedOutAbility;
+    origpower = card->origpower;//for flip
+    origtoughness = card->origtoughness;//for flip
+    TokenAndAbility = card->TokenAndAbility;//token andAbility
+    tokCard = card->tokCard;
 
     //Now this is dirty...
     int backupid = mtgid;
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     MTGCardInstance * oldStored = this->storedSourceCard;
-    Spell * spell = NEW Spell(observer, this);
-    observer = card->observer;
-    AbilityFactory af(observer);
-    af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
-    delete spell;
-    if(observer->players[1]->playMode == Player::MODE_TEST_SUITE)
-        mtgid = backupid; // there must be a way to get the token id...
-    else
-    {
-        mtgid = card->getMTGId();   ///////////////////////////////////////////////////
-        setId = card->setId;        // Copier/Cloner cards produces the same token...//
-        rarity = card->getRarity(); ///////////////////////////////////////////////////
-    }
+
+    mtgid = backupid; // found a way :)
+
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
     storedCard = oldStored;
     miracle = false;
+
+    
+    //add event here copied a card...
+    WEvent * e = NEW WEventCardCopiedACard(this);
+    getObserver()->receiveEvent(e);
 }
 
 MTGCardInstance::~MTGCardInstance()
@@ -153,12 +197,14 @@ int MTGCardInstance::init()
     data = this;
     X = 0;
     castX = 0;
+    setX = -1;
     return 1;
 }
 
 void MTGCardInstance::initMTGCI()
 {
     X = 0;
+    setX = -1;
     sample = "";
     model = NULL;
     isToken = false;
@@ -178,8 +224,10 @@ void MTGCardInstance::initMTGCI()
     blinked = false;
     isExtraCostTarget = false;
     morphed = false;
+    exerted = false;
     turningOver = false;
     isMorphed = false;
+    MeldedFrom = "";
     isFlipped = false;
     isPhased = false;
     isCascaded = false;
@@ -190,18 +238,24 @@ void MTGCardInstance::initMTGCI()
     sunburst = 0;
     equipment = 0;
     auras = 0;
+    combatdamageToOpponent = false;
     damageToOpponent = false;
     damageToController = false;
     damageToCreature = false;
+    isProvoked = false;
+    ProvokeTarget = NULL;
+    Provoker = NULL;
     wasDealtDamage = false;
     isDualWielding = false;
     suspended = false;
-	isBestowed = false;
+    isBestowed = false;
+    isFacedown = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;
     stillNeeded = true;
     kicked = 0;
     dredge = 0;
+    zpos = 0;
     chooseacolor = -1;
     chooseasubtype = "";
     coinSide = -1;
@@ -209,8 +263,12 @@ void MTGCardInstance::initMTGCI()
     storedCard = NULL;
     storedSourceCard = NULL;
     myPair = NULL;
+    shackled = NULL;
+    seized = NULL;
     miracle = false;
+    hasCopiedToken = false;
     countTrini = 0;
+    anymanareplacement = false;
     imprintedCards.clear();
     attackCost = 0;
     attackCostBackup = 0;
@@ -223,9 +281,13 @@ void MTGCardInstance::initMTGCI()
     imprintR = 0;
     imprintB = 0;
     imprintW = 0;
+    bushidoPoints = 0;
+    modularPoints = 0;
+    entersBattlefield = 0;
     currentimprintName = "";
     imprintedNames.clear();
-	CountedObjects = 0;
+    CountedObjects = 0;
+    CountedObjectsB = 0;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;
@@ -243,8 +305,13 @@ void MTGCardInstance::initMTGCI()
     owner = NULL;
     counters = NEW Counters(this);
     previousZone = NULL;
+    tokCard = NULL;
     previous = NULL;
     next = NULL;
+    auraParent = NULL;
+    TokenAndAbility = NULL;
+    GrantedAndAbility = NULL;
+    discarderOwner = NULL;
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;
@@ -252,6 +319,7 @@ void MTGCardInstance::initMTGCI()
     exileEffects = false;
     currentZone = NULL;
     cardsAbilities = vector<MTGAbility *>();
+    //cardsAbilitiesFilter = vector<MTGAbility *>();
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
 
     if (observer && basicAbilities[(int)Constants::CHANGELING])
@@ -383,7 +451,51 @@ int MTGCardInstance::afterDamage()
     return 0;
 }
 
-int MTGCardInstance::bury()
+int MTGCardInstance::totem(bool noregen)
+{
+    int testToughness = toughness;
+    testToughness += tbonus;
+    if(testToughness < 1)
+    {
+        if(noregen)
+            return toGrave();
+        else if (!triggerRegenerate())
+            return toGrave();
+        return 0;
+    }
+    bool canregen = (regenerateTokens && !has(Constants::CANTREGEN) && !noregen);
+    vector<MTGAbility*>selection;
+    TargetChooserFactory tf(getObserver());
+    TargetChooser * tcb = tf.createTargetChooser("mytotem",this);
+    tcb->targetter = NULL;
+    tcb->maxtargets = 1;
+    MTGAbility * destroyTotem = NEW ATriggerTotem(getObserver(), getObserver()->mLayers->actionLayer()->getMaxId(),this,NULL);
+    destroyTotem->oneShot = true;
+    destroyTotem->canBeInterrupted = false;
+    MTGAbility * dtTarget = NEW GenericTargetAbility(getObserver(), "","",getObserver()->mLayers->actionLayer()->getMaxId(), this,tcb->clone(), destroyTotem->clone());
+    SAFE_DELETE(destroyTotem);
+    dtTarget->oneShot = true;
+    dtTarget->canBeInterrupted = false;
+    MTGAbility * addTotemtoGame = NEW GenericAddToGame(getObserver(), getObserver()->mLayers->actionLayer()->getMaxId(), this,NULL,dtTarget->clone());
+    SAFE_DELETE(dtTarget);
+    addTotemtoGame->oneShot = true;
+    addTotemtoGame->canBeInterrupted = false;
+    selection.push_back(addTotemtoGame->clone());
+    SAFE_DELETE(addTotemtoGame);
+    SAFE_DELETE(tcb);
+    if(canregen)
+    {
+        MTGAbility * triggerRegen = NEW ATriggerRegen(getObserver(), getObserver()->mLayers->actionLayer()->getMaxId(), this, this);
+        triggerRegen->oneShot = true;
+        triggerRegen->canBeInterrupted = false;
+        selection.push_back(triggerRegen->clone());
+        SAFE_DELETE(triggerRegen);
+    }
+    MTGAbility * menuChoice = NEW MenuAbility(getObserver(), getObserver()->mLayers->actionLayer()->getMaxId(), NULL, this,true,selection,this->controller(),"");
+    menuChoice->addToGame();
+    return 1;
+}
+int MTGCardInstance::toGrave( bool forced )
 {
     Player * p = controller();
     if (basicAbilities[(int)Constants::EXILEDEATH])
@@ -396,15 +508,29 @@ int MTGCardInstance::bury()
         p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
         return 1;
     }
+    if (forced)
+    {
+        p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
+        return 1;
+    }
     return 0;
 }
 int MTGCardInstance::destroy()
 {
-    if (!triggerRegenerate())
-        return bury();
+    if (hasTotemArmor())
+        return totem();
+    else if (!triggerRegenerate())
+        return toGrave();
     return 0;
 }
-
+int MTGCardInstance::destroyNoRegen()
+{
+    if (hasTotemArmor())
+        return totem(true);
+    else
+        return toGrave();
+    return 0;
+}
 MTGGameZone * MTGCardInstance::getCurrentZone()
 {
     return currentZone;
@@ -464,12 +590,14 @@ void MTGCardInstance::eventblocked(MTGCardInstance * opponent)
 }
 
 //Taps the card
-void MTGCardInstance::tap()
+void MTGCardInstance::tap(bool sendNoEvent)
 {
     if (tapped)
         return;
     tapped = 1;
     WEvent * e = NEW WEventCardTap(this, 0, 1);
+    if (sendNoEvent)
+        dynamic_cast<WEventCardTap*>(e)->noTrigger = true;
     observer->receiveEvent(e);
 }
 
@@ -589,7 +717,7 @@ int MTGCardInstance::hasSummoningSickness()
 {
     if (!summoningSickness)
         return 0;
-    if (basicAbilities[(int)Constants::HASTE])
+    if (has(Constants::HASTE))
         return 0;
     if (!isCreature())
         return 0;
@@ -614,15 +742,25 @@ Player * MTGCardInstance::controller()
     return lastController;
 }
 
-int MTGCardInstance::canAttack()
+int MTGCardInstance::canAttack( bool pwcheck )
 {
-    if (basicAbilities[(int)Constants::CANTATTACK])
-        return 0;
+    if(!pwcheck)
+    {
+        if (has(Constants::CANTATTACK))
+            return 0;
+        if (has(Constants::FLYERSONLY) && !has(Constants::FLYING))
+            return 0;
+    }
+    else
+    {
+        if (has(Constants::CANTPWATTACK))
+            return 0;
+    }
     if (tapped)
         return 0;
     if (hasSummoningSickness())
         return 0;
-    if (basicAbilities[(int)Constants::DEFENSER] && !basicAbilities[(int)Constants::CANATTACK])
+    if (has(Constants::DEFENSER) && !has(Constants::CANATTACK))
         return 0;
     if (!isCreature())
         return 0;
@@ -764,91 +902,121 @@ void MTGCardInstance::switchPT(bool apply)
 
 int MTGCardInstance::getCurrentPower()
 {
-    if(!isInPlay(observer))
+    if(observer && !isCreature())
+        return 0;
+    if(observer && !isInPlay(observer))
         return LKIpower;
     return power;
 }
 
 int MTGCardInstance::getCurrentToughness()
 {
-    if(!isInPlay(observer))
+    if(observer && !isCreature())
+        return 0;
+    if(observer && !isInPlay(observer))
         return LKItoughness;
     return toughness;
+}
+
+int MTGCardInstance::countDuplicateCardNames()
+{
+    int count = 0;
+
+    if(observer)
+    {
+        int nb_cards = controller()->game->battlefield->nb_cards;
+        for(int x = 0; x < nb_cards; x++)
+        {
+            if(controller()->game->battlefield->cards[x]->name == this->name)
+                count+=1;
+        }
+    }
+    return count;
+}
+
+int MTGCardInstance::countDuplicateCardTypes()
+{
+    int count = 0;
+
+    if(observer)
+    {
+        int nb_cards = controller()->game->battlefield->nb_cards;
+        for(int x = 0; x < nb_cards; x++)
+        {
+            if(controller()->game->battlefield->cards[x] != this && controller()->game->battlefield->cards[x]->types == this->types)
+                count+=1;
+        }
+    }
+    return count;
+}
+
+//check can produce mana
+int MTGCardInstance::canproduceMana(int color)
+{
+    int count = 0;
+
+    if(cardsAbilities.size())
+    {
+        for(unsigned int j = 0; j < cardsAbilities.size(); j++)
+        {
+            AbilityFactory af(observer);
+            MTGAbility * toCheck = af.getCoreAbility(cardsAbilities[j]);
+            if(dynamic_cast<AManaProducer*> (toCheck) && dynamic_cast<AManaProducer*> (toCheck)->output->hasColor(color))
+                count++;
+        }
+    }
+
+    if(count)
+        return 1;
+
+    return 0;
+}
+
+//check can be played from library top
+bool MTGCardInstance::canPlayFromLibrary()
+{
+    int found = 0;
+    if(has(Constants::CANPLAYFROMLIBRARYTOP) 
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYFROMLIBRARYTOP)))
+        found++;
+    if(isLand() && (has(Constants::CANPLAYLANDTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYLANDTOPLIBRARY))))
+        found++;
+    if(hasSubtype(Subtypes::TYPE_ARTIFACT) && (has(Constants::CANPLAYARTIFACTTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYARTIFACTTOPLIBRARY))))
+        found++;
+    if(isCreature() && (has(Constants::CANPLAYCREATURETOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYCREATURETOPLIBRARY))))
+        found++;
+    if(isSorceryorInstant() && (has(Constants::CANPLAYINSTANTSORCERYTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYINSTANTSORCERYTOPLIBRARY))))
+        found++;
+
+    if(found > 0)
+        return true;
+
+    return false;
 }
 
 //check stack
 bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
 {
+    Player * whoInterupts = getObserver()->isInterrupting;//leave this so we can actually debug who is interupting/current.
+    Player * whoCurrent = getObserver()->currentPlayer;
     if((getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0) &&
         (getObserver()->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN ||
         getObserver()->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN) &&
-        controller() == getObserver()->currentPlayer &&
-        !getObserver()->isInterrupting)
+        controller() == whoCurrent &&
+        (!whoInterupts || whoInterupts == whoCurrent))
     {
         return true;
     }
     return false;
 }
 
-//check targetted?
-bool MTGCardInstance::isTargetted()
-{
-    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
-        return false;
-
-    if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-    {
-        ActionStack * stack = observer->mLayers->stackLayer();
-        for (int i = stack->mObjects.size() - 1; i >= 0; i--)
-        {
-            Interruptible * current = ((Interruptible *) stack->mObjects[i]);
-            if ((current->type == ACTION_SPELL || current->type == ACTION_ABILITY) && current->state == NOT_RESOLVED)
-            {
-                if(current->type == ACTION_SPELL)
-                {
-                    Spell * spell = (Spell *) current;
-                    if(spell->getNextTarget() && spell->getNextTarget() == (Targetable*)this)
-                        return true;
-                }
-            }
-        }
-    }        
-    if(cardistargetted)
-        return true;
-    return false;
-}
-
-//check targetter?
-bool MTGCardInstance::isTargetter()
-{
-    if(controller()->game->reveal->cards.size() || controller()->opponent()->game->reveal->cards.size())
-        return false;
-
-    if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-    {
-        ActionStack * stack = observer->mLayers->stackLayer();
-        for (int i = stack->mObjects.size() - 1; i >= 0; i--)
-        {
-            Interruptible * current = ((Interruptible *) stack->mObjects[i]);
-            if ((current->type == ACTION_SPELL || current->type == ACTION_ABILITY) && current->state == NOT_RESOLVED)
-            {
-                if(current->type == ACTION_SPELL)
-                {
-                    Spell * spell = (Spell *) current;
-                    if(spell && spell->source == this)
-                        return true;
-                }
-            }
-        }
-    }        
-    if(cardistargetter)
-        return true;
-    return false;
-}
-
 int MTGCardInstance::canBlock()
 {
-    if (tapped)
+    if (tapped && !has(Constants::CANBLOCKTAPPED))
         return 0;
     if (basicAbilities[(int)Constants::CANTBLOCK])
         return 0;
@@ -956,120 +1124,204 @@ JQuadPtr MTGCardInstance::getIcon()
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }
 
-ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * newCost, ManaCost * refCost, bool noTrinisphere)
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cost, ManaCost * Data, bool noTrinisphere, bool bestow)
 {
-    if(!card)
-        return NULL;
-    
-        if(card->getIncreasedManaCost()->getConvertedCost())
-            newCost->add(card->getIncreasedManaCost());
+    int color = 0;
+    string type = "";
+    ManaCost * original = NEW ManaCost();
+    ManaCost * excess = NEW ManaCost();
+    original->copy(Data);
+    Cost->copy(original);
+    if (Cost->extraCosts)
+    {
+        for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+        {
+            Cost->extraCosts->costs[i]->setSource(card);
+        }
+    }
+    if (card->getIncreasedManaCost()->getConvertedCost() || card->getReducedManaCost()->getConvertedCost()
+        || card->controller()->AuraReduced->getConvertedCost() || card->controller()->AuraIncreased->getConvertedCost())
+    {//start1
+        if (card->getIncreasedManaCost()->getConvertedCost())
+            original->add(card->getIncreasedManaCost());
+        if(bestow && card->controller()->AuraIncreased->getConvertedCost())
+            original->add(card->controller()->AuraIncreased);
+        //before removing get the diff for excess
         if(card->getReducedManaCost()->getConvertedCost())
-            newCost->remove(card->getReducedManaCost());
-        if(refCost->extraCosts)
-            newCost->extraCosts = refCost->extraCosts;
-        //affinity
-        int color = 0;
-        string type = "";
-        ManaCost * original = NEW ManaCost();
-        original->copy(newCost);
-        int reducem = 0;
-        bool resetCost = false;
-        for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
-        {//start2
-            ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
-            if(newAff)
-            {
-                if(!resetCost)
+        {
+            for(int xc = 0; xc < 7;xc++)
+            {//if the diff is more than 0
+                if(card->getReducedManaCost()->getCost(xc) > original->getCost(xc))
                 {
-                    resetCost = true;
-                    newCost->copy(original);
+                    int count = card->getReducedManaCost()->getCost(xc) - original->getCost(xc);
+                    excess->add(xc,count);
                 }
-                TargetChooserFactory tf(observer);
-                TargetChooser * tcn = tf.createTargetChooser(newAff->tcString,card,NULL);
-
-                for (int w = 0; w < 2; ++w)
+            }
+        }
+        //apply reduced
+        if (card->getReducedManaCost()->getConvertedCost())
+            original->remove(card->getReducedManaCost());
+        if(bestow && card->controller()->AuraReduced->getConvertedCost())
+            original->remove(card->controller()->AuraReduced);
+        //try to reduce hybrid
+        if (excess->getConvertedCost())
+        {
+            original->removeHybrid(excess);
+        }
+        Cost->copy(original);
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
+    }//end1
+    int reducem = 0;
+    bool resetCost = false;
+    for (unsigned int na = 0; na < card->cardsAbilities.size(); na++)
+    {//start2
+        if (!card->cardsAbilities[na])
+            break;
+        ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
+        if (newAff)
+        {
+            if (!resetCost)
+            {
+                resetCost = true;
+                Cost->copy(original);
+                if (Cost->extraCosts)
                 {
-                    Player *p = observer->players[w];
-                    MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
-                    for (int k = 0; k < 6; k++)
+                    for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
                     {
-                        MTGGameZone * z = zones[k];
-                        if (tcn->targetsZone(z))
-                            reducem += z->countByCanTarget(tcn);
+                        Cost->extraCosts->costs[i]->setSource(card);
                     }
                 }
-                SAFE_DELETE(tcn);
-                ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
-                for(int j = 0; j < reducem; j++)
-                    newCost->remove(removingCost);
-                SAFE_DELETE(removingCost);
             }
-        }//end2
-        if(card->has(Constants::AFFINITYARTIFACTS)||
-            card->has(Constants::AFFINITYFOREST)||
-            card->has(Constants::AFFINITYGREENCREATURES)||
-            card->has(Constants::AFFINITYISLAND)||
-            card->has(Constants::AFFINITYMOUNTAIN)||
-            card->has(Constants::AFFINITYPLAINS)||
-            card->has(Constants::AFFINITYSWAMP))
-            {//start3
-                if (card->has(Constants::AFFINITYARTIFACTS))
-                    type = "artifact";
-                else if (card->has(Constants::AFFINITYSWAMP))
-                    type = "swamp";
-                else if (card->has(Constants::AFFINITYMOUNTAIN))
-                    type = "mountain";
-                else if (card->has(Constants::AFFINITYPLAINS))
-                    type = "plains";
-                else if (card->has(Constants::AFFINITYISLAND))
-                    type = "island";
-                else if (card->has(Constants::AFFINITYFOREST))
-                    type = "forest";
-                else if (card->has(Constants::AFFINITYGREENCREATURES))
-                {
-                    color = 1;
-                    type = "creature";
-                }
-                newCost->copy(original);
-                int reduce = 0;
-                if(card->has(Constants::AFFINITYGREENCREATURES))
-                {
-                    TargetChooserFactory tf(observer);
-                    TargetChooser * tc = tf.createTargetChooser("creature[green]",NULL);
-                    reduce = card->controller()->game->battlefield->countByCanTarget(tc);
-                    SAFE_DELETE(tc);
-                }
-                else
-                    reduce = card->controller()->game->battlefield->countByType(type);
-                for(int i = 0; i < reduce;i++)
-                    if(newCost->getCost(color) > 0)
-                        newCost->remove(color,1);
-            }//end3
-    
-    if(!noTrinisphere)
-    {
-        //trinisphere... now how to implement kicker recomputation
-        if(card->has(Constants::TRINISPHERE))
-        {
-            for(int jj = newCost->getConvertedCost(); jj < 3; jj++)
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tcn = tf.createTargetChooser(newAff->tcString, card, NULL);
+
+            for (int w = 0; w < 2; ++w)
             {
-                newCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                card->countTrini++;
+                Player *p = getObserver()->players[w];
+                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+                for (int k = 0; k < 6; k++)
+                {
+                    MTGGameZone * z = zones[k];
+                    if (tcn->targetsZone(z))
+                    {
+                        reducem += z->countByCanTarget(tcn);
+                    }
+                }
             }
+            SAFE_DELETE(tcn);
+            ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
+            for (int j = 0; j < reducem; j++)
+                original->remove(removingCost);
+            SAFE_DELETE(removingCost);
+        }
+    }//end2
+    if (card->has(Constants::AFFINITYARTIFACTS) ||
+        card->has(Constants::AFFINITYFOREST) ||
+        card->has(Constants::AFFINITYGREENCREATURES) ||
+        card->has(Constants::AFFINITYISLAND) ||
+        card->has(Constants::AFFINITYMOUNTAIN) ||
+        card->has(Constants::AFFINITYPLAINS) ||
+        card->has(Constants::AFFINITYSWAMP) ||
+        card->has(Constants::CONDUITED))
+    {//start3
+        if (card->has(Constants::AFFINITYARTIFACTS))
+        {
+            type = "artifact";
+        }
+        else if (card->has(Constants::AFFINITYSWAMP))
+        {
+            type = "swamp";
+        }
+        else if (card->has(Constants::AFFINITYMOUNTAIN))
+        {
+            type = "mountain";
+        }
+        else if (card->has(Constants::AFFINITYPLAINS))
+        {
+            type = "plains";
+        }
+        else if (card->has(Constants::AFFINITYISLAND))
+        {
+            type = "island";
+        }
+        else if (card->has(Constants::AFFINITYFOREST))
+        {
+            type = "forest";
+        }
+        else if (card->has(Constants::AFFINITYGREENCREATURES))
+        {
+            color = 1;
+            type = "creature";
+        }
+
+        Cost->copy(original);
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
+        if (Cost->extraCosts)
+        {
+            for (unsigned int i = 0; i < Cost->extraCosts->costs.size(); i++)
+            {
+                Cost->extraCosts->costs[i]->setSource(card);
+            }
+        }
+        int reduce = 0;
+        if (card->has(Constants::AFFINITYGREENCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature[green]", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::CONDUITED))
+        {//I had to hardcode this since it doesn't update with auto=this(creaturespells<1) lord(creature|mycastingzone) altercost(colorless,-2)
+            color = 0;
+            reduce = card->controller()->inPlay()->countByAlias(401847);
+            reduce *= 2;
+            if(card->controller()->game->stack->seenThisTurn("creature", Constants::CAST_ALL) > 0)
+                reduce = 0;
         }
         else
         {
-            if(card->countTrini)
-            {
-                newCost->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
-                card->countTrini=0;
-            }
+            reduce = card->controller()->game->battlefield->countByType(type);
+        }
+        for (int i = 0; i < reduce; i++)
+        {
+            if (Cost->getCost(color) > 0)
+                Cost->remove(color, 1);
+        }
+    }//end3
+     //trinisphere... now how to implement kicker recomputation
+
+    if (card->has(Constants::TRINISPHERE))
+    {
+        for (int jj = Cost->getConvertedCost(); jj < 3; jj++)
+        {
+            Cost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+            card->countTrini++;
         }
     }
-
+    else
+    {
+        if (card->countTrini)
+        {
+            Cost->remove(Constants::MTG_COLOR_ARTIFACT, card->countTrini);
+            card->countTrini = 0;
+        }
+    }
     SAFE_DELETE(original);
-
-    return newCost;
+    SAFE_DELETE(excess);
+    return Cost;
 }
 
 MTGCardInstance * MTGCardInstance::getNextPartner()
@@ -1132,17 +1384,27 @@ int MTGCardInstance::setAttacker(int value)
     return 1;
 }
 
-int MTGCardInstance::toggleAttacker()
+int MTGCardInstance::toggleAttacker(bool pw)
 {
     if (!attacker)
     {
         //if (!basicAbilities[Constants::VIGILANCE]) tap();
+        if(pw)
+        {
+            willattackpw = 1;
+        }
+        else
+        {
+            willattackplayer = 1;
+        }
         setAttacker(1);
         return 1;
     }
     else
     {
         //untap();
+        willattackpw = 0;
+        willattackplayer = 0;
         setAttacker(0);
         isAttacking = NULL;
         return 1;
@@ -1326,6 +1588,32 @@ bool MTGCardInstance::matchesCastFilter(int castFilter) {
         return true; //all alternate casts
     return (castFilter == castMethod);
 };
+
+bool MTGCardInstance::hasTotemArmor()
+{
+    int count = 0;
+    if(observer)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            int nb_cards = observer->players[i]->game->battlefield->nb_cards;
+            for(int x = 0; x < nb_cards; x++)
+            {
+                if(observer->players[i]->game->battlefield->cards[x]->auraParent)
+                {
+                    if(observer->players[i]->game->battlefield->cards[x]->auraParent == this && 
+                        observer->players[i]->game->battlefield->cards[x]->has(Constants::TOTEMARMOR))
+                        count+=1;
+                }
+            }
+        }
+    }
+
+    if(count)
+        return true;
+
+    return false;
+}
 
 int MTGCardInstance::addProtection(TargetChooser * tc)
 {

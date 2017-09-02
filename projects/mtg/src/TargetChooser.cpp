@@ -40,6 +40,20 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW dredgeChooser(observer,zones,nbzones, card, maxtargets);
     }
 
+    found = s.find("mychild");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
+        return NEW ChildrenChooser(observer, card, maxtargets);
+    };
+
+    found = s.find("mytotem");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
+        return NEW TotemChooser(observer, card, maxtargets);
+    };
+
     found = s.find("mytgt");
     if (found == 0)
     {
@@ -156,11 +170,16 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 zones[nbzones++] = MTGGameZone::ALL_ZONES;
             }
-			else if (zoneName.compare("reveal") == 0)
-			{
-				zones[nbzones++] = MTGGameZone::MY_REVEAL;
-				zones[nbzones++] = MTGGameZone::OPPONENT_REVEAL;
-			}
+            else if (zoneName.compare("sideboard") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
+            }
+            else if (zoneName.compare("reveal") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_REVEAL;
+                zones[nbzones++] = MTGGameZone::OPPONENT_REVEAL;
+            }
             else if (zoneName.compare("graveyard") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
@@ -200,6 +219,51 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             else if (zoneName.compare("exile") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+            }
+            else if (zoneName.compare("mycastingzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
+            }
+            else if (zoneName.compare("opponentcastingzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+            }
+            else if (zoneName.compare("mynonplaynonexile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+            }
+            else if (zoneName.compare("opponentnonplaynonexile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+            }
+            else if (zoneName.compare("myzones") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::MY_STACK;
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+            }
+            else if (zoneName.compare("opponentzones") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_STACK;
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
             }
             else
@@ -394,6 +458,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->defenser = &MTGCardInstance::AnyCard;
                     }
                 }
+                //Blocked
+                else if (attribute.find("blocked") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDblocked = -1;
+                    }
+                    else
+                    {
+                        cd->CDblocked = 1;
+                    }
+                }
                 //Tapped, untapped
                 else if (attribute.find("tapped") != string::npos)
                 {
@@ -428,6 +504,28 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else
                     {
                         cd->unsecuresetfresh(1);
+                    }
+                }
+                else if (attribute.find("recent") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecuresetrecent(-1);
+                    }
+                    else
+                    {
+                        cd->unsecuresetrecent(1);
+                    }
+                }
+                else if (attribute.find("geared") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDgeared = -1;
+                    }
+                    else
+                    {
+                        cd->CDgeared = 1;
                     }
                 }
                 //creature is a level up creature
@@ -502,6 +600,79 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->CDdamager = 1;
                     }
                 }
+                //can produce mana
+                else if (attribute.find("cmana") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceC = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceC = 1;
+                    }
+                    cd->mode = CardDescriptor::CD_OR;
+                }
+                else if (attribute.find("manag") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceG = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceG = 1;
+                    }
+                    cd->mode = CardDescriptor::CD_OR;
+                }
+                else if (attribute.find("manau") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceU = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceU = 1;
+                    }
+                    cd->mode = CardDescriptor::CD_OR;
+                }
+                else if (attribute.find("manar") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceR = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceR = 1;
+                    }
+                    cd->mode = CardDescriptor::CD_OR;
+                }
+                else if (attribute.find("manab") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceB = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceB = 1;
+                    }
+                    cd->mode = CardDescriptor::CD_OR;
+                }
+                else if (attribute.find("manaw") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcanProduceW = -1;
+                    } 
+                    else 
+                    {
+                        cd->CDcanProduceW = 1;
+                    }
+                    cd->mode = CardDescriptor::CD_OR;
+                }
                 else if (attribute.find("multicolor") != string::npos)
                 {
                     //card is multicolored?
@@ -529,6 +700,12 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 {
                     cd->setToughness(comparisonCriterion);
                     cd->toughnessComparisonMode = comparisonMode;
+                    //zpos restrictions
+                }
+                else if (attribute.find("zpos") != string::npos)
+                {
+                    cd->zposition = comparisonCriterion;
+                    cd->zposComparisonMode = comparisonMode;
                     //Manacost restrictions
                 }
                 else if (attribute.find("manacost") != string::npos)
@@ -601,6 +778,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->anyCounter = 1;
                     }
+                    else if (attribute.find("{notany}") != string::npos)
+                    {
+                        cd->anyCounter = -1;
+                    }
                     else
                     {
                         size_t start = attribute.find("{");
@@ -642,15 +823,19 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         }
                     }
 
-					if (attribute.find("colorless") != string::npos)
-					{
-						attributefound = 1;
-						for (int cid = 1; cid < Constants::NB_Colors; cid++)
-						{
-							cd->SetExclusionColor(cid);
-						}
-						cd->mode = CardDescriptor::CD_OR;
-					}
+                    if (attribute.find("colorless") != string::npos)
+                    {
+                        attributefound = 1;
+                        /*for (int cid = 1; cid < Constants::NB_Colors; cid++)
+                        {
+                            cd->SetExclusionColor(cid);
+                        }
+                        cd->mode = CardDescriptor::CD_OR;*/
+                        if (minus)
+                            cd->CDnocolor = -1;
+                        else
+                            cd->CDnocolor = 1;
+                    }
 
                     if (attribute.find("chosencolor") != string::npos)
                     {
@@ -822,7 +1007,7 @@ TargetChooser::TargetChooser(GameObserver *observer, MTGCardInstance * card, int
     TargetsList(), observer(observer)
 {
     forceTargetListReady = 0;
-	forceTargetListReadyByPlayer = 0;
+    forceTargetListReadyByPlayer = 0;
     source = card;
     targetter = card;
     maxtargets = _maxtargets;
@@ -888,6 +1073,11 @@ int TargetChooser::addTarget(Targetable * target)
     if (canTarget(target))
     {
         TargetsList::addTarget(target);
+#if defined (ANDROID) //auto close... we need to close gui like swipe left...
+        if (target->getObserver()->guiOpenDisplay && getNbTargets() == maxtargets)
+            target->getObserver()->ButtonPressed(target->getObserver()->guiOpenDisplay);
+#endif//example bug, cast Snapcaster Mage during a spell of opponent and target a Mana Leak..
+      //how can you cast the Mana Leak? If you can't close the graveyard window to tap for mana???
     }
 
     return targetsReadyCheck();
@@ -905,10 +1095,10 @@ int TargetChooser::ForceTargetListReady()
 
 int TargetChooser::targetsReadyCheck()
 {
-	if (targetMin == false && !targets.size() && forceTargetListReadyByPlayer)
-	{
-		return TARGET_OK_FULL;//we have no min amount for targets and 0 targets is a valid amount player called for a forced finish.
-	}
+    if (targetMin == false && !targets.size() && forceTargetListReadyByPlayer)
+    {
+        return TARGET_OK_FULL;//we have no min amount for targets and 0 targets is a valid amount player called for a forced finish.
+    }
     if (!targets.size())
     {
         return TARGET_NOK;
@@ -941,8 +1131,8 @@ bool TargetChooser::validTargetsExist(int maxTargets)
         int maxAmount = 0;
         Player *p = observer->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal };
-        for (int k = 0; k < 7; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard };
+        for (int k = 0; k < 8; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -975,8 +1165,8 @@ int TargetChooser::countValidTargets(bool withoutProtections)
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal };
-        for (int k = 0; k < 7; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard };
+        for (int k = 0; k < 8; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -1644,9 +1834,20 @@ bool BlockableChooser::canTarget(Targetable * target,bool withoutProtections)
         }
         if(lured && card->controller()->inPlay()->hasAbility(Constants::LURE) && !card->has(Constants::LURE))
             return false;
+        //provoke
+        bool provoked = false;
+        MTGCardInstance * provoker = observer->currentPlayer->game->inPlay->findAProvoker(source);
+        if(provoker)
+        {
+            provoked = true;
+        }
+        if(provoked && source->isProvoked && !card->ProvokeTarget)
+            return false;
+        if(provoked && source->isProvoked && card->ProvokeTarget && card->ProvokeTarget != source)
+            return false;
         return true;
     }
-    return TypeTargetChooser::canTarget(target,withoutProtections);
+    return false;//TypeTargetChooser::canTarget(target,withoutProtections);
 }
 
 BlockableChooser* BlockableChooser::clone() const
@@ -1828,4 +2029,82 @@ bool ParentChildChooser::equals(TargetChooser * tc)
 ParentChildChooser::~ParentChildChooser()
 {
     SAFE_DELETE(deeperTargeting);
+}
+
+//child only
+bool ChildrenChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if(card == source)
+            return false;
+        if(!card->isInPlay(observer))
+            return false;
+        if(card->auraParent)
+        {
+            if(card->auraParent == source)
+                return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+ChildrenChooser* ChildrenChooser::clone() const
+{
+    ChildrenChooser * a = NEW ChildrenChooser(*this);
+    return a;
+}
+
+bool ChildrenChooser::equals(TargetChooser * tc)
+{
+
+    ChildrenChooser  * dtc = dynamic_cast<ChildrenChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+ChildrenChooser::~ChildrenChooser()
+{
+}
+
+//totem armor chooser
+bool TotemChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if(card == source)
+            return false;
+        if(!card->isInPlay(observer))
+            return false;
+        if(card->auraParent)
+        {
+            if((card->auraParent) == source && (card->has(Constants::TOTEMARMOR)))
+                return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+TotemChooser* TotemChooser::clone() const
+{
+    TotemChooser * a = NEW TotemChooser(*this);
+    return a;
+}
+
+bool TotemChooser::equals(TargetChooser * tc)
+{
+
+    TotemChooser  * dtc = dynamic_cast<TotemChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+TotemChooser::~TotemChooser()
+{
 }

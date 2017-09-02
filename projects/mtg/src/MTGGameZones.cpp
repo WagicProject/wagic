@@ -63,6 +63,21 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
             }
         }
     }
+    //sb init
+    if(deck->Sideboard.size())
+    {
+        for(unsigned int j = 0; j < deck->Sideboard.size(); j++)
+        {
+            string cardID = deck->Sideboard[j];
+            MTGCard * card = MTGCollection()->getCardById(atoi(cardID.c_str()));
+            if(card)
+            {
+                MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+                //sb zone
+                sideboard->addCard(newCard);
+            }
+        }
+    }
 }
 
 MTGPlayerCards::~MTGPlayerCards()
@@ -74,7 +89,8 @@ MTGPlayerCards::~MTGPlayerCards()
     SAFE_DELETE(stack);
     SAFE_DELETE(removedFromGame);
     SAFE_DELETE(garbage);
-	SAFE_DELETE(reveal);
+    SAFE_DELETE(reveal);
+    SAFE_DELETE(sideboard);
     SAFE_DELETE(temp);
     SAFE_DELETE(playRestrictions);
 }
@@ -92,7 +108,8 @@ void MTGPlayerCards::beforeBeginPhase()
     stack->beforeBeginPhase();
     removedFromGame->beforeBeginPhase();
     garbage->beforeBeginPhase();
-	reveal->beforeBeginPhase();
+    reveal->beforeBeginPhase();
+    sideboard->beforeBeginPhase();
     temp->beforeBeginPhase();
 }
 
@@ -107,7 +124,8 @@ void MTGPlayerCards::setOwner(Player * player)
     stack->setOwner(player);
     garbage->setOwner(player);
     garbageLastTurn->setOwner(player);
-	reveal->setOwner(player);
+    reveal->setOwner(player);
+    sideboard->setOwner(player);
     temp->setOwner(player);
 }
 
@@ -231,27 +249,31 @@ void MTGPlayerCards::drawFromLibrary()
         toMove->miracle = true;
     }
 
-    // useability tweak - assume that the user is probably going to want to see the new card,
-    // so prefetch it.
-
-    // if we're not in text mode, always get the thumb
-    if (library->owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText
-            && library->owner->getObserver()->getResourceManager())
+    bool prefetch = options[Options::CARDPREFETCHING].number?true:false;
+    if (prefetch && WResourceManager::Instance()->IsThreaded())
     {
-        DebugTrace("Prefetching AI card going into play: " << toMove->getImageName());
-        library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove, RETRIEVE_THUMB);
+        // useability tweak - assume that the user is probably going to want to see the new card,
+        // so prefetch it.
 
-        // also cache the large image if we're using kNormal mode
-        if (library->owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
+        // if we're not in text mode, always get the thumb
+        if (library->owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText
+                && library->owner->getObserver()->getResourceManager())
         {
-            library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove);
+            DebugTrace("Prefetching AI card going into play: " << toMove->getImageName());
+            library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove, RETRIEVE_THUMB);
+
+            // also cache the large image if we're using kNormal mode
+            if (library->owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
+            {
+                library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove);
+            }
         }
     }
 
     if(putInZone(toMove, library, hand))
     {
         toMove->currentZone = hand;
-        }
+    }
 }
 
 void MTGPlayerCards::resetLibrary()
@@ -275,7 +297,8 @@ void MTGPlayerCards::init()
     exile = removedFromGame;
     garbage = NEW MTGGameZone();
     garbageLastTurn = garbage;
-	reveal = NEW MTGGameZone();
+    reveal = NEW MTGGameZone();
+    sideboard = NEW MTGGameZone();
     temp = NEW MTGGameZone();
 
     playRestrictions = NEW PlayRestrictions();
@@ -320,6 +343,7 @@ MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card)
 MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to,bool asCopy)
 {
     MTGCardInstance * copy = NULL;
+    Player * discarderOwner = NULL;
     GameObserver *g = owner->getObserver();
     if (!from || !to)
         return card; //Error check
@@ -328,6 +352,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
     bool inplaytoinplay = false;
     bool ripToken = false;
+    if (card->discarderOwner)
+        discarderOwner = card->discarderOwner;
     if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
         ripToken = true;
     //Madness or Put in Play...
@@ -363,13 +389,24 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             if (!card->isToken)
                 to = g->players[i]->game->exile;
         }
+
+        //close the currently open MAIN display.
+        if (from == g->players[i]->game->library || from == g->players[i]->game->graveyard || from == g->players[i]->game->exile)
+        {
+            if (g->guiOpenDisplay)
+            {
+                g->ButtonPressed(g->guiOpenDisplay);
+            }
+        }
+
     }
-	//all cards that go from the hand to the graveyard is ALWAYS a discard.
-	if ((to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard) && (from == g->players[0]->game->hand || from
-		== g->players[1]->game->hand))
-	{
-		card->discarded = true;
-	}
+    //all cards that go from the hand to the graveyard is ALWAYS a discard.
+    if ((to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard) && (from == g->players[0]->game->hand || from
+        == g->players[1]->game->hand))
+    {
+        card->discarded = true;
+    }
+
     //When a card is moved from inPlay to inPlay (controller change, for example), it is still the same object
     if ((to == g->players[0]->game->inPlay || to == g->players[1]->game->inPlay) && (from == g->players[0]->game->inPlay || from
                     == g->players[1]->game->inPlay))
@@ -385,6 +422,33 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (card->miracle)
     {
         copy->miracle = true;
+    }
+    //reset discarder Owner
+    if(to == g->players[0]->game->hand || to == g->players[0]->game->stack || to == g->players[0]->game->library ||
+        to == g->players[1]->game->hand || to == g->players[1]->game->stack || to == g->players[1]->game->library)
+    {
+        card->discarderOwner = NULL;
+        copy->discarderOwner = NULL;
+    }
+    //copy discarderowner
+    if (discarderOwner)
+    {
+        copy->discarderOwner = discarderOwner;
+        //change to
+        if(to == g->players[0]->game->graveyard)
+        {
+            if(card->has(Constants::DISCARDTOPLAYBYOPPONENT) && discarderOwner == card->controller()->opponent())
+            {
+                to = g->players[0]->game->battlefield;
+            }
+        }
+        else if(to == g->players[1]->game->graveyard)
+        {
+            if(card->has(Constants::DISCARDTOPLAYBYOPPONENT) && discarderOwner == card->controller()->opponent())
+            {
+                to = g->players[1]->game->battlefield;
+            }
+        }
     }
     if(from == g->players[0]->game->battlefield || from == g->players[1]->game->battlefield)
         if(to != g->players[0]->game->battlefield || to != g->players[1]->game->battlefield)
@@ -420,6 +484,34 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             return ret;//don't send event
         }
     }
+    //before adding card to zone, if its Melded, we break it apart
+    if (from == g->players[0]->game->battlefield || from == g->players[1]->game->battlefield)
+    {
+        if(to != g->players[0]->game->battlefield || to != g->players[1]->game->battlefield)
+        if (copy->previous && copy->previous->MeldedFrom.size() && !copy->isACopier && !copy->isToken)//!copier & !token fix kiki-jiki clones crash
+        {
+            vector<string> names = split(copy->previous->MeldedFrom, '|');
+            MTGCard * cardone = MTGCollection()->getCardByName(names[0]);
+            MTGCardInstance * cardOne = NEW MTGCardInstance(cardone, copy->owner->game);
+            to->addCard(cardOne);
+            WEvent * e = NEW WEventZoneChange(cardOne, from, to);
+            g->receiveEvent(e);
+            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1]);
+            MTGCardInstance * cardTwo = NEW MTGCardInstance(cardtwo, copy->owner->game);
+            to->addCard(cardTwo);
+            WEvent * e2 = NEW WEventZoneChange(cardTwo, from, to);
+            g->receiveEvent(e2);
+
+            if(from == g->players[0]->game->battlefield)
+                g->players[0]->game->temp->addCard(copy);
+            if (from == g->players[1]->game->battlefield)
+                g->players[1]->game->temp->addCard(copy);
+            WEvent * e3 = NEW WEventZoneChange(copy, from, to);
+            g->receiveEvent(e3);
+            return ret;
+        }
+
+    }
     to->addCard(copy);
     //The "Temp" zone are purely for code purposes, and we don't want the abilities engine to
     //Trigger when cards move in this zone
@@ -447,6 +539,28 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             SAFE_DELETE(previous);
         }
 
+        if(to == g->players[0]->game->battlefield || to == g->players[1]->game->battlefield)
+        {
+            if(ret->alias == 109736 && discarderOwner)
+            {
+                if(discarderOwner == ret->controller()->opponent())
+                {
+                    AbilityFactory af(g);
+                    MTGAbility * dodeCounter = af.parseMagicLine("counter(1/1,2)",-1,NULL,ret);
+                    dodeCounter->oneShot = true;
+                    dodeCounter->canBeInterrupted = false;
+                    dodeCounter->resolve();
+                    SAFE_DELETE(dodeCounter);
+                }
+            }
+        }
+        //remove exerted if changing controls 
+        if((to == g->players[0]->game->battlefield && from == g->players[1]->game->battlefield)||
+            (to == g->players[1]->game->battlefield && from == g->players[0]->game->battlefield))
+        {
+            if(ret->exerted)
+                ret->exerted = false;
+        }
     }
     if(!asCopy)
     {
@@ -465,7 +579,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
 }
 
-void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance *)
+void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance * _stored)
 {
     if (!from->nb_cards)
         return;
@@ -473,6 +587,8 @@ void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance *)
     WEvent * e = NEW WEventCardDiscard(from->cards[r]);
     GameObserver * game = owner->getObserver();
     game->receiveEvent(e);
+    if(_stored)
+        from->cards[r]->discarderOwner = _stored->controller();
     putInZone(from->cards[r], from, graveyard);
 }
 
@@ -506,8 +622,19 @@ MTGGameZone::~MTGGameZone()
     for (size_t i = 0; i < cards.size(); i++)
     {
         cards[i]->stillNeeded = false;
-        SAFE_DELETE(cards[i]->previous);
-        SAFE_DELETE( cards[i] );
+        //SAFE_DELETE(cards[i]->previous);
+        //SAFE_DELETE( cards[i] );
+        //cause crashes for generated cards using castcard named card...??? test fix for now
+        if(cards[i]->previous)
+        {
+            delete cards[i]->previous;
+            cards[i]->previous = NULL;
+        }
+        if(cards[i])
+        {
+            delete cards[i];
+            cards[i] = NULL;
+        }
     }
     cards.clear();
     cardsMap.clear();
@@ -565,7 +692,8 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->storedCard = card->storedCard;
                 copy->storedSourceCard = card->storedSourceCard;
                 copy->lastController = card->controller();
-                for (int i = 0; i < ManaCost::MANA_PAID_WITH_OVERLOAD +1; i++)
+                copy->previousController = card->controller();
+                for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
                     copy->alternateCostPaid[i] = card->alternateCostPaid[i];
 
                 //stupid bug with tokens...
@@ -603,6 +731,20 @@ size_t MTGGameZone::getIndex(MTGCardInstance * card)
     return -1;
 }
 
+unsigned int MTGGameZone::countByAlias(int number)
+{
+    if(!number)
+        return 0;
+    int result = 0;
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->alias == number)
+        {
+            result++;
+        }
+    }
+    return result;
+}
 
 unsigned int MTGGameZone::countByType(const string &value)
 {
@@ -931,6 +1073,43 @@ MTGCardInstance * MTGInPlay::getNextLurer(MTGCardInstance * previous)
     return NULL;
 }
 
+MTGCardInstance * MTGInPlay::getNextProvoker(MTGCardInstance * previous, MTGCardInstance * thiscard)
+{
+    int foundprevious = 0;
+    if (previous == NULL)
+    {
+        foundprevious = 1;
+    }
+    for (int i = 0; i < nb_cards; i++)
+    {
+        MTGCardInstance * current = cards[i];
+        if (current == previous)
+        {
+            foundprevious = 1;
+        }
+        else if (foundprevious && current->isAttacker() && thiscard->isProvoked && current->ProvokeTarget)
+        {
+            if(thiscard == current->ProvokeTarget)
+                return current;
+        }
+    }
+    return NULL;
+}
+
+MTGCardInstance * MTGInPlay::findAProvoker(MTGCardInstance * thiscard)
+{
+    for (int i = 0; i < nb_cards; i++)
+    {
+        MTGCardInstance * current = cards[i];
+        if (current->isAttacker() && current->ProvokeTarget)
+        {
+            if(current->ProvokeTarget == thiscard)
+                return current;
+        }
+    }
+    return NULL;
+}
+
 MTGCardInstance * MTGInPlay::findALurer()
 {
     for (int i = 0; i < nb_cards; i++)
@@ -951,17 +1130,28 @@ void MTGInPlay::untapAll()
     {
         MTGCardInstance * card = cards[i];
         card->setUntapping();
-        if (!card->basicAbilities[(int)Constants::DOESNOTUNTAP] && card->alias != 50120)
+        if (!card->basicAbilities[(int)Constants::DOESNOTUNTAP] && !card->basicAbilities[(int)Constants::SHACKLER])
         {
-            if (card->frozen < 1)
+            if(card->exerted)
             {
-                card->attemptUntap();
+                card->exerted = false;
+                if (card->frozen >= 1)
+                {
+                    card->frozen = 0;
+                }
             }
-            if (card->frozen >= 1)
+            else
             {
-                card->frozen = 0;
+                card->exerted = false;
+                if (card->frozen < 1)
+                {
+                    card->attemptUntap();
+                }
+                if (card->frozen >= 1)
+                {
+                    card->frozen = 0;
+                }
             }
-
         }
     }
 }
@@ -969,7 +1159,11 @@ void MTGInPlay::untapAll()
 
 MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
 {
-
+    if (p2 != p && p2 && (p != p2->opponent()))
+    {
+        p = p2->opponent();
+        //these cases are generally handled this is a edge case fix.
+    }
     switch (zoneId)
     {
     case MY_GRAVEYARD:
@@ -1009,12 +1203,19 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     case STACK:
         return p->game->stack;
 
-	case MY_REVEAL:
-		return p->game->reveal;
-	case OPPONENT_REVEAL:
-		return p->opponent()->game->reveal;
-	case REVEAL:
-		return p->game->reveal;
+    case MY_REVEAL:
+        return p->game->reveal;
+    case OPPONENT_REVEAL:
+        return p->opponent()->game->reveal;
+    case REVEAL:
+        return p->game->reveal;
+
+    case MY_SIDEBOARD:
+        return p->game->sideboard;
+    case OPPONENT_SIDEBOARD:
+        return p->opponent()->game->sideboard;
+    case SIDEBOARD:
+        return p->game->sideboard;
 
     }
     if (!p2) return NULL;
@@ -1038,8 +1239,11 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     case TARGET_CONTROLLER_STACK:
         return p2->game->stack;
 
-	case TARGET_CONTROLLER_REVEAL:
-		return p2->game->reveal;
+    case TARGET_CONTROLLER_REVEAL:
+        return p2->game->reveal;
+
+    case TARGET_CONTROLLER_SIDEBOARD:
+        return p2->game->sideboard;
 
     default:
         return NULL;
@@ -1139,16 +1343,27 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
             return source->playerTarget->game->stack;
         else return source->controller()->game->stack;
 
-	case TARGET_OWNER_REVEAL:
-		return target->owner->game->reveal;
-	case REVEAL:
-		return target->owner->game->reveal;
-	case OWNER_REVEAL:
-		return target->owner->game->reveal;
-	case TARGETED_PLAYER_REVEAL:
-		if (source->playerTarget)
-			return source->playerTarget->game->reveal;
-		else return source->controller()->game->reveal;
+    case TARGET_OWNER_REVEAL:
+        return target->owner->game->reveal;
+    case REVEAL:
+        return target->owner->game->reveal;
+    case OWNER_REVEAL:
+        return target->owner->game->reveal;
+    case TARGETED_PLAYER_REVEAL:
+        if (source->playerTarget)
+            return source->playerTarget->game->reveal;
+        else return source->controller()->game->reveal;
+
+    case TARGET_OWNER_SIDEBOARD:
+        return target->owner->game->sideboard;
+    case SIDEBOARD:
+        return target->owner->game->sideboard;
+    case OWNER_SIDEBOARD:
+        return target->owner->game->sideboard;
+    case TARGETED_PLAYER_SIDEBOARD:
+        if (source->playerTarget)
+            return source->playerTarget->game->sideboard;
+        else return source->controller()->game->sideboard;
 
     default:
         return NULL;
@@ -1177,7 +1392,9 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     "mystack", "opponentstack", "targetownerstack", "targetcontrollerstack", "ownerstack", "stack","targetedpersonsstack",
 
-		"myreveal", "opponentreveal", "targetownerreveal", "targetcontrollerreveal", "ownerreveal", "reveal","targetedpersonsreveal",
+                    "myreveal", "opponentreveal", "targetownerreveal", "targetcontrollerreveal", "ownerreveal", "reveal","targetedpersonsreveal",
+
+                    "mysideboard", "opponentsideboard", "targetownersideboard", "targetcontrollersideboard", "ownersideboard", "sideboard","targetedpersonssideboard",
 
     };
 
@@ -1200,7 +1417,9 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     MY_STACK, OPPONENT_STACK, TARGET_OWNER_STACK, TARGET_CONTROLLER_STACK, OWNER_STACK, STACK,TARGETED_PLAYER_STACK,
 
-		MY_REVEAL, OPPONENT_REVEAL, TARGET_OWNER_REVEAL, TARGET_CONTROLLER_REVEAL, OWNER_REVEAL, REVEAL,TARGETED_PLAYER_REVEAL };
+                    MY_REVEAL, OPPONENT_REVEAL, TARGET_OWNER_REVEAL, TARGET_CONTROLLER_REVEAL, OWNER_REVEAL, REVEAL,TARGETED_PLAYER_REVEAL,
+
+                    MY_SIDEBOARD, OPPONENT_SIDEBOARD, TARGET_OWNER_SIDEBOARD, TARGET_CONTROLLER_SIDEBOARD, OWNER_SIDEBOARD, SIDEBOARD,TARGETED_PLAYER_SIDEBOARD };
 
     int max = sizeof(values) / sizeof *(values);
 

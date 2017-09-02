@@ -1,9 +1,12 @@
+#include "PrecompiledHeader.h"
 #include "GridDeckView.h"
 
 const float GridDeckView::scroll_animation_duration = 0.3f;
 const float GridDeckView::slide_animation_duration =  0.6f;
-const float GridDeckView::card_scale_small = 0.48f;
-const float GridDeckView::card_scale_big = 0.7f;
+//const float GridDeckView::card_scale_small = 0.47f;
+//const float GridDeckView::card_scale_big = 0.6f;
+const float GridDeckView::card_scale_small = 0.42f;
+const float GridDeckView::card_scale_big = 0.52f;
 
 GridDeckView::GridDeckView()
     : DeckView(16), mCols(8), mRows(2), mScrollOffset(0), mSlideOffset(0),
@@ -104,6 +107,8 @@ void GridDeckView::Render()
 {
     int firstVisibleCard = 2;
     int lastVisibleCard = mCards.size() - 2;
+    bool mode = options[Options::GDVLARGEIMAGE].number?false:true;
+    bool prefetch = options[Options::CARDPREFETCHING].number?true:false;
 
     if(!mScrollEasing.finished())
     {
@@ -118,27 +123,15 @@ void GridDeckView::Render()
 
     for(int i = firstVisibleCard; i < lastVisibleCard; ++i)
     {
+        if(prefetch && WResourceManager::Instance()->IsThreaded())
+            WResourceManager::Instance()->RetrieveCard(mCards[i].card);
 
-        if(mCurrentSelection != i)
-        {
-            if (WResourceManager::Instance()->IsThreaded())
-            {
-                WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_THUMB);
-            }
-            renderCard(i, 255, true);
-        }
-        else
-        {
-            if (WResourceManager::Instance()->IsThreaded())
-            {
-                WResourceManager::Instance()->RetrieveCard(mCards[i].card);
-            }
-        }
+        renderCard(i, 255, mode,true);//the last value is to resize scale in drawcard so we don't have large borders on grid deck view
     }
 
     if(2 <= mCurrentSelection && mCurrentSelection < 12)
     {
-        renderCard(mCurrentSelection, 255, false);
+        renderCard(mCurrentSelection, 255, false,true);
     }
 }
 
