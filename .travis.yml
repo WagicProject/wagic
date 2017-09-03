@@ -1,5 +1,3 @@
-dist: trusty
-sudo: required
 language: cpp
 branches:
   except:
@@ -9,31 +7,10 @@ branches:
 matrix:
   include:
     - os: linux
-      addons:
-        apt:
-          sources:
-            - george-edison55-precise-backports
-          packages:
-            - cmake-data
-            - cmake
       env: BUILD_TYPE=PSP
     - os: linux
-      addons:
-        apt:
-          sources:
-            - george-edison55-precise-backports
-          packages:
-            - cmake-data
-            - cmake
       env: BUILD_TYPE=SDL
     - os: linux
-      addons:
-        apt:
-          sources:
-            - george-edison55-precise-backports
-          packages:
-            - cmake-data
-            - cmake
       env: BUILD_TYPE=Qt
     - os: osx
       env: BUILD_TYPE=Qt
@@ -106,6 +83,16 @@ before_install:
     fi
 
 install:
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+      if [[ -z "$(ls -A ${DEPS_DIR}/cmake/bin)" ]]; then
+        CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz"
+        mkdir -p cmake && travis_retry wget --no-check-certificate --quiet -O - "${CMAKE_URL}" | tar --strip-components=1 -xz -C cmake
+      fi
+      export PATH="${DEPS_DIR}/cmake/bin:${PATH}"
+    else
+      if ! brew ls --version cmake &>/dev/null; then brew install cmake; fi
+    fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       sudo pip install cpp-coveralls &&
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev;
