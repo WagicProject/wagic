@@ -7,10 +7,31 @@ branches:
 matrix:
   include:
     - os: linux
+      addons:
+        apt:
+          sources:
+            - george-edison55-precise-backports
+          packages:
+            - cmake-data
+            - cmake
       env: BUILD_TYPE=PSP
     - os: linux
+      addons:
+        apt:
+          sources:
+            - george-edison55-precise-backports
+          packages:
+            - cmake-data
+            - cmake
       env: BUILD_TYPE=SDL
     - os: linux
+      addons:
+        apt:
+          sources:
+            - george-edison55-precise-backports
+          packages:
+            - cmake-data
+            - cmake
       env: BUILD_TYPE=Qt
     - os: osx
       env: BUILD_TYPE=Qt
@@ -39,11 +60,9 @@ before_install:
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
       sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test &&
-      sudo add-apt-repository --yes ppa:kalakris/cmake &&
       sudo apt-get -qq update &&
       sudo apt-get -qq install g++-4.8 &&
       sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90 &&
-      sudo apt-get -qq install cmake;
     fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       brew update &&
