@@ -10,9 +10,8 @@ echo TRAVIS_BRANCH = $TRAVIS_BRANCH
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 if [ "$TRAVIS_BRANCH" = "alphas" ]; then
     export RELEASE_NAME="alpha-${TRAVIS_BUILD_NUMBER}"
-else if [ "$TRAVIS_BRANCH" = "master" ]; then
-    export RELEASE_NAME="latest-master"
-fi
+else
+    export RELEASE_NAME="latest-${TRAVIS_BRANCH}"
 fi
 fi
 
@@ -78,7 +77,6 @@ if [ "$BUILD_TYPE" = "Qt" ]; then
     cd build_qt_widget
     cmake -Dbackend_qt_widget=ON -Dbackend_qt_console=OFF ..
     make -j4 wagic
-    chmod -R 775 wagic
     cd ..
 
     # let's try an Intel linux binary in debug text-mode-only
