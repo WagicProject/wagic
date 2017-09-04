@@ -94,7 +94,8 @@ install:
         mkdir -p cmake && travis_retry wget --no-check-certificate --quiet -O - "${CMAKE_URL}" | tar --strip-components=1 -xz -C cmake
       fi
       export PATH="${DEPS_DIR}/cmake/bin:${PATH}"
-    else
+    fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       if ! brew ls --version cmake &>/dev/null; then brew install cmake; fi
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
