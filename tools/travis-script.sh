@@ -20,13 +20,16 @@ echo RELEASE_NAME = $RELEASE_NAME
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
     # updating versions with the TRAVIS build numbers
     cd projects/mtg/
+echo before ant
     ant update > error.txt
+echo after ant
     cd ../..
 fi
 
 # we create resource package
 cd projects/mtg/bin/Res
 python createResourceZip.py
+echo after python
 # if we let the zip here, Wagic will use it in the testsuite
 # and we'll get 51 failed test cases
 mv core_*.zip ../../../../core.zip
