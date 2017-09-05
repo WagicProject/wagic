@@ -16,7 +16,7 @@ matrix:
       env: BUILD_TYPE=Qt
     - os: osx
       env: BUILD_TYPE=iOS
-    - os: android
+    - os: linux
       language: android
       env: BUILD_TYPE=ANDROID
     - os: osx
