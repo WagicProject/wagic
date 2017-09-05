@@ -103,6 +103,7 @@ install:
       if ! brew ls --version cmake &>/dev/null; then brew install cmake; fi
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      jdk_switcher use oraclejdk7 &&
       sudo pip install cpp-coveralls &&
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
     fi
