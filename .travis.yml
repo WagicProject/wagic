@@ -104,7 +104,7 @@ install:
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       sudo pip install cpp-coveralls &&
-      sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
+      sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev;
     fi
   - if [ "$BUILD_TYPE" == "PSP" ]; then
       tar -x --xz -f sdk.lzma;
