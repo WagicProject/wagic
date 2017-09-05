@@ -21,7 +21,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
     # updating versions with the TRAVIS build numbers
     cd projects/mtg/
 echo before ant
-    ant update > error.txt
+    ant update
 echo after ant
     cd ../..
 fi
