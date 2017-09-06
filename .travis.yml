@@ -104,7 +104,7 @@ install:
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       jdk_switcher use openjdk7 &&
-      sudo pip install cpp-coveralls &&
+      sudo -H pip install cpp-coveralls &&
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
     fi
   - if [ "$BUILD_TYPE" == "PSP" ]; then
@@ -117,8 +117,8 @@ install:
       rm -rf thirdparty/SDL2/* &&
       mv ewing-sdl_androidcmake-4e9e88c03f04/* thirdparty/SDL2/;
     fi
-  - sudo pip install pyjavaproperties
-  - sudo pip install github3.py
+  - sudo -H pip install pyjavaproperties
+  - sudo -H pip install github3.py
 
 env:
   global:
