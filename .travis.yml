@@ -118,10 +118,10 @@ install:
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" != "ANDROID" ]; then
       jdk_switcher use openjdk7 &&
-      pip install cpp-coveralls &&
+      sudo pip install cpp-coveralls &&
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant &&
-      pip install pyjavaproperties &&
-      pip install github3.py;
+      sudo pip install pyjavaproperties &&
+      sudo pip install github3.py;
     fi
 
 env:
