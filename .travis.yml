@@ -102,7 +102,7 @@ install:
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       if ! brew ls --version cmake &>/dev/null; then brew install cmake; fi
     fi
-  - if [ "$TRAVIS_OS_NAME" == "linux"]; then
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       jdk_switcher use openjdk7 &&
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
     fi
@@ -119,7 +119,7 @@ install:
       sudo pip install pyjavaproperties &&
       sudo pip install github3.py;
     fi
-  - if [ "$TRAVIS_OS_NAME" == "linux"] && [ "$BUILD_TYPE" != "ANDROID" ]; then
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" != "ANDROID" ]; then
       pip install cpp-coveralls &&
       pip install pyjavaproperties &&
       pip install github3.py;
