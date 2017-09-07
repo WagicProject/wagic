@@ -33,7 +33,6 @@ android:
     - android-10
 
 cache:
-  pip: true
   directories:
     - opt/pspsdk
     - android-ndk-r9   
