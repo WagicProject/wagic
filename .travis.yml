@@ -117,12 +117,12 @@ install:
       mv ewing-sdl_androidcmake-4e9e88c03f04/* thirdparty/SDL2/;
       sudo pip install cpp-coveralls &&
       sudo pip install pyjavaproperties &&
-      sudo pip install github3.py &&
+      sudo pip install github3.py;
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux"] && [ "$BUILD_TYPE" != "ANDROID" ]; then
       pip install cpp-coveralls &&
       pip install pyjavaproperties &&
-      pip install github3.py &&
+      pip install github3.py;
     fi
 
 env:
