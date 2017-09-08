@@ -55,6 +55,7 @@ fi
 
 # we're building an Android binary here
 if [ "$BUILD_TYPE" = "ANDROID" ]; then
+    jdk_switcher use oraclejdk8
     mkdir build_android
     cd build_android
     cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/android.toolchain.cmake -DANDROID_NATIVE_API_LEVEL=android-10 ..
