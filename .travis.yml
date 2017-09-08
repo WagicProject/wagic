@@ -112,17 +112,15 @@ install:
       rm -rf thirdparty/SDL2/* &&
       mv ewing-sdl_androidcmake-4e9e88c03f04/* thirdparty/SDL2/ &&
       sudo pip install cpp-coveralls &&
-      sudo pip install pyjavaproperties &&
-      sudo pip install github3.py &&
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" != "ANDROID" ]; then
       jdk_switcher use openjdk7 &&
       sudo pip install cpp-coveralls &&
-      sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant &&
-      sudo pip install pyjavaproperties &&
-      sudo pip install github3.py;
+      sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
     fi
+  - sudo pip install pyjavaproperties
+  - sudo pip install github3.py
 
 env:
   global:
