@@ -66,6 +66,7 @@ before_install:
     fi
 # Building for Android here
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
+      jdk_switcher use openjdk7
       export ANDROID="/usr/local/android-sdk-linux/tools/android" &&
       export PATH=$PATH:"/usr/local/android-sdk-linux/tools" &&
       wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
