@@ -167,7 +167,7 @@ if(backend_qt_console)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS}
             ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default)
         add_executable(wagic ${MTG_generic_src} ${MTG_qt_console_src} ${MTG_network_src})
-        target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS} ${TINYXML_LIBRARIES}
+        target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_LIBRARIES} ${Qt5Multimedia_LIBRARIES} ${TINYXML_LIBRARIES}
             ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
     else()
         message(FATAL_ERROR "qt-console builds are only supported on unix platforms")
@@ -177,7 +177,7 @@ elseif(backend_qt_widget)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS}
             ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default)
         add_executable(wagic ${MTG_generic_src} ${MTG_qt_graphic_src} ${MTG_network_src})
-        target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES}
+        target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_LIBARIES} ${Qt5Multimedia_LIBARIES} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES}
             ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})# ${X11_LIBRARIES})
     else()
         message(FATAL_ERROR "qt-widget builds are only supported on unix platforms")
