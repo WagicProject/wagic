@@ -195,6 +195,8 @@ if(BUILD_ANDROID_PACKAGE)
     find_package(Ant REQUIRED)
 endif()
 
+find_package (Threads)
+
 #add jge and mtg projects
 add_subdirectory(JGE)
 add_subdirectory(projects/mtg)
