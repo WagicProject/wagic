@@ -128,7 +128,7 @@ env:
 
 before_script:
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "ANDROID" ]; then
-      export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+      export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle;
     fi
 
 script: "tools/travis-script.sh"
