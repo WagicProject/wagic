@@ -21,6 +21,7 @@ matrix:
       env: BUILD_TYPE=iOS
     - os: linux
       language: android
+      jdk: openjdk7
       env: BUILD_TYPE=ANDROID
       sudo: required
     - os: osx
@@ -34,8 +35,7 @@ android:
 
 cache:
   directories:
-    - opt/pspsdk
-    - android-ndk-r9   
+    - opt/pspsdk  
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -53,6 +53,7 @@ before_install:
       ls;
     fi    
   - if [ "$BUILD_TYPE" == "iOS" ]; then
+      brew update && brew install ldid
       curl -s -f -L https://raw.github.com/r-plus/dotfiles/master/install_theos.sh | bash &&
       pwd &&
       ls;
@@ -66,10 +67,6 @@ before_install:
     fi
 # Building for Android here
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
-      jdk_switcher use openjdk7
-      export ANDROID="/usr/local/android-sdk-linux/tools/android" &&
-      export PATH=$PATH:"/usr/local/android-sdk-linux/tools" &&
-      wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
       wget https://bitbucket.org/ewing/sdl_androidcmake/get/4e9e88c03f04.zip -nv;
     fi
 # Building for Qt here
@@ -106,9 +103,9 @@ install:
       tar -x --xz -f sdk.lzma;
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "ANDROID" ]; then
-      jdk_switcher use openjdk7 %%
-      tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
-      export ANDROID_NDK=`pwd`/android-ndk-r9 &&
+      echo y | sdkmanager "ndk-bundle" &&
+      echo y | sdkmanager "cmake;3.6.4111459 &&"
+      echo y | sdkmanager "lldb;3.1" &&
       unzip 4e9e88c03f04.zip &&
       rm -rf thirdparty/SDL2/* &&
       mv ewing-sdl_androidcmake-4e9e88c03f04/* thirdparty/SDL2/ &&
@@ -116,7 +113,6 @@ install:
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
     fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" != "ANDROID" ]; then
-      jdk_switcher use openjdk7 &&
       sudo pip install cpp-coveralls &&
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
     fi
@@ -129,6 +125,11 @@ env:
   - secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
   - secure: "X5dTQfofqAutnXxmu11Ep2MQ5QYnMN8m0AITRtwymhEF2UclcOudI1+skPtuhAGbWQnSO+lhunV3cvMfw2/Ml3k/VDz6VdFSKFrzAu7ja1VLJfcxr7chi0s8q30pVBb66tGydjIBac3B+RQyqgmZQW1frbRrhC/kPFQ6wPWOJdQ="
   - secure: "T97NUPnxCpVZ/c5HH0zfo0FO3DPSRMSmze58ubW5EUTZOjAMtEt+OFdsrNZvUTCugUj2M1agtonZbAbczpaAL+lgZcHDgXgWMkfO0pMnsWX1yyCNqMuE/iTMpJr/xsLQeyWlftWjJLsseQU45abZsd1XVmda/G+ZhrDLF1y55SA="
+
+before_script:
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "ANDROID" ]; then
+      export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle;
+    fi
 
 script: "tools/travis-script.sh"
 
