@@ -18,14 +18,14 @@ matrix:
     - os: osx
       env: BUILD_TYPE=Qt
     - os: osx
-      env: BUILD_TYPE=iOS
-    - os: linux
-      language: android
-      jdk: openjdk7
-      env: BUILD_TYPE=ANDROID
+      env: BUILD_TYPE=iOSD
       sudo: required
     - os: osx
       env: BUILD_TYPE=Emscripten
+    - os: linux
+      language: android
+      #jdk: openjdk7
+      env: BUILD_TYPE=ANDROI
 
 android:
   components:
