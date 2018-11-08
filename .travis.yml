@@ -53,8 +53,8 @@ before_install:
       ls;
     fi    
   - if [ "$BUILD_TYPE" == "iOS" ]; then
-      brew update && brew install ldid
-      bash tools/install_theos.sh &&
+      brew update && brew install ldid &&
+      ./tools/install_theos.sh &&
       pwd &&
       ls;
     fi    
