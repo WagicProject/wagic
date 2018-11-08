@@ -54,7 +54,7 @@ before_install:
     fi    
   - if [ "$BUILD_TYPE" == "iOS" ]; then
       brew update && brew install ldid
-      curl -s -f -L https://raw.github.com/r-plus/dotfiles/master/install_theos.sh | bash &&
+      bash tools/install_theos.sh &&
       pwd &&
       ls;
     fi    
