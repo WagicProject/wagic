@@ -202,7 +202,7 @@ elseif(backend_psp)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
             ${UNZIP_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${GIF_INCLUDE_DIR} ${HGETOOLS_INCLUDE_DIRS})
         add_executable(wagic ${MTG_generic_src} ${MTG_network_src})
-        target_link_libraries(wagicPUBLIC Wagic::JGE ${PSPSDK_LIB} ${HGETOOLS_LIBRARY} ${FREETYPE_LIB} ${JPEG_LIBRARY} 
+        target_link_libraries(wagic PUBLIC Wagic::JGE ${PSPSDK_LIB} ${HGETOOLS_LIBRARY} ${FREETYPE_LIB} ${JPEG_LIBRARY} 
             ${GIF_LIBRARIES} ${PNG_LIBRARIES} z m ${MIKMOD_LIBRARY} ${TINYXML_LIBRARIES} 
             stdc++ ${PSPSDK_REQUIRED_LIB})
 
