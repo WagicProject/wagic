@@ -4,7 +4,6 @@ branches:
     - latest-master
     - latest-cmake
 
-sudo: required
 dist: trusty
 
 matrix:
@@ -12,9 +11,11 @@ matrix:
     - os: linux
       compiler: gcc
       env: BUILD_TYPE=PSP
+      sudo: required
     - os: linux
       compiler: gcc
       env: BUILD_TYPE=SDL
+      sudo: required
       addons: &gcc48
       apt:
         packages: 
@@ -25,20 +26,19 @@ matrix:
     - os: linux
       compiler: gcc
       env: BUILD_TYPE=Qt
+      sudo: required
       addons: *gcc48
     - os: linux
       compiler: gcc
       env: BUILD_TYPE=ANDROID
+      sudo: required
     - os: osx
-      osx_image: xcode9.1
       compiler: clang
       env: BUILD_TYPE=Qt
     - os: osx
-      osx_image: xcode9.1
       compiler: clang
       env: BUILD_TYPE=iOS
     - os: osx
-      osx_image: xcode9.1
       compiler: clang
       env: BUILD_TYPE=Emscripten
 
