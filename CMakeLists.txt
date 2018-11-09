@@ -1,7 +1,5 @@
-cmake_minimum_required(VERSION 2.8.7)
-if(CMAKE_MAJOR_VERSION STRGREATER 3)
-	cmake_policy(SET CMP0054 NEW)
-endif()
+cmake_minimum_required(VERSION 3.5)
+cmake_policy(SET CMP0054 NEW)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/CMakeModules)
 
