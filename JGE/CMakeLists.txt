@@ -86,74 +86,69 @@ set(JGE_windows_src
 set(JGE_INCLUDE_DIRS include include/hge)
 set(EXTRA_INCLUDE_DIR ../projects/mtg/extra)
 
-#turn moc on
+
+set(JGE_SOURCES ${JGE_generic_src} ${JGE_hge_src})
+set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR})
+
+set(JGE_ZIP_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY})
+set(JGE_IMG_LIBRARIES ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
+
 if(backend_qt_console OR backend_qt_widget)
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
     set(CMAKE_AUTOMOC TRUE)
-endif()
 
-
-if(backend_qt_console)
     if(UNIX AND NOT ANDROID)
-        set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR})
-        set(JGE_SOURCES ${JGE_generic_src} ${JGE_console_src} ${JGE_linux_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES PUBLIC Qt5::Core Qt5::Multimedia Qt5::Network ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
+        set(JGE_SOURCES ${JGE_SOURCES} ${JGE_linux_src})
+
+        if(backend_qt_console)
+            set(JGE_SOURCES ${JGE_SOURCES}  ${JGE_console_src})
+            set(JGE_LINK_LIBRARIES PUBLIC Qt5::Core Qt5::Multimedia Qt5::Network )
+        elseif(backend_qt_widget)
+            set(JGE_SOURCES ${JGE_SOURCES} ${JGE_graphics_src})
+            set(JGE_LINK_LIBRARIES PUBLIC Qt5::Core Qt5::Multimedia Qt5::Network Qt5::OpenGL)
+        endif()
+        set(JGE_LINK_LIBRARIES ${JGE_LINK_LIBRARIES} ${JGE_ZIP_LIBRARIES} ${JGE_IMG_LIBRARIES})
     else()
         message(FATAL_ERROR "qt builds of jge platforms other than linux are not supported")
     endif()
-endif()
 
-if(backend_qt_widget)
-    if(UNIX AND NOT ANDROID)
-        set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR})
-        set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES PUBLIC Qt5::Core Qt5::Multimedia Qt5::Network Qt5::OpenGL ${ZIPFS_LIBRARY} ${UNZIP_LIRARY}
-            ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
-    else()
-        message(FATAL_ERROR "qt builds of jge platforms other than linux are not supported")
-    endif()
 endif()
 
 if(backend_sdl)
+    set(JGE_INTERNAL_INCLUDE_DIRS ${JGE_INTERNAL_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} )
+    set(JGE_SOURCES ${JGE_SOURCES} ${JGE_graphics_src})
+
     if((UNIX OR EMSCRIPTEN) AND NOT ANDROID)
-        set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR}  ${GLUT_INCLUDE_DIR}
-            ${SDL2_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-        set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARY} 
-            ${PNG_LIBRARIES} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+        set(JGE_INTERNAL_INCLUDE_DIRS ${JGE_INTERNAL_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
+        set(JGE_SOURCES ${JGE_SOURCES} ${JGE_linux_src})
+        set(JGE_LINK_LIBRARIES ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
     elseif(ANDROID)
-        set(JGE_INTERNAL_INCLUDE_DIRS ${BOOST_INCLUDE_DIRS} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR}     
-            ${SDL2_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} 
-            ${OPENSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-        set(JGE_SOURCES ${JGE_generic_src} ${JGE_android_src} ${JGE_graphics_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARY} ${PNG_LIBRARIES} 
-            ${OPENSL_LIBRARIES}) 
+        set(JGE_INTERNAL_INCLUDE_DIRS ${JGE_INTERNAL_INCLUDE_DIRS} ${BOOST_INCLUDE_DIRS} ${OPENSL_INCLUDE_DIR} )
+        set(JGE_SOURCES ${JGE_SOURCES} ${JGE_android_src})
+        set(JGE_LINK_LIBRARIES ${OPENSL_LIBRARIES}) 
     elseif(WIN32)
-        set(JGE_INTERNAL_INCLUDE_DIRS ${EXTRA_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} 
-            ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
-        set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_windows_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARY} ${PNG_LIBRARIES})
+        set(JGE_INTERNAL_INCLUDE_DIRS ${JGE_INTERNAL_INCLUDE_DIRS} ${EXTRA_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
+        set(JGE_SOURCES ${JGE_SOURCES} ${JGE_windows_src})
         set(JGE_LINK_DIRECTORIES ${Boost_LIBRARY_DIR})
     endif()
+    set(JGE_LINK_LIBRARIES ${JGE_LINK_LIBRARIES} ${JGE_ZIP_LIBRARIES} ${JGE_IMG_LIBRARIES})
 endif()
 
 if(backend_psp)
     if(PSP)        
-        #${PSPSDK_PATH}/include should be in system pathes
-        set(JGE_INTERNAL_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/thirdparty/psp/include ${TINYXML_INCLUDE_DIR} 
-            ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${GIF_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} )
-        set(JGE_SOURCES ${JGE_generic_src} ${JGE_psp_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${TINYXML_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY})
+        set(JGE_INTERNAL_INCLUDE_DIRS ${JGE_INTERNAL_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/thirdparty/psp/include ${BOOST_INCLUDE_DIRS} ${GIF_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} )
+        set(JGE_SOURCES ${JGE_SOURCES} ${JGE_psp_src})
+        set(JGE_LINK_LIBRARIES ${TINYXML_LIBRARIES} ${JGE_ZIP_LIBRARIES})
     else()
         message(FATAL_ERROR "use the cross-compile toolchain to build as the psp target")
     endif()
 endif()
 
 if(IOS)
-    set(JGE_SOURCES ${JGE_generic_src} ${JGE_ios_src} ${JGE_hge_src} src/pc/JGfx.cpp)
+    set(JGE_SOURCES ${JGE_ios_src} src/pc/JGfx.cpp)
     set(JGE_SOURCES ${JGE_SOURCES} PARENT_SCOPE)
     set(JGE_INCLUDE_DIRS ${JGE_INCLUDE_DIRS} src/iOS PARENT_SCOPE)
-    set(JGE_LINK_LIBRARIES ${TINYXML_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY})
+    set(JGE_LINK_LIBRARIES ${TINYXML_LIBRARIES} ${JGE_ZIP_LIBRARIES})
 endif()
 
 add_library(${ENGINE_LIB_NAME} STATIC ${JGE_SOURCES})
