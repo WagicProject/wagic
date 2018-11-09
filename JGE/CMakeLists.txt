@@ -162,4 +162,10 @@ include_directories(${JGE_INTERNAL_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS})
 target_link_libraries(jge ${JGE_LINK_LIBRARIES})
 link_directories(${JGE_LINK_DIRECTORIES})
 
+set_target_properties(jge PROPERTIES
+    CXX_STANDARD 11
+    CXX_STANDARD_REQUIRED YES
+    CXX_EXTENSIONS NO
+)
+
 set(${JGE_LIBRARIES} jge)
