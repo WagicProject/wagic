@@ -231,4 +231,8 @@ if(IOS)
     set(MTG_INCLUDE_DIRS ${MTG_INCLUDE_DIRS} ${MTG_iOS_INCLUDE_DIRS} PARENT_SCOPE)
 endif()
 
-target_compile_features(wagic PUBLIC cxx_std_11)
+set_target_properties(wagic PROPERTIES
+    CXX_STANDARD 11
+    CXX_STANDARD_REQUIRED YES
+    CXX_EXTENSIONS NO
+)
