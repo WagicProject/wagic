@@ -229,5 +229,6 @@ endif()
 if(IOS)
     set(MTG_generic_src ${MTG_generic_src} ${MTG_iOS_src} PARENT_SCOPE)
     set(MTG_INCLUDE_DIRS ${MTG_INCLUDE_DIRS} ${MTG_iOS_INCLUDE_DIRS} PARENT_SCOPE)
-
 endif()
+
+target_compile_features(wagic PUBLIC cxx_std_11)
