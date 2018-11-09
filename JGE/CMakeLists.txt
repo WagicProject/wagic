@@ -157,7 +157,6 @@ add_library(Wagic::JGE ALIAS ${ENGINE_LIB_NAME})
 
 target_include_directories(${ENGINE_LIB_NAME} PUBLIC ${JGE_INCLUDE_DIRS} ${JGE_INTERNAL_INCLUDE_DIRS})
 
-message(STATUS "JGE_LINK_LIBRARIES: ${JGE_LINK_LIBRARIES}")
 target_link_libraries(${ENGINE_LIB_NAME} PUBLIC ${JGE_LINK_LIBRARIES})
 link_directories(${JGE_LINK_DIRECTORIES})
 

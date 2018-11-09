@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.2.2)
 cmake_policy(SET CMP0054 NEW)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/CMakeModules)
@@ -25,10 +25,7 @@ endif()
 
 set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin" CACHE PATH "Application output directory")
 
-
-project(wagic CXX C)
-#todo: somehow determine wagics version
-set(WAGIC_VERSION "0.19")
+project(wagic LANGUAGES CXX C VERSION 0.19.0)
 
 #add standard paths to search for libraries. borrowed from opencv
 if(UNIX AND NOT ANDROID)
