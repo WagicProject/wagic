@@ -115,7 +115,6 @@ install:
         # Manually force using ld.bfd, setting CMAKE_LINKER does not work.
         ln -sf ld.bfd /tmp/android-gcc-arm-ndk-10e/arm-linux-androideabi/bin/ld
         ln -sf arm-linux-androideabi-ld.bfd /tmp/android-gcc-arm-ndk-10e/bin/arm-linux-androideabi-ld
-        export ANDROID_NDK=/tmp/android-gcc-arm-ndk-10e;
         cd -
 
         wget https://bitbucket.org/ewing/sdl_androidcmake/get/4e9e88c03f04.zip

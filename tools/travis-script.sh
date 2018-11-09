@@ -55,6 +55,9 @@ fi
 
 # we're building an Android binary here
 if [ "$BUILD_TYPE" = "ANDROID" ]; then
+    export ANDROID_NDK=/tmp/android-gcc-arm-ndk-10e
+    export ANDROID_STANDALONE_TOOLCHAIN=//tmp/android-gcc-arm-ndk-10e
+        
     mkdir build_android
     cd build_android
     cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/android.toolchain.cmake -DANDROID_NATIVE_API_LEVEL=android-10 ..
