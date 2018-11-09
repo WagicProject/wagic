@@ -202,15 +202,13 @@ elseif(backend_psp)
         set(PRXSPECS_FILE "${PSPSDK_PATH}/lib/prxspecs")
         set(LINKFILE_FILE "${PSPSDK_PATH}/lib/linkfile.prx")
 
-        get_filename_component(wagic_elf_directory $<TARGET_FILE:${WAGIC_APP_NAME}> PATH)
-
         set_target_properties(${WAGIC_APP_NAME} PROPERTIES LINK_FLAGS "-specs=${PRXSPECS_FILE} -Wl,-q,-T${LINKFILE_FILE}")
         
         add_custom_command(TARGET ${WAGIC_APP_NAME} POST_BUILD
-            COMMAND ${PSPSDK_MKSFO_COMMAND} ARGS "'Wagic, the Homebrew?!'" "${wagic_elf_directory}/PARAM.SFO"
+            COMMAND ${PSPSDK_MKSFO_COMMAND} ARGS "'Wagic, the Homebrew?!'" "$<TARGET_FILE_DIR:${WAGIC_APP_NAME}>/PARAM.SFO"
             COMMAND ${PSPSDK_FIXUP_IMPORTS_COMMAND} ARGS $<TARGET_FILE:${WAGIC_APP_NAME}>
-            COMMAND ${PSPSDK_PRXGEN_COMMAND} ARGS $<TARGET_FILE:${WAGIC_APP_NAME}> "${wagic_elf_directory}/wagic.prx"
-            COMMAND ${PSPSDK_PACK_PBP_COMMAND} ARGS ${wagic_elf_directory}/EBOOT.PBP ${wagic_elf_directory}/PARAM.SFO ${CMAKE_CURRENT_SOURCE_DIR}/icon.png NULL ${CMAKE_CURRENT_SOURCE_DIR}/pic0.png ${CMAKE_CURRENT_SOURCE_DIR}/pic1.png NULL "${wagic_elf_directory}/wagic.prx" NULL)
+            COMMAND ${PSPSDK_PRXGEN_COMMAND} ARGS $<TARGET_FILE:${WAGIC_APP_NAME}> "$<TARGET_FILE_DIR:${WAGIC_APP_NAME}>/wagic.prx"
+            COMMAND ${PSPSDK_PACK_PBP_COMMAND} ARGS $<TARGET_FILE_DIR:${WAGIC_APP_NAME}>/EBOOT.PBP $<TARGET_FILE_DIR:${WAGIC_APP_NAME}>/PARAM.SFO ${CMAKE_CURRENT_SOURCE_DIR}/icon.png NULL ${CMAKE_CURRENT_SOURCE_DIR}/pic0.png ${CMAKE_CURRENT_SOURCE_DIR}/pic1.png NULL "$<TARGET_FILE_DIR:${WAGIC_APP_NAME}>/wagic.prx" NULL)
     else()
         message(FATAL_ERROR "use the cross-compile toolchain to build as the psp target")
     endif()
