@@ -103,16 +103,31 @@ install:
   - if [ "$BUILD_TYPE" == "PSP" ]; then
       tar -x --xz -f sdk.lzma;
     fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "ANDROID" ]; then
-      tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
-      export ANDROID_NDK=`pwd`/android-ndk-r9 &&
-      unzip 4e9e88c03f04.zip &&
-      rm -rf thirdparty/SDL2/* &&
-      mv ewing-sdl_androidcmake-4e9e88c03f04/* thirdparty/SDL2/;
+  - >
+    if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BUILD_TYPE" == "ANDROID" ]; then
+        cd /tmp
+        wget https://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip
+        unzip -q android-ndk-r10e-linux-x86_64.zip
+        android-ndk-r10e/build/tools/make-standalone-toolchain.sh --arch=arm \
+            --toolchain=arm-linux-androideabi-4.9 \
+            --platform=android-10 \
+            --install-dir=/tmp/android-gcc-arm-ndk-10e
+        # Manually force using ld.bfd, setting CMAKE_LINKER does not work.
+        ln -sf ld.bfd /tmp/android-gcc-arm-ndk-10e/arm-linux-androideabi/bin/ld
+        ln -sf arm-linux-androideabi-ld.bfd /tmp/android-gcc-arm-ndk-10e/bin/arm-linux-androideabi-ld
+        export ANDROID_NDK=/tmp/android-gcc-arm-ndk-10e;
+        cd -
+
+        wget https://bitbucket.org/ewing/sdl_androidcmake/get/4e9e88c03f04.zip
+        unzip 4e9e88c03f04.zip
+        rm -rf thirdparty/SDL2/*
+        mv ewing-sdl_androidcmake-4e9e88c03f04/* thirdparty/SDL2/
     fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      sudo pip install cpp-coveralls &&
-      sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant;
+  - >
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      jdk_switcher use openjdk7
+      sudo pip install cpp-coveralls
+      sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev ant
     fi
   - sudo pip install pyjavaproperties
   - sudo pip install github3.py
