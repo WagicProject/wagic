@@ -1,3 +1,5 @@
+set(WAGIC_APP_NAME wagic)
+
 #MTGs common sources
 set(MTG_generic_src         
         src/AbilityParser.cpp
@@ -152,59 +154,50 @@ set(MTG_iOS_src
 set(MTG_iOS_INCLUDE_DIRS iOS/UI iOS/Reachability/Reachability iOS/asi-http-request iOS/ZipArchive iOS/SoundManager)
 
 set(MTG_INCLUDE_DIRS include include/qt)
-set(JGE_INCLUDE_DIRS ../../JGE/include ../../JGE/include/hge)
-set(JGE_LIBRARY jge)
 set(EXTRA_INCLUDE_DIR extra)
-    
-#turn moc on
+
+set(MTG_SRC ${MTG_generic_src})
+
+if(NOT WIN32 AND NOT IOS)
+    set(MTG_SRC ${MTG_SRC} ${MTG_network_src})
+endif()
+
+
 if(backend_qt_console OR backend_qt_widget)
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
     set(CMAKE_AUTOMOC TRUE)
-endif()
 
-if(backend_qt_console)
     if(UNIX AND NOT ANDROID)
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR}
-            ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
-        add_executable(wagic ${MTG_generic_src} ${MTG_qt_console_src} ${MTG_network_src})
-        target_link_libraries(wagic PUBLIC Wagic::JGE ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
-    else()
-        message(FATAL_ERROR "qt-console builds are only supported on unix platforms")
-    endif()
-elseif(backend_qt_widget)
-    if(UNIX AND NOT ANDROID)
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
-        add_executable(wagic ${MTG_generic_src} ${MTG_qt_graphic_src} ${MTG_network_src})
-        target_link_libraries(wagic PUBLIC Wagic::JGE ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})# ${X11_LIBRARIES})
+        if(backend_qt_console)
+            set(MTG_SRC ${MTG_SRC} ${MTG_qt_console_src})
+        elseif(backend_qt_widget)
+            set(MTG_SRC ${MTG_SRC} ${MTG_qt_graphic_src})
+        endif()
     else()
         message(FATAL_ERROR "qt-widget builds are only supported on unix platforms")
     endif()
+
+    add_executable(${WAGIC_APP_NAME} ${MTG_SRC})
+    target_link_libraries(${WAGIC_APP_NAME} PUBLIC Wagic::JGE ${HGE_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
 elseif(backend_sdl)
+    set(MTG_SRC ${MTG_SRC} src/TestSuiteAI.cpp)
     if((UNIX OR EMSCRIPTEN) AND NOT ANDROID)
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-        add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} ${MTG_network_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
-        target_link_libraries(wagic PUBLIC Wagic::JGE ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
+        add_executable(${WAGIC_APP_NAME} ${MTG_SRC} ${MTG_sdl_src} src/AIPlayerBakaB.cpp)
+        target_link_libraries(${WAGIC_APP_NAME} PUBLIC Wagic::JGE ${HGE_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
     elseif(ANDROID)
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
         #we should try to get rid of this hack
-        add_library(wagic SHARED ${MTG_generic_src} ${MTG_network_src} ${MTG_android_sdl_src} src/TestSuiteAI.cpp)
-        target_link_libraries(wagic PUBLIC Wagic::JGE ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
+        add_library(${WAGIC_APP_NAME} SHARED ${MTG_SRC} ${MTG_android_sdl_src})
+        target_link_libraries(${WAGIC_APP_NAME} PUBLIC Wagic::JGE ${HGE_LIBRARY})
     elseif(WIN32)
-        include_directories(${EXTRA_INCLUDE_DIR} ${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
-        	${Boost_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-        add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
+        add_executable(${WAGIC_APP_NAME} ${MTG_SRC} ${MTG_sdl_src} src/AIPlayerBakaB.cpp)
         link_directories(${Boost_LIBRARY_DIR} ${SDL2_LIBRARY_DIR})
-        target_link_libraries(wagic PUBLIC Wagic::JGE ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${BOOST_date_time} ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+        target_link_libraries(${WAGIC_APP_NAME} PUBLIC Wagic::JGE ${BOOST_date_time} ${HGE_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
     endif()
 elseif(backend_psp)
     if(PSP)
         #${PSPSDK_PATH}/include
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
-            ${UNZIP_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${GIF_INCLUDE_DIR} ${HGETOOLS_INCLUDE_DIRS})
-        add_executable(wagic ${MTG_generic_src} ${MTG_network_src})
-        target_link_libraries(wagic PUBLIC Wagic::JGE ${PSPSDK_LIB} ${HGETOOLS_LIBRARY} ${FREETYPE_LIB} ${JPEG_LIBRARY} 
-            ${GIF_LIBRARIES} ${PNG_LIBRARIES} z m ${MIKMOD_LIBRARY} ${TINYXML_LIBRARIES} 
-            stdc++ ${PSPSDK_REQUIRED_LIB})
+        add_executable(${WAGIC_APP_NAME} ${MTG_SRC})
+        target_link_libraries(${WAGIC_APP_NAME} PUBLIC Wagic::JGE ${PSPSDK_LIB} ${HGETOOLS_LIBRARY} ${FREETYPE_LIB} ${GIF_LIBRARIES} z m ${MIKMOD_LIBRARY} stdc++ ${PSPSDK_REQUIRED_LIB})
 
         set(PRXSPECS_FILE "${PSPSDK_PATH}/lib/prxspecs")
         set(LINKFILE_FILE "${PSPSDK_PATH}/lib/linkfile.prx")
@@ -223,13 +216,13 @@ elseif(backend_psp)
         message(FATAL_ERROR "use the cross-compile toolchain to build as the psp target")
     endif()
 endif()
+
 if(IOS)
     set(MTG_generic_src ${MTG_generic_src} ${MTG_iOS_src} PARENT_SCOPE)
     set(MTG_INCLUDE_DIRS ${MTG_INCLUDE_DIRS} ${MTG_iOS_INCLUDE_DIRS} PARENT_SCOPE)
 endif()
 
-set_target_properties(wagic PROPERTIES
-    CXX_STANDARD 11
-    CXX_STANDARD_REQUIRED YES
-    CXX_EXTENSIONS NO
-)
+target_include_directories(${WAGIC_APP_NAME} PUBLIC ${MTG_INCLUDE_DIRS})
+#target_link_libraries(${WAGIC_APP_NAME} ${JGE_LINK_LIBRARIES})
+
+set_target_properties(${WAGIC_APP_NAME} PROPERTIES CXX_STANDARD 11 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO )
