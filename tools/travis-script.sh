@@ -105,6 +105,5 @@ fi
 if [ "$BUILD_TYPE" = "iOS" ]; then
     cmake -DCMAKE_TOOLCHAIN_FILE=CMakeModules/ios-theos.toolchain.cmake -DTHEOS_PATH="${PWD}/theos" .
     cp projects/mtg/iOS/control .
-    ls -lR
     make -j4 -f makefile.ios package
 fi
