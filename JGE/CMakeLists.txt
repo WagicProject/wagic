@@ -1,3 +1,5 @@
+set(ENGINE_LIB_NAME jge)
+
 #the sources, jge will need always
 set(JGE_generic_src
         src/Encoding.cpp
@@ -93,11 +95,9 @@ endif()
 
 if(backend_qt_console)
     if(UNIX AND NOT ANDROID)
-        set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
-            ${UNZIP_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS})
+        set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR})
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_console_src} ${JGE_linux_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${Qt5Core_LIBRARIES} ${Qt5Multimedia_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY}
-            ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
+        set(JGE_LINK_LIBRARIES PUBLIC Qt5::Core Qt5::Multimedia Qt5::Network ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
     else()
         message(FATAL_ERROR "qt builds of jge platforms other than linux are not supported")
     endif()
@@ -105,10 +105,9 @@ endif()
 
 if(backend_qt_widget)
     if(UNIX AND NOT ANDROID)
-        set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
-            ${UNZIP_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS} ${Qt5OpenGL_INCLUDE_DIRS} )
+        set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR})
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${Qt5Core_LIBRARIES} ${Qt5Multimedia_LIBRARIES} ${Qt5OpenGL_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY}
+        set(JGE_LINK_LIBRARIES PUBLIC Qt5::Core Qt5::Multimedia Qt5::Network Qt5::OpenGL ${ZIPFS_LIBRARY} ${UNZIP_LIRARY}
             ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
     else()
         message(FATAL_ERROR "qt builds of jge platforms other than linux are not supported")
@@ -157,15 +156,11 @@ if(IOS)
     set(JGE_LINK_LIBRARIES ${TINYXML_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY})
 endif()
 
-add_library(jge STATIC ${JGE_SOURCES})
-include_directories(${JGE_INTERNAL_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS})
-target_link_libraries(jge ${JGE_LINK_LIBRARIES})
+add_library(${ENGINE_LIB_NAME} STATIC ${JGE_SOURCES})
+add_library(Wagic::JGE ALIAS ${ENGINE_LIB_NAME})
+
+target_include_directories(${ENGINE_LIB_NAME} PUBLIC ${JGE_INCLUDE_DIRS} PRIVATE ${JGE_INTERNAL_INCLUDE_DIRS})
+target_link_libraries(${ENGINE_LIB_NAME} ${JGE_LINK_LIBRARIES})
 link_directories(${JGE_LINK_DIRECTORIES})
 
-set_target_properties(jge PROPERTIES
-    CXX_STANDARD 11
-    CXX_STANDARD_REQUIRED YES
-    CXX_EXTENSIONS NO
-)
-
-set(${JGE_LIBRARIES} jge)
+set_target_properties(${ENGINE_LIB_NAME} PROPERTIES CXX_STANDARD 11 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO )

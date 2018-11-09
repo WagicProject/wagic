@@ -164,21 +164,18 @@ endif()
 
 if(backend_qt_console)
     if(UNIX AND NOT ANDROID)
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS}
-            ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default)
+        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR}
+            ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
         add_executable(wagic ${MTG_generic_src} ${MTG_qt_console_src} ${MTG_network_src})
-        target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_LIBRARIES} ${Qt5Multimedia_LIBRARIES} ${TINYXML_LIBRARIES}
-            ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+        target_link_libraries(wagic PUBLIC Wagic::JGE ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
     else()
         message(FATAL_ERROR "qt-console builds are only supported on unix platforms")
     endif()
 elseif(backend_qt_widget)
     if(UNIX AND NOT ANDROID)
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS}
-            ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default)
+        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
         add_executable(wagic ${MTG_generic_src} ${MTG_qt_graphic_src} ${MTG_network_src})
-        target_link_libraries(wagic  ${JGE_LIBRARY} ${Qt5Core_LIBARIES} ${Qt5Multimedia_LIBARIES} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES}
-            ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})# ${X11_LIBRARIES})
+        target_link_libraries(wagic PUBLIC Wagic::JGE ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})# ${X11_LIBRARIES})
     else()
         message(FATAL_ERROR "qt-widget builds are only supported on unix platforms")
     endif()
@@ -186,18 +183,18 @@ elseif(backend_sdl)
     if((UNIX OR EMSCRIPTEN) AND NOT ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
         add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} ${MTG_network_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
-        target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
+        target_link_libraries(wagic PUBLIC Wagic::JGE ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
     elseif(ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
         #we should try to get rid of this hack
         add_library(wagic SHARED ${MTG_generic_src} ${MTG_network_src} ${MTG_android_sdl_src} src/TestSuiteAI.cpp)
-        target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
+        target_link_libraries(wagic PUBLIC Wagic::JGE ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
     elseif(WIN32)
         include_directories(${EXTRA_INCLUDE_DIR} ${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
         	${Boost_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
         add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
         link_directories(${Boost_LIBRARY_DIR} ${SDL2_LIBRARY_DIR})
-        target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${BOOST_date_time} ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+        target_link_libraries(wagic PUBLIC Wagic::JGE ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${BOOST_date_time} ${HGE_LIBRARY} ${ZLIB_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
     endif()
 elseif(backend_psp)
     if(PSP)
@@ -205,7 +202,7 @@ elseif(backend_psp)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
             ${UNZIP_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${GIF_INCLUDE_DIR} ${HGETOOLS_INCLUDE_DIRS})
         add_executable(wagic ${MTG_generic_src} ${MTG_network_src})
-        target_link_libraries(wagic ${JGE_LIBRARY} ${PSPSDK_LIB} ${HGETOOLS_LIBRARY} ${FREETYPE_LIB} ${JPEG_LIBRARY} 
+        target_link_libraries(wagicPUBLIC Wagic::JGE ${PSPSDK_LIB} ${HGETOOLS_LIBRARY} ${FREETYPE_LIB} ${JPEG_LIBRARY} 
             ${GIF_LIBRARIES} ${PNG_LIBRARIES} z m ${MIKMOD_LIBRARY} ${TINYXML_LIBRARIES} 
             stdc++ ${PSPSDK_REQUIRED_LIB})
 
