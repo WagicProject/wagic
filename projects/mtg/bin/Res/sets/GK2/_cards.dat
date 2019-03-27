@@ -1,0 +1,671 @@
+[meta]
+author=Wagic Team
+name=RNA Guild Kit
+year=2019-02-15
+total=133
+[/meta]
+[card]
+primitive=Isperia, Supreme Judge
+id=460130
+rarity=M
+[/card]
+[card]
+primitive=Azorius Herald
+id=460131
+rarity=U
+[/card]
+[card]
+primitive=Azorius Justiciar
+id=460132
+rarity=U
+[/card]
+[card]
+primitive=Stoic Ephemera
+id=460133
+rarity=U
+[/card]
+[card]
+primitive=Court Hussar
+id=460134
+rarity=U
+[/card]
+[card]
+primitive=Hover Barrier
+id=460135
+rarity=U
+[/card]
+[card]
+primitive=Archon of the Triumvirate
+id=460136
+rarity=R
+[/card]
+[card]
+primitive=Azorius Charm
+id=460137
+rarity=U
+[/card]
+[card]
+primitive=Azorius Guildmage
+id=460138
+rarity=U
+[/card]
+[card]
+primitive=Detention Sphere
+id=460139
+rarity=R
+[/card]
+[card]
+primitive=Dovescape
+id=460140
+rarity=R
+[/card]
+[card]
+primitive=Dramatic Rescue
+id=460141
+rarity=C
+[/card]
+[card]
+primitive=Isperia the Inscrutable
+id=460142
+rarity=R
+[/card]
+[card]
+primitive=Judge's Familiar
+id=460143
+rarity=U
+[/card]
+[card]
+primitive=Lavinia of the Tenth
+id=460144
+rarity=R
+[/card]
+[card]
+primitive=Lyev Skyknight
+id=460145
+rarity=U
+[/card]
+[card]
+primitive=Pride of the Clouds
+id=460146
+rarity=R
+[/card]
+[card]
+primitive=Render Silent
+id=460147
+rarity=R
+[/card]
+[card]
+primitive=Sky Hussar
+id=460148
+rarity=U
+[/card]
+[card]
+primitive=Skymark Roc
+id=460149
+rarity=U
+[/card]
+[card]
+primitive=Sphinx's Revelation
+id=460150
+rarity=M
+[/card]
+[card]
+primitive=Windreaver
+id=460151
+rarity=R
+[/card]
+[card]
+primitive=Azorius Keyrune
+id=460152
+rarity=U
+[/card]
+[card]
+primitive=Azorius Signet
+id=460153
+rarity=U
+[/card]
+[card]
+primitive=Azorius Chancery
+id=460154
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=460155
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=460156
+rarity=L
+[/card]
+[card]
+primitive=Teysa, Orzhov Scion
+id=460454
+rarity=R
+[/card]
+[card]
+primitive=Belfry Spirit
+id=460455
+rarity=U
+[/card]
+[card]
+primitive=Martyred Rusalka
+id=460456
+rarity=U
+[/card]
+[card]
+primitive=Keening Banshee
+id=460457
+rarity=U
+[/card]
+[card]
+primitive=Plagued Rusalka
+id=460458
+rarity=U
+[/card]
+[card]
+primitive=Pontiff of Blight
+id=460459
+rarity=R
+[/card]
+[card]
+primitive=Skeletal Vampire
+id=460460
+rarity=R
+[/card]
+[card]
+primitive=Stab Wound
+id=460461
+rarity=U
+[/card]
+[card]
+primitive=Ultimate Price
+id=460462
+rarity=U
+[/card]
+[card]
+primitive=Angel of Despair
+id=460463
+rarity=R
+[/card]
+[card]
+primitive=Deathpact Angel
+id=460464
+rarity=M
+[/card]
+[card]
+primitive=Debtors' Knell
+id=460465
+rarity=R
+[/card]
+[card]
+primitive=Ghost Council of Orzhova
+id=460466
+rarity=R
+[/card]
+[card]
+primitive=One Thousand Lashes
+id=460467
+rarity=U
+[/card]
+[card]
+primitive=Orzhov Charm
+id=460468
+rarity=U
+[/card]
+[card]
+primitive=Orzhov Pontiff
+id=460469
+rarity=R
+[/card]
+[card]
+primitive=Pillory of the Sleepless
+id=460470
+rarity=U
+[/card]
+[card]
+primitive=Sin Collector
+id=460471
+rarity=U
+[/card]
+[card]
+primitive=Treasury Thrull
+id=460472
+rarity=R
+[/card]
+[card]
+primitive=Vizkopa Guildmage
+id=460473
+rarity=U
+[/card]
+[card]
+primitive=Orzhov Signet
+id=460474
+rarity=C
+[/card]
+[card]
+primitive=Orzhov Basilica
+id=460475
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=460476
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=460477
+rarity=L
+[/card]
+[card]
+primitive=Rakdos, Lord of Riots
+id=460598
+rarity=M
+[/card]
+[card]
+primitive=Crypt Champion
+id=460599
+rarity=U
+[/card]
+[card]
+primitive=Thrill-Kill Assassin
+id=460600
+rarity=U
+[/card]
+[card]
+primitive=Cackling Flames
+id=460601
+rarity=C
+[/card]
+[card]
+primitive=Demonfire
+id=460602
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Pit Dragon
+id=460603
+rarity=R
+[/card]
+[card]
+primitive=Splatter Thug
+id=460604
+rarity=C
+[/card]
+[card]
+primitive=Utvara Hellkite
+id=460605
+rarity=M
+[/card]
+[card]
+primitive=Auger Spree
+id=460606
+rarity=C
+[/card]
+[card]
+primitive=Avatar of Discord
+id=460607
+rarity=R
+[/card]
+[card]
+primitive=Carnival Hellsteed
+id=460608
+rarity=R
+[/card]
+[card]
+primitive=Dreadbore
+id=460609
+rarity=R
+[/card]
+[card]
+primitive=Jagged Poppet
+id=460610
+rarity=U
+[/card]
+[card]
+primitive=Lyzolda, the Blood Witch
+id=460611
+rarity=R
+[/card]
+[card]
+primitive=Master of Cruelties
+id=460612
+rarity=M
+[/card]
+[card]
+primitive=Rakdos Cackler
+id=460613
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Charm
+id=460614
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Guildmage
+id=460615
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Shred-Freak
+id=460616
+rarity=C
+[/card]
+[card]
+primitive=Rakdos the Defiler
+id=460617
+rarity=R
+[/card]
+[card]
+primitive=Rakdos's Return
+id=460618
+rarity=M
+[/card]
+[card]
+primitive=Riot Spikes
+id=460619
+rarity=C
+[/card]
+[card]
+primitive=Wrecking Ball
+id=460620
+rarity=C
+[/card]
+[card]
+primitive=Rakdos Keyrune
+id=460621
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Signet
+id=460622
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Carnarium
+id=460623
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=460624
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=460625
+rarity=L
+[/card]
+[card]
+primitive=Ruric Thar, the Unbowed
+id=460292
+rarity=R
+[/card]
+[card]
+primitive=Skarrgan Firebird
+id=460293
+rarity=R
+[/card]
+[card]
+primitive=Birds of Paradise
+id=460294
+rarity=R
+[/card]
+[card]
+primitive=Protean Hulk
+id=460295
+rarity=R
+[/card]
+[card]
+primitive=Skarrgan Pit-Skulk
+id=460296
+rarity=C
+[/card]
+[card]
+primitive=Wasteland Viper
+id=460297
+rarity=U
+[/card]
+[card]
+primitive=Wurmweaver Coil
+id=460298
+rarity=R
+[/card]
+[card]
+primitive=Borborygmos
+id=460299
+rarity=R
+[/card]
+[card]
+primitive=Burning-Tree Emissary
+id=460300
+rarity=U
+[/card]
+[card]
+primitive=Burning-Tree Shaman
+id=460301
+rarity=R
+[/card]
+[card]
+primitive=Ghor-Clan Rampager
+id=460302
+rarity=U
+[/card]
+[card]
+primitive=Giant Solifuge
+id=460303
+rarity=R
+[/card]
+[card]
+primitive=Gruul Charm
+id=460304
+rarity=U
+[/card]
+[card]
+primitive=Pit Fight
+id=460305
+rarity=C
+[/card]
+[card]
+primitive=Rubblebelt Raiders
+id=460306
+rarity=R
+[/card]
+[card]
+primitive=Rubblehulk
+id=460307
+rarity=R
+[/card]
+[card]
+primitive=Rumbling Slum
+id=460308
+rarity=R
+[/card]
+[card]
+primitive=Savage Twister
+id=460309
+rarity=U
+[/card]
+[card]
+primitive=Savageborn Hydra
+id=460310
+rarity=M
+[/card]
+[card]
+primitive=Scab-Clan Mauler
+id=460311
+rarity=C
+[/card]
+[card]
+primitive=Ulasht, the Hate Seed
+id=460312
+rarity=R
+[/card]
+[card]
+primitive=Zhur-Taa Druid
+id=460313
+rarity=C
+[/card]
+[card]
+primitive=Zhur-Taa Swine
+id=460314
+rarity=C
+[/card]
+[card]
+primitive=Gruul Signet
+id=460315
+rarity=U
+[/card]
+[card]
+primitive=Gruul Turf
+id=460316
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=460317
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=460318
+rarity=L
+[/card]
+[card]
+primitive=Zegana, Utopian Speaker
+id=460766
+rarity=R
+[/card]
+[card]
+primitive=Cloudfin Raptor
+id=460767
+rarity=C
+[/card]
+[card]
+primitive=Rapid Hybridization
+id=460768
+rarity=U
+[/card]
+[card]
+primitive=Cytoplast Root-Kin
+id=460769
+rarity=R
+[/card]
+[card]
+primitive=Experiment One
+id=460770
+rarity=U
+[/card]
+[card]
+primitive=Gyre Sage
+id=460771
+rarity=R
+[/card]
+[card]
+primitive=Miming Slime
+id=460772
+rarity=C
+[/card]
+[card]
+primitive=Vinelasher Kudzu
+id=460773
+rarity=R
+[/card]
+[card]
+primitive=Coiling Oracle
+id=460774
+rarity=C
+[/card]
+[card]
+primitive=Elusive Krasis
+id=460775
+rarity=U
+[/card]
+[card]
+primitive=Experiment Kraj
+id=460776
+rarity=R
+[/card]
+[card]
+primitive=Fathom Mage
+id=460777
+rarity=R
+[/card]
+[card]
+primitive=Momir Vig, Simic Visionary
+id=460778
+rarity=R
+[/card]
+[card]
+primitive=Nimbus Swimmer
+id=460779
+rarity=U
+[/card]
+[card]
+primitive=Omnibian
+id=460780
+rarity=R
+[/card]
+[card]
+primitive=Plaxcaster Frogling
+id=460781
+rarity=U
+[/card]
+[card]
+primitive=Progenitor Mimic
+id=460782
+rarity=M
+[/card]
+[card]
+primitive=Simic Sky Swallower
+id=460783
+rarity=R
+[/card]
+[card]
+primitive=Trygon Predator
+id=460784
+rarity=U
+[/card]
+[card]
+primitive=Urban Evolution
+id=460785
+rarity=U
+[/card]
+[card]
+primitive=Voidslime
+id=460786
+rarity=R
+[/card]
+[card]
+primitive=Vorel of the Hull Clade
+id=460787
+rarity=R
+[/card]
+[card]
+primitive=Zameck Guildmage
+id=460788
+rarity=U
+[/card]
+[card]
+primitive=Simic Signet
+id=460789
+rarity=U
+[/card]
+[card]
+primitive=Simic Growth Chamber
+id=460790
+rarity=U
+[/card]
+[card]
+primitive=Island
+id=460791
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=460792
+rarity=L
+[/card]

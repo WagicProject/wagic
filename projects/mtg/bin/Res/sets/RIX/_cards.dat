@@ -1,0 +1,1066 @@
+[meta]
+author=Wagic Team
+name=Rivals of Ixalan
+year=2018-01-19
+total=205
+[/meta]
+[card]
+primitive=Baffling End
+id=439658
+rarity=U
+[/card]
+[card]
+primitive=Bishop of Binding
+id=439659
+rarity=R
+[/card]
+[card]
+primitive=Blazing Hope
+id=439660
+rarity=U
+[/card]
+[card]
+primitive=Cleansing Ray
+id=439661
+rarity=C
+[/card]
+[card]
+primitive=Divine Verdict
+id=439662
+rarity=C
+[/card]
+[card]
+primitive=Everdawn Champion
+id=439663
+rarity=U
+[/card]
+[card]
+primitive=Exultant Skymarcher
+id=439664
+rarity=C
+[/card]
+[card]
+primitive=Famished Paladin
+id=439665
+rarity=U
+[/card]
+[card]
+primitive=Forerunner of the Legion
+id=439666
+rarity=U
+[/card]
+[card]
+primitive=Imperial Ceratops
+id=439667
+rarity=U
+[/card]
+[card]
+primitive=Legion Conquistador
+id=439668
+rarity=C
+[/card]
+[card]
+primitive=Luminous Bonds
+id=439669
+rarity=C
+[/card]
+[card]
+primitive=Majestic Heliopterus
+id=439670
+rarity=U
+[/card]
+[card]
+primitive=Martyr of Dusk
+id=439671
+rarity=C
+[/card]
+[card]
+primitive=Moment of Triumph
+id=439672
+rarity=C
+[/card]
+[card]
+primitive=Paladin of Atonement
+id=439673
+rarity=R
+[/card]
+[card]
+primitive=Pride of Conquerors
+id=439674
+rarity=U
+[/card]
+[card]
+primitive=Radiant Destiny
+id=439675
+rarity=R
+[/card]
+[card]
+primitive=Raptor Companion
+id=439676
+rarity=C
+[/card]
+[card]
+primitive=Sanguine Glorifier
+id=439677
+rarity=C
+[/card]
+[card]
+primitive=Skymarcher Aspirant
+id=439678
+rarity=U
+[/card]
+[card]
+primitive=Slaughter the Strong
+id=439679
+rarity=R
+[/card]
+[card]
+primitive=Snubhorn Sentry
+id=439680
+rarity=C
+[/card]
+[card]
+primitive=Sphinx's Decree
+id=439681
+rarity=R
+[/card]
+[card]
+primitive=Squire's Devotion
+id=439682
+rarity=C
+[/card]
+[card]
+primitive=Sun Sentinel
+id=439683
+rarity=C
+[/card]
+[card]
+primitive=Sun-Crested Pterodon
+id=439684
+rarity=C
+[/card]
+[card]
+primitive=Temple Altisaur
+id=439685
+rarity=R
+[/card]
+[card]
+primitive=Trapjaw Tyrant
+id=439686
+rarity=M
+[/card]
+[card]
+primitive=Zetalpa, Primal Dawn
+id=439687
+rarity=R
+[/card]
+[card]
+primitive=Admiral's Order
+id=439688
+rarity=R
+[/card]
+[card]
+primitive=Aquatic Incursion
+id=439689
+rarity=U
+[/card]
+[card]
+primitive=Crafty Cutpurse
+id=439690
+rarity=R
+[/card]
+[card]
+primitive=Crashing Tide
+id=439691
+rarity=C
+[/card]
+[card]
+primitive=Curious Obsession
+id=439692
+rarity=U
+[/card]
+[card]
+primitive=Deadeye Rig-Hauler
+id=439693
+rarity=C
+[/card]
+[card]
+primitive=Expel from Orazca
+id=439694
+rarity=U
+[/card]
+[card]
+primitive=Flood of Recollection
+id=439695
+rarity=U
+[/card]
+[card]
+primitive=Hornswoggle
+id=439696
+rarity=U
+[/card]
+[card]
+primitive=Induced Amnesia
+id=439697
+rarity=R
+[/card]
+[card]
+primitive=Kitesail Corsair
+id=439698
+rarity=C
+[/card]
+[card]
+primitive=Kumena's Awakening
+id=439699
+rarity=R
+[/card]
+[card]
+primitive=Mist-Cloaked Herald
+id=439700
+rarity=C
+[/card]
+[card]
+primitive=Negate
+id=439701
+rarity=C
+[/card]
+[card]
+primitive=Nezahal, Primal Tide
+id=439702
+rarity=R
+[/card]
+[card]
+primitive=Release to the Wind
+id=439703
+rarity=R
+[/card]
+[card]
+primitive=River Darter
+id=439704
+rarity=C
+[/card]
+[card]
+primitive=Riverwise Augur
+id=439705
+rarity=U
+[/card]
+[card]
+primitive=Sailor of Means
+id=439706
+rarity=C
+[/card]
+[card]
+primitive=Sea Legs
+id=439707
+rarity=C
+[/card]
+[card]
+primitive=Seafloor Oracle
+id=439708
+rarity=R
+[/card]
+[card]
+primitive=Secrets of the Golden City
+id=439709
+rarity=C
+[/card]
+[card]
+primitive=Silvergill Adept
+id=439710
+rarity=U
+[/card]
+[card]
+primitive=Siren Reaver
+id=439711
+rarity=U
+[/card]
+[card]
+primitive=Slippery Scoundrel
+id=439712
+rarity=U
+[/card]
+[card]
+primitive=Soul of the Rapids
+id=439713
+rarity=C
+[/card]
+[card]
+primitive=Spire Winder
+id=439714
+rarity=C
+[/card]
+[card]
+primitive=Sworn Guardian
+id=439715
+rarity=C
+[/card]
+[card]
+primitive=Timestream Navigator
+id=439716
+rarity=M
+[/card]
+[card]
+primitive=Warkite Marauder
+id=439717
+rarity=R
+[/card]
+[card]
+primitive=Waterknot
+id=439718
+rarity=C
+[/card]
+[card]
+primitive=Arterial Flow
+id=439719
+rarity=U
+[/card]
+[card]
+primitive=Canal Monitor
+id=439720
+rarity=C
+[/card]
+[card]
+primitive=Champion of Dusk
+id=439721
+rarity=R
+[/card]
+[card]
+primitive=Dark Inquiry
+id=439722
+rarity=C
+[/card]
+[card]
+primitive=Dead Man's Chest
+id=439723
+rarity=R
+[/card]
+[card]
+primitive=Dinosaur Hunter
+id=439724
+rarity=C
+[/card]
+[card]
+primitive=Dire Fleet Poisoner
+id=439725
+rarity=R
+[/card]
+[card]
+primitive=Dusk Charger
+id=439726
+rarity=C
+[/card]
+[card]
+primitive=Dusk Legion Zealot
+id=439727
+rarity=C
+[/card]
+[card]
+primitive=Fathom Fleet Boarder
+id=439728
+rarity=C
+[/card]
+[card]
+primitive=Forerunner of the Coalition
+id=439729
+rarity=U
+[/card]
+[card]
+primitive=Golden Demise
+id=439730
+rarity=U
+[/card]
+[card]
+primitive=Grasping Scoundrel
+id=439731
+rarity=C
+[/card]
+[card]
+primitive=Gruesome Fate
+id=439732
+rarity=C
+[/card]
+[card]
+primitive=Impale
+id=439733
+rarity=C
+[/card]
+[card]
+primitive=Mastermind's Acquisition
+id=439734
+rarity=R
+[/card]
+[card]
+primitive=Mausoleum Harpy
+id=439735
+rarity=U
+[/card]
+[card]
+primitive=Moment of Craving
+id=439736
+rarity=C
+[/card]
+[card]
+primitive=Oathsworn Vampire
+id=439737
+rarity=U
+[/card]
+[card]
+primitive=Pitiless Plunderer
+id=439738
+rarity=U
+[/card]
+[card]
+primitive=Ravenous Chupacabra
+id=439739
+rarity=U
+[/card]
+[card]
+primitive=Reaver Ambush
+id=439740
+rarity=U
+[/card]
+[card]
+primitive=Recover
+id=439741
+rarity=C
+[/card]
+[card]
+primitive=Sadistic Skymarcher
+id=439742
+rarity=U
+[/card]
+[card]
+primitive=Tetzimoc, Primal Death
+id=439743
+rarity=R
+[/card]
+[card]
+primitive=Tomb Robber
+id=439744
+rarity=R
+[/card]
+[card]
+primitive=Twilight Prophet
+id=439745
+rarity=M
+[/card]
+[card]
+primitive=Vampire Revenant
+id=439746
+rarity=C
+[/card]
+[card]
+primitive=Vona's Hunger
+id=439747
+rarity=R
+[/card]
+[card]
+primitive=Voracious Vampire
+id=439748
+rarity=C
+[/card]
+[card]
+primitive=Blood Sun
+id=439749
+rarity=R
+[/card]
+[card]
+primitive=Bombard
+id=439750
+rarity=C
+[/card]
+[card]
+primitive=Brass's Bounty
+id=439751
+rarity=R
+[/card]
+[card]
+primitive=Brazen Freebooter
+id=439752
+rarity=C
+[/card]
+[card]
+primitive=Buccaneer's Bravado
+id=439753
+rarity=C
+[/card]
+[card]
+primitive=Charging Tuskodon
+id=439754
+rarity=U
+[/card]
+[card]
+primitive=Daring Buccaneer
+id=439755
+rarity=U
+[/card]
+[card]
+primitive=Dire Fleet Daredevil
+id=439756
+rarity=R
+[/card]
+[card]
+primitive=Etali, Primal Storm
+id=439757
+rarity=R
+[/card]
+[card]
+primitive=Fanatical Firebrand
+id=439758
+rarity=C
+[/card]
+[card]
+primitive=Forerunner of the Empire
+id=439759
+rarity=U
+[/card]
+[card]
+primitive=Form of the Dinosaur
+id=439760
+rarity=R
+[/card]
+[card]
+primitive=Frilled Deathspitter
+id=439761
+rarity=C
+[/card]
+[card]
+primitive=Goblin Trailblazer
+id=439762
+rarity=C
+[/card]
+[card]
+primitive=Mutiny
+id=439763
+rarity=C
+[/card]
+[card]
+primitive=Needletooth Raptor
+id=439764
+rarity=U
+[/card]
+[card]
+primitive=Orazca Raptor
+id=439765
+rarity=C
+[/card]
+[card]
+primitive=Pirate's Pillage
+id=439766
+rarity=U
+[/card]
+[card]
+primitive=Reckless Rage
+id=439767
+rarity=U
+[/card]
+[card]
+primitive=Rekindling Phoenix
+id=439768
+rarity=M
+[/card]
+[card]
+primitive=See Red
+id=439769
+rarity=U
+[/card]
+[card]
+primitive=Shake the Foundations
+id=439770
+rarity=U
+[/card]
+[card]
+primitive=Shatter
+id=439771
+rarity=C
+[/card]
+[card]
+primitive=Silverclad Ferocidons
+id=439772
+rarity=R
+[/card]
+[card]
+primitive=Stampeding Horncrest
+id=439773
+rarity=C
+[/card]
+[card]
+primitive=Storm Fleet Swashbuckler
+id=439774
+rarity=U
+[/card]
+[card]
+primitive=Sun-Collared Raptor
+id=439775
+rarity=C
+[/card]
+[card]
+primitive=Swaggering Corsair
+id=439776
+rarity=C
+[/card]
+[card]
+primitive=Tilonalli's Crown
+id=439777
+rarity=C
+[/card]
+[card]
+primitive=Tilonalli's Summoner
+id=439778
+rarity=R
+[/card]
+[card]
+primitive=Aggressive Urge
+id=439779
+rarity=C
+[/card]
+[card]
+primitive=Cacophodon
+id=439780
+rarity=U
+[/card]
+[card]
+primitive=Cherished Hatchling
+id=439781
+rarity=U
+[/card]
+[card]
+primitive=Colossal Dreadmaw
+id=439782
+rarity=C
+[/card]
+[card]
+primitive=Crested Herdcaller
+id=439783
+rarity=U
+[/card]
+[card]
+primitive=Deeproot Elite
+id=439784
+rarity=R
+[/card]
+[card]
+primitive=Enter the Unknown
+id=439785
+rarity=U
+[/card]
+[card]
+primitive=Forerunner of the Heralds
+id=439786
+rarity=U
+[/card]
+[card]
+primitive=Ghalta, Primal Hunger
+id=439787
+rarity=R
+[/card]
+[card]
+primitive=Giltgrove Stalker
+id=439788
+rarity=C
+[/card]
+[card]
+primitive=Hardy Veteran
+id=439789
+rarity=C
+[/card]
+[card]
+primitive=Hunt the Weak
+id=439790
+rarity=C
+[/card]
+[card]
+primitive=Jade Bearer
+id=439791
+rarity=C
+[/card]
+[card]
+primitive=Jadecraft Artisan
+id=439792
+rarity=C
+[/card]
+[card]
+primitive=Jadelight Ranger
+id=439793
+rarity=R
+[/card]
+[card]
+primitive=Jungleborn Pioneer
+id=439794
+rarity=C
+[/card]
+[card]
+primitive=Knight of the Stampede
+id=439795
+rarity=C
+[/card]
+[card]
+primitive=Naturalize
+id=439796
+rarity=C
+[/card]
+[card]
+primitive=Orazca Frillback
+id=439797
+rarity=C
+[/card]
+[card]
+primitive=Overgrown Armasaur
+id=439798
+rarity=C
+[/card]
+[card]
+primitive=Path of Discovery
+id=439799
+rarity=R
+[/card]
+[card]
+primitive=Plummet
+id=439800
+rarity=C
+[/card]
+[card]
+primitive=Polyraptor
+id=439801
+rarity=M
+[/card]
+[card]
+primitive=Strength of the Pack
+id=439802
+rarity=U
+[/card]
+[card]
+primitive=Swift Warden
+id=439803
+rarity=U
+[/card]
+[card]
+primitive=Tendershoot Dryad
+id=439804
+rarity=R
+[/card]
+[card]
+primitive=Thrashing Brontodon
+id=439805
+rarity=U
+[/card]
+[card]
+primitive=Thunderherd Migration
+id=439806
+rarity=U
+[/card]
+[card]
+primitive=Wayward Swordtooth
+id=439807
+rarity=R
+[/card]
+[card]
+primitive=World Shaper
+id=439808
+rarity=R
+[/card]
+[card]
+primitive=Angrath, the Flame-Chained
+id=439809
+rarity=M
+[/card]
+[card]
+primitive=Atzocan Seer
+id=439810
+rarity=U
+[/card]
+[card]
+primitive=Azor, the Lawbringer
+id=439811
+rarity=M
+[/card]
+[card]
+primitive=Deadeye Brawler
+id=439812
+rarity=U
+[/card]
+[card]
+primitive=Dire Fleet Neckbreaker
+id=439813
+rarity=U
+[/card]
+[card]
+primitive=Elenda, the Dusk Rose
+id=439814
+rarity=M
+[/card]
+[card]
+primitive=Winged Temple of Orazca
+id=439816
+rarity=R
+[/card]
+[card]
+primitive=Hadana's Climb
+id=439815
+rarity=R
+[/card]
+[card]
+primitive=Huatli, Radiant Champion
+id=439817
+rarity=M
+[/card]
+[card]
+primitive=Atzal, Cave of Eternity
+id=439819
+rarity=R
+[/card]
+[card]
+primitive=Journey to Eternity
+id=439818
+rarity=R
+[/card]
+[card]
+primitive=Jungle Creeper
+id=439820
+rarity=U
+[/card]
+[card]
+primitive=Kumena, Tyrant of Orazca
+id=439821
+rarity=M
+[/card]
+[card]
+primitive=Legion Lieutenant
+id=439822
+rarity=U
+[/card]
+[card]
+primitive=Merfolk Mistbinder
+id=439823
+rarity=U
+[/card]
+[card]
+primitive=Metzali, Tower of Triumph
+id=439825
+rarity=R
+[/card]
+[card]
+primitive=Path of Mettle
+id=439824
+rarity=R
+[/card]
+[card]
+primitive=Tomb of the Dusk Rose
+id=439827
+rarity=R
+[/card]
+[card]
+primitive=Profane Procession
+id=439826
+rarity=R
+[/card]
+[card]
+primitive=Protean Raider
+id=439828
+rarity=R
+[/card]
+[card]
+primitive=Raging Regisaur
+id=439829
+rarity=U
+[/card]
+[card]
+primitive=Relentless Raptor
+id=439830
+rarity=U
+[/card]
+[card]
+primitive=Resplendent Griffin
+id=439831
+rarity=U
+[/card]
+[card]
+primitive=Siegehorn Ceratops
+id=439832
+rarity=R
+[/card]
+[card]
+primitive=Storm Fleet Sprinter
+id=439833
+rarity=U
+[/card]
+[card]
+primitive=Vault of Catlacan
+id=439835
+rarity=R
+[/card]
+[card]
+primitive=Storm the Vault
+id=439834
+rarity=R
+[/card]
+[card]
+primitive=Zacama, Primal Calamity
+id=439836
+rarity=M
+[/card]
+[card]
+primitive=Awakened Amalgam
+id=439837
+rarity=R
+[/card]
+[card]
+primitive=Sanctum of the Sun
+id=439839
+rarity=M
+[/card]
+[card]
+primitive=Azor's Gateway
+id=439838
+rarity=M
+[/card]
+[card]
+primitive=Captain's Hook
+id=439840
+rarity=R
+[/card]
+[card]
+primitive=Gleaming Barrier
+id=439841
+rarity=C
+[/card]
+[card]
+primitive=Gold-Forge Garrison
+id=439843
+rarity=R
+[/card]
+[card]
+primitive=Golden Guardian
+id=439842
+rarity=R
+[/card]
+[card]
+primitive=The Immortal Sun
+id=439844
+rarity=M
+[/card]
+[card]
+primitive=Orazca Relic
+id=439845
+rarity=C
+[/card]
+[card]
+primitive=Silent Gravestone
+id=439846
+rarity=R
+[/card]
+[card]
+primitive=Strider Harness
+id=439847
+rarity=C
+[/card]
+[card]
+primitive=Traveler's Amulet
+id=439848
+rarity=C
+[/card]
+[card]
+primitive=Arch of Orazca
+id=439849
+rarity=R
+[/card]
+[card]
+primitive=Evolving Wilds
+id=439850
+rarity=C
+[/card]
+[card]
+primitive=Forsaken Sanctuary
+id=439851
+rarity=U
+[/card]
+[card]
+primitive=Foul Orchard
+id=439852
+rarity=U
+[/card]
+[card]
+primitive=Highland Lake
+id=439853
+rarity=U
+[/card]
+[card]
+primitive=Stone Quarry
+id=439854
+rarity=U
+[/card]
+[card]
+primitive=Woodland Stream
+id=439855
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=439856
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=439857
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=439858
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=439859
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=439860
+rarity=L
+[/card]
+[card]
+primitive=Vraska, Scheming Gorgon
+id=441891
+rarity=M
+[/card]
+[card]
+primitive=Vampire Champion
+id=441892
+rarity=C
+[/card]
+[card]
+primitive=Vraska's Conquistador
+id=441893
+rarity=U
+[/card]
+[card]
+primitive=Vraska's Scorn
+id=441894
+rarity=R
+[/card]
+[card]
+primitive=Angrath, Minotaur Pirate
+id=441895
+rarity=M
+[/card]
+[card]
+primitive=Angrath's Ambusher
+id=441896
+rarity=U
+[/card]
+[card]
+primitive=Swab Goblin
+id=441897
+rarity=C
+[/card]
+[card]
+primitive=Angrath's Fury
+id=441898
+rarity=R
+[/card]
+[card]
+primitive=Cinder Barrens
+id=441899
+rarity=C
+[/card]

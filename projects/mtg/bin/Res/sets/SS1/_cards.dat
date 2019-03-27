@@ -1,0 +1,46 @@
+[meta]
+author=Wagic Team
+name=Signature Spellbook: Jace
+year=2018-06-15
+total=8
+[/meta]
+[card]
+primitive=Jace Beleren
+id=447129
+rarity=M
+[/card]
+[card]
+primitive=Blue Elemental Blast
+id=447130
+rarity=R
+[/card]
+[card]
+primitive=Brainstorm
+id=447131
+rarity=R
+[/card]
+[card]
+primitive=Counterspell
+id=447132
+rarity=R
+[/card]
+[card]
+primitive=Gifts Ungiven
+id=447133
+rarity=R
+[/card]
+[card]
+primitive=Mystical Tutor
+id=447134
+rarity=R
+[/card]
+[card]
+primitive=Negate
+id=447135
+rarity=R
+[/card]
+[card]
+primitive=Threads of Disloyalty
+id=447136
+rarity=R
+[/card]

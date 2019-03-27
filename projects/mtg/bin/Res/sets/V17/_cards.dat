@@ -1,0 +1,151 @@
+[meta]
+author=Wagic Team
+name=From the Vault: Transform
+year=2017-11-24
+total=16
+[/meta]
+[card]
+primitive=Avacyn, the Purifier
+id=439315
+rarity=T
+[/card]
+[card]
+primitive=Archangel Avacyn
+id=439314
+rarity=M
+[/card]
+[card]
+primitive=Temple of Aclazotz
+id=439317
+rarity=T
+[/card]
+[card]
+primitive=Arguel's Blood Fast
+id=439316
+rarity=M
+[/card]
+[card]
+primitive=Arlinn, Embraced by the Moon
+id=439319
+rarity=T
+[/card]
+[card]
+primitive=Arlinn Kord
+id=439318
+rarity=M
+[/card]
+[card]
+primitive=Lord of Lineage
+id=439321
+rarity=T
+[/card]
+[card]
+primitive=Bloodline Keeper
+id=439320
+rarity=M
+[/card]
+[card]
+primitive=Bruna, the Fading Light
+id=439322
+rarity=M
+[/card]
+[card]
+primitive=Brisela, Voice of Nightmares
+id=439323
+rarity=T
+[/card]
+[card]
+primitive=Chandra, Roaring Flame
+id=439325
+rarity=T
+[/card]
+[card]
+primitive=Chandra, Fire of Kaladesh
+id=439324
+rarity=M
+[/card]
+[card]
+primitive=Insectile Aberration
+id=439327
+rarity=T
+[/card]
+[card]
+primitive=Delver of Secrets
+id=439326
+rarity=M
+[/card]
+[card]
+primitive=Withengar Unbound
+id=439329
+rarity=T
+[/card]
+[card]
+primitive=Elbrus, the Binding Blade
+id=439328
+rarity=M
+[/card]
+[card]
+primitive=Garruk, the Veil-Cursed
+id=439331
+rarity=T
+[/card]
+[card]
+primitive=Garruk Relentless
+id=439330
+rarity=M
+[/card]
+[card]
+primitive=Gisela, the Broken Blade
+id=439332
+rarity=M
+[/card]
+[card]
+primitive=Ravager of the Fells
+id=439334
+rarity=T
+[/card]
+[card]
+primitive=Huntmaster of the Fells
+id=439333
+rarity=M
+[/card]
+[card]
+primitive=Jace, Telepath Unbound
+id=439336
+rarity=T
+[/card]
+[card]
+primitive=Jace, Vryn's Prodigy
+id=439335
+rarity=M
+[/card]
+[card]
+primitive=Gideon, Battle-Forged
+id=439338
+rarity=T
+[/card]
+[card]
+primitive=Kytheon, Hero of Akros
+id=439337
+rarity=M
+[/card]
+[card]
+primitive=Liliana, Defiant Necromancer
+id=439340
+rarity=T
+[/card]
+[card]
+primitive=Liliana, Heretical Healer
+id=439339
+rarity=M
+[/card]
+[card]
+primitive=Nissa, Sage Animist
+id=439342
+rarity=T
+[/card]
+[card]
+primitive=Nissa, Vastwood Seer
+id=439341
+rarity=M
+[/card]

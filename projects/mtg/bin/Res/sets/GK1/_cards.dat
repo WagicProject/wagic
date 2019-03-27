@@ -1,0 +1,646 @@
+[meta]
+author=Wagic Team
+name=GRN Guild Kit
+year=2018-11-02
+total=127
+[/meta]
+[card]
+primitive=Etrata, the Silencer
+id=455904
+rarity=R
+[/card]
+[card]
+primitive=Stolen Identity
+id=455905
+rarity=R
+[/card]
+[card]
+primitive=Syncopate
+id=455906
+rarity=U
+[/card]
+[card]
+primitive=Telling Time
+id=455907
+rarity=U
+[/card]
+[card]
+primitive=Last Gasp
+id=455908
+rarity=C
+[/card]
+[card]
+primitive=Netherborn Phalanx
+id=455909
+rarity=U
+[/card]
+[card]
+primitive=Ribbons of Night
+id=455910
+rarity=U
+[/card]
+[card]
+primitive=Call of the Nightwing
+id=455911
+rarity=U
+[/card]
+[card]
+primitive=Circu, Dimir Lobotomist
+id=455912
+rarity=R
+[/card]
+[card]
+primitive=Consuming Aberration
+id=455913
+rarity=R
+[/card]
+[card]
+primitive=Dimir Charm
+id=455914
+rarity=U
+[/card]
+[card]
+primitive=Dimir Doppelganger
+id=455915
+rarity=R
+[/card]
+[card]
+primitive=Dimir Guildmage
+id=455916
+rarity=U
+[/card]
+[card]
+primitive=Dinrova Horror
+id=455917
+rarity=U
+[/card]
+[card]
+primitive=Glimpse the Unthinkable
+id=455918
+rarity=R
+[/card]
+[card]
+primitive=Lazav, Dimir Mastermind
+id=455919
+rarity=M
+[/card]
+[card]
+primitive=Mirko Vosk, Mind Drinker
+id=455920
+rarity=R
+[/card]
+[card]
+primitive=Moroii
+id=455921
+rarity=U
+[/card]
+[card]
+primitive=Nightveil Specter
+id=455922
+rarity=R
+[/card]
+[card]
+primitive=Szadek, Lord of Secrets
+id=455923
+rarity=R
+[/card]
+[card]
+primitive=Warped Physique
+id=455924
+rarity=U
+[/card]
+[card]
+primitive=Dimir Signet
+id=455925
+rarity=C
+[/card]
+[card]
+primitive=Dimir Aqueduct
+id=455926
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=455927
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=455928
+rarity=L
+[/card]
+[card]
+primitive=Niv-Mizzet, the Firemind
+id=456216
+rarity=R
+[/card]
+[card]
+primitive=Thunderheads
+id=456217
+rarity=U
+[/card]
+[card]
+primitive=Char
+id=456218
+rarity=R
+[/card]
+[card]
+primitive=Electrickery
+id=456219
+rarity=C
+[/card]
+[card]
+primitive=Goblin Rally
+id=456220
+rarity=U
+[/card]
+[card]
+primitive=Guttersnipe
+id=456221
+rarity=U
+[/card]
+[card]
+primitive=Mizzium Mortars
+id=456222
+rarity=R
+[/card]
+[card]
+primitive=Pyromatics
+id=456223
+rarity=C
+[/card]
+[card]
+primitive=Shattering Spree
+id=456224
+rarity=U
+[/card]
+[card]
+primitive=Cerebral Vortex
+id=456225
+rarity=R
+[/card]
+[card]
+primitive=Djinn Illuminatus
+id=456226
+rarity=R
+[/card]
+[card]
+primitive=Electrolyze
+id=456227
+rarity=U
+[/card]
+[card]
+primitive=Gelectrode
+id=456228
+rarity=U
+[/card]
+[card]
+primitive=Hypersonic Dragon
+id=456229
+rarity=R
+[/card]
+[card]
+primitive=Invoke the Firemind
+id=456230
+rarity=R
+[/card]
+[card]
+primitive=Izzet Charm
+id=456231
+rarity=U
+[/card]
+[card]
+primitive=Nivix Guildmage
+id=456232
+rarity=U
+[/card]
+[card]
+primitive=Stitch in Time
+id=456233
+rarity=R
+[/card]
+[card]
+primitive=Tibor and Lumia
+id=456234
+rarity=R
+[/card]
+[card]
+primitive=Burn
+id=456235
+rarity=U
+[/card]
+[card]
+primitive=Turn
+id=456235
+rarity=U
+[/card]
+[card]
+primitive=Izzet Signet
+id=456236
+rarity=C
+[/card]
+[card]
+primitive=Izzet Boilerworks
+id=456237
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=456238
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=456239
+rarity=L
+[/card]
+[card]
+primitive=Izoni, Thousand-Eyed
+id=456054
+rarity=R
+[/card]
+[card]
+primitive=Darkblast
+id=456055
+rarity=U
+[/card]
+[card]
+primitive=Slum Reaper
+id=456056
+rarity=U
+[/card]
+[card]
+primitive=Stinkweed Imp
+id=456057
+rarity=C
+[/card]
+[card]
+primitive=Vigor Mortis
+id=456058
+rarity=U
+[/card]
+[card]
+primitive=Deadbridge Goliath
+id=456059
+rarity=R
+[/card]
+[card]
+primitive=Elves of Deep Shadow
+id=456060
+rarity=C
+[/card]
+[card]
+primitive=Abrupt Decay
+id=456061
+rarity=R
+[/card]
+[card]
+primitive=Deadbridge Chant
+id=456062
+rarity=M
+[/card]
+[card]
+primitive=Deathrite Shaman
+id=456063
+rarity=R
+[/card]
+[card]
+primitive=Drown in Filth
+id=456064
+rarity=C
+[/card]
+[card]
+primitive=Gaze of Granite
+id=456065
+rarity=R
+[/card]
+[card]
+primitive=Golgari Charm
+id=456066
+rarity=U
+[/card]
+[card]
+primitive=Grave-Shell Scarab
+id=456067
+rarity=R
+[/card]
+[card]
+primitive=Grisly Salvage
+id=456068
+rarity=C
+[/card]
+[card]
+primitive=Jarad, Golgari Lich Lord
+id=456069
+rarity=M
+[/card]
+[card]
+primitive=Korozda Guildmage
+id=456070
+rarity=U
+[/card]
+[card]
+primitive=Lotleth Troll
+id=456071
+rarity=R
+[/card]
+[card]
+primitive=Putrefy
+id=456072
+rarity=U
+[/card]
+[card]
+primitive=Savra, Queen of the Golgari
+id=456073
+rarity=R
+[/card]
+[card]
+primitive=Shambling Shell
+id=456074
+rarity=C
+[/card]
+[card]
+primitive=Sisters of Stone Death
+id=456075
+rarity=R
+[/card]
+[card]
+primitive=Treasured Find
+id=456076
+rarity=U
+[/card]
+[card]
+primitive=Golgari Signet
+id=456077
+rarity=C
+[/card]
+[card]
+primitive=Golgari Rot Farm
+id=456078
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=456079
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=456080
+rarity=L
+[/card]
+[card]
+primitive=Aurelia, the Warleader
+id=455754
+rarity=M
+[/card]
+[card]
+primitive=Boros Elite
+id=455755
+rarity=U
+[/card]
+[card]
+primitive=Daring Skyjek
+id=455756
+rarity=C
+[/card]
+[card]
+primitive=Bomber Corps
+id=455757
+rarity=C
+[/card]
+[card]
+primitive=Frenzied Goblin
+id=455758
+rarity=U
+[/card]
+[card]
+primitive=Legion Loyalist
+id=455759
+rarity=R
+[/card]
+[card]
+primitive=Agrus Kos, Wojek Veteran
+id=455760
+rarity=R
+[/card]
+[card]
+primitive=Boros Charm
+id=455761
+rarity=U
+[/card]
+[card]
+primitive=Boros Reckoner
+id=455762
+rarity=R
+[/card]
+[card]
+primitive=Boros Swiftblade
+id=455763
+rarity=U
+[/card]
+[card]
+primitive=Brightflame
+id=455764
+rarity=R
+[/card]
+[card]
+primitive=Firemane Angel
+id=455765
+rarity=R
+[/card]
+[card]
+primitive=Firemane Avenger
+id=455766
+rarity=R
+[/card]
+[card]
+primitive=Lightning Helix
+id=455767
+rarity=U
+[/card]
+[card]
+primitive=Martial Glory
+id=455768
+rarity=C
+[/card]
+[card]
+primitive=Master Warcraft
+id=455769
+rarity=R
+[/card]
+[card]
+primitive=Razia, Boros Archangel
+id=455770
+rarity=R
+[/card]
+[card]
+primitive=Spark Trooper
+id=455771
+rarity=R
+[/card]
+[card]
+primitive=Sunhome Guildmage
+id=455772
+rarity=U
+[/card]
+[card]
+primitive=Boros Keyrune
+id=455773
+rarity=U
+[/card]
+[card]
+primitive=Boros Signet
+id=455774
+rarity=C
+[/card]
+[card]
+primitive=Boros Garrison
+id=455775
+rarity=C
+[/card]
+[card]
+primitive=Sunhome, Fortress of the Legion
+id=455776
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=455777
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=455778
+rarity=L
+[/card]
+[card]
+primitive=Trostani, Selesnya's Voice
+id=456360
+rarity=M
+[/card]
+[card]
+primitive=Devouring Light
+id=456361
+rarity=U
+[/card]
+[card]
+primitive=Hour of Reckoning
+id=456362
+rarity=R
+[/card]
+[card]
+primitive=Gather Courage
+id=456363
+rarity=C
+[/card]
+[card]
+primitive=Scatter the Seeds
+id=456364
+rarity=C
+[/card]
+[card]
+primitive=Advent of the Wurm
+id=456365
+rarity=R
+[/card]
+[card]
+primitive=Armada Wurm
+id=456366
+rarity=M
+[/card]
+[card]
+primitive=Call of the Conclave
+id=456367
+rarity=U
+[/card]
+[card]
+primitive=Centaur Healer
+id=456368
+rarity=C
+[/card]
+[card]
+primitive=Dryad Militant
+id=456369
+rarity=U
+[/card]
+[card]
+primitive=Glare of Subdual
+id=456370
+rarity=R
+[/card]
+[card]
+primitive=Growing Ranks
+id=456371
+rarity=R
+[/card]
+[card]
+primitive=Loxodon Hierarch
+id=456372
+rarity=R
+[/card]
+[card]
+primitive=Pollenbright Wings
+id=456373
+rarity=U
+[/card]
+[card]
+primitive=Privileged Position
+id=456374
+rarity=R
+[/card]
+[card]
+primitive=Selesnya Charm
+id=456375
+rarity=U
+[/card]
+[card]
+primitive=Selesnya Evangel
+id=456376
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Guildmage
+id=456377
+rarity=U
+[/card]
+[card]
+primitive=Sundering Growth
+id=456378
+rarity=C
+[/card]
+[card]
+primitive=Tolsimir Wolfblood
+id=456379
+rarity=R
+[/card]
+[card]
+primitive=Watchwolf
+id=456380
+rarity=U
+[/card]
+[card]
+primitive=Selesnya Signet
+id=456381
+rarity=C
+[/card]
+[card]
+primitive=Grove of the Guardian
+id=456382
+rarity=R
+[/card]
+[card]
+primitive=Selesnya Sanctuary
+id=456383
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=456384
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=456385
+rarity=L
+[/card]

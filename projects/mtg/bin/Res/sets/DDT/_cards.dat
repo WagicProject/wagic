@@ -1,0 +1,321 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Merfolk vs. Goblins
+year=2017-10-24
+total=63
+[/meta]
+[card]
+primitive=Master of Waves
+id=438441
+rarity=M
+[/card]
+[card]
+primitive=Aquitect's Will
+id=438442
+rarity=C
+[/card]
+[card]
+primitive=Claustrophobia
+id=438443
+rarity=C
+[/card]
+[card]
+primitive=Concentrate
+id=438444
+rarity=U
+[/card]
+[card]
+primitive=Engulf the Shore
+id=438445
+rarity=R
+[/card]
+[card]
+primitive=Essence Scatter
+id=438446
+rarity=C
+[/card]
+[card]
+primitive=Harbinger of the Tides
+id=438447
+rarity=R
+[/card]
+[card]
+primitive=Inkfathom Divers
+id=438448
+rarity=C
+[/card]
+[card]
+primitive=Master of the Pearl Trident
+id=438449
+rarity=R
+[/card]
+[card]
+primitive=Merfolk Looter
+id=438450
+rarity=U
+[/card]
+[card]
+primitive=Merfolk Sovereign
+id=438451
+rarity=R
+[/card]
+[card]
+primitive=Merfolk Wayfinder
+id=438452
+rarity=U
+[/card]
+[card]
+primitive=Merrow Reejerey
+id=438453
+rarity=U
+[/card]
+[card]
+primitive=Mind Spring
+id=438454
+rarity=R
+[/card]
+[card]
+primitive=Misdirection
+id=438455
+rarity=R
+[/card]
+[card]
+primitive=Rootwater Hunter
+id=438456
+rarity=U
+[/card]
+[card]
+primitive=Scroll Thief
+id=438457
+rarity=C
+[/card]
+[card]
+primitive=Streambed Aquitects
+id=438458
+rarity=C
+[/card]
+[card]
+primitive=Tidal Courier
+id=438459
+rarity=U
+[/card]
+[card]
+primitive=Tidal Warrior
+id=438460
+rarity=C
+[/card]
+[card]
+primitive=Tidal Wave
+id=438461
+rarity=C
+[/card]
+[card]
+primitive=Tidebinder Mage
+id=438462
+rarity=R
+[/card]
+[card]
+primitive=Triton Tactics
+id=438463
+rarity=U
+[/card]
+[card]
+primitive=Wake Thrasher
+id=438464
+rarity=R
+[/card]
+[card]
+primitive=Cold-Eyed Selkie
+id=438465
+rarity=R
+[/card]
+[card]
+primitive=Blighted Cataract
+id=438466
+rarity=U
+[/card]
+[card]
+primitive=Lonely Sandbar
+id=438467
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=438468
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=438469
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=438470
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=438471
+rarity=L
+[/card]
+[card]
+primitive=Warren Instigator
+id=438472
+rarity=M
+[/card]
+[card]
+primitive=Battle Squadron
+id=438473
+rarity=U
+[/card]
+[card]
+primitive=Boggart Brute
+id=438474
+rarity=C
+[/card]
+[card]
+primitive=Brute Strength
+id=438475
+rarity=C
+[/card]
+[card]
+primitive=Cleaver Riot
+id=438476
+rarity=U
+[/card]
+[card]
+primitive=Ember Hauler
+id=438477
+rarity=U
+[/card]
+[card]
+primitive=Foundry Street Denizen
+id=438478
+rarity=C
+[/card]
+[card]
+primitive=Gempalm Incinerator
+id=438479
+rarity=U
+[/card]
+[card]
+primitive=Ghostfire
+id=438480
+rarity=C
+[/card]
+[card]
+primitive=Goblin Chieftain
+id=438481
+rarity=R
+[/card]
+[card]
+primitive=Goblin Diplomats
+id=438482
+rarity=R
+[/card]
+[card]
+primitive=Goblin Glory Chaser
+id=438483
+rarity=U
+[/card]
+[card]
+primitive=Goblin Goon
+id=438484
+rarity=R
+[/card]
+[card]
+primitive=Goblin Grenade
+id=438485
+rarity=U
+[/card]
+[card]
+primitive=Goblin Rabblemaster
+id=438486
+rarity=R
+[/card]
+[card]
+primitive=Goblin Razerunners
+id=438487
+rarity=R
+[/card]
+[card]
+primitive=Goblin Ringleader
+id=438488
+rarity=U
+[/card]
+[card]
+primitive=Goblin Tunneler
+id=438489
+rarity=C
+[/card]
+[card]
+primitive=Goblin Wardriver
+id=438490
+rarity=U
+[/card]
+[card]
+primitive=Hordeling Outburst
+id=438491
+rarity=U
+[/card]
+[card]
+primitive=Krenko, Mob Boss
+id=438492
+rarity=R
+[/card]
+[card]
+primitive=Krenko's Command
+id=438493
+rarity=C
+[/card]
+[card]
+primitive=Relentless Assault
+id=438494
+rarity=R
+[/card]
+[card]
+primitive=Tarfire
+id=438495
+rarity=C
+[/card]
+[card]
+primitive=Brittle Effigy
+id=438496
+rarity=R
+[/card]
+[card]
+primitive=Goblin Charbelcher
+id=438497
+rarity=R
+[/card]
+[card]
+primitive=Blighted Gorge
+id=438498
+rarity=U
+[/card]
+[card]
+primitive=Forgotten Cave
+id=438499
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=438500
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=438501
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=438502
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=438503
+rarity=L
+[/card]

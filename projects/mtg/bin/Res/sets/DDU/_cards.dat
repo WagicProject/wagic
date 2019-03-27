@@ -1,0 +1,386 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Elves vs. Inventors
+year=2018-04-06
+total=76
+[/meta]
+[card]
+primitive=Ezuri, Renegade Leader
+id=442737
+rarity=M
+[/card]
+[card]
+primitive=Dwynen, Gilt-Leaf Daen
+id=442738
+rarity=R
+[/card]
+[card]
+primitive=Dwynen's Elite
+id=442739
+rarity=U
+[/card]
+[card]
+primitive=Elvish Aberration
+id=442740
+rarity=C
+[/card]
+[card]
+primitive=Elvish Archdruid
+id=442741
+rarity=R
+[/card]
+[card]
+primitive=Elvish Branchbender
+id=442742
+rarity=C
+[/card]
+[card]
+primitive=Elvish Mystic
+id=442743
+rarity=C
+[/card]
+[card]
+primitive=Elvish Vanguard
+id=442744
+rarity=C
+[/card]
+[card]
+primitive=Ezuri's Archers
+id=442745
+rarity=C
+[/card]
+[card]
+primitive=Fierce Empath
+id=442746
+rarity=C
+[/card]
+[card]
+primitive=Gladehart Cavalry
+id=442747
+rarity=R
+[/card]
+[card]
+primitive=Ivy Lane Denizen
+id=442748
+rarity=C
+[/card]
+[card]
+primitive=Jagged-Scar Archers
+id=442749
+rarity=U
+[/card]
+[card]
+primitive=Krosan Tusker
+id=442750
+rarity=C
+[/card]
+[card]
+primitive=Kujar Seedsculptor
+id=442751
+rarity=C
+[/card]
+[card]
+primitive=Lead the Stampede
+id=442752
+rarity=C
+[/card]
+[card]
+primitive=Leaf Gilder
+id=442753
+rarity=C
+[/card]
+[card]
+primitive=Llanowar Empath
+id=442754
+rarity=C
+[/card]
+[card]
+primitive=Naturalize
+id=442755
+rarity=C
+[/card]
+[card]
+primitive=Nature's Way
+id=442756
+rarity=U
+[/card]
+[card]
+primitive=Nissa's Judgment
+id=442757
+rarity=U
+[/card]
+[card]
+primitive=Regal Force
+id=442758
+rarity=R
+[/card]
+[card]
+primitive=Sylvan Advocate
+id=442759
+rarity=R
+[/card]
+[card]
+primitive=Talara's Battalion
+id=442760
+rarity=R
+[/card]
+[card]
+primitive=Viridian Shaman
+id=442761
+rarity=U
+[/card]
+[card]
+primitive=Wildheart Invoker
+id=442762
+rarity=C
+[/card]
+[card]
+primitive=Yeva, Nature's Herald
+id=442763
+rarity=R
+[/card]
+[card]
+primitive=Oran-Rief, the Vastwood
+id=442764
+rarity=R
+[/card]
+[card]
+primitive=Tranquil Thicket
+id=442765
+rarity=C
+[/card]
+[card]
+primitive=Treetop Village
+id=442766
+rarity=U
+[/card]
+[card]
+primitive=Forest
+id=442767
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=442768
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=442769
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=442770
+rarity=L
+[/card]
+[card]
+primitive=Goblin Welder
+id=442771
+rarity=M
+[/card]
+[card]
+primitive=Artificer's Epiphany
+id=442772
+rarity=C
+[/card]
+[card]
+primitive=Etherium Sculptor
+id=442773
+rarity=C
+[/card]
+[card]
+primitive=Faerie Mechanist
+id=442774
+rarity=C
+[/card]
+[card]
+primitive=Riddlesmith
+id=442775
+rarity=U
+[/card]
+[card]
+primitive=Treasure Mage
+id=442776
+rarity=U
+[/card]
+[card]
+primitive=Trinket Mage
+id=442777
+rarity=C
+[/card]
+[card]
+primitive=Trophy Mage
+id=442778
+rarity=U
+[/card]
+[card]
+primitive=Whirler Rogue
+id=442779
+rarity=U
+[/card]
+[card]
+primitive=Barrage Ogre
+id=442780
+rarity=U
+[/card]
+[card]
+primitive=Galvanic Blast
+id=442781
+rarity=C
+[/card]
+[card]
+primitive=Ghirapur Gearcrafter
+id=442782
+rarity=C
+[/card]
+[card]
+primitive=Pia and Kiran Nalaar
+id=442783
+rarity=R
+[/card]
+[card]
+primitive=Shrapnel Blast
+id=442784
+rarity=U
+[/card]
+[card]
+primitive=Welding Sparks
+id=442785
+rarity=C
+[/card]
+[card]
+primitive=Maverick Thopterist
+id=442786
+rarity=U
+[/card]
+[card]
+primitive=Reclusive Artificer
+id=442787
+rarity=U
+[/card]
+[card]
+primitive=Darksteel Plate
+id=442788
+rarity=R
+[/card]
+[card]
+primitive=Filigree Familiar
+id=442789
+rarity=U
+[/card]
+[card]
+primitive=Ichor Wellspring
+id=442790
+rarity=C
+[/card]
+[card]
+primitive=Inventor's Goggles
+id=442791
+rarity=C
+[/card]
+[card]
+primitive=Mycosynth Wellspring
+id=442792
+rarity=C
+[/card]
+[card]
+primitive=Myr Battlesphere
+id=442793
+rarity=R
+[/card]
+[card]
+primitive=Myr Sire
+id=442794
+rarity=C
+[/card]
+[card]
+primitive=Neurok Replica
+id=442795
+rarity=C
+[/card]
+[card]
+primitive=Pyrite Spellbomb
+id=442796
+rarity=C
+[/card]
+[card]
+primitive=Scuttling Doom Engine
+id=442797
+rarity=R
+[/card]
+[card]
+primitive=Solemn Simulacrum
+id=442798
+rarity=R
+[/card]
+[card]
+primitive=Thopter Assembly
+id=442799
+rarity=R
+[/card]
+[card]
+primitive=Voyager Staff
+id=442800
+rarity=U
+[/card]
+[card]
+primitive=Darksteel Citadel
+id=442801
+rarity=U
+[/card]
+[card]
+primitive=Foundry of the Consuls
+id=442802
+rarity=U
+[/card]
+[card]
+primitive=Great Furnace
+id=442803
+rarity=C
+[/card]
+[card]
+primitive=Phyrexia's Core
+id=442804
+rarity=U
+[/card]
+[card]
+primitive=Seat of the Synod
+id=442805
+rarity=C
+[/card]
+[card]
+primitive=Shivan Reef
+id=442806
+rarity=R
+[/card]
+[card]
+primitive=Swiftwater Cliffs
+id=442807
+rarity=C
+[/card]
+[card]
+primitive=Temple of Epiphany
+id=442808
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=442809
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=442810
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=442811
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=442812
+rarity=L
+[/card]

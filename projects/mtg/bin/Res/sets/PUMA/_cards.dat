@@ -1,0 +1,206 @@
+[meta]
+author=Wagic Team
+name=Ultimate Box Topper
+year=2018-12-07
+total=40
+[/meta]
+[card]
+primitive=Emrakul, the Aeons Torn
+id=457105
+rarity=M
+[/card]
+[card]
+primitive=Karn Liberated
+id=457106
+rarity=M
+[/card]
+[card]
+primitive=Kozilek, Butcher of Truth
+id=457107
+rarity=M
+[/card]
+[card]
+primitive=Ulamog, the Infinite Gyre
+id=457108
+rarity=M
+[/card]
+[card]
+primitive=Snapcaster Mage
+id=457109
+rarity=M
+[/card]
+[card]
+primitive=Temporal Manipulation
+id=457110
+rarity=M
+[/card]
+[card]
+primitive=Bitterblossom
+id=457111
+rarity=M
+[/card]
+[card]
+primitive=Demonic Tutor
+id=457112
+rarity=M
+[/card]
+[card]
+primitive=Goryo's Vengeance
+id=457113
+rarity=M
+[/card]
+[card]
+primitive=Liliana of the Veil
+id=457114
+rarity=M
+[/card]
+[card]
+primitive=Mikaeus, the Unhallowed
+id=457115
+rarity=M
+[/card]
+[card]
+primitive=Reanimate
+id=457116
+rarity=M
+[/card]
+[card]
+primitive=Tasigur, the Golden Fang
+id=457117
+rarity=M
+[/card]
+[card]
+primitive=Balefire Dragon
+id=457118
+rarity=M
+[/card]
+[card]
+primitive=Through the Breach
+id=457119
+rarity=M
+[/card]
+[card]
+primitive=Eternal Witness
+id=457120
+rarity=M
+[/card]
+[card]
+primitive=Life from the Loam
+id=457121
+rarity=M
+[/card]
+[card]
+primitive=Noble Hierarch
+id=457122
+rarity=M
+[/card]
+[card]
+primitive=Tarmogoyf
+id=457123
+rarity=M
+[/card]
+[card]
+primitive=Vengevine
+id=457124
+rarity=M
+[/card]
+[card]
+primitive=Gaddock Teeg
+id=457125
+rarity=M
+[/card]
+[card]
+primitive=Leovold, Emissary of Trest
+id=457126
+rarity=M
+[/card]
+[card]
+primitive=Lord of Extinction
+id=457127
+rarity=M
+[/card]
+[card]
+primitive=Maelstrom Pulse
+id=457128
+rarity=M
+[/card]
+[card]
+primitive=Sigarda, Host of Herons
+id=457129
+rarity=M
+[/card]
+[card]
+primitive=Fulminator Mage
+id=457130
+rarity=M
+[/card]
+[card]
+primitive=Kitchen Finks
+id=457131
+rarity=M
+[/card]
+[card]
+primitive=Engineered Explosives
+id=457132
+rarity=M
+[/card]
+[card]
+primitive=Mana Vault
+id=457133
+rarity=M
+[/card]
+[card]
+primitive=Platinum Emperion
+id=457134
+rarity=M
+[/card]
+[card]
+primitive=Ancient Tomb
+id=457135
+rarity=M
+[/card]
+[card]
+primitive=Cavern of Souls
+id=457136
+rarity=M
+[/card]
+[card]
+primitive=Celestial Colonnade
+id=457137
+rarity=M
+[/card]
+[card]
+primitive=Creeping Tar Pit
+id=457138
+rarity=M
+[/card]
+[card]
+primitive=Dark Depths
+id=457139
+rarity=M
+[/card]
+[card]
+primitive=Karakas
+id=457140
+rarity=M
+[/card]
+[card]
+primitive=Lavaclaw Reaches
+id=457141
+rarity=M
+[/card]
+[card]
+primitive=Raging Ravine
+id=457142
+rarity=M
+[/card]
+[card]
+primitive=Stirring Wildwood
+id=457143
+rarity=M
+[/card]
+[card]
+primitive=Urborg, Tomb of Yawgmoth
+id=457144
+rarity=M
+[/card]

@@ -1,0 +1,276 @@
+[meta]
+author=Wagic Team
+name=Amonkhet Invocations
+year=2017-04-28
+total=54
+[/meta]
+[card]
+primitive=Austere Command
+id=429860
+rarity=M
+[/card]
+[card]
+primitive=Aven Mindcensor
+id=429861
+rarity=M
+[/card]
+[card]
+primitive=Containment Priest
+id=429862
+rarity=M
+[/card]
+[card]
+primitive=Loyal Retainers
+id=429863
+rarity=M
+[/card]
+[card]
+primitive=Oketra the True
+id=429864
+rarity=M
+[/card]
+[card]
+primitive=Worship
+id=429865
+rarity=M
+[/card]
+[card]
+primitive=Wrath of God
+id=429866
+rarity=M
+[/card]
+[card]
+primitive=Consecrated Sphinx
+id=429867
+rarity=M
+[/card]
+[card]
+primitive=Counterbalance
+id=429868
+rarity=M
+[/card]
+[card]
+primitive=Counterspell
+id=429869
+rarity=M
+[/card]
+[card]
+primitive=Cryptic Command
+id=429870
+rarity=M
+[/card]
+[card]
+primitive=Daze
+id=429871
+rarity=M
+[/card]
+[card]
+primitive=Divert
+id=429872
+rarity=M
+[/card]
+[card]
+primitive=Force of Will
+id=429873
+rarity=M
+[/card]
+[card]
+primitive=Kefnet the Mindful
+id=429874
+rarity=M
+[/card]
+[card]
+primitive=Pact of Negation
+id=429875
+rarity=M
+[/card]
+[card]
+primitive=Spell Pierce
+id=429876
+rarity=M
+[/card]
+[card]
+primitive=Stifle
+id=429877
+rarity=M
+[/card]
+[card]
+primitive=Attrition
+id=429878
+rarity=M
+[/card]
+[card]
+primitive=Bontu the Glorified
+id=429879
+rarity=M
+[/card]
+[card]
+primitive=Dark Ritual
+id=429880
+rarity=M
+[/card]
+[card]
+primitive=Diabolic Intent
+id=429881
+rarity=M
+[/card]
+[card]
+primitive=Entomb
+id=429882
+rarity=M
+[/card]
+[card]
+primitive=Mind Twist
+id=429883
+rarity=M
+[/card]
+[card]
+primitive=Aggravated Assault
+id=429884
+rarity=M
+[/card]
+[card]
+primitive=Chain Lightning
+id=429885
+rarity=M
+[/card]
+[card]
+primitive=Hazoret the Fervent
+id=429886
+rarity=M
+[/card]
+[card]
+primitive=Rhonas the Indomitable
+id=429887
+rarity=M
+[/card]
+[card]
+primitive=Maelstrom Pulse
+id=429888
+rarity=M
+[/card]
+[card]
+primitive=Vindicate
+id=429889
+rarity=M
+[/card]
+[card]
+primitive=Armageddon
+id=430666
+rarity=M
+[/card]
+[card]
+primitive=Capsize
+id=430667
+rarity=M
+[/card]
+[card]
+primitive=Forbid
+id=430668
+rarity=M
+[/card]
+[card]
+primitive=Omniscience
+id=430669
+rarity=M
+[/card]
+[card]
+primitive=Opposition
+id=430670
+rarity=M
+[/card]
+[card]
+primitive=Sunder
+id=430671
+rarity=M
+[/card]
+[card]
+primitive=Threads of Disloyalty
+id=430672
+rarity=M
+[/card]
+[card]
+primitive=Avatar of Woe
+id=430673
+rarity=M
+[/card]
+[card]
+primitive=Damnation
+id=430674
+rarity=M
+[/card]
+[card]
+primitive=Desolation Angel
+id=430675
+rarity=M
+[/card]
+[card]
+primitive=Diabolic Edict
+id=430676
+rarity=M
+[/card]
+[card]
+primitive=Doomsday
+id=430677
+rarity=M
+[/card]
+[card]
+primitive=No Mercy
+id=430678
+rarity=M
+[/card]
+[card]
+primitive=Slaughter Pact
+id=430679
+rarity=M
+[/card]
+[card]
+primitive=Thoughtseize
+id=430680
+rarity=M
+[/card]
+[card]
+primitive=Blood Moon
+id=430681
+rarity=M
+[/card]
+[card]
+primitive=Boil
+id=430682
+rarity=M
+[/card]
+[card]
+primitive=Shatterstorm
+id=430683
+rarity=M
+[/card]
+[card]
+primitive=Through the Breach
+id=430684
+rarity=M
+[/card]
+[card]
+primitive=Choke
+id=430685
+rarity=M
+[/card]
+[card]
+primitive=The Locust God
+id=430686
+rarity=M
+[/card]
+[card]
+primitive=Lord of Extinction
+id=430687
+rarity=M
+[/card]
+[card]
+primitive=The Scarab God
+id=430688
+rarity=M
+[/card]
+[card]
+primitive=The Scorpion God
+id=430689
+rarity=M
+[/card]
