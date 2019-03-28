@@ -44,7 +44,9 @@
     <target name="update" description="Updates the AndroidManifest and Wagic_Version.h with the current version information">
         <antcall target="build.maemo.changelog"/>
         <antcall target="build.wagic.header"/>
-        <antcall target="update.android.manifest"/>
+        <!-- <antcall target="update.android.manifest"/> -->
+		<!-- ~rpw temporary removed because groovy doesnt play well with java 8, gives error
+			java.lang.NoClassDefFoundError: [Ljava/util/HashMap$Entry; -->
     </target>
 
     <target name="update.android.manifest" description="Updates the AndroidManifest.xml with the current version information">
