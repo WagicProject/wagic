@@ -20,24 +20,16 @@ echo RELEASE_NAME = $RELEASE_NAME
 
 
 # updating versions with the TRAVIS build numbers
-echo changing dir 1
 cd projects/mtg/
-echo ant updating
 ant update > error.txt
-#ant -v update
-echo changing dir 2
 cd ../..
 
 # we create resource package
-echo changing dir 3
 cd projects/mtg/bin/Res
-echo creating resources zip
 python createResourceZip.py
 # if we let the zip here, Wagic will use it in the testsuite
 # and we'll get 51 failed test cases
-echo moving core zip
 mv core_*.zip ../../../../core.zip
-echo changing dir 4
 cd ../../../..
 
 # we're building a PSP binary here
