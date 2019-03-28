@@ -23,7 +23,8 @@ echo RELEASE_NAME = $RELEASE_NAME
 echo changing dir 1
 cd projects/mtg/
 echo ant updating
-ant update > error.txt
+#ant update > error.txt
+ant -v update
 echo changing dir 2
 cd ../..
 
