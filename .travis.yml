@@ -3,7 +3,7 @@ branches:
   except:
     - latest-master
 
-before_install
+before_install:
   - ant -version
   - export BUILD_PSP=YES
   - export BUILD_ANDROID=YES
