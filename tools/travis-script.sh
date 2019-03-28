@@ -1,7 +1,6 @@
 #!/bin/sh -e
 
 # let's dump some info to debug a bit
-echo ant version = `ant -version`
 echo ls = `ls`
 echo pwd = `pwd`
 # computing potential release name
