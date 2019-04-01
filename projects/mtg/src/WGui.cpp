@@ -2127,7 +2127,7 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_CMC)
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 17; i++)
             {
                 sprintf(buf_code, "cmc:%i;", i);
                 sprintf(buf_name, "%i Mana", i);
@@ -2136,7 +2136,7 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_POWER)
         {
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 17; i++)
             {
                 sprintf(buf_code, "pow:%i;", i);
                 sprintf(buf_name, "%i power", i);
@@ -2145,7 +2145,7 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_TOUGH)
         {
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 17; i++)
             {
                 sprintf(buf_code, "tgh:%i;", i);
                 sprintf(buf_name, "%i toughness", i);

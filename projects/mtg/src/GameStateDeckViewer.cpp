@@ -1353,7 +1353,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
             sprintf(buffer, STATS_TITLE_FORMAT.c_str(), mStatsWrapper->currentPage, _("Mana cost per color").c_str());
             font->DrawString(buffer, 10 + 20 + leftTransition, 10);
 
-            font->DrawString(_("Total colored manasymbols in cards' casting costs:"), 20 + 20 + leftTransition, 30);
+            font->DrawString(_("Total colored mana symbols in cards' casting costs:"), 20 + 20 + leftTransition, 30);
 
             posY = 50;
             for (int i = 1; i < Constants::NB_Colors - 1; i++)

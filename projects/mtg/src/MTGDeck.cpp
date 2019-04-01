@@ -1238,7 +1238,7 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
         string setName = setInfo->id;
         string cardName = card->data->getName();
 
-        currentCard << "#" << nbCards << " x " << cardName << " (" << setName << "), ";
+        currentCard << "#" << nbCards << "x " << cardName << " (" << setName << "), ";
 
         if ( !card->data->isLand() )
             currentCard << card->data->getManaCost() << ", ";
@@ -1293,9 +1293,9 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
     ss_spells << numberOfSpells;
     ss_lands <<	numberOfLands;
 
-    file << getCardBlockText( "Creatures x " + ss_creatures.str(), creatures.str() ) << endl;
-    file << getCardBlockText( "Spells x " + ss_spells.str(), spells.str() ) << endl;
-    file << getCardBlockText( "Lands x " + ss_lands.str(), lands.str() ) << endl;
+    file << getCardBlockText( "Creatures x" + ss_creatures.str(), creatures.str() ) ;
+    file << getCardBlockText( "Spells x" + ss_spells.str(), spells.str() ) ;
+    file << getCardBlockText( "Lands x" + ss_lands.str(), lands.str() ) ;
     creatures.str("");
     spells.str("");
     lands.str("");

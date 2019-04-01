@@ -120,13 +120,13 @@ void GuiAvatar::Render()
     case TOP_LEFT:
         mFont->SetColor(ARGB((int)actA / 4, 0, 0, 0));
         mFont->DrawString(buffer, actX + 2, actY - 2);
-        mFont->SetScale(1.3f);
+        mFont->SetScale(1.5f);
         mFont->SetColor(ARGB((int)actA, lx, ly, lz));
         mFont->DrawString(buffer, actX + 1, actY - 1);
         mFont->SetScale(1);
         break;
     case BOTTOM_RIGHT:
-        mFont->SetScale(1.3f);
+        mFont->SetScale(1.4f);
         mFont->SetColor(ARGB((int)actA, lx, ly, lz));
         mFont->DrawString(buffer, actX, actY - 14, JGETEXT_RIGHT);
         mFont->SetScale(1);
