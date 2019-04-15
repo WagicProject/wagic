@@ -463,7 +463,7 @@ void CardGui::Render()
     string buff = "";
     string starMark = "";
     if(card->exerted)
-        starMark += "*";
+        starMark += "exerted";
     if(card->isToken && !card->isACopier)
         buff = "T";
     if(card->isToken && card->isACopier)

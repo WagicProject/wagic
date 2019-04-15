@@ -12,7 +12,7 @@ Author: Michael Nguyen
 
 /* Wagic versions */
 #define WAGIC_VERSION_MAJOR     0
-#define WAGIC_VERSION_MEDIUM    20
+#define WAGIC_VERSION_MEDIUM    21
 #define WAGIC_VERSION_MINOR     1
 
 #define VERSION_DOT(a, b, c) a ##.## b ##.## c

@@ -15,3 +15,11 @@
 # Fabricate
 #AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
 
+# Scry, Evergreen
+#AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
+
+# Amass, Set WAR
+#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1,$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1,$c) notATarget(army|myBattlefield))!
+
+# Treasure token, Set XLN
+#AUTO_DEFINE _TREASURE_ create(Treasure:Artifact Treasure:0/0:"{T}, Sacrifice this artifact: Add one mana of any color.") and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{G}])) forever )!

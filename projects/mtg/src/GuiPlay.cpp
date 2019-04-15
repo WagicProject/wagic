@@ -312,7 +312,7 @@ void GuiPlay::Render()
                 MTGCardInstance * ctarget = ((MTGCardInstance *)(*it)->card->isAttacking);
                 if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER) && observer->isInPlay(ctarget) && observer->getCurrentGamePhase() < MTG_PHASE_COMBATEND)
                 {
-                    JRenderer::GetInstance()->DrawLine((*it)->actX,(*it)->actY,ctarget->view->actX,ctarget->view->actY,0.5f,ARGB(128 - wave, 255, 20, 0));
+                    JRenderer::GetInstance()->DrawLine((*it)->actX,(*it)->actY,ctarget->view->actX,ctarget->view->actY,0.5f,ARGB(128 - wave, 255, 40, 40));
                 }
             }
         }

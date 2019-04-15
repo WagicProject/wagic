@@ -512,8 +512,8 @@ type=Sorcery
 [/card]
 [card]
 name=Relentless Dead
-auto=@movedTo(this|graveyard) from(battlefield):transforms((,newability[{B}:moveto(myhand)])) ueot
-auto=@movedTo(this|graveyard) from(battlefield):transforms((,newability[{X}:moveto(myhand) target(zombie[manacost=X]|mygraveyard)])) ueot
+autograveyard=@movedTo(this|graveyard) from(battlefield):name(return relentless dead) pay({B}) moveTo(hand)
+auto=@movedTo(this|graveyard) from(battlefield):choice name(rturn cost X) pay({1}) moveTo(battlefield) target(other zombie|mygraveyard)
 text=Menace (This creature can't be blocked except by two or more creatures.) -- When Relentless Dead dies, you may pay {B}. If you do, return it to its owner's hand. -- When Relentless Dead dies, you may pay {X}. If you do, return another target Zombie creature card with converted mana cost X from your graveyard to the battlefield.
 mana={B}{B}
 abilities=menace
@@ -787,15 +787,6 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-name=Villainous Wealth
-#can't order stack
-target=opponent
-auto=moveto(exile) and!( if cantargetcard(*[-land;manacost<=castx]|*) then transforms((,newability[may activate castcard(normal)]])) ueot )! all(*[zpos<=castx]|mylibrary)
-text=Target opponent exiles the top X cards of his or her library. You may cast any number of nonland cards with converted mana cost X or less from among them without paying their mana costs.
-mana={X}{B}{G}{U}
-type=Sorcery
-[/card]
-[card]
 name=Watcher of the Roost
 #missing reveal card
 abilities=flying
@@ -808,14 +799,6 @@ type=Creature
 subtype=Bird Soldier
 power=2
 toughness=1
-[/card]
-[card]
-name=Wolfcaller's Howl
-#wagic supports one opponent only
-auto=@each my upkeep restriction{type(*|opponenthand)~morethan~3}:token(Wolf,Creature Wolf,2/2,green)
-text=At the beginning of your upkeep, put X 2/2 green Wolf creature tokens onto the battlefield, where X is the number of your opponents with four or more cards in hand.
-mana={3}{G}
-type=Enchantment
 [/card]
 [card]
 name=Wren's Run Vanquisher

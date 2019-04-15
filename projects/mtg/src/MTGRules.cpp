@@ -505,6 +505,20 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         }
         delete withKickerCost;
     }
+	if (card->getManaCost()->getBestow())
+    {  
+        ManaCost * withBestowCost= NEW ManaCost(card->getManaCost());
+		withBestowCost->add(withBestowCost->getBestow());
+        
+		DebugTrace("AltCost BESTOW " << withBestowCost);
+        if (previousManaPool->canAfford(withBestowCost))
+        {
+			player->getManaPool()->pay(card->getManaCost()->getBestow());
+			payResult = ManaCost::MANA_PAID_WITH_BESTOW;
+        }
+        delete withBestowCost;
+    }
+
     card->getManaCost()->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
 
@@ -652,6 +666,19 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
         }
         delete withKickerCost;
+    }
+	// Handles bestow,also has to go in isExtraPaymentSet
+	if (card->getManaCost()->getBestow())
+    {  
+        ManaCost * withBestowCost= NEW ManaCost(card->getManaCost());
+		withBestowCost->add(withBestowCost->getBestow());
+        
+        if (previousManaPool->canAfford(withBestowCost))
+        {
+			player->getManaPool()->pay(card->getManaCost()->getBestow());
+			payResult = ManaCost::MANA_PAID_WITH_BESTOW;
+        }
+        delete withBestowCost;
     }
     card->getManaCost()->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
@@ -3486,7 +3513,7 @@ PermanentAbility(observer, _id)
 }
 
 int MTGNewPlaneswalker::receiveEvent(WEvent * e)
-{
+{	
     if(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())
             return 0;
     if (WEventZoneChange* ev1 = dynamic_cast<WEventZoneChange*>(e))
@@ -3494,7 +3521,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
         if (ev1->to == game->players[0]->game->inPlay || ev1->to == game->players[1]->game->inPlay)
         {
             MTGCardInstance * card = ev1->card;
-            if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+            if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
             {
                 CheckPW(card);
                 return 1;
@@ -3504,7 +3531,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardControllerChange* ev2 = dynamic_cast<WEventCardControllerChange*>(e))
     {
         MTGCardInstance * card = ev2->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3513,7 +3540,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardTransforms* ev3 =  dynamic_cast<WEventCardTransforms*>(e))
     {
         MTGCardInstance * card = ev3->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3522,7 +3549,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardCopiedACard* ev4 =  dynamic_cast<WEventCardCopiedACard*>(e))
     {
         MTGCardInstance * card = ev4->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3531,7 +3558,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardFaceUp* ev5 =  dynamic_cast<WEventCardFaceUp*>(e))
     {
         MTGCardInstance * card = ev5->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3540,7 +3567,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardPhasesIn* ev6 =  dynamic_cast<WEventCardPhasesIn*>(e))
     {
         MTGCardInstance * card = ev6->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3550,23 +3577,26 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
 }
 int MTGNewPlaneswalker::CheckPW(MTGCardInstance * card)
 {
-    if(!card)
+   if(!card)
         return 0;
     if(card->isPhased)
         return 0;
-    if(card->countDuplicateCardTypes() < 1)
+    if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
+        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
+            return 0;
+    if(card->countDuplicateCardNames() <= 2)
         return 0;
 
     MovePW(card);
     return 1;
 }
 void MTGNewPlaneswalker::MovePW(MTGCardInstance * card)
-{
+{		
     game->LPWeffect = true;
     vector<MTGAbility*>selection;
     MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
     TargetChooserFactory tfL(game);
-    tcP = tfL.createTargetChooser("planeswalker[share!types!]|mybattlefield",myClone);
+    tcP = tfL.createTargetChooser("*[share!name!]|mybattlefield",myClone);
     tcP->targetter = NULL;
     tcP->maxtargets = 1;
     PWrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
@@ -3679,24 +3709,27 @@ ListMaintainerAbility(observer, _id)
 
 int MTGPlaneWalkerRule::canBeInList(MTGCardInstance * card)
 {
-    if(card->isPhased)
+	if(card->isPhased)
         return 0;
-    if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->controller()->game->inPlay->hasCard(card))
+     if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
     {
-        return 1;
+        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
+            return 0;
+        else
+            return 1;
     }
     return 0;
 }
 
 int MTGPlaneWalkerRule::added(MTGCardInstance * card)
 {
-    map<MTGCardInstance *, bool>::iterator it;
+	map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
     vector<MTGCardInstance*>oldCards;
     for (it = cards.begin(); it != cards.end(); it++)
     {
         MTGCardInstance * comparison = (*it).first;
-        if (comparison != card && comparison->types == card->types && comparison->controller() == card->controller())
+        if (comparison != card && comparison->controller() == card->controller() && !(comparison->getName().compare(card->getName())))
             if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()))
             {
                 oldCards.push_back(comparison);
@@ -3704,11 +3737,10 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
                 game->LPWeffect = true;
             }
     }
-    if (destroy)
+    if(destroy)
     {
         vector<MTGAbility*>selection;
-
-        MultiAbility * multi = NEW MultiAbility(game,game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        MultiAbility * multi = NEW MultiAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
         for(unsigned int i = 0;i < oldCards.size();i++)
         {
             AAMover *a = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
@@ -3722,7 +3754,7 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
         b->oneShot = true;
         MTGAbility * b1 = b;
         selection.push_back(b1);
-        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Planeswalker Rule");
+        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
         menuChoice->addToGame();
     }
     return 1;

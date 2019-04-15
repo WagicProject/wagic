@@ -579,6 +579,8 @@ int ManaCost::hasAnotherCost()
     if(kicker)
         result = 1;
     //kicker is the only one ai knows for now, later hasAnotherCost() can be used to determine other cost types.
+	if(Retrace || BuyBack || alternative || FlashBack || morph || suspend || Bestow)
+		result = 1;
     return result;
 }
 
@@ -730,7 +732,7 @@ int ManaCost::getCost(int color)
 {
     if (cost.size() <= (size_t)color)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
+        DebugTrace("in GetCost Seems ManaCost was not properly initialized");
         return 0;
     }
     return cost[color];
