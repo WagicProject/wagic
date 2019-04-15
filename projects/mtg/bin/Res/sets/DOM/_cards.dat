@@ -12,97 +12,97 @@ rarity=M
 [card]
 primitive=Adamant Will
 id=442890
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Aven Sentry
 id=442891
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Baird, Steward of Argive
 id=442892
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Benalish Honor Guard
 id=442893
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Benalish Marshal
 id=442894
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Blessed Light
 id=442895
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Board the Weatherlight
 id=442896
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Call the Cavalry
 id=442897
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Charge
 id=442898
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=D'Avenant Trapper
 id=442899
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Danitha Capashen, Paragon
 id=442900
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Daring Archaeologist
 id=442901
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Dauntless Bodyguard
 id=442902
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Dub
 id=442903
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Evra, Halcyon Witness
 id=442904
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Excavation Elephant
 id=442905
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Fall of the Thran
 id=442906
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Gideon's Reproach
 id=442907
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Healing Grace
 id=442908
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=History of Benalia
@@ -112,22 +112,22 @@ rarity=M
 [card]
 primitive=Invoke the Divine
 id=442910
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Knight of Grace
 id=442911
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Knight of New Benalia
 id=442912
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Kwende, Pride of Femeref
 id=442913
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Lyra Dawnbringer
@@ -137,162 +137,162 @@ rarity=M
 [card]
 primitive=Mesa Unicorn
 id=442915
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=On Serra's Wings
 id=442916
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Pegasus Courser
 id=442917
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Sanctum Spirit
 id=442918
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Seal Away
 id=442919
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Sergeant-at-Arms
 id=442920
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Serra Angel
 id=442921
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Serra Disciple
 id=442922
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Shalai, Voice of Plenty
 id=442923
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Teshar, Ancestor's Apostle
 id=442924
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Tragic Poet
 id=442925
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Triumph of Gerrard
 id=442926
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Urza's Ruinous Blast
 id=442927
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Academy Drake
 id=442928
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Academy Journeymage
 id=442929
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=The Antiquities War
 id=442930
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Arcane Flight
 id=442931
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Artificer's Assistant
 id=442932
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Befuddle
 id=442933
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Blink of an Eye
 id=442934
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Cloudreader Sphinx
 id=442935
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Cold-Water Snapper
 id=442936
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Curator's Ward
 id=442937
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Deep Freeze
 id=442938
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Diligent Excavator
 id=442939
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Divination
 id=442940
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Homarid Explorer
 id=442941
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=In Bolas's Clutches
 id=442942
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Karn's Temporal Sundering
 id=442943
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Merfolk Trickster
 id=442944
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=The Mirari Conjecture
 id=442945
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Naban, Dean of Iteration
 id=442946
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Naru Meha, Master Wizard
@@ -302,132 +302,132 @@ rarity=M
 [card]
 primitive=Opt
 id=442948
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Precognition Field
 id=442949
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Relic Runner
 id=442950
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Rescue
 id=442951
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Sage of Lat-Nam
 id=442952
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Sentinel of the Pearl Trident
 id=442953
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Slinn Voda, the Rising Deep
 id=442954
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Syncopate
 id=442955
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Tempest Djinn
 id=442956
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Tetsuko Umezawa, Fugitive
 id=442957
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Time of Ice
 id=442958
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Tolarian Scholar
 id=442959
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Unwind
 id=442960
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Vodalian Arcanist
 id=442961
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Weight of Memory
 id=442962
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Wizard's Retort
 id=442963
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Zahid, Djinn of the Lamp
 id=442964
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Blessing of Belzenlok
 id=442965
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Cabal Evangel
 id=442966
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Cabal Paladin
 id=442967
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Caligo Skin-Witch
 id=442968
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Cast Down
 id=442969
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Chainer's Torment
 id=442970
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Dark Bargain
 id=442971
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Deathbloom Thallid
 id=442972
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Demonic Vigor
 id=442973
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Demonlord Belzenlok
@@ -437,67 +437,67 @@ rarity=M
 [card]
 primitive=Divest
 id=442975
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Dread Shade
 id=442976
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Drudge Sentinel
 id=442977
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=The Eldest Reborn
 id=442978
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Eviscerate
 id=442979
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Feral Abomination
 id=442980
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Final Parting
 id=442981
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Fungal Infection
 id=442982
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Josu Vess, Lich Knight
 id=442983
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Kazarov, Sengir Pureblood
 id=442984
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Knight of Malice
 id=442985
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Lich's Mastery
 id=442986
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Lingering Phantom
 id=442987
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Phyrexian Scriptures
@@ -507,157 +507,157 @@ rarity=M
 [card]
 primitive=Rat Colony
 id=442989
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Rite of Belzenlok
 id=442990
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Settle the Score
 id=442991
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Soul Salvage
 id=442992
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Stronghold Confessor
 id=442993
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Thallid Omnivore
 id=442994
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Thallid Soothsayer
 id=442995
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Torgaar, Famine Incarnate
 id=442996
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Urgoros, the Empty One
 id=442997
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Vicious Offering
 id=442998
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Whisper, Blood Liturgist
 id=442999
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Windgrace Acolyte
 id=443000
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Yargle, Glutton of Urborg
 id=443001
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Yawgmoth's Vile Offering
 id=443002
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Bloodstone Goblin
 id=443003
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Champion of the Flame
 id=443004
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Fervent Strike
 id=443005
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Fiery Intervention
 id=443006
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Fight with Fire
 id=443007
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Fire Elemental
 id=443008
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Firefist Adept
 id=443009
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=The First Eruption
 id=443010
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=The Flame of Keld
 id=443011
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Frenzied Rage
 id=443012
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Ghitu Chronicler
 id=443013
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Ghitu Journeymage
 id=443014
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Ghitu Lavarunner
 id=443015
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Goblin Barrage
 id=443016
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Goblin Chainwhirler
 id=443017
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Goblin Warchief
 id=443018
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Haphazard Bombardment
 id=443019
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Jaya Ballard
@@ -667,82 +667,82 @@ rarity=M
 [card]
 primitive=Jaya's Immolating Inferno
 id=443021
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Keldon Overseer
 id=443022
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Keldon Raider
 id=443023
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Keldon Warcaller
 id=443024
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Orcish Vandal
 id=443025
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Radiating Lightning
 id=443026
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Rampaging Cyclops
 id=443027
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Run Amok
 id=443028
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Seismic Shift
 id=443029
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Shivan Fire
 id=443030
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Siege-Gang Commander
 id=443031
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Skirk Prospector
 id=443032
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Skizzik
 id=443033
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Squee, the Immortal
 id=443034
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Two-Headed Giant
 id=443035
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Valduk, Keeper of the Flame
 id=443036
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Verix Bladewing
@@ -752,122 +752,122 @@ rarity=M
 [card]
 primitive=Warcry Phoenix
 id=443038
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Warlord's Fury
 id=443039
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Wizard's Lightning
 id=443040
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Adventurous Impulse
 id=443041
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Ancient Animus
 id=443042
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Arbor Armament
 id=443043
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Baloth Gorger
 id=443044
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Broken Bond
 id=443045
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Corrosive Ooze
 id=443046
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Elfhame Druid
 id=443047
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Fungal Plots
 id=443048
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Gaea's Blessing
 id=443049
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Gaea's Protector
 id=443050
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Gift of Growth
 id=443051
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Grow from the Ashes
 id=443052
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Grunn, the Lonely King
 id=443053
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Kamahl's Druidic Vow
 id=443054
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Krosan Druid
 id=443055
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Llanowar Elves
 id=443056
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Llanowar Envoy
 id=443057
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Llanowar Scout
 id=443058
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Mammoth Spider
 id=443059
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Marwyn, the Nurturer
 id=443060
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=The Mending of Dominaria
 id=443061
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Multani, Yavimaya's Avatar
@@ -877,92 +877,92 @@ rarity=M
 [card]
 primitive=Nature's Spiral
 id=443063
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Pierce the Sky
 id=443064
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Primordial Wurm
 id=443065
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Saproling Migration
 id=443066
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Song of Freyalise
 id=443067
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Spore Swarm
 id=443068
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Sporecrown Thallid
 id=443069
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Steel Leaf Champion
 id=443070
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Sylvan Awakening
 id=443071
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Territorial Allosaurus
 id=443072
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Thorn Elemental
 id=443073
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Untamed Kavu
 id=443074
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Verdant Force
 id=443075
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Wild Onslaught
 id=443076
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Yavimaya Sapherd
 id=443077
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Adeliz, the Cinder Wind
 id=443078
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Arvad the Cursed
 id=443079
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Aryel, Knight of Windgrace
 id=443080
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Darigaaz Reincarnated
@@ -972,17 +972,17 @@ rarity=M
 [card]
 primitive=Garna, the Bloodflame
 id=443082
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Grand Warlord Radha
 id=443083
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Hallar, the Firefletcher
 id=443084
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Jhoira, Weatherlight Captain
@@ -992,7 +992,7 @@ rarity=M
 [card]
 primitive=Jodah, Archmage Eternal
 id=443086
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Muldrotha, the Gravetide
@@ -1002,37 +1002,37 @@ rarity=M
 [card]
 primitive=Oath of Teferi
 id=443088
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Primevals' Glorious Rebirth
 id=443089
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Raff Capashen, Ship's Mage
 id=443090
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Rona, Disciple of Gix
 id=443091
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Shanna, Sisay's Legacy
 id=443092
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Slimefoot, the Stowaway
 id=443093
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Tatyova, Benthic Druid
 id=443094
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Teferi, Hero of Dominaria
@@ -1042,82 +1042,82 @@ rarity=M
 [card]
 primitive=Tiana, Ship's Caretaker
 id=443096
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Aesthir Glider
 id=443097
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Amaranthine Wall
 id=443098
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Blackblade Reforged
 id=443099
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Bloodtallow Candle
 id=443100
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Damping Sphere
 id=443101
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Forebear's Blade
 id=443102
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Gilded Lotus
 id=443103
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Guardians of Koilos
 id=443104
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Helm of the Host
 id=443105
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Howling Golem
 id=443106
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Icy Manipulator
 id=443107
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Jhoira's Familiar
 id=443108
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Jousting Lance
 id=443109
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Juggernaut
 id=443110
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Mishra's Self-Replicator
 id=443111
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Mox Amber
@@ -1127,62 +1127,62 @@ rarity=M
 [card]
 primitive=Navigator's Compass
 id=443113
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Pardic Wanderer
 id=443114
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Powerstone Shard
 id=443115
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Shield of the Realm
 id=443116
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Short Sword
 id=443117
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Skittering Surveyor
 id=443118
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Sorcerer's Wand
 id=443119
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Sparring Construct
 id=443120
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Thran Temporal Gateway
 id=443121
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Traxos, Scourge of Kroog
 id=443122
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Urza's Tome
 id=443123
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Voltaic Servant
 id=443124
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Weatherlight
@@ -1192,162 +1192,162 @@ rarity=M
 [card]
 primitive=Cabal Stronghold
 id=443126
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Clifftop Retreat
 id=443127
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Hinterland Harbor
 id=443128
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Isolated Chapel
 id=443129
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Memorial to Folly
 id=443130
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Memorial to Genius
 id=443131
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Memorial to Glory
 id=443132
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Memorial to Unity
 id=443133
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Memorial to War
 id=443134
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Sulfur Falls
 id=443135
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Woodland Cemetery
 id=443136
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Zhalfirin Void
 id=443137
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Plains
 id=443138
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Plains
 id=443139
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Plains
 id=443140
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Plains
 id=443141
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=443142
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=443143
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=443144
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=443145
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=443146
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=443147
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=443148
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=443149
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=443150
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=443151
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=443152
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=443153
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=443154
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=443155
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=443156
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=443157
-rarity=M
+rarity=L
 [/card]
 [card]
 primitive=Teferi, Timebender
@@ -1357,22 +1357,22 @@ rarity=M
 [card]
 primitive=Temporal Machinations
 id=445849
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Niambi, Faithful Healer
 id=445850
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Teferi's Sentinel
 id=445851
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Meandering River
 id=445852
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Chandra, Bold Pyromancer
@@ -1382,25 +1382,25 @@ rarity=M
 [card]
 primitive=Chandra's Outburst
 id=445854
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Karplusan Hound
 id=445855
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Pyromantic Pilgrim
 id=445856
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Timber Gorge
 id=445857
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Firesong and Sunspeaker
 id=445958
-rarity=M
+rarity=R
 [/card]
