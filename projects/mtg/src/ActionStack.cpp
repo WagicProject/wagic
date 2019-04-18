@@ -274,8 +274,8 @@ void StackAbility::Render()
                         else
                             fmLibrary++;
                     }
-                    else
-                        mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                    //else // This was crashing the game when a permanent targeted a spell in the stack
+                        //mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
                 }
             }
         }

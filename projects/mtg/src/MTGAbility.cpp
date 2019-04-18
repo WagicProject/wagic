@@ -4626,6 +4626,10 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_GOOD;
 	if (dynamic_cast<AAModTurn *> (a))
         return BAKA_EFFECT_GOOD;
+	if (dynamic_cast<ATransformer *> (a))
+        return BAKA_EFFECT_GOOD;
+	if (dynamic_cast<AADamager *> (a))
+        return BAKA_EFFECT_BAD;
 
     if (PTInstant * abi = dynamic_cast<PTInstant *>(a))
         return (abi->wppt->power.getValue() >= 0 && abi->wppt->toughness.getValue() >= 0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
