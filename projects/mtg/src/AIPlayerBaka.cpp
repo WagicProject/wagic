@@ -50,11 +50,12 @@ int OrderedAIAction::getEfficiency(AADamager * aad)
 		 if(p == target->controller())
 			 return 0;
 
-    if (dTarget && aad && (aad->getDamage() >= dTarget->toughness))
+    if (dTarget && aad && (aad->getDamage() == dTarget->toughness))
         return 100;
-
-    if (dTarget && dTarget->toughness)
-        return (10 * aad->getDamage()) / dTarget->toughness; // Don't waste damage spells
+    else if (dTarget && aad && (aad->getDamage() > dTarget->toughness))
+        return 10 * (10 - (aad->getDamage() - dTarget->toughness)); //less eff the more dmg above toughness
+	else
+        return 10;
 
     return 0;
 }
@@ -130,11 +131,7 @@ int OrderedAIAction::getEfficiency()
             {
                 efficiency = 95;
             }
-			 //TODO If the card is the target of a damage spell
-			 if (!coreAbilityCardTarget->regenerateTokens && (MTGCardInstance*)target == a->source)
-             {
-				 efficiency = 95;
-             }            			
+			 //TODO If the card is the target of a damage spell          			
              break;
         }
     case MTGAbility::STANDARD_PREVENT:
@@ -285,6 +282,10 @@ int OrderedAIAction::getEfficiency()
                     coreAbilityCardTarget = a->source->target; //TODO use intermediate value?
                 target = a->source;
             }
+			else //if(how to know cards like Basking Rootwalla that pump themselves)
+			{
+				target = a->source;
+			}
             if (!target && !dynamic_cast<ALord*> (a))
                 break;
             if(dynamic_cast<ALord*> (a) && !target)
@@ -296,9 +297,9 @@ int OrderedAIAction::getEfficiency()
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
             //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
             int currentPhase = g->getCurrentGamePhase();
-			 if (suggestion == BAKA_EFFECT_GOOD && target->controller() == p)            
+			 if ((currentPhase == MTG_PHASE_COMBATBLOCKERS) || (currentPhase == MTG_PHASE_COMBATATTACKERS))            
             {
-				 if ((currentPhase == MTG_PHASE_COMBATBLOCKERS) || (currentPhase == MTG_PHASE_COMBATATTACKERS))                
+				 if (suggestion == BAKA_EFFECT_GOOD && target->controller() == p)                 
                 {
                     if(coreAbilityCardTarget->defenser || coreAbilityCardTarget->blockers.size())
                     {
@@ -316,14 +317,10 @@ int OrderedAIAction::getEfficiency()
                     {
                         //this means im heading directly for the player, pump this creature as much as possible.
                         efficiency = 100;
-                        if(coreAbilityCardTarget->power > 50)
+                        if(coreAbilityCardTarget->power > 20) // to be realistic
                             efficiency -= coreAbilityCardTarget->power;//we don't need to go overboard. better to not put all your eggs in a single basket.
                     }
                 }
-				if (currentPhase == MTG_PHASE_FIRSTMAIN)
-				{
-					efficiency = 10;
-				}
             }
             if (suggestion == BAKA_EFFECT_BAD && target->controller() != p && target->toughness > 0)
             {
@@ -672,7 +669,7 @@ int OrderedAIAction::getEfficiency()
     {
         AIPlayer * chk = (AIPlayer*)p;
         if(may->ability && may->ability->getActionTc() && chk->chooseTarget(may->ability->getActionTc(),NULL,NULL,true))
-        efficiency = 80 + (owner->getRandomGenerator()->random() % 50);
+        efficiency = 50 + (owner->getRandomGenerator()->random() % 50);
     }
     if (p->game->hand->nb_cards == 0)
         efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
@@ -685,8 +682,11 @@ int OrderedAIAction::getEfficiency()
             for(unsigned int i = 0; i < ec->costs.size();i++)
             {
                 ExtraCost * tapper = dynamic_cast<TapCost*>(ec->costs[i]);
+				ExtraCost * sacrifice = dynamic_cast<SacrificeCost*>(ec->costs[i]);
                 if(tapper)
-                    continue;
+                    continue;				
+                else if(sacrifice)
+					efficiency = efficiency / 3;
                 else
                     efficiency = efficiency / 2;
             }
@@ -699,7 +699,7 @@ int OrderedAIAction::getEfficiency()
     }
     else if (dynamic_cast<MTGAlternativeCostRule *>(a))
     {
-        efficiency += 65;
+        efficiency += 55;
     }
     else if (dynamic_cast<MTGSuspendRule *>(a))
     {
@@ -707,15 +707,10 @@ int OrderedAIAction::getEfficiency()
     }
     
 	if (ability->source)
+	{
 		if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER))
 			efficiency += 40;
-		else if(ability->source->hasType(Subtypes::TYPE_LAND))
-		{ // probably a shockland, don't pay life if hand is empty
-			if (p->game->hand->nb_cards == 0 || p->life<=2)
-				// check that's not a manland(like Celestial Colonnade)
-				if(efficiency < 50)
-					efficiency = 0;
-		}
+	}
 
 	SAFE_DELETE(transAbility);
     return efficiency;

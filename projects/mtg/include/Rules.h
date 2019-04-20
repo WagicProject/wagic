@@ -45,6 +45,7 @@ protected:
     Player * loadPlayerRandomThree(GameObserver* observer, int isAI);
 	 Player * loadPlayerRandomFive(GameObserver* observer, int isAI);
 	 Player * loadPlayerHorde(GameObserver* observer, int isAI);
+	 Player * loadRandomSetLimited(GameObserver* observer, int isAI);
     Player * initPlayer(GameObserver *observer, int playerId);
     MTGDeck * buildDeck(int playerId);
     GameType strToGameMode(string s);

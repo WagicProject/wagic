@@ -772,7 +772,7 @@ void GameStateDuel::Update(float dt)
                 = "ai_baka_music_random.mp3";
 			else if (mParent->gameType == GAME_TYPE_RANDOM3 || mParent->gameType == GAME_TYPE_RANDOM5) musictrack
                 = "ai_baka_music_random.mp3";
-			else if (mParent->gameType == GAME_TYPE_HORDE) musictrack
+			else if (mParent->gameType == GAME_TYPE_HORDE || mParent->gameType == GAME_TYPE_SET_LIMITED) musictrack
                 = "ai_baka_music_momir.mp3";
             if (!MusicExist(musictrack)) 
                 musictrack = "ai_baka_music.mp3";

@@ -170,7 +170,7 @@ void Rules::addExtraRules(GameObserver* g)
                 difficultyRating = 0;
 			 else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5)
 				difficultyRating = 0;
-			 else if(g->mRules->gamemode == GAME_TYPE_HORDE)
+			 else if(g->mRules->gamemode == GAME_TYPE_HORDE || g->mRules->gamemode == GAME_TYPE_SET_LIMITED)
 				difficultyRating = 0;
             else if (g->mRules->gamemode == GAME_TYPE_STORY)
                 difficultyRating = 0;
@@ -311,6 +311,50 @@ Player * Rules::loadPlayerRandom(GameObserver* observer, int isAI, int mode)
     return player;
 }
 
+Player * Rules::loadRandomSetLimited(GameObserver* observer, int isAI)
+{
+	//Random sets
+	int setId[] = { observer->getRandomGenerator()->random() % setlist.size(), observer->getRandomGenerator()->random() % setlist.size() };
+	int nbSet = sizeof(setId)/sizeof(setId[0]);
+
+	int color1 = 1 + observer->getRandomGenerator()->random() % 5;
+    int color2 = 1 + observer->getRandomGenerator()->random() % 5;
+    int colors[] = { color1, color2 };
+    int nbcolors = 2;
+    string lands[] = { "", "forest", "island", "mountain", "swamp", "plains" };
+
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());	
+	// Try to add basic lands from that set
+	tempDeck->addRandomCards(8, setId, nbSet, -1, lands[color1].c_str());
+    tempDeck->addRandomCards(8, setId, nbSet, -1, lands[color2].c_str());
+    tempDeck->addRandomCards(2, setId, nbSet, -1, "land");
+	// If lands < 18 add from any set
+	int missingLands = 18 - tempDeck->totalCards();
+	if (missingLands > 0)
+	{
+		tempDeck->addRandomCards(missingLands/2, 0, 0, -1, lands[color1].c_str());
+		tempDeck->addRandomCards(missingLands/2, 0, 0, -1, lands[color2].c_str());
+	}
+	// Lone artifact and creatures.
+	tempDeck->addRandomCards(1, setId, nbSet, -1, "artifact");
+	tempDeck->addRandomCards(12, setId, nbSet, -1, "creature", colors, nbcolors);
+	// Want the deck to be 40 cards, take any card from the set in the colors
+	int missingCards = 40 - tempDeck->totalCards();
+	if (missingCards > 0)
+		tempDeck->addRandomCards(missingCards, setId, nbSet, -1, "", colors, nbcolors);
+
+    string deckFile = "random";
+    string deckFileSmall = "random";
+
+    Player *player = NULL;
+    if (!isAI) // Human Player
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
+    else
+        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+
+    return player;
+}
+
 Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
 {
     int color1 = 1 + observer->getRandomGenerator()->random() % 5;
@@ -357,27 +401,10 @@ Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
 Player * Rules::loadPlayerRandomFive(GameObserver* observer, int isAI)
 { 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
-    tempDeck->addRandomCards(1, 0, 0, -1, "plains");
-    tempDeck->addRandomCards(1, 0, 0, -1, "island");
-	tempDeck->addRandomCards(1, 0, 0, -1, "swamp");
-	tempDeck->addRandomCards(1, 0, 0, -1, "mountain");
-	tempDeck->addRandomCards(1, 0, 0, -1, "forest");
-	tempDeck->addRandomCards(3, 0, 0, 'R', "plains");
-    tempDeck->addRandomCards(3, 0, 0, 'R', "island");
-	tempDeck->addRandomCards(3, 0, 0, 'R', "swamp");
-	tempDeck->addRandomCards(3, 0, 0, 'R', "mountain");
-	tempDeck->addRandomCards(3, 0, 0, 'R', "forest");
-	tempDeck->addRandomCards(4, 0, 0, -1, "land");
-    tempDeck->addRandomCards(1, 0, 0, 'U', "land");
-    tempDeck->addRandomCards(1, 0, 0, 'R', "land");
-	tempDeck->addRandomCards(18, 0, 0, -1, "creature");
-	tempDeck->addRandomCards(1, 0, 0, 'R', "creature");
-	tempDeck->addRandomCards(1, 0, 0, 'M', "creature");	
-    tempDeck->addRandomCards(3, 0, 0, -1, "sorcery");
-    tempDeck->addRandomCards(3, 0, 0, -1, "enchantment");
-    tempDeck->addRandomCards(3, 0, 0, -1, "instant");
-    tempDeck->addRandomCards(4, 0, 0, -1, "artifact");
-	tempDeck->addRandomCards(1, 0, 0, -1, "planeswalker");
+
+    tempDeck->addRandomCards(20, 0, 0, -1, "land");
+	tempDeck->addRandomCards(20, 0, 0, -1, "creature");
+	tempDeck->addRandomCards(20, 0, 0, -1, "");
 	
     string deckFile = "random";
     string deckFileSmall = "random";
@@ -399,14 +426,13 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
 
 	string lands[] = { "land", "forest", "island", "mountain", "swamp", "plains" };
 
-	const char* const multicolorTribes[] = { "Ally", "Atog", "Eldrazi", "Elemental", "Human", "Knight",
-		"Myr", "Samurai", "Shaman", "Shapeshifter", "Sliver", "Soldier", "Spellshaper" };
-	const char* const whiteTribes[] = { "Angel","Cat", "Griffin", "Kithkin", "Knight", "Pegasus", "Soldier" };
-	const char* const blueTribes[] = { "Artificer", "Merfolk", "Drake", "Faerie", "Illusion", "Vedalken" };
-	const char* const blackTribes[] = { "Demon", "Faerie", "Horror", "Pirate", "Rat", "Shade", "Skeleton", "Vampire", "Zombie" };
-	const char* const redTribes[] = { "Barbarian", "Berserker","Cat", "Devil", "Goblin", "Minotaur", "Werewolf" };
-	const char* const greenTribes[] = { "Beast", "Cat", "Centaur", "Dinosaur", "Druid",  "Elf", "Fungus", 
-		"Saproling", "Spider", "Treefolk", "Werewolf" };
+	const char* const multicolorTribes[] = { "Ally", "Atog", "Eldrazi", "Elemental", "Golem", "Hound", "Human", "Knight",
+		"Myr", "Samurai", "Shaman", "Shapeshifter", "Sliver", "Soldier", "Spellshaper", "Spirit", "Warrior" };
+	const char* const whiteTribes[] = { "Angel", "Bird", "Cat", "cleric", "Griffin", "Kithkin", "Knight", "Soldier", "Spirit" };
+	const char* const blueTribes[] = { "Artificer", "Bird", "Drake", "Faerie", "Illusion", "Merfolk", "Spirit", "Vedalken", "Zombie" };
+	const char* const blackTribes[] = { "Cleric", "Demon", "Faerie", "Horror", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Vampire", "Zombie" };
+	const char* const redTribes[] = { "Barbarian", "Berserker"," Cat", "Devil", "Goblin", "Minotaur", "Ogre", "Werewolf" };
+	const char* const greenTribes[] = { "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Elf", "Fungus", "Snake", "Spider", "Treefolk", "Werewolf" };
 
 	int multicolorTribesSize = sizeof(multicolorTribes)/sizeof(multicolorTribes[0]);
 	int whiteTribesSize = sizeof(whiteTribes)/sizeof(whiteTribes[0]);
@@ -482,6 +508,8 @@ Player * Rules::initPlayer(GameObserver *g, int playerId)
             return loadPlayerRandomFive(g, isAI);
 		 case GAME_TYPE_HORDE:
             return loadPlayerHorde(g, isAI);
+		 case GAME_TYPE_SET_LIMITED:
+			 return loadRandomSetLimited(g, isAI);
         default:
             return NULL;
         }
@@ -790,6 +818,7 @@ GameType Rules::strToGameMode(string s)
 	 if (s.compare("random3") == 0) return GAME_TYPE_RANDOM3;
 	 if (s.compare("random5") == 0) return GAME_TYPE_RANDOM5;
 	 if (s.compare("horde") == 0) return GAME_TYPE_HORDE;
+	 if (s.compare("set_limited") == 0) return GAME_TYPE_SET_LIMITED;
     if (s.compare("story") == 0) return GAME_TYPE_STORY;
     if (s.compare("stonehewer") == 0) return GAME_TYPE_STONEHEWER;
     if (s.compare("hermit") == 0) return GAME_TYPE_HERMIT;

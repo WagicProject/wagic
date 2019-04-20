@@ -4,7 +4,6 @@ name=Ixalan
 year=2017
 block=Ixalan
 [/meta]
-
 [card]
 primitive=Adanto Vanguard
 id=435152
@@ -118,7 +117,7 @@ rarity=R
 [card]
 primitive=Adanto, the First Fort
 id=435174
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Looming Altisaur
@@ -383,7 +382,7 @@ rarity=R
 [card]
 primitive=Azcanta, the Sunken Ruin
 id=435227
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Shaper Apprentice
@@ -468,7 +467,7 @@ rarity=R
 [card]
 primitive=Temple of Aclazotz
 id=435244
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Bishop of the Bloodstained
@@ -888,7 +887,7 @@ rarity=R
 [card]
 primitive=Spitfire Bastion
 id=435328
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Wily Goblin
@@ -983,7 +982,7 @@ rarity=R
 [card]
 primitive=Itlimoc, Cradle of the Sun
 id=435347
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Ixalli's Diviner
@@ -1203,7 +1202,7 @@ rarity=R
 [card]
 primitive=Conqueror's Foothold
 id=435391
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Dowsing Dagger
@@ -1213,7 +1212,7 @@ rarity=R
 [card]
 primitive=Lost Vale
 id=435393
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Dusk Legion Dreadnought
@@ -1258,7 +1257,7 @@ rarity=R
 [card]
 primitive=Primal Wellspring
 id=435402
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Prying Blade
@@ -1293,7 +1292,7 @@ rarity=R
 [card]
 primitive=Spires of Orazca
 id=435409
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Treasure Map
@@ -1303,7 +1302,7 @@ rarity=R
 [card]
 primitive=Treasure Cove
 id=435411
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Vanquisher's Banner

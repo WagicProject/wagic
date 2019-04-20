@@ -792,7 +792,7 @@ rarity=M
 [card]
 primitive=Winged Temple of Orazca
 id=439816
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Hadana's Climb
@@ -807,7 +807,7 @@ rarity=M
 [card]
 primitive=Atzal, Cave of Eternity
 id=439819
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Journey to Eternity
@@ -837,7 +837,7 @@ rarity=U
 [card]
 primitive=Metzali, Tower of Triumph
 id=439825
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Path of Mettle
@@ -847,7 +847,7 @@ rarity=R
 [card]
 primitive=Tomb of the Dusk Rose
 id=439827
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Profane Procession
@@ -887,7 +887,7 @@ rarity=U
 [card]
 primitive=Vault of Catlacan
 id=439835
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Storm the Vault
@@ -907,7 +907,7 @@ rarity=R
 [card]
 primitive=Sanctum of the Sun
 id=439839
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Azor's Gateway
@@ -927,7 +927,7 @@ rarity=C
 [card]
 primitive=Gold-Forge Garrison
 id=439843
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Golden Guardian
