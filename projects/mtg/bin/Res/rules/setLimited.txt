@@ -1,0 +1,11 @@
+include mtg.txt
+name=Set Limited
+unlock=prx_rnddeck
+[INIT]
+mode=set_limited
+
+[PLAYERS]
+life:20
+auto=shuffle
+auto=draw:7
+

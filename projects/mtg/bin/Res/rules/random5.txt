@@ -1,0 +1,16 @@
+include mtg.txt
+name=Random 5 Colors
+unlock=prx_rnddeck
+[INIT]
+mode=random5
+
+[PLAYERS]
+life:20
+auto=shuffle
+auto=draw:7
+
+auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{W}
+auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{U}
+auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{R}
+auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{B}
+auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{G}

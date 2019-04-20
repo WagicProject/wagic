@@ -1,0 +1,15 @@
+include mtg.txt
+name=False God
+unlock=prx_karona
+[INIT]
+mode=mtg
+
+[PLAYERS]
+life:28
+auto=shuffle
+auto=draw:6
+
+auto=@each myupkeep:auto=moverandom(*) from(opponentBattlefield) to(myBattlefield)
+auto=@each myupkeep:auto=moverandom(*) from(myBattlefield) to(opponentBattlefield)
+
+auto=maxPlay(land)+1
