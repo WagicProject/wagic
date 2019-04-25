@@ -367,7 +367,7 @@ int GameOptions::load()
         (*this)[Options::MAX_GRADE].number = Constants::GRADE_BORDERLINE;
 
     if (!(*this)[Options::AIDECKS_UNLOCKED].number)
-        (*this)[Options::AIDECKS_UNLOCKED].number = 10;
+        (*this)[Options::AIDECKS_UNLOCKED].number = 20;
 
     return 1;
 }

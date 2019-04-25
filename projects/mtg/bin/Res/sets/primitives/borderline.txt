@@ -1,5 +1,72 @@
 grade=borderline
 [card]
+name=Bogardan Hellkite
+abilities=flash,flying
+auto=ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
+text=Flash -- Flying -- When Bogardan Hellkite enters the battlefield, it deals 5 damage divided as you choose among any number of targets.
+mana={6}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Frost Titan
+#Not working for abilities on the field
+auto=@targeted(this|mybattlefield) from(*|opponentbattlefield,opponenthand,opponentstack,opponentgraveyard,opponentexile,opponentlibrary):transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever target(*|stack)
+auto=freeze target(*)
+auto=@combat(attacking) source(this):freeze target(*)
+text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn't untap during its controller's next untap step.
+mana={4}{U}{U}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Gaea's Touch
+auto={0}:moveTo(myBattlefield) target(forest[basic]|myhand) asSorcery limit:1
+auto={S}:Add{G}{G}
+auto={0}:name(don't sacrifice) donothing limit:9
+text={0}: You may put a basic Forest card from your hand onto the battlefield. Activate this ability only any time you could cast a sorcery and only once each turn. -- Sacrifice Gaea’s Touch: Add {G}{G}.
+mana={G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Inferno Titan
+auto={R}:1/0 ueot
+auto=ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
+auto=@combat(attacking) source(this):ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
+text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three targets.
+mana={4}{R}{R}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Jace, the Living Guildpact
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:reveal:2 optionone name(put in graveyard) target(<1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+auto={C(0/0,-3,Loyalty)}:target(other *[-land]) moveTo(ownerhand)
+auto={C(0/0,-8,Loyalty)}:moveto(opponentlibrary) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle && moveto(mylibrary) all(*|myhand) && moveto(mylibrary) all(*|mygraveyard) && shuffle && draw:7
+text=+1: Look at the top two cards of your library. Put one of them into your graveyard. -- -3: Return another target nonland permanent to its owner's hand. -- -8: Each player shuffles their hand and graveyard into their library. You draw seven cards.
+mana={2}{U}{U}
+type=Legendary Planeswalker
+subtype=Jace
+[/card]
+[card]
+name=Karn Liberated
+auto=counter(0/0,6,loyalty)
+auto={C(0/0,4,Loyalty)}:target(player) ability$!moveto(exile) and!( becomes(tobecast) forever )! target(*|myhand)!$ targetedplayer
+auto={C(0/0,-3,Loyalty)}:moveto(exile) and!( becomes(tobecast) forever )! target(*)
+auto={C(0/0,-14,Loyalty)}:moveto(ownerlibrary) all(*|opponenthand) && moveto(ownerlibrary) all(*|opponentgraveyard) && moveto(ownerlibrary) all(*|opponentbattlefield) && moveto(ownerlibrary) all(-tobecast,aura,instant,sorcery|opponentexile) && shuffle && draw:7 opponent && lifeset:startinglife opponent && moveto(ownerlibrary) all(*|myhand) && moveto(ownerlibrary) all(*|mygraveyard) && moveto(ownerlibrary) all(*|mybattlefield) && moveto(ownerlibrary) all(-tobecast,aura,instant,sorcery|myexile) && shuffle && draw:7 && lifeset:startinglife && moveto(myBattlefield) all(tobecast|exile) && all(creature|myBattlefield) haste && removemana(*)
+text=+4: Target player exiles a card from their hand. -- -3: Exile target permanent. -- -14: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.
+mana={7}
+type=Legendary Planeswalker
+subtype=Karn
+[/card]
+[card]
 name=Akiri, Line-Slinger
 abilities=first strike,vigilance
 auto=type:artifact:mybattlefield/0 nonstatic

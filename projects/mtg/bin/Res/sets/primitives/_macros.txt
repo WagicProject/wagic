@@ -33,5 +33,8 @@
 # Treasure token, Set XLN
 #AUTO_DEFINE _TREASURE_ create(Treasure:Artifact Treasure:0/0:"{T}, Sacrifice this artifact: Add one mana of any color.") and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{G}])) forever )!
 
-# Proliferate
+# Proliferate, still need to target players since the old code doesn't work (*[artifact;creature;...;players]) just let you target creature and player
 #AUTO_DEFINE _PROLIFERATE_ notatarget(<anyamount>*) proliferate
+
+# Mentor, still not working with enhancements, pump effects
+#AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1,1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
