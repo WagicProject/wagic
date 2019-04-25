@@ -1,0 +1,1250 @@
+grade=borderline
+#Cannot code: Bishop of Binding, Radiant Destiny, Slaughter the Strong, Sphinx's Decree, Temple Altisaur, Crafty Cutpurse
+
+[card]
+name=Baffling End 
+auto=target(creature[manacost<=3]|opponentbattlefield) moveto(exile)
+auto=@movedTo(this|nonbattlezone) from(battlefield): token(Dinosaur,creature Dinosaur,3/3,green,trample) opponent
+text=When Baffling End enters the battlefield, exile target creature an opponent controls with converted mana cost 3 or less. -- When Baffling End leaves the battlefield, target opponent creates a 3/3 green Dinosaur creature token with trample.
+mana={1}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Blazing Hope
+auto=target(creature[power>=controllerlife]) moveto(exile)
+text=Exile target creature with power greater than or equal to your life total.
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=Cleansing Ray
+target=Vampire
+auto=choice destroy target(vampire)
+auto=choice destroy target(enchantment)
+text=Choose one — -- • Destroy target Vampire. -- • Destroy target enchantment.
+mana={1}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Everdawn Champion
+auto=preventAllCombatDamage to(this)
+text=Prevent all combat damage that would be dealt to Everdawn Champion.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Exultant Skymarcher
+abilities=flying
+text=Flying
+mana={1}{W}{W}
+type=Creature
+subtype=Vampire Soldier
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Famished Paladin
+auto=doesnotuntap
+auto=@lifeof(player):untap(this)
+text=Famished Paladin doesn't untap during your untap step. -- Whenever you gain life, untap Famished Paladin.
+mana={1}{W}
+type=Creature
+subtype=Vampire Knight
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Forerunner of the Legion
+auto=may moveTo(ownerlibrary) notatarget(creature[vampire]|mylibrary)
+auto=@movedTo(other creature[vampire]|mybattlefield): target(creature) 1/1 ueot
+text=When Forerunner of the Legion enters the battlefield, you may search your library for a Vampire card, reveal it, then shuffle your library and put that card on top of it. -- Whenever another Vampire enters the battlefield under your control, target creature gets +1/+1 until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Vampire Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Imperial Ceratops
+auto=@damaged(this):life:2 controller
+text=Enrage — Whenever Imperial Ceratops is dealt damage, you gain 2 life.
+mana={4}{W}
+type=Creature
+subtype=Dinosaur
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Luminous Bonds
+target=creature
+auto=cantattack
+auto=cantblock
+text=Enchant creature -- Enchanted creature can't attack or block.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Majestic Heliopterus
+abilities=flying
+auto=@combat(attacking) source(this):target(creature[dinosaur]|mybattlefield):flying ueot
+text=Flying -- Whenever Majestic Heliopterus attacks, another target Dinosaur you control gains flying until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Dinosaur
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Martyr of Dusk
+abilities=lifelink
+auto=@movedTo(this|graveyard) from(battlefield):token(Vampire,creature Vampire,1/1,white,lifelink)
+text=When Martyr of Dusk dies, create a 1/1 white Vampire creature token with lifelink.
+mana={1}{W}
+type=Creature
+subtype=Vampire Soldier
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Moment of Triumph
+target=creature 
+auto=2/2 ueot
+auto=life:2 controller
+text=Target creature gets +2/+2 until end of turn. You gain 2 life.
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=Paladin of Atonement
+auto=@each my upkeep restriction{lastturn(life)~morethan~0}:counter(1/1,1)
+auto=@movedTo(this|graveyard) from(battlefield):dynamicability<!toughnesslifegain srccontroller!>
+text=At the beginning of each upkeep, if you lost life last turn, put a +1/+1 counter on Paladin of Atonement. -- When Paladin of Atonement dies, you gain life equal to its toughness.
+mana={1}{W}
+type=Creature
+subtype=Vampire Knight
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Pride of Conquerors
+auto=_ASCEND_
+auto=_CITY'S_BLESSING_ all(creature|mybattlefield) 1/1
+auto=all(creature|mybattlefield) 1/1
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Creatures you control get +1/+1 until end of turn. If you have the city's blessing, those creatures get +2/+2 until end of turn instead.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Sanguine Glorifier
+auto=target(other vampire|mybattlefield) counter(1/1,1)
+text=When Sanguine Glorifier enters the battlefield, put a +1/+1 counter on another target Vampire you control.
+mana={3}{W}
+type=Creature
+subtype=Vampire Cleric
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Skymarcher Aspirant
+auto=_ASCEND_
+auto=@moveTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ flying
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Skymarcher Aspirant has flying as long as you have the city's blessing.
+mana={W}
+type=Creature
+subtype=Vampire Soldier
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Snubhorn Sentry
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ 3/0
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Snubhorn Sentry gets +3/+0 as long as you have the city's blessing.
+mana={W}
+type=Creature
+subtype=Dinosaur
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Squire's Devotion
+target=creature 
+auto=1/1
+auto=lifelink
+auto=token(Vampire,creature Vampire,1/1,white,lifelink)
+text=Enchant creature -- Enchanted creature gets +1/+1 and has lifelink. -- When Squire's Devotion enters the battlefield, create a 1/1 white Vampire creature token with lifelink.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Sun-Crested Pterodon
+abilities=flying, vigilance
+auto=if type(creature[dinosaur]|mybattlefield)~lessthan~1 then -vigilance
+text=Flying -- Sun-Crested Pterodon has vigilance as long as you control another Dinosaur.
+mana={4}{W}
+type=Creature
+subtype=Dinosaur
+power=2
+toughness=5
+[/card]
+
+[card]
+name=Trapjaw Tyrant
+auto=@damaged(this):(blink)forsrc target(creature|opponentbattlefield)
+text=Enrage — Whenever Trapjaw Tyrant is dealt damage, exile target creature an opponent controls until Trapjaw Tyrant leaves the battlefield.
+mana={3}{W}{W}
+type=Creature
+subtype=Dinosaur
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Zetalpa, Primal Dawn
+abilities=flying, double strike, indestructible, vigilance, trample
+text=Flying, double strike, vigilance, trample, indestructible
+mana={6}{W}{W}
+type=Legendary Creature
+subtype=Elder Dinosaur
+power=4
+toughness=8
+[/card]
+
+[card]
+name=Admiral's Order
+target=spell
+auto=if type(creature[attacking]|mybattlefield)~morethan~0 altercost(colorless,-1) altercost(blue,-1)
+auto=fizzle
+text=Raid — If you attacked with a creature this turn, you may pay {U} rather than pay this spell's mana cost. -- Counter target spell.
+mana={1}{U}{U}
+type=Instant
+[/card]
+
+[card]
+name=Aquatic Incursion
+auto=token(Merfolk,creature Merfolk,1/1,blue,opponentshroud)*2
+auto={3}{U}:target(creature[merfolk]) unblockable ueot
+text=When Aquatic Incursion enters the battlefield, create two 1/1 blue Merfolk creature tokens with hexproof. (They can't be the targets of spells or abilities your opponents control.) -- {3}{U}: Target Merfolk can't be blocked this turn.
+mana={3}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Crashing Tide
+abilities=flash
+target=creature 
+auto=if type(creature[merfolk]|mybattlefield)~lessthan~1 then -flash
+auto=target(creature) moveto(ownerhand)
+auto=draw:1 controller
+text=Crashing Tide has flash as long as you control a Merfolk. -- Return target creature to its owner's hand. -- Draw a card.
+mana={2}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Deadeye Rig-Hauler
+auto=if raid then may moveto(ownerHand) target(creature)
+text=Raid — When Deadeye Rig-Hauler enters the battlefield, if you attacked with a creature this turn, you may return target creature to its owner's hand.
+mana={3}{U}
+type=Creature
+subtype=Human Pirate
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Expel from Orazca
+target=*[-land]
+auto=choice name(owner's hand) moveTo(ownerHand)
+auto=_CITY'S_BLESSING_ choice name(owner's library) moveTo(ownerLibrary)
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Return target nonland permanent to its owner's hand. If you have the city's blessing, you may put that permanent on top of its owner's library instead.
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Flood of Recollection
+target=instant,sorcery|mygraveyard
+auto=moveto(ownerHand)
+auto=exile all(this)
+text=Return target instant or sorcery card from your graveyard to your hand. Exile Flood of Recollection.
+mana={U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Hornswoggle
+target=creature|stack
+auto=fizzle
+text=Counter target creature spell. You create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color."
+mana={2}{U}
+type=Instant
+[/card]
+
+[card]
+name=Induced Amnesia
+auto=target(player) exiles all cards from their hand face down, then draws that many cards
+text=When Induced Amnesia enters the battlefield, target player exiles all cards from their hand face down, then draws that many cards. -- When Induced Amnesia is put into a graveyard from the battlefield, return the exiled cards to their owner's hand.
+mana={2}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Kitesail Corsair
+auto=@combat(attacking) source(this):flying
+text=Kitesail Corsair has flying as long as it's attacking.
+mana={1}{U}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Mist-Cloaked Herald
+abilities=unblockable
+text=Mist-Cloaked Herald can't be blocked.
+mana={U}
+type=Creature
+subtype=Merfolk Warrior
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Nezahal, Primal Tide
+abilities=nofizzle,nomaxhand
+auto=@movedTo(*|opponentstack):draw:1
+auto={D(*|myhand)}{D(*|myhand)}{D(*|myhand)}:(blink)ueot
+text=Nezahal, Primal Tide can't be countered. -- You have no maximum hand size. -- Whenever an opponent casts a noncreature spell, draw a card. -- Discard three cards: Exile Nezahal. Return it to the battlefield tapped under its owner's control at the beginning of the next end step.
+mana={5}{U}{U}
+type=Legendary Creature
+subtype=Elder Dinosaur
+power=7
+toughness=7
+[/card]
+
+[card]
+name=River Darter
+auto=cantbeblockedby(creature[Dinosaurs])
+text=River Darter can't be blocked by Dinosaurs.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Warrior
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Riverwise Augur
+auto=draw:3 controller && transforms((,newability[target(<2>*|myhand) moveto(mylibrary)])) oneshot
+text=When Riverwise Augur enters the battlefield, draw three cards, then put two cards from your hand on top of your library in any order.
+mana={3}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Sea Legs
+abilities=flash
+target=creature
+auto=teach(pirate) +0/+2
+auto=teach(creature[-pirate]) -2/-0
+text=Flash -- Enchant creature -- Enchanted creature gets +0/+2 as long as it's a Pirate. Otherwise, it gets -2/-0.
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Seafloor Oracle
+auto=@combatdamaged(player) from(Merfolk|myBattlefield):draw:1
+text=Whenever a Merfolk you control deals combat damage to a player, draw a card.
+mana={2}{U}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Siren Reaver
+abilities=flying
+text=Raid — This spell costs {1} less to cast if you attacked with a creature this turn. -- Flying
+mana={3}{U}
+type=Creature
+subtype=Siren Pirate
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Soul of the Rapids
+abilities=flying, opponentshroud
+text=Flying -- Hexproof (This creature can't be the target of spells or abilities your opponents control.)
+mana={3}{U}{U}
+type=Creature
+subtype=Elemental
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Spire Winder
+abilities=flying
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ 1/1
+text=Flying -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Spire Winder gets +1/+1 as long as you have the city's blessing.
+mana={3}{U}
+type=Creature
+subtype=Snake
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Sworn Guardian
+mana={1}{U}
+type=Creature
+subtype=Merfolk Warrior
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Warkite Marauder
+abilities=flying
+auto=@combat(attacking) source(this):target(creature|opponentBattlefield) loseabilities
+text=Flying -- Whenever Warkite Marauder attacks, target creature defending player controls loses all abilities and has base power and toughness 0/1 until end of turn.
+mana={1}{U}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Waterknot
+target=creature
+auto=teach(creature) tap
+auto=teach(creature) doesnotuntap
+text=Enchant creature -- When Waterknot enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during its controller's untap step.
+mana={1}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Arterial Flow
+auto=ability$!name(discard 2 cards) target(*|myhand) reject!$ opponent
+auto=aslongas(vampire|myBattlefield) life:-2 opponent
+auto=aslongas(vampire|myBattlefield) life:2
+text=Each opponent discards two cards. If you control a Vampire, each opponent loses 2 life and you gain 2 life.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Canal Monitor
+mana={4}{B}
+type=Creature
+subtype=Lizard
+power=5
+toughness=3
+[/card]
+
+[card]
+name=Champion of Dusk
+auto=damage:type:vampire:mybattlefield controller
+auto=draw:type:vampire:mybattlefield controller
+text=When Champion of Dusk enters the battlefield, you draw X cards and you lose X life, where X is the number of Vampires you control.
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire Knight
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Dark Inquiry
+target=opponent
+auto=reject notatarget(*[-land]|targetedpersonshand)
+text=Target opponent reveals their hand. You choose a nonland card from it. That player discards that card.
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Dinosaur Hunter
+auto=@damaged(dinosaur) from(this):destroy
+text=Whenever Dinosaur Hunter deals damage to a Dinosaur, destroy that creature.
+mana={1}{B}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Dire Fleet Poisoner
+abilities=flash, deathtouch
+auto=target(pirate[attacking]|myBattlefield)) 1/1 && deathtouch ueot
+text=Flash -- Deathtouch -- When Dire Fleet Poisoner enters the battlefield, target attacking Pirate you control gets +1/+1 and gains deathtouch until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Dusk Charger
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ 2/2
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Dusk Charger gets +2/+2 as long as you have the city's blessing.
+mana={3}{B}
+type=Creature
+subtype=Horse
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Dusk Legion Zealot
+auto=draw:1
+auto=life:-1
+text=When Dusk Legion Zealot enters the battlefield, you draw a card and you lose 1 life.
+mana={1}{B}
+type=Creature
+subtype=Vampire Soldier
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Fathom Fleet Boarder
+auto=aslongas(pirate|myBattlefield)~lessthan~1 life:-1
+text=When Fathom Fleet Boarder enters the battlefield, you lose 2 life unless you control another Pirate.
+mana={2}{B}
+type=Creature
+subtype=Orc Pirate
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Grasping Scoundrel
+text=Grasping Scoundrel gets +1/+0 as long as it's attacking.
+mana={B}
+type=Creature
+subtype=Human Pirate
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Impale
+target=creature
+auto=destroy
+text=Destroy target creature.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Moment of Craving
+target=creature
+auto=-2/-2 
+auto=life:2 controller
+text=Target creature gets -2/-2 until end of turn. You gain 2 life.
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Oathsworn Vampire
+auto=tap(noevent)
+text=Oathsworn Vampire enters the battlefield tapped. -- You may cast Oathsworn Vampire from your graveyard if you gained life this turn.
+mana={1}{B}
+type=Creature
+subtype=Vampire Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Ravenous Chupacabra
+auto=destroy target(creature|opponentBattlefield)
+text=When Ravenous Chupacabra enters the battlefield, destroy target creature an opponent controls.
+mana={2}{B}{B}
+type=Creature
+subtype=Beast Horror
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Reaver Ambush
+target=creature[power<=3]
+auto=moveto(exile)
+text=Exile target creature with power 3 or less.
+mana={2}{B}
+type=Instant
+[/card]
+
+[card]
+name=Sadistic Skymarcher
+abilities=flying, lifelink
+text=As an additional cost to cast this spell, reveal a Vampire card from your hand or pay {1}. -- Flying, lifelink
+mana={2}{B}
+type=Creature
+subtype=Vampire Soldier
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Vampire Revenant
+abilities=flying
+text=Flying
+mana={3}{B}
+type=Creature
+subtype=Vampire Spirit
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Voracious Vampire
+abilities=menace
+auto=target(vampire|myBattlefield)) 1/1 && menace ueot
+text=Menace -- When Voracious Vampire enters the battlefield, target Vampire you control gets +1/+1 and gains menace until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Vampire Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Bombard
+target=creature
+auto=damage:4
+text=Bombard deals 4 damage to target creature.
+mana={2}{R}
+type=Instant
+[/card]
+
+[card]
+name=Fanatical Firebrand
+abilities=haste
+auto={T}{S}:damage:1 target(creature,player)
+text=Haste -- {T}, Sacrifice Fanatical Firebrand: It deals 1 damage to any target.
+mana={R}
+type=Creature
+subtype=Goblin Pirate
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Frilled Deathspitter
+auto=@damaged(this):damage:2 target(opponent,planeswalker)
+text=Enrage — Whenever Frilled Deathspitter is dealt damage, it deals 2 damage to target opponent or planeswalker.
+mana={2}{R}
+type=Creature
+subtype=Dinosaur
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Goblin Trailblazer
+abilities=menace
+text=Menace
+mana={1}{R}
+type=Creature
+subtype=Goblin Pirate
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Needletooth Raptor
+auto=@damaged(this):damage:5 target(creature|opponentBattlefield)
+text=Enrage — Whenever Needletooth Raptor is dealt damage, it deals 5 damage to target creature an opponent controls.
+mana={3}{R}
+type=Creature
+subtype=Dinosaur
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Orazca Raptor
+mana={2}{R}{R}
+type=Creature
+subtype=Dinosaur
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Shake the Foundations
+auto=damage:1 all(creature[-flying])
+auto=draw:1
+text=Shake the Foundations deals 1 damage to each creature without flying. -- Draw a card.
+mana={2}{R}
+type=Instant
+[/card]
+
+[card]
+name=Silverclad Ferocidons
+auto=@damaged(this):ability$!name(sacrifice) notatarget(*|mybattlefield) sacrifice!$ targetedplayer
+text=Enrage — Whenever Silverclad Ferocidons is dealt damage, each opponent sacrifices a permanent.
+mana={5}{R}{R}
+type=Creature
+subtype=Dinosaur
+power=8
+toughness=5
+[/card]
+
+[card]
+name=Stampeding Horncrest
+auto=aslongas(dinosaur|myBattlefield) haste
+text=Stampeding Horncrest has haste as long as you control another Dinosaur.
+mana={4}{R}
+type=Creature
+subtype=Dinosaur
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Storm Fleet Swashbuckler
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ transforms((,newability[double strike]))
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Storm Fleet Swashbuckler has double strike as long as you have the city's blessing.
+mana={1}{R}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Sun-Collared Raptor
+abilities=trample
+auto={2}{R}:3/0 ueot
+text=Trample -- {2}{R}: Sun-Collared Raptor gets +3/+0 until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Dinosaur
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Swaggering Corsair
+auto=if raid then counter(1/1)
+text=Raid — Swaggering Corsair enters the battlefield with a +1/+1 counter on it if you attacked with a creature this turn.
+mana={2}{R}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Tilonalli's Crown
+target=creature
+auto=damage:1
+auto=teach(creature) +3/+0
+auto=teach(creature) trample
+text=Enchant creature -- When Tilonalli's Crown enters the battlefield, it deals 1 damage to enchanted creature. -- Enchanted creature gets +3/+0 and has trample.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Cacophodon
+auto=@damaged(this):untap target(*)
+text=Enrage — Whenever Cacophodon is dealt damage, untap target permanent.
+mana={3}{G}
+type=Creature
+subtype=Dinosaur
+power=2
+toughness=5
+[/card]
+
+[card]
+name=Crested Herdcaller
+abilities=trample
+auto=create(dinosaur:creature dinosaur:3/3:green:trample)
+text=Trample -- When Crested Herdcaller enters the battlefield, create a 3/3 green Dinosaur creature token with trample.
+mana={3}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Deeproot Elite
+auto=@movedTo(other Merfolk|myBattlefield):counter(1/1)target(merfolk|myBattlefield)
+text=Whenever another Merfolk enters the battlefield under your control, put a +1/+1 counter on target Merfolk you control.
+mana={1}{G}
+type=Creature
+subtype=Merfolk Warrior
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Giltgrove Stalker
+auto=cantbeblockedby(creature[power<=2])
+text=Giltgrove Stalker can't be blocked by creatures with power 2 or less.
+mana={1}{G}
+type=Creature
+subtype=Merfolk Warrior
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Hardy Veteran
+auto=this(variable{controllerturn}>0) 0/2
+text=As long as it's your turn, Hardy Veteran gets +0/+2.
+mana={1}{G}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Jade Bearer
+auto=counter(1/1) target(other merfolk|myBattlefield)
+text=When Jade Bearer enters the battlefield, put a +1/+1 counter on another target Merfolk you control.
+mana={G}
+type=Creature
+subtype=Merfolk Shaman
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Jadecraft Artisan
+auto=target(creature) 2/2 ueot
+text=When Jadecraft Artisan enters the battlefield, target creature gets +2/+2 until end of turn.
+mana={3}{G}
+type=Creature
+subtype=Merfolk Shaman
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Jungleborn Pioneer
+abilities=opponentshroud
+auto=create(merfolk:creature merfolk:1/1:blue:hexproof)
+text=When Jungleborn Pioneer enters the battlefield, create a 1/1 blue Merfolk creature token with hexproof. (It can't be the target of spells or abilities your opponents control.)
+mana={2}{G}
+type=Creature
+subtype=Merfolk Scout
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Knight of the Stampede
+auto=lord(*[dinosaur]|mycastingzone) altercost(colorless,-2)
+text=Dinosaur spells you cast cost {2} less to cast.
+mana={3}{G}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Orazca Frillback
+mana={2}{G}
+type=Creature
+subtype=Dinosaur
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Overgrown Armasaur
+auto=@damaged(this):create(saproling:creature saproling:1/1:green:)
+text=Enrage — Whenever Overgrown Armasaur is dealt damage, create a 1/1 green Saproling creature token.
+mana={3}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Polyraptor
+auto=@damaged(this):token(polyraptor)
+text=Enrage — Whenever Polyraptor is dealt damage, create a token that's a copy of Polyraptor.
+mana={6}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Strength of the Pack
+auto=counter(1/1,2) all(creature|mybattlefield)
+text=Put two +1/+1 counters on each creature you control.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Swift Warden
+abilities=flash
+auto=target(merfolk|myBattlefield)) hexproof ueot
+text=Flash -- When Swift Warden enters the battlefield, target Merfolk you control gains hexproof until end of turn. (It can't be the target of spells or abilities your opponents control.)
+mana={1}{G}{G}
+type=Creature
+subtype=Merfolk Warrior
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Tendershoot Dryad
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ lord(Saproling|myBattlefield) 2/2
+auto=@each upkeep:create(saproling:creature saproling:1/1:green)
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- At the beginning of each upkeep, create a 1/1 green Saproling creature token. -- Saprolings you control get +2/+2 as long as you have the city's blessing.
+mana={4}{G}
+type=Creature
+subtype=Dryad
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Thrashing Brontodon
+auto={1}{S}:destroy target(artifact,enchantment)
+text={1}, Sacrifice Thrashing Brontodon: Destroy target artifact or enchantment.
+mana={1}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Wayward Swordtooth
+abilities=cantattack,cantblock
+auto=maxPlay(land)+1
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ transforms((,newability[-cantattack]))
+auto=_CITY'S_BLESSING_ transforms((,newability[-cantblock]))
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- You may play an additional land on each of your turns. -- Wayward Swordtooth can't attack or block unless you have the city's blessing.
+mana={2}{G}
+type=Creature
+subtype=Dinosaur
+power=5
+toughness=5
+[/card]
+
+[card]
+name=World Shaper
+auto=@combat(attacking) source(this):may deplete:3
+auto=@movedTo(this|graveyard) from(battlefield):all(land|mygraveyard) moveto(mybattlefied)
+text=Whenever World Shaper attacks, you may put the top three cards of your library into your graveyard. -- When World Shaper dies, put all land cards from your graveyard onto the battlefield tapped.
+mana={3}{G}
+type=Creature
+subtype=Merfolk Shaman
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Atzocan Seer
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={S}:target(dinosaur|mygraveyard) moveto(ownerhand)
+text={T}: Add one mana of any color. -- Sacrifice Atzocan Seer: Return target Dinosaur card from your graveyard to your hand.
+mana={1}{G}{W}
+type=Creature
+subtype=Human Druid
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Deadeye Brawler
+abilities=deathtouch
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ transforms((,newability[@combatdamaged(player) from(this):draw:1]))
+text=Deathtouch -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Deadeye Brawler deals combat damage to a player, if you have the city's blessing, draw a card.
+mana={2}{U}{B}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Dire Fleet Neckbreaker
+auto=lord(creature[pirate;attacking]|myBattlefield) +2/+0
+text=Attacking Pirates you control get +2/+0.
+mana={2}{B}{R}
+type=Creature
+subtype=Orc Pirate
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Elenda, the Dusk Rose
+abilities=lifelink
+auto=@movedTo(other creature|graveyard) from(battlefield):counter(1/1)
+text=Lifelink -- Whenever another creature dies, put a +1/+1 counter on Elenda, the Dusk Rose. -- When Elenda dies, create X 1/1 white Vampire creature tokens with lifelink, where X is Elenda's power.
+mana={2}{W}{B}
+type=Legendary Creature
+subtype=Vampire Knight
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Atzal, Cave of Eternity
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={3}{B}{G}{T}:target(creature|mygraveyard) moveTo(mybattlefield)
+text=(Transforms from Journey to Eternity.) -- {T}: Add one mana of any color. -- {3}{B}{G}, {T}: Return target creature card from your graveyard to the battlefield.
+type=Legendary Land
+[/card]
+
+[card]
+name=Jungle Creeper
+auto={3}{B}{G}:moveto(myhand) all(this)
+text={3}{B}{G}: Return Jungle Creeper from your graveyard to your hand.
+mana={1}{B}{G}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Kumena, Tyrant of Orazca
+auto={T(other Merfolk|myBattlefield)}:unblockable
+auto={T(Merfolk|myBattlefield)}{T(Merfolk|myBattlefield)}{T(Merfolk|myBattlefield)}:draw:1
+auto={T(Merfolk|myBattlefield)}{T(Merfolk|myBattlefield)}{T(Merfolk|myBattlefield)}{T(Merfolk|myBattlefield)}{T(Merfolk|myBattlefield)}:counter(1/1) all(merfolk|myBattlefield)
+text=Tap another untapped Merfolk you control: Kumena, Tyrant of Orazca can't be blocked this turn. -- Tap three untapped Merfolk you control: Draw a card. -- Tap five untapped Merfolk you control: Put a +1/+1 counter on each Merfolk you control.
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Merfolk Shaman
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Legion Lieutenant
+auto=lord(other vampire|myBattlefield) +1/+1
+text=Other Vampires you control get +1/+1.
+mana={W}{B}
+type=Creature
+subtype=Vampire Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Merfolk Mistbinder
+auto=lord(other Merfolk|myBattlefield) +1/+1
+text=Other Merfolk you control get +1/+1.
+mana={G}{U}
+type=Creature
+subtype=Merfolk Shaman
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Protean Raider
+auto=if raid then may copy(creature)
+text=Raid — If you attacked with a creature this turn, you may have Protean Raider enter the battlefield as a copy of any creature on the battlefield.
+mana={1}{U}{R}
+type=Creature
+subtype=Shapeshifter Pirate
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Raging Regisaur
+auto=@combat(attacking) source(this):damage:1 target(creature,player)
+text=Whenever Raging Regisaur attacks, it deals 1 damage to any target.
+mana={2}{R}{G}
+type=Creature
+subtype=Dinosaur
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Relentless Raptor
+abilities=vigilance, mustattack, mustblock
+text=Vigilance -- Relentless Raptor attacks or blocks each combat if able.
+mana={R}{W}
+type=Creature
+subtype=Dinosaur
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Resplendent Griffin
+abilities=flying
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ transforms((,newability[@combat(attacking) source(this):counter(1/1)]))
+text=Flying -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Resplendent Griffin attacks, if you have the city's blessing, put a +1/+1 counter on it.
+mana={1}{W}{U}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Siegehorn Ceratops
+auto=@damaged(this):counter(1/1,2)
+text=Enrage — Whenever Siegehorn Ceratops is dealt damage, put two +1/+1 counters on it. (It must survive the damage to get the counters.)
+mana={G}{W}
+type=Creature
+subtype=Dinosaur
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Storm Fleet Sprinter
+abilities=unblockable, haste
+text=Haste -- Storm Fleet Sprinter can't be blocked.
+mana={1}{U}{R}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Zacama, Primal Calamity
+abilities=vigilance, reach, trample
+auto=if casted(this) then all(lands|myBattlefield) untap
+auto={2}{R}:zacama damage:3 target(creature)
+auto={2}{G}:destroy target(artifact,enchantment)
+auto={2}{W}:life:3
+text=Vigilance, reach, trample -- When Zacama, Primal Calamity enters the battlefield, if you cast it, untap all lands you control. -- {2}{R}: Zacama deals 3 damage to target creature. -- {2}{G}: Destroy target artifact or enchantment. -- {2}{W}: You gain 3 life.
+mana={6}{R}{G}{W}
+type=Legendary Creature
+subtype=Elder Dinosaur
+power=9
+toughness=9
+[/card]
+
+[card]
+name=Orazca Relic
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ transforms((,newability[{T}{S}:life:3 && draw:1]))
+auto={T}:Add{C}
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- {T}: Add {C}. -- {T}, Sacrifice Orazca Relic: You gain 3 life and draw a card. Activate this ability only if you have the city's blessing.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Arch of Orazca
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ transforms((,newability[{5}{T}:draw:1]))
+auto={T}:Add{C}
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- {T}: Add {C}. -- {5}, {T}: Draw a card. Activate this ability only if you have the city's blessing.
+type=Land
+[/card]
+
+[card]
+name=Vampire Champion
+abilities=deathtouch
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.)
+mana={3}{B}
+type=Creature
+subtype=Vampire Soldier
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Angrath's Ambusher
+auto=aslongas(planeswalker[Angrath]|myBattlefield)s +2/+0
+text=Angrath's Ambusher gets +2/+0 as long as you control an Angrath planeswalker.
+mana={2}{B}
+type=Creature
+subtype=Orc Pirate
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Swab Goblin
+mana={1}{R}
+type=Creature
+subtype=Goblin Pirate
+power=2
+toughness=2
+[/card]

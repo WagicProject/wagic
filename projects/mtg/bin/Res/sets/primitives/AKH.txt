@@ -1,0 +1,2501 @@
+grade=borderline
+## cant code: Glorious End, Vizier of the Menagerie, Anointed Procession, Gideon's Intervention, Trueheart Duelist, Vizier of Remedies, New Perspectives, Sacred Excavation, Dispossess, Shadow of the Grave, Soulstinger, Glorious End, Harsh Mentor, Comply, Embalmer's Tools, Oracle's Vault
+
+## partial problems##
+#Vizier of Many Faces, second clone isnt white
+#Naga Vitalist cant do of any color lands produce
+#Quarry Hauler cant remove same counters
+#aftermath exiledeath? review card
+#Gideon, Martial Paragon check later
+#Liliana, Death Wielder check later 
+#aslongas(Desert|mybattlefield,myGraveyard) correct code for desert
+
+[card]
+name=Angel of Sanctions
+abilities=flying
+auto=may (blink)forsrc target(*[-land]|opponentbattlefield)
+autograveyard={5}{W}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Flying -- When Angel of Sanctions enters the battlefield, you may exile target nonland permanent an opponent controls until Angel of Sanctions leaves the battlefield. -- Embalm {5}{W} ({5}{W}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Angel with no mana cost. Embalm only as a sorcery.)
+mana={3}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Anointed Procession
+abilities=tokenizer
+text=If an effect would create one or more tokens under your control, it creates twice that many of those tokens instead.
+mana={3}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Anointer Priest
+auto=@movedto(creature[token]|mybattlefield):life:1 controller
+autograveyard={3}{W}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Whenever a creature token enters the battlefield under your control, you gain 1 life. -- Embalm {3}{W} ({3}{W}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Human Cleric with no mana cost. Embalm only as a sorcery.)
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Binding Mummy
+auto=@movedto(other zombie|mybattlefield):may tap target(artifact,creature)
+text=Whenever another Zombie enters the battlefield under your control, you may tap target artifact or creature.
+mana={1}{W}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Cartouche of Solidarity
+target=creature|myBattlefield
+auto=1/1
+auto=first strike
+auto=token(Warrior,creature Warrior,1/1,white,vigilance)
+text=Enchant creature you control -- When Cartouche of Solidarity enters the battlefield, create a 1/1 white Warrior creature token with vigilance. -- Enchanted creature gets +1/+1 and has first strike.
+mana={W}
+type=Enchantment
+subtype=Aura Cartouche
+[/card]
+
+[card]
+name=Cast Out
+abilities=flash
+auto=blink(*[-land]|opponentbattlefield) forsrc
+autohand=__CYCLING__({W})
+text=Flash -- When Cast Out enters the battlefield, exile target nonland permanent an opponent controls until Cast Out leaves the battlefield. -- Cycling {W} ({W}, Discard this card: Draw a card.)
+mana={3}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Compulsory Rest
+target=creature
+auto=cantattack
+auto=cantblock
+auto={2}{S}:life:2
+text=Enchant creature -- Enchanted creature can't attack or block. -- Enchanted creature has "{2}, Sacrifice this creature: You gain 2 life."
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Devoted Crop-Mate
+auto=@exerted(this):moveto(mybattlefield) target(creature[manacost<=2]|mygraveyard)
+auto=@combat(attacking) source(this):may exert
+text=You may exert Devoted Crop-Mate as it attacks. When you do, return target creature card with converted mana cost 2 or less from your graveyard to the battlefield. (An exerted creature won't untap during your next untap step.)
+mana={2}{W}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Djeru's Resolve
+target=creature
+auto=untap
+auto=preventalldamage to(this)
+autohand=__CYCLING__({2})
+text=Untap target creature. Prevent all damage that would be dealt to it this turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=Fan Bearer
+auto={2}{T}:Tap target(creature)
+text={2}, {T}: Tap target creature.
+mana={W}
+type=Creature
+subtype=Zombie
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Forsake the Worldly
+target=artifact,enchantment
+auto=moveto(exile)
+autohand=__CYCLING__({2})
+text=Exile target artifact or enchantment. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Gideon of the Trials
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:target(*|battlefield) transforms((,newability[preventalldamage from(this)])) uynt
+auto={C(0/0,0,Loyalty)}:name(becomes 4/4) transforms((Creature Human Soldier,setpower=4,settoughness=4,indestructible,newability[preventAllDamage to(this)])) ueot
+auto={C(0/0,0,Loyalty)}:emblem transforms((,newability[lord(gideon|mybattlefield) cantlose])) forever dontremove
+text=+1: You gain 2 life. -- -1: Put a +1/+1 counter on each creature you control. Those creatures gain vigilance until end of turn. -- -6: Put a white Avatar creature token onto the battlefield. It has "This creature's power and toughness are each equal to your life total."
+text=+1: Until your next turn, prevent all damage target permanent would deal. -- 0: Until end of turn, Gideon of the Trials becomes a 4/4 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- 0: You get an emblem with "As long as you control a Gideon planeswalker, you can't lose the game and your opponents can't win the game."
+mana={1}{W}{W}
+type=Legendary Planeswalker
+subtype=Gideon
+[/card]
+
+[card]
+name=Glory-Bound Initiate
+auto=@exerted(this):transforms((,newability[lifelink],newability[1/3])) ueot
+auto=@combat(attacking) source(this):may exert
+text=You may exert Glory-Bound Initiate as it attacks. When you do, it gets +1/+3 and gains lifelink until end of turn. (An exerted creature won't untap during your next untap step.)
+mana={1}{W}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Gust Walker
+auto=@exerted(this):transforms((,newability[flying],newability[1/1])) ueot
+auto=@combat(attacking) source(this):may exert
+text=You may exert Gust Walker as it attacks. When you do, it gets +1/+1 and gains flying until end of turn. (An exerted creature won't untap during your next untap step.)
+mana={1}{W}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=In Oketra's Name
+auto=all(zombie|mybattlefield) 2/1
+auto=all(creature[-zombie]|mybattlefield) 1/1
+text=Zombies you control get +2/+1 until end of turn. Other creatures you control get +1/+1 until end of turn.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Oketra the True
+abilities=double strike,indestructible
+auto=aslongas(creature|mybattlefield) cantattack <4 
+auto=aslongas(creature|mybattlefield) cantblock <4 
+auto={3}{W}:token(Warrior,creature Warrior,1/1,white,vigilance)
+text=Double strike, indestructible -- Oketra the True can't attack or block unless you control at least three other creatures. -- {3}{W}: Create a 1/1 white Warrior creature token with vigilance.
+mana={3}{W}
+type=Legendary Creature
+subtype=God
+power=3
+toughness=6
+[/card]
+
+[card]
+name=Oketra's Attendant
+abilities=flying
+autohand=__CYCLING__({2})
+autograveyard={3}{W}{W}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Flying -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Embalm {3}{W}{W} ({3}{W}{W}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Bird Soldier with no mana cost. Embalm only as a sorcery.)
+mana={3}{W}{W}
+type=Creature
+subtype=Bird Soldier
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Protection of the Hekma
+auto=@damaged(controller):life:1
+text=If a source an opponent controls would deal damage to you, prevent 1 of that damage.
+mana={4}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Regal Caracal
+auto=lord(other cat|mybattlefield) 1/1
+auto=lord(other cat|mybattlefield) lifelink
+auto=token(Cat,creature Cat,1/1,white)*2
+text=Other Cats you control get +1/+1 and have lifelink. -- When Regal Caracal enters the battlefield, create two 1/1 white Cat creature tokens with lifelink.
+mana={3}{W}{W}
+type=Creature
+subtype=Cat
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Rhet-Crop Spearmaster
+auto=@exerted(this):transforms((,newability[1/0],newability[firststrike])) ueot
+auto=@combat(attacking) source(this):may exert
+text=You may exert Rhet-Crop Spearmaster as it attacks. When you do, it gets +1/+0 and gains first strike until end of turn. (An exerted creature won't untap during your next untap step.)
+mana={2}{W}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Sacred Cat
+abilities=lifelink
+autograveyard={W}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Lifelink -- Embalm {W} ({W}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Cat with no mana cost. Embalm only as a sorcery.)
+mana={W}
+type=Creature
+subtype=Cat
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Seraph of the Suns
+abilities=flying, indestructible
+text=Flying -- Indestructible (Damage and effects that say "destroy" don't destroy this creature. If its toughness is 0 or less, it's still put into its owner's graveyard.)
+mana={5}{W}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Sparring Mummy
+auto=untap target(creature)
+text=When Sparring Mummy enters the battlefield, untap target creature.
+mana={3}{W}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Supply Caravan
+auto=if type(creature[tapped]|mybattlefield)~morethan~0 token(Warrior,creature Warrior,1/1,white,vigilance)
+text=When Supply Caravan enters the battlefield, if you control a tapped creature, create a 1/1 white Warrior creature token with vigilance.
+mana={4}{W}
+type=Creature
+subtype=Camel
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Tah-Crop Elite
+abilities=flying
+auto=@exerted(this):all(creature|myBattlefield) 1/1
+auto=@combat(attacking) source(this):may exert
+text=Flying -- You may exert Tah-Crop Elite as it attacks. When you do, creatures you control get +1/+1 until end of turn. (An exerted creature won't untap during your next untap step.)
+mana={3}{W}
+type=Creature
+subtype=Bird Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Those Who Serve
+mana={2}{W}
+type=Creature
+subtype=Zombie
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Time to Reflect
+target=creature(blocking,blocked) from(zombie)
+auto=moveto(exile)
+text=Exile target creature that blocked or was blocked by a Zombie this turn.
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=Trial of Solidarity
+auto=all(creature|mybattlefield) 2/1 ueot
+auto=all(creature|mybattlefield) vigilance ueot
+auto=@movedto(cartouche|mybattlefield):moveto(myhand)
+text=When Trial of Solidarity enters the battlefield, creatures you control get +2/+1 and gain vigilance until end of turn. -- When a Cartouche enters the battlefield under your control, return Trial of Solidarity to its owner's hand.
+mana={2}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Unwavering Initiate
+abilities=vigilance
+autograveyard={4}{W}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Vigilance -- Embalm {4}{W} ({4}{W}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Human Warrior with no mana cost. Embalm only as a sorcery.)
+mana={2}{W}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Winged Shepherd
+abilities=flying, vigilance
+autohand=__CYCLING__({W})
+text=Flying, vigilance -- Cycling {W} ({W}, Discard this card: Draw a card.)
+mana={5}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Angler Drake
+abilities=flying
+auto=may moveto(ownerhand) target(creature)
+text=Flying -- When Angler Drake enters the battlefield, you may return target creature to its owner's hand.
+mana={4}{U}{U}
+type=Creature
+subtype=Drake
+power=4
+toughness=4
+[/card]
+
+[card]
+name=As Foretold
+auto=@each my upkeep:counter(0/0,1,time)
+auto={0}:castcard(normal) notatarget(*[-land;manacost<=counter{0/0.1.time}]|myhand) limit:1
+text=At the beginning of your upkeep, put a time counter on As Foretold. -- Once each turn, you may pay {0} rather than pay the mana cost for a spell you cast with converted mana cost X or less, where X is the number of time counters on As Foretold.
+mana={2}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Aven Initiate
+abilities=flying
+autograveyard={6}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Flying -- Embalm {6}{U} ({6}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Bird Warrior with no mana cost. Embalm only as a sorcery.)
+mana={3}{U}
+type=Creature
+subtype=Bird Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Cartouche of Knowledge
+target=creature|myBattlefield
+auto=1/1
+auto=flying
+auto=draw:1 controller
+text=Enchant creature you control -- When Cartouche of Knowledge enters the battlefield, draw a card. -- Enchanted creature gets +1/+1 and has flying.
+mana={1}{U}
+type=Enchantment
+subtype=Aura Cartouche
+[/card]
+
+[card]
+name=Censor
+target=*|stack
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+autohand=__CYCLING__({U})
+text=Counter target spell unless its controller pays {1}. -- Cycling {U} ({U}, Discard this card: Draw a card.)
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Compelling Argument
+target=player
+auto=deplete:5 targetedplayer
+autohand=__CYCLING__({U})
+text=Target player puts the top five cards of his or her library into his or her graveyard. -- Cycling {U} ({U}, Discard this card: Draw a card.)
+mana={1}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Cryptic Serpent
+anyzone=foreach(instant,sorcery|mygraveyard) altercost(-1,colorless)
+text=Cryptic Serpent costs {1} less to cast for each instant and sorcery card in your graveyard.
+mana={5}{U}{U}
+type=Creature
+subtype=Serpent
+power=6
+toughness=5
+[/card]
+
+[card]
+name=Curator of Mysteries
+abilities=flying
+auto=@movedto(*|mygraveyard) from(myhand):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+autohand=__CYCLING__({U})
+text=Flying -- Whenever you cycle or discard another card, scry 1. -- Cycling {U} ({U}, Discard this card: Draw a card.)
+mana={2}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Decision Paralysis
+target=<upto:2>creature
+auto=tap && freeze
+text=Tap up to two target creatures. Those creatures don't untap during their controller's next untap step.
+mana={3}{U}
+type=Instant
+[/card]
+
+[card]
+name=Drake Haven
+auto=@movedto(*|mygraveyard) from(myhand):may pay({1}) token(Drake,creature Drake,blue,2/2,flying)
+text=Whenever you cycle or discard a card, you may pay {1}. If you do, create a 2/2 blue Drake creature token with flying.
+mana={2}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Floodwaters
+target=<upto:2>creature
+auto=moveto(ownerhand)
+autohand=__CYCLING__({2})
+text=Return up to two target creatures to their owners' hands. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Galestrike
+target=creature(tapped)
+auto=moveto(ownerhand)
+auto=draw:1 controller
+text=Return target tapped creature to its owner's hand. -- Draw a card.
+mana={2}{U}
+type=Instant
+[/card]
+
+[card]
+name=Glyph Keeper
+abilities=flying
+auto=@targeted(this) restriction(once):all(trigger[from]) fizzle
+autograveyard={5}{U}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Flying -- Whenever Glyph Keeper becomes the target of a spell or ability for the first time each turn, counter that spell or ability. -- Embalm {5}{U}{U} ({5}{U}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Sphinx with no mana cost. Embalm only as a sorcery.)
+mana={3}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=3
+[/card]
+
+[card]
+name=Hekma Sentinels
+auto=@movedto(*|mygraveyard) from(myhand):1/1 ueot
+text=Whenever you cycle or discard a card, Hekma Sentinels gets +1/+1 until end of turn.
+mana={2}{U}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Hieroglyphic Illumination
+auto=draw:2 controller
+autohand=__CYCLING__({U})
+text=Draw two cards. -- Cycling {U} ({U}, Discard this card: Draw a card.)
+mana={3}{U}
+type=Instant
+[/card]
+
+[card]
+name=Illusory Wrappings
+target=creature
+auto=transforms((,setpower=0,settoughness=2)) forsrc
+text=Enchant creature -- Enchanted creature has base power and toughness 0/2.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Kefnet the Mindful
+abilities=flying, indestructible
+auto=aslongas(*|myhand) cantattack <7
+auto=aslongas(*|myhand) cantblock <7
+auto={3}{U}:draw:1 && transforms((,newability[may moveto(myhand) target(land|mybattlefield)])) ueot
+text=Flying, indestructible -- Kefnet the Mindful can't attack or block unless you have seven or more cards in hand. -- {3}{U}: Draw a card, then you may return a land you control to its owner's hand.
+mana={2}{U}
+type=Legendary Creature
+subtype=God
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Labyrinth Guardian
+auto=@targeted(this) from(*[instant;sorcery;aura]|mycastingzone):sacrifice
+auto=@targeted(this) from(*[instant;sorcery;aura]|opponentcastingzone):sacrifice
+autograveyard={3}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=When Labyrinth Guardian becomes the target of a spell, sacrifice it. -- Embalm {3}{U} ({3}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Illusion Warrior with no mana cost. Embalm only as a sorcery.)
+mana={1}{U}
+type=Creature
+subtype=Illusion Warrior
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Lay Claim
+target=artifact,creature,enchantment,land,planeswalker
+auto=moveto(mybattlefield)
+autohand=__CYCLING__({2})
+text=Enchant permanent -- You control enchanted permanent. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={5}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Naga Oracle
+auto=deplete:3 controller && transforms((,newability[may moveto(mylibrary) target(<anyamount>*|mygraveyard)])) ueot
+text=When Naga Oracle enters the battlefield, look at the top three cards of your library. Put any number of them into your graveyard and the rest back on top of your library in any order.
+mana={3}{U}
+type=Creature
+subtype=Naga Cleric
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Open into Wonder
+target=creature
+auto=unblockable
+auto=@combatdamaged(player) from(this):draw:1 controller
+text=X target creatures can't be blocked this turn. Until end of turn, those creatures gain "Whenever this creature deals combat damage to a player, draw a card."
+mana={X}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Pull from Tomorrow
+auto=draw:X && reject notatarget(*|myhand)
+text=Draw X cards, then discard a card.
+mana={X}{U}{U}
+type=Instant
+[/card]
+
+[card]
+name=River Serpent
+auto=aslongas(type(*|mygraveyard)~lessthen~5) cantattack
+autohand=__CYCLING__({U})
+text=River Serpent can't attack unless there are five or more cards in your graveyard. -- Cycling {U} ({U}, Discard this card: Draw a card.)
+mana={5}{U}
+type=Creature
+subtype=Serpent
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Scribe of the Mindful
+auto={1}{T}{S}:moveto(myhand) target(instant,sorcery|mygraveyard)
+text={1}, {T}, Sacrifice Scribe of the Mindful: Return target instant or sorcery card from your graveyard to your hand.
+mana={2}{U}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Seeker of Insight
+auto={T} {restriction type(*[-creature]|mystack)~morethan~0}:draw:1 && reject notatarget(*|myhand)
+text={T}: Draw a card, then discard a card. Activate this ability only if you've cast a noncreature spell this turn.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Shimmerscale Drake
+abilities=flying
+autohand=__CYCLING__({2})
+text=Flying -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={4}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Slither Blade
+abilities=unblockable
+text=Slither Blade can't be blocked.
+mana={U}
+type=Creature
+subtype=Naga Rogue
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Tah-Crop Skirmisher
+autograveyard={3}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Embalm {3}{U} ({3}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Naga Warrior with no mana cost. Embalm only as a sorcery.)
+mana={1}{U}
+type=Creature
+subtype=Naga Warrior
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Trial of Knowledge
+auto=draw:3 && transforms((,newability[target(*|myhand) reject])) forever
+auto=@movedto(cartouche|mybattlefield):moveto(myhand)
+text=When Trial of Knowledge enters the battlefield, draw three cards, then discard a card. -- When a Cartouche enters the battlefield under your control, return Trial of Knowledge to its owner's hand.
+mana={3}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Vizier of Many Faces
+auto=may copy notatarget(creature)
+autograveyard={3}{U}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=You may have Vizier of Many Faces enter the battlefield as a copy of any creature on the battlefield, except if Vizier of Many Faces was embalmed, the token has no mana cost, it's white, and it's a Zombie in addition to its other types. -- Embalm {3}{U}{U}
+mana={2}{U}{U}
+type=Creature
+subtype=Shapeshifter Cleric
+power=0
+toughness=0
+[/card]
+
+[card]
+name=Vizier of Tumbling Sands
+auto={T}:untap target(other *|mybattlefield)
+autohand=__CYCLING__({1}{U})
+text={T}: Untap another target permanent. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When you cycle Vizier of Tumbling Sands, untap target permanent.
+mana={2}{U}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Winds of Rebuke
+target=*[-land]
+auto=moveto(ownerhand)
+auto=deplete:2 controller
+auto=deplete:2 opponent
+text=Return target nonland permanent to its owner's hand. Each player puts the top two cards of his or her library into his or her graveyard.
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Zenith Seeker
+abilities=flying
+auto=@movedto(*|mygraveyard) from(myhand):target(creature|mybattlefield) flying ueot
+text=Flying -- Whenever you cycle or discard a card, target creature gains flying until end of turn.
+mana={3}{U}
+type=Creature
+subtype=Bird Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Archfiend of Ifnir
+abilities=flying
+auto=@movedto(*|mygraveyard) from(myhand):all(creature|opponentbattlefield) counter(-1/-1,1)
+autohand=__CYCLING__({2})
+text=Flying -- Whenever you cycle or discard another card, put a -1/-1 counter on each creature your opponents control. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Baleful Ammit
+abilities=lifelink
+auto=counter(-1/-1,1) target(creature|mybattlefield)
+text=Lifelink -- When Baleful Ammit enters the battlefield, put a -1/-1 counter on target creature you control.
+mana={2}{B}
+type=Creature
+subtype=Crocodile Demon
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Blighted Bat
+abilities=flying
+auto={1}:haste ueot
+text=Flying -- {1}: Blighted Bat gains haste until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Zombie Bat
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Bone Picker
+abilities=flying, deathtouch
+autohand=@movedto(*|graveyard) from(battlefield):altercost(colorless,-3) ueot
+text=Bone Picker costs {3} less to cast if a creature died this turn. -- Flying, deathtouch
+mana={3}{B}
+type=Creature
+subtype=Bird
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Bontu the Glorified
+abilities=menace, indestructible, cantattack, cantblock
+auto=@movedto(creature|mygraveyard) from(mybattlefield): -cantattack ueot
+auto=@movedto(creature|mygraveyard) from(mybattlefield): -cantblock ueot
+auto={1}{B}{S(other creature|mybattlefield)}:life:-1 opponent && life:1 controller
+text=Menace, indestructible -- Bontu the Glorified can't attack or block unless a creature died under your control this turn. -- {1}{B}, Sacrifice another creature: Scry 1. Each opponent loses 1 life and you gain 1 life.
+mana={2}{B}
+type=Legendary Creature
+subtype=God
+power=4
+toughness=6
+[/card]
+
+[card]
+name=Cartouche of Ambition
+target=creature|myBattlefield
+auto=1/1
+auto=lifelink
+auto=may counter(-1/-1,1) target(creature)
+text=Enchant creature you control -- When Cartouche of Ambition enters the battlefield, you may put a -1/-1 counter on target creature. -- Enchanted creature gets +1/+1 and has lifelink.
+mana={2}{B}
+type=Enchantment
+subtype=Aura Cartouche
+[/card]
+
+[card]
+name=Cruel Reality
+target=player
+auto=if type(creature,planeswalker|opponentbattlefield)~morethan~0 ability$!name(sacrifice) notatarget(creature,planeswalker|myBattlefield) sacrifice!$ opponent else life:-5 opponent
+text=Enchant player -- At the beginning of enchanted player's upkeep, that player sacrifices a creature or planeswalker. If the player can't, he or she loses 5 life.
+mana={5}{B}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+
+[card]
+name=Cursed Minotaur
+abilities=menace
+text=Menace (This creature can't be blocked except by two or more creatures.)
+mana={2}{B}
+type=Creature
+subtype=Zombie Minotaur
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Doomed Dissenter
+auto=@movedTo(this|graveyard) from(battlefield):token(Zombie,creature Zombie,2/2,black)
+text=When Doomed Dissenter dies, create a 2/2 black Zombie creature token.
+mana={1}{B}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Dread Wanderer
+auto=tap
+auto={2}{B}{restriction type(*|myhand)~lessthan~2}:moveto(mybattlefield)
+text=Dread Wanderer enters the battlefield tapped. -- {2}{B}: Return Dread Wanderer from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery and only if you have one or fewer cards in hand.
+mana={B}
+type=Creature
+subtype=Zombie Jackal
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Dune Beetle
+mana={1}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=4
+[/card]
+
+[card]
+name=Faith of the Devoted
+auto=@movedto(*|mygraveyard) from(myhand):pay({1}) life:2 controller && life:-2 opponent
+text=Whenever you cycle or discard a card, you may pay {1}. If you do, each opponent loses 2 life and you gain 2 life.
+mana={2}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Festering Mummy
+auto=@movedTo(this|graveyard) from(battlefield):may target(creature) counter(-1/-1,1)
+text=When Festering Mummy dies, you may put a -1/-1 counter on target creature.
+mana={B}
+type=Creature
+subtype=Zombie
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Final Reward
+target=creature
+auto=moveto(exile)
+text=Exile target creature.
+mana={4}{B}
+type=Instant
+[/card]
+
+[card]
+name=Grim Strider
+auto=foreach(*|myhand) -1/-1
+text=Grim Strider gets -1/-1 for each card in your hand.
+mana={3}{B}
+type=Creature
+subtype=Horror
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Horror of the Broken Lands
+auto=@movedto(*|mygraveyard) from(myhand):2/1 ueot
+autohand=__CYCLING__({B})
+text=Whenever you cycle or discard another card, Horror of the Broken Lands gets +2/+1 until end of turn. -- Cycling {B} ({B}, Discard this card: Draw a card.)
+mana={4}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Lay Bare the Heart
+target=opponent
+auto=if type(*[-land;-legendary]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-land;-legendary]|targetedpersonshand)
+text=Target opponent reveals his or her hand. You choose a nonlegendary, nonland card from it. That player discards that card.
+mana={1}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Liliana, Death's Majesty
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:deplete:2 controller && token(Zombie,creature Zombie,2/2,black)
+auto={C(0/0,-3,Loyalty)}:moveto(mybattlefield) target(creature|mygraveyard) and!(transforms((Zombie,newcolors[black])) forever)!
+auto={C(0/0,-7,Loyalty)}:destroy all(creature[-zombie])
+text=+1: Create a 2/2 black Zombie creature token. Put the top two cards of your library into your graveyard. -- -3: Return target creature card from your graveyard to the battlefield. That creature is a black Zombie in addition to its other colors and types. -- -7: Destroy all non-Zombie creatures.
+mana={3}{B}{B}
+type=Legendary Planeswalker
+subtype=Liliana
+[/card]
+
+[card]
+name=Liliana's Mastery
+auto=lord(zombie|mybattlefield) 1/1
+auto=token(Zombie,creature Zombie,2/2,black)*2
+text=Zombies you control get +1/+1. -- When Liliana's Mastery enters the battlefield, create two 2/2 black Zombie creature tokens.
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Lord of the Accursed
+auto=lord(other zombie|mybattlefield) 1/1
+auto={1}{B}{T}:all(zombie|mybattlefield) menace ueot
+text=Other Zombies you control get +1/+1. -- {1}{B}, {T}: All Zombies gain menace until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Miasmic Mummy
+auto=reject notatarget(*|myhand)
+auto=ability$!notatarget(*|myhand) reject!$ opponent
+text=When Miasmic Mummy enters the battlefield, each player discards a card.
+mana={1}{B}
+type=Creature
+subtype=Zombie Jackal
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Nest of Scarabs
+auto=@counteradded(-1/-1) from(*|mybattlefield):token(Insect,creature Insect,1/1,black)
+auto=@counteradded(-1/-1) from(*|mystack):token(Insect,creature Insect,1/1,black)
+text=Whenever you put one or more -1/-1 counters on a creature, create that many 1/1 black Insect creature tokens.
+mana={2}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Painful Lesson
+target=player
+auto=draw:2 targetedplayer
+auto=life:-2 targetedplayer
+text=Target player draws two cards and loses 2 life.
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Pitiless Vizier
+auto=@movedto(*|mygraveyard) from(myhand):indestructible ueot
+text=Whenever you cycle or discard a card, Pitiless Vizier gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it. If its toughness is 0 or less, it's still put into its owner's graveyard.)
+mana={3}{B}
+type=Creature
+subtype=Minotaur Cleric
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Plague Belcher
+abilities=menace
+auto=target(creature|mybattlefield) counter(-1/-1,2)
+auto=@movedto(zombie|mygraveyard) from(mybattlefield):life:-1 opponent
+text=Menace -- When Plague Belcher enters the battlefield, put two -1/-1 counters on target creature you control. -- Whenever another Zombie you control dies, each opponent loses 1 life.
+mana={2}{B}
+type=Creature
+subtype=Zombie Beast
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Ruthless Sniper
+auto=@movedto(*|mygraveyard) from(myhand):may pay({1}) counter(-1/-1,1) target(creature)
+text=Whenever you cycle or discard a card, you may pay {1}. If you do, put a -1/-1 counter on target creature.
+mana={B}
+type=Creature
+subtype=Human Archer
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Scarab Feast
+auto=choice name(My Graveyard) moveto(exile) target(<upto:3>*|mygraveyard)
+auto=choice name(Opponent Graveyard)moveto(exile) target(<upto:3>creature|opponentgraveyard)
+autohand=__CYCLING__({B})
+text=Exile up to three target cards from a single graveyard. -- Cycling {B} ({B}, Discard this card: Draw a card.)
+mana={B}
+type=Instant
+[/card]
+
+[card]
+name=Soulstinger
+auto=counter(-1/-1,2) target(creature)
+#auto=@movedTo(this|graveyard) from(battlefield):target(creature) ability$!foreach counter(-1/-1) counter(-1/-1,1)!$ targetedcreature
+text=When Soulstinger enters the battlefield, put two -1/-1 counters on target creature you control. -- When Soulstinger dies, you may put a -1/-1 counter on target creature for each -1/-1 counter on Soulstinger.
+mana={3}{B}
+type=Creature
+subtype=Scorpion Demon
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Splendid Agony
+target=creature
+auto=counter(-1/-1,1)
+auto=counter(-1/-1,1) target(creature)
+text=Distribute two -1/-1 counters among one or two target creatures.
+mana={2}{B}
+type=Instant
+[/card]
+
+[card]
+name=Stir the Sands
+auto=token(Zombie,creature Zombie,2/2,black)*3
+autohand=@cycled(this|hand):token(Zombie,creature Zombie,2/2,black)
+autohand=__CYCLING__({3}{B})
+text=Create three 2/2 black Zombie creature tokens. -- Cycling {3}{B} ({3}{B}, Discard this card: Draw a card.) -- When you cycle Stir the Sands, create a 2/2 black Zombie creature token.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Supernatural Stamina
+target=creature
+auto=2/0
+auto=@movedto(mygraveyard):moveto(mybattlefield) && tap
+text=Until end of turn, target creature gets +2/+0 and gains "When this creature dies, return it to the battlefield tapped under its owner's control."
+mana={B}
+type=Instant
+[/card]
+
+[card]
+name=Trespasser's Curse
+target=player
+auto=@movedto(creature|opponentbattlefield):life:-1 targetedplayer && life:1 targetedplayer
+text=Enchant player -- Whenever a creature enters the battlefield under enchanted player's control, that player loses 1 life and you gain 1 life.
+mana={1}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+
+[card]
+name=Trial of Ambition
+auto=ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=@movedto(cartouche|mybattlefield):moveto(myhand)
+text=When Trial of Ambition enters the battlefield, target opponent sacrifices a creature. -- When a Cartouche enters the battlefield under your control, return Trial of Ambition to its owner's hand.
+mana={1}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Wander in Death
+target=<upto:2>creature|mygraveyard
+auto=moveto(myhand)
+autohand=__CYCLING__({2})
+text=Return up to two target creature cards from your graveyard to your hand. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Wasteland Scorpion
+abilities=deathtouch
+autohand=__CYCLING__({2})
+text=Deathtouch -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={2}{B}
+type=Creature
+subtype=Scorpion
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Ahn-Crop Crasher
+abilities=haste
+auto=@exerted(this):target(creature) cantblock ueot
+auto=@combat(attacking) source(this):may exert
+text=Haste -- You may exert Ahn-Crop Crasher as it attacks. When you do, target creature can't block this turn. (An exerted creature won't untap during your next untap step.)
+mana={2}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Battlefield Scavenger
+auto=@exerted(creature|myBattlefield):may reject notatarget(*|myhand) and!( draw:1 controller )!
+auto=@combat(attacking) source(this):may exert
+text=You may exert Battlefield Scavenger as it attacks. (It won't untap during your next untap step.) -- Whenever you exert a creature, you may discard a card. If you do, draw a card.
+mana={1}{R}
+type=Creature
+subtype=Jackal Rogue
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Blazing Volley
+auto=damage:1 all(creature|opponentbattlefield)
+text=Blazing Volley deals 1 damage to each creature your opponents control.
+mana={R}
+type=Sorcery
+[/card]
+
+[card]
+name=Bloodlust Inciter
+auto={T}:target(creature) haste ueot
+text={T}: Target creature gains haste until end of turn.
+mana={R}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Bloodrage Brawler
+auto=reject notatarget(*|myhand)
+text=When Bloodrage Brawler enters the battlefield, discard a card.
+mana={1}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=4
+toughness=3
+[/card]
+
+[card]
+name=By Force
+target=<upto:X>artifact
+auto=destroy
+text=Destroy X target artifacts.
+mana={X}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Cartouche of Zeal
+target=creature|myBattlefield
+auto=1/1
+auto=haste
+auto=target(creature) cantblock ueot
+text=Enchant creature you control -- When Cartouche of Zeal enters the battlefield, target creature can't block this turn. -- Enchanted creature gets +1/+1 and has haste.
+mana={R}
+type=Enchantment
+subtype=Aura Cartouche
+[/card]
+
+[card]
+name=Combat Celebrant
+auto=@exerted(this) restriction(once):untap all(other creature|mybattlefield) && nextphasealter(add,combatphases,controller,after<combatends>) oneshot
+auto=@combat(attacking) source(this):may exert
+text=If Combat Celebrant hasn't been exerted this turn, you may exert it as it attacks. When you do, untap all other creatures you control and after this phase, there is an additional combat phase. (An exerted creature won't untap during your next untap step.)
+mana={2}{R}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=1
+[/card]
+
+[card]
+name=Consuming Fervor
+target=creature
+auto=3/3
+auto=@each my upkeep:counter(-1/-1,1)
+text=Enchant creature -- Enchanted creature gets +3/+3 and has "At the beginning of your upkeep, put a -1/-1 counter on this creature."
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Deem Worthy
+target=creature
+auto=damage:7
+autohand=__CYCLING__({3}{R}) && damage:2 target(creature)
+text=Deem Worthy deals 7 damage to target creature. -- Cycling {3}{R} ({3}{R}, Discard this card: Draw a card.) -- When you cycle Deem Worthy, you may have it deal 2 damage to target creature.
+mana={4}{R}
+type=Instant
+[/card]
+
+[card]
+name=Desert Cerodon
+autohand=__CYCLING__({R})
+text=Cycling {R} ({R}, Discard this card: Draw a card.)
+mana={5}{R}
+type=Creature
+subtype=Beast
+power=6
+toughness=4
+[/card]
+
+[card]
+name=Electrify
+target=creature
+auto=damage:4
+text=Electrify deals 4 damage to target creature.
+mana={3}{R}
+type=Instant
+[/card]
+
+[card]
+name=Emberhorn Minotaur
+auto=@exerted(this):1/1 ueot && menace ueot
+auto=@combat(attacking) source(this):may exert
+text=You may exert Emberhorn Minotaur as it attacks. When you do, it gets +1/+1 and gains menace until end of turn. (An exerted creature won't untap during your next untap step.)
+mana={3}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Flameblade Adept
+abilities=menace
+auto=@moveto(*|mygraveyard) from(myhand):1/0 ueot
+text=Menace -- Whenever you cycle or discard a card, Flameblade Adept gets +1/+0 until end of turn.
+mana={R}
+type=Creature
+subtype=Jackal Warrior
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Glorybringer
+abilities=flying, haste
+auto=@exerted(this):damage:4 target(creature[-dragon]|opponentbattlefield)
+auto=@combat(attacking) source(this):may exert
+text=Flying, haste -- You may exert Glorybringer as it attacks. When you do, it deals 4 damage to target non-Dragon creature an opponent controls. (An exerted creature won't untap during your next untap step.)
+mana={3}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Hazoret the Fervent
+abilities=indestructible, haste
+auto=aslongas(*|myhand) cantattack >1
+auto=aslongas(*|myhand) cantblock >1
+auto={2}{R}{D(*|myhand)}:damage:2 opponent
+text=Indestructible, haste -- Hazoret the Fervent can't attack or block unless you have one or fewer cards in hand. -- {2}{R}, Discard a card: Hazoret deals 2 damage to each opponent.
+mana={3}{R}
+type=Legendary Creature
+subtype=God
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Hazoret's Favor
+auto=@combat(attacking):may name(2/0 && haste) target(creature|mybattlefield) transforms((,newability[2/0],newability[haste],newability[treason])) ueot
+text=At the beginning of combat on your turn, you may have target creature you control get +2/+0 and gain haste until end of turn. If you do, sacrifice it at the beginning of the next end step.
+mana={2}{R}
+type=Enchantment
+[/card]
+
+[card]
+name=Heart-Piercer Manticore
+auto=may sacrifice target(creature|mybattlefield) && dynamicability<!powerstrike!>
+autograveyard={5}{R}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=When Heart-Piercer Manticore enters the battlefield, you may sacrifice another creature. When you do, Heart-Piercer Manticore deals damage equal to that creature's power to target creature or player. -- Embalm {5}{R} ({5}{R}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Manticore with no mana cost. Embalm only as a sorcery.)
+mana={2}{R}{R}
+type=Creature
+subtype=Manticore
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Hyena Pack
+mana={2}{R}{R}
+type=Creature
+subtype=Hyena
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Limits of Solidarity
+target=creature
+auto=haste
+auto=untap
+alias=129767
+autohand=__CYCLING__({2})
+text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Manticore of the Gauntlet
+auto=counter(-1/-1,1) target(creature|mybattlefield)
+auto=damage:3 opponent
+text=When Manticore of the Gauntlet enters the battlefield, put a -1/-1 counter on target creature you control. Manticore of the Gauntlet deals 3 damage to target opponent.
+mana={4}{R}
+type=Creature
+subtype=Manticore
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Minotaur Sureshot
+abilities=reach
+auto={1}{R}:1/0
+text=Reach (This creature can block creatures with flying.) -- {1}{R}: Minotaur Sureshot gets +1/+0 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Minotaur Archer
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Nef-Crop Entangler
+abilities=trample
+auto=@exerted(this):1/2 ueot
+auto=@combat(attacking) source(this):may exert
+text=Trample -- You may exert Nef-Crop Entangler as it attacks. When you do, it gets +1/+2 until end of turn. (An exerted creature won't untap during your next untap step.)
+mana={1}{R}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Nimble-Blade Khenra
+auto=@movedTo(*[-creature]|mystack):1/1 ueot
+text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+mana={1}{R}
+type=Creature
+subtype=Jackal Warrior
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Pathmaker Initiate
+auto={T}:target(creature[power<=2]) unblockable ueot
+text={T}: Target creature with power 2 or less can't be blocked this turn.
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Pursue Glory
+auto=all(creature[attacking]) 2/0
+autohand=__CYCLING__({2})
+text=Attacking creatures get +2/+0 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={3}{R}
+type=Instant
+[/card]
+
+[card]
+name=Soul-Scar Mage
+auto=@movedTo(*[-creature]|mystack):1/1 ueot
+auto=@targeted(creature|opponentbattlefield) from(*|mybattlefield): all(*|mystack) wither ueot
+auto=@targeted(creature|opponentbattlefield) from(*|mystack): all(*|mystack) wither ueot
+text=Prowess -- If a source you control would deal noncombat damage to a creature an opponent controls, put that many -1/-1 counters on that creature instead.
+mana={R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Sweltering Suns
+auto=damage:3 all(creature)
+autohand=__CYCLING__({3})
+text=Sweltering Suns deals 3 damage to each creature. -- Cycling {3} ({3}, Discard this card: Draw a card.)
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Thresher Lizard
+auto=aslongas(*|myhand)<=1 1/2
+text=Thresher Lizard gets +1/+2 as long as you have one or fewer cards in hand.
+mana={2}{R}
+type=Creature
+subtype=Lizard
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Trial of Zeal
+auto=damage:3 target(creature,player)
+auto=@movedto(cartouche|mybattlefield):moveto(myhand)
+text=When Trial of Zeal enters the battlefield, it deals 3 damage to target creature or player. -- When a Cartouche enters the battlefield under your control, return Trial of Zeal to its owner's hand.
+mana={2}{R}
+type=Enchantment
+[/card]
+
+[card]
+name=Trueheart Twins
+auto=@exerted(creature|myBattlefield):all(creature|mybattlefield) 1/0 ueot
+auto=@combat(attacking) source(this):may exert
+text=You may exert Trueheart Twins as it attacks. (It won't untap during your next untap step.) -- Whenever you exert a creature, creatures you control get +1/+0 until end of turn.
+mana={4}{R}
+type=Creature
+subtype=Jackal Warrior
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Violent Impact
+target=artifact,land
+auto=destroy
+autohand=__CYCLING__({2})
+text=Destroy target artifact or land. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Warfire Javelineer
+auto=foreach(instant,sorcery|mygraveyard) damage:1 target(creature|opponentbattlefield)
+text=When Warfire Javelineer enters the battlefield, it deals X damage to target creature an opponent controls, where X is the number of instant and sorcery cards in your graveyard.
+mana={3}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Benefaction of Rhonas
+auto=reveal:5 optionone name(get creature) notatarget(<upto:1>creature|reveal) moveto(myhand) optiononeend optiontwo name(get enchantment) notatarget(<upto:1>enchantment|reveal) moveto(myhand) and!(all(*|reveal) moveto(mygraveyard))! optiontwoend revealend
+text=Reveal the top five cards of your library. You may put a creature card and/or an enchantment card from among them into your hand. Put the rest into your graveyard.
+mana={2}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Bitterblade Warrior
+auto=@exerted(this):transforms((,newability[deathtouch],newability[1/0])) ueot
+auto=@combat(attacking) source(this):may exert
+text=You may exert Bitterblade Warrior as it attacks. When you do, it gets +1/+0 and gains deathtouch until end of turn. (An exerted creature won't untap during your next untap step.)
+mana={1}{G}
+type=Creature
+subtype=Jackal Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Cartouche of Strength
+target=creature|myBattlefield
+auto=1/1
+auto=trample
+auto=may target(creature) transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot
+text=Enchant creature you control -- When Cartouche of Strength enters the battlefield, you may have enchanted creature fight target creature an opponent controls. (Each deals damage equal to its power to the other.) -- Enchanted creature gets +1/+1 and has trample.
+mana={2}{G}
+type=Enchantment
+subtype=Aura Cartouche
+[/card]
+
+[card]
+name=Champion of Rhonas
+auto=@exerted(this):moveto(mybattlefield) target(creature|myhand)
+auto=@combat(attacking) source(this):may exert
+text=You may exert Champion of Rhonas as it attacks. When you do, you may put a creature card from your hand onto the battlefield. (An exerted creature won't untap during your next untap step.)
+mana={3}{G}
+type=Creature
+subtype=Jackal Warrior
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Channeler Initiate
+auto=counter(-1/-1,3) target(creature|mybattlefield)
+auto={T}{restriction type(this[counter(-1/-1)])~morethan~0}:name(add green) counter(-1/-1,-1) && add{G}
+auto={T}{restriction type(this[counter(-1/-1)])~morethan~0}:name(add blue) counter(-1/-1,-1) && add{U}
+auto={T}{restriction type(this[counter(-1/-1)])~morethan~0}:name(add black) counter(-1/-1,-1) && add{B}
+auto={T}{restriction type(this[counter(-1/-1)])~morethan~0}:name(add red) counter(-1/-1,-1) && add{R}
+auto={T}{restriction type(this[counter(-1/-1)])~morethan~0}:name(add white) counter(-1/-1,-1) && add{W}
+text=When Channeler Initiate enters the battlefield, put three -1/-1 counters on target creature you control. -- {T}, Remove a -1/-1 counter from Channeler Initiate: Add one mana of any color to your mana pool.
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Colossapede
+mana={4}{G}
+type=Creature
+subtype=Insect
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Crocodile of the Crossing
+abilities=haste
+auto=counter(-1/-1,1) target(creature|mybattlefield)
+text=Haste -- When Crocodile of the Crossing enters the battlefield, put a -1/-1 counter on target creature you control.
+mana={3}{G}
+type=Creature
+subtype=Crocodile
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Defiant Greatmaw
+auto=counter(-1/-1,2) target(creature|mybattlefield)
+auto=@counteradded(-1/-1) from(this):counter(-1/-1,-1) target(other creature|mybattlefield)
+text=When Defiant Greatmaw enters the battlefield, put two -1/-1 counters on target creature you control. -- Whenever you put one or more -1/-1 counters on Defiant Greatmaw, remove a -1/-1 counter from another target creature you control.
+mana={2}{G}
+type=Creature
+subtype=Hippo
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Dissenter's Deliverance
+target=artifact
+auto=destroy
+autohand=__CYCLING__({G})
+text=Destroy target artifact. -- Cycling {G} ({G}, Discard this card: Draw a card.)
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Exemplar of Strength
+auto=counter(-1/-1,3) target(creature|mybattlefield)
+auto=@combat(attacking) source(this){restriction type(this[counter(-1/-1)])~morethan~0}:counter(-1/-1,-1) && life:1 controller
+text=When Exemplar of Strength enters the battlefield, put three -1/-1 counters on target creature you control. -- Whenever Exemplar of Strength attacks, remove a -1/-1 counter from it. If you do, you gain 1 life.
+mana={1}{G}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Gift of Paradise
+target=land
+auto=life:3 controller
+auto={T}:add{G}{G}
+auto={T}:add{B}{B}
+auto={T}:add{W}{W}
+auto={T}:add{R}{R}
+auto={T}:add{U}{U}
+text=Enchant land -- When Gift of Paradise enters the battlefield, you gain 3 life. -- Enchanted land has "{T}: Add two mana of any one color to your mana pool."
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Greater Sandwurm
+auto=cantbeblockedby(creature[power<=2])
+autohand=__CYCLING__({2})
+text=Greater Sandwurm can't be blocked by creatures with power 2 or less. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={5}{G}{G}
+type=Creature
+subtype=Wurm
+power=7
+toughness=7
+[/card]
+
+[card]
+name=Hapatra's Mark
+target=creature
+auto=opponentshroud
+auto=counter(-1/-1,-20)
+text=Target creature you control gains hexproof until end of turn. Remove all -1/-1 counters from it. (A creature with hexproof can't be the target of spells or abilities your opponents control.)
+mana={G}
+type=Instant
+[/card]
+
+[card]
+name=Haze of Pollen
+auto=preventalldamage
+autohand=__CYCLING__({3})
+text=Prevent all combat damage that would be dealt this turn. -- Cycling {3} ({3}, Discard this card: Draw a card.)
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Honored Hydra
+abilities=trample
+autograveyard={3}{G}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Trample -- Embalm {3}{G} ({3}{G}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Snake Hydra with no mana cost. Embalm only as a sorcery.)
+mana={5}{G}
+type=Creature
+subtype=Snake Hydra
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Hooded Brawler
+auto=@exerted(this):2/2 ueot
+auto=@combat(attacking) source(this):may exert
+text=You may exert Hooded Brawler as it attacks. When you do, it gets +2/+2 until end of turn. (An exerted creature won't untap during your next untap step.)
+mana={2}{G}
+type=Creature
+subtype=Naga Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Initiate's Companion
+auto=@combatdamaged(player) from(this):untap target(creature,land)
+text=Whenever Initiate's Companion deals combat damage to a player, untap target creature or land.
+mana={1}{G}
+type=Creature
+subtype=Cat
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Manglehorn
+auto=may destroy target(artifact)
+auto=@movedto(artifact|opponentbattlefield):tap all(trigger[to])
+text=When Manglehorn enters the battlefield, you may destroy target artifact. -- Artifacts your opponents control enter the battlefield tapped.
+mana={2}{G}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Naga Vitalist
+auto=this(variable{plandg}>0) {t}:out{g}
+auto=this(variable{plandu}>0) {t}:out{u}
+auto=this(variable{plandr}>0) {t}:out{r}
+auto=this(variable{plandb}>0) {t}:out{b}
+auto=this(variable{plandw}>0) {t}:out{w}
+auto=this(variable{plandc}>0) {t}:out{1}
+text={T}: Add to your mana pool one mana of any type that a land you control could produce.
+mana={1}{G}
+type=Creature
+subtype=Naga Druid
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Oashra Cultivator
+auto={2}{G}{T}{S}:moveto(mybattlefield) target(basic|mylibrary) && tap
+text={2}{G}, {T}, Sacrifice Oashra Cultivator: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
+mana={G}
+type=Creature
+subtype=Human Druid
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Ornery Kudu
+auto=counter(-1/-1,1) target(creature|mybattlefield)
+text=When Ornery Kudu enters the battlefield, put a -1/-1 counter on target creature you control.
+mana={2}{G}
+type=Creature
+subtype=Antelope
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Pouncing Cheetah
+abilities=flash
+text=Flash
+mana={2}{G}
+type=Creature
+subtype=Cat
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Prowling Serpopard
+abilities=nofizzle
+text=Prowling Serpopard can't be countered. -- Creature spells you control can't be countered.
+mana={1}{G}{G}
+type=Creature
+subtype=Cat Snake
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Quarry Hauler
+auto=target(proliferation) proliferate
+text=When Quarry Hauler enters the battlefield, for each kind of counter on target permanent, put another counter of that kind on it or remove one from it.
+mana={3}{G}
+type=Creature
+subtype=Camel
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Rhonas the Indomitable
+abilities=deathtouch, indestructible
+auto=aslongas(other creature[power>=4]|mybattlefield) cantattack <1
+auto=aslongas(other creature[power>=4]|mybattlefield) cantblock <1
+auto={2}{G}:target(other creature|mybattlefield) 2/0 && trample ueot
+text=Deathtouch, indestructible -- Rhonas the Indomitable can't attack or block unless you control another creature with power 4 or greater. -- {2}{G}: Another target creature gets +2/+0 and gains trample until end of turn.
+mana={2}{G}
+type=Legendary Creature
+subtype=God
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Sandwurm Convergence
+auto=lord(creature[flying]|opponentbattlefield) cantattack
+auto=@each my endofturn:token(Wurm,creature Wurm,5/5,green)
+text=Creatures with flying can't attack you or planeswalkers you control. -- At the beginning of your end step, create a 5/5 green Wurm creature token.
+mana={6}{G}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Scaled Behemoth
+abilities=hexproof
+text=Hexproof (This creature can't be the target of spells or abilities your opponents control.)
+mana={4}{G}{G}
+type=Creature
+subtype=Crocodile
+power=6
+toughness=7
+[/card]
+
+[card]
+name=Shed Weakness
+target=creature
+auto=2/2
+auto=may counter(-1/-1,-1)
+text=Target creature gets +2/+2 until end of turn. You may remove a -1/-1 counter from it.
+mana={G}
+type=Instant
+[/card]
+
+[card]
+name=Shefet Monitor
+autohand=@movedto(mygraveyard) from(myhand):may moveto(mybattlefield) target(desert|mylibrary)
+autohand=__CYCLING__({3}{G})
+text=Cycling {3}{G} ({3}{G}, Discard this card: Draw a card.) -- When you cycle Shefet Monitor, you may search your library for a basic land card or a Desert card, put it onto the battlefield, then shuffle your library. (Do this before you draw.)
+mana={5}{G}
+type=Creature
+subtype=Lizard
+power=6
+toughness=5
+[/card]
+
+[card]
+name=Sixth Sense
+target=creature
+auto=@combatdamaged(player) from(this):may draw:1
+text=Enchant creature -- Enchanted creature has "Whenever this creature deals combat damage to a player, you may draw a card."
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Stinging Shot
+target=creature[flying]
+auto=counter(-1/-1,3)
+autohand=__CYCLING__({2})
+text=Put three -1/-1 counters on target creature with flying. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={G}
+type=Instant
+[/card]
+
+[card]
+name=Synchronized Strike
+target=<upto:2>creature
+auto=untap
+auto=2/2
+text=Untap up to two target creatures. They each get +2/+2 until end of turn.
+mana={2}{G}
+type=Instant
+[/card]
+
+[card]
+name=Trial of Strength
+auto=token(Beast,creature Beast,4/2,green)
+auto=@movedto(cartouche|mybattlefield):moveto(myhand)
+text=When Trial of Strength enters the battlefield, create a 4/2 green Beast creature token. -- When a Cartouche enters the battlefield under your control, return Trial of Strength to its owner's hand.
+mana={2}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Vizier of the Menagerie
+abilities=showfromtoplibrary
+auto=canplaycreaturelibrarytop
+auto=lord(creature|mycastingzone) anytypeofmana
+text=You may look at the top card of your library. (You may do this at any time.) -- You may cast the top card of your library if it's a creature card. -- You may spend mana as though it were mana of any type to cast creature spells.
+mana={3}{G}
+type=Creature
+subtype=Naga Cleric
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Watchful Naga
+auto=@exerted(this):draw:1
+auto=@combat(attacking) source(this):may exert
+text=You may exert Watchful Naga as it attacks. When you do, draw a card. (An exerted creature won't untap during your next untap step.)
+mana={2}{G}
+type=Creature
+subtype=Naga Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Ahn-Crop Champion
+auto=@exerted(this):untap all(other creature|mybattlefield)
+auto=@combat(attacking) source(this):may exert
+text=You may exert Ahn-Crop Champion as it attacks. When you do, untap all other creatures you control. (An exerted creature won't untap during your next untap step.)
+mana={2}{G}{W}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Aven Wind Guide
+abilities=flying, vigilance
+auto=lord(token|mybattlefield) flying
+auto=lord(token|mybattlefield) vigilance
+autograveyard={4}{W}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Flying, vigilance -- Creature tokens you control have flying and vigilance. -- Embalm {4}{W}{U} ({4}{W}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Bird Warrior with no mana cost. Embalm only as a sorcery.)
+mana={2}{W}{U}
+type=Creature
+subtype=Bird Warrior
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Bounty of the Luxa
+auto=@each my firstmain:if type(this[counter(flood)])~morethan~0 ability$!thisforeach(counter{0/0,1,flood}) counter(0/0,-1,flood) && add{1}{G}{U}!$ controller else ability$!counter(0/0,1,flood) && draw:1 controller!$ controller
+text=At the beginning of your precombat main phase, remove all flood counters from Bounty of the Luxa. If no counters were removed this way, put a flood counter on Bounty of the Luxa and draw a card. Otherwise, add {1}{G}{U} to your mana pool.
+mana={2}{G}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Decimator Beetle
+auto=counter(-1/-1,1) target(creature|mybattlefield)
+auto=@combat(attacking) source(this):counter(-1/-1,-1) target(creature|mybattlefield) && counter(-1/-1,1) target(creature|opponentbattlefield)
+text=When Decimator Beetle enters the battlefield, put a -1/-1 counter on target creature you control. -- Whenever Decimator Beetle attacks, remove a -1/-1 counter from target creature you control and put a -1/-1 counter on up to one target creature defending player controls.
+mana={3}{B}{G}
+type=Creature
+subtype=Insect
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Enigma Drake
+abilities=flying
+auto=foreach(instant,sorcery|mygraveyard) 1/0
+text=Flying -- Enigma Drake's power is equal to the number of instant and sorcery cards in your graveyard.
+mana={1}{U}{R}
+type=Creature
+subtype=Drake
+power=*
+toughness=4
+[/card]
+
+[card]
+name=Hapatra, Vizier of Poisons
+auto=@combatdamaged(player) from(this):may counter(-1/-1,1) target(creature) && token(Snake,creature Snake,1/1,green,deathtouch)
+text=Whenever Hapatra, Vizier of Poisons deals combat damage to a player, you may put a -1/-1 counter on target creature. -- Whenever you put one or more -1/-1 counters on a creature, create a 1/1 green Snake creature token with deathtouch.
+mana={B}{G}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Honored Crop-Captain
+auto=@combat(attacking) source(this):all(other creature[attacking]) 1/0 ueot
+text=Whenever Honored Crop-Captain attacks, other attacking creatures get +1/+0 until end of turn.
+mana={R}{W}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Khenra Charioteer
+abilities=trample
+auto=lord(other creature|mybattlefield) trample
+text=Trample -- Other creatures you control have trample.
+mana={1}{R}{G}
+type=Creature
+subtype=Jackal Warrior
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Merciless Javelineer
+auto={2}{D(*|myhand)}:counter(-1/-1,1) target(creature) && cantblock ueot
+text={2}, Discard a card: Put a -1/-1 counter on target creature. That creature can't block this turn.
+mana={2}{B}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Neheb, the Worthy
+abilities=first strike
+auto=lord(minotaur|mybattlefield) first strike
+auto=aslongas(type(*|myhand)~lessthan~2) lord(minotaur|mybattlefield) 2/0
+auto=@combatdamaged(player) from(this):ability$!target(*|myhand) reject$! opponent 
+auto=@combatdamaged(player) from(this):transforms((,newability[target(*|myhand) reject])) forever
+text=First strike -- Other Minotaurs you control have first strike. -- As long as you have one or fewer cards in hand, Minotaurs you control get +2/+0. -- Whenever Neheb, the Worthy deals combat damage to a player, each player discards a card.
+mana={1}{B}{R}
+type=Legendary Creature
+subtype=Minotaur Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Nissa, Steward of Elements
+auto=counter(0/0,X,loyalty)
+auto={C(0/0,2,Loyalty)}:deplete:2 controller && transforms((,newability[may moveto(mylibrary) target(<upto:2>*|mygraveyard)])) ueot
+auto={C(0/0,0,Loyalty)}:flipacoin winability moverandom(creature,land[convertedmanacost<=counter(loyalty)]) from(mylibrary) to(mybattleifeld) winabilityend flipend
+auto={C(0/0,-6,Loyalty)}:untap target(<upto:2>land|mybattlefield) && transforms((,creature,setpower=5,settoughness=5,newability[haste],newability[flying])) ueot
+text=+2: Scry 2. -- 0: Look at the top card of your library. If it's a land card or a creature card with converted mana cost less than or equal to the number of loyalty counters on Nissa, Steward of Elements, you may put that card onto the battlefield. -- -6: Untap up to two target lands you control. They become 5/5 Elemental creatures with flying and haste until end of turn. They're still lands.
+mana={X}{G}{U}
+type=Legendary Planeswalker
+subtype=Nissa
+[/card]
+
+[card]
+name=Samut, Voice of Dissent
+abilities=flash, double strike, vigilance, haste
+auto=lord(other creature|mybattlefield) haste
+auto={W}{T}:untap target(other creature)
+text=Flash -- Double strike, vigilance, haste -- Other creatures you control have haste. -- {W}, {T}: Untap another target creature.
+mana={3}{R}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Shadowstorm Vizier
+abilities=flying
+auto=@movedto(*|mygraveyard) from(myhand):1/1 ueot
+text=Flying -- Whenever you cycle or discard a card, Shadowstorm Vizier gets +1/+1 until end of turn.
+mana={U}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Temmet, Vizier of Naktamun
+auto=@combat(attacking):target(token|mybattlefield) 1/1 ueot && unblockable ueot
+autograveyard={3}{W}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=At the beginning of combat on your turn, target creature token you control gets +1/+1 until end of turn and can't be blocked this turn. -- Embalm {3}{W}{U} ({3}{W}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Human Cleric with no mana cost. Embalm only as a sorcery.)
+mana={W}{U}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Wayward Servant
+auto=@movedto(zombie|mybattlefield):life:1 controller && life:-1 opponent
+text=Whenever another Zombie enters the battlefield under your control, each opponent loses 1 life and you gain 1 life.
+mana={W}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Weaver of Currents
+auto={T}:Add{2}
+text={T}: Add {1}{1} to your mana pool.
+mana={1}{G}{U}
+type=Creature
+subtype=Naga Druid
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Dusk
+auto=destroy all(creature[power>=3])
+autograveyard={3}{W}{W}:moveto(myhand) all(creature[power<=2]|mygraveyard) && moveto(exile)
+text=Destroy all creatures with power 3 or greater. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Return all creature cards with power 2 or less from your graveyard to your hand.
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Commit
+target=*[-land]
+auto=moveto(ownerlibrary) && ability$!moverandom(*) from(mylibrary) to(mylibrary)!$ controller
+autograveyard={4}{U}{U}:moveto(opponentgraveyard) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle && draw:7 opponent && moveto(mygraveyard) all(*|myhand) && moveto(mylibrary) all(*|mygraveyard) && shuffle && draw:7 controller && moveto(exile)
+text=Put target spell or nonland permanent into its owner's library second from the top. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) each player shuffles their hand and graveyard into their library and draws seven cards
+mana={3}{U}
+type=Instant
+[/card]
+
+[card]
+name=Never
+target=creature,planeswalker
+auto=destroy
+autograveyard={3}{B}:moveto(exile) target(*|graveyard) && token(Zombie,creature Zombie,2/2,black) && moveto(exile)
+text=Destroy target creature or planeswalker. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Exile target card from a graveyard. Create a 2/2 black Zombie creature token.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Insult
+auto=@damaged(creature,player) from(*|mybattlefield):damage:thatmuch all(trigger[to])
+auto=@damaged(creature,player) from(*|mystack):damage:thatmuch all(trigger[to])
+autograveyard={2}{R}:damage:2 target(creature) && transforms((,newability[damage:2 controller])) ueot && moveto(exile)
+text=Damage can't be prevented this turn. If a source you control would deal damage this turn, it deals double that damage instead. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Injury deals 2 damage to target creature and 2 damage to target player.
+mana={2}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Mouth
+auto=token(Hippo,creature Hippo,3/3,green)
+autograveyard={3}{G}:foreach(creature[power>=3]|mybattlefield) draw:1 controller && moveto(exile)
+text=Create a 3/3 green Hippo creature token. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Draw a card for each creature you control with power 3 or greater.
+mana={2}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Start
+auto=token(Warrior,creature Warrior,1/1,white,vigilance)*2
+autograveyard={2}{B}{S(creature|mybattlefield)}:destroy target(creature) && moveto(exile)
+text=Create two 1/1 white Warrior creature tokens with vigilance. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) As an additional cost to cast Finish, sacrifice a creature. -- Destroy target creature.
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Reduce
+target=*|stack
+auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever restriction{type(*|stack)~morethan~0}
+autograveyard={2}{R}:target(<upto:3>land) freeze && moveto(exile)
+text=Counter target spell unless its controller pays {3}. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Up to three target lands don't untap during their controller's next untap step.
+mana={2}{U}
+type=Instant
+[/card]
+
+[card]
+name=Destined
+target=creature
+auto=1/0
+auto=indestructible
+autograveyard={3}{G}:target(creature) lure && moveto(exile)
+text=Target creature gets +1/+0 and gains indestructible until end of turn. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) All creatures able to block target creature this turn do so.
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Onward
+target=creature
+auto=power/0
+autograveyard={2}{W}:target(creature) double strike && moveto(exile)
+text=Target creature gets +X/+0 until end of turn, where X is its power. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Target creature gains double strike until end of turn.
+mana={2}{R}
+type=Instant
+[/card]
+
+[card]
+name=Spring
+auto=moveto(mybattlefield) target(basic|mylibrary) && tap
+autograveyard={4}{U}{U}:draw:2 controller && moveto(exile)
+text=Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Draw two cards.
+mana={2}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Prepare
+target=creature
+auto=untap
+auto=lifelink
+auto=2/2
+autograveyard={3}{G}:target(creature) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot && moveto(exile)
+text=Untap target creature. It gets +2/+2 and gains lifelink until end of turn. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Target creature you control fights target creature an opponent controls.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Rags
+auto=all(creature) -2/-2 ueot
+autograveyard={5}{U}{U}:ability$!moveto(opponentbattlefield) target(creature|mybattlefield)!$ opponent && moveto(exile)
+text=All creatures get -2/-2 until end of turn. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Each opponent chooses a creature he or she controls. You gain control of those creatures.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Cut
+target=creature
+auto=damage:4
+autograveyard={X}{B}{B}:life:-X opponent
+text=Cut deals 4 damage to target creature. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Each opponent loses X life.
+mana={1}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Heaven
+auto=damage:X all(creature[flying])
+autograveyard={X}{R}{R}:damage:X all(creature[-flying])
+text=Heaven deals X damage to each creature with flying. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Earth deals X damage to each creature without flying.
+mana={X}{G}
+type=Instant
+[/card]
+
+[card]
+name=Bontu's Monument
+auto=@movedto(creature|mystack):life:-1 opponent && life:1 controller
+auto=lord(creature[black]|mycastingzone) altercost(colorless,-1)
+text=Black creature spells you cast cost {1} less to cast. -- Whenever you cast a creature spell, each opponent loses 1 life and you gain 1 life.
+mana={3}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Edifice of Authority
+auto={1}{T}{C(0/0,1,brick)}:target(creature) cantattack ueot
+auto=this(counter{0/0.3.brick}) {1}{T}:target(creature) transforms((,newability[cantattack],newability[cantblock],newability[onlymanaability])) ueot
+text={1}, {T}: Target creature can't attack this turn. Put a brick counter on Edifice of Authority. -- {1}, {T}: Until your next turn, target creature can't attack or block and its activated abilities can't be activated. Activate this ability only if there are three or more brick counters on Edifice of Authority.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Gate to the Afterlife
+auto=@movedto(creature[-token]|mygraveyard) from(mybattlefield):life:1 controller && may ability$!draw:1 && target(*|myhand) reject!$ controller
+text=Whenever a nontoken creature you control dies, you gain 1 life. Then you may draw a card. If you do, discard a card. -- {2}, {T}, Sacrifice Gate to the Afterlife: Search your graveyard, hand, and/or library for a card named God-Pharaoh's Gift and put it onto the battlefield. If you search your library this way, shuffle it. Activate this ability only if there are six or more creature cards in your graveyard.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Hazoret's Monument
+auto=lord(creature[red]|mycastingzone) altercost(colorless,-1)
+auto=@movedto(creature|mystack):may reject notatarget(*|myhand) && draw:1
+text=Red creature spells you cast cost {1} less to cast. -- Whenever you cast a creature spell, you may discard a card. If you do, draw a card.
+mana={3}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Honed Khopesh
+auto={1}:equip
+auto=teach(creature) 1/1
+text=Equipped creature gets +1/+1. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Kefnet's Monument
+auto=lord(creature[blue]|myhand) altercost(-1,colorless)
+auto=@movedto(creature|mystack):target(creature|opponentbattlefield) freeze
+text=Blue creature spells you cast cost {1} less to cast. -- Whenever you cast a creature spell, target creature an opponent controls doesn't untap during its controller's next untap step.
+mana={3}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Luxa River Shrine
+auto={1}{T}{counter(0/0,1,brick)}:life:1 controller
+auto={T}{restriction type(this[counter(brick)>=3])~morethan~0}:life:2 controller
+text={1}, {T}: You gain 1 life. Put a brick counter on Luxa River Shrine. -- {T}: You gain 2 life. Activate this ability only if there are three or more brick counters on Luxa River Shrine.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Oketra's Monument
+auto=lord(creature[white]|mycastingzone) altercost(colorless,-1)
+auto=@movedto(creature|mystack):token(Warrior,creature Warrior,1/1,white,vigilance)
+text=White creature spells you cast cost {1} less to cast. -- Whenever you cast a creature spell, create a 1/1 white Warrior creature token with vigilance.
+mana={3}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Oracle's Vault
+auto={2}{T}{counter(0/0,1,brick)}:deplete:1 controller
+auto={T}{restriction type(this[counter(brick)>=3])~morethan~0}:deplete:1 controller
+text={2}, {T}: Exile the top card of your library. Until end of turn, you may play that card. Put a brick counter on Oracle's Vault. -- {T}: Exile the top card of your library. Until end of turn, you may play that card without paying its mana cost. Activate this ability only if there are three or more brick counters on Oracle's Vault.
+mana={4}
+type=Artifact
+[/card]
+
+[card]
+name=Pyramid of the Pantheon
+auto={2}{T}{counter(0/0,1,brick)}:add{G}
+auto={2}{T}{counter(0/0,1,brick)}:add{B}
+auto={2}{T}{counter(0/0,1,brick)}:add{W}
+auto={2}{T}{counter(0/0,1,brick)}:add{R}
+auto={2}{T}{counter(0/0,1,brick)}:add{U}
+auto={T}{restriction type(this[counter(brick)>=3])~morethan~0}:add{G}{G}{G}
+auto={T}{restriction type(this[counter(brick)>=3])~morethan~0}:add{B}{B}{B}
+auto={T}{restriction type(this[counter(brick)>=3])~morethan~0}:add{W}{W}{W}
+auto={T}{restriction type(this[counter(brick)>=3])~morethan~0}:add{R}{R}{R}
+auto={T}{restriction type(this[counter(brick)>=3])~morethan~0}:add{U}{U}{U}
+text={2}, {T}: Add one mana of any color to your mana pool. Put a brick counter on Pyramid of the Pantheon. -- {T}: Add three mana of any one color to your mana pool. Activate this ability only if there are three or more brick counters on Pyramid of the Pantheon.
+mana={1}
+type=Artifact
+[/card]
+
+[card]
+name=Rhonas's Monument
+auto=lord(creature[green]|mycastingzone) altercost(colorless,-1)
+auto=@movedto(creature|mystack):target(creature|mybattlefield) 2/2 ueot && trample ueot
+text=Green creature spells you cast cost {1} less to cast. -- Whenever you cast a creature spell, target creature you control gets +2/+2 and gains trample until end of turn.
+mana={3}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Throne of the God-Pharaoh
+auto=@each my endofturn:foreach(creature[tapped]|mybattlefield) life:-1 opponent
+text=At the beginning of your end step, each opponent loses life equal to the number of tapped creatures you control.
+mana={2}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Watchers of the Dead
+auto=target(<upto:2>*|mygraveyard) (blink) && moveto(exile) all(*|mygraveyard)
+auto=ability$!target(<upto:2>*|mygraveyard) (blink) && moveto(exile) all(*|mygraveyard)!$ opponent
+text=Exile Watchers of the Dead: Each opponent chooses two cards in his or her graveyard and exiles the rest.
+mana={2}
+type=Artifact Creature
+subtype=Cat
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Canyon Slough
+auto=tap
+autohand=__CYCLING__({2})
+text=({T}: Add {B} or {R} to your mana pool.) -- Canyon Slough enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+type=Land
+subtype=Swamp Mountain
+[/card]
+
+[card]
+name=Cascading Cataracts
+abilities=indestructible
+auto={T}:Add{1}
+auto={5}:name(all) add{G}{B}{W}{R}{U}
+auto={5}:name(green) add{G}{G}{G}{G}{G}
+auto={5}:name(black) add{B}{B}{B}{B}{B}
+auto={5}:name(white) add{W}{W}{W}{W}{W}
+auto={5}:name(red) add{R}{R}{R}{R}{R}
+auto={5}:name(blue) add{U}{U}{U}{U}{U}
+auto={5}:name(G/B) add{G}{G}{G}{B}{B}
+auto={5}:name(G/W) add{G}{G}{G}{W}{W}
+auto={5}:name(G/R) add{G}{G}{G}{R}{R}
+auto={5}:name(G/U) add{G}{G}{G}{U}{U}
+auto={5}:name(B/W) add{B}{B}{B}{W}{W}
+auto={5}:name(B/R) add{B}{B}{B}{R}{R}
+auto={5}:name(B/U) add{B}{B}{B}{U}{U}
+auto={5}:name(W/R) add{W}{W}{W}{R}{R}
+auto={5}:name(W/U) add{W}{W}{W}{U}{U}
+auto={5}:name(R/U) add{R}{R}{R}{U}{U}
+text=Indestructible -- {T}: Add {1} to your mana pool. -- {5}, {T}: Add five mana in any combination of colors to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Cradle of the Accursed
+auto={T}:Add{1}
+auto={3}{T}{S}:token(Zombie,creature Zombie,2/2,black) assorcery
+text={T}: Add {1} to your mana pool. -- {3}, {T}, Sacrifice Cradle of the Accursed: Create a 2/2 black Zombie creature token. Activate this ability only any time you could cast a sorcery.
+type=Land
+subtype=Desert
+[/card]
+
+[card]
+name=Fetid Pools
+auto=tap
+autohand=__CYCLING__({2})
+text=({T}: Add {U} or {B} to your mana pool.) -- Fetid Pools enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+type=Land
+subtype=Island Swamp
+[/card]
+
+[card]
+name=Grasping Dunes
+auto={T}:Add{1}
+auto={1}{T}{S}:counter(-1/-1,1) target(creature) assorcery
+text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Grasping Dunes: Put a -1/-1 counter on target creature. Activate this ability only any time you could cast a sorcery.
+type=Land
+subtype=Desert
+[/card]
+
+[card]
+name=Irrigated Farmland
+auto=tap
+autohand=__CYCLING__({2})
+text=({T}: Add {W} or {U} to your mana pool.) -- Irrigated Farmland enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+type=Land
+subtype=Plains Island
+[/card]
+
+[card]
+name=Painted Bluffs
+auto={T}:Add{1}
+auto={1}{T}:add{G}
+auto={1}{T}:add{B}
+auto={1}{T}:add{W}
+auto={1}{T}:add{R}
+auto={1}{T}:add{U}
+text={T}: Add {1} to your mana pool. -- {1}, {T}: Add one mana of any color to your mana pool.
+type=Land
+subtype=Desert
+[/card]
+
+[card]
+name=Scattered Groves
+auto=tap
+autohand=__CYCLING__({2})
+text=({T}: Add {G} or {W} to your mana pool.) -- Scattered Groves enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+type=Land
+subtype=Forest Plains
+[/card]
+
+[card]
+name=Sheltered Thicket
+auto=tap
+autohand=__CYCLING__({2})
+text=({T}: Add {R} or {G} to your mana pool.) -- Sheltered Thicket enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+type=Land
+subtype=Mountain Forest
+[/card]
+
+[card]
+name=Sunscorched Desert
+auto=damage:1 target(player)
+auto={T}:Add{1}
+text=When Sunscorched Desert enters the battlefield, it deals 1 damage to target player. -- {T}: Add {1} to your mana pool.
+type=Land
+subtype=Desert
+[/card]
+
+[card]
+name=Gideon, Martial Paragon
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,2,Loyalty)}:all(creature|mybattlefield) 1/1 && untap
+auto={C(0/0,0,Loyalty)}:name(+1: becomes human) transforms((Creature Human Soldier,setpower=5,settoughness=5,indestructible,newability[preventAllDamage to(this)])) ueot
+auto={C(0/0,-10,Loyalty)}:all(creature|opponentbattlefield) tap && all(creature|mybattlefield) 2/2 ueot
+text=+2: Untap all creatures you control. Those creatures get +1/+1 until end of turn.   -- 0: Until end of turn, Gideon, Martial Paragon becomes a 5/5 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- -10: Creatures you control get +2/+2 until end of turn. Tap all creatures your opponents control.
+mana={4}{W}
+type=Legendary Planeswalker
+subtype=Gideon
+[/card]
+
+[card]
+name=Companion of the Trials
+abilities=flying
+auto={1}{W}{restriction type(gideon|mybattlefield)~morethan~0}:untap target(creature)
+text=Flying -- {1}{W}: Untap target creature. Activate this ability only if you control a Gideon planeswalker.
+mana={2}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Gideon's Resolve
+auto=may moveto(myhand) target(Gideon, Martial Paragon|mylibrary)
+auto=lord(creature|mybattlefield) 1/1
+text=When Gideon's Resolve enters the battlefield, you may search your library and/or graveyard for a card named Gideon, Martial Paragon, reveal it, and put it into your hand. If you search your library this way, shuffle it. -- Creatures you control get +1/+1.
+mana={4}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Graceful Cat
+auto=@combat(attacking) source(this): 1/1 ueot
+text=Whenever Graceful Cat attacks, it gets +1/+1 until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Liliana, Death Wielder
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,2,Loyalty)}:counter(-1/-1) target(creature)
+auto={C(0/0,-3,Loyalty)}:destroy target(creature[counter{-1/-1}])
+auto={C(0/0,-10,Loyalty)}:moveto(mybattlefield) all(creature|mygraveyard)
+text=+2: Put a -1/-1 counter on up to one target creature. -- -3: Destroy target creature with a -1/-1 counter on it. -- -10: Return all creature cards from your graveyard to the battlefield.
+mana={5}{B}{B}
+type=Legendary Planeswalker
+subtype=Liliana
+[/card]
+
+[card]
+name=Desiccated Naga
+auto={3}{B}{restriction type(liliana|mybattlefield)~morethan~0}:life:-2 opponent && life:2 controller
+text={3}{B}: Target opponent loses 2 life and you gain 2 life. Activate this ability only if you control a Liliana planeswalker.
+mana={2}{B}
+type=Creature
+subtype=Zombie Naga
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Liliana's Influence
+auto=counter(-1/-1,1) all(creature|opponentbattlefield)
+auto=may moveto(myhand) target(Liliana, Death Wielder|mylibrary)
+text=Put a -1/-1 counter on each creature you don't control. You may search your library and/or graveyard for a card named Liliana, Death Wielder, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Tattered Mummy
+auto=@movedTo(this|graveyard) from(battlefield):life:-2 opponent
+text=When Tattered Mummy dies, each opponent loses 2 life.
+mana={1}{B}
+type=Creature
+subtype=Zombie Jackal
+power=1
+toughness=2
+[/card]

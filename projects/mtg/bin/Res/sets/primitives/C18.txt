@@ -1,0 +1,331 @@
+grade=borderline
+[card]
+name=Empyrial Storm
+auto=create(Angel:creature Angel:4/4:white:flying)
+text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. -- Create a 4/4 white Angel creature token with flying.
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Heavenly Blademaster
+abilities=flying, double strike
+auto=may target(<anyamount>aura|battlefield) newhook
+auto=may target(<anyamount>equipment|battlefield) newhook
+auto=thisforeach(aura) lord(other creature|myBattlefield) 1/1
+auto=thisforeach(gear) lord(other creature|myBattlefield) 1/1
+auto=lord(other creature|myBattlefield) +1/+1 for each aura and equipment attached to heavenly blademaster
+text=Flying, double strike -- When Heavenly Blademaster enters the battlefield, you may attach any number of Auras and Equipment you control to it. -- Other creatures you control get +1/+1 for each Aura and Equipment attached to Heavenly Blademaster.
+mana={5}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=6
+[/card]
+
+[card]
+name=Loyal Unicorn
+abilities=vigilance
+text=Vigilance -- Lieutenant — At the beginning of combat on your turn, if you control your commander, prevent all combat damage that would be dealt to creatures you control this turn. Other creatures you control gain vigilance until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Unicorn
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Magus of the Balance
+auto={4}{W}{T}{S}:auto=if type(land|mybattlefield)~morethan~type(land|opponentbattlefield) then ability$! sacrifice notatarget(<type:land:mybattlefieldminustype:land:opponentbattlefieldminusend>land|mybattlefield) !$ controller && if type(land|opponentbattlefield)~morethan~type(land|mybattlefield) then ability$! sacrifice notatarget(<type:land:mybattlefieldminustype:land:opponentbattlefieldminusend>land|mybattlefield) !$ opponent && if type(creature|mybattlefield)~morethan~type(creature|opponentbattlefield) then ability$! sacrifice notatarget(<type:creature:mybattlefieldminustype:creature:opponentbattlefieldminusend>creature|mybattlefield) !$ controller && if type(creature|opponentbattlefield)~morethan~type(creature|mybattlefield) then ability$! sacrifice notatarget(<type:creature:mybattlefieldminustype:creature:opponentbattlefieldminusend>creature|mybattlefield) !$ opponent && if type(*|myhand)~morethan~type(*|opponenthand) then ability$! reject notatarget(<type:*:myhandminustype:*:opponenthandminusend>*|myhand) !$ controller && if type(*|opponenthand)~morethan~type(*|myhand) then ability$! reject notatarget(<type:*:myhandminustype:*:opponenthandminusend>*|myhand) !$ opponent
+text={4}{W}, {T}, Sacrifice Magus of the Balance: Each player chooses a number of lands they control equal to the number of lands controlled by the player who controls the fewest, then sacrifices the rest. Players discard cards and sacrifice creatures the same way.
+mana={1}{W}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Echo Storm
+target=artifact
+auto=clone
+text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. You may choose new targets for the copies. -- Create a token that's a copy of target artifact.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Ever-Watching Threshold
+auto=auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0} draw:1
+text=Whenever an opponent attacks you and/or a planeswalker you control with one or more creatures, draw a card.
+mana={2}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Loyal Drake
+abilities=flying
+text=Flying -- Lieutenant — At the beginning of combat on your turn, if you control your commander, draw a card.
+mana={2}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Octopus Umbra
+abilities=totemarmor
+target=creature
+auto=teach(creature) transforms((,newability[@combat(attacking) source(this):may tap target(creature)]))
+auto=teach(creature) becomes(,8/8)
+text=Enchant creature -- Enchanted creature has base power and toughness 8/8 and has "Whenever this creature attacks, you may tap target creature with power 8 or less." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+mana={3}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Bloodtracker
+abilities=flying
+auto={B}{L:2}:counter(1/1)
+auto=@movedTo(this|nonbattlezone) from(battlefield):thisforeach(counter{1/1,1}) draw:1 controller
+text=Flying -- {B}, Pay 2 life: Put a +1/+1 counter on Bloodtracker. -- When Bloodtracker leaves the battlefield, draw a card for each +1/+1 counter on it.
+mana={3}{B}
+type=Creature
+subtype=Vampire Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Loyal Subordinate
+abilities=menace
+text=Menace -- Lieutenant — At the beginning of combat on your turn, if you control your commander, each opponent loses 3 life.
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Night Incarnate
+abilities=deathtouch
+other={3}{B} name(Evoke)
+auto=@movedTo(this|nonbattlezone) from(battlefield):all(creature) -3/-3 ueot
+auto=alternative sacrifice
+text=Deathtouch -- When Night Incarnate leaves the battlefield, all creatures get -3/-3 until end of turn. -- Evoke {3}{B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
+mana={4}{B}
+type=Creature
+subtype=Elemental
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Fury Storm
+target=*[instant;sorcery]|stack
+auto=castcard(copied noevent)
+text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. You may choose new targets for the copies. -- Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={2}{R}{R}
+type=Instant
+[/card]
+
+[card]
+name=Loyal Apprentice
+abilities=flying, haste
+text=Haste -- Lieutenant — At the beginning of combat on your turn, if you control your commander, create a 1/1 colorless Thopter artifact creature token with flying. That token gains haste until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Human Artificer
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Nesting Dragon
+abilities=flying
+auto=@movedTo(land|myBattlefield):token(dragon egg)
+text=Flying -- Landfall — Whenever a land enters the battlefield under your control, create a 0/2 red Dragon Egg creature token with defender and "When this creature dies, create a 2/2 red Dragon creature token with flying and '{R}: This creature gets +1/+0 until end of turn.'"
+mana={3}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Varchild, Betrayer of Kjeldor
+auto=@combatdamaged(player) from(this):create(Survivor:Creature Survivor:1/1:red)*thatmuch opponent
+auto=lord(survivor|opponentBattlefield) cantblock
+auto=lord(survivor|opponentBattlefield) cantattack
+auto=@movedTo(this|nonbattlezone) from(mybattlefield):moveTo(myBattlefield) all(survivor)
+text=Whenever Varchild, Betrayer of Kjeldor deals combat damage to a player, that player creates that many 1/1 red Survivor creature tokens. -- Survivors your opponents control can't block, and they can't attack you or a planeswalker you control. -- When Varchild leaves the battlefield, gain control of all Survivors.
+mana={2}{R}
+type=Legendary Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Crash of Rhino Beetles
+abilities=trample
+auto=aslongas(land|myBattlefield)~morethan~9 10/10
+text=Trample -- Crash of Rhino Beetles gets +10/+10 as long as you control ten or more lands.
+mana={4}{G}
+type=Creature
+subtype=Insect
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Loyal Guardian
+abilities=trample
+text=Trample -- Lieutenant — At the beginning of combat on your turn, if you control your commander, put a +1/+1 counter on each creature you control.
+mana={4}{G}
+type=Creature
+subtype=Rhino
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Turntimber Sower
+auto=@@movedto(land|mygraveyard):create(plant:creature plant:0/1:green:)
+auto={G}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:target(land|mygraveyard) moveto(ownerhand)
+text=Whenever one or more land cards are put into your graveyard from anywhere, create a 0/1 green Plant creature token. -- {G}, Sacrifice three creatures: Return target land card from your graveyard to your hand.
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Whiptongue Hydra
+abilities=reach
+auto=@movedto(creature[flying]|graveyard):counter(1/1) oneshot
+auto=destroy all(creature[flying])
+text=Reach -- When Whiptongue Hydra enters the battlefield, destroy all creatures with flying. Put a +1/+1 counter on Whiptongue Hydra for each creature destroyed this way.
+mana={5}{G}
+type=Creature
+subtype=Lizard Hydra
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Arixmethes, Slumbering Isle
+auto=tap(noevent)
+auto=counter(0/0,5,Slumber)
+auto=this(counter{0/0.1.Slumber}>=1) transforms((removetypes,newability[becomes(Legendary Land)]))
+auto=this(counter{0/0.1.Slumber}<1) transforms((Legendary Creature))
+auto=@movedTo(*|mystack):may counter(0/0,-1,Slumber)
+auto={T}:Add{G}{U}
+text=Arixmethes, Slumbering Isle enters the battlefield tapped with five slumber counters on it. -- As long as Arixmethes has a slumber counter on it, it's a land. (It's not a creature.) -- Whenever you cast a spell, you may remove a slumber counter from Arixmethes. -- {T}: Add {G}{U}.
+mana={2}{G}{U}
+type=Legendary Creature
+subtype=Kraken
+power=12
+toughness=12
+[/card]
+
+[card]
+name=Kestia, the Cultivator
+bestow={3}{G}{W}{U}
+auto=bestow bstw
+auto=bestow teach(creature) 4/4
+auto=@combat(attacking) source(creature[enchanted]|myBattlefield):draw:1
+auto=@combat(attacking) source(creature[enchantment]|myBattlefield):draw:1
+text=Bestow {3}{G}{W}{U} (If you cast this card for its bestow cost, it's an Aura spell with enchant creature. It becomes a creature again if it's not attached to a creature.) -- Enchanted creature gets +4/+4. -- Whenever an enchanted creature or enchantment creature you control attacks, draw a card.
+mana={1}{G}{W}{U}
+type=Legendary Enchantment Creature
+subtype=Nymph
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Thantis, the Warweaver
+abilities=vigilance, reach
+auto=lord(creature) mustattack
+auto=@combat(attacking) source(creature|opponentBattlefield):counter(1/1)
+text=Vigilance, reach -- All creatures attack each combat if able. -- Whenever a creature attacks you or a planeswalker you control, put a +1/+1 counter on Thantis, the Warweaver.
+mana={3}{B}{R}{G}
+type=Legendary Creature
+subtype=Spider
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Tuvasa the Sunlit
+auto=foreach(enchantment|mybattlefield) 1/1
+auto=@movedTo(*[enchantment]|mystack) turnlimited:draw:1
+text=Tuvasa the Sunlit gets +1/+1 for each enchantment you control. -- Whenever you cast your first enchantment spell each turn, draw a card.
+mana={G}{W}{U}
+type=Legendary Creature
+subtype=Merfolk Shaman
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Varina, Lich Queen
+auto=@each my blockers restriction{type(Zombie[attacking]|myBattlefield)~morethan~0}:draw:type:zombie[attacking]:myBattlefield && transforms((,newability[target(<type:zombie[attacking]:myBattlefield>*|myhand) reject])) forever
+auto=@each my blockers restriction{type(Zombie[attacking]|myBattlefield)~morethan~0}:life:type:zombie[attacking]:myBattlefield
+auto={2}{E(*|mygraveyard)}{E(*|mygraveyard)}:create(black zombie:creature black zombie:2/2) and!( tap(noevent) )!
+text=Whenever you attack with one or more Zombies, draw that many cards, then discard that many cards. You gain that much life. -- {2}, Exile two cards from your graveyard: Create a tapped 2/2 black Zombie creature token.
+mana={1}{W}{U}{B}
+type=Legendary Creature
+subtype=Zombie Wizard
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Windgrace's Judgment
+target=*[-land]|opponentBattlefield
+auto=destroy
+text=For any number of opponents, destroy target nonland permanent that player controls.
+mana={3}{B}{G}
+type=Instant
+[/card]
+
+[card]
+name=Ancient Stone Idol
+abilities=flash, trample
+anyzone=foreach(creature[attacking]|battlefield) changecost(colorless:-1) forcedalive
+auto=@movedTo(this|graveyard) from(battlefield):create(construct artifact:creature construct artifact:6/12:colorless:trample)
+text=Flash -- This spell costs {1} less to cast for each attacking creature. -- Trample -- When Ancient Stone Idol dies, create a 6/12 colorless Construct artifact creature token with trample.
+mana={10}
+type=Artifact Creature
+subtype=Golem
+power=12
+toughness=12
+[/card]
+
+[card]
+name=Geode Golem
+abilities=trample
+text=Trample -- Whenever Geode Golem deals combat damage to a player, you may cast your commander from the command zone without paying its mana cost. (You still pay any additional costs.)
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=5
+toughness=3
+[/card]
+
+[card]
+name=Retrofitter Foundry
+auto={3}:untap
+auto={2}{T}:create(servo artifact:creature servo artifact:1/1:colorless:)
+auto={1}{T}[S(Servo|myBattlefield)}:create(thopter artifact:creature thopter artifact:1/1:colorless:flying)
+auto={T}[S(Thopter|myBattlefield)}:create(construct artifact:creature construct artifact:4/4:colorless:)
+text={3}: Untap Retrofitter Foundry. -- {2}, {T}: Create a 1/1 colorless Servo artifact creature token. -- {1}, {T}, Sacrifice a Servo: Create a 1/1 colorless Thopter artifact creature token with flying. -- {T}, Sacrifice a Thopter: Create a 4/4 colorless Construct artifact creature token.
+mana={1}
+type=Artifact
+[/card]

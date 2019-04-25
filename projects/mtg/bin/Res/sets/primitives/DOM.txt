@@ -1,0 +1,2335 @@
+grade=borderline
+[card]
+name=Adamant Will
+target=creature
+auto=+2/+2
+auto=indestructible  
+text=Target creature gets +2/+2 and gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Aven Sentry
+abilities=flying
+text=Flying
+mana={3}{W}
+type=Creature
+subtype=Bird Soldier
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Baird, Steward of Argive
+abilities=vigilance
+auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
+text=Vigilance -- Creatures can't attack you or a planeswalker you control unless their controller pays {1} for each of those creatures.
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Benalish Honor Guard
+auto=foreach(creature[legendary]|myBattlefield) 1/0
+text=Benalish Honor Guard gets +1/+0 for each legendary creature you control.
+mana={1}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Benalish Marshal
+auto=lord(other creature|myBattlefield) +1/+1
+text=Other creatures you control get +1/+1.
+mana={W}{W}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Blessed Light
+target=creature,enchantment.
+auto=moveto(exile)
+text=Exile target creature or enchantment.
+mana={4}{W}
+type=Instant
+[/card]
+
+[card]
+name=Board the Weatherlight
+auto=reveal:5 optionone name(Get historic) target(*[artifact;legendary;saga]|reveal) moveto(hand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
+text=Look at the top five cards of your library. You may reveal a historic card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. (Artifacts, legendaries, and Sagas are historic.)
+mana={1}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Call the Cavalry
+auto=create(Knight:creature Knight:2/2:white:vigilance)*2
+text=Create two 2/2 white Knight creature tokens with vigilance.
+mana={3}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Charge
+auto=all(other creature|myBattlefield) +1/+1 
+text=Creatures you control get +1/+1 until end of turn.
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=D'Avenant Trapper
+auto=@movedTo(*[artifact;legendary;saga]|mystack):tap target(creature|opponentBattlefield)
+text=Whenever you cast a historic spell, tap target creature an opponent controls. (Artifacts, legendaries, and Sagas are historic.)
+mana={2}{W}
+type=Creature
+subtype=Human Archer
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Danitha Capashen, Paragon
+abilities=first strike, vigilance, lifelink
+auto=lord(aura|mycastingzone) altercost(colorless,-1)
+auto=lord(equipment|mycastingzone) altercost(colorless,-1)
+text=First strike, vigilance, lifelink -- Aura and Equipment spells you cast cost {1} less to cast.
+mana={2}{W}
+type=Legendary Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Daring Archaeologist
+auto=may target(artifact|mygraveyard) moveto(ownerhand)
+auto=@movedTo(*[artifact;legendary;saga]|mystack):counter(1/1)
+text=When Daring Archaeologist enters the battlefield, you may return target artifact card from your graveyard to your hand. -- Whenever you cast a historic spell, put a +1/+1 counter on Daring Archaeologist. (Artifacts, legendaries, and Sagas are historic.)
+mana={3}{W}
+type=Creature
+subtype=Human Artificer
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Dauntless Bodyguard
+auto={S}:target (creature|myBattlefield) indestructible
+text=As Dauntless Bodyguard enters the battlefield, choose another creature you control. -- Sacrifice Dauntless Bodyguard: The chosen creature gains indestructible until end of turn.
+mana={W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Dub
+target=creature
+auto=teach(creature) +2/+2
+auto=teach(creature) first strike  
+auto=transforms((Knight))
+text=Enchant creature -- Enchanted creature gets +2/+2, has first strike, and is a Knight in addition to its other types.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Evra, Halcyon Witness
+abilities=lifelink
+auto={4}:count(lifetotal) && transforms((,newability[lifeset:p conroller})) forever && all(this) transforms((,setpower=countedamount)) forever
+text=Lifelink -- {4}: Exchange your life total with Evra, Halcyon Witness's power.
+mana={4}{W}{W}
+type=Legendary Creature
+subtype=Avatar
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Excavation Elephant
+kicker={1}{W}
+auto=kicker target(artifact|mygraveyard) moveto(ownerhand)
+text=Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) -- When Excavation Elephant enters the battlefield, if it was kicked, return target artifact card from your graveyard to your hand.
+mana={4}{W}
+type=Creature
+subtype=Elephant
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Fall of the Thran
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=destroy all(land)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) moveTo(battlefield) notatarget(<2>land|myGraveyard) 
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) ability$! moveto(ownerbattlefield) notatarget(<2>land|myGraveyard) !$ opponent
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveTo(battlefield) notatarget(<2>land|myGraveyard) 
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) ability$! moveto(ownerbattlefield) notatarget(<2>land|myGraveyard) !$ opponent
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Destroy all lands. -- II, III — Each player returns two land cards from their graveyard to the battlefield.
+mana={5}{W}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Healing Grace
+target=player,creature
+auto=prevent:3
+auto=life:3
+text=Prevent the next 3 damage that would be dealt to any target this turn by a source of your choice. You gain 3 life.
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=History of Benalia
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=create(knight:creature knight:2/2:white:vigilance)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) create(knight:creature knight:2/2:white:vigilance)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(creature[Knight]|myBattlefield) +2/+1
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Create a 2/2 white Knight creature token with vigilance. -- III — Knights you control get +2/+1 until end of turn.
+mana={1}{W}{W}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Invoke the Divine
+target=artifact,enchantment
+auto=destroy
+auto=life:4
+text=Destroy target artifact or enchantment. You gain 4 life.
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Knight of Grace
+abilities=first strike
+auto=cantbetargetof(*[black])
+auto=aslongas(*[black]|Battlefield) 1/0
+text=First strike -- Hexproof from black (This creature can't be the target of black spells or abilities your opponents control.) -- Knight of Grace gets +1/+0 as long as any player controls a black permanent.
+mana={1}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Knight of New Benalia
+mana={1}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Kwende, Pride of Femeref
+abilities=double strike
+auto=lord(other creature[first strike]|myBattlefield) double strike
+text=Double strike -- Creatures you control with first strike have double strike.
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Lyra Dawnbringer
+abilities=flying, first strike, lifelink
+auto=lord(other angel|myBattlefield) +1/+1
+auto=lord(other angel|myBattlefield) lifelink
+text=Flying, first strike, lifelink -- Other Angels you control get +1/+1 and have lifelink.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Mesa Unicorn
+abilities=lifelink
+text=Lifelink
+mana={1}{W}
+type=Creature
+subtype=Unicorn
+power=2
+toughness=2
+[/card]
+
+[card]
+name=On Serra's Wings
+target=creature
+auto=transforms((legendary))
+auto=teach(creature) +1/+1
+auto=teach(creature) flying 
+auto=teach(creature) vigilance
+auto=teach(creature) lifelink
+text=Enchant creature -- Enchanted creature is legendary, gets +1/+1, and has flying, vigilance, and lifelink.
+mana={3}{W}
+type=Legendary Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Pegasus Courser
+abilities=flying
+auto=@combat(attacking) source(this):target(other creature[attaking]) flying ueot
+text=Flying -- Whenever Pegasus Courser attacks, another target attacking creature gains flying until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Pegasus
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Sanctum Spirit
+abilities=lifelink
+auto={D(*[artifact;legendary;saga]|myHand)}:indestructible ueot
+text=Lifelink -- Discard a historic card: Sanctum Spirit gains indestructible until end of turn. (Artifacts, legendaries, and Sagas are historic.)
+mana={3}{W}
+type=Creature
+subtype=Spirit
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Seal Away
+abilities=flash
+auto=(blink)forsrc target(creature[tapped]|opponentbattlefield)
+text=Flash -- When Seal Away enters the battlefield, exile target tapped creature an opponent controls until Seal Away leaves the battlefield.
+mana={1}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Sergeant-at-Arms
+kicker={2}{W}
+auto=kicker create(soldier:creature soldier:1/1:white:)*2
+text=Kicker {2}{W} (You may pay an additional {2}{W} as you cast this spell.) -- When Sergeant-at-Arms enters the battlefield, if it was kicked, create two 1/1 white Soldier creature tokens.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Serra Disciple
+abilities=flying, first strike
+auto=@movedTo(*[artifact;legendary;saga]|mystack):+1/+1 ueot
+text=Flying, first strike -- Whenever you cast a historic spell, Serra Disciple gets +1/+1 until end of turn. (Artifacts, legendaries, and Sagas are historic.)
+mana={1}{W}
+type=Creature
+subtype=Bird Cleric
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Shalai, Voice of Plenty
+abilities=flying, opponentshroud
+auto=lord(other creature|myBattlefield) opponentshroud
+auto={4}{G}{G}:counter(1/1) all(creature|myBattlefield)
+text=Flying -- You, planeswalkers you control, and other creatures you control have hexproof. -- {4}{G}{G}: Put a +1/+1 counter on each creature you control.
+mana={3}{W}
+type=Legendary Creature
+subtype=Angel
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Teshar, Ancestor's Apostle
+abilities=flying
+auto=@movedTo(*[artifact;legendary;saga]|mystack):target(creature[manacost<=3]|myGraveyard) moveTo(mybattlefield)
+text=Flying -- Whenever you cast a historic spell, return target creature card with converted mana cost 3 or less from your graveyard to the battlefield. (Artifacts, legendaries, and Sagas are historic.)
+mana={3}{W}
+type=Legendary Creature
+subtype=Bird Cleric
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Triumph of Gerrard
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=counter(1/1) target(creature[power=power:highest:creature:myBattlefield]|mybattlefield)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) counter(1/1) target(creature|mybattlefield)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) flying target(creature)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Put a +1/+1 counter on target creature you control with the greatest power. -- III — Target creature you control with the greatest power gains flying, first strike, and lifelink until end of turn.
+mana={1}{W}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Urza's Ruinous Blast
+auto=moveto(exile) all(*[-legendary;-land])
+auto=Exile all nonland permanents that aren't legendary
+text=(You may cast a legendary sorcery only if you control a legendary creature or planeswalker.) -- Exile all nonland permanents that aren't legendary
+restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
+mana={4}{W}
+type=Legendary Sorcery
+[/card]
+
+[card]
+name=Academy Drake
+abilities=flying
+kicker={4}
+auto=kicker counter(1/1,2)
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Flying -- If Academy Drake was kicked, it enters the battlefield with two +1/+1 counters on it.
+mana={2}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Academy Journeymage
+auto=moveto(ownerHand) target(creature|opponentBattlefield)
+text=This spell costs {1} less to cast if you control a Wizard. -- When Academy Journeymage enters the battlefield, return target creature an opponent controls to its owner's hand.
+other={3}{U} name(reduced by Wizard)
+otherrestriction=type(wizard|mybattlefield)
+mana={4}{U}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+[/card]
+
+[card]
+name=The Antiquities War
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=reveal:5 optionone name(Get artifact) target(<upto:1>artifact|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) reveal:5 optionone name(Get artifact) target(<upto:1>artifact|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(artifact|mybattlefield) becomes(Artifact Creature,5/5) ueot
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Look at the top five cards of your library. You may reveal an artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. -- III — Artifacts you control become artifact creatures with base power and toughness 5/5 until end of turn.
+mana={3}{U}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Arcane Flight
+target=creature
+auto=teach(creature) +1/+1
+auto=teach(creature) flying
+text=Enchant creature -- Enchanted creature gets +1/+1 and has flying.
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Artificer's Assistant
+abilities=flying
+auto=@movedTo(*[artifact;legendary;saga]|mystack):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flying -- Whenever you cast a historic spell, scry 1. (Artifacts, legendaries, and Sagas are historic. To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
+mana={U}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Befuddle
+target=creature
+auto=-4/-0 
+auto=draw:1
+text=Target creature gets -4/-0 until end of turn. -- Draw a card.
+mana={2}{U}
+type=Instant
+[/card]
+
+[card]
+name=Blink of an Eye
+kicker={1}{U}
+target=*[-land]
+auto=moveTo(ownerHand)
+auto=kicker draw:1
+text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) -- Return target nonland permanent to its owner's hand. If this spell was kicked, draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Cloudreader Sphinx
+abilities=flying
+auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flying -- When Cloudreader Sphinx enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={4}{U}
+type=Creature
+subtype=Sphinx
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Cold-Water Snapper
+abilities=opponentshroud
+text=Hexproof (This creature can't be the target of spells or abilities your opponents control.)
+mana={5}{U}
+type=Creature
+subtype=Turtle
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Curator's Ward
+target=artifact,creature,enchantment,land,planeswalker
+auto=teach(mytgt) opponentshroud
+auto=teach(*[artifact;legendary;saga]) @movedTo(this|nonbattlezone) from(battlefield):draw:2
+text=Enchant permanent -- Enchanted permanent has hexproof. -- When enchanted permanent leaves the battlefield, if it was historic, draw two cards. (Artifacts, legendaries, and Sagas are historic.)
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Deep Freeze
+target=creature
+auto=teach(creature) transforms((,setpower=0,settoughness=4))
+auto=teach(creature) defender
+auto=teach(creature) loseabilities
+text=Enchant creature -- Enchanted creature has base power and toughness 0/4, has defender, loses all other abilities, and is a blue Wall in addition to its other colors and types.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Diligent Excavator
+auto=@movedTo(*[artifact;legendary;saga]|mystack):target(player) deplete:2
+text=Whenever you cast a historic spell, target player puts the top two cards of their library into their graveyard. (Artifacts, legendaries, and Sagas are historic.)
+mana={1}{U}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Homarid Explorer
+auto=target(player) deplete:4
+text=When Homarid Explorer enters the battlefield, target player puts the top four cards of their library into their graveyard.
+mana={3}{U}
+type=Creature
+subtype=Homarid Scout
+power=3
+toughness=3
+[/card]
+
+[card]
+name=In Bolas's Clutches
+target=artifact,creature,enchantment,land,planeswalker
+alias=1194
+auto=transforms((legendary))
+text=Enchant permanent -- You control enchanted permanent. -- Enchanted permanent is legendary.
+mana={4}{U}{U}
+type=Legendary Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Karn's Temporal Sundering
+target=player
+auto=turns:+1
+auto=may moveto(ownerHand) target(*[-land])
+auto=moveto(exile)
+text=(You may cast a legendary sorcery only if you control a legendary creature or planeswalker.) -- Target player takes an extra turn after this one. Return up to one target nonland permanent to its owner's hand. Exile Karn's Temporal Sundering.
+restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
+mana={4}{U}{U}
+type=Legendary Sorcery
+[/card]
+
+[card]
+name=Merfolk Trickster
+abilities=flash
+auto=target(creature|opponentBattlefield) tap && loseabilities ueot
+text=Flash -- When Merfolk Trickster enters the battlefield, tap target creature an opponent controls. It loses all abilities until end of turn.
+mana={U}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=The Mirari Conjecture
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=target(instant|mygraveyard) moveto(ownerhand)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) target(sorcery|mygraveyard) moveto(ownerhand) 
+#auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) @movedto(*[instant;sorcery]|mystack):all(trigger[to]<1>) transforms((,newability[castcard(copied noevent)])) forever
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Return target instant card from your graveyard to your hand. -- II — Return target sorcery card from your graveyard to your hand. -- III — Until end of turn, whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy.
+mana={4}{U}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Naban, Dean of Iteration
+text=If a Wizard entering the battlefield under your control causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Naru Meha, Master Wizard
+abilities=flash
+auto=castcard(copied noevent) target(*[instant;sorcery]|stack)
+auto=lord(other wizard|myBattlefield) +1/+1
+text=Flash -- When Naru Meha, Master Wizard enters the battlefield, copy target instant or sorcery spell you control. You may choose new targets for the copy. -- Other Wizards you control get +1/+1.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Precognition Field
+auto={3}:moveto(exile) all(*[zpos=1]|mylibrary)
+aicode=activate name(look) donothing
+auto={0}:name(Look) reveal:1 optionone name(look) target(<1>*|reveal) moveto(mylibrary) optiononeend optiontwo name(put it back) all(*|reveal) moveto(mylibrary) optiontwoend revealend
+text=You may look at the top card of your library any time. -- You may cast the top card of your library if it's an instant or sorcery card. -- {3}: Exile the top card of your library.
+mana={3}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Relic Runner
+auto=@movedTo(*[artifact;legendary;saga]|mystack):unblockable ueot
+text=Relic Runner can't be blocked if you've cast a historic spell this turn. (Artifacts, legendaries, and Sagas are historic.)
+mana={1}{U}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Sentinel of the Pearl Trident
+abilities=flash
+auto=may (blink)ueot target(*[artifact;legendary;saga]|myBattlefield)
+text=Flash -- When Sentinel of the Pearl Trident enters the battlefield, you may exile target historic permanent you control. If you do, return that card to the battlefield under its owner's control at the beginning of the next end step. (Artifacts, legendaries, and Sagas are historic.)
+mana={4}{U}
+type=Creature
+subtype=Merfolk Soldier
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Slinn Voda, the Rising Deep
+kicker={1}{U}
+auto=kicker moveto(ownerhand) all(creature[-Merfolk;-Kraken;-Leviathan;-Octopus;-Serpent]|battlefield)
+text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) -- When Slinn Voda, the Rising Deep enters the battlefield, if it was kicked, return all creatures to their owners' hands except for Merfolk, Krakens, Leviathans, Octopuses, and Serpents.
+mana={6}{U}{U}
+type=Legendary Creature
+subtype=Leviathan
+power=8
+toughness=8
+[/card]
+
+[card]
+name=Tempest Djinn
+abilities=flying
+auto=foreach(island[basic]|myBattlefield) 1/0
+text=Flying -- Tempest Djinn gets +1/+0 for each basic Island you control.
+mana={U}{U}{U}
+type=Creature
+subtype=Djinn
+power=0
+toughness=4
+[/card]
+
+[card]
+name=Tetsuko Umezawa, Fugitive
+auto=lord(creature[power<=1]|myBattlefield) unblockable
+auto=lord(creature[toughness<=1]|myBattlefield) unblockable
+text=Creatures you control with power or toughness 1 or less can't be blocked.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Rogue
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Time of Ice
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=target(creature|opponentBattlefield) transforms((,newability[tap],newability[doesnotuntap]))
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) target(creature|opponentBattlefield) freeze 
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(creature[tapped]|battlefield) moveTo(ownerHand)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Tap target creature an opponent controls. It doesn't untap during its controller's untap step for as long as you control Time of Ice. -- III — Return all tapped creatures to their owners' hands.
+mana={3}{U}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Tolarian Scholar
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Unwind
+target=*[-creature]|stack
+auto=fizzle
+auto=untap target(<upto:3>land)
+text=Counter target noncreature spell. Untap up to three lands.
+mana={2}{U}
+type=Instant
+[/card]
+
+[card]
+name=Weight of Memory
+auto=draw:3
+auto=deplete:3 target(player)
+text=Draw three cards. Target player puts the top three cards of their library into their graveyard.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Wizard's Retort
+auto=This spell costs {1} less to cast if you controlWizard
+target=*|stack
+auto=fizzle
+auto=Counter target spell
+text=This spell costs {1} less to cast if you control a Wizard. -- Counter target spell.
+other={U}{U} name(reduced by Wizard)
+otherrestriction=type(Wizard|myBattlefield)
+mana={1}{U}{U}
+type=Instant
+[/card]
+
+[card]
+name=Blessing of Belzenlok
+target=creature
+auto=+2/+1
+auto=teach(legendary) lifelink
+text=Target creature gets +2/+1 until end of turn. If it's legendary, it also gains lifelink until end of turn.
+mana={B}
+type=Instant
+[/card]
+
+[card]
+name=Cabal Evangel
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Cabal Paladin
+auto=@movedTo(*[artifact;legendary;saga]|mystack):damage:2 opponent
+text=Whenever you cast a historic spell, Cabal Paladin deals 2 damage to each opponent. (Artifacts, legendaries, and Sagas are historic.)
+mana={3}{B}
+type=Creature
+subtype=Human Knight
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Caligo Skin-Witch
+kicker={3}{B}
+auto=kicker ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
+text=Kicker {3}{B} (You may pay an additional {3}{B} as you cast this spell.) -- When Caligo Skin-Witch enters the battlefield, if it was kicked, each opponent discards two cards.
+mana={1}{B}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Cast Down
+target=creature[-legendary]
+auto=destroy
+text=Destroy target nonlegendary creature.
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Chainer's Torment
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=damage:2 opponent && life:2
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) damage:2 opponent && life:2 
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) create(nightmare horror:creature nightmare horror:halfdownlifetotal/halfdownlifetotal:black) && life:-halfdownlifetotal
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Chainer's Torment deals 2 damage to each opponent and you gain 2 life. -- III — Create an X/X black Nightmare Horror creature token, where X is half your life total, rounded up. It deals X damage to you.
+mana={3}{B}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Dark Bargain
+auto=damage:2
+auto=Look at the top three cards of your library Put two of them into your hand
+auto=the other into your graveyard Dark Bargain deals 2 damage to you
+text=Look at the top three cards of your library. Put two of them into your hand and the other into your graveyard. Dark Bargain deals 2 damage to you.
+mana={3}{B}
+type=Instant
+[/card]
+
+[card]
+name=Deathbloom Thallid
+auto=@movedTo(this|graveyard) from(battlefield):create(saproling:creature saproling:1/1:green:)
+text=When Deathbloom Thallid dies, create a 1/1 green Saproling creature token.
+mana={2}{B}
+type=Creature
+subtype=Fungus
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Demonic Vigor
+target=creature
+auto=teach(creature) +1/+1
+auto=teach(creature) When enchanted creature dies return that card to its owner's hand
+text=Enchant creature -- Enchanted creature gets +1/+1. -- When enchanted creature dies, return that card to its owner's hand.
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Demonlord Belzenlok
+abilities=flying, trample
+auto=Reveal:1 revealzone(mylibrary) revealuntil(*[-land;manacost<=3]|mylibrary) optionone choice name(Get Card) all(*[-land]|reveal) moveto(myhand) and!(damage:1 controller)! optiononeend optiontwo choice all(*|reveal) moveTo(exile) optiontwoend revealend
+text=Flying, trample -- When Demonlord Belzenlok enters the battlefield, exile cards from the top of your library until you exile a nonland card, then put that card into your hand. If the card's converted mana cost is 4 or greater, repeat this process. Demonlord Belzenlok deals 1 damage to you for each card put into your hand this way.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Elder Demon
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Divest
+target=player
+aicode=activate reject notatarget(artifact,creature|targetedpersonshand)
+auto=reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose card) notatarget(artifact,creature|reveal) moveto(ownerhand) and!( reject )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )! optiontwoend revealend
+text=Target player reveals their hand. You choose an artifact or creature card from it. That player discards that card.
+mana={B}
+type=Sorcery
+[/card]
+
+[card]
+name=Dread Shade
+auto={B}:+1/+1 ueot
+text={B}: Dread Shade gets +1/+1 until end of turn.
+mana={B}{B}{B}
+type=Creature
+subtype=Shade
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Drudge Sentinel
+abilities=indestructible
+auto={3}:tap && indestructible ueot
+text={3}: Tap Drudge Sentinel. It gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={2}{B}
+type=Creature
+subtype=Skeleton Warrior
+power=2
+toughness=1
+[/card]
+
+[card]
+name=The Eldest Reborn
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=ability$!name(sacrifice) notatarget(creature,planeswalker|myBattlefield) sacrifice!$ opponent
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) ability$!name(discard) reject notatarget(*|myhand)!$ opponent
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveTo(myBattlefield) target(creature,planeswalker|graveyard)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this) 
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Each opponent sacrifices a creature or planeswalker. -- II — Each opponent discards a card. -- III — Put target creature or planeswalker card from a graveyard onto the battlefield under your control.
+mana={4}{B}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Eviscerate
+target=creature
+auto=destroy
+text=Destroy target creature.
+mana={3}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Feral Abomination
+abilities=deathtouch
+text=Deathtouch
+mana={5}{B}
+type=Creature
+subtype=Thrull
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Final Parting
+auto=name(put in hand) moveto(myhand) notatarget(*|mylibrary) and!(name(put in graveyard) moveto(mygraveyard) notatarget(*|mylibrary))! oneshot
+text=Search your library for two cards. Put one into your hand and the other into your graveyard. Then shuffle your library.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Fungal Infection
+target=creature
+auto=-1/-1
+auto=create(Saproling:creature Saproling:1/1:green:)
+text=Target creature gets -1/-1 until end of turn. Create a 1/1 green Saproling creature token.
+mana={B}
+type=Instant
+[/card]
+
+[card]
+name=Josu Vess, Lich Knight
+abilities=menace
+kicker={5}{B}
+auto=kicker create(zombie knight:creature zombie knight:2/2:black:menace)*8
+text=Kicker {5}{B} (You may pay an additional {5}{B} as you cast this spell.) -- Menace -- When Josu Vess, Lich Knight enters the battlefield, if it was kicked, create eight 2/2 black Zombie Knight creature tokens with menace.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Zombie Knight
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Kazarov, Sengir Pureblood
+abilities=flying
+auto=@damaged(creature|opponentBattlefield):counter(1/1)
+auto={3}{R}:damage:2 target(creature)
+text=Flying -- Whenever a creature an opponent controls is dealt damage, put a +1/+1 counter on Kazarov, Sengir Pureblood. -- {3}{R}: Kazarov deals 2 damage to target creature.
+mana={5}{B}{B}
+type=Legendary Creature
+subtype=Vampire
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Knight of Malice
+abilities=first strike
+auto=cantbetargetof(*[white])
+auto=aslongas(*[white]|Battlefield) 1/0
+text=First strike -- Hexproof from white (This creature can't be the target of white spells or abilities your opponents control.) -- Knight of Malice gets +1/+0 as long as any player controls a white permanent.
+mana={1}{B}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Lingering Phantom
+autograveyard=@movedTo(*[artifact;legendary;saga]|mystack):may pay({b}):moveto(myhand) all(this)
+text=Whenever you cast a historic spell, you may pay {B}. If you do, return Lingering Phantom from your graveyard to your hand. (Artifacts, legendaries, and Sagas are historic.)
+mana={5}{B}
+type=Creature
+subtype=Spirit
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Phyrexian Scriptures
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=may transforms((artifact,newability[counter(1/1)])) target(creature)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) destroy all(creature[-artifact]) 
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveTo(exile) all(*|opponentgraveyard)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Put a +1/+1 counter on up to one target creature. That creature becomes an artifact in addition to its other types. -- II — Destroy all nonartifact creatures. -- III — Exile all cards from all opponents' graveyards.
+mana={2}{B}{B}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Rat Colony
+auto=foreach(rat|myBattlefield) 1/0
+text=Rat Colony gets +1/+0 for each other Rat you control. -- A deck can have any number of cards named Rat Colony.
+mana={1}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Rite of Belzenlok
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=create(cleric:creature cleric:0/1:black:)*2
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) create(cleric:creature cleric:0/1:black:)*2
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) create(demon:creature demon:6/6:black:flying:trample) and!( transforms((,newability[bury notatarget(other creature|myBattlefield)])))!
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Create two 0/1 black Cleric creature tokens. -- III — Create a 6/6 black Demon creature token with flying, trample, and "At the beginning of your upkeep, sacrifice another creature. If you can't, this creature deals 6 damage to you."
+mana={2}{B}{B}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Settle the Score
+target=creature
+auto=moveto(exile)
+auto=counter(0/0,2,loyalty) target(planeswalker|myBattlefield)
+text=Exile target creature. Put two loyalty counters on a planeswalker you control.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Soul Salvage
+target=<upto:2>creature|mygraveyard
+auto=moveTo(ownerHand)
+text=Return up to two target creature cards from your graveyard to your hand.
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Stronghold Confessor
+abilities=menace
+kicker={3}
+auto=kicker counter(1/1,2)
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- Menace (This creature can't be blocked except by two or more creatures.) -- If Stronghold Confessor was kicked, it enters the battlefield with two +1/+1 counters on it.
+mana={B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Thallid Omnivore
+auto={1}{S(other creature|mybattlefield)}:+2/+2 ueot 
+auto={1}{S(other creature[saproling]|mybattlefield)}:+2/+2 && life:2
+text={1}, Sacrifice another creature: Thallid Omnivore gets +2/+2 until end of turn. If a Saproling was sacrificed this way, you gain 2 life.
+mana={3}{B}
+type=Creature
+subtype=Fungus
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Thallid Soothsayer
+auto={2}{S(creature|myBattlefield)}:draw:1
+text={2}, Sacrifice a creature: Draw a card.
+mana={3}{B}
+type=Creature
+subtype=Fungus
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Urgoros, the Empty One
+abilities=flying
+auto=@combatdamaged(player) from(this):ability$!name(discard) reject notatarget(*|myhand)!$ 
+auto=@combatdamaged(player) from(this):if type(*|opponentHand)~lessthan~1 then draw:1
+text=Flying -- Whenever Urgoros, the Empty One deals combat damage to a player, that player discards a card at random. If the player can't, you draw a card.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Specter
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Vicious Offering
+kicker={S(creature|myBattlefield)}
+target=creature
+auto=-2/-2
+auto=kicker -3/-3
+text=Kicker—Sacrifice a creature. (You may sacrifice a creature in addition to any other costs as you cast this spell.) -- Target creature gets -2/-2 until end of turn. If this spell was kicked, that creature gets -5/-5 until end of turn instead.
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Whisper, Blood Liturgist
+auto={T}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:target(creature|mygraveyard) moveTo(mybattlefield)
+text={T}, Sacrifice two creatures: Return target creature card from your graveyard to the battlefield.
+mana={3}{B}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Windgrace Acolyte
+abilities=flying
+auto=deplete:3 && life:3
+text=Flying -- When Windgrace Acolyte enters the battlefield, put the top three cards of your library into your graveyard and you gain 3 life.
+mana={4}{B}
+type=Creature
+subtype=Cat Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Yargle, Glutton of Urborg
+mana={4}{B}
+type=Legendary Creature
+subtype=Frog Spirit
+power=9
+toughness=3
+[/card]
+
+[card]
+name=Yawgmoth's Vile Offering
+auto=name(Reanimate and may destroy) target(creature,planeswalker|graveyard) moveTo(myBattlefield) and!(may target(creature,planeswalker) destroy)!
+auto=name(Just destroy) destroy target(creature,planeswalker)
+auto=moveto(exile)
+text=(You may cast a legendary sorcery only if you control a legendary creature or planeswalker.) -- Put up to one target creature or planeswalker card from a graveyard onto the battlefield under your control. Destroy up to one target creature or planeswalker. Exile Yawgmoth's Vile Offering.
+restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
+mana={4}{B}
+type=Legendary Sorcery
+[/card]
+
+[card]
+name=Champion of the Flame
+abilities=trample
+auto=thisforeach(auras) 2/2
+auto=thisforeach(gear) 2/2
+text=Trample -- Champion of the Flame gets +2/+2 for each Aura and Equipment attached to it.
+mana={1}{R}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Fervent Strike
+target=creature
+auto=+1/+0
+auto=first strike
+auto=haste 
+text=Target creature gets +1/+0 and gains first strike and haste until end of turn.
+mana={R}
+type=Instant
+[/card]
+
+[card]
+name=Fiery Intervention
+auto=choice damage:5 target(creature)
+auto=choice destroy target(artifact)
+text=Choose one — -- • Fiery Intervention deals 5 damage to target creature. -- • Destroy target artifact.
+mana={4}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Fight with Fire
+kicker={5}{R}
+target=creature
+auto=damage:5
+auto=Kicker damage:10
+text=Kicker {5}{R} (You may pay an additional {5}{R} as you cast this spell.) -- Fight with Fire deals 5 damage to target creature. If this spell was kicked, it deals 10 damage divided as you choose among any number of targets instead. (Those targets can include players and planeswalkers.)
+mana={2}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Firefist Adept
+auto=damage:type:wizard:mybattlefield target(creature|opponentBattlefield)
+text=When Firefist Adept enters the battlefield, it deals X damage to target creature an opponent controls, where X is the number of Wizards you control.
+mana={4}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+
+[card]
+name=The First Eruption
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=all(creature[-flying]) damage:1
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=2) add{r}{r}
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) bury notatarget(mountain|mybattlefield) and!(damage:3 all(creature))!
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this) 
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — The First Eruption deals 1 damage to each creature without flying. -- II — Add {R}{R}. -- III — Sacrifice a Mountain. If you do, The First Eruption deals 3 damage to each creature.
+mana={2}{R}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Frenzied Rage
+target=creature
+auto=teach(creature) +2/+1
+auto=teach(creature) menace 
+text=Enchant creature -- Enchanted creature gets +2/+1 and has menace. (It can't be blocked except by two or more creatures.)
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Ghitu Chronicler
+kicker={3}{R}
+auto=kicker target(instant,sorcery|mygraveyard) moveto(ownerhand)
+text=Kicker {3}{R} (You may pay an additional {3}{R} as you cast this spell.) -- When Ghitu Chronicler enters the battlefield, if it was kicked, return target instant or sorcery card from your graveyard to your hand.
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Ghitu Journeymage
+auto=aslongas(other wizard|myBattlefield) damage:2 opponent
+text=When Ghitu Journeymage enters the battlefield, if you control another Wizard, Ghitu Journeymage deals 2 damage to each opponent.
+mana={2}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Ghitu Lavarunner
+auto=aslongas(instant,sorcery|myGraveyard) 1/0 >1
+auto=aslongas(instant,sorcery|myGraveyard) haste >1
+text=As long as there are two or more instant and/or sorcery cards in your graveyard, Ghitu Lavarunner gets +1/+0 and has haste.
+mana={R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Goblin Barrage
+kicker={S(*[artifact;goblin]|mybattlefield)}
+target=creature
+auto=damage:4
+auto=Kicker damae:4 target(player)
+text=Kicker—Sacrifice an artifact or Goblin. (You may sacrifice an artifact or Goblin in addition to any other costs as you cast this spell.) -- Goblin Barrage deals 4 damage to target creature. If this spell was kicked, it also deals 4 damage to target player or planeswalker.
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Goblin Chainwhirler
+abilities=first strike
+auto=damage:1 opponent
+auto=damage:1 all(creature|opponentBattlefield)
+auto=damage:1 all(planeswalker|opponentBattlefield)
+text=First strike -- When Goblin Chainwhirler enters the battlefield, it deals 1 damage to each opponent and each creature and planeswalker they control.
+mana={R}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Jaya's Immolating Inferno
+target=<upto:3>*
+auto=damage:x
+text=(You may cast a legendary sorcery only if you control a legendary creature or planeswalker.) -- Jaya's Immolating Inferno deals X damage to each of up to three targets.
+restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
+mana={X}{R}{R}
+type=Legendary Sorcery
+[/card]
+
+[card]
+name=Keldon Overseer
+abilities=haste
+kicker={3}{R}
+auto=kicker ,) control of target(creature ueot untap that creaturehaste ueot
+text=Kicker {3}{R} (You may pay an additional {3}{R} as you cast this spell.) -- Haste -- When Keldon Overseer enters the battlefield, if it was kicked, gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Keldon Raider
+auto=may ability$!name(discard) reject notatarget(*|myhand) and!(draw:1) controller!$
+text=When Keldon Raider enters the battlefield, you may discard a card. If you do, draw a card.
+mana={2}{R}{R}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Keldon Warcaller
+auto=@combat(attacking) source(this):counter(0/0,Lore) target(saga|myBattlefield)
+text=Whenever Keldon Warcaller attacks, put a lore counter on target Saga you control.
+mana={1}{R}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Orcish Vandal
+auto={T}{S(artifact|myBattlefield)}:damage:2 target(creature,player)
+text={T}, Sacrifice an artifact: Orcish Vandal deals 2 damage to any target.
+mana={1}{R}
+type=Creature
+subtype=Orc Warrior
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Radiating Lightning
+target=player
+auto=damage:3
+auto=Radiating Lightning deals 3 damage to target player
+auto=damage:1 all(creature|targetedpersonsBattlefield)
+text=Radiating Lightning deals 3 damage to target player and 1 damage to each creature that player controls.
+mana={3}{R}
+type=Instant
+[/card]
+
+[card]
+name=Run Amok
+target=creature[attacking]
+auto=+3/+3
+auto=trample 
+text=Target attacking creature gets +3/+3 and gains trample until end of turn.
+mana={1}{R}
+type=Instant
+[/card]
+
+[card]
+name=Seismic Shift
+target=land
+auto=destroy
+auto=cantblocktarget(<upto:2>creature)
+text=Destroy target land. Up to two target creatures can't block this turn.
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Shivan Fire
+kicker={4}
+auto=Kicker damage:2
+target=creature
+auto=damage:2
+auto=Shivan Fire deals 2 damage to target creature If this spell was kicked it deals 4 damage to that creature instead
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Shivan Fire deals 2 damage to target creature. If this spell was kicked, it deals 4 damage to that creature instead.
+mana={R}
+type=Instant
+[/card]
+
+[card]
+name=Squee, the Immortal
+abilities=canplayfromexile
+autograveyard=CanPlayFromGraveyard
+text=You may cast Squee, the Immortal from your graveyard or from exile.
+mana={1}{R}{R}
+type=Legendary Creature
+subtype=Goblin
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Two-Headed Giant
+auto=@combat(attacking) source(this):flipacoin winability transforms((,newability[flipacoin winability double strike winabilityend loseability loseabilityend flipend] winabilityend loseability transforms((,newability[flipacoin winability winabilityend loseability menace loseabilityend flipend] loseabilityend flipend
+text=Whenever Two-Headed Giant attacks, flip two coins. If both coins come up heads, Two-Headed Giant gains double strike until end of turn. If both coins come up tails, Two-Headed Giant gains menace until end of turn.
+mana={2}{R}{R}
+type=Creature
+subtype=Giant Warrior
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Valduk, Keeper of the Flame
+auto=@each my combatbegins:thisforeach(auras) create(elemental:creature elemental:3/1:red:trample,haste,and!( transforms((,newability[phaseaction[endofturn once] moveto(exile)])) forever )!)
+auto=@each my combatbegins:thisforeach(gear) create(elemental:creature elemental:3/1:red:trample,haste,and!( transforms((,newability[phaseaction[endofturn once] moveto(exile)])) forever )!)
+text=At the beginning of combat on your turn, for each Aura and Equipment attached to Valduk, Keeper of the Flame, create a 3/1 red Elemental creature token with trample and haste. Exile those tokens at the beginning of the next end step.
+mana={2}{R}
+type=Legendary Creature
+subtype=Human Shaman
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Verix Bladewing
+abilities=flying
+kicker={3}
+auto=kicker create(Karox Bladewing:creature legendary dragon:4/4:red:dragon:flying)
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- Flying -- When Verix Bladewing enters the battlefield, if it was kicked, create Karox Bladewing, a legendary 4/4 red Dragon creature token with flying.
+mana={2}{R}{R}
+type=Legendary Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Warcry Phoenix
+abilities=flying, haste
+autograveyard=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~2}:pay({2}{r}) ninjutsu
+text=Flying, haste -- Whenever you attack with three or more creatures, you may pay {2}{R}. If you do, return Warcry Phoenix from your graveyard to the battlefield tapped and attacking.
+mana={3}{R}
+type=Creature
+subtype=Phoenix
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Warlord's Fury
+auto=all(creature|myBattlefield) first strike 
+auto=draw:1
+text=Creatures you control gain first strike until end of turn. -- Draw a card.
+mana={R}
+type=Sorcery
+[/card]
+
+[card]
+name=Wizard's Lightning
+target=player,creature
+auto=damage:3
+text=This spell costs {2} less to cast if you control a Wizard. -- Wizard's Lightning deals 3 damage to any target.
+other={R} (Wizard on my Battlefield)
+otherrestriction=type(*[wizard]|mybattlefield)
+mana={2}{R}
+type=Instant
+[/card]
+
+[card]
+name=Adventurous Impulse
+auto=reveal:3 optionone name(Get Cards) target(<upto:1>*[creature;land]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
+text=Look at the top three cards of your library. You may reveal a creature or land card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
+mana={G}
+type=Sorcery
+[/card]
+
+[card]
+name=Ancient Animus
+target=creature|myBattlefield
+auto=counter(1/1)
+auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+restriction=type(creature|opponentbattlefield)~morethan~0
+text=Put a +1/+1 counter on target creature you control if it's legendary. Then it fights target creature an opponent controls. (Each deals damage equal to its power to the other.)
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Arbor Armament
+target=creature 
+auto=counter(1/1)
+auto=reach
+text=Put a +1/+1 counter on target creature. That creature gains reach until end of turn.
+mana={G}
+type=Instant
+[/card]
+
+[card]
+name=Baloth Gorger
+kicker={4}
+auto=kicker counter(1/1,3)
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- If Baloth Gorger was kicked, it enters the battlefield with three +1/+1 counters on it.
+mana={2}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Broken Bond
+target=artifact,enchantment
+auto=destroy
+auto=may moveto(myBattlefield) target(land|myHand)
+text=Destroy target artifact or enchantment. You may put a land card from your hand onto the battlefield.
+mana={1}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Corrosive Ooze
+auto=@Corrosive Ooze blocks or becomes blocked by an equipped creaturedestroy all equipment attached that creature at end of combat
+text=Whenever Corrosive Ooze blocks or becomes blocked by an equipped creature, destroy all Equipment attached to that creature at end of combat.
+mana={1}{G}
+type=Creature
+subtype=Ooze
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Fungal Plots
+auto={1}{G}{E(creature|mygraveyard)}:create(saproling:creature saproling:1/1:green:)
+auto={S(saproling|myBattlefield)}{S(saproling|myBattlefield)}:life:2 && draw:1
+text={1}{G}, Exile a creature card from your graveyard: Create a 1/1 green Saproling creature token. -- Sacrifice two Saprolings: You gain 2 life and draw a card.
+mana={1}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Gift of Growth
+kicker={2}
+auto=Kicker 2/2
+target=creature
+auto=Untap 
+auto=+2/+2
+text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Untap target creature. It gets +2/+2 until end of turn. If this spell was kicked, that creature gets +4/+4 until end of turn instead.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Grow from the Ashes
+kicker={2}
+auto=Kicker {2} 
+auto=Search your library forbasic land card put it onto the battlefield then shuffle your library If this spell was kicked instead search your library for two basic land cards put them onto the battlefield then shuffle your library
+text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Search your library for a basic land card, put it onto the battlefield, then shuffle your library. If this spell was kicked, instead search your library for two basic land cards, put them onto the battlefield, then shuffle your library.
+mana={2}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Grunn, the Lonely King
+kicker={3}
+auto=kicker counter(1/1,5)
+auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~lessthan~2}:dynamicability<!powerpumpboth!>
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- If Grunn, the Lonely King was kicked, it enters the battlefield with five +1/+1 counters on it. -- Whenever Grunn attacks alone, double its power and toughness until end of turn.
+mana={4}{G}{G}
+type=Legendary Creature
+subtype=Ape Warrior
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Kamahl's Druidic Vow
+auto=name(Look) reveal:x optionone name(Get a Card) target(<anyamount>*[legendary;manacost<=x;-instant;-sorcery]|reveal) moveto(myBattlefield) optiononeend optiontwo all(*|reveal) moveto(graveyard) optiontwoend revealend
+text=(You may cast a legendary sorcery only if you control a legendary creature or planeswalker.) -- Look at the top X cards of your library. You may put any number of land and/or legendary permanent cards with converted mana cost X or less from among them onto the battlefield. Put the rest into your graveyard.
+restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
+mana={X}{G}{G}
+type=Legendary Sorcery
+[/card]
+
+[card]
+name=Krosan Druid
+kicker={4}{G}
+auto=kicker life:10
+text=Kicker {4}{G} (You may pay an additional {4}{G} as you cast this spell.) -- When Krosan Druid enters the battlefield, if it was kicked, you gain 10 life.
+mana={2}{G}
+type=Creature
+subtype=Centaur Druid
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Llanowar Envoy
+auto={1}{G}:Add{W}
+auto={1}{G}:Add{U}
+auto={1}{G}:Add{B}
+auto={1}{G}:Add{R}
+auto={1}{G}:Add{G}
+text={1}{G}: Add one mana of any color.
+mana={2}{G}
+type=Creature
+subtype=Elf Scout
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Llanowar Scout
+auto={T}:moveto(myBattlefield) target(land|myHand)
+text={T}: You may put a land card from your hand onto the battlefield.
+mana={1}{G}
+type=Creature
+subtype=Elf Scout
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Mammoth Spider
+abilities=reach
+text=Reach
+mana={4}{G}
+type=Creature
+subtype=Spider
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Marwyn, the Nurturer
+auto=@movedTo(Elf|myBattlefield):counter(1/1)
+auto={T}:thisforeach(power>=1) Add{G}
+text=Whenever another Elf enters the battlefield under your control, put a +1/+1 counter on Marwyn, the Nurturer. -- {T}: Add an amount of {G} equal to Marwyn's power.
+mana={2}{G}
+type=Legendary Creature
+subtype=Elf Druid
+power=1
+toughness=1
+[/card]
+
+[card]
+name=The Mending of Dominaria
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=deplete:2 
+auto=target(creature|mygraveyard) moveto(ownerhand)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) target(creature|mygraveyard) moveto(ownerhand)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) deplete:2
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(land|mygraveyard) moveto(battlefield)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Put the top two cards of your library into your graveyard, then you may return a creature card from your graveyard to your hand. -- III — Return all land cards from your graveyard to the battlefield, then shuffle your graveyard into your library.
+mana={3}{G}{G}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Multani, Yavimaya's Avatar
+abilities=reach, trample
+auto=foreach(land|myBattlefield) 1/1
+auto=foreach(land|myGraveyard) 1/1
+autograveyard={1}{G}{H(land|mybattlefield)}{H(land|mybattlefield)}:moveto(ownerhand)
+text=Reach, trample -- Multani, Yavimaya's Avatar gets +1/+1 for each land you control and each land card in your graveyard. -- {1}{G}, Return two lands you control to their owner's hand: Return Multani from your graveyard to your hand.
+mana={4}{G}{G}
+type=Legendary Creature
+subtype=Elemental Avatar
+power=0
+toughness=0
+[/card]
+
+[card]
+name=Pierce the Sky
+target=creature[flying]
+auto=damage:7
+text=Pierce the Sky deals 7 damage to target creature with flying.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Primordial Wurm
+mana={4}{G}{G}
+type=Creature
+subtype=Wurm
+power=7
+toughness=6
+[/card]
+
+[card]
+name=Saproling Migration
+kicker={4}
+auto=kicker create(Saproling:creature Saproling:1/1:green:)*2
+auto=create(Saproling:creature Saproling:1/1:green:)*2
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Create two 1/1 green Saproling creature tokens. If this spell was kicked, create four of those tokens instead.
+mana={1}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Song of Freyalise
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=lord(creature|myBattlefield) {T}:Add{W}
+auto=lord(creature|myBattlefield) {T}:Add{U}
+auto=lord(creature|myBattlefield) {T}:Add{B}
+auto=lord(creature|myBattlefield) {T}:Add{R}
+auto=lord(creature|myBattlefield) {T}:Add{G}
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(creature|myBattlefield) counter(1/1)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(creature|myBattlefield) vigilance
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(creature|myBattlefield) trample
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(creature|myBattlefield) indestructible
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Until your next turn, creatures you control gain "{T}: Add one mana of any color." -- III — Put a +1/+1 counter on each creature you control. Those creatures gain vigilance, trample, and indestructible until end of turn.
+mana={1}{G}
+type=Enchantment
+subtype=Saga
+[/card]
+
+[card]
+name=Spore Swarm
+auto=create(Saproling:creature Saproling:1/1:green:)*3
+text=Create three 1/1 green Saproling creature tokens.
+mana={3}{G}
+type=Instant
+[/card]
+
+[card]
+name=Sporecrown Thallid
+auto=lord(other Fungus|myBattlefield) +1/+1
+auto=lord(other Saproling|myBattlefield) +1/+1
+text=Each other creature you control that's a Fungus or Saproling gets +1/+1.
+mana={1}{G}
+type=Creature
+subtype=Fungus
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Steel Leaf Champion
+auto=cantbeblockedby(creature[power<=2])
+text=Steel Leaf Champion can't be blocked by creatures with power 2 or less.
+mana={G}{G}{G}
+type=Creature
+subtype=Elf Knight
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Sylvan Awakening
+auto=all(land|mybattlefield) becomes(Elemental Creature,2/2,reach,indestructible,haste) uynt
+text=Until your next turn, all lands you control become 2/2 Elemental creatures with reach, indestructible, and haste. They're still lands.
+mana={2}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Territorial Allosaurus
+kicker={2}{G}
+auto=kicker transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) -- When Territorial Allosaurus enters the battlefield, if it was kicked, it fights another target creature.
+mana={2}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Untamed Kavu
+abilities=vigilance, trample
+kicker={3}
+auto=kicker counter(1/1,3)
+text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- Vigilance, trample -- If Untamed Kavu was kicked, it enters the battlefield with three +1/+1 counters on it.
+mana={1}{G}
+type=Creature
+subtype=Kavu
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Wild Onslaught
+kicker={4}
+auto=kicker all(creature|myBattlefield) counter(1/1)
+auto=all(creature|myBattlefield) counter(1/1)
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Put a +1/+1 counter on each creature you control. If this spell was kicked, put two +1/+1 counters on each creature you control instead.
+mana={3}{G}
+type=Instant
+[/card]
+
+[card]
+name=Yavimaya Sapherd
+auto=create(saproling:creature saproling:1/1:green)
+text=When Yavimaya Sapherd enters the battlefield, create a 1/1 green Saproling creature token.
+mana={2}{G}
+type=Creature
+subtype=Fungus
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Adeliz, the Cinder Wind
+abilities=flying, haste
+auto=@movedTo(instant,sorcery|mystack): all(wizard|myBattlefield)) +1/+1 ueot
+text=Flying, haste -- Whenever you cast an instant or sorcery spell, Wizards you control get +1/+1 until end of turn.
+mana={1}{U}{R}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Arvad the Cursed
+abilities=deathtouch, lifelink
+auto=lord(other creature[legendary]|myBattlefield) +2/+2
+text=Deathtouch, lifelink -- Other legendary creatures you control get +2/+2.
+mana={3}{W}{B}
+type=Legendary Creature
+subtype=Vampire Knight
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Aryel, Knight of Windgrace
+abilities=vigilance
+auto={2}{W}{T}:create(knight:creature knight:2/2:white:vigilance)
+auto={B}{T}{T(knight|myBattlefield)}:name(creature with power 1) name destroy target(creature[power<=1])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 2) destroy target(creature[power<=2])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 3) destroy target(creature[power<=3])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 4) destroy target(creature[power<=4])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 5) destroy target(creature[power<=5])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 6) destroy target(creature[power<=6])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 7)  destroy target(creature[power<=7])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 8) destroy target(creature[power<=8])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 9) destroy target(creature[power<=9])
+auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 10) destroy target(creature[power<=10])
+auto=lord(creature|myBattlefield) creature with power x or less
+text=Vigilance -- {2}{W}, {T}: Create a 2/2 white Knight creature token with vigilance. -- {B}, {T}, Tap X untapped Knights you control: Destroy target creature with power X or less.
+mana={2}{W}{B}
+type=Legendary Creature
+subtype=Human Knight
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Darigaaz Reincarnated
+abilities=flying, trample, haste
+autograveyard=@movedto(this|graveyard) from(battlefield):moveTo(exile) && counter(0/0,3,egg)
+autoexile=@each my upkeep:counter(0/0,-1,egg)
+autoexile=@each my upkeep:this(counter{0/0,1,egg}<1)while moveTo(battlefield)
+text=Flying, trample, haste -- If Darigaaz Reincarnated would die, instead exile it with three egg counters on it. -- At the beginning of your upkeep, if Darigaaz is exiled with an egg counter on it, remove an egg counter from it. Then if Darigaaz has no egg counters on it, return it to the battlefield.
+mana={4}{B}{R}{G}
+type=Legendary Creature
+subtype=Dragon
+power=7
+toughness=7
+[/card]
+
+[card]
+name=Jhoira, Weatherlight Captain
+auto=@movedTo(*[artifact;legendary;saga]|mystack):draw:1
+text=Whenever you cast a historic spell, draw a card. (Artifacts, legendaries, and Sagas are historic.)
+mana={2}{U}{R}
+type=Legendary Creature
+subtype=Human Artificer
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Primevals' Glorious Rebirth
+auto=moveTo(mybattlefield) all(*[legendary;-sorcery]|mygraveyard) 
+text=(You may cast a legendary sorcery only if you control a legendary creature or planeswalker.) -- Return all legendary permanent cards from your graveyard to the battlefield.
+restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
+mana={5}{W}{B}
+type=Legendary Sorcery
+[/card]
+
+[card]
+name=Raff Capashen, Ship's Mage
+abilities=flash, flying
+auto=lord(*[artifact;legendary;saga]|myhand) flash
+text=Flash -- Flying -- You may cast historic spells as though they had flash. (Artifacts, legendaries, and Sagas are historic.)
+mana={2}{W}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Shanna, Sisay's Legacy
+auto=cantbetargetof(artifact,creatures,enchantment[-auras],land,planeswalker|opponentbattlefield,opponentgraveyard)
+auto=foreach(creature|myBattlefield) 1/1
+text=Shanna, Sisay's Legacy can't be the target of abilities your opponents control. -- Shanna gets +1/+1 for each creature you control.
+mana={G}{W}
+type=Legendary Creature
+subtype=Human Warrior
+power=0
+toughness=0
+[/card]
+
+[card]
+name=Slimefoot, the Stowaway
+auto=@movedTo(saproling|graveyard) from(mybattlefield):damage:1 each opponent && life:1
+auto={4}:create(saproling:creature saproling:1/1:green:)
+text=Whenever a Saproling you control dies, Slimefoot, the Stowaway deals 1 damage to each opponent and you gain 1 life. -- {4}: Create a 1/1 green Saproling creature token.
+mana={1}{B}{G}
+type=Legendary Creature
+subtype=Fungus
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Tatyova, Benthic Druid
+auto=@movedTo(land|myBattlefield):life:1 && draw:1
+text=Whenever a land enters the battlefield under your control, you gain 1 life and draw a card.
+mana={3}{G}{U}
+type=Legendary Creature
+subtype=Merfolk Druid
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Amaranthine Wall
+abilities=defender
+auto={2}:indestructible ueot
+text=Defender -- {2}: Amaranthine Wall gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={4}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=6
+[/card]
+
+[card]
+name=Blackblade Reforged
+auto=teach(creature) type:land:mybattlefield/type:land:mybattlefield nonstatic
+auto={3}:equip target(creature[legendary]|mybattlefield)
+auto={7}:equip
+text=Equipped creature gets +1/+1 for each land you control. -- Equip legendary creature {3} -- Equip {7}
+mana={2}
+type=Legendary Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Bloodtallow Candle
+auto={6}{T}{S}:target(creature) -5/-5 ueot
+text={6}, {T}, Sacrifice Bloodtallow Candle: Target creature gets -5/-5 until end of turn.
+mana={1}
+type=Artifact
+[/card]
+
+[card]
+name=Forebear's Blade
+auto=teach(creature) +3/+0
+auto=teach(creature) vigilance
+auto=teach(creature) trample
+auto=@movedto(mytgt|graveyard):rehook target(creature|mybattlefield)
+auto={3}:equip
+text=Equipped creature gets +3/+0 and has vigilance and trample. -- Whenever equipped creature dies, attach Forebear's Blade to target creature you control. -- Equip {3}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Guardians of Koilos
+auto=may target(other *[artifact;legendary;saga]|myBattlefield) moveto(ownerHand)
+text=When Guardians of Koilos enters the battlefield, you may return another target historic permanent you control to its owner's hand. (Artifacts, legendaries, and Sagas are historic.)
+mana={5}
+type=Artifact Creature
+subtype=Construct
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Helm of the Host
+auto=teach(creature) @each my combatbegins:clone(mytgt) with (haste,-legendary)
+auto={5}:equip
+text=At the beginning of combat on your turn, create a token that's a copy of equipped creature, except the token isn't legendary if equipped creature is legendary. That token gains haste. -- Equip {5}
+mana={4}
+type=Legendary Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Howling Golem
+auto=@combat(attacking) source(this):draw:1
+auto=@combat(blocking) source(this):draw:1
+auto=@combat(attacking) source(this):draw:1 opponent
+auto=@combat(blocking) source(this):draw:1 opponent
+text=Whenever Howling Golem attacks or blocks, each player draws a card.
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Jhoira's Familiar
+abilities=flying
+auto=lord(*[artifact;legendary;saga]|mystack|mycastingzone) altercost(colorless,-1)
+text=Flying -- Historic spells you cast cost {1} less to cast. (Artifacts, legendaries, and Sagas are historic.)
+mana={4}
+type=Artifact Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Jousting Lance
+auto=teach(creature) 2/0
+auto=teach(creature) this(variable{controllerturn}>0) first strike
+auto={3}:equip
+text=Equipped creature gets +2/+0. -- As long as it's your turn, equipped creature has first strike. -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Mishra's Self-Replicator
+auto=@movedTo(*[artifact;legendary;saga]|mystack):may pay({1}):clone
+text=Whenever you cast a historic spell, you may pay {1}. If you do, create a token that's a copy of Mishra's Self-Replicator. (Artifacts, legendaries, and Sagas are historic.)
+mana={5}
+type=Artifact Creature
+subtype=Assembly-Worker
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Mox Amber
+auto=aslongas(creature[white&legendary]) {T}:Add{W}
+auto=aslongas(planeswalker[white]) {T}:Add{W}
+auto=aslongas(creature[blue&legendary]) {T}:Add{U}
+auto=aslongas(planeswalker[blue]) {T}:Add{U}
+auto=aslongas(creature[black&legendary]) {T}:Add{B}
+auto=aslongas(planeswalker[black]) {T}:Add{B}
+auto=aslongas(creature[red&legendary]) {T}:Add{R}
+auto=aslongas(planeswalker[red]) {T}:Add{R}
+auto=aslongas(creature[green&legendary]) {T}:Add{G}
+auto=aslongas(planeswalker[green]) {T}:Add{G}
+text={T}: Add one mana of any color among legendary creatures and planeswalkers you control.
+mana={0}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Pardic Wanderer
+abilities=trample
+text=Trample
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Powerstone Shard
+auto={T}:foreach(Powerstone Shard|myBattlefield) add{1}
+text={T}: Add {C} for each artifact you control named Powerstone Shard.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Short Sword
+auto=teach(creature) 1/1
+auto={1}:equip
+text=Equipped creature gets +1/+1. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Skittering Surveyor
+auto=target(land[basic]|mylibrary) moveto(myhand)
+text=When Skittering Surveyor enters the battlefield, you may search your library for a basic land card, reveal it, put it into your hand, then shuffle your library.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Sorcerer's Wand
+auto=teach(creature) {T}:damage:1 target(player)
+auto=teach(wizard) {T}:damage:2 target(player)
+auto={3}:equip
+text=Equipped creature has "{T}: This creature deals 1 damage to target player or planeswalker. If this creature is a Wizard, it deals 2 damage to that player or planeswalker instead." -- Equip {3}
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Sparring Construct
+auto=@movedTo(this|graveyard) from(battlefield):counter(1/1) target(creature|myBattlefield)
+text=When Sparring Construct dies, put a +1/+1 counter on target creature you control.
+mana={1}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Thran Temporal Gateway
+auto={4}{T}:notatarget(*[artifact;legendary;saga]|myhand) moveTo(mybattlefield)
+text={4}, {T}: You may put a historic permanent card from your hand onto the battlefield. (Artifacts, legendaries, and Sagas are historic.)
+mana={4}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Traxos, Scourge of Kroog
+abilities=trample,doesnotuntap
+auto=tap(noevent)
+auto=@movedTo(*[artifact;legendary;saga]|mystack):untap
+text=Trample -- Traxos, Scourge of Kroog enters the battlefield tapped and doesn't untap during your untap step. -- Whenever you cast a historic spell, untap Traxos. (Artifacts, legendaries, and Sagas are historic.)
+mana={4}
+type=Legendary Artifact Creature
+subtype=Construct
+power=7
+toughness=7
+[/card]
+
+[card]
+name=Urza's Tome
+auto={3}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+auto={3}{T} restriction{type(*[artifact;legendary;saga]|mygraveyard)~morethan~0}:draw:1 && exile notatarget(*[artifact;legendary;saga]|mygraveyard)
+text={3}, {T}: Draw a card. Then discard a card unless you exile a historic card from your graveyard. (Artifacts, legendaries, and Sagas are historic.)
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Voltaic Servant
+auto=@each my endofturn:untap target(artifact)
+text=At the beginning of your end step, untap target artifact.
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Weatherlight
+abilities=flying
+aicode=activate target(*[artifact;legendary;saga;zpos<=5]|mylibrary) moveto(myhand)
+auto=@combatdamaged(player) from(this):reveal:5 optionone name(Get historic) target(*[artifact;legendary;saga]|reveal) moveto(hand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={crew(other creature[power>=3]|myBattlefield)}:name(crew 3 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=3]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~2}
+auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=2]|myBattlefield)}:name(crew 3 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=2]|mybattlefield)~morethan~0,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~2}
+auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}:name(crew 3 [3 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~2,compare(crewtotalpower)~morethan~2}
+text=Flying -- Whenever Weatherlight deals combat damage to a player, look at the top five cards of your library. You may reveal a historic card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. (Artifacts, legendaries, and Sagas are historic.) -- Crew 3
+mana={4}
+type=Legendary Artifact
+subtype=Vehicle
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Cabal Stronghold
+auto={3}{T}:foreach(swamp[basic]|myBattlefield) Add{B}
+auto={T}:Add{C}
+text={T}: Add {C}. -- {3}, {T}: Add {B} for each basic Swamp you control.
+type=Land
+[/card]
+
+[card]
+name=Memorial to Folly
+auto=tap(noevent)
+auto={2}{B}{T}{S}:target(creature|mygraveyard) moveto(ownerhand)
+auto={T}:Add{B}
+text=Memorial to Folly enters the battlefield tapped. -- {T}: Add {B}. -- {2}{B}, {T}, Sacrifice Memorial to Folly: Return target creature card from your graveyard to your hand.
+type=Land
+[/card]
+
+[card]
+name=Memorial to Genius
+auto=tap(noevent)
+auto={4}{U}{T}{S}:draw:2
+auto={T}:Add{U}
+text=Memorial to Genius enters the battlefield tapped. -- {T}: Add {U}. -- {4}{U}, {T}, Sacrifice Memorial to Genius: Draw two cards.
+type=Land
+[/card]
+
+[card]
+name=Memorial to Glory
+auto=tap(noevent)
+auto={3}{W}{T}{S}:create(soldier:creature soldier:1/1:white:)*2
+auto={T}:Add{W}
+text=Memorial to Glory enters the battlefield tapped. -- {T}: Add {W}. -- {3}{W}, {T}, Sacrifice Memorial to Glory: Create two 1/1 white Soldier creature tokens.
+type=Land
+[/card]
+
+[card]
+name=Memorial to Unity
+auto=tap(noevent)
+auto={2}{G}{T}{S}:auto=@combatdamaged(player) from(this):reveal:3 optionone name(Get creature) target(creature|reveal) moveto(hand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={T}:Add{G}
+text=Memorial to Unity enters the battlefield tapped. -- {T}: Add {G}. -- {2}{G}, {T}, Sacrifice Memorial to Unity: Look at the top five cards of your library. You may reveal a creature card from among them and put it into your hand. Then put the rest on the bottom of your library in a random order.
+type=Land
+[/card]
+
+[card]
+name=Memorial to War
+auto=tap(noevent)
+auto={4}{R}{T}{S}:destroy target(land)
+auto={T}:Add{R}
+text=Memorial to War enters the battlefield tapped. -- {T}: Add {R}. -- {4}{R}, {T}, Sacrifice Memorial to War: Destroy target land.
+type=Land
+[/card]
+
+[card]
+name=Zhalfirin Void
+auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto={T}:Add{C}
+text=When Zhalfirin Void enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.) -- {T}: Add {C}.
+type=Land
+[/card]
+
+[card]
+name=Teferi, Timebender
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,2,Loyalty)}:untap target(artifact,creature)
+auto={C(0/0,2,Loyalty)}:name(no targets)
+auto={C(0/0,-3,Loyalty)}:life:2 && draw:2
+auto={C(0/0,-9,Loyalty)}:turns:+1
+text=+2: Untap up to one target artifact or creature. -- −3: You gain 2 life and draw two cards. -- −9: Take an extra turn after this one.
+mana={4}{W}{U}
+type=Legendary Planeswalker
+subtype=Teferi
+[/card]
+
+[card]
+name=Temporal Machinations
+target=creature
+auto=moveTo(ownerHand)
+auto=aslongas(artifact|myBattlefield) draw:1
+text=Return target creature to its owner's hand. If you control an artifact, draw a card.
+mana={2}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Niambi, Faithful Healer
+text=When Niambi, Faithful Healer enters the battlefield, you may search your library and/or graveyard for a card named Teferi, Timebender, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={1}{W}{U}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Teferi's Sentinel
+auto=aslongas(planeswalker[Teferi]|myBattlefield) +4/+0
+text=As long as you control a Teferi planeswalker, Teferi's Sentinel gets +4/+0.
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=6
+[/card]
+
+[card]
+name=Chandra, Bold Pyromancer
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Add two red mana and deals 2 damage to target player) add{R}{R} && damage:2 target(player)
+auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damage to target creature or planeswalker) damage: 3 target (creature, planeswalker)
+auto={C(0/0,-7,Loyalty)}:name(-7: Deals 10 damage to target player and on each his or her creatures and planeswalkers) target(player) damage:10 && damage:10 all(creature|targetedpersonsbattlefield) && damage:10 all(planeswalker|targetedpersonsbattlefield)
+text=+1: Add {R}{R}. Chandra, Bold Pyromancer deals 2 damage to target player. -- -3: Chandra, Bold Pyromancer deals 3 damage to target creature or planeswalker. -- -7: Chandra, Bold Pyromancer deals 10 damage to target player and each creature and planeswalker they control.
+mana={4}{R}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+
+[card]
+name=Chandra's Outburst
+target=player,planeswalker.
+auto=damage:4
+text=Chandra's Outburst deals 4 damage to target player or planeswalker. -- Search your library and/or graveyard for a card named Chandra, Bold Pyromancer, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Karplusan Hound
+auto=@combat(attacking) source(this) aslongas(planeswalker[chandra]|myBattlefield):damage:2 target(creature,player)
+text=Whenever Karplusan Hound attacks, if you control a Chandra planeswalker, this creature deals 2 damage to any target.
+mana={3}{R}
+type=Creature
+subtype=Hound
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Pyromantic Pilgrim
+abilities=haste
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+mana={2}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=1
+[/card]

@@ -1,0 +1,2650 @@
+grade=borderline
+[card]
+name=Ahn-Crop Invader
+auto=this(variable{controllerturn}>0) first strike
+auto={1}{S(other creature|mybattlefield)}:2/0 ueot
+text=As long as it's your turn, Ahn-Crop Invader has first strike. -- {1}, Sacrifice another creature: Ahn-Crop Invader gets +2/+0 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Zombie Minotaur Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Aid the Fallen
+auto=name(creature and planeswalker) moveTo(ownerHand) target(creature|mygraveyard) and!(may moveTo(ownerHand) target(planeswalker|mygraveyard))!
+auto=moveTo(ownerHand) target(planeswalker|mygraveyard)
+text=Choose one or both— -- • Return target creature card from your graveyard to your hand. -- • Return target planeswalker card from your graveyard to your hand.
+mana={1}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Ajani, the Greathearted
+auto=counter(0/0,5,loyalty)
+auto=lord(creature|myBattlefield) vigilance
+auto={C(0/0,1,Loyalty)}:life:3
+auto={C(0/0,-2,Loyalty)}:counter(1/1) all(creature|myBattlefield) && counter(0/0,1,Loyalty)all(other planeswalker|myBattlefield)
+text=Creatures you control have vigilance. -- +1: You gain 3 life. -- -2: Put a +1/+1 counter on each creature you control and a loyalty counter on each other planeswalker you control.
+mana={2}{G}{W}
+type=Legendary Planeswalker
+subtype=Ajani
+[/card]
+
+[card]
+name=Angrath's Rampage
+auto=ability$!sacrifice notatarget(artifact|mybattlefield)!$ target(player)
+auto=ability$!sacrifice notatarget(creature|mybattlefield)!$ target(player)
+auto=ability$!sacrifice notatarget(planeswalker|mybattlefield)!$ target(player)
+text=Choose one — -- • Target player sacrifices an artifact. -- • Target player sacrifices a creature. -- • Target player sacrifices a planeswalker.
+mana={B}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Angrath, Captain of Chaos
+auto=counter(0/0,5,loyalty)
+auto=lord(creature|myBattlefield) menace
+auto={C(0/0,-2,Loyalty)}:_AMASS_(2)
+text=Creatures you control have menace. -- -2: Amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={2}{BR}{BR}
+type=Legendary Planeswalker
+subtype=Angrath
+[/card]
+
+[card]
+name=Arboreal Grazer
+abilities=reach
+auto=may moveTo(myBattlefield) and!(tap(noevent))! target(land|myhand)
+text=Reach -- When Arboreal Grazer enters the battlefield, you may put a land card from your hand onto the battlefield tapped.
+mana={G}
+type=Creature
+subtype=Beast
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Arlinn's Wolf
+auto=cantbeblockedby(creature[power<=2])
+text=Arlinn's Wolf can't be blocked by creatures with power 2 or less.
+mana={2}{G}
+type=Creature
+subtype=Wolf
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Arlinn, Voice of the Pack
+auto=counter(0/0,7,loyalty)
+auto=@movedTo(*[Wolf;Werewolf]|myBattlefield):all(trigger[to]) counter(1/1)
+auto={C(0/0,-2,Loyalty)}:create(wolf:creature wolf:2/2:green)
+text=Each creature you control that's a Wolf or Werewolf enters the battlefield with an additional +1/+1 counter on it. -- -2: Create a 2/2 green Wolf creature token.
+mana={4}{G}{G}
+type=Legendary Planeswalker
+subtype=Arlinn
+[/card]
+
+[card]
+name=Ashiok's Skulker
+auto={3}{U}:unblockable
+text={3}{U}: Ashiok's Skulker can't be blocked this turn.
+mana={4}{U}
+type=Creature
+subtype=Nightmare
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Ashiok, Dream Render
+auto=counter(0/0,5,loyalty)
+auto=lord(*|opponentlibrary) shroud
+auto={C(0/0,-1,Loyalty)}:target(player) deplete:4 && moveTo(exile) all(*|graveyard) opponent
+text=Spells and abilities your opponents control can't cause their controller to search their library. -- -1: Target player puts the top four cards of their library into their graveyard. Then exile each opponent's graveyard.
+mana={1}{UB}{UB}
+type=Legendary Planeswalker
+subtype=Ashiok
+[/card]
+
+[card]
+name=Aven Eternal
+abilities=flying
+auto=_AMASS_(1)
+text=Flying -- When Aven Eternal enters the battlefield, amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={2}{U}
+type=Creature
+subtype=Zombie Bird Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Awakening of Vitu-Ghazi
+target=land|myBattlefield
+auto=transforms((Vitu-Ghazi,Legendary Elemental Creature,newability[counter(1/1.9)],newability[haste])) forever
+text=Put nine +1/+1 counters on target land you control. It becomes a legendary 0/0 Elemental creature with haste named Vitu-Ghazi. It's still a land.
+mana={3}{G}{G}
+type=Instant
+[/card]
+
+[card]
+name=Band Together
+target=<upto:2>creature|myBattlefield
+auto=transforms((,newability[dynamicability<!powerstrike!> target(other creature)])) ueot
+text=Up to two target creatures you control each deal damage equal to their power to another target creature.
+mana={2}{G}
+type=Instant
+[/card]
+
+[card]
+name=Banehound
+abilities=lifelink,haste
+text=Lifelink, haste
+mana={B}
+type=Creature
+subtype=Nightmare Hound
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Battlefield Promotion
+target=creature
+auto=counter(1/1)
+auto=first strike
+auto=life:2 controller
+text=Put a +1/+1 counter on target creature. That creature gains first strike until end of turn. You gain 2 life.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Bioessence Hydra
+abilities=trample
+auto=foreach(counter(0/0,1,loyalty)|myBattlefield) counter(1/1)
+auto=@counteradded(0/0,1,loyalty) from(planeswalker|myBattlefield):counter(1/1)
+text=Trample -- Bioessence Hydra enters the battlefield with a +1/+1 counter on it for each loyalty counter on planeswalkers you control. -- Whenever one or more loyalty counters are put on planeswalkers you control, put that many +1/+1 counters on Bioessence Hydra.
+mana={3}{G}{U}
+type=Creature
+subtype=Hydra Mutant
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Blast Zone
+auto=counter(0/0,1,Charge)
+auto={T}:Add{C}
+auto={X}{X}{T}:counter(0/0,1,Charge)
+auto={3}{T}{S}:this(counter{0/0.1.Charge}<1) {T}{S}:destroy all(*[-land;manacost=0])
+auto={3}{T}{S}:this(counter{0/0.1.Charge}=) {T}{S}:destroy all(*[-land;manacost=1])
+auto={3}{T}{S}:this(counter{0/0.2.Charge}=) {T}{S}:destroy all(*[-land;manacost=2])
+auto={3}{T}{S}:this(counter{0/0.3.Charge}=) {T}{S}:destroy all(*[-land;manacost=3])
+auto={3}{T}{S}:this(counter{0/0.4.Charge}=) {T}{S}:destroy all(*[-land;manacost=4])
+auto={3}{T}{S}:this(counter{0/0.5.Charge}=) {T}{S}:destroy all(*[-land;manacost=5])
+auto={3}{T}{S}:this(counter{0/0.6.Charge}=) {T}{S}:destroy all(*[-land;manacost=6])
+auto={3}{T}{S}:this(counter{0/0.7.Charge}=) {T}{S}:destroy all(*[-land;manacost=7])
+auto={3}{T}{S}:this(counter{0/0.8.Charge}=) {T}{S}:destroy all(*[-land;manacost=8])
+auto={3}{T}{S}:this(counter{0/0.9.Charge}=) {T}{S}:destroy all(*[-land;manacost=9])
+text=Blast Zone enters the battlefield with a charge counter on it. -- {T}: Add {C}. -- {X}{X}, {T}: Put X charge counters on Blast Zone. -- {3}, {T}, Sacrifice Blast Zone: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Blast Zone.
+type=Land
+[/card]
+
+[card]
+name=Bleeding Edge
+auto=may -2/-2 target(creature)
+auto=_AMASS_(2)
+text=Up to one target creature gets -2/-2 until end of turn. Amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Blindblast
+target=creature
+auto=damage:1
+auto=cantblock
+auto=draw:1 controller
+text=Blindblast deals 1 damage to target creature. That creature can't block this turn. -- Draw a card.
+mana={2}{R}
+type=Instant
+[/card]
+
+[card]
+name=Bloom Hulk
+auto=_PROLIFERATE_
+text=When Bloom Hulk enters the battlefield, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={3}{G}
+type=Creature
+subtype=Plant Elemental
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Bolas's Citadel
+auto={0}:reveal:1 optionone name(Reveal) target(*|reveal) transforms((,newability[life:-manacost controller])) forever optiononeend optiontwo name(Claim your card) choice all(*|reveal) moveto(mybattlefield) optiontwoend revealend
+auto={T}{S(*|myBattlefield)}{S(*|myBattlefield)}{S(*|myBattlefield)}{S(*|myBattlefield)}{S(*|myBattlefield)}{S(*|myBattlefield)}{S(*|myBattlefield)}{S(*|myBattlefield)}{S(*|myBattlefield)}{S(*|myBattlefield)}:life:-10 opponent
+text=You may look at the top card of your library any time. -- You may play the top card of your library. If you cast a spell this way, pay life equal to its converted mana cost rather than pay its mana cost. -- {T}, Sacrifice ten nonland permanents: Each opponent loses 10 life.
+mana={3}{B}{B}{B}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Bond of Discipline
+auto=all(creature|opponentBattlefield) tap
+auto=all(creature|myBattlefield) lifelink
+text=Tap all creatures your opponents control. Creatures you control gain lifelink until end of turn.
+mana={4}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Bond of Flourishing
+auto=reveal:3 optionone name(Get a card) target(*[-instant;-sorcery]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=life:3
+text=Look at the top three cards of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in any order. You gain 3 life.
+mana={1}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Bond of Insight
+auto=deplete:4
+auto=deplete:4 opponent
+auto=target(<upto:2>*[instant;sorcery]|mygraveyard) moveto(ownerhand)
+auto=moveto(exile)
+text=Each player puts the top four cards of their library into their graveyard. Return up to two instant and/or sorcery cards from your graveyard to your hand. Exile Bond of Insight.
+mana={3}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Bond of Passion
+target=creature
+auto=moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
+auto=damage:2 target(creature,player)
+text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. Bond of Passion deals 2 damage to any other target.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Bond of Revival
+target=creature|mygraveyard
+auto=moveTo(mybattlefield) && transforms((,haste)) uynt
+text=Return target creature card from your graveyard to the battlefield. It gains haste until your next turn.
+mana={4}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Bulwark Giant
+auto=life:5
+text=When Bulwark Giant enters the battlefield, you gain 5 life.
+mana={5}{W}
+type=Creature
+subtype=Giant Soldier
+power=3
+toughness=6
+[/card]
+
+[card]
+name=Burning Prophet
+auto=@movedTo(*[-creature]|mystack):1/0 ueot && _SCRY_(1)
+text=Whenever you cast a noncreature spell, Burning Prophet gets +1/+0 until end of turn, then scry 1.
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Callous Dismissal
+target=*[-land]
+auto=moveTo(ownerHand)
+auto=_AMASS_(1)
+text=Return target nonland permanent to its owner's hand. -- Amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie army creature token first.)
+mana={1}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Casualties of War
+auto=ability$! may destroy target(artifact)!$ controller && ability$! may destroy target(creature)!$ controller && ability$! may destroy target(enchantment)!$ controller && ability$! may destroy target(land)!$ controller && ability$! may destroy target(planeswalker)!$ controller
+text=Choose one or more — -- • Destroy target artifact. -- • Destroy target creature. -- • Destroy target enchantment. -- • Destroy target land. -- • Destroy target planeswalker.
+mana={2}{B}{B}{G}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Centaur Nurturer
+auto=life:3
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+text=When Centaur Nurturer enters the battlefield, you gain 3 life. -- {T}: Add one mana of any color.
+mana={3}{G}
+type=Creature
+subtype=Centaur Druid
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Chainwhip Cyclops
+auto={3}{R}:target(creature) cantblock
+text={3}{R}: Target creature can't block this turn.
+mana={4}{R}
+type=Creature
+subtype=Cyclops Warrior
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Challenger Troll
+auto=lord(creature[power>=4]|myBattlefield) oneblocker
+text=Each creature you control with power 4 or greater can't be blocked by more than one creature.
+mana={4}{G}
+type=Creature
+subtype=Troll
+power=6
+toughness=5
+[/card]
+
+[card]
+name=Chandra's Triumph
+target=creature,planeswalker
+auto=damage:3
+auto=aslongas(planeswalker[Chandra]|mybattlefield) damage:2
+text=Chandra's Triumph deals 3 damage to target creature or planeswalker an opponent controls. Chandra's Triumph deals 5 damage to that permanent instead if you control a Chandra planeswalker.
+mana={1}{R}
+type=Instant
+[/card]
+
+[card]
+name=Chandra, Fire Artisan
+auto=counter(0/0,4,loyalty)
+auto=@damaged(this):damage:thatmuch target(creature,player)
+auto={C(0/0,1,Loyalty)}:moveto(exile) and!(transforms((,canplayfromexile))ueot)! all(*[zpos=1]|mylibrary) && damage:1 target(creature,player)
+auto={C(0/0,-7,Loyalty)}:moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos<=7]|mylibrary) && damage:7 target(creature,player)
+text=Whenever one or more loyalty counters are removed from Chandra, Fire Artisan, she deals that much damage to target opponent or planeswalker. -- +1: Exile the top card of your library. You may play it this turn. -- -7: Exile the top seven cards of your library. You may play them this turn.
+mana={2}{R}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+
+[card]
+name=Charity Extractor
+abilities=lifelink
+text=Lifelink
+mana={3}{B}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=5
+[/card]
+
+[card]
+name=Charmed Stray
+abilities=lifelink
+auto=all(other Charmed Stray|myBattlefield) counter(1/1)
+text=Lifelink -- Whenever Charmed Stray enters the battlefield, put a +1/+1 counter on each other creature you control named Charmed Stray.
+mana={W}
+type=Creature
+subtype=Cat
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Command the Dreadhorde
+target=<anyamount>creature,planeswalker
+auto=moveTo(myBattlefield)
+auto=life:-manacost controller
+text=Choose any number of target creature and/or planeswalker cards in graveyards. Command the Dreadhorde deals damage to you equal to the total converted mana cost of those cards. Put them onto the battlefield under your control.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Commence the Endgame
+abilities=nofizzle
+auto=draw:2
+auto=_AMASS_(type:*:myhand)
+text=This spell can't be countered. -- Draw two cards, then amass X, where X is the number of cards in your hand. (Put X +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={4}{U}{U}
+type=Instant
+[/card]
+
+[card]
+name=Contentious Plan
+auto=_PROLIFERATE_
+auto=draw:1
+text=Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.) -- Draw a card.
+mana={1}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Courage in Crisis
+target=creature
+auto=counter(1/1)
+auto=_PROLIFERATE_
+text=Put a +1/+1 counter on target creature, then proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={2}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Cruel Celebrant
+auto=@movedTo(*[creature;planeswalker]|graveyard) from(myBattlefield):life:-1 opponent && life:1
+text=Whenever Cruel Celebrant or another creature or planeswalker you control dies, each opponent loses 1 life and you gain 1 life.
+mana={W}{B}
+type=Creature
+subtype=Vampire
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Crush Dissent
+target=*|stack
+auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+auto=_AMASS_(2)
+text=Counter target spell unless its controller pays {2}. -- Amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={3}{U}
+type=Instant
+[/card]
+
+[card]
+name=Cyclops Electromancer
+auto=damage:type:*[instant;sorcery]:mygraveyard target(creature|opponentBattlefield)
+text=When Cyclops Electromancer enters the battlefield, it deals X damage to target creature an opponent controls, where X is the number of instant and sorcery cards in your graveyard.
+mana={4}{R}
+type=Creature
+subtype=Cyclops Wizard
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Davriel's Shadowfugue
+target=player
+auto=ability$!name(discard) reject notatarget(<2>*|myhand)!$ targetedplayer && life:-2
+text=Target player discards two cards and loses 2 life.
+mana={3}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Davriel, Rogue Shadowmage
+auto=counter(0/0,3,loyalty)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~2}:life:-2 opponent
+auto={C(0/0,-1,Loyalty)}:ability$!name(discard) reject notatarget(*|myhand)!$ target(player)
+text=At the beginning of each opponent's upkeep, if that player has one or fewer cards in hand, Davriel, Rogue Shadowmage deals 2 damage to them. -- -1: Target player discards a card.
+mana={2}{B}
+type=Legendary Planeswalker
+subtype=Davriel
+[/card]
+
+[card]
+name=Deathsprout
+target=creature
+auto=destroy and!(moveTo(myBattlefield) and!(tap(noevent))! target(land[basic]|myLibrary))!
+text=Destroy target creature. Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
+mana={1}{B}{B}{G}
+type=Instant
+[/card]
+
+[card]
+name=Despark
+target=*[manacost>=4]
+auto=moveto(exile)
+text=Exile target permanent with converted mana cost 4 or greater.
+mana={W}{B}
+type=Instant
+[/card]
+
+[card]
+name=Desperate Lunge
+target=creature
+auto=+2/+2
+auto=flying
+auto=life:2
+text=Target creature gets +2/+2 and gains flying until end of turn. You gain 2 life.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Devouring Hellion
+auto=may notatarget(<anyamount>other *[creature;planeswalker]|mybattlefield) sacrifice && counter(1/1,2) all(this)
+text=As Devouring Hellion enters the battlefield, you may sacrifice any number of creatures and/or planeswalkers. If you do, it enters with twice that many +1/+1 counters on it.
+mana={2}{R}
+type=Creature
+subtype=Hellion
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Divine Arrow
+target=creature[attacking;blocking]
+auto=damage:4
+text=Divine Arrow deals 4 damage to target attacking or blocking creature.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Domri's Ambush
+target=creature|myBattlefield
+auto=counter(1/1)
+auto=transforms((,newability[target(creature,planeswalker|opponentbattlefield) dynamicability<!powerstrike!>])) ueot
+text=Put a +1/+1 counter on target creature you control. Then that creature deals damage equal to its power to target creature or planeswalker you don't control.
+mana={R}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Domri, Anarch of Bolas
+auto=counter(0/0,3,loyalty)
+auto=lord(other creature|myBattlefield) +1/+0
+auto={C(0/0,1,Loyalty)}:add{R}
+auto={C(0/0,1,Loyalty)}:add{G}
+auto={C(0/0,-2,Loyalty)}:target(creature|myBattlefield) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+text=Creatures you control get +1/+0. -- +1: Add {R} or {G}. Creature spells you cast this turn can't be countered. -- -2: Target creature you control fights target creature you don't control.
+mana={1}{R}{G}
+type=Legendary Planeswalker
+subtype=Domri
+[/card]
+
+[card]
+name=Dovin's Veto
+abilities=nofizzle
+target=*[-creature]|stack
+auto=fizzle
+text=This spell can't be countered. -- Counter target noncreature spell.
+mana={W}{U}
+type=Instant
+[/card]
+
+[card]
+name=Dovin, Hand of Control
+auto=counter(0/0,5,loyalty)
+auto=lord(*[Artifact;instant;sorcery]|opponentcastingzone) altercost(colorless,+1)
+auto={C(0/0,-1,Loyalty)}:target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
+text=Artifact, instant, and sorcery spells your opponents cast cost {1} more to cast. -- -1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls.
+mana={2}{WU}
+type=Legendary Planeswalker
+subtype=Dovin
+[/card]
+
+[card]
+name=Dreadhorde Arcanist
+abilities=trample
+auto=@combat(attacking) source(this):may target(*[instant;sorcery;manacost<=power]|mygraveyard) castcard(restricted) 
+text=Trample -- Whenever Dreadhorde Arcanist attacks, you may cast target instant or sorcery card with converted mana cost less than or equal to Dreadhorde Arcanist's power from your graveyard without paying its mana cost. If that card would be put into your graveyard this turn, exile it instead.
+mana={1}{R}
+type=Creature
+subtype=Zombie Wizard
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Dreadhorde Butcher
+abilities=haste
+auto=@combatdamaged(player,planeswalker) from(this):counter(1/1)
+auto=_DIES_damage:power target(creature,player)
+text=Haste -- Whenever Dreadhorde Butcher deals combat damage to a player or planeswalker, put a +1/+1 counter on Dreadhorde Butcher. -- When Dreadhorde Butcher dies, it deals damage equal to its power to any target.
+mana={B}{R}
+type=Creature
+subtype=Zombie Warrior
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Dreadhorde Invasion
+auto=@each my upkeep:life:-1
+auto=@each my upkeep:_AMASS_(1)
+auto=lord(Zombie[token;power>=6;attacking]|myBattlefield) lifelink ueot
+text=At the beginning of your upkeep, you lose 1 life and amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.) -- Whenever a Zombie token you control with power 6 or greater attacks, it gains lifelink until end of turn.
+mana={1}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Dreadhorde Twins
+auto=_AMASS_(2)
+auto=lord(Zombie[token]|myBattlefield) trample
+text=When Dreadhorde Twins enters the battlefield, amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.) -- Zombie tokens you control have trample.
+mana={3}{R}
+type=Creature
+subtype=Zombie Jackal Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Dreadmalkin
+abilities=menace
+auto={2}{B}{S(other *[creature;planeswalker]|mybattlefield)}:counter(1/1,2)
+text=Menace (This creature can't be blocked except by two or more creatures.) -- {2}{B}, Sacrifice another creature or planeswalker: Put two +1/+1 counters on Dreadmalkin.
+mana={B}
+type=Creature
+subtype=Zombie Cat
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Duskmantle Operative
+auto=cantbeblockedby(creature[power<=4])
+text=Duskmantle Operative can't be blocked by creatures with power 4 or greater.
+mana={1}{B}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Elite Guardmage
+abilities=flying
+auto=life:3 && draw:1
+text=Flying -- When Elite Guardmage enters the battlefield, you gain 3 life and draw a card.
+mana={2}{W}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Emergence Zone
+auto={T}:Add{C}
+auto={1}{T}{S}:all(*|mycastingzone) asflash ueot
+text={T}: Add {C}. -- {1}, {T}, Sacrifice Emergence Zone: You may cast spells this turn as though they had flash.
+type=Land
+[/card]
+
+[card]
+name=Enforcer Griffin
+abilities=flying
+text=Flying
+mana={4}{W}
+type=Creature
+subtype=Griffin
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Enter the God-Eternals
+target=creature
+auto=damage:4
+auto=life:4
+auto=deplete:4 target(player)
+auto=_AMASS_(4)
+text=Enter the God-Eternals deals 4 damage to target creature and you gain life equal to the damage dealt this way. Target player puts the top four cards of their library into their graveyard. Amass 4. (Put four +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={2}{U}{U}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Erratic Visionary
+auto={1}{U}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+text={1}{U}, {T}: Draw a card, then discard a card.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Eternal Skylord
+auto=_AMASS_(2)
+auto=lord(Zombie[token]|myBattlefield) flying.
+text=When Eternal Skylord enters the battlefield, amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.) -- Zombie tokens you control have flying.
+mana={4}{U}
+type=Creature
+subtype=Zombie Wizard
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Eternal Taskmaster
+auto=tapped(noevent)
+auto=@combat(attacking) source(this):pay({2}{b}) target(creature|mygraveyard) moveto(ownerhand)
+text=Eternal Taskmaster enters the battlefield tapped. -- Whenever Eternal Taskmaster attacks, you may pay {2}{B}. If you do, return target creature card from your graveyard to your hand.
+mana={1}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Evolution Sage
+auto=@movedTo(land|myBattlefield):_PROLIFERATE_
+text=Whenever a land enters the battlefield under your control, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Fblthp, the Lost
+auto=draw:1 
+auto=@movedTo(battlefield) from(library):draw:1
+auto=@targeted(this):moveto(mylibrary) && shuffle
+text=When Fblthp, the Lost enters the battlefield, draw a card. If it entered from your library or was cast from your library, draw two cards instead. -- When Fblthp becomes the target of a spell, shuffle Fblthp into its owner's library.
+mana={1}{U}
+type=Legendary Creature
+subtype=Homunculus
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Feather, the Redeemed
+abilities=flying
+#moveto(exile) && 
+auto=@targeted(*|myBattlefield) from(instant,sorcery|mystack):trigger[to] phaseaction[endofturn once] moveTo(ownerhand) ueot
+text=Flying -- Whenever you cast an instant or sorcery spell that targets a creature you control, exile that card instead of putting it into your graveyard as it resolves. If you do, return it to your hand at the beginning of the next end step.
+mana={R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Finale of Devastation
+auto=moveTo(myBattlefield) target(creature[manacost<=X]|myLibrary,myGraveyard)
+auto=this(X>=10) all(creature|myBattlefield) haste
+auto=this(X>=10) all(creature|myBattlefield) +x/+x
+text=Search your library and/or graveyard for a creature card with converted mana cost X or less and put it onto the battlefield. If you search your library this way, shuffle it. If X is 10 or more, creatures you control get +X/+X and gain haste until end of turn.
+mana={X}{G}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Finale of Eternity
+target=<upto:3>creatures[toughness<=X]
+auto=this(X>=10) all(creature|mygraveyard) moveto(mybattlefield)
+text=Destroy up to three target creatures with toughness X or less. If X is 10 or more, return all creature cards from your graveyard to the battlefield.
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Finale of Glory
+auto=create(soldier:creature soldier:2/2:white:vigilance)*X
+auto=this(X>=10) create(Angel:creature Angel:4/4:white:flying:vigilance)*X
+text=Create X 2/2 white Soldier creature tokens with vigilance. If X is 10 or more, also create X 4/4 white Angel creature tokens with flying and vigilance.
+mana={X}{W}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Finale of Promise
+target=*[instant;sorcery;manacost<=X]|mygraveyard
+auto=castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+auto=this(X>=10) @movedto(*[instant;sorcery]|mystack):all(trigger[to]<1>) transforms((,newability[name(copy spell) activate name(copy spell) castcard(copied noevent)])) forever
+#auto=this(X>=10) @movedto(*[instant;sorcery]|mystack):all(trigger[to]<1>) transforms((,newability[name(copy spell) activate name(copy spell) castcard(copied noevent)])) forever
+text=You may cast up to one target instant card and/or sorcery card from your graveyard each with converted mana cost X or less without paying their mana costs. If a card cast this way would be put into your graveyard this turn, exile it instead. If X is 10 or more, copy each of those spells twice. You may choose new targets for the copies.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Finale of Revelation
+auto=this(X>=10)
+auto=draw:x
+auto=moveto(exile)
+text=Draw X cards. If X is 10 or more, instead shuffle your graveyard into your library, draw X cards, untap up to five lands, and you have no maximum hand size for the rest of the game. -- Exile Finale of Revelation.
+mana={X}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Firemind Vessel
+auto=tapped(noevent)
+auto={T}:{W}{U}
+auto={T}:{W}{B}
+auto={T}:{W}{R}
+auto={T}:{W}{G}
+auto={T}:{U}{B}
+auto={T}:{U}{R}
+auto={T}:{U}{G}
+auto={T}:{B}{R}
+auto={T}:{B}{G}
+auto={T}:{R}{G}
+text=Firemind Vessel enters the battlefield tapped. -- {T}: Add two mana of different colors.
+mana={4}
+type=Artifact
+[/card]
+
+[card]
+name=Flux Channeler
+auto=@movedTo(*[-creature]|mystack):_PROLIFERATE_
+text=Whenever you cast a noncreature spell, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Forced Landing
+target=creature[flying]
+auto=bottomoflibrary
+text=Put target creature with flying on the bottom of its owner's library.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Gideon Blackblade
+auto=counter(0/0,4,loyalty)
+auto=this(variable{controllerturn}>0) transforms((Human Soldier Creature,setpower=4,settoughness=4,indestructible)) ueot && transforms((,newability[preventAllDamage to(this)])) ueot
+auto={C(0/0,1,Loyalty)}:target(other creature|myBattlefield) vigilance
+auto={C(0/0,1,Loyalty)}:target(other creature|myBattlefield) lifelink
+auto={C(0/0,1,Loyalty)}:target(other creature|myBattlefield) indestructible
+auto={C(0/0,1,Loyalty)}:donothing
+auto={C(0/0,-6,Loyalty)}:moveTo(exile) target(*[-land])
+text=As long as it's your turn, Gideon Blackblade is a 4/4 Human Soldier creature with indestructible that's still a planeswalker. -- Prevent all damage that would be dealt to Gideon Blackblade during your turn. -- +1: Up to one other target creature you control gains your choice of vigilance, lifelink, or indestructible until end of turn. -- -6: Exile target nonland permanent.
+mana={1}{W}{W}
+type=Legendary Planeswalker
+subtype=Gideon
+[/card]
+
+[card]
+name=Gideon's Battle Cry
+auto=all(creature|myBattlefield) counter(1/1)
+auto=target(planeswalker[gideon&manacost=6]|mylibrary) moveto(myhand)
+text=Put a +1/+1 counter on each creature you control. You may search your library and/or graveyard for a card named Gideon, the Oathsworn, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Gideon's Company
+auto=@lifeof(player):counter(1/1,2)
+auto={3}{W}:counter(0/0,1,Loyalty) target(planeswalker[gideon])
+text=Whenever you gain life, put two +1/+1 counters on Gideon's Company. -- {3}{W}: Put a loyalty counter on target Gideon planeswalker.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Gideon's Triumph
+target=player
+auto=ability$!name(sacrifice) target(creature[attacking;blocking]|mybattlefield) sacrifice!$ targetedplayer
+auto=aslongas(planeswalker[Gideon]|mybattlefield) ability$!name(sacrifice) target(creature[attacking;blocking]|mybattlefield) sacrifice!$ targetedplayer
+text=Target opponent sacrifices a creature that attacked or blocked this turn. If you control a Gideon planeswalker, that player sacrifices two of those creatures instead.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Gideon, the Oathsworn
+auto=counter(0/0,4,loyalty)
+auto=counter(1/1)
+auto={C(0/0,2,Loyalty)}:transforms((Human Soldier Creature,setpower=5,settoughness=5,indestructible)) ueot && transforms((,newability[preventAllDamage to(this)])) ueot
+auto={C(0/0,-9,Loyalty)}:moveTo(exile) all(creature|opponentBattlefield) && moveTo(exile) all(this) 
+text=Whenever you attack with two or more non-Gideon creatures, put a +1/+1 counter on each of those creatures. -- +2: Until end of turn, Gideon, the Oathsworn becomes a 5/5 white Soldier creature that's still a planeswalker. Prevent all damage that would be dealt to him this turn. (He can't attack if he was cast this turn.) -- -9: Exile Gideon, the Oathsworn and each creature your opponents control.
+mana={4}{W}{W}
+type=Legendary Planeswalker
+subtype=Gideon
+[/card]
+
+[card]
+name=Gleaming Overseer
+auto=_AMASS_(1)
+auto=lord(Zombie[token]|myBattlefield) opponentshroud
+auto=lord(Zombie[token]|myBattlefield) menace
+text=When Gleaming Overseer enters the battlefield, amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.) -- Zombie tokens you control have hexproof and menace.
+mana={1}{U}{B}
+type=Creature
+subtype=Zombie Wizard
+power=1
+toughness=4
+[/card]
+
+[card]
+name=Goblin Assailant
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Goblin Assault Team
+abilities=haste
+auto=_DIES_counter(1/1) target(creature|myBattlefield)
+text=Haste -- When Goblin Assault Team dies, put a +1/+1 counter on target creature you control.
+mana={3}{R}
+type=Creature
+subtype=Goblin Warrior
+power=4
+toughness=1
+[/card]
+
+[card]
+name=God-Eternal Bontu
+abilities=menace
+auto=may notatarget(<anyamount>other *|mybattlefield) sacrifice && draw:1
+text=Menace -- When God-Eternal Bontu enters the battlefield, sacrifice any number of other permanents, then draw that many cards. -- When God-Eternal Bontu dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Zombie God
+power=5
+toughness=6
+[/card]
+
+[card]
+name=God-Eternal Kefnet
+abilities=flying
+text=Flying -- You may reveal the first card you draw each turn as you draw it. Whenever you reveal an instant or sorcery card this way, copy that card and you may cast the copy. That copy costs {2} less to cast. -- When God-Eternal Kefnet dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Zombie God
+power=4
+toughness=5
+[/card]
+
+[card]
+name=God-Eternal Oketra
+abilities=double strike
+auto=@movedTo(creature|mystack):create(zombie warrior:creature zombie warrior:4/4:black:vigilance)
+text=Double strike -- Whenever you cast a creature spell, create a 4/4 black Zombie Warrior creature token with vigilance. -- When God-Eternal Oketra dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Zombie God
+power=3
+toughness=6
+[/card]
+
+[card]
+name=God-Eternal Rhonas
+abilities=deathtouch
+auto=all(other creature|myBattlefield) power/power ueot
+auto=all(other creature|myBattlefield) vigilance ueot
+text=Deathtouch -- When God-Eternal Rhonas enters the battlefield, double the power of each other creature you control until end of turn. Those creatures gain vigilance until end of turn. -- When God-Eternal Rhonas dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
+mana={3}{G}{G}
+type=Legendary Creature
+subtype=Zombie God
+power=5
+toughness=5
+[/card]
+
+[card]
+name=God-Pharaoh's Statue
+auto=lord(*|opponentcastingzone) altercost(colorless,+2)
+auto=@each my endofturn:life:-1 opponent
+text=Spells your opponents cast cost {2} more to cast. -- At the beginning of your end step, each opponent loses 1 life.
+mana={6}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Grateful Apparition
+abilities=flying
+auto=@combatdamaged(player,planeswalker) from(this):_PROLIFERATE_
+text=Flying -- Whenever Grateful Apparition deals combat damage to a player or planeswalker, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={1}{W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Grim Initiate
+abilities=first strike
+auto=_DIES__AMASS_(1)
+text=First strike -- When Grim Initiate dies, amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={R}
+type=Creature
+subtype=Zombie Warrior
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Guild Globe
+auto=draw:1
+auto={2}{T}{S}:{W}{U}
+auto={2}{T}{S}:{W}{B}
+auto={2}{T}{S}:{W}{R}
+auto={2}{T}{S}:{W}{G}
+auto={2}{T}{S}:{U}{B}
+auto={2}{T}{S}:{U}{R}
+auto={2}{T}{S}:{U}{G}
+auto={2}{T}{S}:{B}{R}
+auto={2}{T}{S}:{B}{G}
+auto={2}{T}{S}:{R}{G}
+text=When Guild Globe enters the battlefield, draw a card. -- {2}, {T}, Sacrifice Guild Globe: Add two mana of different colors.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Guildpact Informant
+abilities=flying
+auto=@combatdamaged(player,planeswalker) from(this):_PROLIFERATE_
+text=Flying -- Whenever Guildpact Informant deals combat damage to a player or planeswalker, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={2}{U}
+type=Creature
+subtype=Faerie Rogue
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Heartfire
+target=player,creature
+auto=damage:4
+text=As an additional cost to cast this spell, sacrifice a creature or planeswalker. -- Heartfire deals 4 damage to any target.
+mana={1}{R}{S(creature,planeswalker|myBattlefield)}
+type=Instant
+[/card]
+
+[card]
+name=Heartwarming Redemption
+auto=all(*|myhand) transforms((,newability[draw:1],newability[reject])])) && draw:1
+auto=life:type:*:myhand controller
+text=Discard all the cards in your hand, then draw that many cards plus one. You gain life equal to the number of cards in your hand.
+mana={2}{R}{W}
+type=Instant
+[/card]
+
+[card]
+name=Herald of the Dreadhorde
+auto=_DIES__AMASS_(2)
+text=When Herald of the Dreadhorde dies, amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={3}{B}
+type=Creature
+subtype=Zombie Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Honor the God-Pharaoh
+auto=draw:2
+auto=_AMASS_(1)
+text=As an additional cost to cast this spell, discard a card. -- Draw two cards. Amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={2}{R}{D(other *|myhand)}
+type=Sorcery
+[/card]
+
+[card]
+name=Huatli's Raptor
+abilities=vigilance
+auto=_PROLIFERATE_
+text=Vigilance -- When Huatli's Raptor enters the battlefield, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={G}{W}
+type=Creature
+subtype=Dinosaur
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Huatli, the Sun's Heart
+auto=counter(0/0,7,loyalty)
+auto=lord(other creature|myBattlefield) combattoughness
+auto={C(0/0,-3,Loyalty)}:life:toughness:highest:creature:myBattlefield
+text=Each creature you control assigns combat damage equal to its toughness rather than its power. -- -3: You gain life equal to the greatest toughness among creatures you control.
+mana={2}{GW}
+type=Legendary Planeswalker
+subtype=Huatli
+[/card]
+
+[card]
+name=Ignite the Beacon
+auto=target(<upto:2>planeswalker|mylibrary) moveto(myhand)
+text=Search your library for up to two planeswalker cards, reveal them, put them into your hand, then shuffle your library.
+mana={4}{W}
+type=Instant
+[/card]
+
+[card]
+name=Ilharg, the Raze-Boar
+abilities=trample
+auto=@combat(attacking) source(this):target(creature|myhand) ninjutsu
+text=Trample -- Whenever Ilharg, the Raze-Boar attacks, you may put a creature card from your hand onto the battlefield tapped and attacking. Return that creature to your hand at the beginning of the next end step. -- When Ilharg, the Raze-Boar dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Boar God
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Interplanar Beacon
+auto=@movedTo(planeswalker|mystack):life:1
+auto={T}:Add{C}
+auto={1}{T}:{W}{U}
+auto={1}{T}:{W}{B}
+auto={1}{T}:{W}{R}
+auto={1}{T}:{W}{G}
+auto={1}{T}:{U}{B}
+auto={1}{T}:{U}{R}
+auto={1}{T}:{U}{G}
+auto={1}{T}:{B}{R}
+auto={1}{T}:{B}{G}
+auto={1}{T}:{R}{G}
+text=Whenever you cast a planeswalker spell, you gain 1 life. -- {T}: Add {C}. -- {1}, {T}: Add two mana of different colors. Spend this mana only to cast planeswalker spells.
+type=Land
+[/card]
+
+[card]
+name=Invade the City
+auto=_AMASS_(type:*[instant;sorcery]:mygraveyard)
+text=Amass X, where X is the number of instant and sorcery cards in your graveyard. (Put X +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={1}{U}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Invading Manticore
+auto=_AMASS_(2)
+text=When Invading Manticore enters the battlefield, amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={5}{R}
+type=Creature
+subtype=Zombie Manticore
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Iron Bully
+abilities=menace
+auto=counter(1/1) target(creature)
+text=Menace (This creature can't be blocked except by two or more creatures.) -- When Iron Bully enters the battlefield, put a +1/+1 counter on target creature.
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Ironclad Krovod
+mana={3}{W}
+type=Creature
+subtype=Beast
+power=2
+toughness=5
+[/card]
+
+[card]
+name=Jace's Projection
+auto=@drawof(player):counter(1/1)
+auto={3}{U}:counter(0/0,1,Loyalty) target(planeswalker[jace])
+text=Whenever you draw a card, put a +1/+1 counter on Jace's Projection. -- {3}{U}: Put a loyalty counter on target Jace planeswalker.
+mana={2}{U}{U}
+type=Creature
+subtype=Wizard Illusion
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Jace's Ruse
+target=<upto:2>creature
+auto=moveTo(ownerHand) and!(moveTo(myhand) target(planeswalker[jace;manacost=6]|mylibrary,myGraveyard))!
+text=Return up to two target creatures to their owner's hand. You may search your library and/or graveyard for a card named Jace, Arcane Strategist, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Jace's Triumph
+auto=draw:2
+auto=aslongas(planeswalker[jace]|mybattlefield) draw:1
+text=Draw two cards. If you control a Jace planeswalker, draw three cards instead.
+mana={2}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Jace, Arcane Strategist
+auto=counter(0/0,4,loyalty)
+auto=@drawof(player,turnlimited):transforms((,newability[@drawof(player,turnlimited):counter(1/1) target(creature|myBattlefield)]))
+auto={C(0/0,1,Loyalty)}:draw:1
+auto={C(0/0,-7,Loyalty)}:all(creature|myBattlefield) unblockable
+text=Whenever you draw your second card each turn, put a +1/+1 counter on target creature you control. -- +1: Draw a card. -- -7: Creatures you control can't be blocked this turn.
+mana={4}{U}{U}
+type=Legendary Planeswalker
+subtype=Jace
+[/card]
+
+[card]
+name=Jace, Wielder of Mysteries
+abilities=cantmilllose
+auto=counter(0/0,4,loyalty)
+auto=@drawof(player) restriction{type(*|mylibrary)~equalto~0}:wingame
+auto={C(0/0,1,Loyalty)}:target(player) deplete:2 && draw:1
+auto={C(0/0,-8,Loyalty)}:draw:7 if{type(*|mylibrary)~equalto~0}:wingame
+text=If you would draw a card while your library has no cards in it, you win the game instead. -- +1: Target player puts the top two cards of their library into their graveyard. Draw a card. -- -8: Draw seven cards. Then if your library has no cards in it, you win the game.
+mana={1}{U}{U}{U}
+type=Legendary Planeswalker
+subtype=Jace
+[/card]
+
+[card]
+name=Jaya's Greeting
+target=creature
+auto=damage:3
+auto=_SCRY_(1)
+text=Jaya's Greeting deals 3 damage to target creature. Scry 1.
+mana={1}{R}
+type=Instant
+[/card]
+
+[card]
+name=Jiang Yanggu, Wildcrafter
+auto=counter(0/0,3,loyalty)
+auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{W}
+auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{U}
+auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{B}
+auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{R}
+auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{G}
+auto={C(0/0,-1,Loyalty)}:counter(1/1) target(creature)
+text=Each creature you control with a +1/+1 counter on it has "{T}: Add one mana of any color." -- -1: Put a +1/+1 counter on target creature.
+mana={2}{G}
+type=Legendary Planeswalker
+subtype=Yanggu
+[/card]
+
+[card]
+name=Karn's Bastion
+auto={T}:Add{C}
+auto={4}{T}:_PROLIFERATE_
+text={T}: Add {C}. -- {4}, {T}: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+type=Land
+[/card]
+
+[card]
+name=Karn, the Great Creator
+auto=counter(0/0,5,loyalty)
+auto=lord(artifact|opponentBattlefield) noactivatedability
+auto={C(0/0,1,Loyalty)}:target(artifact[-creature]) dynamicability<!mytgt manacostpumpboth!> transforms((creature,setpower=0,settoughness=0)) ueot
+auto={C(0/0,-2,Loyalty)}:moveto(ownerhand) target(artifact|myexile)
+text=Activated abilities of artifacts your opponents control can't be activated. -- +1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost. -- -2: You may choose an artifact card you own from outside the game or in exile, reveal that card, and put it into your hand.
+mana={4}
+type=Legendary Planeswalker
+subtype=Karn
+[/card]
+
+[card]
+name=Kasmina's Transmutation
+target=creature
+auto=teach(creature) loseabilities
+auto=teach(creature) transforms((,setpower=1,settoughness=1))
+text=Enchant creature -- Enchanted creature loses all abilities and has base power and toughness 1/1.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Kaya's Ghostform
+target=creature,planeswalker|mybattlefield
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(mybattlefield)
+auto=@movedTo(mytgt|exile) from(battlefield):all(trigger[to]) moveTo(mybattlefield)
+text=Enchant creature or planeswalker you control -- When enchanted permanent dies or is put into exile, return that card to the battlefield under your control.
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Kaya, Bane of the Dead
+auto=counter(0/0,7,loyalty)
+auto=lord(*|opponentBattlefield) -opponentshroud
+auto={C(0/0,-3,Loyalty)}:moveto(exile) target(creature)
+text=Your opponents and permanents your opponents control with hexproof can be the target of spells and abilities you control as though they didn't have hexproof. -- -3: Exile target creature.
+mana={3}{WB}{WB}{WB}
+type=Legendary Planeswalker
+subtype=Kaya
+[/card]
+
+[card]
+name=Kiora's Dambreaker
+auto=_PROLIFERATE_
+text=When Kiora's Dambreaker enters the battlefield, proliferate. (Choose any number of permanents and/or players, then give each a counter of each kind already there.)
+mana={5}{U}
+type=Creature
+subtype=Leviathan
+power=5
+toughness=6
+[/card]
+
+[card]
+name=Kiora, Behemoth Beckoner
+auto=counter(0/0,7,loyalty)
+auto=@movedTo(creature[power>=4]|myBattlefield):draw:1
+auto={C(0/0,-1,Loyalty)}:untap target(*)
+text=Whenever a creature with power 4 or greater enters the battlefield under your control, draw a card. -- -1: Untap target permanent.
+mana={2}{GU}
+type=Legendary Planeswalker
+subtype=Kiora
+[/card]
+
+[card]
+name=Kraul Stinger
+abilities=deathtouch
+text=Deathtouch
+mana={2}{G}
+type=Creature
+subtype=Insect Assassin
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Krenko, Tin Street Kingpin
+auto=@combat(attacking) source(this):counter(1/1)
+auto=@combat(attacking) source(this):create(goblin:goblin creature:1/1:red)*power
+text=Whenever Krenko, Tin Street Kingpin attacks, put a +1/+1 counter on it, then create a number of 1/1 red Goblin creature tokens equal to Krenko's power.
+mana={2}{R}
+type=Legendary Creature
+subtype=Goblin
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Kronch Wrangler
+abilities=trample
+auto=@movedTo(creature[power>=4]|myBattlefield):counter(1/1)
+text=Trample -- Whenever a creature with power 4 or greater enters the battlefield under your control, put a +1/+1 counter on Kronch Wrangler.
+mana={1}{G}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Law-Rune Enforcer
+auto={1}{T}:tap target(creature[manacost>=2])
+text={1}, {T}: Tap target creature with converted mana cost 2 or greater.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Lazotep Behemoth
+mana={4}{B}
+type=Creature
+subtype=Zombie Hippo
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Lazotep Plating
+auto=_AMASS_(1)
+auto=all(creature|myBattlefield) opponentshroud
+text=Amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.) -- You and permanents you control gain hexproof until end of turn. (You and they can't be the targets of spells or abilities your opponents control.)
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Lazotep Reaver
+auto=_AMASS_(1)
+text=When Lazotep Reaver enters the battlefield, amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={1}{B}
+type=Creature
+subtype=Zombie Beast
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Leyline Prowler
+abilities=deathtouch,lifelink
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+text=Deathtouch, lifelink -- {T}: Add one mana of any color.
+mana={1}{B}{G}
+type=Creature
+subtype=Nightmare Beast
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Liliana's Triumph
+auto=ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
+auto=aslongas(planeswalker[Liliana]|mybattlefield) ability$!name(discard) reject notatarget(*|myhand)!$ opponent
+text=Each opponent sacrifices a creature. If you control a Liliana planeswalker, each opponent also discards a card.
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Liliana, Dreadhorde General
+auto=counter(0/0,6,loyalty)
+auto=@movedTo(creature|graveyard) from(mybattlefield):draw:1
+auto={C(0/0,1,Loyalty)}:create(zombie:creature zombie:2/2:black)
+auto={C(0/0,-4,Loyalty)}:sacrifice notatarget(<2>creature|mybattlefield) && ability$! sacrifice notatarget(<2>creature|mybattlefield) !$ opponent
+auto={C(0/0,-9,Loyalty)}:if type(creature|opponentbattlefield)~morethan~1 then ability$! sacrifice notatarget(<type:creature:mybattlefieldminus1minusend>creature|mybattlefield) !$ opponent && if type(land|opponentbattlefield)~morethan~1 then ability$! sacrifice notatarget(<type:land:mybattlefieldminus1minusend>land|mybattlefield) !$ opponent
+text=Whenever a creature you control dies, draw a card. -- +1: Create a 2/2 black Zombie creature token. -- -4: Each player sacrifices two creatures. -- -9: Each opponent chooses a permanent they control of each permanent type and sacrifices the rest.
+mana={4}{B}{B}
+type=Legendary Planeswalker
+subtype=Liliana
+[/card]
+
+[card]
+name=Living Twister
+auto={1}{R}{D(*[land])}:damage:2 target(creature,player)
+auto={G}:target(land[tapped]|myBattlefield) moveto(ownerhand)
+text={1}{R}, Discard a land card: Living Twister deals 2 damage to any target. -- {G}: Return a tapped land you control to its owner's hand.
+mana={R}{R}{G}
+type=Creature
+subtype=Elemental
+power=2
+toughness=5
+[/card]
+
+[card]
+name=Loxodon Sergeant
+abilities=vigilance
+auto=all(other creature|myBattlefield)) vigilance ueot
+text=Vigilance -- When Loxodon Sergeant enters the battlefield, other creatures you control gain vigilance until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Elephant Soldier
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Makeshift Battalion
+auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:counter(1/1)
+text=Whenever Makeshift Battalion and at least two other creatures attack, put a +1/+1 counter on Makeshift Battalion.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Mana Geode
+auto=_SCRY_(1)
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+text=When Mana Geode enters the battlefield, scry 1. -- {T}: Add one mana of any color.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Martyr for the Cause
+auto=_DIES__PROLIFERATE_
+text=When Martyr for the Cause dies, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Massacre Girl
+abilities=menace
+auto=all(other creature) -1/-1 ueot
+auto=transforms((,newability[@movedto(creature|graveyard) from(battlefield):all(other creature) -1/-1 ueot)) ueot
+text=Menace -- When Massacre Girl enters the battlefield, each other creature gets -1/-1 until end of turn. Whenever a creature dies this turn, each creature other than Massacre Girl gets -1/-1 until end of turn.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Human Assassin
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Mayhem Devil
+auto=@sacrificed(*|battlefield):damage:1 target(creature,player)
+text=Whenever a player sacrifices a permanent, Mayhem Devil deals 1 damage to any target.
+mana={1}{B}{R}
+type=Creature
+subtype=Devil
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Merfolk Skydiver
+abilities=flying
+auto=counter(1/1) target(creature|myBattlefield)
+auto={3}{G}{U}:_PROLIFERATE_
+text=Flying -- When Merfolk Skydiver enters the battlefield, put a +1/+1 counter on target creature you control. -- {3}{G}{U}: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={G}{U}
+type=Creature
+subtype=Merfolk Mutant
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Mizzium Tank
+auto=@movedTo(*[-creature]|mystack):becomes(Artifact Creature) ueot
+auto=@movedTo(*[-creature]|mystack):1/1 ueot
+auto={crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}
+text=Trample -- Whenever you cast a noncreature spell, Mizzium Tank becomes an artifact creature and gets +1/+1 until end of turn. -- Crew 1 (Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={1}{R}{R}
+type=Artifact
+subtype=Vehicle
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Mobilized District
+auto={T}:Add{C}
+auto={4}:transforms((Citizen Creature,setpower=3,settoughness=3,vigilance)) ueot
+auto={3} restriction{type(*[creature&legendary;planeswalker]|myBattlefield)~morethan~0}:transforms((Citizen Creature,setpower=3,settoughness=3,vigilance)) ueot
+auto={2} restriction{type(*[creature&legendary;planeswalker]|myBattlefield)~morethan~1}:transforms((Citizen Creature,setpower=3,settoughness=3,vigilance)) ueot
+auto={1} restriction{type(*[creature&legendary;planeswalker]|myBattlefield)~morethan~2}:transforms((Citizen Creature,setpower=3,settoughness=3,vigilance)) ueot
+auto={0} restriction{type(*[creature&legendary;planeswalker]|myBattlefield)~morethan~3}:transforms((Citizen Creature,setpower=3,settoughness=3,vigilance)) ueot
+text={T}: Add {C}. -- {4}: Mobilized District becomes a 3/3 Citizen creature with vigilance until end of turn. It's still a land. This ability costs {1} less to activate for each legendary creature and planeswalker you control.
+type=Land
+[/card]
+
+[card]
+name=Mowu, Loyal Companion
+abilities=vigilance,trample
+auto=@counteradded(1/1) from(this) turnlimited:counter(1/1)
+text=Trample, vigilance -- If one or more +1/+1 counters would be put on Mowu, Loyal Companion, that many plus one +1/+1 counters are put on it instead.
+mana={3}{G}
+type=Legendary Creature
+subtype=Hound
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Naga Eternal
+mana={2}{U}
+type=Creature
+subtype=Zombie Naga
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Nahiri's Stoneblades
+target=<upto:2>creature
+auto=2/0 ueot 
+text=Up to two target creatures each get +2/+0 until end of turn.
+mana={1}{R}
+type=Instant
+[/card]
+
+[card]
+name=Nahiri, Storm of Stone
+auto=counter(0/0,6,loyalty)
+auto=this(variable{controllerturn}>0) lord(creature|myBattlefield) first strike
+auto={C(0/0,-1,Loyalty)}:damage:1 target(creature[tapped])
+auto={C(0/0,-2,Loyalty)}:damage:2 target(creature[tapped])
+auto={C(0/0,-3,Loyalty)}:damage:3 target(creature[tapped])
+auto={C(0/0,-4,Loyalty)}:damage:4 target(creature[tapped])
+auto={C(0/0,-5,Loyalty)}:damage:5 target(creature[tapped])
+auto={C(0/0,-6,Loyalty)}:damage:6 target(creature[tapped])
+auto={C(0/0,-7,Loyalty)}:damage:7 target(creature[tapped])
+auto={C(0/0,-8,Loyalty)}:damage:8 target(creature[tapped])
+auto={C(0/0,-9,Loyalty)}:damage:9 target(creature[tapped])
+text=As long as it's your turn, creatures you control have first strike and equip abilities you activate cost {1} less to activate. -- -X: Nahiri, Storm of Stone deals X damage to target tapped creature.
+mana={2}{RW}{RW}
+type=Legendary Planeswalker
+subtype=Nahiri
+[/card]
+
+[card]
+name=Narset's Reversal
+target=*[instant;sorcery]|stack
+auto=castcard(copied noevent) && fizzleto(ownerHand)
+text=Copy target instant or sorcery spell, then return it to its owner's hand. You may choose new targets for the copy.
+mana={U}{U}
+type=Instant
+[/card]
+
+[card]
+name=Neheb, Dreadhorde Champion
+abilities=trample
+auto=@combatdamaged(player,planeswalker) from(this):may target(<anyamount>*|myhand) reject && draw:1 controller && Add{R} doesntempty
+text=Trample -- Whenever Neheb, Dreadhorde Champion deals combat damage to a player or planeswalker, you may discard any number of cards. If you do, draw that many cards and add that much {R}. Until end of turn, you don't lose this mana as steps and phases end.
+mana={2}{R}{R}
+type=Legendary Creature
+subtype=Zombie Minotaur Warrior
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Neoform
+auto=reveal:plibrarycount optionone name(choose card) target(creature[manacost=storedmanacostplus1plusend]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(activate castcard(putinplay))! afterrevealedend revealend
+text=As an additional cost to cast this spell, sacrifice a creature. -- Search your library for a creature card with converted mana cost equal to 1 plus the sacrificed creature's converted mana cost, put that card onto the battlefield with an additional +1/+1 counter on it, then shuffle your library.
+mana={G}{U}{S(creature|mybattlefield)}
+type=Sorcery
+[/card]
+
+[card]
+name=Nicol Bolas, Dragon-God
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,0,Loyalty)} copy notatarget(planeswalker) ueot
+auto={C(0/0,1,Loyalty)}:draw:1 && ability$!moveto(exile) target(*|myhand)!$ opponent
+auto={C(0/0,-3,Loyalty)}:destroy target(creature,planeswalker)
+auto={C(0/0,-8,Loyalty)}:if type(creature[legendary],planeswalker|opponentbattlefield))~lessthan~1 then wingame
+text=Nicol Bolas, Dragon-God has all loyalty abilities of all other planeswalkers on the battlefield. -- +1: You draw a card. Each opponent exiles a card from their hand or a permanent they control. -- -3: Destroy target creature or planeswalker. -- -8: Each opponent who doesn't control a legendary creature or planeswalker loses the game.
+mana={U}{B}{B}{B}{R}
+type=Legendary Planeswalker
+subtype=Bolas
+[/card]
+
+[card]
+name=Nissa's Triumph
+auto=transforms((,newability[if type((planeswalker[Nissa]|mybattlefield))~lessthan~1 then moveTo(myhand) and!(tap(noevent))! target(<upto:2>forest[basic]|myLibrary)],newability[if type((planeswalker[Nissa]|mybattlefield))~morethan~0 then moveTo(myhand) and!(tap(noevent))! target(<upto:3>forest[basic]|myLibrary)])) ueot
+text=Search your library for up to two basic Forest cards. If you control a Nissa planeswalker, instead search your library for up to three land cards. Reveal those cards, put them into your hand, then shuffle your library.
+mana={G}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Nissa, Who Shakes the World
+auto=counter(0/0,5,loyalty)
+auto=lord(forest|mybattlefield) transforms((,newability[producecolor:green]))
+auto={C(0/0,1,Loyalty)}:target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[vigilance],newability[haste])) forever
+auto={C(0/0,-8,Loyalty)}:emblem transforms((,newability[lord(land|myBattlefield) indestructible])) forever dontremove
+text=Whenever you tap a Forest for mana, add an additional {G}. -- +1: Put three +1/+1 counters on up to one target noncreature land you control. Untap it. It becomes a 0/0 Elemental creature with vigilance and haste that's still a land. -- -8: You get an emblem with "Lands you control have indestructible." Search your library for any number of Forest cards, put them onto the battlefield tapped, then shuffle your library.
+mana={3}{G}{G}
+type=Legendary Planeswalker
+subtype=Nissa
+[/card]
+
+[card]
+name=Niv-Mizzet Reborn
+abilities=flying
+auto=reveal:10 optionone name(Reveal) target(<anyamount>*[multicolor]|reveal) moveto(myhand) optiononeend optiontwo choice all(*|reveal) moveto(mylibrary) optiontwoend revealend
+text=Flying -- When Niv-Mizzet Reborn enters the battlefield, reveal the top ten cards of your library. For each color pair, choose a card that's exactly those colors from among them. Put the chosen cards into your hand and the rest on the bottom of your library in a random order.
+mana={W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Dragon Avatar
+power=6
+toughness=6
+[/card]
+
+[card]
+name=No Escape
+target=creature,planeswalker|stack
+auto=fizzleto(exile)
+auto=_SCRY_(1)
+text=Counter target creature or planeswalker spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. -- Scry 1.
+mana={2}{U}
+type=Instant
+[/card]
+
+[card]
+name=Oath of Kaya
+auto=damage:3 target(creature,player)
+auto=life:3
+auto=@damage:2 opponent && life:2
+text=When Oath of Kaya enters the battlefield, it deals 3 damage to any target and you gain 3 life. -- Whenever an opponent attacks a planeswalker you control with one or more creatures, Oath of Kaya deals 2 damage to that player and you gain 2 life.
+mana={1}{W}{B}
+type=Legendary Enchantment
+[/card]
+
+[card]
+name=Ob Nixilis's Cruelty
+target=creature
+auto=exiledeath
+auto=-5/-5
+text=Target creature gets -5/-5 until end of turn. If that creature would die this turn, exile it instead.
+mana={2}{B}
+type=Instant
+[/card]
+
+[card]
+name=Ob Nixilis, the Hate-Twisted
+auto=counter(0/0,5,loyalty)
+auto=@drawfoeof(player):damage:1 opponent
+auto={C(0/0,-2,Loyalty)}:destroy target(creature) && draw:2 targetcontroller
+text=Whenever an opponent draws a card, Ob Nixilis, the Hate-Twisted deals 1 damage to that player. -- -2: Destroy target creature. Its controller draws two cards.
+mana={3}{B}{B}
+type=Legendary Planeswalker
+subtype=Nixilis
+[/card]
+
+[card]
+name=Paradise Druid
+auto=this(untapped) opponentshroud
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+text=Paradise Druid has hexproof as long as it's untapped. -- {T}: Add one mana of any color.
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Parhelion II
+abilities=flying,first strike,vigilance
+auto=@combat(attacking) source(this):create(angel:creature angel:4/4:white:flying:vigilance:battleready)*2
+auto={crew(other creature[power>=4]|myBattlefield)}:name(crew 4 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=4]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~3}
+auto={crew(other creature[power>=2]|myBattlefield)}{crew(other creature[power>=2]|myBattlefield)}:name(crew 4 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~3}
+auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=3]|myBattlefield)}:name(crew 4 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=3]|mybattlefield)~morethan~0,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~3}
+auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=2]|myBattlefield)}:name(crew 4 [3 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=1]|mybattlefield)~morethan~1,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~2,compare(crewtotalpower)~morethan~3}
+auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}:name(crew 4 [4 creature]) becomes(Artifact Creature) ueot
+text=Flying, first strike, vigilance -- Whenever Parhelion II attacks, create two 4/4 white Angel creature tokens with flying and vigilance that are attacking. -- Crew 4 (Tap any number of creatures you control with total power 4 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={6}{W}{W}
+type=Legendary Artifact
+subtype=Vehicle
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Planewide Celebration
+auto=Create(citizen:Citizen creature:2/2:white:blue:black:red:green)
+auto=moveTo(ownerHand) target(permanent|mygraveyard) moveto(ownerhand)
+auto=_PROLIFERATE_
+auto=life:4
+text=Choose four. You may choose the same mode more than once. -- • Create a 2/2 Citizen creature token that's all colors. -- • Return target permanent card from your graveyard to your hand. -- • Proliferate. -- • You gain 4 life.
+mana={5}{G}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Pledge of Unity
+auto=all(creature|myBattlefield) counter(1/1)
+auto=life:type:creature:myBattlefield
+text=Put a +1/+1 counter on each creature you control. You gain 1 life for each creature you control.
+mana={1}{G}{W}
+type=Instant
+[/card]
+
+[card]
+name=Pollenbright Druid
+auto=counter(1/1) target(creature)
+auto=_PROLIFERATE_
+text=When Pollenbright Druid enters the battlefield, choose one — -- • Put a +1/+1 counter on target creature. -- • Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Pouncing Lynx
+auto=this(variable{controllerturn}>0) first strike
+text=As long as it's your turn, Pouncing Lynx has first strike.
+mana={1}{W}
+type=Creature
+subtype=Cat
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Price of Betrayal
+target=artifact,creature,planeswalker
+auto=counter(1/1,-5)
+auto=counter(0/0,-5,loyalty)
+text=Remove up to five counters from target artifact, creature, planeswalker, or opponent.
+mana={B}
+type=Sorcery
+[/card]
+
+[card]
+name=Prismite
+auto={2}:Add{W}
+auto={2}:Add{U}
+auto={2}:Add{B}
+auto={2}:Add{R}
+auto={2}:Add{G}
+text={2}: Add one mana of any color.
+mana={2}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Prison Realm
+auto=(blink)forsrc target(*[-land]|opponentbattlefield)
+auto=_SCRY_(1)
+text=When Prison Realm enters the battlefield, exile target creature or planeswalker an opponent controls until Prison Realm leaves the battlefield. -- When Prison Realm enters the battlefield, scry 1.
+mana={2}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Raging Kronch
+abilities=nosolo
+text=Raging Kronch can't attack alone.
+mana={2}{R}
+type=Creature
+subtype=Beast
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Ral's Outburst
+target=player,creature
+auto=damage:3
+auto=name(look) reveal:2 optionone name(Get a card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) target(<2>*|reveal) moveto(mygraveyard) optiontwoend revealend
+text=Ral's Outburst deals 3 damage to any target. Look at the top two cards of your library. Put one of them into your hand and the other into your graveyard.
+mana={2}{U}{R}
+type=Instant
+[/card]
+
+[card]
+name=Ral, Storm Conduit
+auto=counter(0/0,4,loyalty)
+auto=@movedto(*[instant;sorcery]|mystack):damage:1 target(player)
+auto={C(0/0,2,Loyalty)}:_SCRY_(1)
+auto={C(0/0,-2,Loyalty)}:@movedto(*[instant;sorcery]|mystack):all(trigger[to]<1>) transforms((,newability[name(copy spell) activate name(copy spell) castcard(copied noevent)]))
+text=Whenever you cast or copy an instant or sorcery spell, Ral, Storm Conduit deals 1 damage to target opponent or planeswalker. -- +2: Scry 1. -- -2: When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy.
+mana={2}{U}{R}
+type=Legendary Planeswalker
+subtype=Ral
+[/card]
+
+[card]
+name=Rally of Wings
+auto=all(creature[flying]|myBattlefield) 2/2
+auto=all(creature|myBattlefield) untap
+text=Untap all creatures you control. Creatures you control with flying get +2/+2 until end of turn.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Ravnica at War
+auto=moveto(exile) all(*[multicolor])
+text=Exile all multicolored permanents.
+mana={3}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Relentless Advance
+auto=_AMASS_(3) 
+text=Amass 3. (Put three +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={3}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Rescuer Sphinx
+abilities=flying
+auto=may notatarget(-land|myBattlefield) moveto(ownerhand) && counter(1/1)
+text=Flying -- As Rescuer Sphinx enters the battlefield, you may return a nonland permanent you control to its owner's hand. If you do, Rescuer Sphinx enters the battlefield with a +1/+1 counter on it.
+mana={2}{U}{U}
+type=Creature
+subtype=Sphinx
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Return to Nature
+auto=destroy target(artifact)
+auto=destroy target(enchantment)
+auto=moveto(exile) target(*|graveyard)
+text=Choose one — -- • Destroy target artifact. -- • Destroy target enchantment. -- • Exile target card from a graveyard.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Rising Populace
+auto=@movedTo(other *[creature;planeswalker]|graveyard) from(myBattlefield):counter(1/1)
+text=Whenever another creature or planeswalker you control dies, put a +1/+1 counter on Rising Populace.
+mana={2}{W}
+type=Creature
+subtype=Human
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Roalesk, Apex Hybrid
+abilities=flying,trample
+auto=counter(1/1,2) target(other creature|myBattlefield)
+auto=_DIES__PROLIFERATE_
+auto=_DIES__PROLIFERATE_
+text=Flying, trample -- When Roalesk, Apex Hybrid enters the battlefield, put two +1/+1 counters on another target creature you control. -- When Roalesk dies, proliferate, then proliferate again. (Choose any number of permanents and/or players, then give each another counter of each kind already there. Then do it again.)
+mana={2}{G}{G}{U}
+type=Legendary Creature
+subtype=Human Mutant
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Role Reversal
+auto=moveTo(myBattlefield) target(artifact|opponentBattlefield) && moveto(opponentBattlefield) target(artifact|myBattlefield)
+auto=moveTo(myBattlefield) target(creature|opponentBattlefield) && moveto(opponentBattlefield) target(creature|myBattlefield)
+auto=moveTo(myBattlefield) target(enchantment|opponentBattlefield) && moveto(opponentBattlefield) target(enchantment|myBattlefield)
+auto=moveTo(myBattlefield) target(planeswalker|opponentBattlefield) && moveto(opponentBattlefield) target(planeswalker|myBattlefield)
+auto=moveTo(myBattlefield) target(land|opponentBattlefield) && moveto(opponentBattlefield) target(land|myBattlefield)
+text=Exchange control of two target permanents that share a permanent type.
+mana={U}{U}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Rubblebelt Rioters
+abilities=haste
+auto=@combat(attacking) source(this):type:highest:power:myBattlefield/0
+text=Haste -- Whenever Rubblebelt Rioters attacks, it gets +X/+0 until end of turn, where X is the greatest power among creatures you control.
+mana={1}{R}{G}
+type=Creature
+subtype=Human Berserker
+power=0
+toughness=4
+[/card]
+
+[card]
+name=Saheeli's Silverwing
+abilities=flying
+text=Flying -- When Saheeli's Silverwing enters the battlefield, look at the top card of target opponent's library.
+mana={4}
+type=Artifact Creature
+subtype=Drake
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Saheeli, Sublime Artificer
+auto=counter(0/0,5,loyalty)
+auto=@movedTo(*[-creature]|mystack):create(servo artifact:creature servo artifact:1/1:colorless)
+auto={C(0/0,-2,Loyalty)}:target(artifact|myBattlefield) copy target(other artifact,creature|myBattlefield) ueot
+text=Whenever you cast a noncreature spell, create a 1/1 colorless Servo artifact creature token. -- -2: Target artifact you control becomes a copy of another target artifact or creature you control until end of turn, except it's an artifact in addition to its other types.
+mana={1}{UR}{UR}
+type=Legendary Planeswalker
+subtype=Saheeli
+[/card]
+
+[card]
+name=Samut's Sprint
+target=creature
+auto=+2/+1
+auto=haste
+auto=_SCRY_(1)
+text=Target creature gets +2/+1 and gains haste until end of turn. Scry 1.
+mana={R}
+type=Instant
+[/card]
+
+[card]
+name=Samut, Tyrant Smasher
+auto=counter(0/0,5,loyalty)
+auto=lord(other creature|myBattlefield) haste
+auto={C(0/0,-1,Loyalty)}:target(creature) 2/1 && haste ueot && _SCRY_(1)
+text=Creatures you control have haste. -- -1: Target creature gets +2/+1 and gains haste until end of turn. Scry 1.
+mana={2}{RG}{RG}
+type=Legendary Planeswalker
+subtype=Samut
+[/card]
+
+[card]
+name=Sarkhan the Masterless
+auto=counter(0/0,5,loyalty)
+auto=lord(dragon|myBattlefield) @each blockers:foreach(creature[attacking]|opponentBattlefield) all(creature[attacking]|Battlefield) damage:1
+auto={C(0/0,1,Loyalty)}:ueot, all(planeswalker|myBattlefield) becomes a 4/4 red dragon creature && flying
+auto={C(0/0,-3,Loyalty)}:create(dragon:creature dragon:4/4:red:flying)
+text=Whenever a creature attacks you or a planeswalker you control, each Dragon you control deals 1 damage to that creature. -- +1: Until end of turn, each planeswalker you control becomes a 4/4 red Dragon creature and gains flying. -- -3: Create a 4/4 red Dragon creature token with flying.
+mana={3}{R}{R}
+type=Legendary Planeswalker
+subtype=Sarkhan
+[/card]
+
+[card]
+name=Sarkhan's Catharsis
+target=player,planeswalker
+auto=damage:5
+text=Sarkhan's Catharsis deals 5 damage to target player or planeswalker.
+mana={4}{R}
+type=Instant
+[/card]
+
+[card]
+name=Shriekdiver
+abilities=flying
+auto={1}:haste ueot
+text=Flying -- {1}: Shriekdiver gains haste until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Zombie Bird Warrior
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Silent Submersible
+auto=@combatdamaged(player,planeswalker) from(this):draw:1
+auto={crew(other creature[power>=2]|myBattlefield)}:name(crew 2 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~1}
+auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}:name(crew 2 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~1}
+text=Whenever Silent Submersible deals combat damage to a player or planeswalker, draw a card. -- Crew 2 (Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={U}{U}
+type=Artifact
+subtype=Vehicle
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Single Combat
+text=Each player chooses a creature or planeswalker they control, then sacrifices the rest. Players can't cast creature or planeswalker spells until the end of your next turn.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Sky Theater Strix
+abilities=flying
+auto=@movedTo(*[-creature]|mystack):1/0 ueot
+text=Flying -- Whenever you cast a noncreature spell, Sky Theater Strix gets +1/+0 until end of turn.
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Snarespinner
+abilities=reach
+auto=@combat(blocking) source(this) from(creature[flying]):all(this) 2/0 ueot
+text=Reach -- Whenever Snarespinner blocks a creature with flying, Snarespinner gets +2/+0 until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Spider
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Solar Blaze
+auto=lord(creature) dynamicability<!mytgt powerstrike itself!>
+text=Each creature deals damage to itself equal to its power.
+mana={2}{R}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Sorin, Vengeful Bloodlord
+auto=counter(0/0,4,loyalty)
+auto=this(variable{controllerturn}>0) lord(creature,planeswalker|myBattlefield) lifelink
+auto={C(0/0,2,Loyalty)}:damage:1 target(player,planeswalker)
+auto={C(0/0,-1,Loyalty)}:target(creature[manacost<=1]|mygraveyard) moveTo(mybattlefield)
+text=As long as it's your turn, creatures and planeswalkers you control have lifelink. -- +2: Sorin, Vengeful Bloodlord deals 1 damage to target player or planeswalker. -- -X: Return target creature card with converted mana cost X from your graveyard to the battlefield. That creature is a Vampire in addition to its other types.
+mana={2}{W}{B}
+type=Legendary Planeswalker
+subtype=Sorin
+[/card]
+
+[card]
+name=Soul Diviner
+auto={T}{C(1/1,-1)}:draw:1
+auto={T}{C(0/0,-1,Loyalty)}:draw:1
+text={T}, Remove a counter from an artifact, creature, land, or planeswalker you control: Draw a card.
+mana={U}{B}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Spark Double
+auto=may copy NotATarget(creature,planeswalker) and!( transforms((-legendary)) forever )!
+auto=counter(1/1)
+auto=counter(0/0,1,Loyalty)
+text=You may have Spark Double enter the battlefield as a copy of a creature or planeswalker you control, except it enters with an additional +1/+1 counter on it if it's a creature, it enters with an additional loyalty counter on it if it's a planeswalker, and it isn't legendary if that permanent is legendary.
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=0
+toughness=0
+[/card]
+
+[card]
+name=Spark Harvest
+target=creature,planeswalker
+auto=destroy
+other={3}{B}{B}
+text=As an additional cost to cast this spell, sacrifice a creature or pay {3}{B}. -- Destroy target creature or planeswalker.
+mana={B}{S(creature|myBattlefield)}
+type=Sorcery
+[/card]
+
+[card]
+name=Spark Reaper
+auto={3}{S(*[creature;planeswalker]|myBattlefield)}:life:1 && draw:1
+text={3}, Sacrifice a creature or planeswalker: You gain 1 life and draw a card.
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Spellgorger Weird
+auto=@movedTo(*[-creature]|mystack):counter(1/1)
+text=Whenever you cast a noncreature spell, put a +1/+1 counter on Spellgorger Weird.
+mana={2}{R}
+type=Creature
+subtype=Weird
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Spellkeeper Weird
+auto={2}{T}{S}:target(instant,sorcery|mygraveyard) moveto(ownerhand)
+text={2}, {T}, Sacrifice Spellkeeper Weird: Return target instant or sorcery card from your graveyard to your hand.
+mana={2}{U}
+type=Creature
+subtype=Weird
+power=1
+toughness=4
+[/card]
+
+[card]
+name=Steady Aim
+target=creature
+auto=Untap
+auto=+1/+4
+auto=reach 
+text=Untap target creature. It gets +1/+4 and gains reach until end of turn.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Stealth Mission
+target=creature|myBattlefield
+auto=counter(1/1,2)
+auto=unblockable
+text=Put two +1/+1 counters on target creature you control. That creature can't be blocked this turn.
+mana={2}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Storm the Citadel
+auto=all(creature|myBattlefield) +2/+2
+auto=all(creature|myBattlefield) @combatdamaged(player,planeswalker) from(this):destroy target(artifact,enchantment)
+text=Until end of turn, creatures you control get +2/+2 and gain "Whenever this creature deals combat damage to a player or planeswalker, destroy target artifact or enchantment defending player controls."
+mana={4}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Storrev, Devkarin Lich
+abilities=trample
+auto=@combatdamaged(player,planeswalker) from(this):moveto(ownerhand) target(*[creature;planeswalker;-fresh]|mygraveyard)
+text=Trample -- Whenever Storrev, Devkarin Lich deals combat damage to a player or planeswalker, return to your hand target creature or planeswalker card in your graveyard that wasn't put there this combat.
+mana={1}{B}{B}{G}
+type=Legendary Creature
+subtype=Zombie Elf Wizard
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Sunblade Angel
+abilities=flying,first strike,vigilance,lifelink
+text=Flying, first strike, vigilance, lifelink
+mana={5}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Tamiyo's Epiphany
+auto=_SCRY_(4)
+auto=draw:2
+text=Scry 4, then draw two cards.
+mana={3}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Teferi's Time Twist
+target=*|mybattlefield
+auto=(blink)ueot
+text=Exile target permanent you control. Return that card to the battlefield under its owner's control at the beginning of the next end step. If it enters the battlefield as a creature, it enters with an additional +1/+1 counter on it.
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Teferi, Time Raveler
+auto=counter(0/0,4,loyalty)
+auto=this(variable{controllerturn}>0) maxCast(*)0 opponent
+auto={C(0/0,1,Loyalty)}:lord(sorcery|mycastingzone) flash uynt
+auto={C(0/0,-3,Loyalty)}:target(*[artifact;creature;enchantment) moveTo(ownerhand) && draw:1
+text=Each opponent can cast spells only any time they could cast a sorcery. -- +1: Until your next turn, you may cast sorcery spells as though they had flash. -- -3: Return up to one target artifact, creature, or enchantment to its owner's hand. Draw a card.
+mana={1}{W}{U}
+type=Legendary Planeswalker
+subtype=Teferi
+[/card]
+
+[card]
+name=Tenth District Legionnaire
+abilities=haste
+auto=@targeted(this):counter(1/1) && _SCRY_(1)
+text=Haste -- Whenever you cast a spell that targets Tenth District Legionnaire, put a +1/+1 counter on Tenth District Legionnaire, then scry 1.
+mana={R}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Teyo's Lightshield
+auto=counter(1/1) target(creature|myBattlefield)
+text=When Teyo's Lightshield enters the battlefield, put a +1/+1 counter on target creature you control.
+mana={2}{W}
+type=Creature
+subtype=Illusion
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Teyo, the Shieldmage
+abilities=playershroud
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,-2,Loyalty)}:create(wall:creature wall:0/3:white:defender)
+text=You have hexproof. (You can't be the target of spells or abilities your opponents control.) -- -2: Create a 0/3 white Wall creature token with defender.
+mana={2}{W}
+type=Legendary Planeswalker
+subtype=Teyo
+[/card]
+
+[card]
+name=Tezzeret, Master of the Bridge
+auto=counter(0/0,5,loyalty)
+auto=lord(*[creature;planeswalker]|mycastingzone) affinityartifacts
+auto={C(0/0,2,Loyalty)}:life:-type:artifact:mybattlefield opponent && life:type:artifact:mybattlefield controller
+auto={C(0/0,-3,Loyalty)}:target(artifact|mygraveyard) moveto(ownerhand)
+auto={C(0/0,-8,Loyalty)}:reveal:10 optionone name(Get artifact Cards) all(artifact|reveal) moveto(mybattlefield) optiononeend optiontwo all(*|reveal) moveTo(exile) optiontwoend revealend
+text=Creature and planeswalker spells you cast have affinity for artifacts. -- +2: Tezzeret, Master of the Bridge deals X damage to each opponent, where X is the number of artifacts you control. You gain X life. -- -3: Return target artifact card from your graveyard to your hand. -- -8: Exile the top ten cards of your library. Put all artifact cards from among them onto the battlefield.
+mana={4}{U}{B}
+type=Legendary Planeswalker
+subtype=Tezzeret
+[/card]
+
+[card]
+name=The Elderspell
+target=<anyamount>planeswalker
+auto=destroy && counter(0/0,2,Loyalty) target(planeswalker|myBattlefield)
+text=Destroy any number of target planeswalkers. Choose a planeswalker you control. Put two loyalty counters on it for each planeswalker destroyed this way.
+mana={B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=The Wanderer
+auto=counter(0/0,5,loyalty)
+auto=preventallnoncombatdamage to(other *|myBattlefield|myBattlefield)
+auto=preventallnoncombatdamage to(controller)
+auto={C(0/0,-2,Loyalty)}:exile target(creature[power>=4])
+text=Prevent all noncombat damage that would be dealt to you and other permanents you control. -- -2: Exile target creature with power 4 or greater.
+mana={3}{W}
+type=Legendary Planeswalker
+[/card]
+
+[card]
+name=Thunder Drake
+abilities=flying
+auto=@movedto(*|mystack) restriction{thisturn(*|mystack)~equalto~1}:counter(1/1)
+text=Flying -- Whenever you cast your second spell each turn, put a +1/+1 counter on Thunder Drake.
+mana={3}{U}
+type=Creature
+subtype=Elemental Drake
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Thundering Ceratok
+abilities=trample
+auto=all(other creature|myBattlefield)) trample ueot
+text=Trample -- When Thundering Ceratok enters the battlefield, other creatures you control gain trample until end of turn.
+mana={4}{G}
+type=Creature
+subtype=Rhino
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Tibalt's Rager
+auto=_DIES_damage:1 target(creature,player)
+auto={1}{R}:2/0 ueot
+text=When Tibalt's Rager dies, it deals 1 damage to any target. -- {1}{R}: Tibalt's Rager gets +2/+0 until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Devil
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Tibalt, Rakish Instigator
+auto=counter(0/0,5,loyalty)
+abilities=nolifegainopponent
+auto={C(0/0,-2,Loyalty)}:create(devil:creature devil:1/1:red:@movedTo(this|graveyard) from(battlefield):damage:1 target(creature,player))
+text=Your opponents can't gain life. -- -2: Create a 1/1 red Devil creature token with "Whenever this creature dies, it deals 1 damage to any target."
+mana={2}{R}
+type=Legendary Planeswalker
+subtype=Tibalt
+[/card]
+
+[card]
+name=Time Wipe
+auto=notatarget(creature|myBattlefield) moveto(ownerhand)
+auto=destroy all(creature)
+text=Return a creature you control to its owner's hand, then destroy all creatures.
+mana={2}{W}{W}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Tithebearer Giant
+auto=draw:1 && life:-1
+text=When Tithebearer Giant enters the battlefield, you draw a card and you lose 1 life.
+mana={5}{B}
+type=Creature
+subtype=Giant Warrior
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Toll of the Invasion
+target=opponent
+auto=reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) target(<1>*[-land]|reveal) moveto(ownerhand) and!( transforms((,newability[reject],newability[all(*|reveal) moveto(ownerhand)])) oneshot )! optiononeend optiontwo name(look) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )! optiontwoend afterrevealed transforms((,newability[_AMASS_(1) controller])) oneshot afterrevealedend revealend
+text=Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. -- Amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Tolsimir, Friend to Wolves
+auto=create(Voja, Friend to Elves:legendary wolf creature:3/3:green:white)
+auto=@movedto(wolf|myBattlefield):life:3
+auto=@movedto(wolf|myBattlefield):all(trigger[to]) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot 
+text=When Tolsimir, Friend to Wolves enters the battlefield, create Voja, Friend to Elves, a legendary 3/3 green and white Wolf creature token. -- Whenever a Wolf enters the battlefield under your control, you gain 3 life and that creature fights up to one target creature an opponent controls.
+mana={2}{G}{G}{W}
+type=Legendary Creature
+subtype=Elf Scout
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Topple the Statue
+target=*
+auto=Tap 
+auto=teach(artifact) destroy
+auto=draw:1
+text=Tap target permanent. If it's an artifact, destroy it. -- Draw a card.
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Trusted Pegasus
+abilities=flying
+auto=@combat(attacking) source(this):target(creature[attacking;-flying]) flying ueot
+text=Flying -- Whenever Trusted Pegasus attacks, target attacking creature without flying gains flying until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Pegasus
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Turret Ogre
+abilities=reach
+auto=aslongas(other creature[power>=4]|myBattlefield) damage:2 opponent
+text=Reach -- When Turret Ogre enters the battlefield, if you control another creature with power 4 or greater, Turret Ogre deals 2 damage to each opponent.
+mana={3}{R}
+type=Creature
+subtype=Ogre Warrior
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Tyrant's Scorn
+auto=destroy target(creature[manacost<=3])
+auto=moveTo(ownerHand) target(creature)
+text=Choose one — -- • Destroy target creature with converted mana cost 3 or less. -- • Return target creature to its owner's hand.
+mana={U}{B}
+type=Instant
+[/card]
+
+[card]
+name=Ugin's Conjurant
+auto=counter{1/1,X}
+auto=this(counter{1/1.1}>0) phantom
+text=Ugin's Conjurant enters the battlefield with X +1/+1 counters on it. -- If damage would be dealt to Ugin's Conjurant while it has a +1/+1 counter on it, prevent that damage and remove that many +1/+1 counters from Ugin's Conjurant.
+mana={X}
+type=Creature
+subtype=Spirit Monk
+power=0
+toughness=0
+[/card]
+
+[card]
+name=Ugin, the Ineffable
+auto=counter(0/0,4,loyalty)
+auto=lord(*[colorless]|mycastingzone) altercost(colorless,-2)
+auto={C(0/0,1,Loyalty)}:create(spirit:creature spirit:2/2:colorless)
+auto={C(0/0,-3,Loyalty)}:destroy target(*[white;blue;black;red;green])
+text=Colorless spells you cast cost {2} less to cast. -- +1: Exile the top card of your library face down and look at it. Create a 2/2 colorless Spirit creature token. When that token leaves the battlefield, put the exiled card into your hand. -- -3: Destroy target permanent that's one or more colors.
+mana={6}
+type=Legendary Planeswalker
+subtype=Ugin
+[/card]
+
+[card]
+name=Unlikely Aid
+target=creature
+auto=+2/+0
+auto=indestructible  
+text=Target creature gets +2/+0 and gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Vampire Opportunist
+auto={6}{B}:life:-2 opponent && life:2 controller
+text={6}{B}: Each opponent loses 2 life and you gain 2 life.
+mana={1}{B}
+type=Creature
+subtype=Vampire
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Vivien's Arkbow
+auto={X}{T}{D(*|myhand)}:reveal:x optionone target(creature[manacost<=x]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put in library) all(*|reveal) moveto(mylibrary) optiontwoend revealend
+text={X}, {T}, Discard a card: Look at the top X cards of your library. You may put a creature card with converted mana cost X or less from among them onto the battlefield. Put the rest on the bottom of your library in a random order.
+mana={1}{G}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Vivien's Grizzly
+auto={3}{G}:reveal:1 optionone target(creature,planeswalker|reveal) moveto(myhand) optiononeend optiontwo name(Put in library) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend
+text={3}{G}: Look at the top card of your library. If it's a creature or planeswalker card, you may reveal it and put it into your hand. If you don't put the card into your hand, put it on the bottom of your library.
+mana={2}{G}
+type=Creature
+subtype=Bear Spirit
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Vivien, Champion of the Wilds
+auto=counter(0/0,4,loyalty)
+auto=lord(creature|mycastingzone) flash
+auto={C(0/0,1,Loyalty)}:target(creature) vigilance && reach uynt
+auto={C(0/0,-2,Loyalty)}:reveal:3 optionone name(Get a card) target(<1>creature|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
+text=You may cast creature spells as though they had flash. -- +1: Until your next turn, up to one target creature gains vigilance and reach. -- -2: Look at the top three cards of your library. Exile one face down and put the rest on the bottom of your library in any order. For as long as it remains exiled, you may look at that card and you may cast it if it's a creature card.
+mana={2}{G}
+type=Legendary Planeswalker
+subtype=Vivien
+[/card]
+
+[card]
+name=Vizier of the Scorpion
+auto=_AMASS_(1)
+auto=lord(Zombie[token]|myBattlefield) deathtouch
+text=When Vizier of the Scorpion enters the battlefield, amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.) -- Zombie tokens you control have deathtouch.
+mana={2}{B}
+type=Creature
+subtype=Zombie Wizard
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Vraska's Finisher
+auto=destroy target(*[creature;planeswalker;damaged]|opponentBattlefield)
+text=When Vraska's Finisher enters the battlefield, destroy target creature or planeswalker an opponent controls that was dealt damage this turn.
+mana={2}{B}
+type=Creature
+subtype=Gorgon Assassin
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Vraska, Swarm's Eminence
+auto=counter(0/0,5,loyalty)
+auto=lord(creature[deathtouch]|myBattlefield) @combatdamaged(player,planeswalker) from(this):counter(1/1)
+auto={C(0/0,-2,Loyalty)}:create(assassin:creature assassin:1/1:black:deathtouch)
+text=Whenever a creature you control with deathtouch deals damage to a player or planeswalker, put a +1/+1 counter on that creature. -- -2: Create a 1/1 black Assassin creature token with deathtouch and "Whenever this creature deals damage to a planeswalker, destroy that planeswalker."
+mana={2}{BG}{BG}
+type=Legendary Planeswalker
+subtype=Vraska
+[/card]
+
+[card]
+name=Wall of Runes
+abilities=defender
+auto=_SCRY_(1)
+text=Defender -- When Wall of Runes enters the battlefield, scry 1.
+mana={U}
+type=Creature
+subtype=Wall
+power=0
+toughness=4
+[/card]
+
+[card]
+name=Wanderer's Strike
+target=creature
+auto=moveto(exile)
+auto=_PROLIFERATE_
+text=Exile target creature, then proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+mana={4}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=War Screecher
+abilities=flying
+auto={5}{W}{T}:all(other creature|myBattlefield)) 1/1
+text=Flying -- {5}{W}, {T}: Other creatures you control get +1/+1 until end of turn.
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Wardscale Crocodile
+abilities=opponentshroud
+text=Hexproof (This creature can't be the target of spells or abilities your opponents control.)
+mana={4}{G}
+type=Creature
+subtype=Crocodile
+power=5
+toughness=3
+[/card]
+
+[card]
+name=Widespread Brutality
+auto=_AMASS_(2) && all(creature[-army]) damage:power
+text=Amass 2, then the Army you amassed deals damage equal to its power to each non-Army creature. (To amass 2, put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
+mana={1}{B}{R}{R}
+type=Sorcery
+[/card]

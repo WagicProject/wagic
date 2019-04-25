@@ -1,0 +1,420 @@
+grade=borderline
+[card]
+name=Arahbo, Roar of the World
+auto=@each my combatbegins:target(other cat|myBattlefield) 3/3 ueot
+auto=@combat(attacking) source(cat|mybattlefield):all(trigger[to]) pay[[{1}{G}{W}]] trample && dynamicability<!mytgt powerpumpboth!>
+text=Eminence — At the beginning of combat on your turn, if Arahbo, Roar of the World is in the command zone or on the battlefield, another target Cat you control gets +3/+3 until end of turn. -- Whenever another Cat you control attacks, you may pay {1}{G}{W}. If you do, it gains trample and gets +X/+X until end of turn, where X is its power.
+mana={3}{G}{W}
+type=Legendary Creature
+subtype=Cat Avatar
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Balan, Wandering Knight
+auto=this(gear > 1) double strike
+auto={1}{W}:all(equipment|mybattlefield) newhook
+text=First strike -- Balan, Wandering Knight has double strike as long as two or more Equipment are attached to it. -- {1}{W}: Attach all Equipment you control to Balan.
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=Cat Knight
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Bloodforged Battle-Axe
+auto=teach(creature) 2/0
+auto=teach(creature) @combatdamaged(player) from(mytgt):clone all(this)
+auto={2}:equip
+text=Equipped creature gets +2/+0. -- Whenever equipped creature deals combat damage to a player, create a token that's a copy of Bloodforged Battle-Axe. -- Equip {2}
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Bloodline Necromancer
+abilities=lifelink
+auto=may target(creature[vampire;wizard]|mygraveyard) moveTo(mybattlefield)
+text=Lifelink -- When Bloodline Necromancer enters the battlefield, you may return target Vampire or Wizard creature card from your graveyard to the battlefield.
+mana={4}{B}
+type=Creature
+subtype=Vampire Wizard
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Bloodsworn Steward
+abilities=flying
+text=Flying -- Commander creatures you control get +2/+2 and have haste.
+mana={2}{R}{R}
+type=Creature
+subtype=Vampire Knight
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Boneyard Scourge
+abilities=flying
+autograveyard=@movedTo(other Dragon|mygraveyard) from(myBattlefield):may pay({1}{b}) moveTo(mybattlefield)
+text=Flying -- Whenever a Dragon you control dies while Boneyard Scourge is in your graveyard, you may pay {1}{B}. If you do, return Boneyard Scourge from your graveyard to the battlefield.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Dragon
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Crimson Honor Guard
+abilities=trample
+auto=@each my end:damage:4 controller
+auto=@each opponent end:damage:4 opponent
+text=Trample -- At the beginning of each player's end step, Crimson Honor Guard deals 4 damage to that player unless they control a commander.
+mana={3}{R}{R}
+type=Creature
+subtype=Vampire Knight
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Curse of Bounty
+target=player
+auto=@combat(attacking) source(creature|myBattlefield) restriction(once):untap all(*[-land]|myBattlefield)
+text=Enchant player -- Whenever enchanted player is attacked, untap all nonland permanents you control. Each opponent attacking that player untaps all nonland permanents they control.
+mana={1}{G}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+
+[card]
+name=Curse of Disturbance
+target=player
+auto=@combat(attacking) source(creature|myBattlefield) restriction(once):create(zombie:creature zombie:2/2:black)
+text=Enchant player -- Whenever enchanted player is attacked, create a 2/2 black Zombie creature token. Each opponent attacking that player does the same.
+mana={2}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+
+[card]
+name=Curse of Opulence
+target=player
+auto=@combat(attacking) source(creature|myBattlefield) restriction(once):token(435451)
+text=Enchant player -- Whenever enchanted player is attacked, create a colorless artifact token named Gold. It has "Sacrifice this artifact: Add one mana of any color." Each opponent attacking that player does the same.
+mana={R}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+
+[card]
+name=Curse of Verbosity
+target=player
+auto=@combat(attacking) source(creature|myBattlefield) restriction(once):draw:1
+text=Enchant player -- Whenever enchanted player is attacked, you draw a card. Each opponent attacking that player does the same.
+mana={2}{U}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+
+[card]
+name=Curse of Vitality
+target=player
+auto=@combat(attacking) source(creature|myBattlefield) restriction(once):life:2
+text=Enchant player -- Whenever enchanted player is attacked, you gain 2 life. Each opponent attacking that player does the same.
+mana={2}{W}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+
+[card]
+name=Disrupt Decorum
+auto=mustattack all(creature|opponentBattlefield) uynt
+text=Goad all creatures you don't control. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Edgar Markov
+abilities=first strike,haste
+auto=@movedTo(nother Vampire|mystack):create(vampire:creature vampire:1/1:black)
+auto=@combat(attacking) source(this):counter(1/1) all(vampire|myBattlefield)
+text=Eminence — Whenever you cast another Vampire spell, if Edgar Markov is in the command zone or on the battlefield, create a 1/1 black Vampire creature token. -- First strike, haste -- Whenever Edgar Markov attacks, put a +1/+1 counter on each Vampire you control.
+mana={3}{R}{W}{B}
+type=Legendary Creature
+subtype=Vampire Knight
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Fractured Identity
+target=*[-land]
+auto=moveto(exile)
+auto=clone
+text=Exile target nonland permanent. Each player other than its controller creates a token that's a copy of it.
+mana={3}{W}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Galecaster Colossus
+auto={T(wizard|myBattlefield)}:target(*[-land]|opponentBattlefield) moveTo(ownerHand)
+text=Tap an untapped Wizard you control: Return target nonland permanent you don't control to its owner's hand.
+mana={5}{U}{U}
+type=Creature
+subtype=Giant Wizard
+power=5
+toughness=6
+[/card]
+
+[card]
+name=Hammer of Nazahn
+auto=may rehook target(creature)
+auto=@movedTo(equipment|mybattlefield):
+auto=teach(creature) 2/0
+auto=teach(creature) indestructible
+auto={4}:equip
+text=Whenever Hammer of Nazahn or another Equipment enters the battlefield under your control, you may attach that Equipment to target creature you control. -- Equipped creature gets +2/+0 and has indestructible. -- Equip {4}
+mana={4}
+type=Legendary Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Hungry Lynx
+abilities=deathtouch
+auto=lord(cat|myBattlefield) protection from(rat)
+auto=@each my endofturn:create(rat:rat creature:1/1:black:deathtouch) opponent
+auto=@movedTo(rat|graveyard) from(battlefield):counter(1/1) all(cat|myBattlefield)
+text=Cats you control have protection from Rats. (They can't be blocked, targeted, or dealt damage by Rats.) -- At the beginning of your end step, target opponent creates a 1/1 black Rat creature token with deathtouch. -- Whenever a Rat dies, put a +1/+1 counter on each Cat you control.
+mana={1}{G}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Inalla, Archmage Ritualist
+auto=@movedto(other wizard[-token]|mybattlefield):all(trigger[to]) pay[[{1}]] clone with(unearth,haste)
+auto={T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}:target(player) life:-7
+text=Eminence — Whenever another nontoken Wizard enters the battlefield under your control, if Inalla, Archmage Ritualist is in the command zone or on the battlefield, you may pay {1}. If you do, create a token that's a copy of that Wizard. The token gains haste. Exile it at the beginning of the next end step. -- Tap five untapped Wizards you control: Target player loses 7 life.
+mana={2}{U}{B}{R}
+type=Legendary Creature
+subtype=Human Wizard
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Kess, Dissident Mage
+abilities=flying
+auto={0}:target(instant,sorcery|mygraveyard) tempflashback ueot myTurnOnly limit:1
+text=Flying -- During each of your turns, you may cast an instant or sorcery card from your graveyard. If a card cast this way would be put into your graveyard, exile it instead.
+mana={1}{U}{B}{R}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Kindred Boon
+auto=chooseatype transforms((,newability[{1}{W}:target(creature[chosentype]|myBattlefield) counter(0/0.1.divinity)])) forever chooseend
+auto=lord(creature[counter{0/0.1.divinity}]) indestructible
+text=As Kindred Boon enters the battlefield, choose a creature type. -- {1}{W}: Put a divinity counter on target creature you control of the chosen type. -- Each creature you control with a divinity counter on it has indestructible.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Kindred Charge
+auto=chooseatype clone with(treason,haste) all(creature[chosentype]|mybattlefield) chooseend
+text=Choose a creature type. For each creature you control of the chosen type, create a token that's a copy of that creature. Those tokens gain haste. Exile them at the beginning of the next end step.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Kindred Discovery
+auto=chooseatype transforms((,newability[@movedTo(creature[chosentype]|mybattlefield)}:draw:1], newability[@combat(attacking) source(creature[chosentype]|mybattlefield)}:draw:1])) forever chooseend
+text=As Kindred Discovery enters the battlefield, choose a creature type. -- Whenever a creature you control of the chosen type enters the battlefield or attacks, draw a card.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Kindred Dominance
+auto=chooseatype destroy all(creature[-chosentype]) chooseend
+text=Choose a creature type. Destroy all creatures that aren't of the chosen type.
+mana={5}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Licia, Sanguine Tribune
+abilities=first strike,lifelink
+anyzone=this(variable{lifegain}=1) changecost(colorless:-1) forcedalive
+anyzone=this(variable{lifegain}=2) changecost(colorless:-2) forcedalive
+anyzone=this(variable{lifegain}=3) changecost(colorless:-3) forcedalive
+anyzone=this(variable{lifegain}=4) changecost(colorless:-4) forcedalive
+anyzone=this(variable{lifegain}=5) changecost(colorless:-5) forcedalive
+anyzone=this(variable{lifegain}=6) changecost(colorless:-6) forcedalive
+anyzone=this(variable{lifegain}=7) changecost(colorless:-7) forcedalive
+anyzone=this(variable{lifegain}=8) changecost(colorless:-8) forcedalive
+anyzone=this(variable{lifegain}=9) changecost(colorless:-9) forcedalive
+auto={L:5}:counter(1/1,3) myTurnOnly limit:1
+text=This spell costs {1} less to cast for each 1 life you gained this turn. -- First strike, lifelink -- Pay 5 life: Put three +1/+1 counters on Licia, Sanguine Tribune. Activate this ability only during your turn and only once each turn.
+mana={5}{R}{W}{B}
+type=Legendary Creature
+subtype=Vampire Soldier
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Mathas, Fiend Seeker
+abilities=menace
+auto=@each my endofturn:target(creature|opponentBattlefield) (transforms((,newability[counter(0/0.1.Bounty)], newability[@movedto(this|mygraveyard):draw:1 opponent && life:2 opponent)]))
+text=Menace -- At the beginning of your end step, put a bounty counter on target creature an opponent controls. For as long as that creature has a bounty counter on it, it has "When this creature dies, each opponent draws a card and gains 2 life."
+mana={R}{W}{B}
+type=Legendary Creature
+subtype=Vampire
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Mirri, Weatherlight Duelist
+abilities=first strike
+auto=aslongas(this[tapped]) lord(creature[-attacking]|opponentbattlefield) cantattack
+auto=aslongas(this[tapped]) lord(creature[-attacking]|opponentbattlefield) cantpwattack
+auto=@combat(attacking) source(this):aslongas(creature[blocking]|opponentBattlefield) lord(creature[-blocking]|opponentbattlefield) cantblock
+text=First strike -- Whenever Mirri, Weatherlight Duelist attacks, each opponent can't block with more than one creature this combat. -- As long as Mirri, Weatherlight Duelist is tapped, no more than one creature can attack you each combat.
+mana={1}{G}{W}
+type=Legendary Creature
+subtype=Cat Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Nazahn, Revered Bladesmith
+auto=choice moveTo(myHand) target(equipment[-Hammer of Nazahn]|myLibrary)
+auto=choice moveTo(myBattlefield) target(Hammer of Nazahn|myLibrary)
+auto=@combat(attacking) source(creature[geared]|mybattlefield):may tap target(creature|opponentBattlefield)
+text=When Nazahn, Revered Bladesmith enters the battlefield, search your library for an Equipment card and reveal it. If you reveal a card named Hammer of Nazahn this way, put it onto the battlefield. Otherwise, put that card into your hand. Then shuffle your library. -- Whenever an equipped creature you control attacks, you may tap target creature defending player controls.
+mana={4}{G}{W}
+type=Legendary Creature
+subtype=Cat Artificer
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Patron of the Vein
+abilities=flying
+auto=destroy target(creature|opponentBattlefield)
+auto=@movedTo(creature|graveyard) from(opponentbattlefield):all(trigger[from]) moveto(exile) && counter(1/1)all(vampire|myBattlefield)
+text=Flying -- When Patron of the Vein enters the battlefield, destroy target creature an opponent controls. -- Whenever a creature an opponent controls dies, exile it and put a +1/+1 counter on each Vampire you control.
+mana={4}{B}{B}
+type=Creature
+subtype=Vampire Shaman
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Qasali Slingers
+abilities=reach
+auto=may destroy target(artifact,enchantment)
+auto=@movedTo(cat|myBattlefield):may destroy target(artifact,enchantment)
+text=Reach -- Whenever Qasali Slingers or another Cat enters the battlefield under your control, you may destroy target artifact or enchantment.
+mana={4}{G}
+type=Creature
+subtype=Cat Warrior
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Ramos, Dragon Engine
+abilities=flying
+auto=@movedTo(*[white]|mystack):counter(1/1)
+auto=@movedTo(*[blue]|mystack):counter(1/1)
+auto=@movedTo(*[black]|mystack):counter(1/1)
+auto=@movedTo(*[red]|mystack):counter(1/1)
+auto=@movedTo(*[green]|mystack):counter(1/1)
+auto={C(1/1,-5)}:Add {W}{W}{U}{U}{B}{B}{R}{R}{G}{G} limit:1
+text=Flying -- Whenever you cast a spell, put a +1/+1 counter on Ramos, Dragon Engine for each of that spell's colors. -- Remove five +1/+1 counters from Ramos: Add {W}{W}{U}{U}{B}{B}{R}{R}{G}{G}. Activate this ability only once each turn.
+mana={6}
+type=Legendary Artifact Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Scalelord Reckoner
+abilities=flying
+auto=@targeted(dragon|mybattlefield) from(*|opponentbattlefield,opponenthand,opponentstack,opponentgraveyard,opponentexile,opponentlibrary):destroy target(*[-land]|opponentBattlefield)
+text=Flying -- Whenever a Dragon you control becomes the target of a spell or ability an opponent controls, destroy target nonland permanent that player controls.
+mana={3}{W}{W}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Territorial Hellkite
+abilities=flying,haste
+auto=@combat(attacking) source(this):frozen
+text=Flying, haste -- At the beginning of combat on your turn, choose an opponent at random that Territorial Hellkite didn't attack during your last combat. Territorial Hellkite attacks that player this combat if able. If you can't choose an opponent this way, tap Territorial Hellkite.
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=6
+toughness=5
+[/card]
+
+[card]
+name=The Ur-Dragon
+abilities=flying
+auto=lord(dragon|mycastingzone) altercost(colorless, -1)
+auto=@combat(attacking) source(dragon|myBattlefield) restriction(once):may moveTo(myBattlefield) target(*[-instant;-sorcery]|myHand)
+auto=@combat(attacking) source(dragon|myBattlefield):draw:1
+text=Eminence — As long as The Ur-Dragon is in the command zone or on the battlefield, other Dragon spells you cast cost {1} less to cast. -- Flying -- Whenever one or more Dragons you control attack, draw that many cards, then you may put a permanent card from your hand onto the battlefield.
+mana={4}{W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Dragon Avatar
+power=10
+toughness=10
+[/card]
+
+[card]
+name=Traverse the Outlands
+auto=moveTo(myBattlefield) and!(tap(noevent))! target(<upto:power:highest:*:mybattlefield>land[basic]|myLibrary)
+text=Search your library for up to X basic land cards, where X is the greatest power among creatures you control. Put those cards onto the battlefield tapped, then shuffle your library.
+mana={4}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Wasitora, Nekoru Queen
+abilities=flying,trample
+auto=@combatdamaged(player) from(this):if type(creature|opponentBattlefield)~morethan~0 then ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent else create(cat dragon:creature cat dragon:3/3:black:red:green:flying)
+text=Flying, trample -- Whenever Wasitora, Nekoru Queen deals combat damage to a player, that player sacrifices a creature. If the player can't, you create a 3/3 black, red, and green Cat Dragon creature token with flying.
+mana={2}{B}{R}{G}
+type=Legendary Creature
+subtype=Cat Dragon
+power=5
+toughness=4
+[/card]
