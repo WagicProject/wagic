@@ -4549,6 +4549,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_GOOD;
 	 if (dynamic_cast<AARemoveAllCounter *> (a))
          return BAKA_EFFECT_BAD;
+	 if (dynamic_cast<AAProliferate *> (a))
+		 return BAKA_EFFECT_GOOD;
 
     // Equipment that gets immediately attached. Todo: check the abilities associated with Equip, to make sure they're good (for now it seems to be the majority of the cases)?
     if (dynamic_cast<AEquip *> (a))

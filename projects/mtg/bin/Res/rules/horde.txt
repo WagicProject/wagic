@@ -1,5 +1,5 @@
 include mtg.txt
-name=Horde
+name=Tribal Wars
 unlock=prx_horde
 [INIT]
 mode=horde

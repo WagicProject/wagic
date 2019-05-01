@@ -710,6 +710,13 @@ int OrderedAIAction::getEfficiency()
 	{
 		if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER))
 			efficiency += 40;
+		else if(ability->source->hasType(Subtypes::TYPE_LAND))
+			{ // probably a shockland, don't pay life if hand is empty
+				if (p->life<=2)
+					// check that's not a manland(like Celestial Colonnade)
+					if(efficiency < 50)
+						efficiency = 0;
+			} 
 	}
 
 	SAFE_DELETE(transAbility);
