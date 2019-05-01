@@ -927,8 +927,11 @@ toughness=2
 
 [card]
 name=Sarkhan's Unsealing
-auto=@movedTo(creature[6>=power>=4]|mystack):damage:4 target(creature,player)
-auto=@movedTo(creature[power>=7]|mystack):damage:4 opponent && all(creature,planeswalker) damage:1
+auto=@movedTo(creature[power=4]|mystack):damage:4 target(creature,player)
+auto=@movedTo(creature[power=5]|mystack):damage:4 target(creature,player)
+auto=@movedTo(creature[power=6]|mystack):damage:4 target(creature,player)
+auto=@movedTo(creature[power>=7]|mystack):damage:4 all(creature,planeswalker|opponentBattlefield)
+auto=@movedTo(creature[power>=7]|mystack):damage:4 opponent
 text=Whenever you cast a creature spell with power 4, 5, or 6, Sarkhan's Unsealing deals 4 damage to any target. -- Whenever you cast a creature spell with power 7 or greater, Sarkhan's Unsealing deals 4 damage to each opponent and each creature and planeswalker they control.
 mana={3}{R}
 type=Enchantment

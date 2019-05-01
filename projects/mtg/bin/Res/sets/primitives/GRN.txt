@@ -1062,8 +1062,8 @@ type=Instant
 
 [card]
 name=Circuitous Route
-aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(<upto:2>land[basic;gate]|myLibrary)
-auto=name(search card) reveal:plibrarycount optionone name(choose card) target(<upto:2>land[basic;gate]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
+aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(<upto:2>*[basic;gate]|myLibrary)
+auto=name(search card) reveal:plibrarycount optionone name(choose card) target(<upto:2>*[basic;gate]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
 text=Search your library for up to two basic land cards and/or Gate cards, put them onto the battlefield tapped, then shuffle your library.
 mana={3}{G}
 type=Sorcery
@@ -1315,8 +1315,8 @@ toughness=2
 name=Crackling Drake
 abilities=flying
 auto=draw:1
-anyzone=pginstantsorcery/4
-anyzone=peinstantsorcery/4
+anyzone=pginstantsorcery/4 cdaactive
+#anyzone=peinstantsorcery/4 cdaactive
 text=Flying -- Crackling Drake's power is equal to the total number of instant and sorcery cards you own in exile and in your graveyard. -- When Crackling Drake enters the battlefield, draw a card.
 mana={U}{U}{R}{R}
 type=Creature

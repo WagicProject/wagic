@@ -956,7 +956,7 @@ toughness=1
 
 [card]
 name=Light Up the Stage
-auto=moveto(exile) and!(transforms((,canplayfromexile)))! all(*[zpos<=2]|mylibrary)
+auto=moveto(exile) and!(transforms((,canplayfromexile))ueot)! all(*[zpos<=2]|mylibrary)
 text=Spectacle {R} (You may cast this spell for its spectacle cost rather than its mana cost if an opponent lost life this turn.) -- Exile the top two cards of your library. Until the end of your next turn, you may play those cards.
 other={R} name(Spectacle)
 otherrestriction=compare(oplifelost)~morethan~0

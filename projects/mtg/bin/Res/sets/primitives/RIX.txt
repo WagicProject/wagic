@@ -256,10 +256,9 @@ type=Enchantment
 
 [card]
 name=Crashing Tide
-abilities=flash
-target=creature 
-auto=if type(creature[merfolk]|mybattlefield)~lessthan~1 then -flash
-auto=target(creature) moveto(ownerhand)
+auto=if type(creature[merfolk]|mybattlefield)~morethan~0 then asflash
+target=creature
+auto=moveTo(ownerhand)
 auto=draw:1 controller
 text=Crashing Tide has flash as long as you control a Merfolk. -- Return target creature to its owner's hand. -- Draw a card.
 mana={2}{U}

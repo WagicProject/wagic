@@ -469,7 +469,7 @@ toughness=7
 
 [card]
 name=Arcane Adaptation
-auto=chooseatype lord(creature|mybattlefield,mystack,myhand,mylibrary) transforms((,creature chosentype)) chooseend
+auto=chooseatype lord(creature|mybattlefield,mystack,myhand,mylibrary,mysideboard,mygraveyard,myexile) transforms((chosentype)) chooseend
 text=As Arcane Adaptation enters the battlefield, choose a creature type. -- Creatures you control are the chosen type in addition to their other types. The same is true for creature spells you control and creature cards you own that aren't on the battlefield.
 mana={2}{U}
 type=Enchantment
@@ -478,7 +478,7 @@ type=Enchantment
 [card]
 name=Chart a Course
 auto=draw:2 controller
-auto=if type(creature[attacking]) ~lessthan~ 1 then discard(*|myhand)
+auto=if type(creature[attacking])~lessthan~1 then discard(*|myhand)
 text=Draw two cards. Then discard a card unless you attacked with a creature this turn.
 mana={1}{U}
 type=Sorcery
@@ -1104,15 +1104,15 @@ power=1
 toughness=2
 [/card]
 
-[card]
-name=Lurking Chupacabra
-text=Whenever a creature you control explores, target creature an opponent controls gets -2/-2 until end of turn.
-mana={3}{B}
-type=Creature
-subtype=Beast Horror
-power=2
-toughness=3
-[/card]
+#[card]
+#name=Lurking Chupacabra
+#text=Whenever a creature you control explores, target creature an opponent controls gets -2/-2 until end of turn.
+#mana={3}{B}
+#type=Creature
+#subtype=Beast Horror
+#power=2
+#toughness=3
+#[/card]
 
 [card]
 name=March of the Drowned
@@ -1962,7 +1962,7 @@ toughness=1
 
 [card]
 name=Merfolk Branchwalker
-auto=_EXPLORE_
+auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
 text=When Merfolk Branchwalker enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{G}
 type=Creature

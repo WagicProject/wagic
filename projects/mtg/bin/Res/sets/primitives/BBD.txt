@@ -262,7 +262,7 @@ type=Sorcery
 [card]
 name=Skystreamer
 abilities=flying
-auto=target(player) 4 life
+auto=target(player) life:4
 text=Assist (Another player can pay up to {4} of this spell's cost.) -- Flying -- When Skystreamer enters the battlefield, target player gains 4 life.
 mana={4}{W}
 type=Creature
@@ -408,7 +408,7 @@ toughness=2
 
 [card]
 name=Gang Up
-target=creature[power<=X]
+target=creature[power<=prex]
 auto=destroy
 text=Assist (Another player can pay up to {X} of this spell's cost. You choose the value of X.) -- Destroy target creature with power X or less.
 mana={X}{B}

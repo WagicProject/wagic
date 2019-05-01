@@ -1491,7 +1491,7 @@ type=Instant
 
 [card]
 name=Arbor Armament
-target=creature 
+target=creature
 auto=counter(1/1)
 auto=reach
 text=Put a +1/+1 counter on target creature. That creature gains reach until end of turn.

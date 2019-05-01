@@ -60,11 +60,21 @@ name=Karn Liberated
 auto=counter(0/0,6,loyalty)
 auto={C(0/0,4,Loyalty)}:target(player) ability$!moveto(exile) and!( becomes(tobecast) forever )! target(*|myhand)!$ targetedplayer
 auto={C(0/0,-3,Loyalty)}:moveto(exile) and!( becomes(tobecast) forever )! target(*)
-auto={C(0/0,-14,Loyalty)}:moveto(ownerlibrary) all(*|opponenthand) && moveto(ownerlibrary) all(*|opponentgraveyard) && moveto(ownerlibrary) all(*|opponentbattlefield) && moveto(ownerlibrary) all(-tobecast,aura,instant,sorcery|opponentexile) && shuffle && draw:7 opponent && lifeset:startinglife opponent && moveto(ownerlibrary) all(*|myhand) && moveto(ownerlibrary) all(*|mygraveyard) && moveto(ownerlibrary) all(*|mybattlefield) && moveto(ownerlibrary) all(-tobecast,aura,instant,sorcery|myexile) && shuffle && draw:7 && lifeset:startinglife && moveto(myBattlefield) all(tobecast|exile) && all(creature|myBattlefield) haste && removemana(*)
+auto={C(0/0,-14,Loyalty)}:name(ultimate) moveto(ownerlibrary) all(*|opponenthand) && moveto(ownerlibrary) all(*|opponentgraveyard) && moveto(ownerlibrary) all(*|opponentbattlefield) && moveto(ownerlibrary) all(*[-tobecast;aura;instant;sorcery]|opponentexile) && shuffle && draw:7 opponent && lifeset:startinglife opponent && moveto(ownerlibrary) all(*|myhand) && moveto(ownerlibrary) all(*|mygraveyard) && moveto(ownerlibrary) all(*|mybattlefield) && moveto(ownerlibrary) all(*[-tobecast;aura;instant;sorcery]|myexile) && shuffle && draw:7 && lifeset:startinglife && moveto(myBattlefield) all(tobecast|exile) && all(creature|myBattlefield) haste && removemana(*)
 text=+4: Target player exiles a card from their hand. -- -3: Exile target permanent. -- -14: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.
 mana={7}
 type=Legendary Planeswalker
 subtype=Karn
+[/card]
+[card]
+name=Time Vault
+abilities=doesnotuntap
+auto=tap(noevent)
+auto=@each opponent end sourcetap:may (turns:-1 controller) && untapthis
+auto={T}:turns:+1 controller
+text=Time Vault enters the battlefield tapped. -- Time Vault doesn't untap during your untap step. -- If you would begin your turn while Time Vault is tapped, you may skip that turn instead. If you do, untap Time Vault. -- {T}: Take an extra turn after this one.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Akiri, Line-Slinger
@@ -473,7 +483,7 @@ type=Sorcery
 [card]
 name=Mogg Infestation
 target=player
-auto=all(creature|targetedpersonsbattlefield) destroy and!( if cantargetcard(creature|graveyard) then create(Goblin:Creature Goblin:1/1:red)*2 )!
+auto=all(creature|targetedpersonsbattlefield) destroy and!( if cantargetcard(creature|graveyard) then create(Goblin:Creature Goblin:1/1:red)*2 targetedpersonsbattlefield)!
 mana={3}{R}{R}
 type=Sorcery
 text=Destroy all creatures target player controls. For each creature that died this way, put two 1/1 red Goblin creature tokens onto the battlefield under that player's control.
