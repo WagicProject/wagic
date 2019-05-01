@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Ixalan
-year=2017-09-29
+year=2017
 total=289
+block=Ixalan
 [/meta]
 [card]
 primitive=Adanto Vanguard
@@ -10,64 +11,14 @@ id=435152
 rarity=U
 [/card]
 [card]
-primitive=Admiral Beckett Brass
-id=435373
-rarity=M
-[/card]
-[card]
-primitive=Air Elemental
-id=435197
-rarity=U
-[/card]
-[card]
-primitive=Ancient Brontodon
-id=435330
-rarity=C
-[/card]
-[card]
-primitive=Angrath's Marauders
-id=435286
-rarity=R
-[/card]
-[card]
-primitive=Anointed Deacon
-id=435242
-rarity=C
-[/card]
-[card]
-primitive=Arcane Adaptation
-id=435198
-rarity=R
-[/card]
-[card]
-primitive=Temple of Aclazotz
-id=435244
-rarity=R
-[/card]
-[card]
-primitive=Arguel's Blood Fast
-id=435243
-rarity=R
-[/card]
-[card]
 primitive=Ashes of the Abhorrent
 id=435153
 rarity=R
 [/card]
 [card]
-primitive=Atzocan Archer
-id=435331
-rarity=U
-[/card]
-[card]
 primitive=Axis of Mortality
 id=435154
 rarity=M
-[/card]
-[card]
-primitive=Belligerent Brontodon
-id=435374
-rarity=U
 [/card]
 [card]
 primitive=Bellowing Aegisaur
@@ -80,48 +31,8 @@ id=435156
 rarity=R
 [/card]
 [card]
-primitive=Bishop of the Bloodstained
-id=435245
-rarity=U
-[/card]
-[card]
 primitive=Bishop's Soldier
 id=435157
-rarity=C
-[/card]
-[card]
-primitive=Blight Keeper
-id=435246
-rarity=C
-[/card]
-[card]
-primitive=Blinding Fog
-id=435332
-rarity=C
-[/card]
-[card]
-primitive=Bloodcrazed Paladin
-id=435247
-rarity=R
-[/card]
-[card]
-primitive=Blossom Dryad
-id=435333
-rarity=C
-[/card]
-[card]
-primitive=Bonded Horncrest
-id=435287
-rarity=U
-[/card]
-[card]
-primitive=Boneyard Parley
-id=435248
-rarity=M
-[/card]
-[card]
-primitive=Brazen Buccaneers
-id=435288
 rarity=C
 [/card]
 [card]
@@ -130,258 +41,13 @@ id=435158
 rarity=U
 [/card]
 [card]
-primitive=Burning Sun's Avatar
-id=435289
-rarity=R
-[/card]
-[card]
-primitive=Call to the Feast
-id=435375
-rarity=U
-[/card]
-[card]
-primitive=Cancel
-id=435199
-rarity=C
-[/card]
-[card]
-primitive=Captain Lannery Storm
-id=435290
-rarity=R
-[/card]
-[card]
-primitive=Captivating Crew
-id=435291
-rarity=R
-[/card]
-[card]
-primitive=Carnage Tyrant
-id=435334
-rarity=M
-[/card]
-[card]
-primitive=Castaway's Despair
-id=435442
-rarity=C
-[/card]
-[card]
-primitive=Charging Monstrosaur
-id=435292
-rarity=U
-[/card]
-[card]
-primitive=Chart a Course
-id=435200
-rarity=U
-[/card]
-[card]
-primitive=Cobbled Wings
-id=435389
-rarity=C
-[/card]
-[card]
-primitive=Colossal Dreadmaw
-id=435335
-rarity=C
-[/card]
-[card]
-primitive=Commune with Dinosaurs
-id=435336
-rarity=C
-[/card]
-[card]
-primitive=Conqueror's Foothold
-id=435391
-rarity=R
-[/card]
-[card]
-primitive=Conqueror's Galleon
-id=435390
-rarity=R
-[/card]
-[card]
-primitive=Contract Killing
-id=435249
-rarity=C
-[/card]
-[card]
-primitive=Costly Plunder
-id=435250
-rarity=C
-[/card]
-[card]
-primitive=Crash the Ramparts
-id=435337
-rarity=C
-[/card]
-[card]
-primitive=Crushing Canopy
-id=435338
-rarity=C
-[/card]
-[card]
-primitive=Daring Saboteur
-id=435201
-rarity=R
-[/card]
-[card]
-primitive=Dark Nourishment
-id=435251
-rarity=U
-[/card]
-[card]
-primitive=Deadeye Plunderers
-id=435376
-rarity=U
-[/card]
-[card]
-primitive=Deadeye Quartermaster
-id=435202
-rarity=U
-[/card]
-[card]
-primitive=Deadeye Tormentor
-id=435252
-rarity=C
-[/card]
-[card]
-primitive=Deadeye Tracker
-id=435253
-rarity=R
-[/card]
-[card]
-primitive=Deathgorge Scavenger
-id=435339
-rarity=R
-[/card]
-[card]
-primitive=Deathless Ancient
-id=435254
-rarity=U
-[/card]
-[card]
-primitive=Deeproot Champion
-id=435340
-rarity=R
-[/card]
-[card]
-primitive=Deeproot Warrior
-id=435341
-rarity=C
-[/card]
-[card]
-primitive=Deeproot Waters
-id=435203
-rarity=U
-[/card]
-[card]
-primitive=Demolish
-id=435293
-rarity=C
-[/card]
-[card]
 primitive=Demystify
 id=435159
 rarity=C
 [/card]
 [card]
-primitive=Depths of Desire
-id=435204
-rarity=C
-[/card]
-[card]
-primitive=Desperate Castaways
-id=435255
-rarity=C
-[/card]
-[card]
-primitive=Dinosaur Stampede
-id=435294
-rarity=U
-[/card]
-[card]
-primitive=Dire Fleet Captain
-id=435377
-rarity=U
-[/card]
-[card]
-primitive=Dire Fleet Hoarder
-id=435256
-rarity=C
-[/card]
-[card]
-primitive=Dire Fleet Interloper
-id=435257
-rarity=C
-[/card]
-[card]
-primitive=Dire Fleet Ravager
-id=435258
-rarity=M
-[/card]
-[card]
-primitive=Dive Down
-id=435205
-rarity=C
-[/card]
-[card]
-primitive=Lost Vale
-id=435393
-rarity=R
-[/card]
-[card]
-primitive=Dowsing Dagger
-id=435392
-rarity=R
-[/card]
-[card]
-primitive=Dragonskull Summit
-id=435413
-rarity=R
-[/card]
-[card]
-primitive=Dreamcaller Siren
-id=435206
-rarity=R
-[/card]
-[card]
-primitive=Drover of the Mighty
-id=435342
-rarity=U
-[/card]
-[card]
-primitive=Drowned Catacomb
-id=435414
-rarity=R
-[/card]
-[card]
-primitive=Dual Shot
-id=435295
-rarity=C
-[/card]
-[card]
-primitive=Duress
-id=435259
-rarity=C
-[/card]
-[card]
-primitive=Dusk Legion Dreadnought
-id=435394
-rarity=U
-[/card]
-[card]
 primitive=Duskborne Skymarcher
 id=435160
-rarity=U
-[/card]
-[card]
-primitive=Elaborate Firecannon
-id=435395
-rarity=U
-[/card]
-[card]
-primitive=Emergent Growth
-id=435343
 rarity=U
 [/card]
 [card]
@@ -390,109 +56,9 @@ id=435161
 rarity=U
 [/card]
 [card]
-primitive=Emperor's Vanguard
-id=435344
-rarity=R
-[/card]
-[card]
 primitive=Encampment Keeper
 id=435162
 rarity=C
-[/card]
-[card]
-primitive=Entrancing Melody
-id=435207
-rarity=R
-[/card]
-[card]
-primitive=Fathom Fleet Captain
-id=435260
-rarity=R
-[/card]
-[card]
-primitive=Fathom Fleet Cutthroat
-id=435261
-rarity=C
-[/card]
-[card]
-primitive=Fathom Fleet Firebrand
-id=435296
-rarity=C
-[/card]
-[card]
-primitive=Favorable Winds
-id=435208
-rarity=U
-[/card]
-[card]
-primitive=Fell Flagship
-id=435396
-rarity=R
-[/card]
-[card]
-primitive=Field of Ruin
-id=435415
-rarity=U
-[/card]
-[card]
-primitive=Fiery Cannonade
-id=435297
-rarity=U
-[/card]
-[card]
-primitive=Fire Shrine Keeper
-id=435298
-rarity=C
-[/card]
-[card]
-primitive=Firecannon Blast
-id=435299
-rarity=C
-[/card]
-[card]
-primitive=Fleet Swallower
-id=435209
-rarity=R
-[/card]
-[card]
-primitive=Forest
-id=435437
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=435438
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=435439
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=435440
-rarity=L
-[/card]
-[card]
-primitive=Frenzied Raptor
-id=435300
-rarity=C
-[/card]
-[card]
-primitive=Gilded Sentinel
-id=435397
-rarity=C
-[/card]
-[card]
-primitive=Gishath, Sun's Avatar
-id=435378
-rarity=M
-[/card]
-[card]
-primitive=Glacial Fortress
-id=435416
-rarity=R
 [/card]
 [card]
 primitive=Glorifier of Dusk
@@ -503,86 +69,6 @@ rarity=U
 primitive=Goring Ceratops
 id=435164
 rarity=R
-[/card]
-[card]
-primitive=Grasping Current
-id=435443
-rarity=R
-[/card]
-[card]
-primitive=Grazing Whiptail
-id=435345
-rarity=C
-[/card]
-[card]
-primitive=Grim Captain's Call
-id=435262
-rarity=U
-[/card]
-[card]
-primitive=Itlimoc, Cradle of the Sun
-id=435347
-rarity=R
-[/card]
-[card]
-primitive=Growing Rites of Itlimoc
-id=435346
-rarity=R
-[/card]
-[card]
-primitive=Headstrong Brute
-id=435301
-rarity=C
-[/card]
-[card]
-primitive=Headwater Sentries
-id=435210
-rarity=C
-[/card]
-[card]
-primitive=Heartless Pillage
-id=435263
-rarity=U
-[/card]
-[card]
-primitive=Herald of Secret Streams
-id=435211
-rarity=R
-[/card]
-[card]
-primitive=Hierophant's Chalice
-id=435398
-rarity=C
-[/card]
-[card]
-primitive=Hijack
-id=435302
-rarity=C
-[/card]
-[card]
-primitive=Hostage Taker
-id=435379
-rarity=R
-[/card]
-[card]
-primitive=Huatli's Snubhorn
-id=435447
-rarity=C
-[/card]
-[card]
-primitive=Huatli's Spurring
-id=435448
-rarity=U
-[/card]
-[card]
-primitive=Huatli, Dinosaur Knight
-id=435446
-rarity=M
-[/card]
-[card]
-primitive=Huatli, Warrior Poet
-id=435380
-rarity=M
 [/card]
 [card]
 primitive=Imperial Aerosaur
@@ -600,64 +86,9 @@ id=435167
 rarity=U
 [/card]
 [card]
-primitive=Island
-id=435425
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=435426
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=435427
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=435428
-rarity=L
-[/card]
-[card]
 primitive=Ixalan's Binding
 id=435168
 rarity=U
-[/card]
-[card]
-primitive=Ixalli's Diviner
-id=435348
-rarity=C
-[/card]
-[card]
-primitive=Ixalli's Keeper
-id=435349
-rarity=C
-[/card]
-[card]
-primitive=Jace's Sentinel
-id=435444
-rarity=U
-[/card]
-[card]
-primitive=Jace, Cunning Castaway
-id=435212
-rarity=M
-[/card]
-[card]
-primitive=Jace, Ingenious Mind-Mage
-id=435441
-rarity=M
-[/card]
-[card]
-primitive=Jade Guardian
-id=435350
-rarity=C
-[/card]
-[card]
-primitive=Jungle Delver
-id=435351
-rarity=C
 [/card]
 [card]
 primitive=Kinjalli's Caller
@@ -670,21 +101,6 @@ id=435170
 rarity=R
 [/card]
 [card]
-primitive=Kitesail Freebooter
-id=435264
-rarity=U
-[/card]
-[card]
-primitive=Kopala, Warden of Waves
-id=435213
-rarity=R
-[/card]
-[card]
-primitive=Kumena's Speaker
-id=435352
-rarity=U
-[/card]
-[card]
 primitive=Legion Conquistador
 id=435171
 rarity=C
@@ -695,58 +111,18 @@ id=435172
 rarity=C
 [/card]
 [card]
-primitive=Adanto, the First Fort
-id=435174
-rarity=R
-[/card]
-[card]
 primitive=Legion's Landing
 id=435173
 rarity=R
 [/card]
 [card]
-primitive=Lightning Strike
-id=435303
-rarity=U
-[/card]
-[card]
-primitive=Lightning-Rig Crew
-id=435304
-rarity=U
-[/card]
-[card]
-primitive=Lookout's Dispersal
-id=435214
-rarity=U
+primitive=Adanto, the First Fort
+id=435174
+rarity=T
 [/card]
 [card]
 primitive=Looming Altisaur
 id=435175
-rarity=C
-[/card]
-[card]
-primitive=Lurking Chupacabra
-id=435265
-rarity=U
-[/card]
-[card]
-primitive=Makeshift Munitions
-id=435305
-rarity=U
-[/card]
-[card]
-primitive=Marauding Looter
-id=435381
-rarity=U
-[/card]
-[card]
-primitive=March of the Drowned
-id=435266
-rarity=C
-[/card]
-[card]
-primitive=Mark of the Vampire
-id=435267
 rarity=C
 [/card]
 [card]
@@ -755,49 +131,199 @@ id=435176
 rarity=R
 [/card]
 [card]
-primitive=Merfolk Branchwalker
-id=435353
+primitive=Paladin of the Bloodstained
+id=435177
+rarity=C
+[/card]
+[card]
+primitive=Pious Interdiction
+id=435178
+rarity=C
+[/card]
+[card]
+primitive=Priest of the Wakening Sun
+id=435179
+rarity=R
+[/card]
+[card]
+primitive=Pterodon Knight
+id=435180
+rarity=C
+[/card]
+[card]
+primitive=Queen's Commission
+id=435181
+rarity=C
+[/card]
+[card]
+primitive=Rallying Roar
+id=435182
 rarity=U
 [/card]
 [card]
-primitive=Mountain
-id=435433
-rarity=L
+primitive=Raptor Companion
+id=435183
+rarity=C
 [/card]
 [card]
-primitive=Mountain
-id=435434
-rarity=L
+primitive=Ritual of Rejuvenation
+id=435184
+rarity=C
 [/card]
 [card]
-primitive=Mountain
-id=435435
-rarity=L
+primitive=Sanguine Sacrament
+id=435185
+rarity=R
 [/card]
 [card]
-primitive=Mountain
-id=435436
-rarity=L
+primitive=Settle the Wreckage
+id=435186
+rarity=R
+[/card]
+[card]
+primitive=Sheltering Light
+id=435187
+rarity=U
+[/card]
+[card]
+primitive=Shining Aerosaur
+id=435188
+rarity=C
+[/card]
+[card]
+primitive=Skyblade of the Legion
+id=435189
+rarity=C
+[/card]
+[card]
+primitive=Slash of Talons
+id=435190
+rarity=C
+[/card]
+[card]
+primitive=Steadfast Armasaur
+id=435191
+rarity=U
+[/card]
+[card]
+primitive=Sunrise Seeker
+id=435192
+rarity=C
+[/card]
+[card]
+primitive=Territorial Hammerskull
+id=435193
+rarity=C
+[/card]
+[card]
+primitive=Tocatli Honor Guard
+id=435194
+rarity=R
+[/card]
+[card]
+primitive=Vampire's Zeal
+id=435195
+rarity=C
+[/card]
+[card]
+primitive=Wakening Sun's Avatar
+id=435196
+rarity=M
+[/card]
+[card]
+primitive=Air Elemental
+id=435197
+rarity=U
+[/card]
+[card]
+primitive=Arcane Adaptation
+id=435198
+rarity=R
+[/card]
+[card]
+primitive=Cancel
+id=435199
+rarity=C
+[/card]
+[card]
+primitive=Chart a Course
+id=435200
+rarity=U
+[/card]
+[card]
+primitive=Daring Saboteur
+id=435201
+rarity=R
+[/card]
+[card]
+primitive=Deadeye Quartermaster
+id=435202
+rarity=U
+[/card]
+[card]
+primitive=Deeproot Waters
+id=435203
+rarity=U
+[/card]
+[card]
+primitive=Depths of Desire
+id=435204
+rarity=C
+[/card]
+[card]
+primitive=Dive Down
+id=435205
+rarity=C
+[/card]
+[card]
+primitive=Dreamcaller Siren
+id=435206
+rarity=R
+[/card]
+[card]
+primitive=Entrancing Melody
+id=435207
+rarity=R
+[/card]
+[card]
+primitive=Favorable Winds
+id=435208
+rarity=U
+[/card]
+[card]
+primitive=Fleet Swallower
+id=435209
+rarity=R
+[/card]
+[card]
+primitive=Headwater Sentries
+id=435210
+rarity=C
+[/card]
+[card]
+primitive=Herald of Secret Streams
+id=435211
+rarity=R
+[/card]
+[card]
+primitive=Jace, Cunning Castaway
+id=435212
+rarity=M
+[/card]
+[card]
+primitive=Kopala, Warden of Waves
+id=435213
+rarity=R
+[/card]
+[card]
+primitive=Lookout's Dispersal
+id=435214
+rarity=U
 [/card]
 [card]
 primitive=Navigator's Ruin
 id=435215
 rarity=U
-[/card]
-[card]
-primitive=Nest Robber
-id=435306
-rarity=C
-[/card]
-[card]
-primitive=New Horizons
-id=435354
-rarity=C
-[/card]
-[card]
-primitive=Old-Growth Dryads
-id=435355
-rarity=R
 [/card]
 [card]
 primitive=One With the Wind
@@ -810,19 +336,9 @@ id=435217
 rarity=C
 [/card]
 [card]
-primitive=Otepec Huntmaster
-id=435307
-rarity=U
-[/card]
-[card]
 primitive=Overflowing Insight
 id=435218
 rarity=M
-[/card]
-[card]
-primitive=Paladin of the Bloodstained
-id=435177
-rarity=C
 [/card]
 [card]
 primitive=Perilous Voyage
@@ -830,173 +346,13 @@ id=435219
 rarity=U
 [/card]
 [card]
-primitive=Pillar of Origins
-id=435399
-rarity=U
-[/card]
-[card]
-primitive=Pious Interdiction
-id=435178
-rarity=C
-[/card]
-[card]
-primitive=Pirate's Cutlass
-id=435400
-rarity=C
-[/card]
-[card]
 primitive=Pirate's Prize
 id=435220
 rarity=C
 [/card]
 [card]
-primitive=Plains
-id=435421
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=435422
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=435423
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=435424
-rarity=L
-[/card]
-[card]
-primitive=Pounce
-id=435356
-rarity=C
-[/card]
-[card]
-primitive=Priest of the Wakening Sun
-id=435179
-rarity=R
-[/card]
-[card]
-primitive=Primal Wellspring
-id=435402
-rarity=R
-[/card]
-[card]
-primitive=Primal Amulet
-id=435401
-rarity=R
-[/card]
-[card]
 primitive=Prosperous Pirates
 id=435221
-rarity=C
-[/card]
-[card]
-primitive=Prying Blade
-id=435403
-rarity=C
-[/card]
-[card]
-primitive=Pterodon Knight
-id=435180
-rarity=C
-[/card]
-[card]
-primitive=Queen's Agent
-id=435268
-rarity=C
-[/card]
-[card]
-primitive=Queen's Bay Soldier
-id=435269
-rarity=C
-[/card]
-[card]
-primitive=Queen's Commission
-id=435181
-rarity=C
-[/card]
-[card]
-primitive=Raging Swordtooth
-id=435382
-rarity=U
-[/card]
-[card]
-primitive=Raiders' Wake
-id=435270
-rarity=U
-[/card]
-[card]
-primitive=Rallying Roar
-id=435182
-rarity=U
-[/card]
-[card]
-primitive=Rampaging Ferocidon
-id=435308
-rarity=R
-[/card]
-[card]
-primitive=Ranging Raptors
-id=435357
-rarity=U
-[/card]
-[card]
-primitive=Raptor Companion
-id=435183
-rarity=C
-[/card]
-[card]
-primitive=Raptor Hatchling
-id=435309
-rarity=U
-[/card]
-[card]
-primitive=Ravenous Daggertooth
-id=435358
-rarity=C
-[/card]
-[card]
-primitive=Regisaur Alpha
-id=435383
-rarity=R
-[/card]
-[card]
-primitive=Repeating Barrage
-id=435310
-rarity=R
-[/card]
-[card]
-primitive=Revel in Riches
-id=435271
-rarity=R
-[/card]
-[card]
-primitive=Rigging Runner
-id=435311
-rarity=U
-[/card]
-[card]
-primitive=Rile
-id=435312
-rarity=C
-[/card]
-[card]
-primitive=Ripjaw Raptor
-id=435359
-rarity=R
-[/card]
-[card]
-primitive=Ritual of Rejuvenation
-id=435184
-rarity=C
-[/card]
-[card]
-primitive=River Heralds' Boon
-id=435360
 rarity=C
 [/card]
 [card]
@@ -1010,34 +366,9 @@ id=435223
 rarity=R
 [/card]
 [card]
-primitive=Rootbound Crag
-id=435417
-rarity=R
-[/card]
-[card]
-primitive=Rowdy Crew
-id=435313
-rarity=M
-[/card]
-[card]
-primitive=Ruin Raider
-id=435272
-rarity=R
-[/card]
-[card]
-primitive=Rummaging Goblin
-id=435314
-rarity=C
-[/card]
-[card]
 primitive=Run Aground
 id=435224
 rarity=C
-[/card]
-[card]
-primitive=Ruthless Knave
-id=435273
-rarity=U
 [/card]
 [card]
 primitive=Sailor of Means
@@ -1045,73 +376,18 @@ id=435225
 rarity=C
 [/card]
 [card]
-primitive=Sanctum Seeker
-id=435274
-rarity=R
-[/card]
-[card]
-primitive=Sanguine Sacrament
-id=435185
-rarity=R
-[/card]
-[card]
-primitive=Savage Stomp
-id=435361
-rarity=U
-[/card]
-[card]
-primitive=Azcanta, the Sunken Ruin
-id=435227
-rarity=R
-[/card]
-[card]
 primitive=Search for Azcanta
 id=435226
 rarity=R
 [/card]
 [card]
-primitive=Seekers' Squire
-id=435275
-rarity=U
-[/card]
-[card]
-primitive=Sentinel Totem
-id=435404
-rarity=U
-[/card]
-[card]
-primitive=Settle the Wreckage
-id=435186
-rarity=R
-[/card]
-[card]
-primitive=Shadowed Caravel
-id=435405
-rarity=R
+primitive=Azcanta, the Sunken Ruin
+id=435227
+rarity=T
 [/card]
 [card]
 primitive=Shaper Apprentice
 id=435228
-rarity=C
-[/card]
-[card]
-primitive=Shapers of Nature
-id=435384
-rarity=U
-[/card]
-[card]
-primitive=Shapers' Sanctuary
-id=435362
-rarity=R
-[/card]
-[card]
-primitive=Sheltering Light
-id=435187
-rarity=U
-[/card]
-[card]
-primitive=Shining Aerosaur
-id=435188
 rarity=C
 [/card]
 [card]
@@ -1140,56 +416,6 @@ id=435233
 rarity=C
 [/card]
 [card]
-primitive=Skittering Heartstopper
-id=435276
-rarity=C
-[/card]
-[card]
-primitive=Skulduggery
-id=435277
-rarity=C
-[/card]
-[card]
-primitive=Sky Terror
-id=435385
-rarity=U
-[/card]
-[card]
-primitive=Skyblade of the Legion
-id=435189
-rarity=C
-[/card]
-[card]
-primitive=Skymarch Bloodletter
-id=435278
-rarity=C
-[/card]
-[card]
-primitive=Slash of Talons
-id=435190
-rarity=C
-[/card]
-[card]
-primitive=Sleek Schooner
-id=435406
-rarity=U
-[/card]
-[card]
-primitive=Slice in Twain
-id=435363
-rarity=U
-[/card]
-[card]
-primitive=Snapping Sailback
-id=435364
-rarity=U
-[/card]
-[card]
-primitive=Sorcerous Spyglass
-id=435407
-rarity=R
-[/card]
-[card]
 primitive=Spell Pierce
 id=435234
 rarity=C
@@ -1200,44 +426,9 @@ id=435235
 rarity=R
 [/card]
 [card]
-primitive=Spike-Tailed Ceratops
-id=435365
-rarity=C
-[/card]
-[card]
-primitive=Spreading Rot
-id=435279
-rarity=C
-[/card]
-[card]
-primitive=Star of Extinction
-id=435315
-rarity=M
-[/card]
-[card]
-primitive=Steadfast Armasaur
-id=435191
-rarity=U
-[/card]
-[card]
-primitive=Stone Quarry
-id=435450
-rarity=C
-[/card]
-[card]
 primitive=Storm Fleet Aerialist
 id=435236
 rarity=U
-[/card]
-[card]
-primitive=Storm Fleet Arsonist
-id=435316
-rarity=U
-[/card]
-[card]
-primitive=Storm Fleet Pyromancer
-id=435317
-rarity=C
 [/card]
 [card]
 primitive=Storm Fleet Spy
@@ -1250,9 +441,399 @@ id=435238
 rarity=C
 [/card]
 [card]
-primitive=Sun-Blessed Mount
-id=435449
+primitive=Tempest Caller
+id=435239
+rarity=U
+[/card]
+[card]
+primitive=Watertrap Weaver
+id=435240
+rarity=C
+[/card]
+[card]
+primitive=Wind Strider
+id=435241
+rarity=C
+[/card]
+[card]
+primitive=Anointed Deacon
+id=435242
+rarity=C
+[/card]
+[card]
+primitive=Arguel's Blood Fast
+id=435243
 rarity=R
+[/card]
+[card]
+primitive=Temple of Aclazotz
+id=435244
+rarity=T
+[/card]
+[card]
+primitive=Bishop of the Bloodstained
+id=435245
+rarity=U
+[/card]
+[card]
+primitive=Blight Keeper
+id=435246
+rarity=C
+[/card]
+[card]
+primitive=Bloodcrazed Paladin
+id=435247
+rarity=R
+[/card]
+[card]
+primitive=Boneyard Parley
+id=435248
+rarity=M
+[/card]
+[card]
+primitive=Contract Killing
+id=435249
+rarity=C
+[/card]
+[card]
+primitive=Costly Plunder
+id=435250
+rarity=C
+[/card]
+[card]
+primitive=Dark Nourishment
+id=435251
+rarity=U
+[/card]
+[card]
+primitive=Deadeye Tormentor
+id=435252
+rarity=C
+[/card]
+[card]
+primitive=Deadeye Tracker
+id=435253
+rarity=R
+[/card]
+[card]
+primitive=Deathless Ancient
+id=435254
+rarity=U
+[/card]
+[card]
+primitive=Desperate Castaways
+id=435255
+rarity=C
+[/card]
+[card]
+primitive=Dire Fleet Hoarder
+id=435256
+rarity=C
+[/card]
+[card]
+primitive=Dire Fleet Interloper
+id=435257
+rarity=C
+[/card]
+[card]
+primitive=Dire Fleet Ravager
+id=435258
+rarity=M
+[/card]
+[card]
+primitive=Duress
+id=435259
+rarity=C
+[/card]
+[card]
+primitive=Fathom Fleet Captain
+id=435260
+rarity=R
+[/card]
+[card]
+primitive=Fathom Fleet Cutthroat
+id=435261
+rarity=C
+[/card]
+[card]
+primitive=Grim Captain's Call
+id=435262
+rarity=U
+[/card]
+[card]
+primitive=Heartless Pillage
+id=435263
+rarity=U
+[/card]
+[card]
+primitive=Kitesail Freebooter
+id=435264
+rarity=U
+[/card]
+[card]
+primitive=Lurking Chupacabra
+id=435265
+rarity=U
+[/card]
+[card]
+primitive=March of the Drowned
+id=435266
+rarity=C
+[/card]
+[card]
+primitive=Mark of the Vampire
+id=435267
+rarity=C
+[/card]
+[card]
+primitive=Queen's Agent
+id=435268
+rarity=C
+[/card]
+[card]
+primitive=Queen's Bay Soldier
+id=435269
+rarity=C
+[/card]
+[card]
+primitive=Raiders' Wake
+id=435270
+rarity=U
+[/card]
+[card]
+primitive=Revel in Riches
+id=435271
+rarity=R
+[/card]
+[card]
+primitive=Ruin Raider
+id=435272
+rarity=R
+[/card]
+[card]
+primitive=Ruthless Knave
+id=435273
+rarity=U
+[/card]
+[card]
+primitive=Sanctum Seeker
+id=435274
+rarity=R
+[/card]
+[card]
+primitive=Seekers' Squire
+id=435275
+rarity=U
+[/card]
+[card]
+primitive=Skittering Heartstopper
+id=435276
+rarity=C
+[/card]
+[card]
+primitive=Skulduggery
+id=435277
+rarity=C
+[/card]
+[card]
+primitive=Skymarch Bloodletter
+id=435278
+rarity=C
+[/card]
+[card]
+primitive=Spreading Rot
+id=435279
+rarity=C
+[/card]
+[card]
+primitive=Sword-Point Diplomacy
+id=435280
+rarity=R
+[/card]
+[card]
+primitive=Vanquish the Weak
+id=435281
+rarity=C
+[/card]
+[card]
+primitive=Vicious Conquistador
+id=435282
+rarity=U
+[/card]
+[card]
+primitive=Vraska's Contempt
+id=435283
+rarity=R
+[/card]
+[card]
+primitive=Walk the Plank
+id=435284
+rarity=U
+[/card]
+[card]
+primitive=Wanted Scoundrels
+id=435285
+rarity=U
+[/card]
+[card]
+primitive=Angrath's Marauders
+id=435286
+rarity=R
+[/card]
+[card]
+primitive=Bonded Horncrest
+id=435287
+rarity=U
+[/card]
+[card]
+primitive=Brazen Buccaneers
+id=435288
+rarity=C
+[/card]
+[card]
+primitive=Burning Sun's Avatar
+id=435289
+rarity=R
+[/card]
+[card]
+primitive=Captain Lannery Storm
+id=435290
+rarity=R
+[/card]
+[card]
+primitive=Captivating Crew
+id=435291
+rarity=R
+[/card]
+[card]
+primitive=Charging Monstrosaur
+id=435292
+rarity=U
+[/card]
+[card]
+primitive=Demolish
+id=435293
+rarity=C
+[/card]
+[card]
+primitive=Dinosaur Stampede
+id=435294
+rarity=U
+[/card]
+[card]
+primitive=Dual Shot
+id=435295
+rarity=C
+[/card]
+[card]
+primitive=Fathom Fleet Firebrand
+id=435296
+rarity=C
+[/card]
+[card]
+primitive=Fiery Cannonade
+id=435297
+rarity=U
+[/card]
+[card]
+primitive=Fire Shrine Keeper
+id=435298
+rarity=C
+[/card]
+[card]
+primitive=Firecannon Blast
+id=435299
+rarity=C
+[/card]
+[card]
+primitive=Frenzied Raptor
+id=435300
+rarity=C
+[/card]
+[card]
+primitive=Headstrong Brute
+id=435301
+rarity=C
+[/card]
+[card]
+primitive=Hijack
+id=435302
+rarity=C
+[/card]
+[card]
+primitive=Lightning Strike
+id=435303
+rarity=U
+[/card]
+[card]
+primitive=Lightning-Rig Crew
+id=435304
+rarity=U
+[/card]
+[card]
+primitive=Makeshift Munitions
+id=435305
+rarity=U
+[/card]
+[card]
+primitive=Nest Robber
+id=435306
+rarity=C
+[/card]
+[card]
+primitive=Otepec Huntmaster
+id=435307
+rarity=U
+[/card]
+[card]
+primitive=Rampaging Ferocidon
+id=435308
+rarity=R
+[/card]
+[card]
+primitive=Raptor Hatchling
+id=435309
+rarity=U
+[/card]
+[card]
+primitive=Repeating Barrage
+id=435310
+rarity=R
+[/card]
+[card]
+primitive=Rigging Runner
+id=435311
+rarity=U
+[/card]
+[card]
+primitive=Rile
+id=435312
+rarity=C
+[/card]
+[card]
+primitive=Rowdy Crew
+id=435313
+rarity=M
+[/card]
+[card]
+primitive=Rummaging Goblin
+id=435314
+rarity=C
+[/card]
+[card]
+primitive=Star of Extinction
+id=435315
+rarity=M
+[/card]
+[card]
+primitive=Storm Fleet Arsonist
+id=435316
+rarity=U
+[/card]
+[card]
+primitive=Storm Fleet Pyromancer
+id=435317
+rarity=C
 [/card]
 [card]
 primitive=Sun-Crowned Hunters
@@ -1265,19 +846,549 @@ id=435319
 rarity=R
 [/card]
 [card]
+primitive=Sure Strike
+id=435320
+rarity=C
+[/card]
+[card]
+primitive=Swashbuckling
+id=435321
+rarity=C
+[/card]
+[card]
+primitive=Thrash of Raptors
+id=435322
+rarity=C
+[/card]
+[card]
+primitive=Tilonalli's Knight
+id=435323
+rarity=C
+[/card]
+[card]
+primitive=Tilonalli's Skinshifter
+id=435324
+rarity=R
+[/card]
+[card]
+primitive=Trove of Temptation
+id=435325
+rarity=U
+[/card]
+[card]
+primitive=Unfriendly Fire
+id=435326
+rarity=C
+[/card]
+[card]
+primitive=Vance's Blasting Cannons
+id=435327
+rarity=R
+[/card]
+[card]
+primitive=Spitfire Bastion
+id=435328
+rarity=T
+[/card]
+[card]
+primitive=Wily Goblin
+id=435329
+rarity=U
+[/card]
+[card]
+primitive=Ancient Brontodon
+id=435330
+rarity=C
+[/card]
+[card]
+primitive=Atzocan Archer
+id=435331
+rarity=U
+[/card]
+[card]
+primitive=Blinding Fog
+id=435332
+rarity=C
+[/card]
+[card]
+primitive=Blossom Dryad
+id=435333
+rarity=C
+[/card]
+[card]
+primitive=Carnage Tyrant
+id=435334
+rarity=M
+[/card]
+[card]
+primitive=Colossal Dreadmaw
+id=435335
+rarity=C
+[/card]
+[card]
+primitive=Commune with Dinosaurs
+id=435336
+rarity=C
+[/card]
+[card]
+primitive=Crash the Ramparts
+id=435337
+rarity=C
+[/card]
+[card]
+primitive=Crushing Canopy
+id=435338
+rarity=C
+[/card]
+[card]
+primitive=Deathgorge Scavenger
+id=435339
+rarity=R
+[/card]
+[card]
+primitive=Deeproot Champion
+id=435340
+rarity=R
+[/card]
+[card]
+primitive=Deeproot Warrior
+id=435341
+rarity=C
+[/card]
+[card]
+primitive=Drover of the Mighty
+id=435342
+rarity=U
+[/card]
+[card]
+primitive=Emergent Growth
+id=435343
+rarity=U
+[/card]
+[card]
+primitive=Emperor's Vanguard
+id=435344
+rarity=R
+[/card]
+[card]
+primitive=Grazing Whiptail
+id=435345
+rarity=C
+[/card]
+[card]
+primitive=Growing Rites of Itlimoc
+id=435346
+rarity=R
+[/card]
+[card]
+primitive=Itlimoc, Cradle of the Sun
+id=435347
+rarity=T
+[/card]
+[card]
+primitive=Ixalli's Diviner
+id=435348
+rarity=C
+[/card]
+[card]
+primitive=Ixalli's Keeper
+id=435349
+rarity=C
+[/card]
+[card]
+primitive=Jade Guardian
+id=435350
+rarity=C
+[/card]
+[card]
+primitive=Jungle Delver
+id=435351
+rarity=C
+[/card]
+[card]
+primitive=Kumena's Speaker
+id=435352
+rarity=U
+[/card]
+[card]
+primitive=Merfolk Branchwalker
+id=435353
+rarity=U
+[/card]
+[card]
+primitive=New Horizons
+id=435354
+rarity=C
+[/card]
+[card]
+primitive=Old-Growth Dryads
+id=435355
+rarity=R
+[/card]
+[card]
+primitive=Pounce
+id=435356
+rarity=C
+[/card]
+[card]
+primitive=Ranging Raptors
+id=435357
+rarity=U
+[/card]
+[card]
+primitive=Ravenous Daggertooth
+id=435358
+rarity=C
+[/card]
+[card]
+primitive=Ripjaw Raptor
+id=435359
+rarity=R
+[/card]
+[card]
+primitive=River Heralds' Boon
+id=435360
+rarity=C
+[/card]
+[card]
+primitive=Savage Stomp
+id=435361
+rarity=U
+[/card]
+[card]
+primitive=Shapers' Sanctuary
+id=435362
+rarity=R
+[/card]
+[card]
+primitive=Slice in Twain
+id=435363
+rarity=U
+[/card]
+[card]
+primitive=Snapping Sailback
+id=435364
+rarity=U
+[/card]
+[card]
+primitive=Spike-Tailed Ceratops
+id=435365
+rarity=C
+[/card]
+[card]
+primitive=Thundering Spineback
+id=435366
+rarity=U
+[/card]
+[card]
+primitive=Tishana's Wayfinder
+id=435367
+rarity=C
+[/card]
+[card]
+primitive=Verdant Rebirth
+id=435368
+rarity=U
+[/card]
+[card]
+primitive=Verdant Sun's Avatar
+id=435369
+rarity=R
+[/card]
+[card]
+primitive=Vineshaper Mystic
+id=435370
+rarity=U
+[/card]
+[card]
+primitive=Waker of the Wilds
+id=435371
+rarity=R
+[/card]
+[card]
+primitive=Wildgrowth Walker
+id=435372
+rarity=U
+[/card]
+[card]
+primitive=Admiral Beckett Brass
+id=435373
+rarity=M
+[/card]
+[card]
+primitive=Belligerent Brontodon
+id=435374
+rarity=U
+[/card]
+[card]
+primitive=Call to the Feast
+id=435375
+rarity=U
+[/card]
+[card]
+primitive=Deadeye Plunderers
+id=435376
+rarity=U
+[/card]
+[card]
+primitive=Dire Fleet Captain
+id=435377
+rarity=U
+[/card]
+[card]
+primitive=Gishath, Sun's Avatar
+id=435378
+rarity=M
+[/card]
+[card]
+primitive=Hostage Taker
+id=435379
+rarity=R
+[/card]
+[card]
+primitive=Huatli, Warrior Poet
+id=435380
+rarity=M
+[/card]
+[card]
+primitive=Marauding Looter
+id=435381
+rarity=U
+[/card]
+[card]
+primitive=Raging Swordtooth
+id=435382
+rarity=U
+[/card]
+[card]
+primitive=Regisaur Alpha
+id=435383
+rarity=R
+[/card]
+[card]
+primitive=Shapers of Nature
+id=435384
+rarity=U
+[/card]
+[card]
+primitive=Sky Terror
+id=435385
+rarity=U
+[/card]
+[card]
+primitive=Tishana, Voice of Thunder
+id=435386
+rarity=M
+[/card]
+[card]
+primitive=Vona, Butcher of Magan
+id=435387
+rarity=M
+[/card]
+[card]
+primitive=Vraska, Relic Seeker
+id=435388
+rarity=M
+[/card]
+[card]
+primitive=Cobbled Wings
+id=435389
+rarity=C
+[/card]
+[card]
+primitive=Conqueror's Galleon
+id=435390
+rarity=R
+[/card]
+[card]
+primitive=Conqueror's Foothold
+id=435391
+rarity=T
+[/card]
+[card]
+primitive=Dowsing Dagger
+id=435392
+rarity=R
+[/card]
+[card]
+primitive=Lost Vale
+id=435393
+rarity=T
+[/card]
+[card]
+primitive=Dusk Legion Dreadnought
+id=435394
+rarity=U
+[/card]
+[card]
+primitive=Elaborate Firecannon
+id=435395
+rarity=U
+[/card]
+[card]
+primitive=Fell Flagship
+id=435396
+rarity=R
+[/card]
+[card]
+primitive=Gilded Sentinel
+id=435397
+rarity=C
+[/card]
+[card]
+primitive=Hierophant's Chalice
+id=435398
+rarity=C
+[/card]
+[card]
+primitive=Pillar of Origins
+id=435399
+rarity=U
+[/card]
+[card]
+primitive=Pirate's Cutlass
+id=435400
+rarity=C
+[/card]
+[card]
+primitive=Primal Amulet
+id=435401
+rarity=R
+[/card]
+[card]
+primitive=Primal Wellspring
+id=435402
+rarity=T
+[/card]
+[card]
+primitive=Prying Blade
+id=435403
+rarity=C
+[/card]
+[card]
+primitive=Sentinel Totem
+id=435404
+rarity=U
+[/card]
+[card]
+primitive=Shadowed Caravel
+id=435405
+rarity=R
+[/card]
+[card]
+primitive=Sleek Schooner
+id=435406
+rarity=U
+[/card]
+[card]
+primitive=Sorcerous Spyglass
+id=435407
+rarity=R
+[/card]
+[card]
+primitive=Thaumatic Compass
+id=435408
+rarity=R
+[/card]
+[card]
+primitive=Spires of Orazca
+id=435409
+rarity=T
+[/card]
+[card]
+primitive=Treasure Map
+id=435410
+rarity=R
+[/card]
+[card]
+primitive=Treasure Cove
+id=435411
+rarity=T
+[/card]
+[card]
+primitive=Vanquisher's Banner
+id=435412
+rarity=R
+[/card]
+[card]
+primitive=Dragonskull Summit
+id=435413
+rarity=R
+[/card]
+[card]
+primitive=Drowned Catacomb
+id=435414
+rarity=R
+[/card]
+[card]
+primitive=Field of Ruin
+id=435415
+rarity=U
+[/card]
+[card]
+primitive=Glacial Fortress
+id=435416
+rarity=R
+[/card]
+[card]
+primitive=Rootbound Crag
+id=435417
+rarity=R
+[/card]
+[card]
 primitive=Sunpetal Grove
 id=435418
 rarity=R
 [/card]
 [card]
-primitive=Sunrise Seeker
-id=435192
+primitive=Unclaimed Territory
+id=435419
+rarity=U
+[/card]
+[card]
+primitive=Unknown Shores
+id=435420
 rarity=C
 [/card]
 [card]
-primitive=Sure Strike
-id=435320
-rarity=C
+primitive=Plains
+id=435421
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=435422
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=435423
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=435424
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=435425
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=435426
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=435427
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=435428
+rarity=L
 [/card]
 [card]
 primitive=Swamp
@@ -1300,202 +1411,97 @@ id=435432
 rarity=L
 [/card]
 [card]
-primitive=Swashbuckling
-id=435321
-rarity=C
+primitive=Mountain
+id=435433
+rarity=L
 [/card]
 [card]
-primitive=Sword-Point Diplomacy
-id=435280
-rarity=R
+primitive=Mountain
+id=435434
+rarity=L
 [/card]
 [card]
-primitive=Tempest Caller
-id=435239
-rarity=U
+primitive=Mountain
+id=435435
+rarity=L
 [/card]
 [card]
-primitive=Territorial Hammerskull
-id=435193
-rarity=C
+primitive=Mountain
+id=435436
+rarity=L
 [/card]
 [card]
-primitive=Spires of Orazca
-id=435409
-rarity=R
+primitive=Forest
+id=435437
+rarity=L
 [/card]
 [card]
-primitive=Thaumatic Compass
-id=435408
-rarity=R
+primitive=Forest
+id=435438
+rarity=L
 [/card]
 [card]
-primitive=Thrash of Raptors
-id=435322
-rarity=C
+primitive=Forest
+id=435439
+rarity=L
 [/card]
 [card]
-primitive=Thundering Spineback
-id=435366
-rarity=U
+primitive=Forest
+id=435440
+rarity=L
 [/card]
 [card]
-primitive=Tilonalli's Knight
-id=435323
-rarity=C
-[/card]
-[card]
-primitive=Tilonalli's Skinshifter
-id=435324
-rarity=R
-[/card]
-[card]
-primitive=Tishana's Wayfinder
-id=435367
-rarity=C
-[/card]
-[card]
-primitive=Tishana, Voice of Thunder
-id=435386
+primitive=Jace, Ingenious Mind-Mage
+id=435441
 rarity=M
 [/card]
 [card]
-primitive=Tocatli Honor Guard
-id=435194
-rarity=R
-[/card]
-[card]
-primitive=Treasure Cove
-id=435411
-rarity=R
-[/card]
-[card]
-primitive=Treasure Map
-id=435410
-rarity=R
-[/card]
-[card]
-primitive=Trove of Temptation
-id=435325
-rarity=U
-[/card]
-[card]
-primitive=Unclaimed Territory
-id=435419
-rarity=U
-[/card]
-[card]
-primitive=Unfriendly Fire
-id=435326
+primitive=Castaway's Despair
+id=435442
 rarity=C
 [/card]
 [card]
-primitive=Unknown Shores
-id=435420
-rarity=C
-[/card]
-[card]
-primitive=Vampire's Zeal
-id=435195
-rarity=C
-[/card]
-[card]
-primitive=Spitfire Bastion
-id=435328
+primitive=Grasping Current
+id=435443
 rarity=R
 [/card]
 [card]
-primitive=Vance's Blasting Cannons
-id=435327
-rarity=R
-[/card]
-[card]
-primitive=Vanquish the Weak
-id=435281
-rarity=C
-[/card]
-[card]
-primitive=Vanquisher's Banner
-id=435412
-rarity=R
-[/card]
-[card]
-primitive=Verdant Rebirth
-id=435368
+primitive=Jace's Sentinel
+id=435444
 rarity=U
-[/card]
-[card]
-primitive=Verdant Sun's Avatar
-id=435369
-rarity=R
-[/card]
-[card]
-primitive=Vicious Conquistador
-id=435282
-rarity=U
-[/card]
-[card]
-primitive=Vineshaper Mystic
-id=435370
-rarity=U
-[/card]
-[card]
-primitive=Vona, Butcher of Magan
-id=435387
-rarity=M
-[/card]
-[card]
-primitive=Vraska's Contempt
-id=435283
-rarity=R
-[/card]
-[card]
-primitive=Vraska, Relic Seeker
-id=435388
-rarity=M
-[/card]
-[card]
-primitive=Wakening Sun's Avatar
-id=435196
-rarity=M
-[/card]
-[card]
-primitive=Waker of the Wilds
-id=435371
-rarity=R
-[/card]
-[card]
-primitive=Walk the Plank
-id=435284
-rarity=U
-[/card]
-[card]
-primitive=Wanted Scoundrels
-id=435285
-rarity=U
-[/card]
-[card]
-primitive=Watertrap Weaver
-id=435240
-rarity=C
-[/card]
-[card]
-primitive=Wildgrowth Walker
-id=435372
-rarity=U
-[/card]
-[card]
-primitive=Wily Goblin
-id=435329
-rarity=U
-[/card]
-[card]
-primitive=Wind Strider
-id=435241
-rarity=C
 [/card]
 [card]
 primitive=Woodland Stream
 id=435445
 rarity=C
+[/card]
+[card]
+primitive=Huatli, Dinosaur Knight
+id=435446
+rarity=M
+[/card]
+[card]
+primitive=Huatli's Snubhorn
+id=435447
+rarity=C
+[/card]
+[card]
+primitive=Huatli's Spurring
+id=435448
+rarity=U
+[/card]
+[card]
+primitive=Sun-Blessed Mount
+id=435449
+rarity=R
+[/card]
+[card]
+primitive=Stone Quarry
+id=435450
+rarity=C
+[/card]
+[card]
+primitive=TreasureArtifactToken
+id=435451
+rarity=T
 [/card]
