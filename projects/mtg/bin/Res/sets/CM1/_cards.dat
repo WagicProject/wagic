@@ -1,0 +1,96 @@
+[meta]
+author=Wagic Team
+name=Commander's Arsenal
+year=2012
+total=18
+[/meta]
+[card]
+primitive=Chaos Warp
+id=338441
+rarity=R
+[/card]
+[card]
+primitive=Command Tower
+id=338442
+rarity=C
+[/card]
+[card]
+primitive=Decree of Pain
+id=338453
+rarity=R
+[/card]
+[card]
+primitive=Desertion
+id=338454
+rarity=R
+[/card]
+[card]
+primitive=Diaochan, Artful Beauty
+id=338449
+rarity=R
+[/card]
+[card]
+primitive=Dragonlair Spider
+id=338446
+rarity=R
+[/card]
+[card]
+primitive=Duplicant
+id=338451
+rarity=R
+[/card]
+[card]
+primitive=Edric, Spymaster of Trest
+id=338443
+rarity=R
+[/card]
+[card]
+primitive=Kaalia of the Vast
+id=338444
+rarity=M
+[/card]
+[card]
+primitive=Loyal Retainers
+id=338450
+rarity=U
+[/card]
+[card]
+primitive=Maelstrom Wanderer
+id=338447
+rarity=M
+[/card]
+[card]
+primitive=Mind's Eye
+id=338452
+rarity=R
+[/card]
+[card]
+primitive=Mirari's Wake
+id=338455
+rarity=R
+[/card]
+[card]
+primitive=Rhystic Study
+id=338457
+rarity=C
+[/card]
+[card]
+primitive=Scroll Rack
+id=338458
+rarity=R
+[/card]
+[card]
+primitive=Sylvan Library
+id=338456
+rarity=R
+[/card]
+[card]
+primitive=The Mimeoplasm
+id=338445
+rarity=M
+[/card]
+[card]
+primitive=Vela the Night-Clad
+id=338448
+rarity=M
+[/card]
