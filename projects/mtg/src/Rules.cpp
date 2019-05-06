@@ -428,11 +428,11 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
 
 	const char* const multicolorTribes[] = { "Ally", "Eldrazi", "Elemental", "Golem", "Hound", "Human", "Knight",
 		"Myr", "Samurai", "Shaman", "Shapeshifter", "Sliver", "Soldier", "Spellshaper", "Spirit", "Warrior", "Wizard" };
-	const char* const whiteTribes[] = { "Angel", "Bird", "Cat", "Cleric", "Griffin", "Kithkin", "Knight", "Soldier", "Spirit", "Wizard"  };
+	const char* const whiteTribes[] = { "Angel", "Bird", "Cat", "cleric", "Griffin", "Kithkin", "Knight", "Soldier", "Spirit", "Wizard"  };
 	const char* const blueTribes[] = { "Artificer", "Bird", "Drake", "Faerie", "Illusion", "Merfolk", "Spirit", "Vedalken", "Wizard", "Zombie" };
 	const char* const blackTribes[] = { "Cleric", "Demon", "Faerie", "Horror", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Vampire", "Wizard", "Zombie" };
-	const char* const redTribes[] = { "Barbarian", "Berserker", "Cat", "Devil", "Dragon", "Goblin", "Minotaur", "Ogre", "Werewolf", "Wizard" };
-	const char* const greenTribes[] = { "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Elf", "Fungus", "Plant", "Snake", "Spider", "Treefolk", "Werewolf", "Wizard" };
+	const char* const redTribes[] = { "Barbarian", "Berserker"," Cat", "Devil", "Dragon", "Goblin", "Minotaur", "Ogre", "Werewolf", "Wizard" };
+	const char* const greenTribes[] = { "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Elf", "Fungus", "Snake", "Spider", "Treefolk", "Werewolf", "Wizard" };
 
 	int multicolorTribesSize = sizeof(multicolorTribes)/sizeof(multicolorTribes[0]);
 	int whiteTribesSize = sizeof(whiteTribes)/sizeof(whiteTribes[0]);
