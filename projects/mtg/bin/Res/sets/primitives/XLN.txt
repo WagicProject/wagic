@@ -150,7 +150,7 @@ toughness=3
 
 [card]
 name=Imperial Lancer
-auto=aslongas type(dinosaur|mybattlefield)~morethan~0 double strike
+auto=aslongas(dinosaur|mybattlefield) double strike
 text=Imperial Lancer has double strike as long as you control a Dinosaur.
 mana={W}
 type=Creature
@@ -601,7 +601,7 @@ toughness=2
 name=Lookout's Dispersal
 target=*|stack
 auto=name(counter spell) target(*|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
-autohand=aslongas type(pirate|mybattlefield)~morethan~0 altercost(colorless,-1)
+autohand=aslongas(pirate|mybattlefield) altercost(colorless,-1)
 text=Lookout's Dispersal costs {1} less to cast if you control a Pirate. -- Counter target spell unless its controller pays {4}.
 mana={2}{U}
 type=Instant
@@ -725,7 +725,7 @@ type=Legendary Land
 
 [card]
 name=Shaper Apprentice
-auto=aslongas type(other merfolk|mybattlefield)~morethan~0 then flying
+auto=aslongas(other merfolk|mybattlefield) flying
 text=Shaper Apprentice has flying as long as you control another Merfolk.
 mana={1}{U}
 type=Creature
@@ -1004,7 +1004,7 @@ toughness=4
 
 [card]
 name=Desperate Castaways
-auto=aslongas type(artifact|mybattlefield) ~lessthan~ 0 then cantattack
+auto=aslongas(artifact|mybattlefield)<1 cantattack
 text=Desperate Castaways can't attack unless you control an artifact.
 mana={1}{B}
 type=Creature
@@ -1372,7 +1372,6 @@ toughness=2
 
 [card]
 name=Captivating Crew
-abilities=haste
 auto={3}{R}:target(creature) untap && haste && alias=129767
 text={3}{R}: Gain control of target creature an opponent controls until end of turn. Untap that creature. It gains haste until end of turn. Activate this ability only any time you could cast a sorcery.
 mana={3}{R}
@@ -1454,7 +1453,7 @@ toughness=2
 [card]
 name=Headstrong Brute
 abilities=cantblock
-auto=aslongas type(other pirate|mybattlefield)~morethan~0 then menace
+auto=aslongas(other pirate|mybattlefield) menace
 text=Headstrong Brute can't block. -- Headstrong Brute has menace as long as you control another Pirate.
 mana={2}{R}
 type=Creature
@@ -1642,8 +1641,8 @@ subtype=Aura
 
 [card]
 name=Thrash of Raptors
-auto=aslongas type(dinosaur|mybattlefield)~morethan~0 then 2/0
-auto=aslongas type(dinosaur|mybattlefield)~morethan~0 then trample
+auto=aslongas(other dinosaur|mybattlefield) 2/0
+auto=aslongas(other dinosaur|mybattlefield) trample
 text=As long as you control another Dinosaur, Thrash of Raptors gets +2/+0 and has trample.
 mana={3}{R}
 type=Creature
@@ -1951,7 +1950,7 @@ toughness=1
 
 [card]
 name=Kumena's Speaker
-auto=aslongas type(other merfolk,island|mybattlefield)~morethan~0 then 1/1
+auto=aslongas(other merfolk,island|mybattlefield) 1/1
 text=Kumena's Speaker gets +1/+1 as long as you control another Merfolk or an Island.
 mana={G}
 type=Creature
@@ -2629,8 +2628,8 @@ type=Sorcery
 
 [card]
 name=Jace's Sentinel
-auto=aslongas type(jace|mybattlefield)~morethan~0 then 1/0
-auto=aslongas type(jace|mybattlefield)~morethan~0 then unblockable
+auto=aslongas(jace|mybattlefield) 1/0
+auto=aslongas(jace|mybattlefield) unblockable
 text=As long as you control a Jace planeswalker, Jace's Sentinel gets +1/+0 and can't be blocked.
 mana={1}{U}
 type=Creature
