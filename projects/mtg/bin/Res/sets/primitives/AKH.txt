@@ -2278,7 +2278,7 @@ type=Artifact
 [card]
 name=Rhonas's Monument
 auto=lord(creature[green]|mycastingzone) altercost(colorless,-1)
-auto=@movedto(creature|mystack):target(creature|mybattlefield) 2/2 ueot && trample ueot
+auto=@movedto(creature|mystack):target(creature|mybattlefield) transforms((,newability[2/2 ueot],newability[trample ueot]))
 text=Green creature spells you cast cost {1} less to cast. -- Whenever you cast a creature spell, target creature you control gets +2/+2 and gains trample until end of turn.
 mana={3}
 type=Legendary Artifact

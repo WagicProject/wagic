@@ -238,7 +238,8 @@ toughness=2
 
 [card]
 name=Unbreakable Formation
-auto=if compare(restriction{assorcery}~morethan~0) then all(creature|myBattlefield) counter(1/1) else
+auto=if compare(restriction{assorcery}~morethan~0) then all(creature|myBattlefield) counter(1/1)
+auto=if compare(restriction{assorcery}~morethan~0) then all(creature|myBattlefield) vigilance
 auto=all(creature|myBattlefield) indestructible ueot
 text=Creatures you control gain indestructible until end of turn. -- Addendum — If you cast this spell during your main phase, put a +1/+1 counter on each of those creatures and they gain vigilance until end of turn.
 mana={2}{W}
