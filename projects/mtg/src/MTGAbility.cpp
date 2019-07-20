@@ -4574,7 +4574,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     if (AAMover * aam = dynamic_cast<AAMover *>(a))
     {
         MTGGameZone * z = aam->destinationZone(target);
-		 if (tc && tc->targetsZone(p->game->library) || tc && tc->targetsZone(p->game->graveyard) || tc && tc->targetsZone(p->game->hand))
+		 if ((tc && tc->targetsZone(p->game->library)) || (tc && tc->targetsZone(p->game->graveyard)) || (tc && tc->targetsZone(p->game->hand)))
         {
             if (z == p->game->hand || z == p->game->inPlay)
                 return BAKA_EFFECT_GOOD;
