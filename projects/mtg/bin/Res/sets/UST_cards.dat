@@ -1,0 +1,1351 @@
+[meta]
+author=Wagic Team
+name=Unstable
+year=2017-12-08
+total=268
+[/meta]
+[card]
+primitive=Adorable Kitten
+id=439390
+rarity=C
+[/card]
+[card]
+primitive=Aerial Toastmaster
+id=439391
+rarity=U
+[/card]
+[card]
+primitive=Amateur Auteur
+id=439392
+rarity=C
+[/card]
+[card]
+primitive=By Gnome Means
+id=439393
+rarity=R
+[/card]
+[card]
+primitive=Chivalrous Chevalier
+id=439394
+rarity=C
+[/card]
+[card]
+primitive=Do-It-Yourself Seraph
+id=439395
+rarity=M
+[/card]
+[card]
+primitive=Gimme Five
+id=439396
+rarity=U
+[/card]
+[card]
+primitive=GO TO JAIL
+id=439397
+rarity=C
+[/card]
+[card]
+primitive=Half-Kitten, Half-
+id=439398
+rarity=U
+[/card]
+[card]
+primitive=Humming-
+id=439399
+rarity=C
+[/card]
+[card]
+primitive=Jackknight
+id=439400
+rarity=R
+[/card]
+[card]
+primitive=Knight of the Kitchen Sink (a)
+id=439401
+rarity=U
+[/card]
+[card]
+primitive=Knight of the Widget
+id=439402
+rarity=U
+[/card]
+[card]
+primitive=Midlife Upgrade
+id=439403
+rarity=U
+[/card]
+[card]
+primitive=Oddly Uneven
+id=439404
+rarity=R
+[/card]
+[card]
+primitive=Old Guard
+id=439405
+rarity=C
+[/card]
+[card]
+primitive=Ordinary Pony
+id=439406
+rarity=C
+[/card]
+[card]
+primitive=Rhino-
+id=439407
+rarity=U
+[/card]
+[card]
+primitive=Riveting Rigger
+id=439408
+rarity=C
+[/card]
+[card]
+primitive=Rules Lawyer
+id=439409
+rarity=R
+[/card]
+[card]
+primitive=Sacrifice Play
+id=439410
+rarity=C
+[/card]
+[card]
+primitive=Shaggy Camel
+id=439411
+rarity=C
+[/card]
+[card]
+primitive=Side Quest
+id=439412
+rarity=U
+[/card]
+[card]
+primitive=Success!
+id=439413
+rarity=C
+[/card]
+[card]
+primitive=Teacher's Pet
+id=439414
+rarity=U
+[/card]
+[card]
+primitive=Animate Library
+id=439415
+rarity=R
+[/card]
+[card]
+primitive=Blurry Beeble
+id=439416
+rarity=C
+[/card]
+[card]
+primitive=Chipper Chopper
+id=439417
+rarity=C
+[/card]
+[card]
+primitive=Clocknapper
+id=439418
+rarity=R
+[/card]
+[card]
+primitive=Crafty Octopus
+id=439419
+rarity=C
+[/card]
+[card]
+primitive=Crow Storm
+id=439420
+rarity=U
+[/card]
+[card]
+primitive=Defective Detective
+id=439421
+rarity=C
+[/card]
+[card]
+primitive=Five-Finger Discount
+id=439422
+rarity=U
+[/card]
+[card]
+primitive=Graveyard Busybody
+id=439423
+rarity=R
+[/card]
+[card]
+primitive=Half-Shark, Half-
+id=439424
+rarity=U
+[/card]
+[card]
+primitive=Incite Insight
+id=439425
+rarity=R
+[/card]
+[card]
+primitive=Kindly Cognician
+id=439426
+rarity=U
+[/card]
+[card]
+primitive=Magic Word
+id=439427
+rarity=C
+[/card]
+[card]
+primitive=Mer Man
+id=439428
+rarity=C
+[/card]
+[card]
+primitive=More or Less
+id=439429
+rarity=U
+[/card]
+[card]
+primitive=Novellamental
+id=439430
+rarity=C
+[/card]
+[card]
+primitive=Numbing Jellyfish
+id=439431
+rarity=C
+[/card]
+[card]
+primitive=S.N.E.A.K. Dispatcher
+id=439432
+rarity=U
+[/card]
+[card]
+primitive=Socketed Sprocketer
+id=439433
+rarity=U
+[/card]
+[card]
+primitive=Spell Suck
+id=439434
+rarity=C
+[/card]
+[card]
+primitive=Spy Eye
+id=439435
+rarity=U
+[/card]
+[card]
+primitive=Suspicious Nanny
+id=439436
+rarity=U
+[/card]
+[card]
+primitive=Time Out
+id=439437
+rarity=C
+[/card]
+[card]
+primitive=Very Cryptic Command (b)
+id=439438
+rarity=R
+[/card]
+[card]
+primitive=Wall of Fortune
+id=439439
+rarity=C
+[/card]
+[card]
+primitive=Big Boa Constrictor
+id=439440
+rarity=C
+[/card]
+[card]
+primitive=capital offense
+id=439441
+rarity=C
+[/card]
+[card]
+primitive=Dirty Rat
+id=439442
+rarity=C
+[/card]
+[card]
+primitive=Extremely Slow Zombie
+id=439443
+rarity=C
+[/card]
+[card]
+primitive=Finders, Keepers
+id=439444
+rarity=C
+[/card]
+[card]
+primitive=Hangman
+id=439445
+rarity=R
+[/card]
+[card]
+primitive=Hazmat Suit (Used)
+id=439446
+rarity=C
+[/card]
+[card]
+primitive=Hoisted Hireling
+id=439447
+rarity=C
+[/card]
+[card]
+primitive=Inhumaniac
+id=439448
+rarity=U
+[/card]
+[card]
+primitive=Masterful Ninja
+id=439449
+rarity=R
+[/card]
+[card]
+primitive=Ninja
+id=439450
+rarity=U
+[/card]
+[card]
+primitive=Old-Fashioned Vampire
+id=439451
+rarity=U
+[/card]
+[card]
+primitive=Over My Dead Bodies
+id=439452
+rarity=R
+[/card]
+[card]
+primitive=Overt Operative
+id=439453
+rarity=U
+[/card]
+[card]
+primitive="Rumors of My Death . . ."
+id=439454
+rarity=U
+[/card]
+[card]
+primitive=Skull Saucer
+id=439455
+rarity=U
+[/card]
+[card]
+primitive=Sly Spy (a)
+id=439456
+rarity=U
+[/card]
+[card]
+primitive=Snickering Squirrel
+id=439457
+rarity=C
+[/card]
+[card]
+primitive=Spike, Tournament Grinder
+id=439458
+rarity=R
+[/card]
+[card]
+primitive=Squirrel-Powered Scheme
+id=439459
+rarity=U
+[/card]
+[card]
+primitive=Steady-Handed Mook
+id=439460
+rarity=C
+[/card]
+[card]
+primitive=Stinging Scorpion
+id=439461
+rarity=C
+[/card]
+[card]
+primitive=Subcontract
+id=439462
+rarity=C
+[/card]
+[card]
+primitive=Summon the Pack
+id=439463
+rarity=M
+[/card]
+[card]
+primitive=Zombified
+id=439464
+rarity=U
+[/card]
+[card]
+primitive=The Big Idea
+id=439465
+rarity=R
+[/card]
+[card]
+primitive=Box of Free-Range Goblins
+id=439466
+rarity=C
+[/card]
+[card]
+primitive=Bumbling Pangolin
+id=439467
+rarity=C
+[/card]
+[card]
+primitive=Common Iguana
+id=439468
+rarity=C
+[/card]
+[card]
+primitive=The Countdown Is at One
+id=439469
+rarity=R
+[/card]
+[card]
+primitive=Feisty Stegosaurus
+id=439470
+rarity=C
+[/card]
+[card]
+primitive=Garbage Elemental (a)
+id=439471
+rarity=U
+[/card]
+[card]
+primitive=Goblin Haberdasher
+id=439472
+rarity=U
+[/card]
+[card]
+primitive=Half-Orc, Half-
+id=439473
+rarity=U
+[/card]
+[card]
+primitive=Hammer Helper
+id=439474
+rarity=C
+[/card]
+[card]
+primitive=Hammer Jammer
+id=439475
+rarity=U
+[/card]
+[card]
+primitive=Hammerfest Boomtacular
+id=439476
+rarity=U
+[/card]
+[card]
+primitive=Infinity Elemental
+id=439477
+rarity=M
+[/card]
+[card]
+primitive=It That Gets Left Hanging
+id=439478
+rarity=C
+[/card]
+[card]
+primitive=Just Desserts
+id=439479
+rarity=C
+[/card]
+[card]
+primitive=Painiac
+id=439480
+rarity=C
+[/card]
+[card]
+primitive=Party Crasher
+id=439481
+rarity=U
+[/card]
+[card]
+primitive=Steamflogger Boss
+id=439482
+rarity=R
+[/card]
+[card]
+primitive=Steamflogger of the Month
+id=439483
+rarity=R
+[/card]
+[card]
+primitive=Steamflogger Temp
+id=439484
+rarity=U
+[/card]
+[card]
+primitive=Steamfloggery
+id=439485
+rarity=U
+[/card]
+[card]
+primitive=Super-Duper Death Ray
+id=439486
+rarity=U
+[/card]
+[card]
+primitive=Target Minotaur
+id=439487
+rarity=C
+[/card]
+[card]
+primitive=Three-Headed Goblin
+id=439488
+rarity=R
+[/card]
+[card]
+primitive=Work a Double
+id=439489
+rarity=C
+[/card]
+[card]
+primitive=Wrench-Rigger
+id=439490
+rarity=C
+[/card]
+[card]
+primitive=As Luck Would Have It
+id=439491
+rarity=R
+[/card]
+[card]
+primitive=Beast in Show
+id=439492
+rarity=C
+[/card]
+[card]
+primitive=Chittering Doom
+id=439493
+rarity=U
+[/card]
+[card]
+primitive=Clever Combo
+id=439494
+rarity=U
+[/card]
+[card]
+primitive=Druid of the Sacred Beaker
+id=439495
+rarity=U
+[/card]
+[card]
+primitive=Eager Beaver
+id=439496
+rarity=C
+[/card]
+[card]
+primitive=Earl of Squirrel
+id=439497
+rarity=R
+[/card]
+[card]
+primitive=First Pick
+id=439498
+rarity=U
+[/card]
+[card]
+primitive=Ground Pounder
+id=439499
+rarity=C
+[/card]
+[card]
+primitive=Half-Squirrel, Half-
+id=439500
+rarity=U
+[/card]
+[card]
+primitive=Hydradoodle
+id=439501
+rarity=R
+[/card]
+[card]
+primitive=Ineffable Blessing (a)
+id=439502
+rarity=R
+[/card]
+[card]
+primitive=Joyride Rigger
+id=439503
+rarity=C
+[/card]
+[card]
+primitive=Monkey-
+id=439504
+rarity=U
+[/card]
+[card]
+primitive=Mother Kangaroo
+id=439505
+rarity=C
+[/card]
+[card]
+primitive=Multi-Headed
+id=439506
+rarity=C
+[/card]
+[card]
+primitive=Really Epic Punch
+id=439507
+rarity=C
+[/card]
+[card]
+primitive=Selfie Preservation
+id=439508
+rarity=C
+[/card]
+[card]
+primitive=Serpentine
+id=439509
+rarity=R
+[/card]
+[card]
+primitive=Shellephant
+id=439510
+rarity=U
+[/card]
+[card]
+primitive=Slaying Mantis
+id=439511
+rarity=U
+[/card]
+[card]
+primitive=Squirrel Dealer
+id=439512
+rarity=C
+[/card]
+[card]
+primitive=Steamflogger Service Rep
+id=439513
+rarity=U
+[/card]
+[card]
+primitive=Wild Crocodile
+id=439514
+rarity=C
+[/card]
+[card]
+primitive=Willing Test Subject
+id=439515
+rarity=C
+[/card]
+[card]
+primitive=Baron Von Count
+id=439516
+rarity=M
+[/card]
+[card]
+primitive=Better Than One
+id=439517
+rarity=R
+[/card]
+[card]
+primitive=Cramped Bunker
+id=439518
+rarity=R
+[/card]
+[card]
+primitive=Dr. Julius Jumblemorph
+id=439519
+rarity=M
+[/card]
+[card]
+primitive=The Grand Calcutron
+id=439520
+rarity=M
+[/card]
+[card]
+primitive=Grusilda, Monster Masher
+id=439521
+rarity=R
+[/card]
+[card]
+primitive=Hot Fix
+id=439522
+rarity=R
+[/card]
+[card]
+primitive=Ol' Buzzbark
+id=439523
+rarity=M
+[/card]
+[card]
+primitive=Phoebe, Head of S.N.E.A.K.
+id=439524
+rarity=M
+[/card]
+[card]
+primitive=Urza, Academy Headmaster
+id=439525
+rarity=M
+[/card]
+[card]
+primitive=X
+id=439526
+rarity=R
+[/card]
+[card]
+primitive=Mary O'Kill
+id=439527
+rarity=R
+[/card]
+[card]
+primitive=Angelic Rocket
+id=439528
+rarity=R
+[/card]
+[card]
+primitive=Border Guardian
+id=439529
+rarity=U
+[/card]
+[card]
+primitive=Buzzing Whack-a-Doodle
+id=439530
+rarity=U
+[/card]
+[card]
+primitive=Clock of DOOOOOOOOOOOOM!
+id=439531
+rarity=U
+[/card]
+[card]
+primitive=Cogmentor
+id=439532
+rarity=U
+[/card]
+[card]
+primitive=Contraption Cannon
+id=439533
+rarity=U
+[/card]
+[card]
+primitive=Curious Killbot
+id=439534
+rarity=C
+[/card]
+[card]
+primitive=Entirely Normal Armchair
+id=439535
+rarity=U
+[/card]
+[card]
+primitive=Everythingamajig (a)
+id=439536
+rarity=R
+[/card]
+[card]
+primitive=Gnome-Made Engine
+id=439537
+rarity=C
+[/card]
+[card]
+primitive=Handy Dandy Clone Machine
+id=439538
+rarity=R
+[/card]
+[card]
+primitive=Kindslaver
+id=439539
+rarity=R
+[/card]
+[card]
+primitive=Krark's Other Thumb
+id=439540
+rarity=U
+[/card]
+[card]
+primitive=Labro Bot
+id=439541
+rarity=U
+[/card]
+[card]
+primitive=Lobe Lobber
+id=439542
+rarity=U
+[/card]
+[card]
+primitive=Mad Science Fair Project
+id=439543
+rarity=C
+[/card]
+[card]
+primitive=Modular Monstrosity
+id=439544
+rarity=R
+[/card]
+[card]
+primitive=Proper Laboratory Attire
+id=439545
+rarity=U
+[/card]
+[card]
+primitive=Robo-
+id=439546
+rarity=U
+[/card]
+[card]
+primitive=Split Screen
+id=439547
+rarity=R
+[/card]
+[card]
+primitive=Staff of the Letter Magus
+id=439548
+rarity=U
+[/card]
+[card]
+primitive=Stamp of Approval
+id=439549
+rarity=U
+[/card]
+[card]
+primitive=Steam-Powered
+id=439550
+rarity=U
+[/card]
+[card]
+primitive=Steel Squirrel
+id=439551
+rarity=U
+[/card]
+[card]
+primitive=Sword of Dungeons & Dragons
+id=439552
+rarity=M
+[/card]
+[card]
+primitive=Voracious Vacuum
+id=439553
+rarity=C
+[/card]
+[card]
+primitive=Secret Base
+id=439554
+rarity=C
+[/card]
+[card]
+primitive=Watermarket
+id=439555
+rarity=R
+[/card]
+[card]
+primitive=Accessories to Murder
+id=439556
+rarity=U
+[/card]
+[card]
+primitive=Applied Aeronautics
+id=439557
+rarity=C
+[/card]
+[card]
+primitive=Arms Depot
+id=439558
+rarity=U
+[/card]
+[card]
+primitive=Auto-Key
+id=439559
+rarity=C
+[/card]
+[card]
+primitive=Bee-Bee Gun
+id=439560
+rarity=M
+[/card]
+[card]
+primitive=Boomflinger
+id=439561
+rarity=C
+[/card]
+[card]
+primitive=Buzz Buggy
+id=439562
+rarity=C
+[/card]
+[card]
+primitive=Deadly Poison Sampler
+id=439563
+rarity=R
+[/card]
+[card]
+primitive=Dictation Quillograph
+id=439564
+rarity=C
+[/card]
+[card]
+primitive=Dispatch Dispensary
+id=439565
+rarity=U
+[/card]
+[card]
+primitive=Division Table
+id=439566
+rarity=C
+[/card]
+[card]
+primitive=Dogsnail Engine
+id=439567
+rarity=U
+[/card]
+[card]
+primitive=Dual Doomsuits
+id=439568
+rarity=R
+[/card]
+[card]
+primitive=Duplication Device
+id=439569
+rarity=R
+[/card]
+[card]
+primitive=Faerie Aerie
+id=439570
+rarity=M
+[/card]
+[card]
+primitive=Genetic Recombinator
+id=439571
+rarity=U
+[/card]
+[card]
+primitive=Gift Horse
+id=439572
+rarity=R
+[/card]
+[card]
+primitive=Gnomeball Machine
+id=439573
+rarity=U
+[/card]
+[card]
+primitive=Goblin Slingshot
+id=439574
+rarity=R
+[/card]
+[card]
+primitive=Guest List
+id=439575
+rarity=R
+[/card]
+[card]
+primitive=Hard Hat Area
+id=439576
+rarity=M
+[/card]
+[card]
+primitive=Head Banger
+id=439577
+rarity=C
+[/card]
+[card]
+primitive=Hypnotic Swirly Disc
+id=439578
+rarity=R
+[/card]
+[card]
+primitive=Inflation Station
+id=439579
+rarity=C
+[/card]
+[card]
+primitive=Insufferable Syphon
+id=439580
+rarity=U
+[/card]
+[card]
+primitive=Jamming Device
+id=439581
+rarity=U
+[/card]
+[card]
+primitive=Lackey Recycler
+id=439582
+rarity=C
+[/card]
+[card]
+primitive=Mandatory Friendship Shackles
+id=439583
+rarity=C
+[/card]
+[card]
+primitive=Neural Network
+id=439584
+rarity=U
+[/card]
+[card]
+primitive=Oaken Power Suit
+id=439585
+rarity=R
+[/card]
+[card]
+primitive=Optical Optimizer
+id=439586
+rarity=U
+[/card]
+[card]
+primitive=Pet Project
+id=439587
+rarity=M
+[/card]
+[card]
+primitive=Quick-Stick Lick Trick
+id=439588
+rarity=C
+[/card]
+[card]
+primitive=Rapid Prototyper
+id=439589
+rarity=M
+[/card]
+[card]
+primitive=Record Store
+id=439590
+rarity=R
+[/card]
+[card]
+primitive=Refibrillator
+id=439591
+rarity=R
+[/card]
+[card]
+primitive=Sap Sucker
+id=439592
+rarity=C
+[/card]
+[card]
+primitive=Sundering Fork
+id=439593
+rarity=U
+[/card]
+[card]
+primitive=Targeting Rocket
+id=439594
+rarity=U
+[/card]
+[card]
+primitive=Thud-for-Duds
+id=439595
+rarity=U
+[/card]
+[card]
+primitive=Top-Secret Tunnel
+id=439596
+rarity=C
+[/card]
+[card]
+primitive=Tread Mill
+id=439597
+rarity=C
+[/card]
+[card]
+primitive=Turbo-Thwacking Auto-Hammer
+id=439598
+rarity=U
+[/card]
+[card]
+primitive=Twiddlestick Charger
+id=439599
+rarity=C
+[/card]
+[card]
+primitive=Widget Contraption
+id=439600
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=439601
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=439602
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=439603
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=439604
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=439605
+rarity=L
+[/card]
+[card]
+primitive=Secret Base
+id=439606
+rarity=C
+[/card]
+[card]
+primitive=Secret Base
+id=439607
+rarity=C
+[/card]
+[card]
+primitive=Secret Base
+id=439608
+rarity=C
+[/card]
+[card]
+primitive=Secret Base
+id=439609
+rarity=C
+[/card]
+[card]
+primitive=Target Minotaur
+id=439610
+rarity=C
+[/card]
+[card]
+primitive=Target Minotaur
+id=439611
+rarity=C
+[/card]
+[card]
+primitive=Target Minotaur
+id=439612
+rarity=C
+[/card]
+[card]
+primitive=Amateur Auteur
+id=439613
+rarity=C
+[/card]
+[card]
+primitive=Amateur Auteur
+id=439614
+rarity=C
+[/card]
+[card]
+primitive=Amateur Auteur
+id=439615
+rarity=C
+[/card]
+[card]
+primitive=Extremely Slow Zombie
+id=439616
+rarity=C
+[/card]
+[card]
+primitive=Extremely Slow Zombie
+id=439617
+rarity=C
+[/card]
+[card]
+primitive=Extremely Slow Zombie
+id=439618
+rarity=C
+[/card]
+[card]
+primitive=Beast in Show
+id=439619
+rarity=C
+[/card]
+[card]
+primitive=Beast in Show
+id=439620
+rarity=C
+[/card]
+[card]
+primitive=Beast in Show
+id=439621
+rarity=C
+[/card]
+[card]
+primitive=Novellamental
+id=439622
+rarity=C
+[/card]
+[card]
+primitive=Novellamental
+id=439623
+rarity=C
+[/card]
+[card]
+primitive=Novellamental
+id=439624
+rarity=C
+[/card]
+[card]
+primitive=Knight of the Kitchen Sink (b)
+id=439625
+rarity=U
+[/card]
+[card]
+primitive=Knight of the Kitchen Sink (c)
+id=439626
+rarity=U
+[/card]
+[card]
+primitive=Knight of the Kitchen Sink (d)
+id=439627
+rarity=U
+[/card]
+[card]
+primitive=Knight of the Kitchen Sink (e)
+id=439628
+rarity=U
+[/card]
+[card]
+primitive=Knight of the Kitchen Sink (f)
+id=439629
+rarity=U
+[/card]
+[card]
+primitive=Garbage Elemental (b)
+id=439630
+rarity=U
+[/card]
+[card]
+primitive=Garbage Elemental (c)
+id=439631
+rarity=U
+[/card]
+[card]
+primitive=Garbage Elemental (d)
+id=439632
+rarity=U
+[/card]
+[card]
+primitive=Garbage Elemental (e)
+id=439633
+rarity=U
+[/card]
+[card]
+primitive=Garbage Elemental (f)
+id=439634
+rarity=U
+[/card]
+[card]
+primitive=Ineffable Blessing (b)
+id=439635
+rarity=R
+[/card]
+[card]
+primitive=Ineffable Blessing (c)
+id=439636
+rarity=R
+[/card]
+[card]
+primitive=Ineffable Blessing (d)
+id=439637
+rarity=R
+[/card]
+[card]
+primitive=Ineffable Blessing (e)
+id=439638
+rarity=R
+[/card]
+[card]
+primitive=Ineffable Blessing (f)
+id=439639
+rarity=R
+[/card]
+[card]
+primitive=Everythingamajig (b)
+id=439640
+rarity=R
+[/card]
+[card]
+primitive=Everythingamajig (c)
+id=439641
+rarity=R
+[/card]
+[card]
+primitive=Everythingamajig (d)
+id=439642
+rarity=R
+[/card]
+[card]
+primitive=Everythingamajig (e)
+id=439643
+rarity=R
+[/card]
+[card]
+primitive=Everythingamajig (f)
+id=439644
+rarity=R
+[/card]
+[card]
+primitive=Very Cryptic Command (a)
+id=439645
+rarity=R
+[/card]
+[card]
+primitive=Very Cryptic Command (c)
+id=439646
+rarity=R
+[/card]
+[card]
+primitive=Very Cryptic Command (d)
+id=439647
+rarity=R
+[/card]
+[card]
+primitive=Very Cryptic Command (e)
+id=439648
+rarity=R
+[/card]
+[card]
+primitive=Very Cryptic Command (f)
+id=439649
+rarity=R
+[/card]
+[card]
+primitive=Sly Spy (b)
+id=439650
+rarity=U
+[/card]
+[card]
+primitive=Sly Spy (c)
+id=439651
+rarity=U
+[/card]
+[card]
+primitive=Sly Spy (d)
+id=439652
+rarity=U
+[/card]
+[card]
+primitive=Sly Spy (e)
+id=439653
+rarity=U
+[/card]
+[card]
+primitive=Sly Spy (f)
+id=439654
+rarity=U
+[/card]
+[card]
+primitive=Delighted Killbot
+id=439655
+rarity=C
+[/card]
+[card]
+primitive=Despondent Killbot
+id=439656
+rarity=C
+[/card]
+[card]
+primitive=Enraged Killbot
+id=439657
+rarity=C
+[/card]
+[card]
+primitive=Baffling End
+id=439658
+rarity=U
+[/card]
