@@ -1,0 +1,119 @@
+grade=unsupported
+[card]
+name=Chandra's Regulator
+text=Whenever you activate a loyalty ability of a Chandra planeswalker, you may pay 1. If you do, copy that ability. You may choose new targets for the copy. -- {1}, {T}, Discard a Mountain card or a red card: Draw a card.
+mana={1}{R}
+type=Legendary Artifact
+[/card]
+[card]
+name=Scheming Symmetry
+text=Choose two target players. Each of them searches their library for a card, then shuffles their library and puts that card on top of it.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Thunderkin Awakener
+text=Haste -- Whenever Thunderkin Awakener attacks, choose target Elemental creature card in your graveyard with toughness less than Thunderkin Awakener's toughness. Return that card to the battlefield tapped and attacking. Sacrifice it at the beginning of the next end step.
+mana={1}{R}
+type=Creature
+subtype=Elemental Shaman
+power=1
+toughness=2
+[/card]
+[card]
+name=Ajani, Strength of the Pride
+text=+1: You gain life equal to the number of creatures you control plus the number of planeswalkers you control. -- −2: Create a 2/2 white Cat Soldier creature token named Ajani's Pridemate with "Whenever you gain life, put a +1/+1 counter on Ajani's Pridemate." -- 0: If you have at least 15 life more than your starting life total, exile Ajani, Strength of the Pride and each artifact and creature your opponents control.
+mana={2}{W}{W}
+type=Legendary Planeswalker
+subtype=Ajani
+[/card]
+[card]
+name=Repeated Reverberation
+text=When you next cast an instant spell, cast a sorcery spell, or activate a loyalty ability this turn, copy that spell or ability twice. You may choose new targets for the copies.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Chandra, Acolyte of Flame
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,0,Loyalty)}:target(planeswalker[red]|myBattlefield) counter(0/0,1,loyalty)
+auto={C(0/0,0,Loyalty)}:token(Elemental,Creature Elemental,1/1,red,haste)*2
+auto={C(0/0,-2,Loyalty)}:
+text=0: Put a loyalty counter on each red planeswalker you control. -- 0: Create two 1/1 red Elemental creature tokens. They gain haste. Sacrifice them at the beginning of the next end step. -- -2: You may cast target instant or sorcery card with converted mana cost 3 or less from your graveyard. If that card would be put into your graveyard this turn, exile it instead.
+mana={1}{R}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Kethis, the Hidden Hand
+text=Legendary spells you cast cost {1} less to cast. -- Exile two legendary cards from your graveyard: Until end of turn, each legendary card in your graveyard gains "You may play this card from your graveyard."
+mana={W}{B}{G}
+type=Legendary Creature
+subtype=Elf Advisor
+power=3
+toughness=4
+[/card]
+[card]
+name=Blightbeetle
+abilities=protection from green
+text=Protection from green (This creature can't be blocked, targeted, dealt damage, enchanted, or equipped by anything green.) -- Creatures your opponents control can't have +1/+1 counters put on them.
+mana={1}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
+name=Diviner's Lockbox
+text={1}, {T}: Choose a card name, then reveal the top card of your library. If that card has the chosen name, sacrifice Diviner's Lockbox and draw three cards. Activate this ability only any time you could cast a sorcery.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Bag of Holding
+text=Whenever you discard a card, exile that card from your graveyard. {2}, {T}: Draw a card, then discard a card. -- {4}, {T}, Sacrifice Bag of Holding: Return all cards exiled with Bag of Holding to their owner's hand.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Yarok, the Desecrated
+text=Deathtouch, lifelink -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={2}{B}{G}{U}
+type=Legendary Creature
+subtype=Elemental Horror
+power=3
+toughness=5
+[/card]
+[card]
+name=Embodiment of Agonies
+text=Flying, deathtouch -- Embodiment of Agonies enters the battlefield with a +1/+1 counter on it for each different mana cost among nonland cards in your graveyard. (For example, {2}{B} and {1}{B}{B} are different mana costs.)
+mana={1}{B}{B}
+type=Creature
+subtype=Demon
+power=0
+toughness=0
+[/card]
+[card]
+name=Legion's End
+text=Exile target creature an opponent controls with converted mana cost 2 or less and all other creatures that player controls with the same name as that creature. Then that player reveals their hand and exiles all cards with that name from their hand and graveyard.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Tale's End
+text=Counter target activated ability, triggered ability, or legendary spell.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Veil of Summer
+text=Draw a card if an opponent has cast a blue or black spell this turn. Spells you control can't be countered this turn. You and permanents you control gain hexproof from blue and from black until end of turn. (You and they can't be the targets of blue or black spells or abilities your opponents control.)
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Aether Gust
+text=Choose target spell or permanent that's red or green. Its owner puts it on the top or bottom of their library.
+mana={1}{U}
+type=Instant
+[/card]
