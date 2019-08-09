@@ -83,7 +83,7 @@ name=Titania Mode
 id=prx_titania
 unlock_img=
 unlock_text=Titania Mode Unlocked
-teaser=Voice of the Argoth forest, defender of its creatures, and enforcer of its laws, Titania is literally an aspect of the forest itself. 
+teaser=Voice of the Argoth forest, defender of its creatures, and enforcer of its laws, Titania is literally an aspect of the forest itself.
 You may play an additional land on each of your turns.
 trophyroom_text=Devotion to green more than 7.
 unlock_condition=this(variable{type:manag}>7)

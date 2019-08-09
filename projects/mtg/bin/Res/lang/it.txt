@@ -15,7 +15,7 @@
 #Game menus/texts
 LOADING SET: %s=CARICAMENTO SET: %s
 Play=Gioca
-Deck Editor=Deck Editor
+Deck Editor=Editor Mazzo
 Shop=Negozio
 Options=Opzioni
 Exit=Esci
@@ -45,26 +45,34 @@ Choose Opponent=Scegli Avversario
 (easy)=(*)
 (hard)=(***)
 Random=Casuale
-You have a %i%% victory ratio with Deck%i=Hai il %i%% di vittorie col mazzo %i
-You have played %i games with Deck%i=Hai giocato %i partite con il mazzo %i
-You have played a total of %i games=Hai giocato in tutto %i partite
-Unlock the difficult mode for more challenging duels!=Sblocca la modalita' difficile per partite piu' competitive!
-Interested in playing Momir Basic? You'll have to unlock it first :)=Conosci Momir Basic? Sblocca questa modalita' per poterla provare
-You have a total of %i cards in your collection=Hai un totale di %i carte nella tua collezione
 
-The cards in your collection have an average value of %i credits=Le carte nella tua collezione hanno un valore medio di %i crediti
-The shopkeeper would buy your entire collection for around %i credits=Potresti vendere la tua intera collezione per circa %i crediti
-You currently have %i credits=Hai %i crediti
-More cards and mods at http://wololo.net/wagic=Ulteriori carte a http://wololo.net/wagic
-These stats will be updated next time you run Wagic=Le statistiche saranno aggiornate al prossimo avvio di Wagic
 Yes=Si
 No=No
 NO DECK AVAILABLE,=NESSUN DECK DISPONIBILE,
 PRESS CIRCLE TO GO TO THE DECK EDITOR!=PREMI CERCHIO PER TORNARE AL DECK EDITOR!
-You haven't unlocked the random deck mode yet=Non hai ancora sbloccato la modalita' mazzo casuale
-You haven't locked the random deck mode yet=Non hai ancora bloccato la modalita' mazzo casuale
-You haven't unlocked the evil twin mode yet=Non hai ancora sbloccato la modalitÅEevil twin
-You have unlocked %i expansions out of %i=Hai sbloccato %i espansioni su %i
+
+#Testo Ciclico:
+Interested in playing Momir Basic? You'll have to unlock it first :)=Ti interessa giocare alla modalita' Momir? Devi prima sbloccarla :).
+Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)=Ti piacciono gli equipaggiamenti e vuoi una vera sfida? Sblocca la Stone Hewer :)
+More cards and mods at http://wololo.net/wagic=Scarica le ultimae carte aggiornate online.
+The cards in your collection have an average value of %i credits=Le carte della tua collezione hanno un valore di %i crediti.
+The shopkeeper would buy your entire collection for around %i credits=Potresti vendere la tua intera collezione per circa %i crediti
+These stats will be updated next time you run Wagic=Queste satistiche saranno aggiornate la prossima volta che giocherai a Magic
+Unlock the difficult mode for more challenging duels!=Sblocca la modalita' difficile per nuovi affascinanti duelli!
+You currently have %i credits=Attualmente possiedi %i crediti.
+You have a %i%% victory ratio with "%s"=Hai il %i%% di vittorie con il mazzo: "%s".
+You have a total of %i cards in your collection=Possiedi un totale di %i carte nella tua collezione.
+You have played %i games with "%s"=Hai disputato %i partite con il mazzo: "%s".
+You have played a total of %i games=Hai disputato un totale di %i partite.
+You have unlocked %i expansions out of %i=Hai sbloccato %i edizioni di %i.
+You haven't unlocked the evil twin mode yet=Non hai ancora sbloccato la modalit‡ del gemello malvagio...
+You haven't unlocked the random deck mode yet=Non hai ancora sbloccato la modalita' con mazzo casuale...
+Like to play fast? Unlock Blitzkrieg Mode :)=Ti piace giocare veloce? Sblocca la modalita' Blitzkrieg :)
+Utopia! Bring me down to the Paradise City.=Utopia! Portami giu' a Paradise City. 
+"I looked into its eyes, and its soul was so empty I saw no reflection, no light there." <97> Crovax="Ho guardato nei suoi occhi, e la sua anima era cosi' vuota da non permettermi di vedere alcun riflesso, non c'era luce." <97> Crovax
+"From shards and splinters I call forth my living horde." -Molimo, maro-sorcerer="Dai detriti e dalla polvere io invoco la mia orda vivente." -Molimo, stregone supremo
+At the beginning of your upkeep, exchange control of a permanent you control chosen at random and a permanent target opponent controls chosen at random.=All'inizio del tuo mantenimento
+Voice of the Argoth forest, defender of its creatures, and enforcer of its laws, Titania is literally an aspect of the forest itself.=Voce della foresta di Argoth, difensore delle sue creature, e protettrice della sua legge, Titania e' essa stessa parte della foresta.
 Premade G/R=Mazzo Iniziale V/R
 
 #Match
@@ -366,7 +374,7 @@ See available tasks=Visualizza task disponibili
 Task Board=Bacheca task
 
 Toggle Images=Immagini Si/No
-View Deck=Guarda Mazzo
+View Deck=Vedi Mazzo
 View Collection=Guarda Collez.
 Use SQUARE to view your deck,=Usa QUADRATO per vedere il mazzo,
 Use SQUARE to view collection,=Usa QUADRATO per la collezione,

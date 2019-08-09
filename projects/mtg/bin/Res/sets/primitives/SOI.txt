@@ -1,0 +1,3307 @@
+[card]
+name=Always Watching
+auto=lord(creature[-token]|mybattlefield) 1/1
+auto=lord(creature[-token]|mybattlefield) vigilance
+text=Nontoken creatures you control get +1/+1 and have vigilance.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Angel of Deliverance
+abilities=flying
+text=Flying -- Delirium  Whenever Angel of Deliverance deals damage, if there are four or more card types among cards in your graveyard, exile target creature an opponent controls.
+mana={6}{W}{W}
+type=Creature
+subtype=Angel
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Angelic Purge
+target=artifact,enchantment,creature
+auto=moveto(exile)
+text=As an additional cost to cast Angelic Purge, sacrifice a permanent. -- Exile target artifact, creature, or enchantment.
+mana={2}{W}{S(*|mybattlefield)}
+type=Sorcery
+[/card]
+
+[card]
+name=Apothecary Geist
+abilities=flying
+auto=restriction type(other creature|mybattlefield)~morethan~0:life:3
+text=Flying -- When Apothecary Geist enters the battlefield, if you control another Spirit, you gain 3 life.
+mana={3}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Archangel Avacyn
+abilities=flash,flying,vigilance
+auto=all(creature|mybattlefield) indestructible ueot
+auto=@movedto(*[-angel]|mygraveyard) from(mybattlefield): @next upkeep: flip(Avacyn, the Purifier)
+text=flash, flying, vigilance -- when Archangel Avacyn enters the battlefield, creatures you control gain indestructible until end of turn -- when a non-angel you control dies, transform Archangel Avacyn
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Avacyn, the Purifier
+abilities=flying
+auto=damage:3 all(other creature)
+auto=damage:3 opponent
+text=flying -- when this creature transforms into Avacyn, the Purifier, it deals 3 damage to each other creature and each opponent
+type=Legendary Creature
+subtype=Angel
+power=6
+toughness=5
+[/card]
+
+[card]
+name=Avacynian Missionaries
+auto=@each my endofturn restriction this(gear > 0): flip(Lunarch Inquisitors)
+text=At the beginning of your end step, if Avacynian Missionaries is equipped, transform it.
+mana={3}{W}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Lunarch Inquisitors
+auto=may (blink)forsrc target(creature)
+text=When this creature transforms into Lunarch Inquisitors, you may exile another target creature until Lunarch Inquisitors leaves the battlefield.
+type=Creature
+subtype=Human Cleric
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Bound by Moonsilver
+target=creature
+auto=cantattack
+auto=cantblock
+auto={S(other *|mybattlefield)}:rehook target(creature) assorcery
+text=Enchant creature -- Enchanted creature can't attack, block, or transform. -- Sacrifice another permanent: Attach Bound by Moonsilver to target creature. Activate this ability only any time you could cast a sorcery and only once each turn.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Bygone Bishop
+abilities=flying
+auto=@movedto(creature[manacost<=3]|mystack):token(410067) controller
+text=Flying -- Whenever you cast a creature spell with converted mana cost 3 or less, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={2}{W}
+type=Creature
+subtype=Spirit Cleric
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Cathar's Companion
+auto=@movedto(*[-creature]|mystack):indestructible ueot
+text=Whenever you cast a noncreature spell, Cathar's Companion gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={2}{W}
+type=Creature
+subtype=Hound
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Chaplain's Blessing
+auto=life:5
+text=You gain 5 life.
+mana={W}
+type=Sorcery
+[/card]
+
+[card]
+name=Dauntless Cathar
+abilities=flying
+autograveyard={1}{W}{moveto(exile) notatarget(this)}:token(Spirit,creature Spirit,1/1,white,flying) assorcery
+text={1}{W}, Exile Dauntless Cathar from your graveyard: Put a 1/1 white Spirit creature token with flying onto the battlefield. Activate this ability only any time you could cast a sorcery.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Declaration in Stone
+target=creature
+auto=transforms((,newability[all(*[share!name!]) moveto(exile)],newability[@movedto(exile) all([share!name!])token(-410067) controller]))
+text=Exile target creature and all other creatures its controller controls with the same name as that creature. That player investigates for each nontoken creature exiled this way.
+mana={1}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Descend upon the Sinful
+auto=moveto(exile) all(creature)
+auto=
+text=Exile all creatures. -- Delirium  Put a 4/4 white Angel creature token with flying onto the battlefield if there are four or more card types among cards in your graveyard.
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Devilthorn Fox
+mana={1}{W}
+type=Creature
+subtype=Fox
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Drogskol Cavalry
+abilities=flying
+auto=@movedto(spirit|mybattlefield):life:2
+auto={3}{W}:token(Spirit,creature Spirit,1/1,white,flying)
+text=Flying -- Whenever another Spirit enters the battlefield under your control, you gain 2 life. -- {3}{W}: Put a 1/1 white Spirit creature token with flying onto the battlefield.
+mana={5}{W}{W}
+type=Creature
+subtype=Spirit Knight
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Eerie Interlude
+target=<anyamount>creature|mybattlefield
+auto=blink ueot
+text=Exile any number of target creatures you control. Return those cards to the battlefield under their owner's control at the beginning of the next end step.
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Emissary of the Sleepless
+abilities=flying
+auto=if type(creature[fresh]|mygraveyard):token(Spirit,creature Spirit,1/1,white,flying)
+text=Flying -- When Emissary of the Sleepless enters the battlefield, if a creature died this turn, put a 1/1 white Spirit creature token with flying onto the battlefield.
+mana={4}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Ethereal Guidance
+auto=all(creature|mybattlefield) 2/1 ueot
+text=Creatures you control get +2/+1 until end of turn.
+mana={2}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Expose Evil
+target=<upto:2>creature
+auto=tap
+auto=token(410067) controller
+text=Tap up to two target creatures. -- Investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Gryff's Boon
+target=creature
+auto=1/0
+auto=flying
+autograveyard={3}{W}:rehook target(creature) assorcery
+text=Enchant creature -- Enchanted creature gets +1/+0 and has flying. -- {3}{W}: Return Gryff's Boon from your graveyard to the battlefield attached to target creature. Activate this ability only any time you could cast a sorcery.
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Hanweir Militia Captain
+#auto=@each my upkeep if type(creature|mybattlefield)~morethan~3:flip(Westvale Cult Leader)
+auto=@each my upkeep restriction {type(creature|mybattlefield)~morethan~3}:flip(Westvale Cult Leader)
+text=At the beginning of your upkeep, if you control four or more creatures, transform Hanweir Militia Captain.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Westvale Cult Leader
+auto=foreach(creature|mybattlefield)1/1
+auto=@each my endofturn:token(Human Cleric,creature Human Cleric,1/1,white,black)
+text=Westvale Cult Leader's power and toughness are each equal to the number of creatures you control. -- At the beginning of your end step, put a 1/1 white and black Human Cleric creature token onto the battlefield.
+type=Creature
+subtype=Human Cleric
+power=*
+toughness=*
+[/card]
+
+[card]
+name=Hope Against Hope
+target=creature
+auto=foreach(creature|mybattlefield)1/1
+auto=if type(mytgt[human])first strike
+text=Enchant creature -- Enchanted creature gets +1/+1 for each creature you control. -- As long as enchanted creature is a Human, it has first strike.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Humble the Brute
+target=creature[power>3]
+auto=destroy
+auto=token(410067) controller
+text=Destroy target creature with power 4 or greater. -- Investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={4}{W}
+type=Instant
+[/card]
+
+[card]
+name=Inquisitor's Ox
+abilities=vigilance
+text=Delirium  Inquisitor's Ox gets +1/+0 and has vigilance as long as there are four or more card types among cards in your graveyard.
+mana={3}{W}
+type=Creature
+subtype=Ox
+power=2
+toughness=5
+[/card]
+
+[card]
+name=Inspiring Captain
+auto=all(creature|mybattlefield) 1/1 ueot
+text=When Inspiring Captain enters the battlefield, creatures you control get +1/+1 until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Militant Inquisitor
+auto=foreach(equpment|mybattlefield)1/0
+text=Militant Inquisitor gets +1/+0 for each Equipment you control.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Moorland Drifter
+abilities=flying
+text=Delirium  Moorland Drifter has flying as long as there are four or more card types among cards in your graveyard.
+mana={1}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Nahiri's Machinations
+auto=@combat(attacking):target(creature|mybattlefield) indestructible ueot
+auto={1}{R}:damage:1 target(creature[blocking])
+text=At the beginning of combat on your turn, target creature you control gains indestructible until end of turn. -- {1}{R}: Nahiri's Machinations deals 1 damage to target blocking creature.
+mana={1}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Nearheath Chaplain
+abilities=lifelink
+autograveyard={2}{W}{moveto(exile) notatarget(this)}:token(Spirit,creature Spirit,1/1,white,flying)*2 assorcery
+text=Lifelink -- {2}{W}, Exile Nearheath Chaplain from your graveyard: Put two 1/1 white Spirit creature tokens with flying onto the battlefield. Activate this ability only any time you could cast a sorcery.
+mana={3}{W}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Not Forgotten
+target=*|graveyard
+auto=moveto(ownerlibrary)
+auto=token(Spirit,creature Spirit,1/1,white,flying)
+text=Put target card from a graveyard on the top or bottom of its owner's library. Put a 1/1 white Spirit creature token with flying onto the battlefield.
+mana={1}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Odric, Lunarch Marshal
+#auto=@combat(attacking) source(this):if type(*[first strike]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) first strike ueot
+auto=@each combatbegins source(this):if type(*[first strike]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) first strike ueot
+auto=@each combatbegins source(this):if type(*[flying]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) flying ueot
+auto=@each combatbegins source(this):if type(*[deathtouch]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) deathtouch ueot
+auto=@each combatbegins source(this):if type(*[double strike]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) double strike ueot
+auto=@each combatbegins source(this):if type(*[haste]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) haste ueot
+#auto=@combat(attacking) source(this):if type(*[hexproof]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) hexproof ueot
+auto=@each combatbegins source(this):if type(*[opponentshroud]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) opponentshroud ueot
+auto=@each combatbegins source(this):if type(*[indestructible]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) indestructible ueot
+auto=@each combatbegins source(this):if type(*[lifelink]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) lifelink ueot
+auto=@each combatbegins source(this):if type(*[reach]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) reach ueot
+auto=@each combatbegins source(this):if type(*[trample]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) trample ueot
+auto=@each combatbegins source(this):if type(*[vigilance]|mybattlefield)~morethan~0 then lord(creature|mybattlefield) vigilance ueot
+text=at the beginning of each combat, creatures you control gain first strike until end of turn if you control a creature with first strike, the same is true for lying, deathtouch, double strike, haste, hexproof, indestructible, lifelink, reach, trample, and vigilance
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Open the Armory
+target=aura,equipment|mylibrary
+auto=moveto(myhand)
+text=Search your library for an Aura or Equipment card, reveal it, and put it into your hand. Then shuffle your library.
+mana={1}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Paranoid Parish-Blade
+abilities=first strike
+text=Delirium  Paranoid Parish-Blade gets +1/+0 and has first strike as long as there are four or more card types among cards in your graveyard.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Pious Evangel
+auto=life:1
+auto=@movedto(creature|mybattlefield):life:1
+auto={2}{T}:sacrifice target(creature) && flip(Wayward Disciple)
+text=Whenever Pious Evangel or another creature enters the battlefield under your control, you gain 1 life. -- {2}, {T}, Sacrifice another permanent: Transform Pious Evangel.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Wayward Disciple
+auto=@movedto(creature|mygraveyard):life:1 controller
+auto=@movedto(creature|mygraveyard):life:-1 opponent
+text=Whenever Wayward Disciple or another creature you control dies, target opponent loses 1 life and you gain 1 life.
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Puncturing Light
+target=creature[attacking;blocking;power<4]
+auto=destroy
+text=Destroy target attacking or blocking creature with power 3 or less.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Reaper of Flight Moonsilver
+abilities=flying
+text=Flying -- Delirium  Sacrifice another creature: Reaper of Flight Moonsilver gets +2/+1 until end of turn. Activate this ability only if there are four or more card types among cards in your graveyard.
+mana={3}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Silverstrike
+target=creature[attacking]
+auto=destroy
+auto=life:3
+text=Destroy target attacking creature. You gain 3 life.
+mana={3}{W}
+type=Instant
+[/card]
+
+[card]
+name=Spectral Shepherd
+abilities=flying
+auto={1}{U}:moveto(myhand) target(spirit|mybattlefield)
+text=Flying -- {1}{U}: Return target Spirit you control to its owner's hand.
+mana={2}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Stern Constable
+auto={T}{discard(*|myhand)}:tap target(creature)
+text={T}, Discard a card: Tap target creature.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Strength of Arms
+target=creature
+auto=2/2 ueot
+auto=if type(equipment|mybattlefield)~morethan~0 then token(Human Soldier,creature Human Soldier,1/1,white)
+text=Target creature gets +2/+2 until end of turn. If you control an Equipment, put a 1/1 white Human Soldier creature token onto the battlefield.
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=Survive the Night
+target=creature
+auto=1/0
+auto=indestructible
+auto=token(410067) controller
+text=Target creature gets +1/+0 and gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.) -- Investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Tenacity
+auto=all(creature|mybattlefield) 1/1 ueot
+auto=all(creature|mybattlefield) lifelink ueot
+auto=all(creature|mybattlefield) untap
+text=Creatures you control get +1/+1 and gain lifelink until end of turn. Untap those creatures.
+mana={3}{W}
+type=Instant
+[/card]
+
+[card]
+name=Thalia's Lieutenant
+auto=all(other human|mybattlefield) counter(1/1,1)
+auto=@movedto(human|mybattlefield):counter(1/1,1)
+text=When Thalia's Lieutenant enters the battlefield, put a +1/+1 counter on each other Human you control. -- Whenever another Human enters the battlefield under your control, put a +1/+1 counter on Thalia's Lieutenant.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Thraben Inspector
+auto=token(410067) controller
+text=When Thraben Inspector enters the battlefield, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Topplegeist
+abilities=flying
+auto=tap target(creature)
+text=Flying -- When Topplegeist enters the battlefield, tap target creature an opponent controls. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, tap target creature that player controls.
+mana={W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Town Gossipmonger
+auto={T}{T(other creature|mybattlefield)}:flip(Incited Rabble) this
+text={T}, Tap an untapped creature you control: Transform Town Gossipmonger.
+mana={W}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Incited Rabble
+abilities=mustattack
+auto={2}:1/0 ueot
+text=Incited Rabble attacks each combat if able. -- {2}: Incited Rabble gets +1/+0 until end of turn.
+type=Creature
+subtype=Human
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Unruly Mob
+auto=@movedto(creature|mygraveyard):counter(1/1,1)
+text=Whenever another creature you control dies, put a +1/+1 counter on Unruly Mob.
+mana={1}{W}
+type=Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Vessel of Ephemera
+auto={2}{W}{s(this)}:token(Spirit,creature Spirit,1/1,white,flying)*2
+text={2}{W}, Sacrifice Vessel of Ephemera: Put two 1/1 white Spirit creature tokens with flying onto the battlefield.
+mana={1}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Aberrant Researcher
+abilities=flying
+auto=@each my upkeep:deplete:1 controller then if type(instant,sorcery[fresh]|mygraveyard)~morethan~0 flip(Perfected Form)
+text=Flying -- At the beginning of your upkeep, put the top card of your library into your graveyard. If it's an instant or sorcery card, transform Aberrant Researcher.
+mana={3}{U}
+type=Creature
+subtype=Human Insect
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Perfected Form
+abilities=flying
+text=Flying
+type=Creature
+subtype=Insect Horror
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Broken Concentration
+target=*|stack
+auto=fizzle
+autohand=@discarded(this):may pay[[{3}{U}]] moveto(mystack) && exiledeath ueot
+text=Counter target spell. -- Madness {3}{U} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={1}{U}{U}
+type=Instant
+[/card]
+
+[card]
+name=Catalog
+auto=draw:2
+auto=discard(*|myhand)
+text=Draw two cards, then discard a card.
+mana={2}{U}
+type=Instant
+[/card]
+
+[card]
+name=Compelling Deterrence
+target=*[-land]
+auto=movto(ownerhand)
+auto=if type(zombie|mybattlefield)~morethan~0 then discard(*|myhand) opponent
+text=Return target nonland permanent to its owner's hand. Then that player discards a card if you control a Zombie.
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Confirm Suspicions
+target=*|mystack
+auto=fizzle
+auto=token(410067)*3 controller
+text=Counter target spell. -- Investigate three times. (To investigate, put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={3}{U}{U}
+type=Instant
+[/card]
+
+##daring sleuth
+
+[card]
+name=Bearer of Overwhelming Truths
+auto=@movedto(*[-creature|mystack):1/1 ueot
+auto=@combatdamaged(player) from(this):token(410067) controller
+text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Bearer of Overwhelming Truths deals combat damage to a player, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Deny Existence
+target=creature|stack
+auto=fizzle and exiledeath
+text=Counter target creature spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
+mana={2}{U}
+type=Instant
+[/card]
+
+[card]
+name=Drownyard Explorers
+auto=token(410067) controller
+text=When Drownyard Explorers enters the battlefield, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Drunau Corpse Trawler
+auto=token(Zombie,creature Zombie,2/2,black)
+auto={2}{B}:target(zombie) deathtouch ueot
+text=When Drunau Corpse Trawler enters the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- {2}{B}: Target Zombie gains deathtouch until end of turn.
+mana={3}{U}
+type=Creature
+subtype=Zombie
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Engulf the Shore
+target=creature[toughness<type(island|mybattlefield)]
+auto=moveto(ownerhand)
+text=Return to their owners' hands all creatures with toughness less than or equal to the number of Islands you control.
+mana={3}{U}
+type=Instant
+[/card]
+
+[card]
+name=Epiphany at the Drownyard
+text=Reveal the top X plus one cards of your library and separate them into two piles. An opponent chooses one of those piles. Put that pile into your hand and the other into your graveyard.
+mana={X}{U}
+type=Instant
+[/card]
+
+[card]
+name=Erdwal Illuminator
+abilities=flying
+auto=@movedto(clue|mybattlefield):if type(clue[fresh]|mybattlefield)~equalto~1 then token(-410067)
+text=Flying -- Whenever you investigate for the first time each turn, investigate an additional time.
+mana={1}{U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Essence Flux
+target=creature|mybattlefield
+auto=blink ueot
+auto=if type(mytgt[spirit]) then counter(1/1,1)
+text=Exile target creature you control, then return that card to the battlefield under its owner's control. If it's a Spirit, put a +1/+1 counter on it.
+mana={U}
+type=Instant
+[/card]
+
+[card]
+name=Fleeting Memories
+auto=token(410067) controller
+auto=@movedto(clue|mygraveyard):deplete:3 opponent
+text=When Fleeting Memories enters the battlefield, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- Whenever you sacrifice a Clue, target player puts the top three cards of his or her library into his or her graveyard.
+mana={2}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Forgotten Creation
+auto=cantbeblockedby(creature[power>3])
+auto=@each my upkeep:may name(draw discard) discard all(myhand) and draw:type(*[fresh]|mygraveyard)
+text=Skulk (This creature can't be blocked by creatures with greater power.) -- At the beginning of your upkeep, you may discard all the cards in your hand. If you do, draw that many cards.
+mana={3}{U}
+type=Creature
+subtype=Zombie Horror
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Furtive Homunculus
+auto=cantbeblockedby(creature[power>2])
+text=Skulk (This creature can't be blocked by creatures with greater power.)
+mana={1}{U}
+type=Creature
+subtype=Homunculus
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Geralf's Masterpiece
+abilities=flying
+auto=foreach(*|myhand):-1/-1
+autograveyard={3}{U}{discard(<upto:3>*|myhand)}:moveto(myhand)
+text=Flying -- Geralf's Masterpiece gets -1/-1 for each card in your hand. -- {3}{U}, Discard three cards: Return Geralf's Masterpiece from your graveyard to the battlefield tapped.
+mana={3}{U}{U}
+type=Creature
+subtype=Zombie Horror
+power=7
+toughness=7
+[/card]
+
+[card]
+name=Ghostly Wings
+target=creature
+auto=flying
+auto=1/1
+auto={discard(*|myhand)}:moveto(mytgt|myhand)
+text=Enchant creature -- Enchanted creature gets +1/+1 and has flying. -- Discard a card: Return enchanted creature to its owner's hand.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Gone Missing
+target=*
+auto=moveto(ownerlibrary)
+auto=token(410067) controller
+text=Put target permanent on top of its owner's library. -- Investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={4}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Invasive Surgery
+target=sorcery
+auto=fizzle
+text=Counter target sorcery spell. -- Delirium  If there are four or more card types among cards in your graveyard, search the graveyard, hand, and library of that spell's controller for any number of cards with the same name as that spell, exile those cards, then that player shuffles his or her library.
+mana={U}
+type=Instant
+[/card]
+
+[card]
+name=Jace, Unraveler of Secrets
+auto=counter(0/0,5,loyalty)
+#auto={C(0/0,1,Loyalty)}:deplete:1 && may moveto(mylibrary) target(*|mygraveyard) && token(845860) controller
+auto={C(0/0,1,Loyalty)}: deplete:1 && token(845870) controller
+auto={C(0/0,-2,Loyalty)}:moveto(ownerhand) target(creature)
+auto={C(0/0,-8,Loyalty)}:name(emblem) emblem transforms((,newability[@movedto(*|opponentstack) restriction{thisturn(*|opponentstack)~equalto~0}:fizzle all(*|opponentstack)])) forever dontremove
+text=+1: put the top card of your library into your graveyard, you may return it to the top of your library, draw 1 -- -2: return a target creature to its owners hand -- -8: you get an emblem with whenever an opponent casts a spell if its the first spell they cast this turn, counter that spell
+mana={3}{U}{U}
+type=Planeswalker
+subtype=Jace
+[/card]
+
+[card]
+name=Jace's Scrutiny
+target=creature
+auto=-4/-0
+auto=token(410067) controller
+text=Target creature gets -4/-0 until end of turn. -- Investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Just the Wind
+target=creature
+auto=moveto(ownerhand)
+autohand=@discarded(this):may pay[[{U}]] moveto(mystack) && exiledeath ueot
+text=Return target creature to its owner's hand. -- Madness {U} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Lamplighter of Selhoff
+auto=if type(zombie|mybattlefield)~morethan~0 then may draw:1 && discard(*|myhand)
+text=When Lamplighter of Selhoff enters the battlefield, if you control another Zombie, you may draw a card. If you do, discard a card.
+mana={4}{U}
+type=Creature
+subtype=Zombie Horror
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Manic Scribe
+auto=deplete:3 opponent
+text=When Manic Scribe enters the battlefield, each opponent puts the top three cards of his or her library into his or her graveyard. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, that player puts the top three cards of his or her library into his or her graveyard.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Nagging Thoughts
+auto=deplete:2 controller
+auto=moveto(myhand) target(*[fresh]|mygraveyard)
+autohand=@discarded(this):may pay[[{1}{U}]] moveto(mystack) && exiledeath ueot
+text=Look at the top two cards of your library. Put one of them into your hand and the other into your graveyard. -- Madness {1}{U} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={1}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Nephalia Moondrakes
+abilities=flying
+auto=target(creature) flying ueot
+autograveyard={4}{U}{U}{moveto(exile)}:all(creature|mybattlefield) flying ueot
+text=Flying -- When Nephalia Moondrakes enters the battlefield, target creature gains flying until end of turn. -- {4}{U}{U}, Exile Nephalia Moondrakes from your graveyard: Creatures you control gain flying until end of turn.
+mana={5}{U}{U}
+type=Creature
+subtype=Drake
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Niblis of Dusk
+abilities=flying
+auto=@movedto(*[-creature]|mystack):1/1 ueot
+text=Flying -- Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+mana={2}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Ongoing Investigation
+auto=@combatdamaged(opponent):token(410067) controller
+auto={1}{G}{moveto(exile) target(creature|mygraveyard)}:token(410067) controller && life:2
+text=Whenever one or more creatures you control deal combat damage to a player, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- {1}{G}, Exile a creature card from your graveyard: Investigate. You gain 2 life.
+mana={1}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Pieces of the Puzzle
+auto=deplete:5 controller
+auto=moveto(myhand) target(<upto:2>instant,sorcery[fresh]|mygraveyard)
+text=Reveal the top five cards of your library. Put up to two instant and/or sorcery cards from among them into your hand and the rest into your graveyard.
+mana={2}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Pore Over the Pages
+target=<upto:2>land|mybattlefield
+auto=untap
+auto=draw:3 controller
+auto=discard(*|myhand)controller
+text=Draw three cards, untap up to two lands, then discard a card.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Press for Answers
+target=creature
+auto=frozen
+auto=token(410067) controller
+text=Tap target creature. It doesn't untap during its controller's next untap step. -- Investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={1}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Rattlechains
+abilities=flash, flying
+#auto=target(spirit) hexproof ueot
+auto=target(spirit) opponentshroud ueot
+auto=lord(spirit|myhand) flash
+text=Flash -- Flying -- When Rattlechains enters the battlefield, target Spirit gains hexproof until end of turn. -- You may cast Spirit spells as though they had flash.
+mana={1}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Reckless Scholar
+auto={T}:target(player) draw:1 && discard(*|myhand)
+text={T}: Target player draws a card, then discards a card.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Rise from the Tides
+auto=foreach(instant,sorcery|mygraveyard):token(-370619)
+text=Put a 2/2 black Zombie creature token onto the battlefield tapped for each instant and sorcery card in your graveyard.
+mana={5}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Seagraf Skaab
+mana={1}{U}
+type=Creature
+subtype=Zombie
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Silburlind Snapper
+abilities=cantattack
+auto=@movedto(*[-creature]|mystack):-cantattack ueot
+text=Silburlind Snapper can't attack unless you've cast a noncreature spell this turn.
+mana={5}{U}
+type=Creature
+subtype=Turtle
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Silent Observer
+abilities=flying
+text=Flying
+mana={3}{U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=5
+[/card]
+
+[card]
+name=Sleep Paralysis
+target=creature
+auto=tap mytgt
+auto=transforms((,newability[doesnotuntap])) forsrc
+text=Enchant creature -- When Sleep Paralysis enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during its controller's untap step.
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Startled Awake
+auto=deplete:13 opponent
+autograveyard={3}{U}{U}:moveto(mybattlefield) and flip(Persistant Nightmare) assorcery
+text=Target opponent puts the top thirteen cards of his or her library into his or her graveyard. -- {3}{U}{U}: Put Startled Awake from your graveyard onto the battlefield transformed. Activate this ability only any time you could cast a sorcery.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Persistent Nightmare
+auto=@combatdamaged(player) from(this):moveto(myhand) and flip(Startled Awake)
+text=Skulk (This creature can't be blocked by creatures with greater power.) -- When Persistent Nightmare deals combat damage to a player, return it to its owner's hand.
+type=Creature
+subtype=Nightmare
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Stitched Mangler
+auto=target(creature) tap && frozen
+auto=tap
+text=Stitched Mangler enters the battlefield tapped. -- When Stitched Mangler enters the battlefield, tap target creature an opponent controls. That creature doesn't untap during its controller's next untap step.
+mana={2}{U}
+type=Creature
+subtype=Zombie Horror
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Stitchwing Skaab
+abilities=flying
+auto={1}{U}{discard(<upto:2>*|myhand)}:moveto(mybattlefield) and tap
+text=Flying -- {1}{U}, Discard two cards: Return Stitchwing Skaab from your graveyard to the battlefield tapped.
+mana={3}{U}
+type=Creature
+subtype=Zombie Horror
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Stormrider Spirit
+abilities=flash, flying
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying
+mana={4}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Thing in the Ice
+abilities=defender
+auto=counter(0/0,4,ice)
+auto=@movedto(instant,sorcery|mystack):counter(0/0,-1,ice)
+auto=if this(counter{0/0,0,ice})<1 then flip(Awoken Horror)
+text=Defender -- Thing in the Ice enters the battlefield with four ice counters on it. -- Whenever you cast an instant or sorcery spell, remove an ice counter from Thing in the Ice. Then if it has no ice counters on it, transform it.
+mana={1}{U}
+type=Creature
+subtype=Horror
+power=0
+toughness=4
+[/card]
+
+[card]
+name=Awoken Horror
+auto=moveto(ownerhand) all(creature[-horror])
+text=When this creature transforms into Awoken Horror, return all non-Horror creatures to their owners' hands.
+type=Creature
+subtype=Kraken Horror
+power=7
+toughness=8
+[/card]
+
+[card]
+name=Trail of Evidence
+auto=@movedto(instant,sorcery|mystack):token(410067) controller
+text=Whenever you cast an instant or sorcery spell, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={2}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Uninvited Geist
+auto=cantbeblockedby(creature[power>2])
+auto=@combatdamaged(player) from(this):flip(Unimpeded Trespasser)
+text=Skulk (This creature can't be blocked by creatures with greater power.) -- When Uninvited Geist deals combat damage to a player, transform it.
+mana={2}{U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Unimpeded Trespasser
+abilities=unblockable
+text=Unimpeded Trespasser can't be blocked.
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Vessel of Paramnesia
+auto={U}{S(this)}:deplete:3 target(player) && draw:1 controller
+text={U}, Sacrifice Vessel of Paramnesia: Target player puts the top three cards of his or her library into his or her graveyard. Draw a card.
+mana={1}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Welcome to the Fold
+target=creature[toughness<3]
+auto=moveTo(myBattlefield) forever
+autohand=@discarded(this):may pay[[{X}{U}{U}]] moveto(mystack) && exiledeath ueot
+text=Madness {X}{U}{U} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.) -- Gain control of target creature if its toughness is 2 or less. If Welcome to the Fold's madness cost was paid, instead gain control of that creature if its toughness is X or less.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Accursed Witch
+auto=@targeted(this) from(opponentstack):add{1} opponent
+auto=@movedTo(this|graveyard) from(battlefield):flip(Infectious Curse) && moveto(mybattlefield)
+text=Spells your opponents cast that target Accursed Witch cost {1} less to cast. -- When Accursed Witch dies, return it to the battlefield transformed under your control attached to target opponent.
+mana={3}{B}
+type=Creature
+subtype=Human Shaman
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Infectious Curse
+auto=@targeted(opponent):add{1}
+auto=@upkeep:life:1
+auto=@upkeep:life:-1 opponent
+text=Enchant player -- Spells you cast that target enchanted player cost {1} less to cast. -- At the beginning of enchanted player's upkeep, that player loses 1 life and you gain 1 life.
+type=Enchantment
+subtype=Aura Curse
+[/card]
+
+[card]
+name=Alms of the Vein
+abilities=lifelink
+target=player
+auto=damage:3
+autohand=@discarded(this):may pay[[{B}]] moveto(mystack) && exiledeath ueot
+text=Target opponent loses 3 life and you gain 3 life.  -- Madness {B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Asylum Visitor
+auto=@upkeep restriction type(*|myhand)~lessthan~1:draw:1 && life:-1
+auto=@each opponent upkeep restriction type(*|opponenthand)~lessthan~1:draw:1 && life:-1
+autohand=@discarded(this):may pay[[{1}{B}]] moveto(mystack) && exiledeath ueot
+text=At the beginning of each player's upkeep, if that player has no cards in hand, you draw a card and you lose 1 life. -- Madness {1}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={1}{B}
+type=Creature
+subtype=Vampire Wizard
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Behind the Scenes
+auto=lord(creature|mybattlefield) transforms((,newability[cantbeblockedby(creature[power>!this power!])]))
+auto={4}{W}:all(creature|mybattlefield) 1/1 ueot
+text=Creatures you control have skulk. (They can't be blocked by creatures with greater power.) -- {4}{W}: Creatures you control get +1/+1 until end of turn.
+mana={2}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Behold the Beyond
+auto=reject all(*|myhand)
+auto=moveto(myhand) target(<upto:3>*|mylibrary)
+text=Discard your hand. Search your library for three cards and put those cards into your hand. Then shuffle your library.
+mana={5}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Biting Rain
+auto=all(creature) -2/-2 ueot
+autohand=@discarded(this):may pay[[{2}{B}]] moveto(mystack) && exiledeath ueot
+text=All creatures get -2/-2 until end of turn.  -- Madness {2}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Call the Bloodline
+auto={1}{discard(*|myhand)}:token(Vampire Knight,creature Vampire Knight,1/1,black,lifelink) limit:1
+text={1}, Discard a card: Put a 1/1 black Vampire Knight creature token with lifelink onto the battlefield. Activate this ability only once each turn.
+mana={1}{B}
+type=Enchantment
+[/card]
+
+##creeping dread
+
+[card]
+name=Crow of Dark Tidings
+abilities=flying
+auto=deplete:2 controller
+auto=@movedto(mygraveyard):deplete:2 controller
+text=Flying -- When Crow of Dark Tidings enters the battlefield or dies, put the top two cards of your library into your graveyard.
+mana={2}{B}
+type=Creature
+subtype=Zombie Bird
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Diregraf Colossus
+auto=foreach(zombie|mygraveyard)counter(1/1,1)
+auto=@movedto(zombie|mystack):token(-370619)
+text=Diregraf Colossus enters the battlefield with a +1/+1 counter on it for each Zombie card in your graveyard. -- Whenever you cast a Zombie spell, put a 2/2 black Zombie creature token onto the battlefield tapped.
+mana={2}{B}
+type=Creature
+subtype=Zombie Giant
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Elusive Tormentor
+auto={1}{discard(*|myhand)}:flip(Insidious Mist)
+text={1}, Discard a card: Transform Elusive Tormentor.
+mana={2}{B}{B}
+type=Creature
+subtype=Vampire Wizard
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Insidious Mist
+#abilities=hexproof,unblockable,indestructible,cantblock
+abilities=opponentshroud,unblockable,indestructible,cantblock
+auto=@combat(notblocked) source(this):may flip(Elusive Tormentor)
+text=Hexproof, indestructible -- Insidious Mist can't block and can't be blocked. -- Whenever Insidious Mist attacks and isn't blocked, you may pay {2}{B}. If you do, transform it.
+type=Creature
+subtype=Elemental
+power=0
+toughness=1
+[/card]
+
+[card]
+name=Ever After
+target=<upto:2>creature|mygraveyard
+auto=moveto(mybattlefield)
+auto=transforms((zombie)) forever
+alias=135262
+text=Return up to two target creature cards from your graveyard to the battlefield. Each of those creatures is a black Zombie in addition to its other colors and types. Put Ever After on the bottom of its owner's library.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Farbog Revenant
+auto=cantbeblockedby(creature[power>1])
+abilities=lifelink
+text=Skulk (This creature can't be blocked by creatures with greater power.) -- Lifelink (Damage dealt by this creature also causes you to gain that much life.)
+mana={2}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=3
+[/card]
+
+[card]
+name=From Under the Floorboards
+auto=token(-229968)*3 && life:3
+autohand=@discarded(this):may pay[[{X}{B}{B}]] moveto(mystack) && exiledeath ueot
+text=Madness {X}{B}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.) -- Put three 2/2 black Zombie creature tokens onto the battlefield tapped and you gain 3 life. If From Under the Floorboards's madness cost was paid, instead put X of those tokens onto the battlefield tapped and you gain X life.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Ghoulcaller's Accomplice
+autograveyard={3}{B}{moveto(exile)}:token(Zombie,creature Zombie,2/2,black) assorcery
+text={3}{B}, Exile Ghoulcaller's Accomplice from your graveyard: Put a 2/2 black Zombie creature token onto the battlefield. Activate this ability only any time you could cast a sorcery.
+mana={1}{B}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Ghoulsteed
+auto={2}{B}{discard(<upto:2>*|myhand)}:moveto(mybattlefield)
+text={2}{B}, Discard two cards: Return Ghoulsteed from your graveyard to the battlefield tapped.
+mana={4}{B}
+type=Creature
+subtype=Zombie Horse
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Gisa's Bidding
+auto=token(Zombie,creature Zombie,2/2,black)*2
+autohand=@discarded(this):may pay[[{2}{B}]] moveto(mystack) && exiledeath ueot
+text=Put two 2/2 black Zombie creature tokens onto the battlefield. -- Madness {2}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Grotesque Mutation
+target=creature
+auto=3/1 ueot
+auto=lifelink ueot
+text=Target creature gets +3/+1 and gains lifelink until end of turn. (Damage dealt by the creature also causes its controller to gain that much life.)
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Heir of Falkenrath
+auto={discard(*|myhand)}:flip(Heir to the Night)
+text=Discard a card: Transform Heir of Falkenrath. Activate this ability only once each turn.
+mana={1}{B}
+type=Creature
+subtype=Vampire
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Heir to the Night
+abilities=flying
+text=Flying
+type=Creature
+subtype=Vampire Berserker
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Hound of the Farbogs
+text=Delirium  Hound of the Farbogs has menace as long as there are four or more card types among cards in your graveyard. (A creature with menace can't be blocked except by two or more creatures.)
+mana={4}{B}
+type=Creature
+subtype=Zombie Hound
+power=5
+toughness=3
+[/card]
+
+[card]
+name=Indulgent Aristocrat
+abilities=lifelink
+auto={2}{S(creature|mybattlefield)}:counter(1/1,1) all(vampire|mybattlefield)
+text=Lifelink -- {2}, Sacrifice a creature: Put a +1/+1 counter on each Vampire you control.
+mana={B}
+type=Creature
+subtype=Vampire
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Kindly Stranger
+text=Delirium  {2}{B}: Transform Kindly Stranger. Activate this ability only if there are four or more card types among cards in your graveyard.
+mana={2}{B}
+type=Creature
+subtype=Human
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Demon-Possessed Witch
+auto=destroy target(creature)
+text=When this creature transforms into Demon-Possessed Witch, you may destroy target creature.
+type=Creature
+subtype=Human Shaman
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Liliana's Indignation
+auto=deplete:X
+auto=foreach(creature[fresh]|mygraveyard) life:-2 opponent
+text=Put the top X cards of your library into your graveyard. Target player loses 2 life for each creature card put into your graveyard this way.
+mana={X}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Markov Dreadknight
+abilities=flying
+auto={2}{B}{discard(*|myhand)}:counter(1/1,2)
+text=Flying -- {2}{B}, Discard a card: Put two +1/+1 counters on Markov Dreadknight.
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire Knight
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Merciless Resolve
+auto=draw:2
+text=As an additional cost to cast Merciless Resolve, sacrifice a creature or land. -- Draw two cards.
+mana={2}{B}{S(creature|mybattlefield)}
+type=Instant
+[/card]
+
+[card]
+name=Mindwrack Demon
+abilities=flying, trample
+auto=deplete:4 controller
+text=Flying, trample -- When Mindwrack Demon enters the battlefield, put the top four cards of your library into your graveyard. -- Delirium  At the beginning of your upkeep, you lose 4 life unless there are four or more card types among cards in your graveyard.
+mana={2}{B}{B}
+type=Creature
+subtype=Demon
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Morkrut Necropod
+auto=@combat(attacking) source(this):sacrifice target(other creature,land|mybattlefield)
+auto=@combat(blocking) source(this):sacrifice target(other creature,land|mybattlefield)
+text=Menace (This creature can't be blocked except by two or more creatures.) -- Whenever Morkrut Necropod attacks or blocks, sacrifice another creature or land.
+mana={5}{B}
+type=Creature
+subtype=Slug Horror
+power=7
+toughness=7
+[/card]
+
+[card]
+name=Murderous Compulsion
+target=creature[tapped]
+auto=destroy
+autohand=@discarded(this):may pay[[{1}{B}]] moveto(mystack) && exiledeath ueot
+text=Destroy target tapped creature. -- Madness {1}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={1}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Olivia's Bloodsworn
+abilities=flying, cantblock
+auto={R}:target(vampire) haste ueot
+text=Flying -- Olivia's Bloodsworn can't block. -- {R}: Target Vampire gains haste until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Vampire Soldier
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Pale Rider of Trostad
+auto=discard(*|myhand)
+text=Skulk (This creature can't be blocked by creatures with greater power.) -- When Pale Rider of Trostad enters the battlefield, discard a card.
+mana={1}{B}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Pick the Brain
+target=opponent
+auto=moveto(exile) notatarget(*[-land]|targetedpersonshand)
+text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card. -- Delirium  If there are four or more card types among cards in your graveyard, search that player's graveyard, hand, and library for any number of cards with the same name as the exiled card, exile those cards, then that player shuffles his or her library.
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Rancid Rats
+abilities=deathtouch
+auto=cantbeblockedby(creature[power>1])
+text=Skulk (This creature can't be blocked by creatures with greater power.) -- Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.)
+mana={1}{B}
+type=Creature
+subtype=Zombie Rat
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Relentless Dead
+auto=@movedTo(this|graveyard) from(battlefield):transforms((,newability[{B}:moveto(myhand)])) ueot
+auto=@movedTo(this|graveyard) from(battlefield):transforms((,newability[{X}:moveto(myhand) target(zombie[manacost=X]|mygraveyard)])) ueot
+text=Menace (This creature can't be blocked except by two or more creatures.) -- When Relentless Dead dies, you may pay {B}. If you do, return it to its owner's hand. -- When Relentless Dead dies, you may pay {X}. If you do, return another target Zombie creature card with converted mana cost X from your graveyard to the battlefield.
+mana={B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Rottenheart Ghoul
+auto=@movedTo(this|graveyard) from(battlefield):discard(*|myhand) opponent
+text=When Rottenheart Ghoul dies, target player discards a card.
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Sanitarium Skeleton
+autograveyard={2}{B}:moveto(myhand)
+text={2}{B}: Return Sanitarium Skeleton from your graveyard to your hand.
+mana={B}
+type=Creature
+subtype=Skeleton
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Shamble Back
+target=creature|mygraveyard
+auto=moveto(exile)
+auto=life:2 controller
+auto=token(Zombie,creature Zombie,2/2,black)
+text=Exile target creature card from a graveyard. Put a 2/2 black Zombie creature token onto the battlefield. You gain 2 life.
+mana={B}
+type=Sorcery
+[/card]
+
+[card]
+name=Sinister Concoction
+auto={B}{L}{discard(*|myhand)}{S(this)}:destroy target(creature) && deplete:1 controller
+text={B}, Pay 1 life, Put the top card of your library into your graveyard, Discard a card, Sacrifice Sinister Concoction: Destroy target creature.
+mana={B}
+type=Enchantment
+[/card]
+
+[card]
+name=Stallion of Ashmouth
+text=Delirium  {1}{B}: Stallion of Ashmouth gets +1/+1 until end of turn. Activate this ability only if there are four or more card types among cards in your graveyard.
+mana={3}{B}
+type=Creature
+subtype=Nightmare Horse
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Stromkirk Mentor
+auto=counter(1/1,1) target(other vampire|mybattlefield)
+text=When Stromkirk Mentor enters the battlefield, put a +1/+1 counter on another target Vampire you control.
+mana={3}{B}
+type=Creature
+subtype=Vampire Soldier
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Throttle
+target=creature
+auto=-4/-4 ueot
+text=Target creature gets -4/-4 until end of turn.
+mana={4}{B}
+type=Instant
+[/card]
+
+[card]
+name=To the Slaughter
+target=player
+auto=ability$!name(sacrifice) notatarget(creature,planeswalker|mybattlefield) sacrifice!$ targetedplayer
+text=Target player sacrifices a creature or planeswalker. -- Delirium  If there are four or more card types among cards in your graveyard, instead that player sacrifices a creature and a planeswalker.
+mana={2}{B}
+type=Instant
+[/card]
+
+[card]
+name=Tooth Collector
+auto=target(creature|opponentbattlefield) -1/-1 ueot
+text=When Tooth Collector enters the battlefield, target creature an opponent controls gets -1/-1 until end of turn. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, target creature that player controls gets -1/-1 until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Triskaidekaphobia
+auto=@each my upkeep:choice name(gain) life:1 opponent
+auto=@each my upkeep:choice name(loss) life:-1 opponent
+auto=@each my upkeep restriction type(opponentlife=13):winGame
+text=At the beginning of your upkeep, choose one  --  Each player with exactly 13 life loses the game, then each player gains 1 life. --  Each player with exactly 13 life loses the game, then each player loses 1 life.
+mana={3}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Twins of Maurer Estate
+autohand=@discarded(this):may pay[[{2}{B}]] moveto(mystack) && exiledeath ueot
+text=Madness {2}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={4}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Vampire Noble
+mana={2}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Vessel of Malignity
+auto={1}{B}{S(this)}:target(opponent) ability!$ moveto(exile) target(<upto:2>*|myhand)$! assorcery
+text={1}{B}, Sacrifice Vessel of Malignity: Target opponent exiles two cards from his or her hand. Activate this ability only any time you could cast a sorcery.
+mana={1}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Avacyn's Judgment
+target=creature,player
+auto=damage:1
+auto=transforms((,newability[damage:1 target(creature,player)])) ueot
+text=Madness {X}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.) -- Avacyn's Judgment deals 2 damage divided as you choose among any number of target creatures and/or players. If Avacyn's Judgment's madness cost was paid, it deals X damage divided as you choose among those creatures and/or players instead.
+mana={1}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Bloodmad Vampire
+auto=@combatdamaged(player) from(this):counter(1/1,1)
+autohand=@discarded(this):may pay[[{1}{R}]] moveto(mystack) && exiledeath ueot
+text=Whenever Bloodmad Vampire deals combat damage to a player, put a +1/+1 counter on it. -- Madness {1}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={2}{R}
+type=Creature
+subtype=Vampire Berserker
+power=4
+toughness=1
+[/card]
+
+[card]
+name=Breakneck Rider
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Neck Breaker)
+text=At the beginning of each upkeep, if no spells were cast last turn, transform Breakneck Rider.
+mana={1}{R}{R}
+type=Creature
+subtype=Human Scout Werewolf
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Neck Breaker
+abilities=trample
+auto=lord(creature[attacking]|mybattlefield) 1/0
+auto=lord(creature[attacking]|mybattlefield) trample
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Breakneck Rider)
+text=Attacking creatures you control get +1/+0 and have trample. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Neck Breaker.
+type=Creature
+subtype=Werewolf
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Burn from Within
+target=creature,player
+auto=-indestructible
+auto=exiledeath
+auto=damage:X
+text=Burn from Within deals X damage to target creature or player. If a creature is dealt damage this way, it loses indestructible until end of turn. If that creature would die this turn, exile it instead.
+mana={X}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Convicted Killer
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Branded Howler)
+text=At the beginning of each upkeep, if no spells were cast last turn, transform Convicted Killer.
+mana={2}{R}
+type=Creature
+subtype=Human Werewolf
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Branded Howler
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Convicted Killer)
+text=At the beginning of each upkeep, if a player cast two or more spells last turn, transform Branded Howler.
+type=Creature
+subtype=Werewolf
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Dance with Devils
+auto=token(410068)*2
+text=Put two 1/1 red Devil creature tokens onto the battlefield. They have "When this creature dies, it deals 1 damage to target creature or player."
+mana={3}{R}
+type=Instant
+[/card]
+
+[card]
+name=Devils' Playground
+auto=token(410068)*4
+text=Put four 1/1 red Devil creature tokens onto the battlefield. They have "When this creature dies, it deals 1 damage to target creature or player."
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Dissension in the Ranks
+auto=name(why not act of treason?) damage:20 controller
+text=Target blocking creature fights another target blocking creature.
+mana={3}{R}{R}
+type=Instant
+[/card]
+
+[card]
+name=Dual Shot
+target=<upto:2>creature
+auto=damage:1
+text=Dual Shot deals 1 damage to each of up to two target creatures.
+mana={R}
+type=Instant
+[/card]
+
+[card]
+name=Ember-Eye Wolf
+abilities=haste
+auto={1}{R}:2/0 ueot
+text=Haste -- {1}{R}: Ember-Eye Wolf gets +2/+0 until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Wolf
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Falkenrath Gorger
+text=Each Vampire creature card you own that isn't on the battlefield has madness. The madness cost is equal to its mana cost. (If you discard a card with madness, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={R}
+type=Creature
+subtype=Vampire Berserker
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Fiery Temper
+target=creature,player
+auto=damage:3
+autohand=@discarded(this):may pay[[{R}]] moveto(mystack) && exiledeath ueot
+text=Fiery Temper deals 3 damage to target creature or player. -- Madness {R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={1}{R}{R}
+type=Instant
+[/card]
+
+[card]
+name=Flameblade Angel
+abilities=flying
+auto=@damaged(controller,creature|mybattlefield):damage:1 opponent
+text=Flying -- Whenever a source an opponent controls deals damage to you or a permanent you control, you may have Flameblade Angel deal 1 damage to that source's controller.
+mana={4}{R}{R}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Gatstaf Arsonists
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Gatstaf Ravagers)
+text=At the beginning of each upkeep, if no spells were cast last turn, transform Gatstaf Arsonists.
+mana={4}{R}
+type=Creature
+subtype=Human Werewolf
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Gatstaf Ravagers
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Gatstaf Arsonists)
+text=Menace (This creature can't be blocked except by two or more creatures.) -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Gatstaf Ravagers.
+type=Creature
+subtype=Werewolf
+power=6
+toughness=5
+[/card]
+
+[card]
+name=Geier Reach Bandit
+abilities=haste
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Vildin-Pack Alpha)
+text=Haste -- At the beginning of each upkeep, if no spells were cast last turn, transform Geier Reach Bandit.
+mana={2}{R}
+type=Creature
+subtype=Human Rogue Werewolf
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Vildin-Pack Alpha
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Geier Reach Bandit)
+text=Whenever a Werewolf enters the battlefield under your control, you may transform it. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Vildin-Pack Alpha.
+type=Creature
+subtype=Werewolf
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Geistblast
+target=creature,player
+auto=damage:2
+autograveyard={2}{U}{moveto(exile)}:target(instant,sorcery|myhand) storm ueot
+text=Geistblast deals 2 damage to target creature or player. -- {2}{U}, Exile Geistblast from your graveyard: Copy target instant or sorcery spell you control. You may choose new targets for the copy.
+mana={2}{R}
+type=Instant
+[/card]
+
+[card]
+name=Gibbering Fiend
+auto=damage:1 opponent
+text=When Gibbering Fiend enters the battlefield, it deals 1 damage to each opponent. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, Gibbering Fiend deals 1 damage to that player.
+mana={1}{R}
+type=Creature
+subtype=Devil
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Goldnight Castigator
+abilities=flying, haste
+auto=@damaged(controller) from(this):damage:thatmuch controller
+auto=@damaged(this) from(this):damage:thatmuch this
+text=Flying, haste -- If a source would deal damage to you, it deals double that damage to you instead. -- If a source would deal damage to Goldnight Castigator, it deals double that damage to Goldnight Castigator instead.
+mana={2}{R}{R}
+type=Creature
+subtype=Angel
+power=4
+toughness=9
+[/card]
+
+[card]
+name=Harness the Storm
+auto=@upkeep:if type(*|mygraveyard)~morethan~3 then all(instant,sorcery|myhand) storm ueot
+text=Whenever you cast an instant or sorcery spell from your hand, you may cast target card with the same name as that spell from your graveyard. (You still pay its costs.)
+mana={2}{R}
+type=Enchantment
+[/card]
+
+[card]
+name=Howlpack Wolf
+abilities=cantblock
+auto=aslongas(wolf,werewolf|mybattlefield)~morethan~0 then -cantblock
+text=Howlpack Wolf can't block unless you control another Wolf or Werewolf.
+mana={2}{R}
+type=Creature
+subtype=Wolf
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Hulking Devil
+mana={3}{R}
+type=Creature
+subtype=Devil
+power=5
+toughness=2
+[/card]
+
+[card]
+name=Incorrigible Youths
+abilities=haste
+autohand=@discarded(this):may pay[[{2}{R}]] moveto(mystack) && exiledeath ueot
+text=Haste -- Madness {2}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={3}{R}{R}
+type=Creature
+subtype=Vampire
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Inner Struggle
+target=creature
+auto=transforms((,newability[target(this) dynamicability<!powerstrike!>])) ueot
+text=Target creature deals damage to itself equal to its power.
+mana={3}{R}
+type=Instant
+[/card]
+
+[card]
+name=Insolent Neonate
+auto={discard(*|myhand)}{S(this)}:draw:1
+text=Menace (This creature can't be blocked except by two or more creatures.) -- Discard a card, Sacrifice Insolent Neonate: Draw a card.
+mana={R}
+type=Creature
+subtype=Vampire
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Kessig Forgemaster
+auto=@combat(blocking,blocked) source(this) from(creature):damage:1 all(trigger[from])
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Flameheart Werewolf)
+text=Whenever Kessig Forgemaster blocks or becomes blocked by a creature, Kessig Forgemaster deals 1 damage to that creature. -- At the beginning of each upkeep, if no spells were cast last turn, transform Kessig Forgemaster.
+mana={1}{R}
+type=Creature
+subtype=Human Shaman Werewolf
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Flameheart Werewolf
+auto=@combat(blocking,blocked) source(this) from(creature):damage:2 all(trigger[from])
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Kessig Forgemaster)
+text=Whenever Flameheart Werewolf blocks or becomes blocked by a creature, Flameheart Werewolf deals 2 damage to that creature. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Flameheart Werewolf.
+type=Creature
+subtype=Werewolf
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Mad Prophet
+abilities=haste
+auto={T}:discard(*|myhand) && draw:1
+text=Haste -- {T}, Discard a card: Draw a card.
+mana={3}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Malevolent Whispers
+target=creature
+auto=haste
+auto=untap
+auto=2/0 ueot
+alias=129767
+autohand=@discarded(this):may pay[[{3}{R}]] moveto(mystack) && exiledeath ueot
+text=Gain control of target creature until end of turn. Untap that creature. It gets +2/+0 and gains haste until end of turn.  -- Madness {3}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Pyre Hound
+abilities=trample
+auto=@movedto(instant,sorcery|mystack):counter(1/1,1)
+text=Trample -- Whenever you cast an instant or sorcery spell, put a +1/+1 counter on Pyre Hound.
+mana={3}{R}
+type=Creature
+subtype=Elemental Hound
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Ravenous Bloodseeker
+auto={discard(*|myhand)}:2/-2 ueot
+text=Discard a card: Ravenous Bloodseeker gets +2/-2 until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Vampire Berserker
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Reduce to Ashes
+target=creature
+auto=damage:5
+auto=exiledeath
+text=Reduce to Ashes deals 5 damage to target creature. If that creature would die this turn, exile it instead.
+mana={4}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Rush of Adrenaline
+target=creature
+auto=2/1
+auto=trample
+text=Target creature gets +2/+1 and gains trample until end of turn.
+mana={R}
+type=Instant
+[/card]
+
+[card]
+name=Sanguinary Mage
+auto=@movedto(*[-creature]|mystack):1/1 ueot
+text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+mana={1}{R}
+type=Creature
+subtype=Vampire Wizard
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Scourge Wolf
+abilities=first strike
+text=First strike -- Delirium  Scourge Wolf has double strike as long as there are four or more card types among cards in your graveyard.
+mana={R}{R}
+type=Creature
+subtype=Wolf Horror
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Senseless Rage
+target=creature
+auto=2/2
+autohand=@discarded(this):may pay[[{1}{R}]] moveto(mystack) && exiledeath ueot
+text=Enchant creature -- Enchanted creature gets +2/+2. -- Madness {1}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Sin Prodder
+auto=@each my upkeep:transforms((,newability[pay[[{L:3}]] name(pay 3 life) deplete:1?draw:1])) ueot
+text=Menace -- At the beginning of your upkeep, reveal the top card of your library. Any opponent may have you put that card into your graveyard. If a player does, Sin Prodder deals damage to that player equal to that card's converted mana cost. Otherwise, put that card into your hand.
+mana={2}{R}
+type=Creature
+subtype=Devil
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Skin Invasion
+target=creature
+auto=mustattack
+auto=@movedto(mytgt|ownergraveyard) from(ownerbattlefield):token(Skin Shedder,creature Insect Horror,3/4,red) controller
+text=Enchant creature -- Enchanted creature attacks each combat if able. -- When enchanted creature dies, return Skin Invasion to the battlefield transformed under your control.
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Spiteful Motives
+target=creature
+abilities=flash
+auto=3/0
+auto=first strike
+text=Flash (You may cast this spell any time you could cast an instant.) -- Enchant creature -- Enchanted creature gets +3/+0 and has first strike.
+mana={3}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Stensia Masquerade
+auto=lord(creature|mybattlefield) first strike
+auto=@combatdamaged(player) from(vampire): counter(1/1,1) all(trigger[to])
+autohand=@discarded(this):may pay[[{2}{R}]] moveto(mystack) && exiledeath ueot
+text=Attacking creatures you control have first strike. -- Whenever a Vampire you control deals combat damage to a player, put a +1/+1 counter on it. -- Madness {2}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={2}{R}
+type=Enchantment
+[/card]
+
+[card]
+name=Structural Distortion
+target=artifact,land
+auto=moveto(exile)
+auto=damage:2 controller
+text=Exile target artifact or land. Structural Distortion deals 2 damage to that permanent's controller.
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Ulrich's Kindred
+abilities=trample
+auto={3}{G}:target(wolf,werewolf[attacking]) indestructible ueot
+text=Trample -- {3}{G}: Target attacking Wolf or Werewolf gains indestructible until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Wolf
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Uncaged Fury
+target=creature
+auto=double strike
+auto=1/1
+text=Target creature gets +1/+1 and gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
+mana={2}{R}
+type=Instant
+[/card]
+
+[card]
+name=Vessel of Volatility
+auto={1}{R}{S(this)}:add{R}{R}{R}{R}
+text={1}{R}, Sacrifice Vessel of Volatility: Add {R}{R}{R}{R} to your mana pool.
+mana={1}{R}
+type=Enchantment
+[/card]
+
+[card]
+name=Village Messenger
+abilities=haste
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Moonrise Intruder)
+text=Haste -- At the beginning of each upkeep, if no spells were cast last turn, transform Village Messenger.
+mana={R}
+type=Creature
+subtype=Human Werewolf
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Moonrise Intruder
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Village Messenger)
+text=Menace (This creature can't be blocked except by two or more creatures.) -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Moonrise Intruder.
+type=Creature
+subtype=Werewolf
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Voldaren Duelist
+abilities=haste
+auto=target(creature) cantblock ueot
+text=Haste -- When Voldaren Duelist enters the battlefield, target creature can't block this turn.
+mana={3}{R}
+type=Creature
+subtype=Vampire Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Wolf of Devil's Breach
+auto=@combat(attacking) source(this):{1}{R}{discard(*|myhand)}:damage:manacost
+text=Whenever Wolf of Devil's Breach attacks, you may pay {1}{R} and discard a card. If you do, Wolf of Devil's Breach deals damage to target creature or planeswalker equal to the discarded card's converted mana cost.
+mana={3}{R}{R}
+type=Creature
+subtype=Elemental Wolf
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Aim High
+target=creature
+auto=untap
+auto=2/2
+auto=reach
+text=Untap target creature. It gets +2/+2 and gains reach until end of turn. (It can block creatures with flying.)
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Autumnal Gloom
+auto={B}:deplete:1 controller
+text={B}: Put the top card of your library into your graveyard. -- Delirium  At the beginning of your end step, if there are four or more card types among cards in your graveyard, transform Autumnal Gloom.
+mana={2}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Ancient of the Equinox
+abilities=opponentshroud, trample
+text=Trample, hexproof
+type=Creature
+subtype=Treefolk
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Briarbridge Patrol
+auto=token(cluefuck,artifact cluefuck)
+auto=@damaged(player) from(this):token(410067) controller
+auto=@movedto(clue|mygraveyard): counter(0/0,1,clue) all(cluefuck|mybattlefield)
+auto=@each endofturn restriction{type(cluefuck[c(clue)>=3])~morethan~0}:may moveto(mybattlefield) target(creature|myhand)
+auto=@each opponent upkeep:all(cluefuck|mybattlefield) removeallcounters(clue)
+text=Whenever Briarbridge Patrol deals damage to one or more creatures, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- At the beginning of each end step, if you sacrificed three or more Clues this turn, you may put a creature card from your hand onto the battlefield.
+mana={3}{G}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Byway Courier
+auto=@movedTo(this|graveyard) from(battlefield):token(410067) controller
+text=When Byway Courier dies, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={2}{G}
+type=Creature
+subtype=Human Scout
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Clip Wings
+auto=sacrifice notatarget(creature[flying]|mybattlefield)
+auto=ability$! sacrifice notatarget(creature[flying]|mybattlefield) !$ opponent
+text=Each opponent sacrifices a creature with flying.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Confront the Unknown
+target=creature
+auto=token(410067) controller
+auto=foreach(clue|mybattlefield) 1/1
+text=Investigate, then target creature gets +1/+1 until end of turn for each Clue you control. (To investigate, put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={G}
+type=Instant
+[/card]
+
+[card]
+name=Crawling Sensation
+auto=@each my upkeep:may deplete:2 controller
+auto=@movedto(land|mygraveyard):token(Insect,creature Insect,1/1,green)
+text=At the beginning of your upkeep, you may put the top two cards of your library into your graveyard. -- Whenever one or more land cards are put into your graveyard from anywhere for the first time each turn, put a 1/1 green Insect creature token onto the battlefield.
+mana={2}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Cryptolith Rite
+auto=lord(creature|mybattlefield) transforms((,newability[{T}:add{G}])) forever
+auto=lord(creature|mybattlefield) transforms((,newability[{T}:add{B}])) forever
+auto=lord(creature|mybattlefield) transforms((,newability[{T}:add{W}])) forever
+auto=lord(creature|mybattlefield) transforms((,newability[{T}:add{U}])) forever
+auto=lord(creature|mybattlefield) transforms((,newability[{T}:add{R}])) forever
+text=Creatures you control have "{T}: Add one mana of any color to your mana pool."
+mana={1}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Cult of the Waxing Moon
+auto=@flip(creature|mybattlefield):token(Wolf,creature Wolf,2/2,green)
+text=Whenever a permanent you control transforms into a non-Human creature, put a 2/2 green Wolf creature token onto the battlefield.
+mana={4}{G}
+type=Creature
+subtype=Human Shaman
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Deathcap Cultivator
+auto={T}:add{B}
+auto={T}:add{G}
+text={T}: Add {B} or {G} to your mana pool. -- Delirium  Deathcap Cultivator has deathtouch as long as there are four or more card types among cards in your graveyard.
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Duskwatch Recruiter
+auto={2}{G}:deplete:3 controller && moveto(myhand) target(creature|mygraveyard)
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Krallenhorde Howler)
+text={2}{G}: Look at the top three cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in any order. -- At the beginning of each upkeep, if no spells were cast last turn, transform Duskwatch Recruiter.
+mana={1}{G}
+type=Creature
+subtype=Human Warrior Werewolf
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Krallenhorde Howler
+auto=lord(creature|myhand) altercost(colorless, -1)
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Duskwatch Recruiter)
+text=Creature spells you cast cost {1} less to cast. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Krallenhorde Howler.
+type=Creature
+subtype=Werewolf
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Equestrian Skill
+target=creature
+auto=3/3
+auto=aslongas(mytgt[human]) trample
+text=Enchant creature -- Enchanted creature gets +3/+3. -- As long as enchanted creature is a Human, it has trample.
+mana={3}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Fork in the Road
+auto=name(hand) moveto(myhand) target(basic|mylibrary)
+auto=name(grave) moveto(mygraveyard) target(basic|mylibrary)
+text=Search your library for up to two basic land cards and reveal them. Put one into your hand and the other into your graveyard. Then shuffle your library.
+mana={1}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Gloomwidow
+abilities=reach,cloud
+text=Reach -- Gloomwidow can block only creatures with flying.
+mana={2}{G}
+type=Creature
+subtype=Spider
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Graf Mole
+auto=@movedto(clue|mygraveyard): life:3
+text=Whenever you sacrifice a Clue, you gain 3 life.
+mana={2}{G}
+type=Creature
+subtype=Mole Beast
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Groundskeeper
+auto={1}{G}:moveto(myhand) target(land|mygraveyard)
+text={1}{G}: Return target basic land card from your graveyard to your hand.
+mana={G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Hermit of the Natterknolls
+auto=@movedTo(*|opponentstack):draw:1
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Lone Wolf of the Natterknolls)
+text=Whenever an opponent casts a spell during your turn, draw a card. -- At the beginning of each upkeep, if no spells were cast last turn, transform Hermit of the Natterknolls.
+mana={2}{G}
+type=Creature
+subtype=Human Werewolf
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Lone Wolf of the Natterknolls
+auto=@movedTo(*|opponentstack):draw:2
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Hermit of the Natterknolls)
+text=Whenever an opponent casts a spell during your turn, draw two cards. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Lone Wolf of the Natterknolls.
+type=Creature
+subtype=Werewolf
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Hinterland Logger
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Timber Shredder)
+text=At the beginning of each upkeep, if no spells were cast last turn, transform Hinterland Logger.
+mana={1}{G}
+type=Creature
+subtype=Human Werewolf
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Timber Shredder
+abilities=trample
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Hinterland Logger)
+text=Trample -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Timber Shredder.
+type=Creature
+subtype=Werewolf
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Howlpack Resurgence
+abilities=flash
+auto=lord(wolf,werewolf|mybattlefield) 1/1
+auto=lord(wolf,werewolf|mybattlefield) trample
+text=Flash (You may cast this spell any time you could cast an instant.) -- Each creature you control that's a Wolf or a Werewolf gets +1/+1 and has trample.
+mana={2}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Inexorable Blob
+auto=@combat(attacking) source(this): aslongas(*|mygraveyard)~morethan~6 token(Ooze,creature Ooze,3/3,green,battleready)
+text=Delirium  Whenever Inexorable Blob attacks, if there are four or more card types among cards in your graveyard, put a 3/3 green Ooze creature token onto the battlefield tapped and attacking.
+mana={2}{G}
+type=Creature
+subtype=Ooze
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Intrepid Provisioner
+abilities=trample
+auto=target(human|mybattlefield) 2/2 ueot
+text=Trample -- When Intrepid Provisioner enters the battlefield, another target Human you control gets +2/+2 until end of turn.
+mana={3}{G}
+type=Creature
+subtype=Human Scout
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Kessig Dire Swine
+abilities=trample
+text=Delirium  Kessig Dire Swine has trample as long as there are four or more card types among cards in your graveyard.
+mana={4}{G}{G}
+type=Creature
+subtype=Boar Horror
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Lambholt Pacifist
+abilities=cantattack
+auto=aslongas(creature[power>3]|mybattlefield)-cantattack
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Lambholt Butcher)
+text=Lambholt Pacifist can't attack unless you control a creature with power 4 or greater. -- At the beginning of each upkeep, if no spells were cast last turn, transform Lambholt Pacifist.
+mana={1}{G}
+type=Creature
+subtype=Human Shaman Werewolf
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Lambholt Butcher
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Lambholt Pacifist)
+text=At the beginning of each upkeep, if a player cast two or more spells last turn, transform Lambholt Butcher.
+type=Creature
+subtype=Werewolf
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Loam Dryad
+auto={T}{tap target(creature|mybattlefield)}:add{G}
+auto={T}{tap target(creature|mybattlefield)}:add{B}
+auto={T}{tap target(creature|mybattlefield)}:add{W}
+auto={T}{tap target(creature|mybattlefield)}:add{U}
+auto={T}{tap target(creature|mybattlefield)}:add{R}
+text={T}, Tap an untapped creature you control: Add one mana of any color to your mana pool.
+mana={G}
+type=Creature
+subtype=Dryad Horror
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Might Beyond Reason
+target=creature
+auto=counter(1/1,2)
+text=Put two +1/+1 counters on target creature. -- Delirium  Put three +1/+1 counters on that creature instead if there are four or more card types among cards in your graveyard.
+mana={3}{G}
+type=Instant
+[/card]
+
+[card]
+name=Moldgraf Scavenger
+text=Delirium  Moldgraf Scavenger gets +3/+0 as long as there are four or more card types among cards in your graveyard.
+mana={1}{G}
+type=Creature
+subtype=Fungus
+power=0
+toughness=4
+[/card]
+
+[card]
+name=Moonlight Hunt
+target=creature
+auto=from(wolf,werewolf|mybattlefield) dynamicability<!powerstrike!>
+text=Choose target creature you don't control. Each creature you control that's a Wolf or a Werewolf deals damage equal to its power to that creature.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Obsessive Skinner
+auto=counter(1/1,1) target(creature)
+text=When Obsessive Skinner enters the battlefield, put a +1/+1 counter on target creature. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, put a +1/+1 counter on target creature.
+mana={1}{G}
+type=Creature
+subtype=Human Rogue
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Pack Guardian
+abilities=flash
+auto=may discard(land|myhand) && token(Wolf,creature Wolf,2/2,green)
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Pack Guardian enters the battlefield, you may discard a land card. If you do, put a 2/2 green Wolf creature token onto the battlefield.
+mana={2}{G}{G}
+type=Creature
+subtype=Wolf Spirit
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Quilled Wolf
+auto={5}{G}:4/4 ueot
+text={5}{G}: Quilled Wolf gets +4/+4 until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Rabid Bite
+target=creature
+auto=transforms((,newability[dynamicability<!powerstrike!> target(creature)]))
+text=Target creature you control deals damage equal to its power to target creature you don't control.
+mana={1}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Root Out
+target=artifact,enchantment
+auto=destroy
+auto=token(410067) controller
+text=Destroy target artifact or enchantment. -- Investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={2}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Sage of Ancient Lore
+auto=foreach(*|myhand)1/1
+auto=draw:1
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Werewolf of Ancient Hunger)
+text=Sage of Ancient Lore's power and toughness are each equal to the number of cards in your hand. -- When Sage of Ancient Lore enters the battlefield, draw a card. -- At the beginning of each upkeep, if no spells were cast last turn, transform Sage of Ancient Lore.
+mana={4}{G}
+type=Creature
+subtype=Human Shaman Werewolf
+power=*
+toughness=*
+[/card]
+
+[card]
+name=Werewolf of Ancient Hunger
+abilities=vigilance, trample
+auto=foreach(*|myhand)1/1
+auto=foreach(*|opponenthand)1/1
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Sage of Ancient Lore)
+text=Vigilance, trample -- Werewolf of Ancient Hunger's power and toughness are each equal to the total number of cards in all players' hands. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Werewolf of Ancient Hunger.
+type=Creature
+subtype=Werewolf
+power=*
+toughness=*
+[/card]
+
+[card]
+name=Seasons Past
+text=Return any number of cards with different converted mana costs from your graveyard to your hand. Put Seasons Past on the bottom of its owner's library.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Second Harvest
+auto=foreach(*[token]|mybattlefield) populate
+text=For each token you control, put a token onto the battlefield that's a copy of that permanent.
+mana={2}{G}{G}
+type=Instant
+[/card]
+
+[card]
+name=Silverfur Partisan
+abilities=trample
+auto=@targeted(wolf,werewolf|mybattlefield) from(instant,sorcery):token(Wolf,creature Wolf,2/2,green)
+text=Trample -- Whenever a Wolf or Werewolf you control becomes the target of an instant or sorcery spell, put a 2/2 green Wolf creature token onto the battlefield.
+mana={2}{G}
+type=Creature
+subtype=Wolf Warrior
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Solitary Hunter
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(One of the Pack)
+text=At the beginning of each upkeep, if no spells were cast last turn, transform Solitary Hunter.
+mana={3}{G}
+type=Creature
+subtype=Human Warrior Werewolf
+power=3
+toughness=4
+[/card]
+
+[card]
+name=One of the Pack
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Solitary Hunter)
+text=At the beginning of each upkeep, if a player cast two or more spells last turn, transform One of the Pack.
+type=Creature
+subtype=Werewolf
+power=5
+toughness=6
+[/card]
+
+[card]
+name=Soul Swallower
+abilities=trample
+auto=@each my upkeep:
+text=Trample -- Delirium  At the beginning of your upkeep, if there are four or more card types among cards in your graveyard, put three +1/+1 counters on Soul Swallower.
+mana={2}{G}{G}
+type=Creature
+subtype=Wurm
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Stoic Builder
+auto=may moveto(myhand) target(land|mybattlefield)
+text=When Stoic Builder enters the battlefield, you may return target land card from your graveyard to your hand.
+mana={2}{G}
+type=Creature
+subtype=Human
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Thornhide Wolves
+mana={4}{G}
+type=Creature
+subtype=Wolf
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Tireless Tracker
+auto=@movedto(land|mybattlefield):token(410067) controller
+auto=@movedto(clue|mygraveyard):counter(1/1,1)
+text=Whenever a land enters the battlefield under your control, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- Whenever you sacrifice a Clue, put a +1/+1 counter on Tireless Tracker.
+mana={2}{G}
+type=Creature
+subtype=Human Scout
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Traverse the Ulvenwald
+auto=moveto(myhand) target(basic|mylibrary)
+text=Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library. -- Delirium  If there are four or more card types among cards in your graveyard, instead search your library for a creature or land card, reveal it, put it into your hand, then shuffle your library.
+mana={G}
+type=Sorcery
+[/card]
+
+[card]
+name=Ulvenwald Hydra
+abilities=reach
+auto=foreach(land|mybattlefield)1/1
+auto=may moveto(mybattlefield) target(land|mylibrary)
+text=Reach -- Ulvenwald Hydra's power and toughness are each equal to the number of lands you control. -- When Ulvenwald Hydra enters the battlefield, you may search your library for a land card, put it onto the battlefield tapped, then shuffle your library.
+mana={4}{G}{G}
+type=Creature
+subtype=Hydra
+power=*
+toughness=*
+[/card]
+
+[card]
+name=Ulvenwald Mysteries
+auto=@movedto(creature[-token]|mygraveyard):token(410067) controller
+auto=@movedto(clue|mygraveyard):token(Human Soldier,creature Human Soldier,1/1,white) controller
+text=Whenever a nontoken creature you control dies, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- Whenever you sacrifice a Clue, put a 1/1 white Human Soldier creature token onto the battlefield.
+mana={2}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Vessel of Nascency
+auto={1}{G}{S(this)}:deplete:4 controller && moveto(myhand) target(creature,artifact,enchantment,land,planeswalker[fresh]|mygraveyard)
+text={1}{G}, Sacrifice Vessel of Nascency: Reveal the top four cards of your library. You may put an artifact, creature, enchantment, land, or planeswalker card from among them into your hand. Put the rest into your graveyard.
+mana={G}
+type=Enchantment
+[/card]
+
+[card]
+name=Veteran Cathar
+auto={3}{W}:target(human) double strike ueot
+text={3}{W}: Target Human gains double strike until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Watcher in the Web
+abilities=reach
+text=Reach (This creature can block creatures with flying.) -- Watcher in the Web can block an additional seven creatures each combat.
+mana={4}{G}
+type=Creature
+subtype=Spider
+power=2
+toughness=5
+[/card]
+
+[card]
+name=Weirding Wood
+auto=token(410067) controller
+auto={T(mytgt)}:add{G}{G}
+auto={T(mytgt)}:add{R}{R}
+auto={T(mytgt)}:add{U}{U}
+auto={T(mytgt)}:add{B}{B}
+auto={T(mytgt)}:add{W}{W}
+target=land
+text=Enchant land -- When Weirding Wood enters the battlefield, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- Enchanted land has "{T}: Add two mana of any one color to your mana pool."
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Altered Ego
+abilities=nofizzle
+auto=clone
+auto=counter(1/1,X)
+text=Altered Ego can't be countered. -- You may have Altered Ego enter the battlefield as a copy of any creature on the battlefield, except it enters with X additional +1/+1 counters on it.
+mana={X}{2}{G}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+
+[card]
+name=Anguished Unmaking
+target=*[-land]
+auto=moveto(exile)
+auto=life:-3 controller
+text=Exile target nonland permanent. You lose 3 life.
+mana={1}{W}{B}
+type=Instant
+[/card]
+
+[card]
+name=Arlinn Kord
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:target(creature) 2/2 ueot && transforms((,newability[all(creature|mybattlefield) vigilance],newability[all(creature|mybattlefield) haste])) ueot
+auto={C(0/0,0,Loyalty)}:token(Wolf,creature Wolf,2/2,green) && flip(Arlinn, Embraced by the Moon)
+text=+1: target creature gets +2/+2 vigilance and haste until end of turn -- 0: put a 2/2 green wolf token onto the battlefield, transform Arlinn Kord
+mana={2}{R}{G}
+type=Planeswalker
+subtype=Arlinn
+[/card]
+[card]
+name=Arlinn, Embraced by the Moon
+auto={C(0/0,1,Loyalty)}:all(creature|mybattlefield) 1/1 ueot && transforms((,newability[all(creature|mybattlefield) trample])) ueot
+auto={C(0/0,-1,Loyalty)}:damage:3 target(creature,player)
+auto={C(0/0,-6,Loyalty)}:name(emblem) emblem transforms((,newability[lord(creature|mybattlefield) {T}:target(creature,player) dynamicability<!powerstrike!>],newability[lord(creature|mybattlefield) haste])) forever dontremove
+text=+1: creatures you control get +1/+1 and trample until end of turn -- -1: Arlinn, Embraced by the Moon deals 3 damage to target creature or player, flip -- -6: you get an emblem with 'creatures you control have haste and '{T}: this creature deals damage equal to its power to target creature or player'
+type=Planeswalker
+subtype=Arlinn
+[/card]
+
+[card]
+name=Fevered Visions
+auto=@at my endofturn:draw:1
+auto=@at opponent endofturn:draw:1 opponent && if type(*|opponenthand)~morethan~3 then damage:2 opponent
+text=At the beginning of each player's end step, that player draws a card. If the player is your opponent and has four or more cards in hand, Fevered Visions deals 2 damage to him or her.
+mana={1}{U}{R}
+type=Enchantment
+[/card]
+
+[card]
+name=The Gitrog Monster
+abilities=deathtouch
+auto=upcost[{S(land|mybattlefield)}] sacrifice
+auto=maxPlay(land)+1
+auto=@movedto(land|mygraveyard): draw:1
+text=deathtouch -- at the beggining of your upkeep, sacrifice The Gitrog Monster unless you sacrifice a land -- you may play an additional land on each of your turns -- whenever a land is put into a graveyard, draw a card
+mana={3}{B}{G}
+type=Legendary Creature
+subtype=Frog Horror
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Invocation of Saint Traft
+target=creature
+auto=@combat(attacking) source(mytgt):token(Angel Token,Creature Angel,4/4,white,flying,battleready) && all(Angel Token[attacking]|mybattlefield) phaseaction[combatends once] moveto(exile)
+text=Enchant creature -- Enchanted creature has "Whenever this creature attacks, put a 4/4 white Angel creature token with flying onto the battlefield tapped and attacking. Exile that token at end of combat."
+mana={1}{W}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Nahiri, the Harbinger
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,2,Loyalty)}:may name(discard and draw) reject notatarget(*|myhand) && transforms((,newability[draw:1 controller])) ueot
+auto={C(0/0,-2,Loyalty)}:moveto(exile) target(enchantment,artifact[tapped],creture[tapped])
+auto={C(0/0,-8,Loyalty)}:target(artifact,creature|mylibrary) moveto(mybattlefield) and transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveto(ownerhand) all(this)])) ueot
+text=+1: put the top card of your library into your graveyard, you may return it to the top of your library, draw 1 -- -2: return a target creature to its owners hand -- -8: you get an emblem with whenever an opponent casts a spell if its the first spell they cast this turn, counter that spell
+mana={2}{R}{W}
+type=Planeswalker
+subtype=Nahiri
+[/card]
+
+[card]
+name=Olivia, Mobilized for War
+abilities=flying
+auto=@movedto(other creature|mybattlefield):may {discard(*|myhand)}: all(trigger) counter(1/1,1) and transforms((vampire,newability[haste])) forever
+text=flying -- whenever another creature enters the battlefield under your control, you may discard a card, if you do, put a +1/+1 counter on that creature and it becomes a vampire and gains haste
+mana={1}{B}{R}
+type=Legendary Creature
+subtype=Vampire Knight
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Prized Amalgam
+autograveyard=@movedto(creature|mybattlefield) from(mygraveyard):moveto(mybattlefield) and tap
+text=Whenever a creature enters the battlefield, if it entered from your graveyard or you cast it from your graveyard, return Prized Amalgam from your graveyard to the battlefield tapped at the beginning of the next end step.
+mana={1}{U}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Sigarda, Heron's Grace
+abilities=flying, playershroud
+#auto=lord(human|mybattlefield) hexproof
+auto=lord(human|mybattlefield) opponentshroud
+auto={2},{moveto(exile) target(*|mygraveyard)}: token(Human Soldier,creature Human Soldier,1/1,white)
+text=flying -- you and humans you control have hexproof -- {2}, exile a card from your graveyard: put a 1/1 white human soldier onto the battlefield
+mana={3}{G}{W}
+type=Legendary Creature
+subtype=Angel
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Sorin, Grim Nemesis
+auto=counter(0/0,6,loyalty)
+#auto={C(0/0,1,Loyalty)}:draw:1 life:-manacost opponent
+#auto={C(0/0,1,Loyalty)}:draw:1 controller && life:-manacost opponent
+auto={C(0/0,1,Loyalty)}:draw:1 controller: && life:-3 opponent
+auto={C(0/0,-1,Loyalty)}:damage:1 target(creature,planeswalker) && life:1 controller
+auto={C(0/0,-2,Loyalty)}:damage:2 target(creature,planeswalker) && life:2 controller
+auto={C(0/0,-3,Loyalty)}:damage:3 target(creature,planeswalker) && life:3 controller
+auto={C(0/0,-4,Loyalty)}:damage:4 target(creature,planeswalker) && life:4 controller
+auto={C(0/0,-5,Loyalty)}:damage:5 target(creature,planeswalker) && life:5 controller
+auto={C(0/0,-6,Loyalty)}:damage:6 target(creature,planeswalker) && life:6 controller
+auto={C(0/0,-7,Loyalty)}:damage:7 target(creature,planeswalker) && life:7 controller
+auto={C(0/0,-8,Loyalty)}:damage:8 target(creature,planeswalker) && life:8 controller
+auto={C(0/0,-9,Loyalty)}:damage:9 target(creature,planeswalker) && life:9 controller
+auto={C(0/0,-10,Loyalty)}:damage:10 target(creature,planeswalker) && life:10 controller
+auto={C(0/0,-15,Loyalty)}:damage:15 target(creature,planeswalker) && life:15 controller
+auto={C(0/0,-9,Loyalty)}:token(Vampire Knight,creature Vampire Knight,1/1,black,lifelink)*highestlifetotal
+text=+1: draw a card, your opponent loses 3 life -- -X: Sorin, Grim Nemesis deals x damage to target creature or planeswalker and you gain x life -- -9: put a number of 1/1 black vampire knigt creature tokens with lifelink onto the battlefield equal to the highest life total among all players
+#equal to its converted mana cost 
+mana={4}{W}{B}
+type=Planeswalker
+subtype=Sorin
+[/card]
+
+[card]
+name=Brain in a Jar
+auto={1}{T}:counter(0/0,1,Charge)
+auto={3}{T}:counter(0/0,-1,Charge) && deplete:1 && may moveto(mylibrary) target(*[fresh]|mygraveyard)
+auto={3}{T}:counter(0/0,-2,Charge) && deplete:1 && may moveto(mylibrary) target(<upto:2>*[fresh]|mygraveyard)
+auto={3}{T}:counter(0/0,-3,Charge) && deplete:1 && may moveto(mylibrary) target(<upto:3>*[fresh]|mygraveyard)
+auto={3}{T}:counter(0/0,-4,Charge) && deplete:1 && may moveto(mylibrary) target(<upto:4>*[fresh]|mygraveyard)
+auto={3}{T}:counter(0/0,-5,Charge) && deplete:1 && may moveto(mylibrary) target(<upto:5>*[fresh]|mygraveyard)
+auto={3}{T}:counter(0/0,-6,Charge) && deplete:1 && may moveto(mylibrary) target(<upto:6>*[fresh]|mygraveyard)
+auto={3}{T}:counter(0/0,-7,Charge) && deplete:1 && may moveto(mylibrary) target(<upto:7>*[fresh]|mygraveyard)
+auto={3}{T}:counter(0/0,-8,Charge) && deplete:1 && may moveto(mylibrary) target(<upto:8>*[fresh]|mygraveyard)
+text={1}, {T}: Put a charge counter on Brain in a Jar, then you may cast an instant or sorcery card with converted mana cost equal to the number of charge counters on Brain in a Jar from your hand without paying its mana cost. -- {3}, {T}, Remove X charge counters from Brain in a Jar: Scry X.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Corrupted Grafstone
+auto=tap
+auto=aslongas(*[green]|mygraveyard)~morethan~0 {T}:add{G}
+auto=aslongas(*[white]|mygraveyard)~morethan~0 {T}:add{W}
+auto=aslongas(*[black]|mygraveyard)~morethan~0 {T}:add{B}
+auto=aslongas(*[blue]|mygraveyard)~morethan~0 {T}:add{U}
+auto=aslongas(*[red]|mygraveyard)~morethan~0 {T}:add{R}
+text=Corrupted Grafstone enters the battlefield tapped. -- {T}: Choose a color of a card in your graveyard. Add one mana of that color to your mana pool.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Epitaph Golem
+auto={2}:bottomoflibrary target(*|mygraveyard)
+text={2}: Put target card from your graveyard on the bottom of your library.
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=5
+[/card]
+
+[card]
+name=Explosive Apparatus
+auto={3}{T}{S(this)}:damage:2 target(creature,player)
+text={3}, {T}, Sacrifice Explosive Apparatus: Explosive Apparatus deals 2 damage to target creature or player.
+mana={1}
+type=Artifact
+[/card]
+
+[card]
+name=Harvest Hand
+auto=@movedTo(this|graveyard):moveto(mybattlefield) and flip(Scrounged Scythe)
+text=When Harvest Hand dies, return it to the battlefield transformed under your control.
+mana={3}
+type=Artifact Creature
+subtype=Scarecrow
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Scrounged Scythe
+auto={2}:equip
+auto=1/1
+text=Equipped creature gets +1/+1. -- As long as equipped creature is a Human, it has menace. (It can't be blocked except by two or more creatures.) -- Equip {2}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Haunted Cloak
+auto={1}:equip
+auto=vigilance
+auto=trample
+auto=haste
+text=Equipped creature has vigilance, trample, and haste. -- Equip {1}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Magnifying Glass
+auto={T}:Add{1}
+auto={4}{T}:token(410067) controller
+text={T}: Add {1} to your mana pool. -- {4}, {T}: Investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.")
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Murderer's Axe
+auto={discard(*|myhand)}:equip
+auto=2/2
+text=Equipped creature gets +2/+2. -- EquipDiscard a card.
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Neglected Heirloom
+auto={1}:equip
+auto=1/1
+auto=@flip(mytgt):flip(Ashmouth Blade)
+text=Equipped creature gets +1/+1. -- When equipped creature transforms, transform Neglected Heirloom. -- Equip {1}
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Ashmouth Blade
+auto={3}:equip
+auto=3/3
+auto=first strike
+text=Equipped creature gets +3/+3 and has first strike. -- Equip {3}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Runaway Carriage
+abilities=trample
+auto=@combat(attacking) source(this):treason ueot
+auto=@combat(blocking) source(this):treason ueot
+text=Trample -- When Runaway Carriage attacks or blocks, sacrifice it at end of combat.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=5
+toughness=6
+[/card]
+
+[card]
+name=Shard of Broken Glass
+auto={1}:equip
+auto=1/0
+auto=@combat(attacking) source(mytgt):may deplete:2 controller
+text=Equipped creature gets +1/+0. -- Whenever equipped creature attacks, you may put the top two cards of your library into your graveyard. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Skeleton Key
+auto=cantbeblockedby(creature[power>mytgt])
+auto=@combatdamaged(player) from(mytgt):may draw:1 && discard(*|myhand)
+auto={2}:equip
+text=Equipped creature has skulk. (It can't be blocked by creatures with greater power.) -- Whenever equipped creature deals combat damage to a player, you may draw a card. If you do, discard a card. -- Equip {2}
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Slayer's Plate
+auto={3}:equip
+auto=4/2
+auto=@movedto(mytgt[human]|mygraveyard):token(Spirit,creature Spirit,1/1,white,flying)
+text=Equipped creature gets +4/+2. -- Whenever equipped creature dies, if it was a Human, put a 1/1 white Spirit creature token with flying onto the battlefield. -- Equip {3}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Tamiyo's Journal
+auto=@each my upkeep:token(410067)
+auto={T}{S(clue|mybattlefield)*3}: moveto(myhand) target(*|mylibrary)
+text=at the beginning of your upkeep, investigate -- {T}, sacrifice three clues: search your library for a card and put that card into your hand, then shuffle your library
+mana={5}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Thraben Gargoyle
+abilities=defender
+auto={6}:flip(Stonewing Antagonizer)
+text=Defender -- {6}: Transform Thraben Gargoyle.
+mana={1}
+type=Artifact Creature
+subtype=Gargoyle
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Stonewing Antagonizer
+abilities=flying
+text=Flying
+type=Artifact Creature
+subtype=Gargoyle Horror
+power=4
+toughness=2
+[/card]
+
+[card]
+name=True-Faith Censer
+auto={2}:equip
+auto=1/1
+auto=vigilance
+auto=aslongas(mytgt[human]) 1/0
+text=Equipped creature gets +1/+1 and has vigilance. -- As long as equipped creature is a Human, it gets an additional +1/+0. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Wicker Witch
+mana={3}
+type=Artifact Creature
+subtype=Scarecrow
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Wild-Field Scarecrow
+abilities=defender
+auto={2}{S(this)}:moveto(myhand) target(<upto:2>basic|mylibrary)
+text=Defender -- {2}, Sacrifice Wild-Field Scarecrow: Search your library for up to two basic land cards, reveal them, and put them into your hand. Then shuffle your library.
+mana={3}
+type=Artifact Creature
+subtype=Scarecrow
+power=1
+toughness=4
+[/card]
+
+[card]
+name=Choked Estuary
+auto=aslongas(island,swamp|myhand)~lessthan~1 tap
+auto={T}:add{U}
+auto={T}:add{B}
+text=As Choked Estuary enters the battlefield, you may reveal an Island or Swamp card from your hand. If you don't, Choked Estuary enters the battlefield tapped. -- {T}: Add {U} or {B} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Drownyard Temple
+auto={T}:Add{1}
+autograveyard={3}:moveto(mybattlefield) && tap
+text={T}: Add {1} to your mana pool. -- {3}: Return Drownyard Temple from your graveyard to the battlefield tapped.
+type=Land
+[/card]
+
+[card]
+name=Foreboding Ruins
+auto=aslongas(mountain,swamp|myhand)~lessthan~1 tap
+auto={T}:add{B}
+auto={T}:add{R}
+text=As Foreboding Ruins enters the battlefield, you may reveal a Swamp or Mountain card from your hand. If you don't, Foreboding Ruins enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Forsaken Sanctuary
+auto=tap
+auto={T}:add{W}
+auto={T}:add{B}
+text=Forsaken Sanctuary enters the battlefield tapped. -- {T}: Add {W} or {B} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Fortified Village
+auto=aslongas(forest,plains|myhand)~lessthan~1 tap
+auto={T}:add{G}
+auto={T}:add{W}
+text=As Fortified Village enters the battlefield, you may reveal a Forest or Plains card from your hand. If you don't, Fortified Village enters the battlefield tapped. -- {T}: Add {G} or {W} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Foul Orchard
+auto=tap
+auto={T}:add{B}
+auto={T}:add{G}
+text=Foul Orchard enters the battlefield tapped. -- {T}: Add {B} or {G} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Game Trail
+auto=aslongas(mountain,forest|myhand)~lessthan~1 tap
+auto={T}:add{R}
+auto={T}:add{G}
+text=As Game Trail enters the battlefield, you may reveal a Mountain or Forest card from your hand. If you don't, Game Trail enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Highland Lake
+auto=tap
+auto={T}:add{U}
+auto={T}:add{R}
+text=Highland Lake enters the battlefield tapped. -- {T}: Add {U} or {R} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Port Town
+auto=aslongas(island,plains|myhand)~lessthan~1 tap
+auto={T}:add{W}
+auto={T}:add{U}
+text=As Port Town enters the battlefield, you may reveal a Plains or Island card from your hand. If you don't, Port Town enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Stone Quarry
+auto=tap
+auto={T}:add{R}
+auto={T}:add{W}
+text=Stone Quarry enters the battlefield tapped. -- {T}: Add {R} or {W} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Warped Landscape
+auto={T}:Add{1}
+auto={2}{T}{S(this)}:moveto(mybattlefield) target(basic|mylibrary) && tap
+text={T}: Add {1} to your mana pool. -- {2}, {T}, Sacrifice Warped Landscape: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
+type=Land
+[/card]
+
+[card]
+name=Westvale Abbey
+auto={T}:Add{1}
+auto={5}{T}{L}:token(Human Cleric,creature Human Cleric,1/1,white,black)
+auto={5}{T}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:flip(Ormendahl, Profane Prince)
+text={T}: Add {1} to your mana pool. -- {5}, {T}, Pay 1 life: Put a 1/1 white and black Human Cleric creature token onto the battlefield. -- {5}, {T}, Sacrifice five creatures: Transform Westvale Abbey, then untap it.
+type=Land
+[/card]
+
+[card]
+name=Ormendahl, Profane Prince
+abilities=flying, haste, indestructible, lifelink
+auto=untap
+text=Flying, lifelink, indestructible, haste
+type=Legendary Creature
+subtype=Demon
+power=9
+toughness=7
+[/card]
+
+[card]
+name=Woodland Stream
+auto=aslongas(island,forest|myhand)~lessthan~1 tap
+auto={T}:add{G}
+auto={T}:add{U}
+text=Woodland Stream enters the battlefield tapped. -- {T}: Add {G} or {U} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Clue
+auto={2}{S(this)}: draw:1
+text={2}, sacrifice this token, draw a card
+type=Artifact
+[/card]
+
+[card]
+name=Devil
+type=Creature
+subtype=Devil
+auto=@movedto(this|mygraveyard): damage:1 target(creature,player)
+text=when this creature dies it deals 1 damage to target creature or player
+power=1
+toughness=1
+[/card]
+
