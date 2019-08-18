@@ -668,7 +668,7 @@ string JGE::getFileSystemLocation()
     if (env == NULL)
     {
         DebugTrace("An Error Occurred in getting the JNI Environment whie trying to get the system folder location.  Defaulting to /mnt/sdcard/net.wagic.app/Wagic"); 
-    	return "/mnt/sdcard/Wagic";
+    	return "/mnt/sdcard/Wagic/Res";
     };
 
     jclass jniClass = env->FindClass("org/libsdl/app/SDLActivity");
@@ -677,7 +677,7 @@ string JGE::getFileSystemLocation()
     if (methodId == 0)
     {
         DebugTrace("An Error Occurred in getting the JNI methodID for getSystemFolderPath. Defaulting to /mnt/sdcard/Wagic"); 
-    	return "/mnt/sdcard/Wagic";
+    	return "/mnt/sdcard/Wagic/Res";
     };
 
     jstring systemPath = (jstring) env->CallStaticObjectMethod(jniClass, methodId);
@@ -687,6 +687,35 @@ string JGE::getFileSystemLocation()
 	string retVal (cstr);
 	env->ReleaseStringUTFChars(systemPath, cstr); 
 	env->DeleteLocalRef(systemPath);
+
+    return retVal;
+}
+
+string JGE::getFileUserFolderPath()
+{
+    JNIEnv * env = getJNIEnv();
+    if (env == NULL)
+    {
+        DebugTrace("An Error Occurred in getting the JNI Environment whie trying to get the system folder location.  Defaulting to /mnt/sdcard/net.wagic.app/Wagic");
+        return "/mnt/sdcard/Wagic/User";
+    };
+
+    jclass jniClass = env->FindClass("org/libsdl/app/SDLActivity");
+    jmethodID methodId = env->GetStaticMethodID( jniClass, "getUserFolderPath", "()Ljava/lang/String;");
+
+    if (methodId == 0)
+    {
+        DebugTrace("An Error Occurred in getting the JNI methodID for getSystemFolderPath. Defaulting to /mnt/sdcard/Wagic");
+        return "/mnt/sdcard/Wagic/User";
+    };
+
+    jstring systemPath = (jstring) env->CallStaticObjectMethod(jniClass, methodId);
+
+    // Now convert the Java String to C++ char array
+        const char* cstr = env->GetStringUTFChars(systemPath, 0);
+        string retVal (cstr);
+        env->ReleaseStringUTFChars(systemPath, cstr);
+        env->DeleteLocalRef(systemPath);
 
     return retVal;
 }

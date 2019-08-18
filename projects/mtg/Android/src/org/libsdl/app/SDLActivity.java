@@ -88,10 +88,11 @@ public class SDLActivity extends Activity implements OnKeyListener
     public String              mErrorMessage                         = "";
     public Boolean             mErrorHappened                        = false;
     public final static String RES_FOLDER                            = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
-    public static String       RES_FILENAME                          = "core_0184.zip";
+    public static String       RES_FILENAME                          = "core_0211.zip";
+    public static String       RES_URL                               = "https://github.com/Vitty85/wagic/releases/download/wagic-v0.21.1/core_0211.zip";
 
     public String              systemFolder                          = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
-    private String             userFolder;
+    private String             userFolder                            = Environment.getExternalStorageDirectory().getPath() + "/Wagic/User/";
 
     // path to the onboard sd card that is not removable (typically /mnt/sdcard )
     private String             internalPath                          = "";
@@ -368,7 +369,8 @@ public class SDLActivity extends Activity implements OnKeyListener
 
     private void startDownload()
     {
-        String url = getResourceUrl();
+        //String url = getResourceUrl();
+	String url = RES_URL;
         if (!checkStorageState())
         {
             Log.e(TAG, "Error in initializing storage space.");
@@ -486,7 +488,7 @@ public class SDLActivity extends Activity implements OnKeyListener
         // mGLView.setFocusableInTouchMode(true);
         // mGLView.setFocusable(true);
         // adView.requestFreshAd();
-        setContentView(_videoLayout, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+	setContentView(_videoLayout, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
         mSurface.requestFocus();
     }
 
@@ -500,9 +502,9 @@ public class SDLActivity extends Activity implements OnKeyListener
         // So we can call stuff from static callbacks
         mSingleton = this;
         mContext = this.getApplicationContext();
-        RES_FILENAME = getResourceName();
-
-        StorageOptions.determineStorageOptions();
+        //RES_FILENAME = getResourceName();
+        
+	StorageOptions.determineStorageOptions();
         checkStorageLocationPreference();
     }
 
@@ -812,7 +814,7 @@ public class SDLActivity extends Activity implements OnKeyListener
 
                 input = new BufferedInputStream(url.openStream());
                 // create a File object for the output file
-                File outputFile = new File(resDirectory, filename + ".tmp");
+                File outputFile = new File(resDirectory, filename);
 
                 output = new FileOutputStream(outputFile);
 
@@ -830,9 +832,9 @@ public class SDLActivity extends Activity implements OnKeyListener
             } catch (Exception e)
             {
                 String errorMessage = "An error happened while downloading the resources. It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + mSingleton.getSystemStorageLocation() + ". Please check your phone settings and try again. For more help please go to http://wagic.net";
-                mSingleton.downloadError(errorMessage);
-                Log.e(TAG, errorMessage);
-                Log.e(TAG, e.getMessage());
+                //mSingleton.downloadError(errorMessage);
+                //Log.e(TAG, errorMessage);
+                //Log.e(TAG, e.getMessage());
             }
 
             return Long.valueOf(totalBytes);
