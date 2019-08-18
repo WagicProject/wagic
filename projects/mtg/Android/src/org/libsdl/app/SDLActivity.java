@@ -1,5 +1,8 @@
 package org.libsdl.app;
 
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.Enumeration;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -23,6 +26,7 @@ import javax.microedition.khronos.egl.EGLSurface;
 import net.wagic.app.R;
 import net.wagic.utils.StorageOptions;
 import net.wagic.utils.DeckImporter;
+import net.wagic.utils.ImgDownloader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -319,7 +323,7 @@ public class SDLActivity extends Activity implements OnKeyListener
 
             // String packageName = mContext.getPackageName(); // possibly use this to differentiate between different mods of Wagic.
             File externalFilesDir = Environment.getExternalStorageDirectory();
-            if (externalFilesDir != null)
+	    if (externalFilesDir != null)
             {
                 internalPath = externalFilesDir.getAbsolutePath() + "/Wagic";
             }
@@ -394,15 +398,85 @@ public class SDLActivity extends Activity implements OnKeyListener
         }
     }
 
+    String set = "";
+    String [] availableSets;
+    Integer totalset = 0;
+
+    private void downloadCardImages()
+    {
+        AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
+        cardDownloader.setTitle("Which Set would you like to download?");
+
+        File baseFolder = new File(getSystemStorageLocation());
+        File[] listOfFiles = baseFolder.listFiles();
+        ArrayList<String> sets = new ArrayList<String>();
+	ZipFile zipFile = null;
+        try {
+            zipFile = new ZipFile(baseFolder + "/" + listOfFiles[0].getName());
+            Enumeration<? extends ZipEntry> e = zipFile.entries();
+            while (e.hasMoreElements()) {
+                ZipEntry entry = e.nextElement();
+                String entryName = entry.getName();
+                if(entryName.contains("sets/")){
+                    if(!entryName.equalsIgnoreCase("sets/") && !entryName.contains("primitives") && !entryName.contains(".")){
+		        String[] names = entryName.split("/");
+		        sets.add(names[1]);
+		    }
+	        }
+            }
+        }
+        catch (IOException ioe) {
+            System.out.println("Error opening zip file" + ioe);
+        }
+        finally {
+            try {
+                if (zipFile!=null) {
+                    zipFile.close();
+                }
+            }
+            catch (IOException ioe) {
+                System.out.println("Error while closing zip file" + ioe);
+            }
+        }
+
+	availableSets = new String[sets.size() + 1];
+	availableSets[0] = "*.*";
+	for (int i = 1; i < availableSets.length; i++){
+	    availableSets[i] = sets.get(i-1);
+	}
+        cardDownloader.setSingleChoiceItems(availableSets, -1, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int item)
+            {
+                set = availableSets[item];
+            }
+        });
+
+        cardDownloader.setPositiveButton("OK", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int which)
+            {
+                try{
+		    ImgDownloader.DownloadCardImages(set, availableSets, "HI", getSystemStorageLocation(), getUserStorageLocation() + "/sets/");
+		} catch(Exception e) {
+		    e.printStackTrace();
+		}
+            }
+        });
+
+        cardDownloader.create().show();
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         SubMenu settingsMenu = menu.addSubMenu(Menu.NONE, 1, 1, "Settings");
-        menu.add(Menu.NONE, 2, 2, "Import");
+        menu.add(Menu.NONE, 2, 2, "Import Decks");
         menu.add(Menu.NONE, 3, 3, "About");
+        //menu.add(Menu.NONE, 4, 4, "Download Cards");
         settingsMenu.add(kStorageDataOptionsMenuId, kStorageDataOptionsMenuId, Menu.NONE, "Storage Data Options");
         // buildStorageOptionsMenu(settingsMenu);
-
         return true;
     }
 
@@ -417,6 +491,9 @@ public class SDLActivity extends Activity implements OnKeyListener
         } else if (itemId == 2)
         {
             importDeckOptions();
+        } else if (itemId == 4)
+	{
+	    downloadCardImages();
         } else if (itemId == 3)
         {
             // display some info about the app
@@ -503,7 +580,6 @@ public class SDLActivity extends Activity implements OnKeyListener
         mSingleton = this;
         mContext = this.getApplicationContext();
         //RES_FILENAME = getResourceName();
-        
 	StorageOptions.determineStorageOptions();
         checkStorageLocationPreference();
     }
