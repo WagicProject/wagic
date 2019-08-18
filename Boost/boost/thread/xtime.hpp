@@ -20,7 +20,7 @@ namespace boost {
 
 enum xtime_clock_types
 {
-    TIME_UTC=1
+    TIME_UTC_=1
 //    TIME_TAI,
 //    TIME_MONOTONIC,
 //    TIME_PROCESS,
