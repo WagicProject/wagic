@@ -3,6 +3,7 @@ package org.libsdl.app;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.Enumeration;
+import android.os.StrictMode;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -401,7 +402,7 @@ public class SDLActivity extends Activity implements OnKeyListener
     String set = "";
     String [] availableSets;
     Integer totalset = 0;
-
+    
     private void downloadCardImages()
     {
         AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
@@ -449,6 +450,7 @@ public class SDLActivity extends Activity implements OnKeyListener
             public void onClick(DialogInterface dialog, int item)
             {
                 set = availableSets[item];
+		downloadCardStarting(set);
             }
         });
 
@@ -456,25 +458,51 @@ public class SDLActivity extends Activity implements OnKeyListener
         {
             public void onClick(DialogInterface dialog, int which)
             {
-                try{
-		    ImgDownloader.DownloadCardImages(set, availableSets, "HI", getSystemStorageLocation(), getUserStorageLocation() + "/sets/");
+                boolean error = false;
+		String res = "";
+		try{
+		    res = ImgDownloader.DownloadCardImages(set, availableSets, "HI", getSystemStorageLocation(), getUserStorageLocation() + "sets/");
 		} catch(Exception e) {
-		    e.printStackTrace();
+		    res = e.getMessage();
+		    error = true;
 		}
+		downloadCardCompleted(error, res, set);
             }
         });
 
         cardDownloader.create().show();
     }
 
+    private void downloadCardStarting(String set){
+        AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+        infoDialog.setTitle("You choose to Download: " + set);
+        infoDialog.setMessage("After you press OK don't turn off phone or wi-fi/data connection and don't close Wagic.\nThe download process can take several minutes according to the number of images contained in the selected set (NOTE: if you choose *.* you will have to wait several hours!!!)");
+        infoDialog.create().show();
+    }
+
+
+    private void downloadCardCompleted(boolean error, String res, String set){
+        AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+        if(!error){
+	    infoDialog.setTitle("Download Completed: " + set);
+            if(!res.isEmpty())
+                infoDialog.setMessage("Following cards could not be downloaded:\n" + res);
+	    else
+                infoDialog.setMessage("All the cards have been successfully downloaded");
+        } else {
+	    infoDialog.setTitle("Error downloading: " + set);
+            infoDialog.setMessage(res);
+	}
+	infoDialog.create().show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         SubMenu settingsMenu = menu.addSubMenu(Menu.NONE, 1, 1, "Settings");
         menu.add(Menu.NONE, 2, 2, "Import Decks");
-        menu.add(Menu.NONE, 3, 3, "About");
-        //menu.add(Menu.NONE, 4, 4, "Download Cards");
+        menu.add(Menu.NONE, 3, 3, "Download Cards");
+        menu.add(Menu.NONE, 4, 4, "About");
         settingsMenu.add(kStorageDataOptionsMenuId, kStorageDataOptionsMenuId, Menu.NONE, "Storage Data Options");
         // buildStorageOptionsMenu(settingsMenu);
         return true;
@@ -491,10 +519,10 @@ public class SDLActivity extends Activity implements OnKeyListener
         } else if (itemId == 2)
         {
             importDeckOptions();
-        } else if (itemId == 4)
+        } else if (itemId == 3)
 	{
 	    downloadCardImages();
-        } else if (itemId == 3)
+        } else if (itemId == 4)
         {
             // display some info about the app
             AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
@@ -575,7 +603,8 @@ public class SDLActivity extends Activity implements OnKeyListener
     {
         //Log.d(TAG, "onCreate()");
         super.onCreate(savedInstanceState);
-
+	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         // So we can call stuff from static callbacks
         mSingleton = this;
         mContext = this.getApplicationContext();

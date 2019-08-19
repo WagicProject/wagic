@@ -54,9 +54,10 @@ public class ImgDownloader {
         return contentBuilder.toString();
     }
 
-    public static void DownloadCardImages(String set, String[] availableSets, String targetres, String basePath, String destinationPath) throws IOException {
-
-        String baseurl = "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=";
+    public static String DownloadCardImages(String set, String[] availableSets, String targetres, String basePath, String destinationPath) throws IOException {
+        String res = "";
+	
+	String baseurl = "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=";
         String imageurl = "https://scryfall.com/sets/";
 
         Integer ImgX = 0;
@@ -78,8 +79,12 @@ public class ImgDownloader {
         
         File baseFolder = new File(basePath);
         File[] listOfFiles = baseFolder.listFiles();
-
+	String currentSet = "";
         for (int f = 1; f < availableSets.length; f++) {
+	    if(set.equalsIgnoreCase("*.*"))
+		currentSet = availableSets[f];
+	    else
+		currentSet = set;
             Map<String, String> mappa = new HashMap<String, String>();	
 	    ZipFile zipFile = null;
 	    InputStream stream = null;
@@ -93,50 +98,45 @@ public class ImgDownloader {
                     if(entryName.contains("sets/")){
                         if(entryName.contains("_cards.dat")){
 			    String[] names = entryName.split("/");
-			    if(availableSets[f].equalsIgnoreCase(names[1])){
-                                if(set.equalsIgnoreCase(names[1])){
-				    stream = zipFile.getInputStream(entry);
-				    byte[] buffer = new byte[2048];
-				    java.nio.file.Path outDir = Paths.get(basePath);
-				    filePath = outDir.resolve("_cards.dat");
-                                    try {
-				        FileOutputStream fos = new FileOutputStream(filePath.toFile());
-                               		BufferedOutputStream bos = new BufferedOutputStream(fos, buffer.length);
-                    			int len;
-                    			while ((len = stream.read(buffer)) > 0) {
-                        			bos.write(buffer, 0, len);
-                    			}
-					fos.close();
-					bos.close();
-                		    } catch (Exception ex) {}
+                            if(currentSet.equalsIgnoreCase(names[1])){
+				stream = zipFile.getInputStream(entry);
+				byte[] buffer = new byte[1];
+				java.nio.file.Path outDir = Paths.get(basePath);
+				filePath = outDir.resolve("_cards.dat");
+                                try {
+				    FileOutputStream fos = new FileOutputStream(filePath.toFile());
+                               	    BufferedOutputStream bos = new BufferedOutputStream(fos, buffer.length);
+                    		    int len;
+                    		    while ((len = stream.read(buffer)) != -1) {
+                        		bos.write(buffer, 0, len);
+                    		    }
+				    fos.close();
+				    bos.close();
+                		} catch (Exception ex) {
+				    System.out.println("Error extracting zip file" + ex);
+				}
+				if(!set.equalsIgnoreCase("*.*"))
 				    f = availableSets.length;
-				    break;
-				} else if(set.equalsIgnoreCase("*.*")){
-			            stream = zipFile.getInputStream(entry);
-			            break;
-                       		}		
-                            }
+				break;
+                       	    }		
                         }
 		    }
 		}	    
-            }
-            catch (IOException ioe) {
+            } catch (IOException ioe){
                 System.out.println("Error opening zip file" + ioe);
-            }
-            finally {
+            } finally {
                 try {
                     if (zipFile!=null) {
                         zipFile.close();
                     }
-                }
-                catch (IOException ioe) {
+                } catch (IOException ioe) {
                     System.out.println("Error while closing zip file" + ioe);
                 }
             }
 
-            //File folder = new File(basePath + set + "\\");
-            //String filePath = folder.getAbsolutePath() + "\\_cards.dat";
             String lines = readLineByLineJava8(filePath.toString());
+	    File del = new File(filePath.toString());
+	    del.delete();
 	    int totalcards = 0;
             String findStr = "total=";
             int lastIndex = lines.indexOf(findStr);
@@ -196,11 +196,54 @@ public class ImgDownloader {
                 String id = mappa.keySet().toArray()[y].toString();
                 Document doc = Jsoup.connect(baseurl + id).get();
                 Elements divs = doc.select("body div");
-                try {
-                    doc = Jsoup.connect(imageurl + set.toLowerCase()).get();
+		String scryset = currentSet;
+                if(scryset.equalsIgnoreCase("MRQ"))
+                    scryset = "MMQ";
+                else if(scryset.equalsIgnoreCase("AVN"))
+                    scryset = "DDH";
+                else if(scryset.equalsIgnoreCase("BVC"))
+                    scryset = "DDQ";
+                else if(scryset.equalsIgnoreCase("CFX"))
+                    scryset = "CON";
+                else if(scryset.equalsIgnoreCase("DM"))
+                    scryset = "DKM";
+                else if(scryset.equalsIgnoreCase("EVK"))
+                    scryset = "DDO";
+                else if(scryset.equalsIgnoreCase("EVT"))
+                    scryset = "DDF";
+                else if(scryset.equalsIgnoreCase("FVD"))
+                    scryset = "DRB";
+                else if(scryset.equalsIgnoreCase("FVE"))
+                    scryset = "V09";
+                else if(scryset.equalsIgnoreCase("FVL"))
+                    scryset = "V11";
+                else if(scryset.equalsIgnoreCase("FVR"))
+                    scryset = "V10";
+                else if(scryset.equalsIgnoreCase("HVM"))
+                    scryset = "DDL";
+                else if(scryset.equalsIgnoreCase("IVG"))
+                    scryset = "DDJ";
+                else if(scryset.equalsIgnoreCase("JVV"))
+                    scryset = "DDM";
+                else if(scryset.equalsIgnoreCase("KVD"))
+                    scryset = "DDG";
+                else if(scryset.equalsIgnoreCase("PDS"))
+                    scryset = "H09";
+                else if(scryset.equalsIgnoreCase("PVC"))
+                    scryset = "DDE";
+                else if(scryset.equalsIgnoreCase("RV"))
+                    scryset = "3ED";
+                else if(scryset.equalsIgnoreCase("SVT"))
+                    scryset = "DDK";
+		else if(scryset.equalsIgnoreCase("VVK"))
+                    scryset = "DDI";
+		else if(scryset.equalsIgnoreCase("ZVE"))
+                    scryset = "DDP";
+		try {
+                    doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
-                    System.err.println("The SET: " + set + " has not been found on ScryFall!");
-                    y = mappa.size();
+                    System.err.println("Problem downloading card: " + mappa.get(id) + " (" + id + ") from " + scryset + " on ScryFall");
+		    res = mappa.get(id) + "-" + currentSet + "/" + id + ".jpg\n" + res;
                     continue;
                 }
                 Elements imgs = doc.select("body img");
@@ -229,8 +272,8 @@ public class ImgDownloader {
                         out.close();
                         in.close();
                         byte[] response = out.toByteArray();
-                        String cardimage = imgPath + "\\" + id + ".jpg";
-                        String thumbcardimage = thumbPath + "\\" + id + ".jpg";
+                        String cardimage = imgPath + "/" + id + ".jpg";
+                        String thumbcardimage = thumbPath + "/" + id + ".jpg";
                         FileOutputStream fos = new FileOutputStream(cardimage);
                         fos.write(response);
                         fos.close();
@@ -316,10 +359,10 @@ public class ImgDownloader {
                             if (nametoken.isEmpty()) {
                                 tokenfound = false;
                                 nametoken = mappa.get(id);
-                                doc = Jsoup.connect(imageurl + set.toLowerCase()).get();
+                                doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             } else {
                                 try {
-                                    doc = Jsoup.connect(imageurl + "t" + set.toLowerCase()).get();
+                                    doc = Jsoup.connect(imageurl + "t" + scryset.toLowerCase()).get();
                                     tokenfound = true;
                                 } catch(Exception e) {
                                     tokenfound = false;
@@ -346,11 +389,13 @@ public class ImgDownloader {
                                     String tokenimage = "";
                                     String tokenthumbimage = "";
                                     if (tokenfound) {
-                                        tokenimage = imgPath + "\\" + id + "t.jpg";
-                                        tokenthumbimage = thumbPath + "\\" + id + "t.jpg";
+                                        tokenimage = imgPath + "/" + id + "t.jpg";
+                                        tokenthumbimage = thumbPath + "/" + id + "t.jpg";
                                     } else {
-                                        tokenimage = imgPath + "\\" + id + "_tocheck_t.jpg";
-                                        tokenthumbimage = thumbPath + "\\" + id + "_tocheck_t.jpg";
+                                        tokenimage = imgPath + "/" + id + "_tocheck_t.jpg";
+                                        tokenthumbimage = thumbPath + "/" + id + "_tocheck_t.jpg";
+                    			System.err.println("Problem downloading token: " + nametoken + " (" + id + "t) from T" + scryset + " on ScryFall");
+				    	res = cardname + "-" + currentSet + "/" + id + "t.jpg\n" + res;
                                     }
                                     FileOutputStream fos2 = new FileOutputStream(tokenimage);
                                     fos2.write(responsetoken);
@@ -381,6 +426,14 @@ public class ImgDownloader {
                     }
                 }
             }
-        }
+	    /*try {
+	        Zipper appZip = new Zipper(destinationPath + set + "/");
+        	appZip.generateFileList(new File(destinationPath + set + "/"));
+        	appZip.zipIt(destinationPath + set + ".zip");
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    }*/
+	}
+	return res;
     }
 }
