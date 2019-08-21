@@ -441,15 +441,15 @@ public class SDLActivity extends Activity implements OnKeyListener
         }
 
 	availableSets = new String[sets.size() + 1];
-	availableSets[0] = "*.*";
+	availableSets[0] = "*.* - All Wagic sets (thousands of cards)";
 	for (int i = 1; i < availableSets.length; i++){
-	    availableSets[i] = sets.get(i-1);
+	    availableSets[i] = sets.get(i-1) + " - " + ImgDownloader.getSetInfo(sets.get(i-1), true, getSystemStorageLocation());
 	}
         cardDownloader.setSingleChoiceItems(availableSets, -1, new DialogInterface.OnClickListener()
         {
             public void onClick(DialogInterface dialog, int item)
             {
-                set = availableSets[item];
+                set = availableSets[item].split(" - ")[0];
 		downloadCardStarting(set);
             }
         });

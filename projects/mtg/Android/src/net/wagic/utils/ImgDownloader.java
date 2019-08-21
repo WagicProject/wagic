@@ -54,6 +54,81 @@ public class ImgDownloader {
         return contentBuilder.toString();
     }
 
+    public static String getSetInfo(String setName, boolean zipped, String path){
+        String cardsfilepath = "";
+        boolean todelete = false;
+        if(zipped){
+            File resFolder = new File(path + File.separator);
+            File [] listOfFile = resFolder.listFiles();
+            ZipFile zipFile = null;
+            InputStream stream = null;
+            java.nio.file.Path filePath = null;
+            try {
+	    	for (int i = 0; i < listOfFile.length; i++){
+		    if (listOfFile[i].getName().contains(".zip")){
+                	zipFile = new ZipFile(path + File.separator + listOfFile[i].getName());
+		    	break;
+		    }
+		}
+		if(zipFile == null)
+		    return "";
+                Enumeration<? extends ZipEntry> e = zipFile.entries();
+                while (e.hasMoreElements()) {
+                    ZipEntry entry = e.nextElement();
+                    String entryName = entry.getName();
+                    if(entryName.contains("sets/")){
+                        if(entryName.contains("_cards.dat")){
+                            String[] names = entryName.split("/");
+                            if(setName.equalsIgnoreCase(names[1])){
+                                stream = zipFile.getInputStream(entry);
+                                byte[] buffer = new byte[1];
+                                java.nio.file.Path outDir = Paths.get(path + File.separator);
+                                filePath = outDir.resolve("_cards.dat");
+                                try {
+                                    FileOutputStream fos = new FileOutputStream(filePath.toFile());
+                                    BufferedOutputStream bos = new BufferedOutputStream(fos, buffer.length);
+                                    int len;
+                                    while ((len = stream.read(buffer)) != -1) {
+                                        bos.write(buffer, 0, len);
+                                    }
+                                    fos.close();
+                                    bos.close();
+                                    cardsfilepath = filePath.toString();
+                                    todelete = true;
+                                } catch (Exception ex) {}
+                                break;
+                            }		
+                        }
+                    }
+                }	    
+            } catch (IOException ioe){ } 
+            finally {
+                try {
+                    if (zipFile!=null) {
+                        zipFile.close();
+                    }
+                } catch (IOException ioe) {}
+            }
+        } else {
+            File setFolder = new File(path + File.separator + "sets" + File.separator + setName + File.separator);
+            cardsfilepath = setFolder.getAbsolutePath() + File.separator + "_cards.dat";
+        }
+        String lines = readLineByLineJava8(cardsfilepath);
+        if(todelete) {
+            File del = new File(cardsfilepath);
+            del.delete();
+        }
+        int totalcards = 0;
+        String findStr = "total=";
+        int lastIndex = lines.indexOf(findStr);
+        String totals = lines.substring(lastIndex, lines.indexOf("\n", lastIndex));
+        totalcards = Integer.parseInt(totals.split("=")[1]);
+        findStr = "name=";
+        lastIndex = lines.indexOf(findStr);
+        String name = lines.substring(lastIndex, lines.indexOf("\n", lastIndex)).split("=")[1];
+        return name + " (" + totalcards + " cards)";
+    }
+
     public static String DownloadCardImages(String set, String[] availableSets, String targetres, String basePath, String destinationPath) throws IOException {
         String res = "";
 	
@@ -427,9 +502,13 @@ public class ImgDownloader {
                 }
             }
 	    /*try {
-	        Zipper appZip = new Zipper(destinationPath + set + "/");
-        	appZip.generateFileList(new File(destinationPath + set + "/"));
-        	appZip.zipIt(destinationPath + set + ".zip");
+	        //Zipper appZip = new Zipper(destinationPath + set + "/");
+        	//appZip.generateFileList(new File(destinationPath + set + "/"));
+        	//appZip.zipIt(destinationPath + set + ".zip");
+		//File setFolder =  new File(destinationPath + set + "/");
+		//File[] filesToZip = setFolder.listFiles();
+		//SevenZ zip = new SevenZ();
+		//zip.addFilesToZip(setFolder, new File(destinationPath + set + ".zip"));
 	    } catch (Exception e) {
 	    	e.printStackTrace();
 	    }*/
