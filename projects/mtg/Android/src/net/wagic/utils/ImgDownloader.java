@@ -131,6 +131,54 @@ public class ImgDownloader {
         return name + " (" + totalcards + " cards)";
     }
 
+	public static Document findTokenPage(String imageurl, String name, String set, String [] availableSets, String tokenstats) throws Exception {
+        Document doc = null;
+        Elements outlinks = null;
+        try {
+            doc = Jsoup.connect(imageurl + "t" + set.toLowerCase()).get();
+            outlinks = doc.select("body a");
+            for (int k = 0; k < outlinks.size(); k++){
+                String linktoken = outlinks.get(k).attributes().get("href");
+                try {
+                    Document tokendoc = Jsoup.connect(linktoken).get();
+                    Elements stats = tokendoc.select("head meta");
+                    for (int j = 0; j < stats.size(); j++){
+                        String a = stats.get(j).attributes().get("content");
+                        if(stats.get(j).attributes().get("content").contains(tokenstats) && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())){
+                            return tokendoc;
+                        }
+                    }
+                } catch (Exception e) {}
+            }
+        } catch (Exception e){}
+        System.out.println("Warning: Token " + name + " has not been found between " + set + " tokens, i will search for it between any other set...");
+        for (int i = 1; i < availableSets.length; i++){
+            String currentSet = availableSets[i].toLowerCase().split(" - ")[0];
+            if(!currentSet.equalsIgnoreCase(set)){
+                try {
+                    doc = Jsoup.connect(imageurl + "t" + currentSet).get();
+                    outlinks = doc.select("body a");
+                    for (int k = 0; k < outlinks.size(); k++){
+                        String linktoken = outlinks.get(k).attributes().get("href");
+                        try {
+                            Document tokendoc = Jsoup.connect(linktoken).get();
+                            Elements stats = tokendoc.select("head meta");
+                            for (int j = 0; j < stats.size(); j++){
+                                String a = stats.get(j).attributes().get("content");
+                                if(stats.get(j).attributes().get("content").contains(tokenstats) && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())){
+                                    System.out.println("Token " + name + " has been found between " + currentSet.toUpperCase() + " tokens, i will use this one");
+                                    return tokendoc;
+                                }
+                            }
+                        } catch (Exception e) {}
+                    }
+                } catch (Exception e) {}
+            }
+        }
+        System.err.println("Error: Token " + name + " has not been found between any set of " + imageurl);
+        throw new Exception();
+    }
+
     public static String DownloadCardImages(String set, String[] availableSets, String targetres, String basePath, String destinationPath) throws IOException {
         String res = "";
 	
@@ -323,6 +371,23 @@ public class ImgDownloader {
 		    res = mappa.get(id) + "-" + currentSet + "/" + id + ".jpg\n" + res;
                     continue;
                 }
+		try {
+                    doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                } catch (Exception e) {
+                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                    try {
+                        doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                    } catch (Exception e2) {
+                        System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                        try {
+                            doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                        } catch (Exception e3) {
+                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
+			    res = mappa.get(id) + " - " + currentSet + "/" + id + ".jpg\n" + res;
+                            continue;
+                        }
+                    }
+                }
                 Elements imgs = doc.select("body img");
                 int k;
                 for (k = 0; k < divs.size(); k++)
@@ -423,32 +488,50 @@ public class ImgDownloader {
                                 }
                             }
                         }
-                        if (text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) {
+                        if ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) || (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token"))) {
                             boolean tokenfound = false;
                             String arrays[] = text.trim().split(" ");
                             String nametoken = "";
+                            String nametocheck = "";
+                            String tokenstats = "";
                             for (int l = 1; l < arrays.length - 1; l++) {
                                 if (arrays[l].equalsIgnoreCase("creature") && arrays[l + 1].toLowerCase().contains("token")) {
                                     nametoken = arrays[l - 1];
+                                    tokenstats = arrays[l - 3];
+                                    if(nametoken.equalsIgnoreCase("artifact")){
+                                        nametoken = arrays[l - 2];
+                                        tokenstats = arrays[l - 4];
+                                    }
+                                    break;
+                                } else if (arrays[l].equalsIgnoreCase("put") && arrays[l + 3].toLowerCase().contains("token")) {
+                                    nametoken = arrays[l + 2];
+                                    for (int j = 1; j < arrays.length - 1; j++) {
+                                        if (arrays[j].contains("/"))
+                                            tokenstats = arrays[j];
+                                    }
                                     break;
                                 }
                             }
                             if (nametoken.isEmpty()) {
                                 tokenfound = false;
-                                nametoken = mappa.get(id);
+                                nametoken = "Unknown";
+                                nametocheck = mappa.get(id);
                                 doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             } else {
                                 try {
-                                    doc = Jsoup.connect(imageurl + "t" + scryset.toLowerCase()).get();
+                                    doc = findTokenPage(imageurl, nametoken, scryset, availableSets, tokenstats);
                                     tokenfound = true;
+                                    nametocheck = nametoken;
                                 } catch(Exception e) {
                                     tokenfound = false;
+                                    nametocheck = mappa.get(id);
+                                    doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                                 }
                             }
                             Elements imgstoken = doc.select("body img");
                             for (int p = 0; p < imgstoken.size(); p++) {
                                 String titletoken = imgstoken.get(p).attributes().get("title");
-                                if (titletoken.toLowerCase().contains(nametoken.toLowerCase())) {
+                                if (titletoken.toLowerCase().contains(nametocheck.toLowerCase())) {
                                     String CardImageToken = imgstoken.get(p).attributes().get("src");
                                     if (CardImageToken.isEmpty())
                                         CardImageToken = imgstoken.get(p).attributes().get("data-src");
@@ -469,10 +552,10 @@ public class ImgDownloader {
                                         tokenimage = imgPath + "/" + id + "t.jpg";
                                         tokenthumbimage = thumbPath + "/" + id + "t.jpg";
                                     } else {
-                                        tokenimage = imgPath + "/" + id + "_tocheck_t.jpg";
-                                        tokenthumbimage = thumbPath + "/" + id + "_tocheck_t.jpg";
-                    			System.err.println("Problem downloading token: " + nametoken + " (" + id + "t) from T" + scryset + " on ScryFall");
-				    	res = cardname + "-" + currentSet + "/" + id + "t.jpg\n" + res;
+                                        tokenimage = imgPath + "/" + id + "t.jpg";
+                                        tokenthumbimage = thumbPath + "/" + id + "t.jpg";
+                    			System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t) i will use the same image of its source card");
+				    	res = nametoken + " - " + currentSet + "/" + id + "t.jpg\n" + res;
                                     }
                                     FileOutputStream fos2 = new FileOutputStream(tokenimage);
                                     fos2.write(responsetoken);
