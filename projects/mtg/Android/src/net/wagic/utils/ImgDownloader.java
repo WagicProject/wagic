@@ -7,6 +7,8 @@ import org.jsoup.select.Elements;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.Enumeration;
+import net.lingala.zip4j.model.ZipParameters;
+import net.lingala.zip4j.model.enums.CompressionMethod;
 
 import java.io.*;
 import java.net.URL;
@@ -501,17 +503,38 @@ public class ImgDownloader {
                     }
                 }
             }
-	    /*try {
-	        //Zipper appZip = new Zipper(destinationPath + set + "/");
-        	//appZip.generateFileList(new File(destinationPath + set + "/"));
-        	//appZip.zipIt(destinationPath + set + ".zip");
-		//File setFolder =  new File(destinationPath + set + "/");
-		//File[] filesToZip = setFolder.listFiles();
-		//SevenZ zip = new SevenZ();
-		//zip.addFilesToZip(setFolder, new File(destinationPath + set + ".zip"));
+	    try {
+		try {
+		    File oldzip = new File(destinationPath + "/" + set + "/" + set + ".zip");
+		    oldzip.delete();
+		} catch (Exception e) {}
+  	        ZipParameters zipParameters = new ZipParameters();
+		zipParameters.setCompressionMethod(CompressionMethod.STORE);
+		File folder = new File(destinationPath + set + "/");
+		File[] listOfFile = folder.listFiles();
+		net.lingala.zip4j.ZipFile zipped = new net.lingala.zip4j.ZipFile(destinationPath + "/" + set + "/" + set + ".zip");
+		for (int i = 0 ; i < listOfFile.length; i++){
+		    if(listOfFile[i].isDirectory()){
+		        zipped.addFolder(listOfFile[i],zipParameters);
+		    } else {
+		        zipped.addFile(listOfFile[i], zipParameters);
+		    }
+		}
+		File destFolder = new File(destinationPath + set + "/");
+                listOfFiles = destFolder.listFiles();
+                for(int u = 0; u < listOfFiles.length; u++){
+                    if (!listOfFiles[u].getName().contains(".zip")){
+                        if(listOfFiles[u].isDirectory()){
+                            File[] listOfSubFiles = listOfFiles[u].listFiles();
+                            for(int j = 0; j < listOfSubFiles.length; j++)
+                                listOfSubFiles[j].delete();
+                        }
+                        listOfFiles[u].delete();
+                    }
+                }
 	    } catch (Exception e) {
 	    	e.printStackTrace();
-	    }*/
+	    }
 	}
 	return res;
     }
