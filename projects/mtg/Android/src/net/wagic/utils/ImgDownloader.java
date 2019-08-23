@@ -494,25 +494,28 @@ public class ImgDownloader {
                             String nametoken = "";
                             String nametocheck = "";
                             String tokenstats = "";
-                            for (int l = 1; l < arrays.length - 1; l++) {
-                                if (arrays[l].equalsIgnoreCase("creature") && arrays[l + 1].toLowerCase().contains("token")) {
-                                    nametoken = arrays[l - 1];
-                                    tokenstats = arrays[l - 3];
-                                    if(nametoken.equalsIgnoreCase("artifact")){
-                                        nametoken = arrays[l - 2];
-                                        tokenstats = arrays[l - 4];
-                                    }
-                                    break;
-                                } else if (arrays[l].equalsIgnoreCase("put") && arrays[l + 3].toLowerCase().contains("token")) {
-                                    nametoken = arrays[l + 2];
-                                    for (int j = 1; j < arrays.length - 1; j++) {
-                                        if (arrays[j].contains("/"))
-                                            tokenstats = arrays[j];
-                                    }
-                                    break;
-                                }
-                            }
-                            if (nametoken.isEmpty()) {
+							for (int l = 1; l < arrays.length - 1; l++) {
+								if (arrays[l].equalsIgnoreCase("creature") && arrays[l + 1].toLowerCase().contains("token")) {
+									nametoken = arrays[l - 1];
+									if(l - 3 > 0)
+										tokenstats = arrays[l - 3];
+									if(nametoken.equalsIgnoreCase("artifact")){
+										if(l - 2 > 0)
+											nametoken = arrays[l - 2];
+										if(l - 4 > 0)
+											tokenstats = arrays[l - 4];
+									}
+									break;
+								} else if (arrays[l].equalsIgnoreCase("put") && arrays[l + 3].toLowerCase().contains("token")) {
+									nametoken = arrays[l + 2];
+									for (int j = 1; j < arrays.length - 1; j++) {
+										if (arrays[j].contains("/"))
+											tokenstats = arrays[j];
+									}
+									break;
+								}
+							}
+							if (nametoken.isEmpty() || tokenstats.isEmpty()) {
                                 tokenfound = false;
                                 nametoken = "Unknown";
                                 nametocheck = mappa.get(id);
