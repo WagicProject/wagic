@@ -320,6 +320,11 @@ id=470609
 rarity=R
 [/card]
 [card]
+primitive=Dawn
+id=470609
+rarity=R
+[/card]
+[card]
 primitive=Ghostly Prison
 id=470610
 rarity=U
@@ -965,6 +970,11 @@ id=470738
 rarity=U
 [/card]
 [card]
+primitive=Market
+id=470738
+rarity=U
+[/card]
+[card]
 primitive=Growing Ranks
 id=470739
 rarity=R
@@ -996,6 +1006,11 @@ rarity=M
 [/card]
 [card]
 primitive=Refuse
+id=470745
+rarity=R
+[/card]
+[card]
+primitive=Cooperate
 id=470745
 rarity=R
 [/card]
