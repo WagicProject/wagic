@@ -508,12 +508,46 @@ public class ImgDownloader {
                                     nametoken = arrays[l - 1];
                                     if (l - 3 > 0)
                                         tokenstats = arrays[l - 3];
+                                    if (!tokenstats.contains("/")) {
+                                        if (l - 4 > 0)
+                                            tokenstats = arrays[l - 4];
+                                    }
+                                    if (!tokenstats.contains("/")) {
+                                        if (l - 5 > 0)
+                                            tokenstats = arrays[l - 5];
+                                    }
+                                    if (!tokenstats.contains("/")) {
+                                        if (l - 6 > 0)
+                                            tokenstats = arrays[l - 6];
+                                    }
+                                    if (!tokenstats.contains("/")) {
+                                        if (l - 7 > 0)
+                                            tokenstats = arrays[l - 7];
+                                    }
                                     if (nametoken.equalsIgnoreCase("artifact")) {
                                         if (l - 2 > 0)
                                             nametoken = arrays[l - 2];
                                         if (l - 4 > 0)
                                             tokenstats = arrays[l - 4];
+                                        if (!tokenstats.contains("/")) {
+                                            if (l - 5 > 0)
+                                                tokenstats = arrays[l - 5];
+                                        }
+                                        if (!tokenstats.contains("/")) {
+                                            if (l - 6 > 0)
+                                                tokenstats = arrays[l - 6];
+                                        }
+                                        if (!tokenstats.contains("/")) {
+                                            if (l - 7 > 0)
+                                                tokenstats = arrays[l - 7];
+                                        }
+                                        if (!tokenstats.contains("/")) {
+                                            if (l - 8 > 0)
+                                                tokenstats = arrays[l - 8];
+                                        }
                                     }
+                                    if (!tokenstats.contains("/"))
+                                        tokenstats = "";
                                     break;
                                 } else if (arrays[l].equalsIgnoreCase("put") && arrays[l + 3].toLowerCase().contains("token")) {
                                     nametoken = arrays[l + 2];
@@ -526,7 +560,8 @@ public class ImgDownloader {
                             }
                             if (nametoken.isEmpty() || tokenstats.isEmpty()) {
                                 tokenfound = false;
-                                nametoken = "Unknown";
+                                if (nametoken.isEmpty())
+                                    nametoken = "Unknown";
                                 nametocheck = mappa.get(id);
                                 doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             } else {
