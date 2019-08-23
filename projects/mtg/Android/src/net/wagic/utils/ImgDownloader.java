@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.jsoup.nodes.Node;
 
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -14,11 +15,15 @@ import net.lingala.zip4j.model.enums.CompressionMethod;
 
 import java.io.*;
 import java.net.URL;
+import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
 import java.util.stream.Stream;
 
 import android.graphics.*;
@@ -158,7 +163,49 @@ public class ImgDownloader {
             }
         } catch (Exception e) {
         }
-        System.out.println("Warning: Token " + name + " has not been found between " + set + " tokens, i will search for it between any other set...");
+        System.out.println("Warning: Token " + name + " has not been found between " + set + " tokens, i will search for it in https://deckmaster.info");
+        String json = "";
+        try {
+            URL url = new URL("https://deckmaster.info/includes/ajax.php?action=cardSearch&searchString=" + name);
+            HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
+            httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+            InputStream stream = httpcon.getInputStream();
+            int i;
+            while ((i = stream.read()) != -1) {
+                json = json + ((char) i);
+            }
+        } catch (Exception e) {
+        }
+        List<String> urls = new ArrayList<String>();
+        String[] tok = json.split(",");
+        for (int i = 0; i < tok.length; i++) {
+            if (tok[i].contains("multiverseid")) {
+                String id = tok[i].split(":")[1].replace("\"", "");
+                urls.add(id);
+            }
+        }
+        for (int i = 0; i < urls.size(); i++) {
+            try {
+                Document tokendoc = Jsoup.connect("https://deckmaster.info/card.php?multiverseid=" + urls.get(i)).get();
+                Elements stats = tokendoc.select("head meta");
+                for (int j = 0; j < stats.size(); j++) {
+                    if (stats.get(j).attributes().get("content").contains("Token Creature") && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
+                        if (stats.get(j).attributes().get("content").contains(tokenstats.replace("X/X", "*/*")))
+                            return tokendoc;
+                        stats = tokendoc.select("body textarea");
+                        for (int y = 0; y < stats.size(); y++) {
+                            List<Node> nodes = stats.get(y).childNodes();
+                            for (int p = 0; p < nodes.size(); p++) {
+                                if (stats.get(y).childNode(p).attributes().get("#text").contains(tokenstats))
+                                    return tokendoc;
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+            }
+        }
+        System.out.println("Warning: Token " + name + " has not been found in https://deckmaster.info so i will search for it between any other set in " + imageurl + " (it can take long time)");
         for (int i = 1; i < availableSets.length; i++) {
             String currentSet = availableSets[i].toLowerCase().split(" - ")[0];
             if (!currentSet.equalsIgnoreCase(set)) {
@@ -413,7 +460,23 @@ public class ImgDownloader {
                         if (CardImage.isEmpty())
                             CardImage = imgs.get(i).attributes().get("data-src");
                         URL url = new URL(CardImage);
-                        InputStream in = new BufferedInputStream(url.openStream());
+                        InputStream in = null;
+                        try {
+                            in = new BufferedInputStream(url.openStream());
+                        } catch (IOException ex) {
+                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                            try {
+                                in = new BufferedInputStream(url.openStream());
+                            } catch (IOException ex2) {
+                                System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                                try {
+                                    in = new BufferedInputStream(url.openStream());
+                                } catch (IOException ex3) {
+                                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
+                                    break;
+                                }
+                            }
+                        }
                         ByteArrayOutputStream out = new ByteArrayOutputStream();
                         byte[] buf = new byte[1024];
                         int n = 0;
@@ -577,13 +640,33 @@ public class ImgDownloader {
                             }
                             Elements imgstoken = doc.select("body img");
                             for (int p = 0; p < imgstoken.size(); p++) {
-                                String titletoken = imgstoken.get(p).attributes().get("title");
+                                String titletoken = imgstoken.get(p).attributes().get("alt");
+                                if (titletoken.isEmpty())
+                                    titletoken = imgstoken.get(p).attributes().get("title");
                                 if (titletoken.toLowerCase().contains(nametocheck.toLowerCase())) {
                                     String CardImageToken = imgstoken.get(p).attributes().get("src");
                                     if (CardImageToken.isEmpty())
                                         CardImageToken = imgstoken.get(p).attributes().get("data-src");
                                     URL urltoken = new URL(CardImageToken);
-                                    InputStream intoken = new BufferedInputStream(urltoken.openStream());
+                                    HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
+                                    httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
+                                    InputStream intoken = null;
+                                    try {
+                                        intoken = new BufferedInputStream(httpcontoken.getInputStream());
+                                    } catch (IOException ex) {
+                                        System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 2 times more...");
+                                        try {
+                                            intoken = new BufferedInputStream(httpcontoken.getInputStream());
+                                        } catch (IOException ex2) {
+                                            System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 1 time more...");
+                                            try {
+                                                intoken = new BufferedInputStream(httpcontoken.getInputStream());
+                                            } catch (IOException ex3) {
+                                                System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will not retry anymore...");
+                                                break;
+                                            }
+                                        }
+                                    }
                                     ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
                                     byte[] buftoken = new byte[1024];
                                     int ntoken = 0;
