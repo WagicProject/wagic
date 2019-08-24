@@ -141,24 +141,135 @@ public class ImgDownloader {
         return name + " (" + totalcards + " cards)";
     }
 
+    public static String getSpecialCardUrl(String id){
+        String cardurl = "";
+        if(id.equals("15208711"))
+            cardurl = "https://img.scryfall.com/cards/large/front/9/c/9c138bf9-8be6-4f1a-a82c-a84938ab84f5.jpg?1562279137";
+        else if(id.equals("15208712"))
+            cardurl = "https://img.scryfall.com/cards/normal/front/d/4/d453ee89-6122-4d51-989c-e78b046a9de3.jpg?1561758141";
+        else if(id.equals("2050321"))
+            cardurl = "https://img.scryfall.com/cards/large/front/1/8/18b9c83d-4422-4b95-9fc2-070ed6b5bdf6.jpg?1562701921";
+        else if(id.equals("2050322"))
+            cardurl = "https://crystal-cdn4.crystalcommerce.com/photos/504053/ooze_token_b.jpg";
+        else if(id.equals("22010012"))
+            cardurl = "https://img.scryfall.com/cards/normal/front/8/4/84dc847c-7a37-4c7f-b02c-30b3e4c91fb6.jpg?1561757490";
+        return cardurl;
+    }
+
+    public static String getSpecialTokenUrl(String id){
+        String tokenurl = "";
+        if(id.equals("75291t"))
+            tokenurl = "http://4.bp.blogspot.com/-y5Fanm3qvrU/Vmd4gGnl2DI/AAAAAAAAAWY/FCrS9FTgOJk/s1600/Tatsumasa%2BToken.jpg";
+        else if(id.equals("202474t"))
+            tokenurl = "https://deckmaster.info/images/cards/AST/-884-hr.jpg";
+        else if(id.equals("202590t"))
+            tokenurl = "https://deckmaster.info/images/cards/AST/-892-hr.jpg";
+        else if(id.equals("201124t"))
+            tokenurl = "http://i1013.photobucket.com/albums/af260/lovesoldier99/STARFISHTOKEN.jpg";
+        else if(id.equals("184735"))
+            tokenurl = "https://i.pinimg.com/originals/a9/fb/37/a9fb37bdfa8f8013b7eb854d155838e2.jpg";
+        else if(id.equals("184598t"))
+            tokenurl = "https://deckmaster.info/images/cards/HM/-2070-hr.jpg";
+        else if(id.equals("184589t"))
+            tokenurl = "http://d1f83aa4yffcdn.cloudfront.net/TOKEN/2%202%20Black%20Zombie.jpg";
+        else if(id.equals("184730t"))
+            tokenurl="https://www.mtg.onl/static/c88f42f8bd5a7c25aa36902546b690f5/4d406/PROXY_Knight_W_1_1.jpg";
+        else if(id.equals("1649t") || id.equals("201182t"))
+            tokenurl = "https://pbs.twimg.com/media/DH9n-2JVwAA0o8z.jpg";
+        else if(id.equals("140233t") || id.equals("191239t") || id.equals("205957t"))
+            tokenurl = "https://i860.photobucket.com/albums/ab170/mistergreen527/White%20Tokens/WAvatarX-X1.jpg";
+        else if(id.equals("1686t") || id.equals("2881t") ||  id.equals("201231t"))
+            tokenurl = "https://deckmaster.info/images/cards/A25/-5648-hr.jpg";
+        else if(id.equals("121261t"))
+            tokenurl = "https://i.pinimg.com/originals/a9/fb/37/a9fb37bdfa8f8013b7eb854d155838e2.jpg";
+        else if(id.equals("368951t"))
+            tokenurl = "https://d1rw89lz12ur5s.cloudfront.net/photo/facetofacegames/file/36262794e9f37368e7872326715ac806/eletok.jpg";
+        else if(id.equals("46168t"))
+            tokenurl = "https://deckmaster.info/images/cards/KLD/-3287-hr.jpg";
+        else if(id.equals("49026t"))
+            tokenurl = "https://www.mtg.onl/static/a9d81341e62e39e75075b573739f39d6/4d406/PROXY_Wirefly_2_2.jpg";
+        else if(id.equals("414506t"))
+            tokenurl = "https://poromagia.com/media/cache/25/f0/25f0cd307adc18d7655c465408267469.jpg";
+        else if(id.equals("6142t"))
+            tokenurl = "https://cdn.staticneo.com/w/mtg/c/cd/Beast5.jpg";
+        else if(id.equals("126166t"))
+            tokenurl = "https://deckmaster.info/images/cards/C14/-487-hr.jpg";
+        else if(id.equals("136155t"))
+            tokenurl = "http://static1.squarespace.com/static/583dca25ff7c5080991b2c87/583de52de6f2e18631eb2b32/58405d0dbe6594762f5bd8e6/1565969982322/wurm-white.jpg";
+        else if(id.equals("107091t"))
+            tokenurl = "https://media.mtgsalvation.com/attachments/13/534/635032476540667501.jpg";
+        else if(id.equals("452760t"))
+            tokenurl = "https://deckmaster.info/images/cards/M19/-6036.jpg";
+        else if(id.equals("2959t"))
+            tokenurl = "https://deckmaster.info/images/cards/HM/-2070-hr.jpg";
+        else if(id.equals("380486t"))
+            tokenurl = "https://deckmaster.info/images/cards/BNG/-5-hr.jpg";
+        else if(id.equals("380487t"))
+            tokenurl = "https://poromagia.com/media/cache/25/f0/25f0cd307adc18d7655c465408267469.jpg";
+        else if(id.equals("234849t"))
+            tokenurl = "https://deckmaster.info/images/cards/RTR/-61-hr.jpg";
+        else if(id.equals("23319t"))
+            tokenurl = "https://i860.photobucket.com/albums/ab170/mistergreen527/White%20Tokens/WReflectionX-X1.jpg";
+        else if(id.equals("205297t") || id.equals("50104t"))
+            tokenurl = "https://www.mtg.onl/static/df30395b530524a3988428d4c0b37161/4d406/PROXY_Pest_0_1.jpg";
+        else if(id.equals("3449t"))
+            tokenurl = "https://www.mtg.onl/static/8c7fed1a0b8edd97c0fb0ceab24a654f/4d406/PROXY_Goblin_Scout_R_1_1.jpg";
+        else if(id.equals("3392t"))
+            tokenurl = "https://deckmaster.info/images/cards/DDR/417498-hr.jpg";
+        else if(id.equals("3280t"))
+            tokenurl = "https://media.mtgsalvation.com/attachments/54/421/635032484680831888.jpg";
+        else if(id.equals("3242t"))
+            tokenurl = "https://deckmaster.info/images/cards/MI/-2828-hr.jpg";
+        else if(id.equals("426025t"))
+            tokenurl = "https://cdn.shopify.com/s/files/1/0790/8591/products/Grnelementalfinal_800x800.jpg?v=1476398274";
+        else if(id.equals("19878t"))
+            tokenurl = "https://www.cardkingdom.com/images/magic-the-gathering/commander-2014/ape-token-zombie-token-blue-65252-medium.jpg";
+        else if(id.equals("21381t") || id.equals("40198t"))
+            tokenurl = "https://img.scryfall.com/cards/large/back/8/c/8ce60642-e207-46e6-b198-d803ff3b47f4.jpg?1562921132";
+        else if(id.equals("265141t"))
+            tokenurl = "https://media.mtgsalvation.com/attachments/102/31/635032498723573408.jpg";
+        return tokenurl;
+    }
+
+    public static boolean hasToken(String id){
+        if(id.equals("456378") || id.equals("2912") || id.equals("1514") || id.equals("364") || id.equals("69") || id.equals("369012") ||
+                id.equals("417759") || id.equals("386476") || id.equals("456371") || id.equals("456360") || id.equals("391958") || id.equals("466959") ||
+                id.equals("466813") || id.equals("201176") || id.equals("202483") || id.equals("3546") || id.equals("425949") || id.equals("426027") ||
+                id.equals("425853") || id.equals("425846") || id.equals("426036") || id.equals("370387") || id.equals("29955") || id.equals("29989") ||
+                id.equals("19741") || id.equals("19722") || id.equals("19706"))
+            return false;
+        return true;
+    }
+
     public static Document findTokenPage(String imageurl, String name, String set, String[] availableSets, String tokenstats) throws Exception {
         Document doc = null;
         Elements outlinks = null;
         try {
             doc = Jsoup.connect(imageurl + "t" + set.toLowerCase()).get();
-            outlinks = doc.select("body a");
-            for (int k = 0; k < outlinks.size(); k++) {
-                String linktoken = outlinks.get(k).attributes().get("href");
-                try {
-                    Document tokendoc = Jsoup.connect(linktoken).get();
-                    Elements stats = tokendoc.select("head meta");
-                    for (int j = 0; j < stats.size(); j++) {
-                        String a = stats.get(j).attributes().get("content");
-                        if (stats.get(j).attributes().get("content").contains(tokenstats) && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
-                            return tokendoc;
+            if(doc != null) {
+                outlinks = doc.select("body a");
+                if (outlinks != null) {
+                    for (int k = 0; k < outlinks.size(); k++) {
+                        String linktoken = outlinks.get(k).attributes().get("href");
+                        if (linktoken != null && !linktoken.isEmpty()) {
+                            try {
+                                Document tokendoc = Jsoup.connect(linktoken).get();
+                                if(tokendoc == null)
+                                    continue;
+                                Elements stats = tokendoc.select("head meta");
+                                if(stats != null) {
+                                    for (int j = 0; j < stats.size(); j++) {
+                                        String a = stats.get(j).attributes().get("content");
+                                        if (stats.get(j).attributes().get("content").contains(tokenstats) &&
+                                                stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
+                                            return tokendoc;
+                                        }
+                                    }
+                                }
+                            } catch (Exception e) {
+                            }
                         }
                     }
-                } catch (Exception e) {
                 }
             }
         } catch (Exception e) {
@@ -168,11 +279,15 @@ public class ImgDownloader {
         try {
             URL url = new URL("https://deckmaster.info/includes/ajax.php?action=cardSearch&searchString=" + name);
             HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
-            httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
-            InputStream stream = httpcon.getInputStream();
-            int i;
-            while ((i = stream.read()) != -1) {
-                json = json + ((char) i);
+            if(httpcon != null) {
+                httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+                InputStream stream = httpcon.getInputStream();
+                if(stream != null) {
+                    int i;
+                    while ((i = stream.read()) != -1) {
+                        json = json + ((char) i);
+                    }
+                }
             }
         } catch (Exception e) {
         }
@@ -187,17 +302,25 @@ public class ImgDownloader {
         for (int i = 0; i < urls.size(); i++) {
             try {
                 Document tokendoc = Jsoup.connect("https://deckmaster.info/card.php?multiverseid=" + urls.get(i)).get();
+                if(tokendoc == null)
+                    continue;
                 Elements stats = tokendoc.select("head meta");
-                for (int j = 0; j < stats.size(); j++) {
-                    if (stats.get(j).attributes().get("content").contains("Token Creature") && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
-                        if (stats.get(j).attributes().get("content").contains(tokenstats.replace("X/X", "*/*")))
-                            return tokendoc;
-                        stats = tokendoc.select("body textarea");
-                        for (int y = 0; y < stats.size(); y++) {
-                            List<Node> nodes = stats.get(y).childNodes();
-                            for (int p = 0; p < nodes.size(); p++) {
-                                if (stats.get(y).childNode(p).attributes().get("#text").contains(tokenstats))
-                                    return tokendoc;
+                if(stats != null) {
+                    for (int j = 0; j < stats.size(); j++) {
+                        if (stats.get(j).attributes().get("content").contains("Token Creature") && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
+                            if (stats.get(j).attributes().get("content").contains(tokenstats.replace("X/X", "★/★")))
+                                return tokendoc;
+                            stats = tokendoc.select("body textarea");
+                            if (stats != null) {
+                                for (int y = 0; y < stats.size(); y++) {
+                                    List<Node> nodes = stats.get(y).childNodes();
+                                    if (nodes != null) {
+                                        for (int p = 0; p < nodes.size(); p++) {
+                                            if (stats.get(y).childNode(p).attributes().get("#text").contains(tokenstats))
+                                                return tokendoc;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -211,20 +334,28 @@ public class ImgDownloader {
             if (!currentSet.equalsIgnoreCase(set)) {
                 try {
                     doc = Jsoup.connect(imageurl + "t" + currentSet).get();
+                    if(doc == null)
+                        continue;
                     outlinks = doc.select("body a");
-                    for (int k = 0; k < outlinks.size(); k++) {
-                        String linktoken = outlinks.get(k).attributes().get("href");
-                        try {
-                            Document tokendoc = Jsoup.connect(linktoken).get();
-                            Elements stats = tokendoc.select("head meta");
-                            for (int j = 0; j < stats.size(); j++) {
-                                String a = stats.get(j).attributes().get("content");
-                                if (stats.get(j).attributes().get("content").contains(tokenstats) && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
-                                    System.out.println("Token " + name + " has been found between " + currentSet.toUpperCase() + " tokens, i will use this one");
-                                    return tokendoc;
+                    if(outlinks != null) {
+                        for (int k = 0; k < outlinks.size(); k++) {
+                            String linktoken = outlinks.get(k).attributes().get("href");
+                            try {
+                                Document tokendoc = Jsoup.connect(linktoken).get();
+                                if(tokendoc == null)
+                                    continue;
+                                Elements stats = tokendoc.select("head meta");
+                                if(stats != null) {
+                                    for (int j = 0; j < stats.size(); j++) {
+                                        String a = stats.get(j).attributes().get("content");
+                                        if (stats.get(j).attributes().get("content").contains(tokenstats) && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
+                                            System.out.println("Token " + name + " has been found between " + currentSet.toUpperCase() + " tokens, i will use this one");
+                                            return tokendoc;
+                                        }
+                                    }
                                 }
+                            } catch (Exception e) {
                             }
-                        } catch (Exception e) {
                         }
                     }
                 } catch (Exception e) {
@@ -276,7 +407,7 @@ public class ImgDownloader {
                 while (e.hasMoreElements()) {
                     ZipEntry entry = e.nextElement();
                     String entryName = entry.getName();
-                    if (entryName.contains("sets/")) {
+                    if (entryName != null && entryName.contains("sets/")) {
                         if (entryName.contains("_cards.dat")) {
                             String[] names = entryName.split("/");
                             if (currentSet.equalsIgnoreCase(names[1])) {
@@ -375,8 +506,32 @@ public class ImgDownloader {
 
             for (int y = 0; y < mappa.size(); y++) {
                 String id = mappa.keySet().toArray()[y].toString();
-                Document doc = Jsoup.connect(baseurl + id).get();
+                Document doc = null;
+                try{
+                    doc = Jsoup.connect(baseurl + id).get();
+                } catch(Exception e) {
+                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl  + id + ", i will retry 2 times more...");
+                    try{
+                        doc = Jsoup.connect(baseurl + id).get();
+                    } catch(Exception e2) {
+                        System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl  + id + ", i will retry 1 time more...");
+                        try{
+                            doc = Jsoup.connect(baseurl + id).get();
+                        } catch(Exception e3) {
+                            System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl  + id + ", i will not retry anymore...");
+                            continue;
+                        }
+                    }
+                }
+                if(doc == null){
+                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl  + id + ", i will not retry anymore...");
+                    continue;
+                }
                 Elements divs = doc.select("body div");
+                if(divs == null){
+                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl  + id + ", i will not retry anymore...");
+                    continue;
+                }
                 String scryset = currentSet;
                 if (scryset.equalsIgnoreCase("MRQ"))
                     scryset = "MMQ";
@@ -423,13 +578,6 @@ public class ImgDownloader {
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
-                    System.err.println("Problem downloading card: " + mappa.get(id) + " (" + id + ") from " + scryset + " on ScryFall");
-                    res = mappa.get(id) + "-" + currentSet + "/" + id + ".jpg\n" + res;
-                    continue;
-                }
-                try {
-                    doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
-                } catch (Exception e) {
                     System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
                     try {
                         doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
@@ -444,7 +592,68 @@ public class ImgDownloader {
                         }
                     }
                 }
+                String specialcardurl = getSpecialCardUrl(id);
+                if(!specialcardurl.isEmpty()){
+                    URL url = new URL(specialcardurl);
+                    InputStream in;
+                    try{
+                        in = new BufferedInputStream(url.openStream());
+                    }catch(Exception ex){
+                        System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                        try {
+                            in = new BufferedInputStream(url.openStream());
+                        } catch (Exception ex2) {
+                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                            try {
+                                in = new BufferedInputStream(url.openStream());
+                            } catch (Exception ex3) {
+                                System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
+                                break;
+                            }
+                        }
+                    }
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    byte[] buf = new byte[1024];
+                    int n = 0;
+                    while (-1 != (n = in.read(buf))) {
+                        out.write(buf, 0, n);
+                    }
+                    out.close();
+                    in.close();
+                    byte[] response = out.toByteArray();
+                    String cardimage = imgPath + "/" + id + ".jpg";
+                    String thumbcardimage = thumbPath + "/" + id + ".jpg";
+                    FileOutputStream fos = new FileOutputStream(cardimage);
+                    fos.write(response);
+                    fos.close();
+
+                    Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
+                    Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
+                    try {
+                        FileOutputStream fout = new FileOutputStream(cardimage);
+                        resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmap, ThumbX, ThumbY, true);
+                    try {
+                        FileOutputStream fout = new FileOutputStream(thumbcardimage);
+                        resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    continue;
+                }
+                if(doc == null){
+                    System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not download it...");
+                    continue;
+                }
                 Elements imgs = doc.select("body img");
+                if(imgs == null){
+                    System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not download it...");
+                    continue;
+                }
                 int k;
                 for (k = 0; k < divs.size(); k++)
                     if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card name"))
@@ -507,7 +716,6 @@ public class ImgDownloader {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
                         String text = "";
                         for (k = 0; k < divs.size(); k++)
                             if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card text"))
@@ -560,7 +768,7 @@ public class ImgDownloader {
                                 }
                             }
                         }
-                        if ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) || (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token"))) {
+                        if (hasToken(id) &&  ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) || (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token")))) {
                             boolean tokenfound = false;
                             String arrays[] = text.trim().split(" ");
                             String nametoken = "";
@@ -621,24 +829,45 @@ public class ImgDownloader {
                                     break;
                                 }
                             }
-                            if (nametoken.isEmpty() || tokenstats.isEmpty()) {
-                                tokenfound = false;
-                                if (nametoken.isEmpty())
-                                    nametoken = "Unknown";
-                                nametocheck = mappa.get(id);
-                                doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                            String specialtokenurl = getSpecialTokenUrl(id + "t");
+                            Elements imgstoken;
+                            if(!specialtokenurl.isEmpty()) {
+                                try{
+                                    doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                                } catch (Exception ex) {
+                                    System.err.println("Error: Problem occurring while searching for token: " + nametoken + "-" + id + "t, i will not download it...");
+                                    break;
+                                }
+                                if(doc == null)
+                                    break;
+                                imgstoken = doc.select("body img");
+                                if(imgstoken == null)
+                                    break;
+                                tokenfound = true;
                             } else {
-                                try {
-                                    doc = findTokenPage(imageurl, nametoken, scryset, availableSets, tokenstats);
-                                    tokenfound = true;
-                                    nametocheck = nametoken;
-                                } catch (Exception e) {
+                                if (nametoken.isEmpty() || tokenstats.isEmpty()) {
                                     tokenfound = false;
+                                    if (nametoken.isEmpty())
+                                        nametoken = "Unknown";
                                     nametocheck = mappa.get(id);
                                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                                } else {
+                                    try {
+                                        doc = findTokenPage(imageurl, nametoken, scryset, availableSets, tokenstats);
+                                        tokenfound = true;
+                                        nametocheck = nametoken;
+                                    } catch (Exception e) {
+                                        tokenfound = false;
+                                        nametocheck = mappa.get(id);
+                                        doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                                    }
                                 }
+                                if(doc == null)
+                                    break;
+                                imgstoken = doc.select("body img");
+                                if(imgstoken == null)
+                                    break;
                             }
-                            Elements imgstoken = doc.select("body img");
                             for (int p = 0; p < imgstoken.size(); p++) {
                                 String titletoken = imgstoken.get(p).attributes().get("alt");
                                 if (titletoken.isEmpty())
@@ -648,7 +877,13 @@ public class ImgDownloader {
                                     if (CardImageToken.isEmpty())
                                         CardImageToken = imgstoken.get(p).attributes().get("data-src");
                                     URL urltoken = new URL(CardImageToken);
+                                    if(!specialtokenurl.isEmpty())
+                                        urltoken = new URL(specialtokenurl);
                                     HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
+                                    if(httpcontoken == null) {
+                                        System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will not download it...");
+                                        break;
+                                    }
                                     httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
                                     InputStream intoken = null;
                                     try {
@@ -676,16 +911,10 @@ public class ImgDownloader {
                                     outtoken.close();
                                     intoken.close();
                                     byte[] responsetoken = outtoken.toByteArray();
-                                    String tokenimage = "";
-                                    String tokenthumbimage = "";
-                                    if (tokenfound) {
-                                        tokenimage = imgPath + "/" + id + "t.jpg";
-                                        tokenthumbimage = thumbPath + "/" + id + "t.jpg";
-                                    } else {
-                                        tokenimage = imgPath + "/" + id + "t.jpg";
-                                        tokenthumbimage = thumbPath + "/" + id + "t.jpg";
+                                    String tokenimage = imgPath + File.separator + id + "t.jpg";
+                                    String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
+                                    if (!tokenfound && !id.equals("464007t")) {
                                         System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t) i will use the same image of its source card");
-                                        res = nametoken + " - " + currentSet + "/" + id + "t.jpg\n" + res;
                                     }
                                     FileOutputStream fos2 = new FileOutputStream(tokenimage);
                                     fos2.write(responsetoken);
