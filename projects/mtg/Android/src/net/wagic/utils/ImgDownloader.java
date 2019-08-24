@@ -228,6 +228,8 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/back/8/c/8ce60642-e207-46e6-b198-d803ff3b47f4.jpg?1562921132";
         else if(id.equals("265141t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/102/31/635032498723573408.jpg";
+        else if(id.equals("24624t"))
+            tokenurl = "https://www.mtg.onl/static/6d717cba653ea9e3f6bd1419741671cb/4d406/PROXY_Minion_B_1_1.jpg";
         return tokenurl;
     }
 
@@ -236,7 +238,7 @@ public class ImgDownloader {
                 id.equals("417759") || id.equals("386476") || id.equals("456371") || id.equals("456360") || id.equals("391958") || id.equals("466959") ||
                 id.equals("466813") || id.equals("201176") || id.equals("202483") || id.equals("3546") || id.equals("425949") || id.equals("426027") ||
                 id.equals("425853") || id.equals("425846") || id.equals("426036") || id.equals("370387") || id.equals("29955") || id.equals("29989") ||
-                id.equals("19741") || id.equals("19722") || id.equals("19706") || id.equals("24597") || id.equals("24617"))
+                id.equals("19741") || id.equals("19722") || id.equals("19706") || id.equals("24597") || id.equals("24617") || id.equals("24563"))
             return false;
         return true;
     }

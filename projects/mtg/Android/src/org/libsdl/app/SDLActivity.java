@@ -358,6 +358,21 @@ public class SDLActivity extends Activity implements OnKeyListener {
         }
     }
 
+    private void downloadCardInfo() {
+        AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
+        cardDownloader.setTitle("Image Downloader");
+
+        cardDownloader.setMessage("IMPORTANT: After you press OK you may have to wait a bit while Downloader will evaluate all the sets available in this game version.");
+
+        cardDownloader.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                downloadCardImages();
+            }
+        });
+
+        cardDownloader.create().show();
+    }
+
     String set = "";
     String[] availableSets;
     Integer totalset = 0;
@@ -365,47 +380,62 @@ public class SDLActivity extends Activity implements OnKeyListener {
     private void downloadCardImages() {
         AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
         cardDownloader.setTitle("Which Set would you like to download?");
-
-        File baseFolder = new File(getSystemStorageLocation());
-        File[] listOfFiles = baseFolder.listFiles();
         ArrayList<String> sets = new ArrayList<String>();
-        ZipFile zipFile = null;
-        try {
-            zipFile = new ZipFile(baseFolder + "/" + listOfFiles[0].getName());
-            Enumeration<? extends ZipEntry> e = zipFile.entries();
-            while (e.hasMoreElements()) {
-                ZipEntry entry = e.nextElement();
-                String entryName = entry.getName();
-                if (entryName.contains("sets/")) {
-                    if (!entryName.equalsIgnoreCase("sets/") && !entryName.contains("primitives") && !entryName.contains(".")) {
-                        String[] names = entryName.split("/");
-                        sets.add(names[1]);
+        if (availableSets == null) {
+            File baseFolder = new File(getSystemStorageLocation());
+            File[] listOfFiles = baseFolder.listFiles();
+            ZipFile zipFile = null;
+            try {
+                zipFile = new ZipFile(baseFolder + "/" + listOfFiles[0].getName());
+                Enumeration<? extends ZipEntry> e = zipFile.entries();
+                while (e.hasMoreElements()) {
+                    ZipEntry entry = e.nextElement();
+                    String entryName = entry.getName();
+                    if (entryName != null && entryName.contains("sets/")) {
+                        if (!entryName.equalsIgnoreCase("sets/") && !entryName.contains("primitives") && !entryName.contains(".")) {
+                            String[] names = entryName.split("/");
+                            sets.add(names[1]);
+                        }
                     }
                 }
-            }
-        } catch (IOException ioe) {
-            System.out.println("Error opening zip file" + ioe);
-        } finally {
-            try {
-                if (zipFile != null) {
-                    zipFile.close();
-                }
             } catch (IOException ioe) {
-                System.out.println("Error while closing zip file" + ioe);
+                System.out.println("Error opening zip file" + ioe);
+            } finally {
+                try {
+                    if (zipFile != null) {
+                        zipFile.close();
+                    }
+                } catch (IOException ioe) {
+                    System.out.println("Error while closing zip file" + ioe);
+                }
             }
-        }
 
-        availableSets = new String[sets.size() + 1];
-        availableSets[0] = "*.* - All Wagic sets (thousands of cards)";
-        for (int i = 1; i < availableSets.length; i++) {
-            availableSets[i] = sets.get(i - 1) + " - " + ImgDownloader.getSetInfo(sets.get(i - 1), true, getSystemStorageLocation());
+            availableSets = new String[sets.size() + 1];
+            availableSets[0] = "*.* - All Wagic sets (thousands of cards)";
+            for (int i = 1; i < availableSets.length; i++) {
+                availableSets[i] = sets.get(i - 1) + " - " + ImgDownloader.getSetInfo(sets.get(i - 1), true, getSystemStorageLocation());
+            }
         }
         cardDownloader.setSingleChoiceItems(availableSets, -1, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 set = availableSets[item].split(" - ")[0];
-                downloadCardStarting(set);
             }
         });
+
+        cardDownloader.setPositiveButton("Confirm Selection", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                downloadCardImagesStart();
+            }
+        });
+
+        cardDownloader.create().show();
+    }
+
+    private void downloadCardImagesStart() {
+        AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
+        cardDownloader.setTitle("Download of: " + set);
+
+        cardDownloader.setMessage("IMPORTANT: After you press OK don't turn off phone or wi-fi/data connection and don't close Wagic.\nThe download process can take several minutes according to the number of images contained in the selected set.\nNOTE: if you choose *.* you may have to wait several hours!!!");
 
         cardDownloader.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -421,27 +451,25 @@ public class SDLActivity extends Activity implements OnKeyListener {
             }
         });
 
+        cardDownloader.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                downloadCardImages();
+            }
+        });
+
         cardDownloader.create().show();
     }
-
-    private void downloadCardStarting(String set) {
-        AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
-        infoDialog.setTitle("You choose to Download: " + set);
-        infoDialog.setMessage("After you press OK don't turn off phone or wi-fi/data connection and don't close Wagic.\nThe download process can take several minutes according to the number of images contained in the selected set (NOTE: if you choose *.* you will have to wait several hours!!!)");
-        infoDialog.create().show();
-    }
-
 
     private void downloadCardCompleted(boolean error, String res, String set) {
         AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
         if (!error) {
             infoDialog.setTitle("Download Completed: " + set);
             if (!res.isEmpty())
-                infoDialog.setMessage("Following cards could not be downloaded:\n" + res);
+                infoDialog.setMessage("Warning: Following cards could not be downloaded:\n" + res);
             else
                 infoDialog.setMessage("All the cards have been successfully downloaded");
         } else {
-            infoDialog.setTitle("Error downloading: " + set);
+            infoDialog.setTitle("Error downloading: " + set + ", please try again...");
             infoDialog.setMessage(res);
         }
         infoDialog.create().show();
@@ -467,7 +495,10 @@ public class SDLActivity extends Activity implements OnKeyListener {
         } else if (itemId == 2) {
             importDeckOptions();
         } else if (itemId == 3) {
-            downloadCardImages();
+            if (availableSets == null)
+                downloadCardInfo();
+            else
+                downloadCardImages();
         } else if (itemId == 4) {
             // display some info about the app
             AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
