@@ -236,7 +236,7 @@ public class ImgDownloader {
                 id.equals("417759") || id.equals("386476") || id.equals("456371") || id.equals("456360") || id.equals("391958") || id.equals("466959") ||
                 id.equals("466813") || id.equals("201176") || id.equals("202483") || id.equals("3546") || id.equals("425949") || id.equals("426027") ||
                 id.equals("425853") || id.equals("425846") || id.equals("426036") || id.equals("370387") || id.equals("29955") || id.equals("29989") ||
-                id.equals("19741") || id.equals("19722") || id.equals("19706"))
+                id.equals("19741") || id.equals("19722") || id.equals("19706") || id.equals("24597") || id.equals("24617"))
             return false;
         return true;
     }
