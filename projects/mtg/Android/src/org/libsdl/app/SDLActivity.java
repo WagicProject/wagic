@@ -358,64 +358,87 @@ public class SDLActivity extends Activity implements OnKeyListener {
         }
     }
 
-    private void downloadCardInfo() {
-        AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
-        cardDownloader.setTitle("Image Downloader");
-
-        cardDownloader.setMessage("IMPORTANT: After you press OK you may have to wait a bit while Downloader will evaluate all the sets available in this game version.");
-
-        cardDownloader.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                downloadCardImages();
-            }
-        });
-
-        cardDownloader.create().show();
-    }
-
     String set = "";
     String[] availableSets;
     Integer totalset = 0;
+    boolean finished = false;
+    boolean loadResInProgress = false;
+    ProgressDialog progressBarDialogRes;
+
+    private void loadAvailableSets() {
+        final Handler mHandler = new Handler();
+        progressBarDialogRes = new ProgressDialog(this);
+        progressBarDialogRes.setTitle("Loading all available sets...");
+        progressBarDialogRes.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressBarDialogRes.setProgress(0);
+        new Thread(new Runnable() {
+            public void run() {
+                ArrayList<String> sets = new ArrayList<String>();
+                if (availableSets == null) {
+                    loadResInProgress = true;
+                    File baseFolder = new File(getSystemStorageLocation());
+                    File[] listOfFiles = baseFolder.listFiles();
+                    ZipFile zipFile = null;
+                    try {
+                        zipFile = new ZipFile(baseFolder + "/" + listOfFiles[0].getName());
+                        Enumeration<? extends ZipEntry> e = zipFile.entries();
+                        while (e.hasMoreElements()) {
+                            ZipEntry entry = e.nextElement();
+                            String entryName = entry.getName();
+                            if (entryName != null && entryName.contains("sets/")) {
+                                if (!entryName.equalsIgnoreCase("sets/") && !entryName.contains("primitives") && !entryName.contains(".")) {
+                                    String[] names = entryName.split("/");
+                                    sets.add(names[1]);
+                                }
+                            }
+                        }
+                    } catch (IOException ioe) {
+                        System.out.println("Error opening zip file" + ioe);
+                    } finally {
+                        try {
+                            if (zipFile != null) {
+                                zipFile.close();
+                            }
+                        } catch (IOException ioe) {
+                            System.out.println("Error while closing zip file" + ioe);
+                        }
+                    }
+
+                    availableSets = new String[sets.size() + 1];
+                    availableSets[0] = "*.* - All Wagic sets (thousands of cards)";
+                    progressBarDialogRes.setMax(sets.size());
+                    for (int i = 1; i < availableSets.length; i++) {
+                        availableSets[i] = sets.get(i - 1) + " - " + ImgDownloader.getSetInfo(sets.get(i - 1), true, getSystemStorageLocation());
+                        progressBarDialogRes.incrementProgressBy((int) (1));
+                    }
+                }
+                finished = true;
+                loadResInProgress = false;
+                progressBarDialogRes.dismiss();
+                mHandler.post(new Runnable() {
+                    public void run() {
+                        while (!finished) {
+                            try {
+                                Thread.sleep(5000);
+                            } catch (Exception e) {
+                            }
+                        }
+                        downloadCardImages();
+                    }
+                });
+            }
+        }).start();
+
+        progressBarDialogRes.show();
+
+
+    }
 
     private void downloadCardImages() {
         AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
-        cardDownloader.setTitle("Which Set would you like to download?");
-        ArrayList<String> sets = new ArrayList<String>();
-        if (availableSets == null) {
-            File baseFolder = new File(getSystemStorageLocation());
-            File[] listOfFiles = baseFolder.listFiles();
-            ZipFile zipFile = null;
-            try {
-                zipFile = new ZipFile(baseFolder + "/" + listOfFiles[0].getName());
-                Enumeration<? extends ZipEntry> e = zipFile.entries();
-                while (e.hasMoreElements()) {
-                    ZipEntry entry = e.nextElement();
-                    String entryName = entry.getName();
-                    if (entryName != null && entryName.contains("sets/")) {
-                        if (!entryName.equalsIgnoreCase("sets/") && !entryName.contains("primitives") && !entryName.contains(".")) {
-                            String[] names = entryName.split("/");
-                            sets.add(names[1]);
-                        }
-                    }
-                }
-            } catch (IOException ioe) {
-                System.out.println("Error opening zip file" + ioe);
-            } finally {
-                try {
-                    if (zipFile != null) {
-                        zipFile.close();
-                    }
-                } catch (IOException ioe) {
-                    System.out.println("Error while closing zip file" + ioe);
-                }
-            }
 
-            availableSets = new String[sets.size() + 1];
-            availableSets[0] = "*.* - All Wagic sets (thousands of cards)";
-            for (int i = 1; i < availableSets.length; i++) {
-                availableSets[i] = sets.get(i - 1) + " - " + ImgDownloader.getSetInfo(sets.get(i - 1), true, getSystemStorageLocation());
-            }
-        }
+        cardDownloader.setTitle("Which Set would you like to download?");
+
         cardDownloader.setSingleChoiceItems(availableSets, -1, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 set = availableSets[item].split(" - ")[0];
@@ -431,33 +454,71 @@ public class SDLActivity extends Activity implements OnKeyListener {
         cardDownloader.create().show();
     }
 
+    boolean error = false;
+    String res = "";
+    boolean dowloadInProgress = false;
+    ProgressDialog cardDownloader;
+
     private void downloadCardImagesStart() {
-        AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
-        cardDownloader.setTitle("Download of: " + set);
+        final Handler mHandler = new Handler();
+        cardDownloader = new ProgressDialog(this);
+        cardDownloader.setTitle("Downloading set: " + set);
+        cardDownloader.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        cardDownloader.setProgress(0);
+        cardDownloader.setMessage("Don't turn off phone or wi-fi/data connection and don't quit Wagic. The download could take several minutes, but you can hide this window and continue to play, a pop-up will notify the completion of process.");
 
-        cardDownloader.setMessage("IMPORTANT: After you press OK don't turn off phone or wi-fi/data connection and don't close Wagic.\nThe download process can take several minutes according to the number of images contained in the selected set.\nNOTE: if you choose *.* you may have to wait several hours!!!");
-
-        cardDownloader.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                boolean error = false;
-                String res = "";
+        new Thread(new Runnable() {
+            public void run() {
                 try {
-                    res = ImgDownloader.DownloadCardImages(set, availableSets, "HI", getSystemStorageLocation(), getUserStorageLocation() + "sets/");
+                    dowloadInProgress = true;
+                    res = ImgDownloader.DownloadCardImages(set, availableSets, "HI", getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader);
                 } catch (Exception e) {
                     res = e.getMessage();
                     error = true;
                 }
-                downloadCardCompleted(error, res, set);
+                mHandler.post(new Runnable() {
+                    public void run() {
+                        downloadCardCompleted(error, res, set);
+                        dowloadInProgress = false;
+                        cardDownloader.dismiss();
+                    }
+                });
+            }
+        }).start();
+
+        cardDownloader.setButton(DialogInterface.BUTTON_POSITIVE, "Hide", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                cardDownloader.hide();
             }
         });
 
-        cardDownloader.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+        cardDownloader.setButton(DialogInterface.BUTTON_NEGATIVE, "Stop Download", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                mHandler.post(new Runnable() {
+                    public void run() {
+                        downloadCardInterruped(set, cardDownloader.getProgress(), cardDownloader.getMax());
+                        dowloadInProgress = false;
+                        cardDownloader.dismiss();
+                    }
+                });
+            }
+        });
+
+        cardDownloader.show();
+    }
+
+    private void downloadCardInterruped(String set, int cardsDownloaded, int total) {
+        AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+        infoDialog.setTitle("Download of " + set + " has been interrupted!");
+        infoDialog.setMessage("WARNING: Only " + cardsDownloaded + " of " + total + " total cards have been downloaded and zip archive (" + set + ".zip) has not been created. You have to start the download again in order to complete the entire set.");
+
+        infoDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 downloadCardImages();
             }
         });
 
-        cardDownloader.create().show();
+        infoDialog.create().show();
     }
 
     private void downloadCardCompleted(boolean error, String res, String set) {
@@ -496,9 +557,17 @@ public class SDLActivity extends Activity implements OnKeyListener {
             importDeckOptions();
         } else if (itemId == 3) {
             if (availableSets == null)
-                downloadCardInfo();
-            else
-                downloadCardImages();
+                loadAvailableSets();
+            else {
+                if (loadResInProgress) {
+                    progressBarDialogRes.show();
+                    progressBarDialogRes.show();
+                } else if (dowloadInProgress) {
+                    cardDownloader.show();
+                    cardDownloader.show();
+                } else
+                    downloadCardImages();
+            }
         } else if (itemId == 4) {
             // display some info about the app
             AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
