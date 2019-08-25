@@ -31,6 +31,7 @@ import net.wagic.utils.DeckImporter;
 import net.wagic.utils.ImgDownloader;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.widget.ListView;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -360,6 +361,8 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
     String set = "";
     String[] availableSets;
+    ArrayList<String> selectedSets;
+    boolean[] checkedSet;
     Integer totalset = 0;
     boolean finished = false;
     boolean loadResInProgress = false;
@@ -404,11 +407,12 @@ public class SDLActivity extends Activity implements OnKeyListener {
                         }
                     }
 
-                    availableSets = new String[sets.size() + 1];
-                    availableSets[0] = "*.* - All Wagic sets (thousands of cards)";
+                    availableSets = new String[sets.size()];
+                    checkedSet = new boolean[sets.size()];
                     progressBarDialogRes.setMax(sets.size());
-                    for (int i = 1; i < availableSets.length; i++) {
-                        availableSets[i] = sets.get(i - 1) + " - " + ImgDownloader.getSetInfo(sets.get(i - 1), true, getSystemStorageLocation());
+                    for (int i = 0; i < availableSets.length; i++) {
+                        availableSets[i] = sets.get(i) + " - " + ImgDownloader.getSetInfo(sets.get(i), true, getSystemStorageLocation());
+                        checkedSet[i] = false;
                         progressBarDialogRes.incrementProgressBy((int) (1));
                     }
                 }
@@ -437,17 +441,35 @@ public class SDLActivity extends Activity implements OnKeyListener {
     private void downloadCardImages() {
         AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
 
-        cardDownloader.setTitle("Which Set would you like to download?");
+        cardDownloader.setTitle("Which Sets would you like to download?");
+        selectedSets = new ArrayList<String>();
 
-        cardDownloader.setSingleChoiceItems(availableSets, -1, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
-                set = availableSets[item].split(" - ")[0];
+        cardDownloader.setMultiChoiceItems(availableSets, checkedSet, new DialogInterface.OnMultiChoiceClickListener() {
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                checkedSet[which] = isChecked;
+                if (checkedSet[which])
+                    selectedSets.add(availableSets[which].split(" - ")[0]);
+                else
+                    selectedSets.remove(availableSets[which].split(" - ")[0]);
             }
         });
 
-        cardDownloader.setPositiveButton("Confirm Selection", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
+        cardDownloader.setNeutralButton("Download All", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                selectedSets.clear();
+                for (int i = 0; i < availableSets.length; i++) {
+                    selectedSets.add(availableSets[i].split(" - ")[0]);
+                }
                 downloadCardImagesStart();
+            }
+        });
+
+        cardDownloader.setPositiveButton("Download Selected", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (selectedSets.size() > 0)
+                    downloadCardImagesStart();
+                else
+                    downloadCardImages();
             }
         });
 
@@ -462,27 +484,46 @@ public class SDLActivity extends Activity implements OnKeyListener {
     private void downloadCardImagesStart() {
         final Handler mHandler = new Handler();
         cardDownloader = new ProgressDialog(this);
-        cardDownloader.setTitle("Downloading set: " + set);
+        cardDownloader.setTitle("Downloading now set: " + set);
         cardDownloader.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         cardDownloader.setProgress(0);
-        cardDownloader.setMessage("Don't turn off phone or wi-fi/data connection and don't quit Wagic. The download could take several minutes, but you can hide this window and continue to play, a pop-up will notify the completion of process.");
+        if (selectedSets.size() == 1)
+            cardDownloader.setMessage("You choose to download just 1 set: Please don't quit Wagic or turn off Internet connection, you can hide this window and continue to play, a pop-up will notify the completion of download process.");
+        else
+            cardDownloader.setMessage("You choose to download " + selectedSets.size() + " sets: Please don't quit Wagic or turn off Internet connection, you can hide this window and continue to play, a pop-up will notify the completion of download process.");
 
         new Thread(new Runnable() {
             public void run() {
-                try {
-                    dowloadInProgress = true;
-                    res = ImgDownloader.DownloadCardImages(set, availableSets, "HI", getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader);
-                } catch (Exception e) {
-                    res = e.getMessage();
-                    error = true;
-                }
-                mHandler.post(new Runnable() {
-                    public void run() {
-                        downloadCardCompleted(error, res, set);
-                        dowloadInProgress = false;
-                        cardDownloader.dismiss();
+                dowloadInProgress = true;
+                if (selectedSets != null) {
+                    for (int i = 0; i < selectedSets.size(); i++) {
+                        try {
+                            set = selectedSets.get(i);
+                            mHandler.post(new Runnable() {
+                                public void run() {
+                                    cardDownloader.setTitle("Downloading set: " + set);
+                                }
+                            });
+                            String details = ImgDownloader.DownloadCardImages(set, availableSets, "High", getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader);
+                            if (!details.isEmpty()) {
+                                if (!res.isEmpty())
+                                    res = res + "\nSET " + set + ":\n" + details;
+                                else
+                                    res = "SET " + set + ":\n" + details;
+                            }
+                        } catch (Exception e) {
+                            res = res + "\n" + e.getMessage();
+                            error = true;
+                        }
                     }
-                });
+                    mHandler.post(new Runnable() {
+                        public void run() {
+                            downloadSelectedSetsCompleted(error, res);
+                            dowloadInProgress = false;
+                            cardDownloader.dismiss();
+                        }
+                    });
+                }
             }
         }).start();
 
@@ -521,19 +562,21 @@ public class SDLActivity extends Activity implements OnKeyListener {
         infoDialog.create().show();
     }
 
-    private void downloadCardCompleted(boolean error, String res, String set) {
+    private void downloadSelectedSetsCompleted(boolean error, String res) {
         AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
         if (!error) {
-            infoDialog.setTitle("Download Completed: " + set);
+            infoDialog.setTitle("The download process has completed without any error");
             if (!res.isEmpty())
-                infoDialog.setMessage("Warning: Following cards could not be downloaded:\n" + res);
-            else
-                infoDialog.setMessage("All the cards have been successfully downloaded");
+                infoDialog.setMessage("Following cards could not be downloaded:\n" + res);
         } else {
-            infoDialog.setTitle("Error downloading: " + set + ", please try again...");
+            infoDialog.setTitle("Some errors occurred during the process!");
             infoDialog.setMessage(res);
         }
         infoDialog.create().show();
+        res = "";
+        set = "";
+        selectedSets = new ArrayList<String>();
+        error = false;
     }
 
     @Override

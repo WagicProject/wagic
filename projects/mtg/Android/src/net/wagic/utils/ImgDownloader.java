@@ -87,9 +87,9 @@ public class ImgDownloader {
                 while (e.hasMoreElements()) {
                     ZipEntry entry = e.nextElement();
                     String entryName = entry.getName();
-                    if (entryName.contains("sets/")) {
+                    if (entryName.contains("sets" + File.separator)) {
                         if (entryName.contains("_cards.dat")) {
-                            String[] names = entryName.split("/");
+                            String[] names = entryName.split(File.separator);
                             if (setName.equalsIgnoreCase(names[1])) {
                                 stream = zipFile.getInputStream(entry);
                                 byte[] buffer = new byte[1];
@@ -313,14 +313,14 @@ public class ImgDownloader {
     }
 
     public static boolean hasToken(String id) {
-        if (id.equals("456378")     || id.equals("2912")   || id.equals("1514")   || id.equals("364")    || id.equals("69")     || id.equals("369012") ||
+        if (id.equals("456378") || id.equals("2912") || id.equals("1514") || id.equals("364") || id.equals("69") || id.equals("369012") ||
                 id.equals("417759") || id.equals("386476") || id.equals("456371") || id.equals("456360") || id.equals("391958") || id.equals("466959") ||
-                id.equals("466813") || id.equals("201176") || id.equals("202483") || id.equals("3546")   || id.equals("425949") || id.equals("426027") ||
-                id.equals("425853") || id.equals("425846") || id.equals("426036") || id.equals("370387") || id.equals("29955")  || id.equals("29989")  ||
-                id.equals("19741")  || id.equals("19722")  || id.equals("19706")  || id.equals("24597")  || id.equals("24617")  || id.equals("24563")  ||
+                id.equals("466813") || id.equals("201176") || id.equals("202483") || id.equals("3546") || id.equals("425949") || id.equals("426027") ||
+                id.equals("425853") || id.equals("425846") || id.equals("426036") || id.equals("370387") || id.equals("29955") || id.equals("29989") ||
+                id.equals("19741") || id.equals("19722") || id.equals("19706") || id.equals("24597") || id.equals("24617") || id.equals("24563") ||
                 id.equals("253539") || id.equals("277995") || id.equals("265415") || id.equals("289225") || id.equals("289215") || id.equals("253529") ||
-                id.equals("253641") || id.equals("270957") || id.equals("401685") || id.equals("89116")  || id.equals("5183")   || id.equals("5177")   ||
-                id.equals("209289") || id.equals("198171") || id.equals("10419")  || id.equals("470542") || id.equals("29992"))
+                id.equals("253641") || id.equals("270957") || id.equals("401685") || id.equals("89116") || id.equals("5183") || id.equals("5177") ||
+                id.equals("209289") || id.equals("198171") || id.equals("10419") || id.equals("470542") || id.equals("29992"))
             return false;
         return true;
     }
@@ -413,7 +413,7 @@ public class ImgDownloader {
             }
         }
         System.out.println("Warning: Token " + name + " has not been found in https://deckmaster.info so i will search for it between any other set in " + imageurl + " (it can take long time)");
-        for (int i = 1; i < availableSets.length; i++) {
+        for (int i = 0; i < availableSets.length; i++) {
             String currentSet = availableSets[i].toLowerCase().split(" - ")[0];
             if (!currentSet.equalsIgnoreCase(set)) {
                 try {
@@ -461,247 +461,322 @@ public class ImgDownloader {
         Integer ThumbX = 0;
         Integer ThumbY = 0;
 
-        if (targetres.equals("HI")) {
+        if (targetres.equals("High")) {
             ImgX = 488;
             ImgY = 680;
             ThumbX = 90;
             ThumbY = 128;
-        } else if (targetres.equals("LOW")) {
+        } else if (targetres.equals("Medium")) {
             ImgX = 244;
             ImgY = 340;
+            ThumbX = 45;
+            ThumbY = 64;
+        } else if (targetres.equals("Low")) {
+            ImgX = 180;
+            ImgY = 255;
             ThumbX = 45;
             ThumbY = 64;
         }
 
         File baseFolder = new File(basePath);
         File[] listOfFiles = baseFolder.listFiles();
-        String currentSet = "";
-        for (int f = 1; f < availableSets.length; f++) {
-            if (set.equalsIgnoreCase("*.*"))
-                currentSet = availableSets[f];
-            else
-                currentSet = set;
-            Map<String, String> mappa = new HashMap<String, String>();
-            ZipFile zipFile = null;
-            InputStream stream = null;
-            java.nio.file.Path filePath = null;
-            try {
-                zipFile = new ZipFile(basePath + "/" + listOfFiles[0].getName());
-                Enumeration<? extends ZipEntry> e = zipFile.entries();
-                while (e.hasMoreElements()) {
-                    ZipEntry entry = e.nextElement();
-                    String entryName = entry.getName();
-                    if (entryName != null && entryName.contains("sets/")) {
-                        if (entryName.contains("_cards.dat")) {
-                            String[] names = entryName.split("/");
-                            if (currentSet.equalsIgnoreCase(names[1])) {
-                                stream = zipFile.getInputStream(entry);
-                                byte[] buffer = new byte[1];
-                                java.nio.file.Path outDir = Paths.get(basePath);
-                                filePath = outDir.resolve("_cards.dat");
-                                try {
-                                    FileOutputStream fos = new FileOutputStream(filePath.toFile());
-                                    BufferedOutputStream bos = new BufferedOutputStream(fos, buffer.length);
-                                    int len;
-                                    while ((len = stream.read(buffer)) != -1) {
-                                        bos.write(buffer, 0, len);
-                                    }
-                                    fos.close();
-                                    bos.close();
-                                } catch (Exception ex) {
-                                    System.out.println("Error extracting zip file" + ex);
+        Map<String, String> mappa = new HashMap<String, String>();
+        ZipFile zipFile = null;
+        InputStream stream = null;
+        java.nio.file.Path filePath = null;
+        try {
+            zipFile = new ZipFile(basePath + File.separator + listOfFiles[0].getName());
+            Enumeration<? extends ZipEntry> e = zipFile.entries();
+            while (e.hasMoreElements()) {
+                ZipEntry entry = e.nextElement();
+                String entryName = entry.getName();
+                if (entryName != null && entryName.contains("sets" + File.separator)) {
+                    if (entryName.contains("_cards.dat")) {
+                        String[] names = entryName.split(File.separator);
+                        if (set.equalsIgnoreCase(names[1])) {
+                            stream = zipFile.getInputStream(entry);
+                            byte[] buffer = new byte[1];
+                            java.nio.file.Path outDir = Paths.get(basePath);
+                            filePath = outDir.resolve("_cards.dat");
+                            try {
+                                FileOutputStream fos = new FileOutputStream(filePath.toFile());
+                                BufferedOutputStream bos = new BufferedOutputStream(fos, buffer.length);
+                                int len;
+                                while ((len = stream.read(buffer)) != -1) {
+                                    bos.write(buffer, 0, len);
                                 }
-                                if (!set.equalsIgnoreCase("*.*"))
-                                    f = availableSets.length;
-                                break;
+                                fos.close();
+                                bos.close();
+                            } catch (Exception ex) {
+                                System.out.println("Error extracting zip file" + ex);
                             }
+                            break;
                         }
                     }
+                }
+            }
+        } catch (IOException ioe) {
+            System.out.println("Error opening zip file" + ioe);
+        } finally {
+            try {
+                if (zipFile != null) {
+                    zipFile.close();
                 }
             } catch (IOException ioe) {
-                System.out.println("Error opening zip file" + ioe);
-            } finally {
-                try {
-                    if (zipFile != null) {
-                        zipFile.close();
-                    }
-                } catch (IOException ioe) {
-                    System.out.println("Error while closing zip file" + ioe);
-                }
+                System.out.println("Error while closing zip file" + ioe);
             }
+        }
 
-            String lines = readLineByLineJava8(filePath.toString());
-            File del = new File(filePath.toString());
-            del.delete();
-            int totalcards = 0;
-            String findStr = "total=";
-            int lastIndex = lines.indexOf(findStr);
-            String totals = lines.substring(lastIndex, lines.indexOf("\n", lastIndex));
-            totalcards = Integer.parseInt(totals.split("=")[1]);
-            while (lines.contains("[card]")) {
-                findStr = "[card]";
-                lastIndex = lines.indexOf(findStr);
-                String id = null;
-                String primitive = null;
-                int a = lines.indexOf("primitive=", lastIndex);
-                if (a > 0)
-                    primitive = lines.substring(a, lines.indexOf("\n", a)).replace("//", "-").split("=")[1];
-                int b = lines.indexOf("id=", lastIndex);
-                if (b > 0)
-                    id = lines.substring(b, lines.indexOf("\n", b)).replace("-", "").split("=")[1];
-                int c = lines.indexOf("[/card]", lastIndex);
-                if (c > 0)
-                    lines = lines.substring(c + 8);
-                if (primitive != null && id != null && !id.equalsIgnoreCase("null"))
-                    mappa.put(id, primitive);
-                if (id.equals("114921")) {
-                    mappa.put("11492111", "Citizen");
-                    mappa.put("11492112", "Camarid");
-                    mappa.put("11492113", "Thrull");
-                    mappa.put("11492114", "Goblin");
-                    mappa.put("11492115", "Saproling");
-                }
+        String lines = readLineByLineJava8(filePath.toString());
+        File del = new File(filePath.toString());
+        del.delete();
+        int totalcards = 0;
+        String findStr = "total=";
+        int lastIndex = lines.indexOf(findStr);
+        String totals = lines.substring(lastIndex, lines.indexOf("\n", lastIndex));
+        totalcards = Integer.parseInt(totals.split("=")[1]);
+        while (lines.contains("[card]")) {
+            findStr = "[card]";
+            lastIndex = lines.indexOf(findStr);
+            String id = null;
+            String primitive = null;
+            int a = lines.indexOf("primitive=", lastIndex);
+            if (a > 0)
+                primitive = lines.substring(a, lines.indexOf("\n", a)).replace("//", "-").split("=")[1];
+            int b = lines.indexOf("id=", lastIndex);
+            if (b > 0)
+                id = lines.substring(b, lines.indexOf("\n", b)).replace("-", "").split("=")[1];
+            int c = lines.indexOf("[/card]", lastIndex);
+            if (c > 0)
+                lines = lines.substring(c + 8);
+            if (primitive != null && id != null && !id.equalsIgnoreCase("null"))
+                mappa.put(id, primitive);
+            if (id.equals("114921")) {
+                mappa.put("11492111", "Citizen");
+                mappa.put("11492112", "Camarid");
+                mappa.put("11492113", "Thrull");
+                mappa.put("11492114", "Goblin");
+                mappa.put("11492115", "Saproling");
             }
+        }
 
-            progressBarDialog.setProgress(0);
-            progressBarDialog.setMax(totalcards);
-            progressBarDialog.setTitle("Downloading set: " + set);
+        progressBarDialog.setProgress(0);
+        progressBarDialog.setMax(totalcards);
 
-            File imgPath = new File(destinationPath + set + "/");
-            if (!imgPath.exists()) {
-                System.out.println("creating directory: " + imgPath.getName());
-                boolean result = false;
-                try {
-                    imgPath.mkdir();
-                    result = true;
-                } catch (SecurityException se) {
-                    System.err.println(imgPath + " not created");
-                    System.exit(1);
-                }
-                if (result) {
-                    System.out.println(imgPath + " created");
-                }
+        File imgPath = new File(destinationPath + set + File.separator);
+        if (!imgPath.exists()) {
+            System.out.println("creating directory: " + imgPath.getName());
+            boolean result = false;
+            try {
+                imgPath.mkdir();
+                result = true;
+            } catch (SecurityException se) {
+                System.err.println(imgPath + " not created");
+                System.exit(1);
             }
-
-            File thumbPath = new File(destinationPath + set + "/thumbnails/");
-            if (!thumbPath.exists()) {
-                System.out.println("creating directory: " + thumbPath.getName());
-                boolean result = false;
-                try {
-                    thumbPath.mkdir();
-                    result = true;
-                } catch (SecurityException se) {
-                    System.err.println(thumbPath + " not created");
-                    System.exit(1);
-                }
-                if (result) {
-                    System.out.println(thumbPath + " created");
-                }
+            if (result) {
+                System.out.println(imgPath + " created");
             }
+        }
 
-            for (int y = 0; y < mappa.size(); y++) {
-                String id = mappa.keySet().toArray()[y].toString();
-                Document doc = null;
+        File thumbPath = new File(destinationPath + set + File.separator + "thumbnails" + File.separator);
+        if (!thumbPath.exists()) {
+            System.out.println("creating directory: " + thumbPath.getName());
+            boolean result = false;
+            try {
+                thumbPath.mkdir();
+                result = true;
+            } catch (SecurityException se) {
+                System.err.println(thumbPath + " not created");
+                System.exit(1);
+            }
+            if (result) {
+                System.out.println(thumbPath + " created");
+            }
+        }
+
+        for (int y = 0; y < mappa.size(); y++) {
+            String id = mappa.keySet().toArray()[y].toString();
+            Document doc = null;
+            try {
+                doc = Jsoup.connect(baseurl + id).get();
+            } catch (Exception e) {
+                System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 2 times more...");
                 try {
                     doc = Jsoup.connect(baseurl + id).get();
-                } catch (Exception e) {
-                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 2 times more...");
+                } catch (Exception e2) {
+                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 1 time more...");
                     try {
                         doc = Jsoup.connect(baseurl + id).get();
-                    } catch (Exception e2) {
-                        System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 1 time more...");
-                        try {
-                            doc = Jsoup.connect(baseurl + id).get();
-                        } catch (Exception e3) {
-                            System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
-                            continue;
-                        }
+                    } catch (Exception e3) {
+                        System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
+                        continue;
                     }
                 }
-                if (doc == null) {
-                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
-                    continue;
-                }
-                Elements divs = doc.select("body div");
-                if (divs == null) {
-                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
-                    continue;
-                }
-                String scryset = currentSet;
-                if (scryset.equalsIgnoreCase("MRQ"))
-                    scryset = "MMQ";
-                else if (scryset.equalsIgnoreCase("AVN"))
-                    scryset = "DDH";
-                else if (scryset.equalsIgnoreCase("BVC"))
-                    scryset = "DDQ";
-                else if (scryset.equalsIgnoreCase("CFX"))
-                    scryset = "CON";
-                else if (scryset.equalsIgnoreCase("DM"))
-                    scryset = "DKM";
-                else if (scryset.equalsIgnoreCase("EVK"))
-                    scryset = "DDO";
-                else if (scryset.equalsIgnoreCase("EVT"))
-                    scryset = "DDF";
-                else if (scryset.equalsIgnoreCase("FVD"))
-                    scryset = "DRB";
-                else if (scryset.equalsIgnoreCase("FVE"))
-                    scryset = "V09";
-                else if (scryset.equalsIgnoreCase("FVL"))
-                    scryset = "V11";
-                else if (scryset.equalsIgnoreCase("FVR"))
-                    scryset = "V10";
-                else if (scryset.equalsIgnoreCase("HVM"))
-                    scryset = "DDL";
-                else if (scryset.equalsIgnoreCase("IVG"))
-                    scryset = "DDJ";
-                else if (scryset.equalsIgnoreCase("JVV"))
-                    scryset = "DDM";
-                else if (scryset.equalsIgnoreCase("KVD"))
-                    scryset = "DDG";
-                else if (scryset.equalsIgnoreCase("PDS"))
-                    scryset = "H09";
-                else if (scryset.equalsIgnoreCase("PVC"))
-                    scryset = "DDE";
-                else if (scryset.equalsIgnoreCase("RV"))
-                    scryset = "3ED";
-                else if (scryset.equalsIgnoreCase("SVT"))
-                    scryset = "DDK";
-                else if (scryset.equalsIgnoreCase("VVK"))
-                    scryset = "DDI";
-                else if (scryset.equalsIgnoreCase("ZVE"))
-                    scryset = "DDP";
+            }
+            if (doc == null) {
+                System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
+                continue;
+            }
+            Elements divs = doc.select("body div");
+            if (divs == null) {
+                System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
+                continue;
+            }
+            String scryset = set;
+            if (scryset.equalsIgnoreCase("MRQ"))
+                scryset = "MMQ";
+            else if (scryset.equalsIgnoreCase("AVN"))
+                scryset = "DDH";
+            else if (scryset.equalsIgnoreCase("BVC"))
+                scryset = "DDQ";
+            else if (scryset.equalsIgnoreCase("CFX"))
+                scryset = "CON";
+            else if (scryset.equalsIgnoreCase("DM"))
+                scryset = "DKM";
+            else if (scryset.equalsIgnoreCase("EVK"))
+                scryset = "DDO";
+            else if (scryset.equalsIgnoreCase("EVT"))
+                scryset = "DDF";
+            else if (scryset.equalsIgnoreCase("FVD"))
+                scryset = "DRB";
+            else if (scryset.equalsIgnoreCase("FVE"))
+                scryset = "V09";
+            else if (scryset.equalsIgnoreCase("FVL"))
+                scryset = "V11";
+            else if (scryset.equalsIgnoreCase("FVR"))
+                scryset = "V10";
+            else if (scryset.equalsIgnoreCase("HVM"))
+                scryset = "DDL";
+            else if (scryset.equalsIgnoreCase("IVG"))
+                scryset = "DDJ";
+            else if (scryset.equalsIgnoreCase("JVV"))
+                scryset = "DDM";
+            else if (scryset.equalsIgnoreCase("KVD"))
+                scryset = "DDG";
+            else if (scryset.equalsIgnoreCase("PDS"))
+                scryset = "H09";
+            else if (scryset.equalsIgnoreCase("PVC"))
+                scryset = "DDE";
+            else if (scryset.equalsIgnoreCase("RV"))
+                scryset = "3ED";
+            else if (scryset.equalsIgnoreCase("SVT"))
+                scryset = "DDK";
+            else if (scryset.equalsIgnoreCase("VVK"))
+                scryset = "DDI";
+            else if (scryset.equalsIgnoreCase("ZVE"))
+                scryset = "DDP";
+            try {
+                doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+            } catch (Exception e) {
+                System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
-                } catch (Exception e) {
-                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                } catch (Exception e2) {
+                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
                     try {
                         doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
-                    } catch (Exception e2) {
+                    } catch (Exception e3) {
+                        System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
+                        res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
+                        continue;
+                    }
+                }
+            }
+            String specialcardurl = getSpecialCardUrl(id);
+            if (!specialcardurl.isEmpty()) {
+                URL url = new URL(specialcardurl);
+                InputStream in;
+                try {
+                    in = new BufferedInputStream(url.openStream());
+                } catch (Exception ex) {
+                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                    try {
+                        in = new BufferedInputStream(url.openStream());
+                    } catch (Exception ex2) {
                         System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
                         try {
-                            doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
-                        } catch (Exception e3) {
+                            in = new BufferedInputStream(url.openStream());
+                        } catch (Exception ex3) {
                             System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
-                            res = mappa.get(id) + " - " + currentSet + "/" + id + ".jpg\n" + res;
-                            continue;
+                            break;
                         }
                     }
                 }
-                String specialcardurl = getSpecialCardUrl(id);
-                if (!specialcardurl.isEmpty()) {
-                    URL url = new URL(specialcardurl);
-                    InputStream in;
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                int n = 0;
+                while (-1 != (n = in.read(buf))) {
+                    out.write(buf, 0, n);
+                }
+                out.close();
+                in.close();
+                byte[] response = out.toByteArray();
+                String cardimage = imgPath + File.separator + id + ".jpg";
+                String thumbcardimage = thumbPath + File.separator + id + ".jpg";
+                if (id.equals("11492111") || id.equals("11492112") || id.equals("11492113") ||
+                        id.equals("11492114") || id.equals("11492115")) {
+                    cardimage = imgPath + File.separator + id + "t.jpg";
+                    thumbcardimage = thumbPath + File.separator + id + "t.jpg";
+                }
+                FileOutputStream fos = new FileOutputStream(cardimage);
+                fos.write(response);
+                fos.close();
+
+                Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
+                Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
+                try {
+                    FileOutputStream fout = new FileOutputStream(cardimage);
+                    resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmap, ThumbX, ThumbY, true);
+                try {
+                    FileOutputStream fout = new FileOutputStream(thumbcardimage);
+                    resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                progressBarDialog.incrementProgressBy((int) (1));
+                continue;
+            }
+            if (doc == null) {
+                System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not download it...");
+                continue;
+            }
+            Elements imgs = doc.select("body img");
+            if (imgs == null) {
+                System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not download it...");
+                continue;
+            }
+            int k;
+            for (k = 0; k < divs.size(); k++)
+                if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card name"))
+                    break;
+            if (k >= divs.size())
+                continue;
+            String cardname = divs.get(k + 1).childNode(0).attributes().get("#text").replace("\r\n", "").trim();
+
+            for (int i = 0; i < imgs.size(); i++) {
+                String title = imgs.get(i).attributes().get("title");
+                if (title.toLowerCase().contains(cardname.toLowerCase())) {
+                    String CardImage = imgs.get(i).attributes().get("src");
+                    if (CardImage.isEmpty())
+                        CardImage = imgs.get(i).attributes().get("data-src");
+                    URL url = new URL(CardImage);
+                    InputStream in = null;
                     try {
                         in = new BufferedInputStream(url.openStream());
-                    } catch (Exception ex) {
+                    } catch (IOException ex) {
                         System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
                         try {
                             in = new BufferedInputStream(url.openStream());
-                        } catch (Exception ex2) {
+                        } catch (IOException ex2) {
                             System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
                             try {
                                 in = new BufferedInputStream(url.openStream());
-                            } catch (Exception ex3) {
+                            } catch (IOException ex3) {
                                 System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
                                 break;
                             }
@@ -716,13 +791,8 @@ public class ImgDownloader {
                     out.close();
                     in.close();
                     byte[] response = out.toByteArray();
-                    String cardimage = imgPath + "/" + id + ".jpg";
-                    String thumbcardimage = thumbPath + "/" + id + ".jpg";
-                    if (id.equals("11492111") || id.equals("11492112") || id.equals("11492113") ||
-                            id.equals("11492114") || id.equals("11492115")) {
-                        cardimage = imgPath + File.separator + id + "t.jpg";
-                        thumbcardimage = thumbPath + File.separator + id + "t.jpg";
-                    }
+                    String cardimage = imgPath + File.separator + id + ".jpg";
+                    String thumbcardimage = thumbPath + File.separator + id + ".jpg";
                     FileOutputStream fos = new FileOutputStream(cardimage);
                     fos.write(response);
                     fos.close();
@@ -742,108 +812,18 @@ public class ImgDownloader {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    progressBarDialog.incrementProgressBy((int) (1));
-                    continue;
-                }
-                if (doc == null) {
-                    System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not download it...");
-                    continue;
-                }
-                Elements imgs = doc.select("body img");
-                if (imgs == null) {
-                    System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not download it...");
-                    continue;
-                }
-                int k;
-                for (k = 0; k < divs.size(); k++)
-                    if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card name"))
-                        break;
-                if (k >= divs.size())
-                    continue;
-                String cardname = divs.get(k + 1).childNode(0).attributes().get("#text").replace("\r\n", "").trim();
-
-                for (int i = 0; i < imgs.size(); i++) {
-                    String title = imgs.get(i).attributes().get("title");
-                    if (title.toLowerCase().contains(cardname.toLowerCase())) {
-                        String CardImage = imgs.get(i).attributes().get("src");
-                        if (CardImage.isEmpty())
-                            CardImage = imgs.get(i).attributes().get("data-src");
-                        URL url = new URL(CardImage);
-                        InputStream in = null;
-                        try {
-                            in = new BufferedInputStream(url.openStream());
-                        } catch (IOException ex) {
-                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
-                            try {
-                                in = new BufferedInputStream(url.openStream());
-                            } catch (IOException ex2) {
-                                System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
-                                try {
-                                    in = new BufferedInputStream(url.openStream());
-                                } catch (IOException ex3) {
-                                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
-                                    break;
-                                }
-                            }
-                        }
-                        ByteArrayOutputStream out = new ByteArrayOutputStream();
-                        byte[] buf = new byte[1024];
-                        int n = 0;
-                        while (-1 != (n = in.read(buf))) {
-                            out.write(buf, 0, n);
-                        }
-                        out.close();
-                        in.close();
-                        byte[] response = out.toByteArray();
-                        String cardimage = imgPath + "/" + id + ".jpg";
-                        String thumbcardimage = thumbPath + "/" + id + ".jpg";
-                        FileOutputStream fos = new FileOutputStream(cardimage);
-                        fos.write(response);
-                        fos.close();
-
-                        Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
-                        Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
-                        try {
-                            FileOutputStream fout = new FileOutputStream(cardimage);
-                            resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmap, ThumbX, ThumbY, true);
-                        try {
-                            FileOutputStream fout = new FileOutputStream(thumbcardimage);
-                            resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        String text = "";
-                        for (k = 0; k < divs.size(); k++)
-                            if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card text"))
-                                break;
-                        if (k < divs.size()) {
-                            Element tex = divs.get(k + 1);
-                            for (int z = 0; z < divs.get(k + 1).childNodes().size(); z++) {
-                                for (int u = 0; u < divs.get(k + 1).childNode(z).childNodes().size(); u++) {
-                                    if (divs.get(k + 1).childNode(z).childNode(u).childNodes().size() > 1) {
-                                        for (int w = 0; w < divs.get(k + 1).childNode(z).childNode(u).childNodes().size(); w++) {
-                                            if (divs.get(k + 1).childNode(z).childNode(u).childNode(w).hasAttr("alt")) {
-                                                String newtext = divs.get(k + 1).childNode(z).childNode(u).childNode(w).attributes().get("alt").trim();
-                                                newtext = newtext.replace("Green", "{G}");
-                                                newtext = newtext.replace("White", "{W}");
-                                                newtext = newtext.replace("Black", "{B}");
-                                                newtext = newtext.replace("Blue", "{U}");
-                                                newtext = newtext.replace("Red", "{R}");
-                                                newtext = newtext.replace("Tap", "{T}");
-                                                text = text + newtext;
-                                            } else
-                                                text = text + " " + divs.get(k + 1).childNode(z).childNode(u).childNode(w).toString().replace("\r\n", "").trim() + " ";
-                                            text = text.replace("} .", "}.");
-                                            text = text.replace("} :", "}:");
-                                            text = text.replace("} ,", "},");
-                                        }
-                                    } else {
-                                        if (divs.get(k + 1).childNode(z).childNode(u).hasAttr("alt")) {
-                                            String newtext = divs.get(k + 1).childNode(z).childNode(u).attributes().get("alt").trim();
+                    String text = "";
+                    for (k = 0; k < divs.size(); k++)
+                        if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card text"))
+                            break;
+                    if (k < divs.size()) {
+                        Element tex = divs.get(k + 1);
+                        for (int z = 0; z < divs.get(k + 1).childNodes().size(); z++) {
+                            for (int u = 0; u < divs.get(k + 1).childNode(z).childNodes().size(); u++) {
+                                if (divs.get(k + 1).childNode(z).childNode(u).childNodes().size() > 1) {
+                                    for (int w = 0; w < divs.get(k + 1).childNode(z).childNode(u).childNodes().size(); w++) {
+                                        if (divs.get(k + 1).childNode(z).childNode(u).childNode(w).hasAttr("alt")) {
+                                            String newtext = divs.get(k + 1).childNode(z).childNode(u).childNode(w).attributes().get("alt").trim();
                                             newtext = newtext.replace("Green", "{G}");
                                             newtext = newtext.replace("White", "{W}");
                                             newtext = newtext.replace("Black", "{B}");
@@ -852,37 +832,70 @@ public class ImgDownloader {
                                             newtext = newtext.replace("Tap", "{T}");
                                             text = text + newtext;
                                         } else
-                                            text = text + " " + divs.get(k + 1).childNode(z).childNode(u).toString().replace("\r\n", "").trim() + " ";
+                                            text = text + " " + divs.get(k + 1).childNode(z).childNode(u).childNode(w).toString().replace("\r\n", "").trim() + " ";
                                         text = text.replace("} .", "}.");
                                         text = text.replace("} :", "}:");
                                         text = text.replace("} ,", "},");
                                     }
-                                    if (z > 0 && z < divs.get(k + 1).childNodes().size() - 1)
-                                        text = text + " -- ";
-                                    text = text.replace("<i>", "");
-                                    text = text.replace("</i>", "");
-                                    text = text.replace("<b>", "");
-                                    text = text.replace("</b>", "");
-                                    text = text.replace(" -- (", " (");
-                                    text = text.replace("  ", " ");
+                                } else {
+                                    if (divs.get(k + 1).childNode(z).childNode(u).hasAttr("alt")) {
+                                        String newtext = divs.get(k + 1).childNode(z).childNode(u).attributes().get("alt").trim();
+                                        newtext = newtext.replace("Green", "{G}");
+                                        newtext = newtext.replace("White", "{W}");
+                                        newtext = newtext.replace("Black", "{B}");
+                                        newtext = newtext.replace("Blue", "{U}");
+                                        newtext = newtext.replace("Red", "{R}");
+                                        newtext = newtext.replace("Tap", "{T}");
+                                        text = text + newtext;
+                                    } else
+                                        text = text + " " + divs.get(k + 1).childNode(z).childNode(u).toString().replace("\r\n", "").trim() + " ";
+                                    text = text.replace("} .", "}.");
+                                    text = text.replace("} :", "}:");
+                                    text = text.replace("} ,", "},");
                                 }
+                                if (z > 0 && z < divs.get(k + 1).childNodes().size() - 1)
+                                    text = text + " -- ";
+                                text = text.replace("<i>", "");
+                                text = text.replace("</i>", "");
+                                text = text.replace("<b>", "");
+                                text = text.replace("</b>", "");
+                                text = text.replace(" -- (", " (");
+                                text = text.replace("  ", " ");
                             }
                         }
-                        if (hasToken(id) && ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) || (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token")))) {
-                            boolean tokenfound = false;
-                            String arrays[] = text.trim().split(" ");
-                            String nametoken = "";
-                            String nametocheck = "";
-                            String tokenstats = "";
-                            for (int l = 1; l < arrays.length - 1; l++) {
-                                if (arrays[l].equalsIgnoreCase("creature") && arrays[l + 1].toLowerCase().contains("token")) {
-                                    nametoken = arrays[l - 1];
-                                    if (l - 3 > 0)
-                                        tokenstats = arrays[l - 3];
-                                    if (!tokenstats.contains("/")) {
-                                        if (l - 4 > 0)
-                                            tokenstats = arrays[l - 4];
-                                    }
+                    }
+                    if (hasToken(id) && ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) || (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token")))) {
+                        boolean tokenfound = false;
+                        String arrays[] = text.trim().split(" ");
+                        String nametoken = "";
+                        String nametocheck = "";
+                        String tokenstats = "";
+                        for (int l = 1; l < arrays.length - 1; l++) {
+                            if (arrays[l].equalsIgnoreCase("creature") && arrays[l + 1].toLowerCase().contains("token")) {
+                                nametoken = arrays[l - 1];
+                                if (l - 3 > 0)
+                                    tokenstats = arrays[l - 3];
+                                if (!tokenstats.contains("/")) {
+                                    if (l - 4 > 0)
+                                        tokenstats = arrays[l - 4];
+                                }
+                                if (!tokenstats.contains("/")) {
+                                    if (l - 5 > 0)
+                                        tokenstats = arrays[l - 5];
+                                }
+                                if (!tokenstats.contains("/")) {
+                                    if (l - 6 > 0)
+                                        tokenstats = arrays[l - 6];
+                                }
+                                if (!tokenstats.contains("/")) {
+                                    if (l - 7 > 0)
+                                        tokenstats = arrays[l - 7];
+                                }
+                                if (nametoken.equalsIgnoreCase("artifact")) {
+                                    if (l - 2 > 0)
+                                        nametoken = arrays[l - 2];
+                                    if (l - 4 > 0)
+                                        tokenstats = arrays[l - 4];
                                     if (!tokenstats.contains("/")) {
                                         if (l - 5 > 0)
                                             tokenstats = arrays[l - 5];
@@ -895,190 +908,173 @@ public class ImgDownloader {
                                         if (l - 7 > 0)
                                             tokenstats = arrays[l - 7];
                                     }
-                                    if (nametoken.equalsIgnoreCase("artifact")) {
-                                        if (l - 2 > 0)
-                                            nametoken = arrays[l - 2];
-                                        if (l - 4 > 0)
-                                            tokenstats = arrays[l - 4];
-                                        if (!tokenstats.contains("/")) {
-                                            if (l - 5 > 0)
-                                                tokenstats = arrays[l - 5];
-                                        }
-                                        if (!tokenstats.contains("/")) {
-                                            if (l - 6 > 0)
-                                                tokenstats = arrays[l - 6];
-                                        }
-                                        if (!tokenstats.contains("/")) {
-                                            if (l - 7 > 0)
-                                                tokenstats = arrays[l - 7];
-                                        }
-                                        if (!tokenstats.contains("/")) {
-                                            if (l - 8 > 0)
-                                                tokenstats = arrays[l - 8];
-                                        }
+                                    if (!tokenstats.contains("/")) {
+                                        if (l - 8 > 0)
+                                            tokenstats = arrays[l - 8];
                                     }
-                                    if (!tokenstats.contains("/"))
-                                        tokenstats = "";
-                                    break;
-                                } else if (arrays[l].equalsIgnoreCase("put") && arrays[l + 3].toLowerCase().contains("token")) {
-                                    nametoken = arrays[l + 2];
-                                    for (int j = 1; j < arrays.length - 1; j++) {
-                                        if (arrays[j].contains("/"))
-                                            tokenstats = arrays[j];
-                                    }
-                                    break;
                                 }
+                                if (!tokenstats.contains("/"))
+                                    tokenstats = "";
+                                break;
+                            } else if (arrays[l].equalsIgnoreCase("put") && arrays[l + 3].toLowerCase().contains("token")) {
+                                nametoken = arrays[l + 2];
+                                for (int j = 1; j < arrays.length - 1; j++) {
+                                    if (arrays[j].contains("/"))
+                                        tokenstats = arrays[j];
+                                }
+                                break;
                             }
-                            String specialtokenurl = getSpecialTokenUrl(id + "t");
-                            Elements imgstoken;
-                            if (!specialtokenurl.isEmpty()) {
-                                try {
-                                    doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
-                                } catch (Exception ex) {
-                                    System.err.println("Error: Problem occurring while searching for token: " + nametoken + "-" + id + "t, i will not download it...");
-                                    break;
-                                }
-                                if (doc == null)
-                                    break;
-                                imgstoken = doc.select("body img");
-                                if (imgstoken == null)
-                                    break;
-                                tokenfound = true;
+                        }
+                        String specialtokenurl = getSpecialTokenUrl(id + "t");
+                        Elements imgstoken;
+                        if (!specialtokenurl.isEmpty()) {
+                            try {
+                                doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                            } catch (Exception ex) {
+                                System.err.println("Error: Problem occurring while searching for token: " + nametoken + "-" + id + "t, i will not download it...");
+                                break;
+                            }
+                            if (doc == null)
+                                break;
+                            imgstoken = doc.select("body img");
+                            if (imgstoken == null)
+                                break;
+                            tokenfound = true;
+                        } else {
+                            if (nametoken.isEmpty() || tokenstats.isEmpty()) {
+                                tokenfound = false;
+                                if (nametoken.isEmpty())
+                                    nametoken = "Unknown";
+                                nametocheck = mappa.get(id);
+                                doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             } else {
-                                if (nametoken.isEmpty() || tokenstats.isEmpty()) {
+                                try {
+                                    doc = findTokenPage(imageurl, nametoken, scryset, availableSets, tokenstats);
+                                    tokenfound = true;
+                                    nametocheck = nametoken;
+                                } catch (Exception e) {
                                     tokenfound = false;
-                                    if (nametoken.isEmpty())
-                                        nametoken = "Unknown";
                                     nametocheck = mappa.get(id);
                                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
-                                } else {
-                                    try {
-                                        doc = findTokenPage(imageurl, nametoken, scryset, availableSets, tokenstats);
-                                        tokenfound = true;
-                                        nametocheck = nametoken;
-                                    } catch (Exception e) {
-                                        tokenfound = false;
-                                        nametocheck = mappa.get(id);
-                                        doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
-                                    }
                                 }
-                                if (doc == null)
-                                    break;
-                                imgstoken = doc.select("body img");
-                                if (imgstoken == null)
-                                    break;
                             }
-                            for (int p = 0; p < imgstoken.size(); p++) {
-                                String titletoken = imgstoken.get(p).attributes().get("alt");
-                                if (titletoken.isEmpty())
-                                    titletoken = imgstoken.get(p).attributes().get("title");
-                                if (titletoken.toLowerCase().contains(nametocheck.toLowerCase())) {
-                                    String CardImageToken = imgstoken.get(p).attributes().get("src");
-                                    if (CardImageToken.isEmpty())
-                                        CardImageToken = imgstoken.get(p).attributes().get("data-src");
-                                    URL urltoken = new URL(CardImageToken);
-                                    if (!specialtokenurl.isEmpty())
-                                        urltoken = new URL(specialtokenurl);
-                                    HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
-                                    if (httpcontoken == null) {
-                                        System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will not download it...");
-                                        break;
-                                    }
-                                    httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
-                                    InputStream intoken = null;
+                            if (doc == null)
+                                break;
+                            imgstoken = doc.select("body img");
+                            if (imgstoken == null)
+                                break;
+                        }
+                        for (int p = 0; p < imgstoken.size(); p++) {
+                            String titletoken = imgstoken.get(p).attributes().get("alt");
+                            if (titletoken.isEmpty())
+                                titletoken = imgstoken.get(p).attributes().get("title");
+                            if (titletoken.toLowerCase().contains(nametocheck.toLowerCase())) {
+                                String CardImageToken = imgstoken.get(p).attributes().get("src");
+                                if (CardImageToken.isEmpty())
+                                    CardImageToken = imgstoken.get(p).attributes().get("data-src");
+                                URL urltoken = new URL(CardImageToken);
+                                if (!specialtokenurl.isEmpty())
+                                    urltoken = new URL(specialtokenurl);
+                                HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
+                                if (httpcontoken == null) {
+                                    System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will not download it...");
+                                    break;
+                                }
+                                httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
+                                InputStream intoken = null;
+                                try {
+                                    intoken = new BufferedInputStream(httpcontoken.getInputStream());
+                                } catch (IOException ex) {
+                                    System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 2 times more...");
                                     try {
                                         intoken = new BufferedInputStream(httpcontoken.getInputStream());
-                                    } catch (IOException ex) {
-                                        System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 2 times more...");
+                                    } catch (IOException ex2) {
+                                        System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 1 time more...");
                                         try {
                                             intoken = new BufferedInputStream(httpcontoken.getInputStream());
-                                        } catch (IOException ex2) {
-                                            System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 1 time more...");
-                                            try {
-                                                intoken = new BufferedInputStream(httpcontoken.getInputStream());
-                                            } catch (IOException ex3) {
-                                                System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will not retry anymore...");
-                                                break;
-                                            }
+                                        } catch (IOException ex3) {
+                                            System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will not retry anymore...");
+                                            break;
                                         }
                                     }
-                                    ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
-                                    byte[] buftoken = new byte[1024];
-                                    int ntoken = 0;
-                                    while (-1 != (ntoken = intoken.read(buftoken))) {
-                                        outtoken.write(buftoken, 0, ntoken);
-                                    }
-                                    outtoken.close();
-                                    intoken.close();
-                                    byte[] responsetoken = outtoken.toByteArray();
-                                    String tokenimage = imgPath + File.separator + id + "t.jpg";
-                                    String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
-                                    if (!tokenfound && !id.equals("464007t")) {
-                                        System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t) i will use the same image of its source card");
-                                    }
-                                    FileOutputStream fos2 = new FileOutputStream(tokenimage);
-                                    fos2.write(responsetoken);
-                                    fos2.close();
-
-                                    Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
-                                    Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
-                                    try {
-                                        FileOutputStream fout = new FileOutputStream(tokenimage);
-                                        resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapToken, ThumbX, ThumbY, true);
-                                    try {
-                                        FileOutputStream fout = new FileOutputStream(tokenthumbimage);
-                                        resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    break;
                                 }
+                                ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
+                                byte[] buftoken = new byte[1024];
+                                int ntoken = 0;
+                                while (-1 != (ntoken = intoken.read(buftoken))) {
+                                    outtoken.write(buftoken, 0, ntoken);
+                                }
+                                outtoken.close();
+                                intoken.close();
+                                byte[] responsetoken = outtoken.toByteArray();
+                                String tokenimage = imgPath + File.separator + id + "t.jpg";
+                                String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
+                                if (!tokenfound && !id.equals("464007t")) {
+                                    System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t) i will use the same image of its source card");
+                                }
+                                FileOutputStream fos2 = new FileOutputStream(tokenimage);
+                                fos2.write(responsetoken);
+                                fos2.close();
+
+                                Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
+                                Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
+                                try {
+                                    FileOutputStream fout = new FileOutputStream(tokenimage);
+                                    resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapToken, ThumbX, ThumbY, true);
+                                try {
+                                    FileOutputStream fout = new FileOutputStream(tokenthumbimage);
+                                    resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                break;
                             }
                         }
-                        progressBarDialog.incrementProgressBy((int) (1));
-                        break;
                     }
+                    progressBarDialog.incrementProgressBy((int) (1));
+                    break;
                 }
-            }
-            try {
-                try {
-                    File oldzip = new File(destinationPath + "/" + set + "/" + set + ".zip");
-                    oldzip.delete();
-                } catch (Exception e) {
-                }
-                ZipParameters zipParameters = new ZipParameters();
-                zipParameters.setCompressionMethod(CompressionMethod.STORE);
-                File folder = new File(destinationPath + set + "/");
-                File[] listOfFile = folder.listFiles();
-                net.lingala.zip4j.ZipFile zipped = new net.lingala.zip4j.ZipFile(destinationPath + "/" + set + "/" + set + ".zip");
-                for (int i = 0; i < listOfFile.length; i++) {
-                    if (listOfFile[i].isDirectory()) {
-                        zipped.addFolder(listOfFile[i], zipParameters);
-                    } else {
-                        zipped.addFile(listOfFile[i], zipParameters);
-                    }
-                }
-                File destFolder = new File(destinationPath + set + "/");
-                listOfFiles = destFolder.listFiles();
-                for (int u = 0; u < listOfFiles.length; u++) {
-                    if (!listOfFiles[u].getName().contains(".zip")) {
-                        if (listOfFiles[u].isDirectory()) {
-                            File[] listOfSubFiles = listOfFiles[u].listFiles();
-                            for (int j = 0; j < listOfSubFiles.length; j++)
-                                listOfSubFiles[j].delete();
-                        }
-                        listOfFiles[u].delete();
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
+        try {
+            try {
+                File oldzip = new File(destinationPath + File.separator + set + File.separator + set + ".zip");
+                oldzip.delete();
+            } catch (Exception e) {
+            }
+            ZipParameters zipParameters = new ZipParameters();
+            zipParameters.setCompressionMethod(CompressionMethod.STORE);
+            File folder = new File(destinationPath + set + File.separator);
+            File[] listOfFile = folder.listFiles();
+            net.lingala.zip4j.ZipFile zipped = new net.lingala.zip4j.ZipFile(destinationPath + File.separator + set + File.separator + set + ".zip");
+            for (int i = 0; i < listOfFile.length; i++) {
+                if (listOfFile[i].isDirectory()) {
+                    zipped.addFolder(listOfFile[i], zipParameters);
+                } else {
+                    zipped.addFile(listOfFile[i], zipParameters);
+                }
+            }
+            File destFolder = new File(destinationPath + set + File.separator);
+            listOfFiles = destFolder.listFiles();
+            for (int u = 0; u < listOfFiles.length; u++) {
+                if (!listOfFiles[u].getName().contains(".zip")) {
+                    if (listOfFiles[u].isDirectory()) {
+                        File[] listOfSubFiles = listOfFiles[u].listFiles();
+                        for (int j = 0; j < listOfSubFiles.length; j++)
+                            listOfSubFiles[j].delete();
+                    }
+                    listOfFiles[u].delete();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return res;
     }
 }
