@@ -187,7 +187,7 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/5/b/5b9f471a-1822-4981-95a9-8923d83ddcbf.jpg?1562702075";
         else if(id.equals("11492114"))
             cardurl = "https://deckmaster.info/images/cards/DDN/386322-hr.jpg";
-        else if(id.equals("11492115"))
+        else if(id.equals("11492115") || id.equals("209162"))
             cardurl = "https://deckmaster.info/images/cards/DDE/209162-hr.jpg";
         else if(id.equals("7448911"))
             cardurl = "https://img.scryfall.com/cards/large/front/c/a/ca03131a-9bd4-4fba-b95c-90f1831e86e7.jpg?1562879774";
@@ -319,6 +319,40 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/DKM/-3176-hr.jpg";
         else if(id.equals("687754"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3184-hr.jpg";
+        else if(id.equals("7897511"))
+            cardurl = "https://img.scryfall.com/cards/large/front/a/4/a4f4aa3b-c64a-4430-b1a2-a7fca87d0a22.jpg?1562763433";
+        else if(id.equals("7868811"))
+            cardurl = "https://img.scryfall.com/cards/large/front/b/3/b3523b8e-065f-427c-8d5b-eb731ca91ede.jpg?1562763691";
+        else if(id.equals("7868711"))
+            cardurl = "https://img.scryfall.com/cards/large/front/5/8/58164521-aeec-43fc-9db9-d595432dea6f.jpg?1564694999";
+        else if(id.equals("7868611"))
+            cardurl = "https://img.scryfall.com/cards/large/front/3/3/33a8e5b9-6bfb-4ff2-a16d-3168a5412807.jpg?1562758927";
+        else if(id.equals("7869111"))
+            cardurl = "https://img.scryfall.com/cards/large/front/9/d/9de1eebf-5725-438c-bcf0-f3a4d8a89fb0.jpg?1562762993";
+        else if(id.equals("7860011"))
+            cardurl = "https://img.scryfall.com/cards/large/front/8/6/864ad989-19a6-4930-8efc-bbc077a18c32.jpg?1562762069";
+        else if(id.equals("7867911"))
+            cardurl = "https://img.scryfall.com/cards/large/front/c/8/c8265c39-d287-4c5a-baba-f2f09dd80a1c.jpg?1562764226";
+        else if(id.equals("7867811"))
+            cardurl = "https://img.scryfall.com/cards/large/front/a/0/a00a7180-49bd-4ead-852a-67b6b5e4b933.jpg?1564694995";
+        else if(id.equals("7869511"))
+            cardurl = "https://img.scryfall.com/cards/large/front/f/2/f2ddf1a3-e6fa-4dd0-b80d-1a585b51b934.jpg?1562765664";
+        else if(id.equals("7869411"))
+            cardurl = "https://img.scryfall.com/cards/large/front/6/e/6ee6cd34-c117-4d7e-97d1-8f8464bfaac8.jpg?1562761096";
+        else if(id.equals("207998"))
+            cardurl = "https://deckmaster.info/images/cards/DDE/207998-hr.jpg";
+        else if (id.equals("19784555"))
+            cardurl = "https://cdn.shopify.com/s/files/1/0790/8591/products/Grnelementalfinal_800x800.jpg?v=1476398274";
+        else if (id.equals("19784612"))
+            cardurl = "https://deckmaster.info/images/cards/RTR/-60-hr.jpg";
+        else if (id.equals("19784613"))
+            cardurl = "https://deckmaster.info/images/cards/RTR/-62-hr.jpg";
+        else if (id.equals("19784611"))
+            cardurl = "https://deckmaster.info/images/cards/RTR/-55-hr.jpg";
+        else if (id.equals("4977511"))
+            cardurl = "https://www.mtg.onl/static/acc7da698156ddfb2270f09ac7ae6f81/4d406/PROXY_Elemental_U_2_2.jpg";
+        else if (id.equals("4977512"))
+            cardurl = "https://deckmaster.info/images/cards/DST/-2818-hr.jpg";
 
 
         return cardurl;
@@ -819,11 +853,11 @@ public class ImgDownloader {
                 try{
                     in = new BufferedInputStream(httpcon.getInputStream());
                 } catch (Exception ex) {
-                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
                     try {
                         in = new BufferedInputStream(url.openStream());
                     } catch (Exception ex2) {
-                        System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
                         try {
                             in = new BufferedInputStream(url.openStream());
                         } catch (Exception ex3) {
@@ -873,11 +907,11 @@ public class ImgDownloader {
             try {
                 doc = Jsoup.connect(baseurl + id).get();
             } catch (Exception e) {
-                System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 2 times more...");
+                System.out.println("Warning: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 2 times more...");
                 try {
                     doc = Jsoup.connect(baseurl + id).get();
                 } catch (Exception e2) {
-                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 1 time more...");
+                    System.out.println("Warning: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 1 time more...");
                     try {
                         doc = Jsoup.connect(baseurl + id).get();
                     } catch (Exception e3) {
@@ -906,7 +940,25 @@ public class ImgDownloader {
             }
             String cardname = divs.get(k + 1).childNode(0).attributes().get("#text").replace("\r\n", "").trim();
 
-            if(targetres.equals("High")) {
+            if(scryset.equals("S00")){
+                String deckutrl = "https://deckmaster.info/card.php?multiverseid=";
+                try{
+                    doc = Jsoup.connect(deckutrl + id).get();
+                } catch(Exception e) {
+                    System.out.println("Warning: Problem reading card (" + mappa.get(id) + ") infos from: " + deckutrl  + id + ", i will retry 2 times more...");
+                    try{
+                        doc = Jsoup.connect(deckutrl + id).get();
+                    } catch(Exception e2) {
+                        System.out.println("Warning: Problem reading card (" + mappa.get(id) + ") infos from: " + deckutrl  + id + ", i will retry 1 time more...");
+                        try{
+                            doc = Jsoup.connect(deckutrl + id).get();
+                        } catch(Exception e3) {
+                            System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + deckutrl  + id + ", i will not retry anymore...");
+                            continue;
+                        }
+                    }
+                }
+            } else if(targetres.equals("High")) {
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -933,7 +985,7 @@ public class ImgDownloader {
                         }
                     }
                 } catch (Exception e) {
-                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
                     try {
                         doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                         Elements outlinks = doc.select("body a");
@@ -960,7 +1012,7 @@ public class ImgDownloader {
                             }
                         }
                     } catch (Exception e2) {
-                        System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
                         try {
                             doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             Elements outlinks = doc.select("body a");
@@ -996,11 +1048,11 @@ public class ImgDownloader {
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
-                    System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
                     try {
                         doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     } catch (Exception e2) {
-                        System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
                         try {
                             doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                         } catch (Exception e3) {
@@ -1024,23 +1076,31 @@ public class ImgDownloader {
             }
 
             for (int i = 0; i < imgs.size(); i++) {
-                String title = imgs.get(i).attributes().get("title");
+                String title = imgs.get(i).attributes().get("alt");
+                if(title.isEmpty())
+                    title = imgs.get(i).attributes().get("title");
                 if (title.toLowerCase().contains(cardname.toLowerCase())) {
                     String CardImage = imgs.get(i).attributes().get("src");
                     if (CardImage.isEmpty())
                         CardImage = imgs.get(i).attributes().get("data-src");
                     URL url = new URL(CardImage);
+                    HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
+                    if(httpcon == null) {
+                        System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + ", i will not download it...");
+                        break;
+                    }
+                    httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
                     InputStream in = null;
                     try {
-                        in = new BufferedInputStream(url.openStream());
+                        in = new BufferedInputStream(httpcon.getInputStream());
                     } catch (IOException ex) {
-                        System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
                         try {
-                            in = new BufferedInputStream(url.openStream());
+                            in = new BufferedInputStream(httpcon.getInputStream());
                         } catch (IOException ex2) {
-                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                            System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
                             try {
-                                in = new BufferedInputStream(url.openStream());
+                                in = new BufferedInputStream(httpcon.getInputStream());
                             } catch (IOException ex3) {
                                 System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
                                 break;
@@ -1250,11 +1310,11 @@ public class ImgDownloader {
                                 try {
                                     intoken = new BufferedInputStream(httpcontoken.getInputStream());
                                 } catch (IOException ex) {
-                                    System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 2 times more...");
+                                    System.out.println("Warning: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 2 times more...");
                                     try {
                                         intoken = new BufferedInputStream(httpcontoken.getInputStream());
                                     } catch (IOException ex2) {
-                                        System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 1 time more...");
+                                        System.out.println("Warning: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 1 time more...");
                                         try {
                                             intoken = new BufferedInputStream(httpcontoken.getInputStream());
                                         } catch (IOException ex3) {
