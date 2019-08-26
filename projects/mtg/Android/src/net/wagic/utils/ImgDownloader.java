@@ -940,7 +940,7 @@ public class ImgDownloader {
             }
             String cardname = divs.get(k + 1).childNode(0).attributes().get("#text").replace("\r\n", "").trim();
 
-            if(scryset.equals("S00")){
+            if(scryset.equals("S00") || scryset.equals("UST")){
                 String deckutrl = "https://deckmaster.info/card.php?multiverseid=";
                 try{
                     doc = Jsoup.connect(deckutrl + id).get();
