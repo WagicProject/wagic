@@ -476,7 +476,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
         cardDownloader.create().show();
     }
 
-    String targetRes = "";
+    String targetRes = "High";
 
     private void chooseResolution() {
         AlertDialog.Builder resChooser = new AlertDialog.Builder(this);
@@ -492,10 +492,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         resChooser.setPositiveButton("Download Selected", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                if (!targetRes.isEmpty())
-                    downloadCardImagesStart();
-                else
-                    chooseResolution();
+                downloadCardImagesStart();
             }
         });
 
@@ -504,10 +501,11 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
     boolean error = false;
     String res = "";
-    boolean dowloadInProgress = false;
+    public volatile boolean downloadInProgress = false;
     ProgressDialog cardDownloader;
 
     private void downloadCardImagesStart() {
+        final SDLActivity parent = this;
         final Handler mHandler = new Handler();
         cardDownloader = new ProgressDialog(this);
         cardDownloader.setTitle("Downloading now set: " + set);
@@ -520,7 +518,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         new Thread(new Runnable() {
             public void run() {
-                dowloadInProgress = true;
+                downloadInProgress = true;
                 if (selectedSets != null) {
                     for (int i = 0; i < selectedSets.size(); i++) {
                         try {
@@ -530,7 +528,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                                     cardDownloader.setTitle("Downloading set: " + set);
                                 }
                             });
-                            String details = ImgDownloader.DownloadCardImages(set, availableSets, targetRes, getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader);
+                            String details = ImgDownloader.DownloadCardImages(set, availableSets, targetRes, getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader, parent);
                             if (!details.isEmpty()) {
                                 if (!res.isEmpty())
                                     res = res + "\nSET " + set + ":\n" + details;
@@ -544,8 +542,10 @@ public class SDLActivity extends Activity implements OnKeyListener {
                     }
                     mHandler.post(new Runnable() {
                         public void run() {
-                            downloadSelectedSetsCompleted(error, res);
-                            dowloadInProgress = false;
+                            if (downloadInProgress) {
+                                downloadSelectedSetsCompleted(error, res);
+                                downloadInProgress = false;
+                            }
                             cardDownloader.dismiss();
                         }
                     });
@@ -564,7 +564,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                 mHandler.post(new Runnable() {
                     public void run() {
                         downloadCardInterruped(set, cardDownloader.getProgress(), cardDownloader.getMax());
-                        dowloadInProgress = false;
+                        downloadInProgress = false;
                         cardDownloader.dismiss();
                     }
                 });
@@ -585,6 +585,15 @@ public class SDLActivity extends Activity implements OnKeyListener {
             }
         });
 
+        res = "";
+        set = "";
+        targetRes = "High";
+        selectedSets = new ArrayList<String>();
+        for (int i = 0; i < checkedSet.length; i++) {
+            checkedSet[i] = false;
+        }
+        error = false;
+
         infoDialog.create().show();
     }
 
@@ -598,12 +607,17 @@ public class SDLActivity extends Activity implements OnKeyListener {
             infoDialog.setTitle("Some errors occurred during the process!");
             infoDialog.setMessage(res);
         }
-        infoDialog.create().show();
+
         res = "";
         set = "";
-        targetRes = "";
+        targetRes = "High";
         selectedSets = new ArrayList<String>();
+        for (int i = 0; i < checkedSet.length; i++) {
+            checkedSet[i] = false;
+        }
         error = false;
+
+        infoDialog.create().show();
     }
 
     @Override
@@ -632,7 +646,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                 if (loadResInProgress) {
                     progressBarDialogRes.show();
                     progressBarDialogRes.show();
-                } else if (dowloadInProgress) {
+                } else if (downloadInProgress) {
                     cardDownloader.show();
                     cardDownloader.show();
                 } else
