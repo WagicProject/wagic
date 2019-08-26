@@ -460,20 +460,46 @@ public class SDLActivity extends Activity implements OnKeyListener {
                 for (int i = 0; i < availableSets.length; i++) {
                     selectedSets.add(availableSets[i].split(" - ")[0]);
                 }
-                downloadCardImagesStart();
+                chooseResolution();
             }
         });
 
         cardDownloader.setPositiveButton("Download Selected", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (selectedSets.size() > 0)
-                    downloadCardImagesStart();
+                    chooseResolution();
                 else
                     downloadCardImages();
             }
         });
 
         cardDownloader.create().show();
+    }
+
+    String targetRes = "";
+
+    private void chooseResolution() {
+        AlertDialog.Builder resChooser = new AlertDialog.Builder(this);
+
+        resChooser.setTitle("Which resolution would you like to use?");
+        final String[] availableRes = new String[]{"High - (672x936)", "Medium - (488x680)", "Low - (244x340)", "Tiny - (280x255)"};
+
+        resChooser.setSingleChoiceItems(availableRes, 0, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                targetRes = availableRes[item].split(" - ")[0];
+            }
+        });
+
+        resChooser.setPositiveButton("Download Selected", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (!targetRes.isEmpty())
+                    downloadCardImagesStart();
+                else
+                    chooseResolution();
+            }
+        });
+
+        resChooser.create().show();
     }
 
     boolean error = false;
@@ -504,7 +530,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                                     cardDownloader.setTitle("Downloading set: " + set);
                                 }
                             });
-                            String details = ImgDownloader.DownloadCardImages(set, availableSets, "High", getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader);
+                            String details = ImgDownloader.DownloadCardImages(set, availableSets, targetRes, getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader);
                             if (!details.isEmpty()) {
                                 if (!res.isEmpty())
                                     res = res + "\nSET " + set + ":\n" + details;
@@ -575,6 +601,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
         infoDialog.create().show();
         res = "";
         set = "";
+        targetRes = "";
         selectedSets = new ArrayList<String>();
         error = false;
     }
