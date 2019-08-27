@@ -475,8 +475,10 @@ public class SDLActivity extends Activity implements OnKeyListener {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedSets.size() > 0)
+                if (selectedSets.size() > 0){
                     chooseResolution();
+					dialog.dismiss();
+				}
             }
         });
     }
@@ -495,7 +497,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
             }
         });
 
-        resChooser.setPositiveButton("Download Selected", new DialogInterface.OnClickListener() {
+        resChooser.setPositiveButton("Start Download", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 downloadCardImagesStart();
             }
