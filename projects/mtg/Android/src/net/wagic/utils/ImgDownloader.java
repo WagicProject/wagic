@@ -22,6 +22,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.HashMap;
 import java.util.stream.Stream;
@@ -143,6 +144,72 @@ public class ImgDownloader {
         return name + " (" + totalcards + " cards)";
     }
 
+    final static int[] tokenids = new int[]{1, 2, 3, 6, 10, 14, 15, 16, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43, 46, 47, 48, 49, 50, 51, 52, 54, 55, 56, 57, 58,
+            59, 60, 61, 62, 63, 64, 65, 66, 67, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 87, 88, 89, 90, 91, 92, 93, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 113, 114, 115, 116,
+            117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 143, 144, 145, 146, 147, 148, 149, 150, 151, 166, 167, 168, 169, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 185, 186, 187,
+            188, 189, 190, 191, 200, 202, 203, 211, 212, 213, 218, 219, 220, 221, 222, 223, 234, 235, 236, 237, 238, 239, 249, 250, 251, 252, 253, 254, 261, 262, 263, 264, 265, 272, 273, 274, 275, 276, 277,
+            278, 279, 280, 281, 282, 288, 289, 291, 292, 293, 294, 295, 314, 315, 316, 317, 318, 319, 324, 325, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 349, 350, 351, 352, 353, 354,
+            355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 382, 384, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397,
+            398, 399, 400, 401, 402, 403, 404, 405, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484,
+            485, 486, 487, 488, 489, 490, 510, 511, 512, 513, 533, 534, 535, 538, 539, 540, 541, 542, 543, 544, 796, 797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814,
+            815, 816, 817, 818, 819, 820, 841, 842, 843, 844, 845, 846, 848, 849, 886, 888, 890, 939, 940, 941, 942, 943, 944, 946, 947, 948, 949, 950, 970, 972, 973, 977, 1539, 1995, 1996, 1997, 1998, 1999,
+            2000, 2001, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2025, 2027, 2028, 2029, 2031, 2032, 2033, 2034, 2035, 2037, 2038, 2039, 2040, 2041, 2042, 2043,
+            2045, 2046, 2047, 2049, 2050, 2051, 2052, 2053, 2055, 2057, 2058, 2059, 2060, 2061, 2062, 2063, 2064, 2065, 2066, 2068, 2069, 2070, 2071, 2072, 2102, 2156, 2158, 2159, 2162, 2163, 2164, 2165,
+            2166, 2167, 2168, 2170, 2171, 2172, 2174, 2175, 2177, 2178, 2179, 2180, 2181, 2182, 2183, 2184, 2185, 2186, 2187, 2188, 2189, 2190, 2197, 2235, 2236, 2238, 2239, 2240, 2406, 2407, 2409, 2410,
+            2411, 2412, 2413, 2414, 2415, 2416, 2426, 2427, 2428, 2429, 2430, 2431, 2433, 2434, 2436, 2439, 2453, 2454, 2455, 2456, 2457, 2458, 2459, 2460, 2462, 2463, 2474, 2475, 2476, 2477, 2479, 2480,
+            2481, 2482, 2483, 2484, 2493, 2494, 2495, 2498, 2499, 2500, 2501, 2502, 2503, 2504, 2515, 2516, 2517, 2518, 2519, 2521, 2522, 2523, 2524, 2525, 2535, 2537, 2538, 2539, 2540, 2541, 2542, 2543,
+            2544, 2545, 2557, 2558, 2560, 2561, 2562, 2563, 2564, 2565, 2566, 2567, 2580, 2581, 2582, 2583, 2584, 2585, 2586, 2587, 2588, 2589, 2599, 2600, 2601, 2605, 2606, 2607, 2608, 2609, 2610, 2611,
+            2620, 2621, 2622, 2623, 2626, 2628, 2629, 2632, 2633, 2635, 2703, 2754, 2756, 2757, 2758, 2760, 2762, 2766, 2767, 2768, 2770, 2771, 2772, 2774, 2775, 2776, 2778, 2779, 2780, 2781, 2782, 2783,
+            2784, 2785, 2786, 2787, 2788, 2789, 2790, 2791, 2792, 2794, 2795, 2796, 2797, 2798, 2799, 2800, 2801, 2802, 2803, 2804, 2805, 2806, 2807, 2808, 2810, 2812, 2813, 2814, 2815, 2816, 2817, 2818,
+            2819, 2823, 2824, 2825, 2826, 2827, 2828, 2829, 2830, 2831, 2832, 2833, 2834, 2835, 2836, 2837, 2838, 2839, 2840, 2841, 2842, 2843, 2844, 2845, 2846, 2852, 2853, 2854, 2855, 2856, 2857, 2858,
+            2859, 2860, 2861, 2862, 2863, 2864, 2870, 2871, 2872, 2873, 2874, 2875, 2876, 3134, 3135, 3136, 3137, 3138, 3139, 3140, 3141, 3142, 3144, 3146, 3147, 3148, 3149, 3150, 3151, 3152, 3153, 3154,
+            3155, 3160, 3162, 3163, 3164, 3165, 3166, 3167, 3169, 3170, 3171, 3435, 3436, 3437, 3438, 3439, 3440, 3441, 3442, 3444, 3445, 3446, 3447, 3448, 3449, 3450, 3452, 3453, 3457, 3458, 3459, 3460,
+            3461, 3462, 3463, 3464, 3466, 3467, 3468, 3469, 3470, 3471, 3473, 3474, 3475, 3479, 3480, 3481, 3482, 3483, 3484, 3485, 3486, 3488, 3489, 3490, 3491, 3492, 3493, 3494, 3495, 3496, 3500, 3501,
+            3502, 3503, 3504, 3505, 3506, 3508, 3510, 3511, 3513, 3514, 3515, 3516, 3517, 3518, 3519, 3523, 3524, 3525, 3526, 3527, 3528, 3529, 3530, 3532, 3533, 3534, 3535, 3536, 3537, 3538, 3539, 3540,
+            3544, 3545, 3546, 3547, 3548, 3549, 3550, 3551, 3553, 3554, 3555, 3556, 3557, 3558, 3559, 3560, 3561, 3565, 3566, 3567, 3568, 3569, 3571, 3572, 3573, 3575, 3576, 3577, 3578, 3579, 3581, 3582,
+            3583, 3584, 3589, 3590, 3591, 3592, 3593, 3594, 3595, 3596, 3598, 3599, 3600, 3601, 3602, 3603, 3604, 3605, 3606, 3610, 3611, 3612, 3614, 3615, 3616, 3617, 3618, 3619, 3620, 3621, 3623, 3624,
+            3625, 3626, 3627, 3629, 3631, 3633, 3639, 3640, 3642, 3643, 3644, 3645, 3647, 3648, 3649, 3650, 3651, 3652, 3653, 3654, 3655, 3656, 3657, 3659, 3660, 3661, 3662, 3663, 3666, 3668, 3669, 3670,
+            3671, 3672, 3673, 3675, 3676, 3677, 3678, 3679, 3680, 3681, 3682, 3683, 3684, 3685, 3688, 3689, 3690, 3691, 3694, 3695, 3696, 3697, 3698, 3699, 3700, 3701, 3702, 3703, 3704, 3705, 3706, 3708,
+            3709, 3710, 3711, 3713, 3714, 3715, 3717, 3718, 3721, 3723, 3724, 3725, 3726, 3727, 3728, 3729, 3730, 3732, 3733, 3734, 3735, 3736, 3737, 3738, 3739, 3740, 3741, 3742, 3743, 3744, 3747, 3748,
+            3749, 3750, 3751, 3752, 3753, 3754, 3755, 3756, 3757, 3758, 3759, 3760, 3761, 3762, 3763, 3764, 3765, 3766, 3767, 3768, 3771, 3772, 3773, 3774, 3775, 3776, 3777, 3778, 3779, 3780, 3781, 3782,
+            3783, 3784, 3785, 3786, 3787, 3788, 3789, 3790, 3791, 3792, 3992, 3997, 4001, 4005, 4009, 4014, 4018, 4022, 4026, 4030, 4034, 4082, 4083, 4085, 4086, 4087, 4088, 4089, 4090, 4091, 4092, 4093,
+            4094, 4095, 4096, 4097, 4098, 4099, 4100, 4101, 4105, 4106, 4107, 4108, 4109, 4110, 4111, 4112, 4113, 4114, 4115, 4116, 4117, 4118, 4119, 4120, 4121, 4122, 4123, 4126, 4127, 4128, 4129, 4130,
+            4131, 4132, 4133, 4134, 4135, 4136, 4137, 4138, 4139, 4140, 4141, 4142, 4143, 4144, 4150, 4151, 4152, 4153, 4154, 4155, 4156, 4157, 4158, 4159, 4160, 4162, 4163, 4164, 4166, 4167, 4168, 4169,
+            4170, 4171, 4172, 4173, 4174, 4176, 4177, 4178, 4179, 4180, 4181, 4182, 4183, 4184, 4185, 4186, 4188, 4189, 4190, 4191, 4192, 4193, 4194, 4195, 4196, 4197, 4198, 4199, 4201, 4202, 4203, 4204,
+            4205, 4206, 4207, 4208, 4209, 4210, 4211, 4213, 4214, 4215, 4216, 4217, 4218, 4219, 4220, 4222, 4223, 4224, 4225, 4227, 4228, 4229, 4230, 4231, 4232, 4233, 4234, 4235, 4236, 4237, 4239, 4240,
+            4241, 4242, 4243, 4244, 4245, 4246, 4247, 4248, 4249, 4250, 4252, 4254, 4255, 4256, 4257, 4258, 4259, 4260, 4261, 4262, 4263, 4265, 4266, 4267, 4268, 4269, 4270, 4271, 4272, 4273, 4275, 4277,
+            4278, 4280, 4281, 4282, 4283, 4284, 4285, 4286, 4287, 4288, 4289, 4291, 4293, 4294, 4295, 4296, 4297, 4298, 4299, 4300, 4301, 4302, 4303, 4304, 4306, 4307, 4308, 4309, 4310, 4311, 4312, 4313,
+            4314, 4315, 4316, 4318, 4319, 4320, 4321, 4322, 4323, 4324, 4325, 4326, 4327, 4328, 4329, 4331, 4332, 4333, 4334, 4335, 4336, 4337, 4338, 4339, 4340, 4341, 4343, 4344, 4345, 4346, 4347, 4348,
+            4349, 4350, 4351, 4352, 4353, 4354, 4356, 4357, 4358, 4359, 4360, 4361, 4362, 4363, 4364, 4365, 4366, 4368, 4369, 4370, 4371, 4372, 4373, 4375, 4376, 4377, 4378, 4379, 4380, 4382, 4383, 4384,
+            4385, 4386, 4387, 4388, 4389, 4390, 4391, 4392, 4394, 4395, 4396, 4397, 4398, 4399, 4400, 4401, 4402, 4403, 4404, 4405, 4407, 4408, 4409, 4410, 4411, 4412, 4413, 4414, 4415, 4416, 4417, 4419,
+            4420, 4421, 4422, 4423, 4424, 4425, 4426, 4427, 4429, 4430, 4431, 4446, 4447, 4448, 4449, 4450, 4451, 4452, 4454, 4455, 4456, 4457, 4458, 4459, 4460, 4461, 4462, 4463, 4464, 4465, 4466, 4467,
+            4468, 4469, 4470, 4471, 4472, 4476, 4489, 4490, 4492, 4493, 4494, 4496, 4497, 4498, 4499, 4500, 4501, 4502, 4503, 4504, 4505, 4506, 4507, 4508, 4509, 4510, 4511, 4513, 4514, 4515, 4516, 4517,
+            4518, 4519, 4520, 4521, 4522, 4523, 4524, 4525, 4526, 4527, 4528, 4529, 4530, 4531, 4533, 4534, 4535, 4536, 4537, 4538, 4539, 4540, 4541, 4542, 4543, 4544, 4545, 4546, 4547, 4548, 4549, 4550,
+            4552, 4553, 4554, 4555, 4556, 4557, 4558, 4559, 4560, 4561, 4562, 4563, 4564, 4565, 4566, 4567, 4568, 4570, 4573, 4574, 4575, 4576, 4577, 4578, 4579, 4580, 4581, 4582, 4583, 4584, 4585, 4586,
+            4587, 4588, 4589, 4590, 4592, 4593, 4594, 4595, 4596, 4597, 4599, 4600, 4601, 4602, 4603, 4604, 4605, 4606, 4607, 4608, 4609, 4610, 4611, 4612, 4613, 4614, 4615, 4616, 4617, 4618, 4619, 4620,
+            4621, 4622, 4623, 4624, 4625, 4626, 4627, 4628, 4629, 4630, 4995, 5000, 5003, 5006, 5009, 5010, 5014, 5015, 5017, 5019, 5023, 5026, 5029, 5038, 5041, 5043, 5044, 5050, 5054, 5056, 5063, 5067,
+            5073, 5080, 5081, 5083, 5087, 5091, 5093, 5095, 5098, 5102, 5103, 5105, 5107, 5108, 5109, 5112, 5114, 5115, 5116, 5117, 5118, 5119, 5120, 5121, 5122, 5123, 5124, 5125, 5126, 5127, 5128, 5129,
+            5131, 5132, 5133, 5135, 5136, 5137, 5138, 5139, 5140, 5141, 5143, 5144, 5145, 5146, 5147, 5148, 5149, 5150, 5151, 5152, 5154, 5155, 5156, 5158, 5159, 5160, 5161, 5162, 5163, 5164, 5166, 5167,
+            5168, 5169, 5170, 5171, 5172, 5177, 5178, 5179, 5180, 5181, 5182, 5187, 5188, 5189, 5190, 5191, 5192, 5197, 5198, 5199, 5200, 5201, 5202, 5207, 5208, 5209, 5210, 5211, 5212, 5217, 5218, 5219,
+            5220, 5221, 5222, 5227, 5228, 5229, 5230, 5231, 5232, 5238, 5239, 5240, 5241, 5242, 5243, 5248, 5249, 5250, 5251, 5252, 5253, 5258, 5259, 5260, 5261, 5262, 5263, 5269, 5270, 5271, 5272, 5273,
+            5275, 5283, 5284, 5285, 5291, 5292, 5293, 5299, 5300, 5301, 5307, 5308, 5309, 5315, 5316, 5317, 5323, 5324, 5325, 5331, 5332, 5333, 5339, 5340, 5341, 5347, 5348, 5349, 5355, 5356, 5357, 5363,
+            5364, 5365, 5372, 5373, 5374, 5375, 5376, 5377, 5437, 5438, 5439, 5440, 5441, 5442, 5443, 5446, 5447, 5448, 5449, 5450, 5451, 5452, 5453, 5454, 5455, 5456, 5457, 5458, 5459, 5460, 5461, 5462,
+            5470, 5471, 5472, 5476, 5477, 5478, 5482, 5483, 5484, 5488, 5489, 5490, 5495, 5496, 5500, 5501, 5502, 5506, 5507, 5508, 5512, 5513, 5514, 5518, 5520, 5521, 5532, 5533, 5534, 5535, 5536, 5537,
+            5538, 5539, 5593, 5594, 5598, 5599, 5600, 5604, 5605, 5606, 5610, 5611, 5612, 5616, 5618, 5619, 5635, 5636, 5637, 5638, 5639, 5640, 5641, 5642, 5643, 5644, 5645, 5646, 5647, 5649, 5650, 5651,
+            5652, 5653, 5654, 5655, 5656, 5657, 5658, 5659, 5660, 5661, 5662, 5665, 5666, 5667, 5668, 5669, 5671, 5672, 5673, 5674, 5675, 5676, 5677, 5678, 5679, 5681, 5691, 5692, 5693, 5694, 5695, 5696,
+            5697, 5698, 5699, 5700, 5701, 5702, 5703, 5705, 5706, 5707, 5708, 5709, 5718, 5748, 5749, 5750, 5751, 5752, 5753, 5754, 5755, 5756, 5758, 5759, 5760, 5764, 5765, 5766, 5767, 5768, 5769, 5770,
+            5771, 5772, 5774, 5775, 5776, 5780, 5781, 5782, 5783, 5784, 5785, 5786, 5787, 5788, 5790, 5791, 5792, 5796, 5797, 5798, 5799, 5800, 5801, 5802, 5806, 5807, 5810, 5811, 5812, 5816, 5817, 5818,
+            5819, 5820, 5821, 5822, 5824, 5825, 5827, 5828, 5829, 5833, 5834, 5835, 5836, 5837, 5838, 5839, 5840, 5841, 5843, 5844, 5845, 5849, 5850, 5851, 5852, 5853, 5854, 5855, 5856, 5857, 5859, 5860,
+            5861, 5865, 5866, 5868, 5869, 5870, 5871, 5872, 5873, 5874, 5876, 5877, 5878, 5882, 5883, 5884, 5885, 5886, 5887, 5888, 5889, 5890, 5892, 5893, 5894, 5898, 5899, 5900, 5901, 5902, 5903, 5904,
+            5905, 5906, 5908, 5909, 5910, 5914, 5915, 5916, 5917, 5918, 5919, 5920, 5921, 5922, 5924, 5925, 5926, 5936, 5937, 5938, 5939, 5940, 6015, 6018, 6019, 6020, 6021, 6022, 6023, 6024, 6025, 6026,
+            6027, 6028, 6036, 6037, 6038, 6039, 6040, 6041, 6042, 6043, 6045, 6046, 6047, 6048, 6053, 6055, 6057, 6059, 6060, 6062, 6065, 6066, 6068, 6070, 6072, 6074, 6076, 6078, 6081, 6083, 6085, 6241,
+            6242, 6243, 6245, 6246, 6249, 6251, 6252, 6253, 6254, 6255, 6256, 6257, 6258, 6267, 6268, 6269, 6271, 6272, 6275, 6277, 6278, 6279, 6280, 6281, 6282, 6283, 6284, 6293, 6294, 6295, 6297, 6298,
+            6301, 6303, 6304, 6305, 6306, 6307, 6308, 6309, 6310, 6319, 6320, 6321, 6323, 6324, 6327, 6329, 6330, 6331, 6332, 6333, 6334, 6335, 6336, 6345, 6346, 6347, 6349, 6350, 6353, 6355, 6356, 6357,
+            6358, 6359, 6360, 6361, 6362, 6371, 6372, 6373, 6375, 6376, 6379, 6381, 6382, 6383, 6384, 6385, 6386, 6387, 6388, 6397, 6398, 6399, 6401, 6402, 6405, 6407, 6408, 6409, 6410, 6411, 6412, 6413,
+            6414, 6432, 6433, 6434, 6435, 6436, 6437, 6440, 6441, 6442, 6443, 6444, 6445, 6448, 6449, 6450, 6451, 6452, 6453, 6456, 6457, 6458, 6459, 6460, 6461, 6464, 6465, 6466, 6467, 6468, 6469, 6472,
+            6473, 6474, 6475, 6476, 6477, 6480, 6481, 6482, 6483, 6484, 6485, 6488, 6489, 6490, 6491, 6492, 6493, 6496, 6497, 6498, 6499, 6500, 6501, 6504, 6505, 6506, 6507, 6508, 6509, 6512, 6513, 6514,
+            6515, 6516, 6517, 6540, 6542, 6543, 6544, 6545, 6546, 6547, 6548, 6549};
+
     public static String getSpecialCardUrl(String id) {
         String cardurl = "";
 
@@ -153,7 +220,7 @@ public class ImgDownloader {
         else if (id.equals("2050321"))
             cardurl = "https://img.scryfall.com/cards/large/front/1/8/18b9c83d-4422-4b95-9fc2-070ed6b5bdf6.jpg?1562701921";
         else if (id.equals("2050322"))
-            cardurl = "https://crystal-cdn4.crystalcommerce.com/photos/504053/ooze_token_b.jpg";
+            cardurl = "https://deckmaster.info/images/cards/M11/-239-hr.jpg";
         else if (id.equals("22010012"))
             cardurl = "https://img.scryfall.com/cards/normal/front/8/4/84dc847c-7a37-4c7f-b02c-30b3e4c91fb6.jpg?1561757490";
         else if (id.equals("8759611"))
@@ -203,9 +270,9 @@ public class ImgDownloader {
         else if (id.equals("3896122"))
             cardurl = "https://img.scryfall.com/cards/large/front/5/9/59a00cac-53ae-46ad-8468-e6d1db40b266.jpg?1562542382";
         else if (id.equals("3896522"))
-            cardurl = "https://www.cardkingdom.com/images/magic-the-gathering/masters-25/whale-token-42707-medium.jpg";
+            cardurl = "https://deckmaster.info/images/cards/C14/-474-hr.jpg";
         else if (id.equals("3896521"))
-            cardurl = "https://www.cardkingdom.com/images/magic-the-gathering/commander-2014/fish-token-zombie-token-blue-53462-medium.jpg";
+            cardurl = "https://deckmaster.info/images/cards/C14/-472-hr.jpg";
         else if (id.equals("3896523"))
             cardurl = "https://img.scryfall.com/cards/large/front/d/0/d0cd85cc-ad22-446b-8378-5eb69fee1959.jpg?1562840712";
         else if (id.equals("687701"))
@@ -343,7 +410,7 @@ public class ImgDownloader {
         else if (id.equals("207998"))
             cardurl = "https://deckmaster.info/images/cards/DDE/207998-hr.jpg";
         else if (id.equals("19784555"))
-            cardurl = "https://cdn.shopify.com/s/files/1/0790/8591/products/Grnelementalfinal_800x800.jpg?v=1476398274";
+            cardurl = "https://deckmaster.info/images/cards/DGM/-39-hr.jpg";
         else if (id.equals("19784612"))
             cardurl = "https://deckmaster.info/images/cards/RTR/-60-hr.jpg";
         else if (id.equals("19784613"))
@@ -351,10 +418,9 @@ public class ImgDownloader {
         else if (id.equals("19784611"))
             cardurl = "https://deckmaster.info/images/cards/RTR/-55-hr.jpg";
         else if (id.equals("4977511"))
-            cardurl = "https://www.mtg.onl/static/acc7da698156ddfb2270f09ac7ae6f81/4d406/PROXY_Elemental_U_2_2.jpg";
+            cardurl = "https://deckmaster.info/images/cards/DST/-2819-hr.jpg";
         else if (id.equals("4977512"))
             cardurl = "https://deckmaster.info/images/cards/DST/-2818-hr.jpg";
-
 
         return cardurl;
     }
@@ -371,37 +437,33 @@ public class ImgDownloader {
         else if (id.equals("202590t") || id.equals("2073t") || id.equals("1027t"))
             tokenurl = "https://deckmaster.info/images/cards/AST/-892-hr.jpg";
         else if (id.equals("201124t") || id.equals("3118t"))
-            tokenurl = "http://i1013.photobucket.com/albums/af260/lovesoldier99/STARFISHTOKEN.jpg";
-        else if (id.equals("184735t") || id.equals("376488t") || id.equals("3066t"))
+            tokenurl = "https://deckmaster.info/images/cards/AL/-2029-hr.jpg";
+        else if (id.equals("184735t") || id.equals("376488t") || id.equals("3066t") || id.equals("121261t"))
             tokenurl = "https://i.pinimg.com/originals/a9/fb/37/a9fb37bdfa8f8013b7eb854d155838e2.jpg";
         else if (id.equals("184598t"))
             tokenurl = "https://deckmaster.info/images/cards/HM/-2070-hr.jpg";
         else if (id.equals("184589t"))
-            tokenurl = "http://d1f83aa4yffcdn.cloudfront.net/TOKEN/2%202%20Black%20Zombie.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/M14/-28-hr.jpg";
         else if (id.equals("184730t"))
-            tokenurl = "https://www.mtg.onl/static/c88f42f8bd5a7c25aa36902546b690f5/4d406/PROXY_Knight_W_1_1.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/AL/-2028-hr.jpg";
         else if (id.equals("1649t") || id.equals("201182t"))
-            tokenurl = "https://pbs.twimg.com/media/DH9n-2JVwAA0o8z.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/LE/-2046-hr.jpg";
         else if (id.equals("140233t") || id.equals("191239t") || id.equals("205957t"))
-            tokenurl = "https://i860.photobucket.com/albums/ab170/mistergreen527/White%20Tokens/WAvatarX-X1.jpg";
+            tokenurl = "https://deckmaster.info/card.php?multiverseid=-234";
         else if (id.equals("1686t") || id.equals("2881t") || id.equals("201231t"))
             tokenurl = "https://deckmaster.info/images/cards/A25/-5648-hr.jpg";
-        else if (id.equals("121261t"))
-            tokenurl = "https://i.pinimg.com/originals/a9/fb/37/a9fb37bdfa8f8013b7eb854d155838e2.jpg";
-        else if (id.equals("368951t"))
-            tokenurl = "https://d1rw89lz12ur5s.cloudfront.net/photo/facetofacegames/file/36262794e9f37368e7872326715ac806/eletok.jpg";
+        else if (id.equals("368951t") || id.equals("426025t"))
+            tokenurl = "https://deckmaster.info/card.php?multiverseid=-39";
         else if (id.equals("46168t"))
             tokenurl = "https://deckmaster.info/images/cards/KLD/-3287-hr.jpg";
         else if (id.equals("49026t"))
             tokenurl = "https://www.mtg.onl/static/a9d81341e62e39e75075b573739f39d6/4d406/PROXY_Wirefly_2_2.jpg";
-        else if (id.equals("414506t"))
-            tokenurl = "https://poromagia.com/media/cache/25/f0/25f0cd307adc18d7655c465408267469.jpg";
         else if (id.equals("6142t"))
-            tokenurl = "https://cdn.staticneo.com/w/mtg/c/cd/Beast5.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/EX/-2035-hr.jpg";
         else if (id.equals("126166t"))
             tokenurl = "https://deckmaster.info/images/cards/C14/-487-hr.jpg";
         else if (id.equals("136155t"))
-            tokenurl = "http://static1.squarespace.com/static/583dca25ff7c5080991b2c87/583de52de6f2e18631eb2b32/58405d0dbe6594762f5bd8e6/1565969982322/wurm-white.jpg";
+            tokenurl = "https://i.pinimg.com/564x/5d/68/d6/5d68d67bef76bf90588a4afdc39dc60e.jpg";
         else if (id.equals("107091t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/13/534/635032476540667501.jpg";
         else if (id.equals("452760t"))
@@ -410,14 +472,14 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/HM/-2070-hr.jpg";
         else if (id.equals("380486t"))
             tokenurl = "https://deckmaster.info/images/cards/BNG/-5-hr.jpg";
-        else if (id.equals("380487t"))
-            tokenurl = "https://poromagia.com/media/cache/25/f0/25f0cd307adc18d7655c465408267469.jpg";
+        else if (id.equals("380487t") || id.equals("414506t"))
+            tokenurl = "https://deckmaster.info/images/cards/JOU/-41-hr.jpg";
         else if (id.equals("234849t"))
             tokenurl = "https://deckmaster.info/images/cards/RTR/-61-hr.jpg";
         else if (id.equals("23319t"))
-            tokenurl = "https://i860.photobucket.com/albums/ab170/mistergreen527/White%20Tokens/WReflectionX-X1.jpg";
+            tokenurl = "https://www.mtg.onl/static/0f8b0552293c03a3a29614cc83024337/4d406/PROXY_Reflection_W_X_X.jpg";
         else if (id.equals("205297t") || id.equals("50104t"))
-            tokenurl = "https://www.mtg.onl/static/df30395b530524a3988428d4c0b37161/4d406/PROXY_Pest_0_1.jpg";
+            tokenurl = "https://i.pinimg.com/564x/cc/96/e3/cc96e3bdbe7e0f4bf1c0c1f942c073a9.jpg";
         else if (id.equals("3449t"))
             tokenurl = "https://www.mtg.onl/static/8c7fed1a0b8edd97c0fb0ceab24a654f/4d406/PROXY_Goblin_Scout_R_1_1.jpg";
         else if (id.equals("3392t"))
@@ -426,14 +488,12 @@ public class ImgDownloader {
             tokenurl = "https://media.mtgsalvation.com/attachments/54/421/635032484680831888.jpg";
         else if (id.equals("3242t"))
             tokenurl = "https://deckmaster.info/images/cards/MI/-2828-hr.jpg";
-        else if (id.equals("426025t"))
-            tokenurl = "https://cdn.shopify.com/s/files/1/0790/8591/products/Grnelementalfinal_800x800.jpg?v=1476398274";
         else if (id.equals("19878t"))
-            tokenurl = "https://www.cardkingdom.com/images/magic-the-gathering/commander-2014/ape-token-zombie-token-blue-65252-medium.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/C14/-482-hr.jpg";
         else if (id.equals("21381t") || id.equals("40198t"))
             tokenurl = "https://img.scryfall.com/cards/large/back/8/c/8ce60642-e207-46e6-b198-d803ff3b47f4.jpg?1562921132";
         else if (id.equals("265141t"))
-            tokenurl = "https://media.mtgsalvation.com/attachments/102/31/635032498723573408.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/VMA/-4465-hr.jpg";
         else if (id.equals("24624t"))
             tokenurl = "https://www.mtg.onl/static/6d717cba653ea9e3f6bd1419741671cb/4d406/PROXY_Minion_B_1_1.jpg";
         else if (id.equals("409810t") || id.equals("409805t") || id.equals("409953t") || id.equals("409997t") || id.equals("410032t"))
@@ -449,7 +509,7 @@ public class ImgDownloader {
         else if (id.equals("116384t") || id.equals("376564t"))
             tokenurl = "https://deckmaster.info/images/cards/TSP/-114916-hr.jpg";
         else if (id.equals("116383t"))
-            tokenurl = "https://i.imgur.com/wRMebWg.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/TSP/-2170-hr.jpg";
         else if (id.equals("114917t"))
             tokenurl = "https://deckmaster.info/images/cards/JOU/-43-hr.jpg";
         else if (id.equals("5610t"))
@@ -459,19 +519,19 @@ public class ImgDownloader {
         else if (id.equals("461099t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/d/e/de7ba875-f77b-404f-8b75-4ba6f81da410.jpg?1557575978";
         else if (id.equals("9667t"))
-            tokenurl = "https://www.mtg.onl/static/abe5178af8ebbe84f5504493a1b5f154/4d406/PROXY_Giant_Chicken_R_4_4.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/UG/-2062-hr.jpg";
         else if (id.equals("368549t"))
             tokenurl = "https://deckmaster.info/images/cards/DDQ/409655-hr.jpg";
         else if (id.equals("73953t"))
-            tokenurl = "https://www.mtg.onl/static/98da67c454fe6cde61ae45af4f9c3150/4d406/PROXY_Giant_Teddy_Bear_5_5.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/UNH/-2065-hr.jpg";
         else if (id.equals("74265t"))
             tokenurl = "https://deckmaster.info/images/cards/UNH/-2064-hr.jpg";
         else if (id.equals("27634t"))
-            tokenurl = "https://www.mtg.onl/static/8b684bdea239d594e296a134f5ec1783/4d406/PROXY_Hippo_G_1_1.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/PS/-2072-hr.jpg";
         else if (id.equals("111046t"))
-            tokenurl = "https://media.mtgsalvation.com/attachments/32/354/635032480299772645.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/PLC/-2071-hr.jpg";
         else if (id.equals("4771t"))
-            tokenurl = "https://www.mtg.onl/static/b8060dffbaf67ef987c6324c1523d3e4/4d406/PROXY_Hound_G_1_1.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/TE/-2060-hr.jpg";
         else if (id.equals("3591t"))
             tokenurl = "https://i.pinimg.com/564x/6e/8d/fe/6e8dfeee2919a3efff210df56ab7b85d.jpg";
         else if (id.equals("72858t"))
@@ -483,7 +543,7 @@ public class ImgDownloader {
         else if (id.equals("426897t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/a/8/a8f339c6-2c0d-4631-849b-44d4360b5131.jpg?1562844814";
         else if (id.equals("175105t"))
-            tokenurl = "https://crystal-cdn1.crystalcommerce.com/photos/371742/beast.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/ALA/-325-hr.jpg";
         else if (id.equals("470549t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/7/7/7711a586-37f9-4560-b25d-4fb339d9cd55.jpg?1565299650";
         else if (id.equals("3227t"))
@@ -493,9 +553,9 @@ public class ImgDownloader {
         else if (id.equals("3113t"))
             tokenurl = "https://www.mtg.onl/static/fca7508d78c26e3daea78fd4640faf9a/4d406/PROXY_Orb_U_X_X.jpg";
         else if (id.equals("26815t"))
-            tokenurl = "https://www.mtg.onl/static/8bb68cf125fdcc9d8a21b3dade2f11cb/4d406/PROXY_Cat_B_2_1.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/AP/-2163-hr.jpg";
         else if (id.equals("25956t"))
-            tokenurl = "https://www.mtg.onl/static/740ce087c4aff57e881b01c28528c8f9/4d406/PROXY_Kavu_B_3_3.jpg";
+            tokenurl = "https://deckmaster.info/images/cards/AP/-2069-hr.jpg";
         else if (id.equals("74027t"))
             tokenurl = "https://www.mtg.onl/static/48515f01d0fda15dd9308d3a528dae7b/4d406/PROXY_Spirit_W_3_3.jpg";
 
@@ -503,18 +563,18 @@ public class ImgDownloader {
     }
 
     public static boolean hasToken(String id) {
-        if (id.equals("456378")     || id.equals("2912")    || id.equals("1514")    || id.equals("364")     || id.equals("69")      || id.equals("369012")  ||
-                id.equals("417759") || id.equals("386476")  || id.equals("456371")  || id.equals("456360")  || id.equals("391958")  || id.equals("466959")  ||
-                id.equals("466813") || id.equals("201176")  || id.equals("202483")  || id.equals("3546")    || id.equals("425949")  || id.equals("426027")  ||
-                id.equals("425853") || id.equals("425846")  || id.equals("426036")  || id.equals("370387")  || id.equals("29955")   || id.equals("29989")   ||
-                id.equals("19741")  || id.equals("19722")   || id.equals("19706")   || id.equals("24597")   || id.equals("24617")   || id.equals("24563")   ||
-                id.equals("253539") || id.equals("277995")  || id.equals("265415")  || id.equals("289225")  || id.equals("289215")  || id.equals("253529")  ||
-                id.equals("253641") || id.equals("270957")  || id.equals("401685")  || id.equals("89116")   || id.equals("5183")    || id.equals("5177")    ||
-                id.equals("209289") || id.equals("198171")  || id.equals("10419")   || id.equals("470542")  || id.equals("29992")   || id.equals("666")     ||
-                id.equals("2026")   || id.equals("45395")   || id.equals("442021")  || id.equals("423758")  || id.equals("426930")  || id.equals("998")     ||
-                id.equals("446163") || id.equals("378411")  || id.equals("376457")  || id.equals("470749")  || id.equals("450641")  || id.equals("470623")  ||
-                id.equals("470620") || id.equals("470754")  || id.equals("470750")  || id.equals("470739")  || id.equals("470708")  || id.equals("470581")  ||
-                id.equals("470578") || id.equals("470571")  || id.equals("470552")  || id.equals("394490"))
+        if (id.equals("456378") || id.equals("2912") || id.equals("1514") || id.equals("364") || id.equals("69") || id.equals("369012") ||
+                id.equals("417759") || id.equals("386476") || id.equals("456371") || id.equals("456360") || id.equals("391958") || id.equals("466959") ||
+                id.equals("466813") || id.equals("201176") || id.equals("202483") || id.equals("3546") || id.equals("425949") || id.equals("426027") ||
+                id.equals("425853") || id.equals("425846") || id.equals("426036") || id.equals("370387") || id.equals("29955") || id.equals("29989") ||
+                id.equals("19741") || id.equals("19722") || id.equals("19706") || id.equals("24597") || id.equals("24617") || id.equals("24563") ||
+                id.equals("253539") || id.equals("277995") || id.equals("265415") || id.equals("289225") || id.equals("289215") || id.equals("253529") ||
+                id.equals("253641") || id.equals("270957") || id.equals("401685") || id.equals("89116") || id.equals("5183") || id.equals("5177") ||
+                id.equals("209289") || id.equals("198171") || id.equals("10419") || id.equals("470542") || id.equals("29992") || id.equals("666") ||
+                id.equals("2026") || id.equals("45395") || id.equals("442021") || id.equals("423758") || id.equals("426930") || id.equals("998") ||
+                id.equals("446163") || id.equals("378411") || id.equals("376457") || id.equals("470749") || id.equals("450641") || id.equals("470623") ||
+                id.equals("470620") || id.equals("470754") || id.equals("470750") || id.equals("470739") || id.equals("470708") || id.equals("470581") ||
+                id.equals("470578") || id.equals("470571") || id.equals("470552") || id.equals("394490") || id.equals("114921"))
             return false;
         return true;
     }
@@ -654,7 +714,72 @@ public class ImgDownloader {
             } catch (Exception e) {
             }
         }
-        System.out.println("Warning: Token " + name + " has not been found in https://deckmaster.info so i will search for it between any other set in " + imageurl + " (it can take long time)");
+        System.out.println("Warning: Token " + name + " has not been found with an indexed search algorithm in https://deckmaster.info so i will try with a deeper searching algorithm (it may take a long time)");
+        for (int i = 1; i < 6563 && parent.downloadInProgress; i++) {
+            if (Arrays.binarySearch(tokenids, i) < 0)
+                continue;
+            while (parent.paused && parent.downloadInProgress) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+            }
+            if (!parent.downloadInProgress)
+                break;
+            try {
+                Document tokendoc = Jsoup.connect("https://deckmaster.info/card.php?multiverseid=-" + i).get();
+                if (tokendoc == null)
+                    continue;
+                Elements stats = tokendoc.select("head meta");
+                if (stats != null) {
+                    for (int j = 0; j < stats.size() && parent.downloadInProgress; j++) {
+                        while (parent.paused && parent.downloadInProgress) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                            }
+                        }
+                        if (!parent.downloadInProgress)
+                            break;
+                        if (stats.get(j).attributes().get("content").contains("Token Creature") &&
+                                stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
+                            if (stats.get(j).attributes().get("content").contains(tokenstats.replace("X/X", "★/★")))
+                                return tokendoc;
+                            stats = tokendoc.select("body textarea");
+                            if (stats != null) {
+                                for (int y = 0; y < stats.size() && parent.downloadInProgress; y++) {
+                                    while (parent.paused && parent.downloadInProgress) {
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                        }
+                                    }
+                                    if (!parent.downloadInProgress)
+                                        break;
+                                    List<Node> nodes = stats.get(y).childNodes();
+                                    if (nodes != null) {
+                                        for (int p = 0; p < nodes.size() && parent.downloadInProgress; p++) {
+                                            while (parent.paused && parent.downloadInProgress) {
+                                                try {
+                                                    Thread.sleep(1000);
+                                                } catch (InterruptedException e) {
+                                                }
+                                            }
+                                            if (!parent.downloadInProgress)
+                                                break;
+                                            if (stats.get(y).childNode(p).attributes().get("#text").contains(tokenstats))
+                                                return tokendoc;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+            }
+        }
+        System.out.println("Warning: Token " + name + " has not been found in https://deckmaster.info so i will search for it between any other set in " + imageurl + " (it may take a long time)");
         for (int i = 0; i < availableSets.length; i++) {
             String currentSet = availableSets[i].toLowerCase().split(" - ")[0];
             if (!currentSet.equalsIgnoreCase(set)) {
@@ -1030,7 +1155,7 @@ public class ImgDownloader {
                 cardname = cardname.replace(" (d)", "");
                 cardname = cardname.replace(" (e)", "");
                 cardname = cardname.replace(" (f)", "");
-                cardname = cardname.replace("...", "");
+                cardname = cardname.replace(" ...", "");
                 String deckutrl = "https://deckmaster.info/card.php?multiverseid=";
                 try {
                     doc = Jsoup.connect(deckutrl + id).get();
