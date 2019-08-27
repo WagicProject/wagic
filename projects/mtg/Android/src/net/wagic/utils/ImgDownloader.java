@@ -372,7 +372,7 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/AST/-892-hr.jpg";
         else if (id.equals("201124t") || id.equals("3118t"))
             tokenurl = "http://i1013.photobucket.com/albums/af260/lovesoldier99/STARFISHTOKEN.jpg";
-        else if (id.equals("184735") || id.equals("376488t") || id.equals("3066t"))
+        else if (id.equals("184735t") || id.equals("376488t") || id.equals("3066t"))
             tokenurl = "https://i.pinimg.com/originals/a9/fb/37/a9fb37bdfa8f8013b7eb854d155838e2.jpg";
         else if (id.equals("184598t"))
             tokenurl = "https://deckmaster.info/images/cards/HM/-2070-hr.jpg";
@@ -514,12 +514,12 @@ public class ImgDownloader {
                 id.equals("2026")   || id.equals("45395")   || id.equals("442021")  || id.equals("423758")  || id.equals("426930")  || id.equals("998")     ||
                 id.equals("446163") || id.equals("378411")  || id.equals("376457")  || id.equals("470749")  || id.equals("450641")  || id.equals("470623")  ||
                 id.equals("470620") || id.equals("470754")  || id.equals("470750")  || id.equals("470739")  || id.equals("470708")  || id.equals("470581")  ||
-                id.equals("470578") || id.equals("470571")  || id.equals("470552"))
+                id.equals("470578") || id.equals("470571")  || id.equals("470552")  || id.equals("394490"))
             return false;
         return true;
     }
 
-    public static Document findTokenPage(String imageurl, String name, String set, String[] availableSets, String tokenstats) throws Exception {
+    public static Document findTokenPage(String imageurl, String name, String set, String[] availableSets, String tokenstats, SDLActivity parent) throws Exception {
         Document doc = null;
         Elements outlinks = null;
         try {
@@ -527,7 +527,15 @@ public class ImgDownloader {
             if (doc != null) {
                 outlinks = doc.select("body a");
                 if (outlinks != null) {
-                    for (int k = 0; k < outlinks.size(); k++) {
+                    for (int k = 0; k < outlinks.size() && parent.downloadInProgress; k++) {
+                        while (parent.paused && parent.downloadInProgress) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                            }
+                        }
+                        if (!parent.downloadInProgress)
+                            break;
                         String linktoken = outlinks.get(k).attributes().get("href");
                         if (linktoken != null && !linktoken.isEmpty()) {
                             try {
@@ -536,7 +544,15 @@ public class ImgDownloader {
                                     continue;
                                 Elements stats = tokendoc.select("head meta");
                                 if (stats != null) {
-                                    for (int j = 0; j < stats.size(); j++) {
+                                    for (int j = 0; j < stats.size() && parent.downloadInProgress; j++) {
+                                        while (parent.paused && parent.downloadInProgress) {
+                                            try {
+                                                Thread.sleep(1000);
+                                            } catch (InterruptedException e) {
+                                            }
+                                        }
+                                        if (!parent.downloadInProgress)
+                                            break;
                                         String a = stats.get(j).attributes().get("content");
                                         if (stats.get(j).attributes().get("content").contains(tokenstats) &&
                                                 stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
@@ -577,23 +593,55 @@ public class ImgDownloader {
                 urls.add(id);
             }
         }
-        for (int i = 0; i < urls.size(); i++) {
+        for (int i = 0; i < urls.size() && parent.downloadInProgress; i++) {
+            while (parent.paused && parent.downloadInProgress) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+            }
+            if (!parent.downloadInProgress)
+                break;
             try {
                 Document tokendoc = Jsoup.connect("https://deckmaster.info/card.php?multiverseid=" + urls.get(i)).get();
                 if (tokendoc == null)
                     continue;
                 Elements stats = tokendoc.select("head meta");
                 if (stats != null) {
-                    for (int j = 0; j < stats.size(); j++) {
+                    for (int j = 0; j < stats.size() && parent.downloadInProgress; j++) {
+                        while (parent.paused && parent.downloadInProgress) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                            }
+                        }
+                        if (!parent.downloadInProgress)
+                            break;
                         if (stats.get(j).attributes().get("content").contains("Token Creature") && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
                             if (stats.get(j).attributes().get("content").contains(tokenstats.replace("X/X", "★/★")))
                                 return tokendoc;
                             stats = tokendoc.select("body textarea");
                             if (stats != null) {
-                                for (int y = 0; y < stats.size(); y++) {
+                                for (int y = 0; y < stats.size() && parent.downloadInProgress; y++) {
+                                    while (parent.paused && parent.downloadInProgress) {
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                        }
+                                    }
+                                    if (!parent.downloadInProgress)
+                                        break;
                                     List<Node> nodes = stats.get(y).childNodes();
                                     if (nodes != null) {
-                                        for (int p = 0; p < nodes.size(); p++) {
+                                        for (int p = 0; p < nodes.size() && parent.downloadInProgress; p++) {
+                                            while (parent.paused && parent.downloadInProgress) {
+                                                try {
+                                                    Thread.sleep(1000);
+                                                } catch (InterruptedException e) {
+                                                }
+                                            }
+                                            if (!parent.downloadInProgress)
+                                                break;
                                             if (stats.get(y).childNode(p).attributes().get("#text").contains(tokenstats))
                                                 return tokendoc;
                                         }
@@ -616,7 +664,15 @@ public class ImgDownloader {
                         continue;
                     outlinks = doc.select("body a");
                     if (outlinks != null) {
-                        for (int k = 0; k < outlinks.size(); k++) {
+                        for (int k = 0; k < outlinks.size() && parent.downloadInProgress; k++) {
+                            while (parent.paused && parent.downloadInProgress) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                }
+                            }
+                            if (!parent.downloadInProgress)
+                                break;
                             String linktoken = outlinks.get(k).attributes().get("href");
                             try {
                                 Document tokendoc = Jsoup.connect(linktoken).get();
@@ -624,7 +680,15 @@ public class ImgDownloader {
                                     continue;
                                 Elements stats = tokendoc.select("head meta");
                                 if (stats != null) {
-                                    for (int j = 0; j < stats.size(); j++) {
+                                    for (int j = 0; j < stats.size() && parent.downloadInProgress; j++) {
+                                        while (parent.paused && parent.downloadInProgress) {
+                                            try {
+                                                Thread.sleep(1000);
+                                            } catch (InterruptedException e) {
+                                            }
+                                        }
+                                        if (!parent.downloadInProgress)
+                                            break;
                                         String a = stats.get(j).attributes().get("content");
                                         if (stats.get(j).attributes().get("content").contains(tokenstats) && stats.get(j).attributes().get("content").toLowerCase().contains(name.toLowerCase())) {
                                             System.out.println("Token " + name + " has been found between " + currentSet.toUpperCase() + " tokens, i will use this one");
@@ -839,6 +903,15 @@ public class ImgDownloader {
             scryset = "DDP";
 
         for (int y = 0; y < mappa.size() && parent.downloadInProgress; y++) {
+            while (parent.paused && parent.downloadInProgress) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+            }
+            if (!parent.downloadInProgress)
+                break;
+
             String id = mappa.keySet().toArray()[y].toString();
             progressBarDialog.incrementProgressBy((int) (1));
             String specialcardurl = getSpecialCardUrl(id);
@@ -940,6 +1013,15 @@ public class ImgDownloader {
                 continue;
             }
             String cardname = divs.get(k + 1).childNode(0).attributes().get("#text").replace("\r\n", "").trim();
+
+            while (parent.paused && parent.downloadInProgress) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+            }
+            if (!parent.downloadInProgress)
+                break;
 
             if (scryset.equals("UST") || scryset.equals("S00")) {
                 cardname = cardname.replace(" (a)", "");
@@ -1083,7 +1165,16 @@ public class ImgDownloader {
                 continue;
             }
 
-            for (int i = 0; i < imgs.size(); i++) {
+            for (int i = 0; i < imgs.size() && parent.downloadInProgress; i++) {
+                while (parent.paused && parent.downloadInProgress) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                }
+                if (!parent.downloadInProgress)
+                    break;
+
                 String title = imgs.get(i).attributes().get("alt");
                 if (title.isEmpty())
                     title = imgs.get(i).attributes().get("title");
@@ -1282,7 +1373,7 @@ public class ImgDownloader {
                                 doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             } else {
                                 try {
-                                    doc = findTokenPage(imageurl, nametoken, scryset, availableSets, tokenstats);
+                                    doc = findTokenPage(imageurl, nametoken, scryset, availableSets, tokenstats, parent);
                                     tokenfound = true;
                                     nametocheck = nametoken;
                                 } catch (Exception e) {
@@ -1297,7 +1388,16 @@ public class ImgDownloader {
                             if (imgstoken == null)
                                 break;
                         }
-                        for (int p = 0; p < imgstoken.size(); p++) {
+                        for (int p = 0; p < imgstoken.size() && parent.downloadInProgress; p++) {
+                            while (parent.paused && parent.downloadInProgress) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                }
+                            }
+                            if (!parent.downloadInProgress)
+                                break;
+
                             String titletoken = imgstoken.get(p).attributes().get("alt");
                             if (titletoken.isEmpty())
                                 titletoken = imgstoken.get(p).attributes().get("title");
@@ -1342,7 +1442,7 @@ public class ImgDownloader {
                                 byte[] responsetoken = outtoken.toByteArray();
                                 String tokenimage = imgPath + File.separator + id + "t.jpg";
                                 String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
-                                if (!tokenfound && !id.equals("464007t")) {
+                                if (!tokenfound && !id.equals("464007")) {
                                     System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t) i will use the same image of its source card");
                                 }
                                 FileOutputStream fos2 = new FileOutputStream(tokenimage);
@@ -1373,40 +1473,49 @@ public class ImgDownloader {
                 }
             }
         }
-        try {
+
+        while (parent.paused && parent.downloadInProgress) {
             try {
-                File oldzip = new File(destinationPath + File.separator + set + File.separator + set + ".zip");
-                oldzip.delete();
-            } catch (Exception e) {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
             }
-            ZipParameters zipParameters = new ZipParameters();
-            zipParameters.setCompressionMethod(CompressionMethod.STORE);
-            File folder = new File(destinationPath + set + File.separator);
-            File[] listOfFile = folder.listFiles();
-            net.lingala.zip4j.ZipFile zipped = new net.lingala.zip4j.ZipFile(destinationPath + File.separator + set + File.separator + set + ".zip");
-            for (int i = 0; i < listOfFile.length; i++) {
-                if (listOfFile[i].isDirectory()) {
-                    zipped.addFolder(listOfFile[i], zipParameters);
-                } else {
-                    zipped.addFile(listOfFile[i], zipParameters);
-                }
-            }
-            File destFolder = new File(destinationPath + set + File.separator);
-            listOfFiles = destFolder.listFiles();
-            for (int u = 0; u < listOfFiles.length; u++) {
-                if (!listOfFiles[u].getName().contains(".zip")) {
-                    if (listOfFiles[u].isDirectory()) {
-                        File[] listOfSubFiles = listOfFiles[u].listFiles();
-                        for (int j = 0; j < listOfSubFiles.length; j++)
-                            listOfSubFiles[j].delete();
-                    }
-                    listOfFiles[u].delete();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
+        if (parent.downloadInProgress) {
+            try {
+                try {
+                    File oldzip = new File(destinationPath + File.separator + set + File.separator + set + ".zip");
+                    oldzip.delete();
+                } catch (Exception e) {
+                }
+                ZipParameters zipParameters = new ZipParameters();
+                zipParameters.setCompressionMethod(CompressionMethod.STORE);
+                File folder = new File(destinationPath + set + File.separator);
+                File[] listOfFile = folder.listFiles();
+                net.lingala.zip4j.ZipFile zipped = new net.lingala.zip4j.ZipFile(destinationPath + File.separator + set + File.separator + set + ".zip");
+                for (int i = 0; i < listOfFile.length; i++) {
+                    if (listOfFile[i].isDirectory()) {
+                        zipped.addFolder(listOfFile[i], zipParameters);
+                    } else {
+                        zipped.addFile(listOfFile[i], zipParameters);
+                    }
+                }
+                File destFolder = new File(destinationPath + set + File.separator);
+                listOfFiles = destFolder.listFiles();
+                for (int u = 0; u < listOfFiles.length; u++) {
+                    if (!listOfFiles[u].getName().contains(".zip")) {
+                        if (listOfFiles[u].isDirectory()) {
+                            File[] listOfSubFiles = listOfFiles[u].listFiles();
+                            for (int j = 0; j < listOfSubFiles.length; j++)
+                                listOfSubFiles[j].delete();
+                        }
+                        listOfFiles[u].delete();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return res;
     }
 }

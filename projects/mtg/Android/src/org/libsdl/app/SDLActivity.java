@@ -465,15 +465,20 @@ public class SDLActivity extends Activity implements OnKeyListener {
         });
 
         cardDownloader.setPositiveButton("Download Selected", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                if (selectedSets.size() > 0)
-                    chooseResolution();
-                else
-                    downloadCardImages();
-            }
+            @Override
+            public void onClick(DialogInterface dialog, int which) { }
         });
 
-        cardDownloader.create().show();
+        final AlertDialog dialog = cardDownloader.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectedSets.size() > 0)
+                    chooseResolution();
+            }
+        });
     }
 
     String targetRes = "High";
@@ -502,6 +507,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
     boolean error = false;
     String res = "";
     public volatile boolean downloadInProgress = false;
+    public volatile boolean paused = false;
     ProgressDialog cardDownloader;
 
     private void downloadCardImagesStart() {
@@ -519,8 +525,16 @@ public class SDLActivity extends Activity implements OnKeyListener {
         new Thread(new Runnable() {
             public void run() {
                 downloadInProgress = true;
+                paused = false;
                 if (selectedSets != null) {
-                    for (int i = 0; i < selectedSets.size(); i++) {
+                    for (int i = 0; i < selectedSets.size() && downloadInProgress; i++) {
+                        while(paused){
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {}
+                            if(!downloadInProgress)
+                                break;
+                        }
                         try {
                             set = selectedSets.get(i);
                             mHandler.post(new Runnable() {
@@ -545,6 +559,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                             if (downloadInProgress) {
                                 downloadSelectedSetsCompleted(error, res);
                                 downloadInProgress = false;
+                                paused = false;
                             }
                             cardDownloader.dismiss();
                         }
@@ -559,19 +574,47 @@ public class SDLActivity extends Activity implements OnKeyListener {
             }
         });
 
-        cardDownloader.setButton(DialogInterface.BUTTON_NEGATIVE, "Stop Download", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
+        cardDownloader.setButton(DialogInterface.BUTTON_NEGATIVE, "Stop", new DialogInterface.OnClickListener() {
+            public void onClick(final DialogInterface dialog, int which) {
                 mHandler.post(new Runnable() {
                     public void run() {
                         downloadCardInterruped(set, cardDownloader.getProgress(), cardDownloader.getMax());
                         downloadInProgress = false;
+                        paused = false;
+                        AlertDialog d = (AlertDialog) dialog;
+                        d.getButton(AlertDialog.BUTTON_NEUTRAL).setText("Pause");
+                        cardDownloader.setTitle("Downloading now set: " + set + " - Interrupted");
                         cardDownloader.dismiss();
                     }
                 });
             }
         });
 
+        cardDownloader.setButton(DialogInterface.BUTTON_NEUTRAL, "Pause", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) { }
+        });
+
+        final AlertDialog dialog = (AlertDialog) cardDownloader;
         cardDownloader.show();
+
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(!paused) {
+                    paused = true;
+                    AlertDialog d = (AlertDialog) dialog;
+                    d.getButton(AlertDialog.BUTTON_NEUTRAL).setText("Resume");
+                    cardDownloader.setTitle("Downloading now set: " + set + " - Paused");
+                } else {
+                    paused = false;
+                    AlertDialog d = (AlertDialog) dialog;
+                    d.getButton(AlertDialog.BUTTON_NEUTRAL).setText("Pause");
+                    cardDownloader.setTitle("Downloading now set: " + set);
+                }
+            }
+        });
     }
 
     private void downloadCardInterruped(String set, int cardsDownloaded, int total) {
