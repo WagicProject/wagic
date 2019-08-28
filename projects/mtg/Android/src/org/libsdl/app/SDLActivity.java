@@ -427,6 +427,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                             } catch (Exception e) {
                             }
                         }
+                        selectedSets = new ArrayList<String>();
                         downloadCardImages();
                     }
                 });
@@ -440,9 +441,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
     private void downloadCardImages() {
         AlertDialog.Builder cardDownloader = new AlertDialog.Builder(this);
-
         cardDownloader.setTitle("Which Sets would you like to download?");
-        selectedSets = new ArrayList<String>();
 
         cardDownloader.setMultiChoiceItems(availableSets, checkedSet, new DialogInterface.OnMultiChoiceClickListener() {
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -466,7 +465,8 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         cardDownloader.setPositiveButton("Download Selected", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) { }
+            public void onClick(DialogInterface dialog, int which) {
+            }
         });
 
         final AlertDialog dialog = cardDownloader.create();
@@ -475,10 +475,10 @@ public class SDLActivity extends Activity implements OnKeyListener {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedSets.size() > 0){
+                if (selectedSets.size() > 0) {
                     chooseResolution();
-					dialog.dismiss();
-				}
+                    dialog.dismiss();
+                }
             }
         });
     }
@@ -500,6 +500,12 @@ public class SDLActivity extends Activity implements OnKeyListener {
         resChooser.setPositiveButton("Start Download", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 downloadCardImagesStart();
+            }
+        });
+
+        resChooser.setNegativeButton("Change Selection", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                downloadCardImages();
             }
         });
 
@@ -530,11 +536,12 @@ public class SDLActivity extends Activity implements OnKeyListener {
                 paused = false;
                 if (selectedSets != null) {
                     for (int i = 0; i < selectedSets.size() && downloadInProgress; i++) {
-                        while(paused){
+                        while (paused) {
                             try {
                                 Thread.sleep(1000);
-                            } catch (InterruptedException e) {}
-                            if(!downloadInProgress)
+                            } catch (InterruptedException e) {
+                            }
+                            if (!downloadInProgress)
                                 break;
                         }
                         try {
@@ -594,7 +601,8 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         cardDownloader.setButton(DialogInterface.BUTTON_NEUTRAL, "Pause", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) { }
+            public void onClick(DialogInterface dialog, int which) {
+            }
         });
 
         final AlertDialog dialog = (AlertDialog) cardDownloader;
@@ -602,9 +610,8 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(!paused) {
+            public void onClick(View v) {
+                if (!paused) {
                     paused = true;
                     AlertDialog d = (AlertDialog) dialog;
                     d.getButton(AlertDialog.BUTTON_NEUTRAL).setText("Resume");
