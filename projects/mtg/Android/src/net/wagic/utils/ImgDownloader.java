@@ -354,7 +354,9 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/DST/-2819-hr.jpg";
         else if (id.equals("4977512"))
             cardurl = "https://deckmaster.info/images/cards/DST/-2818-hr.jpg";
-
+        else if(id.equals("439454"))
+            cardurl = "https://deckmaster.info/images/cards/UST/439454-hr.jpg";
+        
         return cardurl;
     }
 
