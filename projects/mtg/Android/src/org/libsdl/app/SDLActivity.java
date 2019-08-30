@@ -365,6 +365,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
     boolean[] checkedSet;
     Integer totalset = 0;
     boolean finished = false;
+    boolean finished2 = false;
     boolean loadResInProgress = false;
     ProgressDialog progressBarDialogRes;
 
@@ -421,7 +422,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                 progressBarDialogRes.dismiss();
                 mHandler.post(new Runnable() {
                     public void run() {
-                        while (!finished) {
+                        while (!finished || !finished2) {
                             try {
                                 Thread.sleep(5000);
                             } catch (Exception e) {
@@ -431,6 +432,13 @@ public class SDLActivity extends Activity implements OnKeyListener {
                         downloadCardImages();
                     }
                 });
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            public void run() {
+                ImgDownloader.loadDatabase(getSystemStorageLocation());
+                finished2 = true;
             }
         }).start();
 

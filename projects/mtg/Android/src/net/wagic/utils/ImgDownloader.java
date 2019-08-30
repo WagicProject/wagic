@@ -66,6 +66,202 @@ public class ImgDownloader {
         return contentBuilder.toString();
     }
 
+    static HashMap<String, HashMap<String, String>> database;
+
+    public static void loadDatabase(String path){
+        database = new HashMap<String, HashMap<String, String>>();
+        try {
+            String databaseurl = "https://github.com/Vitty85/wagic/releases/download/wagic-v0.21.1/CardImageLinks.csv";
+            URL url = new URL(databaseurl);
+            HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
+            if(httpcon == null) {
+                database = null;
+                return;
+            }
+            httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+            InputStream in;
+            try{
+                in = new BufferedInputStream(httpcon.getInputStream());
+            }catch(Exception ex){
+                try {
+                    in = new BufferedInputStream(httpcon.getInputStream());
+                } catch (Exception ex2) {
+                    try {
+                        in = new BufferedInputStream(httpcon.getInputStream());
+                    } catch (Exception ex3) {
+                        database = null;
+                        return;
+                    }
+                }
+            }
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int n = 0;
+            while (-1 != (n = in.read(buf))) {
+                out.write(buf, 0, n);
+            }
+            out.close();
+            in.close();
+
+            byte[] response = out.toByteArray();
+            String databasepath = path + File.separator + "CardImageLinks.csv";
+            FileOutputStream fos = new FileOutputStream(databasepath);
+            fos.write(response);
+            fos.close();
+
+            String lines = readLineByLineJava8(databasepath);
+            String[] rows = lines.split("\n");
+            for(int i = 1; i < rows.length; i++){
+                String[] cols = rows[i].split(";");
+                if(database.get(cols[0]) == null)
+                    database.put(cols[0], new HashMap<String, String>());
+                database.get(cols[0]).put(cols[1], cols[2]);
+            }
+            File del = new File(databasepath);
+            del.delete();
+        } catch (Exception e) {
+            database = null;
+        }
+    }
+
+    public static boolean fastDownloadCard(String set, String id, String name, String imgPath, String thumbPath, int ImgX, int ImgY, int ThumbX, int ThumbY){
+        if(database == null)
+            return false;
+        HashMap<String, String> subdb = database.get(set);
+        if(subdb == null)
+            return false;
+        String imageurl = subdb.get(id);
+        if(imageurl == null)
+            return false;
+        try{
+            URL url = new URL(imageurl);
+            HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
+            if(httpcon == null) {
+                System.err.println("Error: Problem fetching card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will not download it...");
+                return false;
+            }
+            httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+            InputStream in;
+            try{
+                in = new BufferedInputStream(httpcon.getInputStream());
+            }catch(Exception ex){
+                System.err.println("Warning: Problem downloading card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will retry 2 times more...");
+                try {
+                    in = new BufferedInputStream(httpcon.getInputStream());
+                } catch (Exception ex2) {
+                    System.err.println("Warning: Problem downloading card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will retry 1 time more...");
+                    try {
+                        in = new BufferedInputStream(httpcon.getInputStream());
+                    } catch (Exception ex3) {
+                        System.err.println("Error: Problem downloading card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will not retry anymore...");
+                        return false;
+                    }
+                }
+            }
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int n = 0;
+            while (-1 != (n = in.read(buf))) {
+                out.write(buf, 0, n);
+            }
+            out.close();
+            in.close();
+            byte[] response = out.toByteArray();
+            String cardimage = imgPath + File.separator + id + ".jpg";
+            String thumbcardimage = thumbPath + File.separator + id + ".jpg";
+            if (id.equals("11492111") || id.equals("11492112") || id.equals("11492113") ||
+                    id.equals("11492114") || id.equals("11492115")) {
+                cardimage = imgPath + File.separator + id + "t.jpg";
+                thumbcardimage = thumbPath + File.separator + id + "t.jpg";
+            }
+            FileOutputStream fos = new FileOutputStream(cardimage);
+            fos.write(response);
+            fos.close();
+
+            Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
+            Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
+            try {
+                FileOutputStream fout = new FileOutputStream(cardimage);
+                resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmap, ThumbX, ThumbY, true);
+            try {
+                FileOutputStream fout = new FileOutputStream(thumbcardimage);
+                resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }catch (Exception e){
+            System.err.println("Error: Problem fetching card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will not download it...");
+            return false;
+        }
+        imageurl = subdb.get(id + "t");
+        if(imageurl != null && !imageurl.isEmpty()){
+            System.err.println("The card: " + name + " (" + id + ".jpg) can create a token, i will try to download that image too as " + id + "t.jpg");
+            try{
+                URL url = new URL(imageurl);
+                HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
+                if(httpcon == null) {
+                    System.err.println("Error: Problem fetching token: " + id + "t.jpg from " + imageurl + ", i will not download it...");
+                    return false;
+                }
+                httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+                InputStream intoken;
+                try{
+                    intoken = new BufferedInputStream(httpcon.getInputStream());
+                }catch(Exception ex){
+                    System.err.println("Warning: Problem downloading token: " + id + "t.jpg from " + imageurl + ", i will retry 2 times more...");
+                    try {
+                        intoken = new BufferedInputStream(httpcon.getInputStream());
+                    } catch (Exception ex2) {
+                        System.err.println("Warning: Problem downloading token: " + id + "t.jpg from " + imageurl + ", i will retry 1 time more...");
+                        try {
+                            intoken = new BufferedInputStream(httpcon.getInputStream());
+                        } catch (Exception ex3) {
+                            System.err.println("Error: Problem downloading token: " + id + "t.jpg from " + imageurl + ", i will not retry anymore...");
+                            return false;
+                        }
+                    }
+                }
+                ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
+                byte[] buftoken = new byte[1024];
+                int ntoken = 0;
+                while (-1 != (ntoken = intoken.read(buftoken))) {
+                    outtoken.write(buftoken, 0, ntoken);
+                }
+                outtoken.close();
+                intoken.close();
+                byte[] responsetoken = outtoken.toByteArray();
+                String tokenimage = imgPath + File.separator + id + "t.jpg";
+                String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
+                FileOutputStream fos2 = new FileOutputStream(tokenimage);
+                fos2.write(responsetoken);
+                fos2.close();
+                Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
+                Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
+                try {
+                    FileOutputStream fout = new FileOutputStream(tokenimage);
+                    resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapToken, ThumbX, ThumbY, true);
+                try {
+                    FileOutputStream fout = new FileOutputStream(tokenthumbimage);
+                    resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }catch (Exception e){
+                System.err.println("Error: Problem fetching token: " + id + "t.jpg from " + imageurl + ", i will not download it...");
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static String getSetInfo(String setName, boolean zipped, String path) {
         String cardsfilepath = "";
         boolean todelete = false;
@@ -149,11 +345,11 @@ public class ImgDownloader {
         if(id.equals("15208711"))
             cardurl = "https://img.scryfall.com/cards/large/front/9/c/9c138bf9-8be6-4f1a-a82c-a84938ab84f5.jpg?1562279137";
         else if(id.equals("15208712"))
-            cardurl = "https://img.scryfall.com/cards/normal/front/d/4/d453ee89-6122-4d51-989c-e78b046a9de3.jpg?1561758141";
+            cardurl = "https://img.scryfall.com/cards/large/front/d/4/d453ee89-6122-4d51-989c-e78b046a9de3.jpg?1561758141";
         else if(id.equals("2050321"))
             cardurl = "https://img.scryfall.com/cards/large/front/1/8/18b9c83d-4422-4b95-9fc2-070ed6b5bdf6.jpg?1562701921";
         else if(id.equals("22010012"))
-            cardurl = "https://img.scryfall.com/cards/normal/front/8/4/84dc847c-7a37-4c7f-b02c-30b3e4c91fb6.jpg?1561757490";
+            cardurl = "https://img.scryfall.com/cards/large/front/8/4/84dc847c-7a37-4c7f-b02c-30b3e4c91fb6.jpg?1561757490";
         else if(id.equals("8759611"))
             cardurl = "https://img.scryfall.com/cards/large/front/4/1/41004bdf-8e09-4b2c-9e9c-26c25eac9854.jpg?1562493483";
         else if(id.equals("8759911"))
@@ -161,7 +357,7 @@ public class ImgDownloader {
         else if(id.equals("8759511"))
             cardurl = "https://img.scryfall.com/cards/large/front/d/2/d224c50f-8146-4c91-9401-04e5bd306d02.jpg?1562496100";
         else if(id.equals("8471611"))
-            cardurl = "https://img.scryfall.com/cards/png/front/8/4/84920a21-ee2a-41ac-a369-347633d10371.png?1562494702";
+            cardurl = "https://img.scryfall.com/cards/large/front/8/4/84920a21-ee2a-41ac-a369-347633d10371.jpg?1562494702";
         else if(id.equals("8760011"))
             cardurl = "https://img.scryfall.com/cards/large/front/4/2/42ba0e13-d20f-47f9-9c86-2b0b13c39ada.jpg?1562493487";
         else if(id.equals("7448911"))
@@ -516,7 +712,7 @@ public class ImgDownloader {
         else if(id.equals("426897t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/a/8/a8f339c6-2c0d-4631-849b-44d4360b5131.jpg?1562844814";
         else if(id.equals("457139t"))
-            tokenurl = "https://img.scryfall.com/cards/normal/front/1/0/105e687e-7196-4010-a6b7-cfa42d998fa4.jpg?1560096976";
+            tokenurl = "https://img.scryfall.com/cards/large/front/1/0/105e687e-7196-4010-a6b7-cfa42d998fa4.jpg?1560096976";
         else if(id.equals("470549t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/7/7/7711a586-37f9-4560-b25d-4fb339d9cd55.jpg?1565299650";
         else if(id.equals("113527t") || id.equals("376321t"))
@@ -525,7 +721,7 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/b/5/b5ddb67c-82fb-42d6-a4c2-11cd38eb128d.jpg?1562702281";
         else if(id.equals("8862t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/d/b/dbf33cc3-254f-4c5c-be22-3a2d96f29b80.jpg?1562936030";
-        else if(id.equals("376421t") && id.equals("213757t") && id.equals("213734t") && id.equals("221554t") || id.equals("48049t") || id.equals("46160t"))
+        else if(id.equals("376421t") || id.equals("213757t") || id.equals("213734t") || id.equals("221554t") || id.equals("48049t") || id.equals("46160t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/f/3/f32ad93f-3fd5-465c-ac6a-6f8fb57c19bd.jpg?1561758422";
         else if(id.equals("247393t") || id.equals("247399t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/1/f/1feaa879-ceb3-4b20-8021-ae41d8be9005.jpg?1562636755";
@@ -1022,6 +1218,8 @@ public class ImgDownloader {
 
             String id = mappa.keySet().toArray()[y].toString();
             progressBarDialog.incrementProgressBy((int) (1));
+            if(fastDownloadCard(scryset, id, mappa.get(id), imgPath.getAbsolutePath(), thumbPath.getAbsolutePath(), ImgX, ImgY, ThumbX, ThumbY))
+                continue;
             String specialcardurl = getSpecialCardUrl(id);
             if (!specialcardurl.isEmpty()) {
                 URL url = new URL(specialcardurl);
@@ -1035,15 +1233,15 @@ public class ImgDownloader {
                 try {
                     in = new BufferedInputStream(httpcon.getInputStream());
                 } catch (Exception ex) {
-                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 2 times more...");
                     try {
                         in = new BufferedInputStream(url.openStream());
                     } catch (Exception ex2) {
-                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 1 time more...");
                         try {
                             in = new BufferedInputStream(url.openStream());
                         } catch (Exception ex3) {
-                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
+                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
                             break;
                         }
                     }
@@ -1183,7 +1381,7 @@ public class ImgDownloader {
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 2 times more...");
                     try {
                         doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                         Elements outlinks = doc.select("body a");
@@ -1210,7 +1408,7 @@ public class ImgDownloader {
                             }
                         }
                     } catch (Exception e2) {
-                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 1 time more...");
                         try {
                             doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             Elements outlinks = doc.select("body a");
@@ -1237,7 +1435,7 @@ public class ImgDownloader {
                                 }
                             }
                         } catch (Exception e3) {
-                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
+                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
                             continue;
                         }
                     }
@@ -1246,15 +1444,15 @@ public class ImgDownloader {
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
-                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 2 times more...");
                     try {
                         doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     } catch (Exception e2) {
-                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 1 time more...");
                         try {
                             doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                         } catch (Exception e3) {
-                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
+                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
                             res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                             continue;
                         }
@@ -1263,13 +1461,13 @@ public class ImgDownloader {
             }
 
             if (doc == null) {
-                System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not download it...");
+                System.err.println("Error: Problem fetching card: " + mappa.get(id) + " (" + id + ".jpg), i will not download it...");
                 continue;
             }
 
             Elements imgs = doc.select("body img");
             if (imgs == null) {
-                System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not download it...");
+                System.err.println("Error: Problem fetching card: " + mappa.get(id) + " (" + id + ".jpg), i will not download it...");
                 continue;
             }
 
@@ -1290,10 +1488,11 @@ public class ImgDownloader {
                     String CardImage = imgs.get(i).attributes().get("src");
                     if (CardImage.isEmpty())
                         CardImage = imgs.get(i).attributes().get("data-src");
+                    CardImage = CardImage.replace("/normal/", "/large/");
                     URL url = new URL(CardImage);
                     HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
                     if (httpcon == null) {
-                        System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + ", i will not download it...");
+                        System.err.println("Error: Problem fetching card: " + mappa.get(id) + " (" + id + ".jpg), i will not download it...");
                         break;
                     }
                     httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
@@ -1301,15 +1500,15 @@ public class ImgDownloader {
                     try {
                         in = new BufferedInputStream(httpcon.getInputStream());
                     } catch (IOException ex) {
-                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 2 times more...");
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 2 times more...");
                         try {
                             in = new BufferedInputStream(httpcon.getInputStream());
                         } catch (IOException ex2) {
-                            System.out.println("Warning: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will retry 1 time more...");
+                            System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 1 time more...");
                             try {
                                 in = new BufferedInputStream(httpcon.getInputStream());
                             } catch (IOException ex3) {
-                                System.err.println("Error: Problem downloading card: " + mappa.get(id) + "-" + id + " from " + scryset + " on ScryFall, i will not retry anymore...");
+                                System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
                                 break;
                             }
                         }
@@ -1541,7 +1740,7 @@ public class ImgDownloader {
                             try {
                                 doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             } catch (Exception ex) {
-                                System.err.println("Error: Problem occurring while searching for token: " + nametoken + "-" + id + "t, i will not download it...");
+                                System.err.println("Error: Problem occurring while searching for token: " + nametoken + " (" + id + "t.jpg), i will not download it...");
                                 break;
                             }
                             if (doc == null)
@@ -1591,12 +1790,13 @@ public class ImgDownloader {
                                 String CardImageToken = imgstoken.get(p).attributes().get("src");
                                 if (CardImageToken.isEmpty())
                                     CardImageToken = imgstoken.get(p).attributes().get("data-src");
+                                CardImageToken = CardImageToken.replace("/normal/", "/large/");
                                 URL urltoken = new URL(CardImageToken);
                                 if (!specialtokenurl.isEmpty())
                                     urltoken = new URL(specialtokenurl);
                                 HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
                                 if (httpcontoken == null) {
-                                    System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will not download it...");
+                                    System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not download it...");
                                     break;
                                 }
                                 httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
@@ -1604,15 +1804,15 @@ public class ImgDownloader {
                                 try {
                                     intoken = new BufferedInputStream(httpcontoken.getInputStream());
                                 } catch (IOException ex) {
-                                    System.out.println("Warning: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 2 times more...");
+                                    System.out.println("Warning: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will retry 2 times more...");
                                     try {
                                         intoken = new BufferedInputStream(httpcontoken.getInputStream());
                                     } catch (IOException ex2) {
-                                        System.out.println("Warning: Problem downloading token: " + nametoken + "-" + id + "t, i will retry 1 time more...");
+                                        System.out.println("Warning: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will retry 1 time more...");
                                         try {
                                             intoken = new BufferedInputStream(httpcontoken.getInputStream());
                                         } catch (IOException ex3) {
-                                            System.err.println("Error: Problem downloading token: " + nametoken + "-" + id + "t, i will not retry anymore...");
+                                            System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not retry anymore...");
                                             break;
                                         }
                                     }
@@ -1629,7 +1829,7 @@ public class ImgDownloader {
                                 String tokenimage = imgPath + File.separator + id + "t.jpg";
                                 String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
                                 if (!tokenfound && !id.equals("464007")) {
-                                    System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t) i will use the same image of its source card");
+                                    System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg) i will use the same image of its source card");
                                 }
                                 FileOutputStream fos2 = new FileOutputStream(tokenimage);
                                 fos2.write(responsetoken);
@@ -1650,7 +1850,6 @@ public class ImgDownloader {
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-
                                 break;
                             }
                         }
