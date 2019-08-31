@@ -1218,7 +1218,7 @@ public class ImgDownloader {
 
             String id = mappa.keySet().toArray()[y].toString();
             progressBarDialog.incrementProgressBy((int) (1));
-            if(fastDownloadCard(scryset, id, mappa.get(id), imgPath.getAbsolutePath(), thumbPath.getAbsolutePath(), ImgX, ImgY, ThumbX, ThumbY))
+            if(fastDownloadCard(set, id, mappa.get(id), imgPath.getAbsolutePath(), thumbPath.getAbsolutePath(), ImgX, ImgY, ThumbX, ThumbY))
                 continue;
             String specialcardurl = getSpecialCardUrl(id);
             if (!specialcardurl.isEmpty()) {
