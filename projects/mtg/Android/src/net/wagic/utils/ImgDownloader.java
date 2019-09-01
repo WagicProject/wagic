@@ -755,8 +755,6 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/RTR/-61-hr.jpg";
         else if(id.equals("48096t"))
             tokenurl = "https://deckmaster.info/images/cards/CNS/-89-hr.jpg";
-        else if(id.equals("439538t"))
-            tokenurl = "https://deckmaster.info/images/cards/ISD/-174-hr.jpg";
         else if(id.equals("423817t") || id.equals("423700t") || id.equals("183017t") || id.equals("6164t"))
             tokenurl = "https://deckmaster.info/images/cards/MBS/-216-hr.jpg";
         else if(id.equals("140233t") || id.equals("191239t") || id.equals("205957t") || id.equals("423797t"))
