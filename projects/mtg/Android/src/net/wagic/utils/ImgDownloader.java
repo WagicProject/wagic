@@ -145,6 +145,11 @@ public class ImgDownloader {
                 return false;
             }
             httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+            httpcon.setConnectTimeout(5000);
+            httpcon.setReadTimeout(5000);
+            httpcon.setAllowUserInteraction(false);
+            httpcon.setDoInput(true);
+            httpcon.setDoOutput(false);
             InputStream in;
             try {
                 in = new BufferedInputStream(httpcon.getInputStream());
@@ -208,20 +213,23 @@ public class ImgDownloader {
             FileOutputStream fos = new FileOutputStream(cardimage);
             fos.write(response);
             fos.close();
-            Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
-            Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
             try {
+                Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
+                Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
                 FileOutputStream fout = new FileOutputStream(cardimage);
                 resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Warning: Problem resizing card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will try with slow method...");
+                return false;
             }
-            Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmap, ThumbX, ThumbY, true);
             try {
+                Bitmap yourBitmapThumb = BitmapFactory.decodeFile(cardimage);
+                Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmapThumb, ThumbX, ThumbY, true);
                 FileOutputStream fout = new FileOutputStream(thumbcardimage);
                 resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Warning: Problem resizing card thumbnail: " + name + " (" + id + ".jpg) from " + imageurl + ", i will try with slow method...");
+                return false;
             }
         } catch (Exception e) {
             System.out.println("Warning: Problem fetching card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will try with slow method...");
@@ -242,6 +250,11 @@ public class ImgDownloader {
                     return false;
                 }
                 httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+                httpcon.setConnectTimeout(5000);
+                httpcon.setReadTimeout(5000);
+                httpcon.setAllowUserInteraction(false);
+                httpcon.setDoInput(true);
+                httpcon.setDoOutput(false);
                 InputStream intoken;
                 try {
                     intoken = new BufferedInputStream(httpcon.getInputStream());
@@ -273,20 +286,23 @@ public class ImgDownloader {
                 FileOutputStream fos2 = new FileOutputStream(tokenimage);
                 fos2.write(responsetoken);
                 fos2.close();
-                Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
-                Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
                 try {
+                    Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
+                    Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
                     FileOutputStream fout = new FileOutputStream(tokenimage);
                     resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    System.out.println("Warning: Problem resizing token: " + id + "t.jpg) from " + imageurl + ", i will try with slow method...");
+                    return false;
                 }
-                Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapToken, ThumbX, ThumbY, true);
                 try {
+                    Bitmap yourBitmapTokenThumb = BitmapFactory.decodeFile(tokenimage);
+                    Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapTokenThumb, ThumbX, ThumbY, true);
                     FileOutputStream fout = new FileOutputStream(tokenthumbimage);
                     resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    System.out.println("Warning: Problem resizing token thumbnail: " + id + "t.jpg) from " + imageurl + ", i will try with slow method...");
+                    return false;
                 }
             } catch (Exception e) {
                 System.out.println("Warning: Problem fetching token: " + id + "t.jpg from " + imageurl + ", i will try with slow method...");
@@ -484,6 +500,10 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/M15/-108-hr.jpg";
         else if (id.equals("74272"))
             cardurl = "https://img.scryfall.com/cards/large/front/4/5/45af7f55-9a69-43dd-969f-65411711b13e.jpg?1562487939";
+        else if(id.equals("378445t"))
+            cardurl = "https://deckmaster.info/images/cards/BNG/-11-hr.jpg";
+        else if(id.equals("378521t"))
+            cardurl = "https://deckmaster.info/images/cards/DDO/394383-hr.jpg";
         else if (id.equals("687701"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2437-hr.jpg";
         else if (id.equals("687702"))
@@ -1408,9 +1428,15 @@ public class ImgDownloader {
                 HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
                 if (httpcon == null) {
                     System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + ", i will not download it...");
+                    res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                     break;
                 }
                 httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+                httpcon.setConnectTimeout(5000);
+                httpcon.setReadTimeout(5000);
+                httpcon.setAllowUserInteraction(false);
+                httpcon.setDoInput(true);
+                httpcon.setDoOutput(false);
                 InputStream in = null;
                 try {
                     in = new BufferedInputStream(httpcon.getInputStream());
@@ -1424,6 +1450,7 @@ public class ImgDownloader {
                             in = new BufferedInputStream(url.openStream());
                         } catch (Exception ex3) {
                             System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
+                            res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                             break;
                         }
                     }
@@ -1442,20 +1469,23 @@ public class ImgDownloader {
                 FileOutputStream fos = new FileOutputStream(cardimage);
                 fos.write(response);
                 fos.close();
-                Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
-                Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
                 try {
+                    Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
+                    Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
                     FileOutputStream fout = new FileOutputStream(cardimage);
                     resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    System.err.println("Warning: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
+                    res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                 }
-                Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmap, ThumbX, ThumbY, true);
                 try {
+                    Bitmap yourBitmapthumb = BitmapFactory.decodeFile(cardimage);
+                    Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmapthumb, ThumbX, ThumbY, true);
                     FileOutputStream fout = new FileOutputStream(thumbcardimage);
                     resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    System.err.println("Warning: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg, image may be corrupted...");
+                    res = mappa.get(id) + " - " + set + File.separator + "thumbnails" + File.separator + id + ".jpg\n" + res;
                 }
                 continue;
             }
@@ -1472,17 +1502,20 @@ public class ImgDownloader {
                         doc = Jsoup.connect(baseurl + id).get();
                     } catch (Exception e3) {
                         System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
+                        res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                         continue;
                     }
                 }
             }
             if (doc == null) {
                 System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
+                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                 continue;
             }
             Elements divs = doc.select("body div");
             if (divs == null) {
                 System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
+                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                 continue;
             }
 
@@ -1492,6 +1525,7 @@ public class ImgDownloader {
                     break;
             if (k >= divs.size()) {
                 System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
+                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                 continue;
             }
             String cardname = divs.get(k + 1).childNode(0).attributes().get("#text").replace("\r\n", "").trim();
@@ -1526,6 +1560,7 @@ public class ImgDownloader {
                             doc = Jsoup.connect(deckutrl + id).get();
                         } catch (Exception e3) {
                             System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + deckutrl + id + ", i will not retry anymore...");
+                            res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                             continue;
                         }
                     }
@@ -1612,6 +1647,7 @@ public class ImgDownloader {
                             }
                         } catch (Exception e3) {
                             System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
+                            res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                             continue;
                         }
                     }
@@ -1638,12 +1674,14 @@ public class ImgDownloader {
 
             if (doc == null) {
                 System.err.println("Error: Problem fetching card: " + mappa.get(id) + " (" + id + ".jpg), i will not download it...");
+                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                 continue;
             }
 
             Elements imgs = doc.select("body img");
             if (imgs == null) {
                 System.err.println("Error: Problem fetching card: " + mappa.get(id) + " (" + id + ".jpg), i will not download it...");
+                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                 continue;
             }
 
@@ -1669,9 +1707,15 @@ public class ImgDownloader {
                     HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
                     if (httpcon == null) {
                         System.err.println("Error: Problem fetching card: " + mappa.get(id) + " (" + id + ".jpg), i will not download it...");
+                        res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                         break;
                     }
                     httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+                    httpcon.setConnectTimeout(5000);
+                    httpcon.setReadTimeout(5000);
+                    httpcon.setAllowUserInteraction(false);
+                    httpcon.setDoInput(true);
+                    httpcon.setDoOutput(false);
                     InputStream in = null;
                     try {
                         in = new BufferedInputStream(httpcon.getInputStream());
@@ -1685,6 +1729,7 @@ public class ImgDownloader {
                                 in = new BufferedInputStream(httpcon.getInputStream());
                             } catch (IOException ex3) {
                                 System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
+                                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                                 break;
                             }
                         }
@@ -1703,21 +1748,23 @@ public class ImgDownloader {
                     FileOutputStream fos = new FileOutputStream(cardimage);
                     fos.write(response);
                     fos.close();
-
-                    Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
-                    Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
                     try {
+                        Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
+                        Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
                         FileOutputStream fout = new FileOutputStream(cardimage);
                         resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } catch (Exception e) {
+                        System.err.println("Warning: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
+                        res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
                     }
-                    Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmap, ThumbX, ThumbY, true);
                     try {
+                        Bitmap yourBitmapthumb = BitmapFactory.decodeFile(cardimage);
+                        Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmapthumb, ThumbX, ThumbY, true);
                         FileOutputStream fout = new FileOutputStream(thumbcardimage);
                         resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } catch (Exception e) {
+                        System.err.println("Warning: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
+                        res = mappa.get(id) + " - " + set + File.separator + "thumbnails" + File.separator + id + ".jpg\n" + res;
                     }
                     String text = "";
                     for (k = 0; k < divs.size(); k++)
@@ -1917,6 +1964,7 @@ public class ImgDownloader {
                                 doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                             } catch (Exception ex) {
                                 System.err.println("Error: Problem occurring while searching for token: " + nametoken + " (" + id + "t.jpg), i will not download it...");
+                                res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
                                 break;
                             }
                             if (doc == null)
@@ -1973,9 +2021,15 @@ public class ImgDownloader {
                                 HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
                                 if (httpcontoken == null) {
                                     System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not download it...");
+                                    res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
                                     break;
                                 }
                                 httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
+                                httpcontoken.setConnectTimeout(5000);
+                                httpcontoken.setReadTimeout(5000);
+                                httpcontoken.setAllowUserInteraction(false);
+                                httpcontoken.setDoInput(true);
+                                httpcontoken.setDoOutput(false);
                                 InputStream intoken = null;
                                 try {
                                     intoken = new BufferedInputStream(httpcontoken.getInputStream());
@@ -1989,6 +2043,7 @@ public class ImgDownloader {
                                             intoken = new BufferedInputStream(httpcontoken.getInputStream());
                                         } catch (IOException ex3) {
                                             System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not retry anymore...");
+                                            res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
                                             break;
                                         }
                                     }
@@ -2006,25 +2061,28 @@ public class ImgDownloader {
                                 String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
                                 if (!tokenfound && !id.equals("464007")) {
                                     System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg) i will use the same image of its source card");
+                                    res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
                                 }
                                 FileOutputStream fos2 = new FileOutputStream(tokenimage);
                                 fos2.write(responsetoken);
                                 fos2.close();
-
-                                Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
-                                Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
                                 try {
+                                    Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
+                                    Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
                                     FileOutputStream fout = new FileOutputStream(tokenimage);
                                     resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                } catch (Exception e) {
+                                    System.err.println("Warning: Problem resizing token: " + id + "t.jpg, image may be corrupted...");
+                                    res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
                                 }
-                                Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapToken, ThumbX, ThumbY, true);
                                 try {
+                                    Bitmap yourBitmapTokenthumb = BitmapFactory.decodeFile(tokenimage);
+                                    Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapTokenthumb, ThumbX, ThumbY, true);
                                     FileOutputStream fout = new FileOutputStream(tokenthumbimage);
                                     resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                } catch (Exception e) {
+                                    System.err.println("Warning: Problem resizing token thumbnail: " + id + "t.jpg, image may be corrupted...");
+                                    res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
                                 }
                                 break;
                             }
