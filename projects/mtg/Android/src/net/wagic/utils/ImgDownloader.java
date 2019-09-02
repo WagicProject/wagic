@@ -1309,8 +1309,7 @@ public class ImgDownloader {
                     set.equals("UNH") || set.equals("XLN") || set.equals("SOI") || set.equals("SOK") ||
                     set.equals("BOK") || set.equals("CHK"))
                 rarity = "";
-            if(id != null && (id.equals("262857") || id.equals("209162") || id.equals("209163") || id.equals("401721") ||
-                    id.equals("401722") || id.equals("75291")))
+            if(id != null && (id.equals("209162") || id.equals("209163") || id.equals("401721") || id.equals("401722")))
                 rarity = "t";
             int c = lines.indexOf("[/card]", lastIndex);
             if (c > 0)
