@@ -68,17 +68,23 @@ public class ImgDownloader {
 
     static HashMap<String, HashMap<String, String>> database;
 
-    public static void loadDatabase(String path) {
+    public static boolean loadDatabase(String path) {
         database = new HashMap<String, HashMap<String, String>>();
         try {
             String databaseurl = "https://github.com/Vitty85/wagic/releases/download/wagic-v0.21.1/CardImageLinks.csv";
             URL url = new URL(databaseurl);
             HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
             if (httpcon == null) {
+                System.err.println("Error: Problem downloading or initializing database file, i will use the slow method...");
                 database = null;
-                return;
+                return false;
             }
             httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+            httpcon.setConnectTimeout(30000);
+            httpcon.setReadTimeout(30000);
+            httpcon.setAllowUserInteraction(false);
+            httpcon.setDoInput(true);
+            httpcon.setDoOutput(false);
             InputStream in;
             try {
                 in = new BufferedInputStream(httpcon.getInputStream());
@@ -89,20 +95,52 @@ public class ImgDownloader {
                     try {
                         in = new BufferedInputStream(httpcon.getInputStream());
                     } catch (Exception ex3) {
+                        System.err.println("Error: Problem downloading or initializing database file, i will use the slow method...");
                         database = null;
-                        return;
+                        return false;
                     }
                 }
             }
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] buf = new byte[1024];
             int n = 0;
-            while (-1 != (n = in.read(buf))) {
+            long millis = System.currentTimeMillis();
+            boolean timeout = false;
+            while (-1 != (n = in.read(buf)) && !timeout) {
                 out.write(buf, 0, n);
+                if (System.currentTimeMillis() - millis > 30000)
+                    timeout = true;
+            }
+            if (timeout) {
+                System.out.println("Warning: Timeout downloading database file, i will retry 2 times more...");
+                buf = new byte[1024];
+                n = 0;
+                millis = System.currentTimeMillis();
+                timeout = false;
+                while (-1 != (n = in.read(buf)) && !timeout) {
+                    out.write(buf, 0, n);
+                    if (System.currentTimeMillis() - millis > 30000)
+                        timeout = true;
+                }
+                if (timeout) {
+                    System.out.println("Warning: Timeout downloading database file, i will retry 1 time more...");
+                    buf = new byte[1024];
+                    n = 0;
+                    millis = System.currentTimeMillis();
+                    timeout = false;
+                    while (-1 != (n = in.read(buf)) && !timeout) {
+                        out.write(buf, 0, n);
+                        if (System.currentTimeMillis() - millis > 30000)
+                            timeout = true;
+                    }
+                }
             }
             out.close();
             in.close();
-
+            if (timeout) {
+                System.err.println("Error: Timeout downloading database file, i will use the slow method...");
+                return false;
+            }
             byte[] response = out.toByteArray();
             String databasepath = path + File.separator + "CardImageLinks.csv";
             FileOutputStream fos = new FileOutputStream(databasepath);
@@ -120,8 +158,11 @@ public class ImgDownloader {
             File del = new File(databasepath);
             del.delete();
         } catch (Exception e) {
+            System.err.println("Error: Problem downloading or initializing database file, i will use the slow method...");
             database = null;
+            return false;
         }
+        return true;
     }
 
     public static boolean fastDownloadCard(String set, String id, String name, String imgPath, String thumbPath, int ImgX, int ImgY, int ThumbX, int ThumbY) {
@@ -178,7 +219,7 @@ public class ImgDownloader {
                     timeout = true;
             }
             if (timeout) {
-                System.out.println("Warning: Timeout downloading token: " + id + "t.jpg from " + imageurl + ", i will retry 2 times more...");
+                System.out.println("Warning: Problem downloading card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will retry 2 times more...");
                 buf = new byte[1024];
                 n = 0;
                 millis = System.currentTimeMillis();
@@ -189,7 +230,7 @@ public class ImgDownloader {
                         timeout = true;
                 }
                 if (timeout) {
-                    System.out.println("Warning: Timeout downloading token: " + id + "t.jpg from " + imageurl + ", i will retry 1 time more...");
+                    System.out.println("Warning: Problem downloading card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will retry 1 time more...");
                     buf = new byte[1024];
                     n = 0;
                     millis = System.currentTimeMillis();
@@ -199,11 +240,11 @@ public class ImgDownloader {
                         if (System.currentTimeMillis() - millis > 10000)
                             timeout = true;
                     }
-                    if (timeout) {
-                        System.out.println("Warning: Timeout downloading token: " + id + "t.jpg from " + imageurl + ", i will try with slow method...");
-                        return false;
-                    }
                 }
+            }
+            if (timeout) {
+                System.out.println("Warning: Problem downloading card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will try with slow method...");
+                return false;
             }
             out.close();
             in.close();
@@ -275,11 +316,43 @@ public class ImgDownloader {
                 ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
                 byte[] buftoken = new byte[1024];
                 int ntoken = 0;
-                while (-1 != (ntoken = intoken.read(buftoken))) {
+                long millis = System.currentTimeMillis();
+                boolean timeout = false;
+                while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
                     outtoken.write(buftoken, 0, ntoken);
+                    if (System.currentTimeMillis() - millis > 10000)
+                        timeout = true;
+                }
+                if (timeout) {
+                    System.out.println("Warning: Problem downloading token: " + id + "t.jpg from " + imageurl + ", i will retry 2 times more...");
+                    buftoken = new byte[1024];
+                    ntoken = 0;
+                    millis = System.currentTimeMillis();
+                    timeout = false;
+                    while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
+                        outtoken.write(buftoken, 0, ntoken);
+                        if (System.currentTimeMillis() - millis > 10000)
+                            timeout = true;
+                    }
+                    if (timeout) {
+                        System.out.println("Warning: Problem downloading token: " + id + "t.jpg from " + imageurl + ", i will retry 1 time more...");
+                        buftoken = new byte[1024];
+                        ntoken = 0;
+                        millis = System.currentTimeMillis();
+                        timeout = false;
+                        while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
+                            outtoken.write(buftoken, 0, ntoken);
+                            if (System.currentTimeMillis() - millis > 10000)
+                                timeout = true;
+                        }
+                    }
                 }
                 outtoken.close();
                 intoken.close();
+                if (timeout) {
+                    System.out.println("Warning: Problem downloading token: " + id + "t.jpg from " + imageurl + ", i will try with slow method...");
+                    return false;
+                }
                 byte[] responsetoken = outtoken.toByteArray();
                 String tokenimage = imgPath + File.separator + id + "t.jpg";
                 String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
@@ -1454,11 +1527,43 @@ public class ImgDownloader {
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 byte[] buf = new byte[1024];
                 int n = 0;
-                while (-1 != (n = in.read(buf))) {
+                long millis = System.currentTimeMillis();
+                boolean timeout = false;
+                while (-1 != (n = in.read(buf)) && !timeout) {
                     out.write(buf, 0, n);
+                    if (System.currentTimeMillis() - millis > 10000)
+                        timeout = true;
+                }
+                if (timeout) {
+                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 2 times more...");
+                    buf = new byte[1024];
+                    n = 0;
+                    millis = System.currentTimeMillis();
+                    timeout = false;
+                    while (-1 != (n = in.read(buf)) && !timeout) {
+                        out.write(buf, 0, n);
+                        if (System.currentTimeMillis() - millis > 10000)
+                            timeout = true;
+                    }
+                    if (timeout) {
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 1 time more...");
+                        buf = new byte[1024];
+                        n = 0;
+                        millis = System.currentTimeMillis();
+                        timeout = false;
+                        while (-1 != (n = in.read(buf)) && !timeout) {
+                            out.write(buf, 0, n);
+                            if (System.currentTimeMillis() - millis > 10000)
+                                timeout = true;
+                        }
+                    }
                 }
                 out.close();
                 in.close();
+                if (timeout) {
+                    System.err.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg) from, i will not retry anymore...");
+                    break;
+                }
                 byte[] response = out.toByteArray();
                 String cardimage = imgPath + File.separator + id + ".jpg";
                 String thumbcardimage = thumbPath + File.separator + id + ".jpg";
@@ -1471,8 +1576,9 @@ public class ImgDownloader {
                     FileOutputStream fout = new FileOutputStream(cardimage);
                     resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                 } catch (Exception e) {
-                    System.err.println("Warning: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
+                    System.err.println("Error: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
                     res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
+                    break;
                 }
                 try {
                     Bitmap yourBitmapthumb = BitmapFactory.decodeFile(cardimage);
@@ -1480,8 +1586,9 @@ public class ImgDownloader {
                     FileOutputStream fout = new FileOutputStream(thumbcardimage);
                     resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                 } catch (Exception e) {
-                    System.err.println("Warning: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg, image may be corrupted...");
+                    System.err.println("Error: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg, image may be corrupted...");
                     res = mappa.get(id) + " - " + set + File.separator + "thumbnails" + File.separator + id + ".jpg\n" + res;
+                    break;
                 }
                 continue;
             }
@@ -1733,11 +1840,43 @@ public class ImgDownloader {
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
                     byte[] buf = new byte[1024];
                     int n = 0;
-                    while (-1 != (n = in.read(buf))) {
+                    long millis = System.currentTimeMillis();
+                    boolean timeout = false;
+                    while (-1 != (n = in.read(buf)) && !timeout) {
                         out.write(buf, 0, n);
+                        if (System.currentTimeMillis() - millis > 10000)
+                            timeout = true;
+                    }
+                    if (timeout) {
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 2 times more...");
+                        buf = new byte[1024];
+                        n = 0;
+                        millis = System.currentTimeMillis();
+                        timeout = false;
+                        while (-1 != (n = in.read(buf)) && !timeout) {
+                            out.write(buf, 0, n);
+                            if (System.currentTimeMillis() - millis > 10000)
+                                timeout = true;
+                        }
+                        if (timeout) {
+                            System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 1 time more...");
+                            buf = new byte[1024];
+                            n = 0;
+                            millis = System.currentTimeMillis();
+                            timeout = false;
+                            while (-1 != (n = in.read(buf)) && !timeout) {
+                                out.write(buf, 0, n);
+                                if (System.currentTimeMillis() - millis > 10000)
+                                    timeout = true;
+                            }
+                        }
                     }
                     out.close();
                     in.close();
+                    if (timeout) {
+                        System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg) from, i will not retry anymore...");
+                        break;
+                    }
                     byte[] response = out.toByteArray();
                     String cardimage = imgPath + File.separator + id + ".jpg";
                     String thumbcardimage = thumbPath + File.separator + id + ".jpg";
@@ -1750,8 +1889,9 @@ public class ImgDownloader {
                         FileOutputStream fout = new FileOutputStream(cardimage);
                         resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                     } catch (Exception e) {
-                        System.err.println("Warning: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
+                        System.err.println("Error: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
                         res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
+                        break;
                     }
                     try {
                         Bitmap yourBitmapthumb = BitmapFactory.decodeFile(cardimage);
@@ -1759,8 +1899,9 @@ public class ImgDownloader {
                         FileOutputStream fout = new FileOutputStream(thumbcardimage);
                         resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                     } catch (Exception e) {
-                        System.err.println("Warning: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
+                        System.err.println("Error: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
                         res = mappa.get(id) + " - " + set + File.separator + "thumbnails" + File.separator + id + ".jpg\n" + res;
+                        break;
                     }
                     String text = "";
                     for (k = 0; k < divs.size(); k++)
@@ -2047,11 +2188,43 @@ public class ImgDownloader {
                                 ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
                                 byte[] buftoken = new byte[1024];
                                 int ntoken = 0;
-                                while (-1 != (ntoken = intoken.read(buftoken))) {
+                                millis = System.currentTimeMillis();
+                                timeout = false;
+                                while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
                                     outtoken.write(buftoken, 0, ntoken);
+                                    if (System.currentTimeMillis() - millis > 10000)
+                                        timeout = true;
+                                }
+                                if (timeout) {
+                                    System.out.println("Warning: Problem downloading token: " + id + "t.jpg from, i will retry 2 times more...");
+                                    buftoken = new byte[1024];
+                                    ntoken = 0;
+                                    millis = System.currentTimeMillis();
+                                    timeout = false;
+                                    while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
+                                        outtoken.write(buftoken, 0, ntoken);
+                                        if (System.currentTimeMillis() - millis > 10000)
+                                            timeout = true;
+                                    }
+                                    if (timeout) {
+                                        System.out.println("Warning: Problem downloading token: " + id + "t.jpg from, i will retry 1 time more...");
+                                        buftoken = new byte[1024];
+                                        ntoken = 0;
+                                        millis = System.currentTimeMillis();
+                                        timeout = false;
+                                        while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
+                                            outtoken.write(buftoken, 0, ntoken);
+                                            if (System.currentTimeMillis() - millis > 10000)
+                                                timeout = true;
+                                        }
+                                    }
                                 }
                                 outtoken.close();
                                 intoken.close();
+                                if (timeout) {
+                                    System.err.println("Error: Problem downloading token: " + id + "t.jpg from, i will not retry anymore...");
+                                    break;
+                                }
                                 byte[] responsetoken = outtoken.toByteArray();
                                 String tokenimage = imgPath + File.separator + id + "t.jpg";
                                 String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
@@ -2068,8 +2241,9 @@ public class ImgDownloader {
                                     FileOutputStream fout = new FileOutputStream(tokenimage);
                                     resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                                 } catch (Exception e) {
-                                    System.err.println("Warning: Problem resizing token: " + id + "t.jpg, image may be corrupted...");
+                                    System.err.println("Error: Problem resizing token: " + id + "t.jpg, image may be corrupted...");
                                     res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
+                                    break;
                                 }
                                 try {
                                     Bitmap yourBitmapTokenthumb = BitmapFactory.decodeFile(tokenimage);
@@ -2077,8 +2251,9 @@ public class ImgDownloader {
                                     FileOutputStream fout = new FileOutputStream(tokenthumbimage);
                                     resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                                 } catch (Exception e) {
-                                    System.err.println("Warning: Problem resizing token thumbnail: " + id + "t.jpg, image may be corrupted...");
+                                    System.err.println("Error: Problem resizing token thumbnail: " + id + "t.jpg, image may be corrupted...");
                                     res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
+                                    break;
                                 }
                                 break;
                             }

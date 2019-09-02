@@ -368,6 +368,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
     boolean finished2 = false;
     boolean loadResInProgress = false;
     ProgressDialog progressBarDialogRes;
+    boolean fast = false;
 
     private void loadAvailableSets() {
         final Handler mHandler = new Handler();
@@ -429,7 +430,12 @@ public class SDLActivity extends Activity implements OnKeyListener {
                             }
                         }
                         selectedSets = new ArrayList<String>();
-                        downloadCardImages();
+                        if(!fast) {
+                            showWarningFast();
+                        }
+                        else {
+                            downloadCardImages();
+                        }
                     }
                 });
             }
@@ -437,14 +443,37 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         new Thread(new Runnable() {
             public void run() {
-                ImgDownloader.loadDatabase(getSystemStorageLocation());
+                fast = ImgDownloader.loadDatabase(getSystemStorageLocation());
                 finished2 = true;
             }
         }).start();
 
         progressBarDialogRes.show();
+    }
 
+    private void showWarningFast() {
+        AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+        infoDialog.setTitle("Problem downloading the images database file");
+        infoDialog.setMessage("The program will use the slow method (not indexed), so the images download may take really long time...");
 
+        infoDialog.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                downloadCardImages();
+            }
+        });
+
+        infoDialog.setNegativeButton("Retry", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                fast = ImgDownloader.loadDatabase(getSystemStorageLocation());
+                if(fast){
+                    downloadCardImages();
+                } else {
+                    showWarningFast();
+                }
+            }
+        });
+
+        infoDialog.create().show();
     }
 
     private void downloadCardImages() {
