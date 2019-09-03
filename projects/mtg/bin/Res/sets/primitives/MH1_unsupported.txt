@@ -128,7 +128,7 @@ type=Instant
 [card]
 name=Hogaak, Arisen Necropolis
 text=You can't spend mana to cast this spell. -- Convoke, delve (Each creature you tap while casting this spell pays for 1 or one mana of that creature's color. Each card you exile from your graveyard pays for {1}.) -- You may cast Hogaak, Arisen Necropolis from your graveyard. -- Trample
-mana={5}{B or G}{B or G}
+mana={5}{BG}{BG}
 type=Legendary Creature
 subtype=Avatar
 power=8

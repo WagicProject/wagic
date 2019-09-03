@@ -881,7 +881,7 @@ name=Nature's Chant
 target=artifact,enchantment
 auto=destroy
 text=Destroy target artifact or enchantment.
-mana={1}{W}
+mana={1}{GW}
 type=Instant
 [/card]
 [card]
