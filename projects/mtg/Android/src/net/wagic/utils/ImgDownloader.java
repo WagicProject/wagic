@@ -1592,6 +1592,8 @@ public class ImgDownloader {
                 }
                 continue;
             }
+            if(id.endsWith("t"))
+                continue;
             Document doc = null;
             try {
                 doc = Jsoup.connect(baseurl + id).get();
