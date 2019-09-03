@@ -33,7 +33,7 @@ before_install:
       export ANDROID="android-sdk-linux/tools/android" &&
       if [ `uname -m` = x86_64 ]; then 
         sudo dpkg --add-architecture i386 && sudo apt-get update &&
-        sudo apt-get install -qq --force-yes libgd2-xpm-dev libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 jq; fi &&
+        sudo apt-get install -qq --force-yes libgd2-xpm-dev libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 jq ant; fi &&
       wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
       wget http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz -nv;
     fi
