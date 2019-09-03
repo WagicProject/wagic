@@ -365,7 +365,6 @@ public class SDLActivity extends Activity implements OnKeyListener {
     boolean[] checkedSet;
     Integer totalset = 0;
     boolean finished = false;
-    boolean finished2 = false;
     boolean loadResInProgress = false;
     ProgressDialog progressBarDialogRes;
     boolean fast = false;
@@ -423,19 +422,14 @@ public class SDLActivity extends Activity implements OnKeyListener {
                 progressBarDialogRes.dismiss();
                 mHandler.post(new Runnable() {
                     public void run() {
-                        while (!finished || !finished2) {
+                        while (!finished) {
                             try {
-                                Thread.sleep(5000);
+                                Thread.sleep(1000);
                             } catch (Exception e) {
                             }
                         }
                         selectedSets = new ArrayList<String>();
-                        if(!fast) {
-                            showWarningFast();
-                        }
-                        else {
-                            downloadCardImages();
-                        }
+                        showWarningFast();
                     }
                 });
             }
@@ -444,7 +438,6 @@ public class SDLActivity extends Activity implements OnKeyListener {
         new Thread(new Runnable() {
             public void run() {
                 fast = ImgDownloader.loadDatabase(getSystemStorageLocation());
-                finished2 = true;
             }
         }).start();
 
@@ -453,23 +446,25 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
     private void showWarningFast() {
         AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
-        infoDialog.setTitle("Problem downloading the images database file");
-        infoDialog.setMessage("The program will use the slow method (not indexed), so the images download may take really long time...");
+        if(!fast) {
+            infoDialog.setTitle("Problem downloading the images database file");
+            infoDialog.setMessage("The program will use the slow (not indexed) method, so the images download may take really long time...");
+
+            infoDialog.setNegativeButton("Retry", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    fast = ImgDownloader.loadDatabase(getSystemStorageLocation());
+                    showWarningFast();
+                }
+            });
+        }
+        else {
+            infoDialog.setTitle("Images Database correctly downloaded");
+            infoDialog.setMessage("The program will use the fast (indexed) method, so the images download will not take long time!");
+        }
 
         infoDialog.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 downloadCardImages();
-            }
-        });
-
-        infoDialog.setNegativeButton("Retry", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                fast = ImgDownloader.loadDatabase(getSystemStorageLocation());
-                if(fast){
-                    downloadCardImages();
-                } else {
-                    showWarningFast();
-                }
             }
         });
 
