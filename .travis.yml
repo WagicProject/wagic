@@ -1,4 +1,5 @@
 language: cpp
+dist: trusty
 branches:
   except:
     - latest-master
@@ -43,7 +44,6 @@ install:
     tar -x --xz -f sdk.lzma;
   fi
 - if [ "$BUILD_ANDROID" == "YES" ]; then
-    jdk_switcher use openjdk7 &&
     tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
     tar -zxf android-sdk_r24.3.4-linux.tgz &&
     $ANDROID list sdk --extended -a &&
