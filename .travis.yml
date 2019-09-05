@@ -10,9 +10,9 @@ before_install:
   - export BUILD_Qt=YES
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
-  - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
-      export BUILD_MAC=YES;
-    fi
+# - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
+#     export BUILD_MAC=YES;
+#   fi
   - sudo apt-get update -qq
 # Building for PSP here
   - if [ "$BUILD_PSP" == "YES" ]; then
