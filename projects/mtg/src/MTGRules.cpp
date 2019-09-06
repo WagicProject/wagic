@@ -505,16 +505,16 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         }
         delete withKickerCost;
     }
-	if (card->getManaCost()->getBestow())
+    if (card->getManaCost()->getBestow())
     {  
         ManaCost * withBestowCost= NEW ManaCost(card->getManaCost());
-		withBestowCost->add(withBestowCost->getBestow());
+        withBestowCost->add(withBestowCost->getBestow());
         
-		DebugTrace("AltCost BESTOW " << withBestowCost);
+        DebugTrace("AltCost BESTOW " << withBestowCost);
         if (previousManaPool->canAfford(withBestowCost))
         {
-			player->getManaPool()->pay(card->getManaCost()->getBestow());
-			payResult = ManaCost::MANA_PAID_WITH_BESTOW;
+            player->getManaPool()->pay(card->getManaCost()->getBestow());
+            payResult = ManaCost::MANA_PAID_WITH_BESTOW;
         }
         delete withBestowCost;
     }
@@ -667,16 +667,16 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         }
         delete withKickerCost;
     }
-	// Handles bestow,also has to go in isExtraPaymentSet
-	if (card->getManaCost()->getBestow())
+    // Handles bestow,also has to go in isExtraPaymentSet
+    if (card->getManaCost()->getBestow())
     {  
         ManaCost * withBestowCost= NEW ManaCost(card->getManaCost());
-		withBestowCost->add(withBestowCost->getBestow());
+        withBestowCost->add(withBestowCost->getBestow());
         
         if (previousManaPool->canAfford(withBestowCost))
         {
-			player->getManaPool()->pay(card->getManaCost()->getBestow());
-			payResult = ManaCost::MANA_PAID_WITH_BESTOW;
+            player->getManaPool()->pay(card->getManaCost()->getBestow());
+            payResult = ManaCost::MANA_PAID_WITH_BESTOW;
         }
         delete withBestowCost;
     }
@@ -3513,7 +3513,7 @@ PermanentAbility(observer, _id)
 }
 
 int MTGNewPlaneswalker::receiveEvent(WEvent * e)
-{	
+{    
     if(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())
             return 0;
     if (WEventZoneChange* ev1 = dynamic_cast<WEventZoneChange*>(e))
@@ -3591,7 +3591,7 @@ int MTGNewPlaneswalker::CheckPW(MTGCardInstance * card)
     return 1;
 }
 void MTGNewPlaneswalker::MovePW(MTGCardInstance * card)
-{		
+{        
     game->LPWeffect = true;
     vector<MTGAbility*>selection;
     MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
@@ -3709,7 +3709,7 @@ ListMaintainerAbility(observer, _id)
 
 int MTGPlaneWalkerRule::canBeInList(MTGCardInstance * card)
 {
-	if(card->isPhased)
+    if(card->isPhased)
         return 0;
      if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
     {
@@ -3723,7 +3723,7 @@ int MTGPlaneWalkerRule::canBeInList(MTGCardInstance * card)
 
 int MTGPlaneWalkerRule::added(MTGCardInstance * card)
 {
-	map<MTGCardInstance *, bool>::iterator it;
+    map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
     vector<MTGCardInstance*>oldCards;
     for (it = cards.begin(); it != cards.end(); it++)

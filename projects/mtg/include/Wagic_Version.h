@@ -31,5 +31,3 @@ Author: Michael Nguyen
 #define WAGIC_RESOURCE_URL      "https://github.com/WagicProject/wagic/releases/download/" WAGIC_RELEASE_NAME "/" WAGIC_RESOURCE_NAME
 
 #endif
-
-		

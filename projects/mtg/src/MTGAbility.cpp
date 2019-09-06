@@ -1835,8 +1835,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             tc->targetter = NULL;
         }
         else
-			if (tc->targetter)
-				tc->targetter->bypassTC = false;
+            if (tc->targetter)
+                tc->targetter->bypassTC = false;
         sWithoutTc = splitTarget[0];
         sWithoutTc.append(splitTarget[2]);
     }
@@ -3513,7 +3513,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     //produce additional mana when a mana is engaged
     if (s.find("producecolor:") != string::npos)
-	{
+    {
         return NEW AEngagedManaAbility(observer, id, card,s.substr(13));
     }
 
@@ -4102,7 +4102,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW AAProliferate(observer, id, card, target);
         a->oneShot = 1;
         a->canBeInterrupted = false;
-		((AAProliferate*)a)->allcounters = true;
+        ((AAProliferate*)a)->allcounters = true;
         return a;
     }
     //proliferate all counters
@@ -4547,10 +4547,10 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_BAD;
     if (dynamic_cast<AManaProducer *> (a))
         return BAKA_EFFECT_GOOD;
-	 if (dynamic_cast<AARemoveAllCounter *> (a))
+     if (dynamic_cast<AARemoveAllCounter *> (a))
          return BAKA_EFFECT_BAD;
-	 if (dynamic_cast<AAProliferate *> (a))
-		 return BAKA_EFFECT_GOOD;
+     if (dynamic_cast<AAProliferate *> (a))
+         return BAKA_EFFECT_GOOD;
 
     // Equipment that gets immediately attached. Todo: check the abilities associated with Equip, to make sure they're good (for now it seems to be the majority of the cases)?
     if (dynamic_cast<AEquip *> (a))
@@ -4574,12 +4574,12 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     if (AAMover * aam = dynamic_cast<AAMover *>(a))
     {
         MTGGameZone * z = aam->destinationZone(target);
-		 if ((tc && tc->targetsZone(p->game->library)) || (tc && tc->targetsZone(p->game->graveyard)) || (tc && tc->targetsZone(p->game->hand)))
+         if ((tc && tc->targetsZone(p->game->library)) || (tc && tc->targetsZone(p->game->graveyard)) || (tc && tc->targetsZone(p->game->hand)))
         {
             if (z == p->game->hand || z == p->game->inPlay)
                 return BAKA_EFFECT_GOOD;
         }
-		 return BAKA_EFFECT_BAD; //TODO
+         return BAKA_EFFECT_BAD; //TODO
     }
 
     if (dynamic_cast<AACopier *> (a))
@@ -4604,33 +4604,33 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_GOOD;
     if (dynamic_cast<ABushidoAbility *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AACascade *> (a))
+    if (dynamic_cast<AACascade *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AACastCard *> (a))
+    if (dynamic_cast<AACastCard *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AAFlip *> (a))
+    if (dynamic_cast<AAFlip *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AAImprint *> (a))
+    if (dynamic_cast<AAImprint *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<ABestow *> (a))
+    if (dynamic_cast<ABestow *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AExert *> (a))
+    if (dynamic_cast<AExert *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<ALoseAbilities *> (a))
+    if (dynamic_cast<ALoseAbilities *> (a))
         return BAKA_EFFECT_BAD;
-	if (dynamic_cast<AModularAbility *> (a))
+    if (dynamic_cast<AModularAbility *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<APaired *> (a))
+    if (dynamic_cast<APaired *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AProduceMana *> (a))
+    if (dynamic_cast<AProduceMana *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AACloner *> (a))
+    if (dynamic_cast<AACloner *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AAModTurn *> (a))
+    if (dynamic_cast<AAModTurn *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<ATransformer *> (a))
+    if (dynamic_cast<ATransformer *> (a))
         return BAKA_EFFECT_GOOD;
-	if (dynamic_cast<AADamager *> (a))
+    if (dynamic_cast<AADamager *> (a))
         return BAKA_EFFECT_BAD;
 
     if (PTInstant * abi = dynamic_cast<PTInstant *>(a))
@@ -4663,8 +4663,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
     badAbilities[(int)Constants::MUSTBLOCK] = true;
     badAbilities[(int)Constants::FLYERSONLY] = true;
-	 badAbilities[(int)Constants::TREASON] = true;
-	 badAbilities[(int)Constants::SHACKLER] = true;
+     badAbilities[(int)Constants::TREASON] = true;
+     badAbilities[(int)Constants::SHACKLER] = true;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {
@@ -4731,7 +4731,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
                 card->exileEffects = true;
                 break;
             }
-			 if (dest == zones->library)
+             if (dest == zones->library)
             {
                 magicText = card->magicTexts["library"];
                 break;
@@ -4925,11 +4925,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
     }
 
     return result;
-	}
-	catch(exception) {
-	 DebugTrace("MAGIC TEST ERROR: Parser returned NULL");
-	}
-	return 0;
+    }
+    catch(exception) {
+     DebugTrace("MAGIC TEST ERROR: Parser returned NULL");
+    }
+    return 0;
 }
 
 void AbilityFactory::addAbilities(int _id, Spell * spell)

@@ -133,7 +133,7 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail, bool griddeckv
             }
             else
             {
-		        int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
+                int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
                 Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
                 CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail, true);
             }

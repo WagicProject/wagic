@@ -1291,7 +1291,7 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
     }
     ss_creatures << numberOfCreatures;
     ss_spells << numberOfSpells;
-    ss_lands <<	numberOfLands;
+    ss_lands <<    numberOfLands;
 
     file << getCardBlockText( "Creatures x" + ss_creatures.str(), creatures.str() ) ;
     file << getCardBlockText( "Spells x" + ss_spells.str(), spells.str() ) ;

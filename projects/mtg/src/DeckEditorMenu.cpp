@@ -24,7 +24,7 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
 #if defined PSP
         titleX = (SCREEN_WIDTH_F/2.f) + 10;
 #else
-		titleX = (SCREEN_WIDTH_F/2.f);
+        titleX = (SCREEN_WIDTH_F/2.f);
 #endif
         titleY = 13;
     }
@@ -69,7 +69,7 @@ void DeckEditorMenu::Render()
 #if defined PSP
         mainFont->DrawString(deckTitle.c_str(), (SCREEN_WIDTH_F / 2)-modt+10, (statsHeight / 2)+4, JGETEXT_CENTER);
 #else
-		mainFont->DrawString(deckTitle.c_str(), (SCREEN_WIDTH_F / 2)-modt, (statsHeight / 2)+4, JGETEXT_CENTER);
+        mainFont->DrawString(deckTitle.c_str(), (SCREEN_WIDTH_F / 2)-modt, (statsHeight / 2)+4, JGETEXT_CENTER);
 #endif 
         mainFont->SetColor(currentColor);
     }

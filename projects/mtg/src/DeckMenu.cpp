@@ -104,9 +104,9 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     float boxStartX = detailedInfoBoxX - stringWidth / 2 + 20;
     //dismiss button?
 #if defined PSP   
-	dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX+25, detailedInfoBoxY-10.0f, JGE_BTN_CANCEL);
+    dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX+25, detailedInfoBoxY-10.0f, JGE_BTN_CANCEL);
 #else
-	dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX+30, detailedInfoBoxY+4.5f, JGE_BTN_CANCEL);
+    dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX+30, detailedInfoBoxY+4.5f, JGE_BTN_CANCEL);
 #endif
     JGuiController::Add(dismissButton, true);
 

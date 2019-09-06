@@ -1353,8 +1353,8 @@ int MTGCardInstance::DangerRanking()
             result += 1;
         }
     }
-	// Even at 60(danger=3) the AI is hasty to play removal on a simple creature
-	// a vanilla 2 mana, 2/2 used to be eff = 60
+    // Even at 60(danger=3) the AI is hasty to play removal on a simple creature
+    // a vanilla 2 mana, 2/2 used to be eff = 60
     if (result > 2)
         danger += 1;
     if (result > 4)
