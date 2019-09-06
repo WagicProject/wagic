@@ -264,7 +264,6 @@ dauntless_escort.txt
 dauthi_embrace.txt
 dawn_of_the_dead.txt
 deadshot.txt
-death_grasp.txt
 death_ward.txt
 decree_of_justice.txt
 defense_of_the_heart.txt
@@ -739,5 +738,4 @@ momir/overcost.txt
 ########################
 #AI Tests
 ########################
-ai/goblin_artillery.txt
 ai/proliferate_simple.txt
