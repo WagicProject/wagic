@@ -72,7 +72,7 @@ type=Land
 [/card]
 [card]
 name=Prismatic Vista
-auto={1}{T}{S}:notatarget(land[basic]|mylibrary) moveto(mybattlefield)
+auto={L:1}{T}{S}:notatarget(land[basic]|mylibrary) moveto(mybattlefield)
 text={T}, Pay 1 life, Sacrifice Prismatic Vista: Search your library for a basic land card, put it onto the battlefield, then shuffle your library.
 type=Land
 [/card]
