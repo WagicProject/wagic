@@ -12,6 +12,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <cinttypes>
 
 #include "config.h"
 #include "DebugRoutines.h"
