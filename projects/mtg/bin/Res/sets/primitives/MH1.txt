@@ -20,6 +20,7 @@ subtype=Sliver
 power=2
 toughness=2
 [/card]
+[card]
 name=Goblin Champion
 abilities=haste,exalted
 text=Haste -- Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
@@ -1782,4 +1783,85 @@ text=Enchant creature -- Enchanted creature gets +1/+1 and has vigilance. -- Whe
 mana={1}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Frostwalk Bastion
+auto={T}:add{1}
+auto={1}{i}:becomes(Creature Construct,2/3) ueot
+text={T}: Add {1}. -- {1} {Snow}: Until end of turn, Frostwalk Bastion becomes a 2/3 Construct artifact creature. It's still a land. ( Snow can be paid with one mana from a snow permanent.) -- Whenever Frostwalk Bastion deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
+type=Snow Land
+[/card]
+[card]
+name=Echo of Eons
+flashback={2}{U}
+auto=ability$! moveto(mylibrary) all(*|myhand,mygraveyard) !$ controller
+auto=ability$! moveto(mylibrary) all(*|myhand,mygraveyard) !$ opponent
+auto=shuffle all(player)
+auto=ability$! if type(*|mylibrary)~morethan~6 then may draw:7 _ if type(*|mylibrary)~morethan~5 then may draw:6 _ if type(*|mylibrary)~morethan~4 then may draw:5 _ if type(*|mylibrary)~morethan~3 then may draw:4 _ if type(*|mylibrary)~morethan~2 then may draw:3 _ if type(*|mylibrary)~morethan~1 then may draw:2 _ if type(*|mylibrary)~morethan~0 then may draw:1 !$ opponent
+auto=ability$! if type(*|mylibrary)~morethan~6 then may draw:7 _ if type(*|mylibrary)~morethan~5 then may draw:6 _ if type(*|mylibrary)~morethan~4 then may draw:5 _ if type(*|mylibrary)~morethan~3 then may draw:4 _ if type(*|mylibrary)~morethan~2 then may draw:3 _ if type(*|mylibrary)~morethan~1 then may draw:2 _ if type(*|mylibrary)~morethan~0 then may draw:1 !$ controller
+text=Each player shuffles their hand and graveyard into their library, then draws seven cards. -- Flashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Chillerpillar
+auto=this(cantargetcard(*[-monstrous]) {4}{i}{i}:becomes(monstrous) forever && counter(1/1,2) && transforms((,newability[flying])) forever
+text={4}{S{i}{S{i}: Monstrosity 2. (If this creature isn't monstrous, put two +1/+1 counters on it and it becomes monstrous. Snow can be paid with one mana from a snow permanent.) -- As long as Chillerpillar is monstrous, it has flying.
+mana={3}{U}
+type=Snow Creature
+subtype=Insect
+power=3
+toughness=3
+[/card]
+[card]
+name=Arcum's Astrolabe
+other={i}
+auto={1}{T}:Add{W}
+auto={1}{T}:Add{U}
+auto={1}{T}:Add{B}
+auto={1}{T}:Add{R}
+auto={1}{T}:Add{G}
+text=(Snow can be paid with one mana from a snow permanent.) -- When Arcum's Astrolabe enters the battlefield, draw a card. -- {1}, {T}: Add one mana of any color.
+mana={9999}
+type=Snow Artifact
+[/card]
+[card]
+name=Icehide Golem
+other={i}
+text=(Snow can be paid with one mana from a snow permanent.)
+mana={9999}
+type=Snow Artifact Creature
+subtype=Golem
+power=2
+toughness=2
+[/card]
+[card]
+name=Marit Lage's Slumber
+auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto=@movedTo(*[snow]|mybattlefield):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+@each my upkeep restriction{type(*[snow]|myBattlefield)~morethan~9}:may sacrifice all(this) && token(Avatar,creature Avatar,20/20,black,flying,indestructible) controller
+text=Whenever Marit Lage's Slumber or another snow permanent enters the battlefield under your control, scry 1. -- At the beginning of your upkeep, if you control ten or more snow permanents, sacrifice Marit Lage's Slumber. If you do, create Marit Lage, a legendary 20/20 black Avatar creature token with flying and indestructible.
+mana={1}{U}
+type=Legendary Snow Enchantment
+[/card]
+[card]
+name=Frostwalla
+auto={i}:2/2 ueot limit:1
+text={S{i}: Frostwalla gets +2/+2 until end of turn. Activate this ability only once each turn. ( Snow can be paid with one mana from a snow permanent.)
+mana={2}{G}
+type=Snow Creature
+subtype=Lizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Seasoned Pyromancer
+auto=draw:2 &&2ability$! reject notatarget(<2>*|myhand) and!( if cantargetcard(*[-land]|*) then token(Elemental,creature Elemental,1/1,red) all(abilitycontroller) oneshot )! !$ targetedplayer
+auto={3}{R}{R}{E(this|mygraveyard)}:token(Elemental,creature Elemental,1/1,red)*2
+text=When Seasoned Pyromancer enters the battlefield, discard two cards, then draw two cards. For each nonland card discarded this way, create a 1/1 red Elemental creature token. -- {3}{R}{R}, Exile Seasoned Pyromancer from your graveyard: Create two 1/1 red Elemental creature tokens.
+mana={1}{R}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
 [/card]

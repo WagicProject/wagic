@@ -712,10 +712,10 @@ string JGE::getFileUserFolderPath()
     jstring systemPath = (jstring) env->CallStaticObjectMethod(jniClass, methodId);
 
     // Now convert the Java String to C++ char array
-        const char* cstr = env->GetStringUTFChars(systemPath, 0);
-        string retVal (cstr);
-        env->ReleaseStringUTFChars(systemPath, cstr);
-        env->DeleteLocalRef(systemPath);
+	const char* cstr = env->GetStringUTFChars(systemPath, 0); 
+	string retVal (cstr);
+	env->ReleaseStringUTFChars(systemPath, cstr); 
+	env->DeleteLocalRef(systemPath);
 
     return retVal;
 }

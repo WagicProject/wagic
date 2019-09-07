@@ -1,12 +1,5 @@
 grade=unsupported
 [card]
-name=Frostwalk Bastion
-auto={T}:add{1}
-text={T}: Add {1}. -- {1} {Snow}: Until end of turn, Frostwalk Bastion becomes a 2/3 Construct artifact creature. It's still a land. ( Snow can be paid with one mana from a snow permanent.) -- Whenever Frostwalk Bastion deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
-type=Snow Land
-[/card]
-[card]
-[card]
 name=Force of Rage
 text=If it's not your turn, you may exile a red card from your hand rather than pay this spell's mana cost. -- Create two 3/1 red Elemental creature tokens with trample and haste. Sacrifice those tokens at the beginning of your next upkeep.
 mana={1}{R}{R}
@@ -19,12 +12,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Echo of Eons
-text=Each player shuffles their hand and graveyard into their library, then draws seven cards. -- Flashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={4}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Eyekite
 abilities=flying
 text=Flying -- Eyekite gets +2/+0 as long as you've drawn two or more cards this turn.
@@ -32,30 +19,6 @@ mana={1}{U}
 type=Creature
 subtype=Drake
 power=1
-toughness=2
-[/card]
-[card]
-name=Chillerpillar
-text={4}{Snow}{Snow}: Monstrosity 2. (If this creature isn't monstrous, put two +1/+1 counters on it and it becomes monstrous. Snow can be paid with one mana from a snow permanent.) -- As long as Chillerpillar is monstrous, it has flying.
-mana={3}{U}
-type=Snow Creature
-subtype=Insect
-power=3
-toughness=3
-[/card]
-[card]
-name=Arcum's Astrolabe
-text=(Snow can be paid with one mana from a snow permanent.) -- When Arcum's Astrolabe enters the battlefield, draw a card. -- {1}, {T}: Add one mana of any color.
-mana={Snow}
-type=Snow Artifact
-[/card]
-[card]
-name=Icehide Golem
-text=(Snow can be paid with one mana from a snow permanent.)
-mana={Snow}
-type=Snow Artifact Creature
-subtype=Golem
-power=2
 toughness=2
 [/card]
 [card]
@@ -112,7 +75,7 @@ toughness=1
 [/card]
 [card]
 name=Urza, Lord High Artificer
-text=When Urza, Lord High Artificer enters the battlefield, create a 0/0 colorless Construct artifact creature token with "This creature gets +1/+1 for each artifact you control." -- Tap an untapped artifact you control: Add -- {U} -- . -- 5 : Shuffle your library, then exile the top card. Until end of turn, you may play that card without paying its mana cost.
+text=When Urza, Lord High Artificer enters the battlefield, create a 0/0 colorless Construct artifact creature token with "This creature gets +1/+1 for each artifact you control." -- Tap an untapped artifact you control: Add {U}. -- {5}: Shuffle your library, then exile the top card. Until end of turn, you may play that card without paying its mana cost.
 mana={2}{U}{U}
 type=Legendary Creature
 subtype=Human Artificer
@@ -177,7 +140,7 @@ subtype=Wrenn
 [card]
 name=Unsettled Mariner
 abilities=changeling
-aauto=@targeted(*|mybattlefield) from(*|opponentbattlefield,opponenthand,opponentstack,opponentgraveyard,opponentexile,opponentlibrary):transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=@targeted(*|mybattlefield) from(*|opponentbattlefield,opponenthand,opponentstack,opponentgraveyard,opponentexile,opponentlibrary):transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 text=Changeling (This card is every creature type.) -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}.
 mana={W}{U}
 type=Creature
@@ -204,12 +167,6 @@ name=Mirrodin Besieged
 text=As Mirrodin Besieged enters the battlefield, choose Mirran or Phyrexian. -- • Mirran — Whenever you cast an artifact spell, create a 1/1 colorless Myr artifact creature token. -- • Phyrexian — At the beginning of your end step, draw a card, then discard a card. Then if there are fifteen or more artifact cards in your graveyard, target opponent loses the game.
 mana={2}{U}
 type=Enchantment
-[/card]
-[card]
-name=Marit Lage's Slumber
-text=Whenever Marit Lage's Slumber or another snow permanent enters the battlefield under your control, scry 1. -- At the beginning of your upkeep, if you control ten or more snow permanents, sacrifice Marit Lage's Slumber. If you do, create Marit Lage, a legendary 20/20 black Avatar creature token with flying and indestructible.
-mana={1}{U}
-type=Legendary Snow Enchantment
 [/card]
 [card]
 name=On Thin Ice
@@ -241,28 +198,8 @@ mana={U}
 type=Sorcery
 [/card]
 [card]
-name=Frostwalla
-text={Snow}: Frostwalla gets +2/+2 until end of turn. Activate this ability only once each turn. ( Snow can be paid with one mana from a snow permanent.)
-mana={2}{G}
-type=Snow Creature
-subtype=Lizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Tectonic Reformation
 text=Each land card in your hand has cycling {R}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{R}
 type=Enchantment
-[/card]
-[card]
-name=Seasoned Pyromancer
-auto=draw:2
-auto=reject target(<2>*|myhand)
-text=When Seasoned Pyromancer enters the battlefield, discard two cards, then draw two cards. For each nonland card discarded this way, create a 1/1 red Elemental creature token. -- [3}{R}{R}, Exile Seasoned Pyromancer from your graveyard: Create two 1/1 red Elemental creature tokens.
-mana={1}{R}{R}
-type=Creature
-subtype=Human Shaman
-power=2
-toughness=2
 [/card]

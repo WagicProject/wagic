@@ -1306,7 +1306,6 @@ mana={1}{G}{G}{G}
 type=Legendary Planeswalker
 subtype=Vivien
 [/card]
-
 [card]
 name=Sorin's Guide
 auto=may moveto(myhand) target(Sorin, Vampire Lord|mylibrary)

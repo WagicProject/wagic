@@ -182,9 +182,7 @@ public:
     shared_ptr(): px(0), pn() // never throws in 1.30+
     {
     }
-    
-    shared_ptr(const shared_ptr&) = default;
-    
+
     template<class Y>
     explicit shared_ptr( Y * p ): px( p ), pn( p ) // Y must be complete
     {
