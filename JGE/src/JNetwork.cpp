@@ -4,6 +4,8 @@
 
 */
 
+#define __STDC_LIMIT_MACROS
+
 #include "../include/DebugRoutines.h"
 #include "../include/JNetwork.h"
 

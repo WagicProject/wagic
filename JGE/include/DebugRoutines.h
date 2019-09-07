@@ -1,9 +1,6 @@
 #ifndef DEBUGROUTINES_H
 #define DEBUGROUTINES_H
 
-// dirty, but I get OS header includes this way
-#include "JGE.h"
-
 #include "OutputCapturer.h"
 
 #include <ostream>
@@ -25,6 +22,7 @@ std::string ToHex(T* pointer)
 
 #ifdef LINUX
 #define OutputDebugString(val) (std::cerr << val);
+#define OutputDebugStringA(val) (std::cerr << val);
 #endif
 
 #ifdef _DEBUG

@@ -1,7 +1,7 @@
 #ifndef THREADING_H
 #define THREADING_H
 
-#if !defined(PSP) && !defined(QT_CONFIG) && !(__cplusplus > 199711L)
+#if !defined(PSP) && !defined(QT_CONFIG) && !(__cplusplus > 199711L)  && !(_MSC_VER >= 1700)
 #include <boost/date_time.hpp>
 
 #ifdef WIN32
@@ -537,7 +537,7 @@ namespace boost
     }
 }
 
-#elif (__cplusplus > 199711L)
+#elif (__cplusplus > 199711L) || (_MSC_VER >= 1700)
 
 #include <thread>
 #include <mutex>

@@ -1,9 +1,13 @@
+#define __STDC_LIMIT_MACROS
+
+#include "../../include/DebugRoutines.h"
+#include "Threading.h"
+
 #include <errno.h>
 #ifdef WIN32
 #pragma comment(lib,"WSOCK32.LIB")
 #include <stdio.h>
 #include <conio.h>
-#include <winsock.h>
 #include <winsock.h>
 #include <fcntl.h>
 #elif LINUX
@@ -16,7 +20,6 @@
 #endif //WINDOWS
 
 #include "../../include/JSocket.h"
-#include "../../include/DebugRoutines.h"
 
 
 JSocket::JSocket(string ipAddr)

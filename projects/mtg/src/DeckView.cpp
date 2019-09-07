@@ -1,3 +1,4 @@
+#include "PrecompiledHeader.h"
 #include "DeckView.h"
 
 #include "GameOptions.h"

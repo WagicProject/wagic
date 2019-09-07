@@ -26,8 +26,15 @@
 #include "JAudio.h"
 
 #else
-
-#include <stdint.h>
+#ifdef IOS
+#include <tr1/cstdint>
+#else
+#include <cstdint>
+#endif
+//#include <stdint.h>
+//the MSC version might only define _MSC_STDINT_H_
+//and that might cause redefinition of standard types
+//#define _STDINT_H_ 
 
 #endif
 
@@ -140,8 +147,13 @@ typedef uint32_t u32;
 #include <GLES/gl.h>
 #include <GLES/glext.h>
 #elif defined (WIN32) || defined (LINUX)
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
 #endif
 #else
 #include <QtOpenGL>
