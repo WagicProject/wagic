@@ -29,7 +29,8 @@
 #ifdef IOS
 #include <tr1/cstdint>
 #else
-#include <cstdint>
+#include <stdint.h>
+//#include <cstdint>
 #endif
 //#include <stdint.h>
 //the MSC version might only define _MSC_STDINT_H_
