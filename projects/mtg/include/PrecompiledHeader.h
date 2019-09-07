@@ -12,9 +12,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#if (__cplusplus > 199711L) ||  (_MSC_VER >= 1700)
-#include <cinttypes>
-#endif
 
 #include "config.h"
 #include "DebugRoutines.h"

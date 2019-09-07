@@ -1,6 +1,9 @@
 #ifndef DEBUGROUTINES_H
 #define DEBUGROUTINES_H
 
+// dirty, but I get OS header includes this way
+#include "JGE.h"
+
 #include "OutputCapturer.h"
 
 #include <ostream>
