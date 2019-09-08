@@ -28,7 +28,7 @@ before_install:
       brew install qt5 &&
       brew install ant &&
       pwd &&
-      export QMAKE="/usr/local/opt/qt5/bin/qmake -qt=qt5" &&
+      export QMAKE="/usr/local/opt/qt5/bin/qmake" &&
       ls;
     fi    
 
