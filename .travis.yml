@@ -10,7 +10,6 @@ matrix:
       env: BUILD_PSP=YES BUILD_ANDROID=YES BUILD_Qt=YES BUILD_MAC=NO
     - os: osx
       env: BUILD_PSP=NO BUILD_ANDROID=NO BUILD_Qt=YES BUILD_MAC=YES
-	
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
