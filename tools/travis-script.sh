@@ -25,12 +25,14 @@ ant update > error.txt
 cd ../..
 
 # we create resource package
-cd projects/mtg/bin/Res
-python createResourceZip.py
-# if we let the zip here, Wagic will use it in the testsuite
-# and we'll get 51 failed test cases
-mv core_*.zip ../../../../core.zip
-cd ../../../..
+if [ "$BUILD_RES" = "YES" ]; then
+    cd projects/mtg/bin/Res
+    python createResourceZip.py
+    # if we let the zip here, Wagic will use it in the testsuite
+    # and we'll get 51 failed test cases
+    mv core_*.zip ../../../../core.zip
+    cd ../../../..
+fi
 
 # we're building a PSP binary here
 if [ "$BUILD_PSP" = "YES" ]; then
