@@ -25,7 +25,7 @@ ant update > error.txt
 cd ../..
 
 # we create resource package
-if [ "$BUILD_RES" = "YES" ]; then
+if [ "$BUILD_RES" = "YES" ] || [ "$BUILD_PSP" = "YES" ]; then
     cd projects/mtg/bin/Res
     python createResourceZip.py
     # if we let the zip here, Wagic will use it in the testsuite
@@ -83,9 +83,4 @@ if [ "$BUILD_Qt" = "YES" ]; then
     cd projects/mtg
     ../../wagic
     cd ../..
-fi
-
-# Let's launch de Mac cross-compilation
-if [ "$BUILD_MAC" = "YES" ]; then
-    ./tools/build-macos-script.sh
 fi
