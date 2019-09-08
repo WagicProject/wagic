@@ -189,39 +189,40 @@ int SnowCost::doPay()
         result += source->controller()->snowManaC;
         if (result)
         {
+			// Avoided double payments for Snow Mana cost
             if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source)))
             {
-                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{1}",NULL,source));
+                //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{1}",NULL,source));
                 source->controller()->snowManaC -= 1;
             }
             else if (source->controller()->snowManaG && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{g}",NULL,source)))
             {
-                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{g}",NULL,source));
+                //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{g}",NULL,source));
                 source->controller()->snowManaG -= 1;
             }
             else if (source->controller()->snowManaU && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{u}",NULL,source)))
             {
-                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{u}",NULL,source));
+                //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{u}",NULL,source));
                 source->controller()->snowManaU -= 1;
             }
             else if (source->controller()->snowManaR && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{r}",NULL,source)))
             {
-                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{r}",NULL,source));
+                //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{r}",NULL,source));
                 source->controller()->snowManaR -= 1;
             }
             else if (source->controller()->snowManaB && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{b}",NULL,source)))
             {
-                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{b}",NULL,source));
+                //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{b}",NULL,source));
                 source->controller()->snowManaB -= 1;
             }
             else if (source->controller()->snowManaW && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{w}",NULL,source)))
             {
-                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{w}",NULL,source));
+                //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{w}",NULL,source));
                 source->controller()->snowManaW -= 1;
             }
             else if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{c}",NULL,source)))
             {
-                source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{c}",NULL,source));
+                //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{c}",NULL,source));
                 source->controller()->snowManaC -= 1;
             }
             else

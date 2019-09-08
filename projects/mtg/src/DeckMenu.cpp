@@ -103,7 +103,11 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     float stringWidth = descriptionFont->GetStringWidth(detailedInfoString.c_str());
     float boxStartX = detailedInfoBoxX - stringWidth / 2 + 20;
     //dismiss button?
+#if defined PSP   
+    dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX+25, detailedInfoBoxY-10.0f, JGE_BTN_CANCEL);
+#else
     dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX+30, detailedInfoBoxY+4.5f, JGE_BTN_CANCEL);
+#endif
     JGuiController::Add(dismissButton, true);
 
     updateScroller();
@@ -145,16 +149,16 @@ void DeckMenu::RenderDeckManaColors()
 void DeckMenu::RenderBackground()
 {
     ostringstream bgFilename;
+#if !defined (PSP)
     if(backgroundName == "menubgdeckeditor")
         bgFilename << backgroundName << ".jpg";
     else
         bgFilename << backgroundName << ".png";
-
-#if defined (PSP)
+#else
     if(backgroundName == "menubgdeckeditor")
         bgFilename << "pspmenubgdeckeditor.jpg";
     else
-        bgFilename << "pspdeckmenu.png";
+        bgFilename << "pspmenubgdeckeditor.png";
 #endif
 
     static bool loadBackground = true;
@@ -270,7 +274,7 @@ void DeckMenu::Render()
         timeOpen = 0;
         menuInitialized = true;
     }
-#if !defined (PSP)
+
     if (avatarholder.get() && menupanel.get() && inDeckMenu)//bg panel
          renderer->RenderQuad(menupanel.get(), 225.f, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
 
@@ -279,7 +283,7 @@ void DeckMenu::Render()
 
     if (menuholder.get() && inDeckMenu)//menuholder
          renderer->RenderQuad(menuholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / menuholder.get()->mWidth, SCREEN_HEIGHT_F / menuholder.get()->mHeight);
-#endif
+
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
     
     for (int i = startId; i < startId + maxItems; i++)
@@ -323,20 +327,20 @@ void DeckMenu::Render()
                         {
                             JQuad * evil = quad.get();
                             evil->SetHFlip(true);
-#if !defined (PSP)
+
                             if (avatarholder.get() && inDeckMenu)
                                 renderer->RenderQuad(avatarholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
-#endif
+
                             renderer->RenderQuad(quad.get(), avatarX+modAvatarX, avatarY+modAvatarY, 0, xscale, yscale);
                             renderer->DrawRect(avatarX+modAvatarX, avatarY+modAvatarY,37.f,50.f,ARGB(200,3,3,3));
                             evil = NULL;
                         }
                         else
                         {
-#if !defined (PSP)
+
                             if (avatarholder.get() && inDeckMenu)
                                 renderer->RenderQuad(avatarholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
-#endif
+
                             renderer->RenderQuad(quad.get(), avatarX+modAvatarX, avatarY+modAvatarY, 0, xscale, yscale);
                             renderer->DrawRect(avatarX+modAvatarX, avatarY+modAvatarY,37.f,50.f,ARGB(200,3,3,3));
                         }
@@ -370,10 +374,6 @@ void DeckMenu::Render()
         }
     }
     //psp
-#if defined (PSP)
-    mScroller->Render();
-    RenderBackground();//background deck menu
-#endif
     RenderDeckManaColors();
 
     if (!title.empty())

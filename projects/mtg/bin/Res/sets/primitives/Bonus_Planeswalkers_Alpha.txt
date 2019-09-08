@@ -1,0 +1,362 @@
+#Missing Planeswalkers
+#although not entirely functional or workarounds I made this because of certain decks that required certian pw abilities, now you can have new old stuff yea!
+
+##Note by Bas: Gideon Jura had -2 on his +2 and +2 on his -2, I corrected this mistake.
+
+[card]
+name=Ajani Steadfast
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:target(creature) transforms((,newability[vigilance],newability[first strike],newability[lifelink],newability[1/1])) ueot
+auto={C(0/0,-2,Loyalty)}:all(creature|mybattlefield) counter(1/1,1) && all(other planeswalker|mybattlefield) counter(0/0,1,Loyalty)
+auto={C(0/0,-7,Loyalty)}:name(emblem) emblem transforms((,newability[@targeted(controller,planeswalker|mybattlefield):all(trigger) transforms((,newability[damage:1 mytgt]ueot then preventalldamage to(mytgt) from(trigger) ueot])) forever dontremove
+text=+1: target creature gets first strike, vigilance, lifelink, and +1/+1 until end of turn -- -2:put a +1/+1 counter on each other creature you control and a loyalty counter on each other planeswalker you control -- -7: you get an emblem with whenever a source would deal damage to you or a planeswalker you control prevent all but 1 damage
+mana={3}{W}
+type=Planeswalker
+subtype=Ajani
+[/card]
+[card]
+name=Ajani, Mentor of Heroes
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:target(<upto:3>creature|mybattlefield) counter(1/1,1)
+auto={C(0/0,1,Loyalty)}:deplete:4 controller && moveto(myhand) target(aura,creature,planeswalker|mygraveyard)
+auto={C(0/0,-8,Loyalty)}:life:100
+text=+1: put a +1/+1 counter on up to three target creatures you control -- +1: put the top four cards of your library into your graveyard then return a target aura, creature, or planeswalker from your graveyard to your hand -- -8: gain 100 life
+mana={3}{G}{W}
+type=Planeswalker
+subtype=Ajani
+[/card]
+[card]
+name=Ashiok, Nightmare Weaver
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:deplete:3 opponent
+auto={C(0/0,-0,Loyalty)}:name(X=0) moveto(mybattlefield) target(creature[manacost=0]|opponentgraveyard) restriction{type(creature[manacost=0]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-1,Loyalty)}:name(X=1) moveto(mybattlefield) target(creature[manacost=1]|opponentgraveyard) restriction{type(creature[manacost=1]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-2,Loyalty)}:name(X=2) moveto(mybattlefield) target(creature[manacost=2]|opponentgraveyard) restriction{type(creature[manacost=2]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-3,Loyalty)}:name(X=3) moveto(mybattlefield) target(creature[manacost=3]|opponentgraveyard) restriction{type(creature[manacost=3]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-4,Loyalty)}:name(X=4) moveto(mybattlefield) target(creature[manacost=4]|opponentgraveyard) restriction{type(creature[manacost=4]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-5,Loyalty)}:name(X=5) moveto(mybattlefield) target(creature[manacost=5]|opponentgraveyard) restriction{type(creature[manacost=5]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-6,Loyalty)}:name(X=6) moveto(mybattlefield) target(creature[manacost=6]|opponentgraveyard) restriction{type(creature[manacost=6]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-7,Loyalty)}:name(X=7) moveto(mybattlefield) target(creature[manacost=7]|opponentgraveyard) restriction{type(creature[manacost=7]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-8,Loyalty)}:name(X=8) moveto(mybattlefield) target(creature[manacost=8]|opponentgraveyard) restriction{type(creature[manacost=8]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-9,Loyalty)}:name(X=9) moveto(mybattlefield) target(creature[manacost=9]|opponentgraveyard) restriction{type(creature[manacost=9]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-10,Loyalty)}:name(X=10) moveto(mybattlefield) target(creature[manacost=10]|opponentgraveyard) restriction{type(creature[manacost=10]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-11,Loyalty)}:name(X=11) moveto(mybattlefield) target(creature[manacost=11]|opponentgraveyard) restriction{type(creature[manacost=11]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-12,Loyalty)}:name(X=12) moveto(mybattlefield) target(creature[manacost=12]|opponentgraveyard) restriction{type(creature[manacost=12]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-13,Loyalty)}:name(X=13) moveto(mybattlefield) target(creature[manacost=13]|opponentgraveyard) restriction{type(creature[manacost=13]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-14,Loyalty)}:name(X=14) moveto(mybattlefield) target(creature[manacost=14]|opponentgraveyard) restriction{type(creature[manacost=14]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-15,Loyalty)}:name(X=15) moveto(mybattlefield) target(creature[manacost=15]|opponentgraveyard) restriction{type(creature[manacost=15]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-16,Loyalty)}:name(X=16) moveto(mybattlefield) target(creature[manacost=16]|opponentgraveyard) restriction{type(creature[manacost=16]|opponentgraveyard)~morethan~0}
+auto={C(0/0,-10,Loyalty)}:moveto(exile) all(*|opponenthand) && moveto(exile) all(*|opponentgraveyard)
+text=+1: put the top three cards of an opponents library into their graveyard -- -x: return target creature with converted mana cost x from an opponents graveyard to your battlefield -- -10: exile all cards in an opponents graveyard and hand
+mana={1}{U}{B}
+type=Planeswalker
+subtype=Ashiok
+[/card]
+[card]
+name=Chandra, Pyromaster
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:target(creature|opponentbattlefield) damage:1 and transforms((,newability[cantblock],newability[damage:1 controller])) ueot
+auto={C(0/0,0,Loyalty)}:draw:1 && ability$!name(discard) target(<1>*|myhand) reject!$ controller
+auto={C(0/0,-7,Loyalty)}:deplete:10 controller &&target(instant,sorcery|mygraveyard) moveto(mystack) and transforms((,newability[storm])) ueot
+text=+1: Chandra, Pyromaster deals 1 damage to target creature, then deals 1 damage to its controller, that creature can't block this turn -- 0: draw a card then discard a card -- -7: discard ten cards from the top of your library, you may cast any instant or sorcery from your graveyard as if it had storm without paying its mana cost
+mana={2}{R}{R}
+type=Planeswalker
+subtype=Chandra
+[/card]
+#############flip
+[card]
+name=Chandra, Fire of Kaladesh
+auto=@movedto(*[red]|mystack):untap
+auto={T}:target(creature) damage:1 limit^flip(Chandra, Roaring Flame)^3
+text={T}: Chandra, Fire of Kaladesh deals 1 damage to target creature if this it the third time it has activated, flip Chandra, Fire of Kaladesh
+mana={1}{R}{R}
+type=Legendary Creature
+subtype=Human Shawman
+power=2
+toughness=2
+[/card]
+[card]
+name=Chandra, Roaring Flame
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:name(damage player) damage:2 target(opponent)
+auto={C(0/0,-2,Loyalty)}:name(damage creature) damage:2 target(creature)
+auto={C(0/0,-7,Loyalty)}:name(damage & emblem) damage:6 target(opponent) and emblem name(burn emblem) transforms((,newability[@each my upkeep:damage:3 opponent])) forever dontremove
+text=+1: Chandra, Roaring Flame deals 2 damage to target player -- -2: Chandra, Roaring Flame deals 2 damage to target creature -- -7: Chandra, Roaring Flame deals 6 damage to each opponent. Each player dealt damage this way gets an emblem with "At the beginning of your upkeep, this emblem deals 3 damage to you
+type=Planeswalker
+subtype=Chandra
+[/card]
+#################
+[card]
+name=Chandra, the Firebrand
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:damage:1 target(creature,player)
+auto={C(0/0,-2,Loyalty)}:target(instant,sorcery|myhand) storm ueot
+auto={C(0/0,-6,Loyalty)}:damage:6 target(<upto:5>creature) && damage:6 target(opponent)
+text=+1: Chandra, the Firebrand deals 1 damage to target creature or player -- -2: target instant or sorcery spell in your hand gains storm until end of turn -- -6: Chandra, the Firebrand deals 6 damage to each of up to five target creatures and 6 damage to an opponent
+mana={3}{R}
+type=Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Domri Rade
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:draw:1 and!(if(*[-creature;fresh;]|myhand) then ability$!name(discard) target(<1>*|myhand) reject!$ controller)!
+auto={C(0/0,-2,Loyalty)}:target(creature|mybattlefield) transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot
+auto={C(0/0,-7,Loyalty)}:name(emblem) emblem transforms((,newability[lord(creature|mybattlefield) double strike,trample,opponentshroud,haste])) forever dontremove
+text=+1: draw a card, if it isn't a creature, discard a card -- -2: Target creature you control fights another target creature -- -7: You get an emblem with "Creatures you control have double strike, trample, hexproof, and haste."
+mana={1}{R}{G}
+type=Planeswalker
+subtype=Domri
+[/card]
+[card]
+name=Garruk, Caller of Beasts
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:draw:5 && discard:all(*[-creature;fresh]|myhand)
+auto={C(0/0,-3,Loyalty)}:target(creature[green]|myhand) moveto(mybattlefield)
+auto={C(0/0,-7,Loyalty)}:name(emblem) emblem transforms((,newability[@movedto(creature|mystack):moveTo(battlefield) target(creature|myLibrary)])) forever dontremove
+text=+1:draw 5 then discard all non creature cards drawn this way -- -3: put a green creataure from your hand onto the battlefield -- -7: you get an emblem with 'whenever you cast a creature, search your library for a creature and put it onto the battlefield, then shuffle your library'
+mana={4}{G}{G}
+type=Planeswalker
+subtype=Garruk
+[/card]
+[card]
+name=Gideon Jura
+auto=counter(0/0,6,loyalty)
+auto={C(0/0,2,Loyalty)}:name(taunt) mustattack all(creature|opponentbattlefield) uynt && preventalldamage from(creature|opponentbattlefield) uynt
+auto={C(0/0,-2,Loyalty)}:destroy target(creature[tapped]|opponentbattlefield) restriction{type(creature[tapped]|opponentbattlefield)~morethan~0}
+auto={C(0/0,0,Loyalty)}:transforms((creature,Soldier,Human,setpower=6,settoughness=6)) ueot && preventalldamage to(this) ueot
+text=+2: destroy target tapped creature -- -2: all creatures an opponent controlls must attack next turn, prevent all damage dealt by creatures your opponent controlls until your next turn -- 0: until the end of your turn Gideon Jura becomes a 6/6 Human Soldier, prevent all damage dealt to Gideon Jura this turn
+mana={3}{W}{W}
+type=Planeswalker
+subtype=Gideon
+[/card]
+############flip
+[card]
+name=Kytheon, Hero of Akros
+#auto=@combat(attacking) source(this): restriction=type(creature[attacking]|mybattlefield)~morethan~2 phaseaction[combatends once] flip(Gideon, Battle-Forged)
+#auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}: phaseaction[combatends once] flip(Gideon, Battle-Forged)
+auto={2}{W}:indestructible ueot
+text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control -- {2}{W}: Kytheon gains indestructible until end of turn.
+mana={W}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=1
+[/card]
+[card]
+name=Gideon, Battle-Forged
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,2,Loyalty)}:target(creature|opponentbattlefield) mustattack uynt
+auto={C(0/0,1,Loyalty)}:target(creature) indestructible and untap uynt
+auto={C(0/0,0,Loyalty)}:transforms((creature,Soldier,Human,setpower=4,settoughness=4,newability[indestructible])) ueot
+text=+2: Up to one target creature an opponent controls attacks Gideon, Battle-Forged during its controller's next turn if able -- +1: Until your next turn, target creature gains indestructible. Untap that creature -- 0: Until end of turn, Gideon, Battle-Forged becomes a 4/4 Human Soldier creature with indestructible
+type=Planeswalker
+subtype=Gideon
+[/card]
+###################
+[card]
+name=Jace, Architect of Thought
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:all(creature|opponentbattlefield) transforms((,newability[@combat(attacking) source(this): -1/0 ueot])) uynt
+auto={C(0/0,-2,Loyalty)}:draw:2 && deplete:1
+auto={C(0/0,-8,Loyalty)}:moveTo(mystack) target(*[-land]|opponentLibrary)
+text=+1: Until your next turn, whenever a creature an opponent controls attacks, it gets -1/-0 until end of turn -- -2: draw 2 and put the top card of your library into your graveyard -- -8: search an opponent's library for a nonland card and exile it, then that player shuffles his or her library. You may cast that card without paying its mana cost
+mana={2}{U}{U}
+type=Planeswalker
+subtype=Jace
+[/card]
+############flip
+[card]
+name=Jace, Vryn's Prodigy
+#auto={T}:draw:1 && ability$!name(discard) target(<1>*|myhand) reject!$ controller then if{type(*|mygraveyard)~greaterthan~4} flip(Jace, Telepath Unbound)
+auto={T}:draw:1 && ability$!name(discard) target(<1>*|myhand) reject!$ controller then if(((*|mygraveyard)count)>4 flip(Jace, Telepath Unbound))
+text={T}:Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=0
+toughness=2
+[/card]
+[card]
+name=Jace, Telepath Unbound
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:target(creature|opponentbattlefield) -2/0 uynt
+auto={C(0/0,-2,Loyalty)}:target(instant,sorcery|mygraveyard) moveto(mystack) and transforms((,newability[exiledeath])) ueot
+auto={C(0/0,-9,Loyalty)}:name(emblem) emblem transforms((,newability[@movedto(*|mystack): deplete:5 opponent])) forever dontremove
+text=+1: until your next turn target creature gets -2/-0 -- -3: you may cast a card from your graveyard without paying its manacost ueot -- -9: you get an embelem with 'whenever you cast a spell, target opponent puts the top five cards of their library into the graveyard'
+type=Planeswalker
+subtype=Jace
+[/card]
+###################
+[card]
+name=Jace, the Living Guildpact
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:deplete:2 controller && target(*[fresh]|graveyard) moveto(mylibrary)
+auto={C(0/0,-3,Loyalty)}:target(other *[-land]|battlefield) moveto(ownerhand)
+auto={C(0/0,-8,Loyalty)}:moveto(ownerlibrary) and!(shuffle)! all(*|graveyard) and moveto(ownerlibrary) and!(shuffle)! all(*|hand) && draw:7 opponent && draw:7 controller
+text=+1: put the top two cards of your library into your graveyard, then put one of those cards on top of your library -- -3: return another target permanent to its owners hand -- -8: each player shuffles their hand and graveyard into their library then draws seven cards
+mana={2}{U}{U}
+type=Planeswalker
+subtype=Jace
+[/card]
+[card]
+name=Jace, the Mind Sculptor
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,2,Loyalty)}:deplete:1 target(player) && may target(*[fresh]|graveyard) moveto(ownerlibrary)
+auto={C(0/0,0,Loyalty)}:draw:3 && moveto(*|mylibrary) target(<upto:2>*|myhand)
+auto={C(0/0,-1,Loyalty)}:target(creature) moveto(ownerhand)
+auto={C(0/0,-12,Loyalty)}:moveto(exile) all(*|opponentlibrary) && moveto(ownerlibrary) all(*|opponenthand)
+text=+1: target player puts the top card of their library into their graveyard, you may put that card back on top of their library -- 0: draw 3 cards, then put two cards back on top of your library -- -1: return target creature to its owners hand -- -12: exile all cards from your opponents library then they put all the cards in their hand into their library
+mana={2}{U}{U}
+type=Planeswalker
+subtype=Jace
+[/card]
+#fuck Karn
+[card]
+name=Kiora, Master of the Depths
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:target(land) untap and transforms((,newability[@untapped(this):untap target(creature)])) ueot
+auto={C(0/0,-2,Loyalty)}:deplete:4 controller and moveto(myhand) target(creature,land|mygraveyard)
+auto={C(0/0,-8,Loyalty)}:name(emblem) emblem transforms((,newability[@movedto(creature|mybattlefield):transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot],newability[token(Octopus,creature Octopus,8/8,blue)*3])) forever dontremove
+text=+1: untap target land and target creature -- -2:put the top four cards of your library into your graveyard, then return a target creature or land to your hand -- -8:you get an emblem with 'whenever a creature enters the battlefield, it fights target creature, put three 8/8 blue ocopus onto the battlefield'
+mana={2}{G}{U}
+type=Planeswalker
+subtype=Kiora
+[/card]
+[card]
+name=Liliana of the Veil
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
+#auto={C(0/0,-2,Loyalty)}:target(player) ability$!name(sacrifice creature) notatarget(creature|myBattlefield) sacrifice!$ targetedplayer
+auto={C(0/0,-2,Loyalty)}:target(creature|opponentbattlefield) sacrifice opponent
+auto={C(0/0,-6,Loyalty)}:target(<halfuptype:*:opponentbattlefield>*|opponentbattlefield) sacrifice opponent
+text=+1: each player discards a card -- -2: target player sacrifices a creature -- -6: an opponent sacrifices half the permanents they control rounded up
+mana={1}{B}{B}
+type=Planeswalker
+subtype=Liliana
+[/card]
+[card]
+name=Narset Transcendent
+auto=counter(0/0,6,loyalty)
+auto={C(0/0,1,Loyalty)}:deplete:1 may moveto(mylibrary) target(*[fresh]|mygraveyard)
+auto={C(0/0,-2,Loyalty)}:moveto(mystack) target(instant,sorcery|mygraveyard) and transforms((,newability[exiledeath])) forever
+auto={C(0/0,-9,Loyalty)}:name(emblem) emblem transforms((,newability[
+auto=maxCast(*[-creature])0 opponent])) forever dontremove
+text=+1: put the top card of your library into your graveyard, you may return it to the top of your library -- -2: cast target instant or sorcery card from your graveyard, if it would go to your graveyard, exile it instead -- -9: you get an emblem with 'your opponents cant cast noncreature spells'
+mana={2}{W}{U}
+type=Planeswalker
+subtype=Narset
+[/card]
+############flip
+[card]
+name=Nissa, Vastwood Seer
+auto=moveto(myhand) target(basic[forest]|mylibrary)
+auto=@movedto(land|mybattlefield) if type(land|mybattlefield)~morethan~6 then flip(Nissa, Sage Animist)
+text=when Nissa, Vastwood seer enters the battlefield search your library for a basic forest and put it into your hand -- whenever a land enters the battlefield if you control seven or more lands flip Nissa, Vastwood Seer
+mana={2}{G}
+type=Legendary Creature
+subtype=Elf Scout
+power=2
+toughness=2
+[/card]
+[card]
+name=Nissa, Sage Animist
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:draw:1 && maxplay(land)+1 ueot
+auto={C(0/0,-2,Loyalty)}:token(Ashaya,legendary creature Elemental,4/4,green)
+auto={C(0/0,-7,Loyalty)}:target(<upto:6>land|mybattlefield) untap and transforms((transforms((Creature Elemental,setpower=6,settoughness=6)) forever
+text=+1: draw a card, you may play an additional land this turn -- -2: put a legendary 4/4 elemental token called Ashaya onto the battlefield -- -7: untap up to six target lands, they become 6/6 elemental creatures they are still lands
+type=Planeswalker
+subtype=Nissa
+[/card]
+###################
+[card]
+name=Nissa, Worldwaker
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:target(land|mybattlefield) transforms((Creature Elemental,setpower=4,settoughness=4,newability[trample])) forever
+auto={C(0/0,1,Loyalty)}:target(<upto:4>forest|mybattlefield) untap
+auto={C(0/0,-7,Loyalty)}:moveto(mybattlefield) all(basic|mylibrary) and transforms((Creature Elemental,setpower=4,settoughness=4,newability[trample])) forever
+text=+1: target land you control becomes a 4/4 elemental with trample -- +1: untap up to four forests you control -- -7: put all basic lands you control onto the battlefield they become 4/4 elementals with trample
+mana={3}{G}{G}
+type=Planeswalker
+subtype=Nissa
+[/card]
+[card]
+name=Ral Zarek
+auto=counter(0/0,4,loyalty)
+#auto={C(0/0,1,Loyalty)}:target(*|mybattlefield) untap and transforms((,newability[@untapped(this): tap target(*)])) ueot
+auto={C(0/0,1,Loyalty)}:untap target(*|mybattlefield) then tap target(*)
+auto={C(0/0,-2,Loyalty)}:damage:3 target(creature,player)
+auto={C(0/0,-7,Loyalty)}:flipacoin winability turns:+1 controller winabilityend flipend then flipacoin winability turns:+1 controller winabilityend flipend then flipacoin winability turns:+1 controller winabilityend flipend then flipacoin winability turns:+1 controller winabilityend flipend then flipacoin winability turns:+1 controller winabilityend flipend then
+text=+1: untap target permanent you control then tap a target permanent -- -2: Ral Zarek deals 3 damage to target creautre or player -- -7: flip five coins take an extra turn for each heads
+mana={2}{U}{R}
+type=Planeswalker
+subtype=Ral
+[/card]
+[card]
+name=Sarkhan the Mad
+auto=counter(0/0,7,loyalty)
+auto={C(0/0,0,Loyalty)}:draw:1 damage:manacost Sarkhan the Mad
+auto={C(0/0,-2,Loyalty)}:notatarget(creature) loseabilities and transforms((Dragon,red,setpower=5,settoughness=5,newability[flying])) forever
+auto={C(0/0,-4,Loyalty)}:all(dragon|mybattlefield) transforms((,newability[name(damage opponent) target(opponent) dynamicability<!powerstrike!> oneshot)) ueot
+text=0:draw a card, it deals damage equal to its converted mana cost to sarkhan the Mad -- -2: target creature loses all abilities and becomes a 5/5 red dragon with flying -- -4: each dragon you control deals damage equal to its power to an opponent
+mana={3}{B}{R}
+type=Planeswalker
+subtype=Sarkhan
+[/card]
+[card]
+name=Sorin Markov
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,2,Loyalty)}:damage:2 target(creature,player) && life:2 controller
+auto={C(0/0,-3,Loyalty)}:lifeset:10 opponent
+auto={C(0/0,-7,Loyalty)}:turns:+1 controller
+text=+2: sorin Markov deals 2 damage to target creature or player and you gain 2 life -- -3: an opponents life total becomes 10 -- you take an extra turn after this one
+mana={3}{B}{B}{B}
+type=Planeswalker
+subtype=Sorin
+[/card]
+[card]
+name=Tezzeret, Agent of Bolas
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:deplete:5 controller && moveto(myhand) target(artifact[fresh]|mygraveyard)
+auto={C(0/0,-1,Loyalty)}:target(artifact) transforms((creature,setpower=5,settoughness=5)) forever
+auto={C(0/0,-4,Loyalty)}:life:-type:artifact:mybattlefield opponent && life:-type:artifact:mybattlefield opponent
+text=+1: put the top five cards of your library into your graveyard, then return an artifact from those cards to your hand -- -1: target artifact becomes a 5/5 creature -- -4: an opponent loses x life and you gain x life where x is twice the number of artifacts you control
+mana={2}{U}{B}
+type=Planeswalker
+subtype=Tezzeret
+[/card]
+[card]
+name=Ugin, the Spirit Dragon
+auto=counter(0/0,7,loyalty)
+auto={C(0/0,2,Loyalty)}:damage:3 target(creature,player)
+#auto={C(0/0,-1,Loyalty)}:moveto(exile) all(*[manacost<=1,red,green,black,white,blue])
+auto={C(0/0,-1,Loyalty)}:moveto(exile) all(*[manacost<=1,red,green,black,white,blue]|battlefield) 
+auto={C(0/0,-2,Loyalty)}:all(*[manacost<=2,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-3,Loyalty)}:all(*[manacost<=3,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-4,Loyalty)}:all(*[manacost<=4,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-5,Loyalty)}:all(*[manacost<=5,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-6,Loyalty)}:all(*[manacost<=6,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-7,Loyalty)}:all(*[manacost<=7,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-8,Loyalty)}:all(*[manacost<=8,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-9,Loyalty)}:all(*[manacost<=9,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-10,Loyalty)}:all(*[manacost<=10,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-15,Loyalty)}:all(*[manacost<=15,red,green,black,white,blue]|battlefield) moveto(exile)
+auto={C(0/0,-10,Loyalty)}:life:7 && draw:7 && moveto(mybattlefield) target(<upto:7>*|myhand)
+text=+2: Ugin, the Spirit Dragon deals 3 damage to target creature or player -- -x: exile each colored permanent with converted mana cost x or less -- -10: you gain seven life, draw seven cards, and put up to seven permanents from your hand onto the battlefield
+mana={8}
+type=Planeswalker
+subtype=Ugin
+[/card]
+[card]
+name=Xenagos, the Reveler
+auto=counter(0/0,3,loyalty)
+#auto={C(0/0,1,Loyalty)}:choice name(add green) foreach(creature|mybattlefield) add:{G} choice name(add red) foreach(creature|mybattlefield) add:{R}
+auto={C(0/0,1,Loyalty)}:choice name(add green) foreach(creature|mybattlefield)
+auto={C(0/0,0,Loyalty)}:token(Satyr,creature Satyr,2/2,red,green,haste)
+auto={C(0/0,-6,Loyalty)}:deplete:7 && moveto(mybattlefield) target(<upto:7>creature,land[fresh]|mygraveyard)
+text=+1: add x red or green mana to your mana pool where x is the number of creatures you control -- put a 2/2 red and green satyr with haste onto the battlefield -- -6: put the top seven cards of your library into your graveyard, then return any number of creatures or lands to the battlefield that were put into a graveyard this turn
+mana={2}{R}{G}
+type=Planeswalker
+subtype=Xenagos
+[/card]

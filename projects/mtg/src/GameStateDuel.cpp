@@ -770,9 +770,9 @@ void GameStateDuel::Update(float dt)
                 musictrack = "ai_baka_music_momir.mp3";
             else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2) musictrack
                 = "ai_baka_music_random.mp3";
-			else if (mParent->gameType == GAME_TYPE_RANDOM3 || mParent->gameType == GAME_TYPE_RANDOM5) musictrack
+            else if (mParent->gameType == GAME_TYPE_RANDOM3 || mParent->gameType == GAME_TYPE_RANDOM5) musictrack
                 = "ai_baka_music_random.mp3";
-			else if (mParent->gameType == GAME_TYPE_HORDE || mParent->gameType == GAME_TYPE_SET_LIMITED) musictrack
+            else if (mParent->gameType == GAME_TYPE_HORDE || mParent->gameType == GAME_TYPE_SET_LIMITED) musictrack
                 = "ai_baka_music_momir.mp3";
             if (!MusicExist(musictrack)) 
                 musictrack = "ai_baka_music.mp3";
@@ -1040,14 +1040,14 @@ void GameStateDuel::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
-#if !defined (PSP)
+
     JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
     if (wpTex)
     {
         JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
-#endif
+
     //render the game until someone did win the game (otherwise it crashes sometimes under linux)
     if (game && !game->didWin())
         game->Render();

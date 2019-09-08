@@ -1,0 +1,358 @@
+#Commander 2015 addon for Wagic the Homebrew
+#Coded by the Wagic Community
+#
+#Missing Cards
+#---------------
+# Command Beacon - There is no Command Zone in Wagic. An overpowered work around would be Sacrifice this and put legendary creature into play from your hand.
+# 5 Confluence cards - multiple choices - not exactly sure how to code.
+# Dream Pillager - not sure about how to code the cast cards from exile effect.
+# Ezuri's Predation - Possible as a work around but I am not exactly sure how to force multiple token creatures to fight different separate target creatures.
+# Gigantoplasm - not sure how to code.
+# Mizzix of the Izmagnus - Affiity for Experience counters casting cost reduction effect - not sure how to code.
+# Myriad Cards - in a two player game they are not supposed to generate a clone token. Taking this ability out nerfs them.
+# Sandstone Oracle - player has more cards in hand than you, draw cards equal to the difference - not sure how to code.
+# Tablet of the Guilds - not sure how to code.
+#
+#---------------
+[card]
+name=Anya, Merciless Angel
+abilities=flying
+auto=this(opponentlife <10) 3/3
+auto=this(opponentlife <10) indestructible
+text=flying -- Anya, Merciless Angel gets +3/+3 for each opponent whose life total is less than their starting life total -- as long as an opponent has less than half their life total Anya, Merciless Angel has indestructible
+mana={3}{R}{W}
+type=Legendary Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Arjun, the Shifting Flame
+auto=flying
+auto=@movedTo(*|mystack):all(*|myhand) transforms((,newability[bottomoflibrary],newability[draw:1])) ueot
+text=Flying. -- Whenever you cast a spell, put the cards in your hand on the bottom of your library in any order, then draw that many cards.
+mana={4}{U}{R}
+type=Legendary Creature
+subtype=Sphinx Wizard
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Awaken the Sky Tyrant
+auto=@damageof(player) from(*|opponentbattlefield) once:token(Dragon,Creature Dragon,5/5,red,flying) && bury all(this)
+text=When a source an opponent controls deals damage to you, sacrifice Awaken the Sky Tyrant. If you do, put a 5/5 red Dragon creature token with flying onto the battlefield.
+mana={3}{R}
+type=Enchantment
+[/card]
+
+[card]
+name=Banshee of the Dread Choir
+auto=@combat(attacking) source(this):clone with(unearth,haste,battleready)
+auto=@damagefoeof(player) from(this):discard:1 opponent
+text=Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at the end of combat.) -- Whenever Banshee of the Dread Choir deals combat damage to a player, that player discards a card. 
+mana={3}{B}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Bloodspore Thrinax
+auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,1) all(this) && all(this) transforms((,newability[flying],newability[trample])) forever
+auto=@movedTo(other creature|mybattlefield):all(trigger) thisforeach(counter{1/1.1}) counter(1/1,1) all(trigger)
+text=Devour 1 (As ths enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- Each other creature you control enters the battlfield with an additional X +1/+1 counters on it, where X is the number of counters on Bloodspore Thrinax.
+mana={2}{G}{G}
+type=Creature
+subtype=Lizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Broodbirth Viper
+auto=@combat(attacking) source(this):clone with(unearth,haste,battleready)
+auto=@combatdamaged(player) from(this):draw:1 controller
+text=Myriad. -- Whenever Broodbirth Viper deals combat damage to a player, you may draw a card.
+mana={4}{U}
+type=Creature
+subtype=Snake
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Caller of the Pack
+abilities=trample
+auto=@combat(attacking) source(this):clone with(unearth,haste,battleready)
+text=Trample. -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at the end of combat.)
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=8
+toughness=6
+[/card]
+
+[card]
+name=Deadly Tempest
+auto=@movedto(graveyard) from(creature|mybattlefield):life:-1 controller
+auto=@movedto(graveyard) from(creature|opponentbattlefield):life:-1 opponent
+auto=all(creature) bury
+text=Destroy all creatures. Each player loses life equal to the number of creatures he or she controlled that were destroyed this way.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Dread Summons
+auto=deplete:X all(player)
+auto=foreach(creature[fresh]|opponentgraveyard) token(-779988)
+auto=foreach(creature[fresh]|mygraveyard) token(Bear,Creature Bear,2/2,green)
+text=Each player puts the top X cards of his or her library into his or her graveyard. -- For each creature card put into a graveyard this way, you put a 2/2 black Zombie creature token onto the battlefield tapped.
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Dread Summons Token
+type=Creature
+subtype=Zombie
+auto=tap
+power=2
+toughness=2
+color=black
+[/card]
+
+[card]
+name=Ezuri, Claw of Progress
+auto=@movedTo(creature[power>=2]|mybattlefield):counter(0/0,1,Experience)
+auto=@each my combatbegins:choice thisforeach(counter(0/0.1.Experience)|mybattlefield) counter(1/1,1) target(creature|mybattlefield)
+text=Whenever a creature with power 2 or less enters the battlefield under your control, you get an experience counter. -- At the beginning of combat on your turn, put X +1/+1 counters on another target creature you control, where X is the number of experience counters you have. mana={2}{G}{U}
+type=Legendary Creature
+subtype=Elf Warrior
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Grasp of Fate
+auto=(blink)forsrc target(*[-land]|opponentbattlefield)
+text=When Grasp of Fate enters the battlefield, for each opponent, exile up to one target nonland permanent that player controls until Grasp of Fate leaves the battlefield. (Those permanents return under their owner's control.)
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Great Oak Guardian
+abilities=flash,reach
+target=player
+auto=all(creature|targetedpersonsbattlefield) 2/2 && all(creature|targetedpersonsbattlefield) transforms((untap)) ueot
+text=Flash (You may cast this spell any time you could cast an instant.) --Reach. -- When Great Oak Guardian enters the battlefield, creatures target player controls get +2/+2 until end of turn. Untap them.
+mana={5}{G}
+type=Creature
+subtype=Treefolk
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Herald of the Host
+abilities=flying,vigilance
+auto=@combat(attacking) source(this):clone with(unearth,haste,battleready)
+text=Flying. -- Vigilance. -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at the end of combat.)
+mana={3}{W}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Illusory Ambusher
+abilities=flash
+auto=@damaged(this):draw:thatmuch controller
+text=Flash. -- Whenever Illusory Ambusher is dealt damage, draw that many cards.
+mana={4}{U}
+type=Creature
+subtype=Cat Illusion
+power=4
+toughness=1
+[/card]
+
+[card]
+name=Kalemne, Disciple of Iroas
+abilities=double strike,vigilance
+auto=@movedTo(creature[manacost<=5]|mystack):counter(0/0,1,Experience)
+auto=thisforeach(counter(0/0.1.Experience)|mybattlefield) counter(1/1,1)
+auto=@movedTo(creature[manacost<=5]|mystack):counter(1/1,1)
+text=Double strike, vigilance. -- Whenever you cast a creature spell with converted mana cost 5 or greater, you get an experience counter. -- Kalemne, Disciple of Iroas gets +1/+1 for each experience counter you have.
+mana={2}{R}{W}
+type=Legendary Creature
+subtype=Giant Soldier
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Kalemne's Captain
+abilities=vigilance
+auto=this(cantargetcard(*[-monstrous]) {5}{W}{W}:becomes(monstrous) forever && counter(1/1,3) && transforms((,newability[moveTo(exile)(all((artifact,enchantment)])) forever
+text=Vigilance. -- {5}{W}{W}: Monstrosity 3. (If this creature isn't monstrous, put three +1/+1 counters on it and it becomes monstrous.) -- When Kalemne's Captain becomes monstrous, exile all artifacts and enchantments.
+mana={3}{W}{W}
+type=Creature
+subtype=Giant Soldier
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Karlov of the Ghost Council
+#auto=@lifeof(player):counter(1/1,2)
+auto=@lifed(controller):counter(1/1,2)
+auto={W}{B}{C(1/1,-6)}: moveTo(exile) target(creature)
+text=whenever you gain life, put two +1/+1 counters on Karlov of the Ghost Counsil -- {W}{B}, remove six +1/+1 counters from Karlov of the Ghost Council: exile target creature
+mana={W}{B}
+type=Legendary Creature
+subtype=Spirit Advisor
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Kaseto, Orochi Archmage
+auto={G}{U}:target(creature) unblockable ueot && if cantargetcard(snake) then 2/2 ueot
+text={G}{U}: target creature can't be blocked this turn, if that creature is a snake, that it gets +2/+2 until end of turn
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Snake Wizard
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Magus of the Wheel
+auto={1}{R}{T}{S}:reject all(*|hand) && draw:7 opponent && draw:7 controller
+text={1}{R}{T}, Sacrifice Magus of the Wheel: Each player discards his or her hand, then draws seven cards.
+mana={2}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Mazirek, Kraul Death Priest
+abilities=flying
+auto=@sacrificed(other creature):all(*|myBattlefield) counter(1/1,1)
+text=flying -- whenever a player sacrifices another permanent, put a +1/+1 counter on each creature you control
+mana={3}{B}{G}
+type=Legendary Creature
+subtype=Insect Shaman
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Oreskos Explorer
+auto=if type(land|opponentbattlefield)~morethan~type(land|mybattlefield) then target(plains|mylibrary) moveto(myhand)
+text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library. Work around Wagic is only a two player game.
+mana={1}{W}
+type=Creature
+subtype=Cat Scout
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Pathbreaker Ibex
+auto=@combat(attacking) source(this):all(creature|mybattlefield) power:highest:creature:mybattlefield/power:highest:creature:mybattlefield
+auto=@combat(attacking) source(this):all(creature|mybattlefield) trample
+text=Whenever Pathbreaker Ibex attacks, creatures you control gain trample and get +X/+X until end of turn, where X is the greatest power among creatures you control.
+mana={4}{G}{G}
+type=Creature
+subtype=Goat
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Scourge of Nel Toth
+abilities=flying
+autograveyard={B}{B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:moveTo(myBattlefield)
+text=Flying -- You may cast Scourge of Nel Toth from your graveyard by paying {B}{B}and sacrificing two creatures rather than paying its mana cost.
+mana={5}{B}{B}
+type=Creature
+subtype=Zombie Dragon
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Scytheclaw
+auto={3}:equip
+auto=teach(creature) transforms((,newability[deathtouch],newability[@combatdamagefoeof(player) from(this):life:-halfupopponentlifetotal opponent],newability[@combatdamageof(player) from(this):life:-halfuplifetotal controller]))
+auto=1/1
+auto=livingweapontoken(Germ,Creature Germ,0/0,black)
+text=Living weapon (When this Equipment enters the battlefield, put a 0/0 black Germ creature token onto the battlefield, then attach this to it.) -- Equipped creature gets +1/+1. -- Whenever equipped creature deals combat damage to a player, that player loses half his or her life, rounded up.
+mana={5}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Shielded by Faith
+target=*
+auto=indestructible
+auto=@movedto(creature|mybattlefield):may all(trigger[to]) retarget
+text=Enchant creature. -- Enchanted creature has indestructible. -- Whenever a creature enters the battlefield, you may attach Shielded by Faith to that creature.
+mana={1}{W}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Skullwinder
+abilities=deathtouch
+auto=may moveTo(myhand) target(*|mygraveyard)
+auto=moveTo(opponenthand) target(*|opponentgraveyard)
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Skullwinder enters the battlefield, return target card from your graveyard to your hand, then choose an opponent. That player returns a card from his or her graveyard to his or her hand.
+mana={2}{G}
+type=Creature
+subtype=Snake
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Thought Vessel
+abilities=nomaxhand
+auto={T}:Add{1}
+text=You have no maximum hand size. -- {T}: Add {1} to your mana pool.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Vine Centaur
+auto=counter(1/1,type:land:mygraveyard)
+autograveyard=@movedto(land|mygraveyard):pay({G}{G}) moveto(ownerhand)
+text=Trample. --Vine Centaur enters the battlefield with a number of +1/+1 counters on it equal to the number of land cards in all graveyards. -- Whenever a land is put into a graveyard from anywhere, you may pay GG. If you do, return Centaur Vinecrasher from the graveyard to you hand.
+mana={3}{G}
+type=Creature
+subtype=Plant Centaur
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Warchief Giant
+abilities=haste
+auto=@combat(attacking) source(this):clone with(unearth,haste,battleready)
+text=Haste. -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at the end of combat.)
+mana={3}{R}{R}
+type=Creature
+subtype=Giant Warrior
+power=5
+toughness=3
+[/card]

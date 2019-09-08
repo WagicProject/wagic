@@ -1184,7 +1184,7 @@ toughness=2
 [card]
 name=Zacama, Primal Calamity
 abilities=vigilance, reach, trample
-auto=if casted(this) then all(lands|myBattlefield) untap
+auto=if casted(this) then untap all(land|mybattlefield)
 auto={2}{R}:zacama damage:3 target(creature)
 auto={2}{G}:destroy target(artifact,enchantment)
 auto={2}{W}:life:3
