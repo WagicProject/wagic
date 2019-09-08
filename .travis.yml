@@ -18,11 +18,13 @@ before_install:
       sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test &&
       sudo apt-get -qq update &&
       sudo apt-get -qq install g++-4.8 &&
+      sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90;
     fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       brew update &&
       brew install dpkg &&
+      brew install qt5 &&
       pwd &&
       ls;
     fi    
@@ -36,7 +38,6 @@ before_install:
     fi
 # Building for Qt here
   - if [ "$BUILD_Qt" == "YES" ]; then
-      sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
 # Building for Android here
