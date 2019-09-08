@@ -25,6 +25,7 @@ before_install:
       brew update &&
       brew install dpkg &&
       brew install qt5 &&
+      brew install ant &&
       pwd &&
       ls;
     fi    
