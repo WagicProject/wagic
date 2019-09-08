@@ -31,7 +31,7 @@ const KeyRep& translateKey(LocalKeySym key)
 #elif defined (SDL_CONFIG)
     str = (char*)SDL_GetKeyName(key);
 #elif defined (QT_CONFIG)
-	str = (char*)QKeySequence(key).toString().toUtf8().constData();
+    str = (char*)QKeySequence(key).toString().toUtf8().constData();
 #endif
     if (!str)
     {

@@ -1,0 +1,2753 @@
+
+
+#the following is either experimental stuff I tried or stuff I didn't code
+
+#phanharmonicon
+#new menace code
+#vehicle code
+#new scry code
+#revoke priveleges is just a pacifism
+#energy is as counters on the permanents because I don't know how to put counters on yourself
+
+##Prototype energy/exp tableau dummy;
+## auto=if(Energy Tableau|mybattlefield) create token(845900) controller <1
+
+## See Nox Gearhulk for Menace test: cantbeblockedby(<2>creature)
+
+[card]
+name=Acrobatic Maneuver
+target=creature|mybattlefield
+auto=blink
+auto=draw:1
+text=Exile target creature you control, then return that card to the battlefield under its owner's control. -- Draw a card.
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Aerial Responder
+abilities=flying, vigilance, lifelink
+text=Flying, vigilance, lifelink
+mana={1}{W}{W}
+type=Creature
+subtype=Dwarf Soldier
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Aetherstorm Roc
+abilities=flying
+auto=@combat(attacking) source(this):may pay(counter[0/0,-2,energy] from(<anyamount>*|mybattlefield)) tap target(creature|opponentbattlefield) && counter(1/1,1) this
+text=Flying -- Whenever Aetherstorm Roc or another creature enters the battlefield under your control, you get {E} (an energy counter). -- Whenever Aetherstorm Roc attacks, you may pay {E}{E}. If you do, put a +1/+1 counter on it and tap up to one target creature defending player controls.
+mana={2}{W}{W}
+type=Creature
+subtype=Bird
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Angel of Invention
+abilities=flying, vigilance, lifelink
+auto=choice name(counter) counter(1/1,2)
+auto=choice name(servo) token(Servo,artifact creature Servo,1,1)*2
+auto=lord(other creature|mybattlefield)1/1
+text=Flying, vigilance, lifelink -- Fabricate 2 (When this creature enters the battlefield, put two +1/+1 counters on it or create two 1/1 colorless Servo artifact creature tokens.) -- Other creatures you control get +1/+1.
+mana={3}{W}{W}
+type=Creature
+subtype=Angel
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Authority of the Consuls
+auto=@movedto(creature|opponentbattlefield) all(trigger[to]) tap
+auto=@movedto(creature|opponentbattlefield) life:1
+text=Creatures your opponents control enter the battlefield tapped. -- Whenever a creature enters the battlefield under an opponent's control, you gain 1 life.
+mana={W}
+type=Enchantment
+[/card]
+
+[card]
+name=Aviary Mechanic
+auto=may moveto(myhand) target(*|mybattlefield)
+text=When Aviary Mechanic enters the battlefield, you may return another permanent you control to its owner's hand.
+mana={1}{W}
+type=Creature
+subtype=Dwarf Artificer
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Built to Last
+target=creature
+auto=2/2
+auto=if type(mytgt[artifact]) indestructible
+text=Target creature gets +2/+2 until end of turn. If it's an artifact creature, it gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=Captured by the Consulate
+target=creature|opponentbattlefield
+auto=mytgt cantattack
+auto=@movedto(*|opponentstack):destroy mytgt
+text=Enchant creature you don't control -- Enchanted creature can't attack. -- Whenever an opponent casts a spell, if it has a single target, change the target to enchanted creature if able.
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Cataclysmic Gearhulk
+abilities=vigilance
+auto=destroy all(other *[-land]) && emblem name(return) transforms((,newability[may moveto(mybattlefield) target(creature|mygraveyard)],newability[may moveto(mybattlefield) target(artifact|mygraveyard)],newability[may moveto(mybattlefield) target(enchantment|mygraveyard)],newability[may moveto(mybattlefield) target(planeswalker|mygraveyard)])) ueot
+text=Vigilance -- When Cataclysmic Gearhulk enters the battlefield, each player chooses an artifact, a creature, an enchantment, and a planeswalker from among the nonland permanents he or she controls, then sacrifices the rest.
+mana={3}{W}{W}
+type=Artifact Creature
+subtype=Construct
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Consulate Surveillance
+auto=counter(0/0,4,energy)
+auto={c(0/0,-2,energy) from(<anyamount>*|mybattlefield)}:preventalldamage target(*)
+text=When Consulate Surveillance enters the battlefield, you get {E}{E}{E}{E} (four energy counters). -- Pay {E}{E}: Prevent all damage that would be dealt to you this turn by a source of your choice.
+mana={3}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Consul's Shieldguard
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay[c(0/0,-2,energy) from(<anyamount>*|mybattlefield)] indestructible target(other creature[attacking])
+text=When Consul's Shieldguard enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Consul's Shieldguard attacks, you may pay {E}. If you do, another target attacking creature gains indestructible until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Dwarf Soldier
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Eddytrail Hawk
+abilities=flying
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay[c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] target(other creature[attacking]|mybattlefield) flying ueot
+text=Flying -- When Eddytrail Hawk enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Eddytrail Hawk attacks, you may pay {E}. If you do, another target attacking creature gains flying until end of turn.
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Fairgrounds Warden
+#auto=blink forsrc target(creature|opponentbattlefield)
+auto=(blink)forsrc target(creature|opponentbattlefield)
+text=When Fairgrounds Warden enters the battlefield, exile target creature an opponent controls until Fairgrounds Warden leaves the battlefield.
+mana={2}{W}
+type=Creature
+subtype=Dwarf Soldier
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Fragmentize
+target=artifact,enchantment[manacost<=4]
+auto=destroy
+text=Destroy target artifact or enchantment with converted mana cost 4 or less.
+mana={W}
+type=Sorcery
+[/card]
+
+[card]
+name=Fumigate
+auto=foreach(creature|battlefield) life:1
+auto=destroy all(creature|battlefield)
+text=Destroy all creatures. You gain 1 life for each creature destroyed this way.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Gearshift Ace
+abilities=first strike
+auto=@tapped(this) from(vehicle|mybattlefield):all(trigger[to]) first strike ueot
+text=First strike -- Whenever Gearshift Ace crews a Vehicle, that Vehicle gains first strike until end of turn.
+mana={1}{W}
+type=Creature
+subtype=Dwarf Pilot
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Glint-Sleeve Artisan
+auto=choice name(counter) counter(1/1,1)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)
+text=Fabricate 1 (When this creature enters the battlefield, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)
+mana={2}{W}
+type=Creature
+subtype=Dwarf Artificer
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Herald of the Fair
+auto=target(creature) 1/1 ueot
+text=When Herald of the Fair enters the battlefield, target creature you control gets +1/+1 until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Human
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Impeccable Timing
+target=creature[attacking;blocking]
+auto=damage:3
+text=Impeccable Timing deals 3 damage to target attacking or blocking creature.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Master Trinketeer
+auto=lord(thopter,servo|mybattlefield) 1/1
+auto={3}{W}:token(Servo,artifact creature Servo,1/1)
+text=Servos and Thopters you control get +1/+1. -- {3}{W}: Create a 1/1 colorless Servo artifact creature token.
+mana={2}{W}
+type=Creature
+subtype=Dwarf Artificer
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Ninth Bridge Patrol
+auto=@movedto(other creature|nonbattlezone):counter(1/1,1)
+text=Whenever another creature you control leaves the battlefield, put a +1/+1 counter on Ninth Bridge Patrol.
+mana={1}{W}
+type=Creature
+subtype=Dwarf Soldier
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Propeller Pioneer
+abilities=flying
+auto=choice name(counter) counter(1/1,1)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)
+text=Flying -- Fabricate 1 (When this creature enters the battlefield, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)
+mana={3}{W}
+type=Creature
+subtype=Human Artificer
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Refurbish
+target=artifact|mygraveyard
+auto=moveto(mybattlefield)
+text=Return target artifact card from your graveyard to the battlefield.
+mana={3}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Revoke Privileges
+target=creature
+auto=mytgt cantblock
+auto=mytgt cantattack
+text=Enchant creature -- Enchanted creature can't attack, block, or crew Vehicles.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Servo Exhibition
+auto=token(Servo,artifact creature Servo,1/1)*2
+text=Create two 1/1 colorless Servo artifact creature tokens.
+mana={1}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Skyswirl Harrier
+abilities=flying
+text=Flying
+mana={4}{W}
+type=Creature
+subtype=Bird
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Skywhaler's Shot
+#target=creature[power=>3]
+auto=destroy target(creature[power>=3])
+#auto=deplete:1 && emblem transforms((,newability[may moveto(mylibrary) target(*|mygraveyard else bottomoflibrary target(*|mygraveyard)])) ueot
+auto=deplete:1 && token(845845) controller
+text=Destroy target creature with power 3 or greater. Scry 1.
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Tasseled Dromedary
+mana={W}
+type=Creature
+subtype=Camel
+power=0
+toughness=4
+[/card]
+
+[card]
+name=Thriving Ibex
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay[c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] counter(1/1,1)
+text=When Thriving Ibex enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Thriving Ibex attacks, you may pay {E}{E}. If you do, put a +1/+1 counter on it.
+mana={3}{W}
+type=Creature
+subtype=Goat
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Toolcraft Exemplar
+#auto=@each my combatbegins:if type(artifact|mybattlefield)~morethan~0 2/1
+#auto=@each my combatbegins:if type(artifact|mybattlefield)~morethan~2 first strike
+auto=@each my combatbegins:aslongas(artifact|myBattlefield) 2/1 ueot
+auto=@each my combatbegins:aslongas(artifact|myBattlefield) first strike ueot > 2 
+text=At the beginning of combat on your turn, if you control an artifact, Toolcraft Exemplar gets +2/+1 until end of turn. If you control three or more artifacts, it also gains first strike until end of turn.
+mana={W}
+type=Creature
+subtype=Dwarf Artificer
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Trusty Companion
+abilities=vigilance
+auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
+text=Vigilance -- Trusty Companion can't attack alone.
+mana={1}{W}
+type=Creature
+subtype=Hyena
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Visionary Augmenter
+auto=choice name(counter) counter(1/1,2)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)*2
+text=Fabricate 2 (When this creature enters the battlefield, put two +1/+1 counters on it or create two 1/1 colorless Servo artifact creature tokens.)
+mana={2}{W}{W}
+type=Creature
+subtype=Dwarf Artificer
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Wispweaver Angel
+abilities=flying
+auto=may blink target(creature|mybattlefield)
+text=Flying -- When Wispweaver Angel enters the battlefield, you may exile another target creature you control, then return that card to the battlefield under its owner's control.
+mana={4}{W}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Aether Meltdown
+abilities=flash
+auto=counter(0/0,2,energy)
+auto=mytgt -4/0
+target=creature or Vehicle
+text=Flash (You may cast this spell any time you could cast an instant.) -- Enchant creature or Vehicle -- When Aether Meltdown enters the battlefield, you get {E}{E} (two energy counters). -- Enchanted permanent gets -4/-0.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Aether Theorist
+auto=counter(0/0,3,energy)
+auto={T}{c(0/0,-1,energy)}:deplete:1 controller && emblem transforms((,newability[may moveto(mylibrary) target(*|mygraveyard else bottomoflibrary target(*|mygraveyard)])) ueot
+text=When Aether Theorist enters the battlefield, you get {E}{E}{E} (three energy counters). -- {T}, Pay {E}: Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+mana={1}{U}
+type=Creature
+subtype=Vedalken Rogue
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Aethersquall Ancient
+abilities=flying
+auto=@each my upkeep:counter(0/0,3,energy)
+auto={counter(0/0,-8,energy) from(<anyamount>*|mybattlefield)}:moveto(ownerhand) all(other creature) assorcery
+text=Flying -- At the beginning of your upkeep, you get {E}{E}{E} (three energy counters). -- Pay {E}{E}{E}{E}{E}{E}{E}{E}: Return all other creatures to their owners' hands. Activate this ability only any time you could cast a sorcery.
+mana={5}{U}{U}
+type=Creature
+subtype=Leviathan
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Ceremonious Rejection
+target=*[-white;-blue;-black;-red;-green]|stack
+auto=fizzle
+text=Counter target colorless spell.
+mana={U}
+type=Instant
+[/card]
+
+[card]
+name=Confiscation Coup
+auto=moveTo(mybattlefield) target(creature[manacost<=counter(c[energy]|mybattlefield)])
+text=Choose target artifact or creature. You get {E}{E}{E}{E} (four energy counters), then you may pay an amount of {E} equal to that permanent's converted mana cost. If you do, gain control of it.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Curio Vendor
+mana={1}{U}
+type=Creature
+subtype=Vedalken
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Disappearing Act
+target=*|stack
+auto=fizzle
+text=As an additional cost to cast Disappearing Act, return a permanent you control to its owner's hand. -- Counter target spell.
+mana={1}{U}{U}{moveto(myhand) target(*|mybattlefield)}
+type=Instant
+[/card]
+
+[card]
+name=Dramatic Reversal
+auto=untap all(*[-land]|mybattlefield)
+text=Untap all nonland permanents you control.
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Era of Innovation
+auto=@movedto(artifact,artificer|mybattlefield):may pay[1] counter(0/0,2,energy)
+auto={c(0/0,-6,energy) from(<anyamount>*|mybattlefield)}{S}:draw:3
+text=Whenever an artifact or Artificer enters the battlefield under your control, you may pay {1}. If you do, you get {E}{E} (two energy counters). -- Pay {E}{E}{E}{E}{E}{E}, Sacrifice Era of Innovation: Draw three cards.
+mana={1}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Experimental Aviator
+abilities=flying
+auto=token(Thopter,artifact creature Thopter,1/1,flying)*2
+text=Flying -- When Experimental Aviator enters the battlefield, create two 1/1 colorless Thopter artifact creature tokens with flying.
+mana={3}{U}{U}
+type=Creature
+subtype=Human Artificer
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Failed Inspection
+target=*|stack
+auto=fizzle
+auto=draw:1
+auto=discard(*|myhand)
+text=Counter target spell. Draw a card, then discard a card.
+mana={2}{U}{U}
+type=Instant
+[/card]
+
+[card]
+name=Gearseeker Serpent
+auto=foreach(artifact|mybattlefield) altercost(colorless, -1)
+text=Gearseeker Serpent costs {1} less to cast for each artifact you control. -- {5}{U}: Gearseeker Serpent can't be blocked this turn.
+mana={5}{U}{U}
+type=Creature
+subtype=Serpent
+power=5
+toughness=6
+[/card]
+
+[card]
+name=Glimmer of Genius
+#auto=deplete:2 && emblem transforms((,newability[may moveto(mylibrary) target(<upto:2>*|mygraveyard else bottomoflibrary target(<upto:2>*|mygraveyard)])) ueot
+#auto=draw:2 controller
+#Energy Tableau test run!
+## Edit: IT WORKS THIS WAY! Now for paying {E} we just need to first check how many E are on all/target Energy Tableauts|myBf and then remove that many.
+auto=aslongas(Energy Tableau|mybattlefield) create token(845900) controller <1
+auto=counter(0/0,2,energy) all(Energy Tableau|mybattlefield)
+auto=emblem transforms((,newability[may moveto(mylibrary) target(<upto:1>*|mygraveyard else bottomoflibrary target(<upto:1>*|mygraveyard)])) ueot
+auto=emblem transforms((,newability[may moveto(mylibrary) target(<upto:2>*|mygraveyard else bottomoflibrary target(<upto:2>*|mygraveyard)])) ueot
+auto=deplete:2 controller
+#auto=name(move1) moveto(mylibrary) target(<upto:1>*|mygraveyard)
+#auto=name(move2) moveto(mylibrary) target(<upto:2>*|mygraveyard)
+#auto=token(845846) controller
+#auto=token(845861) controller
+#auto=deplete:2 controller
+#Skip energy gain until we got a better fix
+#auto=target(*|mybattlefield) counter(0/0,2,energy)
+#Skip energy gain until we got a better fix
+text=Scry 2, then draw two cards. You get {E}{E} (two energy counters).
+mana={3}{U}
+type=Instant
+[/card]
+
+[card]
+name=Glint-Nest Crane
+abilities=flying
+auto=moverandom(artifact) from(mylibrary) to(myhand)
+text=Flying -- When Glint-Nest Crane enters the battlefield, look at the top four cards of your library. You may reveal an artifact card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Hightide Hermit
+abilities=defender
+auto=counter(0/0,4,energy)
+auto={c(0/0,-2,energy) from(<anynumber>*|mybattlefield)}:-defender ueot
+text=Defender -- When Hightide Hermit enters the battlefield, you get {E}{E}{E}{E} (four energy counters). -- Pay {E}{E}: Hightide Hermit can attack this turn as though it didn't have defender.
+mana={4}{U}
+type=Creature
+subtype=Crab
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Insidious Will
+target=*|stack
+auto=fizzle
+text=Choose one  --  Counter target spell. --  You may choose new targets for target spell. --  Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={2}{U}{U}
+type=Instant
+[/card]
+
+[card]
+name=Janjeet Sentry
+auto=counter(0/0,2,energy)
+auto={T}{c(0/0,-2) from(<anyamount>*|mybattlefield)}:tap target(creature,artifact)
+auto={T}{c(0/0,-2) from(<anyamount>*|mybattlefield)}:untap target(creature,artifact)
+text=When Janjeet Sentry enters the battlefield, you get {E}{E} (two energy counters). -- {T}, Pay {E}{E}: You may tap or untap target artifact or creature.
+mana={2}{U}
+type=Creature
+subtype=Vedalken Soldier
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Long-Finned Skywhale
+abilities=flying, cloud
+text=Flying -- Long-Finned Skywhale can block only creatures with flying.
+mana={2}{U}{U}
+type=Creature
+subtype=Whale
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Malfunction
+auto=tap
+auto=doesnotuntap
+target=artifact,creature
+text=Enchant artifact or creature -- When Malfunction enters the battlefield, tap enchanted permanent. -- Enchanted permanent doesn't untap during its controller's untap step.
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Metallurgic Summonings
+auto=@movedto(instant,sorcery[manacost=X]|mystack) token(Construct,artifact creature Construct,X/X)
+auto=aslongas(artifact|myBattlefield){3}{U}{U}{moveto(exile):moveto(myhand) all(instant,sorcery|mygraveyard)} >5
+#auto={3}{U}{U}{moveto(exile)} restriction{type(artifact|mybattlefield)~morethan~5}:moveto(myhand) all(instant,sorcery|mygraveyard)
+text=Whenever you cast an instant or sorcery spell, create an X/X colorless Construct artifact creature token, where X is that spell's converted mana cost. -- {3}{U}{U}, Exile Metallurgic Summonings: Return all instant and sorcery cards from your graveyard to your hand. Activate this ability only if you control six or more artifacts.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Minister of Inquiries
+auto=counter(0/0,2,energy)
+auto={T}{c(0/0,-1,energy) from(<anyamount>*|mybattlefeild)}:deplete:3 opponent
+text=When Minister of Inquiries enters the battlefield, you get {E}{E} (two energy counters). -- {T}, Pay {E}: Target player puts the top three cards of his or her library into his or her graveyard.
+mana={U}
+type=Creature
+subtype=Vedalken Advisor
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Nimble Innovator
+auto=draw:1
+text=When Nimble Innovator enters the battlefield, draw a card.
+mana={3}{U}
+type=Creature
+subtype=Vedalken Artificer
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Padeem, Consul of Innovation
+#auto=lord(artifact|mybattlefield) hexproof
+auto=lord(artifact|mybattlefield) opponentshroud ueot
+auto=@each my upkeep restriction{type(artifact[manacost=manacost:highest:creature:myBattlefield]|myBattlefield)~morethan~type(creature[manacost=manacost:highest:creature:opponentBattlefield]|opponentBattlefield)}:transforms((,newability[draw:1])) ueot
+text=Artifacts you control have hexproof. -- At the beginning of your upkeep, if you control the artifact with the highest converted mana cost or tied for the highest converted mana cost, draw a card.
+mana={3}{U}
+type=Legendary Creature
+subtype=Vedalken Artificer
+power=1
+toughness=4
+[/card]
+
+[card]
+name=Paradoxical Outcome
+target=<anyamount>*[-token]|mybattlefield
+auto=moveto(myhand)
+auto=foreach(mytgt) draw:1
+text=Return any number of target nonland, nontoken permanents you control to their owners' hands. Draw a card for each card returned to your hand this way.
+mana={3}{U}
+type=Instant
+[/card]
+
+[card]
+name=Revolutionary Rebuff
+target=*[-artifact]|stack
+auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+text=Counter target nonartifact spell unless its controller pays {2}.
+mana={1}{U}
+type=Instant
+[/card]
+
+[card]
+name=Saheeli's Artistry
+auto=populate target(artifact)
+auto=populate target(creature) transforms((artifact)) forever
+text=Choose one or both  --  Create a token that's a copy of target artifact. --  Create a token that's a copy of target creature, except it's an artifact in addition to its other types.
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Select for Inspection
+target=creature[tapped]
+auto=moveto(ownerhand)
+auto=deplete:1 && emblem transforms((,newability[may moveto(mylibrary) target(*|mygraveyard else bottomoflibrary target(*|mygraveyard)])) ueot
+text=Return target tapped creature to its owner's hand. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+mana={U}
+type=Instant
+[/card]
+
+[card]
+name=Shrewd Negotiation
+auto=moveTo(myBattlefield) target(artifact|opponentBattlefield) && moveto(opponentBattlefield) target(artifact|mybattlefield)
+text=Exchange control of target artifact you control and target artifact or creature you don't control.
+mana={4}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Tezzeret's Ambition
+#auto=draw:3 && if type(artifact|mybattlefield)~lessthan~0 discard(*|myhand)
+auto=draw:3 && aslongas(artifact|mybattlefield) discard(*|myhand) < 1
+text=Draw three cards. If you control no artifacts, discard a card.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Thriving Turtle
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay [c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] counter(1/1,1)
+text=When Thriving Turtle enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Thriving Turtle attacks, you may pay {E}{E}. If you do, put a +1/+1 counter on it.
+mana={U}
+type=Creature
+subtype=Turtle
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Torrential Gearhulk
+abilities=flash
+#auto=may name(cast card) castcard(normal) target(instant|mygraveyard) and!(transforms((,newability[exiledeath])) forever)!
+auto=may target(*[instant]|mygraveyard|mygraveyard) castcard(normal)
+text=Flash --When Torrential Gearhulk enters the battlefield, you may cast target instant card from your graveyard without paying its mana cost. If that card would be put into your graveyard this turn, exile it instead.
+mana={4}{U}{U}
+type=Artifact Creature
+subtype=Construct
+power=5
+toughness=6
+[/card]
+
+[card]
+name=Vedalken Blademaster
+auto=@movedTo(*[-creature]|mystack):1/1 ueot
+text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
+mana={2}{U}
+type=Creature
+subtype=Vedalken Soldier
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Weldfast Wingsmith
+auto=@movedto(artifact|mybattlefield):flying ueot
+text=Whenever an artifact enters the battlefield under your control, Weldfast Wingsmith gains flying until end of turn.
+mana={3}{U}
+type=Creature
+subtype=Human Artificer
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Aetherborn Marauder
+abilities=flying, lifelink
+auto=may all(*|battlefield) removeallcounters(all) && dynamicability<!myself thatmuchcountersoneone tosrc!>
+text=Flying, lifelink -- When Aetherborn Marauder enters the battlefield, move any number of +1/+1 counters from other permanents you control onto Aetherborn Marauder.
+mana={3}{B}
+type=Creature
+subtype=Aetherborn Rogue
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Ambitious Aetherborn
+auto=choice name(counter) counter(1/1,1)
+auto=choice name(servo) token(Servo,artifact creature Servo,1,1)
+text=Fabricate 1 (When this creature enters the battlefield, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)
+mana={4}{B}
+type=Creature
+subtype=Aetherborn Artificer
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Demon of Dark Schemes
+abilities=flying
+auto=all(other creature) -2/-2 ueot
+auto=@movedto(creature|ownergraveyard): counter(0/0,1,energy)
+auto={2}{G}{c(0/0,-4,energy) from(<anynumber>*|mybattlefield}:moveto(mybattlefield) target(creature|graveyard) tapped
+text=Flying -- When Demon of Dark Schemes enters the battlefield, all other creatures get -2/-2 until end of turn. -- Whenever another creature dies, you get {E} (an energy counter). -- {2}{B}, Pay {E}{E}{E}{E}: Put target creature card from a graveyard onto the battlefield under your control tapped.
+mana={3}{B}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Dhund Operative
+#auto=aslongas(artifact|mybattlefield)~morethan~0 1/0
+#auto=aslongas(artifact|mybattlefield)~morethan~0 deathtouch
+auto=aslongas(artifact|myBattlefield) deathtouch
+auto=aslongas(artifact|myBattlefield) 1/0
+text=As long as you control an artifact, Dhund Operative gets +1/+0 and has deathtouch. (Any amount of damage it deals to a creature is enough to destroy it.)
+mana={1}{B}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Die Young
+target=creature
+auto=foreach(c{energy}|mybattlefield) -1/-1 ueot
+text=Choose target creature. You get {E}{E} (two energy counters), then you may pay any amount of {E}. The creature gets -1/-1 until end of turn for each {E} paid this way.
+mana={1}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Dukhara Scavenger
+auto=may moveto(mylibrary) target(artifact,creature|mygraveyard)
+text=When Dukhara Scavenger enters the battlefield, you may put target artifact or creature card from your graveyard on top of your library.
+mana={5}{B}
+type=Creature
+subtype=Crocodile
+power=4
+toughness=6
+[/card]
+
+[card]
+name=Eliminate the Competition
+destroy target(<upto:X>creature)
+text=As an additional cost to cast Eliminate the Competition, sacrifice X creatures. -- Destroy X target creatures.
+mana={4}{B}{S(<X>creature|mybattlefield)}
+type=Sorcery
+[/card]
+
+[card]
+name=Embraal Bruiser
+auto=tap
+auto=lord(creature|opponentbattlefield) transforms((,newability[@combat(defending) source(this) restriction{type(creature[defending]|myBattlefield)~lessthan~2}:all(this) removefromcombat]))
+text=Embraal Bruiser enters the battlefield tapped. -- Embraal Bruiser has menace as long as you control an artifact.
+mana={1}{B}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Essence Extraction
+abilities=lifelink
+target=creature
+auto=damage:3
+text=Essence Extraction deals 3 damage to target creature and you gain 3 life.
+mana={1}{B}{B}
+type=Instant
+[/card]
+
+[card]
+name=Fortuitous Find
+auto=moveto(myhand) target(artifact|mygraveyard)
+auto=moveto(myhand) target(creature|mygraveyard)
+text=Choose one or both  --  Return target artifact card from your graveyard to your hand. --  Return target creature card from your graveyard to your hand.
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Foundry Screecher
+abilities=flying
+auto=aslongas(artifact|mybattlefield)~morethan~0 1/0
+text=Flying -- Foundry Screecher gets +1/+0 as long as you control an artifact.
+mana={2}{B}
+type=Creature
+subtype=Bat
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Fretwork Colony
+abilities=cantblock
+auto=@each my upkeep:counter(1/1,1) && life:-1 controller
+text=Fretwork Colony can't block. -- At the beginning of your upkeep, put a +1/+1 counter on Fretwork Colony and you lose 1 life.
+mana={1}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Gonti, Lord of Luxury
+abilities=deathtouch
+auto=moverandom(artifact,enchantment,creature,land) from(opponentlibrary) to(mybattlefield)
+text=Deathtouch -- When Gonti, Lord of Luxury enters the battlefield, look at the top four cards of target opponent's library, exile one of them face down, then put the rest on the bottom of that library in a random order. For as long as that card remains exiled, you may look at it, you may cast it, and you may spend mana as though it were mana of any type to cast it.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Aetherborn Rogue
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Harsh Scrutiny
+target=opponent
+auto=if type(creature|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(creature|targetedpersonshand)
+auto=deplete:1 controller && emblem transforms((,newability[may moveto(mylibrary) target(*|mygraveyard else bottomoflibrary target(*|mygraveyard)])) ueot
+text=Target opponent reveals his or her hand. You choose a creature card from it. That player discards that card. Scry 1.
+mana={B}
+type=Sorcery
+[/card]
+
+[card]
+name=Lawless Broker
+auto=@movedTo(this|graveyard) from(battlefield):counter(1/1,1) target(creature|mybattlefield)
+text=When Lawless Broker dies, put a +1/+1 counter on target creature you control.
+mana={2}{B}
+type=Creature
+subtype=Aetherborn Rogue
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Live Fast
+auto=draw:2
+auto=life:-2
+auto=counter(0/0,2,energy) target(*|mybattlefield)
+text=You draw two cards, lose 2 life, and get {E}{E} (two energy counters).
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Lost Legacy
+target=*[-artifact;-land]
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard) moveto(exile)
+text=Name a nonartifact, nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles his or her library, then draws a card for each card exiled from hand this way.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Make Obsolete
+auto=all(creature|opponentbattlefield) -1/-1 ueot
+text=Creatures your opponents control get -1/-1 until end of turn.
+mana={2}{B}
+type=Instant
+[/card]
+
+[card]
+name=Marionette Master
+auto=choice name(counter) counter(1/1,3)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)*3
+auto=@movedto(artifact|graveyard):life:-p opponent
+text=Fabricate 3 (When this creature enters the battlefield, put three +1/+1 counters on it or create three 1/1 colorless Servo artifact creature tokens.) -- Whenever an artifact you control is put into a graveyard from the battlefield, target opponent loses life equal to Marionette Master's power.
+mana={4}{B}{B}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Maulfist Squad
+auto=lord(creature|opponentbattlefield) transforms((,newability[@combat(defending) source(this) restriction{type(creature[defending]|myBattlefield)~lessthan~2}:all(this) removefromcombat]))
+auto=choice name(counter) counter(1/1,1)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)
+text=Menace -- Fabricate 1 (When this creature enters the battlefield, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)
+mana={3}{B}
+type=Creature
+subtype=Human Artificer
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Midnight Oil
+auto=counter(0/0,7,hour)
+auto=@each my upkeep:draw:1 && counter(0/0,-2,hour)
+auto=@discard(controller):life:-1
+text=Midnight Oil enters the battlefield with seven hour counters on it. -- At the beginning of your draw step, draw an additional card and remove two hour counters from Midnight Oil. -- Your maximum hand size is equal to the number of hour counters on Midnight Oil. -- Whenever you discard a card, you lose 1 life.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Morbid Curiosity
+auto=draw:X controller
+text=As an additional cost to cast Morbid Curiosity, sacrifice an artifact or creature. -- Draw cards equal to the converted mana cost of the sacrificed permanent.
+mana={1}{B}{B}{S(creature,artifact[manacost=X]|mybattlefeild)}
+type=Sorcery
+[/card]
+
+[card]
+name=Night Market Lookout
+auto=@tapped(this):life:1 controller && life:-1 opponent
+text=Whenever Night Market Lookout becomes tapped, each opponent loses 1 life and you gain 1 life.
+mana={B}
+type=Creature
+subtype=Human Rogue
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Noxious Gearhulk
+auto=lord(creature|opponentbattlefield) transforms((,newability[@combat(defending) source(this) restriction{type(creature[defending]|myBattlefield)~lessthan~2}:all(this) removefromcombat]))
+auto=may destroy target(creature) && dynamicability<!mytgt toughnesslifegain srccontroller!>
+###Menace workaround, pending for test (hopefully works on PSP):
+auto=cantbeblockedby(<>2>creature)
+text=Menace -- When Noxious Gearhulk enters the battlefield, you may destroy another target creature. If a creature is destroyed this way, you gain life equal to its toughness.
+mana={4}{B}{B}
+type=Artifact Creature
+subtype=Construct
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Ovalchase Daredevil
+auto=@movedto(artifact|mybattlefield):may moveto(myhand)
+text=Whenever an artifact enters the battlefield under your control, you may return Ovalchase Daredevil from your graveyard to your hand.
+mana={3}{B}
+type=Creature
+subtype=Human Pilot
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Prakhata Club Security
+mana={3}{B}
+type=Creature
+subtype=Aetherborn Warrior
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Rush of Vitality
+target=creature
+auto=1/0
+auto=lifelink
+auto=indestructible
+text=Target creature gets +1/+0 and gains lifelink and indestructible until end of turn. (Damage dealt by that creature also causes its controller to gain that much life, and it can't be destroyed by damage or effects that say "destroy.")
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Subtle Strike
+auto=choice name(-1/-1) target(creature) -1/-1 ueot
+auto=choice name(+1/+1) target(creature) 1/1 ueot
+auto=choice name(both +1/+1 first) target(creature) 1/1 ueot && transforms((,newability[target(creature) -1/-1 ueot])) ueot
+text=Choose one or both  --  Target creature gets -1/-1 until end of turn. --  Put a +1/+1 counter on target creature.
+mana={1}{B}
+type=Instant
+[/card]
+
+[card]
+name=Syndicate Trafficker
+auto={1}{S(artifact|mybattlefield)}:counter(1/1,1) && indestructible ueot
+text={1}, Sacrifice an artifact: Put a +1/+1 counter on Syndicate Trafficker. It gains indestructible until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Aetherborn Rogue
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Thriving Rats
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay [c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] counter(1/1,1)
+text=When Thriving Rats enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Thriving Rats attacks, you may pay {E}{E}. If you do, put a +1/+1 counter on it.
+mana={1}{B}
+type=Creature
+subtype=Rat
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Tidy Conclusion
+auto=destroy target(creature)
+auto=foreach(artifact|mybattlefield) life:1
+text=Destroy target creature. You gain 1 life for each artifact you control.
+mana={3}{B}{B}
+type=Instant
+[/card]
+
+[card]
+name=Underhanded Designs
+auto=@movedto(artifact|mybattlefield):may pay [{1}] life:-1 opponent && life:1 controller
+#auto={1}{B}{S} restriction{type(artifact|mybattlefield)~morethan~1}:destroy target(creature)
+auto=aslongas(artifact|myBattlefield) {1}{B}{S}:destroy target(creature) > 1 
+text=Whenever an artifact enters the battlefield under your control, you may pay {1}. If you do, each opponent loses 1 life and you gain 1 life. -- {1}{B}, Sacrifice Underhanded Designs: Destroy target creature. Activate this ability only if you control two or more artifacts.
+mana={1}{B}
+type=Enchantment
+[/card]
+
+[card]
+name=Weaponcraft Enthusiast
+auto=choice name(counter) counter(1/1,2)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)*2
+text=Fabricate 2 (When this creature enters the battlefield, put two +1/+1 counters on it or create two 1/1 colorless Servo artifact creature tokens.)
+mana={2}{B}
+type=Creature
+subtype=Aetherborn Artificer
+power=0
+toughness=1
+[/card]
+
+[card]
+name=Aethertorch Renegade
+auto=counter(0/0,4,energy)
+auto={c(0/0,-2,energy) from(<anyamount>*|mybattlefield)}:damage:1 target(creature,player)
+auto={c(0/0,-8,energy) from(<anyamount>*|mybattlefield)}:damage:6 target(player)
+text=When Aethertorch Renegade enters the battlefield, you get {E}{E}{E}{E} (four energy counters). -- {T}, Pay {E}{E}: Aethertorch Renegade deals 1 damage to target creature. -- {T}, Pay {E}{E}{E}{E}{E}{E}{E}{E}: Aethertorch Renegade deals 6 damage to target player.
+mana={2}{R}
+type=Creature
+subtype=Human Rogue
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Brazen Scourge
+abilities=haste
+text=Haste
+mana={1}{R}{R}
+type=Creature
+subtype=Gremlin
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Built to Smash
+target=creature[attacking]
+auto=3/3
+auto=if type(mytgt[artifact]) trample
+text=Target attacking creature gets +3/+3 until end of turn. If it's an artifact creature, it gains trample until end of turn.
+mana={R}
+type=Instant
+[/card]
+
+[card]
+name=Cathartic Reunion
+auto=draw:3
+text=As an additional cost to cast Cathartic Reunion, discard two cards. -- Draw three cards.
+mana={1}{R}{discard(<upto:2>*|myhand)}
+type=Sorcery
+[/card]
+
+[card]
+name=Chandra, Torch of Defiance
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:deplete:1 controller && damage:2 opponent
+auto={C(0/0,1,Loyalty)}:add{R}{R}
+auto={C(0/0,-3,Loyalty)}:damage:4 target creature
+auto={C(0/0,-7,Loyalty)}:emblem name(Chandra Emblem) transforms((,newability[@movedto(*|mystack) damage:5 target(creature,player)]))
+text=+1: Exile the top card of your library. You may cast that card. If you don't, Chandra, Torch of Defiance deals 2 damage to each opponent. -- +1: Add {R}{R} to your mana pool. -- -3: Chandra, Torch of Defiance deals 4 damage to target creature. -- -7: You get an emblem with "Whenever you cast a spell, this emblem deals 5 damage to target creature or player."
+mana={2}{R}{R}
+type=Planeswalker
+subtype=Chandra
+[/card]
+
+[card]
+name=Chandra's Pyrohelix
+target=creature,player
+auto=damage:1
+auto=damage:1 target(creature,player)
+text=Chandra's Pyrohelix deals 2 damage divided as you choose among one or two target creatures and/or players.
+mana={1}{R}
+type=Instant
+[/card]
+
+[card]
+name=Combustible Gearhulk
+abilities=first strike
+#wrong damage?
+#auto=choice name(damage) deplete:3 && damage:6 opponent
+#Pending for test:
+auto=(choice name(damage) deplete:1 && damage:manacost)*3 opponent
+auto=choice name(draw) draw:3
+text=First strike -- When Combustible Gearhulk enters the battlefield, target opponent may have you draw three cards. If the player doesn't, put the top three cards of your library into your graveyard, then Combustible Gearhulk deals damage to that player equal to the total converted mana cost of those cards.
+mana={4}{R}{R}
+type=Artifact Creature
+subtype=Construct
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Fateful Showdown
+auto=foreach(*|myhand) damage:1 target(creature,player)
+auto=@discarded(*|myhand):draw:1 controller
+auto=all(*|myhand) reject
+text=Fateful Showdown deals damage to target creature or player equal to the number of cards in your hand. Discard all the cards in your hand, then draw that many cards.
+mana={2}{R}{R}
+type=Instant
+[/card]
+
+[card]
+name=Furious Reprisal
+auto=damage:2 target(<upto:2>creature,player)
+text=Furious Reprisal deals 2 damage to each of two target creatures and/or players.
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Giant Spectacle
+target=creature
+auto=mytgt 2/1
+auto=lord(creature|opponentbattlefield) transforms((,newability[@combat(defending) source(this) restriction{type(creature[defending]|myBattlefield)~lessthan~2}:all(this) removefromcombat]))
+text=Enchant creature -- Enchanted creature gets +2/+1 and has menace.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Harnessed Lightning
+auto=counter(0/0,3,energy) target(*|mybattlefield)
+auto=foreach(c{energy}|mybattlefield) damage:1 target(creature)
+text=Choose target creature. You get {E}{E}{E} (three energy counters), then you may pay any amount of {E}. Harnessed Lightning deals that much damage to that creature.
+mana={1}{R}
+type=Instant
+[/card]
+
+[card]
+name=Hijack
+target=creature,artifact
+auto=haste
+auto=untap
+alias=129767
+text=Gain control of target artifact or creature until end of turn. Untap it. It gains haste until end of turn.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Incendiary Sabotage
+auto=damage:3 all(creature)
+text=As an additional cost to cast Incendiary Sabotage, sacrifice an artifact. -- Incendiary Sabotage deals 3 damage to each creature.
+mana={2}{R}{R}{S(artifact|mybattlefield)}
+type=Instant
+[/card]
+
+[card]
+name=Inventor's Apprentice
+#auto=aslongas(artifact|mybattlefield)~morethan~0 1/1
+auto=aslongas(artifact|myBattlefield) 1/1
+text=Inventor's Apprentice gets +1/+1 as long as you control an artifact.
+mana={R}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Lathnu Hellion
+abilities=haste
+auto=counter(0/0,2,energy)
+auto=@each my endofturn:pay[{1}] name(pay 1 mana) donothing?sacrifice
+text=Haste -- When Lathnu Hellion enters the battlefield, you get {E}{E} (two energy counters). -- At the beginning of your end step, sacrifice Lathnu Hellion unless you pay {E}{E}.
+mana={2}{R}
+type=Creature
+subtype=Hellion
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Madcap Experiment
+auto=moverandom(artifact) from(mylibrary) to(mybattlefield)
+auto=damage:4 controller
+text=Reveal cards from the top of your library until you reveal an artifact card. Put that card onto the battlefield and the rest on the bottom of your library in a random order. Madcap Experiment deals damage to you equal to the number of cards revealed this way.
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Maulfist Doorbuster
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay[c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] target(creature) cantblock
+text=When Maulfist Doorbuster enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Maulfist Doorbuster attacks, you may pay {E}. If you do, target creature can't block this turn.
+mana={3}{R}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Pia Nalaar
+auto=token(thopter,artifact creature thopter,1/1,flying)
+auto={1}{R}:target(artifact) 1/0 ueot
+auto={1}{S(artifact|mybattlefield)}:target(creature) cantblock ueot
+text=When Pia Nalaar enters the battlefield, create a 1/1 colorless Thopter artifact creature token with flying. -- {1}{R}: Target artifact creature gets +1/+0 until end of turn. -- {1}, Sacrifice an artifact: Target creature can't block this turn.
+mana={2}{R}
+type=Legendary Creature
+subtype=Human Artificer
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Quicksmith Genius
+auto=@movedto(artifact|mybattlefield):may discard(*|myhand) && draw:1
+text=Whenever an artifact enters the battlefield under your control, you may discard a card. If you do, draw a card.
+mana={2}{R}
+type=Creature
+subtype=Human Artificer
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Reckless Fireweaver
+auto=@movedto(artifact|mybattlefield):damage:1 opponent
+text=Whenever an artifact enters the battlefield under your control, Reckless Fireweaver deals 1 damage to each opponent.
+mana={1}{R}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Renegade Tactics
+auto=target(creature) cantblock ueot
+auto=draw:1
+text=Target creature can't block this turn. -- Draw a card.
+mana={R}
+type=Sorcery
+[/card]
+
+[card]
+name=Ruinous Gremlin
+auto={2}{R}{S}:destroy target(artifact)
+text={2}{R}, Sacrifice Ruinous Gremlin: Destroy target artifact.
+mana={R}
+type=Creature
+subtype=Gremlin
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Salivating Gremlins
+auto=@movedto(artifact|mybattlefield):2/0 ueot
+auto=@movedto(artifact|mybattlefield):trample ueot
+text=Whenever an artifact enters the battlefield under your control, Salivating Gremlins gets +2/+0 and gains trample until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Gremlin
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Skyship Stalker
+abilities=flying
+auto={R}:1/0
+auto={R}:first strike
+auto={R}:haste
+text=Flying -- {R}: Skyship Stalker gets +1/+0 until end of turn. -- {R}: Skyship Stalker gains first strike until end of turn. -- {R}: Skyship Stalker gains haste until end of turn.
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Spark of Creativity
+target=creature
+auto=choice draw:1
+auto=choice damage:3
+text=Choose target creature. Exile the top card of your library. You may have Spark of Creativity deal damage to that creature equal to the exiled card's converted mana cost. If you don't, you may play that card until end of turn.
+mana={R}
+type=Sorcery
+[/card]
+
+[card]
+name=Speedway Fanatic
+abilities=haste
+auto=@tapped(this) from(vehicle|mybattlefield):all(trigger[to])haste ueot
+text=Haste -- Whenever Speedway Fanatic crews a Vehicle, that Vehicle gains haste until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Human Pilot
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Spireside Infiltrator
+auto=@tapped(this):damage:1 opponent
+text=Whenever Spireside Infiltrator becomes tapped, it deals 1 damage to each opponent.
+mana={2}{R}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Spontaneous Artist
+auto=counter(0/0,1,energy)
+auto={c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:target(creature) haste ueot
+text=When Spontaneous Artist enters the battlefield, you get {E} (an energy counter). -- Pay {E}: Target creature gains haste until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Start Your Engines
+auto=all(vehicle|mybattlefield) transforms((creature)) ueot
+auto=all(creature|mybattlefield) 2/0 ueot
+text=Vehicles you control become artifact creatures until end of turn. Creatures you control get +2/+0 until end of turn.
+mana={3}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Territorial Gorger
+abilities=trample
+auto=@movedto(c{energy}|mybattlefield):2/2 ueot
+text=Trample -- Whenever you get one or more {E} (energy counters), Territorial Gorger gets +2/+2 until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Gremlin
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Terror of the Fairgrounds
+mana={3}{R}
+type=Creature
+subtype=Gremlin
+power=5
+toughness=2
+[/card]
+
+[card]
+name=Thriving Grubs
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay [c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] counter(1/1,1)
+text=When Thriving Grubs enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Thriving Grubs attacks, you may pay {E}{E}. If you do, put a +1/+1 counter on it.
+mana={1}{R}
+type=Creature
+subtype=Gremlin
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Wayward Giant
+auto=lord(creature|opponentbattlefield) transforms((,newability[@combat(defending) source(this) restriction{type(creature[defending]|myBattlefield)~lessthan~2}:all(this) removefromcombat]))
+text=Menace
+mana={4}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Welding Sparks
+target=creature
+auto=foreach(artifact|mybattlefield) damage:1
+auto=damage:3
+text=Welding Sparks deals X damage to target creature, where X is 3 plus the number of artifacts you control.
+mana={2}{R}
+type=Instant
+[/card]
+
+[card]
+name=Appetite for the Unnatural
+target=artifact,enchantment
+auto=destroy
+auto=life:2
+text=Destroy target artifact or enchantment. You gain 2 life.
+mana={2}{G}
+type=Instant
+[/card]
+
+[card]
+name=Arborback Stomper
+abilities=trample
+auto=
+text=Trample -- When Arborback Stomper enters the battlefield, you gain 5 life.
+auto=life:5
+mana={3}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Architect of the Untamed
+auto=@movedto(land|mybattlefield):counter(0/0,1,energy)
+auto={c(0/0,-8,energy) from(<anyamount>*|mybattlefield)}:token(Beast,creature Beast,6/6)
+text=Whenever a land enters the battlefield under your control, you get {E} (an energy counter). -- Pay {E}{E}{E}{E}{E}{E}{E}{E}: Create a 6/6 colorless Beast artifact creature token.
+mana={2}{G}
+type=Creature
+subtype=Elf Artificer Druid
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Armorcraft Judge
+auto=foreach(creature[c(1/1)]|mybattlefield) draw:1
+text=When Armorcraft Judge enters the battlefield, draw a card for each creature you control with a +1/+1 counter on it.
+mana={3}{G}
+type=Creature
+subtype=Elf Artificer
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Attune with Aether
+auto=moveto(myhand) target(basic|mylibrary)
+auto=token(energy,counter(0/0,2,energy))
+text=Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library. You get {E}{E} (two energy counters).
+mana={G}
+type=Sorcery
+[/card]
+
+[card]
+name=Blossoming Defense
+target=creature|mybattlefield
+auto=2/2
+auto=opponentshroud
+#is this supported in current WTH build? auto=hexproof
+text=Target creature you control gets +2/+2 and gains hexproof until end of turn.
+mana={G}
+type=Instant
+[/card]
+
+[card]
+name=Bristling Hydra
+auto=counter(0/0,3,energy)
+#auto={c(0/0,-3,energy) from(<anyamount>*|mybattlefield)}:counter(1/1,1) && hexproof ueot
+auto={c(0/0,-3,energy) from(<anyamount>*|mybattlefield)}:counter(1/1,1) && opponentshroud ueot
+text=When Bristling Hydra enters the battlefield, you get {E}{E}{E} (three energy counters). -- Pay {E}{E}{E}: Put a +1/+1 counter on Bristling Hydra. It gains hexproof until end of turn.
+mana={2}{G}{G}
+type=Creature
+subtype=Hydra
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Commencement of Festivities
+auto=preventAllcombatDamage controller ueot
+auto=preventAllcombatDamage opponent ueot
+text=Prevent all combat damage that would be dealt to players this turn.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Cowl Prowler
+mana={4}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Cultivator of Blades
+auto=choice name(counter) counter(1/1,2)
+auto=choice name(servo) token(Servo,artifact creataure Servo,1/1)*2
+auto=@combat(attacking) source(this):lord(other creature|myBattlefield) dynamicability<!powerpumpboth!> ueot
+text=Fabricate 2 (When this creature enters the battlefield, put two +1/+1 counters on it or create two 1/1 colorless Servo artifact creature tokens.) -- Whenever Cultivator of Blades attacks, you may have other attacking creatures get +X/+X until end of turn, where X is Cultivator of Blades's power.
+mana={3}{G}{G}
+type=Creature
+subtype=Elf Artificer
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Dubious Challenge
+auto=deplete:8
+auto=moverandom(creature) from(mylibrary) to(mybattlefield)
+auto=moverandom(creature) from(mylibrary) to(opponentbattlefield)
+text=Look at the top ten cards of your library, exile up to two creature cards from among them, then shuffle your library. Target opponent may choose one of the exiled cards and put it onto the battlefield under his or her control. Put the rest onto the battlefield under your control.
+mana={3}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Durable Handicraft
+auto=@movedto(creature|mybattlefield):may pay[1] counter(1/1,1) all(trigger[to])
+auto={5}{G}{S}:counter(1/1,1) all(creature|mybattlefield)
+text=Whenever a creature enters the battlefield under your control, you may pay {1}. If you do, put a +1/+1 counter on that creature. -- {5}{G}, Sacrifice Durable Handicraft: Put a +1/+1 counter on each creature you control.
+mana={1}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Elegant Edgecrafters
+auto=cantbeblockedby(creature[power<=2])
+auto=choice name(counter) counter(1/1,2)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)*2
+text=Elegant Edgecrafters can't be blocked by creatures with power 2 or less. -- Fabricate 2 (When this creature enters the battlefield, put two +1/+1 counters on it or create two 1/1 colorless Servo artifact creature tokens.)
+mana={4}{G}{G}
+type=Creature
+subtype=Elf Artificer
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Fairgrounds Trumpeter
+text=At the beginning of each end step, if a +1/+1 counter was placed on a permanent under your control this turn, put a +1/+1 counter on Fairgrounds Trumpeter.
+mana={2}{G}
+type=Creature
+subtype=Elephant
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Ghirapur Guide
+auto={2}{G}:target(creature|mybattlefield) cantbeblockedby(creature[power<=2]) ueot
+text={2}{G}: Target creature you control can't be blocked by creatures with power 2 or less this turn.
+mana={2}{G}
+type=Creature
+subtype=Elf Scout
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Highspire Artisan
+abilities=reach
+auto=choice name(counter) counter(1/1,1)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)
+text=Reach (This creature can block creatures with flying.) -- Fabricate 1 (When this creature enters the battlefield, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)
+mana={2}{G}
+type=Creature
+subtype=Elf Artificer
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Kujar Seedsculptor
+auto=counter(1/1,1) target(creature|mybattlefield)
+text=When Kujar Seedsculptor enters the battlefield, put a +1/+1 counter on target creature you control.
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Larger Than Life
+target=creature
+auto=4/4
+auto=trample
+text=Target creature gets +4/+4 and gains trample until end of turn.
+mana={1}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Longtusk Cub
+auto=@combatdamaged(player) from(this):counter(0/0,2,energy)
+auto={c(0/0,-2,energy) from(<anynumber>*|mybattlefield)
+text=Whenever Longtusk Cub deals combat damage to a player, you get {E}{E} (two energy counters). -- Pay {E}{E}: Put a +1/+1 counter on Longtusk Cub.
+mana={1}{G}
+type=Creature
+subtype=Cat
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Nature's Way
+target=creature|mybattlefield
+auto=vigilance
+auto=trample
+auto=target(creature) dynamicability<!powerstrike>!
+text=Target creature you control gains vigilance and trample until end of turn. It deals damage equal to its power to target creature you don't control.
+mana={1}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Nissa, Vital Force
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:untap target(land|mybattlefield) transforms((creature,setpower=5,settoughness=5,newability[haste]))
+auto={C(0/0,-3,Loyalty)}:moveto(myhand) target(*[-instant,sorcery]|mygraveyard)
+auto={C(0/0,-6,Loyalty)}:emblem name(nissa emblem) transforms((,newability[@movedto(land|mybattlefeild):draw:1])) forever dontremove
+text=+1: Untap target land you control. Until your next turn, it becomes a 5/5 Elemental creature with haste. It's still a land. -- -3: Return target permanent card from your graveyard to your hand. -- -6: You get an emblem with "Whenever a land enters the battlefield under your control, you may draw a card."
+mana={3}{G}{G}
+type=Planeswalker
+subtype=Nissa
+[/card]
+
+[card]
+name=Ornamental Courage
+target=creature
+auto=1/3
+auto=untap
+text=Untap target creature. It gets +1/+3 until end of turn.
+mana={G}
+type=Instant
+[/card]
+
+[card]
+name=Oviya Pashiri, Sage Lifecrafter
+auto={2}{G}{T}:token(Servo,artifact creature Servo,1/1)
+auto={4}{G}{T}:token(-19784555) transforms((artifact construct)) forever
+text={2}{G}, {T}: Create a 1/1 colorless Servo artifact creature token. -- {4}{G}, {T}: Create an X/X colorless Construct artifact creature token, where X is the number of creatures you control.
+mana={G}
+type=Legendary Creature
+subtype=Human Artificer
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Peema Outrider
+abilities=trample
+auto=choice name(counter) counter(1/1,1)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)
+text=Trample -- Fabricate 1 (When this creature enters the battlefield, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)
+mana={2}{G}{G}
+type=Creature
+subtype=Elf Artificer
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Riparian Tiger
+abilities=trample
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay [c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] 2/2 ueot
+text=Trample -- When Riparian Tiger enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Riparian Tiger attacks, you may pay {E}{E}. If you do, it gets +2/+2 until end of turn.
+mana={3}{G}{G}
+type=Creature
+subtype=Cat
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Sage of Shaila's Claim
+auto=counter(0/0,3,energy)
+text=When Sage of Shaila's Claim enters the battlefield, you get {E}{E}{E} (three energy counters).
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Servant of the Conduit
+auto=counter(0/0,2,energy)
+auto={T}{c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:add{G}
+auto={T}{c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:add{R}
+auto={T}{c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:add{B}
+auto={T}{c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:add{W}
+auto={T}{c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:add{U}
+text=When Servant of the Conduit enters the battlefield, you get {E}{E} (two energy counters). -- {T}, Pay {E}: Add one mana of any color to your mana pool.
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Take Down
+auto=choice name(damage one) damage:4 target(creature[flying])
+auto=choice name(damage all) damage:1 all(creature[flying])
+text=Choose one  --  Take Down deals 4 damage to target creature with flying. --  Take Down deals 1 damage to each creature with flying.
+mana={G}
+type=Sorcery
+[/card]
+
+[card]
+name=Thriving Rhino
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay [c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] counter(1/1,1)
+text=When Thriving Rhino enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Thriving Rhino attacks, you may pay {E}{E}. If you do, put a +1/+1 counter on it.
+mana={2}{G}
+type=Creature
+subtype=Rhino
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Verdurous Gearhulk
+abilities=trample
+auto=@movedTo(this|graveyard) from(Battlefield):ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
+text=Trample -- When Verdurous Gearhulk enters the battlefield, distribute four +1/+1 counters among any number of target creatures you control.
+mana={3}{G}{G}
+type=Artifact Creature
+subtype=Construct
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Wild Wanderer
+auto=may moveto(mybattlefield) target(basic|mylibrary) and tap
+text=When Wild Wanderer enters the battlefield, you may search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
+mana={3}{G}
+type=Creature
+subtype=Elf Druid
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Wildest Dreams
+abilities=exiledeath
+auto=moveto(myhand) target(<upto:x>*|mygraveyard)
+text=Return X target cards from your graveyard to your hand. Exile Wildest Dreams.
+mana={X}{X}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Wily Bandar
+auto={2}{G}:indestructible ueot
+text={2}{G}: Wily Bandar gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={G}
+type=Creature
+subtype=Cat Monkey
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Cloudblazer
+abilities=flying
+auto=life:2 controller && draw:2
+text=Flying -- When Cloudblazer enters the battlefield, you gain 2 life and draw two cards.
+mana={3}{W}{U}
+type=Creature
+subtype=Human Scout
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Contraband Kingpin
+abilities=lifelink
+auto=@movedto(artifact|mybattlefield) deplete:1 && emblem transforms((,newability[may moveto(mylibrary) target(*|mygraveyard else bottomoflibrary target(*|mygraveyard)])) ueot
+text=Lifelink -- Whenever an artifact enters the battlefield under your control, scry 1.
+mana={U}{B}
+type=Creature
+subtype=Aetherborn Rogue
+power=1
+toughness=4
+[/card]
+
+[card]
+name=Depala, Pilot Exemplar
+auto=lord(other dwarf|mybattlefield) 1/1
+auto=lord(vehicle|mybattlefield) 1/1
+auto=@tapped(this):may pay[X] moverandom(dwarf,vehicle) from(mylibrary) to(mybattlefield) && moverandom(dwarf,vehicle) from(mylibrary) to(mybattlefield)
+text=Other Dwarves you control get +1/+1. -- Each Vehicle you control gets +1/+1 as long as it's a creature. -- Whenever Depala, Pilot Exemplar becomes tapped, you may pay {X}. If you do, reveal the top X cards of your library, put all Dwarf and Vehicle cards from among them into your hand, then put the rest on the bottom of your library in a random order.
+mana={1}{R}{W}
+type=Legendary Creature
+subtype=Dwarf Pilot
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Dovin Baan
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:target(<upto:1>creature) transforms((,newability[-3/0],newability[noactivatedability])) uynt
+auto={C(0/0,-1,Loyalty)}:life:2 && draw:1 controller
+auto={C(0/0,-7,Loyalty)}:emblem name(Dovin Emblem) transforms((,newability[lord(*|opponentbattlefield) doesnotuntap],newability[@each opponent upkeep:ability$!name(untap) untap notatarget(<upto:2>*|mybattlefield)!$ opponent])) forever donotremove
+text=+1: Until your next turn, up to one target creature gets -3/-0 and its activated abilities can't be activated. -- -1: You gain 2 life and draw a card. -- -7: You get an emblem with "Your opponents can't untap more than two permanents during their untap steps."
+mana={2}{W}{U}
+type=Planeswalker
+subtype=Dovin
+[/card]
+
+[card]
+name=Empyreal Voyager
+abilities=flying, trample
+auto=@combatdamaged(player) from(this):counter(0/0,power,energy)
+text=Flying, trample -- Whenever Empyreal Voyager deals combat damage to a player, you get that many {E} (energy counters).
+mana={1}{G}{U}
+type=Creature
+subtype=Vedalken Scout
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Engineered Might
+auto=choice name(+5/+5) target(creature) transforms((,newability[trample],newability[5/5])) ueot
+auto=choice name(+2/+2) all(creature|mybattlefield) transforms((,newability[vigilance],newability[2/2])) ueot
+text=Choose one  --  Target creature gets +5/+5 and gains trample until end of turn. --  Creatures you control get +2/+2 and gain vigilance until end of turn.
+mana={3}{G}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Hazardous Conditions
+auto=all(creature[-c{1/1}]) -2/-2 ueot
+text=Creatures with no counters on them get -2/-2 until end of turn.
+mana={2}{B}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Kambal, Consul of Allocation
+auto=@movedTo(*[-creature]|opponentstack):life:2 controller && life:-2 opponent
+text=Whenever an opponent casts a noncreature spell, that player loses 2 life and you gain 2 life.
+mana={1}{W}{B}
+type=Legendary Creature
+subtype=Human Advisor
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Rashmi, Eternities Crafter
+auto=@movedto(*[manacost=x]|mystack) restriction{type(*|mystack)~lessthan~2}:moverandom(*[-sorcery;-instant;manacost<=X]) from(mylibrary) to(mybattlefield)
+text=Whenever you cast your first spell each turn, reveal the top card of your library. If it's a nonland card with converted mana cost less than that spell's, you may cast it without paying its mana cost. If you don't cast the revealed card, put it into your hand.
+mana={2}{G}{U}
+type=Legendary Creature
+subtype=Elf Druid
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Restoration Gearsmith
+auto=moveto(myhand) target(artifact,creature|mygraveyard)
+text=When Restoration Gearsmith enters the battlefield, return target artifact or creature card from your graveyard to your hand.
+mana={2}{W}{B}
+type=Creature
+subtype=Human Artificer
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Saheeli Rai
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:deplete:1 controller && emblem transforms((,newability[may moveto(mylibrary) target(*|mygraveyard else bottomoflibrary target(*|mygraveyard)])) ueot
+auto={C(0/0,-3,Loyalty)}:populate target(artifact) transforms((artifact)) forever
+auto={C(0/0,-6,Loyalty)}:moveto(mybattlefield) target(<upto:3>artifact[-share!name!]|mylibrary)
+text=+1: Scry 1. Saheeli Rai deals 1 damage to each opponent. -- -2: Create a token that's a copy of target artifact or creature you control, except it's an artifact in addition to its other types. That token gains haste. Exile it at the beginning of the next end step. -- -7: Search your library for up to three artifact cards with different names, put them onto the battlefield, then shuffle your library.
+mana={1}{U}{R}
+type=Planeswalker
+subtype=Saheeli
+[/card]
+
+[card]
+name=Unlicensed Disintegration
+auto=destroy target(creature)
+#auto=if type(artifact|mybattlefield)~morethan~0 damage:3 opponent
+auto=aslongas(artifact|myBattlefield) damage:3 opponent
+text=Destroy target creature. If you control an artifact, Unlicensed Disintegration deals 3 damage to that creature's controller.
+mana={1}{B}{R}
+type=Instant
+[/card]
+
+[card]
+name=Veteran Motorist
+auto=deplete:2 && emblem transforms((,newability[may moveto(mylibrary) target(<upto:2>*|mygraveyard else bottomoflibrary target(<upto:2>*|mygraveyard)])) ueot
+auto=@tapped(this) from(vehicle|mybattlefield): all(trigger[to]) 1/1 ueot
+text=When Veteran Motorist enters the battlefield, scry 2. -- Whenever Veteran Motorist crews a Vehicle, that Vehicle gets +1/+1 until end of turn.
+mana={R}{W}
+type=Creature
+subtype=Dwarf Pilot
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Voltaic Brawler
+auto=counter(0/0,2,energy)
+auto=@combat(attacking) source(this):may pay [c(0/0,-1,energy) from(<anyamount>*|mybattlefield)] 1/1 ueot && trample ueot
+text=When Voltaic Brawler enters the battlefield, you get {E}{E} (two energy counters). -- Whenever Voltaic Brawler attacks, you may pay {E}. If you do, it gets +1/+1 and gains trample until end of turn.
+mana={R}{G}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Whirler Virtuoso
+auto=counter(0/0,3,energy)
+auto={c(0/0,-3,energy) from(<anyamount>*|mybattlefield)}: token(thopter,artifact creature thopter,1/1,flying)
+text=When Whirler Virtuoso enters the battlefield, you get {E}{E}{E} (three energy counters). -- Pay {E}{E}{E}: Create a 1/1 colorless Thopter artifact creature token with flying.
+mana={1}{U}{R}
+type=Creature
+subtype=Vedalken Artificer
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Accomplished Automaton
+auto=choice name(token) token(Servo,artifact creature Servo,1/1)
+auto=choice name(counter) counter(1/1,1)
+text=Fabricate 1 (When this creature enters the battlefield, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)
+mana={7}
+type=Artifact Creature
+subtype=Construct
+power=5
+toughness=7
+[/card]
+
+[card]
+name=Aetherflux Reservoir
+auto=@movedTo(*|mystack):foreach(*|mystack)life:1
+auto={0}:life:-50 opponent && life:-50 controller
+text=Whenever you cast a spell, you gain 1 life for each spell you've cast this turn. -- Pay 50 life: Aetherflux Reservoir deals 50 damage to target creature or player.
+mana={4}
+type=Artifact
+[/card]
+
+[card]
+name=Aetherworks Marvel
+auto=@movedto(*|mygraveyard):counter(0/0,1,energy)
+auto={T}{c(0/0,-6,energy) from(<anyamount>*|mybattlefield)}:deplete:6 controller && emblem transforms((,newability[moveto(mybattlefield) target(*|mygraveyard) && emblem transforms((,newability[bottomoflibrary target(<upto:5>*|mygraveyard)])) ueot ]))) ueot
+text=Whenever a permanent you control is put into a graveyard, you get {E} (an energy counter). -- {T}, Pay {E}{E}{E}{E}{E}{E}: Look at the top six cards of your library. You may cast a card from among them without paying its mana cost. Put the rest on the bottom of your library in a random order.
+mana={4}
+type=Legendary Artifact
+[/card]
+
+[card]
+name=Animation Module
+auto={1}:token(Servo,artifact creature Servo,1/1)
+auto={3}{T}:target(proliferation) proliferate
+text=Whenever one or more +1/+1 counters are placed on a permanent you control, you may pay {1}. If you do, create a 1/1 colorless Servo artifact creature token. -- {3}, {T}: Choose a counter on target permanent or player. Give that permanent or player another counter of that kind.
+mana={1}
+type=Artifact
+[/card]
+
+[card]
+name=Aradara Express
+auto=lord(creature|opponentbattlefield) transforms((,newability[@combat(defending) source(this) restriction{type(creature[defending]|myBattlefield)~lessthan~2}:all(this) removefromcombat]))
+auto={T target(<anyamount>creature[totalpower=>4]|mybattlefield)}:transforms((Artifact Creature Vehicle,setpower=8,settoughness=6)) ueot
+text=Menace -- Crew 4 (Tap any number of creatures you control with total power 4 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={5}
+type=Artifact
+subtype=Vehicle
+power=8
+toughness=6
+[/card]
+
+[card]
+name=Ballista Charger
+auto=@combat(attacking) source(this):damage:1 target(creature,player)
+auto={T target(creature[power=3]|mybattleifeld)}:name(tap power 3) transforms((creature)) ueot
+auto={T target(<upto:3>creature|mybattlefield)}:name(tap 3 creatures) transforms((creature)) ueot
+text=Whenever Ballista Charger attacks, it deals 1 damage to target creature or player. -- Crew 3 (Tap any number of creatures you control with total power 3 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={5}
+type=Artifact
+subtype=Vehicle
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Bastion Mastodon
+auto={W}:vigilance ueot
+text={W}: Bastion Mastodon gains vigilance until end of turn.
+mana={5}
+type=Artifact Creature
+subtype=Elephant
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Bomat Bazaar Barge
+auto=draw:1
+auto={T target(creature[power=3]|mybattleifeld)}:name(tap power 3) transforms((creature)) ueot
+auto={T target(<upto:3>creature|mybattlefield)}:name(tap 3 creatures) transforms((creature)) ueot
+text=When Bomat Bazaar Barge enters the battlefield, draw a card. -- Crew 3 (Tap any number of creatures you control with total power 3 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={4}
+type=Artifact
+subtype=Vehicle
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Bomat Courier
+abilities=haste
+auto=@combat(attacking) source(this):draw:1 && emblem name(exile-card) transforms((,hand(blink)forsrc all(*[fresh]|myhand))) forever dontremove
+auto=@movedto(this|mygraveyard):moveTo(ownergraveyard) all(exile-card|myBattlefield)
+auto={R}:discard(all) controller && destroy target(Bomat Courier)
+text=Haste -- Whenever Bomat Courier attacks, exile the top card of your library face down. (You can't look at it.) -- {R}, Discard your hand, Sacrifice Bomat Courier: Put all cards exiled with Bomat Courier into their owners' hands.
+mana={1}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Cogworker's Puzzleknot
+auto=token(Servo,artifact creature Servo,1/1)
+auto={1}{W}{S}:token(Servo,artifact creature Servo,1/1)
+text=When Cogworker's Puzzleknot enters the battlefield, create a 1/1 colorless Servo artifact creature token. -- {1}{W}, Sacrifice Cogworker's Puzzleknot: Create a 1/1 colorless Servo artifact creature token.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Consulate Skygate
+abilities=defender, reach
+text=Defender -- Reach (This creature can block creatures with flying.)
+mana={2}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=4
+[/card]
+
+[card]
+name=Cultivator's Caravan
+auto={T}:add{R}
+auto={T}:add{G}
+auto={T}:add{B}
+auto={T}:add{U}
+auto={T}:add{W}
+auto={T target(creature[power=3]|mybattleifeld)}:name(tap power 3) transforms((creature)) ueot
+auto={T target(<upto:3>creature|mybattlefield)}:name(tap 3 creatures) transforms((creature)) ueot
+text={T}: Add one mana of any color to your mana pool. -- Crew 3 (Tap any number of creatures you control with total power 3 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={3}
+type=Artifact
+subtype=Vehicle
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Deadlock Trap
+auto=tap
+auto=counter(0/0,2,energy)
+auto={T}{c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:tap target(creature,planeswalker) && noactivatedability
+text=Deadlock Trap enters the battlefield tapped. -- When Deadlock Trap enters the battlefield, you get {E}{E} (two energy counters). -- {T}, Pay {E}: Tap target creature or planeswalker. Its activated abilities can't be activated this turn.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Decoction Module
+auto=@movedto(creature|mybattlefield) counter(0/0,1,energy)
+auto={4}{T}:moveto(myhand) target(creature|mybattlefield)
+text=Whenever a creature enters the battlefield under your control, you get {E} (an energy counter). -- {4}, {T}: Return target creature you control to its owner's hand.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Demolition Stomper
+auto=cantbeblockedby(creature[power<=2])
+auto={T target(creature[power=5]|mybattleifeld)}:name(tap power 5) transforms((creature)) ueot
+auto={T target(<upto:5>creature|mybattlefield)}:name(tap 5 creatures) transforms((creature)) ueot
+auto={T target(<upto:2>creature[power=2]|mybattlefield)}:name(tap 2 creatures power 2) transforms((creature)) ueot
+text=Demolition Stomper can't be blocked by creatures with power 2 or less. -- Crew 5 (Tap any number of creatures you control with total power 5 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={6}
+type=Artifact
+subtype=Vehicle
+power=10
+toughness=7
+[/card]
+
+[card]
+name=Dukhara Peafowl
+auto={U}:flying ueot
+text={U}: Dukhara Peafowl gains flying until end of turn.
+mana={4}
+type=Artifact Creature
+subtype=Bird
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Dynavolt Tower
+auto=aslongas(Energy Tableau|mybattlefield) create token(845900) controller <1
+auto=@movedto(instant,sorcery|mystack):counter(0/  0,2,energy) all(Energy Tableau|mybattlefield)
+auto={T}{c(0/0,-5,energy) from(Energy Tableau|mybattlefield)}:damage:3 target(creature,player)
+#auto={T}{c(0/0,-5,energy) from(Energy Tableau|mybattlefield)}:damage:3 target(creature,player)
+#auto={T} restriction{all(Energy Tableau|mybattlefield) (counter{0/0.1.energy}>4)}:damage:3 target(creature,player) && {c(0/0,-5,energy)} all(Energy Tableau|mybattlefield) 
+#auto={T} (counter{0/0.1.energy}):damage:3 target(creature,player) && {c(0/0,-5,energy)} all(Energy Tableau|mybattlefield) >4
+text=Whenever you cast an instant or sorcery spell, you get {E}{E} (two energy counters). -- {T}, Pay {E}{E}{E}{E}{E}: Dynavolt Tower deals 3 damage to target creature or player.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Eager Construct
+auto=deplete:1 && emblem transforms((,newability[may moveto(mylibrary) target(*|mygraveyard else bottomoflibrary target(*|mygraveyard)])) ueot
+text=When Eager Construct enters the battlefield, each player may scry 1. (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Electrostatic Pummeler
+auto=counter(0/0,3,energy)
+auto={c(0/0,-3,energy) from(<anyamount>*|mybattlefield)}:dynamicability<!powerpumppow!> ueot && dynamicability<!toughnesspumptough!> ueot
+text=When Electrostatic Pummeler enters the battlefield, you get {E}{E}{E} (three energy counters). -- Pay {E}{E}{E}: Electrostatic Pummeler gets +X/+X until end of turn, where X is its power.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Fabrication Module
+auto=@movedto(c{energy}|mybattlefield):counter(1/1,1) target(creature)
+auto={4}{T}:counter(0/0,1,energy)
+text=Whenever you get one or more {E} (energy counters), put a +1/+1 counter on target creature you control. -- {4}, {T}: You get {E}.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Filigree Familiar
+auto=life:2
+auto=@movedTo(this|graveyard) from(battlefield):draw:1
+text=When Filigree Familiar enters the battlefield, you gain 2 life. -- When Filigree Familiar dies, draw a card.
+mana={3}
+type=Artifact Creature
+subtype=Fox
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Fireforger's Puzzleknot
+auto=damage:1 target(creature,player)
+auto={2}{R}{S}:damage:1 target(creature,player)
+text=When Fireforger's Puzzleknot enters the battlefield, it deals 1 damage to target creature or player. -- {2}{R}, Sacrifice Fireforger's Puzzleknot: It deals 1 damage to target creature or player.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Fleetwheel Cruiser
+abilities=trample,haste
+auto=transforms((creature)) ueot
+auto={T target(creature[power=2]|mybattleifeld)}:name(tap power 2) transforms((creature)) ueot
+auto={T target(<upto:2>creature|mybattlefield)}:name(tap 2 creatures) transforms((creature)) ueot
+text=Trample, haste -- When Fleetwheel Cruiser enters the battlefield, it becomes an artifact creature until end of turn. -- Crew 2 (Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={4}
+type=Artifact
+subtype=Vehicle
+power=5
+toughness=3
+[/card]
+
+[card]
+name=Foundry Inspector
+text=Artifact spells you cast cost {1} less to cast.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Ghirapur Orrery
+auto=maxPlay(land)+1
+auto=@upkeep:if type(*|myhand)~lessthan~1 draw:3 controller
+auto=@upkeep:if type(*|opponenthand)~lessthan~1 draw:3 opponent
+text=Each player may play an additional land on each of his or her turns. -- At the beginning of each player's upkeep, if that player has no cards in hand, that player draws three cards.
+mana={4}
+type=Artifact
+[/card]
+
+[card]
+name=Glassblower's Puzzleknot
+auto=deplete:2 && emblem transforms((,newability[may moveto(mylibrary) target(<upto:2>*|mygraveyard else bottomoflibrary target(<upto:2>*|mygraveyard)])) ueot
+text=When Glassblower's Puzzleknot enters the battlefield, scry 2, then you get {E}{E}. (You get two energy counters. To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.) -- {2}{U}, Sacrifice Glassblower's Puzzleknot: Scry 2, then you get {E}{E}.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Inventor's Goggles
+auto={2}:equip
+auto=1/2
+auto=@movedto(artificer|mybattlefield):may all(trigger[to]) retarget
+text=Equipped creature gets +1/+2. -- Whenever an Artificer enters the battlefield under your control, you may attach Inventor's Goggles to it. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Iron League Steed
+abilities=haste
+auto=choice name(counter) counter(1/1,1)
+auto=choice name(servo) token(Servo,artifact creature Servo,1/1)
+text=Haste -- Fabricate 1 (When this creature enters the battlefield, put a +1/+1 counter on it or create a 1/1 colorless Servo artifact creature token.)
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Key to the City
+auto={T}{discard(*|myhand)}:target(creature|mybattlefield) unblockable ueot
+text={T}, Discard a card: Up to one target creature can't be blocked this turn. -- Whenever Key to the City becomes untapped, you may pay {2}. If you do, draw a card.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Metalspinner's Puzzleknot
+auto=draw:1 controller && life:-1 controller
+auto={2}{B}{S}:draw:1 controller && life:-1 controller
+text=When Metalspinner's Puzzleknot enters the battlefield, you draw a card and you lose 1 life. -- {2}{B}, Sacrifice Metalspinner's Puzzleknot: You draw a card and you lose 1 life.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Metalwork Colossus
+autohand=foreach(creature[manacost=1]|mybattlefield) altercost(colorless, -1)
+autohand=foreach(creature[manacost=2]|mybattlefield) altercost(colorless, -2)
+autohand=foreach(creature[manacost=3]|mybattlefield) altercost(colorless, -3)
+autohand=foreach(creature[manacost=4]|mybattlefield) altercost(colorless, -4)
+autohand=foreach(creature[manacost=5]|mybattlefield) altercost(colorless, -5)
+autohand=foreach(creature[manacost=6]|mybattlefield) altercost(colorless, -6)
+autohand=foreach(creature[manacost=7]|mybattlefield) altercost(colorless, -7)
+autohand=foreach(creature[manacost=8]|mybattlefield) altercost(colorless, -8)
+autohand=foreach(creature[manacost=9]|mybattlefield) altercost(colorless, -9)
+autohand=foreach(creature[manacost=10]|mybattlefield) altercost(colorless, -10)
+autohand=foreach(creature[manacost=11]|mybattlefield) altercost(colorless, -11)
+autohand=foreach(creature[manacost=12]|mybattlefield) altercost(colorless, -12)
+autohand=foreach(creature[manacost=13]|mybattlefield) altercost(colorless, -13)
+autohand=foreach(creature[manacost=14]|mybattlefield) altercost(colorless, -14)
+autohand=foreach(creature[manacost=15]|mybattlefield) altercost(colorless, -15)
+autograveyard={S(<upto:2>artifact|mybattlefield)}:moveto(myhand)
+text=Metalwork Colossus costs {X} less to cast, where X is the total converted mana cost of noncreature artifacts you control. -- Sacrifice two artifacts: Return Metalwork Colossus from your graveyard to your hand.
+mana={11}
+type=Artifact Creature
+subtype=Construct
+power=10
+toughness=10
+[/card]
+
+[card]
+name=Multiform Wonder
+auto=counter(0/0,3,energy)
+auto={c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:vigilance ueot
+auto={c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:lifelink ueot
+auto={c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:flying ueot
+auto={c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:2/0 ueot
+auto={c(0/0,-1,energy) from(<anyamount>*|mybattlefield)}:0/2 ueot
+text=When Multiform Wonder enters the battlefield, you get {E}{E}{E} (three energy counters). -- Pay {E}: Multiform Wonder gains your choice of flying, vigilance, or lifelink until end of turn. -- Pay {E}: Multiform Wonder gets +2/-2 or -2/+2 until end of turn.
+mana={5}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Narnam Cobra
+auto={G}:deathtouch ueot
+text={G}: Narnam Cobra gains deathtouch until end of turn. (Any amount of damage it deals to a creature is enough to destroy it.)
+mana={2}
+type=Artifact Creature
+subtype=Snake
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Ovalchase Dragster
+abilities=trample,haste
+auto={T target(creature[power=1]|mybattleifeld)}:name(tap power 1) transforms((creature)) ueot
+text=Trample, haste -- Crew 1 (Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={4}
+type=Artifact
+subtype=Vehicle
+power=6
+toughness=1
+[/card]
+
+[card]
+name=Panharmonicon
+auto=
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]
+
+[card]
+name=Perpetual Timepiece
+auto={T}:deplete:2 controller
+auto={2}{moveto(exile)}:moveto(mylibrary) target(<anyamount>*|mygraveyard) && shuffle controller
+text={T}: Put the top two cards of your library into your graveyard. -- {2}, Exile Perpetual Timepiece: Shuffle any number of target cards from your graveyard into your library.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Prakhata Pillar-Bug
+auto={B}:lifelink ueot
+text={B}: Prakhata Pillar-Bug gains lifelink until end of turn. (Damage dealt by this creature also causes you to gain that much life.)
+mana={3}
+type=Artifact Creature
+subtype=Insect
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Renegade Freighter
+auto={T target(creature[power=2]|mybattleifeld)}:name(tap power 2) transforms((creature)) ueot
+auto={T target(<upto:2>creature[power=1]|mybattleifeld)}:name(tap 2 creatures) transforms((creature)) ueot
+auto=@combat(attacking) source(this):1/1 ueot && trample ueot
+text=Whenever Renegade Freighter attacks, it gets +1/+1 and gains trample until end of turn. -- Crew 2 (Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={3}
+type=Artifact
+subtype=Vehicle
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Scrapheap Scrounger
+abilities=cantblock
+autograveyard={1}{B}{moveto(exile) target(other creature|mygraveyard)}:moveto(mybattlefield)
+text=Scrapheap Scrounger can't block. -- {1}{B}, Exile another creature card from your graveyard: Return Scrapheap Scrounger from your graveyard to the battlefield.
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Self-Assembler
+auto=may moveto(myhand) target(assembly-worker|mylibrary)
+text=When Self-Assembler enters the battlefield, you may search your library for an Assembly-Worker creature card, reveal it, put it into your hand, then shuffle your library.
+mana={5}
+type=Artifact Creature
+subtype=Assembly-Worker
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Sky Skiff
+abilities=flying
+auto={T target(creature[power=1]|mybattleifeld)}:name(tap power 1) transforms((creature)) ueot
+text=Flying -- Crew 1 (Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={2}
+type=Artifact
+subtype=Vehicle
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Skysovereign, Consul Flagship
+abilities=flying
+auto=damage:3 target(creature,planeswalker)
+auto={T target(creature[power=3]|mybattleifeld)}:name(tap power 3) transforms((creature)) ueot
+auto={T target(<upto:3>creature[power=1]|mybattleifeld)}:name(tap 3 creatures) transforms((creature)) ueot
+auto=@combat(attacking) source(this):damage:3 target(creature,planeswalker)
+text=Flying -- Whenever Skysovereign, Consul Flagship enters the battlefield or attacks, it deals 3 damage to target creature or planeswalker an opponent controls. -- Crew 3 (Tap any number of creatures you control with total power 3 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={5}
+type=Legendary Artifact
+subtype=Vehicle
+power=6
+toughness=5
+[/card]
+
+[card]
+name=Smuggler's Copter
+auto={T target(creature[power=1]|mybattleifeld)}:name(tap power 1) transforms((creature)) ueot
+text=Flying -- Whenever Smuggler's Copter attacks or blocks, you may draw a card. If you do, discard a card. -- Crew 1 (Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={2}
+type=Artifact
+subtype=Vehicle
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Snare Thopter
+abilities=flying, haste
+text=Flying, haste
+mana={4}
+type=Artifact Creature
+subtype=Thopter
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Torch Gauntlet
+auto={2}:equip
+auto=2/0
+text=Equipped creature gets +2/+0. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Weldfast Monitor
+auto={R}:lord(creature|opponentbattlefield) transforms((,newability[@combat(defending) source(this) restriction{type(creature[defending]|myBattlefield)~lessthan~2}:all(this) removefromcombat])) ueot
+text={R}: Weldfast Monitor gains menace until end of turn.
+mana={3}
+type=Artifact Creature
+subtype=Lizard
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Whirlermaker
+auto=token(thopter,artifact creature thopter,1/1,flying)
+text={4}, {T}: Create a 1/1 colorless Thopter artifact creature token with flying.
+mana={3}
+type=Artifact
+[/card]
+
+[card]
+name=Woodweaver's Puzzleknot
+auto=life:3
+auto=counter(0/0,3,energy)
+auto={2}{G}{S}:life:3
+text=When Woodweaver's Puzzleknot enters the battlefield, you gain 3 life and get {E}{E}{E} (three energy counters). -- {2}{G}, Sacrifice Woodweaver's Puzzleknot: You gain 3 life and get {E}{E}{E}.
+mana={2}
+type=Artifact
+[/card]
+
+[card]
+name=Workshop Assistant
+auto=@movedTo(this|graveyard) from(battlefield):moveto(myhand) target(artifact|mygraveyard)
+text=When Workshop Assistant dies, return another target artifact card from your graveyard to your hand.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Aether Hub
+auto=counter(0/0,1,energy)
+auto={T}:Add{1}
+auto={T}{c(0/0,-1,energy)}:add:{R}
+auto={T}{c(0/0,-1,energy)}:add:{B}
+auto={T}{c(0/0,-1,energy)}:add:{U}
+auto={T}{c(0/0,-1,energy)}:add:{W}
+auto={T}{c(0/0,-1,energy)}:add:{G}
+text=When Aether Hub enters the battlefield, you get {E} (an energy counter). -- {T}: Add {C} to your mana pool. -- {T}, Pay {E}: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Blooming Marsh
+auto={T}:add{B}
+auto={T}:add{G}
+#auto=restriction{type(land|mybattlefield)~lessthan~3} tap
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
+text=Blooming Marsh enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {B} or {G} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Botanical Sanctum
+auto={T}:add{G}
+auto={T}:add{U}
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
+#auto=restriction{type(land|mybattlefield)~lessthan~3} tap
+text=Botanical Sanctum enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {G} or {U} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Concealed Courtyard
+auto={T}:add{W}
+auto={T}:add{B}
+#auto=restriction{type(land|mybattlefield)~lessthan~3} tap
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
+text=Concealed Courtyard enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {W} or {B} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Inspiring Vantage
+auto={T}:add{R}
+auto={T}:add{W}
+#auto=restriction{type(land|mybattlefield)~lessthan~3} tap
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
+text=Inspiring Vantage enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {R} or {W} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Inventors' Fair
+#auto=@each my upkeep:if type(artifact|mybattlefield)~morethan~2 life:1
+auto=@each my upkeep:aslongas(artifact|myBattlefield) life:1
+auto={T}:Add{1}
+#auto={4}{T}{S} restriction{type(artifact|mybattlefield)~morethan~2}:moveto(myhand) target(artifact|mylibrary)
+auto=aslongas(artifact|myBattlefield) {4}{T}{S}:moveto(myhand) target(artifact|mylibrary) >2
+text=At the beginning of your upkeep, if you control three or more artifacts, you gain 1 life. -- {T}: Add {C} to your mana pool. -- {4}, {T}, Sacrifice Inventors' Fair: Search your library for an artifact card, reveal it, put it into your hand, then shuffle your library. Activate this ability only if you control three or more artifacts.
+type=Legendary Land
+[/card]
+
+[card]
+name=Sequestered Stash
+auto={T}:Add{1}
+auto={4}{T}{S}:deplete:5 && moveto(mylibrary) target(artifact|mygraveyard)
+text={T}: Add {C} to your mana pool. -- {4}, {T}, Sacrifice Sequestered Stash: Put the top five cards of your library into your graveyard. Then you may put an artifact card from your graveyard on top of your library.
+type=Land
+[/card]
+
+[card]
+name=Spirebluff Canal
+auto={T}:Add{U}
+auto={T}:Add{R}
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
+text=Spirebluff Canal enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {U} or {R} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Chandra, Pyrogenius
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,2,Loyalty)}:name(2 damage to opponent) damage:2 opponent
+auto={C(0/0,-3,Loyalty)}:name(4 damage target creature) damage:4 target(creature)
+auto={C(0/0,-10,Loyalty)}:name(6 damage to target player and all their creatures) target(player) damage:6 && damage:6 all(creature|targetedpersonsbattlefield)
+text=+2: Chandra, Pyrogenius deals 2 damage to each opponent. -- -3: Chandra, Pyrogenius deals 4 damage to target creature. -- -10: Chandra, Pyrogenius deals 6 damage to target player and each creature he or she controls.
+mana={4}{R}{R}
+type=Planeswalker
+subtype=Chandra
+[/card]
+
+[card]
+name=Flame Lash
+target=creature,player
+auto=damage:4
+text=Flame Lash deals 4 damage to target creature or player.
+mana={3}{R}
+type=Instant
+[/card]
+
+[card]
+name=Liberating Combustion
+auto=moveto(myhand) target(Chandra,Pyrogenius|mylibrary)
+auto=damage:6 target(creature)
+text=Liberating Combustion deals 6 damage to target creature. You may search your library and/or graveyard for a card named Chandra, Pyrogenius, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={4}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Renegade Firebrand
+auto=aslongas(chandra|mybattlefield)~morethan~0 1/0
+auto=aslongas(chandra|mybattlefield)~morethan~0 first strike
+text=As long as you control a Chandra planeswalker, Renegade Firebrand gets +1/+0 and has first strike. (It deals combat damage before creatures without first strike.)
+mana={2}{R}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Nissa, Nature's Artisan
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,3,Loyalty)}:life:3 controller
+auto={C(0/0,-4,Loyalty)}:draw:2 && maxPlay(land)+2 ueot
+auto={C(0/0,-12,Loyalty)}:all(creature|mybattlefield) transforms((,newability[5/5],newability[trample])) ueot
+text=+3: You gain 3 life. -- -4: Reveal the top two cards of your library. Put all land cards from among them onto the battlefield and the rest into your hand. -- -12: Creatures you control get +5/+5 and gain trample until end of turn.
+mana={4}{G}{G}
+type=Planeswalker
+subtype=Nissa
+[/card]
+
+[card]
+name=Guardian of the Great Conduit
+abilities=reach
+auto=if type(nissa|mybattlefield)~morethan~0 2/0
+auto=if type(nissa|mybattlefield)~morethan~0 vigilance
+text=Reach (This creature can block creatures with flying.) -- As long as you control a Nissa planeswalker, Guardian of the Great Conduit gets +2/+0 and has vigilance. (Attacking doesn't cause it to tap.)
+mana={3}{G}
+type=Creature
+subtype=Elemental
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Terrain Elemental
+mana={1}{G}
+type=Creature
+subtype=Elemental
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Verdant Crescendo
+auto=moveto(mybattlefield) target(basic|mylibrary) and tap
+auto=moveto(myhand) target(Nissa, Nature's Artisan|mylibrary)
+text=Search your library for a basic land card and put it onto the battlefield tapped. Search your library and graveyard for a card named Nissa, Nature's Artisan, reveal it, and put it into your hand. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Energy Tableau
+text=Energy Tableau
+[/card]
+[card]
+primitive=Energy Tableau
+id=845900
+rarity=T
+[/card]

@@ -417,11 +417,11 @@ ManaCost* CardPrimitive::getManaCost()
 
 bool CardPrimitive::hasType(int _type)
 {
-	if (types.size() > 400) {return false;} // Null pointer?
-	for (size_t i = 0; i < types.size(); i++)
-			if (types[i] == _type)
-				return true;			
-	return false;
+    if (types.size() > 400) {return false;} // Null pointer?
+    for (size_t i = 0; i < types.size(); i++)
+            if (types[i] == _type)
+                return true;            
+    return false;
 }
 
 bool CardPrimitive::hasSubtype(int _subtype)

@@ -1,0 +1,231 @@
+grade=unsupported
+[card]
+name=Commander's Insignia
+text=Creatures you control get +1/+1 for each time you've cast your commander from the command zone this game.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Road of Return
+text=Choose one — -- • Return target permanent card from your graveyard to your hand. -- • Put your commander into your hand from the command zone. -- Entwine 2 (Choose both if you pay the entwine cost.)
+mana={G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Anje Falkenrath
+text=Haste -- {T}, Discard a card: Draw a card. -- Whenever you discard a card, if it has madness, untap Anje Falkenrath.
+mana={1}{B}{R}
+type=Legendary Creature
+subtype=Vampire
+power=1
+toughness=3
+[/card]
+[card]
+name=Voice of Many
+text=When Voice of Many enters the battlefield, draw a card for each opponent who controls fewer creatures than you.
+mana={2}{G}{G}
+type=Creature
+subtype=Elf Druid
+power=3
+toughness=3
+[/card]
+[card]
+name=Chainer, Nightmare Adept
+text=Discard a card: You may cast a creature card from your graveyard this turn. Activate this ability only once each turn. -- Whenever a nontoken creature enters the battlefield under your control, if you didn't cast it from your hand, it gains haste until your next turn.
+mana={2}{B}{R}
+type=Legendary Creature
+subtype=Human Minion
+power=3
+toughness=2
+[/card]
+[card]
+name=Elsha of the Infinite
+text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- You may look at the top card of your library any time. -- You may cast the top card of your library if it's a noncreature, nonland card, and you may cast it as though it had flash.
+mana={2}{U}{R}{W}
+type=Legendary Creature
+subtype=Djinn Monk
+power=3
+toughness=3
+[/card]
+[card]
+name=Leadership Vacuum
+text=Target player returns each commander they control from the battlefield to the command zone. -- Draw a card.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Bloodthirsty Blade
+text=Equipped creature gets +2/+0 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- {1}: Attach Bloodthirsty Blade to target creature an opponent controls. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Thought Sponge
+text=Flash -- Thought Sponge enters the battlefield with a number of +1/+1 counters on it equal to the greatest number of cards an opponent has drawn this turn. -- When Thought Sponge dies, draw cards equal to its power.
+mana={3}{U}
+type=Creature
+subtype=Sponge
+power=1
+toughness=1
+[/card]
+[card]
+name=Sudden Substitution
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Exchange control of target noncreature spell and target creature. Then the spell's controller may choose new targets for it.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Wall of Stolen Identity
+text=You may have Wall of Stolen Identity enter the battlefield as a copy of any creature on the battlefield, except it's a Wall in addition to its other types and has defender. When you do, tap the copied creature and it doesn't untap during its controller's untap step for as long as you control Wall of Stolen Identity.
+mana={3}{U}
+type=Creature
+subtype=Shapeshifter Wall
+power=0
+toughness=0
+[/card]
+[card]
+name=Marisi, Breaker of the Coil
+text=Your opponents can't cast spells during combat. -- Whenever a creature you control deals combat damage to a player, goad each creature that player controls. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
+mana={1}{R}{G}{W}
+type=Legendary Creature
+subtype=Cat Warrior
+power=5
+toughness=4
+[/card]
+[card]
+name=Kadena, Slinking Sorcerer
+text=The first face-down creature spell you cast each turn costs {3} less to cast. -- Whenever a face-down creature enters the battlefield under your control, draw a card.
+mana={1}{B}{G}{U}
+type=Legendary Creature
+subtype=Naga Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Mandate of Peace
+restriction=during battle
+auto=ueot maxCast(*)0 opponent
+text=Cast this spell only during combat. -- Your opponents can't cast spells this turn. -- End the combat phase. (Remove all attackers and blockers from combat. Exile all spells and abilities from the stack, including this spell.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Rayami, First of the Fallen
+text=If a nontoken creature would die, exile that card with a blood counter on it instead. -- As long as an exiled creature card with a blood counter on it has flying, Rayami, First of the Fallen has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, protection, reach, trample, and vigilance.
+mana={1}{B}{G}{U}
+type=Legendary Creature
+subtype=Vampire
+power=5
+toughness=4
+[/card]
+[card]
+name=Tahngarth, First Mate
+text=Tahngarth, First Mate can't be blocked by more than one creature. -- Whenever an opponent attacks with one or more creatures, if Tahngarth is tapped, you may have that opponent gain control of Tahngarth until end of combat. If you do, choose a player or planeswalker that opponent is attacking. Tahngarth is attacking that player or planeswalker.
+mana={2}{R}{G}
+type=Legendary Creature
+subtype=Minotaur Warrior
+power=5
+toughness=5
+[/card]
+[card]
+name=Sevinne, the Chronoclasm
+text=Prevent all damage that would be dealt to Sevinne, the Chronoclasm. -- Whenever you cast your first instant or sorcery spell from your graveyard each turn, copy that spell. You may choose new targets for the copy.
+mana={2}{U}{R}{W}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Aeon Engine
+text=Aeon Engine enters the battlefield tapped. -- {T}, Exile Aeon Engine: Reverse the game's turn order. (For example, if play had proceeded clockwise around the table, it now goes counterclockwise.)
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Thieving Amalgam
+text=At the beginning of each opponent's upkeep, you manifest the top card of that player's library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Whenever a creature you control but don't own dies, its owner loses 2 life and you gain 2 life.
+mana={5}{B}{B}
+type=Creature
+subtype=Ape Snake
+power=6
+toughness=7
+[/card]
+[card]
+name=Pendant of Prosperity
+text=Pendant of Prosperity enters the battlefield under the control of an opponent of your choice. -- {2}, {T}: Draw a card, then you may put a land card from your hand onto the battlefield. Pendant of Prosperity's owner draws a card, then that player may put a land card from their hand onto the battlefield.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Scroll of Fate
+text={T}: Manifest a card from your hand. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Gift of Doom
+text=Enchant creature -- Enchanted creature has deathtouch and indestructible. -- Morph—Sacrifice another creature. (You may cast this card face down as a 2/2 creature for 3 . Turn it face up any time for its morph cost.) -- As Gift of Doom is turned face up, you may attach it to a creature.
+mana={4}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=K'rrik, Son of Yawgmoth
+text=(Phyrexian {B} can be paid with either {B} or 2 life.) -- Lifelink -- For each {B} in a cost, you may pay 2 life rather than pay that mana. -- Whenever you cast a black spell, put a +1/+1 counter on K'rrik, Son of Yawgmoth.
+mana={4}{Phyrexian B}{Phyrexian B}{Phyrexian B}
+type=Legendary Creature
+subtype=Horror Minion
+power=2
+toughness=2
+[/card]
+[card]
+name=Apex Altisaur
+text=When Apex Altisaur enters the battlefield, it fights up to one target creature you don't control. -- Enrage — Whenever Apex Altisaur is dealt damage, it fights up to one target creature you don't control.
+mana={7}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=10
+toughness=10
+[/card]
+[card]
+name=Hate Mirage
+text=Choose up to two target creatures you don't control. For each of those creatures, create a token that's a copy of that creature. Those tokens gain haste. Exile them at the beginning of the next end step.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Ghired's Belligerence
+text=Ghired's Belligerence deals X damage divided as you choose among any number of target creatures. Whenever a creature dealt damage this way dies this turn, populate. (Create a token that's a copy of a creature token you control.)
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Skyfire Phoenix
+text=Flying, haste -- When you cast your commander, return Skyfire Phoenix from your graveyard to the battlefield.
+mana={2}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
+[/card]
+[card]
+name=Wildfire Devils
+text=When Wildfire Devils enters the battlefield and at the beginning of your upkeep, choose a player at random. That player exiles an instant or sorcery card from their graveyard. Copy that card. You may cast the copy without paying its mana cost.
+mana={3}{R}
+type=Creature
+subtype=Devil
+power=4
+toughness=2
+[/card]
+[card]
+name=Tectonic Hellion
+abilities=haste
+text=Haste -- Whenever Tectonic Hellion attacks, each player who controls the most lands sacrifices two lands.
+mana={5}{R}{R}
+type=Creature
+subtype=Hellion
+power=8
+toughness=5
+[/card]

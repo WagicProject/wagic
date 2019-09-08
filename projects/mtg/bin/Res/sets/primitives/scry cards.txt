@@ -1,0 +1,1167 @@
+﻿###Scry Beta test Bas PSP config 
+###There are still some issues, such as being allowed to target any card in 
+###Graveyard and some others.
+###Cards are sorted in chronical order by sets
+##Template Scry 1:
+##auto=deplete:1
+##auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+##Template Scry 2:
+##auto=deplete:2
+##auto=moveto(mylibrary) target(<2>*|mygraveyard)
+###
+###http://magiccards.info/query?q=o%3AScry&s=edition&v=card&p=5
+###auto=moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+
+###Scry Template MrFatBard or kevla:
+##     //scry 2
+##    auto=deplete:2 controller && transforms((,newability[may moveto(mylibrary) target(<upto:2>*|mygraveyard)])) ueot
+
+
+####
+##ALLiances
+####untested
+[card]
+name=Soldevi Excavations
+auto=aslongas(island[-tapped]|myBattlefield) moveTo(graveyard) notatarget(island|myBattlefield) oneshot
+auto=choice sacrifice all(this)
+auto={T}:Add{U}{1}
+auto={1}{T}: deplete:1 && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+type=land
+text=If Soldevi Excavations would enter the battlefield, sacrifice an untapped Island instead. If you do, put Soldevi Excavations onto the battlefield. If you don't, put it into its owner's graveyard.{T}: Add {C}{U} to your mana pool. {1}, {T}: Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+####
+###INVasion
+####untested
+[card]
+name=Opt
+mana={U}
+auto=deplete:1
+auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=draw:1
+text=Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)Draw a card.
+type=instant
+[/card]
+
+####
+###DarkSTeel
+####untested
+[card]
+name=Darksteel Pendant
+abilities=indestructible
+auto={1}{T}:deplete:1 && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=Indestructible (Effects that say "destroy" don't destroy this artifact.){1}, {T}: Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+type=Artifact
+mana={2}
+[/card]
+####
+##5th Dawn
+####untested except Serum Visions
+[card]
+name=Magma Jet
+#Alpha-Test scry workaround - Workaround-code by mrfatbard. --Bas
+#auto=target(creature, player) damage:2  && then(deplete:2 && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard))
+#auto=target(creature, player) damage:2  && then(deplete:2 && moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard))
+#auto=moveto(mylibrary) target(*[fresh]|mygraveyard)
+#auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) then moveto(mylibrary) target(*|mygraveyard)
+#auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+target=creature,player
+auto=damage:2 && deplete:2 controller
+auto=token(845846) controller
+#auto=choice moveto(mylibrary) target(*|mygraveyard)
+#auto=choice moveto(mylibrary) target(<upto:2>*|mygraveyard)
+#target=*|mygraveyard
+mana={1}{R}
+type=instant
+text=Magma Jet deals 2 damage to target creature or player. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Condescend
+target=*|stack
+auto=transforms((,newability[pay[[{value:storedx}]] name(pay {value} mana) donothing?fizzle])) forever && deplete:2
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+text=Counter target spell unless its controller pays {X}. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={X}{U}
+type=Instant
+[/card]
+
+[card]
+name=Tel-Jilad Justice
+target=artifact
+auto=destroy && deplete:2
+auto=token(845846) controller
+text=Destroy target artifact. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Stand Firm
+type=Instant
+mana=W
+target=creature
+auto=1/1 && deplete:2 && moveto(mylibrary)
+auto=token(845846) controller
+text=Target creature gets +1/+1 until end of turn. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Serum Visions
+#Alpha-Test scry workaround - Workaround-code by mrfatbard. --Bas
+auto=draw:1 && deplete:2
+auto=token(845846)
+#auto=moveto(mylibrary) target(*[fresh]|mygraveyard)
+#auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) then moveto(mylibrary) target(*|mygraveyard)
+#auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+#auto=may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+#auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) && then may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=Draw a card. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+#auto=moveto(mylibrary) target(<anyamount>*[-this]|mygraveyard)
+text=Draw a card. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={U}
+type=sorcery
+[/card]
+[card]
+name=Lose Hope
+target=creature
+auto= -1/-1 ueot && deplete:2
+auto=token(845846) controller
+mana={B}
+text=Target creature gets -1/-1 until end of turn. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+type=instant
+[/card]
+[card]
+name=Fill with Fright
+target=player
+auto=ability$!name(discard 2 cards) notatarget(<2>*|myhand) reject!$ targetedplayer && deplete:2
+auto=token(845846) controller
+#auto=ability$!name(discard 2 cards) notatarget(<2>*|myhand) reject!$ targetedplayer && deplete:2 && moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+type=Sorcery
+mana={3}{B}
+text=Target player discards two cards. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+###TODO: Eyes of the Watcher. Issue: "may pay X" is problematic on triggered events (and at least causes AI to crash if they need to pay in my WTH)
+[card]
+name=Ferocious Charge
+target=creature
+auto=4/4 && deplete:2
+auto=token(845846) controller
+#auto=4/4 && deplete:2 && moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+mana={2}{G}
+text=Target creature gets +4/+4 until end of turn. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+type=Instant
+[/card]
+####
+###FUTure Sight
+####untested
+[card]
+name=New Benalia
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto={T}:Add{W}
+text=New Benalia enters the battlefield tapped.---When New Benalia enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)---{T}: Add {W} to your mana pool.
+[/card]
+[card]
+###Any idea for creating this trigger regarding other cards? Is there such a thing as @autofaceup(creature[-this]) ?
+name=Unblinking Bleb
+facedown={3}
+autofacedown={2}{U}:morph
+autofaceup=deplete:2
+auto=token(845846) controller
+#autofaceup=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+#autofaceup=moveto(mylibrary) target(<upto:2>*|mygraveyard)
+text=Morph {2}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) Whenever Unblinking Bleb or another permanent is turned face up, you may scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={3}{U}
+power=1
+toughness=3
+type=Creature
+subtype=Illusion
+[/card]
+[card]
+###OK, honestly no clue how to code this.
+name=Putrid Cyclops
+mana={2}{B}
+auto=deplete:1
+auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=When Putrid Cyclops enters the battlefield, scry 1, then reveal the top card of your library. Putrid Cyclops gets -X/-X until end of turn, where X is that card's converted mana cost. (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
+type=Creature
+subtype=Zombie Cyclops
+power=3
+toughness=3
+[/card]
+[card]
+name=Mystic Speculation
+mana={U}
+buyback={U}{2}
+auto=deplete:3
+#auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+#auto=moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+#auto=moveto(mylibrary) target(<upto:3>*[-this]|mygraveyard)
+auto=token(845847) controller
+type=sorcery
+text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) Scry 3. (Look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+####Judge Unworthy
+###Problem: CMC = damage. No clue how to code that (no problem putting that card to Graveyard though)
+#####Instant, 1W (2)
+#### Choose target attacking or blocking creature. Scry 3, then reveal the top card of your library. Judge Unworthy deals damage equal to that card's converted mana cost to that creature. (To scry 3, look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[card]
+name=Foresee
+mana={3}{U}
+auto=deplete:4
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) && then draw:2 controller
+auto=may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard) && then draw:2 controller
+auto=may moveto(mylibrary) target(<upto:3>*[-this]|mygraveyard) && then draw:2 controller
+auto=may moveto(mylibrary) target(<upto:4>*[-this]|mygraveyard) && then draw:2 controller
+auto=may moveto(mylibrary) target(<upto:0>*[-this]|mygraveyard) && then draw:2 controller
+#auto= && draw:2
+text=Scry 4, then draw two cards. (To scry 4, look at the top four cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+type=sorcery
+[/card]
+[card]
+name=Cryptic Annelid
+mana={U}{3}
+###Really no clue if this auto works out, but I got my fair doubts about this one.
+auto=deplete:1 && moveto(mylibrary) target(*[-this]|mygraveyard) && deplete:2 && moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard) && deplete:3 && moveto(mylibrary) target(<upto:3>*[-this]|mygraveyard)
+type=Creature
+subtype=Worm Beast
+power=1
+toughness=4
+text=When Cryptic Annelid enters the battlefield, scry 1, then scry 2, then scry 3. (To scry X, look at the top X cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+####
+##M11
+####
+[card]
+name=Crystal Ball
+mana={3}
+auto={1}{T}:deplete:2 && moveto(mylibrary) target(<upto:1>*|mygraveyard)
+auto={1}{T}:deplete:2 && moveto(mylibrary) target(<upto:2>*|mygraveyard)
+text={1}, {T}: Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+type=Artifact
+[/card]
+[card]
+name=Preordain
+#Alpha-Test scry workaround - Workaround-code by mrfatbard. --Bas
+#auto=moveto(mylibrary) target(*[fresh]|mygraveyard)
+#auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) then moveto(mylibrary) target(*|mygraveyard)
+auto=deplete:2
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) && then draw:1 controller
+auto=may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard) && then draw:1 controller
+auto=may moveto(mylibrary) target(<upto:0>*[-this]|mygraveyard) && then draw:1 controller
+#auto=draw:1
+#auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) && then may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=Draw a card. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+#auto=moveto(mylibrary) target(<anyamount>*[-this]|mygraveyard)
+text=Scry 2, then draw a card. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={U}
+type=sorcery
+[/card]
+[card]
+name=Augury Owl
+mana={U}{1}
+type=Creature
+auto=deplete:3
+auto=token(845847) controller
+#auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+#auto=may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+#auto=may moveto(mylibrary) target(<upto:3>*[-this]|mygraveyard)
+subtype=Bird
+power=1
+toughness=1
+abilities=Flying
+text=When Augury Owl enters the battlefield, scry 3. (Look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+####
+###Theros (set)
+####
+[card]
+name=Prognostic Sphinx
+type=Creature
+subtype=Sphinx
+power=3
+toughness=5
+abilities=Flying
+mana={3}{U}{U}
+auto={discard(*|myhand)}:opponentshroud ueot && tap
+#auto=@attacking:moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+#auto=@attacking:moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+#auto=@attacking:moveto(mylibrary) target(<upto:3>*[-this]|mygraveyard)
+auto=@attacking: token(845847) controller
+auto=@attacking: deplete:3
+text=Flying---Discard a card: Prognostic Sphinx gains hexproof until end of turn. Tap it.---Whenever Prognostic Sphinx attacks, scry 3. (Look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Reaper of the Wilds
+type=Creature
+subtype=Gorgon
+power=4
+toughness=5
+mana={2}{B}{G}
+auto={B}:deathtouch ueot
+auto={1}{G}:opponentshroud ueot
+#auto=@movedto(mygraveyard):moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=@movedto(mygraveyard):token(845845) controller
+auto=@movedto(mygraveyard):deplete:1
+text=Whenever another creature dies, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)---{B}: Reaper of the Wilds gains deathtouch until end of turn.---{1}{G}: Reaper of the Wilds gains hexproof until end of turn.
+[/card]
+[card]
+name=Omenspeaker
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=3
+mana={1}{U}
+auto=deplete:2
+auto=token(845846) controller
+#auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+#auto=moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+text=When Omenspeaker enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Witches' Eye
+type=Artifact
+Subtype=Equipment
+mana={1}
+auto={1}:equip
+auto=teach {1}{T}:deplete:1 && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=Equipped creature has "{1}, {T}: Scry 1." (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.) Equip {1}
+[/card]
+[card]
+name=Voyage's End
+type=Instant
+mana={U}{1}
+target=creature
+auto=moveTo(ownerHand) && deplete:1 controller
+# && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Return target creature to its owner's hand. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Vanquish the Foul
+type=Sorcery
+mana={5}{W}
+target=creature(power>3)|battlefield
+auto=destroy && deplete:1
+# && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Destroy target creature with power 4 or greater. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+###Transform working?
+name=Thassa, God of the Sea
+abilities=indestructible
+auto=@each my upkeep: deplete:1 && token(845845) controller
+###Need another workaround for devotion...count permanents of color?
+#auto=this(variable{type:manau}>4) transforms((Creature,setpower=5,settoughnaess=5))
+auto=restriction{type(*[blue]|mybattlefield)~morethan~4} transforms((Creature,setpower=5,settoughness=5)) restriction{type(*[red]|mybattlefield)~morethan~1}
+auto={1}{U}: target(creature|battlefield) unblockable ueot
+text=Indestructible--As long as your devotion to blue is less than five, Thassa isn't a creature. (Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)--At the beginning of your upkeep, scry 1.--{1}{U}: Target creature you control can't be blocked this turn.
+mana={2}{U}
+type=Legendary Enchantment
+subtype=God
+[/card]
+[card]
+name=Temple of Triumph
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{R}
+auto={T}:Add{W}
+text=Temple of Triumph enters the battlefield tapped.--
+When Temple of Triumph enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {R} or {W} to your mana pool.
+[/card]
+[card]
+name=Temple of Silence
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{W}
+auto={T}:Add{B}
+text=Temple of Silence enters the battlefield tapped.--When Temple of Silence enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {W} or {B} to your mana pool.
+[/card]
+[card]
+name=Temple of Deceit
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{U}
+auto={T}:Add{B}
+text=Temple of Deceit enters the battlefield tapped.--When Temple of Deceit enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {U} or {B} to your mana pool.
+[/card]
+[card]
+name=Temple of Abandon
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{R}
+auto={T}:Add{G}
+text=Temple of Abandon enters the battlefield tapped.--When Temple of Abandon enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {R} or {G} to your mana pool.
+[/card]
+[card]
+name=Temple of Mystery
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{G}
+auto={T}:Add{U}
+text=Temple of Mystery enters the battlefield tapped.--When Temple of Mystery enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {G} or {U} to your mana pool.
+[/card]
+###Stymied Hopes: Could prob code, but at leas in my WTH bluescreen appears if AI has to pay X for counter spells.
+[card]
+name=Spark Jolt
+type=Instant
+mana={R}
+target=creature,player
+auto=damage:1 && deplete:1 controller
+auto=token(845845) controller
+text=Spark Jolt deals 1 damage to target creature or player. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Sea God's Revenge 
+type=Sorcery
+mana={5}{U}
+auto=moveTo(ownerHand) target (<upto:1>creature|opponentbattlefied) && deplete:1 controller
+auto=moveTo(ownerHand) target (<upto:2>creature|opponentbattlefied) && deplete:1 controller
+auto=moveTo(ownerHand) target (<upto:3>creature|opponentbattlefied) && deplete:1 controller
+auto=token(845845) controller
+text=Return up to three target creatures your opponents control to their owners' hands. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Rage of Purphoros
+type=Sorcery
+mana={4}{R}
+auto=damage:4 target (creature) && cantregen && deplete:1
+# && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Rage of Purphoros deals 4 damage to target creature. It can't be regenerated this turn. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+
+[card]
+name=Prescient Chimera
+type=Creature
+subtype=Chimera
+mana={3}{U}{U}
+power=3
+toughness=4
+abilities=flying
+auto=@movedto(instant,sorcery|mystack): deplete:1 && token(845845) controller
+text=Flying--Whenever you cast an instant or sorcery spell, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+
+[card]
+name=Portent of Betrayal
+type=Sorcery
+mana={3}{R}
+target=creature|opponentBattlefield
+auto=untap
+alias=129767
+auto=haste && deplete:1
+auto=token(845845) controller
+text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+
+[card]
+name=Lost in a Labyrinth
+type=Instant
+mana={U}
+target=creature
+auto=-3/-0 ueot && deplete:1 controller
+#target(creature)
+auto=token(845845) controller
+text=Target creature gets -3/-0 until end of turn. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+
+[card]
+name=Horizon Scholar
+type=Creature
+subtype=Sph
+mana={5}{U}
+power=4
+toughness=4
+abilities=flying
+auto=deplete:2
+auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+text=When Horizon Scholar enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+
+[card]
+name=Gods Willing
+type=Instant
+mana={W}
+#auto=activatechooseacolor protection from(*[chosencolor]) ueot activatechooseend 
+auto=choice protection from white target(creature|myBattlefield) ueot && then (deplete:1 && then(moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)))
+auto=choice protection from blue target(creature|myBattlefield) ueot && then (deplete:1 && then(moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)))
+auto=choice protection from black target(creature|myBattlefield) ueot && then (deplete:1 && then(moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)))
+auto=choice protection from red target(creature|myBattlefield) ueot && then (deplete:1 && then(moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)))
+auto=choice protection from green target(creature|myBattlefield) ueot && then (deplete:1 && then(moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)))
+text=Target creature you control gains protection from the color of your choice until end of turn. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+###Flamespeaker Adept: Might be doable with workaround and multiple triggers, but looks more complicated for now.
+### 	Flamespeaker Adept English
+###Creature — Human Shaman 2/3, 2R (3)
+###Whenever you scry, Flamespeaker Adept gets +2/+0 and gains first strike until end of turn.
+[card]
+name=Dissolve
+type=Instant
+mana={1}{U}{U}
+target=*|stack
+auto=fizzle && deplete:1 controller
+# && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Counter target spell. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+
+[card]
+name=Battlewise Valor
+type=Instant
+mana={1}{W}
+auto=target(creature) 2/2 ueot && then (deplete:1 && then(moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)))
+text=Target creature gets +2/+2 until end of turn. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+
+[card]
+name=Battlewise Hoplite
+type=Creature
+subtype=Human Soldier
+mana={W}{U}
+power=2
+toughness=2
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):counter(1/1,1) && deplete:1 && token(845845) controller
+text=Heroic — Whenever you cast a spell that targets Battlewise Hoplite, put a +1/+1 counter on Battlewise Hoplite, then scry 1. (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Artisan's Sorrow
+type=Instant
+mana={3}{G}
+target=artifact,enchantment
+auto=destroy && deplete:2 && token(845846) controller
+text=Destroy target artifact or enchantment. Scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+
+[card]
+name=Aqueous Form
+type=Enchantment
+subtype=aura
+mana={U}
+auto=teach(creature) unblockable
+auto=@attacking: deplete:1 && token(845845) controller
+text=Enchant creature--Enchanted creature can't be blocked.--
+Whenever enchanted creature attacks, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Titan's Strength
+type=Instant
+mana={R}
+target=creature
+auto=3/1 ueot && deplete:1
+auto=token(845845) controller
+text=Target creature gets +3/+1 until end of turn. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+####
+###BorN of the Gods
+####
+[card]
+name=Viscera Seer
+type=Creature
+subtype=Vampire Wizard
+mana={B}
+power=1
+toughness=1
+auto={S(creature|mybattlefield)}:deplete:1 && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=Sacrifice a creature: Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Temple of Malice
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{B}
+auto={T}:Add{R}
+text=Temple of Malice enters the battlefield tapped.--When Temple of Malice enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {B} or {R} to your mana pool.
+[/card]
+[card]
+name=Temple of Enlightenment
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{W}
+auto={T}:Add{U}
+text=Temple of Enlightenment enters the battlefield tapped.--When Temple of Enlightenment enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {W} or {U} to your mana pool.
+[/card]
+[card]
+name=Temple of Mystery
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{G}
+auto={T}:Add{U}
+text=Temple of Mystery enters the battlefield tapped.--When Temple of Mystery enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {G} or {U} to your mana pool.
+[/card]
+[card]
+name=Temple of Abandon
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{R}
+auto={T}:Add{G}
+text=Temple of Abandon enters the battlefield tapped.--When Temple of Abandon enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {R} or {G} to your mana pool.
+[/card]
+[card]
+name=Temple of Plenty
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{G}
+auto={T}:Add{W}
+text=Temple of Plenty enters the battlefield tapped.--When Temple of Plenty enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {G} or {W} to your mana pool.
+[/card]
+[card]
+name=Sudden Storm
+type=Instant
+mana={3}{U}
+#target=<upto:2>creature
+#auto=tap
+#auto=frozen
+#auto=deplete:1 controller
+auto=tap && frozen target(<upto:2>creature)
+auto=token(845845) controller && deplete:1 controller
+text=Tap up to two target creatures. Those creatures don't untap during their controllers' next untap steps. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Stormcaller of Keranos
+type=Creature
+subtype=Human Shaman
+mana={2}{R}
+power=2
+toughness=2
+auto={1}{U}: deplete:1
+auto=token(845845) controller
+text=Haste && {1}{U}: Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=
+type=
+mana=
+auto=&& deplete:1
+auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=
+[/card]
+
+[card]
+name=Scouring Sands
+type=Sorcery
+mana={1}{R}
+auto=damage:1 all(creature|opponentbattlefield) && deplete:1# && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Scouring Sands deals 1 damage to each creature your opponents control. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Peregrination
+type=Sorcery
+mana={3}{G}
+auto=name(fetch to play) notatarget(land[basic]|mylibrary) transforms((,newability[name(move to hand) notatarget(land[basic]|mylibrary) moveTo(myhand)],newability[moveTo(myBattlefield) and!(tap)!])) oneshot && deplete:1
+# && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Search your library for up to two basic land cards, reveal those cards, and put one onto the battlefield tapped and the other into your hand. Shuffle your library, then scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Oracle's Insight
+type=Enchantment
+subtype=Aura
+mana={3}{U}
+auto=teach(creature) {T}:deplete:1 && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) && draw:1 controller
+text=Enchant creature--Enchanted creature has "{T}: Scry 1, then draw a card." (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Glimpse the Sun God
+type=Instant
+mana={X}{W}
+target=<prex>creature|battlefield
+auto=tap && deplete:1
+##&& moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Tap X target creatures. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Fated Return
+type=Instant
+mana={4}{B}{B}{B}
+target=creature|graveyard
+auto=moveto(mybattlefield) && indestructible && (variable{controllerturn}) deplete:2 
+#(variable{controllerturn}) moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+auto=(variable{controllerturn}): token(845846) controller
+text=Put target creature card from a graveyard onto the battlefield under your control. It gains indestructible. If it's your turn, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Fated Retribution
+type=Instant
+mana={4}{W}{W}{W}
+auto=destroy all(creature, planeswalker) && (variable{controllerturn}) deplete:2
+# && (variable{controllerturn}) moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+auto=(variable{controllerturn}): token(845846) controller
+text=Destroy all creatures and planeswalkers. If it's your turn, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Fated Intervention
+type=Instant
+mana={2}{G}{G}{G}
+auto=token (centaur, enchantment creature Centaur, green 3/3) * 2 && (variable{controllerturn}) deplete:2
+auto=(variable{controllerturn}): token(845846)
+#auto=(variable{controllerturn}): moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+#auto=(variable{controllerturn}): moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+text=Put two 3/3 green Centaur enchantment creature tokens onto the battlefield. If it's your turn, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Fated Conflagration
+type=Instant
+mana={1}{R}{R}{R}
+target=creature,planeswalker
+auto=damage:5 && (variable{controllerturn}) deplete:2 controller
+#auto=damage:5 target (creature, planeswalker)
+#auto=(variable{controllerturn}) deplete:2
+##&& (variable{controllerturn}) moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+auto=(variable{controllerturn}): token(845846) controller
+text=Fated Conflagration deals 5 damage to target creature or planeswalker. If it's your turn, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Fated Infatuation
+type=Instant
+mana={U}{U}{U}
+auto=clone target (creature|mybattlefield) && (variable{controllerturn}) deplete:2
+# && (variable{controllerturn}) moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+auto=(variable{controllerturn}): token(845846)
+text=Put a token onto the battlefield that's a copy of target creature you control. If it's your turn, scry 2.
+[/card]
+[card]
+name=Chorus of the Tides
+type=Creature
+subtype=Siren
+power=3
+toughness=2
+abilities=flying
+mana={3}{U}
+#auto=&& deplete:1
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard): (deplete:1 && token(845845) controller)
+text=Heroic — Whenever you cast a spell that targets Chorus of the Tides, scry 1. (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
+[/card]
+
+[card]
+name=Bolt of Keranos
+type=Sorcery
+mana={1}{R}{R}
+auto=damage:3 && deplete:1
+## && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Bolt of Keranos deals 3 damage to target creature or player. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Drown in Sorrow
+#Alpha-Test scry workaround - Workaround-code by mrfatbard. --Bas
+auto=all(creature|battlefield) -2/-2 ueot && deplete:1
+#auto=moveto(mylibrary) target(*[fresh]|mygraveyard)
+#auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) then moveto(mylibrary) target(*|mygraveyard)
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+mana={1}{B}{B}
+type=sorcery
+text=All creatures get -2/-2 until end of turn. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+
+
+####
+###JOURney into Nyx
+####
+[card]
+name=Temple of Malady
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{B}
+auto={T}:Add{G}
+text=Temple of Malady enters the battlefield tapped.--When Temple of Malady enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {W} or {U} to your mana pool.
+[/card]
+[card]
+name=Temple of Epiphany
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{U}
+auto={T}:Add{R}
+text=Temple of Epiphany enters the battlefield tapped.--When Temple of Epiphany enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {W} or {U} to your mana pool.
+[/card]
+[card]
+name=Temple of Enlightenment
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{W}
+auto={T}:Add{U}
+text=Temple of Enlightenment enters the battlefield tapped.--When Temple of Enlightenment enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {W} or {U} to your mana pool.
+[/card]
+[card]
+name=Temple of Enlightenment
+type=Land
+auto=tap && deplete:1
+auto=may moveto(mylibrary) target(*|mygraveyard)
+auto={T}:Add{W}
+auto={T}:Add{U}
+text=Temple of Enlightenment enters the battlefield tapped.--When Temple of Enlightenment enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)--{T}: Add {W} or {U} to your mana pool.
+[/card]
+[card]
+name=Stormchaser Chimera
+###No clue how to code this. Might be possible with some workarounds...?
+type=creature
+subtype=Chimera
+mana={2}{U}{R}
+abilities=Flying
+auto=
+auto=
+power=2
+toughness=3
+text={2}{U}{R}: Scry 1, then reveal the top card of your library. Stormchaser Chimera gets +X/+0 until end of turn, where X is that card's converted mana cost. (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Spite of Mogis
+type=Sorcery
+target=creature
+mana={R}
+auto=foreach(instant, sorcery|mygraveyard) damage:1 && deplete:1
+auto=token(845845)
+text=Spite of Mogis deals damage to target creature equal to the number of instant and sorcery cards in your graveyard. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Sigiled Skink
+type=Creature
+subtype=Lizard
+power=2
+toughness=1
+mana={1}{R}
+auto=@combat(attacking) source(this): token(845845)
+#may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=@combat(attacking) source(this): deplete:1 controller
+text=Whenever Sigiled Skink attacks, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Rise of Eagles
+type=Sorcery
+mana={4}{U}{U}
+auto=token(Bird,Enchantment Creature Bird,2/2,blue,flying)*2 controller && deplete:1
+auto=token(845845)
+text=Put two 2/2 blue Bird enchantment creature tokens with flying onto the battlefield. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Riddle of Lightning
+#NO. JUST NO.
+type=Instant
+mana={3}{R}{R}
+auto=
+text=Choose target creature or player. Scry 3, then reveal the top card of your library. Riddle of Lightning deals damage equal to that card's converted mana cost to that creature or player. (To scry 3, look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Knowledge and Power
+# Could poss be done with some triggers?
+type=Enchantment
+mana={4}{R}
+auto=@movedTo(*|mylibrary) from (mygraveyard): may ({2}): deplete:1 && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+# ^prob doesnt work.
+text=Whenever you scry, you may pay {2}. If you do, Knowledge and Power deals 2 damage to target creature or player.
+[/card]
+[card]
+name=Interpret the Signs
+#HELL NO
+type=Sorcery
+mana={5}{U}
+auto=&& deplete:1
+auto=moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=Scry 3, then reveal the top card of your library. Draw cards equal to that card's converted mana cost. (To scry 3, look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+
+
+####
+###Magic Origins
+####
+
+[card]
+name=Sigiled Starfish
+type=Creature
+subtype=Starfish
+power=0
+toughness=3
+mana={1}{U}
+auto={T}: deplete:1 && token(845845)
+text={T}: Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Shadows of the Past
+type=Enchantment
+mana={1}{B}
+auto=@movedto(creature|graveyard) from (battlefield): deplete:1 && token(845845)
+auto=aslongas(creature|mygraveyard) >3: {4}{B}: life:2 controller && life:-2 opponent
+text=Whenever a creature dies, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)---{4}{B}: Each opponent loses 2 life and you gain 2 life. Activate this ability only if there are four or more creature cards in your graveyard.
+[/card]
+[card]
+name=Nissa's Revelation
+###NOpe, wont code this atm.
+type=Sorcery
+mana={5}{G}{G}
+auto=deplete:5
+auto=moveto(mylibrary) target(<upto:5>*[-this]|mygraveyard)
+text=Scry 5, then reveal the top card of your library. If it's a creature card, you draw cards equal to its power and you gain life equal to its toughness.
+[/card][card]
+#Might be doable somehow at least.
+name=Llanowar Empath
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=2
+mana={3}{G}
+auto=deplete:2
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+text=When Llanowar Empath enters the battlefield, scry 2, then reveal the top card of your library. If it's a creature card, put it into your hand. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Lightning Javelin
+type=Sorcery
+mana={3}{R}
+auto=damage:3 && deplete:1
+## && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=token(845845) controller
+text=Lightning Javelin deals 3 damage to target creature or player. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card][card]
+name=Jace's Sanctum
+type=Enchantment
+mana={3}{U}
+auto=lord(instant, sorcery|myhand) altercost(colorless,-1)
+auto=@movedTo(instant, sorcery|mystack): deplete:1 && auto=token(845845)
+text=Instant and sorcery spells you cast cost {1} less to cast.---Whenever you cast an instant or sorcery spell, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Calculated Dismissal
+type=Instant
+mana={2}{U}
+target=*|stack
+auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then deplete:2
+auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then token(845846)
+text=Counter target spell unless its controller pays {3}.--
+Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Anchor to the Aether
+type=Sorcery
+mana={2}{U}
+auto=moveto(library) target(creature) && deplete:1
+auto=token(845845)
+text=Put target creature on top of its owner's library. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Read the Bones
+type=Sorcery
+mana={2}{B}
+auto=life:-2 controller && deplete:2
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard) && draw:2
+auto=may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard) && draw:2
+text=Scry 2, then draw two cards. You lose 2 life. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+####
+###BFZ
+####
+[card]
+name=Windrider Patrol
+type=Creature
+subtype=Merfolk Wizard
+power=4
+toughness=3
+abilities=Flying
+mana={3}{U}{U}
+auto=@combatdamaged(player):token(845845)
+#auto=@combatdamaged(player):may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+auto=@combatdamaged(player): deplete:2 controller
+text=Flying---Whenever Windrider Patrol deals combat damage to a player, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Ugin's Insight
+###NO. Prob won't work! :(
+type=Sorcery
+mana={3}{U}{U}
+auto=&& deplete:convertedcost:highest:*:mybattlefield/convertedcost:highest:*:mybattlefield
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto=may moveto(mylibrary) target(<upto:convertedcost:highest:*:mybattlefield/convertedcost:highest:*:mybattlefield>*[-this]|mygraveyard)
+text=Scry X, where X is the highest converted mana cost among permanents you control, then draw three cards.
+[/card]
+[card]
+name=Retreat to Coralhelm
+type=Enchantment
+mana={2}{U}
+auto=@movedto(land|myBattlefield): may tap target(creature) or may untap target(creature) or may deplete:1 && token(845845)
+#auto=@movedto(land|myBattlefield): choice may untap target(creature)
+#auto=@movedto(land|myBattlefield): choice may deplete:1 && token(845845)
+text=Landfall — Whenever a land enters the battlefield under your control, choose one — ---* You may tap or untap target creature.---* Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Prism Array
+#NO. JUST NO...or?
+type=Enchantment
+mana={4}{U}
+auto=&& deplete:1
+auto={W}{U}{B}{R}{G}:deplete 3 && may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+auto={W}{U}{B}{R}{G}:deplete 3 && may moveto(mylibrary) target(<upto:2>*[-this]|mygraveyard)
+auto={W}{U}{B}{R}{G}:deplete 3 && may moveto(mylibrary) target(<upto:3>*[-this]|mygraveyard)
+text=Converge — Prism Array enters the battlefield with a crystal counter on it for each color of mana spent to cast it.---Remove a crystal counter from Prism Array: Tap target creature.---{W}{U}{B}{R}{G}: Scry 3. (Look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+[/card]
+[card]
+name=Catacomb Sifter
+type=Creature
+subtype=Eldrazi Drone
+power=2
+toughness=3
+mana={1}{B}{G}
+auto=token(-401803) controller
+auto=@movedTo(creature|mybattlefield) to(mygraveyard): token(845845) && deplete:1
+color=artifact
+text=Devoid (This card has no color.)---When Catacomb Sifter enters the battlefield, put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {C} to your mana pool."---Whenever another creature you control dies, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+####
+###Oath of the GateWatch
+####
+[card]
+name=Seer's Lantern
+type=Artifact
+mana={3}
+auto={T}: Add{1}
+auto={T}{2}:deplete:1 controller && moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text={T}: Add {C} to your mana pool. ({C} represents colorless mana.)---{2}, {T}: Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+[/card]
+[card]
+name=Oath of Jace
+type=Legendary Enchantment
+mana={2}{U}
+auto=draw:3 && moveto(mygraveyard) target(<2>*|myhand) 
+auto=@each my upkeep: deplete:foreach(planeswalker|mybattlefield)
+auto=@each my upkeep: may moveto(mylibrary) target(<upto:foreach(planeswalker|mybattlefield)>*[-this]|mygraveyard)
+text=When Oath of Jace enters the battlefield, draw three cards, then discard two cards.---At the beginning of your upkeep, scry X, where X is the number of planeswalkers you control.
+[/card]
+[card]
+name=Hedron Alignment
+###Win condition not coded
+type=Enchantment
+abilities=opponentshroud
+mana={2}{U}
+auto=
+auto={1}{U}: deplete:1 && may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=Hexproof---At the beginning of your upkeep, you may reveal your hand. If you do, you win the game if you own a card named Hedron Alignment in exile, in your hand, in your graveyard, and on the battlefield.---{1}{U}: Scry 1.
+[/card]
+[card]
+name=
+type=
+mana=
+auto=&& deplete:1
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=
+[/card]
+[card]
+name=
+type=
+mana=
+auto=&& deplete:1
+auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+text=
+[/card]
+
+###prototype scry cards
+##
+#[card]
+#name=
+#type=
+#mana=
+#auto=&& deplete:1
+#auto=may moveto(mylibrary) target(<upto:1>*[-this]|mygraveyard)
+#text=
+#[/card]
+
+####
+###Scry Dummies
+####
+[card]
+name=Scry1Dummy
+auto={S}: moveto(mylibrary) target(*|mygraveyard)
+auto=@next endofturn: sacrifice
+text=Dummy Scry1 Token
+[/card]
+
+[card]
+name=Scry2Dummy
+auto={S}: moveto(mylibrary) target(*|mygraveyard)
+auto={S}: moveto(mylibrary) target(<upto:2>*|mygraveyard)
+auto=@next endofturn: sacrifice
+text=Dummy Scry2 Token
+[/card]
+
+[card]
+name=Scry3Dummy
+auto={S}: moveto(mylibrary) target(*|mygraveyard)
+auto={S}: moveto(mylibrary) target(<upto:2>*|mygraveyard)
+auto={S}: moveto(mylibrary) target(<upto:3>*|mygraveyard)
+auto=@next endofturn: sacrifice
+text=Dummy Scry3 Token
+[/card]
+
+[card]
+name=Draw1Dummy
+auto={S}: draw:1 controller
+auto=@next endofturn: sacrifice
+text=Dummy draw Token
+[/card]
+[card]
+[card]
+name=Draw2Dummy
+auto={S}: draw:2 controller
+auto=@next endofturn: sacrifice
+text=Dummy draw2 Token
+[/card]
+[card]
+[/card]
+
+[card]
+name=Scry1Draw1
+auto={S}: draw:1 controller
+auto=name(Move1) {S}: moveTo(mylibrary) target(*|mygraveyard) && draw:1 controller
+auto=@next endofturn: sacrifice
+text=Dummy draw Token
+[/card]
+
+[card]
+primitive=Scry1Dummy
+id=845845
+rarity=T
+[/card]
+
+[card]
+primitive=Scry2Dummy
+id=845846
+rarity=T
+[/card]
+
+[card]
+primitive=Scry3Dummy
+id=845847
+rarity=T
+[/card]
+
+[card]
+primitive=Draw1Dummy
+id=845860
+rarity=T
+[/card]
+[card]
+primitive=Draw2Dummy
+id=845861
+rarity=T
+[/card]
+
+[card]
+primitive=Scry1Draw1
+id=845870
+rarity=T
+[/card]

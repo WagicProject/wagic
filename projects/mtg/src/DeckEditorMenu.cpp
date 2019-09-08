@@ -21,7 +21,11 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
     //titleX = 110; // center point in title box
     if(selectedDeck)
     {
+#if defined PSP
+        titleX = (SCREEN_WIDTH_F/2.f) + 10;
+#else
         titleX = (SCREEN_WIDTH_F/2.f);
+#endif
         titleY = 13;
     }
     else
@@ -62,7 +66,11 @@ void DeckEditorMenu::Render()
         WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
         DWORD currentColor = mainFont->GetColor();
         mainFont->SetColor(ARGB(255,255,255,255));
+#if defined PSP
+        mainFont->DrawString(deckTitle.c_str(), (SCREEN_WIDTH_F / 2)-modt+10, (statsHeight / 2)+4, JGETEXT_CENTER);
+#else
         mainFont->DrawString(deckTitle.c_str(), (SCREEN_WIDTH_F / 2)-modt, (statsHeight / 2)+4, JGETEXT_CENTER);
+#endif 
         mainFont->SetColor(currentColor);
     }
 

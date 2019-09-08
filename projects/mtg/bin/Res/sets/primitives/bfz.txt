@@ -1,0 +1,2203 @@
+#Battle for Zendikar set for Wagic the Homebrew
+#Coded by the Wagic Community
+
+#Missing Cards
+#-----------------------------------------
+#Ally Encampment
+#Beastcaller Savant
+#Cards that rely on moving stuff from exile
+#Brutal Expulsion
+#Scry cards
+#Conduit of Ruin
+#cards that look at top of library
+#cards with menace
+#Halimar Tidecaller
+#March of the Tomb (not sure if there is a way to calculate total mana)
+#Pathway Arrows (not sure how to get colorless to tap)
+#Serpentine Spike (dont know how to guarantee different targets)
+#Shrine of the Forsaken Gods
+#Titan's Presence
+#Unnatural Aggression (not sure how to code exiledeath on opponent target)
+#Zada, Hedron Grinder (no idea)
+#
+#
+
+
+
+[card]
+name=Adverse Conditions
+target=<upto:2>creature|battlefield
+auto=tap
+auto=frozen
+auto=token(-401803) controller
+text=Devoid (This card has no color.) -- Tap up to two target creatures. Those creatures don't untap during their controller's next untap step. Put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool."
+mana={3}{U}
+color=artifact
+type=Instant
+[/card]
+[card]
+name=Eldrazi Scion
+auto={S}:Add{1}
+text=Sacrifice this creature: Add {1} to your mana pool.
+type=Creature
+subtype=Eldrazi Scion
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Akoum Firebird
+abilities=flying, haste, mustattack
+autograveyard=@movedTo(land|myBattlefield):pay({4}{R}{R}) moveto(mybattlefield)
+text=Flying, haste -- Akoum Firebird attacks each turn if able. -- Landfall - Whenever a land enters the battlefield under your control, you may pay {4}{R}{R}. If you do, return Akoum Firebird from your graveyard to the battlefield.
+mana={2}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Akoum Hellkite
+abilities=flying
+auto=@movedTo(land[-mountain]|myBattlefield):damage:1 target(creature,player)
+auto=@movedTo(land[mountain]|myBattlefield):damage:2 target(creature,player)
+text=Flying -- Landfall - Whenever a land enters the battlefield under your control, Akoum Hellkite deals 1 damage to target creature or player. If that land is a Mountain, Akoum Hellkite deals 2 damage to that creature or player instead.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Akoum Stonewaker
+auto=@movedTo(land|myBattlefield):pay({2}{R}) token(Elemental,Creature Elemental,3/1,trample,haste,unearth,red) controller
+text=Landfall - Whenever a land enters the battlefield under your control, you may pay {2}{R}. If you do, put a 3/1 red Elemental creature token with trample and haste onto the battlefield. Exile that token at the beginning of the next end step.
+mana={1}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Aligned Hedron Network
+auto=choice (blink)forsrc all(creature[power>=5]|battlefield)
+text=When Aligned Hedron Network enters the battlefield, exile all creatures with power 5 or greater until Aligned Hedron Network leaves the battlefield. (Those creatures return under their owners' control.)
+mana={4}
+type=Artifact
+[/card]
+
+[card]
+name=Angel of Renewal
+abilities=flying
+auto=choice life:type:creature:mybattlefield controller
+text=Flying -- When Angel of Renewal enters the battlefield, you gain 1 life for each creature you control.
+mana={5}{W}
+type=Creature
+subtype=Angel Ally
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Angelic Captain
+abilities=flying
+#auto=@combat(attacking) source(this):othertype:ally[attacking]:mybattlefield/othertype:ally[attacking]:mybattlefield ueot
+auto=@combat(attacking) source(this):all(this) foreach(other ally[attacking]) 1/1 ueot
+text=Flying -- Whenever Angelic Captain attacks, it gets +1/+1 until end of turn for each other attacking Ally.
+mana={3}{R}{W}
+type=Creature
+subtype=Angel Ally
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Angelic Gift
+target=creature
+auto=teach(creature) flying
+auto=choice draw:1 controller
+text=Enchant creature -- When Angelic Gift enters the battlefield, draw a card. -- Enchanted creature has flying.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Bane of Bala Ged
+auto=@combat(attacking) source(this):ability$!moveto(exile) notatarget(<2>*|mybattlefield)!$ opponent
+text=Whenever Bane of Bala Ged attacks, defending player exiles two permanents he or she controls.
+mana={7}
+type=Creature
+subtype=Eldrazi
+power=7
+toughness=5
+[/card]
+
+[card]
+name=Barrage Tyrant
+auto={2}{R}{S(other creature[iscolorless]|mybattlefield):damage:storedpower target(creature,player)
+text=Devoid (This card has no color.) -- {2}{R}, Sacrifice another colorless creature: Barrage Tyrant deals damage equal to the sacrificed creature's power to target creature or player.
+mana={4}{R}
+color=artifact
+type=Creature
+subtype=Eldrazi
+power=5
+toughness=3
+[/card]
+
+[card]
+name=Belligerent Whiptail
+auto=@movedTo(land|myBattlefield):first strike ueot
+text=Landfall - Whenever a land enters the battlefield under your control, Belligerent Whiptail gains first strike until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Wurm
+power=4
+toughness=2
+[/card]
+
+[card]
+name=Benthic Infiltrator
+abilities=unblockable
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+text=Devoid (This card has no color.) -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.) -- Benthic Infiltrator can't be blocked.
+mana={2}{U}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=1
+toughness=4
+[/card]
+
+[card]
+name=Blighted Cataract
+auto={T}:add{1}
+auto={5}{U}{T}{S}:draw:2 controller
+text={T}: Add {1} to your mana pool. -- {5}{U}, {T}, Sacrifice Blighted Cataract: Draw two cards.
+type=Land
+[/card]
+
+[card]
+name=Blighted Fen
+auto={T}:add{1}
+auto={4}{B}{T}{S}:target(opponent) ability$!sacrifice notatarget(creature|mybattlefield)!$ targetedplayer
+text={T}: Add {1} to your mana pool. -- {4}{B}, {T}, Sacrifice Blighted Fen: Target opponent sacrifices a creature.
+type=Land
+[/card]
+
+[card]
+name=Blighted Gorge
+auto={T}:add{1}
+auto={4}{R}{T}{S}:damage:2 target(creature,player)
+text={T}: Add {1} to your mana pool. -- {4}{R}, {T}, Sacrifice Blighted Gorge: Blighted Gorge deals 2 damage to target creature or player.
+type=Land
+[/card]
+
+[card]
+name=Blighted Steppe
+auto={T}:add{1}
+auto={3}{W}{T}{S}:life:twicetype:creature:mybattlefield controller
+text={T}: Add {1} to your mana pool. -- {3}{W}, {T}, Sacrifice Blighted Steppe: You gain 2 life for each creature you control.
+type=Land
+[/card]
+
+[card]
+name=Blighted Woodland
+auto={T}:add{1}
+auto={3}{G}{T}{S}:moveto(mybattlefield) and!(tap)! notatarget(<upto:2>land[basic]|mylibrary)
+text={T}: Add {1} to your mana pool. -- {3}{G}, {T}, Sacrifice Blighted Woodland: Search your library for up to two basic land cards and put them onto the battlefield tapped. Then shuffle your library.
+type=Land
+[/card]
+
+[card]
+name=Blisterpod
+auto=@movedTo(this|graveyard) from(battlefield):token(-401803) controller
+text=Devoid (This card has no color.) -- When Blisterpod dies, put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool."
+mana={G}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Bloodbond Vampire
+auto=@lifed(controller):counter(1/1,1)
+text=Whenever you gain life, put a +1/+1 counter on Bloodbond Vampire.
+mana={2}{B}{B}
+type=Creature
+subtype=Vampire Shaman Ally
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Boiling Earth
+other={6}{R} name(Awaken)
+auto=damage:1 all(creature|opponentbattlefield)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.4)],newability[haste])) forever
+text=Boiling Earth deals 1 damage to each creature your opponents control. -- Awaken 4-{6}{R} (If you cast this spell for {6}{R}, also put four +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={1}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Breaker of Armies
+abilities=lure
+text=All creatures able to block Breaker of Armies do so.
+mana={8}
+type=Creature
+subtype=Eldrazi
+power=10
+toughness=8
+[/card]
+
+[card]
+name=Brilliant Spectrum
+auto=draw:converge
+auto=reject notatarget(<2>*|myhand)
+text=Converge - Draw X cards, where X is the number of colors of mana spent to cast Brilliant Spectrum. Then discard two cards.
+mana={3}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Bring to Light
+auto=notatarget(*[creature;instant;sorcery;manacost<=converge]|mylibrary) moveto(exile) and!( transforms((,newability[may name(cast for free) activate name(cast for free) castcard(normal)])) oneshot)!
+text=Converge - Search your library for a creature, instant, or sorcery card with converted mana cost less than or equal to the number of colors of mana spent to cast Bring to Light, exile that card, then shuffle your library. You may cast that card without paying its mana cost.
+mana={3}{G}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Brood Butcher
+auto=choice token(-401803) controller
+auto={B}{G}{S(creature|mybattlefield):target(creature) -2/-2 ueot
+text=Devoid (This card has no color.) -- When Brood Butcher enters the battlefield, put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool." -- {B}{G}, Sacrifice a creature: Target creature gets -2/-2 until end of turn.
+mana={3}{B}{G}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Brood Monitor
+auto=choice token(-401803)*3 controller
+text=Devoid (This card has no color.) -- When Brood Monitor enters the battlefield, put three 1/1 colorless Eldrazi Scion creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
+mana={4}{G}{G}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Broodhunter Wurm
+mana={3}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Call the Scions
+auto=token(-401803)*2 controller
+text=Devoid (This card has no color.) -- Put two 1/1 colorless Eldrazi Scion creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
+mana={2}{G}
+color=artifact
+type=Sorcery
+[/card]
+
+[card]
+name=Canopy Vista
+auto=if type(land[basic]|mybattlefield)~lessthan~2 then tap
+text=({T}: Add {G} or {W} to your mana pool.) -- Canopy Vista enters the battlefield tapped unless you control two or more basic lands.
+type=Land
+subtype=Forest Plains
+[/card]
+
+[card]
+name=Carrier Thrall
+auto=@movedTo(this|graveyard) from(battlefield):token(-401803) controller
+text=When Carrier Thrall dies, put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool."
+mana={1}{B}
+type=Creature
+subtype=Vampire
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Chasm Guide
+auto=choice all(creature|mybattlefield) haste ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) haste ueot
+text=Rally - Whenever Chasm Guide or another Ally enters the battlefield under your control, creatures you control gain haste until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Goblin Scout Ally
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Cinder Glade
+auto=if type(land[basic]|mybattlefield)~lessthan~2 then tap
+text=({T}: Add {R} or {G} to your mana pool.) -- Cinder Glade enters the battlefield tapped unless you control two or more basic lands.
+type=Land
+subtype=Mountain Forest
+[/card]
+
+[card]
+name=Cliffside Lookout
+auto={4}{W}:1/1 all(creature|mybattlefield) ueot
+text={4}{W}: Creatures you control get +1/+1 until end of turn.
+mana={W}
+type=Creature
+subtype=Kor Scout Ally
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Cloud Manta
+abilities=flying
+text=Flying
+mana={3}{U}
+type=Creature
+subtype=Fish
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Clutch of Currents
+target=creature|battlefield
+auto=moveto(ownerhand)
+other={4}{U} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[haste])) forever
+text=Return target creature to its owner's hand. -- Awaken 3-{4}{U} (If you cast this spell for {4}{U}, also put three +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={U}
+type=Sorcery
+[/card]
+
+[card]
+name=Coastal Discovery
+auto=draw:2 controller
+other={5}{U} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.4)],newability[haste])) forever
+text=Draw two cards. -- Awaken 4-{5}{U} (If you cast this spell for {5}{U}, also put four +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={3}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Complete Disregard
+target=creature[power<=3]|battlefield
+auto=moveto(exile)
+text=Devoid (This card has no color.) -- Exile target creature with power 3 or less.
+mana={2}{B}
+color=artifact
+type=Instant
+[/card]
+
+[card]
+name=Coralhelm Guide
+auto={4}{U}:target(creature|battlefield) unblockable ueot
+text={4}{U}: Target creature can't be blocked this turn.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Scout Ally
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Courier Griffin
+abilities=flying
+auto=choice life:2 controller
+text=Flying -- When Courier Griffin enters the battlefield, you gain 2 life.
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Crumble to Dust
+target=land[-basic]|battlefield
+auto=moveTo(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard) moveto(exile)
+text=Devoid (This card has no color.) -- Exile target nonbasic land. Search its controller's graveyard, hand, and library for any number of cards with the same name as that land and exile them. Then that player shuffles his or her library.
+mana={3}{R}
+color=artifact
+type=Sorcery
+[/card]
+
+[card]
+name=Culling Drone
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+text=Devoid (This card has no color.) -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.)
+mana={1}{B}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Dampening Pulse
+auto=lord(creature|opponentbattlefield) -1/0
+text=Creatures your opponents control get -1/-0.
+mana={3}{U}
+type=Enchantment
+[/card]
+
+[card]
+name=Deathless Behemoth
+abilities=vigilance
+autograveyard={S(Eldrazi Scion|mybattlefield)}{S(Eldrazi Scion|mybattlefield)}:moveto(myhand) asSorcery
+text=Vigilance -- Sacrifice two Eldrazi Scions: Return Deathless Behemoth from your graveyard to your hand. Activate this ability only any time you could cast a sorcery.
+mana={6}
+type=Creature
+subtype=Eldrazi
+power=6
+toughness=6
+[/card]
+
+[card]
+name=Defiant Bloodlord
+abilities=flying
+auto=@lifed(controller):life:-thatmuch target(opponent)
+text=Flying -- Whenever you gain life, target opponent loses that much life.
+mana={5}{B}{B}
+type=Creature
+subtype=Vampire
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Demon's Grasp
+target=creature|battlefield
+auto=-5/-5 ueot
+text=Target creature gets -5/-5 until end of turn.
+mana={4}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Desolation Twin
+autostack=choice token(Eldrazi,Creature Eldrazi,10/10) controller
+text=When you cast Desolation Twin, put a 10/10 colorless Eldrazi creature token onto the battlefield.
+mana={10}
+type=Creature
+subtype=Eldrazi
+power=10
+toughness=10
+[/card]
+
+[card]
+name=Dominator Drone
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+auto=if type(other creature[iscolorless]|mybattlefield)~morethan~0 then life:-2 all(opponent)
+text=Devoid (This card has no color.) -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.) -- When Dominator Drone enters the battlefield, if you control another colorless creature, each opponent loses 2 life.
+mana={2}{B}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Drana's Emissary
+abilities=flying
+auto=@each my upkeep:life:-1 opponent && life:1 controller
+text=Flying -- At the beginning of your upkeep, each opponent loses 1 life and you gain 1 life.
+mana={1}{W}{B}
+type=Creature
+subtype=Vampire Cleric Ally
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Drana, Liberator of Malakir
+abilities=flying,first strike
+auto=@combatdamaged(player) from(this):counter(1/1,1) all(creature[attacking]|mybattlefield)
+text=Flying, first strike -- Whenever Drana, Liberator of Malakir deals combat damage to a player, put a +1/+1 counter on each attacking creature you control.
+mana={1}{B}{B}
+type=Legendary Creature
+subtype=Vampire Ally
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Drowner of Hope
+auto=choice token(-401803) *2 controller
+auto={S(Eldrazi Scion|mybattlefield)}:tap target(creature)
+text=Devoid (This card has no color.) -- When Drowner of Hope enters the battlefield, put two 1/1 colorless Eldrazi Scion creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool." -- Sacrifice an Eldrazi Scion: Tap target creature.
+mana={5}{U}
+color=artifact
+type=Creature
+subtype=Eldrazi
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Dust Stalker
+abilities=haste
+auto=@each end restriction{type(other creature[iscolorless]|mybattlefield)~lessthan~1}:moveto(ownerhand)
+text=Devoid (This card has no color.) -- Haste -- At the beginning of each end step, if you control no other colorless creatures, return Dust Stalker to its owner's hand.
+mana={2}{B}{R}
+color=artifact
+type=Creature
+subtype=Eldrazi
+power=5
+toughness=3
+[/card]
+
+[card]
+name=Earthen Arms
+target=*|battlefield
+auto=counter(1/1,2)
+other={6}{G} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.4)],newability[haste])) forever
+text=Put two +1/+1 counters on target permanent. -- Awaken 4-{6}{G} (If you cast this spell for {6}{G}, also put four +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={1}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Eldrazi Devastator
+abilities=trample
+text=Trample
+mana={8}
+type=Creature
+subtype=Eldrazi
+power=8
+toughness=9
+[/card]
+
+[card]
+name=Eldrazi Skyspawner
+abilities=flying
+auto=choice token(-401803) controller
+text=Devoid (This card has no color.) -- Flying -- When Eldrazi Skyspawner enters the battlefield, put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool."
+mana={2}{U}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Emeria Shepherd
+abilities=flying
+auto=@movedTo(land[-plains]|myBattlefield):moveto(myhand) target(*[-land;-instant;-sorcery]|mygraveyard)
+auto=@movedTo(land[plains]|myBattlefield):moveto(mybattlefield) target(*[-land;-instant;-sorcery]|mygraveyard)
+text=Flying -- Landfall - Whenever a land enters the battlefield under your control, you may return target nonland permanent card from your graveyard to your hand. If that land is a Plains, you may return that nonland permanent card to the battlefield instead.
+mana={5}{W}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Encircling Fissure
+target=opponent
+auto=preventallcombatdamage from(creature|targetedpersonsbattlefield)
+other={4}{W} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.2)],newability[haste])) forever
+text=Prevent all combat damage that would be dealt this turn by creatures target opponent controls. -- Awaken 2-{4}{W} (If you cast this spell for {4}{W}, also put two +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={2}{W}
+type=Instant
+[/card]
+
+[card]
+name=Endless One
+auto=counter(1/1,X)
+text=Endless One enters the battlefield with X +1/+1 counters on it.
+mana={X}
+type=Creature
+subtype=Eldrazi
+power=0
+toughness=0
+[/card]
+
+[card]
+name=Exert Influence
+target=creature[power<=converge]|battlefield
+auto=moveto(mybattlefield)
+text=Converge - Gain control of target creature if its power is less than or equal to the number of colors of mana spent to cast Exert Influence.
+mana={4}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Expedition Envoy
+mana={W}
+type=Creature
+subtype=Human Scout Ally
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Eyeless Watcher
+auto=choice token(-401803)*2 controller
+text=Devoid (This card has no color.) -- When Eyeless Watcher enters the battlefield, put two 1/1 colorless Eldrazi Scion creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
+mana={3}{G}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Fathom Feeder
+abilities=deathtouch
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+auto={3}{U}{B}:draw:1 controller && ingest:1 opponent
+text=Devoid (This card has no color.) -- Deathtouch -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.) -- {3}{U}{B}: Draw a card. Each opponent exiles the top card of his or her library.
+mana={U}{B}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Felidar Cub
+auto={S}:destroy target(enchantment|battlefield)
+text=Sacrifice Felidar Cub: Destroy target enchantment.
+mana={1}{W}
+type=Creature
+subtype=Cat Beast
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Forerunner of Slaughter
+auto={1}:target(creature[iscolorless]|battlefield) haste ueot
+text=Devoid (This card has no color.) -- {1}: Target colorless creature gains haste until end of turn.
+mana={B}{R}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Fortified Rampart
+abilities=defender
+text=Defender
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=0
+toughness=6
+[/card]
+
+[card]
+name=From Beyond
+auto=@each my upkeep:token(-401803) controller
+auto={1}{G}{S}:moveto(myhand) notatarget(*[eldrazi]|mylibrary)
+text=Devoid (This card has no color.) -- At the beginning of your upkeep, put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool." -- {1}{G}, Sacrifice From Beyond: Search your library for an Eldrazi card, reveal it, put it into your hand, then shuffle your library.
+mana={3}{G}
+color=artifact
+type=Enchantment
+[/card]
+
+[card]
+name=Ghostly Sentinel
+abilities=flying, vigilance
+text=Flying, vigilance
+mana={4}{W}
+type=Creature
+subtype=Kor Spirit
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Gideon's Reproach
+target=creature[attacking;blocking]|battlefield
+auto=damage:4
+text=Gideon's Reproach deals 4 damage to target attacking or blocking creature.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Gideon, Ally of Zendikar
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Becomes creature) transforms((Human Soldier Ally Creature,setpower=5,settoughness=5,indestructible)) ueot && transforms((,newability[preventAllDamage to(this)])) ueot
+auto={0}:name(0: Create 2/2 Ally Knight) token(Knight Ally,Creature Knight Ally,2/2,white) controller
+auto={C(0/0,-4,Loyalty)}:name(-4: emblem) emblem transforms((,newability[lord(creature|mybattlefield) 1/1])) forever dontremove
+text=+1: Until end of turn, Gideon, Ally of Zendikar becomes a 5/5 Human Soldier Ally creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- 0: Put a 2/2 white Knight Ally creature token onto the battlefield. -- -4: You get an emblem with "Creatures you control get +1/+1." -- Starting Loyalty (4)
+mana={2}{W}{W}
+type=Planeswalker
+subtype=Gideon
+[/card]
+
+[card]
+name=Grave Birthing
+target=opponent
+auto=ability$!moveto(exile) notatarget(*|mygraveyard)!$ targetedplayer
+auto=token(-401803) controller
+auto=draw:1 controller
+text=Devoid (This card has no color.) -- Target opponent exiles a card from his or her graveyard. You put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool." -- Draw a card.
+mana={2}{B}
+color=artifact
+type=Instant
+[/card]
+
+[card]
+name=Greenwarden of Murasa
+auto=may name(return card) moveto(myhand) target(*|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):may all(trigger[to]) moveto(exile) && target(other *|mygraveyard) moveTo(myhand)
+text=When Greenwarden of Murasa enters the battlefield, you may return target card from your graveyard to your hand. -- When Greenwarden of Murasa dies, you may exile it. If you do, return target card from your graveyard to your hand.
+mana={4}{G}{G}
+type=Creature
+subtype=Elemental
+power=5
+toughness=4
+[/card]
+
+[card]
+name=Grip of Desolation
+target=creature|battlefield
+auto=moveto(exile)
+auto=moveto(exile) target(land)
+restriction=type(creature|battlefield)~morethan~0,type(land|battlefield)~morethan~0
+text=Devoid (This card has no color.) -- Exile target creature and target land.
+mana={4}{B}{B}
+color=artifact
+type=Instant
+[/card]
+
+[card]
+name=Grove Rumbler
+abilities=trample
+auto=@movedTo(land|myBattlefield):2/2 ueot
+text=Trample -- Landfall - Whenever a land enters the battlefield under your control, Grove Rumbler gets +2/+2 until end of turn.
+mana={2}{R}{G}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Grovetender Druids
+auto=pay({1}) token(Plant,Creature Plant,1/1,green)
+auto=@movedTo(ally|myBattlefield):pay({1}) token(Plant,Creature Plant,1/1,green)
+text=Rally - Whenever Grovetender Druids or another Ally enters the battlefield under your control, you may pay {1}. If you do, put a 1/1 green Plant creature token onto the battlefield.
+mana={2}{G}{W}
+type=Creature
+subtype=Elf Druid Ally
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Gruesome Slaughter
+auto=all(creature[iscolorless]|mybattlefield) transforms((,newability[{T}:thisforeach(power>=1) damage:1 target(creature)])) ueot
+text=Until end of turn, colorless creatures you control gain "{T}: This creature deals damage equal to its power to target creature."
+mana={6}
+type=Sorcery
+[/card]
+
+[card]
+name=Guardian of Tazeem
+abilities=flying
+auto=@movedTo(land[-island]|myBattlefield):tap target(creature)
+auto=@movedTo(land[island]|myBattlefield):target(creature) tap && frozen
+text=Flying -- Landfall - Whenever a land enters the battlefield under your control, tap target creature an opponent controls. If that land is an Island, that creature doesn't untap during its controller's next untap step.
+mana={3}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Guul Draz Overseer
+abilities=flying
+auto=@movedTo(land[-swamp]|myBattlefield):all(other creature|mybattlefield) 1/0 ueot
+auto=@movedTo(land[swamp]|myBattlefield):all(other creature|mybattlefield) 2/0 ueot
+text=Flying -- Landfall - Whenever a land enters the battlefield under your control, other creatures you control get +1/+0 until end of turn. If that land is a Swamp, those creatures get +2/+0 until end of turn instead.
+mana={4}{B}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Hagra Sharpshooter
+auto={4}{B}:target(creature) -1/-1 ueot
+text={4}{B}: Target creature gets -1/-1 until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Human Assassin Ally
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Hedron Archive
+auto={T}:add{2}
+auto={2}{T}{S}:draw:2 controller
+text={T}: Add {2} to your mana pool. -- {2}, {T}, Sacrifice Hedron Archive: Draw two cards.
+mana={4}
+type=Artifact
+[/card]
+
+[card]
+name=Hedron Blade
+auto={2}:equip
+auto=teach(creature) 1/1
+auto=@combat(blocked) source(mytgt):deathtouch ueot
+text=Equipped creature gets +1/+1. -- Whenever equipped creature becomes blocked by one or more colorless creatures, it gains deathtouch until end of turn. (Any amount of damage it deals to a creature is enough to destroy it.) -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Herald of Kozilek
+auto=lord(*[iscolorless]|myhand) altercost(colorless, -1)
+text=Devoid (This card has no color.) -- Colorless spells you cast cost {1} less to cast.
+mana={1}{U}{R}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=2
+toughness=4
+[/card]
+
+[card]
+name=Hero of Goma Fada
+auto=choice all(creature|mybattlefield) indestructible ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) indestructible ueot
+text=Rally - Whenever Hero of Goma Fada or another Ally enters the battlefield under your control, creatures you control gain indestructible until end of turn.
+mana={4}{W}
+type=Creature
+subtype=Human Knight Ally
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Horribly Awry
+target=creature[manacost<=4]|stack
+auto=fizzleto(exile)
+text=Devoid (This card has no color.) -- Counter target creature spell with converted mana cost 4 or less. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
+mana={1}{U}
+color=artifact
+type=Instant
+[/card]
+
+[card]
+name=Incubator Drone
+auto=choice token(-401803) controller
+text=Devoid (This card has no color.) -- When Incubator Drone enters the battlefield, put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool."
+mana={3}{U}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Infuse with the Elements
+target=creature|battlefield
+auto=trample ueot
+auto=counter(1/1,converge)
+text=Converge - Put X +1/+1 counters on target creature, where X is the number of colors of mana spent to cast Infuse with the Elements. That creature gains trample until end of turn.
+mana={3}{G}
+type=Instant
+[/card]
+
+[card]
+name=Jaddi Offshoot
+abilities=defender
+auto=@movedTo(land|myBattlefield):life:1 controller
+text=Defender -- Landfall - Whenever a land enters the battlefield under your control, you gain 1 life.
+mana={G}
+type=Creature
+subtype=Plant
+power=0
+toughness=3
+[/card]
+
+[card]
+name=Kalastria Healer
+auto=choice life:-1 all(opponent) && life:1 controller
+auto=@movedTo(ally|myBattlefield):life:-1 all(opponent) && life:1 controller
+text=Rally - Whenever Kalastria Healer or another Ally enters the battlefield under your control, each opponent loses 1 life and you gain 1 life.
+mana={1}{B}
+type=Creature
+subtype=Vampire Cleric Ally
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Kalastria Nightwatch
+auto=@lifed(controller):flying ueot
+text=Whenever you gain life, Kalastria Nightwatch gains flying until end of turn.
+mana={4}{B}
+type=Creature
+subtype=Vampire Warrior Ally
+power=4
+toughness=5
+[/card]
+
+[card]
+name=Kitesail Scout
+abilities=flying
+text=Flying
+mana={W}
+type=Creature
+subtype=Kor Scout
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Kor Bladewhirl
+auto=choice all(creature|mybattlefield) first strike ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) first strike ueot
+text=Rally - Whenever Kor Bladewhirl or another Ally enters the battlefield under your control, creatures you control gain first strike until end of turn.
+mana={1}{W}
+type=Creature
+subtype=Kor Soldier Ally
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Kor Castigator
+abilities=cantbeblockedby(Eldrazi Scion)
+text=Kor Castigator can't be blocked by Eldrazi Scions.
+mana={1}{W}
+type=Creature
+subtype=Kor Wizard Ally
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Kor Entanglers
+auto=tap target(creature|opponentbattlefield)
+auto=@movedTo(ally|myBattlefield):tap target(creature|opponentbattlefield)
+text=Rally - Whenever Kor Entanglers or another Ally enters the battlefield under your control, tap target creature an opponent controls.
+mana={4}{W}
+type=Creature
+subtype=Kor Soldier Ally
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Kozilek's Channeler
+auto={T}:add{2}
+text={T}: Add {2} to your mana pool.
+mana={5}
+type=Creature
+subtype=Eldrazi
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Kozilek's Sentinel
+#OLD: auto=@movedto(*[iscolorless]|mystack):1/0 ueot
+#auto=@movedto(*[-white;-blue;-black;-red;-green]|mystack): 1/0 ueot
+auto=@movedto([-white;-blue;-black;-red;-green]|mystack): 1/0 ueot
+text=Devoid (This card has no color.) -- Whenever you cast a colorless spell, Kozilek's Sentinel gets +1/+0 until end of turn.
+mana={1}{R}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=1
+toughness=4
+[/card]
+[card]
+name=Lantern Scout
+auto=choice all(creature|mybattlefield) lifelink ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) lifelink ueot
+text=Rally - Whenever Lantern Scout or another Ally enters the battlefield under your control, creatures you control gain lifelink until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Human Scout Ally
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Lavastep Raider
+auto={2}{R}:2/0 ueot
+text={2}{R}: Lavastep Raider gets +2/+0 until end of turn.
+mana={R}
+type=Creature
+subtype=Goblin Warrior
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Lifespring Druid
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{R}
+auto={T}:Add{B}
+text={T}: Add one mana of any color to your mana pool.
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Lithomancer's Focus
+target=creature|battlefield
+auto=2/2 ueot
+auto=preventalldamage from(*[iscolorless]) ueot
+text=Target creature gets +2/+2 until end of turn. Prevent all damage that would be dealt to that creature this turn by colorless sources.
+mana={W}
+type=Instant
+[/card]
+
+[card]
+name=Looming Spires
+auto=target(creature) transforms((,newability[1/1 ueot],newability[first strike ueot])) ueot
+auto={T}:add{R}
+auto=tap
+text=Looming Spires enters the battlefield tapped. -- When Looming Spires enters the battlefield, target creature gets +1/+1 and gains first strike until end of turn. -- {T}: Add {R} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Lumbering Falls
+auto={T}:add{G}
+auto={T}:add{U}
+auto={2}{G}{U}:becomes(Elemental Creature,3/3,opponentshroud,green,blue) ueot
+auto=tap
+text=Lumbering Falls enters the battlefield tapped. -- {T}: Add {G} or {U} to your mana pool. -- {2}{G}{U}: Lumbering Falls becomes a 3/3 green and blue Elemental creature with hexproof until end of turn. It's still a land.
+type=Land
+[/card]
+
+[card]
+name=Makindi Patrol
+auto=choice all(creature|mybattlefield) vigilance ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) vigilance ueot
+text=Rally - Whenever Makindi Patrol or another Ally enters the battlefield under your control, creatures you control gain vigilance until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Human Knight Ally
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Makindi Sliderunner
+abilities=trample
+auto=@movedTo(land|myBattlefield):1/1 ueot
+text=Trample -- Landfall - Whenever a land enters the battlefield under your control, Makindi Sliderunner gets +1/+1 until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Beast
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Malakir Familiar
+abilities=flying, deathtouch
+auto=@lifed(controller):1/1 ueot
+text=Flying, deathtouch -- Whenever you gain life, Malakir Familiar gets +1/+1 until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Bat
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Mire's Malice
+other={5}{B} name(Awaken)
+target=opponent
+auto=ability$!name(discard 2) notatarget(<2>*|myhand) reject!$ targetedplayer
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[haste])) forever
+text=Target opponent discards two cards. -- Awaken 3-{5}{B} (If you cast this spell for {5}{B}, also put three +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={3}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Mist Intruder
+abilities=flying
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+text=Devoid (This card has no color.) -- Flying -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.)
+mana={1}{U}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=1
+toughness=2
+[/card]
+
+[card]
+name=Molten Nursery
+#auto=@movedto(*[iscolorless]|mystack):damage:1 target(creature,player)
+#auto=@movedto(*[-white;-blue;-black;-red;-green]|mystack):damage:1 target(creature,player)
+auto=@movedto([-white;-blue;-black;-red;-green]|mystack):damage:1 target(creature,player)
+text=Devoid (This card has no color.) -- Whenever you cast a colorless spell, Molten Nursery deals 1 damage to target creature or player.
+mana={2}{R}
+color=artifact
+type=Enchantment
+[/card]
+
+[card]
+name=Mortuary Mire
+auto=may moveto(mylibrary) target(creature|mygraveyard)
+auto={T}:add{B}
+auto=tap
+text=Mortuary Mire enters the battlefield tapped. -- When Mortuary Mire enters the battlefield, you may put target creature card from your graveyard on top of your library. -- {T}: Add {B} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Murasa Ranger
+auto=@movedTo(land|myBattlefield):pay({3}{G}) counter(1/1,2)
+text=Landfall - Whenever a land enters the battlefield under your control, you may pay {3}{G}. If you do, put two +1/+1 counters on Murasa Ranger.
+mana={3}{G}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+
+[card]
+name=Natural Connection
+auto=moveto(mybattlefield) and!(tap)! notatarget(land[basic]|mylibrary)
+text=Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
+mana={2}{G}
+type=Instant
+[/card]
+
+[card]
+name=Nettle Drone
+#ALTERNATIVE TO iscolorless:
+#auto=@movedto(*[-white;-blue;-black;-red;-green]|mystack):untap
+auto=@movedto([-white;-blue;-black;-red;-green]|mystack):untap
+#OLD: auto=@movedto(*[iscolorless]|mystack):untap
+auto={T}:damage:1 all(opponent)
+text=Devoid (This card has no color.) -- {T}: Nettle Drone deals 1 damage to each opponent. -- Whenever you cast a colorless spell, untap Nettle Drone.
+mana={2}{R}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=3
+toughness=1
+[/card]
+
+[card]
+name=Nirkana Assassin
+auto=@lifed(controller):deathtouch ueot
+text=Whenever you gain life, Nirkana Assassin gains deathtouch until end of turn. (Any amount of damage it deals to a creature is enough to destroy it.)
+mana={2}{B}
+type=Creature
+subtype=Vampire Assassin Ally
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Nissa's Renewal
+auto=moveto(mybattlefield) and!(tap)! notatarget(<upto:3>land[basic]|mylibrary)
+auto=life:7 controller
+text=Search your library for up to three basic land cards, put them onto the battlefield tapped, then shuffle your library. You gain 7 life.
+mana={5}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Noyan Dar, Roil Shaper
+auto=@movedto(*[instant;sorcery]|mystack):may target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1,3)],newability[haste])) forever
+text=Whenever you cast an instant or sorcery spell, you may put three +1/+1 counters on target land you control. If you do, that land becomes a 0/0 Elemental creature with haste that's still a land.
+mana={3}{W}{U}
+type=Legendary Creature
+subtype=Merfolk Ally
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Ob Nixilis Reignited
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: draw and lose life) draw:1 && life:-1 controller
+auto={C(0/0,-3,Loyalty)}:name(-3: destroy target creature) destroy target(creature)
+auto={C(0/0,-8,Loyalty)}:name(-8: emblem) emblem transforms((,newability[@drawn(opponent):life:-2 opponent],newability[@drawn(controller):life:-2 opponent])) forever dontremove
+text=+1: You draw a card and you lose 1 life. -- -3: Destroy target creature. -- -8: Target opponent gets an emblem with "Whenever a player draws a card, you lose 2 life." (WORKAROUND DOES NOT TARGET OPPONENT) -- Starting Loyalty (5)
+mana={3}{B}{B}
+type=Planeswalker
+subtype=Nixilis
+[/card]
+
+[card]
+name=Omnath, Locus of Rage
+auto=@movedTo(land|myBattlefield):token(Elemental,Creature Elemental,5/5,red,green) controller
+auto=@movedto(Elemental|graveyard) from(mybattlefield):damage:3 target(creature,player)
+text=Landfall - Whenever a land enters the battlefield under your control, put a 5/5 red and green Elemental creature token onto the battlefield. -- Whenever Omnath, Locus of Rage or another Elemental you control dies, Omnath deals 3 damage to target creature or player.
+mana={3}{R}{R}{G}{G}
+type=Legendary Creature
+subtype=Elemental
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Ondu Champion
+auto=choice all(creature|mybattlefield) trample ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) trample ueot
+text=Rally - Whenever Ondu Champion or another Ally enters the battlefield under your control, creatures you control gain trample until end of turn.
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur Warrior Ally
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Ondu Greathorn
+abilities=first strike
+auto=@movedTo(land|myBattlefield):2/2 ueot
+text=First strike -- Landfall - Whenever a land enters the battlefield under your control, Ondu Greathorn gets +2/+2 until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Beast
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Ondu Rising
+auto=emblem transforms((,newability[@combat(attacking) source(creature|mybattlefield):all(trigger[to]) lifelink ueot])) ueot
+other={4}{W} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.4)],newability[haste])) forever
+text=Whenever a creature attacks this turn, it gains lifelink until end of turn. -- Awaken 4-{4}{W} (If you cast this spell for {4}{W}, also put four +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={1}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Oran-Rief Hydra
+abilities=trample
+auto=@movedTo(land[-forest]|myBattlefield):counter(1/1,1)
+auto=@movedTo(land[forest]|myBattlefield):counter(1/1,2)
+text=Trample -- Landfall - Whenever a land enters the battlefield under your control, put a +1/+1 counter on Oran-Rief Hydra. If that land is a Forest, put two +1/+1 counters on Oran-Rief Hydra instead.
+mana={4}{G}{G}
+type=Creature
+subtype=Hydra
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Oran-Rief Invoker
+auto={8}:name(5/5 and trample) transforms((,newability[5/5 ueot],newability[trample ueot])) ueot
+text={8}: Oran-Rief Invoker gets +5/+5 and gains trample until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Outnumber
+target=creature|battlefield
+auto=damage:type:creature:mybattlefield
+text=Outnumber deals damage to target creature equal to the number of creatures you control.
+mana={R}
+type=Instant
+[/card]
+
+[card]
+name=Painful Truths
+###Possible workaround: if spend in all possible up-to-three-color combos
+#auto=draw:converge controller
+auto=if spent({G}) then draw:1 controller
+auto=if spent({W}) then draw:1 controller
+auto=if spent({U}) then draw:1 controller
+auto=if spent({B}) then draw:1 controller
+auto=if spent({R}) then draw:1 controller
+#auto=life:-converge controller
+auto=if spent({G}) then life:-1 controller
+auto=if spent({W}) then life:-1 controller
+auto=if spent({U}) then life:-1 controller
+auto=if spent({B}) then life:-1 controller
+auto=if spent({R}) then life:-1 controller
+text=Converge - You draw X cards and you lose X life, where X is the number of colors of mana spent to cast Painful Truths.
+mana={2}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Part the Waterveil
+auto=turns+1 controller
+auto=moveto(exile) all(this)
+other={6}{U}{U}{U} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.6)],newability[haste])) forever
+text=Take an extra turn after this one. Exile Part the Waterveil. -- Awaken 6-{6}{U}{U}{U} (If you cast this spell for {6}{U}{U}{U}, also put six +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Planar Outburst
+auto=destroy all(creature[-land]|battlefield)
+other={5}{W}{W}{W} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.4)],newability[haste])) forever
+text=Destroy all nonland creatures. -- Awaken 4-{5}{W}{W}{W} (If you cast this spell for {5}{W}{W}{W}, also put four +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Plated Crusher
+abilities=opponentshroud,trample
+text=Trample, hexproof
+mana={4}{G}{G}{G}
+type=Creature
+subtype=Beast
+power=7
+toughness=6
+[/card]
+
+[card]
+name=Prairie Stream
+auto=if type(land[basic]|mybattlefield)~lessthan~2 then tap
+text=({T}: Add {W} or {U} to your mana pool.) -- Prairie Stream enters the battlefield tapped unless you control two or more basic lands.
+type=Land
+subtype=Plains Island
+[/card]
+
+[card]
+name=Quarantine Field
+auto=counter(0/0,xx,Isolation)
+auto=(blink)forsrc target(<prexx>*[-land]|opponentbattlefield)
+text=Quarantine Field enters the battlefield with X isolation counters on it. -- When Quarantine Field enters the battlefield, for each isolation counter on it, exile up to one target nonland permanent an opponent controls until Quarantine Field leaves the battlefield. (WORKAROUND ONLY EXILES UP TO X AND NOT FOR EACH COUNTER)
+mana={X}{X}{W}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Radiant Flames
+auto=damage:converge all(creature|battlefield)
+text=Converge - Radiant Flames deals X damage to each creature, where X is the number of colors of mana spent to cast Radiant Flames.
+mana={2}{R}
+type=Sorcery
+[/card]
+
+[card]
+name=Reckless Cohort
+auto=aslongas(other ally|mybattlefield) mustattack <1
+text=Reckless Cohort attacks each combat if able unless you control another Ally.
+mana={1}{R}
+type=Creature
+subtype=Human Warrior Ally
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Reclaiming Vines
+target=*[artifact;enchantment;land]|battlefield
+auto=destroy
+text=Destroy target artifact, enchantment, or land.
+mana={2}{G}{G}
+type=Sorcery
+[/card]
+
+[card]
+name=Resolute Blademaster
+auto=choice all(creature|mybattlefield) double strike ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) double strike ueot
+text=Rally - Whenever Resolute Blademaster or another Ally enters the battlefield under your control, creatures you control gain double strike until end of turn.
+mana={3}{R}{W}
+type=Creature
+subtype=Human Soldier Ally
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Retreat to Emeria
+auto=@movedTo(land|myBattlefield):name(choose one) transforms((,newability[choice name(Kor Token) token(-402007) controller],newability[choice name(1/1 ueot) all(creature|mybattlefield) 1/1 ueot]))
+text=Landfall - Whenever a land enters the battlefield under your control, choose one - -- • Put a 1/1 white Kor Ally creature token onto the battlefield. -- • Creatures you control get +1/+1 until end of turn.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Kor Ally
+color=white
+type=Creature
+subtype=Kor Ally
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Retreat to Hagra
+auto=@movedTo(land|myBattlefield): choice (target(creature|battlefield) 1/0 deathtouch ueot) or ((life:-1 all(opponent) && life:1 controller))
+text=Landfall - Whenever a land enters the battlefield under your control, choose one - Target creature gets +1/+0 and gains deathtouch until end of turn. - Each opponent loses 1 life and you gain 1 life.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Retreat to Kazandu
+auto=@movedTo(land|myBattlefield):transforms((,newability[if type(creature|battlefield)~morethan~0 then choice target(creature) counter(1/1)],newability[choice name(gain 2 life) life:2 controller]))
+text=Landfall - Whenever a land enters the battlefield under your control, choose one - -- • Put a +1/+1 counter on target creature. -- • You gain 2 life.
+mana={2}{G}
+type=Enchantment
+[/card]
+
+[card]
+name=Retreat to Valakut
+auto=@movedTo(land|myBattlefield):if type(creature|battlefield)~morethan~0 then transforms((,newability[choice name(2/0) 2/0 target(creature) ueot],newability[choice name(cant block) cantblock target(creature) ueot]))
+text=Landfall - Whenever a land enters the battlefield under your control, choose one - Target creature gets +2/+0 until end of turn. - Target creature can't block this turn.
+mana={2}{R}
+type=Enchantment
+[/card]
+
+[card]
+name=Rising Miasma
+auto=all(creature|battlefield) -2/-2 ueot
+other={5}{B}{B} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[haste])) forever
+text=All creatures get -2/-2 until end of turn. -- Awaken 3-{5}{B}{B} (If you cast this spell for {5}{B}{B}, also put three +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={3}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Roil Spout
+target=creature|battlefield
+auto=moveto(ownerlibrary)
+other={4}{W}{U} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.4)],newability[haste])) forever
+text=Put target creature on top of its owner's library. -- Awaken 4-{4}{W}{U} (If you cast this spell for {4}{W}{U}, also put four +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={1}{W}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Roil's Retribution
+target=creature[attacking;blocking]|battlefield
+auto=damage:1
+auto=damage:1 target(creature[attacking;blocking]|battlefield)
+auto=ability$!name(damage) choice target(creature[attacking;blocking]|battlefield) damage:1!$ controller
+auto=ability$!name(damage) choice target(creature[attacking;blocking]|battlefield) damage:1!$ controller
+auto=ability$!name(damage) choice target(creature[attacking;blocking]|battlefield) damage:1!$ controller
+text=Roil's Retribution deals 5 damage divided as you choose among any number of target attacking or blocking creatures.
+mana={3}{W}{W}
+type=Instant
+[/card]
+
+name=Roilmage's Trick
+auto=all(creature|opponentbattlefield) -converge/0 ueot
+auto=draw:1 controller
+text=Converge - Creatures your opponents control get -X/-0 until end of turn, where X is the number of colors of mana spent to cast Roilmage's Trick.
+mana={3}{U}
+type=Sorcery
+[/card]
+
+[card]
+name=Rot Shambler
+auto=@movedto(other creature|graveyard) from(mybattlefield):counter(1/1,1)
+text=Whenever another creature you control dies, put a +1/+1 counter on Rot Shambler.
+mana={1}{G}
+type=Creature
+subtype=Fungus
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Ruination Guide
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+auto=lord(other creature[iscolorless]|mybattlefield) 1/0
+text=Devoid (This card has no color.) -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.) -- Other colorless creatures you control get +1/+0.
+mana={2}{U}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Ruinous Path
+target=creature,planeswalker
+auto=destroy
+other={5}{B}{B} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.4)],newability[haste])) forever
+text=Destroy target creature or planeswalker. -- Awaken 4-{5}{B}{B} (If you cast this spell for {5}{B}{B}, also put four +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+
+[card]
+name=Rush of Ice
+target=creature|battlefield
+auto=tap
+auto=frozen
+other={4}{U} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[haste])) forever
+text=Tap target creature. It doesn't untap during its controller's next untap step. -- Awaken 3-{4}{U} (If you cast this spell for {4}{U}, also put three +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={U}
+type=Sorcery
+[/card]
+
+[card]
+name=Salvage Drone
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+auto=@movedTo(this|graveyard) from(battlefield):may draw:1 && transforms((,newability[reject notatarget(*|myhand)])) forever
+text=Devoid (This card has no color.) -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.) -- When Salvage Drone dies, you may draw a card. If you do, discard a card.
+mana={U}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Sanctum of Ugin
+auto={T}:add{1}
+#auto=@movedto(*[iscolorless;manacost>=7]|mystack):may name(Sac and search for Colorless Creature) transforms((,newability[sacrifice],newability[moveto(myhand) notatarget(creature[iscolorless]|mylibrary)])) forever
+#auto=@movedto(artifact[manacost>=7]|mystack):may name(Sac and search for Colorless Creature) transforms((,newability[sacrifice],newability[moveto(myhand) notatarget(creature[artifact]|mylibrary)])) forever
+#auto=@movedto(*[Eldrazi, manacost>=7]|mystack):may name(Sac and search for Colorless Creature) transforms((,newability[sacrifice],newability[moveto(myhand) notatarget(creature[artifact]|mylibrary)])) forever
+#auto=@movedto(*[artifact;Eldrazi, manacost>=7]]|mystack):may moveTo(mygraveyard) all(this) && may moveTo(myhand) target (creature[artifact, eldrazi]|mylibrary)
+#auto=@movedto(*[artifact[manacost>=7];Eldrazi[manacost>=7]]|mystack):may moveTo(mygraveyard) all(this) && moveTo(myhand) target(creature[artifact, eldrazi]|mylibrary)
+auto=@movedto(*[artifact[manacost>=7];Eldrazi[manacost>=7]]|mystack):may moveTo(mygraveyard) all(this) && moveTo(myhand) target(creature[artifact; eldrazi]|mylibrary)
+text={T}: Add {1} to your mana pool. -- Whenever you cast a colorless spell with converted mana cost 7 or greater, you may sacrifice Sanctum of Ugin. If you do, search your library for a colorless creature card, reveal it, put it into your hand, then shuffle your library.
+type=Land
+[/card]
+
+[card]
+name=Sandstone Bridge
+auto={T}:add{W}
+auto=name(1/1 and vigilance) target(creature|battlefield) transforms((,newability[1/1 ueot],newability[vigilance ueot])) ueot
+auto=tap
+text=Sandstone Bridge enters the battlefield tapped. -- When Sandstone Bridge enters the battlefield, target creature gets +1/+1 and gains vigilance until end of turn. -- {T}: Add {W} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Scatter to the Winds
+target=*|stack
+auto=fizzle
+other={4}{U}{U} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[haste])) forever
+text=Counter target spell. -- Awaken 3-{4}{U}{U} (If you cast this spell for {4}{U}{U}, also put three +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={1}{U}{U}
+type=Instant
+[/card]
+
+[card]
+name=Scour from Existence
+target=*|battlefield
+auto=moveto(exile)
+text=Exile target permanent.
+mana={7}
+type=Instant
+[/card]
+
+[card]
+name=Scythe Leopard
+auto=@movedTo(land|myBattlefield):1/1 ueot
+text=Landfall - Whenever a land enters the battlefield under your control, Scythe Leopard gets +1/+1 until end of turn.
+mana={G}
+type=Creature
+subtype=Cat
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Serene Steward
+#OLD: auto=@lifed(controller):pay({W}) counter(1/1) target(creature)
+#new:
+auto=@lifed(controller):pay({W}) counter(1/1) target(creature)
+text=Whenever you gain life, you may pay {W}. If you do, put a +1/+1 counter on target creature.
+mana={1}{W}
+type=Creature
+subtype=Human Cleric Ally
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Shadow Glider
+abilities=flying
+text=Flying
+mana={2}{W}
+type=Creature
+subtype=Kor Soldier
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Shambling Vent
+auto={T}:add{W}
+auto={T}:add{B}
+auto={1}{W}{B}:becomes(Elemental Creature,2/3,lifelink,white,black) ueot
+auto=tap
+text=Shambling Vent enters the battlefield tapped. -- {T}: Add {W} or {B} to your mana pool. -- {1}{W}{B}: Shambling Vent becomes a 2/3 white and black Elemental creature with lifelink until end of turn. It's still a land.
+type=Land
+[/card]
+
+[card]
+name=Sheer Drop
+target=creature[tapped]|battlefield
+auto=destroy
+other={5}{W} name(Awaken)
+auto=if paid(alternative) then target(land|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[haste])) forever
+text=Destroy target tapped creature. -- Awaken 3-{5}{W} (If you cast this spell for {5}{W}, also put three +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.)
+mana={2}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Silent Skimmer
+abilities=flying
+auto=@combat(attacking) source(this):life:-2 opponent
+text=Devoid (This card has no color.) -- Flying -- Whenever Silent Skimmer attacks, defending player loses 2 life.
+mana={3}{B}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=0
+toughness=4
+[/card]
+
+[card]
+name=Sire of Stagnation
+auto=@movedto(land|opponentbattlefield):ingest:2 opponent && draw:2 controller
+text=Devoid (This card has no color.) -- Whenever a land enters the battlefield under an opponent's control, that player exiles the top two cards of his or her library and you draw two cards.
+mana={4}{U}{B}
+color=artifact
+type=Creature
+subtype=Eldrazi
+power=5
+toughness=7
+[/card]
+
+[card]
+name=Skitterskin
+abilities=cantblock
+auto={1}{B}:regenerate restriction{type(other creature[iscolorless]|mybattlefield)~morethan~0}
+text=Devoid (This card has no color.) -- Skitterskin can't block. -- {1}{B}: Regenerate Skitterskin. Activate this ability only if you control another colorless creature.
+mana={3}{B}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Skyline Cascade
+auto={T}:add{U}
+auto=target(creature|opponentbattlefield) frozen
+auto=tap
+text=Skyline Cascade enters the battlefield tapped. -- When Skyline Cascade enters the battlefield, target creature an opponent controls doesn't untap during its controller's next untap step. -- {T}: Add {U} to your mana pool.
+type=Land
+[/card]
+
+[card]
+name=Skyrider Elf
+abilities=flying
+auto=counter(1/1,converge)
+text=Flying -- Converge - Skyrider Elf enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.
+mana={X}{G}{U}
+type=Creature
+subtype=Elf Warrior Ally
+power=0
+toughness=0
+[/card]
+
+[card]
+name=Slab Hammer
+auto={2}:equip
+auto=@combat(attacking) source(mytgt):may name(return a land and 2/2) transforms((,newability[moveto(myhand) notatarget(land|mybattlefield)],newability[2/2 ueot])) ueot
+text=Whenever equipped creature attacks, you may return a land you control to its owner's hand. If you do, the creature gets +2/+2 until end of turn. -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+
+[card]
+name=Sludge Crawler
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+auto={2}:1/1 ueot
+text=Devoid (This card has no color.) -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.) -- {2}: Sludge Crawler gets +1/+1 until end of turn.
+mana={B}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=1
+toughness=1
+[/card]
+
+[card]
+name=Smoldering Marsh
+auto=if type(land[basic]|mybattlefield)~lessthan~2 then tap
+text=({T}: Add {B} or {R} to your mana pool.) -- Smoldering Marsh enters the battlefield tapped unless you control two or more basic lands.
+type=Land
+subtype=Swamp Mountain
+[/card]
+
+[card]
+name=Smothering Abomination
+abilities=flying
+auto=@each my upkeep:sacrifice notatarget(creature|mybattlefield)
+auto=@sacrificed(creature|mybattlefield):draw:1 controller
+text=Devoid (This card has no color.) -- Flying -- At the beginning of your upkeep, sacrifice a creature. -- Whenever you sacrifice a creature, draw a card.
+mana={2}{B}{B}
+color=artifact
+type=Creature
+subtype=Eldrazi
+power=4
+toughness=3
+[/card]
+
+[card]
+name=Snapping Gnarlid
+auto=@movedTo(land|myBattlefield):1/1 ueot
+text=Landfall - Whenever a land enters the battlefield under your control, Snapping Gnarlid gets +1/+1 until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Spawning Bed
+auto={T}:add{1}
+auto={6}{T}{S}:token(-401803)*3
+text={T}: Add {1} to your mana pool. -- {6}, {T}, Sacrifice Spawning Bed: Put three 1/1 colorless Eldrazi Scion creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
+type=Land
+[/card]
+
+[card]
+name=Spell Shrivel
+target=*|stack
+auto=transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzleto(exile)])) forever
+text=Devoid (This card has no color.) -- Counter target spell unless its controller pays {4}. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
+mana={2}{U}
+color=artifact
+type=Instant
+[/card]
+
+[card]
+name=Stasis Snare
+abilities=flash
+auto=target(creature|opponentbattlefield) (blink)forsrc
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Stasis Snare enters the battlefield, exile target creature an opponent controls until Stasis Snare leaves the battlefield. (That creature returns under its owner's control.)
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+
+[card]
+name=Stone Haven Medic
+auto={W}{T}:life:1 controller
+text={W}, {T}: You gain 1 life.
+mana={1}{W}
+type=Creature
+subtype=Kor Cleric
+power=1
+toughness=3
+[/card]
+
+[card]
+name=Stonefury
+target=creature|battlefield
+auto=damage:type:land:mybattlefield
+text=Stonefury deals damage to target creature equal to the number of lands you control.
+mana={3}{R}{R}
+type=Instant
+[/card]
+
+[card]
+name=Sunken Hollow
+auto=if type(land[basic]|mybattlefield)~lessthan~2 then tap
+text=({T}: Add {U} or {B} to your mana pool.) -- Sunken Hollow enters the battlefield tapped unless you control two or more basic lands.
+type=Land
+subtype=Island Swamp
+[/card]
+
+[card]
+name=Sure Strike
+target=creature
+auto=3/0 ueot
+auto=first strike ueot
+text=Target creature gets +3/+0 and gains first strike until end of turn.
+mana={1}{R}
+type=Instant
+[/card]
+
+[card]
+name=Swarm Surge
+auto=all(creature|mybattlefield) 2/0 ueot
+auto=all(creature[iscolorless]|mybattlefield) first strike ueot
+text=Devoid (This card has no color.) -- Creatures you control get +2/+0 until end of turn. Colorless creatures you control also gain first strike until end of turn.
+mana={2}{B}
+color=artifact
+type=Sorcery
+[/card]
+
+[card]
+name=Swell of Growth
+target=creature|battlefield
+auto=2/2 ueot
+auto=may moveto(mybattlefield) notatarget(land|myhand)
+text=Target creature gets +2/+2 until end of turn. You may put a land card from your hand onto the battlefield.
+mana={1}{G}
+type=Instant
+[/card]
+
+[card]
+name=Tajuru Beastmaster
+auto=choice all(creature|mybattlefield) 1/1 ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) 1/1 ueot
+text=Rally - Whenever Tajuru Beastmaster or another Ally enters the battlefield under your control, creatures you control get +1/+1 until end of turn.
+mana={5}{G}
+type=Creature
+subtype=Elf Warrior Ally
+power=5
+toughness=5
+[/card]
+
+[card]
+name=Tajuru Stalwart
+auto=counter(1/1,converge)
+text=Converge - Tajuru Stalwart enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.
+mana={2}{G}
+type=Creature
+subtype=Elf Scout Ally
+power=0
+toughness=1
+[/card]
+
+[card]
+name=Tajuru Warcaller
+auto=choice all(creature|mybattlefield) 2/2 ueot
+auto=@movedTo(ally|myBattlefield):all(creature|mybattlefield) 2/2 ueot
+text=Rally - Whenever Tajuru Warcaller or another Ally enters the battlefield under your control, creatures you control get +2/+2 until end of turn.
+mana={3}{G}{G}
+type=Creature
+subtype=Elf Warrior Ally
+power=2
+toughness=1
+[/card]
+
+[card]
+name=Tandem Tactics
+target=<upto:2>creature|battlefield
+auto=1/2 ueot
+auto=life:2 controller
+text=Up to two target creatures each get +1/+2 until end of turn. You gain 2 life.
+mana={1}{W}
+type=Instant
+[/card]
+
+[card]
+name=Tide Drifter
+auto=lord(other creature[iscolorless]|mybattlefield) 0/1
+text=Devoid (This card has no color.) -- Other colorless creatures you control get +0/+1.
+mana={1}{U}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=0
+toughness=5
+[/card]
+
+[card]
+name=Tightening Coils
+target=creature
+auto=teach(creature) -6/0
+auto=teach(creature) -flying
+text=Enchant creature -- Enchanted creature gets -6/-0 and loses flying.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+
+[card]
+name=Touch of the Void
+target=creature,player
+auto=damage:3
+auto=exiledeath
+text=Devoid (This card has no color.) -- Touch of the Void deals 3 damage to target creature or player. If a creature dealt damage this way would die this turn, exile it instead.
+mana={2}{R}
+color=artifact
+type=Sorcery
+[/card]
+
+[card]
+name=Transgress the Mind
+target=player
+auto=if type(*[manacost>=3]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[manacost>=3]|targetedpersonshand)
+text=Devoid (This card has no color.) -- Target player reveals his or her hand. You choose a card from it with converted mana cost 3 or greater and exile that card.
+mana={1}{B}
+color=artifact
+type=Sorcery
+[/card]
+
+[card]
+name=Tunneling Geopede
+auto=@movedTo(land|myBattlefield):damage:1 all(opponent)
+text=Landfall - Whenever a land enters the battlefield under your control, Tunneling Geopede deals 1 damage to each opponent.
+mana={2}{R}
+type=Creature
+subtype=Insect
+power=3
+toughness=2
+[/card]
+
+[card]
+name=Turn Against
+target=creature
+auto=haste
+auto=untap
+alias=129767
+text=Devoid (This card has no color.) -- Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.
+mana={4}{R}
+color=artifact
+type=Instant
+[/card]
+
+[card]
+name=Ulamog, the Ceaseless Hunger
+autostack=if casted(this) then moveto(exile) target(<2>*|battlefield)
+auto=@combat(attacking) source(this):ingest:20 opponent
+abilities=indestructible
+text=When you cast Ulamog, the Ceaseless Hunger, exile two target permanents. -- Indestructible -- Whenever Ulamog attacks, defending player exiles the top twenty cards of his or her library.
+mana={10}
+type=Legendary Creature
+subtype=Eldrazi
+power=10
+toughness=10
+[/card]
+
+[card]
+name=Undergrowth Champion
+auto=this(counter{1/1.1}>0) phantom
+auto=@movedTo(land|myBattlefield):counter(1/1,1)
+text=If damage would be dealt to Undergrowth Champion while it has a +1/+1 counter on it, prevent that damage and remove a +1/+1 counter from Undergrowth Champion. -- Landfall - Whenever a land enters the battlefield under your control, put a +1/+1 counter on Undergrowth Champion.
+mana={1}{G}{G}
+type=Creature
+subtype=Elemental
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Unified Front
+auto=token(Kor Ally,Creature Kor Ally,1/1,white)*converge
+text=Converge - Put a 1/1 white Kor Ally creature token onto the battlefield for each color of mana spent to cast Unified Front.
+mana={3}{W}
+type=Sorcery
+[/card]
+
+[card]
+name=Valakut Invoker
+auto={8}:damage:3 target(creature,player)
+text={8}: Valakut Invoker deals 3 damage to target creature or player.
+mana={2}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=3
+[/card]
+
+[card]
+name=Valakut Predator
+auto=@movedTo(land|myBattlefield):2/2 ueot
+text=Landfall - Whenever a land enters the battlefield under your control, Valakut Predator gets +2/+2 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Elemental
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Vampiric Rites
+auto={1}{B}{S(creature|mybattlefield)}:draw:1 controller && life:1 controller
+text={1}{B}, Sacrifice a creature: You gain 1 life and draw a card.
+mana={B}
+type=Enchantment
+[/card]
+
+[card]
+name=Vestige of Emrakul
+abilities=trample
+text=Devoid (This card has no color.) -- Trample
+mana={3}{R}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Veteran Warleader
+#auto=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
+auto=foreach(creature|mybattlefield) 1/1
+auto={T(other ally|mybattlefield)}:first strike ueot
+auto={T(other ally|mybattlefield)}:vigilance ueot
+auto={T(other ally|mybattlefield)}:trample ueot
+text=Veteran Warleader's power and toughness are each equal to the number of creatures you control. -- Tap another untapped Ally you control: Veteran Warleader gains your choice of first strike, vigilance, or trample until end of turn.
+mana={1}{G}{W}
+type=Creature
+subtype=Human Soldier Ally
+power=*
+toughness=*
+[/card]
+
+[card]
+name=Vile Aggregate
+auto=type:creature[iscolorless]:mybattlefield/5 cdaactive
+abilities=trample
+auto=@combatdamaged(opponent) from(this):ingest:1 opponent
+text=Devoid (This card has no color.) -- Vile Aggregate's power is equal to the number of colorless creatures you control. -- Trample -- Ingest (Whenever this creature deals combat damage to a player, that player exiles the top card of his or her library.)
+mana={2}{R}
+color=artifact
+type=Creature
+subtype=Eldrazi Drone
+power=*
+toughness=5
+[/card]
+
+[card]
+name=Void Winnower
+auto=maxcast(*[manacost=0])0 opponent
+auto=maxcast(*[manacost=2])0 opponent
+auto=maxcast(*[manacost=4])0 opponent
+auto=maxcast(*[manacost=6])0 opponent
+auto=maxcast(*[manacost=8])0 opponent
+auto=maxcast(*[manacost=10])0 opponent
+auto=maxcast(*[manacost=12])0 opponent
+auto=maxcast(*[manacost=14])0 opponent
+auto=maxcast(*[manacost=16])0 opponent
+auto=maxcast(*[manacost=18])0 opponent
+auto=maxcast(*[manacost=20])0 opponent
+auto=lord(creature[manacost=0]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=2]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=4]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=6]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=8]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=10]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=12]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=14]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=16]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=18]|opponentbattlefield) cantblock
+auto=lord(creature[manacost=20]|opponentbattlefield) cantblock
+text=Your opponents can't cast spells with even converted mana costs. (Zero is even.) -- Your opponents can't block with creatures with even converted mana costs.
+mana={9}
+type=Creature
+subtype=Eldrazi
+power=11
+toughness=9
+[/card]
+
+[card]
+name=Volcanic Upheaval
+target=land|battlefield
+auto=destroy
+text=Destroy target land.
+mana={3}{R}
+type=Instant
+[/card]
+
+[card]
+name=Voracious Null
+auto={1}{B}{S(other creature|mybattlefield)}:counter(1/1,2) asSorcery
+text={1}{B}, Sacrifice another creature: Put two +1/+1 counters on Voracious Null. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Wave-Wing Elemental
+abilities=flying
+auto=@movedTo(land|myBattlefield):2/2 ueot
+text=Flying -- Landfall - Whenever a land enters the battlefield under your control, Wave-Wing Elemental gets +2/+2 until end of turn.
+mana={5}{U}
+type=Creature
+subtype=Elemental
+power=3
+toughness=4
+[/card]
+
+[card]
+name=Woodland Wanderer
+abilities=vigilance,trample
+auto=counter(1/1,converge)
+text=Vigilance, trample -- Converge - Woodland Wanderer enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.
+mana={3}{G}
+type=Creature
+subtype=Elemental
+power=2
+toughness=2
+[/card]
+
+[card]
+name=Zulaport Cutthroat
+auto=@movedto(creature|graveyard) from(mybattlefield):life:-1 all(opponent) && life:1 controller
+text=Whenever Zulaport Cutthroat or another creature you control dies, each opponent loses 1 life and you gain 1 life.
+mana={1}{B}
+type=Creature
+subtype=Human Rogue Ally
+power=1
+toughness=1
+[/card]

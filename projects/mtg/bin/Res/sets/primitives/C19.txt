@@ -1,0 +1,335 @@
+grade=borderline
+[card]
+name=Grismold, the Dreadsower
+abilities=trample
+auto=@each my endofturn:token(Plant,Creature Plant,1/1,green)
+auto=@each my endofturn:token(Plant,Creature Plant,1/1,green) opponent
+auto=@movedTo(graveyard) from(creature[token]|battlefield):counter(1/1,1)
+text=Trample -- At the beginning of your end step, each player creates a 1/1 green Plant creature token. -- Whenever a creature token dies, put a +1/+1 counter on Grismold, the Dreadsower.
+mana={1}{B}{G}
+type=Legendary Creature
+subtype=Troll Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Ghired, Conclave Exile
+auto=token(Rhino,Creature Rhino,4/4,green,trample)
+auto=@combat(attacking) restriction{type(creature[token]|mybattlefield)~morethan~0}:ability$! name(populate) clone notatarget(creature[token]|mybattlefield) ninjutsu !$ controller
+text=When Ghired, Conclave Exile enters the battlefield, create a 4/4 green Rhino creature token with trample. -- Whenever Ghired attacks, populate. The token enters the battlefield tapped and attacking. (To populate, create a token that's a copy of a creature token you control.)
+mana={2}{R}{G}{W}
+type=Legendary Creature
+subtype=Human Shaman
+power=2
+toughness=5
+[/card]
+[card]
+name=Cliffside Rescuer
+abilities=vigilance
+auto={T}{S}:protection from(*|opponentbattlefield) && protection from(*|opponenthand) && protection from(*|opponentgraveyard) ueot
+text=Vigilance -- {T}, Sacrifice Cliffside Rescuer: Target permanent you control gains protection from each of your opponents until end of turn. (It can't be blocked, targeted, dealt damage, enchanted, or equipped by anything controlled by those players.)
+mana={1}{W}
+type=Creature
+subtype=Kor Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Greven, Predator Captain
+abilities=menace
+auto=life:lifelost/0
+auto=@combat(attacking) source(this):may {S(other creature|mybattlefield)} life:-storedtoughness && draw:storedpower
+text=Menace -- Greven, Predator Captain gets +X/+0, where X is the amount of life you've lost this turn. -- Whenever Greven attacks, you may sacrifice another creature. If you do, you draw cards equal to that creature's power and you lose life equal to that creature's toughness.
+mana={3}{B}{R}
+type=Legendary Creature
+subtype=Human Warrior
+power=5
+toughness=5
+[/card]
+[card]
+name=Exotic Orchard
+auto=this(variable{plandg}>0) {t}:out{g}
+auto=this(variable{plandu}>0) {t}:out{u}
+auto=this(variable{plandr}>0) {t}:out{r}
+auto=this(variable{plandb}>0) {t}:out{b}
+auto=this(variable{plandw}>0) {t}:out{w}
+text={T}: Add one mana of any color that a land an opponent controls could produce.
+type=Land
+[/card]
+[card]
+name=Doomed Artisan
+auto=all(creature[sculpture]|mybattlefield) cantattack
+auto=all(creature[sculpture]|mybattlefield) cantpwattack
+auto=all(creature[sculpture]|mybattlefield) cantblock
+auto=@each my endofturn:token(Sculpture,Creature Sculpture,type:creature[sculpture]:battlefield/type:creature[sculpture]:battlefield,artifact)
+text=Sculptures you control can't attack or block. -- At the beginning of your end step, create a colorless Sculpture artifact creature token with "This creature's power and toughness are each equal to the number of Sculptures you control."
+mana={2}{W}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=1
+[/card]
+[card]
+name=Selesnya Eulogist
+target=creature|mygraveyard
+auto={2}{G}:target(creature|mygraveyard) moveto(exile) && ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
+auto={2}{G}:target(creature|opponentgraveyard) moveto(exile) && ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
+text={2}{G}: Exile target creature card from a graveyard, then populate. (Create a token that's a copy of a creature token you control.)
+mana={2}{G}
+type=Creature
+subtype=Centaur Druid
+power=3
+toughness=3
+[/card]
+[card]
+name=Atla Palani, Nest Tender
+auto={2}{T}:token(Egg,Creature Egg,0/1,green,defender)
+auto=@movedTo(creature[egg]|graveyard) from(mybattlefield):Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal)  moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+text={2}, {T}: Create a 0/1 green Egg creature token with defender. -- Whenever an Egg you control dies, reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield and the rest on the bottom of your library in a random order.
+mana={1}{R}{G}{W}
+type=Legendary Creature
+subtype=Human Shaman
+power=2
+toughness=3
+[/card]
+[card]
+name=Gerrard, Weatherlight Hero
+abilities=first strike
+auto=@movedTo(this|graveyard) from(battlefield):moveto(exile) && moveTo(myBattlefield) all(creature[fresh]|graveyard) && moveTo(myBattlefield) all(artifact[fresh]|graveyard)
+text=First strike -- When Gerrard, Weatherlight Hero dies, exile it and return to the battlefield all artifact and creature cards in your graveyard that were put there from the battlefield this turn.
+mana={2}{R}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Mass Diminish
+target=player
+auto=lord(creature|targetedpersonsbattlefield) transforms((,setpower=1,settoughness=1)) ueot
+flashback={3}{U}
+text=Until your next turn, creatures target player controls have base power and toughness 1/1. -- Flashback {3}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
+name=Pramikon, Sky Rampart
+abilities=flying,defender
+text=Flying, defender -- As Pramikon, Sky Rampart enters the battlefield, choose left or right. -- Each player may attack only the nearest opponent in the chosen direction and planeswalkers controlled by that opponent.
+mana={U}{R}{W}
+type=Legendary Creature
+subtype=Wall
+power=1
+toughness=5
+[/card]
+[card]
+name=Song of the Worldsoul
+auto=@movedTo(*|mystack):ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
+text=Whenever you cast a spell, populate. (Create a token that's a copy of a creature token you control.)
+mana={4}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sevinne's Reclamation
+target=creature,artifact,planeswalker,enchantment,land[manacost<=3]|mygraveyard
+auto=moveTo(mybattlefield)
+auto=if gravecast then all(trigger[to]<1>) transforms((,newability[may name(copy spell) activate name(copy spell) castcard(copied noevent)])) forever
+flashback={4}{W}
+text=Return target permanent card with converted mana cost 3 or less from your graveyard to the battlefield. If this spell was cast from a graveyard, you may copy this spell and may choose a new target for the copy. -- Flashback {4}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
+name=Plaguecrafter
+auto=restriction{type(creature|myBattlefield)~morethan~0}:ability$!sacrifice notatarget(creature|mybattlefield)!$ controller
+auto=restriction{type(creature|opponentBattlefield)~morethan~0}:ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
+auto=restriction{type(creature|myBattlefield)~lessthan~1}:transforms((,newability[target(*|myhand) reject])) controller
+auto=restriction{type(creature|opponentBattlefield)~lessthan~1}:ability$!name(discard) reject notatarget(*|myhand)!$ opponent
+text=When Plaguecrafter enters the battlefield, each player sacrifices a creature or planeswalker. Each player who can't discards a card.
+mana={2}{B}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=2
+[/card]
+[card]
+name=Kadena's Silencer
+autofaceup=fizzle all(*|stack) target(opponent)
+facedown={3}
+autofacedown={1}{U}:morph
+autofaceup=counter(1/1,1)
+text=When Kadena's Silencer is turned face up, counter all abilities your opponents control. -- Megamorph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
+mana={1}{U}
+type=Creature
+subtype=Naga Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Thalia's Geistcaller
+abilities=lifelink
+auto=@movedTo(*|stack) from(mygraveyard):token(Spirit,Creature Spirit,1/1,white,flying)
+auto={S(creature[spirit]|myBattlefield)}:indestructible ueot
+text=Lifelink -- Whenever you cast a spell from your graveyard, create a 1/1 white Spirit creature token with flying. -- Sacrifice a Spirit: Thalia's Geistcaller gains indestructible until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=1
+[/card]
+[card]
+name=Volrath, the Shapestealer
+auto=@each my combatbegins:target(creature) counter(-1/-1)
+auto={1}:copy target(creature[counter{any}]) ueot
+text=At the beginning of combat on your turn, put a -1/-1 counter on up to one target creature. -- {1}: Until your next turn, Volrath, the Shapestealer becomes a copy of target creature with a counter on it, except it's 7/5 and it has this ability.
+mana={2}{B}{G}{U}
+type=Legendary Creature
+subtype=Shapeshifter
+power=7
+toughness=5
+[/card]
+[card]
+name=Empowered Autogenerator
+auto={T}:counter(0/0.1.Charge) && thisforeach(counter{0/0.1.Charge}) ability$! choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller
+text=Empowered Autogenerator enters the battlefield tapped. -- {T}: Put a charge counter on Empowered Autogenerator. Add X mana of any one color, where X is the number of charge counters on Empowered Autogenerator.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Nightmare Unmaking
+auto=choice moveto(exile) all(creature[power >type:*:myhand])
+auto=choice moveto(exile) all(creature[power <type:*:myhand])
+text=Choose one — -- • Exile each creature with power greater than the number of cards in your hand. -- • Exile each creature with power less than the number of cards in your hand.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Backdraft Hellkite
+abilities=flying
+auto=@combat(attacking) all(instant,sorcery|mygraveyard) tempflashback ueot
+text=Flying -- Whenever Backdraft Hellkite attacks, each instant and sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost.
+mana={3}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Anje's Ravager
+abilities=madness,mustattack
+autoexile=restriction{discarded} pay({1}{r}) name(pay 1R to cast) activate name(pay 1R to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=@combat(attacking) reject all(*|myhand) && draw:3
+text=Anje's Ravager attacks each combat if able. -- Whenever Anje's Ravager attacks, discard your hand, then draw three cards. -- Madness {1}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={2}{R}
+type=Creature
+subtype=Vampire Berserker
+power=3
+toughness=3
+[/card]
+[card]
+name=Idol of Oblivion
+auto={T}:draw:1 restriction{thisturn(creature[token]|mybattlefield)~morethan~0}
+auto={8}{T}{S}:token(Eldrazi,Creature Eldrazi,10/10,colorless)
+text={T}: Draw a card. Activate this ability only if you created a token this turn. -- {8}, {T}, Sacrifice Idol of Oblivion: Create a 10/10 colorless Eldrazi creature token.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Scaretiller
+auto=@tapped(this):choice may moveto(myBattlefield) and!(tap(noevent))! target(land|myhand)
+auto=@tapped(this):choice may moveto(myBattlefield) and!(tap(noevent))! target(land|mygraveyard)
+text=Whenever Scaretiller becomes tapped, choose one — -- • You may put a land card from your hand onto the battlefield tapped. -- • Return target land card from your graveyard to the battlefield tapped.
+mana={4}
+type=Artifact Creature
+subtype=Scarecrow
+power=1
+toughness=4
+[/card]
+[card]
+name=Sanctum of Eternity
+auto={T}:add{1}
+auto={2}{T}:moveTo(myHand) target(creature[commander]|mybattlefield) myTurnOnly
+text={T}: Add {1}. -- {2}, {T}: Return target commander you own from the battlefield to your hand. Activate this ability only during your turn.
+type=Land
+[/card]
+[card]
+name=Bone Miser
+auto=@discarded(creature|myhand):token(Zombie,Creature Zombie,2/2,black)
+auto=@discarded(land|myhand):add{B}{B}
+auto=@discarded(*{-land,-creature}|myhand):draw:1
+text=Whenever you discard a creature card, create a 2/2 black Zombie creature token. -- Whenever you discard a land card, add {B}{B}. -- Whenever you discard a noncreature, nonland card, draw a card.
+mana={4}{B}
+type=Creature
+subtype=Zombie Wizard
+power=4
+toughness=4
+[/card]
+[card]
+name=Archfiend of Spite
+abilities=flying,madness
+autoexile=restriction{discarded} pay({3}{B}{B}) name(pay 3BB to cast) activate name(pay 2G to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=@damaged(this):life:-thatmuch opponent donothing?sacrifice notatarget(*|mybattlefield)!$ opponent
+text=Flying -- Whenever a source an opponent controls deals damage to Archfiend of Spite, that source's controller loses that much life unless they sacrifice that many permanents. -- Madness {3}{B}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={5}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
+name=Curse of Fool's Wisdom
+abilities=madness
+target=player
+auto=@drawn(targetedplayer):may life:-2 opponent
+auto=@drawn(targetedplayer):may life:2 controller
+autoexile=restriction{discarded} pay({3}{B}) name(pay 3B to cast) activate name(pay 2G to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Enchant player -- Whenever enchanted player draws a card, they lose 2 life and you gain 2 life. -- Madness {3}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={4}{B}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Mire in Misery
+target=opponent
+auto=ability$!name(sacrifice) notatarget(*[creature,enchantment]|myBattlefield) sacrifice!$ opponent
+text=Each opponent sacrifices a creature or enchantment.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Full Flowering
+auto=thisforeach(X) clone notatarget(creature[token]|mybattlefield) !$ controller
+text=Populate X times. (To populate, create a token that's a copy of a creature token you control. Do this X times.)
+mana={X}{X}{G}
+type=Sorcery
+[/card]
+[card]
+name=Ohran Frostfang
+auto=lord(creature[attacking]|mybattlefield) deathtouch
+auto=@combatdamaged(player) from(creature|myBattlefield):draw:1
+text=Attacking creatures you control have deathtouch. -- Whenever a creature you control deals combat damage to a player, draw a card.
+mana={3}{G}{G}
+type=Snow Creature
+subtype=Snake
+power=2
+toughness=6
+[/card]
+[card]
+name=Dockside Extortionist
+auto=foreach(type:*[artifact,enchantment]:opponentbattlefield) token(435451)
+text=When Dockside Extortionist enters the battlefield, create X Treasure tokens, where X is the number of artifacts and enchantments your opponents control. (Treasure tokens are artifacts with " {T}, Sacrifice this artifact: Add one mana of any color.")
+mana={1}{R}
+type=Creature
+subtype=Goblin Pirate
+power=1
+toughness=2
+[/card]
+[card]
+name=Ignite the Future
+flashback={7}{R}
+auto=moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos<=3]|mylibrary)
+auto=if gravecast then changecost(colorless:-3) && changecost(R:-1)
+text=Exile the top three cards of your library. Until the end of your next turn, you may play those cards. If this spell was cast from a graveyard, you may play cards this way without paying their mana costs. -- Flashback {7}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{R}
+type=Sorcery
+[/card]

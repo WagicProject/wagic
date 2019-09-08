@@ -579,8 +579,8 @@ int ManaCost::hasAnotherCost()
     if(kicker)
         result = 1;
     //kicker is the only one ai knows for now, later hasAnotherCost() can be used to determine other cost types.
-	if(Retrace || BuyBack || alternative || FlashBack || morph || suspend || Bestow)
-		result = 1;
+    if(Retrace || BuyBack || alternative || FlashBack || morph || suspend || Bestow)
+        result = 1;
     return result;
 }
 

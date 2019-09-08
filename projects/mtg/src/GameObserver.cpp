@@ -1406,6 +1406,9 @@ bool GameObserver::WaitForExtraPayment(MTGCardInstance * card)
             mExtraPayment = NULL;
         }
         result = true;
+		// Avoid game stucks on current phase till snow mana cost will be paid
+		if(mExtraPayment && mExtraPayment->costs.size() == 1 && !strcmp(mExtraPayment->costs[0]->mCostRenderString.c_str(), "Snow Mana"))
+			result = false;	
     }
 
     return result;
