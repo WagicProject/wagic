@@ -4,16 +4,30 @@ branches:
   except:
     - latest-master
 
+matrix:
+  include:
+    - os: linux
+      env: BUILD_PSP=YES BUILD_ANDROID=YES BUILD_Qt=YES BUILD_MAC=NO
+    - os: osx
+      env: BUILD_PSP=NO BUILD_ANDROID=NO BUILD_Qt=YES BUILD_MAC=YES
+	
+
 before_install:
-  - export BUILD_PSP=YES
-  - export BUILD_ANDROID=YES
-  - export BUILD_Qt=YES
-  - export BUILD_MAC=NO
-# Only building on Mac when not handling pull request
-# - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
-#     export BUILD_MAC=YES;
-#   fi
-  - sudo apt-get update -qq
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
+      sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test &&
+      sudo apt-get -qq update &&
+      sudo apt-get -qq install g++-4.8 &&
+      sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90;
+    fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+      brew update &&
+      brew install dpkg &&
+      pwd &&
+      ls;
+    fi    
+
 # Building for PSP here
   - if [ "$BUILD_PSP" == "YES" ]; then
       export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
@@ -23,9 +37,6 @@ before_install:
     fi
 # Building for Qt here
   - if [ "$BUILD_Qt" == "YES" ]; then
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
-      sudo apt-get -qq update &&
       sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
