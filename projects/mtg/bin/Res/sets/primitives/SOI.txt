@@ -10,7 +10,7 @@ type=Enchantment
 [card]
 name=Angel of Deliverance
 abilities=flying
-text=Flying -- Delirium  Whenever Angel of Deliverance deals damage, if there are four or more card types among cards in your graveyard, exile target creature an opponent controls.
+text=Flying -- Delirium  Whenever Angel of Deliverance deals damage, if there are four or more card types among cards in your graveyard, exile target creature an opponent controls.
 mana={6}{W}{W}
 type=Creature
 subtype=Angel
@@ -152,7 +152,7 @@ type=Sorcery
 name=Descend upon the Sinful
 auto=moveto(exile) all(creature)
 auto=
-text=Exile all creatures. -- Delirium  Put a 4/4 white Angel creature token with flying onto the battlefield if there are four or more card types among cards in your graveyard.
+text=Exile all creatures. -- Delirium  Put a 4/4 white Angel creature token with flying onto the battlefield if there are four or more card types among cards in your graveyard.
 mana={4}{W}{W}
 type=Sorcery
 [/card]
@@ -276,7 +276,7 @@ type=Instant
 [card]
 name=Inquisitor's Ox
 abilities=vigilance
-text=Delirium  Inquisitor's Ox gets +1/+0 and has vigilance as long as there are four or more card types among cards in your graveyard.
+text=Delirium  Inquisitor's Ox gets +1/+0 and has vigilance as long as there are four or more card types among cards in your graveyard.
 mana={3}{W}
 type=Creature
 subtype=Ox
@@ -309,7 +309,7 @@ toughness=3
 [card]
 name=Moorland Drifter
 abilities=flying
-text=Delirium  Moorland Drifter has flying as long as there are four or more card types among cards in your graveyard.
+text=Delirium  Moorland Drifter has flying as long as there are four or more card types among cards in your graveyard.
 mana={1}{W}
 type=Creature
 subtype=Spirit
@@ -383,7 +383,7 @@ type=Sorcery
 [card]
 name=Paranoid Parish-Blade
 abilities=first strike
-text=Delirium  Paranoid Parish-Blade gets +1/+0 and has first strike as long as there are four or more card types among cards in your graveyard.
+text=Delirium  Paranoid Parish-Blade gets +1/+0 and has first strike as long as there are four or more card types among cards in your graveyard.
 mana={2}{W}
 type=Creature
 subtype=Human Soldier
@@ -427,7 +427,7 @@ type=Instant
 [card]
 name=Reaper of Flight Moonsilver
 abilities=flying
-text=Flying -- Delirium  Sacrifice another creature: Reaper of Flight Moonsilver gets +2/+1 until end of turn. Activate this ability only if there are four or more card types among cards in your graveyard.
+text=Flying -- Delirium  Sacrifice another creature: Reaper of Flight Moonsilver gets +2/+1 until end of turn. Activate this ability only if there are four or more card types among cards in your graveyard.
 mana={3}{W}{W}
 type=Creature
 subtype=Angel
@@ -526,7 +526,7 @@ toughness=2
 name=Topplegeist
 abilities=flying
 auto=tap target(creature)
-text=Flying -- When Topplegeist enters the battlefield, tap target creature an opponent controls. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, tap target creature that player controls.
+text=Flying -- When Topplegeist enters the battlefield, tap target creature an opponent controls. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, tap target creature that player controls.
 mana={W}
 type=Creature
 subtype=Spirit
@@ -790,7 +790,7 @@ type=Sorcery
 name=Invasive Surgery
 target=sorcery
 auto=fizzle
-text=Counter target sorcery spell. -- Delirium  If there are four or more card types among cards in your graveyard, search the graveyard, hand, and library of that spell's controller for any number of cards with the same name as that spell, exile those cards, then that player shuffles his or her library.
+text=Counter target sorcery spell. -- Delirium  If there are four or more card types among cards in your graveyard, search the graveyard, hand, and library of that spell's controller for any number of cards with the same name as that spell, exile those cards, then that player shuffles his or her library.
 mana={U}
 type=Instant
 [/card]
@@ -842,7 +842,7 @@ toughness=5
 [card]
 name=Manic Scribe
 auto=deplete:3 opponent
-text=When Manic Scribe enters the battlefield, each opponent puts the top three cards of his or her library into his or her graveyard. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, that player puts the top three cards of his or her library into his or her graveyard.
+text=When Manic Scribe enters the battlefield, each opponent puts the top three cards of his or her library into his or her graveyard. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, that player puts the top three cards of his or her library into his or her graveyard.
 mana={1}{U}
 type=Creature
 subtype=Human Wizard
@@ -1353,7 +1353,7 @@ toughness=2
 
 [card]
 name=Hound of the Farbogs
-text=Delirium  Hound of the Farbogs has menace as long as there are four or more card types among cards in your graveyard. (A creature with menace can't be blocked except by two or more creatures.)
+text=Delirium  Hound of the Farbogs has menace as long as there are four or more card types among cards in your graveyard. (A creature with menace can't be blocked except by two or more creatures.)
 mana={4}{B}
 type=Creature
 subtype=Zombie Hound
@@ -1375,7 +1375,7 @@ toughness=1
 
 [card]
 name=Kindly Stranger
-text=Delirium  {2}{B}: Transform Kindly Stranger. Activate this ability only if there are four or more card types among cards in your graveyard.
+text=Delirium  {2}{B}: Transform Kindly Stranger. Activate this ability only if there are four or more card types among cards in your graveyard.
 mana={2}{B}
 type=Creature
 subtype=Human
@@ -1426,7 +1426,7 @@ type=Instant
 name=Mindwrack Demon
 abilities=flying, trample
 auto=deplete:4 controller
-text=Flying, trample -- When Mindwrack Demon enters the battlefield, put the top four cards of your library into your graveyard. -- Delirium  At the beginning of your upkeep, you lose 4 life unless there are four or more card types among cards in your graveyard.
+text=Flying, trample -- When Mindwrack Demon enters the battlefield, put the top four cards of your library into your graveyard. -- Delirium  At the beginning of your upkeep, you lose 4 life unless there are four or more card types among cards in your graveyard.
 mana={2}{B}{B}
 type=Creature
 subtype=Demon
@@ -1483,7 +1483,7 @@ toughness=3
 name=Pick the Brain
 target=opponent
 auto=moveto(exile) notatarget(*[-land]|targetedpersonshand)
-text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card. -- Delirium  If there are four or more card types among cards in your graveyard, search that player's graveyard, hand, and library for any number of cards with the same name as the exiled card, exile those cards, then that player shuffles his or her library.
+text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card. -- Delirium  If there are four or more card types among cards in your graveyard, search that player's graveyard, hand, and library for any number of cards with the same name as the exiled card, exile those cards, then that player shuffles his or her library.
 mana={2}{B}
 type=Sorcery
 [/card]
@@ -1555,7 +1555,7 @@ type=Enchantment
 
 [card]
 name=Stallion of Ashmouth
-text=Delirium  {1}{B}: Stallion of Ashmouth gets +1/+1 until end of turn. Activate this ability only if there are four or more card types among cards in your graveyard.
+text=Delirium  {1}{B}: Stallion of Ashmouth gets +1/+1 until end of turn. Activate this ability only if there are four or more card types among cards in your graveyard.
 mana={3}{B}
 type=Creature
 subtype=Nightmare Horse
@@ -1587,7 +1587,7 @@ type=Instant
 name=To the Slaughter
 target=player
 auto=ability$!name(sacrifice) notatarget(creature,planeswalker|mybattlefield) sacrifice!$ targetedplayer
-text=Target player sacrifices a creature or planeswalker. -- Delirium  If there are four or more card types among cards in your graveyard, instead that player sacrifices a creature and a planeswalker.
+text=Target player sacrifices a creature or planeswalker. -- Delirium  If there are four or more card types among cards in your graveyard, instead that player sacrifices a creature and a planeswalker.
 mana={2}{B}
 type=Instant
 [/card]
@@ -1595,7 +1595,7 @@ type=Instant
 [card]
 name=Tooth Collector
 auto=target(creature|opponentbattlefield) -1/-1 ueot
-text=When Tooth Collector enters the battlefield, target creature an opponent controls gets -1/-1 until end of turn. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, target creature that player controls gets -1/-1 until end of turn.
+text=When Tooth Collector enters the battlefield, target creature an opponent controls gets -1/-1 until end of turn. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, target creature that player controls gets -1/-1 until end of turn.
 mana={2}{B}
 type=Creature
 subtype=Human Rogue
@@ -1608,7 +1608,7 @@ name=Triskaidekaphobia
 auto=@each my upkeep:choice name(gain) life:1 opponent
 auto=@each my upkeep:choice name(loss) life:-1 opponent
 auto=@each my upkeep restriction type(opponentlife=13):winGame
-text=At the beginning of your upkeep, choose one  --  Each player with exactly 13 life loses the game, then each player gains 1 life. --  Each player with exactly 13 life loses the game, then each player loses 1 life.
+text=At the beginning of your upkeep, choose one  --  Each player with exactly 13 life loses the game, then each player gains 1 life. --  Each player with exactly 13 life loses the game, then each player loses 1 life.
 mana={3}{B}
 type=Enchantment
 [/card]
@@ -1852,7 +1852,7 @@ type=Instant
 [card]
 name=Gibbering Fiend
 auto=damage:1 opponent
-text=When Gibbering Fiend enters the battlefield, it deals 1 damage to each opponent. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, Gibbering Fiend deals 1 damage to that player.
+text=When Gibbering Fiend enters the battlefield, it deals 1 damage to each opponent. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, Gibbering Fiend deals 1 damage to that player.
 mana={1}{R}
 type=Creature
 subtype=Devil
@@ -2039,7 +2039,7 @@ toughness=3
 [card]
 name=Scourge Wolf
 abilities=first strike
-text=First strike -- Delirium  Scourge Wolf has double strike as long as there are four or more card types among cards in your graveyard.
+text=First strike -- Delirium  Scourge Wolf has double strike as long as there are four or more card types among cards in your graveyard.
 mana={R}{R}
 type=Creature
 subtype=Wolf Horror
@@ -2201,7 +2201,7 @@ type=Instant
 [card]
 name=Autumnal Gloom
 auto={B}:deplete:1 controller
-text={B}: Put the top card of your library into your graveyard. -- Delirium  At the beginning of your end step, if there are four or more card types among cards in your graveyard, transform Autumnal Gloom.
+text={B}: Put the top card of your library into your graveyard. -- Delirium  At the beginning of your end step, if there are four or more card types among cards in your graveyard, transform Autumnal Gloom.
 mana={2}{G}
 type=Enchantment
 [/card]
@@ -2297,7 +2297,7 @@ toughness=4
 name=Deathcap Cultivator
 auto={T}:add{B}
 auto={T}:add{G}
-text={T}: Add {B} or {G} to your mana pool. -- Delirium  Deathcap Cultivator has deathtouch as long as there are four or more card types among cards in your graveyard.
+text={T}: Add {B} or {G} to your mana pool. -- Delirium  Deathcap Cultivator has deathtouch as long as there are four or more card types among cards in your graveyard.
 mana={1}{G}
 type=Creature
 subtype=Human Druid
@@ -2439,7 +2439,7 @@ type=Enchantment
 [card]
 name=Inexorable Blob
 auto=@combat(attacking) source(this): aslongas(*|mygraveyard)~morethan~6 token(Ooze,creature Ooze,3/3,green,battleready)
-text=Delirium  Whenever Inexorable Blob attacks, if there are four or more card types among cards in your graveyard, put a 3/3 green Ooze creature token onto the battlefield tapped and attacking.
+text=Delirium  Whenever Inexorable Blob attacks, if there are four or more card types among cards in your graveyard, put a 3/3 green Ooze creature token onto the battlefield tapped and attacking.
 mana={2}{G}
 type=Creature
 subtype=Ooze
@@ -2462,7 +2462,7 @@ toughness=3
 [card]
 name=Kessig Dire Swine
 abilities=trample
-text=Delirium  Kessig Dire Swine has trample as long as there are four or more card types among cards in your graveyard.
+text=Delirium  Kessig Dire Swine has trample as long as there are four or more card types among cards in your graveyard.
 mana={4}{G}{G}
 type=Creature
 subtype=Boar Horror
@@ -2512,14 +2512,14 @@ toughness=2
 name=Might Beyond Reason
 target=creature
 auto=counter(1/1,2)
-text=Put two +1/+1 counters on target creature. -- Delirium  Put three +1/+1 counters on that creature instead if there are four or more card types among cards in your graveyard.
+text=Put two +1/+1 counters on target creature. -- Delirium  Put three +1/+1 counters on that creature instead if there are four or more card types among cards in your graveyard.
 mana={3}{G}
 type=Instant
 [/card]
 
 [card]
 name=Moldgraf Scavenger
-text=Delirium  Moldgraf Scavenger gets +3/+0 as long as there are four or more card types among cards in your graveyard.
+text=Delirium  Moldgraf Scavenger gets +3/+0 as long as there are four or more card types among cards in your graveyard.
 mana={1}{G}
 type=Creature
 subtype=Fungus
@@ -2539,7 +2539,7 @@ type=Instant
 [card]
 name=Obsessive Skinner
 auto=counter(1/1,1) target(creature)
-text=When Obsessive Skinner enters the battlefield, put a +1/+1 counter on target creature. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, put a +1/+1 counter on target creature.
+text=When Obsessive Skinner enters the battlefield, put a +1/+1 counter on target creature. -- Delirium  At the beginning of each opponent's upkeep, if there are four or more card types among cards in your graveyard, put a +1/+1 counter on target creature.
 mana={1}{G}
 type=Creature
 subtype=Human Rogue
@@ -2667,7 +2667,7 @@ toughness=6
 name=Soul Swallower
 abilities=trample
 auto=@each my upkeep:
-text=Trample -- Delirium  At the beginning of your upkeep, if there are four or more card types among cards in your graveyard, put three +1/+1 counters on Soul Swallower.
+text=Trample -- Delirium  At the beginning of your upkeep, if there are four or more card types among cards in your graveyard, put three +1/+1 counters on Soul Swallower.
 mana={2}{G}{G}
 type=Creature
 subtype=Wurm
@@ -2696,21 +2696,9 @@ toughness=5
 [/card]
 
 [card]
-name=Tireless Tracker
-auto=@movedto(land|mybattlefield):token(410067) controller
-auto=@movedto(clue|mygraveyard):counter(1/1,1)
-text=Whenever a land enters the battlefield under your control, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- Whenever you sacrifice a Clue, put a +1/+1 counter on Tireless Tracker.
-mana={2}{G}
-type=Creature
-subtype=Human Scout
-power=3
-toughness=2
-[/card]
-
-[card]
 name=Traverse the Ulvenwald
 auto=moveto(myhand) target(basic|mylibrary)
-text=Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library. -- Delirium  If there are four or more card types among cards in your graveyard, instead search your library for a creature or land card, reveal it, put it into your hand, then shuffle your library.
+text=Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library. -- Delirium  If there are four or more card types among cards in your graveyard, instead search your library for a creature or land card, reveal it, put it into your hand, then shuffle your library.
 mana={G}
 type=Sorcery
 [/card]
@@ -3025,7 +3013,7 @@ type=Artifact
 name=Murderer's Axe
 auto={discard(*|myhand)}:equip
 auto=2/2
-text=Equipped creature gets +2/+2. -- EquipDiscard a card.
+text=Equipped creature gets +2/+2. -- EquipDiscard a card.
 mana={4}
 type=Artifact
 subtype=Equipment
