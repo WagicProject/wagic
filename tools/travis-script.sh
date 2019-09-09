@@ -67,8 +67,8 @@ if [ "$BUILD_ANDROID" = "YES" ]; then
     ant debug -f projects/mtg/Android/build.xml
 fi
 
-# we're building a Qt version with GUI here
-if [ "$BUILD_Qt" = "YES" ]; then
+# we're building a linux Qt version with GUI here
+if [ "$BUILD_Qt" = "YES" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then
     mkdir qt-gui-build
     cd qt-gui-build
     $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
@@ -83,4 +83,11 @@ if [ "$BUILD_Qt" = "YES" ]; then
     cd projects/mtg
     ../../wagic
     cd ../..
+fi
+# we're building a mac Qt version with GUI here
+if [ "$BUILD_Qt" = "YES" ] && [ "$TRAVIS_OS_NAME" == "osx" ]; then
+    mkdir qt-gui-build
+    cd qt-gui-build
+    $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
+    make -j 4 dmg
 fi
