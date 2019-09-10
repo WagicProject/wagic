@@ -69,9 +69,10 @@ public:
 
     int afterDamage();
 
-    int gainLife(int value);
-    int loseLife(int value);
-    int gainOrLoseLife(int value);
+    // Added source of life gain/loss in order to check later a possible exception.
+    int gainLife(int value, MTGCardInstance* source);
+    int loseLife(int value, MTGCardInstance* source);
+    int gainOrLoseLife(int value, MTGCardInstance* source);
 
     bool isPoisoned() {return (poisonCount > 0);}
     int poisoned();

@@ -269,7 +269,7 @@ int Damage::resolve()
                         source->controller()->prowledTypes.push_back(values[i]);
                 }
             }
-            WEvent * lifed = NEW WEventLife((Player*)target,-damage);
+            WEvent * lifed = NEW WEventLife((Player*)target,-damage, source);
             observer->receiveEvent(lifed);
         }
     }

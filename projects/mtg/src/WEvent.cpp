@@ -22,8 +22,8 @@ WEventDamage::WEventDamage(Damage *damage) :
 {
 }
 
-WEventLife::WEventLife(Player * player,int amount) :
-    WEvent(), player(player),amount(amount)
+WEventLife::WEventLife(Player * player, int amount, MTGCardInstance* source) :
+    WEvent(), player(player), amount(amount), source(source)
 {
 }
 

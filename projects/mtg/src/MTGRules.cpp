@@ -3838,7 +3838,7 @@ int MTGLifelinkRule::receiveEvent(WEvent * event)
         MTGCardInstance * card = d->source;
         if (d->damage > 0 && card && (card->basicAbilities[(int)Constants::LIFELINK]||card->LKIbasicAbilities[(int)Constants::LIFELINK]))
         {
-            card->controller()->gainLife(d->damage);
+            card->controller()->gainLife(d->damage, source);
             return 1;
         }
     }

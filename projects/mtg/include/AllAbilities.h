@@ -1736,8 +1736,9 @@ public:
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
     bool sourceUntapped, thiscontroller, thisopponent;
-    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped) , thiscontroller(thiscontroller) , thisopponent(thisopponent)
+    MTGCardInstance * gainException; //added exception to avid a gainlife loop (eg. Angels of Vitality)
+    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false, bool thiscontroller = false, bool thisopponent = false, MTGCardInstance * gainException = NULL) :
+        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped) , thiscontroller(thiscontroller) , thisopponent(thisopponent), gainException(gainException)
     {
     }
 
@@ -1749,6 +1750,7 @@ public:
             return 0;
         if (!tc->canTarget(e->player)) return 0;
         if (fromTc && !fromTc->canTarget(e->player)) return 0;
+        if (gainException && e->source && !strcmp(gainException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of life gain it's the exception card don't gain life (loop avoidance);
         if (type == 1 && (e->amount > 0)) return 0;
         if (type == 0 && (e->amount < 0)) return 0;
         if(thiscontroller)
@@ -6983,7 +6985,7 @@ public:
             MTGCardInstance * card = d->source;
             if (d->damage > 0 && card && (card == source || card == source->target))
             {
-                source->owner->gainLife(d->damage);
+                source->owner->gainLife(d->damage, source);
                 return 1;
             }
         }
