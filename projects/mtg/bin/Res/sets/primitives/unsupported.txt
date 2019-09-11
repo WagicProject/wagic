@@ -4818,16 +4818,6 @@ type=Plane
 subtype=Belenon
 [/card]
 [card]
-name=Elderwood Scion
-abilities=trample,lifelink
-text=Trample, lifelink -- Spells you cast that target Elderwood Scion cost {2} less to cast. -- Spells your opponents cast that target Elderwood Scion cost {2} more to cast.
-mana={3}{G}{W}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
-[/card]
-[card]
 name=Eldrazi Mimic
 text=Whenever another colorless creature enters the battlefield under your control, you may change Eldrazi Mimic's base power and toughness to that creature's power and toughness until end of turn.
 mana={2}
@@ -5027,16 +5017,6 @@ name=Energy Vortex
 text=As Energy Vortex enters the battlefield, choose an opponent. -- At the beginning of your upkeep, remove all energy counters from Energy Vortex. -- At the beginning of the chosen player's upkeep, Energy Vortex deals 3 damage to that player unless he or she pays {1} for each energy counter on Energy Vortex. -- {X}: Put X energy counters on Energy Vortex. Activate this ability only during your upkeep.
 mana={3}{U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Enigma Sphinx
-abilities=flying
-text=Flying -- When Enigma Sphinx is put into your graveyard from the battlefield, put it into your library third from the top. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={4}{W}{U}{B}
-type=Artifact Creature
-subtype=Sphinx
-power=5
-toughness=4
 [/card]
 [card]
 name=Enlarge
@@ -13709,13 +13689,6 @@ power=1
 toughness=6
 [/card]
 [card]
-name=Quiet Disrepair
-text=Enchant artifact or enchantment -- At the beginning of your upkeep, choose one — Destroy enchanted permanent; or you gain 2 life.
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Quiet Speculation
 text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
 mana={1}{U}
@@ -18166,15 +18139,6 @@ name=Three Wishes
 text=Exile the top three cards of your library face down. You may look at those cards for as long as they remain exiled. Until your next turn, you may play those cards. At the beginning of your next upkeep, put any of those cards you didn't play into your graveyard.
 mana={1}{U}{U}
 type=Instant
-[/card]
-[card]
-name=Thromok the Insatiable
-text=Devour X, where X is the number of creatures devoured this way (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with X +1/+1 counters on it for each of those creatures.)
-mana={3}{R}{G}
-type=Legendary Creature
-subtype=Hellion
-power=0
-toughness=0
 [/card]
 [card]
 name=Throne of the High City
