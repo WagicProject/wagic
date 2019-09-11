@@ -930,7 +930,16 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/DDP/401721-hr.jpg";
         else if (id.equals("88973t") || id.equals("368549t"))
             tokenurl = "https://deckmaster.info/images/cards/DDQ/409655-hr.jpg";
-        else if (id.equals("3392t") || id.equals("220535t") || id.equals("376253t") || id.equals("376390t") || id.equals("401643t"))
+        else if (id.equals("417465t"))
+            tokenurl = "https://deckmaster.info/images/cards/DDR/417494-hr.jpg";
+        else if (id.equals("417480t"))
+            tokenurl = "https://deckmaster.info/images/cards/DDR/417495-hr.jpg";
+        else if (id.equals("417481t"))
+            tokenurl = "https://deckmaster.info/images/cards/DDR/417496-hr.jpg";
+        else if (id.equals("417447t"))
+            tokenurl = "https://deckmaster.info/images/cards/DDR/417497-hr.jpg";
+        else if (id.equals("3392t") || id.equals("220535t") || id.equals("376253t") || id.equals("376390t") ||
+                id.equals("401643t") || id.equals("417451t") || id.equals("417424t"))
             tokenurl = "https://deckmaster.info/images/cards/DDR/417498-hr.jpg";
         else if (id.equals("21381t") || id.equals("40198t"))
             tokenurl = "https://img.scryfall.com/cards/large/back/8/c/8ce60642-e207-46e6-b198-d803ff3b47f4.jpg?1562921132";

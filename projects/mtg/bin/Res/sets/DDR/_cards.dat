@@ -1,0 +1,387 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Nissa vs. Ob Nixilis
+year=2016-09-02
+total=76
+[/meta]
+[card]
+primitive=Nissa, Voice of Zendikar
+id=417424
+rarity=M
+[/card]
+[card]
+primitive=Abundance
+id=417425
+rarity=R
+[/card]
+[card]
+primitive=Briarhorn
+id=417426
+rarity=U
+[/card]
+[card]
+primitive=Citanul Woodreaders
+id=417427
+rarity=C
+[/card]
+[card]
+primitive=Civic Wayfinder
+id=417428
+rarity=C
+[/card]
+[card]
+primitive=Cloudthresher
+id=417429
+rarity=R
+[/card]
+[card]
+primitive=Crop Rotation
+id=417430
+rarity=C
+[/card]
+[card]
+primitive=Elvish Visionary
+id=417431
+rarity=C
+[/card]
+[card]
+primitive=Fertilid
+id=417432
+rarity=C
+[/card]
+[card]
+primitive=Gaea's Blessing
+id=417433
+rarity=U
+[/card]
+[card]
+primitive=Gilt-Leaf Seer
+id=417434
+rarity=C
+[/card]
+[card]
+primitive=Jaddi Lifestrider
+id=417435
+rarity=U
+[/card]
+[card]
+primitive=Natural Connection
+id=417436
+rarity=C
+[/card]
+[card]
+primitive=Nissa's Chosen
+id=417437
+rarity=C
+[/card]
+[card]
+primitive=Oakgnarl Warrior
+id=417438
+rarity=C
+[/card]
+[card]
+primitive=Oran-Rief Hydra
+id=417439
+rarity=R
+[/card]
+[card]
+primitive=Oran-Rief Invoker
+id=417440
+rarity=C
+[/card]
+[card]
+primitive=Saddleback Lagac
+id=417441
+rarity=C
+[/card]
+[card]
+primitive=Scythe Leopard
+id=417442
+rarity=U
+[/card]
+[card]
+primitive=Seek the Horizon
+id=417443
+rarity=U
+[/card]
+[card]
+primitive=Thicket Elemental
+id=417444
+rarity=R
+[/card]
+[card]
+primitive=Thornweald Archer
+id=417445
+rarity=C
+[/card]
+[card]
+primitive=Vines of the Recluse
+id=417446
+rarity=C
+[/card]
+[card]
+primitive=Walker of the Grove
+id=417447
+rarity=U
+[/card]
+[card]
+primitive=Wood Elves
+id=417448
+rarity=C
+[/card]
+[card]
+primitive=Woodborn Behemoth
+id=417449
+rarity=U
+[/card]
+[card]
+primitive=Fertile Thicket
+id=417450
+rarity=C
+[/card]
+[card]
+primitive=Khalni Garden
+id=417451
+rarity=C
+[/card]
+[card]
+primitive=Mosswort Bridge
+id=417452
+rarity=R
+[/card]
+[card]
+primitive=Treetop Village
+id=417453
+rarity=U
+[/card]
+[card]
+primitive=Forest
+id=417454
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=417455
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=417456
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=417457
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=417458
+rarity=L
+[/card]
+[card]
+primitive=Ob Nixilis Reignited
+id=417459
+rarity=M
+[/card]
+[card]
+primitive=Altar's Reap
+id=417460
+rarity=C
+[/card]
+[card]
+primitive=Ambition's Cost
+id=417461
+rarity=U
+[/card]
+[card]
+primitive=Bala Ged Scorpion
+id=417462
+rarity=C
+[/card]
+[card]
+primitive=Blistergrub
+id=417463
+rarity=C
+[/card]
+[card]
+primitive=Cadaver Imp
+id=417464
+rarity=C
+[/card]
+[card]
+primitive=Carrier Thrall
+id=417465
+rarity=U
+[/card]
+[card]
+primitive=Demon's Grasp
+id=417466
+rarity=C
+[/card]
+[card]
+primitive=Desecration Demon
+id=417467
+rarity=R
+[/card]
+[card]
+primitive=Despoiler of Souls
+id=417468
+rarity=R
+[/card]
+[card]
+primitive=Disfigure
+id=417469
+rarity=C
+[/card]
+[card]
+primitive=Doom Blade
+id=417470
+rarity=U
+[/card]
+[card]
+primitive=Fetid Imp
+id=417471
+rarity=C
+[/card]
+[card]
+primitive=Foul Imp
+id=417472
+rarity=C
+[/card]
+[card]
+primitive=Giant Scorpion
+id=417473
+rarity=C
+[/card]
+[card]
+primitive=Grim Discovery
+id=417474
+rarity=C
+[/card]
+[card]
+primitive=Hideous End
+id=417475
+rarity=C
+[/card]
+[card]
+primitive=Indulgent Tormentor
+id=417476
+rarity=R
+[/card]
+[card]
+primitive=Innocent Blood
+id=417477
+rarity=C
+[/card]
+[card]
+primitive=Mire's Toll
+id=417478
+rarity=C
+[/card]
+[card]
+primitive=Pestilence Demon
+id=417479
+rarity=R
+[/card]
+[card]
+primitive=Priest of the Blood Rite
+id=417480
+rarity=R
+[/card]
+[card]
+primitive=Quest for the Gravelord
+id=417481
+rarity=U
+[/card]
+[card]
+primitive=Renegade Demon
+id=417482
+rarity=C
+[/card]
+[card]
+primitive=Shadows of the Past
+id=417483
+rarity=U
+[/card]
+[card]
+primitive=Smallpox
+id=417484
+rarity=U
+[/card]
+[card]
+primitive=Squelching Leeches
+id=417485
+rarity=U
+[/card]
+[card]
+primitive=Tendrils of Corruption
+id=417486
+rarity=C
+[/card]
+[card]
+primitive=Unhallowed Pact
+id=417487
+rarity=C
+[/card]
+[card]
+primitive=Leechridden Swamp
+id=417488
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=417489
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=417490
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=417491
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=417492
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=417493
+rarity=L
+[/card]
+[card]
+primitive=Eldrazi Scion
+id=-417465
+rarity=T
+[/card]
+[/card]
+[card]
+primitive=Demon
+id=-417480
+rarity=T
+[/card]
+[card]
+primitive=Zombie Giant
+id=-417481
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-417447
+rarity=T
+[/card]
+[card]
+primitive=Plant
+id=-417424
+rarity=T
+[/card]
+[card]
+primitive=Ob Nixilis Reignited Emblem
+id=-417459
+rarity=T
+[/card]
