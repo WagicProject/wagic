@@ -150,7 +150,12 @@ void GameStateAwards::Render()
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
 
+#if defined (PSP)
+    JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("pspawardback.jpg", TEXTURE_SUB_5551);
+#else
     JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
+#endif
+
     if (background.get())
         r->RenderQuad(background.get(), 0, 0, 0, SCREEN_WIDTH_F / background->mWidth, SCREEN_HEIGHT_F / background->mHeight);
 

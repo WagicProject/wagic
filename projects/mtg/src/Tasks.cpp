@@ -385,7 +385,11 @@ void TaskList::Start()
 
     if (!mBgTex)
     {
+#if defined (PSP)
+        mBgTex = WResourceManager::Instance()->RetrieveTexture("psptaskboard.png", RETRIEVE_LOCK);
+#else
         mBgTex = WResourceManager::Instance()->RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
+#endif
         float unitH = static_cast<float> (mBgTex->mHeight / 4);
         float unitW = static_cast<float> (mBgTex->mWidth / 4);
         if (unitH == 0 || unitW == 0) return;

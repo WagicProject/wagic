@@ -250,9 +250,15 @@ void DeckMenu::Render()
     JQuadPtr avatarholder;
     JQuadPtr menupanel;
     JQuadPtr menuholder;
+#if defined (PSP)
+    avatarholder = WResourceManager::Instance()->RetrieveTempQuad("pspavatarholder.png");//new graphics avatarholder for PSP
+    menupanel = WResourceManager::Instance()->RetrieveTempQuad("pspmenupanel.jpg");//new graphics menupanel for PSP
+    menuholder = WResourceManager::Instance()->RetrieveTempQuad("pspmenuholder.png");//new graphics menuholder for PSP
+#else
     avatarholder = WResourceManager::Instance()->RetrieveTempQuad("avatarholder.png");//new graphics avatarholder
     menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel.jpg");//new graphics menupanel
     menuholder = WResourceManager::Instance()->RetrieveTempQuad("menuholder.png");//new graphics menuholder
+#endif
     bool inDeckMenu = backgroundName.find("DeckMenuBackdrop") != string::npos;
     float modAvatarX = 0.f;
     float modAvatarY = 0.f;

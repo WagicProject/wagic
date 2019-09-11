@@ -1431,6 +1431,15 @@ void GameStateDeckViewer::Render()
     }/*
     if (mView->deck() == myDeck && mStage != STAGE_MENU)
         renderDeckBackground();*/
+#else
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("pspbgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("pspbgdeckeditor.jpg");
+        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }/*
+    if (mView->deck() == myDeck && mStage != STAGE_MENU)
+        renderDeckBackground();*/
 #endif
     mView->Render();
 
