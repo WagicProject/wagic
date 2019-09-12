@@ -299,7 +299,7 @@ int LifeCost::doPay()
 
     MTGCardInstance * _target = (MTGCardInstance *) target;
 
-    _target->controller()->loseLife(1);
+    _target->controller()->loseLife(1, source);
     target = NULL;
     if (tc)
         tc->initTargets();
@@ -345,7 +345,7 @@ int SpecificLifeCost::doPay()
 
     MTGCardInstance * _target = (MTGCardInstance *) target;
 
-    _target->controller()->loseLife(slc);
+    _target->controller()->loseLife(slc, source);
     target = NULL;
     if (tc)
         tc->initTargets();
@@ -407,7 +407,7 @@ int LifeorManaCost::doPay()
     }
     else
     {
-        _target->controller()->loseLife(2);
+        _target->controller()->loseLife(2, source);
     }
     target = NULL;
     if (tc)

@@ -4033,9 +4033,9 @@ int AALifer::resolve()
         _target = ((MTGCardInstance *) _target)->controller();
     }
     Player *player = (Player*)_target;
-    int slife = abs(player->gainOrLoseLife(life.getValue()));
+    int slife = abs(player->gainOrLoseLife(life.getValue(), source));
     if(siphon && (slife > 0) && (life.getValue() < 0))
-        source->controller()->gainOrLoseLife(slife);
+        source->controller()->gainOrLoseLife(slife, source);
 
     return 1;
 }
@@ -4222,7 +4222,7 @@ int AALifeSet::resolve()
         return 0;
 
     int lifeDiff = life->getValue() - p->life ;
-    p->gainOrLoseLife(lifeDiff);
+    p->gainOrLoseLife(lifeDiff, source);
 
     return 1;
 }
@@ -6509,14 +6509,14 @@ int AAExchangeLife::resolve()
             if(oldlife > targetOldLife)
             {
                 increaser = oldlife - targetOldLife;
-                player->gainOrLoseLife(modifier * -1);
+                player->gainOrLoseLife(modifier * -1, source);
                 card->addToToughness(increaser+toughMod);
             }
             else
             {
                 _target->life = oldlife;
                 card->toughness = oldlife;
-                player->gainOrLoseLife(modifier);
+                player->gainOrLoseLife(modifier, source);
             }
 
             return 1;
@@ -6524,13 +6524,13 @@ int AAExchangeLife::resolve()
         Player * opponent = (Player*)_target;
         if(oldlife > targetOldLife)
         {
-            player->gainOrLoseLife(modifier * -1);
-            opponent->gainOrLoseLife(modifier);
+            player->gainOrLoseLife(modifier * -1, source);
+            opponent->gainOrLoseLife(modifier, source);
         }
         else
         {
-            player->gainOrLoseLife(modifier);
-            opponent->gainOrLoseLife(modifier * -1);
+            player->gainOrLoseLife(modifier, source);
+            opponent->gainOrLoseLife(modifier * -1, source);
         }
         return 1;
     }

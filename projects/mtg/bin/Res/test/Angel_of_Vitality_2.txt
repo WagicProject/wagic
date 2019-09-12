@@ -1,0 +1,29 @@
+#Life Gain Angel of Vitality 2
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Plains, Plains, Plains, Angel of Vitality
+hand:Savannah Sage
+manapool:{1}{W}
+[PLAYER2]
+[DO]
+Savannah Sage
+next
+#attack
+next
+Angel of Vitality
+next
+#damage
+next
+#end
+eot
+#untap
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Plains, Plains, Plains, Angel of Vitality, Savannah Sage
+hand:
+life:23
+[PLAYER2]
+life:18
+[END]

@@ -71,7 +71,8 @@ struct WEventCounters : public WEvent {
 struct WEventLife : public WEvent {
     Player * player;
     int amount;
-    WEventLife(Player * player,int amount);
+    MTGCardInstance * source;
+    WEventLife(Player * player,int amount, MTGCardInstance * source);
     virtual Targetable * getTarget(int target);
 };
 

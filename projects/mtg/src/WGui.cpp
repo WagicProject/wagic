@@ -1316,6 +1316,22 @@ void WGuiAward::Underlay()
     char buf[1024];
     JQuadPtr trophy;
 
+#if defined (PSP)
+    string n = id ? Options::getName(id) : textId;
+    if (n.size())
+    {
+        sprintf(buf, "psptrophy_%s.png", n.c_str()); //Trophy specific to the award
+        trophy = WResourceManager::Instance()->RetrieveTempQuad(buf); //Themed version...
+    }
+
+    if (!trophy && id >= Options::SET_UNLOCKS)
+    {
+        trophy = WResourceManager::Instance()->RetrieveTempQuad("psptrophy_set.png"); //TODO FIXME: Should look in set dir too.
+    }
+
+    if (!trophy.get()) //Fallback to basic trophy image.
+        trophy = WResourceManager::Instance()->RetrieveTempQuad("psptrophy.png");
+#else
     string n = id ? Options::getName(id) : textId;
     if (n.size())
     {
@@ -1329,7 +1345,8 @@ void WGuiAward::Underlay()
     }
 
     if (!trophy.get()) //Fallback to basic trophy image.
-    trophy = WResourceManager::Instance()->RetrieveTempQuad("trophy.png");
+        trophy = WResourceManager::Instance()->RetrieveTempQuad("trophy.png");	
+#endif
 
     if (trophy.get())
     {

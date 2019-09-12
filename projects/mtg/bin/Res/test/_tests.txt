@@ -117,6 +117,9 @@ Amugaba.txt
 anarchy.txt
 ancestors_chosen.txt
 ancient_ooze.txt
+Angel_of_Vitality.txt
+Angel_of_Vitality_2.txt
+Angel_of_Vitality_3.txt
 angelic_chorus_TOUGHNESSLIFEGAIN.txt
 angry_mob1.txt
 angry_mob2.txt

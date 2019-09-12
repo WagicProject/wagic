@@ -1248,42 +1248,66 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "lifeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        if(exception)
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false, exception->source);
+        else
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false);
     }
 
     //Lifed current opponent
     if (TargetChooser * tc = parseSimpleTC(s, "lifefoeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        if(exception)
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true, exception->source); 
+        else
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true);
     }
 
     //Lifed static
     if (TargetChooser * tc = parseSimpleTC(s, "lifed", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        if(exception)
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,false, exception->source);
+        else
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,false);
     }
 
     //Life Loss current player
     if (TargetChooser * tc = parseSimpleTC(s, "lifelostof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrLifeGained(observer, id, card, tc, fromTc,1,sourceUntapped,once,true,false);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        if(exception)
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,true,false, exception->source);
+        else
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,true,false);
     }
 
     //Life Loss current opponent
     if (TargetChooser * tc = parseSimpleTC(s, "lifelostfoeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrLifeGained(observer, id, card, tc, fromTc,1,sourceUntapped,once,false,true);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        if(exception)
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,true, exception->source);
+        else
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,true);
     }
 
     //Life Loss static
     if (TargetChooser * tc = parseSimpleTC(s, "lifeloss", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrLifeGained(observer, id, card, tc, fromTc,1,sourceUntapped,once);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        if(exception)
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,false, exception->source);
+        else
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,false);
     }
 
     //Card Damaged and killed by a creature this turn
@@ -5174,7 +5198,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         observer->mLayers->stackLayer()->addDamage(card, target, x);
         if (target->life < x)
             x = target->life;
-        observer->currentlyActing()->gainLife(x);
+        observer->currentlyActing()->gainLife(x, card);
         break;
     }
     case 1159: //Erg Raiders
@@ -5316,7 +5340,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
                 if (current->hasType("Artifact"))
                 {
                     observer->players[i]->game->putInGraveyard(current);
-                    current->controller()->gainLife(current->getManaCost()->getConvertedCost());
+                    current->controller()->gainLife(current->getManaCost()->getConvertedCost(), card);
                 }
             }
         }
@@ -5416,7 +5440,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
             if (library->nb_cards)
                 player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
         }
-        observer->currentlyActing()->gainLife(x);
+        observer->currentlyActing()->gainLife(x, card);
         break;
     }
 

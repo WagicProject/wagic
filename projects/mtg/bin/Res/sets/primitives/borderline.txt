@@ -89,26 +89,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Angelic Field Marshal
-abilities=flying
-#wagic doesnt have commander zone
-text=Flying -- Lieutenant — As long as you control your commander, Angelic Field Marshal gets +2/+2 and creatures you control have vigilance.
-mana={2}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=3
-[/card]
-[card]
-name=Angel's Grace
-abilities=split second
-#the cantlose cannot seen by the gameobserver when used by emblem...
-auto=emblem transforms((,newability[lord(*|opponentbattlefield) cantwin],newability[lord(*|mybattlefield) cantlose],newability[this(controllerlife >= 1) reduceto:1])) ueot
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- You can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Autumn Willow
 abilities=opponentshroud,shroud
 auto={G}:-shroud

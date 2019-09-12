@@ -704,11 +704,20 @@ void GameStateShop::Render()
     if (mStage == STAGE_FADE_IN)
         return;
 
+#if defined (PSP)
+    JQuadPtr mBg = WResourceManager::Instance()->RetrieveTempQuad("pspshop.jpg", TEXTURE_SUB_5551);
+    if (mBg.get())
+        r->RenderQuad(mBg.get(), 0, 0, 0, SCREEN_WIDTH_F / mBg->mWidth, SCREEN_HEIGHT_F / mBg->mHeight);
+
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad("pspshop_light.jpg", TEXTURE_SUB_5551);
+#else
     JQuadPtr mBg = WResourceManager::Instance()->RetrieveTempQuad("shop.jpg", TEXTURE_SUB_5551);
     if (mBg.get())
         r->RenderQuad(mBg.get(), 0, 0, 0, SCREEN_WIDTH_F / mBg->mWidth, SCREEN_HEIGHT_F / mBg->mHeight);
 
     JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad("shop_light.jpg", TEXTURE_SUB_5551);
+#endif
+
     if (quad.get())
     {
         r->EnableTextureFilter(false);

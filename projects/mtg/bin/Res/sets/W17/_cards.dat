@@ -1,0 +1,156 @@
+[meta]
+author=Wagic Team
+name=Welcome Deck 2017
+year=2017-04-15
+total=30
+[/meta]
+[card]
+primitive=Divine Verdict
+id=429890
+rarity=C
+[/card]
+[card]
+primitive=Glory Seeker
+id=429891
+rarity=C
+[/card]
+[card]
+primitive=Serra Angel
+id=429892
+rarity=U
+[/card]
+[card]
+primitive=Standing Troops
+id=429893
+rarity=C
+[/card]
+[card]
+primitive=Stormfront Pegasus
+id=429894
+rarity=U
+[/card]
+[card]
+primitive=Victory's Herald
+id=429895
+rarity=R
+[/card]
+[card]
+primitive=Air Elemental
+id=429896
+rarity=U
+[/card]
+[card]
+primitive=Coral Merfolk
+id=429897
+rarity=C
+[/card]
+[card]
+primitive=Drag Under
+id=429898
+rarity=C
+[/card]
+[card]
+primitive=Inspiration
+id=429899
+rarity=C
+[/card]
+[card]
+primitive=Sleep Paralysis
+id=429900
+rarity=C
+[/card]
+[card]
+primitive=Sphinx of Magosi
+id=429901
+rarity=R
+[/card]
+[card]
+primitive=Stealer of Secrets
+id=429902
+rarity=C
+[/card]
+[card]
+primitive=Tricks of the Trade
+id=429903
+rarity=C
+[/card]
+[card]
+primitive=Bloodhunter Bat
+id=429904
+rarity=C
+[/card]
+[card]
+primitive=Certain Death
+id=429905
+rarity=C
+[/card]
+[card]
+primitive=Nightmare
+id=429906
+rarity=R
+[/card]
+[card]
+primitive=Raise Dead
+id=429907
+rarity=C
+[/card]
+[card]
+primitive=Sengir Vampire
+id=429908
+rarity=U
+[/card]
+[card]
+primitive=Untamed Hunger
+id=429909
+rarity=C
+[/card]
+[card]
+primitive=Falkenrath Reaver
+id=429910
+rarity=C
+[/card]
+[card]
+primitive=Shivan Dragon
+id=429911
+rarity=R
+[/card]
+[card]
+primitive=Thundering Giant
+id=429912
+rarity=C
+[/card]
+[card]
+primitive=Garruk's Horde
+id=429913
+rarity=R
+[/card]
+[card]
+primitive=Oakenform
+id=429914
+rarity=C
+[/card]
+[card]
+primitive=Rabid Bite
+id=429915
+rarity=C
+[/card]
+[card]
+primitive=Rootwalla
+id=429916
+rarity=C
+[/card]
+[card]
+primitive=Stalking Tiger
+id=429917
+rarity=C
+[/card]
+[card]
+primitive=Stampeding Rhino
+id=429918
+rarity=C
+[/card]
+[card]
+primitive=Wing Snare
+id=429919
+rarity=U
+[/card]

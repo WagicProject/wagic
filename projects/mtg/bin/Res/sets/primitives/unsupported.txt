@@ -692,15 +692,6 @@ power=4
 toughness=1
 [/card]
 [card]
-name=Ashen Ghoul
-text=Haste -- {B}: Return Ashen Ghoul from your graveyard to the battlefield. Activate this ability only during your upkeep and only if three or more creature cards are above Ashen Ghoul.
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=1
-[/card]
-[card]
 name=Ashiok, Nightmare Weaver
 auto=counter(0/0,3,loyalty)
 text=+2: Exile the top three cards of target opponent's library. -- -X: Put a creature card with converted mana cost X exiled with Ashiok, Nightmare Weaver onto the battlefield under your control. That creature is a Nightmare in addition to its other types. -- -10: Exile all cards from all opponents' hands and graveyards.
@@ -1803,15 +1794,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Brisela, Voice of Nightmares
-text=When you cast Bruna, the Fading Light, you may return target Angel or Human creature card from your graveyard to the battlefield. -- Flying, vigilance -- (Melds with Gisela, the Broken Blade.)
-mana={5}{W}{W}
-type=Legendary Creature
-subtype=Angel Horror
-power=5
-toughness=7
-[/card]
-[card]
 name=Broken Ambitions
 text=Counter target spell unless its controller pays {X}. Clash with an opponent. If you win, that spell's controller puts the top four cards of his or her library into his or her graveyard. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={X}{U}
@@ -1879,15 +1861,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Bruna, the Fading Light
-text=When you cast Bruna, the Fading Light, you may return target Angel or Human creature card from your graveyard to the battlefield. -- Flying, vigilance -- (Melds with Gisela, the Broken Blade.)
-mana={5}{W}{W}
-type=Legendary Creature
-subtype=Angel Horror
-power=5
-toughness=7
-[/card]
-[card]
 name=Brushstroke Paintermage
 text={T}: Target permanent's artist becomes the artist of your choice until end of turn.
 mana={3}{U}
@@ -1943,15 +1916,6 @@ type=Creature
 subtype=Zubera Spirit
 power=3
 toughness=3
-[/card]
-[card]
-name=Burning-Tree Bloodscale
-text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- {2}{R}: Target creature can't block Burning-Tree Bloodscale this turn. -- {2}{G}: Target creature blocks Burning-Tree Bloodscale this turn if able.
-mana={2}{R}{G}
-type=Creature
-subtype=Viashino Berserker
-power=2
-toughness=2
 [/card]
 [card]
 name=Burning-Tree Shaman
@@ -2323,15 +2287,6 @@ name=Cellar Door
 text={3}, {T}: Target player puts the bottom card of his or her library into his or her graveyard. If it's a creature card, you put a 2/2 black Zombie creature token onto the battlefield.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Cemetery Puca
-text=Whenever a creature dies, you may pay {1}. If you do, Cemetery Puca becomes a copy of that creature and gains this ability.
-mana={1}{UB}{UB}
-type=Creature
-subtype=Shapeshifter
-power=1
-toughness=2
 [/card]
 [card]
 name=Cenn's Tactician
@@ -3524,15 +3479,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Cryptoplasm
-text=At the beginning of your upkeep, you may have Cryptoplasm become a copy of another target creature. If you do, Cryptoplasm gains this ability.
-mana={1}{U}{U}
-type=Creature
-subtype=Shapeshifter
-power=2
-toughness=2
-[/card]
-[card]
 name=Crystal Spray
 text=Change the text of target spell or permanent by replacing all instances of one color word or basic land type with another until end of turn. --  -- Draw a card.
 mana={2}{U}
@@ -3975,12 +3921,6 @@ mana={4}{W}
 type=Sorcery
 [/card]
 [card]
-name=Death Spark
-text=Death Spark deals 1 damage to target creature or player. -- At the beginning of your upkeep, if Death Spark is in your graveyard with a creature card directly above it, you may pay {1}. If you do, return Death Spark to your hand.
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Death-Mask Duplicant
 text=Imprint — {1}: Exile target creature card from your graveyard. -- As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
 mana={7}
@@ -4313,25 +4253,10 @@ mana={5}{W}{W}
 type=Sorcery
 [/card]
 [card]
-name=Diminishing Returns
-text=Each player shuffles his or her hand and graveyard into his or her library. You exile the top ten cards of your library. Then each player draws up to seven cards.
-mana={2}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Dimir Charm
 text=Choose one — Counter target sorcery spell; or destroy target creature with power 2 or less; or look at the top three cards of target player's library, then put one back and the rest into that player's graveyard.
 mana={U}{B}
 type=Instant
-[/card]
-[card]
-name=Dimir Doppelganger
-text={1}{U}{B}: Exile target creature card from a graveyard. Dimir Doppelganger becomes a copy of that card and gains this ability.
-mana={1}{U}{B}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=2
 [/card]
 [card]
 name=Diplomatic Escort
@@ -4893,16 +4818,6 @@ type=Plane
 subtype=Belenon
 [/card]
 [card]
-name=Elderwood Scion
-abilities=trample,lifelink
-text=Trample, lifelink -- Spells you cast that target Elderwood Scion cost {2} less to cast. -- Spells your opponents cast that target Elderwood Scion cost {2} more to cast.
-mana={3}{G}{W}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
-[/card]
-[card]
 name=Eldrazi Mimic
 text=Whenever another colorless creature enters the battlefield under your control, you may change Eldrazi Mimic's base power and toughness to that creature's power and toughness until end of turn.
 mana={2}
@@ -5102,16 +5017,6 @@ name=Energy Vortex
 text=As Energy Vortex enters the battlefield, choose an opponent. -- At the beginning of your upkeep, remove all energy counters from Energy Vortex. -- At the beginning of the chosen player's upkeep, Energy Vortex deals 3 damage to that player unless he or she pays {1} for each energy counter on Energy Vortex. -- {X}: Put X energy counters on Energy Vortex. Activate this ability only during your upkeep.
 mana={3}{U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Enigma Sphinx
-abilities=flying
-text=Flying -- When Enigma Sphinx is put into your graveyard from the battlefield, put it into your library third from the top. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
-mana={4}{W}{U}{B}
-type=Artifact Creature
-subtype=Sphinx
-power=5
-toughness=4
 [/card]
 [card]
 name=Enlarge
@@ -5417,12 +5322,6 @@ name=Exquisite Firecraft
 text=Exquisite Firecraft deals 4 damage to target creature or player. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, Exquisite Firecraft can't be countered by spells or abilities.
 mana={1}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Extraplanar Lens
-text=Imprint — When Extraplanar Lens enters the battlefield, you may exile target land you control. -- Whenever a land with the same name as the exiled card is tapped for mana, its controller adds one mana to his or her mana pool of any type that land produced.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Eye of the Storm
@@ -6441,12 +6340,6 @@ mana={R}{R}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Gerrard's Verdict
-text=Target player discards two cards. You gain 3 life for each land card discarded this way.
-mana={W}{B}
-type=Sorcery
-[/card]
-[card]
 name=Gerrymandering
 text=Remove all lands from play and shuffle them together. Randomly deal to each player one land card for each land he or she had before. Each player puts those lands into play under his or her control, untapped.
 mana={2}{G}
@@ -6514,15 +6407,6 @@ type=Creature
 subtype=Bird
 power=1
 toughness=1
-[/card]
-[card]
-name=Giant Ambush Beetle
-text=Haste -- When Giant Ambush Beetle enters the battlefield, you may have target creature block it this turn if able.
-mana={3}{BG}{R}
-type=Creature
-subtype=Insect
-power=4
-toughness=3
 [/card]
 [card]
 name=Giant Fan
@@ -8905,12 +8789,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Jade Statue
-text={2}: Jade Statue becomes a 3/6 Golem artifact creature until end of combat. Activate this ability only during combat.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Jaded Response
 text=Counter target spell if it shares a color with a creature you control.
 mana={1}{U}
@@ -9594,15 +9472,6 @@ type=Legendary Creature
 subtype=Human Warrior
 power=3
 toughness=3
-[/card]
-[card]
-name=Krovikan Horror
-text=At the beginning of the end step, if Krovikan Horror is in your graveyard with a creature card directly above it, you may return Krovikan Horror to your hand. -- {1}, Sacrifice a creature: Krovikan Horror deals 1 damage to target creature or player.
-mana={3}{B}
-type=Creature
-subtype=Horror Spirit
-power=2
-toughness=2
 [/card]
 [card]
 name=Krovikan Vampire
@@ -10651,21 +10520,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Mastery of the Unseen
-text=Whenever a permanent you control is turned face up, you gain 1 life for each creature you control. -- {3}{W}: Manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Matsu-Tribe Decoy
-text={2}{G}: Target creature blocks Matsu-Tribe Decoy this turn if able. -- Whenever Matsu-Tribe Decoy deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
-mana={2}{G}
-type=Creature
-subtype=Snake Warrior
-power=1
-toughness=3
-[/card]
-[card]
 name=May Civilization Collapse
 text=When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, he or she sacrifices two lands. If the player chooses others, each of your other opponents sacrifices a land.
 type=Scheme
@@ -11504,11 +11358,6 @@ power=1
 toughness=4
 [/card]
 [card]
-name=Myriad Landscape
-text=Myriad Landscape enters the battlefield tapped. -- {T}: Add {C} to your mana pool. -- {2}, {T}, Sacrifice Myriad Landscape: Search your library for up to two basic land cards that share a land type, put them onto the battlefield tapped, then shuffle your library.
-type=Land
-[/card]
-[card]
 name=Mystic Barrier
 text=When Mystic Barrier enters the battlefield or at the beginning of your upkeep, choose left or right. -- Each player may attack only the opponent seated nearest him or her in the last chosen direction and planeswalkers controlled by that player.
 mana={4}{W}
@@ -11730,12 +11579,6 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Necropotence
-text=Skip your draw step. -- Whenever you discard a card, exile that card from your graveyard. -- Pay 1 life: Exile the top card of your library face down. Put that card into your hand at the beginning of your next end step.
-mana={B}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Necrotic Ooze
 text=As long as Necrotic Ooze is on the battlefield, it has all activated abilities of all creature cards in all graveyards.
 mana={2}{B}{B}
@@ -11808,15 +11651,6 @@ type=Creature
 subtype=Hydra
 power=6
 toughness=6
-[/card]
-[card]
-name=Nether Shadow
-text=Haste -- At the beginning of your upkeep, if Nether Shadow is in your graveyard with three or more creature cards above it, you may put Nether Shadow onto the battlefield.
-mana={B}{B}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
 [/card]
 [card]
 name=Nettlevine Blight
@@ -13855,13 +13689,6 @@ power=1
 toughness=6
 [/card]
 [card]
-name=Quiet Disrepair
-text=Enchant artifact or enchantment -- At the beginning of your upkeep, choose one — Destroy enchanted permanent; or you gain 2 life.
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Quiet Speculation
 text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
 mana={1}{U}
@@ -13963,15 +13790,6 @@ name=Rally the Horde
 text=Exile the top card of your library. Exile the top card of your library. Exile the top card of your library. If the last card exiled isn't a land, repeat this process. Put a 1/1 red Warrior creature token onto the battlefield for each nonland card exiled this way.
 mana={5}{R}
 type=Sorcery
-[/card]
-[card]
-name=Rampant Elephant
-text={G}: Target creature blocks Rampant Elephant this turn if able.
-mana={3}{W}
-type=Creature
-subtype=Elephant
-power=2
-toughness=2
 [/card]
 [card]
 name=Rapid Fire
@@ -17690,31 +17508,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Surging AEther
-text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Return target permanent to its owner's hand.
-mana={3}{U}
-type=Instant
-[/card]
-[card]
-name=Surging Dementia
-text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Target player discards a card.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
-name=Surging Flame
-text=Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.) -- Surging Flame deals 2 damage to target creature or player.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
-name=Surging Might
-text=Enchant creature -- Enchanted creature gets +2/+2. -- Ripple 4 (When you cast this spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as this spell without paying their mana costs. Put the rest on the bottom of your library.)
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Surrak Dragonclaw
 text=Flash -- Surrak Dragonclaw can't be countered. -- Creature spells you control can't be countered. -- Other creatures you control have trample.
 mana={2}{G}{U}{R}
@@ -17786,15 +17579,6 @@ type=Creature
 subtype=Human Knight
 power=1
 toughness=3
-[/card]
-[card]
-name=Sydri, Galvanic Genius
-text={U}: Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. -- {W}{B}: Target artifact creature gains deathtouch and lifelink until end of turn.
-mana={W}{U}{B}
-type=Legendary Creature
-subtype=Human Artificer
-power=2
-toughness=2
 [/card]
 [card]
 name=Sylvan Echoes
@@ -17929,16 +17713,6 @@ type=Planeswalker
 subtype=Tamiyo
 [/card]
 [card]
-name=Tangle Angler
-abilities=infect
-text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- {G}: Target creature blocks Tangle Angler this turn if able.
-mana={3}{G}
-type=Creature
-subtype=Horror
-power=1
-toughness=5
-[/card]
-[card]
 name=Tangle Wire
 text=Fading 4 (This artifact enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- At the beginning of each player's upkeep, that player taps an untapped artifact, creature, or land he or she controls for each fade counter on Tangle Wire.
 mana={3}
@@ -18009,16 +17783,6 @@ text=+1: Look at the top two cards of your library. Put one of them into your ha
 mana={4}{U}{U}
 type=Planeswalker
 subtype=Teferi
-[/card]
-[card]
-name=Teferi's Imp
-abilities=flying
-text=Flying -- Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- Whenever Teferi's Imp phases out, discard a card. -- Whenever Teferi's Imp phases in, draw a card.
-mana={2}{U}
-type=Creature
-subtype=Imp
-power=1
-toughness=1
 [/card]
 [card]
 name=Teferi's Response
@@ -18261,11 +18025,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Thespian's Stage
-text={T}: Add {1} to your mana pool. -- {2}, {T}: Thespian's Stage becomes a copy of target land and gains this ability.
-type=Land
-[/card]
-[card]
 name=Thick-Skinned Goblin
 text=You may pay {0} rather than pay the echo cost for permanents you control. -- {R}: Thick-Skinned Goblin gains protection from red until end of turn.
 mana={1}{R}
@@ -18380,15 +18139,6 @@ name=Three Wishes
 text=Exile the top three cards of your library face down. You may look at those cards for as long as they remain exiled. Until your next turn, you may play those cards. At the beginning of your next upkeep, put any of those cards you didn't play into your graveyard.
 mana={1}{U}{U}
 type=Instant
-[/card]
-[card]
-name=Thromok the Insatiable
-text=Devour X, where X is the number of creatures devoured this way (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with X +1/+1 counters on it for each of those creatures.)
-mana={3}{R}{G}
-type=Legendary Creature
-subtype=Hellion
-power=0
-toughness=0
 [/card]
 [card]
 name=Throne of the High City
@@ -18829,15 +18579,6 @@ type=Plane
 subtype=Ergamon
 [/card]
 [card]
-name=Trumpeting Armodon
-text={1}{G}: Target creature blocks Trumpeting Armodon this turn if able.
-mana={3}{G}
-type=Creature
-subtype=Elephant
-power=3
-toughness=3
-[/card]
-[card]
 name=Truth or Tale
 text=Reveal the top five cards of your library and separate them into two piles. An opponent chooses one of those piles. Put a card from the chosen pile into your hand, then put all other cards revealed this way on the bottom of your library in any order.
 mana={1}{U}
@@ -18896,16 +18637,6 @@ name=Turn the Tables
 text=All combat damage that would be dealt to you this turn is dealt to target attacking creature instead.
 mana={3}{W}{W}
 type=Instant
-[/card]
-[card]
-name=Turntimber Basilisk
-abilities=deathtouch
-text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- Landfall — Whenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
-mana={1}{G}{G}
-type=Creature
-subtype=Basilisk
-power=2
-toughness=1
 [/card]
 [card]
 name=Turri Island
@@ -19113,15 +18844,6 @@ name=Unstable Footing
 text=Kicker {3}{R} (You may pay an additional {3}{R} as you cast this spell.) -- Damage can't be prevented this turn. If Unstable Footing was kicked, it deals 5 damage to target player.
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Unstable Shapeshifter
-text=Whenever another creature enters the battlefield, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
-mana={3}{U}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=1
 [/card]
 [card]
 name=Unsubstantiate

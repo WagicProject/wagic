@@ -1,0 +1,29 @@
+#Life Gain Angel of Vitality 3
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Plains, Plains, Plains, Angel of Vitality, Impassioned Orator
+hand:Angel of Vitality
+manapool:{1}{W}{W}
+[PLAYER2]
+[DO]
+Angel of Vitality
+next
+#attack
+next
+Angel of Vitality
+next
+#damage
+next
+#end
+eot
+#untap
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Plains, Plains, Plains, Angel of Vitality, Impassioned Orator, Savannah Sage
+hand:
+life:23
+[PLAYER2]
+life:18
+[END]

@@ -236,6 +236,13 @@ void GameStateOptions::Render()
         JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
+#else
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("pspbgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("pspbgdeckeditor.jpg");
+        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
 #endif
     const char * const CreditsText[] = {
         "Wagic, The Homebrew?! by Wololo",
@@ -249,9 +256,10 @@ void GameStateOptions::Render()
         "Check themeinfo.txt for the full credits of each theme!",
         "",
         "Dev Team:",
-        "Abrasax, Almosthumane, Daddy32, DJardin, Dr.Solomat, J, Jeck,",
-        "kevlahnota, Leungclj, linshier, Mootpoint, Mnguyen, Ph34rbot,", 
-        "Psyringe, Rolzad73, Salmelo, Superhiro, Wololo, Yeshua, Zethfox",
+        "Abrasax, Almosthumane, Daddy32, DJardin, Dr.Solomat,",
+		"J, Jeck, kevlahnota, Leungclj, linshier, Mootpoint,",
+		"Mnguyen, Ph34rbot, Psyringe, Rolzad73, Salmelo, Superhiro,",
+		"Wololo, Yeshua, Zethfox, Vitty85",
         "",
         "Music by Celestial Aeon Project, http://www.jamendo.com",
         "",

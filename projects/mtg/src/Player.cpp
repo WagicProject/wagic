@@ -159,7 +159,7 @@ ManaPool * Player::getManaPool()
     return manaPool;
 }
 
-int Player::gainOrLoseLife(int value)
+int Player::gainOrLoseLife(int value, MTGCardInstance* source)
 {
     if (!value)
         return 0; //Don't do anything if there's no actual life change
@@ -179,30 +179,30 @@ int Player::gainOrLoseLife(int value)
     }
 
     //Send life event to listeners
-    WEvent * lifed = NEW WEventLife(this,value);
+    WEvent * lifed = NEW WEventLife(this, value, source);
     observer->receiveEvent(lifed);
 
     return value;
 }
 
-int Player::gainLife(int value)
+int Player::gainLife(int value, MTGCardInstance* source)
 {
     if (value <0)
     {
         DebugTrace("PLAYER.CPP: don't call gainLife on a negative value, use loseLife instead");
         return 0;
     }
-    return gainOrLoseLife(value);
+    return gainOrLoseLife(value, source);
 }
 
-int Player::loseLife(int value)
+int Player::loseLife(int value, MTGCardInstance* source)
 {
     if (value <0)
     {
         DebugTrace("PLAYER.CPP: don't call loseLife on a negative value, use gainLife instead");
         return 0;
     }
-    return gainOrLoseLife(-value);
+    return gainOrLoseLife(-value, source);
 }
 
 int Player::afterDamage()

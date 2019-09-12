@@ -149,8 +149,13 @@ void GameStateMenu::Start()
     //Manual clean up of some cache Data. Ideally those should clean themselves up, so this is kind of a hack for now
     WResourceManager::Instance()->ClearUnlocked();
 
+#if defined (PSP)
+    bgTexture = WResourceManager::Instance()->RetrieveTexture("pspmenutitle.png", RETRIEVE_LOCK);
+    mBg = WResourceManager::Instance()->RetrieveQuad("pspmenutitle.png", 0, 0, 0, 0); // Create background quad for rendering.
+#else
     bgTexture = WResourceManager::Instance()->RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
     mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 0, 0); // Create background quad for rendering.
+#endif
 
     if (mBg)
         mBg->SetHotSpot(mBg->mWidth/2, 0);
