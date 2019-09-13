@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 
 import android.graphics.*;
 import android.app.ProgressDialog;
@@ -47,10 +46,9 @@ public class ImgDownloader {
 
     static HashMap<String, HashMap<String, String>> database;
 
-    public static boolean loadDatabase(String path) {
+    public static boolean loadDatabase(String path, String databaseurl) {
         database = new HashMap<String, HashMap<String, String>>();
         try {
-            String databaseurl = "https://github.com/Vitty85/wagic/releases/download/wagic-v0.21.1/CardImageLinks.csv";
             URL url = new URL(databaseurl);
             HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
             if (httpcon == null) {
@@ -549,12 +547,24 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/M15/-109-hr.jpg";
         else if (id.equals("383290t"))
             cardurl = "https://deckmaster.info/images/cards/M15/-108-hr.jpg";
-        else if (id.equals("74272"))
-            cardurl = "https://img.scryfall.com/cards/large/front/4/5/45af7f55-9a69-43dd-969f-65411711b13e.jpg?1562487939";
         else if (id.equals("378445t"))
             cardurl = "https://deckmaster.info/images/cards/BNG/-11-hr.jpg";
         else if (id.equals("378521t"))
             cardurl = "https://deckmaster.info/images/cards/DDO/394383-hr.jpg";
+        else if(id.equals("16699t"))
+            cardurl = "https://deckmaster.info/images/cards/NPH/-205-hr.jpg";
+        else if(id.equals("16708t"))
+            cardurl = "https://deckmaster.info/images/cards/M10/-292-hr.jpg";
+        else if(id.equals("16710t"))
+            cardurl = "https://deckmaster.info/images/cards/M11/-238-hr.jpg";
+        else if(id.equals("16717t"))
+            cardurl = "https://deckmaster.info/images/cards/MBS/-212-hr.jpg";
+        else if(id.equals("16718t"))
+            cardurl = "http://1.bp.blogspot.com/-0-mLvfUVgNk/VmdZWXWxikI/AAAAAAAAAUM/TVCIiZ_c67g/s1600/Spawn%2BToken.jpg";
+        else if(id.equals("16729t"))
+            cardurl = "https://deckmaster.info/images/cards/MRD/-2829-hr.jpg";
+        else if (id.equals("74272"))
+            cardurl = "https://img.scryfall.com/cards/large/front/4/5/45af7f55-9a69-43dd-969f-65411711b13e.jpg?1562487939";
         else if (id.equals("687701"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2437-hr.jpg";
         else if (id.equals("687702"))
@@ -1253,7 +1263,15 @@ public class ImgDownloader {
         throw new Exception();
     }
 
-    public static String DownloadCardImages(String set, String[] availableSets, String targetres, String basePath, String destinationPath, ProgressDialog progressBarDialog, SDLActivity parent) throws IOException {
+    public static String DownloadCardImages(String set, String[] availableSets, String targetres, String basePath, String destinationPath, ProgressDialog progressBarDialog, SDLActivity parent, boolean skipDownloaded) throws IOException {
+        try {
+            File oldzip = new File(destinationPath + File.separator + set + File.separator + set + ".zip");
+            if(oldzip.exists() && skipDownloaded)
+                return "";
+            else
+                oldzip.delete();
+        } catch (Exception e) {
+        }
         String res = "";
 
         String baseurl = "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=";
@@ -1581,46 +1599,136 @@ public class ImgDownloader {
             if (id.endsWith("t"))
                 continue;
             Document doc = null;
-            try {
-                doc = Jsoup.connect(baseurl + id).get();
-            } catch (Exception e) {
-                System.out.println("Warning: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 2 times more...");
+            String cardname = "";
+            Elements divs = new Elements();
+            int k;
+            if(scryset.equals("TD2")){
                 try {
-                    doc = Jsoup.connect(baseurl + id).get();
-                } catch (Exception e2) {
-                    System.out.println("Warning: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 1 time more...");
+                    doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                    Elements outlinks = doc.select("body a");
+                    if (outlinks != null) {
+                        for (int h = 0; h < outlinks.size(); h++) {
+                            String linkcard = outlinks.get(h).attributes().get("href");
+                            if (linkcard != null && linkcard.contains(mappa.get(id).toLowerCase().replace(" ", "-"))) {
+                                try {
+                                    doc = Jsoup.connect(linkcard).get();
+                                    if (doc == null)
+                                        continue;
+                                    Elements metadata = doc.select("head meta");
+                                    if (metadata != null) {
+                                        for (int j = 0; j < metadata.size(); j++) {
+                                            if (metadata.get(j).attributes().get("content").toLowerCase().contains(mappa.get(id).toLowerCase())) {
+                                                h = outlinks.size();
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } catch (Exception ex) {
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 2 times more...");
                     try {
-                        doc = Jsoup.connect(baseurl + id).get();
-                    } catch (Exception e3) {
-                        System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
-                        res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
-                        continue;
+                        doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                        Elements outlinks = doc.select("body a");
+                        if (outlinks != null) {
+                            for (int h = 0; h < outlinks.size(); h++) {
+                                String linkcard = outlinks.get(h).attributes().get("href");
+                                if (linkcard != null && linkcard.contains(mappa.get(id).toLowerCase().replace(" ", "-"))) {
+                                    try {
+                                        doc = Jsoup.connect(linkcard).get();
+                                        if (doc == null)
+                                            continue;
+                                        Elements metadata = doc.select("head meta");
+                                        if (metadata != null) {
+                                            for (int j = 0; j < metadata.size(); j++) {
+                                                if (metadata.get(j).attributes().get("content").toLowerCase().contains(mappa.get(id).toLowerCase())) {
+                                                    h = outlinks.size();
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    } catch (Exception ex) {
+                                    }
+                                }
+                            }
+                        }
+                    } catch (Exception e2) {
+                        System.out.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will retry 1 time more...");
+                        try {
+                            doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
+                            Elements outlinks = doc.select("body a");
+                            if (outlinks != null) {
+                                for (int h = 0; h < outlinks.size(); h++) {
+                                    String linkcard = outlinks.get(h).attributes().get("href");
+                                    if (linkcard != null && linkcard.contains(mappa.get(id).toLowerCase().replace(" ", "-"))) {
+                                        try {
+                                            doc = Jsoup.connect(linkcard).get();
+                                            if (doc == null)
+                                                continue;
+                                            Elements metadata = doc.select("head meta");
+                                            if (metadata != null) {
+                                                for (int j = 0; j < metadata.size(); j++) {
+                                                    if (metadata.get(j).attributes().get("content").toLowerCase().contains(mappa.get(id).toLowerCase())) {
+                                                        h = outlinks.size();
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        } catch (Exception ex) {
+                                        }
+                                    }
+                                }
+                            }
+                        } catch (Exception e3) {
+                            System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
+                            res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
+                            continue;
+                        }
                     }
                 }
-            }
-            if (doc == null) {
-                System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
-                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
-                continue;
-            }
-            Elements divs = doc.select("body div");
-            if (divs == null) {
-                System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
-                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
-                continue;
-            }
+            } else {
+                try {
+                    doc = Jsoup.connect(baseurl + id).get();
+                } catch (Exception e) {
+                    System.out.println("Warning: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 2 times more...");
+                    try {
+                        doc = Jsoup.connect(baseurl + id).get();
+                    } catch (Exception e2) {
+                        System.out.println("Warning: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will retry 1 time more...");
+                        try {
+                            doc = Jsoup.connect(baseurl + id).get();
+                        } catch (Exception e3) {
+                            System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i will not retry anymore...");
+                            res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
+                            continue;
+                        }
+                    }
+                }
+                if (doc == null) {
+                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
+                    res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
+                    continue;
+                }
+                divs = doc.select("body div");
+                if (divs == null) {
+                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
+                    res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
+                    continue;
+                }
 
-            int k;
-            for (k = 0; k < divs.size(); k++)
-                if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card name"))
-                    break;
-            if (k >= divs.size()) {
-                System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
-                res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
-                continue;
+                for (k = 0; k < divs.size(); k++)
+                    if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card name"))
+                        break;
+                if (k >= divs.size()) {
+                    System.err.println("Error: Problem reading card (" + mappa.get(id) + ") infos from: " + baseurl + id + ", i can't download it...");
+                    res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
+                    continue;
+                }
+                cardname = divs.get(k + 1).childNode(0).attributes().get("#text").replace("\r\n", "").trim();
             }
-            String cardname = divs.get(k + 1).childNode(0).attributes().get("#text").replace("\r\n", "").trim();
-
             while (parent.paused && parent.downloadInProgress) {
                 try {
                     Thread.sleep(1000);
@@ -1656,7 +1764,7 @@ public class ImgDownloader {
                         }
                     }
                 }
-            } else if (targetres.equals("High")) {
+            } else if (targetres.equals("High") && !scryset.equals("TD2")) {
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -1743,7 +1851,7 @@ public class ImgDownloader {
                         }
                     }
                 }
-            } else {
+            } else if (!scryset.equals("TD2")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -2261,11 +2369,6 @@ public class ImgDownloader {
 
         if (parent.downloadInProgress) {
             try {
-                try {
-                    File oldzip = new File(destinationPath + File.separator + set + File.separator + set + ".zip");
-                    oldzip.delete();
-                } catch (Exception e) {
-                }
                 ZipParameters zipParameters = new ZipParameters();
                 zipParameters.setCompressionMethod(CompressionMethod.STORE);
                 File folder = new File(destinationPath + set + File.separator);

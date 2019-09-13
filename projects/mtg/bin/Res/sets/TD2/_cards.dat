@@ -1,0 +1,481 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Mirrodin Pure vs. New Phyrexia
+year=2011-05-12
+total=88
+[/meta]
+[card]
+primitive=Platinum Angel
+id=16650
+rarity=M
+[/card]
+[card]
+primitive=Memnite
+id=16651
+rarity=U
+[/card]
+[card]
+primitive=Steel Wall
+id=16652
+rarity=C
+[/card]
+[card]
+primitive=Ardent Recruit
+id=16653
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Certarch
+id=16654
+rarity=C
+[/card]
+[card]
+primitive=Gold Myr
+id=16655
+rarity=C
+[/card]
+[card]
+primitive=Myr Retriever
+id=16656
+rarity=U
+[/card]
+[card]
+primitive=Silver Myr
+id=16657
+rarity=C
+[/card]
+[card]
+primitive=Trinket Mage
+id=16658
+rarity=U
+[/card]
+[card]
+primitive=Grand Architect
+id=16659
+rarity=R
+[/card]
+[card]
+primitive=Silent Arbiter
+id=16660
+rarity=R
+[/card]
+[card]
+primitive=Glimmerpoint Stag
+id=16661
+rarity=U
+[/card]
+[card]
+primitive=Argent Sphinx
+id=16662
+rarity=R
+[/card]
+[card]
+primitive=Kuldotha Forgemaster
+id=16663
+rarity=R
+[/card]
+[card]
+primitive=Spire Serpent
+id=16664
+rarity=C
+[/card]
+[card]
+primitive=Darksteel Sentinel
+id=16665
+rarity=U
+[/card]
+[card]
+primitive=Duplicant
+id=16666
+rarity=R
+[/card]
+[card]
+primitive=Lumengrid Gargoyle
+id=16667
+rarity=U
+[/card]
+[card]
+primitive=Darksteel Gargoyle
+id=16668
+rarity=U
+[/card]
+[card]
+primitive=Bonesplitter
+id=16669
+rarity=C
+[/card]
+[card]
+primitive=Slagwurm Armor
+id=16670
+rarity=C
+[/card]
+[card]
+primitive=Condemn
+id=16671
+rarity=U
+[/card]
+[card]
+primitive=Dispatch
+id=16672
+rarityU
+[/card]
+[card]
+primitive=Steelshaper's Gift
+id=16673
+rarity=U
+[/card]
+[card]
+primitive=Neurok Stealthsuit
+id=16674
+rarity=C
+[/card]
+[card]
+primitive=Talisman of Progress
+id=16675
+rarity=U
+[/card]
+[card]
+primitive=Viridian Claw
+id=16676
+rarity=U
+[/card]
+[card]
+primitive=Purge
+id=16677
+rarity=U
+[/card]
+[card]
+primitive=Test of Faith
+id=16678
+rarity=U
+[/card]
+[card]
+primitive=Turn the Tide
+id=16679
+rarity=C
+[/card]
+[card]
+primitive=Thunderstaff
+id=16680
+rarity=U
+[/card]
+[card]
+primitive=Arrest
+id=16681
+rarity=C
+[/card]
+[card]
+primitive=Thirst for Knowledge
+id=16682
+rarity=U
+[/card]
+[card]
+primitive=Stoic Rebuttal
+id=16683
+rarity=C
+[/card]
+[card]
+primitive=White Sun's Zenith
+id=16684
+rarity=R
+[/card]
+[card]
+primitive=Ancient Den
+id=16685
+rarity=C
+[/card]
+[card]
+primitive=Blinkmoth Nexus
+id=16686
+rarity=R
+[/card]
+[card]
+primitive=Coastal Tower
+id=16687
+rarity=U
+[/card]
+[card]
+primitive=Forbidding Watchtower
+id=16688
+rarity=U
+[/card]
+[card]
+primitive=Seat of the Synod
+id=16689
+rarity=C
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=16690
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=16691
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=16692
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=16693
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=16694
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=16695
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=16696
+rarity=L
+[/card]
+[card]
+primitive=Phyrexian Plaguelord
+id=16697
+rarity=M
+[/card]
+[card]
+primitive=Fume Spitter
+id=16698
+rarity=C
+[/card]
+[card]
+primitive=Myr Sire
+id=16699
+rarity=C
+[/card]
+[card]
+primitive=Plague Myr
+id=16700
+rarity=U
+[/card]
+[card]
+primitive=Viridian Emissary
+id=16701
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Ghoul
+id=16702
+rarity=C
+[/card]
+[card]
+primitive=Rot Wolf
+id=16703
+rarity=C
+[/card]
+[card]
+primitive=Necroskitter
+id=16704
+rarity=R
+[/card]
+[card]
+primitive=Viridian Corrupter
+id=16705
+rarity=U
+[/card]
+[card]
+primitive=Desecration Elemental
+id=16706
+rarity=R
+[/card]
+[card]
+primitive=Flesh-Eater Imp
+id=16707
+rarity=U
+[/card]
+[card]
+primitive=Symbiotic Elf
+id=16708
+rarity=C
+[/card]
+[card]
+primitive=Soul Snuffers
+id=16709
+rarity=U
+[/card]
+[card]
+primitive=Mitotic Slime
+id=16710
+rarity=R
+[/card]
+[card]
+primitive=Plaguemaw Beast
+id=16711
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Juggernaut
+id=16712
+rarity=U
+[/card]
+[card]
+primitive=Drooling Groodion
+id=16713
+rarity=U
+[/card]
+[card]
+primitive=Protean Hulk
+id=16714
+rarity=R
+[/card]
+[card]
+primitive=Innocent Blood
+id=16715
+rarity=C
+[/card]
+[card]
+primitive=Contagion Clasp
+id=16716
+rarity=U
+[/card]
+[card]
+primitive=Mortarpod
+id=16717
+rarity=U
+[/card]
+[card]
+primitive=Spawning Pit
+id=16718
+rarity=U
+[/card]
+[card]
+primitive=Exhume
+id=16719
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Altar
+id=16720
+rarity=R
+[/card]
+[card]
+primitive=Morbid Plunder
+id=16721
+rarity=C
+[/card]
+[card]
+primitive=Putrefy
+id=16722
+rarity=U
+[/card]
+[card]
+primitive=Grafted Exoskeleton
+id=16723
+rarity=U
+[/card]
+[card]
+primitive=Diabolic Servitude
+id=16724
+rarity=U
+[/card]
+[card]
+primitive=Barter in Blood
+id=16725
+rarity=U
+[/card]
+[card]
+primitive=Reprocess
+id=16726
+rarity=R
+[/card]
+[card]
+primitive=Triumph of the Hordes
+id=16727
+rarity=U
+[/card]
+[card]
+primitive=Spread the Sickness
+id=16728
+rarity=C
+[/card]
+[card]
+primitive=One Dozen Eyes
+id=16729
+rarity=U
+[/card]
+[card]
+primitive=Black Sun's Zenith
+id=16730
+rarity=R
+[/card]
+[card]
+primitive=Tainted Wood
+id=16731
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=16732
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=16733
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=16734
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=16735
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=16736
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=16737
+rarity=L
+[/card]
+[card]
+primitive=Cat
+id=-16684
+rarity=T
+[/card]
+[card]
+primitive=Myr
+id=-16699
+rarity=T
+[/card]
+[card]
+primitive=Insect
+id=-16708
+rarity=T
+[/card]
+[card]
+primitive=Ooze
+id=-16710
+rarity=T
+[/card]
+[card]
+primitive=Germ
+id=-16717
+rarity=T
+[/card]
+[card]
+primitive=Spawn
+id=-16718
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-16729
+rarity=T
+[/card]

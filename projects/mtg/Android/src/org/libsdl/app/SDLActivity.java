@@ -9,15 +9,12 @@ import android.os.StrictMode;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -31,7 +28,6 @@ import net.wagic.utils.DeckImporter;
 import net.wagic.utils.ImgDownloader;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.widget.ListView;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -54,7 +50,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,8 +89,8 @@ public class SDLActivity extends Activity implements OnKeyListener {
     public String mErrorMessage = "";
     public Boolean mErrorHappened = false;
     public final static String RES_FOLDER = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
-    public static String RES_FILENAME = "core_0211.zip";
-    public static String RES_URL = "https://github.com/Vitty85/wagic/releases/download/wagic-v0.21.1/core_0211.zip";
+    public static String RES_FILENAME = "";
+    public static String databaseurl = "https://github.com/WagicProject/wagic/releases/download/wagic-v0.22.1/CardImageLinks.csv";
 
     public String systemFolder = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
     private String userFolder = Environment.getExternalStorageDirectory().getPath() + "/Wagic/User/";
@@ -338,8 +333,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
     }
 
     private void startDownload() {
-        //String url = getResourceUrl();
-        String url = RES_URL;
+        String url = getResourceUrl();
         if (!checkStorageState()) {
             Log.e(TAG, "Error in initializing storage space.");
             mSingleton.downloadError("Failed to initialize storage space for game. Please verify that your sdcard or internal memory is mounted properly.");
@@ -384,7 +378,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                     File[] listOfFiles = baseFolder.listFiles();
                     ZipFile zipFile = null;
                     try {
-                        zipFile = new ZipFile(baseFolder + "/" + listOfFiles[0].getName());
+                        zipFile = new ZipFile(baseFolder + "/" + RES_FILENAME);
                         Enumeration<? extends ZipEntry> e = zipFile.entries();
                         while (e.hasMoreElements()) {
                             ZipEntry entry = e.nextElement();
@@ -437,7 +431,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         new Thread(new Runnable() {
             public void run() {
-                fast = ImgDownloader.loadDatabase(getSystemStorageLocation());
+                fast = ImgDownloader.loadDatabase(getSystemStorageLocation(), databaseurl);
             }
         }).start();
 
@@ -452,7 +446,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
             infoDialog.setNegativeButton("Retry", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    fast = ImgDownloader.loadDatabase(getSystemStorageLocation());
+                    fast = ImgDownloader.loadDatabase(getSystemStorageLocation(), databaseurl);
                     showWarningFast();
                 }
             });
@@ -531,7 +525,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         resChooser.setPositiveButton("Start Download", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                downloadCardImagesStart();
+                skipDownloadedSets();
             }
         });
 
@@ -544,12 +538,35 @@ public class SDLActivity extends Activity implements OnKeyListener {
         resChooser.create().show();
     }
 
+    private void skipDownloadedSets() {
+        AlertDialog.Builder skipChooser = new AlertDialog.Builder(this);
+
+        skipChooser.setTitle("Do you want to overwrite existing sets?");
+
+        skipChooser.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                skipDownloaded = false;
+                downloadCardImagesStart();
+            }
+        });
+
+        skipChooser.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                skipDownloaded = true;
+                downloadCardImagesStart();
+            }
+        });
+
+        skipChooser.create().show();
+    }
+
     boolean error = false;
+    boolean skipDownloaded = false;
     String res = "";
     public volatile boolean downloadInProgress = false;
     public volatile boolean paused = false;
     ProgressDialog cardDownloader;
-
+    volatile int currentIndex = 0;
     private void downloadCardImagesStart() {
         final SDLActivity parent = this;
         final Handler mHandler = new Handler();
@@ -567,7 +584,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                 downloadInProgress = true;
                 paused = false;
                 if (selectedSets != null) {
-                    for (int i = 0; i < selectedSets.size() && downloadInProgress; i++) {
+                    for (currentIndex = 0; currentIndex < selectedSets.size() && downloadInProgress; currentIndex++) {
                         while (paused) {
                             try {
                                 Thread.sleep(1000);
@@ -577,13 +594,13 @@ public class SDLActivity extends Activity implements OnKeyListener {
                                 break;
                         }
                         try {
-                            set = selectedSets.get(i);
+                            set = selectedSets.get(currentIndex);
                             mHandler.post(new Runnable() {
                                 public void run() {
-                                    cardDownloader.setTitle("Downloading set: " + set);
+                                    cardDownloader.setTitle("Downloading set: " + set + " (" + (currentIndex + 1) + " of " + selectedSets.size() + ")");
                                 }
                             });
-                            String details = ImgDownloader.DownloadCardImages(set, availableSets, targetRes, getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader, parent);
+                            String details = ImgDownloader.DownloadCardImages(set, availableSets, targetRes, getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader, parent, skipDownloaded);
                             if (!details.isEmpty()) {
                                 if (!res.isEmpty())
                                     res = res + "\nSET " + set + ":\n" + details;
@@ -672,6 +689,8 @@ public class SDLActivity extends Activity implements OnKeyListener {
         res = "";
         set = "";
         targetRes = "High";
+        skipDownloaded = false;
+        currentIndex = 0;
         selectedSets = new ArrayList<String>();
         for (int i = 0; i < checkedSet.length; i++) {
             checkedSet[i] = false;
@@ -695,6 +714,8 @@ public class SDLActivity extends Activity implements OnKeyListener {
         res = "";
         set = "";
         targetRes = "High";
+        skipDownloaded = false;
+        currentIndex = 0;
         selectedSets = new ArrayList<String>();
         for (int i = 0; i < checkedSet.length; i++) {
             checkedSet[i] = false;
@@ -814,7 +835,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
         // So we can call stuff from static callbacks
         mSingleton = this;
         mContext = this.getApplicationContext();
-        //RES_FILENAME = getResourceName();
+        RES_FILENAME = getResourceName();
         StorageOptions.determineStorageOptions();
         checkStorageLocationPreference();
     }
@@ -1092,10 +1113,10 @@ public class SDLActivity extends Activity implements OnKeyListener {
                 output.close();
                 input.close();
             } catch (Exception e) {
-                String errorMessage = "An error happened while downloading the resources. It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + mSingleton.getSystemStorageLocation() + ". Please check your phone settings and try again. For more help please go to http://wagic.net";
-                //mSingleton.downloadError(errorMessage);
-                //Log.e(TAG, errorMessage);
-                //Log.e(TAG, e.getMessage());
+                String errorMessage = "An error happened while downloading the resources. It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + mSingleton.getSystemStorageLocation() + ". Please check your phone settings and try again. For more help please go to http://wololo.net/forum/";
+                mSingleton.downloadError(errorMessage);
+                Log.e(TAG, errorMessage);
+                Log.e(TAG, e.getMessage());
             }
 
             return Long.valueOf(totalBytes);
