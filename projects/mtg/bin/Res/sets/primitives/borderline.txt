@@ -880,3 +880,31 @@ subtype=Zombie Wizard
 power=2
 toughness=1
 [/card]
+[card]
+name=Diabolic Servitude
+auto=moveTo(myBattlefield) target(creature|mygraveyard)
+auto=soulbond @movedto(this|graveyard) from(battlefield):moveto(exile) && all(this) transforms((,newability[moveTo(ownerhand)]))
+auto=soulbond @movedto(this|graveyard) from(battlefield):moveto(exile)
+text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
+name=Protean Hulk
+aicode=activate moveTo(myBattlefield) target(<anyamount>creature[manacost<=6]|myLibrary)
+auto=@movedTo(this|graveyard) from(battlefield):name(Search any number of creatures with casting cost 6 or less) reveal:plibrarycount optionone name(Choose card) target(<anyamount>creature[manacost<=6]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put them back) target(<anyamount>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(activate castcard(putinplay))! afterrevealedend revealend
+text=When Protean Hulk dies, search your library for any number of creature cards with total converted mana cost 6 or less, put them onto the battlefield, then suffle your library.
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
+[/card]
+[card]
+name=Thunderstaff
+auto=@sourcenottap:each blockers:absorb:type:creature[attacking]:opponentbattlefield controller
+auto={2}{T}:lord(creature[attacking]) 1/0
+text=As long as Thunderstaff is untapped, if a creature would deal combate to you, prevent 1 of that damage. / {2},{T}: Attacking creatures get +1/+0 until end of turn.
+mana={3}
+type=Artifact
+[/card]

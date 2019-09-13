@@ -54,7 +54,7 @@ PRESS CIRCLE TO GO TO THE DECK EDITOR!=PREMI CERCHIO PER TORNARE AL DECK EDITOR!
 #Testo Ciclico:
 Interested in playing Momir Basic? You'll have to unlock it first :)=Ti interessa giocare alla modalita' Momir? Devi prima sbloccarla :).
 Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)=Ti piacciono gli equipaggiamenti e vuoi una vera sfida? Sblocca la Stone Hewer :)
-More cards and mods at http://wololo.net/wagic=Scarica le ultimae carte aggiornate online.
+More cards and mods at http://wololo.net/wagic=Scarica le ultime carte aggiornate online.
 The cards in your collection have an average value of %i credits=Le carte della tua collezione hanno un valore di %i crediti.
 The shopkeeper would buy your entire collection for around %i credits=Potresti vendere la tua intera collezione per circa %i crediti
 These stats will be updated next time you run Wagic=Queste satistiche saranno aggiornate la prossima volta che giocherai a Magic
