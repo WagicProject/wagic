@@ -1311,7 +1311,7 @@ public class ImgDownloader {
         InputStream stream = null;
         File filePath = null;
         try {
-            zipFile = new ZipFile(basePath + File.separator + listOfFiles[0].getName());
+            zipFile = new ZipFile(basePath + File.separator + parent.RES_FILENAME);
             Enumeration<? extends ZipEntry> e = zipFile.entries();
             while (e.hasMoreElements()) {
                 ZipEntry entry = e.nextElement();
