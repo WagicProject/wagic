@@ -906,6 +906,8 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/MI/-2828-hr.jpg";
         else if (id.equals("21382t"))
             tokenurl = "https://deckmaster.info/images/cards/PR/-2835-hr.jpg";
+        else if (id.equals("416746t"))
+            tokenurl = "https://deckmaster.info/images/cards/V16/-3110-hr.jpg";
         else if (id.equals("46168t"))
             tokenurl = "https://deckmaster.info/images/cards/KLD/-3287-hr.jpg";
         else if (id.equals("423843t") || id.equals("423739t") || id.equals("423718t") || id.equals("423736t") ||
@@ -932,7 +934,7 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/GK1_DIMIR/-6541-hr.jpg";
         else if (id.equals("116384t") || id.equals("376564t"))
             tokenurl = "https://deckmaster.info/images/cards/TSP/-114916-hr.jpg";
-        else if (id.equals("5610t"))
+        else if (id.equals("5610t") || id.equals("416754t"))
             tokenurl = "https://deckmaster.info/images/cards/DDE/207998-hr.jpg";
         else if (id.equals("5173t"))
             tokenurl = "https://deckmaster.info/images/cards/DDE/209163-hr.jpg";

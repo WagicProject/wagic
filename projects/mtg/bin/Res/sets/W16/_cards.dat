@@ -1,0 +1,86 @@
+[meta]
+author=Wagic Team
+name=Welcome Deck 2016
+year=2016-04-08
+total=16
+[/meta]
+[card]
+primitive=Aegis Angel
+id=413367
+rarity=R
+[/card]
+[card]
+primitive=Marked by Honor
+id=413368
+rarity=C
+[/card]
+[card]
+primitive=Serra Angel
+id=413369
+rarity=U
+[/card]
+[card]
+primitive=Air Servant
+id=413370
+rarity=U
+[/card]
+[card]
+primitive=Disperse
+id=413371
+rarity=C
+[/card]
+[card]
+primitive=Sphinx of Magosi
+id=413372
+rarity=R
+[/card]
+[card]
+primitive=Mind Rot
+id=413373
+rarity=C
+[/card]
+[card]
+primitive=Nightmare
+id=413374
+rarity=R
+[/card]
+[card]
+primitive=Sengir Vampire
+id=413375
+rarity=U
+[/card]
+[card]
+primitive=Walking Corpse
+id=413376
+rarity=C
+[/card]
+[card]
+primitive=Borderland Marauder
+id=413377
+rarity=C
+[/card]
+[card]
+primitive=Cone of Flame
+id=413378
+rarity=U
+[/card]
+[card]
+primitive=Shivan Dragon
+id=413379
+rarity=R
+[/card]
+[card]
+primitive=Incremental Growth
+id=413380
+rarity=U
+[/card]
+[card]
+primitive=Oakenform
+id=413381
+rarity=C
+[/card]
+[card]
+primitive=Soul of the Harvest
+id=413382
+rarity=R
+[/card]
