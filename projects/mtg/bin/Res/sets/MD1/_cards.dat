@@ -1,0 +1,136 @@
+[meta]
+author=Wagic Team
+name=Modern Event Deck
+year=2014-05-30
+total=26
+[/meta]
+[card]
+primitive=Soul Warden
+id=382197
+rarity=C
+[/card]
+[card]
+primitive=Tidehollow Sculler
+id=382201
+rarity=U
+[/card]
+[card]
+primitive=Path to Exile
+id=382192
+rarity=U
+[/card]
+[card]
+primitive=Inquisition of Kozilek
+id=382187
+rarity=U
+[/card]
+[card]
+primitive=Shrine of Loyal Legions
+id=382196
+rarity=U
+[/card]
+[card]
+primitive=Honor of the Pure
+id=382186
+rarity=R
+[/card]
+[card]
+primitive=Intangible Virtue
+id=382188
+rarity=U
+[/card]
+[card]
+primitive=Raise the Alarm
+id=382194
+rarity=C
+[/card]
+[card]
+primitive=Zealous Persecution
+id=382204
+rarity=U
+[/card]
+[card]
+primitive=Sword of Feast and Famine
+id=382200
+rarity=M
+[/card]
+[card]
+primitive=Lingering Souls
+id=382191
+rarity=U
+[/card]
+[card]
+primitive=Spectral Procession
+id=382198
+rarity=U
+[/card]
+[card]
+primitive=Elspeth, Knight-Errant
+id=382184
+rarity=M
+[/card]
+[card]
+primitive=Caves of Koilos
+id=382180
+rarity=R
+[/card]
+[card]
+primitive=City of Brass
+id=382181
+rarity=R
+[/card]
+[card]
+primitive=Isolated Chapel
+id=382189
+rarity=R
+[/card]
+[card]
+primitive=Vault of the Archangel
+id=382202
+rarity=R
+[/card]
+[card]
+primitive=Windbrisk Heights
+id=382203
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=382193
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=382199
+rarity=L
+[/card]
+[card]
+primitive=Relic of Progenitus
+id=382195
+rarity=U
+[/card]
+[card]
+primitive=Burrenton Forge-Tender
+id=382179
+rarity=U
+[/card]
+[card]
+primitive=Duress
+id=382183
+rarity=C
+[/card]
+[card]
+primitive=Kataki, War's Wage
+id=382190
+rarity=R
+[/card]
+[card]
+primitive=Dismember
+id=382182
+rarity=U
+[/card]
+[card]
+primitive=Ghost Quarter
+id=382185
+rarity=U
+[/card]
