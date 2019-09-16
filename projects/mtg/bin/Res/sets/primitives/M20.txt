@@ -421,8 +421,9 @@ toughness=1
 [/card]
 [card]
 name=Loxodon Lifechanter
-auto={5}{W}:thisforeach(controllerlife) 1/1
-text=When Loxodon Lifechanter enters the battlefield, you may have your life total become the total toughness of creatures you control. -- 5{W}: Loxodon Lifechanter gets +X/+X until end of turn, where X is your life total.
+auto=may lifeset:toughnesstotalinplay controller
+auto={5}{W}:lifetotal/lifetotal ueot
+text=When Loxodon Lifechanter enters the battlefield, you may have your life total become the total toughness of creatures you control. -- {5}{W}: Loxodon Lifechanter gets +X/+X until end of turn, where X is your life total.
 mana={5}{W}
 type=Creature
 subtype=Elephant Cleric
@@ -973,7 +974,7 @@ toughness=2
 [card]
 name=Bloodthirsty Aerialist
 abilities=flying
-auto=@lifeof(player) except(Angel of Vitality): counter(1/1,1)
+auto=@lifeof(player): counter(1/1,1)
 text=Flying -- Whenever you gain life, put a +1/+1 counter on Bloodthirsty Aerialist.
 mana={1}{B}{B}
 type=Creature
@@ -1626,7 +1627,7 @@ toughness=2
 [/card]
 [card]
 name=Twinblade Paladin
-auto=@lifeof(player) except(Angel of Vitality): counter(1/1)
+auto=@lifeof(player): counter(1/1)
 auto=this(controllerlife > 24) double strike
 text=Whenever you gain life, put a +1/+1 counter on Twinblade Paladin. -- As long as you have 25 or more life, Twinblade Paladin has double strike. (It deals both first-strike and regular combat damage.)
 mana={3}{W}
