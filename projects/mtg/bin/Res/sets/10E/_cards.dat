@@ -1919,3 +1919,8 @@ primitive=Youthful Knight
 id=129790
 rarity=C
 [/card]
+[card]
+primitive=Zombie
+id=-4143881
+rarity=T
+[/card]

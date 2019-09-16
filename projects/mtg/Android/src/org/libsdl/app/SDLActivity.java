@@ -515,7 +515,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
         AlertDialog.Builder resChooser = new AlertDialog.Builder(this);
 
         resChooser.setTitle("Which resolution would you like to use?");
-        final String[] availableRes = new String[]{"High - (672x936)", "Medium - (488x680)", "Low - (244x340)", "Tiny - (280x255)"};
+        final String[] availableRes = new String[]{"High - (672x936)", "Medium - (488x680)", "Low - (244x340)", "Tiny - (180x255)"};
 
         resChooser.setSingleChoiceItems(availableRes, 0, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
