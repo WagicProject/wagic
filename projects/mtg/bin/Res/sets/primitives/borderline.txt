@@ -1,16 +1,5 @@
 grade=borderline
 [card]
-name=Liliana of the Veil
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
-auto={C(0/0,-2,Loyalty)}:name(-2: sacrifice creature) target(creature|opponentbattlefield) sacrifice opponent
-auto={C(0/0,-6,Loyalty)}:name(-6: sacrifice half) target(<halfuptype:*:opponentbattlefield>*|opponentbattlefield) sacrifice opponent
-text=+1: each player discards a card -- -2: target player sacrifices a creature -- -6: an opponent sacrifices half the permanents they control rounded up
-mana={1}{B}{B}
-type=Planeswalker
-subtype=Liliana
-[/card]
-[card]
 name=Bogardan Hellkite
 abilities=flash,flying
 auto=ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
@@ -20,6 +9,17 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
+[/card]
+[card]
+name=Liliana of the Veil
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
+auto={C(0/0,-2,Loyalty)}:name(-2: sacrifice creature) target(creature|opponentbattlefield) sacrifice opponent
+auto={C(0/0,-6,Loyalty)}:name(-6: sacrifice half) target(<halfuptype:*:opponentbattlefield>*|opponentbattlefield) sacrifice opponent
+text=+1: each player discards a card -- -2: target player sacrifices a creature -- -6: an opponent sacrifices half the permanents they control rounded up
+mana={1}{B}{B}
+type=Planeswalker
+subtype=Liliana
 [/card]
 [card]
 name=Frost Titan

@@ -1626,7 +1626,7 @@ toughness=2
 [/card]
 [card]
 name=Twinblade Paladin
-auto=@lifeof(player) except(Angel of Vitality):counter(1/1)
+auto=@lifeof(player) except(Angel of Vitality): counter(1/1)
 auto=this(controllerlife > 24) double strike
 text=Whenever you gain life, put a +1/+1 counter on Twinblade Paladin. -- As long as you have 25 or more life, Twinblade Paladin has double strike. (It deals both first-strike and regular combat damage.)
 mana={3}{W}
