@@ -4785,15 +4785,6 @@ mana={1}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Eager Construct
-text=When Eager Construct enters the battlefield, each player may scry 1. (To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
-mana={2}
-type=Artifact Creature
-subtype=Construct
-power=2
-toughness=2
-[/card]
-[card]
 name=Echo Chamber
 text={4}, {T}: An opponent chooses target creature he or she controls. Put a token that's a copy of that creature onto the battlefield. That token gains haste until end of turn. Exile the token at the beginning of the next end step. Activate this ability only any time you could cast a sorcery.
 mana={4}

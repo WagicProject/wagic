@@ -11,6 +11,82 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Militant Angel
+abilities=flying, lifelink
+auto=if (this[attacking]|mybattlefield)~morethan~0 then token(Knight,creature Knight,2/2,white,vigilance)
+text=Flying, Lifelink / When Militant Angel enters the battlefield, create a number of 2/2 white Knight creature tokens with vigilance equal to the number of opponents you attacked this turn.
+mana={3}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=4
+[/card]
+[card]
+name=Zahid, Djinn of the Lamp
+other={3}{U}{T(artifact|myBattlefield)} name(Pay and tap an artifact you control)
+abilities=flying
+text=You may pay {3}{U} and tap and untapped artifact you control rather than pay this spell's mana cost. / Flying.
+mana={4}{U}{U}
+type=Legendary Creature
+subtype=Djinn
+power=5
+toughness=6
+[/card]
+[card]
+name=Inspired Sphinx
+abilities=flying
+auto=if (this[attacking]|mybattlefield)~morethan~0 then draw:1
+auto={3}{U}:token(Thopter,artifact creature Thopter,1/1,artifact,flying)
+text=Flying / When Inspired Sphinx enters the battlefield, draw cards equal to the number of opponents you have. / {3}{U}: Create a 1/1 colorless Thopter artifact creature token with flying.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=5
+[/card]
+[card]
+name=Gruesome Fate
+auto=life:-type:creature:mybattlefield opponent
+text=Each opponent loses 1 life for each creature you control.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Rot Hulk
+abilities=menace
+auto=moveTo(myBattlefield) target(zombie|mygraveyard)
+text=Menace / When Rot Hulk enters the battlefield, return up to X target Zombie cards from your graveyard to the battlefield, where X is the number of opponents you have.
+mana={5}{B}{B}
+type=Creature
+subtype=Zombie
+power=5
+toughness=5
+[/card]
+[card]
+name=Avatar of Growth
+abilities=Trample
+anyzone=changecost(colorless:-1)
+auto=name(search a basic land) notatarget(<upto:2>land[basic]|opponentlibrary) moveTo(opponentbattlefield) && shuffle opponent
+auto=name(search a basic land) notatarget(<upto:2>land[basic]|mylibrary) moveTo(mybattlefield) && shuffle controller
+text=This spell cost {1} less to cast for each opponent you have. / Trample / When Avatar of Growth enters the battlefield, each player searches theri library for up to two basic land cards, puts them onto the battlefield, then shuffles their library.
+mana={4}{G}{G}
+type=Creature
+subtype=Elemental Avatar
+power=4
+toughness=4
+[/card]
+[card]
+name=Eager Construct
+auto=may scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto=may scry:1 scrycore delayed dontshow donothing scrycoreend scryend opponent
+text=When Eager Construct enters the battlefield, each player may scry 1.
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=2
+[/card]
+[card]
 name=Liliana of the Veil
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
