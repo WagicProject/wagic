@@ -929,6 +929,8 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/A25/-5648-hr.jpg";
         else if (id.equals("439843t"))
             tokenurl = "https://deckmaster.info/images/cards/RIX/-5473-hr.jpg";
+        else if(id.equals("447070t"))
+            tokenurl = "https://deckmaster.info/card.php?multiverseid=-5944";
         else if (id.equals("452760t"))
             tokenurl = "https://deckmaster.info/images/cards/M19/-6036.jpg";
         else if (id.equals("89110t"))
