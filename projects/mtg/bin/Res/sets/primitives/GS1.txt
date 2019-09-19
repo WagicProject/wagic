@@ -1,0 +1,292 @@
+grade=borderline
+[card]
+name=Mu Yanling
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,2,Loyalty)}:name(+2: Target creature can't be blocked) unblockable target(creature)
+auto={C(0/0,-3,Loyalty)}:name(-3: Draw two cards) draw:2
+auto={C(0/0,-10,Loyalty)}:name(-10: Tap all creatures and take and extra turn) tap all(creature|opponentbattlefield) && turns:+1 controller
+text=+2: Target creature can't be blocked this turn. -- -3: Draw two cards. -- -10: Tap all creatures your opponents control. You take an extra turn after this one.
+mana={4}{U}{U}
+type=Legendary Planeswalker
+subtype=Yanling
+[/card]
+[card]
+name=Mowu
+type=Token Legendary Creature
+subtype=Hound
+power=3
+toughness=3
+[/card]
+[card]
+name=Colorful Feiyi Sparrow
+abilities=flying
+text=Flying. (This creature can't be blocked except by creatures with flying or reach.)
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=3
+[/card]
+[card]
+name=Purple-Crystal Crab
+auto=@movedTo(this|graveyard) from(battlefield): draw:1
+text=When Purple-Crystal Crab dies, draw a card.
+mana={1}{U}
+type=Creature
+subtype=Crab
+power=1
+toughness=1
+[/card]
+[card]
+name=Vivid Flying Fish
+auto=lord(Vivid Flying Fish[attacking]|myBattlefield) flying
+text=Vivid Flying Fish has flying as long as it's attacking. (It can't be blocked except by creatures with flying or reach.)
+mana={1}{U}
+type=Creature
+subtype=Fish Lizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Heavenly Qilin
+abilities=flying
+auto=@combat(attacking) source(this):flying target(other creature|myBattlefield) ueot
+text=Flying. (This creature can't be blocked except by creatures with flying or reach.) / Whenever Heavenly Qilin attacks, another target creature you control gains flying until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Kiri
+power=2
+toughness=2
+[/card]
+[card]
+name=Armored Whirl Turtle
+mana={2}{U}
+type=Creature
+subtype=Turtle
+power=0
+toughness=5
+[/card]
+[card]
+name=Nine-Tail White Fox
+auto=@combatdamaged(player) from(this):draw:1 controller
+text=Whenever Nine-Tail White Fox deals combate damage to a player, draw a card.
+mana={2}{U}
+type=Creature
+subtype=Fox Spirit
+power=2
+toughness=2
+[/card]
+[card]
+name=Earth-Origin Yak
+auto=choice all(creature|mybattlefield) 1/1 ueot
+text=When Earth-Origin Yak enters the battlefield, creatures you control get +1/+1  until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Ox
+power=2
+toughness=4
+[/card]
+[card]
+name=Moon-Eating Dog
+auto=aslongas(planeswalker[Yanling]|mybattlefield) flying
+text=As long as you control a Yanling planeswalker, Moon-Eating Dog has flying. (It can't be blocked except by creatures with flying or reach.)
+mana={3}{U}
+type=Creature
+subtype=Hound
+power=3
+toughness=3
+[/card]
+[card]
+name=Stormcloud Spirit
+abilities=flying
+text=Flying. (This creature can't be blocked except by creatures with flying or reach.)
+mana={3}{U}{U}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+[card]
+name=Ancestor Dragon
+abilities=flying
+auto=@each blockers:life:type:creature[attacking]:mybattlefield controller
+text=Flying. / Whenever one o more creatures you control attack, you gain 1 life for each attacking creature.
+mana={4}{W}{W}
+type=Creature
+subtype=Dragon
+power=5
+toughness=6
+[/card]
+[card]
+name=Qilin's Blessing
+target=creature
+auto=2/2
+text=Target creature gets +2/+2 until end of turn.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Drown in Shapelessness
+target=creature
+auto=moveTo(ownerHand)
+text=Return target creature to its owner's hand.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Dragon's Presence
+target=creature[attacking;blocking]
+auto=damage:5
+text=Dragon's Presence deals 5 damage to target attacking or blocking creature.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Rhythmic Water Vortex
+target=<upto:2>creature
+auto=moveTo(ownerhand)
+auto=may moveto(myhand) target(Mu Yanling|mylibrary,mygraveyard) && shuffle
+text=Return up to two target creatures to their owner's hand. / Search your library and/or graveyard for a card named Mu Yanling, reveal it, and put it into your hand. If you searched your library this way, shuffle it.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Jiang Yanggu
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +2/+2 until end of turn.) target(creature) 2/2 ueot
+auto={C(0/0,-1,Loyalty)}:name(-1: Create a legendary 3/3 green Mowu creature token) auto=@each my upkeep restriction{type(Mowu|myBattlefield)~lessthan~1}:token(Mowu,legendary creature hound,3/3,green)
+auto={C(0/0,-5,Loyalty)}:name(-5: Target creature gains trample and +X/+X until end of turn.) foreach(land|myBattlefield) 1/1 && trample ueot
+text=+1: Target creature gets +2/+2 until end of turn. -- -1: If you don't control a creature named Mowu, create a legendary 3/3 green Hound creature token named Mowu. -- -5: Until end of turn, target creature gains trample and gets +X/+X, where X is the number of lands you control.
+mana={4}{G}
+type=Legendary Planeswalker
+subtype=Yanggu
+[/card]
+[card]
+name=Leopard-Spotted Jiao
+mana={1}{R}
+type=Creature
+subtype=Beast
+power=3
+toughness=1
+[/card]
+[card]
+name=Feiyi Snake
+abilities=reach
+text=Reach (This creature can block creatures with flying.)
+mana={1}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=1
+[/card]
+[card]
+name=Sacred White Deer
+auto=aslongas(planeswalker[Yanggu]|mybattlefield) {3}{G}{T}:life:4
+text={3}{G},{T}: You gain 4 life. Activate this ability only if you control a Yanggu planeswalker.
+mana={1}{G}
+type=Creature
+subtype=Elk
+power=2
+toughness=2
+[/card]
+[card]
+name=Reckless Pangolin
+auto=@combat(attacking) source(this):all(this) 1/1 ueot
+text=Whenever Reckless Pangolin attacks, it gets +1/+1 until end of turn.
+mana={2}{G}
+type=Creature
+subtype=Pangolin
+power=2
+toughness=2
+[/card]
+[card]
+name=Ferocious Zheng
+mana={2}{G}{G}
+type=Creature
+subtype=Cat Beast
+power=4
+toughness=4
+[/card]
+[card]
+name=Fire-Omen Crane
+abilities=flying
+auto=@combat(attacking) source(this):damage:1 target(creature|opponentBattlefield)
+text=Flying. (This creature can't be blocked except by creatures with flying or reach.) / Whenever Fire-Omen Crane attacks, it deals 1 damage to target creature an opponent controls.
+mana={3}{R}{R}
+type=Creature
+subtype=Bird Spirit
+power=3
+toughness=3
+[/card]
+[card]
+name=Screeching Phoenix
+abilities=flying
+auto={2}{R}:all(creature|mybattlefield) 1/0 ueot
+text=Flying. / {2}{R}: Creatures you control get +1/+0 until end of turn.
+mana={4}{R}{R}
+type=Creature
+subtype=Phoenix
+power=4
+toughness=4
+[/card]
+[card]
+name=Earthshaking Si
+abilities=trample
+text=Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)
+mana={5}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
+name=Hardened-Scale Armor
+target=creature
+auto=3/3
+text=Enchant creature. -- Enchanted creature gets +3/+3.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Breath of Fire
+target=creature
+auto=damage:2
+text=Breath of Fire deals 2 damage to target creature.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Aggressive Instinct
+target=creature|mybattlefield
+auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike!>])) forever
+text=Target creature you control deals damage equal to its power to target creature you don't control.
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+name=Confidence from Strength
+target=creature
+auto=4/4
+auto=trample
+text=Target creature gets +4/+4 and gains trample until end of turn.
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+name=Journey for the Elixir
+aicode=activate target(land[basic]|mylibrary,mygraveyard) moveto(myhand)
+auto=name(search a basic land card) Reveal:type:*:mylibrary,mygraveyard revealzone(mylibrary,mygraveyard) optionone name(choose a basic land card) target(<1>land[basic]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary,mygraveyard) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=may moveto(myhand) target(Jiang Yanggu|mylibrary,mygraveyard) && shuffle
+text=Search your library and graveyard for a basic land card and a card named Jiang Yanggu, reveal them, put them into your hand, then shuffle your library.
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+name=Cleansing Screech
+target=creature,player,planeswalker
+auto=damage:4
+text=Cleansing Screech deals 4 damage to any target.
+mana={4}{R}
+type=Sorcery
+[/card]
