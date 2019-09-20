@@ -466,7 +466,7 @@ type=Land
 [card]
 name=Yawgmoth, Thran Physician
 abilities=protection from humans
-auto={L:1}:target(creature) counter(-1/-1) && draw:1
+auto={L:1}{S(other creature|mybattlefield)}:target(creature) counter(-1/-1) && draw:1 controller
 auto={B}{B}{discard(*|myhand)}:notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) proliferate
 text=Protection from Humans -- Pay 1 life, Sacrifice another creature: Put a -1/-1 counter on up to one target creature and draw a card. -- {B}{B}, Discard a card: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{B}{B}
