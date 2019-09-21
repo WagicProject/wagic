@@ -11,6 +11,52 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Gilded Light
+auto=playershroud ueot
+autohand=__CYCLING__({2})
+text=You gain shroud until end of turn. (You can't be the target of spells or abilities.) / Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Flusterstorm
+abilities=storm
+target=instant,sorcery|stack
+auto=transforms((,newability[pay[[{1}]] name(pay {1} mana) donothing?fizzle])) forever
+text=Counter target instant or sorcery spell unless its controller pays {1}. / Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Chain Lightning
+target=creature,player,planeswalker
+auto=damage:3 && transforms((,newability[pay[[{R}{R}]],newability[may name(copy chain lightning) activate name(copy chain lightning) castcard(copied noevent named!:chain lightning:!)])) forever
+text=Chain Lightning deals 3 damage to any target. Then that player or that permanent's controller may pay {R}{R}. IF the player does, he or she may copy this spell and may choose a new target for that copy.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Kaervek's Torch
+auto=@targeted(this) from(stack): altercost(colorless,+2)
+auto=damage:X target(creature,player,planeswalker)
+text=As long as Kaervek's Torch is on the stack, spells that target it cost {2} more to cast. / Kaervek's Torch deals X dagame to any target.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Channel
+auto=emblem transforms((,newability[auto={L:1}:Add{1}])) ueot
+text=Until end of turn, any time you could activate a mana ability, you may pay 1 life. If you do, add {1}.
+mana={G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Mishra's Workshop
+auto={T}: add{3}
+text={T}: Add {3}. Spend this mana only to cast artifact spells.
+type=Land
+[/card]
+[card]
 name=Militant Angel
 abilities=flying, lifelink
 auto=if (this[attacking]|mybattlefield)~morethan~0 then token(Knight,creature Knight,2/2,white,vigilance)
