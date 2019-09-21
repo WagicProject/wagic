@@ -818,7 +818,7 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/RTR/-61-hr.jpg";
         else if (id.equals("48096t"))
             tokenurl = "https://deckmaster.info/images/cards/CNS/-89-hr.jpg";
-        else if(id.equals("423817t") || id.equals("423700t") || id.equals("183017t") ||
+        else if(id.equals("423817t") || id.equals("423700t") || id.equals("183017t") || id.equals("383129t") ||
                 id.equals("6164t") || id.equals("456522t") || id.equals("456545t"))
             tokenurl = "https://deckmaster.info/images/cards/MBS/-216-hr.jpg";
         else if (id.equals("140233t") || id.equals("191239t") || id.equals("205957t") || id.equals("423797t"))
@@ -919,6 +919,8 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/KLD/-3289-hr.jpg";
         else if (id.equals("265141t"))
             tokenurl = "https://deckmaster.info/images/cards/VMA/-4465-hr.jpg";
+        else if(id.equals("383077t"))
+            tokenurl = "https://deckmaster.info/images/cards/VMA/-4469-hr.jpg";
         else if (id.equals("401697t") || id.equals("401692t") || id.equals("401701t"))
             tokenurl = "https://deckmaster.info/images/cards/C17/-5050-hr.jpg";
         else if (id.equals("376397t") || id.equals("107557t"))
@@ -996,6 +998,10 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/9/e/9e0eeebf-7c4a-436b-8cb4-292e53783ff2.jpg?1562926847";
         else if(id.equals("414388t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/b/8/b8710a30-8314-49ef-b995-bd05454095be.jpg?1562636876";
+        else if(id.equals("382874t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/8/3/83dcacd3-8707-4354-a1a5-9863d677d67f.jpg?1562702177";
+        else if(id.equals("383065t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/8/5/8597029c-3b0d-476e-a6ee-48402f815dab.jpg?1561757494";
         else if (id.equals("74492t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/94/295/635032496473215708.jpg";
         else if (id.equals("3280t"))

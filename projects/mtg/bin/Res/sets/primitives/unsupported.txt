@@ -2325,12 +2325,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Chain Lightning
-text=Chain Lightning deals 3 damage to target creature or player. Then that player or that creature's controller may pay {R}{R}. If the player does, he or she may copy this spell and may choose a new target for that copy.
-mana={R}
-type=Sorcery
-[/card]
-[card]
 name=Chain of Plasma
 text=Chain of Plasma deals 3 damage to target creature or player. Then that player or that creature's controller may discard a card. If the player does, he or she may copy this spell and may choose a new target for that copy.
 mana={1}{R}
@@ -2457,12 +2451,6 @@ name=Channel Harm
 text=Prevent all damage that would be dealt to you and permanents you control this turn by sources you don't control. If damage is prevented this way, you may have Channel Harm deal that much damage to target creature.
 mana={5}{W}
 type=Instant
-[/card]
-[card]
-name=Channel
-text=Until end of turn, any time you could activate a mana ability, you may pay 1 life. If you do, add {1} to your mana pool.
-mana={G}{G}
-type=Sorcery
 [/card]
 [card]
 name=Chant of Vitu-Ghazi
@@ -5884,12 +5872,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Flusterstorm
-text=Counter target instant or sorcery spell unless its controller pays {1}. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Foe-Razer Regent
 abilities=flying
 text=Flying -- When Foe-Razer Regent enters the battlefield, you may have it fight target creature you don't control. -- Whenever a creature you control fights, put two +1/+1 counters on it at the beginning of the next end step.
@@ -6474,12 +6456,6 @@ type=Creature
 subtype=Drake
 power=3
 toughness=3
-[/card]
-[card]
-name=Gilded Light
-text=You gain shroud until end of turn. (You can't be the target of spells or abilities.) -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Instant
 [/card]
 [card]
 name=Gilder Bairn
@@ -8955,12 +8931,6 @@ mana={B}{B}{B}
 type=Instant
 [/card]
 [card]
-name=Kaervek's Torch
-text=As long as Kaervek's Torch is on the stack, spells that target it cost {2} more to cast. -- Kaervek's Torch deals X damage to target creature or player.
-mana={X}{R}
-type=Sorcery
-[/card]
-[card]
 name=Kaho, Minamo Historian
 text=When Kaho, Minamo Historian enters the battlefield, search your library for up to three instant cards and exile them. Then shuffle your library. -- {X}, {T}: You may cast a card with converted mana cost X exiled with Kaho without paying its mana cost.
 mana={2}{U}{U}
@@ -10126,12 +10096,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Lurking Evil
-text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
-mana={B}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Lyzolda, the Blood Witch
 text={2}, Sacrifice a creature: Lyzolda, the Blood Witch deals 2 damage to target creature or player if the sacrificed creature was red. Draw a card if the sacrificed creature was black.
 mana={1}{B}{R}
@@ -10955,11 +10919,6 @@ type=Artifact Creature
 subtype=Juggernaut
 power=5
 toughness=5
-[/card]
-[card]
-name=Mishra's Workshop
-text={T}: Add {3} to your mana pool. Spend this mana only to cast artifact spells.
-type=Land
 [/card]
 [card]
 name=Miss Demeanor
