@@ -2098,12 +2098,6 @@ mana={3}{BG}
 type=Instant
 [/card]
 [card]
-name=Cannibalize
-text=Choose two target creatures controlled by the same player. Exile one of those creatures and put two +1/+1 counters on the other.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Capital Punishment
 text=Council's dilemma — Starting with you, each player votes for death or taxes. Each opponent sacrifices a creature for each death vote and discards a card for each taxes vote.
 mana={4}{B}{B}
@@ -2843,12 +2837,6 @@ type=Creature
 subtype=Chimera
 power=1
 toughness=5
-[/card]
-[card]
-name=Coat of Arms
-text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, if two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
-mana={5}
-type=Artifact
 [/card]
 [card]
 name=Coax from the Blind Eternities
@@ -4620,12 +4608,6 @@ text=Enchant creature -- {0}: Enchanted creature becomes the color or colors of 
 mana={U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Dream Halls
-text=Rather than pay the mana cost for a spell, its controller may discard a card that shares a color with that spell.
-mana={3}{U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Dream Salvage
@@ -7858,12 +7840,6 @@ type=Sorcery
 name=Hum of the Radix
 text=Each artifact spell costs {1} more to cast for each artifact its controller controls.
 mana={2}{G}{G}
-type=Enchantment
-[/card]
-[card]
-name=Humility
-text=All creatures lose all abilities and have base power and toughness 1/1.
-mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
@@ -13915,12 +13891,6 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Recycle
-text=Skip your draw step. -- Whenever you play a card, draw a card. -- Your maximum hand size is two.
-mana={4}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Redeem the Lost

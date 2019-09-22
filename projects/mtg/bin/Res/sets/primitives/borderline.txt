@@ -11,6 +11,46 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Coat of Arms
+auto=lord(creature|battlefield) foreach(other creature[share!type!]|battlefield) 1/1
+text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, it two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Cannibalize
+auto=choice name(Opponent's creatures) moveTo(exile) target(creature|opponentbattlefield) && counter(1/1,2) target(other creature|oppponentbattlefield)
+auto=choice name(my creatures) moveTo(exile) target(creature|mybattlefield) && counter(1/1,2) target(other creature|mybattlefield)
+text=Choose two target creatures controlled by the same player. Exile one of those creatures and put two +1/+1 counters on the other.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Recycle
+auto=phasealter(remove,draw,controller)
+auto=@movedTo(*[-land]|mystack):draw:1
+auto=hmodifer:-5 controller
+text=Skip your draw step. / Whenever you cast a spell, draw a card. / Your maximum hand size is two.
+mana={4}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Humility
+auto=lord(creature|battlefield) loseabilities forever
+auto=lord(creature|battlefield) transforms((,setpower=0,settoughness=1)) forever
+text=All creatures loses all abilities and have base power and toughness 1/1.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Dream Halls
+auto={D(*|myhand)}: castcard(restricted) lord(*[share!color!][-land]|myhand) controller oneshot
+auto={D(*|opponenthand)}: castcard(restricted) lord(*[share!color!][-land]|opponenthand) opponent oneshot
+text=Rather than pay the mana cost for a spell, its controller may discard a card that share a color with that spell.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Gilded Light
 auto=playershroud ueot
 autohand=__CYCLING__({2})
