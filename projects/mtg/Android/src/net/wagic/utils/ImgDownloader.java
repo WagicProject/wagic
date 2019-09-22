@@ -819,7 +819,7 @@ public class ImgDownloader {
         else if (id.equals("48096t"))
             tokenurl = "https://deckmaster.info/images/cards/CNS/-89-hr.jpg";
         else if(id.equals("423817t") || id.equals("423700t") || id.equals("183017t") || id.equals("383129t") ||
-                id.equals("6164t") || id.equals("456522t") || id.equals("456545t"))
+                id.equals("6164t") || id.equals("456522t") || id.equals("456545t") || id.equals("397624t"))
             tokenurl = "https://deckmaster.info/images/cards/MBS/-216-hr.jpg";
         else if (id.equals("140233t") || id.equals("191239t") || id.equals("205957t") || id.equals("423797t"))
             tokenurl = "https://deckmaster.info/images/cards/M11/-234-hr.jpg";
@@ -1018,6 +1018,8 @@ public class ImgDownloader {
             tokenurl = "https://i.pinimg.com/564x/5d/68/d6/5d68d67bef76bf90588a4afdc39dc60e.jpg";
         else if (id.equals("439538t"))
             tokenurl = "https://i.pinimg.com/originals/da/e3/31/dae3312aa1f15f876ebd363898847e23.jpg";
+        else if(id.equals("397656t"))
+            tokenurl = "https://i.pinimg.com/originals/3c/f4/55/3cf45588a840361b54a95141b335b76c.jpg";
         else if (id.equals("3421t") || id.equals("15434t"))
             tokenurl = "https://www.mtg.onl/static/3c152b4fc1c64e3ce21022f53ec16559/4d406/PROXY_Cat_G_1_1.jpg";
         else if (id.equals("73976t"))
