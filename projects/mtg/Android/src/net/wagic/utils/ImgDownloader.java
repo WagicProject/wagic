@@ -565,6 +565,26 @@ public class ImgDownloader {
             cardurl = "http://1.bp.blogspot.com/-0-mLvfUVgNk/VmdZWXWxikI/AAAAAAAAAUM/TVCIiZ_c67g/s1600/Spawn%2BToken.jpg";
         else if(id.equals("16729t"))
             cardurl = "https://deckmaster.info/images/cards/MRD/-2829-hr.jpg";
+        else if (id.equals("53054t"))
+            cardurl = "https://deckmaster.info/images/cards/BNG/-10-hr.jpg";
+        else if(id.equals("52993t"))
+            cardurl = "https://deckmaster.info/images/cards/TSP/-114916-hr.jpg";
+        else if(id.equals("52973t"))
+            cardurl = "https://deckmaster.info/images/cards/RTR/-62-hr.jpg";
+        else if(id.equals("52593t"))
+            cardurl = "https://deckmaster.info/images/cards/DDR/417498-hr.jpg";
+        else if(id.equals("52492t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/f/3/f32ad93f-3fd5-465c-ac6a-6f8fb57c19bd.jpg?1561758422";
+        else if(id.equals("52418t"))
+            cardurl= "https://deckmaster.info/images/cards/DDO/394383-hr.jpg";
+        else if(id.equals("52398t"))
+            cardurl = "https://deckmaster.info/images/cards/XLN/-5168-hr.jpg";
+        else if(id.equals("52149t"))
+            cardurl = "https://deckmaster.info/images/cards/GRN/-6433-hr.jpg";
+        else if(id.equals("52136t"))
+            cardurl= "https://deckmaster.info/images/cards/DDO/394407-hr.jpg";
+        else if(id.equals("52637t") || id.equals("52945t"))
+            cardurl = "https://deckmaster.info/images/cards/MBS/-216-hr.jpg";
         else if (id.equals("74272"))
             cardurl = "https://img.scryfall.com/cards/large/front/4/5/45af7f55-9a69-43dd-969f-65411711b13e.jpg?1562487939";
         else if (id.equals("687701"))
@@ -1233,6 +1253,12 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/3/8/3884bede-df28-42e8-9ac9-ae03118b1985.jpg?1562800239";
         else if (id.equals("113522"))
             cardurl = "https://img.scryfall.com/cards/large/front/b/8/b8a3cdfe-0289-474b-b9c4-07e8c6588ec5.jpg?1562933997";
+        else if (id.equals("51733"))
+            cardurl = "https://img.scryfall.com/cards/large/front/2/7/27118cbb-a386-4145-8716-961ed0f653bf.jpg?1562902951";
+        else if (id.equals("52362"))
+            cardurl = "https://img.scryfall.com/cards/large/front/9/b/9bd7a7f1-2221-4565-8c6e-1815def3bd2c.jpg?1562546811";
+        else if (id.equals("52415"))
+            cardurl = "https://img.scryfall.com/cards/large/front/8/8/8825493a-878d-4df3-8d7a-98518358d678.jpg?1562546240";
 
         return cardurl;
     }
@@ -1244,7 +1270,9 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/BNG/-2-hr.jpg";
         else if (id.equals("380486t"))
             tokenurl = "https://deckmaster.info/images/cards/BNG/-5-hr.jpg";
-        else if (id.equals("262699t") || id.equals("262875t") || id.equals("262857t"))
+        else if (id.equals("52181t"))
+            tokenurl = "https://deckmaster.info/images/cards/BNG/-9-hr.jpg";
+        else if (id.equals("262699t") || id.equals("262875t") || id.equals("262857t") || id.equals("53054t"))
             tokenurl = "https://deckmaster.info/images/cards/BNG/-10-hr.jpg";
         else if(id.equals("378445t"))
             tokenurl = "https://deckmaster.info/images/cards/BNG/-11-hr.jpg";
@@ -1256,18 +1284,30 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/DGM/-39-hr.jpg";
         else if (id.equals("380487t") || id.equals("414506t"))
             tokenurl = "https://deckmaster.info/images/cards/JOU/-41-hr.jpg";
-        else if (id.equals("114917t"))
+        else if (id.equals("114917t") || id.equals("52353t"))
             tokenurl = "https://deckmaster.info/images/cards/JOU/-43-hr.jpg";
         else if (id.equals("234849t") || id.equals("366401t") || id.equals("366340t") || id.equals("366375t"))
             tokenurl = "https://deckmaster.info/images/cards/RTR/-61-hr.jpg";
+        else if(id.equals("52973t"))
+            tokenurl = "https://deckmaster.info/images/cards/RTR/-62-hr.jpg";
         else if (id.equals("48096t"))
             tokenurl = "https://deckmaster.info/images/cards/CNS/-89-hr.jpg";
+        else if(id.equals("383290t"))
+            tokenurl = "https://deckmaster.info/images/cards/M15/-108-hr.jpg";
+        else if(id.equals("51984t"))
+            tokenurl = "https://deckmaster.info/images/cards/DKA/-169-hr.jpg";
         else if(id.equals("439331t"))
             tokenurl = "https://deckmaster.info/images/cards/ISD/-177-hr.jpg";
+        else if(id.equals("52494t"))
+            tokenurl = "https://deckmaster.info/images/cards/NPH/-204-hr.jpg";
         else if(id.equals("423817t") || id.equals("423700t") || id.equals("183017t") || id.equals("383129t") ||
-                id.equals("6164t") || id.equals("456522t") || id.equals("456545t") || id.equals("397624t"))
+                id.equals("6164t") || id.equals("456522t") || id.equals("456545t") || id.equals("397624t") ||
+                id.equals("52637t") || id.equals("52945t"))
             tokenurl = "https://deckmaster.info/images/cards/MBS/-216-hr.jpg";
-        else if (id.equals("140233t") || id.equals("191239t") || id.equals("205957t") || id.equals("423797t"))
+        else if (id.equals("53057t"))
+            tokenurl = "https://deckmaster.info/images/cards/SOM/-226-hr.jpg";
+        else if(id.equals("140233t") || id.equals("191239t") || id.equals("205957t") || id.equals("423797t") ||
+                id.equals("51861t"))
             tokenurl = "https://deckmaster.info/images/cards/M11/-234-hr.jpg";
         else if (id.equals("271227t"))
             tokenurl = "https://deckmaster.info/images/cards/WWK/-265-hr.jpg";
@@ -1285,13 +1325,14 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/SHM/-352-hr.jpg";
         else if (id.equals("244668t"))
             tokenurl = "https://deckmaster.info/images/cards/SHM/-356-hr.jpg";
-        else if (id.equals("457111t"))
+        else if (id.equals("457111t") || id.equals("51931t"))
             tokenurl = "https://deckmaster.info/images/cards/MOR/-362-hr.jpg";
         else if (id.equals("376578t") || id.equals("152553t"))
             tokenurl = "https://deckmaster.info/images/cards/LRW/-365-hr.jpg";
         else if (id.equals("153166t"))
             tokenurl = "https://deckmaster.info/images/cards/LRW/-367-hr.jpg";
-        else if (id.equals("83236t") || id.equals("45390t") || id.equals("965t") || id.equals("966t"))
+        else if(id.equals("83236t") || id.equals("45390t") || id.equals("965t") || id.equals("966t") ||
+                id.equals("52750t"))
             tokenurl = "https://deckmaster.info/images/cards/8ED/-391-hr.jpg";
         else if (id.equals("19878t"))
             tokenurl = "https://deckmaster.info/images/cards/C14/-482-hr.jpg";
@@ -1339,7 +1380,7 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/PS/-2072-hr.jpg";
         else if (id.equals("3148t"))
             tokenurl = "https://deckmaster.info/images/cards/AL/-2156-hr.jpg";
-        else if (id.equals("26815t"))
+        else if(id.equals("26815t") || id.equals("51774t"))
             tokenurl = "https://deckmaster.info/images/cards/AP/-2163-hr.jpg";
         else if (id.equals("1534t"))
             tokenurl = "https://deckmaster.info/images/cards/LE/-2165-hr.jpg";
@@ -1361,9 +1402,10 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/V16/-3110-hr.jpg";
         else if (id.equals("46168t"))
             tokenurl = "https://deckmaster.info/images/cards/KLD/-3287-hr.jpg";
-        else if (id.equals("423843t") || id.equals("423739t") || id.equals("423718t") || id.equals("423736t") ||
+        else if(id.equals("423843t") || id.equals("423739t") || id.equals("423718t") || id.equals("423736t") ||
                 id.equals("423691t") || id.equals("423743t") || id.equals("423769t") || id.equals("423670t") ||
-                id.equals("423796t") || id.equals("423680t") || id.equals("423693t"))
+                id.equals("423796t") || id.equals("423680t") || id.equals("423693t") || id.equals("52046t") ||
+                id.equals("52791t"))
             tokenurl = "https://deckmaster.info/images/cards/KLD/-3289-hr.jpg";
         else if (id.equals("265141t"))
             tokenurl = "https://deckmaster.info/images/cards/VMA/-4465-hr.jpg";
@@ -1373,6 +1415,8 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/C17/-5050-hr.jpg";
         else if (id.equals("376397t") || id.equals("107557t"))
             tokenurl = "https://deckmaster.info/images/cards/CMA/-5709-hr.jpg";
+        else if(id.equals("52398t"))
+            tokenurl = "https://deckmaster.info/images/cards/XLN/-5168-hr.jpg";
         else if (id.equals("435411t") || id.equals("435410t"))
             tokenurl = "https://deckmaster.info/images/cards/XLN/-5173-hr.jpg";
         else if (id.equals("1686t") || id.equals("2881t") || id.equals("201231t"))
@@ -1383,11 +1427,13 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/GS1/-5944-hr.jpg";
         else if (id.equals("452760t"))
             tokenurl = "https://deckmaster.info/images/cards/M19/-6036.jpg";
+        else if(id.equals("52149t"))
+            tokenurl = "https://deckmaster.info/images/cards/GRN/-6433-hr.jpg";
         else if (id.equals("89110t"))
             tokenurl = "https://deckmaster.info/images/cards/GK1_SELESN/-6550-hr.jpg";
         else if (id.equals("3832t"))
             tokenurl = "https://deckmaster.info/images/cards/GK1_DIMIR/-6541-hr.jpg";
-        else if (id.equals("116384t") || id.equals("376564t"))
+        else if (id.equals("116384t") || id.equals("376564t") || id.equals("52993t"))
             tokenurl = "https://deckmaster.info/images/cards/TSP/-114916-hr.jpg";
         else if(id.equals("383392t"))
             tokenurl = "https://deckmaster.info/images/cards/DDD/201842-hr.jpg";
@@ -1395,8 +1441,10 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/DDE/207998-hr.jpg";
         else if (id.equals("5173t"))
             tokenurl = "https://deckmaster.info/images/cards/DDE/209163-hr.jpg";
-        else if(id.equals("378521t"))
+        else if(id.equals("378521t") || id.equals("52418t"))
             tokenurl= "https://deckmaster.info/images/cards/DDO/394383-hr.jpg";
+        else if(id.equals("52136t"))
+            tokenurl= "https://deckmaster.info/images/cards/DDO/394407-hr.jpg";
         else if (id.equals("271158t") || id.equals("401703t"))
             tokenurl = "https://deckmaster.info/images/cards/DDP/401721-hr.jpg";
         else if (id.equals("88973t") || id.equals("368549t"))
@@ -1409,8 +1457,9 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/DDR/417496-hr.jpg";
         else if (id.equals("417447t"))
             tokenurl = "https://deckmaster.info/images/cards/DDR/417497-hr.jpg";
-        else if (id.equals("3392t") || id.equals("220535t") || id.equals("376253t") || id.equals("376390t") ||
-                id.equals("401643t") || id.equals("417451t") || id.equals("417424t"))
+        else if(id.equals("3392t") || id.equals("220535t") || id.equals("376253t") || id.equals("376390t") ||
+                id.equals("401643t") || id.equals("417451t") || id.equals("417424t") || id.equals("51908t") ||
+                id.equals("52593t"))
             tokenurl = "https://deckmaster.info/images/cards/DDR/417498-hr.jpg";
         else if (id.equals("21381t") || id.equals("40198t"))
             tokenurl = "https://img.scryfall.com/cards/large/back/8/c/8ce60642-e207-46e6-b198-d803ff3b47f4.jpg?1562921132";
@@ -1430,12 +1479,13 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/b/5/b5ddb67c-82fb-42d6-a4c2-11cd38eb128d.jpg?1562702281";
         else if (id.equals("8862t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/d/b/dbf33cc3-254f-4c5c-be22-3a2d96f29b80.jpg?1562936030";
-        else if (id.equals("213757t") || id.equals("213734t") || id.equals("221554t") || id.equals("48049t") ||
-                id.equals("46160t") || id.equals("47450t") || id.equals("376421t") || id.equals("213725t"))
+        else if(id.equals("213757t") || id.equals("213734t") || id.equals("221554t") || id.equals("48049t") ||
+                id.equals("46160t") || id.equals("47450t") || id.equals("376421t") || id.equals("213725t") ||
+                id.equals("52492t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/f/3/f32ad93f-3fd5-465c-ac6a-6f8fb57c19bd.jpg?1561758422";
         else if (id.equals("247393t") || id.equals("247399t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/1/f/1feaa879-ceb3-4b20-8021-ae41d8be9005.jpg?1562636755";
-        else if (id.equals("152998t") || id.equals("152963t"))
+        else if (id.equals("152998t") || id.equals("152963t") || id.equals("52364t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/9/5/959ed4bf-b276-45ed-b44d-c757e9c25846.jpg?1562702204";
         else if (id.equals("46703t") || id.equals("227151t") || id.equals("205298t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/0/a/0a9a25fd-1a4c-4d63-bbfa-296ef53feb8b.jpg?1562541933";
@@ -1476,6 +1526,10 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/e/5/e5ccae95-95c2-4d11-aa68-5c80ecf90fd2.jpg?1562640112";
         else if (id.equals("409826t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/e/0/e0a12a72-5cd9-4f1b-997d-7dabb65e9f51.jpg?1562086884";
+        else if (id.equals("51939t") || id.equals("52121t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/b/9/b999a0fe-d2d0-4367-9abb-6ce5f3764f19.jpg?1562640005";
+        else if (id.equals("52110t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/0/b/0bb628da-a02f-4d3e-b919-0c03821dd5f2.jpg?1561756633";
         else if (id.equals("74492t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/94/295/635032496473215708.jpg";
         else if (id.equals("3280t"))
@@ -1494,6 +1548,8 @@ public class ImgDownloader {
             tokenurl = "https://i.pinimg.com/originals/da/e3/31/dae3312aa1f15f876ebd363898847e23.jpg";
         else if(id.equals("397656t"))
             tokenurl = "https://i.pinimg.com/originals/3c/f4/55/3cf45588a840361b54a95141b335b76c.jpg";
+        else if(id.equals("51789t") || id.equals("52682t"))
+            tokenurl = "https://i.pinimg.com/originals/4c/40/ae/4c40ae9a4a4c8bb352b26bea0f277a26.jpg";
         else if (id.equals("3421t") || id.equals("15434t"))
             tokenurl = "https://www.mtg.onl/static/3c152b4fc1c64e3ce21022f53ec16559/4d406/PROXY_Cat_G_1_1.jpg";
         else if (id.equals("73976t"))
@@ -1526,7 +1582,7 @@ public class ImgDownloader {
             tokenurl = "http://4.bp.blogspot.com/-y5Fanm3qvrU/Vmd4gGnl2DI/AAAAAAAAAWY/FCrS9FTgOJk/s1600/Tatsumasa%2BToken.jpg";
         else if (id.equals("26732t"))
             tokenurl = "http://1.bp.blogspot.com/-0-mLvfUVgNk/VmdZWXWxikI/AAAAAAAAAUM/TVCIiZ_c67g/s1600/Spawn%2BToken.jpg";
-        else if (id.equals("47449t"))
+        else if (id.equals("47449t") || id.equals("52335t"))
             tokenurl = "https://1.bp.blogspot.com/-vrgXPWqThMw/XTyInczwobI/AAAAAAAADW4/SEceF3nunBkiCmHWfx6UxEUMF_gqdrvUQCLcBGAs/s1600/Kaldra%2BToken%2BUpdate.jpg";
         else if (id.equals("5261t"))
             tokenurl = "https://static.cardmarket.com/img/5a0199344cad68eebeefca6fa24e52c3/items/1/MH1/376905.jpg";
@@ -2093,7 +2149,7 @@ public class ImgDownloader {
             String cardname = mappa.get(id);
             Elements divs = new Elements();
             int k;
-            if(scryset.equals("TD2")){
+            if(scryset.equals("TD2") || scryset.equals("PRM") || scryset.equals("TD0")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2273,7 +2329,7 @@ public class ImgDownloader {
                         }
                     }
                 }
-            } else if (targetres.equals("High") && !scryset.equals("TD2")) {
+            } else if (targetres.equals("High") && !scryset.equals("TD2") && !scryset.equals("PRM") && !scryset.equals("TD0")) {
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2378,7 +2434,7 @@ public class ImgDownloader {
                         }
                     }
                 }
-            } else if (!scryset.equals("TD2")){
+            } else if (!scryset.equals("TD2") && !scryset.equals("PRM") && !scryset.equals("TD0")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -2529,17 +2585,52 @@ public class ImgDownloader {
                         break;
                     }
                     String text = "";
-                    for (k = 0; k < divs.size(); k++)
-                        if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card text"))
-                            break;
-                    if (k < divs.size()) {
-                        Element tex = divs.get(k + 1);
-                        for (int z = 0; z < divs.get(k + 1).childNodes().size(); z++) {
-                            for (int u = 0; u < divs.get(k + 1).childNode(z).childNodes().size(); u++) {
-                                if (divs.get(k + 1).childNode(z).childNode(u).childNodes().size() > 1) {
-                                    for (int w = 0; w < divs.get(k + 1).childNode(z).childNode(u).childNodes().size(); w++) {
-                                        if (divs.get(k + 1).childNode(z).childNode(u).childNode(w).hasAttr("alt")) {
-                                            String newtext = divs.get(k + 1).childNode(z).childNode(u).childNode(w).attributes().get("alt").trim();
+                    if(scryset.equals("PRM") || scryset.equals("TD0")){
+                        Elements metadata = doc.select("head meta");
+                        if(metadata != null) {
+                            for (int j = 0; j < metadata.size(); j++){
+                                if(metadata.get(j).attributes().get("property").equals("og:description")){
+                                    if(metadata.get(j).attributes().get("content").split("•").length > 3){
+                                        text = metadata.get(j).attributes().get("content").split("•")[3].trim();
+                                        if (text.contains("(" + scryset + ")"))
+                                            text = metadata.get(j).attributes().get("content").split("•")[2].trim();
+                                        if (text.contains("Illustrated by"))
+                                            text = metadata.get(j).attributes().get("content").split("•")[1].trim();
+                                        text = text.replace("&#39;", "'");
+                                        break;
+                                    } else
+                                        break;
+                                }
+                            }
+                        }
+                    } else {
+                        for (k = 0; k < divs.size(); k++)
+                            if (divs.get(k).childNodes().size() > 0 && divs.get(k).childNode(0).toString().toLowerCase().contains("card text"))
+                                break;
+                        if (k < divs.size()) {
+                            Element tex = divs.get(k + 1);
+                            for (int z = 0; z < divs.get(k + 1).childNodes().size(); z++) {
+                                for (int u = 0; u < divs.get(k + 1).childNode(z).childNodes().size(); u++) {
+                                    if (divs.get(k + 1).childNode(z).childNode(u).childNodes().size() > 1) {
+                                        for (int w = 0; w < divs.get(k + 1).childNode(z).childNode(u).childNodes().size(); w++) {
+                                            if (divs.get(k + 1).childNode(z).childNode(u).childNode(w).hasAttr("alt")) {
+                                                String newtext = divs.get(k + 1).childNode(z).childNode(u).childNode(w).attributes().get("alt").trim();
+                                                newtext = newtext.replace("Green", "{G}");
+                                                newtext = newtext.replace("White", "{W}");
+                                                newtext = newtext.replace("Black", "{B}");
+                                                newtext = newtext.replace("Blue", "{U}");
+                                                newtext = newtext.replace("Red", "{R}");
+                                                newtext = newtext.replace("Tap", "{T}");
+                                                text = text + newtext;
+                                            } else
+                                                text = text + " " + divs.get(k + 1).childNode(z).childNode(u).childNode(w).toString().replace("\r\n", "").trim() + " ";
+                                            text = text.replace("} .", "}.");
+                                            text = text.replace("} :", "}:");
+                                            text = text.replace("} ,", "},");
+                                        }
+                                    } else {
+                                        if (divs.get(k + 1).childNode(z).childNode(u).hasAttr("alt")) {
+                                            String newtext = divs.get(k + 1).childNode(z).childNode(u).attributes().get("alt").trim();
                                             newtext = newtext.replace("Green", "{G}");
                                             newtext = newtext.replace("White", "{W}");
                                             newtext = newtext.replace("Black", "{B}");
@@ -2548,35 +2639,20 @@ public class ImgDownloader {
                                             newtext = newtext.replace("Tap", "{T}");
                                             text = text + newtext;
                                         } else
-                                            text = text + " " + divs.get(k + 1).childNode(z).childNode(u).childNode(w).toString().replace("\r\n", "").trim() + " ";
+                                            text = text + " " + divs.get(k + 1).childNode(z).childNode(u).toString().replace("\r\n", "").trim() + " ";
                                         text = text.replace("} .", "}.");
                                         text = text.replace("} :", "}:");
                                         text = text.replace("} ,", "},");
                                     }
-                                } else {
-                                    if (divs.get(k + 1).childNode(z).childNode(u).hasAttr("alt")) {
-                                        String newtext = divs.get(k + 1).childNode(z).childNode(u).attributes().get("alt").trim();
-                                        newtext = newtext.replace("Green", "{G}");
-                                        newtext = newtext.replace("White", "{W}");
-                                        newtext = newtext.replace("Black", "{B}");
-                                        newtext = newtext.replace("Blue", "{U}");
-                                        newtext = newtext.replace("Red", "{R}");
-                                        newtext = newtext.replace("Tap", "{T}");
-                                        text = text + newtext;
-                                    } else
-                                        text = text + " " + divs.get(k + 1).childNode(z).childNode(u).toString().replace("\r\n", "").trim() + " ";
-                                    text = text.replace("} .", "}.");
-                                    text = text.replace("} :", "}:");
-                                    text = text.replace("} ,", "},");
+                                    if (z > 0 && z < divs.get(k + 1).childNodes().size() - 1)
+                                        text = text + " -- ";
+                                    text = text.replace("<i>", "");
+                                    text = text.replace("</i>", "");
+                                    text = text.replace("<b>", "");
+                                    text = text.replace("</b>", "");
+                                    text = text.replace(" -- (", " (");
+                                    text = text.replace("  ", " ");
                                 }
-                                if (z > 0 && z < divs.get(k + 1).childNodes().size() - 1)
-                                    text = text + " -- ";
-                                text = text.replace("<i>", "");
-                                text = text.replace("</i>", "");
-                                text = text.replace("<b>", "");
-                                text = text.replace("</b>", "");
-                                text = text.replace(" -- (", " (");
-                                text = text.replace("  ", " ");
                             }
                         }
                     }

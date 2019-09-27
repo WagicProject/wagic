@@ -1,0 +1,1006 @@
+[meta]
+author=Wagic Team
+name=Magic Online Theme Decks
+year=2010-11-08
+total=200
+[/meta]
+[card]
+primitive=Hippo
+id=-51789
+rarity=T
+[/card]
+[card]
+primitive=Cat
+id=-51774
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-51689
+rarity=T
+[/card]
+[card]
+primitive=Abyssal Gatekeeper
+id=51650
+rarity=C
+[/card]
+[card]
+primitive=Aether Vial
+id=51651
+rarity=U
+[/card]
+[card]
+primitive=All Hallow's Eve
+id=51652
+rarity=R
+[/card]
+[card]
+primitive=Anarchist
+id=51653
+rarity=C
+[/card]
+[card]
+primitive=Ancient Grudge
+id=51654
+rarity=C
+[/card]
+[card]
+primitive=Anger
+id=51655
+rarity=U
+[/card]
+[card]
+primitive=Animate Dead
+id=51656
+rarity=U
+[/card]
+[card]
+primitive=Armadillo Cloak
+id=51657
+rarity=U
+[/card]
+[card]
+primitive=Ashes to Ashes
+id=51658
+rarity=U
+[/card]
+[card]
+primitive=Auramancer
+id=51659
+rarity=C
+[/card]
+[card]
+primitive=Aura of Silence
+id=51660
+rarity=U
+[/card]
+[card]
+primitive=Avatar of Woe
+id=51661
+rarity=R
+[/card]
+[card]
+primitive=Azorius Chancery
+id=51662
+rarity=U
+[/card]
+[card]
+primitive=Azorius Guildmage
+id=51663
+rarity=U
+[/card]
+[card]
+primitive=Azorius Signet
+id=51664
+rarity=C
+[/card]
+[card]
+primitive=Bant Panorama
+id=51665
+rarity=C
+[/card]
+[card]
+primitive=Barren Moor
+id=51666
+rarity=C
+[/card]
+[card]
+primitive=Benevolent Bodyguard
+id=51667
+rarity=C
+[/card]
+[card]
+primitive=Bonesplitter
+id=51668
+rarity=C
+[/card]
+[card]
+primitive=Borderland Ranger
+id=51669
+rarity=C
+[/card]
+[card]
+primitive=Brawn
+id=51670
+rarity=U
+[/card]
+[card]
+primitive=Buried Alive
+id=51671
+rarity=U
+[/card]
+[card]
+primitive=Capsize
+id=51672
+rarity=C
+[/card]
+[card]
+primitive=Carrion Feeder
+id=51673
+rarity=C
+[/card]
+[card]
+primitive=Cauldron Dance
+id=51674
+rarity=U
+[/card]
+[card]
+primitive=Chain Lightning
+id=51675
+rarity=C
+[/card]
+[card]
+primitive=Chain Lightning
+id=51676
+rarity=C
+[/card]
+[card]
+primitive=Chartooth Cougar
+id=51677
+rarity=C
+[/card]
+[card]
+primitive=Civic Wayfinder
+id=51678
+rarity=C
+[/card]
+[card]
+primitive=Coastal Tower
+id=51679
+rarity=U
+[/card]
+[card]
+primitive=Coiling Oracle
+id=51680
+rarity=U
+[/card]
+[card]
+primitive=Compulsive Research
+id=51681
+rarity=C
+[/card]
+[card]
+primitive=Concordant Crossroads
+id=51682
+rarity=U
+[/card]
+[card]
+primitive=Condemn
+id=51683
+rarity=U
+[/card]
+[card]
+primitive=Confiscate
+id=51684
+rarity=U
+[/card]
+[card]
+primitive=Constant Mists
+id=51685
+rarity=U
+[/card]
+[card]
+primitive=Copy Enchantment
+id=51686
+rarity=R
+[/card]
+[card]
+primitive=Court Hussar
+id=51687
+rarity=U
+[/card]
+[card]
+primitive=Darigaaz's Caldera
+id=51688
+rarity=U
+[/card]
+[card]
+primitive=Decree of Justice
+id=51689
+rarity=R
+[/card]
+[card]
+primitive=Dismantling Blow
+id=51690
+rarity=C
+[/card]
+[card]
+primitive=Dread Return
+id=51691
+rarity=U
+[/card]
+[card]
+primitive=Edge of Autumn
+id=51692
+rarity=C
+[/card]
+[card]
+primitive=Elfhame Palace
+id=51693
+rarity=U
+[/card]
+[card]
+primitive=Elven Cache
+id=51694
+rarity=C
+[/card]
+[card]
+primitive=Elvish Visionary
+id=51695
+rarity=C
+[/card]
+[card]
+primitive=Empyrial Armor
+id=51696
+rarity=U
+[/card]
+[card]
+primitive=Enlightened Tutor
+id=51697
+rarity=R
+[/card]
+[card]
+primitive=Eternal Witness
+id=51698
+rarity=U
+[/card]
+[card]
+primitive=Ethersworn Canonist
+id=51699
+rarity=R
+[/card]
+[card]
+primitive=Explosive Vegetation
+id=51700
+rarity=U
+[/card]
+[card]
+primitive=Fact or Fiction
+id=51701
+rarity=U
+[/card]
+[card]
+primitive=Faith's Fetters
+id=51702
+rarity=U
+[/card]
+[card]
+primitive=Fertile Ground
+id=51703
+rarity=C
+[/card]
+[card]
+primitive=Fireblast
+id=51704
+rarity=C
+[/card]
+[card]
+primitive=Fires of Yavimaya
+id=51705
+rarity=U
+[/card]
+[card]
+primitive=Flagstones of Trokair
+id=51706
+rarity=R
+[/card]
+[card]
+primitive=Flames of the Blood Hand
+id=51707
+rarity=U
+[/card]
+[card]
+primitive=Flametongue Kavu
+id=51708
+rarity=U
+[/card]
+[card]
+primitive=Flickerwisp
+id=51709
+rarity=U
+[/card]
+[card]
+primitive=Forest
+id=51710
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=51711
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=51712
+rarity=C
+[/card]
+[card]
+primitive=Forgotten Cave
+id=51713
+rarity=C
+[/card]
+[card]
+primitive=Genesis
+id=51714
+rarity=R
+[/card]
+[card]
+primitive=Ghostly Prison
+id=51715
+rarity=U
+[/card]
+[card]
+primitive=Ghost Quarter
+id=51716
+rarity=U
+[/card]
+[card]
+primitive=Goblin Guide
+id=51717
+rarity=R
+[/card]
+[card]
+primitive=Golgari Grave-Troll
+id=51718
+rarity=R
+[/card]
+[card]
+primitive=Golgari Rot Farm
+id=51719
+rarity=C
+[/card]
+[card]
+primitive=Golgari Signet
+id=51720
+rarity=C
+[/card]
+[card]
+primitive=Golgari Thug
+id=51721
+rarity=U
+[/card]
+[card]
+primitive=Grim Harvest
+id=51722
+rarity=C
+[/card]
+[card]
+primitive=Gruul Signet
+id=51723
+rarity=C
+[/card]
+[card]
+primitive=Gruul Turf
+id=51724
+rarity=C
+[/card]
+[card]
+primitive=Harmonize
+id=51725
+rarity=U
+[/card]
+[card]
+primitive=Hellspark Elemental
+id=51726
+rarity=U
+[/card]
+[card]
+primitive=Hinder
+id=51727
+rarity=U
+[/card]
+[card]
+primitive=Hissing Iguanar
+id=51728
+rarity=C
+[/card]
+[card]
+primitive=Illusionary Mask
+id=51729
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=51730
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=51731
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=51732
+rarity=C
+[/card]
+[card]
+primitive=Jötun Grunt
+id=51733
+rarity=U
+[/card]
+[card]
+primitive=Jund Panorama
+id=51734
+rarity=C
+[/card]
+[card]
+primitive=Jungle Barrier
+id=51735
+rarity=U
+[/card]
+[card]
+primitive=Jungle Lion
+id=51736
+rarity=C
+[/card]
+[card]
+primitive=Kami of Ancient Law
+id=51737
+rarity=C
+[/card]
+[card]
+primitive=Karakas
+id=51738
+rarity=R
+[/card]
+[card]
+primitive=Keldon Marauders
+id=51739
+rarity=C
+[/card]
+[card]
+primitive=Keldon Vandals
+id=51740
+rarity=C
+[/card]
+[card]
+primitive=Kodama's Reach
+id=51741
+rarity=C
+[/card]
+[card]
+primitive=Kor Firewalker
+id=51742
+rarity=U
+[/card]
+[card]
+primitive=Krosan Tusker
+id=51743
+rarity=C
+[/card]
+[card]
+primitive=Lava Spike
+id=51744
+rarity=C
+[/card]
+[card]
+primitive=Life from the Loam
+id=51745
+rarity=R
+[/card]
+[card]
+primitive=Lightning Bolt
+id=51746
+rarity=C
+[/card]
+[card]
+primitive=Lightning Bolt
+id=51747
+rarity=C
+[/card]
+[card]
+primitive=Lightning Greaves
+id=51748
+rarity=U
+[/card]
+[card]
+primitive=Looter il-Kor
+id=51749
+rarity=C
+[/card]
+[card]
+primitive=Magma Jet
+id=51750
+rarity=U
+[/card]
+[card]
+primitive=Mangara of Corondor
+id=51751
+rarity=R
+[/card]
+[card]
+primitive=Man-o'-War
+id=51752
+rarity=C
+[/card]
+[card]
+primitive=Massacre
+id=51753
+rarity=U
+[/card]
+[card]
+primitive=Merfolk Looter
+id=51754
+rarity=C
+[/card]
+[card]
+primitive=Mirari's Wake
+id=51755
+rarity=R
+[/card]
+[card]
+primitive=Miren, the Moaning Well
+id=51756
+rarity=R
+[/card]
+[card]
+primitive=Mishra's Factory
+id=51757
+rarity=U
+[/card]
+[card]
+primitive=Mistmeadow Witch
+id=51758
+rarity=U
+[/card]
+[card]
+primitive=Momentary Blink
+id=51759
+rarity=C
+[/card]
+[card]
+primitive=Moment's Peace
+id=51760
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=51761
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=51762
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=51763
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=51764
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=51765
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=51766
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=51767
+rarity=C
+[/card]
+[card]
+primitive=Mulldrifter
+id=51768
+rarity=C
+[/card]
+[card]
+primitive=Nezumi Graverobber // Nighteyes the Desecrator
+id=51769
+rarity=U
+[/card]
+[card]
+primitive=Noble Templar
+id=51770
+rarity=C
+[/card]
+[card]
+primitive=Oblivion Ring
+id=51771
+rarity=C
+[/card]
+[card]
+primitive=Oblivion Ring
+id=51772
+rarity=C
+[/card]
+[card]
+primitive=Overwhelming Intellect
+id=51773
+rarity=U
+[/card]
+[card]
+primitive=Penumbra Bobcat
+id=51774
+rarity=C
+[/card]
+[card]
+primitive=Phantom Centaur
+id=51775
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Arena
+id=51776
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=51777
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=51778
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=51779
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=51780
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=51781
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=51782
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=51783
+rarity=C
+[/card]
+[card]
+primitive=Price of Progress
+id=51784
+rarity=U
+[/card]
+[card]
+primitive=Prison Term
+id=51785
+rarity=U
+[/card]
+[card]
+primitive=Putrefy
+id=51786
+rarity=U
+[/card]
+[card]
+primitive=Pyroblast
+id=51787
+rarity=C
+[/card]
+[card]
+primitive=Pyrostatic Pillar
+id=51788
+rarity=U
+[/card]
+[card]
+primitive=Questing Phelddagrif
+id=51789
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Carnarium
+id=51790
+rarity=C
+[/card]
+[card]
+primitive=Rakdos Signet
+id=51791
+rarity=C
+[/card]
+[card]
+primitive=Rampant Growth
+id=51792
+rarity=C
+[/card]
+[card]
+primitive=Raven Familiar
+id=51793
+rarity=U
+[/card]
+[card]
+primitive=Reaping the Graves
+id=51794
+rarity=C
+[/card]
+[card]
+primitive=Recollect
+id=51795
+rarity=U
+[/card]
+[card]
+primitive=Relic of Progenitus
+id=51796
+rarity=U
+[/card]
+[card]
+primitive=Relic of Progenitus
+id=51797
+rarity=U
+[/card]
+[card]
+primitive=Resounding Thunder
+id=51798
+rarity=C
+[/card]
+[card]
+primitive=Resurrection
+id=51799
+rarity=U
+[/card]
+[card]
+primitive=Rhystic Study
+id=51800
+rarity=C
+[/card]
+[card]
+primitive=Rift Bolt
+id=51801
+rarity=C
+[/card]
+[card]
+primitive=Rootbreaker Wurm
+id=51802
+rarity=C
+[/card]
+[card]
+primitive=Rubinia Soulsinger
+id=51803
+rarity=R
+[/card]
+[card]
+primitive=Rupture Spire
+id=51804
+rarity=C
+[/card]
+[card]
+primitive=Sakura-Tribe Elder
+id=51805
+rarity=C
+[/card]
+[card]
+primitive=Savage Lands
+id=51806
+rarity=U
+[/card]
+[card]
+primitive=Seal of Cleansing
+id=51807
+rarity=C
+[/card]
+[card]
+primitive=Seaside Citadel
+id=51808
+rarity=U
+[/card]
+[card]
+primitive=Selesnya Sanctuary
+id=51809
+rarity=U
+[/card]
+[card]
+primitive=Selesnya Signet
+id=51810
+rarity=C
+[/card]
+[card]
+primitive=Serra Avenger
+id=51811
+rarity=R
+[/card]
+[card]
+primitive=Shambling Shell
+id=51812
+rarity=C
+[/card]
+[card]
+primitive=Shoreline Ranger
+id=51813
+rarity=C
+[/card]
+[card]
+primitive=Shriekmaw
+id=51814
+rarity=U
+[/card]
+[card]
+primitive=Silence
+id=51815
+rarity=R
+[/card]
+[card]
+primitive=Simic Growth Chamber
+id=51816
+rarity=U
+[/card]
+[card]
+primitive=Simic Signet
+id=51817
+rarity=C
+[/card]
+[card]
+primitive=Skullclamp
+id=51818
+rarity=U
+[/card]
+[card]
+primitive=Sterling Grove
+id=51819
+rarity=U
+[/card]
+[card]
+primitive=Stinkweed Imp
+id=51820
+rarity=U
+[/card]
+[card]
+primitive=Stonecloaker
+id=51821
+rarity=U
+[/card]
+[card]
+primitive=Stoneforge Mystic
+id=51822
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=51823
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=51824
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=51825
+rarity=C
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=51826
+rarity=U
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=51827
+rarity=U
+[/card]
+[card]
+primitive=Temporal Spring
+id=51828
+rarity=C
+[/card]
+[card]
+primitive=Terminate
+id=51829
+rarity=C
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=51830
+rarity=C
+[/card]
+[card]
+primitive=Terror
+id=51831
+rarity=C
+[/card]
+[card]
+primitive=Tranquil Thicket
+id=51832
+rarity=C
+[/card]
+[card]
+primitive=Treva's Ruins
+id=51833
+rarity=U
+[/card]
+[card]
+primitive=Twisted Abomination
+id=51834
+rarity=C
+[/card]
+[card]
+primitive=Umezawa's Jitte
+id=51835
+rarity=R
+[/card]
+[card]
+primitive=Vampiric Dragon
+id=51836
+rarity=R
+[/card]
+[card]
+primitive=Weathered Wayfarer
+id=51837
+rarity=R
+[/card]
+[card]
+primitive=Werebear
+id=51838
+rarity=C
+[/card]
+[card]
+primitive=Wickerbough Elder
+id=51839
+rarity=C
+[/card]
+[card]
+primitive=Wild Mongrel
+id=51840
+rarity=C
+[/card]
+[card]
+primitive=Willbender
+id=51841
+rarity=U
+[/card]
+[card]
+primitive=Wirewood Guardian
+id=51842
+rarity=C
+[/card]
+[card]
+primitive=Wood Elves
+id=51843
+rarity=U
+[/card]
+[card]
+primitive=Xira Arien
+id=51844
+rarity=R
+[/card]
+[card]
+primitive=Yavimaya Elder
+id=51845
+rarity=C
+[/card]
+[card]
+primitive=Yavimaya Enchantress
+id=51846
+rarity=U
+[/card]
