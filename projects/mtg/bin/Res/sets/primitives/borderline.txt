@@ -11,6 +11,31 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Copy Enchantment
+auto=this(cantargetcard(*[-artifact])) may copy notatarget(enchantment)
+text=You may have Copy Enchantment enter the battlefield as a copy of any enchantment on the battlefield.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Jotun Grunt
+auto=cumulativeupcost[{bottomoflibrary target(<2>*|graveyard)}] sacrifice
+text=Cumulative upkeep—Put two cards from a single graveyard on the bottom of their owner’s library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{W}
+type=Creature
+subtype=Giant Soldier
+power=4
+toughness=4
+[/card]
+[card]
+name=Hinder
+target=*|stack
+auto=fizzleto(optionone moveto(librarytop) optiononeend optiontwo moveto(bottomoflibrary) optiontwo moveto(librarytop) optiontwoend)
+text=Counter target spell. If that spell is countered this way, put that card on the top or bottom of its owner’s library instead of into that player’s graveyard.
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Coat of Arms
 auto=lord(creature|battlefield) foreach(other creature[share!type!]|battlefield) 1/1
 text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, it two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)

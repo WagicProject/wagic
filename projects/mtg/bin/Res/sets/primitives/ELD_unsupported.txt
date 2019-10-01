@@ -1,0 +1,2114 @@
+grade=unsupported
+[card]
+name=Tome of Legends
+text=Tome of Legends enters the battlefield with a page counter on it. -- Whenever your commander enters the battlefield or attacks, put a page counter on Tome of Legends. -- {1}, {T}, Remove a page counter from Tome of Legends: Draw a card.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Kenrith, the Returned King
+text={R}: All creatures gain trample and haste until end of turn. -- {1}{G}: Put a +1/+1 counter on target creature. -- {2}{W}: Target player gains 5 life. -- {3}{U}: Target player draws a card. -- {4}{B}: Put target creature card from a graveyard onto the battlefield under its owner's control.
+mana={4}{W}
+type=Legendary Creature
+subtype=Human Noble
+power=5
+toughness=5
+[/card]
+[card]
+name=Witch's Cottage
+text={T}: Add {B} -- Witch's Cottage enters the battlefield tapped unless you control three or more other Swamps. -- When Witch's Cottage enters the battlefield untapped, you may put target creature card from your graveyard on top of your library.
+type=Land
+subtype=Swamp
+[/card]
+[card]
+name=Tournament Grounds
+text={T}: Add {1}. -- {T}: Add {R}, {W}, or {B}. Spend this mana only to cast a Knight or Equipment spell.
+type=Land
+[/card]
+[card]
+name=Korvold, Fae-Cursed King
+text=Flying -- Whenever Korvold, Fae-Cursed King enters the battlefield or attacks, sacrifice another permanent. -- Whenever you sacrifice a permanent, put a +1/+1 counter on Korvold and draw a card.
+mana={2}{B}{R}{G}
+type=Legendary Creature
+subtype=Dragon Noble
+power=4
+toughness=4
+[/card]
+[card]
+name=Syr Gwyn, Hero of Ashvale
+text=Vigilance, menace -- Whenever an equipped creature you control attacks, you draw a card and you lose 1 life. -- Equipment you control have equip Knight {0}.
+mana={3}{R}{W}{B}
+type=Legendary Creature
+subtype=Human Knight
+power=5
+toughness=5
+[/card]
+[card]
+name=Arcane Signet
+text={T}: Add one mana of any color in your commander's color identity.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Torbran, Thane of Red Fell
+text=If a red source you control would deal damage to an opponent or a permanent an opponent controls, it deals that much damage plus 2 instead.
+mana={1}{R}{R}{R}
+type=Legendary Creature
+subtype=Dwarf Noble
+power=2
+toughness=4
+[/card]
+[card]
+name=Syr Carah, the Bold
+text=Whenever Syr Carah, the Bold or an instant or sorcery spell you control deals damage to a player, exile the top card of your library. You may play that card this turn. -- {T}: Syr Carah deals 1 damage to any target.
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+[card]
+name=Thrill of Possibility
+text=As an additional cost to cast this spell, discard a card. -- Draw two cards.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Scorching Dragonfire
+text=Scorching Dragonfire deals 3 damage to target creature or planeswalker. If that creature or planeswalker would die this turn, exile it instead.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Searing Barrage
+text=Searing Barrage deals 5 damage to target creature. -- Adamant — If at least three red mana was spent to cast this spell, Searing Barrage deals 3 damage to that creature's controller.
+mana={4}{R}
+type=Instant
+[/card]
+[card]
+name=Robber of the Rich
+text=Reach, haste -- Whenever Robber of the Rich attacks, if defending player has more cards in hand than you, exile the top card of their library. During any turn you attacked with a Rogue, you may cast that card and you may spend mana as though it were mana of any color to cast that spell.
+mana={1}{R}
+type=Creature
+subtype=Human Archer Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Slaying Fire
+text=Slaying Fire deals 3 damage to any target. -- Adamant — If at least three red mana was spent to cast this spell, it deals 4 damage instead.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Sundering Stroke
+text=Sundering Stroke deals 7 damage divided as you choose among one, two, or three targets. If at least seven red mana was spent to cast this spell, instead Sundering Stroke deals 7 damage to each of those permanents and/or players.
+mana={6}{R}
+type=Sorcery
+[/card]
+[card]
+name=Seven Dwarves
+text=Seven Dwarves gets +1/+1 for each other creature named Seven Dwarves you control. -- A deck can have up to seven cards named Seven Dwarves.
+mana={1}{R}
+type=Creature
+subtype=Dwarf
+power=2
+toughness=2
+[/card]
+[card]
+name=Skullknocker Ogre
+text=Whenever Skullknocker Ogre deals damage to an opponent, that player discards a card at random. If the player does, they draw a card.
+mana={3}{R}
+type=Creature
+subtype=Ogre
+power=4
+toughness=3
+[/card]
+[card]
+name=Mace of the Valiant
+text=Equipped creature gets +1/+1 for each charge counter on Mace of the Valiant and has vigilance. -- Whenever a creature enters the battlefield under your control, put a charge counter on Mace of the Valiant. -- Equip {3}
+mana={2}{W}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Silverwing Squadron
+text=Flying, vigilance -- Silverwing Squadron's power and toughness are each equal to the number of creatures you control. -- Whenever Silverwing Squadron attacks, create a number of 2/2 white Knight creature tokens with vigilance equal to the number of opponents you have.
+mana={5}{W}
+type=Creature
+subtype=Human Knight
+power=*
+toughness=*
+[/card]
+[card]
+name=Faerie Formation
+text=Flying -- {3}{U}: Create a 1/1 blue Faerie creature token with flying. Draw a card.
+mana={4}{U}
+type=Creature
+subtype=Faerie
+power=5
+toughness=4
+[/card]
+[card]
+name=Shimmer Dragon
+text=Flying -- As long as you control four or more artifacts, Shimmer Dragon has hexproof. -- Tap two untapped artifacts you control: Draw a card.
+mana={4}{U}{U}
+type=Creature
+subtype=Dragon
+power=5
+toughness=6
+[/card]
+[card]
+name=Banish into Fable
+text=When you cast this spell from your hand, copy it if you control an artifact, then copy it if you control an enchantment. You may choose new targets for the copies. -- Return target nonland permanent to its owner's hand. You create a 2/2 white Knight creature token with vigilance.
+mana={4}{W}{U}
+type=Instant
+[/card]
+[card]
+name=Chulane, Teller of Tales
+text=Vigilance -- Whenever you cast a creature spell, draw a card, then you may put a land card from your hand onto the battlefield. -- {3}, {T}: Return target creature you control to its owner's hand.
+mana={2}{G}{W}{U}
+type=Legendary Creature
+subtype=Human Druid
+power=2
+toughness=4
+[/card]
+[card]
+name=Gluttonous Troll
+text=Trample -- When Gluttonous Troll enters the battlefield, create a number of Food tokens equal to the number of opponents you have. (Food tokens are artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- {1}{G}, Sacrifice another nonland permanent: Gluttonous Troll gets +2/+2 until end of turn.
+mana={2}{B}{G}
+type=Creature
+subtype=Troll
+power=3
+toughness=3
+[/card]
+[card]
+name=Knights' Charge
+text=Whenever a Knight you control attacks, each opponent loses 1 life and you gain 1 life. -- {6}{W}{B}, Sacrifice Knights' Charge: Return all Knight creature cards from your graveyard to the battlefield.
+mana={1}{W}{B}
+type=Enchantment
+[/card]
+[card]
+name=Steelbane Hydra
+text=Steelbane Hydra enters the battlefield with X +1/+1 counters on it. -- {2}{G}, Remove a +1/+1 counter from Steelbane Hydra: Destroy target artifact or enchantment.
+mana={X}{G}{G}
+type=Creature
+subtype=Turtle Hydra
+power=0
+toughness=0
+[/card]
+[card]
+name=Thorn Mammoth
+text=Trample -- Whenever Thorn Mammoth or another creature enters the battlefield under your control, Thorn Mammoth fights up to one target creature you don't control.
+mana={5}{G}{G}
+type=Creature
+subtype=Elephant
+power=6
+toughness=6
+[/card]
+[card]
+name=Alela, Artful Provocateur
+text=Flying, deathtouch, lifelink -- Other creatures you control with flying get +1/+0. -- Whenever you cast an artifact or enchantment spell, create a 1/1 blue Faerie creature token with flying.
+mana={1}{W}{U}{B}
+type=Legendary Creature
+subtype=Faerie Warlock
+power=2
+toughness=3
+[/card]
+[card]
+name=Idyllic Grange
+text={T}: Add {W}. -- Idyllic Grange enters the battlefield tapped unless you control three or more other Plains. -- When Idyllic Grange enters the battlefield untapped, put a +1/+1 counter on target creature you control.
+type=Land
+subtype=Plains
+[/card]
+[card]
+name=Mystic Sanctuary
+text={T}: Add {U}. -- Mystic Sanctuary enters the battlefield tapped unless you control three or more other Islands. -- When Mystic Sanctuary enters the battlefield untapped, you may put target instant or sorcery card from your graveyard on top of your library.
+type=Land
+subtype=Island
+[/card]
+[card]
+name=Fabled Passage
+text={T}, Sacrifice Fabled Passage: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. Then if you control four or more lands, untap that land.
+type=Land
+[/card]
+[card]
+name=Gingerbread Cabin
+text={T}: Add {G}. -- Gingerbread Cabin enters the battlefield tapped unless you control three or more other Forests. -- When Gingerbread Cabin enters the battlefield untapped, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+type=Land
+subtype=Forest
+[/card]
+[card]
+name=Castle Ardenvale
+text=Castle Ardenvale enters the battlefield tapped unless you control a Plains. -- {T}: Add {W}. -- {2}{W}{W}, {T}: Create a 1/1 white Human creature token.
+type=Land
+[/card]
+[card]
+name=Castle Embereth
+text=Castle Embereth enters the battlefield tapped unless you control a Mountain. -- {T}: Add {R}. -- {1}{R}{R}, {T}: Creatures you control get +1/+0 until end of turn.
+type=Land
+[/card]
+[card]
+name=Castle Vantress
+text=Castle Vantress enters the battlefield tapped unless you control an Island. -- {T}: Add {U}. -- {2}{U}{U}, {T}: Scry 2.
+type=Land
+[/card]
+[card]
+name=Workshop Elders
+text=Artifact creatures you control have flying. -- At the beginning of combat on your turn, you may have target noncreature artifact you control become a 0/0 artifact creature. If you do, put four +1/+1 counters on it.
+mana={6}{U}
+type=Creature
+subtype=Human Artificer
+power=4
+toughness=4
+[/card]
+[card]
+name=Dwarven Mine
+text={T}: Add {R}. -- Dwarven Mine enters the battlefield tapped unless you control three or more other Mountains. -- When Dwarven Mine enters the battlefield untapped, create a 1/1 red Dwarf creature token.
+type=Land
+subtype=Mountain
+[/card]
+[card]
+name=Chittering Witch
+text=When Chittering Witch enters the battlefield, create a number of 1/1 black Rat creature tokens equal to the number of opponents you have. -- {1}{B}, Sacrifice a creature: Target creature gets -2/-2 until end of turn.
+mana={3}{B}
+type=Creature
+subtype=Human Warlock
+power=2
+toughness=2
+[/card]
+[card]
+name=Castle Garenbrig
+text=Castle Garenbrig enters the battlefield tapped unless you control a Forest. -- {T}: Add {G}. -- {2}{G}{G}, {T}: Add six {G}. Spend this mana only to cast creature spells or activate abilities of creatures.
+type=Land
+[/card]
+[card]
+name=Taste of Death
+text=Each player sacrifices three creatures. You create three Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Castle Locthwain
+text=Castle Locthwain enters the battlefield tapped unless you control a Swamp. -- {T}: Add {B}. -- {1}{B}{B}, {T}: Draw a card, then you lose life equal to the number of cards in your hand.
+type=Land
+[/card]
+[card]
+name=Embereth Skyblazer
+text=As long as it's your turn, Embereth Skyblazer has flying. -- Whenever Embereth Skyblazer attacks, you may pay {2}{R}. If you do, creatures you control get +X/+0 until end of turn, where X is the number of opponents you have.
+mana={3}{R}
+type=Creature
+subtype=Human Knight
+power=4
+toughness=3
+[/card]
+[card]
+name=Rimrock Knight // Boulder Rush
+text=Rimrock Knight can't block. // Target creature gets +2/+0 until end of turn. (Then exile this card. You may cast the creature later from exile.)
+mana={1}{R} // {R}
+type=Creature // Instant
+subtype=Dwarf Knight // Adventure
+power=3
+toughness=1
+[/card]
+[card]
+name=Embercleave
+text=Flash -- This spell costs {1} less to cast for each attacking creature you control. -- When Embercleave enters the battlefield, attach it to target creature you control. -- Equipped creature gets +1/+1 and has double strike and trample. -- Equip {3}
+mana={4}{R}{R}
+type=Legendary Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Embereth Paladin
+text=Haste -- Adamant — If at least three red mana was spent to cast this spell, Embereth Paladin enters the battlefield with a +1/+1 counter on it.
+mana={3}{R}
+type=Creature
+subtype=Human Knight
+power=4
+toughness=1
+[/card]
+[card]
+name=Claim the Firstborn
+text=Gain control of target creature with converted mana cost 3 or less until end of turn. Untap that creature. It gains haste until end of turn.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Crystal Slipper
+text=Equipped creature gets +1/+0 and has haste. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}{R}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Fervent Champion
+text=First strike, haste -- Whenever Fervent Champion attacks, another target attacking Knight you control gets +1/+0 until end of turn. -- Equip abilities you activate that target Fervent Champion cost 3 less to activate.
+mana={R}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+[/card]
+[card]
+name=Fires of Invention
+text=You can cast spells only during your turn and you can cast no more than two spells each turn. -- You may cast spells with converted mana cost less than or equal to the number of lands you control without paying their mana costs.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Embereth Shieldbreaker // Battle Display
+text=Destroy target artifact. (Then exile this card. You may cast the creature later from exile.) // Destroy target artifact. (Then exile this card. You may cast the creature later from exile.)
+mana={1}{R} // {R}
+type=Creature // Sorcery
+subtype=Human Knight // Adventure
+power=2
+toughness=1
+[/card]
+[card]
+name=Ferocity of the Wilds
+text=Attacking non-Human creatures you control get +1/+0 and have trample.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Burning-Yard Trainer
+text=Trample, haste -- When Burning-Yard Trainer enters the battlefield, another target Knight you control gets +2/+2 and gains trample and haste until end of turn.
+mana={4}{R}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+[card]
+name=Oko's Hospitality
+text=Creatures you control have base power and toughness 3/3 until end of turn. You may search your library and/or graveyard for a card named Oko, the Trickster, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={3}{G}{U}
+type=Instant
+[/card]
+[card]
+name=Bonecrusher Giant // Stomp
+text=Whenever Bonecrusher Giant becomes the target of a spell, Bonecrusher Giant deals 2 damage to that spell's controller. // Damage can't be prevented this turn. Stomp deals 2 damage to any target.
+mana={2}{R} // {1}{R}
+type=Creature // Instant
+subtype=Giant // Adventure
+power=4
+toughness=3
+[/card]
+[card]
+name=Weapon Rack
+text=Weapon Rack enters the battlefield with three +1/+1 counters on it. -- {T}: Move a +1/+1 counter from Weapon Rack onto target creature. Activate this ability only any time you could cast a sorcery.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Brimstone Trebuchet
+text=Defender, reach -- {T}: Brimstone Trebuchet deals 1 damage to each opponent. -- Whenever a Knight enters the battlefield under your control, untap Brimstone Trebuchet.
+mana={2}{R}
+type=Artifact Creature
+subtype=Wall
+power=1
+toughness=3
+[/card]
+[card]
+name=Witch's Oven
+text={T}, Sacrifice a creature: Create a Food token. If the sacrificed creature's toughness was 4 or greater, create two Food tokens instead. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Merchant of the Vale // Haggle
+text={2}{R}, Discard a card: Draw a card. // You may discard a card. If you do, draw a card. (Then exile this card. You may cast the creature later from exile.)
+mana={2}{R} // {R}
+type=Creature // Instant
+subtype=Human Peasant // Adventure
+power=2
+toughness=3
+[/card]
+[card]
+name=Ogre Errant
+text=Whenever Ogre Errant attacks, another target attacking Knight gains menace until end of turn. (It can't be blocked except by two or more creatures.)
+mana={3}{R}
+type=Creature
+subtype=Ogre Knight
+power=3
+toughness=4
+[/card]
+[card]
+name=Joust
+text=Choose target creature you control and target creature you don't control. The creature you control gets +2/+1 until end of turn if it's a Knight. Then those creatures fight each other. (Each deals damage equal to its power to the other.)
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Mad Ratter
+text=Whenever you draw your second card each turn, create two 1/1 black Rat creature tokens.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=2
+[/card]
+[card]
+name=Redcap Melee
+text=Redcap Melee deals 4 damage to target creature or planeswalker. If a nonred permanent is dealt damage this way, you sacrifice a land.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Redcap Raiders
+text=Whenever Redcap Raiders attacks, you may tap an untapped non-Human creature you control. If you do, Redcap Raiders gets +1/+1 and gains trample until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Goblin Warrior
+power=3
+toughness=2
+[/card]
+[card]
+name=Opportunistic Dragon
+text=Flying -- When Opportunistic Dragon enters the battlefield, choose target Human or artifact an opponent controls. For as long as Opportunistic Dragon remains on the battlefield, gain control of that permanent, it loses all abilities, and it can't attack or block.
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=3
+[/card]
+[card]
+name=Raging Redcap
+text=Double strike
+mana={2}{R}
+type=Creature
+subtype=Goblin Knight
+power=1
+toughness=2
+[/card]
+[card]
+name=Irencrag Pyromancer
+text=Whenever you draw your second card each turn, Irencrag Pyromancer deals 3 damage to any target.
+mana={2}{R}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=4
+[/card]
+[card]
+name=Irencrag Feat
+text=Add seven {R}. You can cast only one more spell this turn.
+mana={1}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Oathsworn Knight
+text=Oathsworn Knight enters the battlefield with four +1/+1 counters on it. -- Oathsworn Knight attacks each combat if able. -- If damage would be dealt to Oathsworn Knight while it has a +1/+1 counter on it, prevent that damage and remove a +1/+1 counter from it.
+mana={1}{B}{B}
+type=Creature
+subtype=Human Knight
+power=0
+toughness=0
+[/card]
+[card]
+name=Gingerbrute
+text=Haste -- {1}: Gingerbrute can't be blocked this turn except by creatures with haste. -- {2}, {T}, Sacrifice Gingerbrute: You gain 3 life.
+mana={1}
+type=Artifact Creature
+subtype=Food Golem
+power=1
+toughness=1
+[/card]
+[card]
+name=Order of Midnight // Alter Fate
+text=Flying -- Order of Midnight can't block. // Return target creature card from your graveyard to your hand. (Then exile this card. You may cast the creature later from exile.)
+mana={1}{B} // {1}{B}
+type=Creature // Sorcery
+subtype=Human Knight // Adventure
+power=2
+toughness=2
+[/card]
+[card]
+name=Golden Egg
+text=When Golden Egg enters the battlefield, draw a card. -- {1},{T}, Sacrifice Golden Egg: Add one mana of any color. -- {2}, {T}, Sacrifice Golden Egg: You gain 3 life.
+mana={2}
+type=Artifact
+subtype=Food
+[/card]
+[card]
+name=Enchanted Carriage
+text=When Enchanted Carriage enters the battlefield, create two 1/1 white Mouse creature tokens. -- Crew 2 (Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={5}
+type=Artifact
+subtype=Vehicle
+power=4
+toughness=4
+[/card]
+[card]
+name=Reaper of Night // Harvest Fear
+text=Whenever Reaper of Night attacks, if defending player has two or fewer cards in hand, it gains flying until end of turn. // Target opponent discards two cards. (Then exile this card. You may cast the creature later from exile.)
+mana={5}{B}{B} // {3}{B}
+type=Creature // Sorcery
+subtype=Specter // Adventure
+power=4
+toughness=5
+[/card]
+[card]
+name=Inquisitive Puppet
+text=When Inquisitive Puppet enters the battlefield, scry 1. -- Exile Inquisitive Puppet: Create a 1/1 white Human creature token.
+mana={1}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=2
+[/card]
+[card]
+name=Jousting Dummy
+text={3}: Jousting Dummy gets +1/+0 until end of turn.
+mana={2}
+type=Artifact Creature
+subtype=Scarecrow Knight
+power=2
+toughness=1
+[/card]
+[card]
+name=Piper of the Swarm
+text=Rats you control have menace. -- {1}{B}, {T}: Create a 1/1 black Rat creature token. -- {2}{B}{B}, {T}, Sacrifice three Rats: Gain control of target creature.
+mana={1}{B}
+type=Creature
+subtype=Human Warlock
+power=1
+toughness=3
+[/card]
+[card]
+name=Henge Walker
+text=Adamant — If at least three mana of the same color was spent to cast this spell, Henge Walker enters the battlefield with a +1/+1 counter on it.
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=2
+[/card]
+[card]
+name=Rankle, Master of Pranks
+text=Flying, haste -- Whenever Rankle, Master of Pranks deals combat damage to a player, choose any number — -- • Each player discards a card. -- • Each player loses 1 life and draws a card. -- • Each player sacrifices a creature.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Faerie Rogue
+power=3
+toughness=3
+[/card]
+[card]
+name=Heraldic Banner
+text=As Heraldic Banner enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+0. -- {T}: Add one mana of the chosen color.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Malevolent Noble
+text={2}, Sacrifice an artifact or another creature: Put a +1/+1 counter on Malevolent Noble.
+mana={1}{B}
+type=Creature
+subtype=Human Noble
+power=2
+toughness=2
+[/card]
+[card]
+name=Clockwork Servant
+text=Adamant — When Clockwork Servant enters the battlefield, if at least three mana of the same color was spent to cast it, draw a card.
+mana={3}
+type=Artifact Creature
+subtype=Gnome
+power=2
+toughness=3
+[/card]
+[card]
+name=Memory Theft
+text=Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. You may put a card that has an Adventure that player owns from exile into that player's graveyard.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Crashing Drawbridge
+text=Defender -- {T}: Creatures you control gain haste until end of turn.
+mana={2}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=4
+[/card]
+[card]
+name=Locthwain Paladin
+text=Menace (This creature can't be blocked except by two or more creatures.) -- Adamant — If at least three black mana was spent to cast this spell, Locthwain Paladin enters the battlefield with a +1/+1 counter on it.
+mana={3}{B}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=2
+[/card]
+[card]
+name=Resolute Rider
+text={WB}{WB}: Resolute Rider gains lifelink until end of turn. -- {WB}{WB}{WB}: Resolute Rider gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={WB}{WB}{WB}{WB}
+type=Creature
+subtype=Human Knight
+power=4
+toughness=2
+[/card]
+[card]
+name=Lost Legion
+text=When Lost Legion enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={1}{B}{B}
+type=Creature
+subtype=Spirit Knight
+power=2
+toughness=3
+[/card]
+[card]
+name=Thunderous Snapper
+text=Whenever you cast a spell with converted mana cost 5 or greater, draw a card.
+mana={GU}{GU}{GU}{GU}
+type=Creature
+subtype=Turtle Hydra
+power=4
+toughness=4
+[/card]
+[card]
+name=Murderous Rider // Swift End
+text=Lifelink -- When Murderous Rider dies, put it on the bottom of its owner's library. // Destroy target creature or planeswalker. You lose 2 life. (Then exile this card. You may cast the creature later from exile.)
+mana={1}{B}{B} // {1}{B}{B}
+type=Creature // Instant
+subtype=Zombie Knight // Adventure
+power=2
+toughness=3
+[/card]
+[card]
+name=Wicked Guardian
+text=When Wicked Guardian enters the battlefield, you may have it deal 2 damage to another creature you control. If you do, draw a card.
+mana={3}{B}
+type=Creature
+subtype=Human Noble
+power=4
+toughness=2
+[/card]
+[card]
+name=Shambling Suit
+text=Shambling Suit's power is equal to the number of artifacts and/or enchantments you control.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=*
+toughness=3
+[/card]
+[card]
+name=Wishclaw Talisman
+text=Wishclaw Talisman enters the battlefield with three wish counters on it. -- {1}, {T}, Remove a wish counter from Wishclaw Talisman: Search your library for a card, put it into your hand, then shuffle your library. An opponent gains control of Wishclaw Talisman. Activate this ability only during your turn.
+mana={1}{B}
+type=Artifact
+[/card]
+[card]
+name=Signpost Scarecrow
+text=Vigilance -- {2}: Add one mana of any color.
+mana={4}
+type=Artifact Creature
+subtype=Scarecrow
+power=2
+toughness=4
+[/card]
+[card]
+name=Roving Keep
+text=Defender -- {7}: Roving Keep gets +2/+0 and gains trample until end of turn. It can attack this turn as though it didn't have defender.
+mana={7}
+type=Artifact Creature
+subtype=Wall
+power=5
+toughness=7
+[/card]
+[card]
+name=Tempting Witch
+text=When Tempting Witch enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- {2}, {T}, Sacrifice a Food: Target player loses 3 life.
+mana={2}{B}
+type=Creature
+subtype=Human Warlock
+power=1
+toughness=3
+[/card]
+[card]
+name=Scalding Cauldron
+text={3}, {T}, Sacrifice Scalding Cauldron: It deals 3 damage to target creature.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Bloodhaze Wolverine
+text=Whenever you draw your second card each turn, Bloodhaze Wolverine gets +1/+1 and gains first strike until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Wolverine
+power=2
+toughness=1
+[/card]
+[card]
+name=Spinning Wheel
+text={T}: Add one mana of any color. -- {5}, {T}: Tap target creature.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Blow Your House Down
+text=Up to three target creatures can't block this turn. Destroy any of them that are Walls.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Stonecoil Serpent
+text=Reach, trample, protection from multicolored -- Stonecoil Serpent enters the battlefield with X +1/+1 counters on it.
+mana={X}
+type=Artifact Creature
+subtype=Snake
+power=0
+toughness=0
+[/card]
+[card]
+name=Witch's Vengeance
+text=Creatures of the creature type of your choice get -3/-3 until end of turn.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Sorcerer's Broom
+text=Whenever you sacrifice another permanent, you may pay {3}. If you do, create a token that's a copy of Sorcerer's Broom.
+mana={2}
+type=Artifact Creature
+subtype=Spirit
+power=2
+toughness=1
+[/card]
+[card]
+name=Barge In
+text=Target attacking creature gets +2/+2 until end of turn. Each attacking non-Human creature gains trample until end of turn.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Sorcerous Spyglass
+text=As Sorcerous Spyglass enters the battlefield, look at an opponent's hand, then choose any card name. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Oko, the Trickster
+text=+1: Put two +1/+1 counters on up to one target creature you control. -- 0: Until end of turn, Oko, the Trickster becomes a copy of target creature you control. Prevent all damage that would be dealt to him this turn. -- −7: Until end of turn, each creature you control has base power and toughness 10/10 and gains trample.
+mana={4}{G}{U}
+type=Legendary Planeswalker
+subtype=Oko
+[/card]
+[card]
+name=Oko's Accomplices
+text=Flying
+mana={2}{U}
+type=Creature
+subtype=Faerie
+power=2
+toughness=3
+[/card]
+[card]
+name=Bramblefort Fink
+text={8}: Bramblefort Fink has base power and toughness 10/10 until end of turn. Activate this ability only if you control an Oko planeswalker.
+mana={1}{G}
+type=Creature
+subtype=Ouphe
+power=2
+toughness=2
+[/card]
+[card]
+name=Garrison Griffin
+text=Flying -- Whenever Garrison Griffin attacks, target Knight you control gains flying until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+[/card]
+[card]
+name=Rowan's Battleguard
+text=First strike -- As long as you control a Rowan planeswalker, Rowan's Battleguard gets +3/+0.
+mana={3}{R}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+[card]
+name=Rowan's Stalwarts
+text=When Rowan's Stalwarts enters the battlefield, you may search your library and/or graveyard for a card named Rowan, Fearless Sparkmage, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={4}{R}
+type=Creature
+subtype=Human Knight
+power=5
+toughness=2
+[/card]
+[card]
+name=Specter's Shriek
+text=Target opponent reveals their hand. You may choose a nonland card from it. If you do, that player exiles that card. If a nonblack card is exiled this way, exile a card from your hand.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Prophet of the Peak
+text=When Prophet of the Peak enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={6}
+type=Artifact Creature
+subtype=Cat
+power=5
+toughness=5
+[/card]
+[card]
+name=Syr Konrad, the Grim
+text=Whenever another creature dies, or a creature card is put into a graveyard from anywhere other than the battlefield, or a creature card leaves your graveyard, Syr Konrad, the Grim deals 1 damage to each opponent. -- {1}{B}: Each player puts the top card of their library into their graveyard.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Human Knight
+power=5
+toughness=4
+[/card]
+[card]
+name=Revenge of Ravens
+text=Whenever a creature attacks you or a planeswalker you control, that creature's controller loses 1 life and you gain 1 life.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
+name=Locthwain Gargoyle
+text={4}: Locthwain Gargoyle gets +2/+0 and gains flying until end of turn.
+mana={1}
+type=Artifact Creature
+subtype=Gargoyle
+power=0
+toughness=3
+[/card]
+[card]
+name=Smitten Swordmaster // Curry Favor
+text=Lifelink // You gain X life and each opponent loses X life, where X is the number of Knights you control.
+mana={1}{B} // {B}
+type=Creature // Sorcery
+subtype=Human Knight // Adventure
+power=2
+toughness=1
+[/card]
+[card]
+name=Lucky Clover
+text=Whenever you cast an Adventure instant or sorcery spell, copy it. You may choose new targets for the copy.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Rowan, Fearless Sparkmage
+text=+1: Up to one target creature gets +3/+0 and gains first strike until end of turn. -- −2: Rowan, Fearless Sparkmage deals 1 damage to each of up to two target creatures. Those creatures can't block this turn. -- −9: Gain control of all creatures until end of turn. Untap them. They gain haste until end of turn.
+mana={3}{R}{R}
+type=Legendary Planeswalker
+subtype=Rowan
+[/card]
+[card]
+name=Outlaws' Merriment
+text=At the beginning of your upkeep, choose one at random. Create a red and white creature token with those characteristics. -- • 3/1 Human Warrior with trample and haste. -- • 2/1 Human Cleric with lifelink and haste. -- • 1/2 Human Rogue with haste and "When this creature enters the battlefield, it deals 1 damage to any target."
+mana={1}{R}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Bog Naughty
+text=Flying -- {2}{B}, Sacrifice a Food: Target creature gets -3/-3 until end of turn.
+mana={3}{B}{B}
+type=Creature
+subtype=Faerie
+power=3
+toughness=3
+[/card]
+[card]
+name=Shinechaser
+text=Flying, vigilance -- Shinechaser gets +1/+1 as long as you control an artifact. -- Shinechaser gets +1/+1 as long as you control an enchantment.
+mana={1}{W}{U}
+type=Creature
+subtype=Faerie
+power=1
+toughness=1
+[/card]
+[card]
+name=Cauldron Familiar
+text=When Cauldron Familiar enters the battlefield, each opponent loses 1 life and you gain 1 life. -- Sacrifice a Food: Return Cauldron Familiar from your graveyard to the battlefield.
+mana={B}
+type=Creature
+subtype=Cat
+power=1
+toughness=1
+[/card]
+[card]
+name=Steelclaw Lance
+text=Equipped creature gets +2/+2. -- Equip Knight {1} -- Equip {3}
+mana={B}{R}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Belle of the Brawl
+text=Menace (This creature can't be blocked except by two or more creatures.) -- Whenever Belle of the Brawl attacks, other Knights you control get +1/+0 until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=2
+[/card]
+[card]
+name=The Royal Scions
+text=+1: Draw a card, then discard a card. -- +1: Target creature gets +2/+0 and gains first strike and trample until end of turn. -- −8: Draw four cards. When you do, The Royal Scions deals damage to any target equal to the number of cards in your hand.
+mana={1}{U}{R}
+type=Legendary Planeswalker
+subtype=Will Rowan
+[/card]
+[card]
+name=Blacklance Paragon
+text=Flash -- When Blacklance Paragon enters the battlefield, target Knight gains deathtouch and lifelink until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=1
+[/card]
+[card]
+name=Savvy Hunter
+text=Whenever Savvy Hunter attacks or blocks, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Sacrifice two Foods: Draw a card.
+mana={1}{B}{G}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Realm-Cloaked Giant // Cast Off
+text=Vigilance // Destroy all non-Giant creatures. (Then exile this card. You may cast the creature later from exile.)
+mana={5}{W}{W} // {3}{W}{W}
+type=Creature // Sorcery
+subtype=Giant // Adventure
+power=7
+toughness=7
+[/card]
+[card]
+name=Prized Griffin
+text=Flying
+mana={4}{W}
+type=Creature
+subtype=Griffin
+power=3
+toughness=4
+[/card]
+[card]
+name=Rally for the Throne
+text=Create two 1/1 white Human creature tokens. -- Adamant — If at least three white mana was spent to cast this spell, you gain 1 life for each creature you control.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Hushbringer
+text=Flying, lifelink -- Creatures entering the battlefield or dying don't cause abilities to trigger.
+mana={1}{W}
+type=Creature
+subtype=Faerie
+power=1
+toughness=2
+[/card]
+[card]
+name=Wishful Merfolk
+text=Defender -- {1}{U}: Wishful Merfolk loses defender and becomes a Human until end of turn.
+mana={1}{U}
+type=Creature
+subtype=Merfolk
+power=3
+toughness=2
+[/card]
+[card]
+name=Inspiring Veteran
+text=Other Knights you control get +1/+1.
+mana={R}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Knight of the Keep
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=2
+[/card]
+[card]
+name=Witching Well
+text=When Witching Well enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.) -- {3}{U}, Sacrifice Witching Well: Draw two cards.
+mana={U}
+type=Artifact
+[/card]
+[card]
+name=Lochmere Serpent
+text=Flash -- {U}, Sacrifice an Island: Lochmere Serpent can't be blocked this turn. -- {B}, Sacrifice a Swamp: You gain 1 life and draw a card. -- {U}{B}: Exile five target cards from an opponent's graveyard. Return Lochmere Serpent from your graveyard to your hand. Activate this ability only any time you could cast a sorcery.
+mana={4}{U}{B}
+type=Creature
+subtype=Serpent
+power=7
+toughness=7
+[/card]
+[card]
+name=Vantress Gargoyle
+text=Flying -- Vantress Gargoyle can't attack unless defending player has seven or more cards in their graveyard. -- Vantress Gargoyle can't block unless you have four or more cards in hand. -- {T}: Each player puts the top card of their library into their graveyard.
+mana={1}{U}
+type=Artifact Creature
+subtype=Gargoyle
+power=5
+toughness=4
+[/card]
+[card]
+name=Grumgully, the Generous
+text=Each other non-Human creature you control enters the battlefield with an additional +1/+1 counter on it.
+mana={1}{R}{G}
+type=Legendary Creature
+subtype=Goblin Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Vantress Paladin
+text=Flying -- Adamant — If at least three blue mana was spent to cast this spell, Vantress Paladin enters the battlefield with a +1/+1 counter on it.
+mana={3}{U}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Improbable Alliance
+text=Whenever you draw your second card each turn, create a 1/1 blue Faerie creature token with flying. -- {4}{U}{R}: Draw a card, then discard a card.
+mana={U}{R}
+type=Enchantment
+[/card]
+[card]
+name=Mysterious Pathlighter
+text=Flying -- Each creature you control that has an Adventure enters the battlefield with an additional +1/+1 counter on it. (It doesn't need to have gone on the adventure first.)
+mana={2}{W}
+type=Creature
+subtype=Faerie
+power=2
+toughness=2
+[/card]
+[card]
+name=Barrow Witches
+text=When Barrow Witches enters the battlefield, return target Knight card from your graveyard to your hand.
+mana={4}{B}
+type=Creature
+subtype=Human Warlock
+power=3
+toughness=4
+[/card]
+[card]
+name=Outflank
+text=Outflank deals damage to target attacking or blocking creature equal to the number of creatures you control.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Linden, the Steadfast Queen
+text=Vigilance -- Whenever a white creature you control attacks, you gain 1 life.
+mana={W}{W}{W}
+type=Legendary Creature
+subtype=Human Noble
+power=3
+toughness=3
+[/card]
+[card]
+name=Ayara, First of Locthwain
+text=Whenever Ayara, First of Locthwain or another black creature enters the battlefield under your control, each opponent loses 1 life and you gain 1 life. -- {T}, Sacrifice another black creature: Draw a card.
+mana={B}{B}{B}
+type=Legendary Creature
+subtype=Elf Noble
+power=2
+toughness=3
+[/card]
+[card]
+name=Maraleaf Pixie
+text=Flying -- {T}: Add {G} or {U}.
+mana={G}{U}
+type=Creature
+subtype=Faerie
+power=2
+toughness=2
+[/card]
+[card]
+name=Lonesome Unicorn // Rider in Need
+text=Vigilance // Create a 2/2 white Knight creature token with vigilance. (Then exile this card. You may cast the creature later from exile.)
+mana={4}{W} // {2}{W}
+type=Creature // Sorcery
+subtype=Unicorn // Adventure
+power=3
+toughness=3
+[/card]
+[card]
+name=Bake into a Pie
+text=Destroy target creature. Create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={2}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Oko, Thief of Crowns
+text=+2: Create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- +1: Target artifact or creature loses all abilities and becomes a green Elk creature with base power and toughness 3/3. -- −5: Exchange control of target artifact or creature you control and target creature an opponent controls with power 3 or less.
+mana={1}{G}{U}
+type=Legendary Planeswalker
+subtype=Oko
+[/card]
+[card]
+name=Deathless Knight
+text=Haste -- When you gain life for the first time each turn, return Deathless Knight from your graveyard to your hand.
+mana={BG}{BG}{BG}{BG}
+type=Creature
+subtype=Skeleton Knight
+power=4
+toughness=2
+[/card]
+[card]
+name=Foreboding Fruit
+text=Target player draws two cards and loses 2 life. -- Adamant — If at least three black mana was spent to cast this spell, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Elite Headhunter
+text=Menace (This creature can't be blocked except by two or more creatures.) -- {BR}{BR}{BR}, Sacrifice another creature or an artifact: Elite Headhunter deals 2 damage to target creature or planeswalker.
+mana={BR}{BR}{BR}{BR}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=3
+[/card]
+[card]
+name=Giant's Skewer
+text=Equipped creature gets +2/+1. -- Whenever equipped creature deals combat damage to a creature, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}{B}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Oakhame Ranger
+text={T}: Creatures you control get +1/+1 until end of turn.
+mana={GW}{GW}{GW}{GW}
+type=Creature
+subtype=Elf Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Lash of Thorns
+text=Target creature gets +2/+1 and gains deathtouch until end of turn.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Rampart Smasher
+text=Rampart Smasher can't be blocked by Knights or Walls.
+mana={RG}{RG}{RG}{RG}
+type=Creature
+subtype=Giant
+power=5
+toughness=5
+[/card]
+[card]
+name=Forever Young
+text=Put any number of target creature cards from your graveyard on top of your library. -- Draw a card.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Fireborn Knight
+text=Double strike -- {RW}{RW}{RW}{RW}: Fireborn Knight gets +1/+1 until end of turn.
+mana={RW}{RW}{RW}{RW}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=3
+[/card]
+[card]
+name=Foulmire Knight // Profane Insight
+text=Deathtouch // You draw a card and you lose 1 life. (Then exile this card. You may cast the creature later from exile.)
+mana={B} // {2}{B}
+type=Creature // Instant
+subtype=Zombie Knight // Adventure
+power=1
+toughness=1
+[/card]
+[card]
+name=Loch Dragon
+text=Flying -- Whenever Loch Dragon enters the battlefield or attacks, you may discard a card. If you do, draw a card.
+mana={UR}{UR}{UR}{UR}
+type=Creature
+subtype=Dragon
+power=3
+toughness=2
+[/card]
+[card]
+name=Venerable Knight
+text=When Venerable Knight dies, put a +1/+1 counter on target Knight you control.
+mana={W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=1
+[/card]
+[card]
+name=Worthy Knight
+text=Whenever you cast a Knight spell, create a 1/1 white Human creature token.
+mana={1}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Shining Armor
+text=Flash -- When Shining Armor enters the battlefield, attach it to target Knight you control. -- Equipped creature gets +0/+2 and has vigilance. -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}{W}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Clackbridge Troll
+text=Trample, haste -- When Clackbridge Troll enters the battlefield, target opponent creates three 0/1 white Goat creature tokens. -- At the beginning of combat on your turn, any opponent may sacrifice a creature. If a player does, tap Clackbridge Troll, you gain 3 life, and you draw a card.
+mana={3}{B}{B}
+type=Creature
+subtype=Troll
+power=8
+toughness=8
+[/card]
+[card]
+name=Wintermoor Commander
+text=Deathtouch -- Wintermoor Commander's toughness is equal to the number of Knights you control. -- Whenever Wintermoor Commander attacks, another target Knight you control gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
+mana={W}{B}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=*
+[/card]
+[card]
+name=Silverflame Ritual
+text=Put a +1/+1 counter on each creature you control. -- Adamant — If at least three white mana was spent to cast this spell, creatures you control gain vigilance until end of turn.
+mana={3}{W}
+type=Sorcery
+[/card]
+[card]
+name=Epic Downfall
+text=Exile target creature with converted mana cost 3 or greater.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Arcanist's Owl
+text=Flying -- When Arcanist's Owl enters the battlefield, look at the top four cards of your library. You may reveal an artifact or enchantment card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+mana={WU}{WU}{WU}{WU}
+type=Artifact Creature
+subtype=Bird
+power=3
+toughness=3
+[/card]
+[card]
+name=The Cauldron of Eternity
+text=This spell costs {2} less to cast for each creature card in your graveyard. -- Whenever a creature you control dies, put it on the bottom of its owner's library. -- {2}{B}, {T}, Pay 2 life: Return target creature card from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery.
+mana={10}{B}{B}
+type=Legendary Artifact
+[/card]
+[card]
+name=Stormfist Crusader
+text=Menace -- At the beginning of your upkeep, each player draws a card and loses 1 life.
+mana={B}{R}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Shepherd of the Flock // Usher to Safety
+text=Return target permanent you control to its owner's hand. (Then exile this card. You may cast the creature later from exile.) // Return target permanent you control to its owner's hand. (Then exile this card. You may cast the creature later from exile.)
+mana={1}{W} // {W}
+type=Creature // Instant
+subtype=Human Peasant // Adventure
+power=3
+toughness=1
+[/card]
+[card]
+name=Cauldron's Gift
+text=Adamant — If at least three black mana was spent to cast this spell, put the top four cards of your library into your graveyard. -- You may choose a creature card in your graveyard. If you do, return it to the battlefield with an additional +1/+1 counter on it.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Wandermare
+text=Whenever you cast a creature spell that has an Adventure, put a +1/+1 counter on Wandermare. (It doesn't need to have gone on the adventure first.)
+mana={1}{G}{W}
+type=Creature
+subtype=Horse
+power=3
+toughness=3
+[/card]
+[card]
+name=Trapped in the Tower
+text=Enchant creature without flying -- Enchanted creature can't attack or block, and its activated abilities can't be activated.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=True Love's Kiss
+text=Exile target artifact or enchantment. -- Draw a card.
+mana={2}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Silverflame Squire // On Alert
+text=Target creature gets +2/+2 until end of turn. Untap it. (Then exile this card. You may cast the creature later from exile.) // Target creature gets +2/+2 until end of turn. Untap it. (Then exile this card. You may cast the creature later from exile.)
+mana={1}{W} // {2}{W}
+type=Creature // Instant
+subtype=Human Soldier // Adventure
+power=2
+toughness=1
+[/card]
+[card]
+name=Eye Collector
+text=Flying -- Whenever Eye Collector deals combat damage to a player, each player puts the top card of their library into their graveyard.
+mana={B}
+type=Creature
+subtype=Faerie
+power=1
+toughness=1
+[/card]
+[card]
+name=Covetous Urge
+text=Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
+mana={UB}{UB}{UB}{UB}
+type=Sorcery
+[/card]
+[card]
+name=Syr Alin, the Lion's Claw
+text=First strike -- Whenever Syr Alin, the Lion's Claw attacks, other creatures you control get +1/+1 until end of turn.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Knight
+power=4
+toughness=4
+[/card]
+[card]
+name=Festive Funeral
+text=Target creature gets -X/-X until end of turn, where X is the number of cards in your graveyard.
+mana={4}{B}
+type=Instant
+[/card]
+[card]
+name=Mystical Dispute
+text=This spell costs {2} less to cast if it targets a blue spell. -- Counter target spell unless its controller pays 3 .
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Trail of Crumbs
+text=When Trail of Crumbs enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Whenever you sacrifice a Food, you may pay 1 . If you do, look at the top two cards of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Tuinvale Treefolk // Oaken Boon
+text= // Put two +1/+1 counters on target creature. (Then exile this card. You may cast the creature later from exile.)
+mana={5}{G} // {3}{G}
+type=Creature // Sorcery
+subtype=Treefolk Druid // Adventure
+power=6
+toughness=5
+[/card]
+[card]
+name=Tall as a Beanstalk
+text=Enchant creature -- Enchanted creature gets +3/+3, has reach, and is a Giant in addition to its other types.
+mana={3}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Ardenvale Paladin
+text=Adamant — If at least three white mana was spent to cast this spell, Ardenvale Paladin enters the battlefield with a +1/+1 counter on it.
+mana={3}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=5
+[/card]
+[card]
+name=Ardenvale Tactician // Dizzying Swoop
+text=Flying // Tap up to two target creatures. (Then exile this card. You may cast the creature later from exile.)
+mana={1}{W}{W} // {1}{W}
+type=Creature // Instant
+subtype=Human Knight // Adventure
+power=2
+toughness=3
+[/card]
+[card]
+name=All That Glitters
+text=Enchant creature -- Enchanted creature gets +1/+1 for each artifact and/or enchantment you control.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Moonlit Scavengers
+text=When Moonlit Scavengers enters the battlefield, if you control an artifact or enchantment, return target creature an opponent controls to its owner's hand.
+mana={5}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=4
+toughness=5
+[/card]
+[card]
+name=Archon of Absolution
+text=Flying -- Protection from white (This creature can't be blocked, targeted, dealt damage, enchanted, or equipped by anything white.) -- Creatures can't attack you or a planeswalker you control unless their controller pays 1 for each of those creatures.
+mana={3}{W}
+type=Creature
+subtype=Archon
+power=3
+toughness=2
+[/card]
+[card]
+name=Bartered Cow
+text=When Bartered Cow dies or when you discard it, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={3}{W}
+type=Creature
+subtype=Ox
+power=3
+toughness=3
+[/card]
+[card]
+name=Beloved Princess
+text=Lifelink -- Beloved Princess can't be blocked by creatures with power 3 or greater.
+mana={W}
+type=Creature
+subtype=Human Noble
+power=1
+toughness=1
+[/card]
+[card]
+name=The Magic Mirror
+text=This spell costs {1} less to cast for each instant and sorcery card in your graveyard. -- You have no maximum hand size. -- At the beginning of your upkeep, put a knowledge counter on The Magic Mirror, then draw a card for each knowledge counter on The Magic Mirror.
+mana={6}{U}{U}{U}
+type=Legendary Artifact
+[/card]
+[card]
+name=Return of the Wildspeaker
+text=Choose one — -- • Draw cards equal to the greatest power among non-Human creatures you control. -- • Non-Human creatures you control get +3/+3 until end of turn.
+mana={4}{G}
+type=Instant
+[/card]
+[card]
+name=Mantle of Tides
+text=Equipped creature gets +1/+2. -- Whenever you draw your second card each turn, attach Mantle of Tides to target creature you control. -- Equip {3} ({3} : Attach to target creature you control. Equip only as a sorcery.)
+mana={U}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Hypnotic Sprite // Mesmeric Glare
+text=Flying // Counter target spell with converted mana cost 3 or less. (Then exile this card. You may cast the creature later from exile.)
+mana={U}{U} // {2}{U}
+type=Creature // Instant
+subtype=Faerie // Adventure
+power=2
+toughness=1
+[/card]
+[card]
+name=Outmuscle
+text=Put a +1/+1 counter on target creature you control, then it fights target creature you don't control. (Each deals damage equal to its power to the other.) -- Adamant — If at least three green mana was spent to cast this spell, the creature you control gains indestructible until end of turn.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Into the Story
+text=This spell costs -- 3 -- less to cast if an opponent has seven or more cards in their graveyard. -- Draw four cards.
+mana={5}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Questing Beast
+text=Vigilance, deathtouch, haste -- Questing Beast can't be blocked by creatures with power 2 or less. -- Combat damage that would be dealt by creatures you control can't be prevented. -- Whenever Questing Beast deals combat damage to an opponent, it deals that much damage to target planeswalker that player controls.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+[card]
+name=Mirrormade
+text=You may have Mirrormade enter the battlefield as a copy of any artifact or enchantment on the battlefield.
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Acclaimed Contender
+text=When Acclaimed Contender enters the battlefield, if you control another Knight, look at the top five cards of your library. You may reveal a Knight, Aura, Equipment, or legendary artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+[card]
+name=Mistford River Turtle
+text=Whenever Mistford River Turtle attacks, another target attacking non-Human creature can't be blocked this turn.
+mana={3}{U}
+type=Creature
+subtype=Turtle
+power=1
+toughness=5
+[/card]
+[card]
+name=Syr Faren, the Hengehammer
+text=Whenever Syr Faren, the Hengehammer attacks, another target attacking creature gets +X/+X until end of turn, where X is Syr Faren's power.
+mana={G}{G}
+type=Legendary Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Merfolk Secretkeeper // Venture Deeper
+text=Target player puts the top four cards of their library into their graveyard. (Then exile this card. You may cast the creature later from exile.) // Target player puts the top four cards of their library into their graveyard. (Then exile this card. You may cast the creature later from exile.)
+mana={U} // {U}
+type=Creature // Sorcery
+subtype=Merfolk Wizard // Adventure
+power=0
+toughness=4
+[/card]
+[card]
+name=Rosethorn Acolyte // Seasonal Ritual
+text={T}: Add one mana of any color. // Add one mana of any color. (Then exile this card. You may cast the creature later from exile.)
+mana={2}{G} // {G}
+type=Creature // Sorcery
+subtype=Elf Druid // Adventure
+power=2
+toughness=3
+[/card]
+[card]
+name=Midnight Clock
+text={T}: Add {U}. -- {2}{U}: Put an hour counter on Midnight Clock. -- At the beginning of each upkeep, put an hour counter on Midnight Clock. -- When the twelfth hour counter is put on Midnight Clock, shuffle your hand and graveyard into your library, then draw seven cards. Exile Midnight Clock.
+mana={2}{U}
+type=Artifact
+[/card]
+[card]
+name=Rosethorn Halberd
+text=When Rosethorn Halberd enters the battlefield, attach it to target non-Human creature you control. -- Equipped creature gets +2/+1. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery.)
+mana={G}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Turn into a Pumpkin
+text=Return target nonland permanent to its owner's hand. Draw a card. -- Adamant — If at least three blue mana was spent to cast this spell, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Faeburrow Elder
+text=Vigilance -- Faeburrow Elder gets +1/+1 for each color among permanents you control. -- {T}: For each color among permanents you control, add one mana of that color.
+mana={1}{G}{W}
+type=Creature
+subtype=Treefolk Druid
+power=0
+toughness=0
+[/card]
+[card]
+name=Unexplained Vision
+text=Draw three cards. -- Adamant — If at least three blue mana was spent to cast this spell, scry 3.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Garruk, Cursed Huntsman
+text=0: Create two 2/2 black and green Wolf creature tokens with "When this creature dies, put a loyalty counter on each Garruk you control." -- −3: Destroy target creature. Draw a card. -- −6: You get an emblem with "Creatures you control get +3/+3 and have trample."
+mana={4}{B}{G}
+type=Legendary Planeswalker
+subtype=Garruk
+[/card]
+[card]
+name=Drown in the Loch
+text=Choose one — -- • Counter target spell with converted mana cost less than or equal to the number of cards in its controller's graveyard. -- • Destroy target creature with converted mana cost less than or equal to the number of cards in its controller's graveyard.
+mana={U}{B}
+type=Instant
+[/card]
+[card]
+name=Tome Raider
+text=Flying -- When Tome Raider enters the battlefield, draw a card.
+mana={2}{U}
+type=Creature
+subtype=Faerie
+power=1
+toughness=1
+[/card]
+[card]
+name=Escape to the Wilds
+text=Exile the top five cards of your library. You may play cards exiled this way until the end of your next turn. -- You may play an additional land this turn.
+mana={3}{R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Glass Casket
+text=When Glass Casket enters the battlefield, exile target creature an opponent controls with converted mana cost {3} or less until Glass Casket leaves the battlefield.
+mana={1}{W}
+type=Artifact
+[/card]
+[card]
+name=Happily Ever After
+text=When Happily Ever After enters the battlefield, each player gains 5 life and draws a card. -- At the beginning of your upkeep, if there are five colors among permanents you control, there are six or more card types among permanents you control and/or cards in your graveyard, and your life total is greater than or equal to your starting life total, you win the game.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Fortifying Provisions
+text=Creatures you control get +0/+1. -- When Fortifying Provisions enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Giant Killer // Chop Down
+text={1}{W}, {T}: Tap target creature. // Destroy target creature with power 4 or greater. (Then exile this card. You may cast the creature later from exile.)
+mana={W} // {2}{W}
+type=Creature // Instant
+subtype=Human Peasant // Adventure
+power=1
+toughness=2
+[/card]
+[card]
+name=Harmonious Archon
+text=Flying -- Non-Archon creatures have base power and toughness 3/3. -- When Harmonious Archon enters the battlefield, create two 1/1 white Human creature tokens.
+mana={4}{W}{W}
+type=Creature
+subtype=Archon
+power=4
+toughness=5
+[/card]
+[card]
+name=Run Away Together
+text=Choose two target creatures controlled by different players. Return those creatures to their owners' hands.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Wildwood Tracker
+text=Whenever Wildwood Tracker attacks or blocks, if you control another non-Human creature, Wildwood Tracker gets +1/+1 until end of turn.
+mana={G}
+type=Creature
+subtype=Elf Warrior
+power=1
+toughness=1
+[/card]
+[card]
+name=Charming Prince
+text=When Charming Prince enters the battlefield, choose one — -- • Scry 2. -- • You gain 3 life. -- • Exile another target creature you own. Return it to the battlefield under your control at the beginning of the next end step.
+mana={1}{W}
+type=Creature
+subtype=Human Noble
+power=2
+toughness=2
+[/card]
+[card]
+name=Sage of the Falls
+text=Whenever Sage of the Falls or another non-Human creature enters the battlefield under your control, you may draw a card. If you do, discard a card.
+mana={4}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=5
+[/card]
+[card]
+name=Wolf's Quarry
+text=Create three 1/1 green Boar creature tokens with "When this creature dies, create a Food token." (A Food token is an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Overwhelmed Apprentice
+text=When Overwhelmed Apprentice enters the battlefield, each opponent puts the top two cards of their library into their graveyard. Then you scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Wicked Wolf
+text=When Wicked Wolf enters the battlefield, it fights up to one target creature you don't control. -- Sacrifice a Food: Put a +1/+1 counter on Wicked Wolf. It gains indestructible until end of turn. Tap it.
+mana={2}{G}{G}
+type=Creature
+subtype=Wolf
+power=3
+toughness=3
+[/card]
+[card]
+name=Queen of Ice // Rage of Winter
+text=Whenever Queen of Ice deals combat damage to a creature, tap that creature. It doesn't untap during its controller's next untap step. // Tap target creature. It doesn't untap during its controller's next untap step. (Then exile this card. You may cast the creature later from exile.)
+mana={2}{U} // {1}{U}
+type=Creature // Sorcery
+subtype=Human Noble Wizard // Adventure
+power=2
+toughness=3
+[/card]
+[card]
+name=Wildborn Preserver
+text=Flash -- Reach -- Whenever another non-Human creature enters the battlefield under your control, you may pay Variable Colorless . When you do, put X +1/+1 counters on Wildborn Preserver.
+mana={1}{G}
+type=Creature
+subtype=Elf Archer
+power=2
+toughness=2
+[/card]
+[card]
+name=Faerie Guidemother // Gift of the Fae
+text=Flying // Target creature gets +2/+1 and gains flying until end of turn. (Then exile this card. You may cast the creature later from exile.)
+mana={W} // {1}{W}
+type=Creature // Sorcery
+subtype=Faerie // Adventure
+power=1
+toughness=1
+[/card]
+[card]
+name=Stolen by the Fae
+text=Return target creature with converted mana cost X to its owner's hand. You create X 1/1 blue Faerie creature tokens with flying.
+mana={X}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Doom Foretold
+text=At the beginning of each player's upkeep, that player sacrifices a nonland, nontoken permanent. If that player can't, they discard a card, they lose 2 life, you draw a card, you gain 2 life, you create a 2/2 white Knight creature token with vigilance, then you sacrifice Doom Foretold.
+mana={2}{W}{B}
+type=Enchantment
+[/card]
+[card]
+name=Flutterfox
+text=As long as you control an artifact or enchantment, Flutterfox has flying.
+mana={1}{W}
+type=Creature
+subtype=Fox
+power=2
+toughness=2
+[/card]
+[card]
+name=Syr Elenora, the Discerning
+text=Syr Elenora, the Discerning's power is equal to the number of cards in your hand. -- When Syr Elenora enters the battlefield, draw a card. -- Spells your opponents cast that target Syr Elenora cost 2 more to cast.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Knight
+power=*
+toughness=4
+[/card]
+[card]
+name=The Circle of Loyalty
+text=This spell costs {1} less to cast for each Knight you control. -- Creatures you control get +1/+1. -- Whenever you cast a legendary spell, create a 2/2 white Knight creature token with vigilance. -- {3}{W}, {T}: Create a 2/2 white Knight creature token with vigilance.
+mana={4}{W}{W}
+type=Legendary Artifact
+[/card]
+[card]
+name=So Tiny
+text=Flash -- Enchant creature -- Enchanted creature gets -2/-0. It gets -6/-0 instead as long as its controller has seven or more cards in their graveyard.
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Yorvo, Lord of Garenbrig
+text=Yorvo, Lord of Garenbrig enters the battlefield with four +1/+1 counters on it. -- Whenever another green creature enters the battlefield under your control, put a +1/+1 counter on Yorvo. Then if that creature's power is greater than Yorvo's power, put another +1/+1 counter on Yorvo.
+mana={G}{G}{G}
+type=Legendary Creature
+subtype=Giant Noble
+power=0
+toughness=0
+[/card]
+[card]
+name=Deafening Silence
+text=Each player can't cast more than one noncreature spell each turn.
+mana={W}
+type=Enchantment
+[/card]
+[card]
+name=Steelgaze Griffin
+text=Flying -- Whenever you draw your second card each turn, Steelgaze Griffin gets +2/+0 until end of turn.
+mana={4}{U}
+type=Creature
+subtype=Griffin
+power=2
+toughness=4
+[/card]
+[card]
+name=Dance of the Manse
+text=Return up to X target artifact and/or non-Aura enchantment cards each with converted mana cost X or less from your graveyard to the battlefield. If X is 6 or more, those permanents are 4/4 creatures in addition to their other types.
+mana={X}{W}{U}
+type=Sorcery
+[/card]
+[card]
+name=Garenbrig Squire
+text=Whenever you cast a creature spell that has an Adventure, Garenbrig Squire gets +1/+1 until end of turn. (It doesn't need to have gone on the adventure first.)
+mana={1}{G}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Garenbrig Carver // Shield's Might
+text= // Target creature gets +2/+2 until end of turn. (Then exile this card. You may cast the creature later from exile.)
+mana={3}{G} // {1}{G}
+type=Creature // Instant
+subtype=Human Warrior // Adventure
+power=3
+toughness=2
+[/card]
+[card]
+name=Garenbrig Paladin
+text=Adamant — If at least three green mana was spent to cast this spell, Garenbrig Paladin enters the battlefield with a +1/+1 counter on it. -- Garenbrig Paladin can't be blocked by creatures with power 2 or less.
+mana={4}{G}
+type=Creature
+subtype=Giant Knight
+power=4
+toughness=4
+[/card]
+[card]
+name=Curious Pair // Treats to Share
+text= // Create a Food token. (Then exile this card. You may cast the creature later from exile. A Food token is an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={1}{G} // {G}
+type=Creature // Sorcery
+subtype=Human Peasant // Adventure
+power=1
+toughness=3
+[/card]
+[card]
+name=Edgewall Innkeeper
+text=Whenever you cast a creature spell that has an Adventure, draw a card. (It doesn't need to have gone on the adventure first.)
+mana={G}
+type=Creature
+subtype=Human Peasant
+power=1
+toughness=1
+[/card]
+[card]
+name=Weaselback Redcap
+text={1}{R}: Weaselback Redcap gets +2/+0 until end of turn.
+mana={R}
+type=Creature
+subtype=Goblin Knight
+power=1
+toughness=1
+[/card]
+[card]
+name=Beanstalk Giant // Fertile Footsteps
+text=Beanstalk Giant's power and toughness are each equal to the number of lands you control. // Search your library for a basic land card, put it onto the battlefield, then shuffle your library. (Then exile this card. You may cast the creature later from exile.)
+mana={6}{G} // {2}{G}
+type=Creature // Sorcery
+subtype=Giant // Adventure
+power=*
+toughness=*
+[/card]
+[card]
+name=Fierce Witchstalker
+text=Trample -- When Fierce Witchstalker enters the battlefield, create a Food token. (It's an artifact with "{2} , {T}, Sacrifice this artifact: You gain 3 life.")
+mana={2}{G}{G}
+type=Creature
+subtype=Wolf
+power=4
+toughness=4
+[/card]
+[card]
+name=Flaxen Intruder // Welcome Home
+text=Whenever Flaxen Intruder deals combat damage to a player, you may sacrifice it. When you do, destroy target artifact or enchantment. // Create three 2/2 green Bear creature tokens. (Then exile this card. You may cast the creature later from exile.)
+mana={G} // {5}{G}{G}
+type=Creature // Sorcery
+subtype=Human Berserker // Adventure
+power=1
+toughness=2
+[/card]
+[card]
+name=Feasting Troll King
+text=Vigilance, trample -- When Feasting Troll King enters the battlefield, if you cast it from your hand, create three Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Sacrifice three Foods: Return Feasting Troll King from your graveyard to the battlefield. Activate this ability only during your turn.
+mana={2}{G}{G}{G}{G}
+type=Creature
+subtype=Troll Noble
+power=7
+toughness=6
+[/card]
+[card]
+name=Fell the Pheasant
+text=Fell the Pheasant deals 5 damage to target creature with flying. Create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Once and Future
+text=Return target card from your graveyard to your hand. Put up to one other target card from your graveyard on top of your library. Exile Once and Future. -- Adamant — If at least three green mana was spent to cast this spell, instead return those cards to your hand and exile Once and Future.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
+name=Gadwick, the Wizened
+text=When Gadwick, the Wizened enters the battlefield, draw X cards. -- Whenever you cast a blue spell, tap target nonland permanent an opponent controls.
+mana={X}{U}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Once Upon a Time
+text=If this spell is the first spell you've cast this game, you may cast it without paying its mana cost. -- Look at the top five cards of your library. You may reveal a creature or land card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Folio of Fancies
+text=Players have no maximum hand size. -- {X}{X}, {T}: Each player draws X cards. -- {2}{U}, {T}: Each opponent puts a number of cards equal to the number of cards in their hand from the top of their library into their graveyard.
+mana={1}{U}
+type=Artifact
+[/card]
+[card]
+name=Oakhame Adversary
+text=This spell costs {2} less to cast if an opponent controls a green permanent. -- Deathtouch -- Whenever Oakhame Adversary deals combat damage to a player, draw a card.
+mana={3}{G}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=3
+[/card]
+[card]
+name=Frogify
+text=Enchant creature -- Enchanted creature loses all abilities and is a blue Frog creature with base power and toughness 1/1. (It loses all other card types and creature types.)
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Charmed Sleep
+text=Enchant creature -- When Charmed Sleep enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during its controller's untap step.
+mana={1}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=The Great Henge
+text=This spell costs {X} less to cast, where X is the greatest power among creatures you control. -- {T}: Add {G}{G}. You gain 2 life. -- Whenever a nontoken creature enters the battlefield under your control, put a +1/+1 counter on it and draw a card.
+mana={7}{G}{G}
+type=Legendary Artifact
+[/card]
+[card]
+name=Corridor Monitor
+text=When Corridor Monitor enters the battlefield, untap target artifact or creature you control.
+mana={1}{U}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=4
+[/card]
+[card]
+name=Insatiable Appetite
+text=You may sacrifice a Food. If you do, target creature gets +5/+5 until end of turn. Otherwise, that creature gets +3/+3 until end of turn.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Animating Faerie // Bring to Life
+text=Flying // Target noncreature artifact you control becomes a 0/0 artifact creature. Put four +1/+1 counters on it.
+mana={2}{U} // {2}{U}
+type=Creature // Sorcery
+subtype=Faerie // Adventure
+power=2
+toughness=2
+[/card]
+[card]
+name=Giant Opportunity
+text=You may sacrifice two Foods. If you do, create a 7/7 green Giant creature token. Otherwise, create three Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+name=Brazen Borrower // Petty Theft
+text=Flash -- Flying -- Brazen Borrower can block only creatures with flying. // Return target nonland permanent an opponent controls to its owner's hand.
+mana={1}{U}{U} // {1}{U}
+type=Creature // Instant
+subtype=Faerie Rogue // Adventure
+power=3
+toughness=1
+[/card]
+[card]
+name=Gilded Goose
+text=Flying -- When Gilded Goose enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- {1}{G}, {T}: Create a Food token. -- {T}, Sacrifice a Food: Add one mana of any color.
+mana={G}
+type=Creature
+subtype=Bird
+power=0
+toughness=2
+[/card]
+[card]
+name=Fae of Wishes // Granted
+text=Flying -- {1}{U}, Discard two cards: Return Fae of Wishes to its owner's hand. // You may choose a noncreature card you own from outside the game, reveal it, and put it into your hand.
+mana={1}{U} // {3}{U}
+type=Creature // Sorcery
+subtype=Faerie Wizard // Adventure
+power=1
+toughness=4
+[/card]
+[card]
+name=Lovestruck Beast // Heart's Desire
+text=Lovestruck Beast can't attack unless you control a 1/1 creature. // Create a 1/1 white Human creature token. (Then exile this card. You may cast the creature later from exile.)
+mana={2}{G} // {G}
+type=Creature // Sorcery
+subtype=Beast Noble // Adventure
+power=5
+toughness=5
+[/card]
+[card]
+name=Faerie Vandal
+text=Flash -- Flying -- Whenever you draw your second card each turn, put a +1/+1 counter on Faerie Vandal.
+mana={1}{U}
+type=Creature
+subtype=Faerie Rogue
+power=1
+toughness=2
+[/card]
+[card]
+name=Maraleaf Rider
+text=Sacrifice a Food: Target creature blocks Maraleaf Rider this turn if able.
+mana={1}{G}
+type=Creature
+subtype=Elf Knight
+power=3
+toughness=1
+[/card]
+[card]
+name=Didn't Say Please
+text=Counter target spell. Its controller puts the top three cards of their library into their graveyard.
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Keeper of Fables
+text=Whenever one or more non-Human creatures you control deal combat damage to a player, draw a card.
+mana={3}{G}{G}
+type=Creature
+subtype=Cat
+power=4
+toughness=5
+[/card]
+[card]
+name=Emry, Lurker of the Loch
+text=This spell costs {1} less to cast for each artifact you control. -- When Emry, Lurker of the Loch enters the battlefield, put the top four cards of your library into your graveyard. -- {T}: Choose target artifact card in your graveyard. You may cast that card this turn. (You still pay its costs. Timing rules still apply.)
+mana={2}{U}
+type=Legendary Creature
+subtype=Merfolk Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Kenrith's Transformation
+text=Enchant creature -- When Kenrith's Transformation enters the battlefield, draw a card. -- Enchanted creature loses all abilities and is a green Elk creature with base power and toughness 3/3. (It loses all other card types and creature types.)
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
