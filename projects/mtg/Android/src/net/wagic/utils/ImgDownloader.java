@@ -883,6 +883,12 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/a/4/a47070a0-fd05-4ed9-a175-847a864478da.jpg?1549941630";
         else if (id.equals("426916t"))
             cardurl = "https://img.scryfall.com/cards/large/front/1/a/1aea5e0b-dc4e-4055-9e13-1dfbc25a2f00.jpg?1562844782";
+        else if (id.equals("47316011t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/c/9/c994ea90-71f4-403f-9418-2b72cc2de14d.jpg?1569150300";
+        else if (id.equals("47316012t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/d/b/db951f76-b785-453e-91b9-b3b8a5c1cfd4.jpg?1569150303";
+        else if (id.equals("47316013t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/c/d/cd3ca6d5-4b2c-46d4-95f3-f0f2fa47f447.jpg?1569150305";
         else if (id.equals("426913"))
             cardurl = "https://img.scryfall.com/cards/large/front/0/6/06c9e2e8-2b4c-4087-9141-6aa25a506626.jpg?1549941334";
         else if (id.equals("426912"))
@@ -1530,6 +1536,8 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/b/9/b999a0fe-d2d0-4367-9abb-6ce5f3764f19.jpg?1562640005";
         else if (id.equals("52110t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/0/b/0bb628da-a02f-4d3e-b919-0c03821dd5f2.jpg?1561756633";
+        else if (id.equals("473141t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/b/f/bf36408d-ed85-497f-8e68-d3a922c388a0.jpg?1567710130";
         else if (id.equals("74492t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/94/295/635032496473215708.jpg";
         else if (id.equals("3280t"))
@@ -1606,7 +1614,8 @@ public class ImgDownloader {
                 id.equals("2026") || id.equals("45395") || id.equals("442021") || id.equals("423758") || id.equals("426930") || id.equals("998") ||
                 id.equals("446163") || id.equals("378411") || id.equals("376457") || id.equals("470749") || id.equals("450641") || id.equals("470623") ||
                 id.equals("470620") || id.equals("470754") || id.equals("470750") || id.equals("470739") || id.equals("470708") || id.equals("470581") ||
-                id.equals("470578") || id.equals("470571") || id.equals("470552") || id.equals("394490") || id.equals("114921") || id.equals("49775"))
+                id.equals("470578") || id.equals("470571") || id.equals("470552") || id.equals("394490") || id.equals("114921") || id.equals("49775")  ||
+                id.equals("473123") || id.equals("473160"))
             return false;
         return true;
     }

@@ -3164,12 +3164,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Copy Enchantment
-text=You may have Copy Enchantment enter the battlefield as a copy of any enchantment on the battlefield.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
 name=Corpse Augur
 text=When Corpse Augur dies, you draw X cards and you lose X life, where X is the number of creature cards in target player's graveyard.
 mana={3}{B}
@@ -7658,12 +7652,6 @@ mana={W}
 type=Enchantment
 [/card]
 [card]
-name=Hinder
-text=Counter target spell. If that spell is countered this way, put that card on the top or bottom of its owner's library instead of into that player's graveyard.
-mana={1}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Hindering Light
 text=Counter target spell that targets you or a permanent you control. -- Draw a card.
 mana={W}{U}
@@ -8871,15 +8859,6 @@ name=Joraga Invocation
 text=Each creature you control gets +3/+3 until end of turn and must be blocked this turn if able.
 mana={4}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Jotun Grunt
-text=Cumulative upkeep—Put two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={1}{W}
-type=Creature
-subtype=Giant Soldier
-power=4
-toughness=4
 [/card]
 [card]
 name=Jumbo Imp
