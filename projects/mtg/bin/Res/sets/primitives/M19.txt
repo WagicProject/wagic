@@ -200,17 +200,6 @@ toughness=2
 [/card]
 
 [card]
-name=Militia Bugler
-abilities=vigilance
-text=Vigilance (Attacking doesn't cause this creature to tap.) -- When Militia Bugler enters the battlefield, look at the top four cards of your library. You may reveal a creature card with power 2 or less from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=3
-[/card]
-
-[card]
 name=Novice Knight
 abilities=defender
 auto=this(auras) canattack
@@ -1059,18 +1048,6 @@ auto=lord(other elf|myBattlefield) +1/+1
 auto={4}{G}{G}{T}:moveto(mybattlefield) target(Elvish Clancaller|mylibrary)
 text=Other Elves you control get +1/+1. -- {4}{G}{G}, {T}: Search your library for a card named Elvish Clancaller, put it onto the battlefield, then shuffle your library.
 mana={G}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
-[/card]
-
-[card]
-name=Elvish Rejuvenator
-aicode=activate target(*[land;zpos<=5]|mylibrary) moveto(mybattlefield) and!(tap(noevent))!
-auto=name(look) reveal:5 optionone name(Get Land) target(<1>land|reveal) moveto(mybattlefield) and!(tap(noevent))! optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
-text=When Elvish Rejuvenator enters the battlefield, look at the top five cards of your library. You may put a land card from among them onto the battlefield tapped. Put the rest on the bottom of your library in a random order.
-mana={2}{G}
 type=Creature
 subtype=Elf Druid
 power=1

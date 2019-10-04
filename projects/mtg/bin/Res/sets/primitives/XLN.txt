@@ -1,7 +1,7 @@
 grade=borderline
 ##cant code: Ixalan's Binding, Kopala, Warden of Waves, Dire Fleet Ravager, Lurking Chupacabra, Rowdy Crew, Trove of Temptation, Emergent Growth, Spike-Tailed Ceratops, Wildgrowth Walker, Belligerent Brontodon, Gishath, Sun's Avatar, Pillar of Origins, Shadowed Caravel, Sorcerous Spyglass, Unclaimed Territory, Huatli, Warrior Poet
 
-##experimental code: Tocatli Honor Guard, Jace, Cunning Castaway, Ruin Raider, Sword-Point Diplomacy, Captivating Crew, Rampaging Ferocidon, Sunbird's Invocation, Admiral Beckett Brass
+##experimental code: Tocatli Honor Guard, Ruin Raider, Sword-Point Diplomacy, Captivating Crew, Rampaging Ferocidon, Sunbird's Invocation, Admiral Beckett Brass
 
 [card]
 name=Adanto Vanguard
@@ -1343,18 +1343,6 @@ type=Creature
 subtype=Human Pirate
 power=2
 toughness=2
-[/card]
-
-[card]
-name=Burning Sun's Avatar
-auto=damage:3 opponent
-auto=may name(target creature) damage:3 target(creature)
-text=When Burning Sun's Avatar enters the battlefield, it deals 3 damage to target opponent and 3 damage to up to one target creature.
-mana={3}{R}{R}{R}
-type=Creature
-subtype=Dinosaur Avatar
-power=6
-toughness=6
 [/card]
 
 [card]
