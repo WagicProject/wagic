@@ -1765,18 +1765,6 @@ toughness=2
 [/card]
 
 [card]
-name=Rakdos Firewheeler
-auto=damage:2 target(opponent)
-auto=may damage:2 target(creature|opponentbattlefield)
-text=When Rakdos Firewheeler enters the battlefield, it deals 2 damage to target opponent and 2 damage to up to one target creature or planeswalker.
-mana={B}{B}{R}{R}
-type=Creature
-subtype=Human Rogue
-power=4
-toughness=3
-[/card]
-
-[card]
 name=Rakdos Roustabout
 auto=@combat(blocked,turnlimited) source(this):damage:1 opponent
 text=Whenever Rakdos Roustabout becomes blocked, it deals 1 damage to the player or planeswalker it's attacking.

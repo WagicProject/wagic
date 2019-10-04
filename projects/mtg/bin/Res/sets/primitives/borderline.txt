@@ -11,31 +11,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Copy Enchantment
-auto=this(cantargetcard(*[-artifact])) may copy notatarget(enchantment)
-text=You may have Copy Enchantment enter the battlefield as a copy of any enchantment on the battlefield.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
-name=Jotun Grunt
-auto=cumulativeupcost[{bottomoflibrary target(<2>*|graveyard)}] sacrifice
-text=Cumulative upkeep—Put two cards from a single graveyard on the bottom of their owner’s library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={1}{W}
-type=Creature
-subtype=Giant Soldier
-power=4
-toughness=4
-[/card]
-[card]
-name=Hinder
-target=*|stack
-auto=fizzleto(optionone moveto(librarytop) optiononeend optiontwo moveto(bottomoflibrary) optiontwo moveto(librarytop) optiontwoend)
-text=Counter target spell. If that spell is countered this way, put that card on the top or bottom of its owner’s library instead of into that player’s graveyard.
-mana={1}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Coat of Arms
 auto=lord(creature|battlefield) foreach(other creature[share!type!]|battlefield) 1/1
 text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, it two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
@@ -404,24 +379,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Eureka
-auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,enchantment,land,planeswalker|myhand) !$ controller
-auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,enchantment,land,planeswalker|myhand) !$ opponent
-text=Starting with you, each player may put a permanent card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
-mana={2}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Exquisite Firecraft
-#nofizzle don't work with aslongas
-target=creature,player
-auto=damage:4
-auto=aslongas(*[instant;sorcery]|mygraveyard) nofizzle >1
-text=Exquisite Firecraft deals 4 damage to target creature or player. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, Exquisite Firecraft can't be countered by spells or abilities.
-mana={1}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Feral Hydra
 type=Creature
 subtype=Hydra Beast
@@ -638,16 +595,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Metalworker
-auto={T}:foreach(artifact|myhand) Add{2} controller
-text={T}: Reveal any number of artifact cards in your hand. Add {2} to your mana pool for each card revealed this way.
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=2
-[/card]
-[card]
 name=Mizzix's Mastery
 target=*[instant;sorcery]|mygraveyard
 abilities=overload
@@ -797,21 +744,6 @@ type=Artifact Creature
 subtype=Sphinx
 power=4
 toughness=4
-[/card]
-[card]
-name=Scapeshift
-auto=choice notatarget(<anyamount>land|mybattlefield) sacrifice && ability$!moveto(mybattlefield) notatarget(land|mylibrary) and!( tap(noevent) )!!$ controller
-text=Sacrifice any number of lands. Search your library for that many land cards, put them onto the battlefield tapped, then shuffle your library.
-mana={2}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Scent of Cinder
-target=creature,player
-auto=damage:type:*[red]:myhand
-text=Reveal any number of red cards in your hand. Scent of Cinder deals X damage to target creature or player, where X is the number of cards revealed this way.
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
 name=Scent of Ivy
@@ -1042,20 +974,6 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-name=Watcher of the Roost
-#missing reveal card
-abilities=flying
-autofaceup=life:2 controller
-facedown={3}
-autofacedown={0}:morph restriction{type(*[white]|myhand)~morethan~0}
-text=Flying -- Morph—Reveal a white card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Watcher of the Roost is turned face up, you gain 2 life.
-mana={2}{W}
-type=Creature
-subtype=Bird Soldier
-power=2
-toughness=1
-[/card]
-[card]
 name=Wren's Run Vanquisher
 otherrestriction=type(*[elf]|myhand)~lessthan~2
 other={4}{G}
@@ -1067,16 +985,6 @@ type=Creature
 subtype=Elf Warrior
 power=3
 toughness=3
-[/card]
-[card]
-name=Yixlid Jailer
-auto=lord(*|graveyard) loseabilities
-text=Cards in graveyards lose all abilities.
-mana={1}{B}
-type=Creature
-subtype=Zombie Wizard
-power=2
-toughness=1
 [/card]
 [card]
 name=Diabolic Servitude

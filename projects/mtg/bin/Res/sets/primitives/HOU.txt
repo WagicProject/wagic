@@ -1167,18 +1167,6 @@ toughness=2
 [/card]
 
 [card]
-name=Wildfire Eternal
-auto=@combat(notblocked) source(this):target(instant,sorcery|myhand) castcard(copied noevent)
-auto=@combat(blocked,turnlimited) source(this):life:-4 opponent
-text=Afflict 4 (Whenever this creature becomes blocked, defending player loses 4 life.) -- Whenever Wildfire Eternal attacks and isn't blocked, you may cast an instant or sorcery card from your hand without paying its mana cost.
-mana={3}{R}
-type=Creature
-subtype=Zombie Jackal Cleric
-power=1
-toughness=4
-[/card]
-
-[card]
 name=Ambuscade
 target=creature|myBattlefield
 auto=1/0
@@ -1400,17 +1388,6 @@ type=Creature
 subtype=Hippo
 power=5
 toughness=6
-[/card]
-
-[card]
-name=Ramunap Excavator
-auto=lord(land|mygraveyard) CanPlayFromGraveyard
-text=You may play land cards from your graveyard.
-mana={2}{G}
-type=Creature
-subtype=Naga Cleric
-power=2
-toughness=3
 [/card]
 
 [card]
