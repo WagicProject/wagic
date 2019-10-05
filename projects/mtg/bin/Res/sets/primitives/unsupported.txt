@@ -11010,12 +11010,6 @@ text=When you set this scheme in motion, each opponent reveals his or her hand. 
 type=Scheme
 [/card]
 [card]
-name=Mycosynth Lattice
-text=All permanents are artifacts in addition to their other types. -- All cards that aren't on the battlefield, spells, and permanents are colorless. -- Players may spend mana as though it were mana of any color.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Myr Reservoir
 text={T}: Add {2} to your mana pool. Spend this mana only to cast Myr spells or activate abilities of Myr. -- {3}, {T}: Return target Myr card from your graveyard to your hand.
 mana={3}
@@ -17789,12 +17783,6 @@ name=Time Stop
 text=End the turn. (Exile all spells and abilities on the stack, including this card. The player whose turn it is discards down to his or her maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
 mana={4}{U}{U}
 type=Instant
-[/card]
-[card]
-name=Time Vault
-text=Time Vault enters the battlefield tapped. -- Time Vault doesn't untap during your untap step. -- If you would begin your turn while Time Vault is tapped, you may skip that turn instead. If you do, untap Time Vault. -- {T}: Take an extra turn after this one.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Timebender
