@@ -243,10 +243,25 @@ subtype=Karn
 name=Time Vault
 abilities=doesnotuntap
 auto=tap(noevent)
-auto=@each opponent end sourcetap:may (turns:-1 controller) && untapthis
+auto=@each my beginofturn sourcetap:may (turns:-1 controller) && untapthis
 auto={T}:turns:+1 controller
 text=Time Vault enters the battlefield tapped. -- Time Vault doesn't untap during your untap step. -- If you would begin your turn while Time Vault is tapped, you may skip that turn instead. If you do, untap Time Vault. -- {T}: Take an extra turn after this one.
 mana={2}
+type=Artifact
+[/card]
+[card]
+name=Mycosynth Lattice
+auto=lord(*|battlefield) transforms((artifact))
+auto=lord(*|battlefield) devoid
+auto=lord(*|stack) devoid
+auto=lord(*|hand) devoid
+auto=lord(*|library) devoid
+auto=lord(*|graveyard) devoid
+auto=lord(*|exile) devoid
+auto=lord(*|sideboard) devoid
+auto=lord(*|mycastingzone) anytypeofmana
+text=All permanents are artifacts in addition to their other types. -- All cards that aren't on the battlefield, spells, and permanents are colorless. -- Players may spend mana as though it were mana of any color.
+mana={6}
 type=Artifact
 [/card]
 [card]
@@ -981,7 +996,7 @@ name=Kalemne, Disciple of Iroas
 abilities=double strike, vigilance
 auto=@movedto(creature[manacost>=5]|mystack):alterexperience:1 controller
 auto=foreach(anyzone:alterexperience) 1/1
-text=Double strike, vigilance / Whenever you cast a creature spell with converted mana cost 5 or greater, you get an experience counter. / Kalemne, Disciple of Iroas gets +1/+1 for each experience counter you have.
+text=Double strike, vigilance -- Whenever you cast a creature spell with converted mana cost 5 or greater, you get an experience counter. / Kalemne, Disciple of Iroas gets +1/+1 for each experience counter you have.
 mana={2}{R}{W}
 type=Legendary Creature
 subtype=Giant Soldier
