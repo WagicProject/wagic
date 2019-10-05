@@ -1265,7 +1265,17 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/9/b/9bd7a7f1-2221-4565-8c6e-1815def3bd2c.jpg?1562546811";
         else if (id.equals("52415"))
             cardurl = "https://img.scryfall.com/cards/large/front/8/8/8825493a-878d-4df3-8d7a-98518358d678.jpg?1562546240";
-
+        else if(id.equals("53214t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/1/4/1449862b-309e-4c58-ac94-13d1acdd363f.jpg?1562541935";
+        else if(id.equals("53179t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/d/9/d9623e74-3b94-4842-903f-ed52931bdf6a.jpg?1562636919";
+        else if (id.equals("53143t"))
+            cardurl = "https://deckmaster.info/images/cards/DDE/209162-hr.jpg";
+        else if(id.endsWith("53141t"))
+            cardurl = "https://deckmaster.info/images/cards/C14/-487-hr.jpg";
+        else if(id.equals("53134t"))
+            cardurl = "https://deckmaster.info/images/cards/DDD/201844-hr.jpg";
+        
         return cardurl;
     }
 
@@ -1431,6 +1441,8 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/RIX/-5473-hr.jpg";
         else if(id.equals("447070t"))
             tokenurl = "https://deckmaster.info/images/cards/GS1/-5944-hr.jpg";
+        else if(id.equals("53190t"))
+            tokenurl = "https://deckmaster.info/images/cards/CM2/-6027-hr.jpg";
         else if (id.equals("452760t"))
             tokenurl = "https://deckmaster.info/images/cards/M19/-6036.jpg";
         else if(id.equals("52149t"))
@@ -1465,7 +1477,7 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/DDR/417497-hr.jpg";
         else if(id.equals("3392t") || id.equals("220535t") || id.equals("376253t") || id.equals("376390t") ||
                 id.equals("401643t") || id.equals("417451t") || id.equals("417424t") || id.equals("51908t") ||
-                id.equals("52593t"))
+                id.equals("52593t") || id.equals("53161t"))
             tokenurl = "https://deckmaster.info/images/cards/DDR/417498-hr.jpg";
         else if (id.equals("21381t") || id.equals("40198t"))
             tokenurl = "https://img.scryfall.com/cards/large/back/8/c/8ce60642-e207-46e6-b198-d803ff3b47f4.jpg?1562921132";
@@ -1538,6 +1550,10 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/0/b/0bb628da-a02f-4d3e-b919-0c03821dd5f2.jpg?1561756633";
         else if (id.equals("473141t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/b/f/bf36408d-ed85-497f-8e68-d3a922c388a0.jpg?1567710130";
+        else if(id.equals("53180t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/1/f/1feaa879-ceb3-4b20-8021-ae41d8be9005.jpg?1562636755";
+        else if(id.equals("53118t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/0/3/03553980-53fa-4256-b478-c7e0e73e2b5b.jpg?1563132220";
         else if (id.equals("74492t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/94/295/635032496473215708.jpg";
         else if (id.equals("3280t"))
@@ -2158,7 +2174,7 @@ public class ImgDownloader {
             String cardname = mappa.get(id);
             Elements divs = new Elements();
             int k;
-            if(scryset.equals("TD2") || scryset.equals("PRM") || scryset.equals("TD0")){
+            if(scryset.equals("TD2") || scryset.equals("PRM") || scryset.equals("TD0") || scryset.equals("PZ1")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2443,7 +2459,7 @@ public class ImgDownloader {
                         }
                     }
                 }
-            } else if (!scryset.equals("TD2") && !scryset.equals("PRM") && !scryset.equals("TD0")){
+            } else if (!scryset.equals("TD2") && !scryset.equals("PRM") && !scryset.equals("TD0") && !scryset.equals("PZ1")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -2594,7 +2610,7 @@ public class ImgDownloader {
                         break;
                     }
                     String text = "";
-                    if(scryset.equals("PRM") || scryset.equals("TD0")){
+                    if(scryset.equals("PRM") || scryset.equals("TD0") || scryset.equals("PZ1")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){

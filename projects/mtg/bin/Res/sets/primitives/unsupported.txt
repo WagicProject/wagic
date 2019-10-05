@@ -899,12 +899,6 @@ mana={G}
 type=Instant
 [/card]
 [card]
-name=Awaken the Sky Tyrant
-text=When a source an opponent controls deals damage to you, sacrifice Awaken the Sky Tyrant. If you do, put a 5/5 red Dragon creature token with flying onto the battlefield.
-mana={3}{R}
-type=Enchantment
-[/card]
-[card]
 name=Awe Strike
 text=The next time target creature would deal damage this turn, prevent that damage. You gain life equal to the damage prevented this way.
 mana={W}
@@ -3125,15 +3119,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Corpse Augur
-text=When Corpse Augur dies, you draw X cards and you lose X life, where X is the number of creature cards in target player's graveyard.
-mana={3}{B}
-type=Creature
-subtype=Zombie Wizard
-power=4
-toughness=2
-[/card]
-[card]
 name=Corpse Dance
 text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
 mana={2}{B}
@@ -3763,15 +3748,6 @@ text=Daxos of Meletis can't be blocked by creatures with power 3 or greater. -- 
 mana={1}{W}{U}
 type=Legendary Creature
 subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
-name=Daxos the Returned
-text=Whenever you cast an enchantment spell, you get an experience counter.  -- {1}{W}{B}: Put a white and black Spirit enchantment creature token onto the battlefield. It has "This creature's power and toughness are each equal to the number of experience counters you have."
-mana={1}{W}{B}
-type=Legendary Creature
-subtype=Zombie Soldier
 power=2
 toughness=2
 [/card]
@@ -4528,17 +4504,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Dread Summons
-text=Each player puts the top X cards of his or her library into his or her graveyard. For each creature card put into a graveyard this way, you put a 2/2 black Zombie creature token onto the battlefield tapped.
-mana={X}{B}{B}
-type=Sorcery
-[/card]
-[card]
-name=Dreadship Reef
-text={T}: Add {C} to your mana pool. -- {1}, {T}: Put a storage counter on Dreadship Reef. -- {1}, Remove X storage counters from Dreadship Reef: Add X mana in any combination of {U} and/or {B} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Dream Chisel
 text=Face-down creature spells you cast cost {1} less to cast.
 mana={2}
@@ -5225,21 +5190,6 @@ name=Eye to Eye
 text=You and target creature's controller have a staring contest. If you win, destroy that creature.
 mana={2}{B}
 type=Instant
-[/card]
-[card]
-name=Ezuri, Claw of Progress
-text=Whenever a creature with power 2 or less enters the battlefield under your control, you get an experience counter. -- At the beginning of combat on your turn, put X +1/+1 counters on another target creature you control, where X is the number of experience counters you have.
-mana={2}{G}{U}
-type=Legendary Creature
-subtype=Elf Warrior
-power=3
-toughness=3
-[/card]
-[card]
-name=Ezuri's Predation
-text=For each creature your opponents control, put a 4/4 green Beast creature token onto the battlefield. Each of those Beasts fights a different one of those creatures.
-mana={5}{G}{G}{G}
-type=Sorcery
 [/card]
 [card]
 name=Fa'adiyah Seer
@@ -6026,11 +5976,6 @@ type=Creature
 subtype=Fungus
 power=*
 toughness=*
-[/card]
-[card]
-name=Fungal Reaches
-text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Fungal Reaches. -- {1}, Remove X storage counters from Fungal Reaches: Add X mana in any combination of {R} and/or {G} to your mana pool.
-type=Land
 [/card]
 [card]
 name=Furnace Layer
@@ -6875,12 +6820,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Grasp of Fate
-text=When Grasp of Fate enters the battlefield, for each opponent, exile up to one target nonland permanent that player controls until Grasp of Fate leaves the battlefield. (Those permanents return under their owners' control.)
-mana={1}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Gratuitous Violence
 text=If a creature you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
 mana={2}{R}{R}{R}
@@ -7720,12 +7659,6 @@ type=Sorcery
 name=Howltooth Hollow
 text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {B} to your mana pool. -- {B}, {T}: You may play the exiled card without paying its mana cost if each player has no cards in hand.
 type=Land
-[/card]
-[card]
-name=Hull Breach
-text=Choose one — -- • Destroy target artifact. -- • Destroy target enchantment. -- • Destroy target artifact and target enchantment.
-mana={R}{G}
-type=Sorcery
 [/card]
 [card]
 name=Hum of the Radix
@@ -8799,16 +8732,6 @@ type=Legendary Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Kalemne, Disciple of Iroas
-abilities=double strike,vigilance
-text=Double strike, vigilance -- Whenever you cast a creature spell with converted mana cost 5 or greater, you get an experience counter. -- Kalemne, Disciple of Iroas gets +1/+1 for each experience counter you have.
-mana={2}{R}{W}
-type=Legendary Creature
-subtype=Giant Soldier
-power=3
-toughness=3
 [/card]
 [card]
 name=Kalitas, Bloodchief of Ghet
@@ -10524,12 +10447,6 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
-name=Meteor Blast
-text=Meteor Blast deals 4 damage to each of X target creatures and/or players.
-mana={X}{R}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Meteor Shower
 text=Meteor Shower deals X plus 1 damage divided as you choose among any number of target creatures and/or players.
 mana={X}{X}{R}
@@ -10668,12 +10585,6 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=4
-[/card]
-[card]
-name=Mirror Match
-text=Cast Mirror Match only during the declare blockers step. -- For each creature attacking you or a planeswalker you control, put a token that's a copy of that creature onto the battlefield blocking that creature. Exile those tokens at end of combat.
-mana={4}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Mirror Mirror
@@ -10861,11 +10772,6 @@ type=Creature
 subtype=Elemental
 power=*
 toughness=*
-[/card]
-[card]
-name=Molten Slagheap
-text={T}: Add {C} to your mana pool. -- {1}, {T}: Put a storage counter on Molten Slagheap. -- {1}, Remove X storage counters from Molten Slagheap: Add X mana in any combination of {B} and/or {R} to your mana pool.
-type=Land
 [/card]
 [card]
 name=Monastery Siege
@@ -11708,14 +11614,6 @@ text=Equipped creature gets +3/+1. -- Whenever equipped creature dies, return th
 mana={3}
 type=Legendary Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Ob Nixilis of the Black Oath
-auto=counter(0/0,3,loyalty)
-text=+2: Each opponent loses 1 life. You gain life equal to the life lost this way. -- -2: Put a 5/5 black Demon creature token with flying onto the battlefield. You lose 2 life. -- -8: You get an emblem with "{1}{B}, Sacrifice a creature: You gain X life and draw X cards, where X is the sacrificed creature's power." -- Ob Nixilis of the Black Oath can be your commander.
-mana={3}{B}{B}
-type=Planeswalker
-subtype=Nixilis
 [/card]
 [card]
 name=Ob Nixilis, Unshackled
@@ -14594,11 +14492,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Saltcrusted Steppe
-text={T}: Add {C} to your mana pool. -- {1}, {T}: Put a storage counter on Saltcrusted Steppe. -- {1}, Remove X storage counters from Saltcrusted Steppe: Add X mana in any combination of {G} and/or {W} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Samite Blessing
 text=Enchant creature -- Enchanted creature has "{T}: The next time a source of your choice would deal damage to target creature this turn, prevent that damage."
 mana={W}
@@ -14652,16 +14545,6 @@ name=Sands of Time
 text=Each player skips his or her untap step. -- At the beginning of each player's upkeep, that player simultaneously untaps each tapped artifact, creature, and land he or she controls and taps each untapped artifact, creature, and land he or she controls.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Sandstone Oracle
-abilities=flying
-text=Flying -- When Sandstone Oracle enters the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference.
-mana={7}
-type=Artifact Creature
-subtype=Sphinx
-power=4
-toughness=4
 [/card]
 [card]
 name=Sapphire Charm
@@ -14862,16 +14745,6 @@ name=Scorched Earth
 text=As an additional cost to cast Scorched Earth, discard X land cards. -- Destroy X target lands.
 mana={X}{R}
 type=Sorcery
-[/card]
-[card]
-name=Scourge of Nel Toth
-abilities=flying
-text=Flying -- You may cast Scourge of Nel Toth from your graveyard by paying {B}{B} and sacrificing two creatures rather than paying its mana cost.
-mana={5}{B}{B}
-type=Creature
-subtype=Zombie Dragon
-power=6
-toughness=6
 [/card]
 [card]
 name=Scrambleverse
@@ -15855,16 +15728,6 @@ name=Skullscorch
 text=Target player discards two cards at random unless that player has Skullscorch deal 4 damage to him or her.
 mana={R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Skullwinder
-abilities=deathtouch
-text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Skullwinder enters the battlefield, return target card from your graveyard to your hand, then choose an opponent. That player returns a card from his or her graveyard to his or her hand.
-mana={2}{G}
-type=Creature
-subtype=Snake
-power=1
-toughness=3
 [/card]
 [card]
 name=Skybreen
@@ -18082,12 +17945,6 @@ type=Instant
 name=Tower Above
 text=({2G} can be paid with any two mana or with {G}. This card's converted mana cost is 6.) -- Until end of turn, target creature gets +4/+4 and gains trample, wither, and "When this creature attacks, target creature blocks it this turn if able." (It deals damage to creatures in the form of -1/-1 counters.)
 mana={2G}{2G}{2G}
-type=Sorcery
-[/card]
-[card]
-name=Toxic Deluge
-text=As an additional cost to cast Toxic Deluge, pay X life. -- All creatures get -X/-X until end of turn.
-mana={2}{B}
 type=Sorcery
 [/card]
 [card]

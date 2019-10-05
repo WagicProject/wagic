@@ -455,10 +455,87 @@ type=Sorcery
 [/card]
 [card]
 name=Grasp of Fate
-auto=(blink)forsrc target(*[-land]|opponentbattlefield)
-text=When Grasp of Fate enters the battlefield, for each opponent, exile up to one target nonland permanent that player controls until Grasp of Fate leaves the battlefield. (Those permanents return under their owners' control.)
+auto=choice (blink)forsrc target(*[-land]|opponentbattlefield)
+text=When Grasp of Fate enters the battlefield, for each opponent, exile up to one target nonland permanent that player controls until Grasp of Fate leaves the battlefield. (Those permanents return under their owners’ control.)
 mana={1}{W}{W}
 type=Enchantment
+[/card]
+[card]
+name=Mirror Match
+auto=foreach(notAtarget(creature[attacking])):clone(notatarget(creature[attacking])) with (unearth)
+restriction=blockersonly
+text=Cast this spell only during the declare blockers step. / For each creature attacking you or a planeswalker you control, create a token that’s a copy of that creature and that’s blocking that creature. Exile those tokens at end of combat.
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Corpse Augur
+auto=@movedto(this|mygraveyard) from(mybattlefield): notatarget(player) then draw:foreach(notAtarget(creature|targetedpersonsgraveyard) && life:-foreach(notAtarget(creature|targetedpersonsgraveyard)
+text=When Corpse Augur dies, you draw X cards and you lose X life, where X is the number of creature cards in target player’s graveyard.
+mana={3}{B}
+type=Creature
+subtype=Zombie Wizard
+power=4
+toughness=2
+[/card]
+[card]
+name=Dread Summons
+auto=deplete:X opponent && deplete:X controller
+auto=@movedTo(creature|graveyard) from(library):all(trigger[to]) (token(Zombie,Creature Zombie,2/2,black) tap(noevent)) controller)!
+text=Each player puts the top X cards of their library into their graveyard. For each creature card put into a graveyard this way, you create a tapped 2/2 black Zombie creature token.
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Ob Nixilis of the Black Oath
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,2,Loyalty)}:name(+2: Each opponent loses 1 life...) life:-1 opponent && life:1 controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Create a 5/5 black Demon with flying...) token(Demon,Creature Demon,5/5,black,flying) && life:-2 controller
+auto={C(0/0,-8,Loyalty)}:name(-8: "{1}{B}, sacrifice a creature: Draw and gain life...) emblem transforms((,newability[{1}{B}{S(creature|myBattlefield}:draw:storedpower && life:storedpower])) forever dontremove
+text=+2: Each opponent loses 1 life. You gain life equal to the life lost this way. -- -2: Create a 5/5 black Demon creature token with flying. You lose 2 life. -- -8: You get an emblem with “{1}{B}, Sacrifice a creature: You gain X life and draw X cards, where X is the sacrificed creature’s power.” / Ob Nixilis of the Black Oath can be your commander.
+mana={3}{B}{B}
+type=Legendary Planeswalker
+subtype=Nixilis
+[/card]
+[card]
+name=Awaken the Sky Tyrant
+auto=@damageof(player) from(*|opponentstack,opponentbattlefield,opponentgraveyard,opponenthand,opponentexile,opponentsideboard):ability$!name(Create a 5/5 red Dragon) [S(this)]:token(Dragon,Creature Dragon,5/5,red,flying)
+text=When a source an opponent controls deals damage to you, sacrifice Awaken the Sky Tyrant. If you do, create a 5/5 red Dragon creature token with flying.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Meteor Blast
+target=<prexx>(creature,player,planeswalker)
+auto=damage:4
+mana={X}{R}{R}{R}
+type=Sorcery
+text=Meteor Blast deals 4 damage to each of X targets.
+[/card]
+[card]
+name=Ezuri's Predation
+auto=foreach(creature|opponentBattlefield) token(Beast,Creature Beast,4/4,green) and!( transforms((,newability[moveTo(this|myBattlefield) damage:dynamicability<!powerstrike!> target(other creature|opponentBattlefield])) forever )! controller
+text=For each creature your opponents control, create a 4/4 green Beast creature token. Each of those Beasts fights a different one of those creatures.
+mana={5}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Toxic Deluge
+auto=lord(creature|battlefield) -X/-X ueot
+text=As an additional cost to cast this spell, pay X life. -- All creatures get -X/-X until end of turn.
+mana={L:X}{2}{B}
+type=Instant
+[/card]
+[card]
+name=Scourge of Nel Toth
+abilities=flying
+flashback={B}{B}{S(creature|mybattlefield)}{S(creature|mybattlefield)}
+text=Flying -- You may cast Scourge of Nel Toth from your graveyard by paying {B}{B} and sacrificing two creatures rather than paying its mana cost.
+mana={5}{B}{B}
+type=Creature
+subtype=Zombie Dragon
+power=6
+toughness=6
 [/card]
 [card]
 name=Hellcarver Demon
@@ -737,13 +814,45 @@ toughness=2
 [card]
 name=Sandstone Oracle
 abilities=flying
-auto=foreach(*|opponenthand) if type(*|opponenthand)~morethan~type(*|myhand) then draw:1
-text=Flying -- When Sandstone Oracle enters the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference.
+auto=foreach(*|targetedpersonshand) if type(*|targetedpersonshand)~morethan~type(*|myhand) then draw:1
+text=Flying / When Sandstone Oracle enters the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference.
 mana={7}
 type=Artifact Creature
 subtype=Sphinx
 power=4
 toughness=4
+[/card]
+[card]
+name=Dreadship Reef
+auto={T}: Add {1}
+auto={1}{T}:counter(0/0,1,Storage)
+auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{U} _ choice add{B} !$ controller
+text={T}: Add {C}. / {1}, {T}: Put a storage counter on Dreadship Reef. / {1}, Remove X storage counters from Dreadship Reef: Add X mana in any combination of {U} and/or {B}.
+type=Land
+[/card]
+[card]
+name=Fungal Reaches
+auto={T}: Add {1}
+auto={1}{T}:counter(0/0,1,Storage)
+auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{R} _ choice add{G} !$ controller
+text={T}: Add {C}. / {1}, {T}: Put a storage counter on Fungal Reaches. / {1}, Remove X storage counters from Fungal Reaches: Add X mana in any combination of {R} and/or {G}.
+type=Land
+[/card]
+[card]
+name=Molten Slagheap
+auto={T}: Add {1}
+auto={1}{T}:counter(0/0,1,Storage)
+auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{B} _ choice add{R} !$ controller
+text={T}: Add {C}. / {1}, {T}: Put a storage counter on Molten Slagheap. / {1}, Remove X storage counters from Molten Slagheap: Add X mana in any combination of {B} and/or {R}.
+type=Land
+[/card]
+[card]
+name=Saltcrusted Steppe
+auto={T}: Add {1}
+auto={1}{T}:counter(0/0,1,Storage)
+auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{G} _ choice add{W} !$ controller
+text={T}: Add {C}. / {1}, {T}: Put a storage counter on Saltcrusted Steppe. / {1}, Remove X storage counters from Saltcrusted Steppe: Add X mana in any combination of {G} and/or {W}.
+type=Land
 [/card]
 [card]
 name=Scent of Ivy
@@ -828,13 +937,55 @@ toughness=1
 [card]
 name=Skullwinder
 abilities=deathtouch
-auto=ability$!moveto(myhand) target(*|mygraveyard)!$ controller
-auto=ability$!moveto(myhand) target(*|mygraveyard)!$ opponent
-text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Skullwinder enters the battlefield, return target card from your graveyard to your hand, then choose an opponent. That player returns a card from his or her graveyard to his or her hand.
+auto=target(*|myGraveyard) moveTo(myHand) && target(*|opponentGraveyard) moveTo(opponentHand)
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) / When Skullwinder enters the battlefield, return target card from your graveyard to your hand, then choose an opponent. That player returns a card from their graveyard to their hand.
 mana={2}{G}
 type=Creature
 subtype=Snake
 power=1
+toughness=3
+[/card]
+[card]
+name=Daxos the Returned
+auto=@movedTo(enchantment|mystack):alterexperience:1 controller
+auto={1}{W}{B}: token(Spirit,Creature Enchantment Spirit,[anyzone:type:alterexperience:mybattlefield/type:alterexperience:mybattlefield cdaactive],withe,black)
+text=Whenever you cast an enchantment spell, you get an experience counter. / {1}{W}{B}: Create a white and black Spirit enchantment creature token. It has “This creature’s power and toughness are each equal to the number of experience counters you have.”
+mana={1}{W}{B}
+type=Legendary Creature
+subtype=Zombie Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Ezuri, Claw of Progress
+auto=@movedTo(creature[power<=2]|myBattlefield):alterexperience:1 controller
+auto=@each my combatbegins:foreach(anyzone:alterexperience) counter(1/1,1) target(other creature|myBattlefield)
+text=Whenever a creature with power 2 or less enters the battlefield under your control, you get an experience counter. / At the beginning of combat on your turn, put X +1/+1 counters on another target creature you control, where X is the number of experience counters you have.
+mana={2}{G}{U}
+type=Legendary Creature
+subtype=Elf Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Hull Breach
+auto=choice destroy target(artifact)
+auto=choice destroy target(enchantment)
+auto=choice destroy target(artifact) && destroy target (enchantment)
+text=Choose one — • Destroy target artifact. • Destroy target enchantment. • Destroy target artifact and target enchantment.
+mana={R}{G}
+type=Sorcery
+[/card]
+[card]
+name=Kalemne, Disciple of Iroas
+abilities=double strike, vigilance
+auto=@movedto(creature[manacost>=5]|mystack):alterexperience:1 controller
+auto=foreach(anyzone:alterexperience) 1/1
+text=Double strike, vigilance / Whenever you cast a creature spell with converted mana cost 5 or greater, you get an experience counter. / Kalemne, Disciple of Iroas gets +1/+1 for each experience counter you have.
+mana={2}{R}{W}
+type=Legendary Creature
+subtype=Giant Soldier
+power=3
 toughness=3
 [/card]
 [card]
