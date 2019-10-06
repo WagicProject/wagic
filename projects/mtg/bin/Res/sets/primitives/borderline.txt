@@ -11,6 +11,13 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Mausoleum Secrets
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>*[black;manacost<=type:creature:mygraveyard]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+text=Undergrowth — Search your library for a black card with converted mana cost less than or equal to the number of creature cards in your graveyard, reveal it, put it into your hand, then shuffle your library.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
 name=Coat of Arms
 auto=lord(creature|battlefield) foreach(other creature[share!type!]|battlefield) 1/1
 text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, it two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)

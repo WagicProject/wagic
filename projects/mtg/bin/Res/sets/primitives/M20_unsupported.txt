@@ -94,12 +94,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Legion's End
-text=Exile target creature an opponent controls with converted mana cost 2 or less and all other creatures that player controls with the same name as that creature. Then that player reveals their hand and exiles all cards with that name from their hand and graveyard.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Tale's End
 text=Counter target activated ability, triggered ability, or legendary spell.
 mana={1}{U}

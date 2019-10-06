@@ -1672,3 +1672,10 @@ subtype=Human Cleric
 power=3
 toughness=3
 [/card]
+[card]
+name=Legion's End
+auto=target(creature[manacost<=2]|opponentbattlefield) moveto(exile) && all(*[share!name!]|targetcontrollerbattlefield) moveto(exile) && donothing notatarget(*|targetcontrollerhand) && all(*[share!name!]|targetcontrollerhand) moveto(exile) && all(*[share!name!]|targetcontrollergraveyard) moveto(exile)
+text=Exile target creature an opponent controls with converted mana cost 2 or less and all other creatures that player controls with the same name as that creature. Then that player reveals their hand and exiles all cards with that name from their hand and graveyard.
+mana={1}{B}
+type=Sorcery
+[/card]
