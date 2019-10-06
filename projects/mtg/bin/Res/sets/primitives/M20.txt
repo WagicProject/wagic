@@ -941,7 +941,7 @@ toughness=1
 [/card]
 [card]
 name=Dread Presence
-auto=@movedTo(Swamp|myBattlefield):name(choose one) transforms((,newability[choice name(Draw and Lose Life) draw:1 controller && life:-1 controller],newability[choice name(Damage and Gain Life) damage:2 target(creature,player) && life:2 controller]))
+auto=@movedTo(Swamp|myBattlefield):name(choose one) transforms((,newability[choice name(Draw and Lose Life) draw:1 controller && life:-1 controller],newability[choice name(Damage and Gain Life) life:2 controller && damage:2 opponent]))
 text=Whenever a Swamp enters the battlefield under your control, choose one — -- • You draw a card and you lose 1 life. -- • Dread Presence deals 2 damage to any target and you gain 2 life.
 mana={3}{B}
 type=Creature

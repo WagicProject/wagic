@@ -676,7 +676,7 @@ toughness=1
 
 [card]
 name=Ritual of Soot
-auto=destroy all creature[manacost<=3]
+auto=destroy all(creature[manacost<=3])
 text=Destroy all creatures with converted mana cost 3 or less.
 mana={2}{B}{B}
 type=Sorcery
