@@ -600,7 +600,7 @@ toughness=2
 [card]
 name=Lookout's Dispersal
 target=*|stack
-auto=name(counter spell) target(*|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+auto=name(counter spell) target(*|stack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
 autohand=aslongas(pirate|mybattlefield) altercost(colorless,-1)
 text=Lookout's Dispersal costs {1} less to cast if you control a Pirate. -- Counter target spell unless its controller pays {4}.
 mana={2}{U}

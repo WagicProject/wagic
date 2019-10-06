@@ -53,15 +53,6 @@ mana={4}{W}{U}
 type=Instant
 [/card]
 [card]
-name=Workshop Elders
-text=Artifact creatures you control have flying. -- At the beginning of combat on your turn, you may have target noncreature artifact you control become a 0/0 artifact creature. If you do, put four +1/+1 counters on it.
-mana={6}{U}
-type=Creature
-subtype=Human Artificer
-power=4
-toughness=4
-[/card]
-[card]
 name=Fervent Champion
 text=First strike, haste -- Whenever Fervent Champion attacks, another target attacking Knight you control gets +1/+0 until end of turn. -- Equip abilities you activate that target Fervent Champion cost 3 less to activate.
 mana={R}
@@ -78,6 +69,7 @@ type=Enchantment
 [/card]
 [card]
 name=Opportunistic Dragon
+abilities=flying
 text=Flying -- When Opportunistic Dragon enters the battlefield, choose target Human or artifact an opponent controls. For as long as Opportunistic Dragon remains on the battlefield, gain control of that permanent, it loses all abilities, and it can't attack or block.
 mana={2}{R}{R}
 type=Creature
@@ -92,35 +84,10 @@ mana={1}{R}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Henge Walker
-text=Adamant — If at least three mana of the same color was spent to cast this spell, Henge Walker enters the battlefield with a +1/+1 counter on it.
-mana={3}
-type=Artifact Creature
-subtype=Golem
-power=2
-toughness=2
-[/card]
-[card]
-name=Heraldic Banner
-auto=chooseacolor target(creature[chosencolor]|myBattlefield) 1/0 chooseend
-text=As Heraldic Banner enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+0. -- {T}: Add one mana of the chosen color.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Memory Theft
 text=Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. You may put a card that has an Adventure that player owns from exile into that player's graveyard.
 mana={2}{B}
 type=Sorcery
-[/card]
-[card]
-name=Clockwork Servant
-text=Adamant — When Clockwork Servant enters the battlefield, if at least three mana of the same color was spent to cast it, draw a card.
-mana={3}
-type=Artifact Creature
-subtype=Gnome
-power=2
-toughness=3
 [/card]
 [card]
 name=Sorcerous Spyglass
@@ -146,34 +113,10 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Mystical Dispute
-text=This spell costs {2} less to cast if it targets a blue spell. -- Counter target spell unless its controller pays 3 .
-mana={2}{U}
-type=Instant
-[/card]
-[card]
 name=Covetous Urge
 text=Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
 mana={UB}{UB}{UB}{UB}
 type=Sorcery
-[/card]
-[card]
-name=Trail of Crumbs
-auto=token(473141)
-text=When Trail of Crumbs enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Whenever you sacrifice a Food, you may pay 1 . If you do, look at the top two cards of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
-mana={1}{G}
-type=Enchantment
-[/card]
-[card]
-name=Questing Beast
-abilities=vigilance,deathtouch,haste
-auto=cantbeblockedby(creature[power<=2])
-text=Vigilance, deathtouch, haste -- Questing Beast can't be blocked by creatures with power 2 or less. -- Combat damage that would be dealt by creatures you control can't be prevented. -- Whenever Questing Beast deals combat damage to an opponent, it deals that much damage to target planeswalker that player controls.
-mana={2}{G}{G}
-type=Legendary Creature
-subtype=Beast
-power=4
-toughness=4
 [/card]
 [card]
 name=Once Upon a Time

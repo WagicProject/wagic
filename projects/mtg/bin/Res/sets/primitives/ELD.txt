@@ -2643,3 +2643,82 @@ subtype=Faerie Rogue
 power=3
 toughness=3
 [/card]
+[card]
+name=Workshop Elders
+auto=@each my combatbegins: may target(*[artifact,-creature]|myBattlefield) transforms((,newability[counter(1/1,4)],Artifact Creature,setpower=0,settoughness=0))
+auto=lord(creature[artifact]|myBattlefield) flying
+text=Artifact creatures you control have flying. -- At the beginning of combat on your turn, you may have target noncreature artifact you control become a 0/0 artifact creature. If you do, put four +1/+1 counters on it.
+mana={6}{U}
+type=Creature
+subtype=Human Artificer
+power=4
+toughness=4
+[/card]
+[card]
+name=Henge Walker
+other={W}{W}{W} name(Adamant White)
+other={U}{U}{U} name(Adamant Blue)
+other={R}{R}{R} name(Adamant Red)
+other={G}{G}{G} name(Adamant Green)
+other={B}{B}{B} name(Adamant Black)
+auto=if paid(alternative) then counter(1/1,1)
+text=Adamant — If at least three mana of the same color was spent to cast this spell, Henge Walker enters the battlefield with a +1/+1 counter on it.
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=2
+[/card]
+[card]
+name=Heraldic Banner
+auto=chooseacolor target(creature[chosencolor]|myBattlefield) 1/0 chooseend
+auto={T}:add{chosencolor}
+text=As Heraldic Banner enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+0. -- {T}: Add one mana of the chosen color.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Clockwork Servant
+other={W}{W}{W} name(Adamant White)
+other={U}{U}{U} name(Adamant Blue)
+other={R}{R}{R} name(Adamant Red)
+other={G}{G}{G} name(Adamant Green)
+other={B}{B}{B} name(Adamant Black)
+auto=if paid(alternative) then draw:1 controller
+text=Adamant — When Clockwork Servant enters the battlefield, if at least three mana of the same color was spent to cast it, draw a card.
+mana={3}
+type=Artifact Creature
+subtype=Gnome
+power=2
+toughness=3
+[/card]
+[card]
+name=Mystical Dispute
+other={U} name(Counter Blue)
+auto=if paid(alternative) then name(counter blue spell) target(*[blue]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=ifnot paid(alternative) then name(counter spell) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+text=This spell costs {2} less to cast if it targets a blue spell. -- Counter target spell unless its controller pays 3 .
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Trail of Crumbs
+auto=token(-473141)
+auto=@sacrificed(food|mybattlefield):pay({1}) name(look) reveal:2 optionone name(Get a permanent card) target(<1>*[-instant,-sorcery]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend revealend
+text=When Trail of Crumbs enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Whenever you sacrifice a Food, you may pay 1 . If you do, look at the top two cards of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Questing Beast
+abilities=vigilance,deathtouch,haste
+auto=cantbeblockedby(creature[power<=2])
+auto=@combatdamagefoeof(player) from(this):damage:thatmuch target(planeswalker|opponentbattlefield)
+#MISSING: damage can't be prevented
+text=Vigilance, deathtouch, haste -- Questing Beast can't be blocked by creatures with power 2 or less. -- Combat damage that would be dealt by creatures you control can't be prevented. -- Whenever Questing Beast deals combat damage to an opponent, it deals that much damage to target planeswalker that player controls.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
