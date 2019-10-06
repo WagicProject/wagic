@@ -129,16 +129,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Rankle, Master of Pranks
-abilities=flying,haste
-text=Flying, haste -- Whenever Rankle, Master of Pranks deals combat damage to a player, choose any number — -- • Each player discards a card. -- • Each player loses 1 life and draws a card. -- • Each player sacrifices a creature.
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Faerie Rogue
-power=3
-toughness=3
-[/card]
-[card]
 name=Specter's Shriek
 text=Target opponent reveals their hand. You may choose a nonland card from it. If you do, that player exiles that card. If a nonblack card is exiled this way, exile a card from your hand.
 mana={B}

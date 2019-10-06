@@ -2630,3 +2630,16 @@ text=At the beginning of your upkeep, choose one at random. Create a red and whi
 mana={1}{R}{W}{W}
 type=Enchantment
 [/card]
+[card]
+name=Rankle, Master of Pranks
+abilities=flying,haste
+auto=@combatdamaged(player) from(this):may name(discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
+auto=@combatdamaged(player) from(this):may name(life and draw) draw:1 controller && draw:1 opponent && life:-1 controller && life:-1 opponent
+auto=@combatdamaged(player) from(this):may name(sacrifice) ability$!sacrifice notatarget(creature|mybattlefield)!$ controller && ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent 
+text=Flying, haste -- Whenever Rankle, Master of Pranks deals combat damage to a player, choose any number — -- • Each player discards a card. -- • Each player loses 1 life and draws a card. -- • Each player sacrifices a creature.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Faerie Rogue
+power=3
+toughness=3
+[/card]
