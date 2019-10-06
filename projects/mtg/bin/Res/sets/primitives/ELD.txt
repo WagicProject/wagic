@@ -68,7 +68,6 @@ toughness=5
 [/card]
 [card]
 name=Witch's Cottage
-auto={T}:add{B}
 auto=aslongas(other land[swamp]|myBattlefield) tap(noevent) <3 oneshot
 auto=if this(untapped) may (creature|mygraveyard) moveTo(myLibrary) once 
 text={T}: Add {B} -- Witch's Cottage enters the battlefield tapped unless you control three or more other Swamps. -- When Witch's Cottage enters the battlefield untapped, you may put target creature card from your graveyard on top of your library.
