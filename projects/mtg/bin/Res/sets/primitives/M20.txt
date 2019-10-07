@@ -1651,7 +1651,8 @@ toughness=5
 [card]
 name=Cavalier of Night
 abilities=lifelink
-auto=may sacrifice target(creature|mybattlefield) && destroy target(creature|opponentBattlefield)
+other={2}{B}{B}{B}{S(other creature|mybattlefield)} name(sacrifice)
+auto=if paid(alternative) then destroy target(creature|opponentBattlefield)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(myBattlefield) target(creature[manacost<=3]|mygraveyard)
 text=Lifelink -- When Cavalier of Night enters the battlefield, you may sacrifice another creature. When you do, destroy target creature an opponent controls. -- When Cavalier of Night dies, return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.
 mana={2}{B}{B}{B}
@@ -1673,7 +1674,12 @@ toughness=3
 [/card]
 [card]
 name=Legion's End
-auto=target(creature[manacost<=2]|opponentbattlefield) moveto(exile) && all(*[share!name!]|targetcontrollerbattlefield) moveto(exile) && donothing notatarget(*|targetcontrollerhand) && all(*[share!name!]|targetcontrollerhand) moveto(exile) && all(*[share!name!]|targetcontrollergraveyard) moveto(exile)
+target=creature[manacost<=2]|opponentbattlefield
+auto=moveto(exile)
+auto=all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
+auto=donothing notatarget(*|targetcontrollerhand)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard) moveto(exile)
 text=Exile target creature an opponent controls with converted mana cost 2 or less and all other creatures that player controls with the same name as that creature. Then that player reveals their hand and exiles all cards with that name from their hand and graveyard.
 mana={1}{B}
 type=Sorcery
