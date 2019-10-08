@@ -2398,7 +2398,7 @@ toughness=2
 [/card]
 [card]
 name=Queen of Ice // Rage of Winter
-abilities=canplayfromexil
+abilities=canplayfromexile
 other={1}{U} name(Adventure)
 auto=if paid(alternative) then target(*[creature]) transforms((,newability[tap],newability[doesnotuntap])) && moveto(exile) all(this)
 auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && all(trigger[to]) frozen
@@ -2411,7 +2411,7 @@ toughness=3
 [/card]
 [card]
 name=Lonesome Unicorn // Rider in Need
-abilities=canplayfromexil,vigilance
+abilities=canplayfromexile,vigilance
 other={2}{W} name(Adventure)
 auto=if paid(alternative) then token(Knight,creature Knight,2/2,white,vigilance) && moveto(exile) all(this)
 text=Vigilance -- Create a 2/2 white Knight creature token with vigilance. (Then exile this card. You may cast the creature later from exile.)
@@ -2423,7 +2423,7 @@ toughness=3
 [/card]
 [card]
 name=Foulmire Knight // Profane Insight
-abilities=canplayfromexil,deathtouch,flash
+abilities=canplayfromexile,deathtouch,flash
 other={2}{B} name(Adventure)
 auto=if paid(alternative) then draw:1 controller && life:-1 controller && moveto(exile) all(this)
 text=Deathtouch -- You draw a card and you lose 1 life. (Then exile this card. You may cast the creature later from exile.)
@@ -2435,7 +2435,7 @@ toughness=1
 [/card]
 [card]
 name=Realm-Cloaked Giant // Cast Off
-abilities=canplayfromexil,vigilance
+abilities=canplayfromexile,vigilance
 other={3}{W}{W} name(Adventure)
 auto=if paid(alternative) then destroy all(creature[-giant]) && moveto(exile) all(this)
 text=Vigilance -- Destroy all non-Giant creatures. (Then exile this card. You may cast the creature later from exile.)
@@ -2447,7 +2447,7 @@ toughness=7
 [/card]
 [card]
 name=Smitten Swordmaster // Curry Favor
-abilities=canplayfromexil,lifelink
+abilities=canplayfromexile,lifelink
 other={B} name(Adventure)
 auto=if paid(alternative) then life:type:creature[knight]:mybattlefield controller && life:-type:creature[knight]:mybattlefield opponent && moveto(exile) all(this)
 text=Lifelink -- You gain X life and each opponent loses X life, where X is the number of Knights you control.
@@ -2459,7 +2459,7 @@ toughness=1
 [/card]
 [card]
 name=Rimrock Knight // Boulder Rush
-abilities=canplayfromexil,cantblock,flash
+abilities=canplayfromexile,cantblock,flash
 other={R} name(Adventure)
 auto=if paid(alternative) then target(creature) 2/0 ueot && moveto(exile) all(this)
 text=Rimrock Knight can't block. -- Target creature gets +2/+0 until end of turn. (Then exile this card. You may cast the creature later from exile.)
@@ -2471,7 +2471,7 @@ toughness=1
 [/card]
 [card]
 name=Embereth Shieldbreaker // Battle Display
-abilities=canplayfromexil
+abilities=canplayfromexile
 other={R} name(Adventure)
 auto=if paid(alternative) then destroy target(artifact) && moveto(exile) all(this)
 text=Destroy target artifact. (Then exile this card. You may cast the creature later from exile.)
@@ -2483,7 +2483,7 @@ toughness=1
 [/card]
 [card]
 name=Bonecrusher Giant // Stomp
-abilities=canplayfromexil,flash
+abilities=canplayfromexile,flash
 other={1}{R} name(Adventure)
 #MISSING: damage can't be prevented
 auto=if paid(alternative) then damage:2 target(player,creature,planeswalker) && moveto(exile) all(this)
@@ -2497,7 +2497,7 @@ toughness=3
 [/card]
 [card]
 name=Merchant of the Vale // Haggle
-abilities=canplayfromexil,flash
+abilities=canplayfromexile,flash
 other={R} name(Adventure)
 auto=if paid(alternative) then may ability$!name(discard) reject notatarget(*|myhand) and!(draw:1) controller!$ && moveto(exile) all(this)
 auto={2}{R}{D(*|myhand)}:draw:1
@@ -2510,7 +2510,7 @@ toughness=3
 [/card]
 [card]
 name=Order of Midnight // Alter Fate
-abilities=canplayfromexil,flying,cantblock
+abilities=canplayfromexile,flying,cantblock
 other={1}{B} name(Adventure)
 auto=if paid(alternative) then moveto(myhand) target(creature|mygraveyard) && moveto(exile) all(this)
 text=Flying -- Order of Midnight can't block. -- Return target creature card from your graveyard to your hand. (Then exile this card. You may cast the creature later from exile.)
@@ -2522,7 +2522,7 @@ toughness=2
 [/card]
 [card]
 name=Reaper of Night // Harvest Fear
-abilities=canplayfromexil
+abilities=canplayfromexile
 other={3}{B} name(Adventure)
 auto=if paid(alternative) then target(opponent) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer && moveto(exile) all(this)
 auto=@combat(attacking) source(this):aslongas(type(*|opponenthand)~lessthan~3) flying
@@ -2535,7 +2535,7 @@ toughness=5
 [/card]
 [card]
 name=Murderous Rider // Swift End
-abilities=canplayfromexil,flash,lifelink
+abilities=canplayfromexile,flash,lifelink
 other={1}{B}{B} name(Adventure)
 auto=if paid(alternative) then destroy target(creature,planeswalker) && life:-2 controller && moveto(exile) all(this)
 auto=@movedTo(graveyard) from(this|battlefield):all(trigger[from]) bottomoflibrary
@@ -2548,7 +2548,7 @@ toughness=3
 [/card]
 [card]
 name=Shepherd of the Flock // Usher to Safety
-abilities=canplayfromexil,flash
+abilities=canplayfromexile,flash
 other={W} name(Adventure)
 auto=if paid(alternative) then moveTo(ownerhand) target(*|myBattlefield) && moveto(exile) all(this)
 text=Return target permanent you control to its owner's hand. (Then exile this card. You may cast the creature later from exile.)
@@ -2560,7 +2560,7 @@ toughness=1
 [/card]
 [card]
 name=Silverflame Squire // On Alert
-abilities=canplayfromexil,flash
+abilities=canplayfromexile,flash
 other={2}{W} name(Adventure)
 auto=if paid(alternative) then target(creature) transforms((,newability[2/2 ueot],newability[untap])) && moveto(exile) all(this)
 text=Target creature gets +2/+2 until end of turn. Untap it. (Then exile this card. You may cast the creature later from exile.)
@@ -2572,7 +2572,7 @@ toughness=1
 [/card]
 [card]
 name=Animating Faerie // Bring to Life
-abilities=canplayfromexil,flying
+abilities=canplayfromexile,flying
 other={2}{U} name(Adventure)
 auto=if paid(alternative) then target(*[artifact,-creature]|myBattlefield) transforms((,newability[counter(1/1,4)],Artifact Creature,setpower=0,settoughness=0)) && moveto(exile) all(this)
 text=Flying -- Target noncreature artifact you control becomes a 0/0 artifact creature. Put four +1/+1 counters on it.
@@ -2584,7 +2584,7 @@ toughness=2
 [/card]
 [card]
 name=Brazen Borrower // Petty Theft
-abilities=canplayfromexil,flash,flying,cloud
+abilities=canplayfromexile,flash,flying,cloud
 other={1}{U} name(Adventure)
 auto=if paid(alternative) then moveTo(ownerHand) target(*[-land]|opponentbattlefield) && moveto(exile) all(this)
 text=Flash -- Flying -- Brazen Borrower can block only creatures with flying. -- Return target nonland permanent an opponent controls to its owner's hand.
@@ -2596,7 +2596,7 @@ toughness=1
 [/card]
 [card]
 name=Fae of Wishes // Granted
-abilities=canplayfromexil,flying
+abilities=canplayfromexile,flying
 other={3}{U} name(Adventure)
 auto=if paid(alternative) then reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose card) target(<1>*[-creature]|reveal) moveto(myhand) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend revealend && moveto(exile) all(this)
 auto={1}{U}{D(*|myhand)}{D(*|myhand)}:moveTo(ownerhand)
@@ -2609,7 +2609,7 @@ toughness=4
 [/card]
 [card]
 name=Lovestruck Beast // Heart's Desire
-abilities=canplayfromexil
+abilities=canplayfromexile
 other={G} name(Adventure)
 auto=if paid(alternative) then create(Human:creature Human:1/1:white) && moveto(exile) all(this)
 auto=aslongas(creature[power=1,toughness=1]|mybattlefield) cantattack <1
@@ -2634,7 +2634,7 @@ name=Rankle, Master of Pranks
 abilities=flying,haste
 auto=@combatdamaged(player) from(this):may name(discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
 auto=@combatdamaged(player) from(this):may name(life and draw) draw:1 controller && draw:1 opponent && life:-1 controller && life:-1 opponent
-auto=@combatdamaged(player) from(this):may name(sacrifice) ability$!sacrifice notatarget(creature|mybattlefield)!$ controller && ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent 
+auto=@combatdamaged(player) from(this):may name(sacrifice) sacrifice tatarget(creature|mybattlefield) controller and!(sacrifice tatarget(creature|opponentBattlefield) opponent)!
 text=Flying, haste -- Whenever Rankle, Master of Pranks deals combat damage to a player, choose any number — -- • Each player discards a card. -- • Each player loses 1 life and draws a card. -- • Each player sacrifices a creature.
 mana={2}{B}{B}
 type=Legendary Creature

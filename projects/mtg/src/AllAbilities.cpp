@@ -6336,7 +6336,8 @@ int ATransformer::destroy()
         {
             for (unsigned int i = 0;i < newAbilities[_target].size(); i++)
             {
-                if(newAbilities[_target].at(i))
+                // The primitives Dead Presence probabily causes a double free error and a crash in Wagic, so for now it has been exluded...
+                if(newAbilities[_target].at(i) && strcmp(_target->name.c_str(),"Dread Presence"))
                 {
                     newAbilities[_target].at(i)->forceDestroy = 1;
                     newAbilities[_target].at(i)->removeFromGame();

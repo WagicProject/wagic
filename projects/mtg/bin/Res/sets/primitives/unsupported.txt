@@ -9613,14 +9613,6 @@ type=Tribal Enchantment
 subtype=Treefolk Aura
 [/card]
 [card]
-name=Liliana of the Veil
-auto=counter(0/0,3,loyalty)
-text=+1: Each player discards a card. -- -2: Target player sacrifices a creature. -- -6: Separate all permanents target player controls into two piles. That player sacrifices all permanents in the pile of his or her choice.
-mana={1}{B}{B}
-type=Planeswalker
-subtype=Liliana
-[/card]
-[card]
 name=Lilting Refrain
 text=At the beginning of your upkeep, you may put a verse counter on Lilting Refrain. -- Sacrifice Lilting Refrain: Counter target spell unless its controller pays {X}, where X is the number of verse counters on Lilting Refrain.
 mana={1}{U}
