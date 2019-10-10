@@ -643,7 +643,8 @@ type=Sorcery
 
 [card]
 name=Midnight Reaper
-auto=@movedto(other creature[-token]|graveyard) from(battlefield):damage:1 && draw:1
+auto=@movedto(other creature[-token]|myGraveyard) from(myBattlefield):damage:1 controller
+auto=@movedto(other creature[-token]|myGraveyard) from(myBattlefield):draw:1 controller
 text=Whenever a nontoken creature you control dies, Midnight Reaper deals 1 damage to you and you draw a card.
 mana={2}{B}
 type=Creature
