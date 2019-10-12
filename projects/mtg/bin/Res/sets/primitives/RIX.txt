@@ -1046,6 +1046,17 @@ toughness=2
 name=Elenda, the Dusk Rose
 abilities=lifelink
 auto=@movedTo(other creature|graveyard) from(battlefield):counter(1/1)
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=0) donothing
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=1) create(Vampire:creature Vampire:1/1:black:lifelink) controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=2) create(Vampire:creature Vampire:1/1:black:lifelink)*2 controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=3) create(Vampire:creature Vampire:1/1:black:lifelink)*3 controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=4) create(Vampire:creature Vampire:1/1:black:lifelink)*4 controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=5) create(Vampire:creature Vampire:1/1:black:lifelink)*5 controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=6) create(Vampire:creature Vampire:1/1:black:lifelink)*6 controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=7) create(Vampire:creature Vampire:1/1:black:lifelink)*7 controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=8) create(Vampire:creature Vampire:1/1:black:lifelink)*8 controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=9) create(Vampire:creature Vampire:1/1:black:lifelink)*9 controller
+auto=@movedTo(myGraveyard) from(this|battlefield):this(power=10) create(Vampire:creature Vampire:1/1:black:lifelink)*10 controller
 text=Lifelink -- Whenever another creature dies, put a +1/+1 counter on Elenda, the Dusk Rose. -- When Elenda dies, create X 1/1 white Vampire creature tokens with lifelink, where X is Elenda's power.
 mana={2}{W}{B}
 type=Legendary Creature
