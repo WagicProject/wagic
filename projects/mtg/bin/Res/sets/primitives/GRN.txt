@@ -1519,7 +1519,28 @@ toughness=2
 [card]
 name=March of the Multitudes
 other={convoke} name(Convoke)
-auto=create(Soldier:creature Soldier:1/1:white:lifelink)*X
+auto=this(X=0) donothing
+auto=this(X=1) create(Soldier:creature Soldier:1/1:white:lifelink)
+auto=this(X=2) create(Soldier:creature Soldier:1/1:white:lifelink)*2
+auto=this(X=3) create(Soldier:creature Soldier:1/1:white:lifelink)*3
+auto=this(X=4) create(Soldier:creature Soldier:1/1:white:lifelink)*4
+auto=this(X=5) create(Soldier:creature Soldier:1/1:white:lifelink)*5
+auto=this(X=6) create(Soldier:creature Soldier:1/1:white:lifelink)*6
+auto=this(X=7) create(Soldier:creature Soldier:1/1:white:lifelink)*7
+auto=this(X=8) create(Soldier:creature Soldier:1/1:white:lifelink)*8
+auto=this(X=9) create(Soldier:creature Soldier:1/1:white:lifelink)*9
+auto=this(X=10) create(Soldier:creature Soldier:1/1:white:lifelink)*10
+auto=this(X=11) create(Soldier:creature Soldier:1/1:white:lifelink)*11
+auto=this(X=12) create(Soldier:creature Soldier:1/1:white:lifelink)*12
+auto=this(X=13) create(Soldier:creature Soldier:1/1:white:lifelink)*13
+auto=this(X=14) create(Soldier:creature Soldier:1/1:white:lifelink)*14
+auto=this(X=15) create(Soldier:creature Soldier:1/1:white:lifelink)*15
+auto=this(X=16) create(Soldier:creature Soldier:1/1:white:lifelink)*16
+auto=this(X=17) create(Soldier:creature Soldier:1/1:white:lifelink)*17
+auto=this(X=18) create(Soldier:creature Soldier:1/1:white:lifelink)*18
+auto=this(X=19) create(Soldier:creature Soldier:1/1:white:lifelink)*19
+auto=this(X=20) create(Soldier:creature Soldier:1/1:white:lifelink)*20
+auto=this(X>20) create(Soldier:creature Soldier:1/1:white:lifelink)*X
 text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of the creature's color.) -- Create X 1/1 white Soldier creature tokens with lifelink.
 mana={X}{G}{W}{W}
 type=Instant
