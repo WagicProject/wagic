@@ -1519,7 +1519,7 @@ toughness=2
 [card]
 name=March of the Multitudes
 other={convoke} name(Convoke)
-auto=create(Soldier:creature Soldier:1/1:white:lifelink)X
+auto=create(Soldier:creature Soldier:1/1:white:lifelink)*X
 text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of the creature's color.) -- Create X 1/1 white Soldier creature tokens with lifelink.
 mana={X}{G}{W}{W}
 type=Instant
