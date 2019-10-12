@@ -1,4 +1,27 @@
 grade=borderline
+
+[card]
+name=Venerated Loxodon
+other={convoke} name(Convoke)
+auto=lord(creature[tapped;-attacking]|myBattlefield) counter(1/1,1)
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for 1 or one mana of that creature's color.) -- When Venerated Loxodon enters the battlefield, put a +1/+1 counter on each creature that convoked it.
+mana={4}{W}
+type=Creature
+subtype=Elephant Cleric
+power=4
+toughness=4
+[/card]
+
+[card]
+name=Flower // Flourish
+other={4}{G}{W} name(Flourish)
+auto=if paid(alternative) then all(creature|mybattlefield) 2/2 ueot
+auto=ifnot paid(alternative) then name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>*[basic;forest;plains]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+text=Search your library for a basic Forest or Plains card, reveal it, put it into your hand, then shuffle your library. -- Creatures you control get +2/+2 until end of turn.
+mana={GW}
+type=Sorcery
+[/card]
+
 [card]
 name=Blade Instructor
 auto=_MENTOR_

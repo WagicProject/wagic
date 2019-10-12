@@ -1155,12 +1155,7 @@ id=452975
 rarity=R
 [/card]
 [card]
-primitive=Flourish
-id=452976
-rarity=U
-[/card]
-[card]
-primitive=Flower
+primitive=Flower // Flourish
 id=452976
 rarity=U
 [/card]
