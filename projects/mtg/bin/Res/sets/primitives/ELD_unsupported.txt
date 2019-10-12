@@ -102,25 +102,8 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
-name=Clackbridge Troll
-abilities=trample,haste
-auto=create(Goat:creature Goat:0/1:white) opponent
-text=Trample, haste -- When Clackbridge Troll enters the battlefield, target opponent creates three 0/1 white Goat creature tokens. -- At the beginning of combat on your turn, any opponent may sacrifice a creature. If a player does, tap Clackbridge Troll, you gain 3 life, and you draw a card.
-mana={3}{B}{B}
-type=Creature
-subtype=Troll
-power=8
-toughness=8
-[/card]
-[card]
 name=Covetous Urge
 text=Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
 mana={UB}{UB}{UB}{UB}
 type=Sorcery
-[/card]
-[card]
-name=Once Upon a Time
-text=If this spell is the first spell you've cast this game, you may cast it without paying its mana cost. -- Look at the top five cards of your library. You may reveal a creature or land card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
-mana={1}{G}
-type=Instant
 [/card]
