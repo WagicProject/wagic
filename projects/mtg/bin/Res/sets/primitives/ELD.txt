@@ -2308,9 +2308,9 @@ toughness=2
 [/card]
 [card]
 name=Faerie Guidemother // Gift of the Fae
-abilities=canplayfromexile
+abilities=canplayfromexile,flying
 other={1}{W} name(Adventure)
-auto=if paid(alternative) then target(creature) transforms((,flying,newability[2/1])) ueot && moveto(exile) all(this)
+auto=if paid(alternative) then target(creature) transforms((,newability[2/1],newability[flying])) ueot && moveto(exile) all(this)
 text=Flying -- Target creature gets +2/+1 and gains flying until end of turn. (Then exile this card. You may cast the creature later from exile.)
 mana={W}
 type=Creature
