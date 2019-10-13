@@ -113,7 +113,7 @@ subtype=Mountain
 [card]
 name=Castle Ardenvale
 auto={T}:add{W}
-auto=aslongas(other land[plain]|myBattlefield) tap(noevent) <1 oneshot
+auto=aslongas(plains|myBattlefield) tap(noevent) <1 oneshot
 auto={2}{W}{W}{T}:create(Human:creature Human:1/1:white)
 text=Castle Ardenvale enters the battlefield tapped unless you control a Plains. -- {T}: Add {W}. -- {2}{W}{W}, {T}: Create a 1/1 white Human creature token.
 type=Land
@@ -121,7 +121,7 @@ type=Land
 [card]
 name=Castle Embereth
 auto={T}:add{R}
-auto=aslongas(other land[mountain]|myBattlefield) tap(noevent) <1 oneshot
+auto=aslongas(land[mountain]|myBattlefield) tap(noevent) <1 oneshot
 auto={1}{R}{R}{T}:all(creature|mybattlefield) 1/0 ueot
 text=Castle Embereth enters the battlefield tapped unless you control a Mountain. -- {T}: Add {R}. -- {1}{R}{R}, {T}: Creatures you control get +1/+0 until end of turn.
 type=Land
@@ -129,7 +129,7 @@ type=Land
 [card]
 name=Castle Locthwain
 auto={T}:add{B}
-auto=aslongas(other land[swamp]|myBattlefield) tap(noevent) <1 oneshot
+auto=aslongas(land[swamp]|myBattlefield) tap(noevent) <1 oneshot
 auto={1}{B}{B}{T}:draw:1 && life:-phandcount
 text=Castle Locthwain enters the battlefield tapped unless you control a Swamp. -- {T}: Add {B}. -- {1}{B}{B}, {T}: Draw a card, then you lose life equal to the number of cards in your hand.
 type=Land
@@ -137,7 +137,7 @@ type=Land
 [card]
 name=Castle Vantress
 auto={T}:add{U}
-auto=aslongas(other land[island]|myBattlefield) tap(noevent) <1 oneshot
+auto=aslongas(land[island]|myBattlefield) tap(noevent) <1 oneshot
 auto={2}{U}{U}{T}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Castle Vantress enters the battlefield tapped unless you control an Island. -- {T}: Add {U}. -- {2}{U}{U}, {T}: Scry 2.
 type=Land
@@ -145,7 +145,7 @@ type=Land
 [card]
 name=Castle Garenbrig
 auto={T}:add{G}
-auto=aslongas(other land[forest]|myBattlefield) tap(noevent) <1 oneshot
+auto=aslongas(land[forest]|myBattlefield) tap(noevent) <1 oneshot
 auto={2}{G}{G}{T}:add{G}{G}{G}{G}{G}{G}
 text=Castle Garenbrig enters the battlefield tapped unless you control a Forest. -- {T}: Add {G}. -- {2}{G}{G}, {T}: Add six {G}. Spend this mana only to cast creature spells or activate abilities of creatures.
 type=Land
@@ -1990,9 +1990,11 @@ toughness=1
 [card]
 name=Beanstalk Giant // Fertile Footsteps
 abilities=canplayfromexile
+target=land[basic]|mylibrary
 other={2}{G} name(Adventure)
 anyzone=type:land:myBattlefield/type:land:myBattlefield cdaactive
-auto=if paid(alternative) notatarget(land[basic]|mylibrary) moveto(mybattlefield) && moveto(exile) all(this)
+auto=if paid(alternative) then moveto(mybattlefield)
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Beanstalk Giant's power and toughness are each equal to the number of lands you control. -- Search your library for a basic land card, put it onto the battlefield, then shuffle your library. (Then exile this card. You may cast the creature later from exile.)
 mana={6}{G}
 type=Creature
@@ -2272,8 +2274,10 @@ toughness=2
 [card]
 name=Garenbrig Carver // Shield's Might
 abilities=canplayfromexile,flash
+target=creature|battlefield,player
 other={1}{G} name(Adventure)
-auto=if paid(alternative) then target(creature) 2/2 ueot && moveto(exile) all(this)
+auto=if paid(alternative) then 2/2 ueot
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Target creature gets +2/+2 until end of turn. (Then exile this card. You may cast the creature later from exile.)
 mana={3}{G}
 type=Creature
@@ -2309,8 +2313,11 @@ toughness=2
 [card]
 name=Faerie Guidemother // Gift of the Fae
 abilities=canplayfromexile,flying
+target=creature|battlefield,player
 other={1}{W} name(Adventure)
-auto=if paid(alternative) then target(creature) transforms((,newability[2/1],newability[flying])) ueot && moveto(exile) all(this)
+auto=if paid(alternative) then 2/1 ueot
+auto=if paid(alternative) then flying ueot
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Flying -- Target creature gets +2/+1 and gains flying until end of turn. (Then exile this card. You may cast the creature later from exile.)
 mana={W}
 type=Creature
@@ -2322,7 +2329,9 @@ toughness=1
 name=Tuinvale Treefolk // Oaken Boon
 abilities=canplayfromexile
 other={3}{G} name(Adventure)
-auto=if paid(alternative) then target(creature) counter(1/1,2) && moveto(exile) all(this)
+target=creature|battlefield,player
+auto=if paid(alternative) then counter(1/1,2)
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Put two +1/+1 counters on target creature. (Then exile this card. You may cast the creature later from exile.)
 mana={5}{G}
 type=Creature
@@ -2333,8 +2342,10 @@ toughness=5
 [card]
 name=Ardenvale Tactician // Dizzying Swoop
 abilities=canplayfromexile,flying,flash
+target=<upto:2>creature|battlefield,player
 other={1}{W} name(Adventure)
-auto=if paid(alternative) then target(<upto:2>creature) tap(noevent) && moveto(exile) all(this)
+auto=if paid(alternative) then tap(noevent) 
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Flying -- Tap up to two target creatures. (Then exile this card. You may cast the creature later from exile.)
 mana={1}{W}{W}
 type=Creature
@@ -2345,8 +2356,10 @@ toughness=3
 [card]
 name=Hypnotic Sprite // Mesmeric Glare
 abilities=canplayfromexile,flying,flash
+target=*[manacost<=3]|stack,player
 other={2}{U} name(Adventure)
-auto=if paid(alternative) then target(*[manacost<=3]|stack) fizzle && moveto(exile) all(this)
+auto=if paid(alternative) then fizzle
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Flying -- Counter target spell with converted mana cost 3 or less. (Then exile this card. You may cast the creature later from exile.)
 mana={U}{U}
 type=Creature
@@ -2357,8 +2370,10 @@ toughness=1
 [card]
 name=Merfolk Secretkeeper // Venture Deeper
 abilities=canplayfromexile
+target=player
 other={U} name(Adventure)
-auto=if paid(alternative) then target(player) deplete:4 && moveto(exile) all(this)
+auto=if paid(alternative) then deplete:4
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Target player puts the top four cards of their library into their graveyard. (Then exile this card. You may cast the creature later from exile.)
 mana={U}
 type=Creature
@@ -2386,8 +2401,10 @@ toughness=3
 [card]
 name=Giant Killer // Chop Down
 abilities=canplayfromexile,flash
+target=creature[power>=4],player
 other={2}{W} name(Adventure)
-auto=if paid(alternative) then target(creature[power>=4]) destroy && moveto(exile) all(this)
+auto=if paid(alternative) then destroy
+auto=if paid(alternative) then moveto(exile) all(this)
 auto={1}{W}{T}:target(creature) tap(noevent)
 text={1}{W}, {T}: Tap target creature. -- Destroy target creature with power 4 or greater. (Then exile this card. You may cast the creature later from exile.)
 mana={W}
@@ -2399,8 +2416,11 @@ toughness=2
 [card]
 name=Queen of Ice // Rage of Winter
 abilities=canplayfromexile
+target=creature|battlefield,player
 other={1}{U} name(Adventure)
-auto=if paid(alternative) then target(*[creature]) transforms((,newability[tap],newability[doesnotuntap])) && moveto(exile) all(this)
+auto=if paid(alternative) then tap
+auto=if paid(alternative) then frozen 
+auto=if paid(alternative) then moveto(exile) all(this)
 auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && all(trigger[to]) frozen
 text=Whenever Queen of Ice deals combat damage to a creature, tap that creature. It doesn't untap during its controller's next untap step. -- Tap target creature. It doesn't untap during its controller's next untap step. (Then exile this card. You may cast the creature later from exile.)
 mana={2}{U}
@@ -2460,8 +2480,10 @@ toughness=1
 [card]
 name=Rimrock Knight // Boulder Rush
 abilities=canplayfromexile,cantblock,flash
+target=creature|battlefield,player
 other={R} name(Adventure)
-auto=if paid(alternative) then target(creature) 2/0 ueot && moveto(exile) all(this)
+auto=if paid(alternative) then 2/0 ueot
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Rimrock Knight can't block. -- Target creature gets +2/+0 until end of turn. (Then exile this card. You may cast the creature later from exile.)
 mana={1}{R}
 type=Creature
@@ -2472,8 +2494,10 @@ toughness=1
 [card]
 name=Embereth Shieldbreaker // Battle Display
 abilities=canplayfromexile
+target=artifact|battlefield,player
 other={R} name(Adventure)
-auto=if paid(alternative) then destroy target(artifact) && moveto(exile) all(this)
+auto=if paid(alternative) then destroy
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Destroy target artifact. (Then exile this card. You may cast the creature later from exile.)
 mana={1}{R}
 type=Creature
@@ -2484,9 +2508,11 @@ toughness=1
 [card]
 name=Bonecrusher Giant // Stomp
 abilities=canplayfromexile,flash
+target=player,creature,planeswalker
 other={1}{R} name(Adventure)
 #MISSING: damage can't be prevented
-auto=if paid(alternative) then damage:2 target(player,creature,planeswalker) && moveto(exile) all(this)
+auto=if paid(alternative) then damage:2
+auto=if paid(alternative) then moveto(exile) all(this)
 auto=@targeted(this):damage:2 opponent
 text=Whenever Bonecrusher Giant becomes the target of a spell, Bonecrusher Giant deals 2 damage to that spell's controller. -- Damage can't be prevented this turn. Stomp deals 2 damage to any target.
 mana={2}{R}
@@ -2511,8 +2537,10 @@ toughness=3
 [card]
 name=Order of Midnight // Alter Fate
 abilities=canplayfromexile,flying,cantblock
+target=creature|mygraveyard,player
 other={1}{B} name(Adventure)
-auto=if paid(alternative) then moveto(myhand) target(creature|mygraveyard) && moveto(exile) all(this)
+auto=if paid(alternative) then moveto(myhand)
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Flying -- Order of Midnight can't block. -- Return target creature card from your graveyard to your hand. (Then exile this card. You may cast the creature later from exile.)
 mana={1}{B}
 type=Creature
@@ -2523,8 +2551,9 @@ toughness=2
 [card]
 name=Reaper of Night // Harvest Fear
 abilities=canplayfromexile
+target=opponent
 other={3}{B} name(Adventure)
-auto=if paid(alternative) then target(opponent) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer && moveto(exile) all(this)
+auto=if paid(alternative) then ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer && moveto(exile) all(this)
 auto=@combat(attacking) source(this):aslongas(type(*|opponenthand)~lessthan~3) flying
 text=Whenever Reaper of Night attacks, if defending player has two or fewer cards in hand, it gains flying until end of turn. -- Target opponent discards two cards. (Then exile this card. You may cast the creature later from exile.)
 mana={5}{B}{B} 
@@ -2536,8 +2565,11 @@ toughness=5
 [card]
 name=Murderous Rider // Swift End
 abilities=canplayfromexile,flash,lifelink
+target=creature,planeswalker,player
 other={1}{B}{B} name(Adventure)
-auto=if paid(alternative) then destroy target(creature,planeswalker) && life:-2 controller && moveto(exile) all(this)
+auto=if paid(alternative) then destroy
+auto=if paid(alternative) then life:-2 controller
+auto=if paid(alternative) then moveto(exile) all(this)
 auto=@movedTo(graveyard) from(this|battlefield):all(trigger[from]) bottomoflibrary
 text=Lifelink -- When Murderous Rider dies, put it on the bottom of its owner's library. -- Destroy target creature or planeswalker. You lose 2 life. (Then exile this card. You may cast the creature later from exile.)
 mana={1}{B}{B}
@@ -2549,8 +2581,10 @@ toughness=3
 [card]
 name=Shepherd of the Flock // Usher to Safety
 abilities=canplayfromexile,flash
+target=*|myBattlefield
 other={W} name(Adventure)
-auto=if paid(alternative) then moveTo(ownerhand) target(*|myBattlefield) && moveto(exile) all(this)
+auto=if paid(alternative) then moveTo(ownerhand)
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Return target permanent you control to its owner's hand. (Then exile this card. You may cast the creature later from exile.)
 mana={1}{W}
 type=Creature
@@ -2561,8 +2595,11 @@ toughness=1
 [card]
 name=Silverflame Squire // On Alert
 abilities=canplayfromexile,flash
+target=creature|battlefield,player
 other={2}{W} name(Adventure)
-auto=if paid(alternative) then target(creature) transforms((,newability[2/2 ueot],newability[untap])) && moveto(exile) all(this)
+auto=if paid(alternative) then 2/2 ueot
+auto=if paid(alternative) then untap
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Target creature gets +2/+2 until end of turn. Untap it. (Then exile this card. You may cast the creature later from exile.)
 mana={1}{W}
 type=Creature
@@ -2573,8 +2610,10 @@ toughness=1
 [card]
 name=Animating Faerie // Bring to Life
 abilities=canplayfromexile,flying
+target=*[artifact,-creature]|myBattlefield,player
 other={2}{U} name(Adventure)
-auto=if paid(alternative) then target(*[artifact,-creature]|myBattlefield) transforms((,newability[counter(1/1,4)],Artifact Creature,setpower=0,settoughness=0)) && moveto(exile) all(this)
+auto=if paid(alternative) then transforms((,newability[counter(1/1,4)],Artifact Creature,setpower=0,settoughness=0))
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Flying -- Target noncreature artifact you control becomes a 0/0 artifact creature. Put four +1/+1 counters on it.
 mana={2}{U}
 type=Creature
@@ -2585,8 +2624,10 @@ toughness=2
 [card]
 name=Brazen Borrower // Petty Theft
 abilities=canplayfromexile,flash,flying,cloud
+target=*[-land]|opponentbattlefield,player
 other={1}{U} name(Adventure)
-auto=if paid(alternative) then moveTo(ownerHand) target(*[-land]|opponentbattlefield) && moveto(exile) all(this)
+auto=if paid(alternative) then moveTo(ownerHand)
+auto=if paid(alternative) then moveto(exile) all(this)
 text=Flash -- Flying -- Brazen Borrower can block only creatures with flying. -- Return target nonland permanent an opponent controls to its owner's hand.
 mana={1}{U}{U}
 type=Creature
