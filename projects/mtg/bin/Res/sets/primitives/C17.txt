@@ -60,7 +60,7 @@ toughness=4
 [card]
 name=Boneyard Scourge
 abilities=flying
-autograveyard=@movedTo(other Dragon|mygraveyard) from(myBattlefield):may pay({1}{b}) moveTo(mybattlefield)
+autograveyard=@moveTo(creature[Dragon]|mygraveyard) from (myBattlefield): aslongas(this|mygraveyard) may pay{1}{B}: moveTo(myBattlefield) target(Boneyard Scourge|mygraveyard)
 text=Flying -- Whenever a Dragon you control dies while Boneyard Scourge is in your graveyard, you may pay {1}{B}. If you do, return Boneyard Scourge from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Creature
@@ -176,11 +176,10 @@ toughness=6
 
 [card]
 name=Hammer of Nazahn
-auto=may rehook target(creature)
-auto=@movedTo(equipment|mybattlefield):
-auto=teach(creature) 2/0
-auto=teach(creature) indestructible
 auto={4}:equip
+auto=teach(creature) indestructible && 2/0
+auto=@may rehook
+auto=@movedto(artifact[Equipment]|mybattlefield):may all(trigger[to]) rehook
 text=Whenever Hammer of Nazahn or another Equipment enters the battlefield under your control, you may attach that Equipment to target creature you control. -- Equipped creature gets +2/+0 and has indestructible. -- Equip {4}
 mana={4}
 type=Legendary Artifact
@@ -364,7 +363,7 @@ toughness=4
 [card]
 name=Scalelord Reckoner
 abilities=flying
-auto=@targeted(dragon|mybattlefield) from(*|opponentbattlefield,opponenthand,opponentstack,opponentgraveyard,opponentexile,opponentlibrary):destroy target(*[-land]|opponentBattlefield)
+auto=@targeted(dragon|mybattlefield):destroy target(*[-land]|opponentbattlefield)
 text=Flying -- Whenever a Dragon you control becomes the target of a spell or ability an opponent controls, destroy target nonland permanent that player controls.
 mana={3}{W}{W}
 type=Creature
@@ -388,9 +387,8 @@ toughness=5
 [card]
 name=The Ur-Dragon
 abilities=flying
-auto=lord(dragon|mycastingzone) altercost(colorless, -1)
-auto=@combat(attacking) source(dragon|myBattlefield) restriction(once):may moveTo(myBattlefield) target(*[-instant;-sorcery]|myHand)
-auto=@combat(attacking) source(dragon|myBattlefield):draw:1
+auto=lord(dragon|mycastingzone) altercost( colorless,-1)
+auto=@combat (attacking[dragon]|myBattlefield):draw:type:creature(dragon[attacking]):mybattlefield controller && moveTo(myBattlefield) target(*|myhand)
 text=Eminence — As long as The Ur-Dragon is in the command zone or on the battlefield, other Dragon spells you cast cost {1} less to cast. -- Flying -- Whenever one or more Dragons you control attack, draw that many cards, then you may put a permanent card from your hand onto the battlefield.
 mana={4}{W}{U}{B}{R}{G}
 type=Legendary Creature
@@ -401,7 +399,8 @@ toughness=10
 
 [card]
 name=Traverse the Outlands
-auto=moveTo(myBattlefield) and!(tap(noevent))! target(<upto:power:highest:*:mybattlefield>land[basic]|myLibrary)
+aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(land[basic]<power:highest:*:mybattlefield>|myLibrary)
+auto=name(search card) reveal:plibrarycount optionone name(choose card) target(land[basic]<power:highest:*:mybattlefield>|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<power:highest:*:mybattlefield>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
 text=Search your library for up to X basic land cards, where X is the greatest power among creatures you control. Put those cards onto the battlefield tapped, then shuffle your library.
 mana={4}{G}
 type=Sorcery

@@ -390,12 +390,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Ancient Excavation
-text=Draw cards equal to the number of cards in your hand, then discard a card for each card drawn this way. -- Basic landcycling {2} ({2}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
-mana={2}{U}{B}
-type=Instant
-[/card]
-[card]
 name=Ancient Ziggurat
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell.
 type=Land
@@ -1891,12 +1885,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Burnt Offering
-text=As an additional cost to cast Burnt Offering, sacrifice a creature. -- Add X mana in any combination of {B} and/or {R} to your mana pool, where X is the sacrificed creature's converted mana cost.
-mana={B}
-type=Instant
-[/card]
-[card]
 name=Bursting Beebles
 text=Bursting Beebles is unblockable as long as defending player controls two or more nonland permanents that share an artist.
 mana={2}{U}
@@ -2457,15 +2445,6 @@ type=Artifact
 name=Chaotic AEther
 text=When you encounter Chaotic AEther, each blank roll of the planar die is a CHAOS roll until a player planeswalks away from a plane. (Then planeswalk away from this phenomenon.)
 type=Phenomenon
-[/card]
-[card]
-name=Charging Cinderhorn
-text=Haste -- At the beginning of each player's end step, if no creatures attacked this turn, put a fury counter on Charging Cinderhorn. Then Charging Cinderhorn deals damage equal to the number of fury counters on it to that player.
-mana={3}{R}
-type=Creature
-subtype=Elemental Ox
-power=4
-toughness=2
 [/card]
 [card]
 name=Charisma
@@ -3666,13 +3645,6 @@ text=When you set this scheme in motion, each opponent reveals cards from the to
 type=Scheme
 [/card]
 [card]
-name=Daretti, Ingenious Iconoclast
-text=+1: Put a 1/1 colorless Construct artifact creature token with defender onto the battlefield. -- -1: You may sacrifice an artifact. If you do, destroy target artifact or creature. -- -6: Choose target artifact card in a graveyard or artifact on the battlefield. Put three tokens that are copies of it onto the battlefield.
-mana={1}{B}{R}
-type=Planeswalker
-subtype=Daretti
-[/card]
-[card]
 name=Daring Thief
 text=Inspired — Whenever Daring Thief becomes untapped, you may exchange control of target nonland permanent you control and target permanent an opponent controls that shares a card type with it.
 mana={2}{U}
@@ -4313,15 +4285,6 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
-name=Domesticated Hydra
-text={X}{G}{G}{G}: Monstrosity X. (If this creature isn't monstrous, put X +1/+1 counters on it and it becomes monstrous.) -- As long as Domesticated Hydra is monstrous, it has trample.
-mana={2}{G}{G}
-type=Creature
-subtype=Hydra
-power=3
-toughness=3
-[/card]
-[card]
 name=Dominating Licid
 text={1}{U}{U}, {T}: Dominating Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {U} to end this effect. -- You control enchanted creature.
 mana={1}{U}{U}
@@ -4937,12 +4900,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Entrapment Maneuver
-text=Target player sacrifices an attacking creature. You create X 1/1 white Soldier creature tokens, where X is that creature's toughness.
-mana={3}{W}
-type=Instant
-[/card]
-[card]
 name=Entreat the Angels
 text=Put X 4/4 white Angel creature tokens with flying onto the battlefield. -- Miracle {X}{W}{W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={X}{X}{W}{W}{W}
@@ -5223,16 +5180,6 @@ name=Fade Away
 text=For each creature, its controller sacrifices a permanent unless he or she pays {1}.
 mana={2}{U}
 type=Sorcery
-[/card]
-[card]
-name=Faerie Artisans
-abilities=flying
-text=Flying -- Whenever a nontoken creature enters the battlefield under an opponent's control, create a token that's a copy of that creature except it's an artifact in addition to its other types. Then exile all other tokens created with Faerie Artisans.
-mana={3}{U}
-type=Creature
-subtype=Faerie Artificer
-power=2
-toughness=2
 [/card]
 [card]
 name=Fairgrounds Trumpeter
@@ -8800,13 +8747,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Kaya, Ghost Assassin
-text=0: Exile Kaya, Ghost Assassin or up to one target creature. Return that card to the battlefield under its owner's control at the beginning of your next upkeep. You lose 2 life. -- -1: Each opponent loses 2 life and you gain 2 life. -- -2: Each opponent discards a card and you draw a card.
-mana={2}{W}{B}
-type=Planeswalker
-subtype=Kaya
-[/card]
-[card]
 name=Keeper of Keys
 text=When Keeper of Keys enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, creatures you control can't be blocked this turn.
 mana={3}{U}{U}
@@ -11927,15 +11867,6 @@ type=Plane
 subtype=Kamigawa
 [/card]
 [card]
-name=Orzhov Advokist
-text=At the beginning of your upkeep, each player may put two +1/+1 counters on a creature he or she controls. If a player does, creatures that player controls can't attack you or a planeswalker you control until your next turn.
-mana={2}{W}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=4
-[/card]
-[card]
 name=Orzhov Charm
 text=Choose one — Return target creature you control and all Auras you control attached to it to their owner's hand; or destroy target creature and you lose life equal to its toughness; or return target creature card with converted mana cost 1 or less from your graveyard to the battlefield.
 mana={W}{B}
@@ -13566,15 +13497,6 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
-name=Recruiter of the Guard
-text=When Recruiter of the Guard enters the battlefield, you may search your library for a creature card with toughness 2 or less, reveal it, put it into your hand, then shuffle your library.
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Redeem the Lost
 text=Target creature you control gains protection from the color of your choice until end of turn. Clash with an opponent. If you win, return Redeem the Lost to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{W}
@@ -13864,15 +13786,6 @@ text=Target permanent's controller sacrifices it. If he or she does, that player
 mana={5}{U}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Reyhan, Last of the Abzan
-text=Reyhan, Last of the Abzan enters the battlefield with three +1/+1 counters on it. -- Whenever a creature you control dies or is put into the command zone, if it had one or more +1/+1 counters on it, you may put that many +1/+1 counters on target creature. -- Partner (You can have two commanders if both have partner.)
-mana={1}{B}{G}
-type=Legendary Creature
-subtype=Human Warrior
-power=0
-toughness=0
 [/card]
 [card]
 name=Rhox Faithmender
@@ -14922,15 +14835,6 @@ type=Legendary Creature
 subtype=Elf Scout
 power=2
 toughness=4
-[/card]
-[card]
-name=Selvala, Heart of the Wilds
-text=Whenever another creature enters the battlefield, its controller may draw a card if its power is greater than each other creature's power. -- {G}, {T}: Add X mana in any combination of colors to your mana pool, where X is the greatest power among creatures you control.
-mana={1}{G}{G}
-type=Legendary Creature
-subtype=Elf Scout
-power=2
-toughness=3
 [/card]
 [card]
 name=Selvala's Charge
@@ -16416,15 +16320,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Splitting Slime
-text={4}{G}{G}: Monstrosity 3. (If this creature isn't monstrous, put three +1/+1 counters on it and it becomes monstrous.) -- When Splitting Slime becomes monstrous, put a token onto the battlefield that's a copy of Splitting Slime. (The token has no counters and isn't monstrous.)
-mana={3}{G}{G}
-type=Creature
-subtype=Ooze
-power=3
-toughness=3
-[/card]
-[card]
 name=Spoils of Blood
 text=Put an X/X black Horror creature token onto the battlefield, where X is the number of creatures that died this turn.
 mana={B}
@@ -16871,21 +16766,6 @@ type=Sorcery
 name=Struggle for Sanity
 text=Target opponent reveals his or her hand. That player exiles a card from it, then you exile a card from it. Repeat this process until all cards in that hand have been exiled. That player returns the cards he or she exiled this way to his or her hand and puts the rest into his or her graveyard.
 mana={2}{B}{B}
-type=Sorcery
-[/card]
-[card]
-name=Stunt Double
-text=Flash -- You may have Stunt Double enter the battlefield as a copy of any creature on the battlefield.
-mana={3}{U}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=0
-[/card]
-[card]
-name=Subterranean Tremors
-text=Subterranean Tremors deals X damage to each creature without flying. If X is 4 or more, destroy all artifacts. If X is 8 or more, put an 8/8 red Lizard creature token onto the battlefield.
-mana={X}{R}
 type=Sorcery
 [/card]
 [card]
@@ -17631,15 +17511,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Thrasios, Triton Hero
-text={4}: Scry 1, then reveal the top card of your library. If it's a land card, put it onto the battlefield tapped. Otherwise, draw a card. -- Partner (You can have two commanders if both have partner.)
-mana={G}{U}
-type=Legendary Creature
-subtype=Merfolk Wizard
-power=1
-toughness=3
-[/card]
-[card]
 name=Three Dreams
 text=Search your library for up to three Aura cards with different names, reveal them, and put them into your hand. Then shuffle your library.
 mana={4}{W}
@@ -18163,16 +18034,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Tymna the Weaver
-abilities=lifelink
-text=Lifelink -- At the beginning of your postcombat main phase, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards. -- Partner (You can have two commanders if both have partner.)
-mana={1}{W}{B}
-type=Legendary Creature
-subtype=Human Cleric
-power=2
-toughness=2
-[/card]
-[card]
 name=Tyrant of Discord
 text=When Tyrant of Discord enters the battlefield, target opponent chooses a permanent he or she controls at random and sacrifices it. If a nonland permanent is sacrificed this way, repeat this process.
 mana={4}{R}{R}{R}
@@ -18597,15 +18458,6 @@ mana={R}
 type=Creature
 subtype=Devil
 power=4
-toughness=3
-[/card]
-[card]
-name=Vial Smasher the Fierce
-text=Whenever you cast your first spell each turn, Vial Smasher the Fierce deals damage equal to that spell's converted mana cost to an opponent chosen at random. -- Partner (You can have two commanders if both have partner.)
-mana={1}{B}{R}
-type=Legendary Creature
-subtype=Goblin Berserker
-power=2
 toughness=3
 [/card]
 [card]
