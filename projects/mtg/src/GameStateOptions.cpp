@@ -56,6 +56,7 @@ void GameStateOptions::Start()
 
     optionsList = NEW WGuiList("Misc");
     optionsList->Add(NEW WGuiHeader("Card Display Options"));
+    optionsList->Add(NEW OptionInteger(Options::SHOWBORDER, "Show Borders"));
     //black border
     optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Border"));
     //show tokens in editor

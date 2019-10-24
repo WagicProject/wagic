@@ -44,6 +44,7 @@ public:
         CHEATMODE,
         OPTIMIZE_HAND,
         CHEATMODEAIDECK,
+        SHOWBORDER,
         BLKBORDER,
         SHOWTOKENS,
         GDVLARGEIMAGE,
