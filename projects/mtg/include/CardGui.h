@@ -55,8 +55,8 @@ public:
     virtual void Render();
     virtual void Update(float dt);
 
-    void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false, bool gdv = false);
-    static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false, bool gdv = false);
+    void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = true, bool gdv = false);
+    static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = true, bool gdv = false);
 
     static JQuadPtr AlternateThumbQuad(MTGCard * card);
     virtual ostream& toString(ostream&) const;
