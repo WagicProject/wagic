@@ -1,0 +1,261 @@
+[meta]
+author=Wagic Team
+name=Arena New Player Experience
+year=2018-07-14
+total=51
+[/meta]
+[card]
+primitive=Goblin
+id=-16787
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-16759
+rarity=T
+[/card]
+[card]
+primitive=Angelic Reward
+id=16755
+rarity=U
+[/card]
+[card]
+primitive=Blinding Radiance
+id=16757
+rarity=U
+[/card]
+[card]
+primitive=Confront the Assault
+id=16759
+rarity=U
+[/card]
+[card]
+primitive=Inspiring Commander
+id=16760
+rarity=R
+[/card]
+[card]
+primitive=Knight's Pledge
+id=16761
+rarity=C
+[/card]
+[card]
+primitive=Loxodon Line Breaker
+id=16762
+rarity=C
+[/card]
+[card]
+primitive=Sanctuary Cat
+id=16763
+rarity=C
+[/card]
+[card]
+primitive=Serra Angel
+id=16764
+rarity=U
+[/card]
+[card]
+primitive=Shrine Keeper
+id=16765
+rarity=C
+[/card]
+[card]
+primitive=Spiritual Guardian
+id=16766
+rarity=C
+[/card]
+[card]
+primitive=Tactical Advantage
+id=16767
+rarity=C
+[/card]
+[card]
+primitive=Take Vengeance
+id=16768
+rarity=C
+[/card]
+[card]
+primitive=Divination
+id=16769
+rarity=C
+[/card]
+[card]
+primitive=Overflowing Insight
+id=16770
+rarity=M
+[/card]
+[card]
+primitive=River's Favor
+id=16771
+rarity=C
+[/card]
+[card]
+primitive=Shorecomber Crab
+id=16772
+rarity=C
+[/card]
+[card]
+primitive=Titanic Pelagosaur
+id=16773
+rarity=U
+[/card]
+[card]
+primitive=Waterknot
+id=16774
+rarity=C
+[/card]
+[card]
+primitive=Zephyr Gull
+id=16775
+rarity=C
+[/card]
+[card]
+primitive=Altar's Reap
+id=16776
+rarity=C
+[/card]
+[card]
+primitive=Ambition's Cost
+id=16777
+rarity=U
+[/card]
+[card]
+primitive=Cruel Cut
+id=16778
+rarity=C
+[/card]
+[card]
+primitive=Miasmic Mummy
+id=16779
+rarity=C
+[/card]
+[card]
+primitive=Nimble Pilferer
+id=16780
+rarity=C
+[/card]
+[card]
+primitive=Renegade Demon
+id=16781
+rarity=C
+[/card]
+[card]
+primitive=Rise from the Grave
+id=16782
+rarity=U
+[/card]
+[card]
+primitive=Soulhunter Rakshasa
+id=16783
+rarity=R
+[/card]
+[card]
+primitive=Chaos Maw
+id=16784
+rarity=R
+[/card]
+[card]
+primitive=Doublecast
+id=16785
+rarity=U
+[/card]
+[card]
+primitive=Goblin Bruiser
+id=16786
+rarity=U
+[/card]
+[card]
+primitive=Goblin Gang Leader
+id=16787
+rarity=U
+[/card]
+[card]
+primitive=Goblin Grenade
+id=16788
+rarity=U
+[/card]
+[card]
+primitive=Ogre Painbringer
+id=16789
+rarity=R
+[/card]
+[card]
+primitive=Raging Goblin
+id=16790
+rarity=C
+[/card]
+[card]
+primitive=Seismic Rupture
+id=16791
+rarity=U
+[/card]
+[card]
+primitive=Volcanic Dragon
+id=16792
+rarity=U
+[/card]
+[card]
+primitive=Feral Roar
+id=16793
+rarity=C
+[/card]
+[card]
+primitive=Rumbling Baloth
+id=16794
+rarity=C
+[/card]
+[card]
+primitive=Treetop Warden
+id=16795
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=16796
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=16797
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=16798
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=16799
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=16800
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=16801
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=16802
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=16803
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=16804
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=16805
+rarity=C
+[/card]

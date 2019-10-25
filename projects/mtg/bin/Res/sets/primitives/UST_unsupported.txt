@@ -128,13 +128,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Sword of Dungeons & Dragons
-text=Equipped creature gets +2/+2 and has protection from Rogues and from Clerics. -- Whenever equipped creature deals combat damage to a player, create a 4/4 gold Dragon creature token with flying and roll a d20 (a twenty-sided die). If you roll a 20, repeat this process. -- Equip {2}
-mana={3}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Spell Suck
 text=Counter target spell, then assemble a Contraption. (Put the top card of your Contraption deck face up onto one of your sprockets.)
 mana={2}{U}{U}

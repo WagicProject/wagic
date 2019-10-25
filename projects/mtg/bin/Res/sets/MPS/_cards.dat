@@ -1,0 +1,276 @@
+[meta]
+author=Wagic Team
+name=Kaladesh Inventions
+year=2016-09-03
+total=54
+[/meta]
+[card]
+primitive=Cataclysmic Gearhulk
+id=420588
+rarity=M
+[/card]
+[card]
+primitive=Torrential Gearhulk
+id=420589
+rarity=M
+[/card]
+[card]
+primitive=Noxious Gearhulk
+id=420590
+rarity=M
+[/card]
+[card]
+primitive=Combustible Gearhulk
+id=420591
+rarity=M
+[/card]
+[card]
+primitive=Verdurous Gearhulk
+id=420592
+rarity=M
+[/card]
+[card]
+primitive=Aether Vial
+id=420593
+rarity=M
+[/card]
+[card]
+primitive=Champion's Helm
+id=420594
+rarity=M
+[/card]
+[card]
+primitive=Chromatic Lantern
+id=420595
+rarity=M
+[/card]
+[card]
+primitive=Chrome Mox
+id=420596
+rarity=M
+[/card]
+[card]
+primitive=Cloudstone Curio
+id=420597
+rarity=M
+[/card]
+[card]
+primitive=Crucible of Worlds
+id=420598
+rarity=M
+[/card]
+[card]
+primitive=Gauntlet of Power
+id=420599
+rarity=M
+[/card]
+[card]
+primitive=Hangarback Walker
+id=420600
+rarity=M
+[/card]
+[card]
+primitive=Lightning Greaves
+id=420601
+rarity=M
+[/card]
+[card]
+primitive=Lotus Petal
+id=420602
+rarity=M
+[/card]
+[card]
+primitive=Mana Crypt
+id=420603
+rarity=M
+[/card]
+[card]
+primitive=Mana Vault
+id=420604
+rarity=M
+[/card]
+[card]
+primitive=Mind's Eye
+id=420605
+rarity=M
+[/card]
+[card]
+primitive=Mox Opal
+id=420606
+rarity=M
+[/card]
+[card]
+primitive=Painter's Servant
+id=420607
+rarity=M
+[/card]
+[card]
+primitive=Rings of Brighthearth
+id=420608
+rarity=M
+[/card]
+[card]
+primitive=Scroll Rack
+id=420609
+rarity=M
+[/card]
+[card]
+primitive=Sculpting Steel
+id=420610
+rarity=M
+[/card]
+[card]
+primitive=Sol Ring
+id=420611
+rarity=M
+[/card]
+[card]
+primitive=Solemn Simulacrum
+id=420612
+rarity=M
+[/card]
+[card]
+primitive=Static Orb
+id=420613
+rarity=M
+[/card]
+[card]
+primitive=Steel Overseer
+id=420614
+rarity=M
+[/card]
+[card]
+primitive=Sword of Feast and Famine
+id=420615
+rarity=M
+[/card]
+[card]
+primitive=Sword of Fire and Ice
+id=420616
+rarity=M
+[/card]
+[card]
+primitive=Sword of Light and Shadow
+id=420617
+rarity=M
+[/card]
+[card]
+primitive=Arcbound Ravager
+id=425802
+rarity=M
+[/card]
+[card]
+primitive=Black Vise
+id=425803
+rarity=M
+[/card]
+[card]
+primitive=Chalice of the Void
+id=425804
+rarity=M
+[/card]
+[card]
+primitive=Defense Grid
+id=425805
+rarity=M
+[/card]
+[card]
+primitive=Duplicant
+id=425806
+rarity=M
+[/card]
+[card]
+primitive=Engineered Explosives
+id=425807
+rarity=M
+[/card]
+[card]
+primitive=Ensnaring Bridge
+id=425808
+rarity=M
+[/card]
+[card]
+primitive=Extraplanar Lens
+id=425809
+rarity=M
+[/card]
+[card]
+primitive=Grindstone
+id=425810
+rarity=M
+[/card]
+[card]
+primitive=Meekstone
+id=425811
+rarity=M
+[/card]
+[card]
+primitive=Oblivion Stone
+id=425812
+rarity=M
+[/card]
+[card]
+primitive=Ornithopter
+id=425813
+rarity=M
+[/card]
+[card]
+primitive=Paradox Engine
+id=425814
+rarity=M
+[/card]
+[card]
+primitive=Pithing Needle
+id=425815
+rarity=M
+[/card]
+[card]
+primitive=Planar Bridge
+id=425816
+rarity=M
+[/card]
+[card]
+primitive=Platinum Angel
+id=425817
+rarity=M
+[/card]
+[card]
+primitive=Sphere of Resistance
+id=425818
+rarity=M
+[/card]
+[card]
+primitive=Staff of Domination
+id=425819
+rarity=M
+[/card]
+[card]
+primitive=Sundering Titan
+id=425820
+rarity=M
+[/card]
+[card]
+primitive=Sword of Body and Mind
+id=425821
+rarity=M
+[/card]
+[card]
+primitive=Sword of War and Peace
+id=425822
+rarity=M
+[/card]
+[card]
+primitive=Trinisphere
+id=425823
+rarity=M
+[/card]
+[card]
+primitive=Vedalken Shackles
+id=425824
+rarity=M
+[/card]
+[card]
+primitive=Wurmcoil Engine
+id=425825
+rarity=M
+[/card]

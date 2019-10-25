@@ -1,0 +1,31 @@
+[meta]
+author=Wagic Team
+name=IDW Comics 2013
+year=2013-01-01
+total=5
+[/meta]
+[card]
+primitive=Voidmage Husher
+id=16819
+rarity=R
+[/card]
+[card]
+primitive=Ogre Arsonist
+id=16820
+rarity=R
+[/card]
+[card]
+primitive=Corrupt
+id=16821
+rarity=R
+[/card]
+[card]
+primitive=High Tide
+id=16822
+rarity=R
+[/card]
+[card]
+primitive=Gaze of Granite
+id=16823
+rarity=R
+[/card]

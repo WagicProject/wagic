@@ -11,6 +11,269 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Angelic Reward
+target=creature
+auto=3/3
+auto=flying
+text=Enchant creature -- Enchanted creature gets +3/+3 and has flying.
+mana={3}{W}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Titanic Pelagosaur
+mana={3}{U}{U}
+type=Creature
+subtype=Dinosaur
+power=4
+toughness=6
+[/card]
+[card]
+name=Zephyr Gull
+abilities=flying
+mana={U}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
+name=Nira, Hellkite Duelist
+abilities=flash, flying, trample, haste
+auto=cantlose && lifeset:5 && draw:3 controller ueot
+text=Flash -- Flying, trample, haste -- When Nira, Hellkite Duelist enters the battlefield, the next time you would lose the game this turn, instead draw three cards and your life total becomes 5.
+mana={W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
+name=Diabolical Salvation
+abilities=split second
+auto=token(Devil,Creature Devil,4/4,red,unreath) with((,newability ((@movedto(this|graveyard) from(battlefield):token(Treasure,Artifact) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!))
+text=Split second Create four 4/4 red Devil creature tokens with haste and “When this creature dies, create a colorless Treasure artifact token with ‘{T}, Sacrifice this artifact: Add one mana of any color.’” Sacrifice the Devil tokens at the beginning of the next end step.
+mana={2}{R}{R}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Chandra, Gremlin Wrangler
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Create a 2/2 red Gremlin creature token) token(Gremlin,Creature Gremlin,2/2,red)
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals X damage to any target... ) foreach(creature[Gremlin]|myBattlefield) damage:1 target(creature,player,planeswalker)
+text=+1: Create a 2/2 red Gremlin creature token. -- -2: Chandra, Gremlin Wrangler deals X damage to any target, where X is the number of Gremlins you control.
+mana={2}{R}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Treetop Warden
+mana={1}{G}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=2
+[/card]
+[card]
+name=Feral Roar
+target=creature
+auto=4/4 ueot
+text=Target creature gets +4/+4 until end of turn.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Ogre Painbringer
+auto=damage:3 all(player)
+text=When Ogre Painbringer enters the battlefield, it deals 3 damage to each player.
+mana={3}{R}{R}
+type=Creature
+subtype=Ogre
+power=7
+toughness=3
+[/card]
+[card]
+name=Goblin Gang Leader
+auto=token(Goblin,Creature Goblin,1/1,red)*2
+text=When Goblin Gang Leader enters the battlefield, create two 1/1 red Goblin creature tokens.
+mana={2}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+[/card]
+[card]
+name=Goblin Bruiser
+mana={1}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Doublecast
+auto=@moveTo(*[instant;sorcery]|myStack): castcard(copied noevent) target(*[instant;sorcery]|mystack)
+text=When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy.
+mana={R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Soulhunter Rakshasa
+abilities=cantblock
+auto=damage:5 target(opponent)
+text=Soulhunter Rakshasa can’t block. -- When Soulhunter Rakshasa enters the battlefield, it deals 5 damage to target opponent.
+mana={3}{B}{B}
+type=Creature
+subtype=Cat Demon
+power=5
+toughness=5
+[/card]
+[card]
+name=Nimble Pilferer
+abilities=flash
+mana={1}{B}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=1
+[/card]
+[card]
+name=Cruel Cut
+target=creature[power<2]|battlefield
+auto=destroy
+text=Destroy target creature with power 2 or less.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Shorecomber Crab
+mana={U}
+type=Creature
+subtype=Crab
+power=0
+toughness=4
+[/card]
+[card]
+name=River's Favor
+target=creature
+auto=1/1
+text=Enchant creature -- Enchanted creature gets +1/+1.
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Tactical Advantage
+target=creature[blocking,blocked]|myBattlefield
+auto=2/2 ueot
+text=Target blocking or blocked creature you control gets +2/+2 until end of turn.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Shrine Keeper
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Inspiring Commander
+auto=@movedto(other creature[power<2]|mybattlefield):all(trigger[to]) life:1 controller && draw:1 controller
+text=Whenever another creature with power 2 or less enters the battlefield under your control, you gain 1 life and draw a card.
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=4
+[/card]
+[card]
+name=Confront the Assault
+restriction=type(creature[attacking]|opponentbattlefield)~morethan~0
+auto=token(Spirit,Creature Spirit,1/1,flying)*3
+text=Cast this spell only if a creature is attacking you. -- Create three 1/1 white Spirit creature tokens with flying.
+mana={4}{W}
+type=Instant
+[/card]
+[card]
+name=Blinding Radiance
+auto=tap all(creature[power<2]|opponentBattlefield)
+text=Tap all creatures your opponents control with toughness 2 or less.
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
+name=Static Orb
+auto=@each my beginofturn sourcenottap:lord(*|battlefield) doesnotuntap && untap target(*)*2
+auto=@each opponent beginofturn sourcenottap:lord(*|battlefield) doesnotuntap && untap target(*)*2
+text=As long as Static Orb is untapped, players can’t untap more than two permanents during their untap steps.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Sword of Dungeons & Dragons
+auto={2}:equip
+auto=teach(creature) protection from(cleric)
+auto=teach(creature) protection from(rogue)
+auto=teach(creature) 2/2
+auto=@combatdamaged(player) from(mytgt):token(Dragon,Creature Dragon,4/4,white,black,red,blue,green,flying) && transform(newability((flipacoin winability token(Dragon,Creature Dragon,4/4,white,black,red,blue,green,flying) && transform(newability((flipacoin winability  winabilityend flipend))) winabilityend flipend)))
+text=Equipped creature gets +2/+2 and has protection from Rogues and from Clerics. -- Whenever equipped creature deals combat damage to a player, create a 4/4 gold Dragon creature token with flying and roll a d20 (a twenty-sided die). If you roll a 20, repeat this process. -- Equip {2}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Grimlock, Ferocious King
+doublefaced=kamiflip
+abilities=trample
+auto={2}:name (Transform) flip(Grimlock, Dinobot Leader)
+text=Trample -- {2}, Convert a Transformers toy you own to its other mode: Grimlock, Ferocious King becomes Grimlock, Dinobot Leader.
+color=green,white,red
+type=Legendary Artifact Creature
+subtype=Dinosaur
+power=8
+toughness=8
+[/card]
+[card]
+name=Grimlock, Dinobot Leader
+auto=lord(creature[Vehicle,Dinosaur,other Autobot]|myBattlefield) 2/0
+auto={2}:name(Transform) flip(Grimlock, Ferocious King)
+text=Dinosaurs, Vehicles, and other Transformers® creatures you control get +2/+0. -- {2}, Convert a Transformers toy you own to its other mode: Grimlock, Dinobot Leader becomes Grimlock, Ferocious King.
+type=Legendary Artifact Creature
+subtype=Autobot
+power=4
+toughness=4
+[/card]
+[card]
+name=Sundering Titan
+auto=destroy all(land[plains,island,swamp,mountain,forest])
+auto=@movedto(this|graveyard) from(battlefield):destroy all(land[plains,island,swamp,mountain,forest])
+text=When Sundering Titan enters the battlefield or leaves the battlefield, choose a land of each basic land type, then destroy those lands.
+mana={8}
+type=Artifact Creature
+subtype=Golem
+power=7
+toughness=10
+[/card]
+[card]
+name=Defense Grid
+auto=restriction{during opponent turn}: lord(*|nonbattlezone) altercost(colorless,+3) opponent
+auto=restriction{during opponent turn}: lord(*|nonbattlezone) altercost(colorless,+3) controller
+text=Each spell costs {3} more to cast except during its controller's turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Painter's Servant
+auto=chooseacolor lord(creature,artifact,enchantment,planeswalker,stack,exile,sideboard,graveyard,library) becomes(,chosencolor) chooseend
+text=As Painter’s Servant enters the battlefield, choose a color. -- All cards that aren’t on the battlefield, spells, and permanents are the chosen color in addition to their other colors.
+mana={2}
+type=Artifact Creature
+subtype=Scarecrow
+power=1
+toughness=3
+[/card]
+[card]
 name=Stunt Double
 abilities=flash
 auto=may copy NotATarget(creature)
