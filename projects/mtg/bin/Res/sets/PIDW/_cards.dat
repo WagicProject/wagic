@@ -1,0 +1,51 @@
+[meta]
+author=Wagic Team
+name=IDW Comics 2012
+year=2012-01-01
+total=9
+[/meta]
+[card]
+primitive=Arrest
+id=16810
+rarity=R
+[/card]
+[card]
+primitive=Breath of Malfegor
+id=16811
+rarity=R
+[/card]
+[card]
+primitive=Consume Spirit
+id=16812
+rarity=R
+[/card]
+[card]
+primitive=Electrolyze
+id=16813
+rarity=R
+[/card]
+[card]
+primitive=Faithless Looting
+id=16814
+rarity=R
+[/card]
+[card]
+primitive=Feast of Blood
+id=16815
+rarity=R
+[/card]
+[card]
+primitive=Standstill
+id=16816
+rarity=R
+[/card]
+[card]
+primitive=Treasure Hunt
+id=16817
+rarity=R
+[/card]
+[card]
+primitive=Turnabout
+id=16818
+rarity=R
+[/card]
