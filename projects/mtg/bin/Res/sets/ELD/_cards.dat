@@ -175,9 +175,9 @@ id=472971
 rarity=M
 [/card]
 [card]
-primitive=The Circle of Loyalty
+primitive=Deafening Silence
 id=472972
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Faerie Guidemother // Gift of the Fae
@@ -385,9 +385,9 @@ id=473013
 rarity=M
 [/card]
 [card]
-primitive=The Magic Mirror
+primitive=Mantle of Tides
 id=473014
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Merfolk Secretkeeper // Venture Deeper
@@ -540,9 +540,9 @@ id=473044
 rarity=M
 [/card]
 [card]
-primitive=The Cauldron of Eternity
+primitive=Cauldron's Gift
 id=473045
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Clackbridge Troll
@@ -685,9 +685,9 @@ id=473073
 rarity=R
 [/card]
 [card]
-primitive=Witch's Vengeance
+primitive=Barge In
 id=473074
-rarity=R
+rarity=C
 [/card]
 [card]
 primitive=Bloodhaze Wolverine
@@ -935,9 +935,9 @@ id=473123
 rarity=M
 [/card]
 [card]
-primitive=The Great Henge
+primitive=Insatiable Appetite
 id=473124
-rarity=M
+rarity=C
 [/card]
 [card]
 primitive=Keeper of Fables
@@ -1055,7 +1055,7 @@ id=473147
 rarity=R
 [/card]
 [card]
-primitive=Yorvo, Lord of Garenbrig
+primitive=Dance of the Manse
 id=473148
 rarity=R
 [/card]
@@ -1125,9 +1125,9 @@ id=473161
 rarity=M
 [/card]
 [card]
-primitive=The Royal Scions
+primitive=Savvy Hunter
 id=473162
-rarity=M
+rarity=U
 [/card]
 [card]
 primitive=Shinechaser
