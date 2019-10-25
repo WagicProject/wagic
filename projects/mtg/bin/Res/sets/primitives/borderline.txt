@@ -231,6 +231,7 @@ text=Trample -- {2}, Convert a Transformers toy you own to its other mode: Griml
 color=green,white,red
 type=Legendary Artifact Creature
 subtype=Dinosaur
+mana={1}{R}{G}{W}
 power=8
 toughness=8
 [/card]
@@ -241,6 +242,7 @@ auto={2}:name(Transform) flip(Grimlock, Ferocious King)
 text=Dinosaurs, Vehicles, and other Transformers® creatures you control get +2/+0. -- {2}, Convert a Transformers toy you own to its other mode: Grimlock, Dinobot Leader becomes Grimlock, Ferocious King.
 type=Legendary Artifact Creature
 subtype=Autobot
+mana={1}{R}{G}{W}
 power=4
 toughness=4
 [/card]
