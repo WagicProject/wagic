@@ -11,6 +11,82 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Taj-Nar Swordsmith
+aicode=activate moveTo(mybattlefield) target(equipment|mylibrary)
+auto=name(May pay X for equipment) may pay[[{0}]]:name(search equipment) Reveal:type:[Equipment<=0]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=0]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=0]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{1}]]:name(search equipment) Reveal:type:[Equipment<=1]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=1]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=1]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{2}]]:name(search equipment) Reveal:type:[Equipment<=2]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=2]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=2]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{3}]]:name(search equipment) Reveal:type:[Equipment<=3]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=3]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=3]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{4}]]:name(search equipment) Reveal:type:[Equipment<=4]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=4]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=4]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{5}]]:name(search equipment) Reveal:type:[Equipment<=5]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=5]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=5]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{6}]]:name(search equipment) Reveal:type:[Equipment<=6]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=6]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=6]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{7}]]:name(search equipment) Reveal:type:[Equipment<=7]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=7]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=7]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{8}]]:name(search equipment) Reveal:type:[Equipment<=8]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=8]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=8]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{9}]]:name(search equipment) Reveal:type:[Equipment<=9]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=9]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=9]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{10}]]:name(search equipment) Reveal:type:[Equipment<=10]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=10]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=10]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{11}]]:name(search equipment) Reveal:type:[Equipment<=11]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=11]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=11]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{12}]]:name(search equipment) Reveal:type:[Equipment<=12]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=12]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=12]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{13}]]:name(search equipment) Reveal:type:[Equipment<=13]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=13]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=13]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{14}]]:name(search equipment) Reveal:type:[Equipment<=14]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=14]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=14]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{15}]]:name(search equipment) Reveal:type:[Equipment<=15]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=15]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=15]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{16}]]:name(search equipment) Reveal:type:[Equipment<=16]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=16]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=16]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{17}]]:name(search equipment) Reveal:type:[Equipment<=17]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=17]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=17]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{18}]]:name(search equipment) Reveal:type:[Equipment<=18]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=18]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=18]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{19}]]:name(search equipment) Reveal:type:[Equipment<=19]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=19]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=19]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=name(May pay X for equipment) may pay[[{20}]]:name(search equipment) Reveal:type:[Equipment<=20]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=20]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=20]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+text=When Taj-Nar Swordsmith enters the battlefield, you may pay {X}. If you do, search your library for an Equipment card with converted mana cost X or less and put that card onto the battlefield. Then shuffle your library.
+mana={3}{W}
+type=Creature
+subtype=Cat Soldier
+power=2
+toughness=3
+[/card]
+[card]
+name=Root Sliver
+abilities=nofizzle
+auto=lord(Sliver|stack) nofizzle
+auto=lord(Sliver|opponentstack) nofizzle
+text=This spell can’t be countered. -- Sliver spells can’t be countered.
+mana={3}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
+name=Goblin Fire Fiend
+abilities=haste
+auto=@combat (attacking) source(this):lord(<1>creature|opponentBattlefield) mustblock ueot
+auto={R}:1/0 ueot
+text=Haste -- Goblin Fire Fiend must be blocked if able. -- {R}: Goblin Fire Fiend gets +1/+0 until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Goblin Berserker
+power=1
+toughness=1
+[/card]
+[card]
+name=Vacuumelt
+target=creature
+kicker=multi{2}{U} name(Replicate)
+auto=moveTo(ownerHand)
+auto=kicker castcard(copied noevent) target(Vacuumlet|mystack)
+text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Return target creature to its owner’s hand.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Gaea's Herald
+auto=lord(creature|mystack) nofizzle
+auto=lord(creature|opponentstack) nofizzle
+text=Creature spells can't be countered.
+mana={1}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+[/card]
+[card]
 name=Angelic Reward
 target=creature
 auto=3/3

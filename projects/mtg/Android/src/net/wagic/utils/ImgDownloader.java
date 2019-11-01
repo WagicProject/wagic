@@ -441,95 +441,95 @@ public class ImgDownloader {
     public static String getSpecialCardUrl(String id) {
         String cardurl = "";
 
-        if (id.equals("15208711t"))
+        if(id.equals("15208711t"))
             cardurl = "https://img.scryfall.com/cards/large/front/9/c/9c138bf9-8be6-4f1a-a82c-a84938ab84f5.jpg?1562279137";
-        else if (id.equals("15208712t"))
+        else if(id.equals("15208712t"))
             cardurl = "https://img.scryfall.com/cards/large/front/d/4/d453ee89-6122-4d51-989c-e78b046a9de3.jpg?1561758141";
-        else if (id.equals("2050321t"))
+        else if(id.equals("2050321t"))
             cardurl = "https://img.scryfall.com/cards/large/front/1/8/18b9c83d-4422-4b95-9fc2-070ed6b5bdf6.jpg?1562701921";
-        else if (id.equals("22010012t"))
+        else if(id.equals("22010012t"))
             cardurl = "https://img.scryfall.com/cards/large/front/8/4/84dc847c-7a37-4c7f-b02c-30b3e4c91fb6.jpg?1561757490";
-        else if (id.equals("8759611"))
-            cardurl = "https://img.scryfall.com/cards/large/front/4/1/41004bdf-8e09-4b2c-9e9c-26c25eac9854.jpg?1562493483";
-        else if (id.equals("8759911"))
-            cardurl = "https://img.scryfall.com/cards/large/front/0/b/0b61d772-2d8b-4acf-9dd2-b2e8b03538c8.jpg?1562492461";
-        else if (id.equals("8759511"))
-            cardurl = "https://img.scryfall.com/cards/large/front/d/2/d224c50f-8146-4c91-9401-04e5bd306d02.jpg?1562496100";
-        else if (id.equals("8471611"))
-            cardurl = "https://img.scryfall.com/cards/large/front/8/4/84920a21-ee2a-41ac-a369-347633d10371.jpg?1562494702";
-        else if (id.equals("8760011"))
-            cardurl = "https://img.scryfall.com/cards/large/front/4/2/42ba0e13-d20f-47f9-9c86-2b0b13c39ada.jpg?1562493487";
-        else if (id.equals("7448911"))
-            cardurl = "https://img.scryfall.com/cards/large/front/c/a/ca03131a-9bd4-4fba-b95c-90f1831e86e7.jpg?1562879774";
-        else if (id.equals("7453611"))
-            cardurl = "https://img.scryfall.com/cards/large/front/7/3/73636ca0-2309-4bb3-9300-8bd0c0bb5b31.jpg?1562877808";
-        else if (id.equals("7447611"))
-            cardurl = "https://img.scryfall.com/cards/large/front/2/8/28f72260-c8f9-4c44-92b5-23cef6690fdd.jpg?1562876119";
-        else if (id.equals("7467111"))
-            cardurl = "https://img.scryfall.com/cards/large/front/1/f/1fe2b76f-ddb7-49d5-933b-ccb06be5d46f.jpg?1562875903";
-        else if (id.equals("7409311"))
-            cardurl = "https://img.scryfall.com/cards/large/front/7/5/758abd53-6ad2-406e-8615-8e48678405b4.jpg?1562877848";
-        else if (id.equals("3896122t"))
-            cardurl = "https://img.scryfall.com/cards/large/front/5/9/59a00cac-53ae-46ad-8468-e6d1db40b266.jpg?1562542382";
-        else if (id.equals("11492113t"))
-            cardurl = "https://img.scryfall.com/cards/large/front/5/b/5b9f471a-1822-4981-95a9-8923d83ddcbf.jpg?1562702075";
-        else if (id.equals("3896523t"))
-            cardurl = "https://img.scryfall.com/cards/large/front/d/0/d0cd85cc-ad22-446b-8378-5eb69fee1959.jpg?1562840712";
         else if(id.equals("4143881t"))
             cardurl = "https://img.scryfall.com/cards/large/front/8/a/8a73e348-5bf1-4465-978b-3f31408bade9.jpg?1561757530";
-        else if (id.equals("7897511"))
+        else if(id.equals("8759611"))
+            cardurl = "https://img.scryfall.com/cards/large/front/4/1/41004bdf-8e09-4b2c-9e9c-26c25eac9854.jpg?1562493483";
+        else if(id.equals("8759911"))
+            cardurl = "https://img.scryfall.com/cards/large/front/0/b/0b61d772-2d8b-4acf-9dd2-b2e8b03538c8.jpg?1562492461";
+        else if(id.equals("8759511"))
+            cardurl = "https://img.scryfall.com/cards/large/front/d/2/d224c50f-8146-4c91-9401-04e5bd306d02.jpg?1562496100";
+        else if(id.equals("8471611"))
+            cardurl = "https://img.scryfall.com/cards/large/front/8/4/84920a21-ee2a-41ac-a369-347633d10371.jpg?1562494702";
+        else if(id.equals("8760011"))
+            cardurl = "https://img.scryfall.com/cards/large/front/4/2/42ba0e13-d20f-47f9-9c86-2b0b13c39ada.jpg?1562493487";
+        else if(id.equals("7448911"))
+            cardurl = "https://img.scryfall.com/cards/large/front/c/a/ca03131a-9bd4-4fba-b95c-90f1831e86e7.jpg?1562879774";
+        else if(id.equals("7453611"))
+            cardurl = "https://img.scryfall.com/cards/large/front/7/3/73636ca0-2309-4bb3-9300-8bd0c0bb5b31.jpg?1562877808";
+        else if(id.equals("7447611"))
+            cardurl = "https://img.scryfall.com/cards/large/front/2/8/28f72260-c8f9-4c44-92b5-23cef6690fdd.jpg?1562876119";
+        else if(id.equals("7467111"))
+            cardurl = "https://img.scryfall.com/cards/large/front/1/f/1fe2b76f-ddb7-49d5-933b-ccb06be5d46f.jpg?1562875903";
+        else if(id.equals("7409311"))
+            cardurl = "https://img.scryfall.com/cards/large/front/7/5/758abd53-6ad2-406e-8615-8e48678405b4.jpg?1562877848";
+        else if(id.equals("3896122t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/5/9/59a00cac-53ae-46ad-8468-e6d1db40b266.jpg?1562542382";
+        else if(id.equals("11492113t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/5/b/5b9f471a-1822-4981-95a9-8923d83ddcbf.jpg?1562702075";
+        else if(id.equals("3896523t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/d/0/d0cd85cc-ad22-446b-8378-5eb69fee1959.jpg?1562840712";
+        else if(id.equals("7897511"))
             cardurl = "https://img.scryfall.com/cards/large/front/a/4/a4f4aa3b-c64a-4430-b1a2-a7fca87d0a22.jpg?1562763433";
-        else if (id.equals("7868811"))
+        else if(id.equals("7868811"))
             cardurl = "https://img.scryfall.com/cards/large/front/b/3/b3523b8e-065f-427c-8d5b-eb731ca91ede.jpg?1562763691";
-        else if (id.equals("7868711"))
+        else if(id.equals("7868711"))
             cardurl = "https://img.scryfall.com/cards/large/front/5/8/58164521-aeec-43fc-9db9-d595432dea6f.jpg?1564694999";
-        else if (id.equals("7868611"))
+        else if(id.equals("7868611"))
             cardurl = "https://img.scryfall.com/cards/large/front/3/3/33a8e5b9-6bfb-4ff2-a16d-3168a5412807.jpg?1562758927";
-        else if (id.equals("7869111"))
+        else if(id.equals("7869111"))
             cardurl = "https://img.scryfall.com/cards/large/front/9/d/9de1eebf-5725-438c-bcf0-f3a4d8a89fb0.jpg?1562762993";
-        else if (id.equals("7860011"))
+        else if(id.equals("7860011"))
             cardurl = "https://img.scryfall.com/cards/large/front/8/6/864ad989-19a6-4930-8efc-bbc077a18c32.jpg?1562762069";
-        else if (id.equals("7867911"))
+        else if(id.equals("7867911"))
             cardurl = "https://img.scryfall.com/cards/large/front/c/8/c8265c39-d287-4c5a-baba-f2f09dd80a1c.jpg?1562764226";
-        else if (id.equals("7867811"))
+        else if(id.equals("7867811"))
             cardurl = "https://img.scryfall.com/cards/large/front/a/0/a00a7180-49bd-4ead-852a-67b6b5e4b933.jpg?1564694995";
-        else if (id.equals("7869511"))
+        else if(id.equals("7869511"))
             cardurl = "https://img.scryfall.com/cards/large/front/f/2/f2ddf1a3-e6fa-4dd0-b80d-1a585b51b934.jpg?1562765664";
-        else if (id.equals("7869411"))
+        else if(id.equals("7869411"))
             cardurl = "https://img.scryfall.com/cards/large/front/6/e/6ee6cd34-c117-4d7e-97d1-8f8464bfaac8.jpg?1562761096";
-        else if (id.equals("209163t"))
+        else if(id.equals("209163t"))
             cardurl = "https://img.scryfall.com/cards/large/front/a/3/a3ea39a8-48d1-4a58-8662-88841eabec92.jpg?1562925559";
-        else if (id.equals("111066t"))
+        else if(id.equals("111066t"))
             cardurl = "https://img.scryfall.com/cards/large/front/a/7/a77c1ac0-5548-42b0-aa46-d532b3518632.jpg?1562578875";
-        else if (id.equals("2050322t"))
+        else if(id.equals("2050322t"))
             cardurl = "https://deckmaster.info/images/cards/M11/-239-hr.jpg";
-        else if (id.equals("401721t"))
+        else if(id.equals("401721t"))
             cardurl = "https://deckmaster.info/images/cards/DDP/401721-hr.jpg";
-        else if (id.equals("401722t"))
+        else if(id.equals("401722t"))
             cardurl = "https://deckmaster.info/images/cards/DDP/401722-hr.jpg";
-        else if (id.equals("19784311t"))
+        else if(id.equals("19784311t"))
             cardurl = "https://deckmaster.info/images/cards/AKH/-4173-hr.jpg";
-        else if (id.equals("19784312t"))
+        else if(id.equals("19784312t"))
             cardurl = "https://deckmaster.info/images/cards/BNG/-10-hr.jpg";
-        else if (id.equals("19784313t"))
+        else if(id.equals("19784313t"))
             cardurl = "https://deckmaster.info/images/cards/DDD/201843-hr.jpg";
-        else if (id.equals("20787512t"))
+        else if(id.equals("20787512t"))
             cardurl = "https://deckmaster.info/images/cards/SOM/-227-hr.jpg";
-        else if (id.equals("20787511t"))
+        else if(id.equals("20787511t"))
             cardurl = "https://deckmaster.info/images/cards/SOM/-226-hr.jpg";
-        else if (id.equals("11492111t"))
+        else if(id.equals("11492111t"))
             cardurl = "https://deckmaster.info/images/cards/TSP/-2841-hr.jpg";
-        else if (id.equals("11492112t"))
+        else if(id.equals("11492112t"))
             cardurl = "https://deckmaster.info/images/cards/TSP/-2840-hr.jpg";
-        else if (id.equals("11492114t"))
+        else if(id.equals("11492114t") || id.equals("16932t"))
             cardurl = "https://deckmaster.info/images/cards/DDN/386322-hr.jpg";
-        else if (id.equals("11492115t") || id.equals("209162t"))
+        else if(id.equals("11492115t") || id.equals("209162t") || id.equals("17010t") || id.equals("16997t"))
             cardurl = "https://deckmaster.info/images/cards/DDE/209162-hr.jpg";
-        else if (id.equals("3896522t"))
+        else if(id.equals("3896522t"))
             cardurl = "https://deckmaster.info/images/cards/C14/-474-hr.jpg";
-        else if (id.equals("3896521t"))
+        else if(id.equals("3896521t"))
             cardurl = "https://deckmaster.info/images/cards/C14/-472-hr.jpg";
-        else if (id.equals("207998t"))
+        else if(id.equals("207998t"))
             cardurl = "https://deckmaster.info/images/cards/DDE/207998-hr.jpg";
         else if (id.equals("19784555t"))
             cardurl = "https://deckmaster.info/images/cards/DGM/-39-hr.jpg";
@@ -543,19 +543,19 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/DST/-2819-hr.jpg";
         else if (id.equals("4977512t"))
             cardurl = "https://deckmaster.info/images/cards/DST/-2818-hr.jpg";
-        else if (id.equals("111220t"))
+        else if(id.equals("111220t"))
             cardurl = "https://deckmaster.info/images/cards/DIS/111220-hr.jpg";
-        else if (id.equals("383257t"))
+        else if(id.equals("383257t"))
             cardurl = "https://deckmaster.info/images/cards/M15/-109-hr.jpg";
-        else if (id.equals("383290t"))
+        else if(id.equals("383290t"))
             cardurl = "https://deckmaster.info/images/cards/M15/-108-hr.jpg";
-        else if (id.equals("378445t"))
+        else if(id.equals("378445t"))
             cardurl = "https://deckmaster.info/images/cards/BNG/-11-hr.jpg";
-        else if (id.equals("378521t"))
+        else if(id.equals("378521t"))
             cardurl = "https://deckmaster.info/images/cards/DDO/394383-hr.jpg";
         else if(id.equals("16699t"))
             cardurl = "https://deckmaster.info/images/cards/NPH/-205-hr.jpg";
-        else if(id.equals("16708t"))
+        else if(id.equals("16708t") || id.equals("17097t") || id.equals("17085t"))
             cardurl = "https://deckmaster.info/images/cards/M10/-292-hr.jpg";
         else if(id.equals("16710t"))
             cardurl = "https://deckmaster.info/images/cards/M11/-238-hr.jpg";
@@ -585,235 +585,235 @@ public class ImgDownloader {
             cardurl= "https://deckmaster.info/images/cards/DDO/394407-hr.jpg";
         else if(id.equals("52637t") || id.equals("52945t"))
             cardurl = "https://deckmaster.info/images/cards/MBS/-216-hr.jpg";
-        else if (id.equals("74272"))
+        else if(id.equals("74272"))
             cardurl = "https://img.scryfall.com/cards/large/front/4/5/45af7f55-9a69-43dd-969f-65411711b13e.jpg?1562487939";
-        else if (id.equals("687701"))
+        else if(id.equals("687701"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2437-hr.jpg";
-        else if (id.equals("687702"))
+        else if(id.equals("687702"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3069-hr.jpg";
-        else if (id.equals("687703"))
+        else if(id.equals("687703"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2443-hr.jpg";
-        else if (id.equals("687704"))
+        else if(id.equals("687704"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2444-hr.jpg";
-        else if (id.equals("687705"))
+        else if(id.equals("687705"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2450-hr.jpg";
-        else if (id.equals("687713"))
+        else if(id.equals("687713"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3175-hr.jpg";
-        else if (id.equals("687712"))
+        else if(id.equals("687712"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2624-hr.jpg";
-        else if (id.equals("687711"))
+        else if(id.equals("687711"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3168-hr.jpg";
-        else if (id.equals("687710"))
+        else if(id.equals("687710"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3161-hr.jpg";
-        else if (id.equals("687709"))
+        else if(id.equals("687709"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2485-hr.jpg";
-        else if (id.equals("687752"))
+        else if(id.equals("687752"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3085-hr.jpg";
-        else if (id.equals("687707"))
+        else if(id.equals("687707"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2478-hr.jpg";
-        else if (id.equals("687751"))
+        else if(id.equals("687751"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3083-hr.jpg";
-        else if (id.equals("687720"))
+        else if(id.equals("687720"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2652-hr.jpg";
-        else if (id.equals("687719"))
+        else if(id.equals("687719"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2650-hr.jpg";
-        else if (id.equals("687718"))
+        else if(id.equals("687718"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3178-hr.jpg";
-        else if (id.equals("687717"))
+        else if(id.equals("687717"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2641-hr.jpg";
-        else if (id.equals("687716"))
+        else if(id.equals("687716"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2634-hr.jpg";
-        else if (id.equals("687715"))
+        else if(id.equals("687715"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2631-hr.jpg";
-        else if (id.equals("687714"))
+        else if(id.equals("687714"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2630-hr.jpg";
-        else if (id.equals("687722"))
+        else if(id.equals("687722"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2550-hr.jpg";
-        else if (id.equals("687721"))
+        else if(id.equals("687721"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3183-hr.jpg";
-        else if (id.equals("687734"))
+        else if(id.equals("687734"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2398-hr.jpg";
-        else if (id.equals("687708"))
+        else if(id.equals("687708"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3086-hr.jpg";
-        else if (id.equals("687732"))
+        else if(id.equals("687732"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3158-hr.jpg";
-        else if (id.equals("687731"))
+        else if(id.equals("687731"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3157-hr.jpg";
-        else if (id.equals("687755"))
+        else if(id.equals("687755"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3156-hr.jpg";
-        else if (id.equals("687730"))
+        else if(id.equals("687730"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2603-hr.jpg";
-        else if (id.equals("687729"))
+        else if(id.equals("687729"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2576-hr.jpg";
-        else if (id.equals("687728"))
+        else if(id.equals("687728"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2573-hr.jpg";
-        else if (id.equals("687727"))
+        else if(id.equals("687727"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2570-hr.jpg";
-        else if (id.equals("687726"))
+        else if(id.equals("687726"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2568-hr.jpg";
-        else if (id.equals("687725"))
+        else if(id.equals("687725"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2559-hr.jpg";
-        else if (id.equals("687724"))
+        else if(id.equals("687724"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3131-hr.jpg";
-        else if (id.equals("687723"))
+        else if(id.equals("687723"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3128-hr.jpg";
-        else if (id.equals("687740"))
+        else if(id.equals("687740"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2759-hr.jpg";
-        else if (id.equals("687739"))
+        else if(id.equals("687739"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2755-hr.jpg";
-        else if (id.equals("687738"))
+        else if(id.equals("687738"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2432-hr.jpg";
-        else if (id.equals("687737"))
+        else if(id.equals("687737"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3053-hr.jpg";
-        else if (id.equals("687756"))
+        else if(id.equals("687756"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3054-hr.jpg";
-        else if (id.equals("687736"))
+        else if(id.equals("687736"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2408-hr.jpg";
-        else if (id.equals("687735"))
+        else if(id.equals("687735"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2403-hr.jpg";
-        else if (id.equals("687733"))
+        else if(id.equals("687733"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2729-hr.jpg";
-        else if (id.equals("687706"))
+        else if(id.equals("687706"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3082-hr.jpg";
-        else if (id.equals("687750"))
+        else if(id.equals("687750"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2748-hr.jpg";
-        else if (id.equals("687748"))
+        else if(id.equals("687748"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2747-hr.jpg";
-        else if (id.equals("687749"))
+        else if(id.equals("687749"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2746-hr.jpg";
-        else if (id.equals("687742"))
+        else if(id.equals("687742"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2743-hr.jpg";
-        else if (id.equals("687743"))
+        else if(id.equals("687743"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2744-hr.jpg";
-        else if (id.equals("687744"))
+        else if(id.equals("687744"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2745-hr.jpg";
-        else if (id.equals("687745"))
+        else if(id.equals("687745"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2763-hr.jpg";
-        else if (id.equals("687746"))
+        else if(id.equals("687746"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2764-hr.jpg";
-        else if (id.equals("687747"))
+        else if(id.equals("687747"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2765-hr.jpg";
-        else if (id.equals("687741"))
+        else if(id.equals("687741"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-2761-hr.jpg";
-        else if (id.equals("687753"))
+        else if(id.equals("687753"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3176-hr.jpg";
-        else if (id.equals("687754"))
+        else if(id.equals("687754"))
             cardurl = "https://deckmaster.info/images/cards/DKM/-3184-hr.jpg";
-        else if (id.equals("242498"))
+        else if(id.equals("242498"))
             cardurl = "https://deckmaster.info/images/cards/DKA/242498-hr.jpg";
-        else if (id.equals("253431"))
+        else if(id.equals("253431"))
             cardurl = "https://deckmaster.info/images/cards/DKA/253431-hr.jpg";
-        else if (id.equals("262659"))
+        else if(id.equals("262659"))
             cardurl = "https://deckmaster.info/images/cards/DKA/262659-hr.jpg";
-        else if (id.equals("262698"))
+        else if(id.equals("262698"))
             cardurl = "https://deckmaster.info/images/cards/DKA/262698-hr.jpg";
-        else if (id.equals("244734"))
+        else if(id.equals("244734"))
             cardurl = "https://deckmaster.info/images/cards/DKA/244734-hr.jpg";
-        else if (id.equals("244712"))
+        else if(id.equals("244712"))
             cardurl = "https://deckmaster.info/images/cards/DKA/244712-hr.jpg";
-        else if (id.equals("227405"))
+        else if(id.equals("227405"))
             cardurl = "https://deckmaster.info/images/cards/DKA/227405-hr.jpg";
-        else if (id.equals("247122"))
+        else if(id.equals("247122"))
             cardurl = "https://deckmaster.info/images/cards/DKA/247122-hr.jpg";
-        else if (id.equals("244738"))
+        else if(id.equals("244738"))
             cardurl = "https://deckmaster.info/images/cards/DKA/244738-hr.jpg";
-        else if (id.equals("253429"))
+        else if(id.equals("253429"))
             cardurl = "https://deckmaster.info/images/cards/DKA/253429-hr.jpg";
-        else if (id.equals("242509"))
+        else if(id.equals("242509"))
             cardurl = "https://deckmaster.info/images/cards/DKA/242509-hr.jpg";
-        else if (id.equals("414422"))
+        else if(id.equals("414422"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414422-hr.jpg";
-        else if (id.equals("414325"))
+        else if(id.equals("414325"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414325-hr.jpg";
-        else if (id.equals("414347"))
+        else if(id.equals("414347"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414347-hr.jpg";
-        else if (id.equals("414392"))
+        else if(id.equals("414392"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414392-hr.jpg";
-        else if (id.equals("414305"))
+        else if(id.equals("414305"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414305-hr.jpg";
-        else if (id.equals("414500"))
+        else if(id.equals("414500"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414500-hr.jpg";
-        else if (id.equals("414471"))
+        else if(id.equals("414471"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414471-hr.jpg";
-        else if (id.equals("414480"))
+        else if(id.equals("414480"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414480-hr.jpg";
-        else if (id.equals("414449"))
+        else if(id.equals("414449"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414449-hr.jpg";
-        else if (id.equals("414514"))
+        else if(id.equals("414514"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414514-hr.jpg";
-        else if (id.equals("414497"))
+        else if(id.equals("414497"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414497-hr.jpg";
-        else if (id.equals("414478"))
+        else if(id.equals("414478"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414478-hr.jpg";
-        else if (id.equals("414442"))
+        else if(id.equals("414442"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414442-hr.jpg";
-        else if (id.equals("414358"))
+        else if(id.equals("414358"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414358-hr.jpg";
-        else if (id.equals("414408"))
+        else if(id.equals("414408"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414408-hr.jpg";
-        else if (id.equals("414465"))
+        else if(id.equals("414465"))
             cardurl = "https://deckmaster.info/images/cards/EMN/414465-hr.jpg";
-        else if (id.equals("227290"))
+        else if(id.equals("227290"))
             cardurl = "https://deckmaster.info/images/cards/ISD/227290-hr.jpg";
-        else if (id.equals("244687"))
+        else if(id.equals("244687"))
             cardurl = "https://deckmaster.info/images/cards/ISD/244687-hr.jpg";
-        else if (id.equals("222123"))
+        else if(id.equals("222123"))
             cardurl = "https://deckmaster.info/images/cards/ISD/222123-hr.jpg";
-        else if (id.equals("222906"))
+        else if(id.equals("222906"))
             cardurl = "https://deckmaster.info/images/cards/ISD/222906-hr.jpg";
-        else if (id.equals("227419"))
+        else if(id.equals("227419"))
             cardurl = "https://deckmaster.info/images/cards/ISD/227419-hr.jpg";
-        else if (id.equals("226755"))
+        else if(id.equals("226755"))
             cardurl = "https://deckmaster.info/images/cards/ISD/226755-hr.jpg";
-        else if (id.equals("221190"))
+        else if(id.equals("221190"))
             cardurl = "https://deckmaster.info/images/cards/ISD/221190-hr.jpg";
-        else if (id.equals("222115"))
+        else if(id.equals("222115"))
             cardurl = "https://deckmaster.info/images/cards/ISD/222115-hr.jpg";
-        else if (id.equals("222183"))
+        else if(id.equals("222183"))
             cardurl = "https://deckmaster.info/images/cards/ISD/222183-hr.jpg";
-        else if (id.equals("222114"))
+        else if(id.equals("222114"))
             cardurl = "https://deckmaster.info/images/cards/ISD/222114-hr.jpg";
-        else if (id.equals("222117"))
+        else if(id.equals("222117"))
             cardurl = "https://deckmaster.info/images/cards/ISD/222117-hr.jpg";
-        else if (id.equals("221222"))
+        else if(id.equals("221222"))
             cardurl = "https://deckmaster.info/images/cards/ISD/221222-hr.jpg";
-        else if (id.equals("222107"))
+        else if(id.equals("222107"))
             cardurl = "https://deckmaster.info/images/cards/ISD/222107-hr.jpg";
-        else if (id.equals("221185"))
+        else if(id.equals("221185"))
             cardurl = "https://deckmaster.info/images/cards/ISD/221185-hr.jpg";
-        else if (id.equals("221173"))
+        else if(id.equals("221173"))
             cardurl = "https://deckmaster.info/images/cards/ISD/221173-hr.jpg";
-        else if (id.equals("222108"))
+        else if(id.equals("222108"))
             cardurl = "https://deckmaster.info/images/cards/ISD/222108-hr.jpg";
-        else if (id.equals("221215"))
+        else if(id.equals("221215"))
             cardurl = "https://deckmaster.info/images/cards/ISD/221215-hr.jpg";
-        else if (id.equals("227090"))
+        else if(id.equals("227090"))
             cardurl = "https://deckmaster.info/images/cards/ISD/227090-hr.jpg";
-        else if (id.equals("398442"))
+        else if(id.equals("398442"))
             cardurl = "https://deckmaster.info/images/cards/ORI/398442-hr.jpg";
-        else if (id.equals("398423"))
+        else if(id.equals("398423"))
             cardurl = "https://deckmaster.info/images/cards/ORI/398423-hr.jpg";
-        else if (id.equals("398435"))
+        else if(id.equals("398435"))
             cardurl = "https://deckmaster.info/images/cards/ORI/398435-hr.jpg";
-        else if (id.equals("398429"))
+        else if(id.equals("398429"))
             cardurl = "https://deckmaster.info/images/cards/ORI/398429-hr.jpg";
-        else if (id.equals("439843"))
+        else if(id.equals("439843"))
             cardurl = "https://deckmaster.info/images/cards/RIX/439843-hr.jpg";
-        else if (id.equals("439835"))
+        else if(id.equals("439835"))
             cardurl = "https://deckmaster.info/images/cards/RIX/439835-hr.jpg";
-        else if (id.equals("439825"))
+        else if(id.equals("439825"))
             cardurl = "https://deckmaster.info/images/cards/RIX/439825-hr.jpg";
-        else if (id.equals("439839"))
+        else if(id.equals("439839"))
             cardurl = "https://deckmaster.info/images/cards/RIX/439839-hr.jpg";
-        else if (id.equals("439827"))
+        else if(id.equals("439827"))
             cardurl = "https://deckmaster.info/images/cards/RIX/439827-hr.jpg";
-        else if (id.equals("439816"))
+        else if(id.equals("439816"))
             cardurl = "https://deckmaster.info/images/cards/RIX/439816-hr.jpg";
-        else if (id.equals("439819"))
+        else if(id.equals("439819"))
             cardurl = "https://deckmaster.info/images/cards/RIX/439819-hr.jpg";
-        else if (id.equals("439454"))
+        else if(id.equals("439454"))
             cardurl = "https://deckmaster.info/images/cards/UST/439454-hr.jpg";
-        else if (id.equals("435451"))
+        else if(id.equals("435451"))
             cardurl = "https://deckmaster.info/images/cards/XLN/-5173-hr.jpg";
         else if (id.equals("1389"))
             cardurl = "https://img.scryfall.com/cards/large/front/3/0/30345500-d430-4280-bfe3-de297309f136.jpg?1559597102";
@@ -1281,14 +1281,50 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/8/e/8ee8b915-afd3-4fad-8aef-7e9cbbbbc2e4.jpg?1561757559";
         else if(id.equals("16751"))
             cardurl = "https://img.scryfall.com/cards/large/front/3/9/39a89c44-1aa7-4f2e-909b-d821ec2b7948.jpg?1561756358";
+        else if(id.equals("17639t"))
+            cardurl = "https://img.scryfall.com/cards/large/back/8/c/8ce60642-e207-46e6-b198-d803ff3b47f4.jpg?1562921132";
         else if(id.equals("16740t"))
             cardurl = "https://deckmaster.info/images/cards/AER/-3992-hr.jpg";
-        else if (id.equals("53143t"))
+        else if (id.equals("53143t") || id.equals("17717t") || id.equals("17705t") || id.equals("17669t") || id.equals("17661t")
+                || id.equals("17645t") || id.equals("17573t") || id.equals("17549t") || id.equals("17537t") || id.equals("17513t")
+                || id.equals("17429t") || id.equals("17417t") || id.equals("17405t") || id.equals("17393t") || id.equals("17285t")
+                || id.equals("17273t") || id.equals("17249t") || id.equals("17141t") || id.equals("17129t") || id.equals("17117t")
+                || id.equals("17105t") || id.equals("17093t") || id.equals("17081t"))
             cardurl = "https://deckmaster.info/images/cards/DDE/209162-hr.jpg";
         else if(id.endsWith("53141t"))
             cardurl = "https://deckmaster.info/images/cards/C14/-487-hr.jpg";
         else if(id.equals("53134t"))
             cardurl = "https://deckmaster.info/images/cards/DDD/201844-hr.jpg";
+        else if(id.equals("16981t") || id.equals("16978t") || id.equals("16967t"))
+            cardurl = "https://deckmaster.info/images/cards/EVG/159047-hr.jpg";
+        else if (id.equals("16975t"))
+            cardurl = "https://deckmaster.info/images/cards/BNG/-10-hr.jpg";
+        else if (id.equals("16933t"))
+            cardurl = "https://deckmaster.info/images/cards/WWK/-262-hr.jpg";
+        else if(id.equals("16885t"))
+            cardurl = "https://deckmaster.info/images/cards/ALA/-327-hr.jpg";
+        else if(id.equals("16847t"))
+            cardurl = "https://deckmaster.info/images/cards/DDQ/409653-hr.jpg";
+        else if(id.equals("17656t") || id.equals("17500t") || id.equals("17080t"))
+            cardurl = "https://deckmaster.info/images/cards/CON/-319-hr.jpg";
+        else if(id.equals("17538t"))
+            cardurl = "https://deckmaster.info/images/cards/MRD/-2829-hr.jpg";
+        else if (id.equals("17501t") || id.equals("17494t") || id.equals("17354t") || id.equals("17062t"))
+            cardurl = "https://deckmaster.info/images/cards/DDQ/409655-hr.jpg";
+        else if (id.equals("17493t"))
+            cardurl = "https://deckmaster.info/images/cards/VMA/-4464-hr.jpg";
+        else if (id.equals("17358t"))
+            cardurl = "https://deckmaster.info/images/cards/DDD/201842-hr.jpg";
+        else if(id.equals("17207t"))
+            cardurl = "https://deckmaster.info/images/cards/M15/-98-hr.jpg";
+        else if(id.equals("17071t"))
+            cardurl = "https://deckmaster.info/images/cards/C17/-5043-hr.jpg";
+        else if(id.equals("17069t"))
+            cardurl = "https://deckmaster.info/images/cards/GK1_SELESN/-6550-hr.jpg";
+        else if(id.equals("17060t"))
+            cardurl = "https://deckmaster.info/images/cards/GTC/-48-hr.jpg";
+        else if(id.equals("17061t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/a/c/acd51eed-bd5a-417a-811d-fbd1c08a3715.jpg?1561757812";
 
         return cardurl;
     }
@@ -2233,7 +2269,7 @@ public class ImgDownloader {
             int k;
             if(scryset.equals("TD2") || scryset.equals("PRM") || scryset.equals("TD0") || scryset.equals("PZ1") || scryset.equals("PZ2")
                     || scryset.equals("PHPR") || scryset.equals("PGRU") || scryset.equals("PIDW") || scryset.equals("ANA") || scryset.equals("HTR")
-                    || scryset.equals("HTR17") || scryset.equals("PI13") || scryset.equals("PI14")){
+                    || scryset.equals("HTR17") || scryset.equals("PI13") || scryset.equals("PI14") || scryset.equals("PSAL") || scryset.equals("PS11")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2415,7 +2451,7 @@ public class ImgDownloader {
                 }
             } else if(targetres.equals("High") && !scryset.equals("TD2") && !scryset.equals("PRM") && !scryset.equals("TD0") && !scryset.equals("PZ2")
                     && !scryset.equals("PHPR") && !scryset.equals("PGRU") && !scryset.equals("PGRU") && !scryset.equals("ANA") && !scryset.equals("HTR")
-                    && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14")){
+                    && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14") && !scryset.equals("PSAL") && !scryset.equals("PS11")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2522,7 +2558,7 @@ public class ImgDownloader {
                 }
             } else if(!scryset.equals("TD2") && !scryset.equals("PRM") && !scryset.equals("TD0") && !scryset.equals("PZ1") && !scryset.equals("PZ2")
                     && !scryset.equals("PHPR") && !scryset.equals("PGRU") && !scryset.equals("PGRU") && !scryset.equals("ANA") && !scryset.equals("HTR")
-                    && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14")) {
+                    && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14") && !scryset.equals("PSAL") && !scryset.equals("PS11")) {
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -2675,7 +2711,7 @@ public class ImgDownloader {
                     String text = "";
                     if(scryset.equals("PRM") || scryset.equals("TD0") || scryset.equals("PZ1") || scryset.equals("PZ2") || scryset.equals("PHPR")
                             || scryset.equals("PGRU") || scryset.equals("PGRU") || scryset.equals("ANA") || scryset.equals("HTR") || scryset.equals("HTR17")
-                            || scryset.equals("PI13") || scryset.equals("PI14")){
+                            || scryset.equals("PI13") || scryset.equals("PI14") || scryset.equals("PSAL") || scryset.equals("PS11")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){
