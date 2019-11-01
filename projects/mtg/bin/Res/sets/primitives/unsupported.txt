@@ -6483,15 +6483,6 @@ mana={1}{R}
 type=Enchantment
 [/card]
 [card]
-name=Goblin Fire Fiend
-text=Haste -- Goblin Fire Fiend must be blocked if able. -- {R}: Goblin Fire Fiend gets +1/+0 until end of turn.
-mana={3}{R}
-type=Creature
-subtype=Goblin Berserker
-power=1
-toughness=1
-[/card]
-[card]
 name=Goblin Flectomancer
 text=Sacrifice Goblin Flectomancer: You may change the targets of target instant or sorcery spell.
 mana={U}{R}{R}
@@ -14123,15 +14114,6 @@ mana={X}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Root Sliver
-text=Root Sliver can't be countered. -- Sliver spells can't be countered by spells or abilities.
-mana={3}{G}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-[/card]
-[card]
 name=Roots of All Evil
 text=When you set this scheme in motion, put five 1/1 green Saproling creature tokens onto the battlefield.
 type=Scheme
@@ -17014,15 +16996,6 @@ mana={2}{B}
 type=Enchantment
 [/card]
 [card]
-name=Taj-Nar Swordsmith
-text=When Taj-Nar Swordsmith enters the battlefield, you may pay {X}. If you do, search your library for an Equipment card with converted mana cost X or less and put that card onto the battlefield. Then shuffle your library.
-mana={3}{W}
-type=Creature
-subtype=Cat Soldier
-power=2
-toughness=3
-[/card]
-[card]
 name=Tajuru Preserver
 text=Spells and abilities your opponents control can't cause you to sacrifice permanents.
 mana={1}{G}
@@ -18232,12 +18205,6 @@ mana={6}
 type=Artifact Creature
 power=4
 toughness=4
-[/card]
-[card]
-name=Vacuumelt
-text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Return target creature to its owner's hand.
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
 name=Valeron Wardens
