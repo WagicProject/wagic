@@ -1,0 +1,36 @@
+[meta]
+author=Wagic Team
+name=Magic Premiere Shop 2008
+year=2008-01-01
+total=6
+[/meta]
+[card]
+primitive=Forest
+id=17934
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17935
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17936
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17937
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17938
+rarity=L
+[/card]
+[card]
+primitive=Jaya Ballard, Task Mage
+id=17939
+rarity=R
+[/card]

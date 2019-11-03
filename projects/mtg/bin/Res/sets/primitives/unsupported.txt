@@ -5886,15 +5886,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Frost Titan
-text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn't untap during its controller's next untap step.
-mana={4}{U}{U}
-type=Creature
-subtype=Giant
-power=6
-toughness=6
-[/card]
-[card]
 name=Fruitcake Elemental
 text=Fruitcake Elemental is indestructible. -- At the end of your turn, Fruitcake Elemental deals 7 damage to you. -- {3}: Target player gains control of Fruitcake Elemental.
 mana={1}{G}{G}
@@ -8119,15 +8110,6 @@ type=Creature
 subtype=Demon Child
 power=8
 toughness=8
-[/card]
-[card]
-name=Inferno Titan
-text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
-mana={4}{R}{R}
-type=Creature
-subtype=Giant
-power=6
-toughness=6
 [/card]
 [card]
 name=Inferno Trap
@@ -12831,12 +12813,6 @@ type=Creature
 subtype=Giant Soldier
 power=2
 toughness=5
-[/card]
-[card]
-name=Prototype Portal
-text=Imprint — When Prototype Portal enters the battlefield, you may exile an artifact card from your hand. -- {X}, {T}: Put a token that's a copy of the exiled card onto the battlefield. X is the converted mana cost of that card.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Providence
