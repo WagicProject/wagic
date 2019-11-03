@@ -1289,15 +1289,16 @@ public class ImgDownloader {
                 || id.equals("17645t") || id.equals("17573t") || id.equals("17549t") || id.equals("17537t") || id.equals("17513t")
                 || id.equals("17429t") || id.equals("17417t") || id.equals("17405t") || id.equals("17393t") || id.equals("17285t")
                 || id.equals("17273t") || id.equals("17249t") || id.equals("17141t") || id.equals("17129t") || id.equals("17117t")
-                || id.equals("17105t") || id.equals("17093t") || id.equals("17081t"))
+                || id.equals("17105t") || id.equals("17093t") || id.equals("17081t") || id.equals("17866t"))
             cardurl = "https://deckmaster.info/images/cards/DDE/209162-hr.jpg";
         else if(id.endsWith("53141t"))
             cardurl = "https://deckmaster.info/images/cards/C14/-487-hr.jpg";
         else if(id.equals("53134t"))
             cardurl = "https://deckmaster.info/images/cards/DDD/201844-hr.jpg";
-        else if(id.equals("16981t") || id.equals("16978t") || id.equals("16967t"))
+        else if(id.equals("16981t") || id.equals("16978t") || id.equals("16967t") || id.equals("17841t")
+                || id.equals("17850t") || id.equals("17852t"))
             cardurl = "https://deckmaster.info/images/cards/EVG/159047-hr.jpg";
-        else if (id.equals("16975t"))
+        else if (id.equals("16975t") || id.equals("17848t"))
             cardurl = "https://deckmaster.info/images/cards/BNG/-10-hr.jpg";
         else if (id.equals("16933t"))
             cardurl = "https://deckmaster.info/images/cards/WWK/-262-hr.jpg";
@@ -1325,6 +1326,8 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/GTC/-48-hr.jpg";
         else if(id.equals("17061t"))
             cardurl = "https://img.scryfall.com/cards/large/front/a/c/acd51eed-bd5a-417a-811d-fbd1c08a3715.jpg?1561757812";
+        else if(id.equals("17955"))
+            cardurl = "https://img.scryfall.com/cards/large/front/b/8/b86ac828-7b49-4663-a718-99fcac904568.jpg?1561756381";
 
         return cardurl;
     }
@@ -1530,6 +1533,8 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/GK1_DIMIR/-6541-hr.jpg";
         else if (id.equals("116384t") || id.equals("376564t") || id.equals("52993t"))
             tokenurl = "https://deckmaster.info/images/cards/TSP/-114916-hr.jpg";
+        else if(id.equals("17841t") || id.equals("17850t") || id.equals("17852t"))
+            tokenurl = "https://deckmaster.info/images/cards/EVG/159047-hr.jpg";
         else if(id.equals("383392t"))
             tokenurl = "https://deckmaster.info/images/cards/DDD/201842-hr.jpg";
         else if (id.equals("5610t") || id.equals("416754t"))
@@ -2269,7 +2274,10 @@ public class ImgDownloader {
             int k;
             if(scryset.equals("TD2") || scryset.equals("PRM") || scryset.equals("TD0") || scryset.equals("PZ1") || scryset.equals("PZ2")
                     || scryset.equals("PHPR") || scryset.equals("PGRU") || scryset.equals("PIDW") || scryset.equals("ANA") || scryset.equals("HTR")
-                    || scryset.equals("HTR17") || scryset.equals("PI13") || scryset.equals("PI14") || scryset.equals("PSAL") || scryset.equals("PS11")){
+                    || scryset.equals("HTR17") || scryset.equals("PI13") || scryset.equals("PI14") || scryset.equals("PSAL") || scryset.equals("PS11")
+                    || scryset.equals("PDTP") || scryset.equals("PDP10") || scryset.equals("PDP11") || scryset.equals("PDP12") || scryset.equals("PDP13")
+                    || scryset.equals("PDP14") || scryset.equals("DPA") || scryset.equals("PMPS") || scryset.equals("PMPS06") || scryset.equals("PMPS07")
+                    || scryset.equals("PMPS08") || scryset.equals("PMPS09") || scryset.equals("PMPS10") || scryset.equals("PMPS11")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2451,7 +2459,10 @@ public class ImgDownloader {
                 }
             } else if(targetres.equals("High") && !scryset.equals("TD2") && !scryset.equals("PRM") && !scryset.equals("TD0") && !scryset.equals("PZ2")
                     && !scryset.equals("PHPR") && !scryset.equals("PGRU") && !scryset.equals("PGRU") && !scryset.equals("ANA") && !scryset.equals("HTR")
-                    && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14") && !scryset.equals("PSAL") && !scryset.equals("PS11")){
+                    && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14") && !scryset.equals("PSAL") && !scryset.equals("PS11")
+                    && !scryset.equals("PDTP") && !scryset.equals("PDP10") && !scryset.equals("PDP11") && !scryset.equals("PDP12") && !scryset.equals("PDP13")
+                    && !scryset.equals("PDP14") && !scryset.equals("DPA") && !scryset.equals("PMPS") && !scryset.equals("PMPS06") && !scryset.equals("PMPS07")
+                    && !scryset.equals("PMPS08") && !scryset.equals("PMPS09") && !scryset.equals("PMPS10") && !scryset.equals("PMPS11")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2558,7 +2569,10 @@ public class ImgDownloader {
                 }
             } else if(!scryset.equals("TD2") && !scryset.equals("PRM") && !scryset.equals("TD0") && !scryset.equals("PZ1") && !scryset.equals("PZ2")
                     && !scryset.equals("PHPR") && !scryset.equals("PGRU") && !scryset.equals("PGRU") && !scryset.equals("ANA") && !scryset.equals("HTR")
-                    && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14") && !scryset.equals("PSAL") && !scryset.equals("PS11")) {
+                    && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14") && !scryset.equals("PSAL") && !scryset.equals("PS11")
+                    && !scryset.equals("PDTP") && !scryset.equals("PDP10") && !scryset.equals("PDP11") && !scryset.equals("PDP12") && !scryset.equals("PDP13")
+                    && !scryset.equals("PDP14") && !scryset.equals("DPA") && !scryset.equals("PMPS") && !scryset.equals("PMPS06") && !scryset.equals("PMPS07")
+                    && !scryset.equals("PMPS08") && !scryset.equals("PMPS09") && !scryset.equals("PMPS10") && !scryset.equals("PMPS11")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -2711,7 +2725,10 @@ public class ImgDownloader {
                     String text = "";
                     if(scryset.equals("PRM") || scryset.equals("TD0") || scryset.equals("PZ1") || scryset.equals("PZ2") || scryset.equals("PHPR")
                             || scryset.equals("PGRU") || scryset.equals("PGRU") || scryset.equals("ANA") || scryset.equals("HTR") || scryset.equals("HTR17")
-                            || scryset.equals("PI13") || scryset.equals("PI14") || scryset.equals("PSAL") || scryset.equals("PS11")){
+                            || scryset.equals("PI13") || scryset.equals("PI14") || scryset.equals("PSAL") || scryset.equals("PS11") || scryset.equals("PDTP")
+                            || scryset.equals("PDP10") || scryset.equals("PDP11") || scryset.equals("PDP12") || scryset.equals("PDP13") || scryset.equals("PDP14")
+                            || scryset.equals("DPA") || scryset.equals("PMPS") || scryset.equals("PMPS06") || scryset.equals("PMPS07") || scryset.equals("PMPS08")
+                            || scryset.equals("PMPS09") || scryset.equals("PMPS10") || scryset.equals("PMPS11")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){

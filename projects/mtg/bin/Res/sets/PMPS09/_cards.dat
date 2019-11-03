@@ -1,0 +1,31 @@
+[meta]
+author=Wagic Team
+name=Magic Premiere Shop 2009
+year=2009-01-01
+total=5
+[/meta]
+[card]
+primitive=Forest
+id=17940
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17941
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17942
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17943
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17944
+rarity=L
+[/card]

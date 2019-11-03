@@ -74,15 +74,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Urza, Lord High Artificer
-text=When Urza, Lord High Artificer enters the battlefield, create a 0/0 colorless Construct artifact creature token with "This creature gets +1/+1 for each artifact you control." -- Tap an untapped artifact you control: Add {U}. -- {5}: Shuffle your library, then exile the top card. Until end of turn, you may play that card without paying its mana cost.
-mana={2}{U}{U}
-type=Legendary Creature
-subtype=Human Artificer
-power=1
-toughness=4
-[/card]
-[card]
 name=Kaya's Guile
 text=Choose two — -- • Each opponent sacrifices a creature. -- • Exile all cards from each opponent's graveyard. -- • Create a 1/1 white and black Spirit creature token with flying. -- • You gain 4 life. -- Entwine 3 (Choose all if you pay the entwine cost.)
 mana={1}{W}{B}

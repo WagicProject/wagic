@@ -1,0 +1,21 @@
+[meta]
+author=Wagic Team
+name=Duels of the Planeswalkers 2013
+year=2013-01-01
+total=3
+[/meta]
+[card]
+primitive=Bonescythe Sliver
+id=17899
+rarity=M
+[/card]
+[card]
+primitive=Ogre Battledriver
+id=17900
+rarity=M
+[/card]
+[card]
+primitive=Scavenging Ooze
+id=17901
+rarity=M
+[/card]

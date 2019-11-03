@@ -614,9 +614,17 @@ type=Instant
 [/card]
 [card]
 name=Coat of Arms
-auto=lord(creature|battlefield) foreach(other creature[share!type!]|battlefield) 1/1
+auto=lord(creature|battlefield) foreach(other creature[share!subtype!]|battlefield) 1/1
 text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, it two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
 mana={5}
+type=Artifact
+[/card]
+[card]
+name=Prototype Portal
+auto=may name(Imprint) moveTo(myexile) notatarget(artifact|myhand)
+auto={T}: transforms((,newability[pay[[{manacost}]] name(pay manacost) clone target(artifact|myexile) donothing?])) oneshot
+text=Imprint -- When Prototype Portal enters the battlefield, you may exile an artifact card from your hand. -- {X},{T}: Creatue a token that's a copy of the exiled card. X is the converted mana cost of that card.
+mana={4}
 type=Artifact
 [/card]
 [card]
@@ -787,11 +795,10 @@ subtype=Liliana
 [/card]
 [card]
 name=Frost Titan
-#Not working for abilities on the field
-auto=@targeted(this|mybattlefield) from(*|opponentbattlefield,opponenthand,opponentstack,opponentgraveyard,opponentexile,opponentlibrary):transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever target(*|stack)
-auto=freeze target(*)
-auto=@combat(attacking) source(this):freeze target(*)
-text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn't untap during its controller's next untap step.
+auto=@targeted(this) from(opponent):transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) oneshot
+auto=frozen target(*)
+auto=@combat (attacking) source(this): frozen target (*)
+text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn’t untap during its controller’s next untap step.
 mana={4}{U}{U}
 type=Creature
 subtype=Giant
@@ -808,10 +815,19 @@ mana={G}{G}
 type=Enchantment
 [/card]
 [card]
+name=Silent Gravestone
+auto=lord(*|myGraveyard) shroud
+auto=lord(*|opponentGraveyard) shroud
+auto={4}{T}{E}:moveTo(exile) all(*|Graveyard) && draw:1 controller
+text=Cards in graveyards can't be the target of spells or abilities. -- {4},{T}: Exile Silent Gravestone and all cards from all graveyards. Draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Inferno Titan
 auto={R}:1/0 ueot
-auto=ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
-auto=@combat(attacking) source(this):ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
+auto=damage:1 target(creature,player,planeswalker) && activate damage:1 target(creature,player,planeswalker) && activate damage:1 target(creature,player,planeswalker)
+auto=@combat (attacking) source(this): damage:1 target(creature,player,planeswalker) && activate damage:1 target(creature,player,planeswalker) && activate damage:1 target(creature,player,planeswalker)
 text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three targets.
 mana={4}{R}{R}
 type=Creature
@@ -861,7 +877,8 @@ auto=lord(*|library) devoid
 auto=lord(*|graveyard) devoid
 auto=lord(*|exile) devoid
 auto=lord(*|sideboard) devoid
-auto=lord(*|mycastingzone) anytypeofmana
+auto=lord(*|castingzone) anytypeofmana
+auto=lord(*|battlefield) anytypeofmana
 text=All permanents are artifacts in addition to their other types. -- All cards that aren't on the battlefield, spells, and permanents are colorless. -- Players may spend mana as though it were mana of any color.
 mana={6}
 type=Artifact

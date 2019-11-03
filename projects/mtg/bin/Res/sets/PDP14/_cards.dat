@@ -1,0 +1,16 @@
+[meta]
+author=Wagic Team
+name=Duels of the Planeswalkers 2014
+year=2014-01-01
+total=2
+[/meta]
+[card]
+primitive=Soul of Ravnica
+id=17902
+rarity=M
+[/card]
+[card]
+primitive=Soul of Zendikar
+id=17903
+rarity=M
+[/card]
