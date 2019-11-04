@@ -1867,7 +1867,7 @@ toughness=2
 [/card]
 [card]
 name=Urza, Lord High Artificer
-auto=token(Construct,Artifact Creature Construct,anyzone:type:artifact:mybattlefield/type:artifact:mybattlefield cdaactive,colorless)
+auto=token(-464024)
 auto={T(artifact|myBattlefield)}:add {U}
 auto={5}:name(Suffle and cast) shuffle && reveal:1 optionone name(Reveal)if type(*|reveal)~morethan~0 then name(Check to cast) target(*|reveal) transforms((,newability[if type(*|mybattlefield)~morethan~0 then castcard(putinplay)])) else name(not a creature) target(*|reveal) donothing optiononeend optiontwo choice all(*|reveal) bottomoflibrary optiontwoend revealend
 text=When Urza, Lord High Artificer enters the battlefield, create a 0/0 colorless Construct artifact creature token with "This creature gets +1/+1 for each artifact you control." -- Tap an untapped artifact you control: Add {U}. -- {5}: Shuffle your library, then exile the top card. Until end of turn, you may play that card without paying its mana cost.
@@ -1876,4 +1876,13 @@ type=Legendary Creature
 subtype=Human Artificer
 power=1
 toughness=4
+[/card]
+[card]
+name=Construct
+anyzone=type:artifact:mybattlefield/type:artifact:mybattlefield cdaactive
+text=This creature gets +1/+1 for each artifact you control.
+type=Artifact Creature
+subtype=Construct
+power=*
+toughness=*
 [/card]

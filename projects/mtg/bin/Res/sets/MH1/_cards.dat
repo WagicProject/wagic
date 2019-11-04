@@ -5,6 +5,11 @@ year=2019-06-14
 total=255
 [/meta]
 [card]
+primitive=Construct
+id=-464024
+rarity=T
+[/card]
+[card]
 primitive=Morophon, the Boundless
 id=463950
 rarity=M
