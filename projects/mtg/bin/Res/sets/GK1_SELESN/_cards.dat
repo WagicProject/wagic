@@ -1,0 +1,136 @@
+[meta]
+author=Wagic Team
+name=Guild Kit: Selesnya
+year=2018-09-29
+total=26
+[/meta]
+[card]
+primitive=Trostani, Selesnya's Voice
+id=456360
+rarity=M
+[/card]
+[card]
+primitive=Devouring Light
+id=456361
+rarity=U
+[/card]
+[card]
+primitive=Hour of Reckoning
+id=456362
+rarity=R
+[/card]
+[card]
+primitive=Gather Courage
+id=456363
+rarity=C
+[/card]
+[card]
+primitive=Scatter the Seeds
+id=456364
+rarity=C
+[/card]
+[card]
+primitive=Advent of the Wurm
+id=456365
+rarity=R
+[/card]
+[card]
+primitive=Armada Wurm
+id=456366
+rarity=M
+[/card]
+[card]
+primitive=Call of the Conclave
+id=456367
+rarity=U
+[/card]
+[card]
+primitive=Centaur Healer
+id=456368
+rarity=C
+[/card]
+[card]
+primitive=Dryad Militant
+id=456369
+rarity=U
+[/card]
+[card]
+primitive=Glare of Subdual
+id=456370
+rarity=R
+[/card]
+[card]
+primitive=Growing Ranks
+id=456371
+rarity=R
+[/card]
+[card]
+primitive=Loxodon Hierarch
+id=456372
+rarity=R
+[/card]
+[card]
+primitive=Pollenbright Wings
+id=456373
+rarity=U
+[/card]
+[card]
+primitive=Privileged Position
+id=456374
+rarity=R
+[/card]
+[card]
+primitive=Selesnya Charm
+id=456375
+rarity=U
+[/card]
+[card]
+primitive=Selesnya Evangel
+id=456376
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Guildmage
+id=456377
+rarity=U
+[/card]
+[card]
+primitive=Sundering Growth
+id=456378
+rarity=C
+[/card]
+[card]
+primitive=Tolsimir Wolfblood
+id=456379
+rarity=R
+[/card]
+[card]
+primitive=Watchwolf
+id=456380
+rarity=U
+[/card]
+[card]
+primitive=Selesnya Signet
+id=456381
+rarity=C
+[/card]
+[card]
+primitive=Grove of the Guardian
+id=456382
+rarity=R
+[/card]
+[card]
+primitive=Selesnya Sanctuary
+id=456383
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=456384
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=456385
+rarity=L
+[/card]

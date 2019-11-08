@@ -1,0 +1,126 @@
+[meta]
+author=Wagic Team
+name=Guild Kit: Izzet
+year=2018-09-29
+total=24
+[/meta]
+[card]
+primitive=Niv-Mizzet, the Firemind
+id=456216
+rarity=R
+[/card]
+[card]
+primitive=Thunderheads
+id=456217
+rarity=U
+[/card]
+[card]
+primitive=Char
+id=456218
+rarity=R
+[/card]
+[card]
+primitive=Electrickery
+id=456219
+rarity=C
+[/card]
+[card]
+primitive=Goblin Rally
+id=456220
+rarity=U
+[/card]
+[card]
+primitive=Guttersnipe
+id=456221
+rarity=U
+[/card]
+[card]
+primitive=Mizzium Mortars
+id=456222
+rarity=R
+[/card]
+[card]
+primitive=Pyromatics
+id=456223
+rarity=C
+[/card]
+[card]
+primitive=Shattering Spree
+id=456224
+rarity=U
+[/card]
+[card]
+primitive=Cerebral Vortex
+id=456225
+rarity=R
+[/card]
+[card]
+primitive=Djinn Illuminatus
+id=456226
+rarity=R
+[/card]
+[card]
+primitive=Electrolyze
+id=456227
+rarity=U
+[/card]
+[card]
+primitive=Gelectrode
+id=456228
+rarity=U
+[/card]
+[card]
+primitive=Hypersonic Dragon
+id=456229
+rarity=R
+[/card]
+[card]
+primitive=Invoke the Firemind
+id=456230
+rarity=R
+[/card]
+[card]
+primitive=Izzet Charm
+id=456231
+rarity=U
+[/card]
+[card]
+primitive=Nivix Guildmage
+id=456232
+rarity=U
+[/card]
+[card]
+primitive=Stitch in Time
+id=456233
+rarity=R
+[/card]
+[card]
+primitive=Tibor and Lumia
+id=456234
+rarity=R
+[/card]
+[card]
+primitive=Turn
+id=456235
+rarity=U
+[/card]
+[card]
+primitive=Izzet Signet
+id=456236
+rarity=C
+[/card]
+[card]
+primitive=Izzet Boilerworks
+id=456237
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=456238
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=456239
+rarity=L
+[/card]

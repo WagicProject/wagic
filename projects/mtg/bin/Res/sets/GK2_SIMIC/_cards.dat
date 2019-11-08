@@ -1,0 +1,141 @@
+[meta]
+author=Wagic Team
+name=Guild Kit: Simic
+year=2019-02-15
+total=27
+[/meta]
+[card]
+primitive=Zegana, Utopian Speaker
+id=460766
+rarity=R
+[/card]
+[card]
+primitive=Cloudfin Raptor
+id=460767
+rarity=C
+[/card]
+[card]
+primitive=Rapid Hybridization
+id=460768
+rarity=U
+[/card]
+[card]
+primitive=Cytoplast Root-Kin
+id=460769
+rarity=R
+[/card]
+[card]
+primitive=Experiment One
+id=460770
+rarity=U
+[/card]
+[card]
+primitive=Gyre Sage
+id=460771
+rarity=R
+[/card]
+[card]
+primitive=Miming Slime
+id=460772
+rarity=C
+[/card]
+[card]
+primitive=Vinelasher Kudzu
+id=460773
+rarity=R
+[/card]
+[card]
+primitive=Coiling Oracle
+id=460774
+rarity=C
+[/card]
+[card]
+primitive=Elusive Krasis
+id=460775
+rarity=U
+[/card]
+[card]
+primitive=Experiment Kraj
+id=460776
+rarity=R
+[/card]
+[card]
+primitive=Fathom Mage
+id=460777
+rarity=R
+[/card]
+[card]
+primitive=Momir Vig, Simic Visionary
+id=460778
+rarity=R
+[/card]
+[card]
+primitive=Nimbus Swimmer
+id=460779
+rarity=U
+[/card]
+[card]
+primitive=Omnibian
+id=460780
+rarity=R
+[/card]
+[card]
+primitive=Plaxcaster Frogling
+id=460781
+rarity=U
+[/card]
+[card]
+primitive=Progenitor Mimic
+id=460782
+rarity=M
+[/card]
+[card]
+primitive=Simic Sky Swallower
+id=460783
+rarity=R
+[/card]
+[card]
+primitive=Trygon Predator
+id=460784
+rarity=U
+[/card]
+[card]
+primitive=Urban Evolution
+id=460785
+rarity=U
+[/card]
+[card]
+primitive=Voidslime
+id=460786
+rarity=R
+[/card]
+[card]
+primitive=Vorel of the Hull Clade
+id=460787
+rarity=R
+[/card]
+[card]
+primitive=Zameck Guildmage
+id=460788
+rarity=U
+[/card]
+[card]
+primitive=Simic Signet
+id=460789
+rarity=U
+[/card]
+[card]
+primitive=Simic Growth Chamber
+id=460790
+rarity=U
+[/card]
+[card]
+primitive=Island
+id=460791
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=460792
+rarity=L
+[/card]

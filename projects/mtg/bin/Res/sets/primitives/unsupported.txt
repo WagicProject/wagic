@@ -1712,12 +1712,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Brightflame
-text=Radiance — Brightflame deals X damage to target creature and each other creature that shares a color with it. You gain life equal to the damage dealt this way.
-mana={X}{R}{R}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Brilliant Ultimatum
 text=Exile the top five cards of your library. An opponent separates those cards into two piles. You may play any number of cards from one of those piles without paying their mana costs.
 mana={W}{W}{U}{U}{U}{B}{B}
@@ -1832,15 +1826,6 @@ name=Brutal Expulsion
 text=Devoid (This card has no color.) -- Choose one or both — -- • Return target spell or creature to its owner's hand. -- • Brutal Expulsion deals 2 damage to target creature or planeswalker. If that permanent would be put into a graveyard this turn, exile it instead.
 mana={2}{U}{R}
 type=Instant
-[/card]
-[card]
-name=Brutal Hordechief
-text=Whenever a creature you control attacks, defending player loses 1 life and you gain 1 life. -- {3}{RW}{RW}: Creatures your opponents control block this turn if able, and you choose how those creatures block.
-mana={3}{B}
-type=Creature
-subtype=Orc Warrior
-power=3
-toughness=3
 [/card]
 [card]
 name=Brutal Suppression
@@ -2256,12 +2241,6 @@ mana={1}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Cerebral Vortex
-text=Target player draws two cards, then Cerebral Vortex deals damage to that player equal to the number of cards he or she has drawn this turn.
-mana={1}{U}{R}
-type=Instant
-[/card]
-[card]
 name=Cetavolver
 text=Kicker {1}{R} and/or {G} (You may pay an additional {1}{R} and/or {G} as you cast this spell.) -- If Cetavolver was kicked with its {1}{R} kicker, it enters the battlefield with two +1/+1 counters on it and with first strike. -- If Cetavolver was kicked with its {G} kicker, it enters the battlefield with a +1/+1 counter on it and with trample.
 mana={1}{U}
@@ -2637,15 +2616,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Circu, Dimir Lobotomist
-text=Whenever you cast a blue spell, exile the top card of target library. -- Whenever you cast a black spell, exile the top card of target library. -- Your opponents can't cast nonland cards with the same name as a card exiled with Circu, Dimir Lobotomist.
-mana={2}{U}{B}
-type=Legendary Creature
-subtype=Human Wizard
-power=2
-toughness=3
-[/card]
-[card]
 name=City in a Bottle
 text=Whenever a nontoken permanent from the Arabian Nights expansion other than City in a Bottle is on the battlefield, its controller sacrifices it.  -- Players can't play cards from the Arabian Nights expansion.
 mana={2}
@@ -3017,12 +2987,6 @@ name=Consign to Dust
 text=Strive — Consign to Dust costs {2}{G} more to cast for each target beyond the first. -- Destroy any number of target artifacts and/or enchantments.
 mana={2}{G}
 type=Instant
-[/card]
-[card]
-name=Conspiracy
-text=As Conspiracy enters the battlefield, choose a creature type. -- Creature cards you own that aren't on the battlefield, creature spells you control, and creatures you control are the chosen type.
-mana={3}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Consulate Surveillance
@@ -3752,12 +3716,6 @@ name=Dead Ringers
 text=Destroy two target nonblack creatures unless either one is a color the other isn't. They can't be regenerated.
 mana={4}{B}
 type=Sorcery
-[/card]
-[card]
-name=Deadbridge Chant
-text=When Deadbridge Chant enters the battlefield, put the top ten cards of your library into your graveyard. -- At the beginning of your upkeep, choose a card at random in your graveyard. If it's a creature card, put it onto the battlefield. Otherwise, put it into your hand.
-mana={4}{B}{G}
-type=Enchantment
 [/card]
 [card]
 name=Deadhead
@@ -10124,12 +10082,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Master Warcraft
-text=Cast Master Warcraft only before attackers are declared. -- You choose which creatures attack this turn. -- You choose which creatures block this turn and how those creatures block.
-mana={2}{RW}{RW}
-type=Instant
-[/card]
-[card]
 name=Masterwork of Ingenuity
 text=You may have Masterwork of Ingenuity enter the battlefield as a copy of any Equipment on the battlefield.
 mana={1}
@@ -13044,12 +12996,6 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Pyromatics
-text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Pyromatics deals 1 damage to target creature or player.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
 name=Pyrotechnics
 text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
 mana={4}{R}
@@ -15014,12 +14960,6 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
-name=Shattering Spree
-text=Replicate {R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Destroy target artifact.
-mana={R}
-type=Sorcery
-[/card]
-[card]
 name=Shelkin Brownie
 text={T}: Target creature loses all "bands with other" abilities until end of turn.
 mana={1}{G}
@@ -15447,15 +15387,6 @@ name=Sirocco
 text=Target player reveals his or her hand. For each blue instant card revealed this way, that player discards that card unless he or she pays 4 life.
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Sisters of Stone Death
-text={G}: Target creature blocks Sisters of Stone Death this turn if able. -- {B}{G}: Exile target creature blocking or blocked by Sisters of Stone Death. -- {2}{B}: Put a creature card exiled with Sisters of Stone Death onto the battlefield under your control.
-mana={4}{B}{B}{G}{G}
-type=Legendary Creature
-subtype=Gorgon
-power=7
-toughness=5
 [/card]
 [card]
 name=Sivvi's Valor
@@ -17493,12 +17424,6 @@ type=Creature
 subtype=Beast
 power=5
 toughness=5
-[/card]
-[card]
-name=Thunderheads
-text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Put a 3/3 blue Weird creature token with defender and flying onto the battlefield. Exile it at the beginning of the next end step.
-mana={2}{U}
-type=Instant
 [/card]
 [card]
 name=Thunderscape Battlemage

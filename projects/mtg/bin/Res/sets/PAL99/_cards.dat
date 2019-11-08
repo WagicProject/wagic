@@ -1,0 +1,51 @@
+[meta]
+author=Wagic Team
+name=Arena League 1999
+year=1999-01-01
+total=9
+[/meta]
+[card]
+primitive=Skittering Skirge
+id=17965
+rarity=R
+[/card]
+[card]
+primitive=Rewind
+id=17966
+rarity=R
+[/card]
+[card]
+primitive=Karn, Silver Golem
+id=17967
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=17968
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=17969
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=17970
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=17971
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=17972
+rarity=R
+[/card]
+[card]
+primitive=Pouncing Jaguar
+id=17973
+rarity=R
+[/card]

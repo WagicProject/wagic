@@ -90,7 +90,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
     public Boolean mErrorHappened = false;
     public final static String RES_FOLDER = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
     public static String RES_FILENAME = "";
-    public static String databaseurl = "https://github.com/WagicProject/wagic/releases/download/wagic-v0.22.1/CardImageLinks.csv";
+    public static String databaseurl = "https://github.com/WagicProject/wagic/releases/download/wagic-v0.22.2/CardImageLinks.csv";
 
     public String systemFolder = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
     private String userFolder = Environment.getExternalStorageDirectory().getPath() + "/Wagic/User/";

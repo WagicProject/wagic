@@ -1,0 +1,146 @@
+[meta]
+author=Wagic Team
+name=Guild Kit: Rakdos
+year=2019-02-15
+total=28
+[/meta]
+[card]
+primitive=Rakdos, Lord of Riots
+id=460598
+rarity=M
+[/card]
+[card]
+primitive=Crypt Champion
+id=460599
+rarity=U
+[/card]
+[card]
+primitive=Thrill-Kill Assassin
+id=460600
+rarity=U
+[/card]
+[card]
+primitive=Cackling Flames
+id=460601
+rarity=C
+[/card]
+[card]
+primitive=Demonfire
+id=460602
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Pit Dragon
+id=460603
+rarity=R
+[/card]
+[card]
+primitive=Splatter Thug
+id=460604
+rarity=C
+[/card]
+[card]
+primitive=Utvara Hellkite
+id=460605
+rarity=M
+[/card]
+[card]
+primitive=Auger Spree
+id=460606
+rarity=C
+[/card]
+[card]
+primitive=Avatar of Discord
+id=460607
+rarity=R
+[/card]
+[card]
+primitive=Carnival Hellsteed
+id=460608
+rarity=R
+[/card]
+[card]
+primitive=Dreadbore
+id=460609
+rarity=R
+[/card]
+[card]
+primitive=Jagged Poppet
+id=460610
+rarity=U
+[/card]
+[card]
+primitive=Lyzolda, the Blood Witch
+id=460611
+rarity=R
+[/card]
+[card]
+primitive=Master of Cruelties
+id=460612
+rarity=M
+[/card]
+[card]
+primitive=Rakdos Cackler
+id=460613
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Charm
+id=460614
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Guildmage
+id=460615
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Shred-Freak
+id=460616
+rarity=C
+[/card]
+[card]
+primitive=Rakdos the Defiler
+id=460617
+rarity=R
+[/card]
+[card]
+primitive=Rakdos's Return
+id=460618
+rarity=M
+[/card]
+[card]
+primitive=Riot Spikes
+id=460619
+rarity=C
+[/card]
+[card]
+primitive=Wrecking Ball
+id=460620
+rarity=C
+[/card]
+[card]
+primitive=Rakdos Keyrune
+id=460621
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Signet
+id=460622
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Carnarium
+id=460623
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=460624
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=460681
+rarity=L
+[/card]

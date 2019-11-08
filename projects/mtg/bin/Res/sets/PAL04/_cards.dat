@@ -1,0 +1,76 @@
+[meta]
+author=Wagic Team
+name=Arena League 2004
+year=2004-01-01
+total=14
+[/meta]
+[card]
+primitive=Darksteel Ingot
+id=18009
+rarity=R
+[/card]
+[card]
+primitive=Serum Visions
+id=18010
+rarity=R
+[/card]
+[card]
+primitive=Glacial Ray
+id=18011
+rarity=R
+[/card]
+[card]
+primitive=Circle of Protection: Art
+id=18012
+rarity=R
+[/card]
+[card]
+primitive=Mise
+id=18013
+rarity=R
+[/card]
+[card]
+primitive=Booster Tutor
+id=18014
+rarity=R
+[/card]
+[card]
+primitive=Goblin Mime
+id=18015
+rarity=R
+[/card]
+[card]
+primitive=Granny's Payback
+id=18016
+rarity=R
+[/card]
+[card]
+primitive=Ashnod's Coupon
+id=18017
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=18018
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=18019
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=18020
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=18021
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=18022
+rarity=R
+[/card]

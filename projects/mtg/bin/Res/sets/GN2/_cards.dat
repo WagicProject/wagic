@@ -1,0 +1,31 @@
+[meta]
+author=Wagic Team
+name=Game Night 2019
+year=2019-11-15
+total=5
+[/meta]
+[card]
+primitive=Highcliff Felidar
+id=18040
+rarity=M
+[/card]
+[card]
+primitive=Sphinx of Enlightenment
+id=18041
+rarity=M
+[/card]
+[card]
+primitive=Calculating Lich
+id=18042
+rarity=M
+[/card]
+[card]
+primitive=Fiendish Duo
+id=18043
+rarity=M
+[/card]
+[card]
+primitive=Earthshaker Giant
+id=18044
+rarity=M
+[/card]
