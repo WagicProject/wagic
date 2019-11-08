@@ -1,0 +1,46 @@
+[meta]
+author=Wagic Team
+name=Arena League 2003
+year=2003-01-01
+total=8
+[/meta]
+[card]
+primitive=Skirk Marauder
+id=18001
+rarity=R
+[/card]
+[card]
+primitive=Elvish Aberration
+id=18002
+rarity=R
+[/card]
+[card]
+primitive=Bonesplitter
+id=18003
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=18004
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=18005
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=18006
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=18007
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=18008
+rarity=R
+[/card]

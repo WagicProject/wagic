@@ -1,41 +1,15 @@
 grade=unsupported
 [card]
-name=Doom Foretold
-text=At the beginning of each player's upkeep, that player sacrifices a nonland, nontoken permanent. If that player can't, they discard a card, they lose 2 life, you draw a card, you gain 2 life, you create a 2/2 white Knight creature token with vigilance, then you sacrifice Doom Foretold.
-mana={2}{W}{B}
-type=Enchantment
-[/card]
-[card]
 name=Dance of the Manse
 text=Return up to X target artifact and/or non-Aura enchantment cards each with converted mana cost X or less from your graveyard to the battlefield. If X is 6 or more, those permanents are 4/4 creatures in addition to their other types.
 mana={X}{W}{U}
 type=Sorcery
 [/card]
 [card]
-name=Tome of Legends
-text=Tome of Legends enters the battlefield with a page counter on it. -- Whenever your commander enters the battlefield or attacks, put a page counter on Tome of Legends. -- {1}, {T}, Remove a page counter from Tome of Legends: Draw a card.
-mana={2}
-type=Artifact
-[/card]
-[card]
-name=Tournament Grounds
-text={T}: Add {1}. -- {T}: Add {R}, {W}, or {B}. Spend this mana only to cast a Knight or Equipment spell.
-type=Land
-[/card]
-[card]
 name=Arcane Signet
 text={T}: Add one mana of any color in your commander's color identity.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Torbran, Thane of Red Fell
-text=If a red source you control would deal damage to an opponent or a permanent an opponent controls, it deals that much damage plus 2 instead.
-mana={1}{R}{R}{R}
-type=Legendary Creature
-subtype=Dwarf Noble
-power=2
-toughness=4
 [/card]
 [card]
 name=Robber of the Rich
@@ -45,12 +19,6 @@ type=Creature
 subtype=Human Archer Rogue
 power=2
 toughness=2
-[/card]
-[card]
-name=Banish into Fable
-text=When you cast this spell from your hand, copy it if you control an artifact, then copy it if you control an enchantment. You may choose new targets for the copies. -- Return target nonland permanent to its owner's hand. You create a 2/2 white Knight creature token with vigilance.
-mana={4}{W}{U}
-type=Instant
 [/card]
 [card]
 name=Fervent Champion
@@ -66,28 +34,6 @@ name=Fires of Invention
 text=You can cast spells only during your turn and you can cast no more than two spells each turn. -- You may cast spells with converted mana cost less than or equal to the number of lands you control without paying their mana costs.
 mana={3}{R}
 type=Enchantment
-[/card]
-[card]
-name=Opportunistic Dragon
-abilities=flying
-text=Flying -- When Opportunistic Dragon enters the battlefield, choose target Human or artifact an opponent controls. For as long as Opportunistic Dragon remains on the battlefield, gain control of that permanent, it loses all abilities, and it can't attack or block.
-mana={2}{R}{R}
-type=Creature
-subtype=Dragon
-power=4
-toughness=3
-[/card]
-[card]
-name=Irencrag Feat
-text=Add seven {R}. You can cast only one more spell this turn.
-mana={1}{R}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Memory Theft
-text=Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. You may put a card that has an Adventure that player owns from exile into that player's graveyard.
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
 name=Sorcerous Spyglass

@@ -1355,7 +1355,12 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/JOU/-41-hr.jpg";
         else if (id.equals("114917t") || id.equals("52353t"))
             tokenurl = "https://deckmaster.info/images/cards/JOU/-43-hr.jpg";
-        else if (id.equals("234849t") || id.equals("366401t") || id.equals("366340t") || id.equals("366375t"))
+        else if(id.equals("460768t"))
+            tokenurl = "https://deckmaster.info/images/cards/GTC/-49-hr.jpg";
+        else if(id.equals("455911t"))
+            tokenurl = "https://deckmaster.info/images/cards/GTC/-51-hr.jpg";
+        else if(id.equals("234849t") || id.equals("366401t") || id.equals("366340t")
+                || id.equals("366375t") || id.equals("460772t"))
             tokenurl = "https://deckmaster.info/images/cards/RTR/-61-hr.jpg";
         else if(id.equals("52973t"))
             tokenurl = "https://deckmaster.info/images/cards/RTR/-62-hr.jpg";
@@ -1527,7 +1532,7 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/C18/-6252-hr.jpg";
         else if(id.equals("52149t"))
             tokenurl = "https://deckmaster.info/images/cards/GRN/-6433-hr.jpg";
-        else if (id.equals("89110t"))
+        else if (id.equals("89110t") || id.equals("456379t"))
             tokenurl = "https://deckmaster.info/images/cards/GK1_SELESN/-6550-hr.jpg";
         else if (id.equals("3832t"))
             tokenurl = "https://deckmaster.info/images/cards/GK1_DIMIR/-6541-hr.jpg";
@@ -1652,6 +1657,10 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/e/8/e8a56b33-f720-4cbf-8015-59b5fd8ff756.jpg?1562941690";
         else if(id.equals("16759t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/f/3/f3b5665e-2b97-47c7-bbf9-6549c2c8a9f2.jpg?1562944002";
+        else if(id.equals("456382t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/b/6/b64c5f80-4676-4860-be0e-20bcf2227405.jpg?1562540215";
+        else if(id.equals("460464t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/9/4/94ed2eca-1579-411d-af6f-c7359c65de30.jpg?1562086876";
         else if (id.equals("74492t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/94/295/635032496473215708.jpg";
         else if (id.equals("3280t"))
@@ -2277,7 +2286,7 @@ public class ImgDownloader {
                     || scryset.equals("HTR17") || scryset.equals("PI13") || scryset.equals("PI14") || scryset.equals("PSAL") || scryset.equals("PS11")
                     || scryset.equals("PDTP") || scryset.equals("PDP10") || scryset.equals("PDP11") || scryset.equals("PDP12") || scryset.equals("PDP13")
                     || scryset.equals("PDP14") || scryset.equals("DPA") || scryset.equals("PMPS") || scryset.equals("PMPS06") || scryset.equals("PMPS07")
-                    || scryset.equals("PMPS08") || scryset.equals("PMPS09") || scryset.equals("PMPS10") || scryset.equals("PMPS11")){
+                    || scryset.equals("PMPS08") || scryset.equals("PMPS09") || scryset.equals("PMPS10") || scryset.equals("PMPS11") || scryset.equals("GN2")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2431,7 +2440,8 @@ public class ImgDownloader {
             if (!parent.downloadInProgress)
                 break;
 
-            if (scryset.equals("UST") || scryset.equals("S00") || scryset.equals("V17") || scryset.equals("XLN") || scryset.equals("SOI")) {
+            if (scryset.equals("UST") || scryset.equals("S00") || scryset.equals("V17") || scryset.equals("XLN") || scryset.equals("SOI")
+                    || scryset.startsWith("GK1_") || scryset.startsWith("GK2_")){
                 cardname = cardname.replace(" (a)", "");
                 cardname = cardname.replace(" (b)", "");
                 cardname = cardname.replace(" (c)", "");
@@ -2462,7 +2472,9 @@ public class ImgDownloader {
                     && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14") && !scryset.equals("PSAL") && !scryset.equals("PS11")
                     && !scryset.equals("PDTP") && !scryset.equals("PDP10") && !scryset.equals("PDP11") && !scryset.equals("PDP12") && !scryset.equals("PDP13")
                     && !scryset.equals("PDP14") && !scryset.equals("DPA") && !scryset.equals("PMPS") && !scryset.equals("PMPS06") && !scryset.equals("PMPS07")
-                    && !scryset.equals("PMPS08") && !scryset.equals("PMPS09") && !scryset.equals("PMPS10") && !scryset.equals("PMPS11")){
+                    && !scryset.equals("PMPS08") && !scryset.equals("PMPS09") && !scryset.equals("PMPS10") && !scryset.equals("PMPS11") && !scryset.equals("GN2")
+                    && !scryset.equals("PAL00") && !scryset.equals("PAL01") && !scryset.equals("PAL02") && !scryset.equals("PAL03") && !scryset.equals("PAL04")
+                    && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2572,7 +2584,9 @@ public class ImgDownloader {
                     && !scryset.equals("HTR17") && !scryset.equals("PI13") && !scryset.equals("PI14") && !scryset.equals("PSAL") && !scryset.equals("PS11")
                     && !scryset.equals("PDTP") && !scryset.equals("PDP10") && !scryset.equals("PDP11") && !scryset.equals("PDP12") && !scryset.equals("PDP13")
                     && !scryset.equals("PDP14") && !scryset.equals("DPA") && !scryset.equals("PMPS") && !scryset.equals("PMPS06") && !scryset.equals("PMPS07")
-                    && !scryset.equals("PMPS08") && !scryset.equals("PMPS09") && !scryset.equals("PMPS10") && !scryset.equals("PMPS11")){
+                    && !scryset.equals("PMPS08") && !scryset.equals("PMPS09") && !scryset.equals("PMPS10") && !scryset.equals("PMPS11") && !scryset.equals("GN2")
+                    && !scryset.equals("PAL00") && !scryset.equals("PAL01") && !scryset.equals("PAL02") && !scryset.equals("PAL03") && !scryset.equals("PAL04")
+                    && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -2728,7 +2742,9 @@ public class ImgDownloader {
                             || scryset.equals("PI13") || scryset.equals("PI14") || scryset.equals("PSAL") || scryset.equals("PS11") || scryset.equals("PDTP")
                             || scryset.equals("PDP10") || scryset.equals("PDP11") || scryset.equals("PDP12") || scryset.equals("PDP13") || scryset.equals("PDP14")
                             || scryset.equals("DPA") || scryset.equals("PMPS") || scryset.equals("PMPS06") || scryset.equals("PMPS07") || scryset.equals("PMPS08")
-                            || scryset.equals("PMPS09") || scryset.equals("PMPS10") || scryset.equals("PMPS11")){
+                            || scryset.equals("PMPS09") || scryset.equals("PMPS10") || scryset.equals("PMPS11") || scryset.equals("GN2") || scryset.equals("PAL00")
+                            || scryset.equals("PAL01") || scryset.equals("PAL02") || scryset.equals("PAL03") || scryset.equals("PAL04") || scryset.equals("PAL05")
+                            || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){

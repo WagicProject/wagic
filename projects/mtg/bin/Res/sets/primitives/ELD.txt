@@ -2784,3 +2784,76 @@ subtype=Troll
 power=8
 toughness=8
 [/card]
+[card]
+name=Memory Theft
+target=opponent
+aicode=activate reject notatarget(*[-land]|targetedpersonshand)
+auto=reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[-creature;-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend && may moveTo(targetedpersonsgraveyard) target(*[Adventure]) from(targetedpersonsexile)
+text=Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. You may put a card that has an Adventure that player owns from exile into that player's graveyard.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Torbran, Thane of Red Fell
+auto=@damage(from) notatarget(*[red]|myBattlefield,myStack,myGraveyard,mySideboard) transforms((,newability[@damage:thatmuchplus2plusend]))
+text=If a red source you control would deal damage to an opponent or a permanent an opponent controls, it deals that much damage plus 2 instead.
+mana={1}{R}{R}{R}
+type=Legendary Creature
+subtype=Dwarf Noble
+power=2
+toughness=4
+[/card]
+[card]
+name=Opportunistic Dragon
+abilities=flying
+auto=choice target(human,artifact|opponentBattlefield) moveto(mybattlefield) && transforms((,newability[loseabilities && cantattack cantpwattack cantblock]forsrc))
+text=Flying -- When Opportunistic Dragon enters the battlefield, choose target Human or artifact an opponent controls. For as long as Opportunistic Dragon remains on the battlefield, gain control of that permanent, it loses all abilities, and it can't attack or block.
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=3
+[/card]
+[card]
+name=Irencrag Feat
+auto=Add{R}{R}{R}{R}{R}{R}{R} && maxCast(*)1 ueot
+text=Add seven {R}. You can cast only one more spell this turn.
+mana={1}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Doom Foretold
+auto=@each my upkeep:ability$!if type(*[-land;-token]|myBattlefield)~morethan~0 then sacrifice(*[-land;-token]|myBattlefield) itnot reject life:-2 controller draw:1 life:2 token(Knight,Creature Knight,2/2,white,vigilance) sacrifice(Doom Foretold) !$ opponent
+auto=@each my upkeep:ability$!if type(*[-land;-token]|myBattlefield)~morethan~0 then sacrifice(*[-land;-token]|myBattlefield) itnot reject life:-2 controller draw:1 life:2 token(Knight,Creature Knight,2/2,white,vigilance) sacrifice(Doom Foretold) !$ opponent
+text=At the beginning of each player’s upkeep, that player sacrifices a nonland, nontoken permanent. If that player can’t, they discard a card, they lose 2 life, you draw a card, you gain 2 life, you create a 2/2 white Knight creature token with vigilance, then you sacrifice Doom Foretold.
+mana={2}{W}{B}
+type=Enchantment
+[/card]
+[card]
+name=Banish into Fable
+auto=if casted(this) restriction(type(artifact|myBattlefield)~morethan~0) then copy(Banish into Fable)
+auto=if casted(this) restriction(type(enchantment|myBattlefield)~morethan~0) then copy(Banish into Fable)
+auto=moveTo(ownerhand) target(*[-land]) && token(Knight,creature Knight,2/2,white,vigilance) controller
+text=When you cast this spell from your hand, copy it if you control an artifact, then copy it if you control an enchantment. You may choose new targets for the copies. -- Return target nonland permanent to its owner's hand. You create a 2/2 white Knight creature token with vigilance.
+mana={4}{W}{U}
+type=Instant
+[/card]
+[card]
+name=Tome of Legends
+auto=counter(0/0,1,Page) all(this)
+auto=@moveTo(creature[Commander]|myBattlefield):conunter(0/0,1,Page) all(this)
+auto=@combat (attacking) source(creature[Commander]|myBattlefield):conunter(0/0,1,Page) all(this)
+auto={1}{T}{C(0/0,-1,Page)}:Draw:1 controller
+text=Tome of Legends enters the battlefield with a page counter on it. -- Whenever your commander enters the battlefield or attacks, put a page counter on Tome of Legends. -- {1}, {T}, Remove a page counter from Tome of Legends: Draw a card.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Tournament Grounds
+auto={T}:Add{1}
+auto={T}:Add{equipment,knight:R}
+auto={T}:Add{equipment,knight:W}
+auto={T}:Add{equipment,knight:B}
+text={T}: Add {1}. -- {T}: Add {R}, {W}, or {B}. Spend this mana only to cast a Knight or Equipment spell.
+type=Land
+[/card]

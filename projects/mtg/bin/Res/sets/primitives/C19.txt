@@ -190,7 +190,12 @@ toughness=5
 [/card]
 [card]
 name=Empowered Autogenerator
-auto={T}:counter(0/0.1.Charge) && thisforeach(counter{0/0.1.Charge}) ability$! choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller
+auto=tap(noevent)
+auto={T}:counter(0/0,1,Charge) all(this) && name(Add white mana) thisforeach(counter{0/0,1,Charge}) add{W}
+auto={T}:counter(0/0,1,Charge) all(this) && name(Add blue mana) thisforeach(counter{0/0,1,Charge}) add{U}
+auto={T}:counter(0/0,1,Charge) all(this) && name(Add black mana) thisforeach(counter{0/0,1,Charge}) add{B}
+auto={T}:counter(0/0,1,Charge) all(this) && name(Add red mana) thisforeach(counter{0/0,1,Charge}) add{R}
+auto={T}:counter(0/0,1,Charge) all(this) && name(Add green mana) thisforeach(counter{0/0,1,Charge}) add{G}
 text=Empowered Autogenerator enters the battlefield tapped. -- {T}: Put a charge counter on Empowered Autogenerator. Add X mana of any one color, where X is the number of charge counters on Empowered Autogenerator.
 mana={4}
 type=Artifact

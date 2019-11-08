@@ -1,0 +1,126 @@
+[meta]
+author=Wagic Team
+name=Guild Kit: Orzhov
+year=2019-02-15
+total=24
+[/meta]
+[card]
+primitive=Teysa, Orzhov Scion
+id=460454
+rarity=R
+[/card]
+[card]
+primitive=Belfry Spirit
+id=460455
+rarity=U
+[/card]
+[card]
+primitive=Martyred Rusalka
+id=460456
+rarity=U
+[/card]
+[card]
+primitive=Keening Banshee
+id=460457
+rarity=U
+[/card]
+[card]
+primitive=Plagued Rusalka
+id=460458
+rarity=U
+[/card]
+[card]
+primitive=Pontiff of Blight
+id=460459
+rarity=R
+[/card]
+[card]
+primitive=Skeletal Vampire
+id=460460
+rarity=R
+[/card]
+[card]
+primitive=Stab Wound
+id=460461
+rarity=U
+[/card]
+[card]
+primitive=Ultimate Price
+id=460462
+rarity=U
+[/card]
+[card]
+primitive=Angel of Despair
+id=460463
+rarity=R
+[/card]
+[card]
+primitive=Deathpact Angel
+id=460464
+rarity=M
+[/card]
+[card]
+primitive=Debtors' Knell
+id=460465
+rarity=R
+[/card]
+[card]
+primitive=Ghost Council of Orzhova
+id=460466
+rarity=R
+[/card]
+[card]
+primitive=One Thousand Lashes
+id=460467
+rarity=U
+[/card]
+[card]
+primitive=Orzhov Charm
+id=460468
+rarity=U
+[/card]
+[card]
+primitive=Orzhov Pontiff
+id=460469
+rarity=R
+[/card]
+[card]
+primitive=Pillory of the Sleepless
+id=460470
+rarity=U
+[/card]
+[card]
+primitive=Sin Collector
+id=460471
+rarity=U
+[/card]
+[card]
+primitive=Treasury Thrull
+id=460472
+rarity=R
+[/card]
+[card]
+primitive=Vizkopa Guildmage
+id=460473
+rarity=U
+[/card]
+[card]
+primitive=Orzhov Signet
+id=460474
+rarity=C
+[/card]
+[card]
+primitive=Orzhov Basilica
+id=460475
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=460476
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=460477
+rarity=L
+[/card]

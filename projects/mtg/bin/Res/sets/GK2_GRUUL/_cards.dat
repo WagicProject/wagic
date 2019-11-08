@@ -1,0 +1,136 @@
+[meta]
+author=Wagic Team
+name=Guild Kit: Gruul
+year=2018-09-29
+total=26
+[/meta]
+[card]
+primitive=Ruric Thar, the Unbowed
+id=460292
+rarity=R
+[/card]
+[card]
+primitive=Skarrgan Firebird
+id=460293
+rarity=R
+[/card]
+[card]
+primitive=Birds of Paradise
+id=460294
+rarity=R
+[/card]
+[card]
+primitive=Protean Hulk
+id=460295
+rarity=R
+[/card]
+[card]
+primitive=Skarrgan Pit-Skulk
+id=460296
+rarity=C
+[/card]
+[card]
+primitive=Wasteland Viper
+id=460297
+rarity=U
+[/card]
+[card]
+primitive=Wurmweaver Coil
+id=460298
+rarity=R
+[/card]
+[card]
+primitive=Borborygmos
+id=460299
+rarity=R
+[/card]
+[card]
+primitive=Burning-Tree Emissary
+id=460300
+rarity=U
+[/card]
+[card]
+primitive=Burning-Tree Shaman
+id=460301
+rarity=R
+[/card]
+[card]
+primitive=Ghor-Clan Rampager
+id=460302
+rarity=U
+[/card]
+[card]
+primitive=Giant Solifuge
+id=460303
+rarity=R
+[/card]
+[card]
+primitive=Gruul Charm
+id=460304
+rarity=U
+[/card]
+[card]
+primitive=Pit Fight
+id=460305
+rarity=C
+[/card]
+[card]
+primitive=Rubblebelt Raiders
+id=460306
+rarity=R
+[/card]
+[card]
+primitive=Rubblehulk
+id=460307
+rarity=R
+[/card]
+[card]
+primitive=Rumbling Slum
+id=460308
+rarity=R
+[/card]
+[card]
+primitive=Savage Twister
+id=460309
+rarity=U
+[/card]
+[card]
+primitive=Savageborn Hydra
+id=460310
+rarity=M
+[/card]
+[card]
+primitive=Scab-Clan Mauler
+id=460311
+rarity=C
+[/card]
+[card]
+primitive=Ulasht, the Hate Seed
+id=460312
+rarity=R
+[/card]
+[card]
+primitive=Zhur-Taa Druid
+id=460313
+rarity=C
+[/card]
+[card]
+primitive=Zhur-Taa Swine
+id=460314
+rarity=C
+[/card]
+[card]
+primitive=Gruul Signet
+id=460315
+rarity=U
+[/card]
+[card]
+primitive=Gruul Turf
+id=460316
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=460371
+rarity=L
+[/card]

@@ -1,0 +1,66 @@
+[meta]
+author=Wagic Team
+name=Arena League 2001
+year=2001-01-01
+total=12
+[/meta]
+[card]
+primitive=Creeping Mold
+id=17984
+rarity=R
+[/card]
+[card]
+primitive=Dismiss
+id=17985
+rarity=R
+[/card]
+[card]
+primitive=Fling
+id=17986
+rarity=R
+[/card]
+[card]
+primitive=Empyrial Armor
+id=17987
+rarity=R
+[/card]
+[card]
+primitive=Diabolic Edict
+id=17988
+rarity=R
+[/card]
+[card]
+primitive=Gaea's Blessing
+id=17989
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=17990
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=17991
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=17992
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=17993
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=17994
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=17995
+rarity=R
+[/card]
