@@ -1300,7 +1300,7 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/EVG/159047-hr.jpg";
         else if (id.equals("16975t") || id.equals("17848t"))
             cardurl = "https://deckmaster.info/images/cards/BNG/-10-hr.jpg";
-        else if (id.equals("16933t"))
+        else if (id.equals("16933t") || id.equals("476107t"))
             cardurl = "https://deckmaster.info/images/cards/WWK/-262-hr.jpg";
         else if(id.equals("16885t"))
             cardurl = "https://deckmaster.info/images/cards/ALA/-327-hr.jpg";
@@ -1328,6 +1328,8 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/a/c/acd51eed-bd5a-417a-811d-fbd1c08a3715.jpg?1561757812";
         else if(id.equals("17955"))
             cardurl = "https://img.scryfall.com/cards/large/front/b/8/b86ac828-7b49-4663-a718-99fcac904568.jpg?1561756381";
+        else if(id.equals("476097t"))
+            cardurl = "https://deckmaster.info/images/cards/DDQ/409656-hr.jpg";
 
         return cardurl;
     }
