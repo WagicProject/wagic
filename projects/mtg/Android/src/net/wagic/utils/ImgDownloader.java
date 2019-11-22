@@ -1540,7 +1540,7 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/GK1_DIMIR/-6541-hr.jpg";
         else if (id.equals("116384t") || id.equals("376564t") || id.equals("52993t"))
             tokenurl = "https://deckmaster.info/images/cards/TSP/-114916-hr.jpg";
-        else if(id.equals("17841t") || id.equals("17850t") || id.equals("17852t"))
+        else if(id.equals("17841t") || id.equals("17850t") || id.equals("17852t") || id.equals("19444t"))
             tokenurl = "https://deckmaster.info/images/cards/EVG/159047-hr.jpg";
         else if(id.equals("383392t"))
             tokenurl = "https://deckmaster.info/images/cards/DDD/201842-hr.jpg";

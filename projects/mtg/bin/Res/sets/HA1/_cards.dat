@@ -1,0 +1,116 @@
+[meta]
+author=Wagic Team
+name=Historic Anthology 1
+year=2019-11-21
+total=22
+[/meta]
+[card]
+primitive=Warrior
+id=-19444
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-19435
+rarity=T
+[/card]
+[card]
+primitive=Serra Ascendant
+id=19430
+rarity=R
+[/card]
+[card]
+primitive=Soul Warden
+id=19431
+rarity=C
+[/card]
+[card]
+primitive=Kinsbaile Cavalier
+id=19432
+rarity=R
+[/card]
+[card]
+primitive=Treasure Hunt
+id=19433
+rarity=C
+[/card]
+[card]
+primitive=Distant Melody
+id=19434
+rarity=C
+[/card]
+[card]
+primitive=Cryptbreaker
+id=19435
+rarity=R
+[/card]
+[card]
+primitive=Hypnotic Specter
+id=19436
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Arena
+id=19437
+rarity=R
+[/card]
+[card]
+primitive=Tendrils of Corruption
+id=19438
+rarity=C
+[/card]
+[card]
+primitive=Kiln Fiend
+id=19439
+rarity=C
+[/card]
+[card]
+primitive=Goblin Matron
+id=19440
+rarity=U
+[/card]
+[card]
+primitive=Hidetsugu's Second Rite
+id=19441
+rarity=R
+[/card]
+[card]
+primitive=Elvish Visionary
+id=19442
+rarity=C
+[/card]
+[card]
+primitive=Fauna Shaman
+id=19443
+rarity=R
+[/card]
+[card]
+primitive=Imperious Perfect
+id=19444
+rarity=U
+[/card]
+[card]
+primitive=Burning-Tree Emissary
+id=19445
+rarity=U
+[/card]
+[card]
+primitive=Captain Sisay
+id=19446
+rarity=R
+[/card]
+[card]
+primitive=Ornithopter
+id=19447
+rarity=U
+[/card]
+[card]
+primitive=Mind Stone
+id=19448
+rarity=C
+[/card]
+[card]
+primitive=Darksteel Reactor
+id=19449
+rarity=R
+[/card]

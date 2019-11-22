@@ -511,7 +511,7 @@ type=Sorcery
 [card]
 name=Leyline of Abundance
 abilities=leyline
-auto=lord(creature|mybattlefield) transforms((,newability[producecolor:green]))
+auto=@tappedformana(creature|myBattlefield):add{G}
 auto={6}{G}{G}:all(creature|mybattlefield) counter(1/1,1)
 text=If Leyline of Abundance is in your opening hand, you may begin the game with it on the battlefield. -- Whenever you tap a creature for mana, add an additional {G}. -- {6}{G}{G}: Put a +1/+1 counter on each creature you control.
 mana={2}{G}{G}
