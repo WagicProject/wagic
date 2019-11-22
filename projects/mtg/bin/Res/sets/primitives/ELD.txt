@@ -167,7 +167,7 @@ toughness=4
 name=Syr Gwyn, Hero of Ashvale
 abilities=vigilance,menace
 auto=@combat(attacking) source(creature[geared]|mybattlefield):draw:1 && life:-1 controller
-#MISSED: equip 0 to knight
+auto=lord(equipment|mybattlefield) transforms((,newability[{0}:name(Equip Zero to a Knight) rehook target(creature[Knight]|mybattlefield) assorcery]))
 text=Vigilance, menace -- Whenever an equipped creature you control attacks, you draw a card and you lose 1 life. -- Equipment you control have equip Knight {0}.
 mana={3}{R}{W}{B}
 type=Legendary Creature
@@ -2675,7 +2675,7 @@ name=Rankle, Master of Pranks
 abilities=flying,haste
 auto=@combatdamaged(player) from(this):may name(discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
 auto=@combatdamaged(player) from(this):may name(life and draw) draw:1 controller && draw:1 opponent && life:-1 controller && life:-1 opponent
-auto=@combatdamaged(player) from(this):may name(sacrifice) sacrifice tatarget(creature|mybattlefield) controller and!(sacrifice tatarget(creature|opponentBattlefield) opponent)!
+auto=@combatdamaged(player) from(this):may name(sacrifice) sacrifice target(creature|mybattlefield) controller and!(sacrifice target(creature|opponentBattlefield) opponent)!
 text=Flying, haste -- Whenever Rankle, Master of Pranks deals combat damage to a player, choose any number — -- • Each player discards a card. -- • Each player loses 1 life and draws a card. -- • Each player sacrifices a creature.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -2764,19 +2764,18 @@ toughness=4
 [/card]
 [card]
 name=Once Upon a Time
-#MISSING: First spell of game
 aicode=activate moveto(myhand) target(*[creature;land;zpos<=5]|mylibrary)
 auto=name(look) reveal:5 optionone name(Get a card) target(<1>*[creature;land]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
+auto=@movedto(*|mystack) restriction{thisturn(*|mystack)~lessthan~2}:castcard(this) ueot oneshot
 text=If this spell is the first spell you've cast this game, you may cast it without paying its mana cost. -- Look at the top five cards of your library. You may reveal a creature or land card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={1}{G}
 type=Instant
 [/card]
 [card]
 name=Clackbridge Troll
-#MISSING: At the beginning of combat on your turn
 abilities=trample,haste
 auto=create(Goat:creature Goat:0/1:white)*3 opponent
-auto=@sacrificed(creature|opponentBattlefield):{T}:draw:1 controller && life:3 controller
+auto=@each my combatbegins restriction{type(creature|opponentbattlefield)~morethan~0}:ability$!name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent && tap (this) && draw:1 controller && life:3 controller
 text=Trample, haste -- When Clackbridge Troll enters the battlefield, target opponent creates three 0/1 white Goat creature tokens. -- At the beginning of combat on your turn, any opponent may sacrifice a creature. If a player does, tap Clackbridge Troll, you gain 3 life, and you draw a card.
 mana={3}{B}{B}
 type=Creature
