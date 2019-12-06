@@ -17,6 +17,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Vorel of the Hull Clade
+auto={G}{U}{T}: target(artifact;creature;land[(counter{any})]) propagate*(twice)
+text={G}{U}, {T}: Double the number of each kind of counter on target artifact, creature, or land.
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Human Merfolk
+power=1
+toughness=4
+[/card]
+[card]
 name=1996 World Champion
 text=Cannot be the targets of spells or effects. World Champion has power and toughness equal to the life totals of target opponent. {0}: Discard your hand to search your library for 1996 World Champion and reveal it to all players. Shuffle your library and put 1996 World Champion on top of it. Use this ability only at the beginning of your upkeep, and only if 1996 World Champion is in your library.
 mana={W}{U}{B}{R}{G}
@@ -108,15 +118,6 @@ type=Creature
 subtype=Goblin Warrior
 power=2
 toughness=1
-[/card]
-[card]
-name=Adriana, Captain of the Guard
-text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Other creatures you control have melee. (If a creature has multiple instances of melee, each triggers separately.)
-mana={3}{R}{W}
-type=Legendary Creature
-subtype=Human Knight
-power=4
-toughness=4
 [/card]
 [card]
 name=Adriana's Valor
@@ -499,13 +500,6 @@ type=Creature
 subtype=Spider
 power=5
 toughness=7
-[/card]
-[card]
-name=Arachnus Web
-text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. -- At the beginning of the end step, if enchanted creature's power is 4 or greater, destroy Arachnus Web.
-mana={2}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Arc Blade
@@ -1582,18 +1576,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Borrowed Grace
-text=Escalate {1}{W} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Creatures you control get +2/+0 until end of turn. -- • Creatures you control get +0/+2 until end of turn.
-mana={2}{W}
-type=Instant
-[/card]
-[card]
-name=Borrowed Hostility
-text=Escalate {3} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +3/+0 until end of turn. -- • Target creature gains first strike until end of turn.
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Borrowed Malevolence
 text=Escalate {2} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +1/+1 until end of turn. -- • Target creature gets -1/-1 until end of turn.
 mana={B}
@@ -1915,12 +1897,6 @@ type=Artifact
 name=Calciform Pools
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Calciform Pools. -- {1}, Remove X storage counters from Calciform Pools: Add X mana in any combination of {W} and/or {U} to your mana pool.
 type=Land
-[/card]
-[card]
-name=Calculated Dismissal
-text=Counter target spell unless its controller pays {3}. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
-mana={2}{U}
-type=Instant
 [/card]
 [card]
 name=Call of the Nightwing
@@ -2833,12 +2809,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Collective Brutality
-text=Escalate—Discard a card. (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target opponent reveals his or her hand. You choose an instant or sorcery card from it. That player discards that card. -- • Target creature gets -2/-2 until end of turn. -- • Target opponent loses 2 life and you gain 2 life.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Collective Defiance
 text=Escalate {1} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target player discards all the cards in his or her hand, then draws that many cards. -- • Collective Defiance deals 4 damage to target creature. -- • Collective Defiance deals 3 damage to target opponent.
 mana={1}{R}{R}
@@ -3158,15 +3128,6 @@ name=Cover of Winter
 text=Cumulative upkeep {S{i} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it. {S{i} can be paid with one mana from a snow permanent.) -- If a creature would deal combat damage to you and/or one or more creatures you control, prevent X of that damage, where X is the number of age counters on Cover of Winter. -- {S{i}: Put an age counter on Cover of Winter.
 mana={2}{W}
 type=Snow Enchantment
-[/card]
-[card]
-name=Coveted Peacock
-text=Flying -- Whenever Coveted Peacock attacks, you may goad target creature defending player controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
-mana={3}{U}{U}
-type=Creature
-subtype=Bird
-power=3
-toughness=4
 [/card]
 [card]
 name=Cowed by Wisdom
@@ -3491,15 +3452,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Custodi Soulcaller
-text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Whenever Custodi Soulcaller attacks, return target creature card with converted mana cost X or less from your graveyard to the battlefield, where X is the number of players you attacked with a creature this combat.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
-[/card]
-[card]
 name=Custodi Squire
 abilities=flying
 text=Flying -- Will of the council — When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
@@ -3643,13 +3595,6 @@ name=Darkpact
 text=Remove Darkpact from your deck before playing if you're not playing for ante. -- You own target card in the ante. Exchange that card with the top card of your library.
 mana={B}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Darksteel Mutation
-text=Enchant creature -- Enchanted creature is an Insect artifact creature with base power and toughness 0/1 and has indestructible, and it loses all other abilities, card types, and creature types.
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Dash Hopes
@@ -3929,15 +3874,6 @@ mana={U}
 type=Interrupt
 [/card]
 [card]
-name=Deputized Protester
-text=Menace (This creature can't be blocked except by two or more creatures.) -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
-mana={2}{R}
-type=Creature
-subtype=Human Warrior
-power=2
-toughness=1
-[/card]
-[card]
 name=Derevi, Empyrial Tactician
 abilities=flying
 text=Flying -- Whenever Derevi, Empyrial Tactician enters the battlefield or a creature you control deals combat damage to a player, you may tap or untap target permanent. -- {1}{G}{W}{U}: Put Derevi onto the battlefield from the command zone.
@@ -4008,12 +3944,6 @@ subtype=Arcane
 name=Desperate Stand
 text=Strive — Desperate Stand costs {R}{W} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+0 and gain first strike and vigilance until end of turn.
 mana={R}{W}
-type=Sorcery
-[/card]
-[card]
-name=Destructive Tampering
-text=Choose one — -- • Destroy target artifact. -- • Creatures without flying can't block this turn.
-mana={2}{R}
 type=Sorcery
 [/card]
 [card]
@@ -4383,15 +4313,6 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Dragon's Eye Savants
-text=Morph—Reveal a blue card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Dragon's Eye Savants is turned face up, look at target opponent's hand.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=0
-toughness=6
-[/card]
-[card]
 name=Dragonshift
 text=Until end of turn, target creature you control becomes a 4/4 blue and red Dragon, loses all abilities, and gains flying. -- Overload {3}{U}{U}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
 mana={1}{U}{R}
@@ -4626,12 +4547,6 @@ text=Enchant permanent -- At the beginning of your precombat main phase, add man
 mana={2}{G}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Elemental Uprising
-text=Target land you control becomes a 4/4 Elemental creature with haste until end of turn. It's still a land. It must be blocked this turn if able.
-mana={1}{G}
-type=Instant
 [/card]
 [card]
 name=Eliminate the Competition
@@ -5182,15 +5097,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Fang of the Pack
-text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- At the beginning of combat on your turn, another target creature you control gains melee until end of turn. (If a creature has multiple instances of melee, each triggers separately.)
-mana={5}{G}
-type=Creature
-subtype=Wolf
-power=5
-toughness=3
-[/card]
-[card]
 name=Far // Away
 text=Return target creature to its owner's hand. --  //  -- Target player sacrifices a creature. --  -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{U} // {2}{B}
@@ -5506,12 +5412,6 @@ name=Flames of the Blood Hand
 text=Flames of the Blood Hand deals 4 damage to target player. The damage can't be prevented. If that player would gain life this turn, that player gains no life instead.
 mana={2}{R}
 type=Instant
-[/card]
-[card]
-name=Flameshot
-text=You may discard a Mountain card rather than pay Flameshot's mana cost. -- Flameshot deals 3 damage divided as you choose among one, two, or three target creatures.
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
 name=Flamespeaker Adept
@@ -6808,21 +6708,6 @@ mana={4}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Grenzo's Ruffians
-text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Whenever Grenzo's Ruffians deals combat damage to an opponent, it deals that much damage to each other opponent.
-mana={2}{R}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-[/card]
-[card]
-name=Grim Discovery
-text=Choose one or both — Return target creature card from your graveyard to your hand; and/or return target land card from your graveyard to your hand.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Grim Reminder
 text=Search your library for a nonland card and reveal it. Each opponent who cast a card this turn with the same name as that card loses 6 life. Then shuffle your library.  -- {B}{B}: Return Grim Reminder from your graveyard to your hand. Activate this ability only during your upkeep.
 mana={2}{B}
@@ -6944,15 +6829,6 @@ type=Creature
 subtype=Elemental Incarnation
 power=6
 toughness=6
-[/card]
-[card]
-name=Gurmag Drowner
-text=Exploit (When this creature enters the battlefield, you may sacrifice a creature.) -- When Gurmag Drowner exploits a creature, look at the top four cards of your library. Put one of them into your hand and the rest into your graveyard.
-mana={3}{U}
-type=Creature
-subtype=Naga Wizard
-power=2
-toughness=4
 [/card]
 [card]
 name=Gus
@@ -8456,15 +8332,6 @@ mana={5}{R}
 type=Sorcery
 [/card]
 [card]
-name=Jeering Homunculus
-text=When Jeering Homunculus enters the battlefield, you may goad target creature. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
-mana={1}{U}
-type=Creature
-subtype=Homunculus
-power=0
-toughness=4
-[/card]
-[card]
 name=Jeleva, Nephalia's Scourge
 abilities=flying
 text=Flying -- When Jeleva, Nephalia's Scourge enters the battlefield, each player exiles the top X cards of his or her library, where X is the amount of mana spent to cast Jeleva. -- Whenever Jeleva attacks, you may cast an instant or sorcery card exiled with it without paying its mana cost.
@@ -8659,15 +8526,6 @@ text=Cumulative upkeep—Flip a coin. (At the beginning of your upkeep, put an age
 mana={2}{R}{R}
 type=Creature
 subtype=Minotaur Warrior
-power=3
-toughness=3
-[/card]
-[card]
-name=Kavu Primarch
-text=Convoke (Each creature you tap while casting this spell reduces its total cost by {1} or by one mana of that creature's color.) -- Kicker {4} (You may pay an additional {4} as you cast this spell.) -- If Kavu Primarch was kicked, it enters the battlefield with four +1/+1 counters on it.
-mana={3}{G}
-type=Creature
-subtype=Kavu
 power=3
 toughness=3
 [/card]
@@ -9471,13 +9329,6 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Lignify
-text=Enchant creature -- Enchanted creature is a 0/4 Treefolk with no abilities.
-mana={1}{G}
-type=Tribal Enchantment
-subtype=Treefolk Aura
-[/card]
-[card]
 name=Lilting Refrain
 text=At the beginning of your upkeep, you may put a verse counter on Lilting Refrain. -- Sacrifice Lilting Refrain: Counter target spell unless its controller pays {X}, where X is the number of verse counters on Lilting Refrain.
 mana={1}{U}
@@ -10014,12 +9865,6 @@ mana={1}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Martyr's Bond
-text=Whenever Martyr's Bond or another nonland permanent you control is put into a graveyard from the battlefield, each opponent sacrifices a permanent that shares a card type with it.
-mana={4}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Martyr's Cause
 text=Sacrifice a creature: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
 mana={2}{W}
@@ -10187,15 +10032,6 @@ type=Creature
 subtype=Ogre
 power=3
 toughness=3
-[/card]
-[card]
-name=Menagerie Liberator
-text=Trample -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
-mana={3}{G}
-type=Creature
-subtype=Human Warrior
-power=3
-toughness=2
 [/card]
 [card]
 name=Mental Vapors
@@ -13188,12 +13024,6 @@ mana={3}{R}{R}
 type=Instant
 [/card]
 [card]
-name=Rain of Thorns
-text=Choose one or more — Destroy target artifact; destroy target enchantment; and/or destroy target land.
-mana={4}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Rakavolver
 text=Kicker {1}{W} and/or {U} (You may pay an additional {1}{W} and/or {U} as you cast this spell.) -- If Rakavolver was kicked with its {1}{W} kicker, it enters the battlefield with two +1/+1 counters on it and with "Whenever Rakavolver deals damage, you gain that much life." -- If Rakavolver was kicked with its {U} kicker, it enters the battlefield with a +1/+1 counter on it and with flying.
 mana={2}{R}
@@ -15358,15 +15188,6 @@ mana={4}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Sinuous Vermin
-text={3}{B}{B}: Monstrosity 3. (If this creature isn't monstrous, put three +1/+1 counters on it and it becomes monstrous.) -- As long as Sinuous Vermin is monstrous, it has menace. (It can't be blocked except by two or more creatures.)
-mana={1}{B}
-type=Creature
-subtype=Rat Horror
-power=2
-toughness=2
-[/card]
-[card]
 name=Siren of the Fanged Coast
 abilities=flying
 text=Flying -- Tribute 3 (As this creature enters the battlefield, an opponent of your choice may place three +1/+1 counters on it.) -- When Siren of the Fanged Coast enters the battlefield, if tribute wasn't paid, gain control of target creature.
@@ -15402,12 +15223,6 @@ type=Creature
 subtype=Beast
 power=0
 toughness=0
-[/card]
-[card]
-name=Skeletal Scrying
-text=As an additional cost to cast Skeletal Scrying, exile X cards from your graveyard. -- You draw X cards and you lose X life.
-mana={X}{B}
-type=Instant
 [/card]
 [card]
 name=Skeleton Scavengers
@@ -15453,15 +15268,6 @@ type=Creature
 subtype=Goblin
 power=3
 toughness=1
-[/card]
-[card]
-name=Skittering Crustacean
-text={6}{U}: Monstrosity 4. (If this creature isn't monstrous, put four +1/+1 counters on it and it becomes monstrous.) -- As long as Skittering Crustacean is monstrous, it has hexproof. (It can't be the target of spells or abilities your opponents control.)
-mana={2}{U}
-type=Creature
-subtype=Crab
-power=2
-toughness=3
 [/card]
 [card]
 name=Skittish Valesk
@@ -15696,14 +15502,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Sorin Markov
-auto=counter(0/0,4,loyalty)
-text=+2: Sorin Markov deals 2 damage to target creature or player and you gain 2 life. -- -3: Target opponent's life total becomes 10. -- -7: You control target player during that player's next turn.
-mana={3}{B}{B}{B}
-type=Planeswalker
-subtype=Sorin
-[/card]
-[card]
 name=Sorrow's Path
 text={T}: Choose two target blocking creatures an opponent controls. If each of those creatures could block all creatures that the other is blocking, remove both of them from combat. Each one then blocks all creatures the other was blocking.  -- Whenever Sorrow's Path becomes tapped, it deals 2 damage to you and each creature you control.
 type=Land
@@ -15907,13 +15705,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Spectral Grasp
-text=Enchant creature -- Enchanted creature can't attack you or a planeswalker you control. -- Enchanted creature can't block creatures you control.
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Spectral Shift
@@ -16637,18 +16428,6 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Subtle Strike
-text=Choose one or both — -- • Target creature gets -1/-1 until end of turn. -- • Put a +1/+1 counter on target creature.
-mana={1}{B}
-type=Instant
-[/card]
-[card]
-name=Sudden Demise
-text=Choose a color. Sudden Demise deals X damage to each creature of the chosen color.
-mana={X}{R}
-type=Sorcery
-[/card]
-[card]
 name=Suffer the Past
 text=Exile X target cards from target player's graveyard. For each card exiled this way, that player loses 1 life and you gain 1 life.
 mana={X}{B}
@@ -16910,12 +16689,6 @@ type=Creature
 subtype=Elf Shaman
 power=2
 toughness=1
-[/card]
-[card]
-name=Take Down
-text=Choose one — -- • Take Down deals 4 damage to target creature with flying. -- • Take Down deals 1 damage to each creature with flying.
-mana={G}
-type=Sorcery
 [/card]
 [card]
 name=Takklemaggot
@@ -17822,12 +17595,6 @@ mana={2}{U} // {1}{R}
 type=Instant // Instant
 [/card]
 [card]
-name=Turn Aside
-text=Counter target spell that targets a permanent you control.
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Turn the Tables
 text=All combat damage that would be dealt to you this turn is dealt to target attacking creature instead.
 mana={3}{W}{W}
@@ -18121,12 +17888,6 @@ name=Valor Made Real
 text=Target creature can block any number of creatures this turn.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Vandalize
-text=Choose one or both — -- • Destroy target artifact. -- • Destroy target land.
-mana={4}{R}
-type=Sorcery
 [/card]
 [card]
 name=Vanguard's Shield
@@ -18539,15 +18300,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Vorel of the Hull Clade
-text={G}{U}, {T}: Double the number of each kind of counter on target artifact, creature, or land.
-mana={1}{G}{U}
-type=Legendary Creature
-subtype=Human Merfolk
-power=1
-toughness=4
-[/card]
-[card]
 name=Vortex Elemental
 text={U}: Put Vortex Elemental and each creature blocking or blocked by it on top of their owners' libraries, then those players shuffle their libraries. -- {3}{U}{U}: Target creature blocks Vortex Elemental this turn if able.
 mana={U}
@@ -18895,12 +18647,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Whir of Invention
-text=Improvise (Your artifacts can help cast this spell. Each artifact you tap after you're done activating mana abilities pays for {1}.) -- Search your library for an artifact card with converted mana cost X or less, put it onto the battlefield, then shuffle your library.
-mana={X}{U}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Whirlpool Whelm
 text=Clash with an opponent, then return target creature to its owner's hand. If you win, you may put that creature on top of its owner's library instead. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{U}
@@ -19023,15 +18769,6 @@ name=Windriddle Palaces
 text=Players play with the top card of their libraries revealed. -- You may play the top card of any player's library. -- Whenever you roll {K}, each player puts the top card of his or her library into his or her graveyard.
 type=Plane
 subtype=Belenon
-[/card]
-[card]
-name=Wings of the Guard
-text=Flying -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
-mana={1}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
 [/card]
 [card]
 name=Winterflame

@@ -17,7 +17,7 @@ next
 #main
 mountain
 shock
-Dragon
+-189648
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

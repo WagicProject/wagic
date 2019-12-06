@@ -13,6 +13,16 @@ toughness=4
 [/card]
 
 [card]
+name=Deafening Clarion
+auto=choice name(Damage) damage:3 all(creature)
+auto=choice name(Lifelink) all(creature|myBattlefield) lifelink ueot
+auto=choice name(Damage and Lifelink) damage:3 all(creature) && all(creature|myBattlefield) lifelink ueot
+text=Choose one or both — -- • Deafening Clarion deals 3 damage to each creature. -- • Creatures you control gain lifelink until end of turn.
+mana={1}{R}{W}
+type=Sorcery
+[/card]
+
+[card]
 name=Flower // Flourish
 other={4}{G}{W} name(Flourish)
 auto=if paid(alternative) then all(creature|mybattlefield) 2/2 ueot
