@@ -1,5 +1,12 @@
 grade=borderline
 [card]
+name=Saproling
+type=Creature
+subtype=Saproling
+power=1
+toughness=1
+[/card]
+[card]
 name=Bogardan Hellkite
 abilities=flash,flying
 auto=ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
@@ -9,6 +16,290 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
+[/card]
+[card]
+name=The Immortal Sun
+auto=lord(planeswalker|myBattlefield) noactivatedability
+auto=lord(planeswalker|opponentBattlefield) noactivatedability
+auto=@each my draw:draw:1 controller
+auto=lord(*|mycastingzone) altercost(colorless,-1)
+auto=lord(creature|myBattlefield) 1/1
+text=Players can't activate planeswalkers' loyalty abilities. -- At the beginning of your draw step, draw an additional card. -- Spells you cast cost {1} less to cast. -- Creatures you control get +1/+1.
+mana={6}
+type=Legendary Artifact
+[/card]
+[card]
+name=Take Down
+auto=choice name(Deals 4 damage to target creature with...) damage:4 target(creature[flying])
+auto=choice name(Deals 1 damage to each creature with...) damage:1 all(creature[flying])
+text=Choose one — -- • Take Down deals 4 damage to target creature with flying. -- • Take Down deals 1 damage to each creature with flying.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Rain of Thorns
+auto=choice name(Destroy target artifact) destroy target(artifact)
+auto=choice name(Destroy target enchantment) destroy target(enchantment)
+auto=choice name(Destroy target land) destroy target(land)
+auto=name(More...) emblem transforms((,newability[({0}:name(Destroy target artifact) destroy target(artifact)],newability[{0}:name(Destroy target enchantment) destroy target(enchantment)],newability[{0}:name(Destroy target land) destroy target(land)])) ueot
+text=Choose one or both — -- • Destroy target artifact. -- • Destroy target land.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Lignify
+target=creature
+auto=loseabilities
+auto=teach(creature) becomes(Creature Treefolk,0/4)
+text=Enchant creature -- Enchanted creature is a Treefolk with base power and toughness 0/4 and loses all abilities.
+mana={1}{G}
+type=Tribal Enchantment
+subtype=Treefolk Aura
+[/card]
+[card]
+name=Kavu Primarch
+other={convoke} name(Convoke)
+kicker={4}
+auto=kicker counter(1/1,4)
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature’s color.) -- If Kavu Primarch was kicked, it enters the battlefield with four +1/+1 counters on it.
+mana={3}{G}
+type=Creature
+subtype=Kavu
+power=3
+toughness=3
+[/card]
+[card]
+name=Gaea's Protector
+auto=@combat (attacking,blocking) source(this): all(<anyamount>creature|opponentbattlefield) mustblock ueot
+text=Gaea’s Protector must be blocked if able.
+mana={3}{G}
+type=Creature
+subtype=Elemental Warrior
+power=4
+toughness=2
+[/card]
+[card]
+name=Elemental Uprising
+target=land|mybattlefield
+auto=transforms(Land Creature Elemental,4/4,haste) with(newability[@combat (attacking,blocking) source(this): all(<anyamount>creature|opponentbattlefield) mustblock ueot]) ueot
+text=Target land you control becomes a 4/4 Elemental creature with haste until end of turn. It’s still a land. It must be blocked this turn if able.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Arachnus Web
+target=creature
+auto=cantattack
+auto=cantpwattack
+auto=cantblock
+auto=noactivatedability
+auto=@each endofturn restriction{compare(power)~morethan~4}:destroy(Arachnus Web)
+text=Enchant creature -- Enchanted creature can’t attack or block, and its activated abilities can’t be activated. -- At the beginning of the end step, if enchanted creature’s power is 4 or greater, destroy Arachnus Web.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Sudden Demise
+auto=chooseacolor damage:X all (creature[chosencolor]|battlefield) chooseend
+text=Choose a color. Sudden Demise deals X damage to each creature of the chosen color.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Rampaging Cyclops
+auto=@combat(blocked) source(this) from(<2>creature):all(trigger[from]) (this) -2/-0
+text=Rampaging Cyclops gets -2/-0 as long as two or more creatures are blocking it.
+mana={3}{R}
+type=Creature
+subtype=Cyclops
+power=4
+toughness=4
+[/card]
+[card]
+name=Flameshot
+abilities=trample
+other={D(mountain|myHand)}{D(mountain|myHand)}{D(mountain|myHand)} name(Discard three mountains)
+target=creature
+auto=damage:1
+auto=damage:1 target(creature)
+auto=ability$!name(damage) choice target(creature) damage:1!$ controller
+text=You may discard a Mountain card rather than pay this spell’s mana cost. -- Flameshot deals 3 damage divided as you choose among one, two, or three target creatures.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Vandalize
+auto=choice name(Destroy target artifact) destroy target(artifact)
+auto=choice name(Destroy target land) destroy target(land)
+auto=choice name(Destroy target artifact and land) destroy target(artifact) && destroy target(land)
+text=Choose one or both — -- • Destroy target artifact. -- • Destroy target land.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Destructive Tampering
+auto=choice name(Destroy target artifact) destroy target(artifact)
+auto=choice name(Creatures without flying can't block) all(creatures[-flying]|battlefield) cantblock ueot
+text=Choose one — -- • Destroy target artifact. -- • Creatures without flying can’t block this turn.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Borrowed Hostility
+auto=choice name(Target creature gets +3/+0) target(creature) 3/0 ueot
+auto=choice name(Target creature gets first strike) target(creature) first strike ueot
+auto=choice name(Target creature gets +3/+0 and...) target(creature) 3/0 && first strike ueot
+auto=name(Escalate) emblem transforms((,newability[({3}:name(Target creature gets +3/+0) target(creature) 3/0 ueot],newability[{3}:name(Target creature gets first strike) target(creature) first strike ueot],newability[{3}:name(Target creature gets +3/+0 and...) target(creature) 3/0 && first strike ueot])) ueot
+text=Escalate {3} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +3/+0 until end of turn. -- • Target creature gains first strike until end of turn.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Subtle Strike
+auto=choice name(Target creature gets -1/-1 until...) target(creature) -1/-1
+auto=choice name(Put a +1/+1 counter on target...) counter(1/1,1) target(creature)
+auto=choice name(Put a +1/+1 counter and -1/-1...) counter(1/1,1) target(creature) && target(creature) -1/-1
+text=Choose one or both — -- • Target creature gets -1/-1 until end of turn. -- • Put a +1/+1 counter on target creature.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Sorin Markov
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,2,Loyalty)}:name(+2: deals 2 damage to a creature and gain life...) damage:2 target(creature,player,planeswalker) && life:2 controller
+auto={C(0/0,-3,Loyalty)}:name(-3: Target opponent's life total becomes 10) lifeset:10 opponent
+auto={C(0/0,-7,Loyalty)}:name(-7: you control target player -'Loses turn'-) turns:-1 opponent
+text=+2: Sorin Markov deals 2 damage to any target and you gain 2 life. -- -3: Target opponent’s life total becomes 10. -- -7: You control target player during that player’s next turn.
+mana={3}{B}{B}{B}
+type=Legendary Planeswalker
+subtype=Sorin
+[/card]
+[card]
+name=Skeletal Scrying
+auto=draw:X controller
+auto=life:castx controller
+text=Destroy X target nonblack creatures. Draw X cards.
+mana={X}{B}{E<prex>*|myGraveyard}
+type=Instant
+[/card]
+[card]
+name=Grim Discovery
+auto=choice name(Return target creature from your graveyard) moveTo(myhand) target(creature|mygraveyard)
+auto=choice name(Return target land from your graveyard) moveTo(myhand) target(land|mygraveyard)
+auto=choice name(Return target land and creature from your graveyard) moveTo(myhand) target(land|mygraveyard) && moveTo(myhand) target(creature|mygraveyard)
+text=Choose one or both — -- • Return target creature card from your graveyard to your hand. -- • Return target land card from your graveyard to your hand.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Collective Brutality
+aicode=activate reject notatarget(*[instant;sorcery]|targetedpersonshand)
+auto=choice name(Target opponent reveals and discard...) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[instant;sorcery]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
+auto=choice name(Target creature gets -2/-2...) target (creature) -2/-2 ueot
+auto=choice name(Target opponent loses 2 and you gain...) life:-2 opponent && life:2 controller
+auto=name(Escalate) emblem transforms((,newability[({D(*|myhand)}:name(Target opponent reveals and discard...) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[instant;sorcery]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend],newability[{D(*|myhand)}:name(Target creature gets -2/-2...) target (creature) -2/-2 ueot],newability[{D(*|myhand)}:name(Target opponent loses 2 and you gain...) life:-2 opponent && life:2 controller])) ueot
+text=Escalate {1}{W} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Creatures you control get +2/+0 until end of turn. • Creatures you control get +0/+2 until end of turn.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Turn Aside
+target=*|stack
+auto=fizzle
+restriction=target(enchantment|myBattlefield)
+text=Counter target spell that targets a permanent you control.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Whir of Invention
+other={improvise} name(Improvise)
+aicode=activate moveTo(myBattlefield) target(artifact[manacost<=X]|myLibrary)
+auto=name(search card) reveal:plibrarycount optionone name(choose card) target(artifact[manacost<=X]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend
+text=Improvise (Your artifacts can help cast this spell. Each artifact you tap after you’re done activating mana abilities pays for {1}.) -- Search your library for an artifact card with converted mana cost X or less, put it onto the battlefield, then shuffle your library.
+mana={X}{U}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Skittering Crustacean
+auto=this(cantargetcard(*[-monstrous]) {6}{U}:becomes(monstrous) forever && counter(1/1,4) && transforms((,newAbility[opponentshroud])) forever
+text={6}{U}: Monstrosity 4. (If this creature isn’t monstrous, put four +1/+1 counters on it and it becomes monstrous.) -- As long as Skittering Crustacean is monstrous, it has hexproof. (It can’t be the target of spells or abilities your opponents control.)
+mana={2}{U}
+type=Creature
+subtype=Crab
+power=2
+toughness=3
+[/card]
+[card]
+name=Secrets of the Golden City
+auto=_ASCEND_
+auto=_CITY'S_BLESSING_ draw:1 controller
+auto=draw:2 controller
+text=Ascend (If you control ten or more permanents, you get the city’s blessing for the rest of the game.) -- Draw two cards. If you have the city’s blessing, draw three cards instead.
+mana={1}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Martyr's Bond
+auto=@movedto(this|graveyard) from(battlefield):ability$!sacrifice notatarget(enchantment|mybattlefield)!$ opponent
+auto=@movedto(*[-land]|graveyard) from(battlefield):ability$!sacrifice notatarget(*[-land,share!types!]|mybattlefield)!$ opponent
+text=Whenever Martyr’s Bond or another nonland permanent you control is put into a graveyard from the battlefield, each opponent sacrifices a permanent that shares a card type with it.
+mana={4}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Dragon's Eye Savants
+aicode=name(look) activate name(look) target(<ohandcount>*|opponenthand) donothing
+facedown={3}
+autofacedown={Reveal(<1>*[blue]|myHand)}:morph
+autofaceup=target(opponent) name(target opponent) reveal:ohandcount revealzone(opponenthand) optionone name(look) target(<1>*|reveal) moveto(ownerhand) and!(all(*|reveal) moveto(ownerhand))! optiononeend revealend
+text=Morph—Reveal a blue card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Dragon’s Eye Savants is turned face up, look at target opponent’s hand.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=6
+[/card]
+[card]
+name=Gurmag Drowner
+auto=may name(Exploit) sacrifice notatarget(creature|mybattlefield) && name(look) reveal:4 optionone name(Get a card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) target(<4>*|reveal) moveto(graveyard) optiontwoend afterrevealed afterrevealedend revealend
+text=Exploit (When this creature enters the battlefield, you may sacrifice a creature.) -- When Gurmag Drowner exploits a creature, look at the top four cards of your library. Put one of them into your hand and the rest into your graveyard.
+mana={3}{U}
+type=Creature
+subtype=Naga Wizard
+power=2
+toughness=4
+[/card]
+[card]
+name=Calculated Dismissal
+target=*|stack
+auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
+auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Counter target spell unless its controller pays {3}. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
+mana={2}{U}
+type=Instant
+[/card
+[card]
+name=Borrowed Grace
+auto=choice name(Creatures my control get +2/+0) all(creature|myBattlefield) 2/0 ueot
+auto=choice name(Creatures my control get +0/+2) all(creature|myBattlefield) 0/2 ueot
+auto=choice name(Creatures my control get +2/+2) all(creature|myBattlefield) 2/2 ueot
+auto=name(Escalate) emblem transforms((,newability[({1}{W}:name(Creatures my control get +2/+0) all(creature|myBattlefield) 2/0 ueot],newability[{1}{W}:name(Creatures my control get +0/+2) all(creature|myBattlefield) 0/2 ueot],newability[{1}{W}:name(Creatures my control get +2/+2) all(creature|myBattlefield) 2/2 ueot])) ueot
+text=Escalate {1}{W} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — • Creatures you control get +2/+0 until end of turn. • Creatures you control get +0/+2 until end of turn.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Darksteel Mutation
+target=creature
+auto=indestructible
+auto=loseabilities
+auto=teach(creature) becomes(Artifact Creature Insect,0/1)
+text=Enchant creature -- Enchanted creature is an Insect artifact creature with base power and toughness 0/1 and has indestructible, and it loses all other abilities, card types, and creature types.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Torgaar, Famine Incarnate
@@ -570,6 +861,49 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Wings of the Guard
+abilities=flying
+auto=@combat(attacking) source(this):1/1 ueot
+text=Flying -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
+name=Spectral Grasp
+target=creature
+auto=cantattack
+auto=cantpwattack
+auto=cantblock
+text=Enchant creature -- Enchanted creature can't attack you or a planeswalker you control. -- Enchanted creature can't block creatures you control.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Jeering Homunculus
+auto=may target(creature|opponentBattlefield) mustattack uynt
+text=When Jeering Homunculus enters the battlefield, you may goad target creature. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
+mana={1}{U}
+type=Creature
+subtype=Homunculus
+power=0
+toughness=4
+[/card]
+[card]
+name=Coveted Peacock
+abilities=flyin
+auto=@combat(attacking) source(this):may target(creature|opponentBattlefield) mustattack uynt
+text=Flying -- Whenever Coveted Peacock attacks, you may goad target creature defending player controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
+mana={3}{U}{U}
+type=Creature
+subtype=Bird
+power=3
+toughness=4
+[/card]
+[card]
 name=Stunt Double
 abilities=flash
 auto=may copy NotATarget(creature)
@@ -654,6 +988,37 @@ type=Creature
 subtype=Ooze
 power=3
 toughness=3
+[/card]
+[card]
+name=Sinuous Vermin
+auto=@this(cantargetcard(*[-monstrous]) {3}{B}{B}:becomes(monstrous) forever && counter(1/1, 3) && transforms((,newability[menace])) forever
+text={3}{B}{B}: Monstrosity 3. (If this creature isn't monstrous, put three +1/+1 counters on it and it becomes monstrous.) -- As long as Sinuous Vermin is monstrous, it has menace. (It can't be blocked except by two or more creatures.)
+mana={1}{B}
+type=Creature
+subtype=Rat Horror
+power=2
+toughness=2
+[/card]
+[card]
+name=Deputized Protester
+abilities=menace
+auto=@combat(attacking) source(this):1/1 ueot
+text=Menace (This creature can't be blocked except by two or more creatures.) -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
+mana={2}{R}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=1
+[/card]
+[card]
+name=Grenzo's Ruffians
+auto=@combat(attacking) source(this):1/1 ueot
+text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Whenever Grenzo's Ruffians deals combat damage to an opponent, it deals that much damage to each other opponent.
+mana={2}{R}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
 [/card]
 [card]
 name=Domesticated Hydra
@@ -795,6 +1160,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Custodi Soulcaller
+auto=@combat(attacking) source(this):1/1 ueot
+auto=@combat(attacking) source(this):moveto(mybattlefield) target(creature[manacost<=1]|mygraveyard)
+text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Whenever Custodi Soulcaller attacks, return target creature card with converted mana cost X or less from your graveyard to the battlefield, where X is the number of players you attacked with a creature this combat.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+[/card]
+[card]
 name=Recruiter of the Guard
 aicode=activate target(creature[toughness<=2]|mylibrary) moveto(myhand)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>creature[toughness<=2]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
@@ -933,7 +1309,7 @@ type=Sorcery
 [/card]
 [card]
 name=Channel
-auto=emblem transforms((,newability[auto={L:1}:Add{1}])) ueot
+auto=emblem transforms((,newability[{L:1}:Add{1}])) ueot
 text=Until end of turn, any time you could activate a mana ability, you may pay 1 life. If you do, add {1}.
 mana={G}{G}
 type=Sorcery
@@ -1770,6 +2146,38 @@ mana={2}{W}{U}
 type=Legendary Creature
 subtype=Human Monk
 power=3
+toughness=4
+[/card]
+[card]
+name=Fang of the Pack
+auto=@combat(attacking) source(this):1/1 ueot
+text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- At the beginning of combat on your turn, another target creature you control gains melee until end of turn. (If a creature has multiple instances of melee, each triggers separately.)
+mana={5}{G}
+type=Creature
+subtype=Wolf
+power=5
+toughness=3
+[/card]
+[card]
+name=Menagerie Liberator
+abilities=trample
+auto=@combat(attacking) source(this):1/1 ueot
+text=Trample -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
+mana={3}{G}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=2
+[/card]
+[card]
+name=Adriana, Captain of the Guard
+auto=@combat(attacking) source(this):1/1 ueot
+auto=@combat(attacking) source(this):all(other creature[attacking]) 1/1 ueot
+text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Other creatures you control have melee. (If a creature has multiple instances of melee, each triggers separately.)
+mana={3}{R}{W}
+type=Legendary Creature
+subtype=Human Knight
+power=4
 toughness=4
 [/card]
 [card]
