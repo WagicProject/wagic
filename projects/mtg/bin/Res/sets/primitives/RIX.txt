@@ -728,7 +728,7 @@ type=Instant
 
 [card]
 name=Silverclad Ferocidons
-auto=@damaged(this):ability$!name(sacrifice) notatarget(*|mybattlefield) sacrifice!$ targetedplayer
+auto=@damaged(this) from(*|opponentstack,opponentbattlefield):ability$!name(sacrifice a permanent) notatarget(*|mybattlefield) sacrifice!$ opponent
 text=Enrage — Whenever Silverclad Ferocidons is dealt damage, each opponent sacrifices a permanent.
 mana={5}{R}{R}
 type=Creature
@@ -1193,12 +1193,25 @@ toughness=2
 [/card]
 
 [card]
+name=Timestream Navigator
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ transforms((,newability[{2}{U}{U}{T}:(this|bottomoflibrary) && turns:+1 controller]))
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- {2}{U}{U},{T}, Put Timestream Navigator on the bottom of its owner's library: Take an extra turn after this one. Activate this ability only if you have the city's blessing.
+mana={1}{U}
+type=Creature
+subtype=Human Pirate Wizard
+power=1
+toughness=1
+[/card]
+
+[card]
 name=Zacama, Primal Calamity
 abilities=vigilance, reach, trample
 auto=if casted(this) then untap all(land|mybattlefield)
-auto={2}{R}:zacama damage:3 target(creature)
-auto={2}{G}:destroy target(artifact,enchantment)
-auto={2}{W}:life:3
+auto={2}{R}:name(Deals 3 damage to target...) zacama damage:3 target(creature)
+auto={2}{G}:name(Destroy target artifact...) destroy target(artifact,enchantment)
+auto={2}{W}:name(Gain 3 life) life:3 controller
 text=Vigilance, reach, trample -- When Zacama, Primal Calamity enters the battlefield, if you cast it, untap all lands you control. -- {2}{R}: Zacama deals 3 damage to target creature. -- {2}{G}: Destroy target artifact or enchantment. -- {2}{W}: You gain 3 life.
 mana={6}{R}{G}{W}
 type=Legendary Creature
