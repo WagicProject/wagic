@@ -1,0 +1,123 @@
+grade=unsupported
+[card]
+name=Bronzehide Lion
+text={G}{W}: Bronzehide Lion gains indestructible until end of turn. -- When Bronzehide Lion dies, return it to the battlefield. It's an Aura enchantment with enchant creature you control and " {G}{W}: Enchanted creature gains indestructible until end of turn," and it loses all other abilities.
+mana={G}{W}
+type=Creature
+subtype=Cat
+power=3
+toughness=3
+[/card]
+[card]
+name=Kroxa, Titan of Death's Hunger
+text=When Kroxa enters the battlefield, sacrifice it unless it escaped. -- Whenever Kroxa enters the battlefield or attacks, each opponent discards a card, then each opponent who didn't discard a nonland card this way loses 3 life. -- Escape— {B}{B}{R}{R}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={B}{R}
+type=Legendary Creature
+subtype=Elder Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Whirlwind Denial
+text=For each spell and ability your opponents control, counter it unless its controller pays 4 .
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Uro, Titan of Nature's Wrath
+text=When Uro enters the battlefield, sacrifice it unless it escaped. -- Whenever Uro enters the battlefield or attacks, you gain 3 life and draw a card, then you may put a land card from your hand onto the battlefield. -- Escape— {G}{G}{U}{U}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Elder Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Atris, Oracle of Half-Truths
+text=Menace -- When Atris, Oracle of Half-Truths enters the battlefield, target opponent looks at the top three cards of your library and separates them into a face-down pile and a face-up pile. Put one pile into your hand and the other into your graveyard.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Human Advisor
+power=3
+toughness=2
+[/card]
+[card]
+name=Altar of the Pantheon
+text=Your devotion to each color and each combination of colors is increased by one. -- {T}: Add one mana of any color. If you control a God, a Demigod, or a legendary enchantment, you gain 1 life.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Tectonic Giant
+text=Whenever Tectonic Giant attacks or becomes the target of a spell an opponent controls, choose one — -- • Tectonic Giant deals 3 damage to each opponent. -- • Exile the top two cards of your library. Choose one of them. Until the end of your next turn, you may play that card.
+mana={2}{R}{R}
+type=Creature
+subtype=Elemental Giant
+power=3
+toughness=4
+[/card]
+[card]
+name=Medomai's Prophecy
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.) -- I — Scry 2. -- II — Choose a card name. -- III — When you cast a spell with the chosen name for the first time this turn, draw two cards. -- IV — Look at the top card of each player's library.
+mana={1}{U}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Ilysian Caryatid
+text={T}: Add one mana of any color. If you control a creature with power 4 or greater, add two mana of any one color instead.
+mana={1}{G}
+type=Creature
+subtype=Plant
+power=1
+toughness=1
+[/card]
+[card]
+name=Allure of the Unknown
+text=Reveal the top six cards of your library. An opponent exiles a nonland card from among them, then you put the rest into your hand. That opponent may cast the exiled card without paying its mana cost.
+mana={3}{B}{R}
+type=Sorcery
+[/card]
+[card]
+name=Haktos the Unscarred
+text=Haktos the Unscarred attacks each combat if able. -- As Haktos enters the battlefield, choose 2, 3, or 4 at random. -- Haktos has protection from each converted mana cost other than the chosen number.
+mana={R}{R}{W}{W}
+type=Legendary Creature
+subtype=Human Warrior
+power=6
+toughness=1
+[/card]
+[card]
+name=The Binding of the Titans
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Each player puts the top three cards of their library into their graveyard. -- II — Exile up to two target cards from graveyards. For each creature card exiled this way, you gain 1 life. -- III — Return target creature or land card from your graveyard to your hand.
+mana={1}{G}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Protean Thaumaturge
+text=Constellation — Whenever an enchantment enters the battlefield under your control, you may have Protean Thaumaturge become a copy of another target creature, except it has this ability.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Heroes of the Revel
+text=When Heroes of the Revel enters the battlefield, create a 1/1 red Satyr creature token with "This creature can't block." -- Whenever you cast a spell that targets Heroes of the Revel, creatures you control get +1/+0 until end of turn.
+mana={4}{R}
+type=Creature
+subtype=Satyr Soldier
+power=4
+toughness=4
+[/card]
+[card]
+name=Dawn Evangel
+text=Whenever a creature dies, if an Aura you controlled was attached to it, return target creature card with converted mana cost 2 or less from your graveyard to your hand.
+mana={2}{W}
+type=Enchantment Creature
+subtype=Human Cleric
+power=2
+toughness=3
+[/card]

@@ -1,0 +1,155 @@
+grade=unsupported
+[card]
+name=Alexander Clamilton
+text=Whenever you cast a wordy spell, scry 2. (A spell is wordy if it has four or more lines of rules text.) -- 1 -- {R} -- , -- {T} -- : Choose target creature you don't control. Reveal the top card of your library. Alexander Clamilton gets +X/+0 until end of turn, where X is the number of lines of rules text of the revealed card. Alexander Clamilton fights that creature. --
+mana={2}{U}
+type=Legendary Creature
+subtype=Clamfolk Advisor Rebel
+power=0
+toughness=4
+[/card]
+[card]
+name=Syr Cadian, Knight Owl
+text=Knightlifelink (Damage dealt by Knights you control also causes you to gain that much life.) -- {W} -- : Syr Cadian, Knight Owl gains vigilance until end of turn. Activate this ability only from sunrise to sunset. -- {B}: Syr Cadian, Knight Owl gains flying until end of turn. Activate this ability only from sunset to sunrise.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Bird Knight
+power=4
+toughness=4
+[/card]
+[card]
+name=Rings a Bell
+text=As Rings a Bell enters the battlefield, choose a word with four or more letters. -- After you say the chosen word for the first time each turn, an opponent may ring or imitate a bell within five seconds. When no opponent does, draw a card.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Infernius Spawnington III, Esq.
+text=Flying, first strike, trample, haste -- This spell costs -- 3 -- less to cast for each card you've revealed this turn. -- When Infernius Spawnington III, Esq. enters the battlefield, you may say "I'm here." If you do, it deals 3 damage to target player. --
+mana={10}{B}
+type=Creature
+subtype=Demon Beast Grandchild
+power=9
+toughness=9
+[/card]
+[card]
+name=Strutting Turkey
+text=When this creature enters the battlefield, -- exile target creature card with converted mana cost 2 or less from your graveyard. If it has augment, combine it with a host you control. Otherwise, put it onto the battlefield.
+mana={3}{W}
+type=Host Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
+name=Surgeon General Commander
+text=Whenever you augment, enchant, or mutate a creature you control, draw a card. -- {T} -- : Add -- {W} -- , -- {U} -- , -- {B} -- , -- {R} -- , or -- {G} -- . --
+mana={3}{G}
+type=Legendary Creature
+subtype=Wombat Bat Chameleon
+power=3
+toughness=3
+[/card]
+[card]
+name=Boomstacker
+text=As Boomstacker enters the battlefield and whenever it attacks, stack two dice on top of it. (All dice must be stacked vertically, one on top of another.) -- Boomstacker gets +1/+1 for each die in its stack. -- Boomstacker attacks each combat if able. -- When the stack falls, sacrifice Boomstacker.
+mana={2}{R}
+type=Creature
+subtype=Goblin Artificer
+power=0
+toughness=0
+[/card]
+[card]
+name=Who // What // When // Where // Why
+text=Who -- oXoW -- Instant -- Target player gains X life. -- // -- What -- o2oR -- Instant -- Destroy target artifact. -- // -- When -- o2oU -- Instant -- Counter target creature spell. -- // -- Where -- o3oB -- Instant -- Destroy target land. -- // -- Why -- o1oG -- Instant -- Destroy target enchantment.
+type=Instant
+[/card]
+[card]
+name=Underdome
+text={T} -- : Add -- Colorless -- . -- {T}: Add one mana of any color. Spend this mana only to pay silver-bordered costs.
+type=Land
+[/card]
+[card]
+name=Yet Another Aether Vortex
+text=All creatures have haste. -- Players play with the top card of their libraries revealed. -- Noninstant, nonsorcery cards on top of a library are on the battlefield under their owner's control in addition to being in that library.
+mana={3}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Bat-
+text=Flying -- At the beginning of each end step, if an opponent lost 3 or more life this turn, -- Augment 1{B} ( 1{B}, Reveal this card from your hand: Combine it with target host. Augment only as a sorcery.)
+type=Creature
+subtype=Bat
+power=+1
+toughness=+1
+[/card]
+[card]
+name=Chicken à la King
+text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Bird. (You may roll dice only when instructed to.) -- Tap an untapped Bird you control: Roll a six-sided die. (Like now.)
+mana={1}{U}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
+name=Abstract Iguanart
+text=Whenever you cast a spell, note the first letter of its artist's name. If that letter wasn't already noted, put a +1/+1 counter on Abstract Iguanart. --
+mana={1}{R}
+type=Creature
+subtype=Art Lizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Flavor Judge
+text={T}: Choose target spell or ability that targets a permanent you control. Then ask a person outside the game if the story of what will happen makes sense. If they say no, sacrifice Flavor Judge and counter that spell or ability.
+mana={1}{W}
+type=Creature
+subtype=Bird Advisor
+power=2
+toughness=2
+[/card]
+[card]
+name=B.O.B. (Bevy of Beebles)
+text=As B.O.B. enters the battlefield, create four 1/1 blue Beeble creature tokens. -- The number of loyalty counters on B.O.B. is equal to the number of Beebles you control. (Create or sacrifice Beebles whenever B.O.B. gains or loses loyalty.) -- +1: Up to X target Beebles can't be blocked this turn, where X is the number of cards in your hand. -- −1: Draw a card.
+mana={3}{U}{U}
+type=Legendary Planeswalker
+subtype=B.O.B.
+[/card]
+[card]
+name=Pippa, Duchess of Dice
+text=2 -- {G} -- , -- {T} -- : Roll a six-sided die. It becomes a green Die creature token with power and toughness each equal to its result. -- 2 -- {U} -- , -- {T} -- : Reroll any die. -- (Activate this ability only any time it makes sense.) --
+mana={2}{G}
+type=Legendary Creature
+subtype=Human Noble
+power=2
+toughness=2
+[/card]
+[card]
+name=Acornelia, Fashionable Filcher
+text=Whenever you cast a spell with a squirrel in its art, you get (an acorn counter) -- . -- Whenever a Squirrel you control enters the battlefield or dies, you get . -- 2 -- {B} -- , Pay X : Target creature gets -X/-X until end of turn. -- {G}, Pay X : Target creature gets +X/+X until end of turn.
+mana={3}{B}
+type=Legendary Creature
+subtype=Squirrel
+power=3
+toughness=3
+[/card]
+[card]
+name=Stet, Draconic Proofreader
+text=Flying -- Whenever Stet, Draconic Proofreader attacks, you may exile a card from your graveyard. When you do, Stet, Draconic Proofreader deals 4 damage to any target whose name begins with the same letter as the exiled card. -- {W}: Delete the first letter of target permanent or player's name until end of turn.
+mana={4}{R}{R}
+type=Legendary Creature
+subtype=Dragon Bureaucrat
+power=4
+toughness=4
+[/card]
+[card]
+name=Spirit of the Season
+text=When Spirit of the Season enters the battlefield, it gains haste if it's summer. Put a +1/+1 counter on it if it's autumn. You gain 5 life if it's winter. If it's spring, search your library for a basic land card, reveal it, put it into your hand, then shuffle your library.
+mana={1}{G}{G}
+type=Creature
+subtype=Treefolk Spirit
+power=3
+toughness=3
+[/card]
