@@ -1,0 +1,2632 @@
+grade=borderline
+[card]
+name=Alseid of Life's Bounty
+abilities=lifelink
+auto={1}{S}:name(Protection from white) protection from white target(creature,enchantment|myBattlefield)
+auto={1}{S}:name(Protection from blue) protection from blue target(creature,enchantment|myBattlefield)
+auto={1}{S}:name(Protection from black) protection from black target(creature,enchantment|myBattlefield)
+auto={1}{S}:name(Protection from red) protection from red target(creature,enchantment|myBattlefield)
+auto={1}{S}:name(Protection from green) protection from green target(creature,enchantment|myBattlefield)
+text=Lifelink -- {1}, Sacrifice Alseid of Life’s Bounty: Target creature or enchantment you control gains protection from the color of your choice until end of turn.
+mana={W}
+type=Enchantment Creature
+subtype=Nymph
+power=1
+toughness=1
+[/card]
+[card]
+name=Archon of Falling Stars
+abilities=Flying
+auto=@movedTo(this|mygraveyard) from(Battlefield):may moveTo(mybattlefield) target(enchantment|mygraveyard)
+text=Flying -- When Archon of Falling Stars dies, you may return target enchantment card from your graveyard to the battlefield.
+mana={4}{W}{W}
+type=Creature
+subtype=Archon
+power=4
+toughness=4
+[/card]
+[card]
+name=Archon of Sun's Grace
+abilities=flying,lifelink
+auto=lord(creature[Pegasus]|myBattlefield) lifelink
+auto=@movedTo(enchantment|myBattlefield):token(Pegasus,Arc)
+text=Flying, lifelink -- Pegasus creatures you control have lifelink. -- Constellation -- Whenever an enchantment enters the battlefield under your control, create a 2/2 white Pegasus creature token with flying.
+mana={2}{W}{W}
+type=Creature
+subtype=Archon
+power=3
+toughness=4
+[/card]
+[card]
+name=Pegasus,Arc
+abilities=Flying
+type=Creature
+subtype=Pegasus
+power=2
+toughness=2
+color=white
+[/card]
+[card]
+name=The Birth of Meletis
+aicode=activate target(land[basic,Plains]|mylibrary) moveto(myhand)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>land[basic,plains]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) token(Wall,Bir)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) life:2 controller && sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Search your library for a basic Plains card, reveal it, put it into your hand, then shuffle your library. -- II — Create a 0/4 colorless Wall artifact creature token with defender. -- III — You gain 2 life.
+mana={1}{W}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Wall,Bir
+abilities=Defender
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=4
+color=colorless
+[/card]
+[card]
+name=Captivating Unicorn
+auto=@movedTo(enchantment|myBattlefield):tap target(creature|opponentBattlefield)
+text=Constellation -- Whenever an enchantment enters the battlefield under your control, tap target creature an opponent controls.
+mana={4}{W}
+type=Creature
+subtype=Unicorn
+power=4
+toughness=4
+[/card]
+[card]
+name=Commanding Presence
+target=creature
+auto=first strike
+auto=2/2
+auto=@combatdamaged(player) from(mytgt):token(Human,Com)
+text=Enchant creature -- Enchanted creature gets +2/+2 and has first strike and “Whenever this creature deals combat damage to a player, create a 1/1 white Human Soldier creature token.”
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Human,Com
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+color=white
+[/card]
+[card]
+name=Daxos, Blessed by the Sun
+auto=2/type:manaW:mybattlefield cdaactive
+auto=@movedto(other creature|myBattlefield):life:1 controller
+auto=@movedto(other creature|myGraveyard) from(mybattlefield):life:1 controller
+text=Daxos’s toughness is equal to your devotion to white. (Each {W} in the mana costs of permanents you control counts toward your devotion to white.) -- Whenever another creature you control enters the battlefield or dies, you gain 1 life.
+mana={W}{W}
+type=Legendary Enchantment Creature
+subtype=Demigod
+power=2
+toughness=*
+[/card]
+[card]
+name=Daybreak Chimera
+abilities=flying
+anyzone=foreach(manaW|myBattlefield) changecost(colorless:-1) forcedalive
+text=This spell costs {X} less to cast, where X is your devotion to white. (Each {W} in the mana costs of permanents you control counts towards your devotion to white.) -- Flying.
+mana={3}{W}{W}
+type=Creature
+subtype=Chimera
+power=3
+toughness=3
+[/card]
+[card]
+name=Dreadful Apathy
+target=creature
+auto=cantattack
+auto=cantpwattack
+auto=cantblock
+auto={2}{W}:all(this) moveTo(exile)
+text=Enchant creature -- Enchanted creature can’t attack or block. -- {2}{W}: Exile enchanted creature.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Eidolon of Inspiration
+@each my combatbegins:2/0 target(creature|myBattlefield) ueot
+text=At the beginning of combat on your turn, target creature you control gets +2/+0 until end of turn.
+mana={1}{W}{W}
+type=Enchantment Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+[card]
+name=Eidolon of Obstruction
+abilities=first strike
+auto=lord(planeswalker|opponentBattlefield) activatedability altercost(colorless,+1)
+text=First strike -- Loyalty abilities of planeswalkers your opponents control cost {1} more to activate.
+mana={1}{W}
+type=Enchantment Creature
+subtype=Spirit
+power=2
+toughness=1
+[/card]
+[card]
+name=Elspeth Conquers Death
+auto=moveTo(Exile) target(*[manacost>=3]|opponentbattlefield)
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) all(*[-creature]|opponentcastingzone) altercost(colorless, +2) uynt
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveTo(mybattlefield) target(creature,planeswalker|mygraveyard) if type(creature|myGraveyard)~morethan~0 then all(this) counter(1/1,1) else counter(0/0.1.Loyalty) && sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I - Exile target permanent an opponent controls with converted mana cost 3 or greater. -- II - Noncreature spells your opponents cast cost {2} more to cast until your next turn. -- III - Return target creature or planeswalker card from your graveyard to the battlefield. Put a +1/+1 counter or a loyalty counter on it.
+mana={3}{W}{W}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Elspeth's Devotee
+auto=may moveto(myHand) target(Elspeth, Undaunted Hero|mylibrary,mygraveyard) && shuffle
+text=When Elspeth's Devotee enters the battlefield, you may search your library and/or graveyard for a card named Elspeth, Undaunted Hero, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Elspeth, Undaunted Hero
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,2,Loyalty)}:name(Put up to two counters +1/+1) target (<upto:2>creature|myBattlefield) counter(1/1,1) ueot
+auto={C(0/0,-2,Loyalty)}:name(Search a Sunlit Hoplite) moveto(myBattlefield) target(Sunlit Hoplite|mylibrary,mygraveyard) && shuffle
+auto={C(0/0,-8,Loyalty)}:name(Creatures you control get +X) type:manaW:myBattlefield/type:manaW:myBattlefield all(creature|myBattlefield) && flying ueot
+text=+2: Put a +1/+1 counter on each of up to two target creatures. -- -2: Search your library and/or graveyard for a card named Sunlit Hoplite and put it onto the battlefield. If you search your library this way, shuffle it. -- -8: Until end of turn, creatures you control gain flying and get +X/+X, where X is your devotion to white.
+mana={2}{W}{W}{W}
+type=Legendary Planeswalker
+subtype=Elspeth
+[/card]
+[card]
+name=Elspeth, Sun's Nemesis
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,-1,Loyalty)}:name(Up to two creature gets +2/+1) target (<upto:2>creature|myBattlefield) 2/1 ueot
+auto={C(0/0,-2,Loyalty)}:name(Create two human soldiers) token(Human,Els)*2
+auto={C(0/0,-6,Loyalty)}:name(Gain 5 life) life:5 controller
+autograveyard=name(Escape-{4}{W}{W}, exile four) {4}{W}{W}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=-1: Up to two target creatures you control each get +2/+1 until end of turn. -- -2: Create two 1/1 white Human Soldier creature tokens. -- -3: You gain 5 life. -- Escape—{4}{W}{W}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={2}{W}{W}
+type=Legendary Planeswalker
+subtype=Elspeth
+[/card]
+[card]
+name=Human,Els
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+color=white
+[/card]
+[card]
+name=Favored of Iroas
+auto=@movedTo(enchantment|myBattlefield):double strike ueot
+text=Constellation -- Whenever an enchantment enters the battlefield under your control, Favored of Iroas gains double strike until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Flicker of Fate
+target=creature,enchantment|mybattlefield
+auto=(blink)
+text=Exile target creature or enchantment, then return it to the battlefield under its owner’s control.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Glory Bearers
+auto=lord(other creature[attacking]|myBattlefield) 0/1 ueot
+text=Whenever another creature you control attacks, it gets +0/+1 until end of turn.
+mana={3}{W}
+type=Enchantment Creature
+subtype=Human Cleric
+power=3
+toughness=4
+[/card]
+[card]
+name=Grasping Giant
+abilities=Vigilance
+auto=@combat(blocked) source(this) from(creature):all(trigger[to]) creature(blocked) (blink)forsrc oneshot
+text=Vigilance -- Whenever Grasping Giant becomes blocked by a creature, exile that creature until Grasping Giant leaves the battlefield.
+mana={5}{W}
+type=Creature
+subtype=Giant
+power=5
+toughness=7
+[/card]
+[card]
+name=Heliod's Intervention
+auto=choice name(Destroy X artifacts and/or enchantments) destroy:X target artifact,enchantment 
+auto=choice name(Target player gains twice X life) target(player) life:X && life:X
+text=Choose one — • Destroy X target artifacts and/or enchantments. • Target player gains twice X life.
+mana={X}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Heliod, Sun-Crowned
+abilities=indestructible
+auto=this(variable{type:manaw}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{type:manaw}>4) transforms((Legendary Enchantment Creature))
+auto=@lifeof(player):counter(1/1,1) target(creature,enchantment|myBattlefield)
+auto={1}{W}:lifelink target(other creature) ueot
+text=Indestructible -- As long as your devotion to white is less than five, Heliod isn’t a creature. -- Whenever you gain life, put a +1/+1 counter on target creature or enchantment you control. -- {1}{W}: Another target creature gains lifelink until end of turn.
+mana={2}{W}
+type=Legendary Enchantment Creature
+subtype=God
+power=5
+toughness=5
+[/card]
+[card]
+name=Heliod's Punishment
+target=creature
+auto=all(this) counter(0/0,4,Task)
+auto=cantattack
+auto=cantpwattack
+auto=cantblock
+auto=teach(creature) loseabilities
+auto=teach(creature) {T}{C(0/0,-1,Task)}: donothing
+auto=teach(creature) transforms((,newability[this(counter{0/0,0,Task}<1) while destroy(this)]))
+text=Enchant creature -- Heliod’s Punishment enters the battlefield with four task counters on it. -- Enchanted creature can’t attack or block. It loses all abilities and has “{T}: Remove a task counter from Heliod’s Punishment. Then if it has no task counters on it, destroy Heliod’s Punishment.”
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Hero of the Pride
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+text=Whenever you cast a spell that targets Hero of the Pride, creatures you control get +1/+0 until end of turn.
+mana={1}{W}
+type=Creature
+subtype=Cat Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Hero of the Winds
+abilities=flying
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+text=Flying -- Whenever you cast a spell that targets Hero of the Pride, creatures you control get +1/+0 until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=4
+[/card]
+[card]
+name=Karametra's Blessing
+target=creature
+auto=2/2
+auto=teach(Enchantment Creature) hexproof && indestructible ueot
+auto=teach(creature {auras>=1}) hexproof && indestructible ueot
+text=Target creature gets +2/+2 until end of turn. If it’s an enchanted creature or enchantment creature, it also gains hexproof and indestructible until end of turn. (It can’t be the target of spells or abilities your opponents control. Damage and effects that say “destroy” don’t destroy it.)
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Lagonna-Band Storyteller
+auto=may MoveTo(myLibrary) target(enchantment|myGraveyard) then life:storedmanacost
+text=When Lagonna-Band Storyteller enters the battlefield, you may put target enchantment card from your graveyard on top of your library. If you do, you gain life equal to its converted mana cost.
+mana={3}{W}
+type=Creature
+subtype=Centaur Advisor
+power=3
+toughness=4
+[/card]
+[card]
+name=Leonin of the Lost Pride
+auto=@movedto(this|graveyard) from(battlefield):MoveTo(exile) target(*|opponentGraveyard)
+text=When Leonin of the Lost Pride dies, exile target card from an opponent’s graveyard.
+mana={1}{W}
+type=Creature
+subtype=Cat Warrior
+power=3
+toughness=1
+[/card]
+[card]
+name=Nyxborn Courser
+mana={1}{W}{W}
+type=Enchantment Creature
+subtype=Centaur Scout
+power=2
+toughness=4
+[/card]
+[card]
+name=Omen of the Sun
+abilities=flash
+auto=token(Human,Ome)*2 && life:2 controller
+auto={2}{W}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flash -- When Omen of the Sun enters the battlefield, create two 1/1 white Human Soldier creature tokens and you gain 2 life. -- {2}{W}, Sacrifice Omen of the Sun: Scry 2.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Human,Ome
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+color=white
+[/card]
+[card]
+name=Phalanx Tactics
+target=creature
+auto=target (creature|myBattlefield) 2/1 ueot
+auto=all(other creature|mybattlefield) 1/1 ueot
+text=Target creature you control gets +2/+1 until end of turn. Each other creature you control gets +1/+1 until end of turn.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Pious Wayfarer
+auto=@movedTo(enchantment|myBattlefield):target (creature|myBattlefield) 1/1 ueot
+text=Constellation -- Whenever an enchantment enters the battlefield under your control, target creature gets +1/+1 until end of turn.
+mana={W}
+type=Creature
+subtype=Human Scout
+power=1
+toughness=2
+[/card]
+[card]
+name=Reverent Hoplite
+auto=token(Human,Rev)*type:manaW
+text=When Reverent Hoplite enters the battlefield, create a number of 1/1 white Human Soldier creature tokens equal to your devotion to white. (Each {W} in the mana costs of permanents you control counts toward your devotion to white.)
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+[/card]
+[card]
+name=Human,Rev
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+color=white
+[/card]
+[card]
+name=Rumbling Sentry
+auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+text=When Rumbling Sentry enters the battlefield, scry 1.
+mana={3}{W}{W}
+type=Creature
+subtype=Giant
+power=3
+toughness=6
+[/card]
+[card]
+name=Sentinel's Eyes
+target=creature
+auto=vigilance
+auto=1/1
+autograveyard=name(Escape-{W}, exile two) {W}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Enchant creature -- Enchanted creature gets +1/+1 and has vigilance. -- Escape—{W}, Exile two other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Shatter the Sky
+auto=foreach(creature[power>=4]|mybattlefield) draw:1 opponent && destroy all(creature)
+auto=foreach(creature[power>=4]|mybattlefield) draw:1 controller && destroy all(creature)
+text=Each player who controls a creature with power 4 or greater draws a card. Then destroy all creatures.
+mana={2}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Sunlit Hoplite
+auto=this(variable{controllerturn}>0) first strike
+auto=aslongas(planeswalker[Elspeth]|mybattlefield) 1/0
+text=As long as it's your turn, Sunlit Hoplite has first strike. -- Sunlit Hoplite gets +1/+0 as long as you control an Elspeth planeswalker.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=1
+[/card]
+[card]
+name=Sunmane Pegasus
+abilities=flying
+auto={1}{W}:vigilance && lifelink ueot
+text=Flying -- {1}{W}: Sunmane Pegasus gains vigilance and lifelink until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Pegasus
+power=2
+toughness=3
+[/card]
+[card]
+name=Taranika, Akroan Veteran
+abilities=vigilance
+auto=@combat(attacking) source(this): untap target(creature|myBattlefield) && transforms((creature,setpower=4,settoughness=4,indestructible)) ueot
+text=Vigilance -- Whenever Taranika, Akroan Veteran attacks, untap another target creature you control. Until end of turn, that creature has base power and toughness 4/4 and gains indestructible.
+mana={1}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Transcendent Envoy
+abilities=flying
+auto=lord(enchantment[aura]|mycastingzone) altercost(colorless,-1)
+text=Flying -- Aura spells you cast cost {1} less to cast.
+mana={1}{W}
+type=Enchantment Creature
+subtype=Griffin
+power=1
+toughness=2
+[/card]
+[card]
+name=Triumphant Surge
+target=creature[power>=4]
+auto=destroy && life:3 controller
+text=Destroy target creature with power 4 or greater. You gain 3 life.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Victory's Envoy
+auto=@each my upkeep:counter(1/1,1) all(other creature|myBattlefield)
+text=At the beginning of your upkeep, put a +1/+1 counter on each other creature you control.
+mana={3}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Alirios, Enraptured
+auto=tap(noevent)
+auto=aslongas(creature[Reflection]|mybattlefield) doesnotuntap
+auto=token(Refleciton,Ali)
+text=Alirios, Enraptured enters the battlefield tapped. -- Alirios doesn’t untap during your untap step if you control a Reflection. -- When Alirios enters the battlefield, create a 3/2 blue Reflection creature token.
+mana={2}{U}
+type=Legendary Creature
+subtype=Human
+power=2
+toughness=3
+[/card]
+[card]
+name=Refleciton,Ali
+type=Creature
+subtype=Reflection
+power=3
+toughness=2
+color=blue
+[/card]
+[card]
+name=Ashiok's Erasure
+abilities=flash
+auto=Moveto(exile) target(*|opponentcastingzone)
+auto=aslongas(exile[share!name!]):maxCast(share!name!)0 opponent
+auto=@movedto(this|nonbattlezone):moveto(ownerhand) exiledcard
+text=Flash -- When Ashiok’s Erasure enters the battlefield, exile target spell. -- Your opponents can’t cast spells with the same name as the exiled card. -- When Ashiok’s Erasure leaves the battlefield, return the exiled card to its owner’s hand.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Brine Giant
+anyzone=foreach(enchantment|myBattlefield) changecost(colorless:-1) forcedalive
+text=This spell costs {1} less to cast for each enchantment you control.
+mana={6}{U}
+type=Creature
+subtype=Giant
+power=5
+toughness=6
+[/card]
+[card]
+name=Callaphe, Beloved of the Sea
+auto=type:manaU:mybattlefield/3 cdaactive
+auto=@targeted(creature,enchantment|myBattlefield) from(opponentstack):altercost(colorless,+1)
+text=Callaphe’s power is equal to your devotion to blue. (Each {U} in the mana costs of permanents you control counts toward your devotion to blue.) -- Creatures and enchantments you control have “Spells your opponents cast that target this permanent cost {1} more to cast”.
+mana={1}{U}{U}
+type=Legendary Enchantment Creature
+subtype=Demigod
+power=*
+toughness=3
+[/card]
+[card]
+name=Chain to Memory
+target=creature
+auto=-4/-0
+auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Target creature gets -4/-0 until end of turn. Scry 2.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Deny the Divine
+target=creature,enchantment|stack
+auto=fizzleto(exile)
+text=Counter target creature or enchantment spell. If that spell is countered this way, exile it instead of putting it into its owner’s graveyard.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Eidolon of Philosophy
+auto={6}{U}{S}:Draw:3 controller
+text={6}{U}, Sacrifice Eidolon of Philosophy: Draw three cards.
+mana={U}
+type=Enchantment Creature
+subtype=Spirit
+power=1
+toughness=2
+[/card]
+[card]
+name=Elite Instructor
+auto=draw:1
+auto=reject target(*|myhand)
+text=When Elite Instructor enters the battlefield, draw a card, then discard a card.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Glimpse of Freedom
+auto=draw:1
+autograveyard=name(Escape-{2}{U},exile five) {2}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Draw a card. -- Escape—{2}{U}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Ichthyomorphosis
+target=creature
+auto=teach(creature) loseabilities
+auto=teach(creature) transforms((,setpower=0,settoughness=1))
+auto=teach(creature) transforms((removetypes,newability[becomes(Fish,blue)]))
+text=Enchant creature -- Enchanted creature loses all abilities and is a blue Fish with base power and toughness 0/1.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Kiora Bests the Sea God
+auto=token(Kraken,Kio)
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) untap all(*[-land]|opponentbattlefield) && frozen
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) MoveTo(myBattlefield) target(*|opponentbattlefield) && untap && sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Create an 8/8 blue Kraken creature token with hexproof. -- II — Tap all nonland permanents target opponent controls. They don’t untap during their controller’s next untap step. -- III — Gain control of target permanent an opponent controls. Untap it.
+mana={5}{U}{U}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Kraken,Kio
+abilities=hexproof
+type=Creature
+subtype=Kraken
+power=8
+toughness=8
+color=blue
+[/card]
+[card]
+name=Memory Drain
+target=*|stack
+auto=fizzle
+auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Counter target spell. Scry 2.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Nadir Kraken
+auto=@drawfoeof(player):may pay({1}) draw:1 && counter(1/1,1) all (this) && token(Tentacle,Nad)
+text=Whenever you draw a card, you may pay {1}. If you do, put a +1/+1 counter on Nadir Kraken and create a 1/1 blue Tentacle creature token.
+mana={1}{U}{U}
+type=Creature
+subtype=Kraken
+power=2
+toughness=3
+[/card]
+[card]
+name=Tentacle,Nad
+type=Creature
+subtype=Tentacle
+power=1
+toughness=1
+color=blue
+[/card]
+[card]
+name=Naiad of Hidden Coves
+auto=aslongas opponentturnonly: (*|mycastingzone) changecost(colorless:-1)
+text=As long as it’s not your turn, spells you cast cost {1} less to cast.
+mana={2}{U}
+type=Enchantment Creature
+subtype=Nymph
+power=2
+toughness=3
+[/card]
+[card]
+name=Nyxborn Seaguard
+mana={2}{U}{U}
+type=Enchantment Creature
+subtype=Merfolk Soldier
+power=2
+toughness=5
+[/card]
+[card]
+name=Omen of the Sea
+abilities=flash
+auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend && draw: 1 controller
+auto={2}{U}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flash -- When Omen of the Sea enters the battlefield, scry 2, then draw a card. -- {2}{U}, Sacrifice Omen of the Sea: Scry 2.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+name=One with the Stars
+target=creature,enchantment
+auto=teach(creature) transforms((removetypes,newability[becomes(enchantment)]))
+auto=teach(enchantment) transforms((removetypes,newability[becomes(enchantment)]))
+text=Enchant creature or enchantment -- Enchanted permanent is an enchantment and loses all other card types. (It still has its abilities, but it’s no longer a creature.)
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Riptide Turtle
+abilities=flash,defender
+text=Flash -- Defender
+mana={1}{U}
+type=Creature
+subtype=Turtle
+power=0
+toughness=5
+[/card]
+[card]
+name=Sage of Mysteries
+auto=@movedTo(enchantment|myBattlefield):deplete:2 target(player)
+text=Constellation -- Whenever an enchantment enters the battlefield under your control, target player puts the top two cards of their library into their graveyard.
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=2
+[/card]
+[card]
+name=Sea God's Scorn
+target=<upto:3>creature,enchantment
+auto=moveTo(ownerhand)
+text=Return up to three target creatures and/or enchantments to their owners’ hands.
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Serpent of Yawning Depths
+auto=lord(creature[Kraken,Leviathan,Octopus,Serpent]|myBattlefield) cantbeblockedby(creature[Kraken,Leviathan,Octopus,Serpent])
+text=Krakens, Leviathans, Octopuses, and Serpents you control can't be blocked except by Krakens, Leviathans, Octopuses, and Serpents.
+mana={4}{U}{U}
+type=Enchantment Creature
+subtype=Serpent
+power=6
+toughness=6
+[/card]
+[card]
+name=Shimmerwing Chimera
+abilities=flying
+auto=@each my upkeep:moveTo(ownerhand) notatarget(other enchantment|myBattlefield)
+text=Flying -- At the beginning of your upkeep, return up to one other target enchantment you control to its owner’s hand.
+mana={3}{U}
+type=Enchantment Creature
+subtype=Chimera
+power=3
+toughness=2
+[/card]
+[card]
+name=Shoal Kraken
+auto=@movedTo(enchantment|myBattlefield):may draw:1 controller && reject target(*|myhand) controller
+text=Constellation -- Whenever an enchantment enters the battlefield under your control, you may draw a card. If you do, discard a card.
+mana={4}{U}
+type=Creature
+subtype=Kraken
+power=3
+toughness=5
+[/card]
+[card]
+name=Sleep of the Dead
+target=creature|battlefield
+auto=tap
+auto=frozen
+autograveyard=name(Escape-{2}{U},exile three) {2}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Tap target creature. It doesn’t untap during its controller’s next untap step. -- Escape—{2}{U}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Sphinx Mindbreaker
+abilities=Flying
+auto=deplete:10 opponent
+text=Flying -- When Sphinx Mindbreaker enters the battlefield, each opponent puts the top ten cards of their library into their graveyard.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=6
+toughness=6
+[/card]
+[card]
+name=Starlit Mantle
+abilities=flash
+target=creature|myBattlefield
+auto=1/1
+auto=teach(creature) hexproof ueot
+text=Flash -- Enchant creature you control -- When Starlit Mantle enters the battlefield, enchanted creature gains hexproof until end of turn. (It can’t be the target of spells or abilities your opponents control.) -- Enchanted creature gets +1/+1.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Stern Dismissal
+target=creature,enchantment
+auto=moveTo(ownerHand)
+text=Return target creature or enchantment an opponent controls to its owner’s hand.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Stinging Lionfish
+auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:may tap target(*[-land]|battlefield)
+auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:may untap target(*[-land]|battlefield)
+text=Whenever you cast your first spell during each opponent’s turn, you may tap or untap target nonland permanent.
+mana={1}{U}
+type=Enchantment Creature
+subtype=Fish
+power=2
+toughness=1
+[/card]
+[card]
+name=Sweet Oblivion
+auto=deplete:4 target(player)
+autograveyard=name(Escape-{3}{U},exile four) {3}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Target player puts the top four cards of their library into their graveyard. -- Escape—{3}{U}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
+name=Swimmer in Nightmares
+auto=this(variable{*|myGraveyard}>6) 3/0
+auto=aslongas(planeswalker[Ashiok]|mybattlefield) unblockable
+text=Swimmer in Nightmares gets +3/+0 as long as there are ten or more cards in a single graveyard. -- Swimmer in Nightmares can't be blocked as long as you control an Ashiok planeswalker.
+mana={2}{U}
+type=Creature
+subtype=Nightmare Merfolk
+power=1
+toughness=4
+[/card]
+[card]
+name=Thassa, Deep-Dwelling
+abilities=Indestructible
+auto=this(variable{type:manau}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{type:manau}>4) transforms((Legendary Enchantment Creature))
+auto=@each my upkeep:target(creature|mybattlefield) moveto(exile) and!(moveto(mybattlefield))!
+auto={3}{U}:tap target(creature)
+text=Indestructible -- As long as your devotion to blue is less than five, Thassa isn’t a creature. -- At the beginning of your end step, exile up to one other target creature you control, then return that card to the battlefield under your control. -- {3}{U}: Tap another target creature.
+mana={3}{U}
+type=Legendary Enchantment Creature
+subtype=God
+power=6
+toughness=5
+[/card]
+[card]
+name=Thassa's Intervention
+target=*|stack
+aicode=activate target(*[zpos<=X]|mylibrary) moveto(myhand)
+auto=choice name(Look X cards) reveal:X optionone name(Get a Card) target(<2>*|reveal) moveto(myhand) optiononeend optiontwo target(<X>*|reveal) bottomoflibrary optiontwoend revealend
+auto=choice name(Counter target spell) transforms((,newability[pay[[{value:storedxx}]] name(pay {X}{X} mana) donothing?fizzle])) oneshot
+text=Choose one- • Look at the top X cards of your library. Put up to two of them into your hand and the rest on the bottom of your library in a random order. • Counter target spell unless its controller pays twice {X}.
+mana={X}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Thassa's Oracle
+aicode=activate target(*[zpos<=manaU]|mylibrary) moveto(mylibrary)
+auto=name(Look X cards) reveal:manaU optionone name(Get a Card) target(<1>*|reveal) moveto(mylibrary) optiononeend optiontwo target(<manaU>*|reveal) bottomoflibrary optiontwoend revealend
+auto=if compare(restriction[*|zpos>=manaU]) then wingame
+text=When Thassa’s Oracle enters the battlefield, look at the top X cards of your library, where X is your devotion to blue. Put up to one of them on top of your library and the rest on the bottom of your library in a random order. If X is greater than or equal to the number of cards in your library, you win the game. (Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)
+mana={1}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Thirst for Meaning
+auto=ability$!draw:3 _ choice name(discard 2 cards) target(<2>*|myhand) reject _ if type(enchantment|myhand)~morethan~0 then choice name(discard an enchantment) target(enchantment|myhand) reject!$
+text=Draw three cards. Then discard two cards unless you discard an enchantment card.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Threnody Singer
+abilities=Flash,flying
+auto=-manaU:mybattlefield/-0 target(creature) ueot
+text=Flash -- Flying -- When Threnody Singer enters the battlefield, target creature an opponent controls gets -X/-0 until end of turn, where X is your devotion to blue. (Each {U} in the mana costs of permanents you control counts towards your devotion to blue.)
+mana={1}{U}
+type=Creature
+subtype=Siren
+power=1
+toughness=3
+[/card]
+[card]
+name=Thryx, the Sudden Storm
+abilities=flying,flash
+auto=lord(*[manacost>=5]|mycastingzone) altercost(colorless,-1)
+auto=lord(*[manacost>=5]|mycastingzone) nofizzle
+text=Flash -- Flying -- Spells you cast with converted mana cost 5 or greater cost {1} less to cast and can’t be countered.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Elemental Giant
+power=4
+toughness=5
+[/card]
+[card]
+name=Towering-Wave Mystic
+auto=@damagefoeof(player) from(this):target(player) deplete:thatmuch
+text=Whenever Towering-Wave Mystic deals damage, target player puts that many cards from the top of their library into their graveyard.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Triton Waverider
+auto=@movedTo(enchantment|myBattlefield):flying ueot
+text=Constellation -- Whenever an enchantment enters the battlefield under your control, Triton Waverider gains flying until end of turn.
+mana={3}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Vexing Gull
+abilities=flying,flash
+text=Flash -- Flying
+mana={2}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
+name=Wavebreak Hippocamp
+auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:draw:1 controller
+text=Whenever you cast your first spell during each opponent’s turn, draw a card.
+mana={2}{U}
+type=Enchantment Creature
+subtype=Horse Fish
+power=2
+toughness=2
+[/card]
+[card]
+name=Witness of Tomorrows
+abilities=flying
+auto={3}{U}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flying -- {3}{U}: Scry 1.
+mana={4}{U}
+type=Enchantment Creature
+subtype=Sphinx
+power=3
+toughness=4
+[/card]
+[card]
+name=Agonizing Remorse
+target=opponent
+aicode=activate moveto(exile) notatarget(*[-land]|targetedpersonshand)
+auto=choice name(reveal from hand) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose to exile) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(exile)])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend && life:-1 controller
+auto=choice name(reveal from graveyard) moveto(exile) target(*[-land]|opponentGraveyard) && life:-1 controller
+text=Target opponent reveals their hand. You choose a nonland card from it or a card from their graveyard. Exile that card. You lose 1 life.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Aphemia, the Cacophony
+abilities=flying
+auto=@each my endofturn:may moveto(exile) target(enchantment|myGraveyrad) && token(Zombie,Aph)
+text=Flying -- At the beginning of your end step, you may exile an enchantment card from your graveyard. If you do, create a 2/2 black Zombie creature token.
+mana={1}{B}
+type=Legendary Enchantment Creature
+subtype=Harpy
+power=2
+toughness=1
+[/card]
+[card]
+name=Zombie,Aph
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+color=black
+[/card]
+[card]
+name=Aspect of Lamprey
+target=creature|myBattlefield
+auto=target(opponent) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+auto=teach(creature) lifelink
+text=Enchant creature -- When Strands of Undeath enters the battlefield, target player discards two cards. -- {B}: Regenerate enchanted creature.
+mana={3}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Blight-Breath Catoblepas
+auto=-manaB:mybattlefield/-manaB:mybattlefield target(creature|opponentBattlefield) ueot
+text=When Blight-Breath Catoblepas enters the battlefield, target creature an opponent controls gets -X/-X until end of turn, where X is your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.)
+mana={4}{B}{B}
+type=Creature
+subtype=Beast
+power=3
+toughness=2
+[/card]
+[card]
+name=Cling to Dust
+auto=choice name(exile non-creature card) moveTo(exile) target(*[-creature]|Graveyard) && draw:1 controller
+auto=choice name(exile creature card) moveTo(exile) target(creature|Graveyard) && life:3 controller
+autograveyard=name(Escape-{3}{B},exile five) {3}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Exile target card from a graveyard. If it was a creature card, you gain 3 life. Otherwise, you draw a card. -- Escape—{3}{B}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Demon of Loathing
+auto=@combatdamaged(player) from(this)::ability$!name(sacrifice a creature) notatarget(creature|myBattlefield) sacrifice!$ opponent
+text=Flying, trample -- Whenever Demon of Loathing deals combat damage to a player, that player sacrifices a creature.
+mana={5}{B}{B}
+type=Creature
+subtype=Demon
+power=7
+toughness=7
+[/card]
+[card]
+name=Discordant Piper
+auto=@movedTo(this|mygraveyard) from(Battlefield):token(Goat,Dis)
+text=When Discordant Piper dies, create a 0/1 white Goat creature token.
+mana={1}{B}
+type=Creature
+subtype=Zombie Satyr
+power=2
+toughness=1
+[/card]
+[card]
+name=Goat,Dis
+type=Creature
+subtype=Goat
+power=0
+toughness=1
+color=white
+[/card]
+[card]
+name=Drag to the Underworld
+target=creature
+anyzone=foreach(manaB|myBattlefield) changecost(colorless:-1) forcedalive
+auto=destroy
+text=This spell costs {X} less to cast, where X is your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) -- Destroy target creature.
+mana={2}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Eat to Extinction
+target=creature,planeswalker
+auto=moveto(exile) target(creature,planeswalker) && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+text=Exile target creature or planeswalker. Look at the top card of your library. You may put that card into your graveyard.
+mana={3}{B}
+type=Instant
+[/card]
+[card]
+name=Elspeth's Nightmare
+aicode=activate reject notatarget(*[-creature;-land]|targetedpersonshand)
+auto=destroy target (creature[power<=2])
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) target(opponent) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[-creature;-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveTo(exile) all(*|opponentGraveyard) && sacrifice(this)
+text=I - Destroy target creature an opponent controls with power 2 or less. -- II - Target opponent reveals their hand. You choose a noncreature, nonland card from it. That player discards that card. -- III - Exile target opponent’s graveyard.
+mana={2}{B}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Enemy of Enlightenment
+abilities=flying
+auto=foreach(*|opponenthand) -1/-1
+auto=@each my upkeep:target(opponent) ability$!name(discard) target(<1>*|myhand) reject !$ targetedplayer
+text=Flying -- Enemy of Enlightenment gets -1/-1 for each card in your opponents’ hands. -- At the beginning of your upkeep, each player discards a card.
+mana={5}{B}
+type=Enchatment Creature
+subtype=Demon
+power=5
+toughness=5
+[/card]
+[card]
+name=Erebos, Bleak-Hearted
+abilities=indestructible
+auto=this(variable{type:manab}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{type:manab}>4) transforms((Legendary Enchantment Creature))
+auto=@movedto(graveyard) from(creature|myBattlefield):may pay({L:2}):Draw:1 controller
+auto={1}{B}{S(other creature|mybattlefield)}:-2/-1 target(creature) ueot
+text=Indestructible -- As long as your devotion to black is less than five, Erebos isn’t a creature. -- Whenever another creature you control dies, you may pay 2 life. If you do, draw a card. -- {1}{B}, Sacrifice another creature: Target creature gets -2/-1 until end of turn.
+mana={3}{B}
+type=Legendary Enchantment Creature
+subtype=God
+power=5
+toughness=6
+[/card]
+[card]
+name=Erebos's Intervention
+target=creature,graveyard
+auto=choice name(Target creature gets -X/-X) -X/-X
+auto=choice name(Exile up to X cards...) moveto(Exile)
+text=Choose one — • Target creature gets -X/-X until end of turn. You gain X life. • Exile up to twice X target cards from graveyards.
+mana={X}{B}
+type=Instant
+[/card]
+[card]
+name=Final Death
+target=creature
+auto=moveto(Exile)
+text=Exile target creature.
+mana={4}{B}
+type=Instant
+[/card]
+[card]
+name=Fruit of Tizerus
+target=player
+auto=life:-2
+autograveyard=name(Escape-{3}{B},exile three) {3}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Target player loses 2 life. Escape—{3}{B}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Funeral Rites
+auto=draw:2 controller
+auto=life:-2 controller
+auto=deplete:2 controller
+text=You draw two cards, lose 2 life, and put the top two cards of your library into your graveyard.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Gravebreaker Lamia
+abilities=lifelink,hiddenface
+aicode=activate moveTo(myhand) target(*|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>*|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=lord(*|myGraveyard) changecost(colorless:-1)
+text=Lifelink -- When Gravebreaker Lamia enters the battlefield, search your library for a card, put it into your graveyard, then shuffle your library. -- Spells you cast from your graveyard cost {1} less to cast.
+mana={4}{B}
+type=Enchantment Creature
+subtype=Snake Lamia
+power=4
+toughness=4
+[/card]
+[card]
+name=Grim Physician
+auto=@movedTo(this|mygraveyard) from(Battlefield):-1/-1 target(creature|opponentGraveyard) ueot
+text=When Grim Physician dies, target creature an opponent controls gets -1/-1 until end of turn.
+mana={B}
+type=Creature
+subtype=Zombie
+power=1
+toughness=1
+[/card]
+[card]
+name=Hateful Eidolon
+abilities=lifelink
+auto=@movedTo(creature[auras>=1]|myGraveyard) from(Battlefield):foreach(creature[auras>=1]) draw:1 controller
+text=Lifelink -- Whenever an enchanted creature dies, draw a card for each Aura you controlled that was attached to it.
+mana={B}
+type=Enchantment Creature
+subtype=Spirit
+power=1
+toughness=2
+[/card]
+[card]
+name=Inevitable End
+target=creature
+auto=teach(creature) upcost sacrifice
+text=Enchant creature -- Enchanted creature has “At the beginning of your upkeep, sacrifice a creature.”
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Lampad of Death's Vigil
+auto={1}{S(creature|mybattlefield)}:life:-1 opponent && life:1 controller
+text={1}, Sacrifice a creature: Each opponent loses 1 life and you gain 1 life.
+mana={1}{B}
+type=Enchantment Creature
+subtype=Nymph
+power=1
+toughness=3
+[/card]
+[card]
+name=Minion's Return
+abilities=flash
+target=creature
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(mybattlefield)
+text=Flash -- Enchant creature -- When enchanted creature dies, return that card to the battlefield under your control.
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Mindwrack Harpy
+abilities=Flying
+@each my combatbegins:deplete:3 controller
+@each my combatbegins:deplete:3 opponent
+text=Flying -- At the beginning of combat on your turn, each player puts the top three cards of their library into their graveyard.
+mana={3}{B}
+type=Enchantment Creature
+subtype=Harpy
+power=3
+toughness=2
+[/card]
+[card]
+name=Mire Triton
+abilities=deathtouch
+auto=deplete:2 controller && life:2 controller
+text=Deathtouch -- When Mire Triton enters the battlefield, put the top two cards of your library into your graveyard and you gain 2 life.
+mana={1}{B}
+type=Creature
+subtype=Zombie Merfolk
+power=2
+toughness=1
+[/card]
+[card]
+name=Mire's Grasp
+target=creature
+auto=-3/-3
+text=Enchant creature -- Enchanted creature gets -2/-2.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Mogis's Favor
+target=creature
+auto=2/-1
+autograveyard=name(Escape-{2}{B},exile two) {2}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Enchant creature -- Enchanted creature gets +2/-1. -- Escape—{2}{B}, Exile two other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Nightmare Shepherd
+abilities=flying
+auto=@movedto(mygraveyard) from(creature[-token]|myBattlefield):may moveto(exile) && clone with(newability[transforms((,Nigthmare,setpower=1,settoughness=1)])
+text=Flying -- Whenever another nontoken creature you control dies, you may exile it. If you do, create a token that’s a copy of that creature, except it’s 1/1 and it’s a Nightmare in addition to its other types.
+mana={2}{B}{B}
+type=Enchantment Creature
+subtype=Demon
+power=4
+toughness=4
+[/card]
+[card]
+name=Nyxborn Marauder
+mana={2}{B}{B}
+type=Enchantment Creature
+subtype=Minotaur
+power=4
+toughness=3
+[/card]
+[card]
+name=Omen of the Dead
+abilities=flash
+auto=moveto(myHand) target(creature|myGraveyard)
+auto={2}{W}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flash -- When Omen of the Dead enters the battlefield, return target creature card from your graveyard to your hand. -- {2}{B}, Sacrifice Omen of the Dead: Scry 2.
+mana={B}
+type=Enchantment
+[/card]
+[card]
+name=Pharika's Libation
+target=player
+auto=choice ability$!name(sacrifice an enchantment) notatarget(enchantment|myBattlefield) sacrifice!$ targetedplayer
+auto=choice ability$!name(sacrifice a creature) notatarget(creature|myBattlefield) sacrifice!$ targetedplayer
+text=Choose one — • Target opponent sacrifices a creature. • Target opponent sacrifices an enchantment.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+name=Pharika's Spawn
+autograveyard=name(Escape-{5}{B},exile three) {5}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,2) && NotATarget(creature[-Gorgon]|opponentbattlefield) sacrifice
+text=Escape—{5}{B}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Pharika’s Spawn escapes with two +1/+1 counters on it. When it enters the battlefield this way, each opponent sacrifices a non-Gorgon creature.
+mana={3}{B}
+type=Creature
+subtype=Gorgon
+power=3
+toughness=4
+[/card]
+[card]
+name=Rage-Scarred Berserker
+auto=1/0 target(creature|myBattlefield) ueot && indestructible ueot
+text=When Rage-Scarred Berserker enters the battlefield, target creature you control gets +1/+0 and gains indestructible until end of turn. (Damage and effects that say “destroy” don’t destroy it.)
+mana={4}{B}
+type=Creature
+subtype=Minotaur Berserker
+power=5
+toughness=4
+[/card]
+[card]
+name=Scavenging Harpy
+abilities=flying
+auto=moveto(Exile) target(*|opponentGraveyard)
+text=Flying -- When Scavenging Harpy enters the battlefield, exile target card from an opponent’s graveyard.
+mana={2}{B}
+type=Creature
+subtype=Harpy
+power=2
+toughness=1
+[/card]
+[card]
+name=Soulreaper of Mogis
+auto={2}{B}{S(creature|myBattlefield)}:Draw:1 controller
+text={2}{B}, Sacrifice a creature: Draw a card.
+mana={2}{B}
+type=Enchantment Creature
+subtype=Minotaur Shaman
+power=2
+toughness=3
+[/card]
+[card]
+name=Temple Thief
+auto=cantbeblockedby(creature[auras>=1])
+auto=cantbeblockedby(enchantment creature)
+text=Temple Thief can’t be blocked by enchanted creatures or enchantment creatures.
+mana={1}{B}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Treacherous Blessing
+auto=draw:3 controller
+auto=@moveto(*|myStack):life:-1 controller
+auto=@targeted(this):sacrifice(this)
+text=When Treacherous Blessing enters the battlefield, draw three cards. Whenever you cast a spell, you lose 1 life. When Treacherous Blessing becomes the target of a spell or ability, sacrifice it.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Tymaret Calls the Dead
+auto=deplete:3 controller && may moveto(exile) target(creature,enchantment|myGraveyard) && token(Zombie,Tym)
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) deplete:3 controller && may moveto(exile) target(creature,enchantment|myGraveyard) && token(Zombie,Tym)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) :life:type:zombie:mybattlefield controller && scry:type:zombie:mybattlefield scrycore delayed dontshow donothing scrycoreend scryend && sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Put the top three cards of your library into your graveyard. Then you may exile a creature or enchantment card from your graveyard. If you do, create a 2/2 black Zombie creature token. -- III — You gain X life and scry X, where X is the number of Zombies you control.
+mana={2}{B}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Zombie,Tym
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+color=black
+[/card]
+[card]
+name=Tymaret, Chosen from Death
+auto=2/type:manaB:mybattlefield cdaactive
+auto={1}{B}:name (exile cards) moveto(exile) target(<upto:2>*|graveyard)
+auto={1}{B}:name (exile creature cards) moveto(exile) target(<upto:2>*|graveyard) && newability[@movedto(creature|Exile) from(graveyard):life:1]
+text=Tymaret’s toughness is equal to your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) -- {1}{B}: Exile up to two target cards from graveyards. You gain 1 life for each creature card exiled this way.
+mana={B}{B}
+type=Legendary Enchantment Creature
+subtype=Demigod
+power=2
+toughness=*
+[/card]
+[card]
+name=Underworld Charger
+abilities=cantblock
+autograveyard=name(Escape-{4}{B},exile three) {4}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,2)
+text=Underworld Charger can’t block. -- Escape—{4}{B}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Underworld Charger escapes with two +1/+1 counters on it.
+mana={2}{B}
+type=Creature
+subtype=Nightmare Horse
+power=3
+toughness=3
+[/card]
+[card]
+name=Underworld Sentinel
+auto=@combat(attacking) source(this):moveTo(exile) target(creature|myGraveyard)
+auto=@movedTo(this|mygraveyard) from(Battlefield):moveTo(myBattlefield) all(creature|myExile)
+text=Whenever Underworld Sentinel attacks, exile target creature card from your graveyard. -- When Underworld Sentinel dies, put all cards exiled with it onto the battlefield.
+mana={3}{B}{B}
+type=Creature
+subtype=Skeleton Soldier
+power=4
+toughness=5
+[/card]
+[card]
+name=Venomous Hierophant
+abilities=deathtouch
+auto=deplete:3 controller
+text=Deathtouch -- When Venomous Hierophant enters the battlefield, put the top three cards of your library into your graveyard.
+mana={3}{B}
+type=Creature
+subtype=Gorgon Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Woe Strider
+auto=token(Goat,Woe)
+auto={S(other creature|myBattlefield}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+autograveyard=name(Escape-{3}{B}{B},exile four) {3}{B}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,2)
+text=When Woe Strider enters the battlefield, create a 0/1 white Goat creature token. -- Sacrifice another creature: Scry 1. -- Escape—{3}{B}{B}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Woe Strider escapes with two +1/+1 counters on it.
+mana={2}{B}
+type=Creature
+subtype=Horror
+power=3
+toughness=2
+[/card]
+[card]
+name=Goat,Woe
+type=Creature
+subtype=Goat
+power=0
+toughness=1
+color=white
+[/card]
+[card]
+name=The Akroan War
+auto=aslongas(The Akroan War|mybattlefield) shackle target(creature)
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) all(creature|opponentbattlefield) mustattack uynt
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(creature[tapped]) dynamicability<!mytgt powerstrike itself!> && sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Gain control of target creature for as long as The Akroan War remains on the battlefield. -- II — Until your next turn, creatures your opponents control attack each combat if able. -- III — Each tapped creature deals damage to itself equal to its power.
+mana={3}{R}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Anax, Hardened in the Forge
+auto=type:manaR:mybattlefield/3 cdaactive
+auto=@movedTo(this|mygraveyard) from(Battlefield):token(Satyr,har)
+auto=@movedTo(other creature[-token]|mygraveyard) from(Battlefield):token(Satyr,hardened)
+auto=@movedTo(other creature[-token,power>=4]|mygraveyard) from(Battlefield):token(Satyr,hardened)*2
+text=Anax’s power is equal to your devotion to red. (Each {R} in the mana costs of permanents you control counts toward your devotion to red.) -- Whenever Anax or another nontoken creature you control dies, create a 1/1 red Satyr creature token with “This creature can’t block.” If the creature had power 4 or greater, create two of those tokens instead.
+mana={1}{R}{R}
+type=Legendary Enchantment Creature
+subtype=Demigod
+power=*
+toughness=3
+[/card]
+[card]
+name=Satyr,har
+abilities=cantblock
+type=Creature
+subtype=Satyr
+power=1
+toughness=1
+color=red
+[/card]
+[card]
+name=Arena Trickster
+auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:counter(1/1,1) all(this)
+text=Whenever you cast your first spell during each opponent’s turn, put a +1/+1 counter on Arena Trickster.
+mana={3}{R}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Aspect of Manticore
+abilities=flash
+target=creature
+auto=2/0
+auto=teach(Creature) first strike ueot
+text=Flash -- Enchant creature -- When Aspect of Manticore enters the battlefield, enchanted creature gains first strike until end of turn. -- Enchanted creature gets +2/+0.
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Blood Aspirant
+auto=@sacrificed(*|mybattlefield):counter(1/1,1) all(this)
+auto={1}{R}{S(creature,enchantment|myBattlefield}:damage:1 && cantblock target(creature) oneshot ueot
+text=Whenever you sacrifice a permanent, put a +1/+1 counter on Blood Aspirant. -- {1}{R}, {T}, Sacrifice a creature or enchantment: Blood Aspirant deals 1 damage to target creature. That creature can’t block this turn.
+mana={1}{R}
+type=Creature
+subtype=Satyr Berserker
+power=1
+toughness=1
+[/card]
+[card]
+name=Careless Celebrant
+auto=@movedTo(this|mygraveyard) from(Battlefield):damage:2 target(creature,planeswalker|opponentBattlefield)
+text=When Careless Celebrant dies, it deals 2 damage to target creature or planeswalker an opponent controls.
+mana={1}{R}
+type=Creature
+subtype=Satyr Shaman
+power=2
+toughness=1
+[/card]
+[card]
+name=Dreamshaper Shaman
+aicode=activate transforms((,newability[if type(*[-land,zpos=1]|mylibrary)~morethan~0 then target(*[-land,zpos=1]|mylibrary) moveto(ownerbattlefield)) ueot
+auto=@each my endofturn:may pay({2}{R}{S(*[-land]|myBattlefield}):Reveal:1 revealzone(mylibrary) revealuntil(*[-land]|mylibrary) moveto(mybattlefield) optiononeend optiontwo choice name(Put on Bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+text=At the beginning of your end step, you may pay {2}{R} and sacrifice a nonland permanent. If you do, reveal cards from the top of your library until you reveal a nonland permanent card. Put that card onto the battlefield and the rest on the bottom of your library in a random order.
+mana={5}{R}
+type=Enchantment Creature
+subtype=Minotaur Shaman
+power=5
+toughness=4
+[/card]
+[card]
+name=Dreamstalker Manticore
+auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:damage:1 target(creature,planeswalker|opponentBattlefield)
+text=Whenever you cast your first spell during each opponent’s turn, Dreamstalker Manticore deals 1 damage to any target.
+mana={2}{R}
+type=Creature
+subtype=Manticore
+power=4
+toughness=2
+[/card]
+[card]
+name=Escape Velocity
+target=creature
+auto=haste
+auto=1/0
+autograveyard=name(Escape-{1}{R},exile two) {1}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Enchant creature -- Enchanted creature gets +1/+0 and has haste. -- Escape—{1}{R}, Exile two other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Fateful End
+target=creature,player,plansewalker
+auto=damage:3
+auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+text=Fateful End deals 3 damage to any target. Scry 1.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Final Flare
+target=creature
+auto=damage:5
+text=As an additional cost to cast this spell, sacrifice a creature or enchantment. -- Final Flare deals 5 damage to target creature.
+mana={2}{R}{S(creature,enchantment|mybattlefield)}
+type=Instant
+[/card]
+[card]
+name=Flummoxed Cyclops
+abilities=reach
+auto=@each my blockers restriction{type(creature[attacking]|opponentBattlefield)~morethan~1}:cantblock ueot
+text=Reach -- Whenever two or more creatures your opponents control attack, Flummoxed Cyclops can’t block this combat.
+mana={3}{R}
+type=Creature
+subtype=Cyclops
+power=4
+toughness=4
+[/card]
+[card]
+name=Furious Rise
+auto=@each my endofturn aslongas(creature[power>=4]|myBattlefield):moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary) uynt
+text=At the beginning of your end step, if you control a creature with power 4 or greater, exile the top card of your library. You may play that card until you exile another card with Furious Rise.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Hero of the Games
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+text=Whenever you cast a spell that targets Hero of the Games, creatures you control get +1/+0 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=2
+[/card]
+[card]
+name=Hero of the Revel
+auto=token(Satyr,rev)
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+text=When Heroes of the Revel enters the battlefield, create a 1/1 red Satyr creature token with “This creature can’t block.” -- Whenever you cast a spell that targets Heroes of the Revel, creatures you control get +1/+0 until end of turn.
+mana={4}{R}
+type=Creature
+subtype=Satyr Soldier
+power=4
+toughness=4
+[/card]
+[card]
+name=Satyr,rev
+abilities=cantblock
+type=Creature
+subtype=Satyr
+power=1
+toughness=1
+color=red
+[/card]
+[card]
+name=Impending Doom
+target=creature
+auto=mustattack
+auto=3/3
+auto=@movedTo(mytgt|graveyard):damage:3 targetController
+text=Enchant creature -- Enchanted creature gets +3/+3 and attacks each combat if able. -- When enchanted creature dies, Impending Doom deals 3 damage to that creature’s controller.
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Incendiary Oracle
+auto={1}{R}:1/0 ueot
+auto=@damaged(creature) from(this):all(trigger[to]) exiledeath oneshot
+text={1}{R}: Incendiary Oracle gets +1/+0 until end of turn. -- If a creature dealt damage by Incendiary Oracle this turn would die, exile it instead.
+mana={1}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Iroas's Blessing
+target=creature|myBattlefield
+auto=damage:4 target(creature,planeswalker|opponentBattlefield)
+auto=1/1
+text=Enchant creature you control -- When Iroas’s Blessing enters the battlefield, it deals 4 damage to target creature or planeswalker an opponent controls. -- Enchanted creature gets +1/+1.
+mana={3}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Irreverent Revelers
+auto=choice destroy target(artifact)
+auto=choice haste ueot
+text=When Irreverent Revelers enters the battlefield, choose one — • Destroy target artifact. • Irreverent Revelers gains haste until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Satyr
+power=2
+toughness=2
+[/card]
+[card]
+name=Nyxborn Brute
+mana={3}{R}{R}
+type=Enchantment Creature
+subtype=Cyclops
+power=7
+toughness=3
+[/card]
+[card]
+name=Omen of the Forge
+abilities=flash
+auto=damage:2 target(creature,player,planeswalker)
+auto={2}{R}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flash -- When Omen of the Forge enters the battlefield, it deals 2 damage to any target. -- {2}{R}, Sacrifice Omen of the Forge: Scry 2.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
+name=Oread of Mountain's Blaze
+auto={2}{R}{D(*|myhand)}:draw:1 controller
+text={2}{R}, Discard a card: Draw a card.
+mana={1}{R}
+type=Enchantment Creature
+subtype=Nymph
+power=1
+toughness=3
+[/card]
+[card]
+name=Ox of Agonas
+auto=reject all(*|myhand) && draw:3 controller
+autograveyard=name(Escape-{R}{R},exile eight) {R}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,1)
+text=When Ox of Agonas enters the battlefield, discard your hand, then draw three cards. -- Escape—{R}{R}, Exile eight other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Ox of Agonas escapes with a +1/+1 counter on it.
+mana={3}{R}{R}
+type=Creature
+subtype=Ox
+power=4
+toughness=2
+[/card]
+[card]
+name=Phoenix of Ash
+abilities=flying,haste
+auto={2}{R}:2/0 ueot
+autograveyard=name(Escape-{2}{R}{R},exile three) {2}{R}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,1)
+text=Flying, haste -- {2}{R}: Phoenix of Ash gets +2/+0 until end of turn. -- Escape—{2}{R}{R}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Phoenix of Ash escapes with a +1/+1 counter on it.
+mana={1}{R}{R}
+type=Creature
+subtype=Phoenix
+power=2
+toughness=2
+[/card]
+[card]
+name=Purphoros, Bronze-Blooded
+abilities=indestructible
+auto=this(variable{type:manar}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{type:manar}>4) transforms((Legendary Enchantment Creature))
+auto=lord(creature|myBattlefield) haste
+auto={2}{R}:may moveto(mybattlefield) target(creature,artifact|myhand) && transforms((,treason)) oneshot
+text=Indestructible -- As long as your devotion to red is less than five, Purphoros isn’t a creature. -- Other creatures you control have haste. -- {2}{R}: You may put a red creature card or an artifact creature card from your hand onto the battlefield. Sacrifice it at the beginning of the next end step.
+mana={4}{R}
+type=Legendary Enchantment Creature
+subtype=God
+power=7
+toughness=6
+[/card]
+[card]
+name=Purphoros's Intervention
+auto=choice name(Create elemental token) token(Elemental,Creature Elemental,X/1,red,trample,haste,unearth)
+auto=choice name(Deals twice X damage) damage:X target(creature,planeswalker) && damage:X target(creature,planeswalker)
+text=Choose one — • Create an X/1 red Elemental creature token with trample and haste. Sacrifice it at the beginning of the next end step. • Purphoros’s Intervention deals twice X damage to target creature or planeswalker.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Satyr's Cunning
+auto=token(Satyr,cun)
+autograveyard=name(Escape-{2}{R},exile two) {2}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+text=Create a 1/1 red Satyr creature token with “This creature can’t block.” -- Escape—{2}{R}, Exile two other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Satyr,cun
+abilities=cantblock
+type=Creature
+subtype=Satyr
+power=1
+toughness=1
+color=red
+[/card]
+[card]
+name=Skophos Maze-Warden
+auto={1}:1/-1 ueot
+auto=@targeted(other creature|Battlefield) from(land|myBattlefield):all(trigger) transforms((,newability[dynamicability<!powerstrike eachother!> target(creature|opponentbattlefield)]))
+text={1}: Skophos Maze-Warden gets +1/-1 until end of turn. -- Whenever another creature becomes the target of an ability of a land you control named Labyrinth of Skophos, you may have Skophos Maze-Warden fight that creature. (Each deals damage equal to its power to the other.)
+mana={3}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=3
+toughness=4
+[/card]
+[card]
+name=Skophos Warleader
+auto={R}{S(other creature,enchantment|myBattlefield}:1/0 && menace ueot
+text={R}, Sacrifice another creature or enchantment: Skophos Warleader gets +1/+0 and gains menace until end of turn. (It can’t be blocked except by two or more creatures.)
+mana={4}{R}
+type=Creature
+subtype=Minotaur Warrior
+power=4
+toughness=5
+[/card]
+[card]
+name=Stampede Rider
+abilities=trample
+auto=@each combatbegins:if type(creature[power>=4]|mybattlefield)~morethan~0 then 1/1 ueot
+text=Trample -- At the beginning of each combat, if you control a creature with power 4 or greater, Stampede Rider gets +1/+1 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Satyr
+power=2
+toughness=3
+[/card]
+[card]
+name=Storm Herald
+abilities=haste
+auto=moveto(myBattlefield) target(enchantment[aura]|myGraveyard) with(@each my endofturn: transforms((,treason,exiledeath)) forever)
+text=Haste -- When Storm Herald enters the battlefield, return any number of Aura cards from your graveyard to the battlefield attached to creatures you control. Exile those Auras at the beginning of your next end step. If those Auras would leave the battlefield, exile them instead of putting them anywhere else.
+mana={2}{R}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=2
+[/card]
+[card]
+name=Storm's Wrath
+auto=damage:4 all(creature,planeswalker)
+text=Storm’s Wrath deals 4 damage to each creature and each planeswalker.
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Terror of Mount Velus
+abilities=flying,double strike
+auto=lord(creatures|myBattlefield) double strike ueot oneshot
+text=Flying, double strike -- When Terror of Mount Velus enters the battlefield, creatures you control gain double strike until end of turn.
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=The Triumph of Anax
+auto=counter(0/0,1,Lore)
+auto=foreach(counter{0/0,1,Lore}) 1/0 && trample target(creature)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) foreach(counter{0/0,1,Lore}) 1/0 && trample target(creature)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) foreach(counter{0/0,1,Lore}) 1/0 && trample target(creature)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.4.Lore}) target(creature|mybattlefield) transforms((,newability[target(creature|opponentBattlefield) dynamicability<!powerstrike eachother!>])) && sacrifice(this) ueot
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.) -- I, II, III — Until end of turn, target creature gains trample and gets +X/+0, where X is the number of lore counters on The Triumph of Anax. -- IV — Target creature you control fights up to one target creature you don’t control. (Each deals damage equal to its power to the other.)
+mana={2}{R}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Underworld Breach
+auto=lord(*[-land]|myGraveyard) newability[{storedmanacost}{S(other *|myGraveyard)}{S(other *|myGraveyard)}{S(other *|myGraveyard)}:castcard(normal)]
+auto=@each my endofturn:sacrifice(this)
+text=Each nonland card in your graveyard has escape. The escape cost is equal to the card’s mana cost plus exile three other cards from your graveyard. (You may cast cards from your graveyard for their escape cost.) -- At the beginning of the end step, sacrifice Underworld Breach.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
+name=Underworld Fires
+auto=all(creature[-protection from red],planeswalker) exiledeath
+auto=damage:1 all(creature,planeswalker)
+text=Underworld Fires deals 1 damage to each creature and each planeswalker. If a permanent dealt damage this way would die this turn, exile it instead.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Underworld Rage-Hound
+abilities=mustattack
+autograveyard=name(Escape-{3}{R},exile three) {3}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,2)
+text=Underworld Rage-Hound attacks each combat if able. -- Escape—{3}{R}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Underworld Rage-Hound escapes with a +1/+1 counter on it.
+mana={1}{R}
+type=Creature
+subtype=Elemental Hound
+power=3
+toughness=1
+[/card]
+[card]
+name=Arasta of the Endless Web
+abilities=reach
+auto=@moveto(*[sorcery,instant]|opponentStack):token(Spider,Ara)
+text=Reach -- Whenever an opponent casts an instant or sorcery spell, create a 1/2 green Spider creature token with reach.
+mana={2}{G}{G}
+type=Legendary Enchantment Creature
+subtype=Spider
+power=3
+toughness=5
+[/card]
+[card]
+name=Spider,Ara
+type=Creature
+subtype=Spider
+power=1
+toughness=2
+color=green
+[/card]
+[card]
+name=Chainweb Aracnir
+abilities=reach
+auto=target(creature[flying]|opponentBattlefield) name(Deals damage to a creature) dynamicability<!powerstrike!>
+autograveyard=name(Escape-{3}{G}{G},exile four) {3}{G}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,3)
+text=Reach -- When Chainweb Aracnir enters the battlefield, it deals damage equal to its power to target creature with flying an opponent controls. -- Escape—{3}{G}{G}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Chainweb Aracnir escapes with three +1/+1 counters on it.
+mana={G}
+type=Creature
+subtype=Spider
+power=1
+toughness=2
+[/card]
+[card]
+name=Destiny Spinner
+auto=lord(*[creature;enchantment]|mystack) nofizzle
+auto={3}{G}:target(land|mybattlefield) transforms((Elemental Creature,setpower=type:enchantment:mybattlefield,settoughness=type:enchantment:mybattlefield,trample)) ueot
+text=Creature and enchantment spells you control can’t be countered. -- {3}{G}: Target land you control becomes an X/X Elemental creature with trample and haste until end of turn, where X is the number of enchantments you control. It’s still a land.
+mana={1}{G}
+type=Enchantment Creature
+subtype=Human
+power=2
+toughness=3
+[/card]
+[card]
+name=Dryad of the Ilysian Grove
+auto=maxPlay(land)+1
+auto=lord(land|myBattlefield) transforms((plains forest mountain swamp island))
+text=You may play an additional land on each of your turns. -- Lands you control are every basic land type in addition to their other types.
+mana={2}{G}
+type=Enchantment Creature
+subtype=Nymph
+power=2
+toughness=4
+[/card]
+[card]
+name=The First Iroan Games
+auto=token(Human,The)
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) counter(1/1,3) target(creature|myBattlefield)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) if type (creature[power>=4]|myBattlefield) then drawn:2 controller
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.4.Lore}) token(Gold) && sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.) -- I — Create a 1/1 white Human Soldier token. -- II — Put three +1/+1 counters on target creature you control. -- III — If you control a creature with power 4 or greater, draw two cards. -- IV — Create a Gold token.
+mana={2}{G}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
+name=Human,The
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+color=white
+[/card]
+[card]
+name=Hydra's Growth
+target=creature
+auto=counter(1/1,1)
+auto=@each my upkeep:thisforeach(counter{1/1.1}) counter(1/1,1)
+text=Enchant creature -- When Hydra’s Growth enters the battlefield, put a +1/+1 counter on enchanted creature. -- At the beginning of your upkeep, double the number of +1/+1 counters on enchanted creature.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Hyrax Tower Scout
+auto=untap target(creature)
+text=When Hyrax Tower Scout enters the battlefield, untap target creature.
+mana={2}{G}
+type=Creature
+subtype=Human Scout
+power=3
+toughness=3
+[/card]
+[card]
+name=Feed the Clan
+auto=if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{G}{G} else Add{G}
+auto=if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{W}{W} else Add{W}
+auto=if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{U}{U} else Add{U}
+auto=if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{B}{B} else Add{B}
+auto=if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{R}{R} else Add{R}
+text={T}: Add one mana of any color. If you control a creature with power 4 or greater, add two mana of any one color instead.
+mana={1}{G}
+type=Creature
+subtype=Plant
+power=1
+toughness=1
+[/card]
+[card]
+name=Inspire Awe
+auto=preventAllcombatDamage(-creature[aura>=1],-Enchantment Creature) ueot
+auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Prevent all combat damage that would be dealt this turn except by enchanted creatures and enchantment creatures. Scry 2.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
+name=Ironscale Hydra
+auto=@combatdamagefoeof(this) from(creature):phantom && counter(1/1,1)
+text=If a creature would deal combat damage to Ironscale Hydra, prevent that damage and put a +1/+1 counter on Ironscale Hydra.
+mana={3}{G}{G}
+type=Creature
+subtype=Hydra
+power=5
+toughness=5
+[/card]
+[card]
+name=Klothys's Design
+auto=all(creature|myBattlefield) type:manaG:mybattlefield/type:manaG:mybattlefield ueot
+text=Creatures you control get +X/+X until end of turn, where X is your devotion to green. (Each {G} in the mana costs of permanents you control counts toward your devotion to green.)
+mana={5}{G}
+type=Sorcery
+[/card]
+[card]
+name=Loathsome Chimera
+autograveyard=name(Escape-{4}{G},three) {4}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,1)
+text=Escape—{4}{G}, exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Loathsome Chimera escapes with a +1/+1 counter on it.
+mana={2}{G}
+type=Creature
+subtype=Chimera
+power=4
+toughness=1
+[/card]
+[card]
+name=Mantle of the Wolf
+target=creature
+auto=4/4
+auto=@movedto(this|graveyard):token(Wolf,Man)*2
+text=Enchant creature -- Enchanted creature gets +4/+4. -- When Mantle of the Wolf is put into a graveyard from the battlefield, create two 2/2 green Wolf creature tokens.
+mana={3}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Wolf,Man
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+color=green
+[/card]
+[card]
+name=Moss Viper
+abilities=deathtouch
+text=Deathtouch
+mana={G}
+type=Creature
+subtype=Snake
+power=1
+toughness=1
+[/card]
+[card]
+name=Mystic Repeal
+target=Enchantment
+auto=bottomoflibrary
+text=Put target enchantment on the bottom of its owner’s library
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Nessian Boar
+abilities=lure
+auto=@combat(blocking,blocked) source(this) from(creature):draw:1 opponent
+text=All creatures able to block Nessian Boar do so. -- Whenever Nessian Boar becomes blocked by a creature, that creature’s controller draws a card.
+mana={3}{G}{G}
+type=Creature
+subtype=Boar
+power=10
+toughness=6
+[/card]
+[card]
+name=Nessian Hornbeetle
+auto=@each my combatbegins restriction{type(creature[power>=4]|mybattlefield)~morethan~0}:counter(1/1,1)
+text=At the beginning of combat on your turn, if you control another creature with power 4 or greater, put a +1/+1 counter on Nessian Hornbeetle.
+mana={1}{G}
+type=Creature
+subtype=Insect
+power=2
+toughness=2
+[/card]
+[card]
+name=Nessian Wanderer
+aicode=activate target(land[zpos<=3]|mylibrary) moveto(myhand)
+auto=@movedTo(enchantment|myBattlefield):name(look three) reveal:3 optionone name(Get a land) target(<upto:1>land|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend revealend
+text=Constellation — Whenever an enchantment enters the battlefield under your control, look at the top three cards of your library. You may reveal a land card from among them and put that card into your hand. Put the rest on the bottom of your library in a random order.
+mana={1}{G}
+type=Creature
+subtype=Satyr Scout
+power=1
+toughness=3
+[/card]
+[card]
+name=Nexus Wardens
+abilities=reach
+auto=@movedTo(enchantment|myBattlefield):life:2 controller
+text=Reach -- Constellation — Whenever an enchantment enters the battlefield under your control, you gain 2 life.
+mana={2}{G}
+type=Creature
+subtype=Satyr Archer
+power=1
+toughness=4
+[/card]
+[card]
+name=Nylea, Keen-Eyed
+abilities=indestructible
+aicode=activate transforms((,newability[if type(creature[zpos=1]|mylibrary)~morethan~0 then target(creature[zpos=1]|mylibrary) moveto(ownerbattlefield) else target(*[zpos=1]|mylibrary) moveto(mygraveyard)])) ueot
+auto=this(variable{type:manag}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{type:manag}>4) transforms((Legendary Enchantment Creature))
+auto=lord(creature|mycastingzone) altercost( colorless,-1)
+auto={2}{G}:reveal:1 optionone target(creature|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put in grave) target(<1>*|reveal) moveto(mygraveyard) optiontwoend revealend
+text=Indestructible -- As long as your devotion to green is less than five, Nylea isn’t a creature. -- Creature spells you cast cost {1} less to cast. -- {2}{G}: Reveal the top card of your library. If it’s a creature card, put it into your hand. Otherwise, you may put it into your graveyard.
+mana={3}{G}
+type=Legendary Enchantment Creature
+subtype=God
+power=5
+toughness=6
+[/card]
+[card]
+name=Nylea's Forerunner
+abilities=Trample
+auto=lord(other creature|myBattlefield) trample
+text=Trample -- Other creatures you control have trample.
+mana={4}{G}
+type=Enchantment Creature
+subtype=Beast
+power=5
+toughness=3
+[/card]
+[card]
+name=Nylea's Huntmaster
+auto=target (creature|myBattlefield) type:manaG:myBattlefield/type:manaG:myBattlefield ueot
+text=When Nylea’s Huntmaster enters the battlefield, target creature you control gets +X/+0 until end of turn, where X is your devotion to green. (Each {G} in the mana costs of permanents you control counts towards your devotion to green.)
+mana={3}{G}
+type=Creature
+subtype=Centaur Shaman
+power=4
+toughness=3
+[/card]
+[card]
+name=Nylea's Intervention
+abilities=hiddenface
+aicode=activate transforms((,newability[moveto(myhand) all(*[zpos=X]|mylibrary) && shuffle ueot
+auto=Choice name(Look X cards) reveal:X optionone name(Get a card) target(<1>*[land]|reveal) moveto(myhand) optiononeend revealend && shuffle
+auto=Choice name(Deals X damage) damage:X all(creature[flying]) && damage:X all(creature[flying])
+text=Choose one — • Search your library for up to X land cards, reveal them, put them into your hand, then shuffle your library. • Nylea’s Intervention deals twice X damage to each creature with flying.
+mana={X}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Nyx Herald
+auto=@each my combatbegins restriction{type(creature[auras>=1],enchantment creature|mybattlefield)~morethan~0}:1/1 target(creature|myBattlefield) && trample ueot
+text=At the beginning of combat on your turn, target enchanted creature or enchantment creature you control gets +1/+1 and gains trample until end of turn.
+mana={2}{G}
+type=Enchantment Creature
+subtype=Centaur Shaman
+power=2
+toughness=3
+[/card]
+[card]
+name=Nyxbloom Ancient
+abilities=trample
+auto=@tappedformana (land[-basic]|myBattlefield):add{C}{C}{C}
+auto=@tappedformana (land[forest]|myBattlefield):add{G}{G}{G}
+auto=@tappedformana (land[island]|myBattlefield):add{U}{U}{U}
+auto=@tappedformana (land[mountain]|myBattlefield):add{R}{R}{R}
+auto=@tappedformana (land[plains]|myBattlefield):add{W}{W}{W}
+auto=@tappedformana (land[swamp]|myBattlefield):add{B}{B}{B}
+text=Trample -- If you tap a permanent for mana, it produces three times as much of that mana instead.
+mana={4}{G}{G}{G}
+type=Enchantment Creature
+subtype=Elemental
+power=5
+toughness=5
+[/card]
+[card]
+name=Nyxborn Colossus
+mana={3}{G}{G}{G}
+type=Enchantment Creature
+subtype=Giant
+power=6
+toughness=7
+[/card]
+[card]
+name=Omen of the Hunt
+abilities=flash
+aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(land[basic]|myLibrary)
+auto=name(search a land) reveal:plibrarycount optionone name(choose card) target(land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
+auto={2}{G}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flash -- When Omen of the Hunt enters the battlefield, you may search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- {2}{G}, Sacrifice Omen of the Hunt: Scry 2.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Pheres-Band Brawler
+auto=name(Fights) transforms((,newability[dynamicability<!powerstrike eachother!> target(creature|opponentbattlefield)]))
+text=When Pheres-Band Brawler enters the battlefield, it fights up to one target creature you don’t control. (Each deals damage equal to its power to the other.)
+mana={4}{G}{G}
+type=Creature
+subtype=Centaur Warrior
+power=4
+toughness=4
+[/card]
+[card]
+name=Relentless Pursuit
+abilities=hiddenface
+aicode=activate target(*[zpos<=4]|mylibrary) moveto(ownerhand)
+auto=name(look) reveal:4 optionone name(Get a card) target(<1>*[creature,land]|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+text=Reveal the top four cards of your library. You may put a creature card and/or land card from among them into your hand. Put the rest into your graveyard.
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+name=Renata, Called to the Hunt
+auto=type:manaG:mybattlefield/3 cdaactive
+auto=@movedTo(other creature|mybattlefield):all(trigger[to]) counter(1/1.1)
+text=Renata’s power is equal to your devotion to green. (Each {G} in the mana costs of permanents you control counts towards your devotion to green.) -- Each other creature you control enters the battlefield with an additional +1/+1 counter on it.
+mana={2}{G}{G}
+type=Legendary Enchantment Creature
+subtype=Demigod
+power=*
+toughness=3
+[/card]
+[card]
+name=Setessan Champion
+auto=@movedTo(enchantment|myBattlefield):all(this) counter(1/1,1) && draw:1 controller
+text=Constellation — Whenever an enchantment enters the battlefield under your control, put a +1/+1 counter on Setessan Champion and draw a card.
+mana={2}{G}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=3
+[/card]
+[card]
+name=Setessan Petitioner
+auto=life:type:manaG controller
+text=When Setessan Petitioner enters the battlefield, you gain life equal to your devotion to green. (Each {G} in the mana costs of permanents you control counts toward your devotion to green.)
+mana={1}{G}{G}
+type=Creature
+subtype=Human Druid
+power=2
+toughness=2
+[/card]
+[card]
+name=Setessan Skirmisher
+auto=@movedTo(enchantment|myBattlefield):1/1 ueot
+text=Constellation — Whenever an enchantment enters the battlefield under your control, Setessan Skirmisher gets +1/+1 until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=1
+[/card]
+[card]
+name=Setessan Training
+target=creature|myBattlefield
+auto=draw:1 controller
+auto=trample
+auto=1/0
+text=Enchant creature you control -- When Setessan Training enters the battlefield, draw a card. -- Enchanted creature gets +1/+0 and has trample.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Skola Grovedancer
+auto=@movedTo(*[land]|myGraveyard):life:1 controller
+auto={2}{G}:deplete:1 controller
+text=Whenever a land card is put into your graveyard from anywhere, you gain 1 life. -- {2}{G}: Put the top card of your library into your graveyard.
+mana={1}{G}
+type=Enchantment Creature
+subtype=Satyr Druid
+power=2
+toughness=2
+[/card]
+[card]
+name=Treeshaker Chimera
+abilities=lure
+auto=@movedTo(this|mygraveyard) from(Battlefield):draw:3 controller
+text=All creatures able to block Treeshaker Chimera do so. -- When Treeshaker Chimera dies, draw three cards.
+mana={5}{G}{G}
+type=Creature
+subtype=Chimera
+power=8
+toughness=5
+[/card]
+[card]
+name=Voracious Typhon
+autograveyard=name(Escape-{5}{G}{G},exile four) {5}{G}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,3)
+text=Escape—{5}{G}{G}, Exile four other cards from your graveyard. (You may cast this spell from your graveyard for its escape cost.) -- Voracious Typhon escapes with three +1/+1 counters on it.
+mana={2}{G}{G}
+type=Creature
+subtype=Snake Beast
+power=4
+toughness=4
+[/card]
+[card]
+name=Warbriar Blessing
+target=creature|myBattlefield
+auto=name(fight) transforms((,newability[dynamicability<!powerstrike eachother!> target(creature|opponentbattlefield)]))
+auto=0/2
+text=Enchant creature you control -- When Warbriar Blessing enters the battlefield, enchanted creature fights up to one target creature you don’t control. (Each deals damage equal to its power to the other.) -- Enchanted creature gets +0/+2.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Wolfwillow Haven
+target=land
+auto=teach(land) transforms((,newability[@tappedformana(mytgt):produceextra:{G}]))
+auto={4}{G}{S}:token(Wolf,Wol) restriction{during my turn}
+text=Enchant land -- Whenever enchanted land is tapped for mana, its controller adds an additional {G}. -- {4}{G}, Sacrifice Wolfwillow Haven: Create a 2/2 green Wolf creature token. Activate this ability only during your turn.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Wolf,Wol
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+color=green
+[/card]
+[card]
+name=Acolyte of Affliction
+auto=deplete:2 controller && may moveTo(myHand) target(*[-sorcery,-instant,-land]|myGraveyard) oneshot
+text=When Acolyte of Affliction enters the battlefield, put the top two cards of your library into your graveyard, then you may return a permanent card from your graveyard to your hand.
+mana={2}{B}{G}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=3
+[/card]
+[card]
+name=Ashiok's Forerunner
+auto=may moveto(myHand) target(Ashiok, Sculptor of Fears|mylibrary,mygraveyard) && shuffle
+text=Flash -- When Ashiok's Forerunner enters the battlefield, you may search your library and/or graveyard for a card named Ashiok, Sculptor of Fears, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={3}{U}{B}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Ashiok, Nightmare Muse
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:name(Create a Blue black nightmare) token(Nightmare,Nig)
+auto={C(0/0,-3,Loyalty)}:name (Return target nonland and exiles) moveTo(ownerhand) target(*[-land]) && moveTo(exile) NotATarget(*|opponenthand)
+auto={C(0/0,-7,Loyalty)}:name (Cast up to three cards from exile) castcard(normal) target(*|opponentExile) && castcard(normal) target(*|opponentExile) && castcard(normal) target(*|opponentExile)
+text=+1: Create a 2/3 blue and black Nightmare creature token with "Whenever this creature attacks or blocks, each opponent exiles the top two cards of their library." -- -3: Return target nonland permanent to its owner's hand, then that player exiles a card from their hand. -- -7: You may cast up to three face-up cards your opponents own from exile without paying their mana costs.
+mana={3}{U}{B}
+type=Legendary Planeswalker
+subtype=Ashiok
+[/card]
+[card]
+name=Nightmare,Nig
+auto=@combat(attacking) source(this):ingest:2 opponent
+auto=@combat(blocking) source(this):ingest:2 opponent
+text=Whenever this creature attacks or blocks, each opponent exiles the top two cards of their library.
+type=Creature
+subtype=Nightmare
+color=blue,black
+power=2
+toughness=3
+[/card]
+[card]
+name=Ashiok, Sculptor of Fears
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,2,Loyalty)}:name(Draw a card and put two cards...) draw:1 controller && deplete:2 opponent deplete:2 controller
+auto={C(0/0,-5,Loyalty)}:name(Return target creature from graveyars) moveTo(myBattlefield) target(creature|Graveyard)
+auto={C(0/0,-11,Loyalty)}:name(Gain control of all creatures..) moveTo(myBattlefield) all(creature|opponentBattlefield)
+text=+2: Draw a card. Each player puts the top two cards of their library into their graveyard. -- -5: Put target creature card from a graveyard onto the battlefield under your control. -- -11: Gain control of all creatures target opponent controls.
+mana={4}{U}{B}
+type=Legendary Planeswalker
+subtype=Ashiok
+[/card]
+[card]
+name=Athreos, Shroud-Veiled
+abilities=indestructible
+auto=this(variable{orzhov}<7) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{orzhov}>6) transforms((Legendary Enchantment Creature))
+auto=@each my endofturn:counter(0/0,1,Coin) target(other creature)
+auto=@moveTo(creature[counter{0/0,1,Coin}]|Graveyard):all(trigger[to]) moveTo(ownerBattlefield) oneshot
+auto=@moveTo(creature[counter{0/0,1,Coin}]|Exile):all(trigger[to]) moveTo(myBattlefield) oneshot
+text=Indestructible -- As long as your devotion to white and black is less than seven, Athreos isn't a creature. -- At the beginning of your end step, put a coin counter on another target creature. -- Whenever a creature with a coin counter on it dies or is put into exile, return that card to the battlefield under your control.
+mana={4}{W}{B}
+type=Legendary Enchantment Creature
+subtype=God
+power=4
+toughness=7
+[/card]
+[card]
+name=Calix, Destiny's Hand
+abilities=hiddenface
+aicode=activate target(*[zpos<=4]|mylibrary) moveto(ownerhand)
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:reveal:4 optionone name(Look at the top four cards) target(*[enchantment]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,-3,Loyalty)}:name(Exile enchantment until...) aslongas(enchantment|mybattlefield) choice notatarget(creature,enchantment|opponentbattlefield) (blink)forsrc oneshot
+auto={C(0/0,-7,Loyalty)}:name(Retunr all enchantments) moveTo(myBattlefield) all(enchantment|myGraveyard)
+text=+1: Look at the top four cards of your library. You may reveal an enchantment card from among them and put that card into your hand. Put the rest on the bottom of your library in a random order. -- -3: Exile target creature or enchantment you don't control until target enchantment you control leaves the battlefield. -- -7: Return all enchantment cards from your graveyard to the battlefield.
+mana={2}{G}{W}
+type=Legendary Planeswalker
+subtype=Calix
+[/card]
+[card]
+name=Dalakos, Crafter of Wonders
+auto={T}:Add{artifact:C}{artifact:C}
+auto=lord(creature[geared]|mybattlefield) flying
+auto=lord(creature[geared]|mybattlefield) haste
+text={T}: Add {C}{C}. Spend this mana only to cast artifact spells or activate abilities of artifacts. -- Equipped creatures you control have flying and haste.
+mana={1}{U}{R}
+type=Legendary Creature
+subtype=Merfolk Artificer
+power=2
+toughness=4
+[/card]
+[card]
+name=Devourer of Memory
+auto=@movedTo(*|myGraveyard):1/1 && unblockable ueot
+auto={1}{U}{B}:deplete:1 controller
+text=Whenever one or more cards are put into your graveyard from your library, Devourer of Memory gets +1/+1 until end of turn and can't be blocked this turn. -- 1 -- {U} -- {B} -- : Put the top card of your library into your graveyard. --
+mana={U}{B}
+type=Creature
+subtype=Nightmare
+power=2
+toughness=1
+[/card]
+[card]
+name=Dream Trawler
+abilities=flying,lifelink
+auto=@drawof(player):1/0 ueot
+auto=@combat(attacking) source(this):draw:1 controller
+auto={D(*|myHand}:hexproof && tap(this) ueot
+text=Flying, lifelink -- Whenever you draw a card, Dream Trawler gets +1/+0 until end of turn. -- Whenever Dream Trawler attacks, draw a card. -- Discard a card: Dream Trawler gains hexproof until end of turn. Tap it.
+mana={2}{W}{W}{U}{U}
+type=Creature
+subtype=Sphinx
+power=3
+toughness=5
+[/card]
+[card]
+name=Enigmatic Incarnation
+aicode=activate moveTo(myBattlefield) target(creature[manacost=storedmanacostplus1plusend]|mylibrary)
+auto=@each my endofturn:may {S(enchantment|mybattlefield)}:name(search a creature) reveal:plibrarycount optionone name(choose card) target(creature[manacost=storedmanacostplus1plusend]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(activate castcard(putinplay))! afterrevealedend revealend
+text=At the beginning of your end step, you may sacrifice another enchantment. If you do, search your library for a creature card with converted mana cost equal to 1 plus the sacrificed enchantment's converted mana cost, put that card onto the battlefield, then shuffle your library.
+mana={2}{G}{U}
+type=Enchantment
+[/card]
+[card]
+name=Eutropia the Twice-Favored
+auto=@movedTo(enchantment|myBattlefield):counter(1/1,1) target(creature) && flying target(creature) ueot
+text=Constellation — Whenever an enchantment enters the battlefield under your control, put a +1/+1 counter on target creature. That creature gains flying until end of turn.
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Gallia of the Endless Dance
+abilities=haste
+auto=lord(creature[Satyr]|myBattlefield) 1/1
+auto=lord(creature[Satyr]|myBattlefield) haste
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~2}:reject controller && draw:2 controller
+text=Haste -- Other Satyrs you control get +1/+1 and have haste. -- Whenever you attack with three or more creatures, you may discard a card at random. If you do, draw two cards.
+mana={R}{G}
+type=Legendary Creature
+subtype=Satyr
+power=2
+toughness=2
+[/card]
+[card]
+name=Hero of the Nyxborn
+auto=token(Human,Her)
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+text=When Hero of the Nyxborn enters the battlefield, create a 1/1 white Human Soldier creature token. -- Whenever you cast a spell that targets Hero of the Nyxborn, creatures you control get +1/+0 until end of turn.
+mana={1}{R}{W}
+type=Enchantment Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Human,Her
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+color=white
+[/card]
+[card]
+name=Klothys, God of Destiny
+abilities=indestructible
+auto=this(variable{gruul}<7) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{gruul}>6) transforms((Legendary Enchantment Creature))
+auto=@each my combatbegins:moveTo(exile) target(*|myGraveyard):life:2 controller && damage:2 target(opponent)
+auto=@each my combatbegins:moveTo(exile) target(*[Land]|myGraveyard):Add{R} else Add{G}
+text=Indestructible -- As long as your devotion to red and green is less than seven, Klothys isn't a creature. -- At the beginning of your precombat main phase, exile target card from a graveyard. If it was a land card, add {R} or {G}. Otherwise, you gain 2 life and Klothys deals 2 damage to each opponent.
+mana={1}{R}{G}
+type=Legendary Enchantment Creature
+subtype=God
+power=4
+toughness=5
+[/card]
+[card]
+name=Kunoros, Hound of Athreos
+abilities=vigilance,menace,lifelink
+auto=lord(*[recent;creature]|Graveyard) transforms((,newability[tap(noevent)]))
+auto=maxCast(*|Graveyard) 0
+text=Vigilance, menace, lifelink -- Creature cards in graveyards can't enter the battlefield. -- Players can't cast spells from graveyards.
+mana={1}{W}{B}
+type=Legendary Creature
+subtype=Hound
+power=3
+toughness=3
+[/card]
+[card]
+name=Mischievous Chimera
+abilities=flying
+auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:damage:1 target(opponent) && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flying -- Whenever you cast your first spell during each opponent's turn, Mischievous Chimera deals 1 damage to each opponent. Scry 1.
+mana={U}{R}
+type=Enchantment Creature
+subtype=Chimera
+power=2
+toughness=2
+[/card]
+[card]
+name=Polukranos, Unchained
+abilities=hydra
+auto=counter(1/1,6)
+auto={1}{B}{G}:name(Fight) transforms((,newability[target(other creature) dynamicability<!powerstrike eachother!>])) oneshot
+autograveyard=name(Escape-{4}{B}{G},exile six) {4}{B}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+auto=@movedTo(this|mybattlefield) from(mygraveyard):counter(1/1,12)
+text=Polukranos enters the battlefield with six +1/+1 counters on it. It escapes with twelve +1/+1 counters on it instead. -- If damage would be dealt to Polukranos while it has a +1/+1 counter on it, prevent that damage and remove that many +1/+1 counters from it. -- 1 -- {B} -- {G} -- : Polukranos fights another target creature. -- Escape— 4{B}{G}, Exile six other cards from your graveyard.
+mana={2}{B}{G}
+type=Legendary Creature
+subtype=Zombie Hydra
+power=0
+toughness=0
+[/card]
+[card]
+name=Rise to Glory
+auto=choice name(Return target creature...) moveTo(myBattlefield) target(creature|myGraveyard)
+auto=choice name(Return target aura...) moveTo(myBattlefield) target(enchantment[aura]|myGraveyard)
+auto=choice name(Return target creature and aura...) moveTo(myBattlefield) target(creature|myGraveyard) && moveTo(myBattlefield) target(enchantment[aura]|myGraveyard)
+text=Choose one or both — -- • Return target creature card from your graveyard to the battlefield. -- • Return target Aura card from your graveyard to the battlefield.
+mana={3}{W}{B}
+type=Sorcery
+[/card]
+[card]
+name=Siona, Captain of the Pyleas
+abilities=hiddenface
+aicode=activate target(*[zpos<=7]|mylibrary) moveto(ownerhand)
+auto=reveal:7 optionone name(Look at the top four cards) target(enchantment[aura]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<7>*|reveal) bottomoflibrary optiontwoend revealend
+auto=@targeted(creature|myBattlefield) from(aura):token(Human,Sio)
+text=When Siona, Captain of the Pyleas enters the battlefield, look at the top seven cards of your library. You may reveal an Aura card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. -- Whenever an Aura you control becomes attached to a creature you control, create a 1/1 white Human Soldier creature token.
+mana={1}{G}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Human,Sio
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+color=white
+[/card]
+[card]
+name=Slaughter-Priest of Mogis
+auto=@sacrificed(*|mybattlefield):2/0 ueot
+auto={1}{R}{S(other creature,enchantment|myBattlefield}:first strike ueot
+text=Whenever you sacrifice a permanent, Slaughter-Priest of Mogis gets +2/+0 until end of turn. -- 2 , Sacrifice another creature or an enchantment: Slaughter-Priest of Mogis gains first strike until end of turn.
+mana={B}{R}
+type=Creature
+subtype=Minotaur Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Staggering Insight
+target=creature
+auto=1/1
+auto=lifelink
+auto=@combatdamaged(player) from(mytgt):draw:1 controller
+text=Enchant creature -- Enchanted creature gets +1/+1 and has lifelink and "Whenever this creature deals combat damage to a player, draw a card."
+mana={W}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Warden of the Chained
+abilities=trample
+auto=aslongas(creature[power>=4]|myBattlefield) cantattack <1
+auto=aslongas(creature[power>=4]|myBattlefield) cantpwattack <1
+text=Trample -- Warden of the Chained can't attack unless you control another creature with power 4 or greater.
+mana={1}{R}{G}
+type=Creature
+subtype=Minotaur Warrior
+power=4
+toughness=4
+[/card]
+[card]
+name=Bronze Sword
+auto={3}:equip
+auto=teach(creature) 2/0
+text=Equipped creature gets +2/+0. -- Equip 3 ( 3 : Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Entrancing Lyre
+abilities=shackler
+auto={X}{T}:shackle target(creature[power<=X])
+auto=@each my untap restriction{canuntap}:may untap
+text=You may choose not to untap Entrancing Lyre during your untap step. -- Variable Colorless , {T}: Tap target creature with power X or less. It doesn't untap during its controller's untap step for as long as Entrancing Lyre remains tapped.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Mirror Shield
+auto=teach(creature) 0/2
+auto=teach(creature) hexproof
+auto=@combat(blocking,blocked) source(mytgt) from(creature[deathtouch]):all(trigger[from]) destroy
+auto={2}:equip
+text=Equipped creature gets +0/+2 and has hexproof and "Whenever a creature with deathtouch blocks or becomes blocked by this creature, destroy that creature." -- Equip 2 ( 2 : Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Nyx Lotus
+auto=tap(noevent)
+auto={T}:name(Add White equal to devotion to white) thisforeach(variable{type:manaW}>0) add{W}
+auto={T}:name(Add Blue equal to devotion to blue) thisforeach(variable{type:manaU}>0) add{U}
+auto={T}:name(Add Black equal to devotion to black) thisforeach(variable{type:manaB}>0) add{B}
+auto={T}:name(Add Red equal to devotion to red) thisforeach(variable{type:manaR}>0) add{R}
+auto={T}:name(Add Green equal to devotion to green) thisforeach(variable{type:manaG}>0) add{G}
+text=Nyx Lotus enters the battlefield tapped. -- {T}: Choose a color. Add an amount of mana of that color equal to your devotion to that color. (Your devotion to a color is the number of mana symbols of that color in the mana costs of permanents you control.)
+mana={4}
+type=Legendary Artifact
+[/card]
+[card]
+name=Shadowspear
+auto={2}:equip
+auto=teach(creature) 1/1
+auto=teach(creature) trample
+auto=teach(creature) lifelink
+auto=teach(creature) transforms((,newability[{1}:lord(*|opponentBattlefield) -indestructible ueot && -hexproof ueot]))
+text=Equipped creature gets +1/+1 and has trample and lifelink. -- 1 -- : Permanents your opponents control lose hexproof and indestructible until end of turn. -- Equip 2
+mana={1}
+type=Legendary Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Soul-Guide Lantern
+auto=moveTo(exile) target(*|Graveyard)
+auto={T}{S}:moveTo(exile) all(*|opponentGraveyard)
+auto={1}{T}{S}:draw:1 controller
+text=When Soul-Guide Lantern enters the battlefield, exile target card from a graveyard. -- {T} -- , Sacrifice Soul-Guide Lantern: Exile each opponent's graveyard. -- 1 , {T}, Sacrifice Soul-Guide Lantern: Draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Thaumaturge's Familiar
+abilities=flying
+auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+text=Flying -- When Thaumaturge's Familiar enters the battlefield, scry 1.
+mana={3}
+type=Artifact Creature
+subtype=Bird
+power=1
+toughness=3
+[/card]
+[card]
+name=Thundering Chariot
+abilities=first strike,vigilance,trample
+auto={crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}
+text=First strike, trample, haste -- Crew 1 (Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={4}
+type=Artifact
+subtype=Vehicle
+power=3
+toughness=3
+[/card]
+[card]
+name=Wings of Hubris
+auto={1}:equip
+auto=teach(creature) flying
+auto=teach(creature) transforms((,newability[{S}:teach(creature) unblockable,newability[@each my endofturn:sacrifice(mytgt)]]))
+text=Equipped creature has flying. -- Sacrifice Wings of Hubris: Equipped creature can't be blocked this turn. Sacrifice it at the beginning of the next end step. -- Equip 1 ( 1 : Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card][card]
+name=Labyrinth of Skophos
+auto={T}:Add{C}
+auto={4}{T}:removefromcombat target(creature[attacking,blocking]|battlefield)
+text={T}:Add {C}. -- {4},{T}: Remove target attacking or blocking creature from combat.
+type=Land
+[/card]

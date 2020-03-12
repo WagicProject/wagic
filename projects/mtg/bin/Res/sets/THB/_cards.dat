@@ -1,0 +1,1396 @@
+[meta]
+author=Wagic Team
+name=Theros Beyond Death
+year=2020-01-24
+total=278
+[/meta]
+[card]
+primitive=Soldier
+id=-476477
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-476470
+rarity=T
+[/card]
+[card]
+primitive=Nightmare
+id=-476459
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-476456
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-476429
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-476421
+rarity=T
+[/card]
+[card]
+primitive=Spider
+id=-476416
+rarity=T
+[/card]
+[card]
+primitive=Satyr
+id=-476403
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-476402
+rarity=T
+[/card]
+[card]
+primitive=Satyr
+id=-476389
+rarity=T
+[/card]
+[card]
+primitive=Satyr
+id=-476376
+rarity=T
+[/card]
+[card]
+primitive=Goat
+id=-476374
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-476369
+rarity=T
+[/card]
+[card]
+primitive=Goat
+id=-476339
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-476335
+rarity=T
+[/card]
+[card]
+primitive=Tentacle
+id=-476306
+rarity=T
+[/card]
+[card]
+primitive=Kraken
+id=-476303
+rarity=T
+[/card]
+[card]
+primitive=Reflection
+id=-476293
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-476284
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-476281
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-476265
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-476258
+rarity=T
+[/card]
+[card]
+primitive=Wall
+id=-476256
+rarity=T
+[/card]
+[card]
+primitive=Pegasus
+id=-476254
+rarity=T
+[/card]
+[card]
+primitive=Alseid of Life's Bounty
+id=476252
+rarity=U
+[/card]
+[card]
+primitive=Archon of Falling Stars
+id=476253
+rarity=U
+[/card]
+[card]
+primitive=Archon of Sun's Grace
+id=476254
+rarity=R
+[/card]
+[card]
+primitive=Banishing Light
+id=476255
+rarity=U
+[/card]
+[card]
+primitive=The Birth of Meletis
+id=476256
+rarity=U
+[/card]
+[card]
+primitive=Captivating Unicorn
+id=476257
+rarity=C
+[/card]
+[card]
+primitive=Commanding Presence
+id=476258
+rarity=U
+[/card]
+[card]
+primitive=Dawn Evangel
+id=476259
+rarity=U
+[/card]
+[card]
+primitive=Daxos, Blessed by the Sun
+id=476260
+rarity=U
+[/card]
+[card]
+primitive=Daybreak Chimera
+id=476261
+rarity=C
+[/card]
+[card]
+primitive=Dreadful Apathy
+id=476262
+rarity=C
+[/card]
+[card]
+primitive=Eidolon of Obstruction
+id=476263
+rarity=R
+[/card]
+[card]
+primitive=Elspeth Conquers Death
+id=476264
+rarity=R
+[/card]
+[card]
+primitive=Elspeth, Sun's Nemesis
+id=476265
+rarity=M
+[/card]
+[card]
+primitive=Favored of Iroas
+id=476266
+rarity=U
+[/card]
+[card]
+primitive=Flicker of Fate
+id=476267
+rarity=C
+[/card]
+[card]
+primitive=Glory Bearers
+id=476268
+rarity=C
+[/card]
+[card]
+primitive=Heliod, Sun-Crowned
+id=476269
+rarity=M
+[/card]
+[card]
+primitive=Heliod's Intervention
+id=476270
+rarity=R
+[/card]
+[card]
+primitive=Heliod's Pilgrim
+id=476271
+rarity=C
+[/card]
+[card]
+primitive=Heliod's Punishment
+id=476272
+rarity=U
+[/card]
+[card]
+primitive=Hero of the Pride
+id=476273
+rarity=C
+[/card]
+[card]
+primitive=Hero of the Winds
+id=476274
+rarity=U
+[/card]
+[card]
+primitive=Idyllic Tutor
+id=476275
+rarity=R
+[/card]
+[card]
+primitive=Indomitable Will
+id=476276
+rarity=C
+[/card]
+[card]
+primitive=Karametra's Blessing
+id=476277
+rarity=C
+[/card]
+[card]
+primitive=Lagonna-Band Storyteller
+id=476278
+rarity=U
+[/card]
+[card]
+primitive=Leonin of the Lost Pride
+id=476279
+rarity=C
+[/card]
+[card]
+primitive=Nyxborn Courser
+id=476280
+rarity=C
+[/card]
+[card]
+primitive=Omen of the Sun
+id=476281
+rarity=C
+[/card]
+[card]
+primitive=Phalanx Tactics
+id=476282
+rarity=U
+[/card]
+[card]
+primitive=Pious Wayfarer
+id=476283
+rarity=C
+[/card]
+[card]
+primitive=Reverent Hoplite
+id=476284
+rarity=U
+[/card]
+[card]
+primitive=Revoke Existence
+id=476285
+rarity=C
+[/card]
+[card]
+primitive=Rumbling Sentry
+id=476286
+rarity=C
+[/card]
+[card]
+primitive=Sentinel's Eyes
+id=476287
+rarity=C
+[/card]
+[card]
+primitive=Shatter the Sky
+id=476288
+rarity=R
+[/card]
+[card]
+primitive=Sunmane Pegasus
+id=476289
+rarity=C
+[/card]
+[card]
+primitive=Taranika, Akroan Veteran
+id=476290
+rarity=R
+[/card]
+[card]
+primitive=Transcendent Envoy
+id=476291
+rarity=C
+[/card]
+[card]
+primitive=Triumphant Surge
+id=476292
+rarity=C
+[/card]
+[card]
+primitive=Alirios, Enraptured
+id=476293
+rarity=U
+[/card]
+[card]
+primitive=Ashiok's Erasure
+id=476294
+rarity=R
+[/card]
+[card]
+primitive=Brine Giant
+id=476295
+rarity=C
+[/card]
+[card]
+primitive=Callaphe, Beloved of the Sea
+id=476296
+rarity=U
+[/card]
+[card]
+primitive=Chain to Memory
+id=476297
+rarity=C
+[/card]
+[card]
+primitive=Deny the Divine
+id=476298
+rarity=C
+[/card]
+[card]
+primitive=Eidolon of Philosophy
+id=476299
+rarity=C
+[/card]
+[card]
+primitive=Elite Instructor
+id=476300
+rarity=C
+[/card]
+[card]
+primitive=Glimpse of Freedom
+id=476301
+rarity=U
+[/card]
+[card]
+primitive=Ichthyomorphosis
+id=476302
+rarity=C
+[/card]
+[card]
+primitive=Kiora Bests the Sea God
+id=476303
+rarity=M
+[/card]
+[card]
+primitive=Medomai's Prophecy
+id=476304
+rarity=U
+[/card]
+[card]
+primitive=Memory Drain
+id=476305
+rarity=C
+[/card]
+[card]
+primitive=Nadir Kraken
+id=476306
+rarity=R
+[/card]
+[card]
+primitive=Naiad of Hidden Coves
+id=476307
+rarity=C
+[/card]
+[card]
+primitive=Nyxborn Seaguard
+id=476308
+rarity=C
+[/card]
+[card]
+primitive=Omen of the Sea
+id=476309
+rarity=C
+[/card]
+[card]
+primitive=One with the Stars
+id=476310
+rarity=U
+[/card]
+[card]
+primitive=Protean Thaumaturge
+id=476311
+rarity=R
+[/card]
+[card]
+primitive=Riptide Turtle
+id=476312
+rarity=C
+[/card]
+[card]
+primitive=Sage of Mysteries
+id=476313
+rarity=U
+[/card]
+[card]
+primitive=Sea God's Scorn
+id=476314
+rarity=U
+[/card]
+[card]
+primitive=Shimmerwing Chimera
+id=476315
+rarity=U
+[/card]
+[card]
+primitive=Shoal Kraken
+id=476316
+rarity=U
+[/card]
+[card]
+primitive=Sleep of the Dead
+id=476317
+rarity=C
+[/card]
+[card]
+primitive=Starlit Mantle
+id=476318
+rarity=C
+[/card]
+[card]
+primitive=Stern Dismissal
+id=476319
+rarity=C
+[/card]
+[card]
+primitive=Stinging Lionfish
+id=476320
+rarity=U
+[/card]
+[card]
+primitive=Sweet Oblivion
+id=476321
+rarity=U
+[/card]
+[card]
+primitive=Thassa, Deep-Dwelling
+id=476322
+rarity=M
+[/card]
+[card]
+primitive=Thassa's Intervention
+id=476323
+rarity=R
+[/card]
+[card]
+primitive=Thassa's Oracle
+id=476324
+rarity=R
+[/card]
+[card]
+primitive=Thirst for Meaning
+id=476325
+rarity=C
+[/card]
+[card]
+primitive=Threnody Singer
+id=476326
+rarity=U
+[/card]
+[card]
+primitive=Thryx, the Sudden Storm
+id=476327
+rarity=R
+[/card]
+[card]
+primitive=Towering-Wave Mystic
+id=476328
+rarity=C
+[/card]
+[card]
+primitive=Triton Waverider
+id=476329
+rarity=C
+[/card]
+[card]
+primitive=Vexing Gull
+id=476330
+rarity=C
+[/card]
+[card]
+primitive=Wavebreak Hippocamp
+id=476331
+rarity=R
+[/card]
+[card]
+primitive=Whirlwind Denial
+id=476332
+rarity=U
+[/card]
+[card]
+primitive=Witness of Tomorrows
+id=476333
+rarity=C
+[/card]
+[card]
+primitive=Agonizing Remorse
+id=476334
+rarity=U
+[/card]
+[card]
+primitive=Aphemia, the Cacophony
+id=476335
+rarity=R
+[/card]
+[card]
+primitive=Aspect of Lamprey
+id=476336
+rarity=C
+[/card]
+[card]
+primitive=Blight-Breath Catoblepas
+id=476337
+rarity=C
+[/card]
+[card]
+primitive=Cling to Dust
+id=476338
+rarity=U
+[/card]
+[card]
+primitive=Discordant Piper
+id=476339
+rarity=C
+[/card]
+[card]
+primitive=Drag to the Underworld
+id=476340
+rarity=U
+[/card]
+[card]
+primitive=Eat to Extinction
+id=476341
+rarity=R
+[/card]
+[card]
+primitive=Elspeth's Nightmare
+id=476342
+rarity=U
+[/card]
+[card]
+primitive=Enemy of Enlightenment
+id=476343
+rarity=U
+[/card]
+[card]
+primitive=Erebos, Bleak-Hearted
+id=476344
+rarity=M
+[/card]
+[card]
+primitive=Erebos's Intervention
+id=476345
+rarity=R
+[/card]
+[card]
+primitive=Final Death
+id=476346
+rarity=C
+[/card]
+[card]
+primitive=Fruit of Tizerus
+id=476347
+rarity=C
+[/card]
+[card]
+primitive=Funeral Rites
+id=476348
+rarity=C
+[/card]
+[card]
+primitive=Gravebreaker Lamia
+id=476349
+rarity=R
+[/card]
+[card]
+primitive=Gray Merchant of Asphodel
+id=476350
+rarity=U
+[/card]
+[card]
+primitive=Grim Physician
+id=476351
+rarity=C
+[/card]
+[card]
+primitive=Hateful Eidolon
+id=476352
+rarity=U
+[/card]
+[card]
+primitive=Inevitable End
+id=476353
+rarity=U
+[/card]
+[card]
+primitive=Lampad of Death's Vigil
+id=476354
+rarity=C
+[/card]
+[card]
+primitive=Minion's Return
+id=476355
+rarity=U
+[/card]
+[card]
+primitive=Mire Triton
+id=476356
+rarity=U
+[/card]
+[card]
+primitive=Mire's Grasp
+id=476357
+rarity=C
+[/card]
+[card]
+primitive=Mogis's Favor
+id=476358
+rarity=C
+[/card]
+[card]
+primitive=Nightmare Shepherd
+id=476359
+rarity=R
+[/card]
+[card]
+primitive=Nyxborn Marauder
+id=476360
+rarity=C
+[/card]
+[card]
+primitive=Omen of the Dead
+id=476361
+rarity=C
+[/card]
+[card]
+primitive=Pharika's Libation
+id=476362
+rarity=C
+[/card]
+[card]
+primitive=Pharika's Spawn
+id=476363
+rarity=U
+[/card]
+[card]
+primitive=Rage-Scarred Berserker
+id=476364
+rarity=C
+[/card]
+[card]
+primitive=Scavenging Harpy
+id=476365
+rarity=C
+[/card]
+[card]
+primitive=Soulreaper of Mogis
+id=476366
+rarity=C
+[/card]
+[card]
+primitive=Temple Thief
+id=476367
+rarity=C
+[/card]
+[card]
+primitive=Treacherous Blessing
+id=476368
+rarity=R
+[/card]
+[card]
+primitive=Tymaret Calls the Dead
+id=476369
+rarity=R
+[/card]
+[card]
+primitive=Tymaret, Chosen from Death
+id=476370
+rarity=U
+[/card]
+[card]
+primitive=Underworld Charger
+id=476371
+rarity=C
+[/card]
+[card]
+primitive=Underworld Dreams
+id=476372
+rarity=U
+[/card]
+[card]
+primitive=Venomous Hierophant
+id=476373
+rarity=C
+[/card]
+[card]
+primitive=Woe Strider
+id=476374
+rarity=R
+[/card]
+[card]
+primitive=The Akroan War
+id=476375
+rarity=R
+[/card]
+[card]
+primitive=Anax, Hardened in the Forge
+id=476376
+rarity=U
+[/card]
+[card]
+primitive=Arena Trickster
+id=476377
+rarity=C
+[/card]
+[card]
+primitive=Aspect of Manticore
+id=476378
+rarity=C
+[/card]
+[card]
+primitive=Blood Aspirant
+id=476379
+rarity=U
+[/card]
+[card]
+primitive=Careless Celebrant
+id=476380
+rarity=U
+[/card]
+[card]
+primitive=Dreamshaper Shaman
+id=476381
+rarity=U
+[/card]
+[card]
+primitive=Dreamstalker Manticore
+id=476382
+rarity=U
+[/card]
+[card]
+primitive=Escape Velocity
+id=476383
+rarity=U
+[/card]
+[card]
+primitive=Fateful End
+id=476384
+rarity=U
+[/card]
+[card]
+primitive=Final Flare
+id=476385
+rarity=C
+[/card]
+[card]
+primitive=Flummoxed Cyclops
+id=476386
+rarity=C
+[/card]
+[card]
+primitive=Furious Rise
+id=476387
+rarity=U
+[/card]
+[card]
+primitive=Hero of the Games
+id=476388
+rarity=C
+[/card]
+[card]
+primitive=Heroes of the Revel
+id=476389
+rarity=U
+[/card]
+[card]
+primitive=Impending Doom
+id=476390
+rarity=U
+[/card]
+[card]
+primitive=Incendiary Oracle
+id=476391
+rarity=C
+[/card]
+[card]
+primitive=Infuriate
+id=476392
+rarity=C
+[/card]
+[card]
+primitive=Iroas's Blessing
+id=476393
+rarity=C
+[/card]
+[card]
+primitive=Irreverent Revelers
+id=476394
+rarity=C
+[/card]
+[card]
+primitive=Nyxborn Brute
+id=476395
+rarity=C
+[/card]
+[card]
+primitive=Omen of the Forge
+id=476396
+rarity=C
+[/card]
+[card]
+primitive=Oread of Mountain's Blaze
+id=476397
+rarity=C
+[/card]
+[card]
+primitive=Ox of Agonas
+id=476398
+rarity=M
+[/card]
+[card]
+primitive=Phoenix of Ash
+id=476399
+rarity=R
+[/card]
+[card]
+primitive=Portent of Betrayal
+id=476400
+rarity=C
+[/card]
+[card]
+primitive=Purphoros, Bronze-Blooded
+id=476401
+rarity=M
+[/card]
+[card]
+primitive=Purphoros's Intervention
+id=476402
+rarity=R
+[/card]
+[card]
+primitive=Satyr's Cunning
+id=476403
+rarity=C
+[/card]
+[card]
+primitive=Skophos Maze-Warden
+id=476404
+rarity=U
+[/card]
+[card]
+primitive=Skophos Warleader
+id=476405
+rarity=C
+[/card]
+[card]
+primitive=Stampede Rider
+id=476406
+rarity=C
+[/card]
+[card]
+primitive=Storm Herald
+id=476407
+rarity=R
+[/card]
+[card]
+primitive=Storm's Wrath
+id=476408
+rarity=R
+[/card]
+[card]
+primitive=Tectonic Giant
+id=476409
+rarity=R
+[/card]
+[card]
+primitive=Thrill of Possibility
+id=476410
+rarity=C
+[/card]
+[card]
+primitive=The Triumph of Anax
+id=476411
+rarity=U
+[/card]
+[card]
+primitive=Underworld Breach
+id=476412
+rarity=R
+[/card]
+[card]
+primitive=Underworld Fires
+id=476413
+rarity=U
+[/card]
+[card]
+primitive=Underworld Rage-Hound
+id=476414
+rarity=C
+[/card]
+[card]
+primitive=Wrap in Flames
+id=476415
+rarity=C
+[/card]
+[card]
+primitive=Arasta of the Endless Web
+id=476416
+rarity=R
+[/card]
+[card]
+primitive=The Binding of the Titans
+id=476417
+rarity=U
+[/card]
+[card]
+primitive=Chainweb Aracnir
+id=476418
+rarity=U
+[/card]
+[card]
+primitive=Destiny Spinner
+id=476419
+rarity=U
+[/card]
+[card]
+primitive=Dryad of the Ilysian Grove
+id=476420
+rarity=R
+[/card]
+[card]
+primitive=The First Iroan Games
+id=476421
+rarity=R
+[/card]
+[card]
+primitive=Gift of Strength
+id=476422
+rarity=C
+[/card]
+[card]
+primitive=Hydra's Growth
+id=476423
+rarity=U
+[/card]
+[card]
+primitive=Hyrax Tower Scout
+id=476424
+rarity=C
+[/card]
+[card]
+primitive=Ilysian Caryatid
+id=476425
+rarity=C
+[/card]
+[card]
+primitive=Inspire Awe
+id=476426
+rarity=C
+[/card]
+[card]
+primitive=Klothys's Design
+id=476427
+rarity=U
+[/card]
+[card]
+primitive=Loathsome Chimera
+id=476428
+rarity=C
+[/card]
+[card]
+primitive=Mantle of the Wolf
+id=476429
+rarity=R
+[/card]
+[card]
+primitive=Moss Viper
+id=476430
+rarity=C
+[/card]
+[card]
+primitive=Mystic Repeal
+id=476431
+rarity=U
+[/card]
+[card]
+primitive=Nessian Boar
+id=476432
+rarity=R
+[/card]
+[card]
+primitive=Nessian Hornbeetle
+id=476433
+rarity=U
+[/card]
+[card]
+primitive=Nessian Wanderer
+id=476434
+rarity=U
+[/card]
+[card]
+primitive=Nexus Wardens
+id=476435
+rarity=C
+[/card]
+[card]
+primitive=Nylea, Keen-Eyed
+id=476436
+rarity=M
+[/card]
+[card]
+primitive=Nylea's Forerunner
+id=476437
+rarity=C
+[/card]
+[card]
+primitive=Nylea's Huntmaster
+id=476438
+rarity=C
+[/card]
+[card]
+primitive=Nylea's Intervention
+id=476439
+rarity=R
+[/card]
+[card]
+primitive=Nyx Herald
+id=476440
+rarity=U
+[/card]
+[card]
+primitive=Nyxbloom Ancient
+id=476441
+rarity=M
+[/card]
+[card]
+primitive=Nyxborn Colossus
+id=476442
+rarity=C
+[/card]
+[card]
+primitive=Omen of the Hunt
+id=476443
+rarity=C
+[/card]
+[card]
+primitive=Pheres-Band Brawler
+id=476444
+rarity=U
+[/card]
+[card]
+primitive=Plummet
+id=476445
+rarity=C
+[/card]
+[card]
+primitive=Relentless Pursuit
+id=476446
+rarity=C
+[/card]
+[card]
+primitive=Renata, Called to the Hunt
+id=476447
+rarity=U
+[/card]
+[card]
+primitive=Return to Nature
+id=476448
+rarity=C
+[/card]
+[card]
+primitive=Setessan Champion
+id=476449
+rarity=R
+[/card]
+[card]
+primitive=Setessan Petitioner
+id=476450
+rarity=U
+[/card]
+[card]
+primitive=Setessan Skirmisher
+id=476451
+rarity=C
+[/card]
+[card]
+primitive=Setessan Training
+id=476452
+rarity=C
+[/card]
+[card]
+primitive=Skola Grovedancer
+id=476453
+rarity=C
+[/card]
+[card]
+primitive=Voracious Typhon
+id=476454
+rarity=C
+[/card]
+[card]
+primitive=Warbriar Blessing
+id=476455
+rarity=C
+[/card]
+[card]
+primitive=Wolfwillow Haven
+id=476456
+rarity=U
+[/card]
+[card]
+primitive=Acolyte of Affliction
+id=476457
+rarity=U
+[/card]
+[card]
+primitive=Allure of the Unknown
+id=476458
+rarity=R
+[/card]
+[card]
+primitive=Ashiok, Nightmare Muse
+id=476459
+rarity=M
+[/card]
+[card]
+primitive=Atris, Oracle of Half-Truths
+id=476460
+rarity=R
+[/card]
+[card]
+primitive=Bronzehide Lion
+id=476461
+rarity=R
+[/card]
+[card]
+primitive=Calix, Destiny's Hand
+id=476462
+rarity=M
+[/card]
+[card]
+primitive=Dalakos, Crafter of Wonders
+id=476463
+rarity=R
+[/card]
+[card]
+primitive=Devourer of Memory
+id=476464
+rarity=U
+[/card]
+[card]
+primitive=Dream Trawler
+id=476465
+rarity=R
+[/card]
+[card]
+primitive=Enigmatic Incarnation
+id=476466
+rarity=R
+[/card]
+[card]
+primitive=Eutropia the Twice-Favored
+id=476467
+rarity=U
+[/card]
+[card]
+primitive=Gallia of the Endless Dance
+id=476468
+rarity=R
+[/card]
+[card]
+primitive=Haktos the Unscarred
+id=476469
+rarity=R
+[/card]
+[card]
+primitive=Hero of the Nyxborn
+id=476470
+rarity=U
+[/card]
+[card]
+primitive=Klothys, God of Destiny
+id=476471
+rarity=M
+[/card]
+[card]
+primitive=Kroxa, Titan of Death's Hunger
+id=476472
+rarity=M
+[/card]
+[card]
+primitive=Kunoros, Hound of Athreos
+id=476473
+rarity=R
+[/card]
+[card]
+primitive=Mischievous Chimera
+id=476474
+rarity=U
+[/card]
+[card]
+primitive=Polukranos, Unchained
+id=476475
+rarity=M
+[/card]
+[card]
+primitive=Rise to Glory
+id=476476
+rarity=U
+[/card]
+[card]
+primitive=Siona, Captain of the Pyleas
+id=476477
+rarity=U
+[/card]
+[card]
+primitive=Slaughter-Priest of Mogis
+id=476478
+rarity=U
+[/card]
+[card]
+primitive=Staggering Insight
+id=476479
+rarity=U
+[/card]
+[card]
+primitive=Uro, Titan of Nature's Wrath
+id=476480
+rarity=M
+[/card]
+[card]
+primitive=Warden of the Chained
+id=476481
+rarity=U
+[/card]
+[card]
+primitive=Altar of the Pantheon
+id=476482
+rarity=C
+[/card]
+[card]
+primitive=Bronze Sword
+id=476483
+rarity=C
+[/card]
+[card]
+primitive=Entrancing Lyre
+id=476484
+rarity=U
+[/card]
+[card]
+primitive=Mirror Shield
+id=476485
+rarity=U
+[/card]
+[card]
+primitive=Nyx Lotus
+id=476486
+rarity=R
+[/card]
+[card]
+primitive=Shadowspear
+id=476487
+rarity=R
+[/card]
+[card]
+primitive=Soul-Guide Lantern
+id=476488
+rarity=U
+[/card]
+[card]
+primitive=Thaumaturge's Familiar
+id=476489
+rarity=C
+[/card]
+[card]
+primitive=Thundering Chariot
+id=476490
+rarity=U
+[/card]
+[card]
+primitive=Traveler's Amulet
+id=476491
+rarity=C
+[/card]
+[card]
+primitive=Wings of Hubris
+id=476492
+rarity=C
+[/card]
+[card]
+primitive=Field of Ruin
+id=476493
+rarity=U
+[/card]
+[card]
+primitive=Labyrinth of Skophos
+id=476494
+rarity=R
+[/card]
+[card]
+primitive=Temple of Abandon
+id=476495
+rarity=R
+[/card]
+[card]
+primitive=Temple of Deceit
+id=476496
+rarity=R
+[/card]
+[card]
+primitive=Temple of Enlightenment
+id=476497
+rarity=R
+[/card]
+[card]
+primitive=Temple of Malice
+id=476498
+rarity=R
+[/card]
+[card]
+primitive=Temple of Plenty
+id=476499
+rarity=R
+[/card]
+[card]
+primitive=Unknown Shores
+id=476500
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=476501
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=476502
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=476503
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=476504
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=476505
+rarity=C
+[/card]

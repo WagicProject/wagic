@@ -1360,7 +1360,11 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/KLD/-3289-hr.jpg";
         else if(id.equals("293497t"))
             cardurl = "https://deckmaster.info/images/cards/M13/-72-hr.jpg";
-
+        else if(id.equals("476370"))
+            cardurl = "https://img.scryfall.com/cards/large/front/1/4/14b28eae-e8ed-4b99-b6ec-86d0716ec473.jpg?1581480007";
+        else if(id.equals("479417"))
+            cardurl = "https://img.scryfall.com/cards/large/front/e/f/efcbd4ef-3bf4-4f22-9069-2a11c9619a43.jpg?1583965446";
+        
         return cardurl;
     }
 
@@ -1780,6 +1784,8 @@ public class ImgDownloader {
             tokenurl = "https://cdn.shopify.com/s/files/1/1601/3103/products/Token_45_2000x.jpg?v=1528922847";
         else if (id.equals("405191t"))
             tokenurl = "https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/108181_200w.jpg";
+        else if (id.equals("476402t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/6/0/60466c78-155e-442b-8022-795e1e9de8df.jpg?1581901998";
 
         return tokenurl;
     }
