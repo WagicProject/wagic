@@ -1401,7 +1401,7 @@ type=Sorcery
 
 [card]
 name=Thresher Lizard
-auto=aslongas(*|myhand)<=1 1/2
+auto=aslongas(*|myhand) 1/2 <2
 text=Thresher Lizard gets +1/+2 as long as you have one or fewer cards in hand.
 mana={2}{R}
 type=Creature
