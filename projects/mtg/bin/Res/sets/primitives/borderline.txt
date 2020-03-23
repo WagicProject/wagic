@@ -140,16 +140,15 @@ type=Sorcery
 [card]
 name=Destructive Tampering
 auto=choice name(Destroy target artifact) destroy target(artifact)
-auto=choice name(Creatures without flying can't block) all(creatures[-flying]|battlefield) cantblock ueot
+auto=choice name(Creatures without flying can't block) lord(creature[-flying]) cantblock ueot
 text=Choose one — -- • Destroy target artifact. -- • Creatures without flying can’t block this turn.
 mana={2}{R}
 type=Sorcery
 [/card]
 [card]
 name=Borrowed Hostility
-auto=choice name(Target creature gets +3/+0) target(creature) 3/0 ueot
-auto=choice name(Target creature gets first strike) target(creature) first strike ueot
-auto=choice name(Target creature gets +3/+0 and...) target(creature) 3/0 && first strike ueot
+auto=may name(Target creature gets +3/+0) target(creature) 3/0 ueot
+auto=may name(Target creature gets first strike) target(creature) first strike ueot
 auto=name(Escalate) emblem transforms((,newability[({3}:name(Target creature gets +3/+0) target(creature) 3/0 ueot],newability[{3}:name(Target creature gets first strike) target(creature) first strike ueot],newability[{3}:name(Target creature gets +3/+0 and...) target(creature) 3/0 && first strike ueot])) ueot
 text=Escalate {3} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +3/+0 until end of turn. -- • Target creature gains first strike until end of turn.
 mana={R}

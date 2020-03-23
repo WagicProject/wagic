@@ -121,7 +121,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Goblin Oriflamme
-auto=all(creature[attacking]|mybattlefield) 2/0
+auto=lord(creature[attacking]|mybattlefield) 1/0
 text=Attacking creatures you control get +1/+0.
 mana={1}{R}
 type=Enchantment
