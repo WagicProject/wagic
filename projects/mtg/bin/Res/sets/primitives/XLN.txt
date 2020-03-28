@@ -1,5 +1,5 @@
 grade=borderline
-##cant code: Ixalan's Binding, Kopala, Warden of Waves, Dire Fleet Ravager, Lurking Chupacabra, Rowdy Crew, Trove of Temptation, Emergent Growth, Spike-Tailed Ceratops, Wildgrowth Walker, Belligerent Brontodon, Gishath, Sun's Avatar, Pillar of Origins, Shadowed Caravel, Sorcerous Spyglass, Unclaimed Territory, Huatli, Warrior Poet
+##cant code: Ixalan's Binding, Kopala, Warden of Waves, Dire Fleet Ravager, Rowdy Crew, Trove of Temptation, Emergent Growth, Spike-Tailed Ceratops, Belligerent Brontodon, Gishath, Sun's Avatar, Pillar of Origins, Shadowed Caravel, Sorcerous Spyglass, Unclaimed Territory, Huatli, Warrior Poet
 
 ##experimental code: Tocatli Honor Guard, Ruin Raider, Sword-Point Diplomacy, Captivating Crew, Rampaging Ferocidon, Sunbird's Invocation, Admiral Beckett Brass
 
@@ -91,7 +91,7 @@ toughness=1
 [card]
 name=Emissary of Sunrise
 abilities=first strike
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=First strike -- When Emissary of Sunrise enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{W}
 type=Creature
@@ -415,7 +415,7 @@ toughness=3
 [card]
 name=Sunrise Seeker
 abilities=vigilance
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=Vigilance -- When Sunrise Seeker enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={4}{W}
 type=Creature
@@ -759,7 +759,7 @@ toughness=3
 [card]
 name=Siren Lookout
 abilities=flying
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=Flying -- When Siren Lookout enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{U}
 type=Creature
@@ -981,7 +981,7 @@ toughness=2
 
 [card]
 name=Deadeye Tracker
-auto={1}{B}{T}:moveto(exile) target(<2>*|opponentgraveyard) && flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto={1}{B}{T}:moveto(exile) target(<2>*|opponentgraveyard) && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text={1}{B}, {T}: Exile two target cards from an opponent's graveyard. Deadeye Tracker explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={B}
 type=Creature
@@ -1027,7 +1027,7 @@ toughness=1
 [card]
 name=Dire Fleet Interloper
 abilities=menace
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=Menace -- When Dire Fleet Interloper enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{B}
 type=Creature
@@ -1104,15 +1104,27 @@ power=1
 toughness=2
 [/card]
 
-#[card]
-#name=Lurking Chupacabra
-#text=Whenever a creature you control explores, target creature an opponent controls gets -2/-2 until end of turn.
-#mana={3}{B}
-#type=Creature
-#subtype=Beast Horror
-#power=2
-#toughness=3
-#[/card]
+[card]
+name=Lurking Chupacabra
+auto=@movedTo(creature[Brazen Buccaneers]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Sunrise Seeker]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Emissary of Sunrise]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Siren Lookout]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Fleet Interloper]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Queen's Agent]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Seekers' Squire]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Ixalli's Diviner]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Merfolk Branchwalker]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Tishana's Wayfinder]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@movedTo(creature[Seekers' Squire]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@combatdamaged(player) from(creature[Emperor's Vanguard]):target(creature|opponentBattlefield) -2/-2 ueot
+text=Whenever a creature you control explores, target creature an opponent controls gets -2/-2 until end of turn.
+mana={3}{B}
+type=Creature
+subtype=Beast Horror
+power=2
+toughness=3
+[/card]
 
 [card]
 name=March of the Drowned
@@ -1126,7 +1138,7 @@ type=Sorcery
 [card]
 name=Queen's Agent
 abilities=lifelink
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=Lifelink -- When Queen's Agent enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={5}{B}
 type=Creature
@@ -1197,7 +1209,7 @@ toughness=4
 
 [card]
 name=Seekers' Squire
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=When Seekers' Squire enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{B}
 type=Creature
@@ -1336,7 +1348,7 @@ toughness=5
 [card]
 name=Brazen Buccaneers
 abilities=haste
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=Haste -- When Brazen Buccaneers enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{R}
 type=Creature
@@ -1853,7 +1865,7 @@ toughness=1
 
 [card]
 name=Emperor's Vanguard
-auto=@combatdamaged(player) from(this):flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=@combatdamaged(player) from(this):reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend
 text=Whenever Emperor's Vanguard deals combat damage to a player, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{G}
 type=Creature
@@ -1892,7 +1904,7 @@ type=Legendary Land
 
 [card]
 name=Ixalli's Diviner
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=When Ixalli's Diviner enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{G}
 type=Creature
@@ -1949,7 +1961,7 @@ toughness=1
 
 [card]
 name=Merfolk Branchwalker
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=When Merfolk Branchwalker enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{G}
 type=Creature
@@ -2092,7 +2104,7 @@ toughness=5
 
 [card]
 name=Tishana's Wayfinder
-auto=flipacoin winability moverandom(land) from(mylibrary) to(myhand) winabilityend loseability counter(1/1,1) loseabilityend flipend
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)],newability[may target(<1>*|reveal) moveto(myGraveyard)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(myHand) else target(<1>*|reveal) moveto(myLibrary) optiontwoend revealend limit:1
 text=When Tishana's Wayfinder enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{G}
 type=Creature
@@ -2148,6 +2160,18 @@ toughness=3
 
 [card]
 name=Wildgrowth Walker
+auto=@movedTo(creature[Brazen Buccaneers]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Sunrise Seeker]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Emissary of Sunrise]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Siren Lookout]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Fleet Interloper]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Queen's Agent]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Seekers' Squire]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Ixalli's Diviner]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Merfolk Branchwalker]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Tishana's Wayfinder]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@movedTo(creature[Seekers' Squire]|mybattlefield):counter(1/1,1) && life:3 controller
+auto=@combatdamaged(player) from(creature[Emperor's Vanguard]):counter(1/1,1) && life:3 controller
 text=Whenever a creature you control explores, put a +1/+1 counter on Wildgrowth Walker and you gain 3 life.
 mana={1}{G}
 type=Creature

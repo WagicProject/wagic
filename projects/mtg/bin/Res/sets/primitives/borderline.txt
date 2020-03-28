@@ -147,9 +147,12 @@ type=Sorcery
 [/card]
 [card]
 name=Borrowed Hostility
-auto=may name(Target creature gets +3/+0) target(creature) 3/0 ueot
-auto=may name(Target creature gets first strike) target(creature) first strike ueot
-auto=name(Escalate) emblem transforms((,newability[({3}:name(Target creature gets +3/+0) target(creature) 3/0 ueot],newability[{3}:name(Target creature gets first strike) target(creature) first strike ueot],newability[{3}:name(Target creature gets +3/+0 and...) target(creature) 3/0 && first strike ueot])) ueot
+target=creature
+other={3}{R} name(Escalate)
+auto=if paid(alternative) then 3/0 ueot
+auto=if paid(alternative) then target(creature) first strike ueot
+auto=ifnot paid(alternative) then choice name(Target creature gets +3/+0) 3/0 ueot
+auto=ifnot paid(alternative) then choice name(Target creature gets first strike) first strike ueot
 text=Escalate {3} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +3/+0 until end of turn. -- • Target creature gains first strike until end of turn.
 mana={R}
 type=Instant
@@ -193,14 +196,18 @@ type=Sorcery
 [/card]
 [card]
 name=Collective Brutality
+target=opponent
+other={1}{B}{D(*|myhand)} name(Escalate)
 aicode=activate reject notatarget(*[instant;sorcery]|targetedpersonshand)
-auto=choice name(Target opponent reveals and discard...) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[instant;sorcery]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
-auto=choice name(Target creature gets -2/-2...) target (creature) -2/-2 ueot
-auto=choice name(Target opponent loses 2 and you gain...) life:-2 opponent && life:2 controller
-auto=name(Escalate) emblem transforms((,newability[({D(*|myhand)}:name(Target opponent reveals and discard...) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[instant;sorcery]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend],newability[{D(*|myhand)}:name(Target creature gets -2/-2...) target (creature) -2/-2 ueot],newability[{D(*|myhand)}:name(Target opponent loses 2 and you gain...) life:-2 opponent && life:2 controller])) ueot
-text=Escalate {1}{W} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Creatures you control get +2/+0 until end of turn. • Creatures you control get +0/+2 until end of turn.
-mana={2}{W}
-type=Instant
+auto=if paid(alternative) then reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[instant;sorcery]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
+auto=if paid(alternative) then target(creature) -2/-2 ueot
+auto=if paid(alternative) then life:-2 opponent && life:2 controller
+auto=ifnot paid(alternative) then choice name(Target opponent reveals and discard...) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[instant;sorcery]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
+auto=ifnot paid(alternative) then choice name(Target creature gets -2/-2...) target(creature) -2/-2 ueot
+auto=ifnot paid(alternative) then choice name(Target opponent loses 2 and you gain...) life:-2 opponent && life:2 controller
+text=Escalate Discard a card. (Pay this cost for each mode chosen beyond the first.) Choose one or more — -- • Target opponent reveals their hand. You choose an instant or sorcery card from it. That player discards that card. -- • Target creature gets -2/-2 until end of turn. -- • Target opponent loses 2 life and you gain 2 life.
+mana={1}{B}
+type=Sorcery
 [/card]
 [card]
 name=Turn Aside
@@ -281,10 +288,10 @@ type=Instant
 [/card
 [card]
 name=Borrowed Grace
-auto=choice name(Creatures my control get +2/+0) all(creature|myBattlefield) 2/0 ueot
-auto=choice name(Creatures my control get +0/+2) all(creature|myBattlefield) 0/2 ueot
-auto=choice name(Creatures my control get +2/+2) all(creature|myBattlefield) 2/2 ueot
-auto=name(Escalate) emblem transforms((,newability[({1}{W}:name(Creatures my control get +2/+0) all(creature|myBattlefield) 2/0 ueot],newability[{1}{W}:name(Creatures my control get +0/+2) all(creature|myBattlefield) 0/2 ueot],newability[{1}{W}:name(Creatures my control get +2/+2) all(creature|myBattlefield) 2/2 ueot])) ueot
+other={3}{W}{W} name(Escalate)
+auto=if paid(alternative) then all(creature|myBattlefield) 2/2 ueot ueot
+auto=ifnot paid(alternative) then choice name(Creatures my control get +2/+0) all(creature|myBattlefield) 2/0 ueot
+auto=ifnot paid(alternative) then choice name(Creatures my control get +0/+2) all(creature|myBattlefield) 0/2 ueot
 text=Escalate {1}{W} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — • Creatures you control get +2/+0 until end of turn. • Creatures you control get +0/+2 until end of turn.
 mana={2}{W}
 type=Instant
