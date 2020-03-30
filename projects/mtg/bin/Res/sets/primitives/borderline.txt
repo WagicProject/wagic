@@ -146,6 +146,65 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Collective Effort
+target=player
+other={1}{W}{W}{T(creature|mybattlefield)}{T(creature|mybattlefield)}: name(Escalate)
+auto=if paid(alternative) then bury target(creature[power>=4])
+auto=if paid(alternative) then destroy target(enchantment)
+auto=if paid(alternative) then transforms((,newability[choice name(Put counter on your creatures) counter(1/1,1) all(creature|myBattlefield)],newability[choice name(Put counter on opponent creatures) counter(1/1,1) all(creature|opponentBattlefield)]))
+auto=ifnot paid(alternative) then choice name(Destroy creature) bury target(creature[power>=4])
+auto=ifnot paid(alternative) then choice name(Destroy enchantment) destroy target(enchantment)
+auto=ifnot paid(alternative) then choice name(Put counter on your creatures) counter(1/1,1) all(creature|myBattlefield)
+auto=ifnot paid(alternative) then choice name(Put counter on opponent creatures) counter(1/1,1) all(creature|opponentBattlefield)
+text=Escalate—Tap an untapped creature you control. (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Destroy target creature with power 4 or greater. -- • Destroy target enchantment. -- • Put a +1/+1 counter on each creature target player controls.
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Blessed Alliance
+target=opponent
+other={5}{W} name(Escalate)
+auto=if paid(alternative) then life:4 controller
+auto=if paid(alternative) then untap target(<upto:2>creature)
+auto=if paid(alternative) then ability$!name(sacrifice) target(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer
+auto=ifnot paid(alternative) then choice name(Player gains life) life:4 controller
+auto=ifnot paid(alternative) then choice name(Untap creatures) untap target(<upto:2>creature)
+auto=ifnot paid(alternative) then choice name(Opponent scrifices creature) target(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer
+text=Escalate {2} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target player gains 4 life. -- • Untap up to two target creatures. -- • Target opponent sacrifices an attacking creature.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Savage Alliance
+target=player
+other={4}{R} name(Escalate)
+auto=if paid(alternative) then transforms((,newability[choice name(Your creatures have trample) all(creature|myBattlefield) trample ueot],newability[Opponent creatures have trample) all(creature|opponentBattlefield) trample ueot]))
+auto=if paid(alternative) then damage:2 target(creature)
+auto=if paid(alternative) then damage:1 all(creature|opponentBattlefield)
+auto=ifnot paid(alternative) then choice name(Your creatures have trample) all(creature|myBattlefield) trample ueot
+auto=ifnot paid(alternative) then choice name(Opponent creatures have trample) all(creature|opponentBattlefield) trample ueot
+auto=ifnot paid(alternative) then choice name(Damage target creature) damage:2 target(creature)
+auto=ifnot paid(alternative) then choice name(Damage all opponent creatures) damage:1 all(creature|opponentBattlefield)
+text=Escalate {1} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Creatures target player controls gain trample until end of turn. -- • Savage Alliance deals 2 damage to target creature. -- • Savage Alliance deals 1 damage to each creature target opponent controls.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Collective Defiance
+target=player
+other={3}{R}{R} name(Escalate)
+auto=if paid(alternative) then transforms((,newability[choice name(You discard hand) all(*|myhand) transforms((,newability[reject],newability[draw:1]))],newability[choice name(Opponent discard hand) all(*|opponenthand) transforms((,newability[reject],newability[draw:1]))]))
+auto=if paid(alternative) then damage:4 target(creature)
+auto=if paid(alternative) then damage:3 opponent
+auto=ifnot paid(alternative) then choice name(You discard hand) all(*|myhand) transforms((,newability[reject],newability[draw:1]))
+auto=ifnot paid(alternative) then choice name(Opponent discard hand) all(*|opponenthand) transforms((,newability[reject],newability[draw:1]))
+auto=ifnot paid(alternative) then choice name(Damage target creature) damage:4 target(creature)
+auto=ifnot paid(alternative) then choice name(Damage target opponent) damage:3 opponent
+text=Escalate {1} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target player discards all the cards in his or her hand, then draws that many cards. -- • Collective Defiance deals 4 damage to target creature. -- • Collective Defiance deals 3 damage to target opponent.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Borrowed Hostility
 target=creature
 other={3}{R} name(Escalate)
@@ -155,6 +214,18 @@ auto=ifnot paid(alternative) then choice name(Target creature gets +3/+0) 3/0 ue
 auto=ifnot paid(alternative) then choice name(Target creature gets first strike) first strike target(creature) ueot
 text=Escalate {3} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +3/+0 until end of turn. -- • Target creature gains first strike until end of turn.
 mana={R}
+type=Instant
+[/card]
+[card]
+name=Borrowed Malevolence
+target=creature
+other={2}{B} name(Escalate)
+auto=if paid(alternative) then 1/1 ueot
+auto=if paid(alternative) then target(creature) -1/-1 ueot
+auto=ifnot paid(alternative) then choice name(Target creature gets +1/+1) 1/1 ueot
+auto=ifnot paid(alternative) then choice name(Target creature gets -1/-1) -1/-1 ueot
+text=Escalate {2} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +1/+1 until end of turn. -- • Target creature gets -1/-1 until end of turn.
+mana={B}
 type=Instant
 [/card]
 [card]
