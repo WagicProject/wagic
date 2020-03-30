@@ -1369,12 +1369,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Blessed Alliance
-text=Escalate {2} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target player gains 4 life. -- • Untap up to two target creatures. -- • Target opponent sacrifices an attacking creature.
-mana={1}{W}
-type=Instant
-[/card]
-[card]
 name=Blessed Breath
 text=Target creature you control gains protection from the color of your choice until end of turn. -- Splice onto Arcane {W} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={W}
@@ -1574,12 +1568,6 @@ type=Creature
 subtype=Minotaur Soldier
 power=5
 toughness=5
-[/card]
-[card]
-name=Borrowed Malevolence
-text=Escalate {2} (Pay this cost for each mode chosen beyond the first.) -- Choose one or both — -- • Target creature gets +1/+1 until end of turn. -- • Target creature gets -1/-1 until end of turn.
-mana={B}
-type=Instant
 [/card]
 [card]
 name=Boseiju, Who Shelters All
@@ -2807,18 +2795,6 @@ name=Colfenor's Urn
 text=Whenever a creature with toughness 4 or greater is put into your graveyard from the battlefield, you may exile it. -- At the beginning of the end step, if three or more cards have been exiled with Colfenor's Urn, sacrifice it. If you do, return those cards to the battlefield under their owner's control.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Collective Defiance
-text=Escalate {1} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Target player discards all the cards in his or her hand, then draws that many cards. -- • Collective Defiance deals 4 damage to target creature. -- • Collective Defiance deals 3 damage to target opponent.
-mana={1}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Collective Effort
-text=Escalate—Tap an untapped creature you control. (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Destroy target creature with power 4 or greater. -- • Destroy target enchantment. -- • Put a +1/+1 counter on each creature target player controls.
-mana={1}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Collective Voyage
@@ -14236,12 +14212,7 @@ subtype=Elf
 power=1
 toughness=1
 [/card]
-[card]
-name=Savage Alliance
-text=Escalate {1} (Pay this cost for each mode chosen beyond the first.) -- Choose one or more — -- • Creatures target player controls gain trample until end of turn. -- • Savage Alliance deals 2 damage to target creature. -- • Savage Alliance deals 1 damage to each creature target opponent controls.
-mana={2}{R}
-type=Instant
-[/card]
+
 [card]
 name=Savage Summoning
 text=Savage Summoning can't be countered. -- The next creature card you cast this turn can be cast as though it had flash. That spell can't be countered. That creature enters the battlefield with an additional +1/+1 counter on it.
