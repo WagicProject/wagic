@@ -841,26 +841,28 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 if (found != string::npos)
                 {
                     string s = "";
-                    for (int i = card->data->types.size() - 1; i > 0; --i)
+                    if (card->data->basicAbilities[(int)Constants::CHANGELING])
                     {
-                        if (card->data->basicAbilities[(int)Constants::CHANGELING])
-                        {// this avoids drawing the list of subtypes on changeling cards.
-                            s += _("Shapeshifter - ");
-                            break;
+                        // this avoids drawing the list of subtypes on changeling cards.
+                        if (card->data->types.size()){
+                            s = _(MTGAllCards::findType(card->data->types[0])) + _(" - Shapeshifter");
+                        } else {
+                            s = _("Shapeshifter");
                         }
-                        else
-                        {
+                    } else {
+                        for (unsigned int i = 0; i < card->data->types.size() - 1; i++)
+                        {							
                             s += _(MTGAllCards::findType(card->data->types[i]));
-                            s += _(" - ");
+                            if(!strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Creature") || !strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Land"))
+                                s += _(" - ");
+                            else
+                                s += _(" ");
                         }
+                        s += _(MTGAllCards::findType(card->data->types[card->data->types.size()-1]));
                     }
-                    if (card->data->types.size())
-                        s += _(MTGAllCards::findType(card->data->types[0]));
-                    else
-                    {
+                    if (!card->data->types.size()){
                         DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
                     }
-
                     formattedfield = FormattedData(formattedfield, "types", s);
                 }
 
@@ -1140,26 +1142,28 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                 if (found != string::npos)
                 {
                     string s = "";
-                    for (int i = card->data->types.size() - 1; i > 0; --i)
+                    if (card->data->basicAbilities[(int)Constants::CHANGELING])
                     {
-                        if (card->data->basicAbilities[(int)Constants::CHANGELING])
-                        {// this avoids drawing the list of subtypes on changeling cards.
-                            s += _("Shapeshifter - ");
-                            break;
+                        // this avoids drawing the list of subtypes on changeling cards.
+                        if (card->data->types.size()){
+                            s = _(MTGAllCards::findType(card->data->types[0])) + _(" - Shapeshifter");
+                        } else {
+                            s = _("Shapeshifter");
                         }
-                        else
-                        {
+                    } else {
+                        for (unsigned int i = 0; i < card->data->types.size() - 1; i++)
+                        {							
                             s += _(MTGAllCards::findType(card->data->types[i]));
-                            s += _(" - ");
+                            if(!strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Creature") || !strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Land"))
+                                s += _(" - ");
+                            else
+                                s += _(" ");
                         }
+                        s += _(MTGAllCards::findType(card->data->types[card->data->types.size()-1]));
                     }
-                    if (card->data->types.size())
-                        s += _(MTGAllCards::findType(card->data->types[0]));
-                    else
-                    {
+                    if (!card->data->types.size()){
                         DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
                     }
-
                     formattedfield = FormattedData(formattedfield, "types", s);
                 }
 

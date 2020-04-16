@@ -1786,6 +1786,8 @@ public class ImgDownloader {
             tokenurl = "https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/108181_200w.jpg";
         else if (id.equals("476402t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/6/0/60466c78-155e-442b-8022-795e1e9de8df.jpg?1581901998";
+        else if(id.equals("484904t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/2/1/21e89101-f1cf-4bbd-a1d5-c5d48512e0dd.jpg?1562539760";
 
         return tokenurl;
     }
