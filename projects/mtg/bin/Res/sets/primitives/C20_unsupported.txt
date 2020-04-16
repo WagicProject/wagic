@@ -1,0 +1,636 @@
+grade=unsupported
+[card]
+name=Akim, the Soaring Wind
+text=Flying -- Whenever you create one or more tokens for the first time each turn, create a 1/1 white Bird creature token with flying. -- 3{U}{R}{W}: Creature tokens you control gain double strike until end of turn.
+mana={2}{U}{R}{W}
+type=Legendary Creature
+subtype=Bird Dinosaur
+power=3
+toughness=4
+[/card]
+[card]
+name=Crystalline Resonance
+text=Whenever you cycle a card, you may have Crystalline Resonance become a copy of another target permanent until your next turn, except it has this ability.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Sawtusk Demolisher
+text=Mutate {3}{G} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Trample -- Whenever this creature mutates, destroy target noncreature permanent. Its controller creates a 3/3 green Beast creature token.
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
+[/card]
+[card]
+name=Cazur, Ruthless Stalker
+text=Partner with Ukkima, Stalking Shadow (When this creature enters the battlefield, target player may put Ukkima into their hand from their library, then shuffle.) -- Whenever a creature you control deals combat damage to a player, put a +1/+1 counter on that creature.
+mana={3}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Vitality Hunter
+text=Lifelink -- {X}{W}{W}: Monstrosity X. (If this creature isn't monstrous, put X +1/+1 counters on it and it becomes monstrous.) -- When Vitality Hunter becomes monstrous, put a lifelink counter on each of up to X target creatures.
+mana={3}{W}
+type=Creature
+subtype=Nightmare
+power=3
+toughness=4
+[/card]
+[card]
+name=Ravenous Gigantotherium
+text=Devour 3 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with three times that many +1/+1 counters on it.) -- When Ravenous Gigantotherium enters the battlefield, it deals X damage divided as you choose among up to X target creatures, where X is its power. Each of those creatures deals damage equal to its power to Ravenous Gigantotherium.
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Jirina Kudro
+text=When Jirina Kudro enters the battlefield, create a 1/1 white Human Soldier creature token for each time you've cast a commander from the command zone this game. -- Other Humans you control get +2/+0.
+mana={1}{R}{W}{B}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Slippery Bogbonder
+text=Flash -- Hexproof -- When Slippery Bogbonder enters the battlefield, put a hexproof counter on target creature. Then move any number of counters from among creatures you control onto that creature.
+mana={3}{G}
+type=Creature
+subtype=Human Druid
+power=3
+toughness=3
+[/card]
+[card]
+name=Etali, Primal Storm
+text=Whenever Etali, Primal Storm attacks, exile the top card of each player's library, then you may cast any number of spells from among those cards without paying their mana costs.
+mana={4}{R}{R}
+type=Legendary Creature
+subtype=Elder Dinosaur
+power=6
+toughness=6
+[/card]
+[card]
+name=Gavi, Nest Warden
+text=You may pay {0} rather than pay the cycling cost of the first card you cycle each turn. -- Whenever you draw your second card each turn, create a 2/2 red and white Dinosaur Cat creature token.
+mana={2}{U}{R}{W}
+type=Legendary Creature
+subtype=Human Shaman
+power=2
+toughness=5
+[/card]
+[card]
+name=Decoy Gambit
+text=For each opponent, choose up to one target creature that player controls, then return that creature to its owner's hand unless its controller has you draw a card.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Selective Adaptation
+text=Reveal the top seven cards of your library. Choose from among them a card with flying, a card with first strike, and so on for double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, reach, trample, and vigilance. Put one of the chosen cards onto the battlefield, the other chosen cards into your hand, and the rest into your graveyard.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Kathril, Aspect Warper
+text=When Kathril, Aspect Warper enters the battlefield, put a flying counter on any creature you control if a creature card in your graveyard has flying. Repeat this process for first strike, double strike, deathtouch, hexproof, indestructible, lifelink, menace, reach, trample, and vigilance. Then put a +1/+1 counter on Kathril for each counter put on a creature this way.
+mana={2}{W}{B}{G}
+type=Legendary Creature
+subtype=Nightmare Insect
+power=3
+toughness=3
+[/card]
+[card]
+name=Manascape Refractor
+text=Manascape Refractor enters the battlefield tapped. -- Manascape Refractor has all activated abilities of all lands on the battlefield. -- You may spend mana as though it were mana of any color to pay the activation costs of Manascape Refractor's abilities.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Kalamax, the Stormsire
+text=Whenever you cast your first instant spell each turn, if Kalamax, the Stormsire is tapped, copy that spell. You may choose new targets for the copy. -- Whenever you copy an instant spell, put a +1/+1 counter on Kalamax.
+mana={1}{G}{U}{R}
+type=Legendary Creature
+subtype=Elemental Dinosaur
+power=4
+toughness=4
+[/card]
+[card]
+name=Bonder's Ornament
+text={T}: Add one mana of any color. -- {4}, {T}: Each player who controls a permanent named Bonder's Ornament draws a card.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Otrimi, the Ever-Playful
+text=Mutate {1}{B}{G}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Trample -- Whenever this creature deals combat damage to a player, return target creature card with mutate from your graveyard to your hand.
+mana={3}{B}{G}{U}
+type=Legendary Creature
+subtype=Nightmare Beast
+power=6
+toughness=6
+[/card]
+[card]
+name=Twinning Staff
+text=If you would copy a spell one or more times, instead copy it that many times plus an additional time. You may choose new targets for the additional copy. -- {7}, {T}: Copy target instant or sorcery spell you control. You may choose new targets for the copy.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Kelsien, the Plague
+text=Vigilance, haste -- Kelsien, the Plague gets +1/+1 for each experience counter you have. -- {T}: Kelsien deals 1 damage to target creature you don't control. When that creature dies this turn, you get an experience counter.
+mana={R}{W}{B}
+type=Legendary Creature
+subtype=Human Assassin
+power=2
+toughness=2
+[/card]
+[card]
+name=Sanctuary Blade
+text=As Sanctuary Blade becomes attached to a creature, choose a color. -- Equipped creature gets +2/+0 and has protection from the last chosen color. -- Equip 3
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Call the Coppercoats
+text=Strive — This spell costs {1}{W} more to cast for each target beyond the first. -- Choose any number of target opponents. Create X 1/1 white Human Soldier creature tokens, where X is the number of creatures those opponents control.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Dismantling Wave
+text=For each opponent, destroy up to one target artifact or enchantment that player controls. -- Cycling {6}{W}{W} ({6}{W}{W}, Discard this card: Draw a card.) -- When you cycle Dismantling Wave, destroy all artifacts and enchantments.
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
+name=Cartographer's Hawk
+text=Flying -- When Cartographer's Hawk deals combat damage to a player who controls more lands than you, return it to its owner's hand. If you do, you may search your library for a Plains card, put it onto the battlefield tapped, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=2
+toughness=1
+[/card]
+[card]
+name=Herald of the Forgotten
+text=Flying -- When Herald of the Forgotten enters the battlefield, if you cast it, return any number of target permanent cards with cycling abilities from your graveyard to the battlefield.
+mana={6}{W}{W}
+type=Creature
+subtype=Cat Beast
+power=6
+toughness=6
+[/card]
+[card]
+name=Flawless Maneuver
+text=If you control a commander, you may cast this spell without paying its mana cost. -- Creatures you control gain indestructible until end of turn.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Brallin, Skyshark Rider
+text=Partner with Shabraz, the Skyshark (When this creature enters the battlefield, target player may put Shabraz into their hand from their library, then shuffle.) -- Whenever you discard a card, put a +1/+1 counter on Brallin, Skyshark Rider and it deals 1 damage to each opponent. -- {R}: Target Shark gains trample until end of turn.
+mana={3}{R}
+type=Legendary Creature
+subtype=Human Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Verge Rangers
+text=First strike -- You may look at the top card of your library any time. -- As long as an opponent controls more lands than you, you may play lands from the top of your library. (You can play a land this way only if you have an available land play remaining.)
+mana={2}{W}
+type=Creature
+subtype=Human Scout
+power=3
+toughness=3
+[/card]
+[card]
+name=Nikara, Lair Scavenger
+text=Partner with Yannik, Scavenging Sentinel (When this creature enters the battlefield, target player may put Yannik into their hand from their library, then shuffle.) -- Menace -- Whenever another creature you control leaves the battlefield, if it had one or more counters on it, you draw a card and you lose 1 life.
+mana={2}{B}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Martial Impetus
+text=Enchant creature -- Enchanted creature gets +1/+1 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, each other creature that's attacking one of your opponents gets +1/+1 until end of turn.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Nesting Grounds
+text={T}: Add {1}. -- {1}, {T}: Move a counter from target permanent you control onto another target permanent. Activate this ability only any time you could cast a sorcery.
+type=Land
+[/card]
+[card]
+name=Lavabrink Floodgates
+text={T}: Add {R}{R}. -- At the beginning of each player's upkeep, that player may put a doom counter on Lavabrink Floodgates or remove a doom counter from it. Then if it has three or more doom counters on it, sacrifice Lavabrink Floodgates. When you do, it deals 6 damage to each creature.
+mana={3}{R}
+type=Artifact
+[/card]
+[card]
+name=Avenging Huntbonder
+text=Double strike -- Whenever Avenging Huntbonder attacks, put a double strike counter on another target attacking creature.
+mana={3}{W}{W}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Shiny Impetus
+text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, you create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Cryptic Trilobite
+text=Cryptic Trilobite enters the battlefield with X +1/+1 counters on it. -- Remove a +1/+1 counter from Cryptic Trilobite: Add {2}. Spend this mana only to activate abilities. -- {1}, {T}: Put a +1/+1 counter on Cryptic Trilobite.
+mana={X}{X}
+type=Creature
+subtype=Trilobite
+power=0
+toughness=0
+[/card]
+[card]
+name=Molten Echoes
+text=As Molten Echoes enters the battlefield, choose a creature type. -- Whenever a nontoken creature of the chosen type enters the battlefield under your control, create a token that's a copy of that creature. That token gains haste. Exile it at the beginning of the next end step.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Surly Badgersaur
+text=Whenever you discard a creature card, put a +1/+1 counter on Surly Badgersaur. -- Whenever you discard a land card, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.") -- Whenever you discard a noncreature, nonland card, Surly Badgersaur fights up to one target creature you don't control.
+mana={3}{R}
+type=Creature
+subtype=Badger Dinosaur
+power=3
+toughness=3
+[/card]
+[card]
+name=Spellpyre Phoenix
+text=Flying -- When Spellpyre Phoenix enters the battlefield, you may return target instant or sorcery card with a cycling ability from your graveyard to your hand. -- At the beginning of each end step, if you cycled two or more cards this turn, return Spellpyre Phoenix from your graveyard to your hand.
+mana={3}{R}{R}
+type=Creature
+subtype=Phoenix
+power=4
+toughness=2
+[/card]
+[card]
+name=Trynn, Champion of Freedom
+text=Partner with Silvar, Devourer of the Free (When this creature enters the battlefield, target player may put Silvar into their hand from their library, then shuffle.) -- At the beginning of your end step, if you attacked this turn, create a 1/1 white Human Soldier creature token.
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Curious Herd
+text=Choose target opponent. You create X 3/3 green Beast creature tokens, where X is the number of artifacts that player controls.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
+name=Path of Ancestry
+text=Path of Ancestry enters the battlefield tapped. -- {T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1.
+type=Land
+[/card]
+[card]
+name=Capricopian
+text=Capricopian enters the battlefield with X +1/+1 counters on it. -- {2}: Put a +1/+1 counter on Capricopian, then you may reselect which player Capricopian is attacking. Only the player Capricopian is attacking may activate this ability and only during the declare attackers step. (It can't attack its controller.)
+mana={X}{G}
+type=Creature
+subtype=Goat Hydra
+power=0
+toughness=0
+[/card]
+[card]
+name=Find
+text=Return up to two target creature cards from your graveyard to your hand. --
+mana={BG}{BG}
+type=Sorcery
+[/card]
+[card]
+name=Garna, the Bloodflame
+text=Flash -- When Garna, the Bloodflame enters the battlefield, return to your hand all creature cards in your graveyard that were put there from anywhere this turn. -- Other creatures you control have haste.
+mana={3}{B}{R}
+type=Legendary Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Obscuring Haze
+text=If you control a commander, you may cast this spell without paying its mana cost. -- Prevent all damage that would be dealt this turn by creatures your opponents control.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Haldan, Avid Arcanist
+text=Partner with Pako, Arcane Retriever (When this creature enters the battlefield, target player may put Pako into their hand from their library, then shuffle.) -- You may play noncreature cards from exile with fetch counters on them if you exiled them, and you may spend mana as though it were mana of any color to cast those spells.
+mana={2}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=1
+toughness=4
+[/card]
+[card]
+name=Glademuse
+text=Whenever a player casts a spell, if it's not their turn, that player draws a card.
+mana={2}{G}
+type=Creature
+subtype=Beast
+power=2
+toughness=4
+[/card]
+[card]
+name=Predatory Impetus
+text=Enchant creature -- Enchanted creature gets +3/+3, must be blocked if able, and is goaded. (It attacks each combat if able and attacks a player other than you if able.)
+mana={4}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Frontier Warmonger
+text=Whenever one or more creatures attack one of your opponents or a planeswalker they control, those creatures gain menace until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=4
+[/card]
+[card]
+name=Netherborn Altar
+text={T}, Put a soul counter on Netherborn Altar: Put your commander into your hand from the command zone. Then you lose 3 life for each soul counter on Netherborn Altar.
+mana={1}{B}
+type=Artifact
+[/card]
+[card]
+name=Mindleecher
+text=Mutate {4}{B} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying -- Whenever this creature mutates, exile the top card of each opponent's library face down. You may look at and play those cards for as long as they remain exiled.
+mana={4}{B}{B}
+type=Creature
+subtype=Nightmare
+power=5
+toughness=5
+[/card]
+[card]
+name=Species Specialist
+text=As Species Specialist enters the battlefield, choose a creature type. -- Whenever a creature of the chosen type dies, you may draw a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=3
+[/card]
+[card]
+name=Heirloom Blade
+text=Equipped creature gets +3/+1. -- Whenever equipped creature dies, you may reveal cards from the top of your library until you reveal a creature card that shares a creature type with it. Put that card into your hand and the rest on the bottom of your library in a random order. -- Equip {1}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Parasitic Impetus
+text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, its controller loses 2 life and you gain 2 life.
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Portal Mage
+text=Flash -- When Portal Mage enters the battlefield during the declare attackers step, you may reselect which player or planeswalker target attacking creature is attacking. (It can't attack its controller or its controller's planeswalkers.)
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Agitator Ant
+text=At the beginning of your end step, each player may put two +1/+1 counters on a creature they control. Goad each creature that had counters put on it this way. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
+mana={2}{R}
+type=Creature
+subtype=Insect
+power=2
+toughness=2
+[/card]
+[card]
+name=Titan Hunter
+text=At the beginning of each player's end step, if no creatures died this turn, Titan Hunter deals 4 damage to that player. -- {1}{B}, Sacrifice a creature: You gain 4 life.
+mana={4}{B}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=5
+[/card]
+[card]
+name=Fireflux Squad
+text=Haste -- Whenever Fireflux Squad attacks, you may exile another target attacking creature you control. If you do, reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield tapped and attacking and the rest on the bottom of your library in a random order.
+mana={3}{R}
+type=Creature
+subtype=Human Soldier
+power=4
+toughness=3
+[/card]
+[card]
+name=Archon of Valor's Reach
+text=Flying, vigilance, trample -- As Archon of Valor's Reach enters the battlefield, choose artifact, enchantment, instant, sorcery, or planeswalker. -- Players can't cast spells of the chosen type.
+mana={4}{G}{W}
+type=Creature
+subtype=Archon
+power=5
+toughness=6
+[/card]
+[card]
+name=Deflecting Swat
+text=If you control a commander, you may cast this spell without paying its mana cost. -- You may choose new targets for target spell or ability.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Abandoned Sarcophagus
+text=You may cast spells that have cycling from your graveyard. -- If a card with cycling would be put into your graveyard from anywhere and it wasn't cycled, exile it instead.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Ukkima, Stalking Shadow
+text=Partner with Cazur, Ruthless Stalker (When this creature enters the battlefield, target player may put Cazur into their hand from their library, then shuffle.) -- Ukkima, Stalking Shadow can't be blocked. -- When Ukkima leaves the battlefield, it deals X damage to target player and you gain X life, where X is its power.
+mana={1}{U}{B}
+type=Legendary Creature
+subtype=Whale Wolf
+power=2
+toughness=2
+[/card]
+[card]
+name=Deadly Rollick
+text=If you control a commander, you may cast this spell without paying its mana cost. -- Exile target creature.
+mana={3}{B}
+type=Instant
+[/card]
+[card]
+name=Tayam, Luminous Enigma
+text=Each other creature you control enters the battlefield with an additional vigilance counter on it. -- {3}, Remove three counters from among creatures you control: Put the top three cards of your library into your graveyard, then return a permanent card with converted mana cost 3 or less from your graveyard to the battlefield.
+mana={1}{W}{B}{G}
+type=Legendary Creature
+subtype=Nightmare Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Daring Fiendbonder
+text=Haste -- Daring Fiendbonder attacks each combat if able. -- {1}{B}, Exile Daring Fiendbonder from your graveyard: Put an indestructible counter on target creature. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}
+type=Creature
+subtype=Human Warlock
+power=5
+toughness=1
+[/card]
+[card]
+name=Yannik, Scavenging Sentinel
+text=Partner with Nikara, Lair Scavenger -- Vigilance -- When Yannik, Scavenging Sentinel enters the battlefield, exile another creature you control until Yannik leaves the battlefield. When you do, distribute X +1/+1 counters among any number of target creatures, where X is the exiled creature's power.
+mana={2}{G}{W}
+type=Legendary Creature
+subtype=Hyena Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Xyris, the Writhing Storm
+text=Flying -- Whenever an opponent draws a card except the first one they draw in each of their draw steps, create a 1/1 green Snake creature token. -- Whenever Xyris, the Writhing Storm deals combat damage to a player, you and that player each draw that many cards.
+mana={2}{G}{U}{R}
+type=Legendary Creature
+subtype=Snake Leviathan
+power=3
+toughness=5
+[/card]
+[card]
+name=New Perspectives
+text=When New Perspectives enters the battlefield, draw three cards. -- As long as you have seven or more cards in hand, you may pay {0} rather than pay cycling costs.
+mana={5}{U}
+type=Enchantment
+[/card]
+[card]
+name=Zaxara, the Exemplary
+text=Deathtouch -- {T}: Add two mana of any one color. -- Whenever you cast a spell with Variable Colorless in its mana cost, create a 0/0 green Hydra creature token, then put X +1/+1 counters on it.
+mana={1}{B}{G}{U}
+type=Legendary Creature
+subtype=Nightmare Hydra
+power=2
+toughness=3
+[/card]
+[card]
+name=Ethereal Forager
+text=Delve (Each card you exile from your graveyard while casting this spell pays for 1 .) -- Flying -- Whenever Ethereal Forager attacks, you may return an instant or sorcery card exiled with Ethereal Forager to its owner's hand.
+mana={4}{U}{U}
+type=Creature
+subtype=Elemental Whale
+power=3
+toughness=3
+[/card]
+[card]
+name=Eon Frolicker
+text=Flying -- When Eon Frolicker enters the battlefield, if you cast it, target opponent takes an extra turn after this one. Until your next turn, you and planeswalkers you control gain protection from that player. (You and planeswalkers you control can't be targeted, dealt damage, or enchanted by anything controlled by that player.)
+mana={2}{U}{U}
+type=Creature
+subtype=Elemental Otter
+power=5
+toughness=5
+[/card]
+[card]
+name=Nascent Metamorph
+text=Whenever Nascent Metamorph attacks or blocks, target opponent reveals cards from the top of their library until they reveal a creature card. Nascent Metamorph becomes a copy of that card until end of turn. Then that player puts all cards revealed this way on the bottom of their library in a random order.
+mana={1}{U}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=1
+[/card]
+[card]
+name=Fierce Guardianship
+text=If you control a commander, you may cast this spell without paying its mana cost. -- Counter target noncreature spell.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Pako, Arcane Retriever
+text=Partner with Haldan, Avid Arcanist -- Haste -- Whenever Pako, Arcane Retriever attacks, exile the top card of each player's library and put a fetch counter on each of them. Put a +1/+1 counter on Pako for each noncreature card exiled this way.
+mana={3}{R}{G}
+type=Legendary Creature
+subtype=Elemental Hound
+power=3
+toughness=3
+[/card]
+[card]
+name=Souvenir Snatcher
+text=Mutate {5}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying -- Whenever this creature mutates, gain control of target noncreature artifact.
+mana={4}{U}
+type=Creature
+subtype=Bird
+power=4
+toughness=4
+[/card]
+[card]
+name=Psychic Impetus
+text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, you scry 2.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Silvar, Devourer of the Free
+text=Partner with Trynn, Champion of Freedom (When this creature enters the battlefield, target player may put Trynn into their hand from their library, then shuffle.) -- Menace -- Sacrifice a Human: Put a +1/+1 counter on Silvar, Devourer of the Free. It gains indestructible until end of turn.
+mana={3}{B}{R}
+type=Legendary Creature
+subtype=Cat Nightmare
+power=4
+toughness=2
+[/card]
+[card]
+name=Boneyard Mycodrax
+text=Boneyard Mycodrax's power and toughness are each equal to the number of other creature cards in your graveyard. -- Scavenge {4}{B} ({4}{B}, Exile this card from your graveyard: Put a number of +1/+1 counters equal to this card's power on target creature. Scavenge only as a sorcery.)
+mana={2}{B}
+type=Creature
+subtype=Fungus
+power=*
+toughness=*
+[/card]
+[card]
+name=Shabraz, the Skyshark
+text=Partner with Brallin, Skyshark Rider -- Flying -- Whenever you draw a card, put a +1/+1 counter on Shabraz, the Skyshark and you gain 1 life. -- {W} or {U}: Target Human gains flying until end of turn.
+mana={3}{W}{U}
+type=Legendary Creature
+subtype=Shark Bird
+power=3
+toughness=3
+[/card]
+[card]
+name=Tidal Barracuda
+text=Any player may cast spells as though they had flash. -- Your opponents can't cast spells during your turn.
+mana={3}{U}
+type=Creature
+subtype=Fish
+power=3
+toughness=4
+[/card]
+[card]
+name=Dredge the Mire
+text=Each opponent chooses a creature card in their graveyard. Put those cards onto the battlefield under your control.
+mana={3}{B}
+type=Sorcery
+[/card]
