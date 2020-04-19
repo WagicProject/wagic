@@ -142,7 +142,7 @@ public class ImgDownloader {
         return true;
     }
 
-    public static boolean fastDownloadCard(String set, String id, String name, String imgPath, String thumbPath, int ImgX, int ImgY, int ThumbX, int ThumbY) {
+    public static boolean fastDownloadCard(String set, String id, String name, String imgPath, String thumbPath, int ImgX, int ImgY, int ThumbX, int ThumbY, int Border, int BorderThumb) {
         if (database == null)
             return false;
         HashMap<String, String> subdb = database.get(set);
@@ -234,8 +234,11 @@ public class ImgDownloader {
             try {
                 Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
                 Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
+                if(Border > 0)
+                    resized = Bitmap.createBitmap(resized, Border, Border, ImgX-2*Border, ImgY-2*Border);
                 FileOutputStream fout = new FileOutputStream(cardimage);
                 resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                fout.close();
             } catch (Exception e) {
                 System.out.println("Warning: Problem resizing card: " + name + " (" + id + ".jpg) from " + imageurl + ", i will try with slow method...");
                 return false;
@@ -243,8 +246,11 @@ public class ImgDownloader {
             try {
                 Bitmap yourBitmapThumb = BitmapFactory.decodeFile(cardimage);
                 Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmapThumb, ThumbX, ThumbY, true);
+                if(BorderThumb > 0)
+                    resizedThumb = Bitmap.createBitmap(resizedThumb, BorderThumb, BorderThumb, ThumbX-2*BorderThumb, ThumbY-2*BorderThumb);
                 FileOutputStream fout = new FileOutputStream(thumbcardimage);
                 resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                fout.close();
             } catch (Exception e) {
                 System.out.println("Warning: Problem resizing card thumbnail: " + name + " (" + id + ".jpg) from " + imageurl + ", i will try with slow method...");
                 return false;
@@ -339,8 +345,11 @@ public class ImgDownloader {
                 try {
                     Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
                     Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
+                    if(Border > 0)
+                        resizedToken = Bitmap.createBitmap(resizedToken, Border, Border, ImgX-2*Border, ImgY-2*Border);
                     FileOutputStream fout = new FileOutputStream(tokenimage);
                     resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                    fout.close();
                 } catch (Exception e) {
                     System.out.println("Warning: Problem resizing token: " + id + "t.jpg) from " + imageurl + ", i will try with slow method...");
                     return false;
@@ -348,8 +357,11 @@ public class ImgDownloader {
                 try {
                     Bitmap yourBitmapTokenThumb = BitmapFactory.decodeFile(tokenimage);
                     Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapTokenThumb, ThumbX, ThumbY, true);
+                    if(BorderThumb > 0)
+                        resizedThumbToken = Bitmap.createBitmap(resizedThumbToken, BorderThumb, BorderThumb, ThumbX-2*BorderThumb, ThumbY-2*BorderThumb);
                     FileOutputStream fout = new FileOutputStream(tokenthumbimage);
                     resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                    fout.close();
                 } catch (Exception e) {
                     System.out.println("Warning: Problem resizing token thumbnail: " + id + "t.jpg) from " + imageurl + ", i will try with slow method...");
                     return false;
@@ -2010,7 +2022,7 @@ public class ImgDownloader {
         throw new Exception();
     }
 
-    public static String DownloadCardImages(String set, String[] availableSets, String targetres, String basePath, String destinationPath, ProgressDialog progressBarDialog, SDLActivity parent, boolean skipDownloaded) throws IOException {
+    public static String DownloadCardImages(String set, String[] availableSets, String targetres, String basePath, String destinationPath, ProgressDialog progressBarDialog, SDLActivity parent, boolean skipDownloaded, boolean borderless) throws IOException {
         try {
             File oldzip = new File(destinationPath + File.separator + set + File.separator + set + ".zip");
             if(oldzip.exists() && skipDownloaded)
@@ -2028,6 +2040,8 @@ public class ImgDownloader {
         Integer ImgY = 0;
         Integer ThumbX = 0;
         Integer ThumbY = 0;
+        Integer Border = 0;
+        Integer BorderThumb = 0;
 
         if (targetres.equals("High")) {
             ImgX = 672;
@@ -2049,6 +2063,11 @@ public class ImgDownloader {
             ImgY = 255;
             ThumbX = 45;
             ThumbY = 64;
+        }
+
+        if(borderless){
+            Border = (int)Math.round(ImgX*0.04);
+            BorderThumb = (int)Math.round(ThumbX*0.04);
         }
 
         File baseFolder = new File(basePath);
@@ -2240,7 +2259,7 @@ public class ImgDownloader {
 
             String id = mappa.keySet().toArray()[y].toString();
             progressBarDialog.incrementProgressBy((int) (1));
-            if (fastDownloadCard(set, id, mappa.get(id), imgPath.getAbsolutePath(), thumbPath.getAbsolutePath(), ImgX, ImgY, ThumbX, ThumbY))
+            if (fastDownloadCard(set, id, mappa.get(id), imgPath.getAbsolutePath(), thumbPath.getAbsolutePath(), ImgX, ImgY, ThumbX, ThumbY, Border, BorderThumb))
                 continue;
             String specialcardurl = getSpecialCardUrl(id);
             if (!specialcardurl.isEmpty()) {
@@ -2324,8 +2343,11 @@ public class ImgDownloader {
                 try {
                     Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
                     Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
+                    if(Border > 0)
+                        resized = Bitmap.createBitmap(resized, Border, Border, ImgX-2*Border, ImgY-2*Border);
                     FileOutputStream fout = new FileOutputStream(cardimage);
                     resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                    fout.close();
                 } catch (Exception e) {
                     System.err.println("Error: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
                     res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
@@ -2334,8 +2356,11 @@ public class ImgDownloader {
                 try {
                     Bitmap yourBitmapthumb = BitmapFactory.decodeFile(cardimage);
                     Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmapthumb, ThumbX, ThumbY, true);
+                    if(BorderThumb > 0)
+                        resizedThumb = Bitmap.createBitmap(resizedThumb, BorderThumb, BorderThumb, ThumbX-2*BorderThumb, ThumbY-2*BorderThumb);
                     FileOutputStream fout = new FileOutputStream(thumbcardimage);
                     resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                    fout.close();
                 } catch (Exception e) {
                     System.err.println("Error: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg, image may be corrupted...");
                     res = mappa.get(id) + " - " + set + File.separator + "thumbnails" + File.separator + id + ".jpg\n" + res;
@@ -2792,8 +2817,11 @@ public class ImgDownloader {
                     try {
                         Bitmap yourBitmap = BitmapFactory.decodeFile(cardimage);
                         Bitmap resized = Bitmap.createScaledBitmap(yourBitmap, ImgX, ImgY, true);
+                        if(Border > 0)
+                            resized = Bitmap.createBitmap(resized, Border, Border, ImgX-2*Border, ImgY-2*Border);
                         FileOutputStream fout = new FileOutputStream(cardimage);
                         resized.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                        fout.close();
                     } catch (Exception e) {
                         System.err.println("Error: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
                         res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
@@ -2802,8 +2830,11 @@ public class ImgDownloader {
                     try {
                         Bitmap yourBitmapthumb = BitmapFactory.decodeFile(cardimage);
                         Bitmap resizedThumb = Bitmap.createScaledBitmap(yourBitmapthumb, ThumbX, ThumbY, true);
+                        if(BorderThumb > 0)
+                            resizedThumb = Bitmap.createBitmap(resizedThumb, BorderThumb, BorderThumb, ThumbX-2*BorderThumb, ThumbY-2*BorderThumb);
                         FileOutputStream fout = new FileOutputStream(thumbcardimage);
                         resizedThumb.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                        fout.close();
                     } catch (Exception e) {
                         System.err.println("Error: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
                         res = mappa.get(id) + " - " + set + File.separator + "thumbnails" + File.separator + id + ".jpg\n" + res;
@@ -3172,8 +3203,11 @@ public class ImgDownloader {
                                 try {
                                     Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
                                     Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
+                                    if(Border > 0)
+                                        resizedToken = Bitmap.createBitmap(resizedToken, Border, Border, ImgX-2*Border, ImgY-2*Border);
                                     FileOutputStream fout = new FileOutputStream(tokenimage);
                                     resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                                    fout.close();
                                 } catch (Exception e) {
                                     System.err.println("Error: Problem resizing token: " + id + "t.jpg, image may be corrupted...");
                                     res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
@@ -3182,8 +3216,11 @@ public class ImgDownloader {
                                 try {
                                     Bitmap yourBitmapTokenthumb = BitmapFactory.decodeFile(tokenimage);
                                     Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapTokenthumb, ThumbX, ThumbY, true);
+                                    if(BorderThumb > 0)
+                                        resizedThumbToken = Bitmap.createBitmap(resizedThumbToken, BorderThumb, BorderThumb, ThumbX-2*BorderThumb, ThumbY-2*BorderThumb);
                                     FileOutputStream fout = new FileOutputStream(tokenthumbimage);
                                     resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                                    fout.close();
                                 } catch (Exception e) {
                                     System.err.println("Error: Problem resizing token thumbnail: " + id + "t.jpg, image may be corrupted...");
                                     res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;

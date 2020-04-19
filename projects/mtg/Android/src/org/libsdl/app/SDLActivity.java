@@ -515,11 +515,13 @@ public class SDLActivity extends Activity implements OnKeyListener {
         AlertDialog.Builder resChooser = new AlertDialog.Builder(this);
 
         resChooser.setTitle("Which resolution would you like to use?");
-        final String[] availableRes = new String[]{"High - (672x936)", "Medium - (488x680)", "Low - (244x340)", "Tiny - (180x255)"};
+        final String[] availableRes = new String[]{"High - (672x936)", "High - (672x936) - Borderless", "Medium - (488x680)", "Medium - (488x680) - Borderless",
+                "Low - (244x340)", "Low - (244x340) - Borderless", "Tiny - (180x255)", "Tiny - (180x255) - Borderless"};
 
         resChooser.setSingleChoiceItems(availableRes, 0, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 targetRes = availableRes[item].split(" - ")[0];
+                borderless = (availableRes[item].split(" - ").length > 2);
             }
         });
 
@@ -562,6 +564,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
     boolean error = false;
     boolean skipDownloaded = false;
+    boolean borderless = false;
     String res = "";
     public volatile boolean downloadInProgress = false;
     public volatile boolean paused = false;
@@ -600,7 +603,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
                                     cardDownloader.setTitle("Downloading set: " + set + " (" + (currentIndex + 1) + " of " + selectedSets.size() + ")");
                                 }
                             });
-                            String details = ImgDownloader.DownloadCardImages(set, availableSets, targetRes, getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader, parent, skipDownloaded);
+                            String details = ImgDownloader.DownloadCardImages(set, availableSets, targetRes, getSystemStorageLocation(), getUserStorageLocation() + "sets/", cardDownloader, parent, skipDownloaded, borderless);
                             if (!details.isEmpty()) {
                                 if (!res.isEmpty())
                                     res = res + "\nSET " + set + ":\n" + details;
@@ -690,6 +693,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
         set = "";
         targetRes = "High";
         skipDownloaded = false;
+        borderless = false;
         currentIndex = 0;
         selectedSets = new ArrayList<String>();
         for (int i = 0; i < checkedSet.length; i++) {
@@ -715,6 +719,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
         set = "";
         targetRes = "High";
         skipDownloaded = false;
+        borderless = false;
         currentIndex = 0;
         selectedSets = new ArrayList<String>();
         for (int i = 0; i < checkedSet.length; i++) {
