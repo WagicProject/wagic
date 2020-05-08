@@ -1376,6 +1376,12 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/1/4/14b28eae-e8ed-4b99-b6ec-86d0716ec473.jpg?1581480007";
         else if(id.equals("479417"))
             cardurl = "https://img.scryfall.com/cards/large/front/e/f/efcbd4ef-3bf4-4f22-9069-2a11c9619a43.jpg?1583965446";
+        else if(id.equals("482713t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/2/9/29d42a00-299d-47d3-ba03-e63812d57931.jpg?1586452636";
+        else if(id.equals("4827131t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/1/d/1dee8c94-cdc8-42b2-a393-0c0c8e439125.jpg?1586453065";
+        else if(id.equals("484902t") || id.equals("484904t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/7/2/720f3e68-84c0-462e-a0d1-90236ccc494a.jpg?1562539782";
         
         return cardurl;
     }
@@ -1818,7 +1824,7 @@ public class ImgDownloader {
                 id.equals("470620") || id.equals("470754") || id.equals("470750") || id.equals("470739") || id.equals("470708") || id.equals("470581") ||
                 id.equals("470578") || id.equals("470571") || id.equals("470552") || id.equals("394490") || id.equals("114921") || id.equals("49775")  ||
                 id.equals("473123") || id.equals("473160") || id.equals("16743")  || id.equals("16741") || id.equals("294493") || id.equals("293253") ||
-                id.equals("293198"))
+                id.equals("293198") || id.equals("479634")  || id.equals("479702"))
             return false;
         return true;
     }

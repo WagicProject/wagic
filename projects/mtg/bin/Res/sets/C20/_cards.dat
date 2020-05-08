@@ -2,25 +2,30 @@
 author=Wagic Team
 name=Commander 2020
 year=2020-04-17
-total=351
+total=353
 [/meta]
 [card]
-primitive=Beast
+primitive=Beast Saw
 id=-484911
 rarity=T
 [/card]
 [card]
-primitive=Beast
+primitive=Beast Cur
 id=-484906
 rarity=T
 [/card]
 [card]
-primitive=Unknown
+primitive=Treasure Sur
 id=-484904
 rarity=T
 [/card]
 [card]
-primitive=soldier
+primitive=Treasure Shi
+id=-484902
+rarity=T
+[/card]
+[card]
+primitive=Soldier Call
 id=-484870
 rarity=T
 [/card]
@@ -30,12 +35,12 @@ id=-484727
 rarity=T
 [/card]
 [card]
-primitive=Snake
+primitive=Snake Xyr
 id=-484725
 rarity=T
 [/card]
 [card]
-primitive=Soldier
+primitive=Human Soldier Jir
 id=-484715
 rarity=T
 [/card]
@@ -45,12 +50,12 @@ id=-484714
 rarity=T
 [/card]
 [card]
-primitive={3}{U}{R}{W}:
+primitive=Bird
 id=-484713
 rarity=T
 [/card]
 [card]
-primitive=Soldier
+primitive=Soldier Try
 id=-484708
 rarity=T
 [/card]
@@ -60,7 +65,7 @@ id=-482862
 rarity=T
 [/card]
 [card]
-primitive=Bird
+primitive=Bird Mig
 id=-482850
 rarity=T
 [/card]
@@ -70,7 +75,7 @@ id=-482847
 rarity=T
 [/card]
 [card]
-primitive=Saproling
+primitive=Saproling Art
 id=-482831
 rarity=T
 [/card]
@@ -80,32 +85,32 @@ id=-482826
 rarity=T
 [/card]
 [card]
-primitive=Beast
+primitive=Beast Hun
 id=-482807
 rarity=T
 [/card]
 [card]
-primitive=Insect
+primitive=Insect Hor
 id=-482804
 rarity=T
 [/card]
 [card]
-primitive=Beast
+primitive=Beast Wit
 id=-482796
 rarity=T
 [/card]
 [card]
-primitive=Elemental
+primitive=Elemental Cha
 id=-482773
 rarity=T
 [/card]
 [card]
-primitive=Zombie
+primitive=Zombie Xat
 id=-482769
 rarity=T
 [/card]
 [card]
-primitive=Drake
+primitive=Drake Tal
 id=-482753
 rarity=T
 [/card]
@@ -115,38 +120,43 @@ id=-482746
 rarity=T
 [/card]
 [card]
-primitive=Drake
+primitive=Drake Hav
 id=-482738
 rarity=T
 [/card]
 [card]
-primitive=Human
+primitive=Human Thr
 id=-482732
 rarity=T
 [/card]
 [card]
-primitive=Spirit
+primitive=Spirit Cai
 id=-482728
 rarity=T
 [/card]
 [card]
-primitive=Human
+primitive=Human Inc
 id=-482719
 rarity=T
 [/card]
 [card]
-primitive=Elemental
+primitive=Elemental Hoo
 id=-482718
 rarity=T
 [/card]
 [card]
-primitive=Angel
+primitive=Angel Des
 id=-482714
 rarity=T
 [/card]
 [card]
-primitive=Soldier
+primitive=Angel Dec
 id=-482713
+rarity=T
+[/card]
+[card]
+primitive=Soldier Dec
+id=-4827131
 rarity=T
 [/card]
 [card]
