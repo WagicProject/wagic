@@ -17,16 +17,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Vorel of the Hull Clade
-auto={G}{U}{T}: target(artifact;creature;land[(counter{any})]) propagate*(twice)
-text={G}{U}, {T}: Double the number of each kind of counter on target artifact, creature, or land.
-mana={1}{G}{U}
-type=Legendary Creature
-subtype=Human Merfolk
-power=1
-toughness=4
-[/card]
-[card]
 name=1996 World Champion
 text=Cannot be the targets of spells or effects. World Champion has power and toughness equal to the life totals of target opponent. {0}: Discard your hand to search your library for 1996 World Champion and reveal it to all players. Shuffle your library and put 1996 World Champion on top of it. Use this ability only at the beginning of your upkeep, and only if 1996 World Champion is in your library.
 mana={W}{U}{B}{R}{G}
@@ -724,12 +714,6 @@ type=Plane
 subtype=Kolbahan
 [/card]
 [card]
-name=Astral Cornucopia
-text=Astral Cornucopia enters the battlefield with X charge counters on it. -- {T}: Choose a color. Add one mana of that color to your mana pool for each charge counter on Astral Cornucopia.
-mana={X}{X}{X}
-type=Artifact
-[/card]
-[card]
 name=Atarka's Command
 text=Choose two — -- • Your opponents can't gain life this turn. -- • Atarka's Command deals 3 damage to each opponent. -- • You may put a land card from your hand onto the battlefield. -- • Creatures you control get +1/+1 and gain reach until end of turn.
 mana={R}{G}
@@ -790,16 +774,6 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Autumn Willow
-abilities=shroud
-text=Shroud -- {G}: Until end of turn, Autumn Willow can be the target of spells and abilities controlled by target player as though it didn't have shroud.
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Avatar
-power=4
-toughness=4
 [/card]
 [card]
 name=Autumn's Veil
@@ -1154,15 +1128,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Bearer of Silence
-text=Devoid (This card has no color.) -- When you cast Bearer of Silence, you may pay {1}{C}. If you do, target opponent sacrifices a creature. ({C} represents colorless mana.) -- Flying -- Bearer of Silence can't block.
-mana={1}{B}
-type=Creature
-subtype=Eldrazi
-power=2
-toughness=1
-[/card]
-[card]
 name=Beast Walkers
 text={G}: Beast Walkers gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={1}{W}{W}
@@ -1250,15 +1215,6 @@ type=Creature
 subtype=Unicorn
 power=1
 toughness=2
-[/card]
-[card]
-name=Benthic Explorers
-text={T}, Untap a tapped land an opponent controls: Add one mana of any type that land could produce to your mana pool.
-mana={3}{U}
-type=Creature
-subtype=Merfolk Scout
-power=2
-toughness=4
 [/card]
 [card]
 name=Besmirch
@@ -1376,12 +1332,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Blessed Reincarnation
-text=Exile target creature an opponent controls. That player reveals cards from the top of his or her library until a creature card is revealed. The player puts that card onto the battlefield, then shuffles the rest into his or her library. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-mana={3}{U}
-type=Instant
-[/card]
-[card]
 name=Blind Fury
 text=Cast Blind Fury only before the combat damage step. -- All creatures lose trample until end of turn. If a creature would deal combat damage to a creature this turn, it deals double that damage to that creature instead.
 mana={2}{R}{R}
@@ -1456,16 +1406,6 @@ type=Creature
 subtype=Goblin Warrior
 power=4
 toughness=1
-[/card]
-[card]
-name=Bogardan Hellkite
-abilities=flash
-text=Flash -- Flying -- When Bogardan Hellkite enters the battlefield, it deals 5 damage divided as you choose among any number of target creatures and/or players.
-mana={6}{R}{R}
-type=Creature
-subtype=Dragon
-power=5
-toughness=5
 [/card]
 [card]
 name=Bomat Courier
@@ -2892,12 +2832,6 @@ mana={X}{X}{R}
 type=Sorcery
 [/card]
 [card]
-name=Conflux
-text=Search your library for a white card, a blue card, a black card, a red card, and a green card. Reveal those cards and put them into your hand. Then shuffle your library.
-mana={3}{W}{U}{B}{R}{G}
-type=Sorcery
-[/card]
-[card]
 name=Confound
 text=Counter target spell that targets one or more creatures. --  -- Draw a card.
 mana={1}{U}
@@ -2939,12 +2873,6 @@ name=Consulate Surveillance
 text=When Consulate Surveillance enters the battlefield, you get {E}{E}{E}{E} (four energy counters). -- Pay {E}{E}: Prevent all damage that would be dealt to you this turn by a source of your choice.
 mana={3}{W}
 type=Enchantment
-[/card]
-[card]
-name=Consume Strength
-text=Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
-mana={1}{B}{G}
-type=Instant
 [/card]
 [card]
 name=Consuming Vortex
@@ -3713,12 +3641,6 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Decimate
-text=Destroy target artifact, target creature, target enchantment, and target land.
-mana={2}{R}{G}
-type=Sorcery
-[/card]
-[card]
 name=Declaration of Naught
 text=As Declaration of Naught enters the battlefield, name a card. -- {U}: Counter target spell with the chosen name.
 mana={U}{U}
@@ -3810,16 +3732,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Demon of Wailing Agonies
-abilities=flying
-text=Flying -- Lieutenant — As long as you control your commander, Demon of Wailing Agonies gets +2/+2 and has "Whenever Demon of Wailing Agonies deals combat damage to a player, that player sacrifices a creature."
-mana={3}{B}{B}
-type=Creature
-subtype=Demon
-power=4
-toughness=4
-[/card]
-[card]
 name=Demonfire
 text=Demonfire deals X damage to target creature or player. If a creature dealt damage this way would die this turn, exile it instead. -- Hellbent — If you have no cards in hand, Demonfire can't be countered by spells or abilities and the damage can't be prevented.
 mana={X}{R}
@@ -3848,16 +3760,6 @@ name=Denied!
 text=Play Denied only as any opponent casts target spell. Name a card, then look at all cards in that player's hand. If the named card is in the player's hand, counter target spell.
 mana={U}
 type=Interrupt
-[/card]
-[card]
-name=Derevi, Empyrial Tactician
-abilities=flying
-text=Flying -- Whenever Derevi, Empyrial Tactician enters the battlefield or a creature you control deals combat damage to a player, you may tap or untap target permanent. -- {1}{G}{W}{U}: Put Derevi onto the battlefield from the command zone.
-mana={G}{W}{U}
-type=Legendary Creature
-subtype=Bird Wizard
-power=2
-toughness=3
 [/card]
 [card]
 name=Dermoplasm
@@ -3949,12 +3851,6 @@ type=Creature
 subtype=Human
 power=1
 toughness=1
-[/card]
-[card]
-name=Diabolic Servitude
-text=When Diabolic Servitude enters the battlefield, return target creature card from your graveyard to the battlefield. -- When the creature put onto the battlefield with Diabolic Servitude dies, exile it and return Diabolic Servitude to its owner's hand. -- When Diabolic Servitude leaves the battlefield, exile the creature put onto the battlefield with Diabolic Servitude.
-mana={3}{B}
-type=Enchantment
 [/card]
 [card]
 name=Dichotomancy
@@ -4351,15 +4247,6 @@ name=Dromoka's Command
 text=Choose two — -- • Prevent all damage target instant or sorcery spell would deal this turn. -- • Target player sacrifices an enchantment. -- • Put a +1/+1 counter on target creature. -- • Target creature you control fights target creature you don't control.
 mana={G}{W}
 type=Instant
-[/card]
-[card]
-name=Drooling Groodion
-text={2}{B}{G}, Sacrifice a creature: Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
-mana={3}{B}{B}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=3
 [/card]
 [card]
 name=Drought
@@ -5179,15 +5066,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=Feral Hydra
-text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put a +1/+1 counter on Feral Hydra. Any player may activate this ability.
-mana={X}{G}
-type=Creature
-subtype=Hydra Beast
-power=0
-toughness=0
-[/card]
-[card]
 name=Ferropede
 abilities=unblockable
 text=Ferropede is unblockable. -- Whenever Ferropede deals combat damage to a player, you may remove a counter from target permanent.
@@ -5375,15 +5253,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Flamekin Bladewhirl
-text=As an additional cost to cast Flamekin Bladewhirl, reveal an Elemental card from your hand or pay {3}.
-mana={R}
-type=Creature
-subtype=Elemental Warrior
-power=2
-toughness=1
-[/card]
-[card]
 name=Flames of the Blood Hand
 text=Flames of the Blood Hand deals 4 damage to target player. The damage can't be prevented. If that player would gain life this turn, that player gains no life instead.
 mana={2}{R}
@@ -5486,12 +5355,6 @@ type=Creature
 subtype=Salamander
 power=3
 toughness=4
-[/card]
-[card]
-name=Fluctuator
-text=Cycling abilities you activate cost you up to {2} less to activate.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Fog Patch
@@ -5711,15 +5574,6 @@ mana={3}{G}
 type=Enchantment
 [/card]
 [card]
-name=Frontline Medic
-text=Battalion — Whenever Frontline Medic and at least two other creatures attack, creatures you control are indestructible this turn. -- Sacrifice Frontline Medic: Counter target spell with {X} in its mana cost unless its controller pays {3}.
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-power=3
-toughness=3
-[/card]
-[card]
 name=Fruitcake Elemental
 text=Fruitcake Elemental is indestructible. -- At the end of your turn, Fruitcake Elemental deals 7 damage to you. -- {3}: Target player gains control of Fruitcake Elemental.
 mana={1}{G}{G}
@@ -5789,21 +5643,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Gaea's Touch
-text=You may play an additional land during your turn if that land is a basic Forest. --  -- Sacrifice Gaea's Touch: Add {G}{G} to your mana pool.
-mana={G}{G}
-type=Enchantment
-[/card]
-[card]
-name=Gahiji, Honored One
-text=Whenever a creature attacks one of your opponents or a planeswalker an opponent controls, that creature gets +2/+0 until end of turn.
-mana={2}{R}{G}{W}
-type=Legendary Creature
-subtype=Beast
-power=4
-toughness=4
-[/card]
-[card]
 name=Game of Chaos
 text=Flip a coin. If you win the flip, you gain 1 life and target opponent loses 1 life, and you decide whether to flip again. If you lose the flip, you lose 1 life and that opponent gains 1 life, and that player decides whether to flip again. Double the life stakes with each flip.
 mana={R}{R}{R}
@@ -5862,12 +5701,6 @@ name=Gaze of the Gorgon
 text=({BG} can be paid with either {B} or {G}.) -- Regenerate target creature. At end of combat, destroy all creatures that blocked or were blocked by that creature this turn.
 mana={3}{BG}
 type=Instant
-[/card]
-[card]
-name=Gem of Becoming
-text={3}, {T}, Sacrifice Gem of Becoming: Search your library for an Island card, a Swamp card, and a Mountain card. Reveal those cards and put them into your hand. Then shuffle your library.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Gemstone Caverns
@@ -6444,24 +6277,6 @@ power=5
 toughness=4
 [/card]
 [card]
-name=Goldmeadow Stalwart
-text=As an additional cost to cast Goldmeadow Stalwart, reveal a Kithkin card from your hand or pay {3}.
-mana={W}
-type=Creature
-subtype=Kithkin Soldier
-power=2
-toughness=2
-[/card]
-[card]
-name=Goldnight Castigator
-text=Flying, haste -- If a source would deal damage to you, it deals double that damage to you instead. -- If a source would deal damage to Goldnight Castigator, it deals double that damage to Goldnight Castigator instead.
-mana={2}{R}{R}
-type=Creature
-subtype=Angel
-power=4
-toughness=9
-[/card]
-[card]
 name=Golgothian Sylex
 text={1}, {T}: Each nontoken permanent from the Antiquities expansion is sacrificed by its controller.
 mana={4}
@@ -6501,12 +6316,6 @@ mana={W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Govern the Guildless
-text=Gain control of target monocolored creature. -- Forecast — {1}{U}, Reveal Govern the Guildless from your hand: Target creature becomes the color or colors of your choice until end of turn. (Activate this ability only during your upkeep and only once each turn.)
-mana={5}{U}
-type=Sorcery
-[/card]
-[card]
 name=Grab the Reins
 text=Choose one — -- • Until end of turn, you gain control of target creature and it gains haste. -- • Sacrifice a creature. Grab the Reins deals damage equal to that creature's power to target creature or player. -- Entwine {2}{R} (Choose both if you pay the entwine cost.)
 mana={3}{R}
@@ -6541,15 +6350,6 @@ text=Equipped creature gets +3/+2. -- Whenever Grafted Wargear becomes unattache
 mana={3}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Grand Architect
-text=Other blue creatures you control get +1/+1. -- {U}: Target artifact creature becomes blue until end of turn. -- Tap an untapped blue creature you control: Add {2} to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
-mana={1}{U}{U}
-type=Creature
-subtype=Vedalken Artificer
-power=1
-toughness=3
 [/card]
 [card]
 name=Grand Ossuary
@@ -7084,16 +6884,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Hellcarver Demon
-abilities=flying
-text=Flying -- Whenever Hellcarver Demon deals combat damage to a player, sacrifice all other permanents you control and discard your hand. Exile the top six cards of your library. You may cast any number of nonland cards exiled this way without paying their mana costs.
-mana={3}{B}{B}{B}
-type=Creature
-subtype=Demon
-power=6
-toughness=6
-[/card]
-[card]
 name=Hellhole Rats
 text=Haste -- When Hellhole Rats enters the battlefield, target player discards a card. Hellhole Rats deals damage to that player equal to that card's converted mana cost.
 mana={2}{B}{R}
@@ -7484,11 +7274,6 @@ toughness=3
 name=Hymn of the Wilds
 text=(Start the game with this conspiracy face up in the command zone.) -- The first creature spell you cast each turn costs {1} less to cast. -- You can't cast instant or sorcery spells.
 type=Conspiracy
-[/card]
-[card]
-name=Hypergenesis
-text=Suspend 3—{1}{G}{G} (Rather than cast this card from your hand, pay {1}{G}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
-type=Sorcery
 [/card]
 [card]
 name=I Bask in Your Silent Awe
@@ -8018,12 +7803,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Intellectual Offering
-text=Choose an opponent. You and that player each draw three cards. -- Choose an opponent. Untap all nonland permanents you control and all nonland permanents that player controls.
-mana={4}{U}
-type=Instant
-[/card]
-[card]
 name=Interdict
 text=Counter target activated ability from an artifact, creature, enchantment, or land. That permanent's activated abilities can't be activated this turn. (Mana abilities can't be targeted.) -- Draw a card.
 mana={1}{U}
@@ -8175,15 +7954,6 @@ text=Hidden agenda (Start the game with this conspiracy face down in the command
 type=Conspiracy
 [/card]
 [card]
-name=Ivy Seer
-text={2}{G}, {T}: Reveal any number of green cards in your hand. Target creature gets +X/+X until end of turn, where X is the number of cards revealed this way.
-mana={3}{G}
-type=Creature
-subtype=Elf Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Ixidor, Reality Sculptor
 text=Face-down creatures get +1/+1. -- {2}{U}: Turn target face-down creature face up.
 mana={3}{U}{U}
@@ -8220,25 +7990,9 @@ mana={3}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Jace, Architect of Thought
-auto=counter(0/0,4,loyalty)
-text=+1: Until your next turn, whenever a creature an opponent controls attacks, it gets -1/-0 until end of turn. -- -2: Reveal the top three cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other on the bottom of your library in any order. -- -8: For each player, search that player's library for a nonland card and exile it, then that player shuffles his or her library. You may cast those cards without paying their mana costs.
-mana={2}{U}{U}
-type=Planeswalker
-subtype=Jace
-[/card]
-[card]
 name=Jace, Telepath Unbound
 auto=counter(0/0,5,loyalty)
 text=+1: Up to one target creature gets -2/-0 until your next turn. -- -3: You may cast target instant or sorcery card from your graveyard this turn. If that card would be put into your graveyard this turn, exile it instead. -- -9: You get an emblem with "Whenever you cast a spell, target opponent puts the top five cards of his or her library into his or her graveyard."
-type=Planeswalker
-subtype=Jace
-[/card]
-[card]
-name=Jace, the Living Guildpact
-auto=counter(0/0,5,loyalty)
-text=+1: Look at the top two cards of your library. Put one of them into your graveyard. -- -3: Return another target nonland permanent to its owner's hand. -- -8: Each player shuffles his or her hand and graveyard into his or her library. You draw seven cards.
-mana={2}{U}{U}
 type=Planeswalker
 subtype=Jace
 [/card]
@@ -8291,15 +8045,6 @@ name=Jar of Eyeballs
 text=Whenever a creature you control dies, put two eyeball counters on Jar of Eyeballs. -- {3}, {T}, Remove all eyeball counters from Jar of Eyeballs: Look at the top X cards of your library, where X is the number of eyeball counters removed this way. Put one of them into your hand and the rest on the bottom of your library in any order.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Jasmine Seer
-text={2}{W}, {T}: Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
-mana={3}{W}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Jaws of Stone
@@ -8478,14 +8223,6 @@ name=Karmic Justice
 text=Whenever a spell or ability an opponent controls destroys a noncreature permanent you control, you may destroy target permanent that opponent controls.
 mana={2}{W}
 type=Enchantment
-[/card]
-[card]
-name=Karn Liberated
-auto=counter(0/0,6,loyalty)
-text=+4: Target player exiles a card from his or her hand. -- -3: Exile target permanent. -- -14: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.
-mana={7}
-type=Planeswalker
-subtype=Karn
 [/card]
 [card]
 name=Karona's Zealot
@@ -9738,15 +9475,6 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
-name=Maralen of the Mornsong
-text=Players can't draw cards. -- At the beginning of each player's draw step, that player loses 3 life, searches his or her library for a card, puts it into his or her hand, then shuffles his or her library.
-mana={1}{B}{B}
-type=Legendary Creature
-subtype=Elf Wizard
-power=2
-toughness=3
-[/card]
-[card]
 name=Marath, Will of the Wild
 text=Marath, Will of the Wild enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- {X}, Remove X +1/+1 counters from Marath: Choose one — -- • Put X +1/+1 counters on target creature. X can't be 0. -- • Marath deals X damage to target creature or player. X can't be 0. -- • Put an X/X green Elemental creature token onto the battlefield. X can't be 0.
 mana={R}{G}{W}
@@ -9813,15 +9541,6 @@ text={2}, Reveal X blue cards from your hand, Sacrifice Martyr of Frost: Counter
 mana={U}
 type=Creature
 subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Martyr of Sands
-text={1}, Reveal X white cards from your hand, Sacrifice Martyr of Sands: You gain three times X life.
-mana={W}
-type=Creature
-subtype=Human Cleric
 power=1
 toughness=1
 [/card]
@@ -10140,12 +9859,6 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
-name=Mimic Vat
-text=Imprint — Whenever a nontoken creature dies, you may exile that card. If you do, return each other card exiled with Mimic Vat to its owner's graveyard. -- {3}, {T}: Put a token onto the battlefield that's a copy of the exiled card. It gains haste. Exile it at the beginning of the next end step.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Minamo's Meddling
 text=Counter target spell. That spell's controller reveals his or her hand, then discards each card with the same name as a card spliced onto that spell.
 mana={2}{U}{U}
@@ -10370,12 +10083,6 @@ type=Legendary Creature
 subtype=Goblin Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Mizzix's Mastery
-text=Exile target card that's an instant or sorcery from your graveyard. For each card exiled this way, copy it, and you may cast the copy without paying its mana cost. Exile Mizzix's Mastery. -- Overload {5}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
 name=Mob Mentality
@@ -11045,15 +10752,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Nightshade Seer
-text={2}{B}, {T}: Reveal any number of black cards in your hand. Target creature gets -X/-X until end of turn, where X is the number of cards revealed this way.
-mana={3}{B}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Nim Deathmantle
 text=Equipped creature gets +2/+2, has intimidate, and is a black Zombie. -- Whenever a nontoken creature is put into your graveyard from the battlefield, you may pay {4}. If you do, return that card to the battlefield and attach Nim Deathmantle to it. -- Equip {4}
 mana={2}
@@ -11290,19 +10988,9 @@ type=Enchantment
 [/card]
 [card]
 name=Odds // Ends
-text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy. --  //  -- Target player sacrifices two attacking creatures.
+text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy. // Target player sacrifices two attacking creatures.
 mana={U}{R} // {3}{R}{W}
 type=Instant // Instant
-[/card]
-[card]
-name=Odric, Master Tactician
-abilities=first strike
-text=First strike (This creature deals combat damage before creatures without first strike.) -- Whenever Odric, Master Tactician and at least three other creatures attack, you choose which creatures block this combat and how those creatures block.
-mana={2}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier
-power=3
-toughness=4
 [/card]
 [card]
 name=Ogre Enforcer
@@ -11321,15 +11009,6 @@ type=Creature
 subtype=Ogre Warrior
 power=4
 toughness=4
-[/card]
-[card]
-name=Ogre Marauder
-text=Whenever Ogre Marauder attacks, it gains "Ogre Marauder is unblockable" until end of turn unless defending player sacrifices a creature.
-mana={1}{B}{B}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=1
 [/card]
 [card]
 name=Ojutai's Command
@@ -11352,15 +11031,6 @@ text=Phasing, cumulative upkeep {1}, echo, fading 3, bands with other Dinosaurs,
 mana={G}{G}
 type=Summon
 subtype=Dinosaur
-[/card]
-[card]
-name=Oloro, Ageless Ascetic
-text=At the beginning of your upkeep, you gain 2 life. -- Whenever you gain life, you may pay {1}. If you do, draw a card and each opponent loses 1 life. -- At the beginning of your upkeep, if Oloro, Ageless Ascetic is in the command zone, you gain 2 life.
-mana={3}{W}{U}{B}
-type=Legendary Creature
-subtype=Giant Soldier
-power=4
-toughness=5
 [/card]
 [card]
 name=Omen Machine
@@ -11658,12 +11328,6 @@ mana={X}{R}
 type=Instant
 [/card]
 [card]
-name=Outpost Siege
-text=As Outpost Siege enters the battlefield, choose Khans or Dragons. -- • Khans — At the beginning of your upkeep, exile the top card of your library. Until end of turn, you may play that card. -- • Dragons — Whenever a creature you control leaves the battlefield, Outpost Siege deals 1 damage to target creature or player.
-mana={3}{R}
-type=Enchantment
-[/card]
-[card]
 name=Outrider en-Kor
 abilities=flanking
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {0}: The next 1 damage that would be dealt to Outrider en-Kor this turn is dealt to target creature you control instead.
@@ -11822,13 +11486,6 @@ type=Creature
 subtype=Merfolk Rogue
 power=2
 toughness=2
-[/card]
-[card]
-name=Paradox Haze
-text=Enchant player -- At the beginning of enchanted player's first upkeep each turn, that player gets an additional upkeep step after this step.
-mana={2}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Parallel Thoughts
@@ -12365,12 +12022,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Power Conduit
-text={T}, Remove a counter from a permanent you control: Choose one — Put a charge counter on target artifact; or put a +1/+1 counter on target creature.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Power Play
 text=(Start the game with this conspiracy face up in the command zone.) -- You are the starting player. If multiple players would be the starting player, one of those players is chosen at random.
 type=Conspiracy
@@ -12516,12 +12167,6 @@ mana={W}
 type=Sorcery
 [/card]
 [card]
-name=Profane Command
-text=Choose two — -- • Target player loses X life.  -- • Return target creature card with converted mana cost X or less from your graveyard to the battlefield. -- • Target creature gets -X/-X until end of turn. -- • Up to X target creatures gain fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.)
-mana={X}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Profaner of the Dead
 text=Exploit (When this creature enters the battlefield, you may sacrifice a creature.) -- When Profaner of the Dead exploits a creature, return to their owners' hands all creatures your opponents control with toughness less than the exploited creature's toughness.
 mana={3}{U}
@@ -12547,15 +12192,6 @@ name=Proposal
 text=
 mana={W}{W}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Protean Hulk
-text=When Protean Hulk dies, search your library for any number of creature cards with total converted mana cost 6 or less and put them onto the battlefield. Then shuffle your library.
-mana={5}{G}{G}
-type=Creature
-subtype=Beast
-power=6
-toughness=6
 [/card]
 [card]
 name=Protect // Serve
@@ -12829,16 +12465,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Qasali Ambusher
-abilities=reach
-text=Reach -- If a creature is attacking you and you control a Forest and a Plains, you may cast Qasali Ambusher without paying its mana cost and as though it had flash.
-mana={1}{G}{W}
-type=Creature
-subtype=Cat Warrior
-power=2
-toughness=3
-[/card]
-[card]
 name=Quarry Colossus
 text=When Quarry Colossus enters the battlefield, put target creature into its owner's library just beneath the top X cards of that library, where X is the number of Plains you control.
 mana={5}{W}{W}
@@ -12971,7 +12597,7 @@ toughness=1
 [/card]
 [card]
 name=Rage Extractor
-text=({PR} can be paid with either {R} or 2 life.) -- Whenever you cast a spell with <img src="/Handlers/Image.ashx?size=small&amp;name=p&amp;type=symbol" alt="Phyrexian" align="absbottom" /> in its mana cost, Rage Extractor deals damage equal to that spell's converted mana cost to target creature or player.
+text=({PR} can be paid with either {R} or 2 life.) -- Whenever you cast a spell with Phyrexian in its mana cost, Rage Extractor deals damage equal to that spell's converted mana cost to target creature or player.
 mana={4}{PR}
 type=Artifact
 [/card]
@@ -13009,16 +12635,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Rakdos Augermage
-abilities=first strike
-text=First strike -- {T}: Reveal your hand and discard a card of target opponent's choice. Then that player reveals his or her hand and discards a card of your choice. Activate this ability only any time you could cast a sorcery.
-mana={B}{B}{R}
-type=Creature
-subtype=Human Wizard
-power=3
-toughness=2
-[/card]
-[card]
 name=Rakdos Riteknife
 text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." -- {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. -- Equip {2}
 mana={2}
@@ -13051,25 +12667,6 @@ name=Rare-B-Gone
 text=Each player sacrifices all rare permanents, then reveals his or her hand and discards all rare cards.
 mana={2}{B}{R}
 type=Sorcery
-[/card]
-[card]
-name=Raving Dead
-abilities=deathtouch
-text=Deathtouch -- At the beginning of combat on your turn, choose an opponent at random. Raving Dead attacks that player this combat if able. -- Whenever Raving Dead deals combat damage to a player, that player loses half his or her life, rounded down.
-mana={4}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=6
-[/card]
-[card]
-name=Rayne, Academy Chancellor
-text=Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card. You may draw an additional card if Rayne, Academy Chancellor is enchanted.
-mana={2}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Razia, Boros Archangel
@@ -13183,12 +12780,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Recall
-text=Discard X cards, then return a card from your graveyard to your hand for each card discarded this way. Exile Recall.
-mana={X}{X}{U}
-type=Sorcery
-[/card]
-[card]
 name=Reclamation
 text=Black creatures can't attack unless their controller sacrifices a land for each black creature he or she controls that's attacking.
 mana={2}{G}{W}
@@ -13297,16 +12888,6 @@ name=Release the Ants
 text=Release the Ants deals 1 damage to target creature or player. Clash with an opponent. If you win, return Release the Ants to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Relentless Dead
-abilities=menace
-text=Menace (This creature can't be blocked except by two or more creatures.) -- When Relentless Dead dies, you may pay {B}. If you do, return it to its owner's hand. -- When Relentless Dead dies, you may pay {X}. If you do, return another target Zombie creature card with converted mana cost X from your graveyard to the battlefield.
-mana={B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
 [/card]
 [card]
 name=Relic Ward
@@ -13755,15 +13336,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=River Kelpie
-text=Whenever River Kelpie or another permanent is put onto the battlefield from a graveyard, draw a card. -- Whenever a player casts a spell from a graveyard, draw a card. -- Persist (When this creature dies, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
-mana={3}{U}{U}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-[/card]
-[card]
 name=River's Grasp
 text=If {U} was spent to cast River's Grasp, return up to one target creature to its owner's hand. If {B} was spent to cast River's Grasp, target player reveals his or her hand, you choose a nonland card from it, then that player discards that card. (Do both if {U}{B} was spent.)
 mana={3}{UB}
@@ -13915,48 +13487,6 @@ mana={4}{R}
 type=Enchantment
 [/card]
 [card]
-name=Rune of Protection: Artifacts
-text={W}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Black
-text={W}: The next time a black source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Blue
-text={W}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Green
-text={W}: The next time a green source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Lands
-text={W}: The next time a land source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Red
-text={W}: The next time a red source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: White
-text={W}: The next time a white source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Rune Snag
 text=Counter target spell unless its controller pays {2} plus an additional {2} for each card named Rune Snag in each graveyard.
 mana={1}{U}
@@ -14010,15 +13540,6 @@ text=Whenever Sabertooth Cobra deals damage to a player, he or she gets a poison
 mana={2}{G}
 type=Creature
 subtype=Snake
-power=2
-toughness=2
-[/card]
-[card]
-name=Sacellum Godspeaker
-text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.
-mana={2}{G}
-type=Creature
-subtype=Elf Druid
 power=2
 toughness=2
 [/card]
@@ -14288,24 +13809,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Scent of Ivy
-text=Reveal any number of green cards in your hand. Target creature gets +X/+X until end of turn, where X is the number of cards revealed this way.
-mana={G}
-type=Instant
-[/card]
-[card]
-name=Scent of Jasmine
-text=Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
-mana={W}
-type=Instant
-[/card]
-[card]
-name=Scent of Nightshade
-text=Reveal any number of black cards in your hand. Target creature gets -X/-X until end of turn, where X is the number of cards revealed this way.
-mana={1}{B}
-type=Instant
-[/card]
-[card]
 name=Schismotivate
 text=Target creature gets +4/+0 until end of turn. Another target creature gets -4/-0 until end of turn.
 mana={1}{U}{R}
@@ -14446,12 +13949,6 @@ type=Conspiracy
 name=Secrets of Paradise
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "{T}: Add one mana of any color to your mana pool."
 type=Conspiracy
-[/card]
-[card]
-name=Seeds of Strength
-text=Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn.
-mana={G}{W}
-type=Instant
 [/card]
 [card]
 name=Seer's Vision
@@ -14734,18 +14231,6 @@ toughness=7-*
 name=Shapeshifter's Marrow
 text=At the beginning of each opponent's upkeep, that player reveals the top card of his or her library. If it's a creature card, the player puts the card into his or her graveyard and Shapeshifter's Marrow becomes a copy of that card. (If it does, it loses this ability.)
 mana={2}{U}{U}
-type=Enchantment
-[/card]
-[card]
-name=Shard Convergence
-text=Search your library for a Plains card, an Island card, a Swamp card, and a Mountain card. Reveal those cards and put them into your hand. Then shuffle your library.
-mana={3}{G}
-type=Sorcery
-[/card]
-[card]
-name=Shared Animosity
-text=Whenever a creature you control attacks, it gets +1/+0 until end of turn for each other attacking creature that shares a creature type with it.
-mana={2}{R}
 type=Enchantment
 [/card]
 [card]
@@ -15054,15 +14539,6 @@ mana={2}{B}{B}
 type=Instant
 [/card]
 [card]
-name=Silent Arbiter
-text=No more than one creature can attack each combat. -- No more than one creature can block each combat.
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=5
-[/card]
-[card]
 name=Silhouette
 text=Prevent all damage that would be dealt to target creature this turn by spells or abilities that target it.
 mana={1}{U}
@@ -15083,15 +14559,6 @@ type=Creature
 subtype=Drake
 power=4
 toughness=3
-[/card]
-[card]
-name=Silvergill Adept
-text=As an additional cost to cast Silvergill Adept, reveal a Merfolk card from your hand or pay {3}. -- When Silvergill Adept enters the battlefield, draw a card.
-mana={1}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=2
-toughness=1
 [/card]
 [card]
 name=Simic Charm
@@ -15591,6 +15058,7 @@ toughness=2
 name=Soulflayer
 text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- If a creature card with flying was exiled with Soulflayer's delve ability, Soulflayer has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, reach, trample, and vigilance.
 mana={4}{B}{B}
+other={delve} name(Delve)
 type=Creature
 subtype=Demon
 power=4
@@ -15800,12 +15268,6 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
-name=Sphere of Safety
-text=Creatures can't attack you or a planeswalker you control unless their controller pays {X} for each of those creatures, where X is the number of enchantments you control.
-mana={4}{W}
-type=Enchantment
-[/card]
-[card]
 name=Sphere of Truth
 text=If a white source would deal damage to you, prevent 2 of that damage.
 mana={3}{W}
@@ -15866,11 +15328,6 @@ type=Artifact Creature
 subtype=Insect
 power=-1
 toughness=-1
-[/card]
-[card]
-name=Spinerock Knoll
-text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {R} to your mana pool. -- {R}, {T}: You may play the exiled card without paying its mana cost if an opponent was dealt 7 or more damage this turn.
-type=Land
 [/card]
 [card]
 name=Spinning Darkness
@@ -16034,21 +15491,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Squandered Resources
-text=Sacrifice a land: Add to your mana pool one mana of any type the sacrificed land could produce.
-mana={B}{G}
-type=Enchantment
-[/card]
-[card]
-name=Squeaking Pie Sneak
-text=As an additional cost to cast Squeaking Pie Sneak, reveal a Goblin card from your hand or pay {3}. -- Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
-mana={1}{B}
-type=Creature
-subtype=Goblin Rogue
-power=2
-toughness=2
-[/card]
-[card]
 name=Squealing Devil
 abilities=fear
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- When Squealing Devil enters the battlefield, you may pay {X}. If you do, target creature gets +X/+0 until end of turn. -- When Squealing Devil enters the battlefield, sacrifice it unless {B} was spent to cast it.
@@ -16199,12 +15641,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Stoic Rebuttal
-text=Metalcraft — Stoic Rebuttal costs {1} less to cast if you control three or more artifacts. -- Counter target spell.
-mana={1}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Stolen Goods
 text=Target opponent exiles cards from the top of his or her library until he or she exiles a nonland card. Until end of turn, you may cast that card without paying its mana cost.
 mana={3}{U}
@@ -16284,16 +15720,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Stormsurge Kraken
-abilities=opponentshroud
-text=Hexproof -- Lieutenant — As long as you control your commander, Stormsurge Kraken gets +2/+2 and has "Whenever Stormsurge Kraken becomes blocked, you may draw two cards."
-mana={3}{U}{U}
-type=Creature
-subtype=Kraken
-power=5
-toughness=5
-[/card]
-[card]
 name=Story Circle
 text=As Story Circle enters the battlefield, choose a color. -- {W}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
 mana={1}{W}{W}
@@ -16340,12 +15766,6 @@ text=Enchant creature -- Enchanted creature gets +0/+2 and can block creatures w
 mana={G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Strength of the Tajuru
-text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature, then choose another target creature for each time Strength of the Tajuru was kicked. Put X +1/+1 counters on each of them.
-mana={X}{G}{G}
-type=Instant
 [/card]
 [card]
 name=Strionic Resonator
@@ -16508,15 +15928,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Surrak Dragonclaw
-text=Flash -- Surrak Dragonclaw can't be countered. -- Creature spells you control can't be countered. -- Other creatures you control have trample.
-mana={2}{G}{U}{R}
-type=Legendary Creature
-subtype=Human Warrior
-power=6
-toughness=6
-[/card]
-[card]
 name=Surrender Your Thoughts
 text=When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, he or she discards four cards. If the player chooses others, each of your other opponents discards two cards.
 type=Scheme
@@ -16591,12 +16002,6 @@ name=Sylvan Library
 text=At the beginning of your draw step, you may draw two additional cards. If you do, choose two cards in your hand drawn this turn. For each of those cards, pay 4 life or put the card on top of your library.
 mana={1}{G}
 type=Enchantment
-[/card]
-[card]
-name=Sylvan Offering
-text=Choose an opponent. You and that player each put an X/X green Treefolk creature token onto the battlefield. -- Choose an opponent. You and that player each put X 1/1 green Elf Warrior creature tokens onto the battlefield.
-mana={X}{G}
-type=Sorcery
 [/card]
 [card]
 name=Symbol Status
@@ -16750,16 +16155,6 @@ name=Team Spirit
 text=All creatures controlled by target player and his or her teammates get +1/+1 until end of turn.
 mana={2}{G}
 type=Instant
-[/card]
-[card]
-name=Teferi, Mage of Zhalfir
-abilities=flash
-text=Flash (You may cast this spell any time you could cast an instant.) -- Creature cards you own that aren't on the battlefield have flash. -- Each opponent can cast spells only any time he or she could cast a sorcery.
-mana={2}{U}{U}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=3
-toughness=4
 [/card]
 [card]
 name=Teferi, Temporal Archmage
@@ -17160,16 +16555,6 @@ mana={5}
 type=Legendary Artifact
 [/card]
 [card]
-name=Thunderfoot Baloth
-abilities=trample
-text=Trample -- Lieutenant — As long as you control your commander, Thunderfoot Baloth gets +2/+2 and other creatures you control get +2/+2 and have trample.
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=5
-toughness=5
-[/card]
-[card]
 name=Thunderscape Battlemage
 text=Kicker {1}{B} and/or {G} (You may pay an additional {1}{B} and/or {G} as you cast this spell.) -- When Thunderscape Battlemage enters the battlefield, if it was kicked with its {1}{B} kicker, target player discards two cards. -- When Thunderscape Battlemage enters the battlefield, if it was kicked with its {G} kicker, destroy target enchantment.
 mana={2}{R}
@@ -17177,12 +16562,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Thunderstaff
-text=As long as Thunderstaff is untapped, if a creature would deal combat damage to you, prevent 1 of that damage. -- {2}, {T}: Attacking creatures get +1/+0 until end of turn.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Tidal Control
@@ -17497,12 +16876,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Trinisphere
-text=As long as Trinisphere is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Tromokratis
 text=Tromokratis has hexproof unless it's attacking or blocking. -- Tromokratis can't be blocked unless all creatures defending player controls block it. (If any creature that player controls doesn't block this creature, it can't be blocked.)
 mana={5}{U}{U}
@@ -17631,21 +17004,6 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
-name=Tyrant's Familiar
-text=Flying, haste -- Lieutenant — As long as you control your commander, Tyrant's Familiar gets +2/+2 and has "Whenever Tyrant's Familiar attacks, it deals 7 damage to target creature defending player controls."
-mana={5}{R}{R}
-type=Creature
-subtype=Dragon
-power=5
-toughness=5
-[/card]
-[card]
-name=Uba Mask
-text=If a player would draw a card, that player exiles that card face up instead. -- Each player may play cards he or she exiled with Uba Mask this turn.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Ugin's Nexus
 text=If a player would begin an extra turn, that player skips that turn instead. -- If Ugin's Nexus would be put into a graveyard from the battlefield, instead exile it and take an extra turn after this one.
 mana={5}
@@ -17723,18 +17081,6 @@ toughness=6
 name=Unexpected Potential
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- You may spend mana as though it were mana of any color to cast spells with the chosen name.
 type=Conspiracy
-[/card]
-[card]
-name=Unexpected Results
-text=Shuffle your library, then reveal the top card. If it's a nonland card, you may cast it without paying its mana cost. If it's a land card, you may put it onto the battlefield and return Unexpected Results to its owner's hand.
-mana={2}{G}{U}
-type=Sorcery
-[/card]
-[card]
-name=Unexpectedly Absent
-text=Put target nonland permanent into its owner's library just beneath the top X cards of that library.
-mana={X}{W}{W}
-type=Instant
 [/card]
 [card]
 name=Unholy Citadel
@@ -17971,12 +17317,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Venser's Diffusion
-text=Return target nonland permanent or suspended card to its owner's hand.
-mana={2}{U}
-type=Instant
-[/card]
-[card]
 name=Verdant Confluence
 text=Choose three. You may choose the same mode more than once. -- • Put two +1/+1 counters on target creature. -- • Return target permanent card from your graveyard to your hand. -- • Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
 mana={4}{G}{G}
@@ -18062,12 +17402,6 @@ type=Creature
 subtype=Ooze
 power=2{1/2}
 toughness=2{1/2}
-[/card]
-[card]
-name=Villainous Wealth
-text=Target opponent exiles the top X cards of his or her library. You may cast any number of nonland cards with converted mana cost X or less from among them without paying their mana costs.
-mana={X}{B}{G}{U}
-type=Sorcery
 [/card]
 [card]
 name=Vintara Elephant
@@ -18539,12 +17873,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Well of Lost Dreams
-text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Wet Willie of the Damned
 text=Wet Willie of the Damned deals 2½ damage to target creature or player and you gain 2½ life.
 mana={2}{B}{B}
@@ -18720,11 +18048,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Windbrisk Heights
-text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {W} to your mana pool. -- {W}, {T}: You may play the exiled card without paying its mana cost if you attacked with three or more creatures this turn.
-type=Land
 [/card]
 [card]
 name=Winding Constrictor
@@ -18924,15 +18247,6 @@ text=When Wort, the Raidmother enters the battlefield, put two 1/1 red and green
 mana={4}{RG}{RG}
 type=Legendary Creature
 subtype=Goblin Shaman
-power=3
-toughness=3
-[/card]
-[card]
-name=Wren's Run Vanquisher
-text=As an additional cost to cast Wren's Run Vanquisher, reveal an Elf card from your hand or pay {3}. -- Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.)
-mana={1}{G}
-type=Creature
-subtype=Elf Warrior
 power=3
 toughness=3
 [/card]

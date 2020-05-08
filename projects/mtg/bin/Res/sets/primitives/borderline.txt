@@ -1,5 +1,138 @@
 grade=borderline
 [card]
+name=Windbrisk Heights
+abilities=hiddenface
+aicode=activate transforms((,newability[choice all(*[zpos=1]|mylibrary) moveto(myExile) and!(deplete:4)!])) ueot
+auto=tap(noevent) && name(look) reveal:4 optionone name(Exile a Card) target(<1>*|reveal) moveto(myExile) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={T}:Add{W}
+auto={W}{T}:if restriction{raid}~morethan~3 then may castcard(normal) target(*|myExile)
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {W}. -- {W}, {T}: You may play the exiled card without paying its mana cost if you attacked with three or more creatures this turn.
+type=Land
+[/card]
+[card]
+name=Well of Lost Dreams
+auto=@lifeof(player):foreach:life: may pay({lifeof}) draw:thatmuch controller
+text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Villainous Wealth
+auto=name(Look) reveal:x revealzone(opponentlibrary) optionone name(exile a card) target(X|reveal) moveto(ownerexile) optiononeend optiontwo target(<60>*|reveal) moveto(ownerlibrary) optiontwoend optionthree canplayfromexile castcard(normal) target(<upto:x>*|opponentExile) optionthreeend revealend
+text=Target opponent exiles the top X cards of their library. You may cast any number of spells with converted mana cost X or less from among them without paying their mana costs.
+mana={X}{B}{G}{U}
+type=Sorcery
+[/card]
+[card]
+name=Spinerock Knoll
+abilities=hiddenface
+aicode=activate transforms((,newability[choice all(*[zpos=1]|mylibrary) moveto(myExile) and!(deplete:4)!])) ueot
+auto={T}:Add{R}
+auto={R}{T}:if restriction{foelost(7)} then may castcard(normal) target(*|myExile)
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {R}. -- {R}, {T}: You may play the exiled card without paying its mana cost if an opponent was dealt 7 or more damage this turn.
+type=Land
+[/card]
+[card]
+name=Sphere of Safety
+auto=lord(creature|opponentbattlefield) transforms((,newability[foreach(enchantment|mybattlefield) attackcost:1]))
+text=Creatures can't attack you or a planeswalker you control unless their controller pays {X} for each of those creatures, where X is the number of enchantments you control.
+mana={4}{W}
+type=Enchantment
+[/card]
+[card]
+name=Shared Animosity
+auto=@combat(attacking) source(creature|myBattlefield): thisforeach(other creature[share! subtype!]|myBattlefield) 1/0 ueot
+text=Whenever a creature you control attacks, it gets +1/+0 until end of turn for each other attacking creature that shares a creature type with it.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Power Conduit
+auto={T}: target(*|myBattlefield) counter(0/0,1,Charge) target(artifact)
+auto={T}: target(*|myBattlefield) && counter(1/1,1) target(creature)
+text={T}, Remove a counter from a permanent you control: Choose one — -- • Put a charge counter on target artifact. -- • Put a +1/+1 counter on target creature.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Paradox Haze
+target=player
+auto=@each my upkeep: nextphasealter(add,upkeep,controller,after<this>)
+text=Enchant player. -- At the beginning of enchanted player's first upkeep each turn, that player gets an additional upkeep step after this step.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Outpost Siege
+aicode=activate target(*|mylibrary) may castcard(restricted)
+auto=choice name(Khans) transforms((,newability[counter(0/0.1.Khans)],newability[@each my upkeep:reveal:1 optionone may castcard(restricted) target(*|reveal) optiononeend optiontwo name(Put Back On Top) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend])) forever
+auto=choice name(Dragons) transforms((,newability[counter(0/0.1.Dragons)],newability[@movedto(this|nonbattlezone):damage:1 target(*)])) forever
+text=As Palace Siege enters the battlefield, choose Khans or Dragons. -- -- Khans -- At the beginning of your upkeep, return target creature card from your graveyard to your hand. -- -- Dragons -- At the beginning of your upkeep, each opponent loses 2 life and you gain 2 life.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
+name=Mimic Vat
+auto=@moveTo(nonbattlezone) from(creature|battlefield): may imprint notatarget(creature|graveyard) && moveTo(ownerGraveyard) all(other creature|exile)
+auto={3}{T}:activate castcard(copied noevent named!:imprintedcard:!) with (haste,treason)
+text=Imprint — Whenever a nontoken creature dies, you may exile that card. If you do, return each other card exiled with Mimic Vat to its owner’s graveyard. -- {3}, {T}: Create a token that’s a copy of a card exiled with Mimic Vat. It gains haste. Exile it at the beginning of the next end step.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Jace, Architect of Thought
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Attacking creatures get -1/-0) all(creature[attacking]|opponentBattlefield) -1/-0 ueot
+auto={C(0/0,-2,Loyalty)}:name(-2: CAN BE CODED) donothing
+auto={C(0/0,-8,Loyalty)}:name(-8: deplete 20) moveto(exile) target(*|opponentLibrary)and!( transforms((,canplayfromexile,castcard(normal))) ueot )! 
+text=+1: Until your next turn, whenever a creature an opponent controls attacks, it gets -1/-0 until end of turn. -- -2: Reveal the top three cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other on the bottom of your library in any order. -- -8: For each player, search that player’s library for a nonland card and exile it, then that player shuffles their library. You may cast those cards without paying their mana costs.
+mana={2}{U}{U}
+type=Legendary Planeswalker
+subtype=Jace
+[/card]
+[card]
+name=Frontline Medic
+auto=@combat(attacking) source(this):restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:all(creature|mybattlefield) transforms((indestructible)) ueot
+auto={S}:name(counter spell) target(other *|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
+text=Battalion — Whenever Frontline Medic and at least two other creatures attack, creatures you control gain indestructible until end of turn. -- Sacrifice Frontline Medic: Counter target spell with {X} in its mana cost unless its controller pays {3}.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Fluctuator
+auto=lord(*[__CYCLING__]|mycastingzone) altercost(colorless,-2)
+text=Cycling abilities you activate cost up to {2} less to activate.
+mana{2}
+type=Artifact
+[/card]
+[card]
+name=Astral Cornucopia
+auto=kicker counter(0/0,kicked,Charge)
+auto={T}:name(Add X white mana) thisforeach(counter{0/0,1,Charge}) add{W}
+auto={T}:name(Add X blue mana) thisforeach(counter{0/0,1,Charge}) add{U}
+auto={T}:name(Add X black mana) thisforeach(counter{0/0,1,Charge}) add{B}
+auto={T}:name(Add X red mana) thisforeach(counter{0/0,1,Charge}) add{R}
+auto={T}:name(Add X green mana) thisforeach(counter{0/0,1,Charge}) add{G}
+kicker=multi{3}
+text=Astral Cornucopia enters the battlefield with X charge counters on it. -- {T}: Choose a color. Add one mana of that color for each charge counter on Astral Cornucopia.
+mana={X}
+type=Artifact
+[/card]
+[card]
+name=Vorel of the Hull Clade
+auto={G}{U}{T}: target(*[artifact;creature;land]) propagate
+text={G}{U}, {T}: Double the number of each kind of counter on target artifact, creature, or land.
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Human Merfolk
+power=1
+toughness=4
+[/card]
+[card]
 name=Saproling
 type=Creature
 subtype=Saproling
