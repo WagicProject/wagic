@@ -21,15 +21,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Novellamental
-text=Flying -- Novellamental can block only creatures with flying.
-mana={1}{U}
-type=Creature
-subtype=Elemental
-power=2
-toughness=1
-[/card]
-[card]
 name=Steel Squirrel
 text=Whenever you roll a 5 or higher on a die, Steel Squirrel gets +X/+X until end of turn, where X is the result. -- {6}: Roll a six-sided die.
 mana={2}
@@ -791,51 +782,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Beast in Show
-text=Trample
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=6
-toughness=4
-[/card]
-[card]
-name=Extremely Slow Zombie
-text=Last strike (This creature deals combat damage after creatures without last strike.)
-mana={1}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-[/card]
-[card]
-name=Amateur Auteur
-text=Sacrifice Amateur Auteur: Destroy target enchantment.
-mana={1}{W}
-type=Creature
-subtype=Human
-power=2
-toughness=2
-[/card]
-[card]
-name=Extremely Slow Zombie
-text=Last strike (This creature deals combat damage after creatures without last strike.)
-mana={1}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-[/card]
-[card]
-name=Extremely Slow Zombie
-text=Last strike (This creature deals combat damage after creatures without last strike.)
-mana={1}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-[/card]
-[card]
 name=Ineffable Blessing (a)
 text=As Ineffable Blessing enters the battlefield, choose Flavorful or Bland. -- • Flavorful — Whenever a creature with flavor text enters the battlefield under your control, draw a card. -- • Bland — Whenever a creature without flavor text enters the battlefield under your control, draw a card.
 mana={1}{G}
@@ -858,15 +804,6 @@ type=Creature
 subtype=Hydra Hound
 power=0
 toughness=0
-[/card]
-[card]
-name=Novellamental
-text=Flying -- Novellamental can block only creatures with flying.
-mana={1}{U}
-type=Creature
-subtype=Elemental
-power=2
-toughness=1
 [/card]
 [card]
 name=Monkey-
@@ -895,39 +832,12 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Novellamental
-text=Flying -- Novellamental can block only creatures with flying.
-mana={1}{U}
-type=Creature
-subtype=Elemental
-power=2
-toughness=1
-[/card]
-[card]
 name=Half-Squirrel, Half-
 text=Whenever a nontoken creature enters the battlefield, -- Augment {G} ({G}, Reveal this card from your hand: Combine it with target host. Augment only as a sorcery.)
 type=Creature
 subtype=Squirrel
 power=-1
 toughness=-0
-[/card]
-[card]
-name=Beast in Show
-text=Trample
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=6
-toughness=4
-[/card]
-[card]
-name=Beast in Show
-text=Trample
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=6
-toughness=4
 [/card]
 [card]
 name=Rhino-
@@ -1463,47 +1373,6 @@ power=+1
 toughness=+2
 [/card]
 [card]
-name=Secret Base
-text={T}: Add {1}. -- {T}: Add one mana of any color. Spend this mana only to cast a spell that shares a watermark with Secret Base.
-type=Land
-[/card]
-[card]
-name=Target Minotaur
-text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
-mana={1}{R}
-type=Creature
-subtype=Minotaur Warrior
-power=2
-toughness=1
-[/card]
-[card]
-name=Target Minotaur
-text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
-mana={1}{R}
-type=Creature
-subtype=Minotaur Warrior
-power=2
-toughness=1
-[/card]
-[card]
-name=Amateur Auteur
-text=Sacrifice Amateur Auteur: Destroy target enchantment.
-mana={1}{W}
-type=Creature
-subtype=Human
-power=2
-toughness=2
-[/card]
-[card]
-name=Amateur Auteur
-text=Sacrifice Amateur Auteur: Destroy target enchantment.
-mana={1}{W}
-type=Creature
-subtype=Human
-power=2
-toughness=2
-[/card]
-[card]
 name=Target Minotaur
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
 mana={1}{R}
@@ -1914,15 +1783,6 @@ type=Creature
 subtype=Brainiac
 power=0
 toughness=3
-[/card]
-[card]
-name=Target Minotaur
-text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
-mana={1}{R}
-type=Creature
-subtype=Minotaur Warrior
-power=2
-toughness=1
 [/card]
 [card]
 name=Super-Duper Death Ray

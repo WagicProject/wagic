@@ -1,7 +1,7 @@
 grade=unsupported
 [card]
 name=Alexander Clamilton
-text=Whenever you cast a wordy spell, scry 2. (A spell is wordy if it has four or more lines of rules text.) -- 1 -- {R} -- , -- {T} -- : Choose target creature you don't control. Reveal the top card of your library. Alexander Clamilton gets +X/+0 until end of turn, where X is the number of lines of rules text of the revealed card. Alexander Clamilton fights that creature. --
+text=Whenever you cast a wordy spell, scry 2. (A spell is wordy if it has four or more lines of rules text.) -- {1}{R}, {T}: Choose target creature you don't control. Reveal the top card of your library. Alexander Clamilton gets +X/+0 until end of turn, where X is the number of lines of rules text of the revealed card. Alexander Clamilton fights that creature.
 mana={2}{U}
 type=Legendary Creature
 subtype=Clamfolk Advisor Rebel
@@ -10,7 +10,7 @@ toughness=4
 [/card]
 [card]
 name=Syr Cadian, Knight Owl
-text=Knightlifelink (Damage dealt by Knights you control also causes you to gain that much life.) -- {W} -- : Syr Cadian, Knight Owl gains vigilance until end of turn. Activate this ability only from sunrise to sunset. -- {B}: Syr Cadian, Knight Owl gains flying until end of turn. Activate this ability only from sunset to sunrise.
+text=Knightlifelink (Damage dealt by Knights you control also causes you to gain that much life.) -- {W}: Syr Cadian, Knight Owl gains vigilance until end of turn. Activate this ability only from sunrise to sunset. -- {B}: Syr Cadian, Knight Owl gains flying until end of turn. Activate this ability only from sunset to sunrise.
 mana={3}{W}{W}
 type=Legendary Creature
 subtype=Bird Knight
@@ -25,7 +25,7 @@ type=Enchantment
 [/card]
 [card]
 name=Infernius Spawnington III, Esq.
-text=Flying, first strike, trample, haste -- This spell costs -- 3 -- less to cast for each card you've revealed this turn. -- When Infernius Spawnington III, Esq. enters the battlefield, you may say "I'm here." If you do, it deals 3 damage to target player. --
+text=Flying, first strike, trample, haste -- This spell costs {3} less to cast for each card you've revealed this turn. -- When Infernius Spawnington III, Esq. enters the battlefield, you may say "I'm here." If you do, it deals 3 damage to target player.
 mana={10}{B}
 type=Creature
 subtype=Demon Beast Grandchild
@@ -34,7 +34,7 @@ toughness=9
 [/card]
 [card]
 name=Strutting Turkey
-text=When this creature enters the battlefield, -- exile target creature card with converted mana cost 2 or less from your graveyard. If it has augment, combine it with a host you control. Otherwise, put it onto the battlefield.
+text=When this creature enters the battlefield, exile target creature card with converted mana cost 2 or less from your graveyard. If it has augment, combine it with a host you control. Otherwise, put it onto the battlefield.
 mana={3}{W}
 type=Host Creature
 subtype=Bird
@@ -43,7 +43,7 @@ toughness=2
 [/card]
 [card]
 name=Surgeon General Commander
-text=Whenever you augment, enchant, or mutate a creature you control, draw a card. -- {T} -- : Add -- {W} -- , -- {U} -- , -- {B} -- , -- {R} -- , or -- {G} -- . --
+text=Whenever you augment, enchant, or mutate a creature you control, draw a card. -- {T}: Add {W}, {U}, {B}, {R}, or {G}.
 mana={3}{G}
 type=Legendary Creature
 subtype=Wombat Bat Chameleon
@@ -66,7 +66,7 @@ type=Instant
 [/card]
 [card]
 name=Underdome
-text={T} -- : Add -- Colorless -- . -- {T}: Add one mana of any color. Spend this mana only to pay silver-bordered costs.
+text={T}: Add {X}. -- {T}: Add one mana of any color. Spend this mana only to pay silver-bordered costs.
 type=Land
 [/card]
 [card]
@@ -77,7 +77,7 @@ type=Enchantment
 [/card]
 [card]
 name=Bat-
-text=Flying -- At the beginning of each end step, if an opponent lost 3 or more life this turn, -- Augment 1{B} ( 1{B}, Reveal this card from your hand: Combine it with target host. Augment only as a sorcery.)
+text=Flying -- At the beginning of each end step, if an opponent lost 3 or more life this turn, -- Augment {1}{B} ({1}{B}, Reveal this card from your hand: Combine it with target host. Augment only as a sorcery.)
 type=Creature
 subtype=Bat
 power=+1
@@ -94,7 +94,7 @@ toughness=2
 [/card]
 [card]
 name=Abstract Iguanart
-text=Whenever you cast a spell, note the first letter of its artist's name. If that letter wasn't already noted, put a +1/+1 counter on Abstract Iguanart. --
+text=Whenever you cast a spell, note the first letter of its artist's name. If that letter wasn't already noted, put a +1/+1 counter on Abstract Iguanart.
 mana={1}{R}
 type=Creature
 subtype=Art Lizard
@@ -119,7 +119,7 @@ subtype=B.O.B.
 [/card]
 [card]
 name=Pippa, Duchess of Dice
-text=2 -- {G} -- , -- {T} -- : Roll a six-sided die. It becomes a green Die creature token with power and toughness each equal to its result. -- 2 -- {U} -- , -- {T} -- : Reroll any die. -- (Activate this ability only any time it makes sense.) --
+text={2}{G}, {T}: Roll a six-sided die. It becomes a green Die creature token with power and toughness each equal to its result. -- {2}{U}, {T}: Reroll any die. (Activate this ability only any time it makes sense.)
 mana={2}{G}
 type=Legendary Creature
 subtype=Human Noble
@@ -128,7 +128,7 @@ toughness=2
 [/card]
 [card]
 name=Acornelia, Fashionable Filcher
-text=Whenever you cast a spell with a squirrel in its art, you get (an acorn counter) -- . -- Whenever a Squirrel you control enters the battlefield or dies, you get . -- 2 -- {B} -- , Pay X : Target creature gets -X/-X until end of turn. -- {G}, Pay X : Target creature gets +X/+X until end of turn.
+text=Whenever you cast a spell with a squirrel in its art, you get (an acorn counter). -- Whenever a Squirrel you control enters the battlefield or dies, you get. -- {2}{B}, Pay {X} : Target creature gets -X/-X until end of turn. -- {G}, Pay {X} : Target creature gets +X/+X until end of turn.
 mana={3}{B}
 type=Legendary Creature
 subtype=Squirrel
