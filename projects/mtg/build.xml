@@ -75,9 +75,9 @@ Mod by: Vitty85
 #define WAGIC_VERSION_MEDIUM    ${build.minor}
 #define WAGIC_VERSION_MINOR     ${build.point}
 
-#define VERSION_DOT(a, b, c, d) a ##.## b ##.## c ##.## d
+#define VERSION_DOT(a, b, c) a ##.## b ##.## c
 #define VERSION_WITHOUT_DOT(a, b, c) a ## b ## c
-#define VERSION_GAME(a, b, c, d) VERSION_DOT(a, b, c, d)
+#define VERSION_GAME(a, b, c) VERSION_DOT(a, b, c)
 #define VERSION_FILE(a, b, c) VERSION_WITHOUT_DOT(a, b, c)
 #define VERSION_TOSTRING(a) #a
 #define VERSION_STRINGIFY(a) VERSION_TOSTRING(a)
