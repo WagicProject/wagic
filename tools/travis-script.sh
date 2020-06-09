@@ -25,12 +25,14 @@ ant update > error.txt
 cd ../..
 
 # we create resource package
-cd projects/mtg/bin/Res
-python createResourceZip.py
-# if we let the zip here, Wagic will use it in the testsuite
-# and we'll get 51 failed test cases
-mv core_*.zip ../../../../core.zip
-cd ../../../..
+if [ "$BUILD_RES" = "YES" ] || [ "$BUILD_PSP" = "YES" ]; then
+    cd projects/mtg/bin/Res
+    python createResourceZip.py
+    # if we let the zip here, Wagic will use it in the testsuite
+    # and we'll get 51 failed test cases
+    mv core_*.zip ../../../../core.zip
+    cd ../../../..
+fi
 
 # we're building a PSP binary here
 if [ "$BUILD_PSP" = "YES" ]; then
@@ -65,8 +67,8 @@ if [ "$BUILD_ANDROID" = "YES" ]; then
     ant debug -f projects/mtg/Android/build.xml
 fi
 
-# we're building a Qt version with GUI here
-if [ "$BUILD_Qt" = "YES" ]; then
+# we're building a linux Qt version with GUI here
+if [ "$BUILD_Qt" = "YES" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
     mkdir qt-gui-build
     cd qt-gui-build
     $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
@@ -82,8 +84,10 @@ if [ "$BUILD_Qt" = "YES" ]; then
     ../../wagic
     cd ../..
 fi
-
-# Let's launch de Mac cross-compilation
-if [ "$BUILD_MAC" = "YES" ]; then
-    ./tools/build-macos-script.sh
+# we're building a mac Qt version with GUI here
+if [ "$BUILD_Qt" = "YES" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then
+    mkdir qt-gui-build
+    cd qt-gui-build
+    $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
+    make -j 4 dmg
 fi

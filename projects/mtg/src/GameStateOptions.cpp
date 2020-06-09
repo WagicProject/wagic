@@ -58,7 +58,7 @@ void GameStateOptions::Start()
     optionsList->Add(NEW WGuiHeader("Card Display Options"));
     optionsList->Add(NEW OptionInteger(Options::SHOWBORDER, "Show Borders"));
     //black border
-    optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Border"));
+    optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Borders"));
     //show tokens in editor
     optionsList->Add(NEW OptionInteger(Options::SHOWTOKENS, "Show Tokens in Editor"));
     WDecoStyled * wMisc = NEW WDecoStyled(NEW WGuiHeader("Warning!!!"));
@@ -258,9 +258,9 @@ void GameStateOptions::Render()
         "",
         "Dev Team:",
         "Abrasax, Almosthumane, Daddy32, DJardin, Dr.Solomat,",
-		"J, Jeck, kevlahnota, Leungclj, linshier, Mootpoint,",
-		"Mnguyen, Ph34rbot, Psyringe, Rolzad73, Salmelo, Superhiro,",
-		"Vitty85, Wololo, Yeshua, Zethfox",
+        "J, Jeck, kevlahnota, Leungclj, linshier, Mootpoint,",
+        "Mnguyen, Ph34rbot, Psyringe, Rolzad73, Salmelo, Superhiro,",
+        "Vitty85, Wololo, Yeshua, Zethfox",
         "",
         "Music by Celestial Aeon Project, http://www.jamendo.com",
         "",

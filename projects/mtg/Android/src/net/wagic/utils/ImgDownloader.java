@@ -1382,7 +1382,13 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/1/d/1dee8c94-cdc8-42b2-a393-0c0c8e439125.jpg?1586453065";
         else if(id.equals("484902t") || id.equals("484904t"))
             cardurl = "https://img.scryfall.com/cards/large/front/7/2/720f3e68-84c0-462e-a0d1-90236ccc494a.jpg?1562539782";
-        
+        else if(id.equals("294690t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/0/8/082c3bad-3fea-4c3f-8263-4b16139bb32a.jpg?1562701890";
+        else if(id.equals("47963911t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/f/9/f918b740-1984-4090-8886-9e290a698b95.jpg?1586451994";
+        else if(id.equals("479634t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/a/9/a9cc7c63-5d13-4fd6-af9d-4a26c2bab8e6.jpg?1588521003";
+
         return cardurl;
     }
 
@@ -1824,7 +1830,7 @@ public class ImgDownloader {
                 id.equals("470620") || id.equals("470754") || id.equals("470750") || id.equals("470739") || id.equals("470708") || id.equals("470581") ||
                 id.equals("470578") || id.equals("470571") || id.equals("470552") || id.equals("394490") || id.equals("114921") || id.equals("49775")  ||
                 id.equals("473123") || id.equals("473160") || id.equals("16743")  || id.equals("16741") || id.equals("294493") || id.equals("293253") ||
-                id.equals("293198") || id.equals("479634")  || id.equals("479702"))
+                id.equals("293198") || id.equals("479634") || id.equals("479702"))
             return false;
         return true;
     }
@@ -2071,11 +2077,6 @@ public class ImgDownloader {
             ThumbY = 64;
         }
 
-        if(borderless){
-            Border = (int)Math.round(ImgX*0.04);
-            BorderThumb = (int)Math.round(ThumbX*0.04);
-        }
-
         File baseFolder = new File(basePath);
         File[] listOfFiles = baseFolder.listFiles();
         Map<String, String> mappa = new HashMap<String, String>();
@@ -2132,6 +2133,29 @@ public class ImgDownloader {
         int lastIndex = lines.indexOf(findStr);
         String totals = lines.substring(lastIndex, lines.indexOf("\n", lastIndex));
         totalcards = Integer.parseInt(totals.split("=")[1]);
+        
+        if(borderless){
+            findStr = "year=";
+            lastIndex = lines.indexOf(findStr);
+            String date = lines.substring(lastIndex, lines.indexOf("\n", lastIndex));
+            int year = Integer.parseInt(date.split("=")[1].split("-")[0]);
+            int month = 1;
+            int day = 1;
+            if(date.split("=")[1].split("-").length > 1) {
+                month = Integer.parseInt(date.split("=")[1].split("-")[1]);
+                if(date.split("=")[1].split("-").length > 2) {
+                    day = Integer.parseInt(date.split("=")[1].split("-")[2]);
+                }
+            }
+            if(year > 2014 || (year == 2014 && month > 6) || (year == 2014 && month == 6 && day > 15)){
+                Border = (int)Math.round(ImgX*0.02);
+                BorderThumb = (int)Math.round(ThumbX*0.02);
+            } else {
+                Border = (int)Math.round(ImgX*0.04);
+                BorderThumb = (int)Math.round(ThumbX*0.04);
+            }
+        } 
+       
         while (lines.contains("[card]")) {
             findStr = "[card]";
             lastIndex = lines.indexOf(findStr);
@@ -2388,7 +2412,7 @@ public class ImgDownloader {
                     || scryset.equals("PMPS08") || scryset.equals("PMPS09") || scryset.equals("PMPS10") || scryset.equals("PMPS11") || scryset.equals("GN2")
                     || scryset.equals("PAL00") || scryset.equals("PAL01") || scryset.equals("PAL02") || scryset.equals("PAL03") || scryset.equals("PAL04")
                     || scryset.equals("PAL05") || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL") || scryset.equals("HA1")
-                    || scryset.equals("SLD") || scryset.equals("MB1") || scryset.equals("HA2")){
+                    || scryset.equals("SLD") || scryset.equals("MB1") || scryset.equals("HA2") || scryset.equals("HA3")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2577,7 +2601,7 @@ public class ImgDownloader {
                     && !scryset.equals("PMPS08") && !scryset.equals("PMPS09") && !scryset.equals("PMPS10") && !scryset.equals("PMPS11") && !scryset.equals("GN2")
                     && !scryset.equals("PAL00") && !scryset.equals("PAL01") && !scryset.equals("PAL02") && !scryset.equals("PAL03") && !scryset.equals("PAL04")
                     && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL") && !scryset.equals("HA1")
-                    && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2")){
+                    && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2") && !scryset.equals("HA3")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2690,7 +2714,7 @@ public class ImgDownloader {
                     && !scryset.equals("PMPS08") && !scryset.equals("PMPS09") && !scryset.equals("PMPS10") && !scryset.equals("PMPS11") && !scryset.equals("GN2")
                     && !scryset.equals("PAL00") && !scryset.equals("PAL01") && !scryset.equals("PAL02") && !scryset.equals("PAL03") && !scryset.equals("PAL04")
                     && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL") && !scryset.equals("HA1")
-                    && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2")){
+                    && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2") && !scryset.equals("HA3")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -2855,7 +2879,7 @@ public class ImgDownloader {
                             || scryset.equals("PMPS09") || scryset.equals("PMPS10") || scryset.equals("PMPS11") || scryset.equals("GN2") || scryset.equals("PAL00")
                             || scryset.equals("PAL01") || scryset.equals("PAL02") || scryset.equals("PAL03") || scryset.equals("PAL04") || scryset.equals("PAL05")
                             || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL") || scryset.equals("HA1") || scryset.equals("SLD")
-                            || scryset.equals("MB1") || scryset.equals("HA2")){
+                            || scryset.equals("MB1") || scryset.equals("HA2") || scryset.equals("HA3")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){

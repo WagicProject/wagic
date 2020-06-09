@@ -281,7 +281,9 @@ class Constants
       TOTEMARMOR = 155,
       DISCARDTOPLAYBYOPPONENT = 156,
       MODULAR = 157,
-      NB_BASIC_ABILITIES = 158,
+      MUTATE = 158,
+      ADVENTURE = 159,
+      NB_BASIC_ABILITIES = 160,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

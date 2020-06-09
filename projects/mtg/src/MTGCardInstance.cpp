@@ -237,6 +237,7 @@ void MTGCardInstance::initMTGCI()
     notblocked = 0;
     sunburst = 0;
     equipment = 0;
+    mutation = 0;
     auras = 0;
     combatdamageToOpponent = false;
     damageToOpponent = false;

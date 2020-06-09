@@ -43,6 +43,7 @@ public:
     int extraTurn;
     int drawCounter;
     int energyCount;
+    int yidaroCount;
     int epic;
     int forcefield;
     int dealsdamagebycombat;

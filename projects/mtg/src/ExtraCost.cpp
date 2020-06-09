@@ -189,7 +189,7 @@ int SnowCost::doPay()
         result += source->controller()->snowManaC;
         if (result)
         {
-			// Avoided double payments for Snow Mana cost
+            // Avoided double payments for Snow Mana cost
             if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source)))
             {
                 //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{1}",NULL,source));

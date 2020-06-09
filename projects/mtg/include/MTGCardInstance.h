@@ -62,6 +62,7 @@ public:
     int frozen;
     int sunburst;
     int equipment;
+    int mutation;
     int auras;
     bool wasDealtDamage;
     bool combatdamageToOpponent;
