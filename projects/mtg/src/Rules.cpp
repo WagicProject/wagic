@@ -598,6 +598,7 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         p->damageCount = initState.playerData[i].player->damageCount;
         p->preventable = initState.playerData[i].player->preventable;
         p->energyCount = initState.playerData[i].player->energyCount;
+        p->yidaroCount = initState.playerData[i].player->yidaroCount;
         if (initState.playerData[i].player->mAvatarName.size())
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;

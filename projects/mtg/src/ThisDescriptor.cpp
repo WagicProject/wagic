@@ -145,6 +145,18 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(GameObserver* obser
         return NULL;
     }
 
+    //mutations
+    found = s.find("mutations");
+    if (found != string::npos)
+    {
+        ThisMutation * td = NEW ThisMutation(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
     //equips and auras
     found = s.find("gear");//still same meaning, better wording to word conflict with MTGAbility equip.
     if (found != string::npos)
@@ -511,6 +523,20 @@ int ThisPower::match(MTGCardInstance * card)
 ThisPower* ThisPower::clone() const 
 {
     return NEW ThisPower(*this);
+}
+
+ThisMutation::ThisMutation(int mutation)
+{
+    comparisonCriterion = mutation;
+}
+int ThisMutation::match(MTGCardInstance * card)
+{
+    return matchValue(card->mutation);
+}
+
+ThisMutation* ThisMutation::clone() const 
+{
+    return NEW ThisMutation(*this);
 }
 
 ThisEquip::ThisEquip(int equipment)

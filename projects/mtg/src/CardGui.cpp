@@ -851,7 +851,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                         }
                     } else {
                         for (unsigned int i = 0; i < card->data->types.size() - 1; i++)
-                        {							
+                        {
                             s += _(MTGAllCards::findType(card->data->types[i]));
                             if(!strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Creature") || !strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Land"))
                                 s += _(" - ");
@@ -1152,7 +1152,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                         }
                     } else {
                         for (unsigned int i = 0; i < card->data->types.size() - 1; i++)
-                        {							
+                        {
                             s += _(MTGAllCards::findType(card->data->types[i]));
                             if(!strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Creature") || !strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Land"))
                                 s += _(" - ");
@@ -1276,7 +1276,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         string cardsetname = setlist[card->setId].c_str();
         /*if(!noborder)
         {
-            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "S00"||cardsetname == "S99"||cardsetname == "PTK"||cardsetname == "BTD"||cardsetname == "ATH"||cardsetname == "BRB"||cardsetname == "CHR"||cardsetname == "DM")
             {//Draw white border
                 renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,248,248,255));
                 renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(150,20,20,20));
@@ -1299,7 +1299,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         //universal border
         if(options[Options::SHOWBORDER].number)
         {
-            if((cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+            if((cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "S00"||cardsetname == "S99"||cardsetname == "PTK"||cardsetname == "BTD"||cardsetname == "ATH"||cardsetname == "BRB"||cardsetname == "CHR"||cardsetname == "DM")
                 && !options[Options::BLKBORDER].number)
             {//white border
                 renderer->FillRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(255,248,248,255));

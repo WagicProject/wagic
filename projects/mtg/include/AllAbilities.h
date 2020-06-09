@@ -178,6 +178,8 @@ private:
         intValue = 0;
         bool halfup = false;
         bool halfdown = false;
+        bool thirdup = false;
+        bool thirddown = false;
         bool twice = false;
         bool thrice = false;
         bool other = false;//othertype:[subtype]
@@ -217,6 +219,18 @@ private:
             halfdown = true;
             size_t hD = s.find("halfdown");
             s.erase(hD,hD + 8);
+        }
+        if(s.find("thirdup") != string::npos)
+        {
+            thirdup = true;
+            size_t tU = s.find("thirdup");
+            s.erase(tU,tU + 7);
+        }
+        if(s.find("thirddown") != string::npos)
+        {
+            thirddown = true;
+            size_t tD = s.find("thirddown");
+            s.erase(tD,tD + 9);
         }
         if(s.find("twice") != string::npos)
         {
@@ -327,6 +341,10 @@ private:
         else if (s == "gear")
         {
             intValue = target->equipment;
+        }
+        else if (s == "mutations")
+        {
+            intValue = target->mutation;
         }
         else if (s == "colors")
         {
@@ -559,6 +577,14 @@ private:
         else if (s == "oenergy")
         {
             intValue = card->controller()->opponent()->energyCount;
+        }
+        else if (s == "pyidarocount")
+        {
+            intValue = card->controller()->yidaroCount;
+        }
+        else if (s == "oyidarocount")
+        {
+            intValue = card->controller()->opponent()->yidaroCount;
         }
         else if (s == "praidcount")
         {
@@ -1047,6 +1073,16 @@ private:
             }
             if (halfdown)
                 intValue = intValue / 2;
+
+            if (thirdup)
+            {
+                if (intValue % 3 > 0)
+                    intValue = (intValue / 3) + 1;
+                else 
+                    intValue = intValue / 3;
+            }
+            if (thirddown)
+                intValue = intValue / 3;
         }
         if (twice)
             intValue = intValue * 2;
@@ -1610,6 +1646,29 @@ public:
     TrcardDrawn * clone() const
     {
         return NEW TrcardDrawn(*this);
+    }
+};
+
+class TrCardMutated: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrCardMutated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
+        Trigger(observer, id, source,once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardMutated * e = dynamic_cast<WEventCardMutated *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrCardMutated * clone() const
+    {
+        return NEW TrCardMutated(*this);
     }
 };
 
@@ -3045,6 +3104,8 @@ public:
 
     int addToGame()
     {
+        if(!ability)
+            return 1; //Fix a possible crash on mutate cards 
         ability->forceDestroy = -1;
         ability->target = target; //Might have changed since initialization
         ability->addToGame();
@@ -3762,6 +3823,7 @@ public:
     
     int unequip();
     int equip(MTGCardInstance * equipped);
+    int mutate(MTGCardInstance * mutated);
 
     int resolve();
     const string getMenuText();
@@ -4696,6 +4758,19 @@ public:
     AAAlterEnergy * clone() const;
     ~AAAlterEnergy();
 };
+//Yidaro Counter
+class AAAlterYidaroCount: public ActivatedAbilityTP
+{
+public:
+    int yidarocount;
+
+    AAAlterYidaroCount(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int yidarocount, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterYidaroCount * clone() const;
+    ~AAAlterYidaroCount();
+};
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager: public TargetAbility
 {
@@ -4808,7 +4883,8 @@ public:
 bool retarget;
 bool reequip;
 bool newhook;
-    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL, bool reequip = false, bool newhook = false);
+int mutation;
+    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL, bool reequip = false, bool newhook = false, int mutation = 0);
     int resolve();
     const string getMenuText();
     AANewTarget * clone() const;
@@ -6959,7 +7035,8 @@ public:
     bool noEvent;
     bool putinplay;
     bool asNormalMadness;
-    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false);
+	bool alternative;
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false);
 
     int testDestroy(){return 0;};
     void Update(float dt);

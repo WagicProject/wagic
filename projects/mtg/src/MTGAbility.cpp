@@ -1169,6 +1169,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "drawn", card))
         return NEW TrcardDrawn(observer, id, card, tc,once);
 
+    //Card is mutated
+    if (TargetChooser * tc = parseSimpleTC(s, "mutated", card))
+        return NEW TrCardMutated(observer, id, card, tc,once);
+
     //Card is sacrificed
     if (TargetChooser * tc = parseSimpleTC(s, "sacrificed", card))
         return NEW TrCardSacrificed(observer, id, card, tc,once);
@@ -3128,6 +3132,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool asNormalMadness = splitCastCard[1].find("madness") != string::npos;
         bool sendNoEvent = splitCastCard[1].find("noevent") != string::npos;
         bool putinplay = splitCastCard[1].find("putinplay") != string::npos;
+		bool alternative = splitCastCard[1].find("alternative") != string::npos;
         string nameCard = "";
         if(splitCastCard[1].find("named!:") != string::npos)
         {
@@ -3137,7 +3142,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 nameCard = splitCastName[1];
             }
         }
-        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness);
+        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness, alternative);
         a->oneShot = false;
         if(splitCastCard[1].find("trigger[to]") != string::npos)
         {
@@ -3276,6 +3281,38 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW AAAlterEnergy(observer, id, card, t, energy, NULL, who);
         a->oneShot = 1;
         return a;
+    }
+
+    //alter yidaro counter
+    vector<string> splitYidaroCounter = parseBetween(s, "alteryidarocount:", " ", false);
+    if (splitYidaroCounter.size())
+    {
+        int yidarocount = atoi(splitYidaroCounter[1].c_str());
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterYidaroCount(observer, id, card, t, yidarocount, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //alter mutation counter on target card with trigger activation
+    vector<string> splitMutated = parseBetween(s, "altermutationcounter:", " ", false);
+    if (splitMutated.size())
+    {
+        card->mutation += atoi(splitMutated[1].c_str());
+        WEvent * e = NEW WEventCardMutated(card);
+        card->getObserver()->receiveEvent(e);
+    }
+
+    //set mutation counter on source card with no trigger activation
+    vector<string> splitMutatedOver = parseBetween(s, "mutationover:", " ", false);
+    if (splitMutatedOver.size())
+    {
+        card->mutation += atoi(splitMutatedOver[1].c_str());
+    }
+    vector<string> splitMutatedUnder = parseBetween(s, "mutationunder:", " ", false);
+    if (splitMutatedUnder.size())
+    {
+        card->mutation += atoi(splitMutatedUnder[1].c_str());
     }
 
     //prevent next damage
@@ -4174,6 +4211,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //get a new target for muatations
+    if ((s.find("mutateover") != string::npos) || s.find("mutateunder") != string::npos)
+    {
+        MTGAbility * a = NEW AANewTarget(observer, id, card,target, false,NULL,false,false,(s.find("mutateover") != string::npos)?1:2);
+        a->oneShot = 1;
+        return a;
+    }
+
     //morph
     found = s.find("morph");
     if (found != string::npos)
@@ -4687,8 +4732,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
     badAbilities[(int)Constants::MUSTBLOCK] = true;
     badAbilities[(int)Constants::FLYERSONLY] = true;
-     badAbilities[(int)Constants::TREASON] = true;
-     badAbilities[(int)Constants::SHACKLER] = true;
+    badAbilities[(int)Constants::TREASON] = true;
+    badAbilities[(int)Constants::SHACKLER] = true;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {
@@ -5539,6 +5584,8 @@ MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *, MTGC
     return NEW AAlterCost(observer, id, card, target, amount, color);
 }
 
+vector<void*> MTGAbility::deletedpointers;
+
 MTGAbility::MTGAbility(const MTGAbility& a): ActionElement(a)
 {
     //Todo get rid of menuText, it is only used as a placeholder in getMenuText, for something that could be a string
@@ -6024,7 +6071,7 @@ int TargetAbility::reactToClick(MTGCardInstance * card)
                 game->mExtraPayment = cost->extraCosts;
                 return 0;
             }
-
+            if (!tc) return 0; // Fix crash on mutating cards
             waitingForAnswer = 1;
             game->mLayers->actionLayer()->setCurrentWaitingAction(this);
             tc->initTargets();
@@ -6306,7 +6353,8 @@ void ListMaintainerAbility::updateTargets()
     {
         MTGCardInstance * card = (*it).first;
         cards.erase(card);
-        removed(card);
+        if(!card->mutation) // Fix crash on mutating card...
+            removed(card);
     }
     temp.clear();
     //add New valid ones
@@ -6426,7 +6474,8 @@ int ListMaintainerAbility::destroy()
     {
         MTGCardInstance * card = (*it).first;
         cards.erase(card);
-        removed(card);
+        if(!card->mutation) // Fix crash on mutating card...
+            removed(card);
         it = cards.begin();
     }
     return 1;

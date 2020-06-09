@@ -35,6 +35,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     extraTurn = 0;
     drawCounter = 0;
     energyCount = 0;
+    yidaroCount = 0;
     epic = 0;
     forcefield = 0;
     dealsdamagebycombat = 0;

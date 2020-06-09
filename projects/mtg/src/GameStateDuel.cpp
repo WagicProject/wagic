@@ -364,6 +364,8 @@ void GameStateDuel::End()
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
 #endif
+
+    MTGAbility::deletedpointers.clear(); // Clear the list of deallocated pointer.
 }
 
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?

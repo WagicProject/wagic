@@ -53,6 +53,7 @@ JGameLauncher* g_launcher = NULL;
 #ifdef ANDROID
 JNIEnv * mJNIEnv = NULL;
 jclass * mJNIClass = NULL;
+int SDL_ResumeSyncTime = 0;
 #endif
 
 class SdlApp;
@@ -78,6 +79,7 @@ extern "C" void Java_org_libsdl_app_SDLActivity_nativeResume(
 {    
 	if (!g_engine)
 		return;
+    SDL_ResumeSyncTime = 100000;
     g_engine->Resume();
 }
 
@@ -136,8 +138,16 @@ public:
                     if(!g_engine->IsPaused())
                         OnEvent(&Event);
                 }
-                if(!g_engine->IsPaused())
+                if(!g_engine->IsPaused()){
+                    #ifdef ANDROID
+                    // Fix for SDL crash on resuming Android app from background.
+                    if(SDL_ResumeSyncTime){
+                        usleep(SDL_ResumeSyncTime);
+                        SDL_ResumeSyncTime = 0;
+                    }
+                    #endif
                     OnUpdate();
+                }
             }
         }
 

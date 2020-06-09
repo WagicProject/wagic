@@ -1023,6 +1023,44 @@ AAAlterPoison::~AAAlterPoison()
 {
 }
 
+//AA Yidaro Count
+AAAlterYidaroCount::AAAlterYidaroCount(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int yidarocount, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), yidarocount(yidarocount)
+{
+}
+
+int AAAlterYidaroCount::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            pTarget->yidaroCount += yidarocount;
+            if(pTarget->yidaroCount < 0)
+                pTarget->yidaroCount = 0;
+        }
+    }
+    return 0;
+}
+
+const string AAAlterYidaroCount::getMenuText()
+{
+    WParsedInt parsedNum(yidarocount);
+    return _(parsedNum.getStringValue() + " Yidaro Cycling Counter ").c_str();
+}
+
+AAAlterYidaroCount * AAAlterYidaroCount::clone() const
+{
+    return NEW AAAlterYidaroCount(*this);
+}
+
+AAAlterYidaroCount::~AAAlterYidaroCount()
+{
+}
+
 //AA Energy Counters
 AAAlterEnergy::AAAlterEnergy(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int energy, ManaCost * _cost,
         int who) :
@@ -3168,8 +3206,8 @@ AAFrozen * AAFrozen::clone() const
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
-AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost, bool reequip, bool newhook) :
-ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget),reequip(reequip),newhook(newhook)
+AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost, bool reequip, bool newhook, int mutation) :
+ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget),reequip(reequip),newhook(newhook),mutation(mutation)
 {
     target = _target;
 }
@@ -3182,7 +3220,7 @@ int AANewTarget::resolve()
         _target = source;
         source = (MTGCardInstance *) target;
     }
-    if (_target && !reequip)
+    if (_target && !reequip && !mutation)
     {
         while (_target->next)
             _target = _target->next; 
@@ -3219,7 +3257,7 @@ int AANewTarget::resolve()
         }
 
     }
-    if (_target && _target->currentZone == _target->controller()->game->battlefield && reequip)
+    if (_target && _target->currentZone == _target->controller()->game->battlefield && reequip && !mutation)
     {
         if(!newhook)
         {
@@ -3253,6 +3291,53 @@ int AANewTarget::resolve()
             target = source;
             source = _target;
         }
+    }
+    if (_target && _target->currentZone == _target->controller()->game->battlefield && mutation > 0)
+    {
+        _target = source;
+        source = (MTGCardInstance *) target;
+        for (size_t i = 1; i < game->mLayers->actionLayer()->mObjects.size(); i++)
+        {
+            MTGAbility * a = ((MTGAbility *) game->mLayers->actionLayer()->mObjects[i]);
+            AEquip * eq = dynamic_cast<AEquip*> (a);
+            if (eq && eq->source == _target)
+            {
+                uint8_t sourceoldcolors = source->colors; // Read the original colors before mutation
+                uint8_t _targetoldcolors = _target->colors;
+                ((AEquip*)a)->mutate(source); // hook the cards one each other
+                source->colors = sourceoldcolors; // Restore the original colors after the mutation
+                if(mutation == 1){
+                    int deltapower = source->getPower() - source->origpower; // keep counters and power/toughness increasement
+                    int deltatoughness = source->getToughness() - source->origtoughness;
+                    source->origpower = _target->origpower;
+                    source->origtoughness = _target->origtoughness;
+                    source->basepower = _target->basepower;
+                    source->basetoughness = _target->basetoughness;
+                    source->setPower(_target->getPower() + deltapower);
+                    source->setToughness(_target->getToughness() + deltatoughness);
+                    source->colors = _targetoldcolors; // The mutated card gain all colors from the parent
+                    std::string oldname = source->getName(); // The mutated card swap its name with the parent
+                    source->setName(_target->getName());
+                    _target->setName(oldname);
+                    for (int i = ((int)source->types.size())-1; i >= 0; --i) // The mutated card looses all its types
+                        if(source->types[i] != 1)
+                            source->removeType(source->types[i]);
+                    for (int i = 0; i < ((int)_target->types.size()); i++) // The mutated card gains all the types of the source card
+                        if(_target->types[i] != 1)
+                             source->addType(_target->types[i]);
+                    if(source->types[0] == 1 && source->types[1] == 7){ // Fix order for Legendary Creatures
+                        source->types[0] = 7;
+                        source->types[1] = 1;
+                    }
+                }
+                _target->colors = 0; // The parent card loose all its colors 
+                for (int i = ((int)_target->types.size())-1; i >= 0; --i) // The parent card looses all types and becomes a dummy Mutated type
+                    _target->removeType(_target->types[i]);
+                _target->setType("Mutated");
+            }
+        }
+        target = source;
+        source = _target;
     }
     return 1;
 }
@@ -5389,10 +5474,16 @@ IfThenAbility * IfThenAbility::clone() const
 
 IfThenAbility::~IfThenAbility()
 {
-    SAFE_DELETE(delayedAbility);
-    SAFE_DELETE(delayedElseAbility);
+    if(delayedAbility && (std::find(deletedpointers.begin(), deletedpointers.end(), delayedAbility) == deletedpointers.end())) {
+        deletedpointers.push_back(delayedAbility); // Fix to avoid crash on May abilities nested in IfThenElse Abilities.
+        SAFE_DELETE(delayedAbility);
+    }
+    if(delayedElseAbility && (std::find(deletedpointers.begin(), deletedpointers.end(), delayedElseAbility) == deletedpointers.end())) {
+        deletedpointers.push_back(delayedElseAbility); // Fix to avoid crash on May abilities nested in IfThenElse Abilities.
+        SAFE_DELETE(delayedElseAbility);
+    }
 }
-//
+
 //May Abilities
 MayAbility::MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must,string _cond) :
     MTGAbility(observer, _id, _source), NestedAbility(_ability), must(must), Cond(_cond)
@@ -6336,8 +6427,8 @@ int ATransformer::destroy()
         {
             for (unsigned int i = 0;i < newAbilities[_target].size(); i++)
             {
-                // The primitives Dead Presence probabily causes a double free error and a crash in Wagic, so for now it has been exluded...
-                if(newAbilities[_target].at(i) && strcmp(_target->name.c_str(),"Dread Presence"))
+                // The primitives Dead Presence and the mutated cards probably cause a double free error and a crash in Wagic, so for now they have been exluded...
+                if(newAbilities[_target].at(i) && strcmp(_target->name.c_str(),"Dread Presence") && !_target->mutation)
                 {
                     newAbilities[_target].at(i)->forceDestroy = 1;
                     newAbilities[_target].at(i)->removeFromGame();
@@ -6884,9 +6975,10 @@ int AProduceMana::receiveEvent(WEvent * event)
 int AProduceMana::produce()
 {
     if(ManaDescription == "selectmana")
-    {//I tried menu ability and vector<MTGAbility*abi> to have a shorter code but it crashes wagic at end of turn...
-     //The may ability on otherhand works but the ability is cumulative...
-     //This must be wrapped on menuability so we can use it on successions...
+    {
+        //I tried menu ability and vector<MTGAbility*abi> to have a shorter code but it crashes wagic at end of turn...
+        //The may ability on otherhand works but the ability is cumulative...
+        //This must be wrapped on menuability so we can use it on successions...
         AManaProducer *ap0 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[0],NULL,source), NULL, 0,"",false);
         MayAbility *mw0 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap0, source,true);
         MTGAbility *ga0 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw0);
@@ -8091,11 +8183,47 @@ int AEquip::equip(MTGCardInstance * equipped)
     return 1;
 }
 
+int AEquip::mutate(MTGCardInstance * mutated)
+{
+    source->target = mutated;
+    source->target->mutation += 1;
+    source->mutation += 1;
+    source->parentCards.push_back(mutated);
+    source->target->childrenCards.push_back((MTGCardInstance*)source);
+    AbilityFactory af(game);
+    af.getAbilities(&currentAbilities, NULL, source);
+    for (size_t i = 0; i < currentAbilities.size(); ++i)
+    {
+        MTGAbility * a = currentAbilities[i];
+        if (dynamic_cast<AEquip *> (a)) continue;
+        if (dynamic_cast<ATeach *> (a)) continue;
+        if (dynamic_cast<AAConnect *> (a)) continue;
+        if (dynamic_cast<AANewTarget *> (af.getCoreAbility(a))) continue;
+        if (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
+        {
+            a->forceDestroy = 1;
+            continue;
+        }
+        if (dynamic_cast<AACopier *> (af.getCoreAbility(a)))
+        {
+            a->forceDestroy = 1;
+            continue;
+        }
+        //we generally dont want to pass oneShot tokencreators to the cards
+        //we mutate...
+        a->addToGame();
+    }
+    WEvent * e = NEW WEventCardMutated(mutated);
+    source->getObserver()->receiveEvent(e); // triggers the @mutated event for any other listener.
+    return 1;
+}
+
 int AEquip::resolve()
 {
     MTGCardInstance * mTarget = tc->getNextCardTarget();
     if (!mTarget) return 0;
     if (mTarget == source) return 0;
+    if (source->mutation) return 0; // No need to unequip mutation cards.
     unequip();
     equip(mTarget);
     return 1;
@@ -8111,6 +8239,9 @@ const string AEquip::getMenuText()
 
 int AEquip::testDestroy()
 {
+    if(source->mutation) // No need to unequip mutation cards.
+        return 0;
+
     if (source->target && !game->isInPlay(source->target))
         //unequip();//testfix for equipment when the card it equip moves to other battlefield
     if (!game->connectRule)
@@ -8123,6 +8254,8 @@ int AEquip::testDestroy()
 
 int AEquip::destroy()
 {
+    if(source->mutation) // No need to unequip mutation cards.
+        return 0;
     unequip();
     return TargetAbility::destroy();
 }
@@ -8133,8 +8266,8 @@ AEquip * AEquip::clone() const
 }
 
 // casting a card for free, or casting a copy of a card.
-AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness) :
-   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness)
+AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative) :
+   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative)
 {
     target = _target;
     andAbility = NULL;
@@ -8397,7 +8530,7 @@ int AACastCard::resolveSpell()
                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
             copy->changeController(source->controller(),true);
             if(asNormalMadness)
-            copy->MadnessPlay = true;
+                copy->MadnessPlay = true;
         }
         else
         {
@@ -8407,6 +8540,8 @@ int AACastCard::resolveSpell()
                 copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
             copy->changeController(source->controller(),true);
         }
+        if(alternative)
+            copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
         if (game->targetChooser)
         {
             game->targetChooser->Owner = source->controller();

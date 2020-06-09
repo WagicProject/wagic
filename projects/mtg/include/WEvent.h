@@ -72,7 +72,7 @@ struct WEventLife : public WEvent {
     Player * player;
     int amount;
     MTGCardInstance * source;
-    WEventLife(Player * player,int amount, MTGCardInstance * source);
+    WEventLife(Player * player, int amount, MTGCardInstance * source);
     virtual Targetable * getTarget(int target);
 };
 
@@ -349,6 +349,12 @@ struct WEventplayerEnergized : public WEvent {
     int nb_count;
     using WEvent::getTarget;
     virtual Targetable * getTarget(Player * player);
+};
+
+//mutation event
+struct WEventCardMutated : public WEventCardUpdate {
+    WEventCardMutated(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
 };
 
 std::ostream& operator<<(std::ostream&, const WEvent&);

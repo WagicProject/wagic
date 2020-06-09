@@ -782,12 +782,14 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     if(!allowedToAltCast(card,player))
         return 0;
 
-    
+    if(card->has(Constants::ADVENTURE) && game->isInExile(card))
+        return 0; // Advetures can't be alternate casted from exile.
+
     alternativeName = "Pay Alternative Cost";
 
     if(card->has(Constants::CANPLAYFROMGRAVEYARD) && game->isInGrave(card))
         alternativeName = "Alternate Cast From Graveyard";
-    else if(card->has(Constants::CANPLAYFROMEXILE) && game->isInExile(card))
+    else if(card->has(Constants::CANPLAYFROMEXILE) && game->isInExile(card) && !card->has(Constants::ADVENTURE))
         alternativeName = "Alternate Cast From Exile";
     else if(card->canPlayFromLibrary() && game->isInLibrary(card))
         alternativeName = "Alternate Cast From Library";

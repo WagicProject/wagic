@@ -1,0 +1,1456 @@
+[meta]
+author=Wagic Team
+name=Ikoria: Lair of Behemoths
+year=2020-04-24
+total=290
+[/meta]
+[card]
+primitive=Beast Tru
+id=-479733
+rarity=T
+[/card]
+[card]
+primitive=Cat Bird Sky
+id=-479727
+rarity=T
+[/card]
+[card]
+primitive=Dinosaur Beast Qua
+id=-479721
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier Gen
+id=-479708
+rarity=T
+[/card]
+[card]
+primitive=Beast Viv
+id=-479695
+rarity=T
+[/card]
+[card]
+primitive=Dinosaur For
+id=-47963911
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier For
+id=-479639
+rarity=T
+[/card]
+[card]
+primitive=Feather Eve
+id=-479634
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier Nig
+id=-479618
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier Bas
+id=-479593
+rarity=T
+[/card]
+[card]
+primitive=Shark
+id=-479587
+rarity=T
+[/card]
+[card]
+primitive=Kraken Omi
+id=-479581
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier Val
+id=-479556
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier Gar
+id=-479534
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier Day
+id=-479528
+rarity=T
+[/card]
+[card]
+primitive=Cat Cub
+id=-479527
+rarity=T
+[/card]
+[card]
+primitive=Adaptive Shimmerer
+id=479521
+rarity=C
+[/card]
+[card]
+primitive=Farfinder
+id=479522
+rarity=C
+[/card]
+[card]
+primitive=Mysterious Egg
+id=479523
+rarity=C
+[/card]
+[card]
+primitive=Blade Banish
+id=479524
+rarity=C
+[/card]
+[card]
+primitive=Checkpoint Officer
+id=479525
+rarity=C
+[/card]
+[card]
+primitive=Coordinated Charge
+id=479526
+rarity=C
+[/card]
+[card]
+primitive=Cubwarden
+id=479527
+rarity=R
+[/card]
+[card]
+primitive=Daysquad Marshal
+id=479528
+rarity=C
+[/card]
+[card]
+primitive=Divine Arrow
+id=479529
+rarity=C
+[/card]
+[card]
+primitive=Drannith Healer
+id=479530
+rarity=C
+[/card]
+[card]
+primitive=Drannith Magistrate
+id=479531
+rarity=R
+[/card]
+[card]
+primitive=Fight as One
+id=479532
+rarity=U
+[/card]
+[card]
+primitive=Flourishing Fox
+id=479533
+rarity=U
+[/card]
+[card]
+primitive=Garrison Cat
+id=479534
+rarity=C
+[/card]
+[card]
+primitive=Helica Glider
+id=479535
+rarity=C
+[/card]
+[card]
+primitive=Huntmaster Liger
+id=479536
+rarity=U
+[/card]
+[card]
+primitive=Imposing Vantasaur
+id=479537
+rarity=C
+[/card]
+[card]
+primitive=Keensight Mentor
+id=479538
+rarity=U
+[/card]
+[card]
+primitive=Lavabrink Venturer
+id=479539
+rarity=R
+[/card]
+[card]
+primitive=Light of Hope
+id=479540
+rarity=C
+[/card]
+[card]
+primitive=Luminous Broodmoth
+id=479541
+rarity=M
+[/card]
+[card]
+primitive=Majestic Auricorn
+id=479542
+rarity=U
+[/card]
+[card]
+primitive=Maned Serval
+id=479543
+rarity=C
+[/card]
+[card]
+primitive=Mythos of Snapdax
+id=479544
+rarity=R
+[/card]
+[card]
+primitive=Pacifism
+id=479545
+rarity=C
+[/card]
+[card]
+primitive=Patagia Tiger
+id=479546
+rarity=C
+[/card]
+[card]
+primitive=Perimeter Sergeant
+id=479547
+rarity=C
+[/card]
+[card]
+primitive=Sanctuary Lockdown
+id=479548
+rarity=U
+[/card]
+[card]
+primitive=Savai Sabertooth
+id=479549
+rarity=C
+[/card]
+[card]
+primitive=Snare Tactician
+id=479550
+rarity=C
+[/card]
+[card]
+primitive=Solid Footing
+id=479551
+rarity=C
+[/card]
+[card]
+primitive=Splendor Mare
+id=479552
+rarity=U
+[/card]
+[card]
+primitive=Spontaneous Flight
+id=479553
+rarity=C
+[/card]
+[card]
+primitive=Stormwild Capridor
+id=479554
+rarity=U
+[/card]
+[card]
+primitive=Swallow Whole
+id=479555
+rarity=U
+[/card]
+[card]
+primitive=Valiant Rescuer
+id=479556
+rarity=U
+[/card]
+[card]
+primitive=Vulpikeet
+id=479557
+rarity=C
+[/card]
+[card]
+primitive=Will of the All-Hunter
+id=479558
+rarity=U
+[/card]
+[card]
+primitive=Aegis Turtle
+id=479559
+rarity=C
+[/card]
+[card]
+primitive=Anticipate
+id=479560
+rarity=C
+[/card]
+[card]
+primitive=Archipelagore
+id=479561
+rarity=U
+[/card]
+[card]
+primitive=Avian Oddity
+id=479562
+rarity=U
+[/card]
+[card]
+primitive=Boon of the Wish-Giver
+id=479563
+rarity=U
+[/card]
+[card]
+primitive=Capture Sphere
+id=479564
+rarity=C
+[/card]
+[card]
+primitive=Convolute
+id=479565
+rarity=C
+[/card]
+[card]
+primitive=Crystacean
+id=479566
+rarity=C
+[/card]
+[card]
+primitive=Dreamtail Heron
+id=479567
+rarity=C
+[/card]
+[card]
+primitive=Escape Protocol
+id=479568
+rarity=U
+[/card]
+[card]
+primitive=Essence Scatter
+id=479569
+rarity=C
+[/card]
+[card]
+primitive=Facet Reader
+id=479570
+rarity=C
+[/card]
+[card]
+primitive=Frost Lynx
+id=479571
+rarity=C
+[/card]
+[card]
+primitive=Frostveil Ambush
+id=479572
+rarity=C
+[/card]
+[card]
+primitive=Glimmerbell
+id=479573
+rarity=C
+[/card]
+[card]
+primitive=Gust of Wind
+id=479574
+rarity=C
+[/card]
+[card]
+primitive=Hampering Snare
+id=479575
+rarity=C
+[/card]
+[card]
+primitive=Keep Safe
+id=479576
+rarity=C
+[/card]
+[card]
+primitive=Mystic Subdual
+id=479577
+rarity=U
+[/card]
+[card]
+primitive=Mythos of Illuna
+id=479578
+rarity=R
+[/card]
+[card]
+primitive=Neutralize
+id=479579
+rarity=U
+[/card]
+[card]
+primitive=Of One Mind
+id=479580
+rarity=C
+[/card]
+[card]
+primitive=Ominous Seas
+id=479581
+rarity=U
+[/card]
+[card]
+primitive=Phase Dolphin
+id=479582
+rarity=C
+[/card]
+[card]
+primitive=Pollywog Symbiote
+id=479583
+rarity=U
+[/card]
+[card]
+primitive=Pouncing Shoreshark
+id=479584
+rarity=U
+[/card]
+[card]
+primitive=Reconnaissance Mission
+id=479585
+rarity=U
+[/card]
+[card]
+primitive=Sea-Dasher Octopus
+id=479586
+rarity=R
+[/card]
+[card]
+primitive=Shark Typhoon
+id=479587
+rarity=R
+[/card]
+[card]
+primitive=Startling Development
+id=479588
+rarity=C
+[/card]
+[card]
+primitive=Thieving Otter
+id=479589
+rarity=C
+[/card]
+[card]
+primitive=Voracious Greatshark
+id=479590
+rarity=R
+[/card]
+[card]
+primitive=Wingfold Pteron
+id=479591
+rarity=C
+[/card]
+[card]
+primitive=Wingspan Mentor
+id=479592
+rarity=U
+[/card]
+[card]
+primitive=Bastion of Remembrance
+id=479593
+rarity=U
+[/card]
+[card]
+primitive=Blitz Leech
+id=479594
+rarity=C
+[/card]
+[card]
+primitive=Blood Curdle
+id=479595
+rarity=C
+[/card]
+[card]
+primitive=Boot Nipper
+id=479596
+rarity=C
+[/card]
+[card]
+primitive=Bushmeat Poacher
+id=479597
+rarity=C
+[/card]
+[card]
+primitive=Call of the Death-Dweller
+id=479598
+rarity=U
+[/card]
+[card]
+primitive=Cavern Whisperer
+id=479599
+rarity=C
+[/card]
+[card]
+primitive=Chittering Harvester
+id=479600
+rarity=U
+[/card]
+[card]
+primitive=Corpse Churn
+id=479601
+rarity=C
+[/card]
+[card]
+primitive=Dark Bargain
+id=479602
+rarity=C
+[/card]
+[card]
+primitive=Dead Weight
+id=479603
+rarity=C
+[/card]
+[card]
+primitive=Dirge Bat
+id=479604
+rarity=R
+[/card]
+[card]
+primitive=Durable Coilbug
+id=479605
+rarity=C
+[/card]
+[card]
+primitive=Duskfang Mentor
+id=479606
+rarity=U
+[/card]
+[card]
+primitive=Easy Prey
+id=479607
+rarity=U
+[/card]
+[card]
+primitive=Extinction Event
+id=479608
+rarity=R
+[/card]
+[card]
+primitive=Gloom Pangolin
+id=479609
+rarity=C
+[/card]
+[card]
+primitive=Grimdancer
+id=479610
+rarity=U
+[/card]
+[card]
+primitive=Heartless Act
+id=479611
+rarity=U
+[/card]
+[card]
+primitive=Hunted Nightmare
+id=479612
+rarity=R
+[/card]
+[card]
+primitive=Insatiable Hemophage
+id=479613
+rarity=U
+[/card]
+[card]
+primitive=Lurking Deadeye
+id=479614
+rarity=C
+[/card]
+[card]
+primitive=Memory Leak
+id=479615
+rarity=C
+[/card]
+[card]
+primitive=Mutual Destruction
+id=479616
+rarity=C
+[/card]
+[card]
+primitive=Mythos of Nethroi
+id=479617
+rarity=R
+[/card]
+[card]
+primitive=Nightsquad Commando
+id=479618
+rarity=C
+[/card]
+[card]
+primitive=Serrated Scorpion
+id=479619
+rarity=C
+[/card]
+[card]
+primitive=Suffocating Fumes
+id=479620
+rarity=C
+[/card]
+[card]
+primitive=Unbreakable Bond
+id=479621
+rarity=U
+[/card]
+[card]
+primitive=Unexpected Fangs
+id=479622
+rarity=C
+[/card]
+[card]
+primitive=Unlikely Aid
+id=479623
+rarity=C
+[/card]
+[card]
+primitive=Void Beckoner
+id=479624
+rarity=U
+[/card]
+[card]
+primitive=Whisper Squad
+id=479625
+rarity=C
+[/card]
+[card]
+primitive=Zagoth Mamba
+id=479626
+rarity=U
+[/card]
+[card]
+primitive=Blazing Volley
+id=479627
+rarity=C
+[/card]
+[card]
+primitive=Blisterspit Gremlin
+id=479628
+rarity=C
+[/card]
+[card]
+primitive=Blitz of the Thunder-Raptor
+id=479629
+rarity=U
+[/card]
+[card]
+primitive=Cathartic Reunion
+id=479630
+rarity=C
+[/card]
+[card]
+primitive=Clash of Titans
+id=479631
+rarity=U
+[/card]
+[card]
+primitive=Cloudpiercer
+id=479632
+rarity=C
+[/card]
+[card]
+primitive=Drannith Stinger
+id=479633
+rarity=C
+[/card]
+[card]
+primitive=Everquill Phoenix
+id=479634
+rarity=R
+[/card]
+[card]
+primitive=Ferocious Tigorilla
+id=479635
+rarity=C
+[/card]
+[card]
+primitive=Fire Prophecy
+id=479636
+rarity=C
+[/card]
+[card]
+primitive=Flame Spill
+id=479637
+rarity=U
+[/card]
+[card]
+primitive=Footfall Crater
+id=479638
+rarity=U
+[/card]
+[card]
+primitive=Forbidden Friendship
+id=479639
+rarity=C
+[/card]
+[card]
+primitive=Frenzied Raptor
+id=479640
+rarity=C
+[/card]
+[card]
+primitive=Frillscare Mentor
+id=479641
+rarity=U
+[/card]
+[card]
+primitive=Go for Blood
+id=479642
+rarity=C
+[/card]
+[card]
+primitive=Heightened Reflexes
+id=479643
+rarity=C
+[/card]
+[card]
+primitive=Lava Serpent
+id=479644
+rarity=C
+[/card]
+[card]
+primitive=Lukka, Coppercoat Outcast
+id=479645
+rarity=M
+[/card]
+[card]
+primitive=Momentum Rumbler
+id=479646
+rarity=U
+[/card]
+[card]
+primitive=Mythos of Vadrok
+id=479647
+rarity=R
+[/card]
+[card]
+primitive=Porcuparrot
+id=479648
+rarity=U
+[/card]
+[card]
+primitive=Prickly Marmoset
+id=479649
+rarity=C
+[/card]
+[card]
+primitive=Pyroceratops
+id=479650
+rarity=C
+[/card]
+[card]
+primitive=Raking Claws
+id=479651
+rarity=C
+[/card]
+[card]
+primitive=Reptilian Reflection
+id=479652
+rarity=U
+[/card]
+[card]
+primitive=Rooting Moloch
+id=479653
+rarity=U
+[/card]
+[card]
+primitive=Rumbling Rockslide
+id=479654
+rarity=C
+[/card]
+[card]
+primitive=Sanctuary Smasher
+id=479655
+rarity=U
+[/card]
+[card]
+primitive=Shredded Sails
+id=479656
+rarity=C
+[/card]
+[card]
+primitive=Spelleater Wolverine
+id=479657
+rarity=C
+[/card]
+[card]
+primitive=Tentative Connection
+id=479658
+rarity=C
+[/card]
+[card]
+primitive=Unpredictable Cyclone
+id=479659
+rarity=R
+[/card]
+[card]
+primitive=Weaponize the Monsters
+id=479660
+rarity=U
+[/card]
+[card]
+primitive=Yidaro, Wandering Monster
+id=479661
+rarity=R
+[/card]
+[card]
+primitive=Adventurous Impulse
+id=479662
+rarity=C
+[/card]
+[card]
+primitive=Almighty Brushwagg
+id=479663
+rarity=C
+[/card]
+[card]
+primitive=Auspicious Starrix
+id=479664
+rarity=U
+[/card]
+[card]
+primitive=Barrier Breach
+id=479665
+rarity=U
+[/card]
+[card]
+primitive=Bristling Boar
+id=479666
+rarity=C
+[/card]
+[card]
+primitive=Charge of the Forever-Beast
+id=479667
+rarity=U
+[/card]
+[card]
+primitive=Colossification
+id=479668
+rarity=R
+[/card]
+[card]
+primitive=Essence Symbiote
+id=479669
+rarity=C
+[/card]
+[card]
+primitive=Excavation Mole
+id=479670
+rarity=C
+[/card]
+[card]
+primitive=Exuberant Wolfbear
+id=479671
+rarity=U
+[/card]
+[card]
+primitive=Fertilid
+id=479672
+rarity=C
+[/card]
+[card]
+primitive=Flycatcher Giraffid
+id=479673
+rarity=C
+[/card]
+[card]
+primitive=Fully Grown
+id=479674
+rarity=C
+[/card]
+[card]
+primitive=Gemrazer
+id=479675
+rarity=R
+[/card]
+[card]
+primitive=Glowstone Recluse
+id=479676
+rarity=U
+[/card]
+[card]
+primitive=Greater Sandwurm
+id=479677
+rarity=C
+[/card]
+[card]
+primitive=Honey Mammoth
+id=479678
+rarity=C
+[/card]
+[card]
+primitive=Hornbash Mentor
+id=479679
+rarity=U
+[/card]
+[card]
+primitive=Humble Naturalist
+id=479680
+rarity=C
+[/card]
+[card]
+primitive=Ivy Elemental
+id=479681
+rarity=U
+[/card]
+[card]
+primitive=Kogla, the Titan Ape
+id=479682
+rarity=R
+[/card]
+[card]
+primitive=Lead the Stampede
+id=479683
+rarity=U
+[/card]
+[card]
+primitive=Migration Path
+id=479684
+rarity=U
+[/card]
+[card]
+primitive=Migratory Greathorn
+id=479685
+rarity=C
+[/card]
+[card]
+primitive=Monstrous Step
+id=479686
+rarity=U
+[/card]
+[card]
+primitive=Mosscoat Goriak
+id=479687
+rarity=C
+[/card]
+[card]
+primitive=Mythos of Brokkos
+id=479688
+rarity=R
+[/card]
+[card]
+primitive=Plummet
+id=479689
+rarity=C
+[/card]
+[card]
+primitive=Ram Through
+id=479690
+rarity=C
+[/card]
+[card]
+primitive=Sudden Spinnerets
+id=479691
+rarity=C
+[/card]
+[card]
+primitive=Survivors' Bond
+id=479692
+rarity=C
+[/card]
+[card]
+primitive=Thwart the Enemy
+id=479693
+rarity=C
+[/card]
+[card]
+primitive=Titanoth Rex
+id=479694
+rarity=U
+[/card]
+[card]
+primitive=Vivien, Monsters' Advocate
+id=479695
+rarity=M
+[/card]
+[card]
+primitive=Wilt
+id=479696
+rarity=C
+[/card]
+[card]
+primitive=Back for More
+id=479697
+rarity=U
+[/card]
+[card]
+primitive=Boneyard Lurker
+id=479698
+rarity=U
+[/card]
+[card]
+primitive=Brokkos, Apex of Forever
+id=479699
+rarity=M
+[/card]
+[card]
+primitive=Channeled Force
+id=479700
+rarity=U
+[/card]
+[card]
+primitive=Chevill, Bane of Monsters
+id=479701
+rarity=M
+[/card]
+[card]
+primitive=Death's Oasis
+id=479702
+rarity=R
+[/card]
+[card]
+primitive=Dire Tactics
+id=479703
+rarity=U
+[/card]
+[card]
+primitive=Eerie Ultimatum
+id=479704
+rarity=R
+[/card]
+[card]
+primitive=Emergent Ultimatum
+id=479705
+rarity=R
+[/card]
+[card]
+primitive=Frondland Felidar
+id=479706
+rarity=R
+[/card]
+[card]
+primitive=General Kudro of Drannith
+id=479707
+rarity=M
+[/card]
+[card]
+primitive=General's Enforcer
+id=479708
+rarity=U
+[/card]
+[card]
+primitive=Genesis Ultimatum
+id=479709
+rarity=R
+[/card]
+[card]
+primitive=Illuna, Apex of Wishes
+id=479710
+rarity=M
+[/card]
+[card]
+primitive=Inspired Ultimatum
+id=479711
+rarity=R
+[/card]
+[card]
+primitive=Kinnan, Bonder Prodigy
+id=479712
+rarity=M
+[/card]
+[card]
+primitive=Labyrinth Raptor
+id=479713
+rarity=R
+[/card]
+[card]
+primitive=Lore Drakkis
+id=479714
+rarity=U
+[/card]
+[card]
+primitive=Narset of the Ancient Way
+id=479715
+rarity=M
+[/card]
+[card]
+primitive=Necropanther
+id=479716
+rarity=U
+[/card]
+[card]
+primitive=Nethroi, Apex of Death
+id=479717
+rarity=M
+[/card]
+[card]
+primitive=Offspring's Revenge
+id=479718
+rarity=R
+[/card]
+[card]
+primitive=Parcelbeast
+id=479719
+rarity=U
+[/card]
+[card]
+primitive=Primal Empathy
+id=479720
+rarity=U
+[/card]
+[card]
+primitive=Quartzwood Crasher
+id=479721
+rarity=R
+[/card]
+[card]
+primitive=Regal Leosaur
+id=479722
+rarity=U
+[/card]
+[card]
+primitive=Rielle, the Everwise
+id=479723
+rarity=M
+[/card]
+[card]
+primitive=Ruinous Ultimatum
+id=479724
+rarity=R
+[/card]
+[card]
+primitive=Savai Thundermane
+id=479725
+rarity=U
+[/card]
+[card]
+primitive=Skull Prophet
+id=479726
+rarity=U
+[/card]
+[card]
+primitive=Skycat Sovereign
+id=479727
+rarity=R
+[/card]
+[card]
+primitive=Slitherwisp
+id=479728
+rarity=R
+[/card]
+[card]
+primitive=Snapdax, Apex of the Hunt
+id=479729
+rarity=M
+[/card]
+[card]
+primitive=Song of Creation
+id=479730
+rarity=R
+[/card]
+[card]
+primitive=Sprite Dragon
+id=479731
+rarity=U
+[/card]
+[card]
+primitive=Titans' Nest
+id=479732
+rarity=R
+[/card]
+[card]
+primitive=Trumpeting Gnarr
+id=479733
+rarity=U
+[/card]
+[card]
+primitive=Vadrok, Apex of Thunder
+id=479734
+rarity=M
+[/card]
+[card]
+primitive=Whirlwind of Thought
+id=479735
+rarity=R
+[/card]
+[card]
+primitive=Winota, Joiner of Forces
+id=479736
+rarity=M
+[/card]
+[card]
+primitive=Zenith Flare
+id=479737
+rarity=U
+[/card]
+[card]
+primitive=Alert Heedbonder
+id=479738
+rarity=U
+[/card]
+[card]
+primitive=Cunning Nightbonder
+id=479739
+rarity=U
+[/card]
+[card]
+primitive=Fiend Artisan
+id=479740
+rarity=M
+[/card]
+[card]
+primitive=Gyruda, Doom of Depths
+id=479741
+rarity=R
+[/card]
+[card]
+primitive=Jegantha, the Wellspring
+id=479742
+rarity=R
+[/card]
+[card]
+primitive=Jubilant Skybonder
+id=479743
+rarity=U
+[/card]
+[card]
+primitive=Kaheera, the Orphanguard
+id=479744
+rarity=R
+[/card]
+[card]
+primitive=Keruga, the Macrosage
+id=479745
+rarity=R
+[/card]
+[card]
+primitive=Lurrus of the Dream-Den
+id=479746
+rarity=R
+[/card]
+[card]
+primitive=Lutri, the Spellchaser
+id=479747
+rarity=R
+[/card]
+[card]
+primitive=Obosh, the Preypiercer
+id=479748
+rarity=R
+[/card]
+[card]
+primitive=Proud Wildbonder
+id=479749
+rarity=U
+[/card]
+[card]
+primitive=Sonorous Howlbonder
+id=479750
+rarity=U
+[/card]
+[card]
+primitive=Umori, the Collector
+id=479751
+rarity=R
+[/card]
+[card]
+primitive=Yorion, Sky Nomad
+id=479752
+rarity=R
+[/card]
+[card]
+primitive=Zirda, the Dawnwaker
+id=479753
+rarity=R
+[/card]
+[card]
+primitive=Crystalline Giant
+id=479754
+rarity=R
+[/card]
+[card]
+primitive=Indatha Crystal
+id=479755
+rarity=U
+[/card]
+[card]
+primitive=Ketria Crystal
+id=479756
+rarity=U
+[/card]
+[card]
+primitive=The Ozolith
+id=479757
+rarity=R
+[/card]
+[card]
+primitive=Raugrin Crystal
+id=479758
+rarity=U
+[/card]
+[card]
+primitive=Savai Crystal
+id=479759
+rarity=U
+[/card]
+[card]
+primitive=Sleeper Dart
+id=479760
+rarity=C
+[/card]
+[card]
+primitive=Springjaw Trap
+id=479761
+rarity=C
+[/card]
+[card]
+primitive=Zagoth Crystal
+id=479762
+rarity=U
+[/card]
+[card]
+primitive=Bloodfell Caves
+id=479763
+rarity=C
+[/card]
+[card]
+primitive=Blossoming Sands
+id=479764
+rarity=C
+[/card]
+[card]
+primitive=Bonders' Enclave
+id=479765
+rarity=R
+[/card]
+[card]
+primitive=Dismal Backwater
+id=479766
+rarity=C
+[/card]
+[card]
+primitive=Evolving Wilds
+id=479767
+rarity=C
+[/card]
+[card]
+primitive=Indatha Triome
+id=479768
+rarity=R
+[/card]
+[card]
+primitive=Jungle Hollow
+id=479769
+rarity=C
+[/card]
+[card]
+primitive=Ketria Triome
+id=479770
+rarity=R
+[/card]
+[card]
+primitive=Raugrin Triome
+id=479771
+rarity=R
+[/card]
+[card]
+primitive=Rugged Highlands
+id=479772
+rarity=C
+[/card]
+[card]
+primitive=Savai Triome
+id=479773
+rarity=R
+[/card]
+[card]
+primitive=Scoured Barrens
+id=479774
+rarity=C
+[/card]
+[card]
+primitive=Swiftwater Cliffs
+id=479775
+rarity=C
+[/card]
+[card]
+primitive=Thornwood Falls
+id=479776
+rarity=C
+[/card]
+[card]
+primitive=Tranquil Cove
+id=479777
+rarity=C
+[/card]
+[card]
+primitive=Wind-Scarred Crag
+id=479778
+rarity=C
+[/card]
+[card]
+primitive=Zagoth Triome
+id=479779
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=482535
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=482536
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=482537
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=482538
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=482539
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=482540
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=482541
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=482542
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=482543
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=482544
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=482545
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=482546
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=482547
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=482548
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=482549
+rarity=C
+[/card]

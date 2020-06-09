@@ -95,13 +95,19 @@ void GameStateAwards::Start()
     listview->Add(wgh);
 
     int locked = 0;
-    for (int i = 0; i < setlist.size(); i++)
+
+    vector<pair<string, string> > orderedSet;
+    for(int i = 0; i < setlist.size(); i++){
+        sprintf(buf, "%s", setlist[i].c_str());
+        orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getName(), buf));
+    }
+    sort(orderedSet.begin(),orderedSet.end());
+    for (unsigned int i = 0; i < orderedSet.size(); i++)
     {
-        MTGSetInfo * si = setlist.getInfo(i);
+        MTGSetInfo * si = setlist.getInfo(setlist.findSet(orderedSet.at(i).second));
         if (!si)
             continue;
-        if (!options[Options::optionSet(i)].number)
-        {
+        if (!options[Options::optionSet(setlist.findSet(orderedSet.at(i).second))].number){ 
             locked++;
             continue;
         }
@@ -119,9 +125,9 @@ void GameStateAwards::Start()
         else
             sprintf(buf, _("%s: %i cards.").c_str(), si->author.c_str(), si->totalCards());
 
-        aw = NEW WGuiAward(Options::optionSet(i), si->getName(), buf, "Card Spoiler");
+        aw = NEW WGuiAward(Options::optionSet(setlist.findSet(orderedSet.at(i).second)), si->getName(), buf, "Card Spoiler");
         aw->mFlags = WGuiItem::NO_TRANSLATE;
-        btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::optionSet(i), this);
+        btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::optionSet(setlist.findSet(orderedSet.at(i).second)), this);
         listview->Add(btn);
     }
     if (locked)
