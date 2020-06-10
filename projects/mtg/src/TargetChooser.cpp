@@ -771,8 +771,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->removeType("tribal");
                         if (!cd->types.size()){
                             int i = rand() % 10000 + 1;
-                            ostringstream rnd;
-                            cd->setSubtype(card->getName() + "_DummyType_" + rnd.str()); // Fix to avoid type vector size is 0 causing the always true match issue.
+                            ostringstream subt;
+							subt << card->getName() << "_DummyType_" << i;
+                            cd->setSubtype(subt.str()); // Fix to avoid type vector size is 0 causing the always true match issue.
                         }
                         cd->mode = CardDescriptor::CD_OR;
                     }
