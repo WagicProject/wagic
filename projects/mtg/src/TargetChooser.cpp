@@ -771,7 +771,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->removeType("tribal");
 #if !defined (PSP)
                         if (!cd->types.size())
-                            cd->setSubtype(card->getName() + "_DummyType_" + to_string((long double)(rand() % 10000 + 1))); // Fix to avoid type vector size is 0 causing the always true match issue.
+                            cd->setSubtype(card->getName() + "_DummyType_" + std::to_string((long double)(rand() % 10000 + 1))); // Fix to avoid type vector size is 0 causing the always true match issue.
 #else
                         if (!cd->types.size()){
                             int i = rand() % 10000 + 1;
