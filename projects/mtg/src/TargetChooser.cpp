@@ -772,7 +772,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         if (!cd->types.size()){
                             int i = rand() % 10000 + 1;
                             ostringstream subt;
-							subt << card->getName() << "_DummyType_" << i;
+                            subt << card->getName() << "_DummyType_" << i;
                             cd->setSubtype(subt.str()); // Fix to avoid type vector size is 0 causing the always true match issue.
                         }
                         cd->mode = CardDescriptor::CD_OR;
