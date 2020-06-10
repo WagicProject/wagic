@@ -18534,7 +18534,7 @@ type=Legendary Sorcery
 name=Karn, the Great Creator
 auto=counter(0/0,5,loyalty)
 auto=lord(artifact|opponentBattlefield) noactivatedability
-auto={C(0/0,1,Loyalty)}:name(+1 Becomes a creature) target(artifact[-creature]) dynamicability<!mytgt manacostpumpboth!> transforms((creature,setpower=0,settoughness=0)) uynt
+auto={C(0/0,1,Loyalty)}:name(+1 Becomes a creature) target(artifact[-creature]) transforms((creature,setpower=0,settoughness=1,newability[dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[0/-1 ueot all(this)],newability[@each opponent untap:dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[@each opponent upkeep:0/-1 ueot all(this)])) uynt
 auto={C(0/0,1,Loyalty)}:name(+1 Loyalty counter) donothing
 auto={C(0/0,-2,Loyalty)}:name(-2 move a card from exile) moveto(ownerhand) target(artifact|myexile)
 auto={C(0/0,-2,Loyalty)}:name(-2 move a card from sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose card) target(<1>*[artifact]|reveal) moveto(myhand) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend revealend
@@ -25139,29 +25139,29 @@ type=Enchantment
 [/card]
 [card]
 name=Prototype Portal
-auto=may name(Imprint) moveTo(myexile) notatarget(artifact|myhand)
-auto={T}{0}:name(mana cost {0}) clone target(artifact[manacost=0]|myexile) oneshot
-auto={T}{1}:name(mana cost {1}) clone target(artifact[manacost=1]|myexile) oneshot
-auto={T}{2}:name(mana cost {2}) clone target(artifact[manacost=2]|myexile) oneshot
-auto={T}{3}:name(mana cost {3}) clone target(artifact[manacost=3]|myexile) oneshot
-auto={T}{4}:name(mana cost {4}) clone target(artifact[manacost=4]|myexile) oneshot
-auto={T}{5}:name(mana cost {5}) clone target(artifact[manacost=5]|myexile) oneshot
-auto={T}{6}:name(mana cost {6}) clone target(artifact[manacost=6]|myexile) oneshot
-auto={T}{7}:name(mana cost {7}) clone target(artifact[manacost=7]|myexile) oneshot
-auto={T}{8}:name(mana cost {8}) clone target(artifact[manacost=8]|myexile) oneshot
-auto={T}{9}:name(mana cost {9}) clone target(artifact[manacost=9]|myexile) oneshot
-auto={T}{10}:name(mana cost {10}) clone target(artifact[manacost=10]|myexile) oneshot
-auto={T}{11}:name(mana cost {11}) clone target(artifact[manacost=11]|myexile) oneshot
-auto={T}{12}:name(mana cost {12}) clone target(artifact[manacost=12]|myexile) oneshot
-auto={T}{13}:name(mana cost {13}) clone target(artifact[manacost=13]|myexile) oneshot
-auto={T}{14}:name(mana cost {14}) clone target(artifact[manacost=14]|myexile) oneshot
-auto={T}{15}:name(mana cost {15}) clone target(artifact[manacost=15]|myexile) oneshot
-auto={T}{16}:name(mana cost {16}) clone target(artifact[manacost=16]|myexile) oneshot
-auto={T}{17}:name(mana cost {17}) clone target(artifact[manacost=17]|myexile) oneshot
-auto={T}{18}:name(mana cost {18}) clone target(artifact[manacost=18]|myexile) oneshot
-auto={T}{19}:name(mana cost {19}) clone target(artifact[manacost=19]|myexile) oneshot
-auto={T}{20}:name(mana cost {20}) clone target(artifact[manacost=20]|myexile) oneshot
-text=Imprint -- When Prototype Portal enters the battlefield, you may exile an artifact card from your hand. / {X},{T}: Creatue a token that's a copy of the exiled card. X is the converted mana cost of that card.
+other={4}{E(other artifact|myhand)} name(Imprint)
+auto=if paid(alternative) then this(variable{storedmanacost}=0) {T}{1}:name(mana cost {0}) clone target(artifact[manacost=0]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=1) {T}{1}:name(mana cost {1}) clone target(artifact[manacost=1]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=2) {T}{2}:name(mana cost {2}) clone target(artifact[manacost=2]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=3) {T}{3}:name(mana cost {3}) clone target(artifact[manacost=3]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=4) {T}{4}:name(mana cost {4}) clone target(artifact[manacost=4]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=5) {T}{5}:name(mana cost {5}) clone target(artifact[manacost=4]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=6) {T}{6}:name(mana cost {6}) clone target(artifact[manacost=5]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=7) {T}{7}:name(mana cost {7}) clone target(artifact[manacost=6]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=8) {T}{8}:name(mana cost {8}) clone target(artifact[manacost=7]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=9) {T}{9}:name(mana cost {9}) clone target(artifact[manacost=8]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=10) {T}{10}:name(mana cost {10}) clone target(artifact[manacost=9]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=11) {T}{11}:name(mana cost {11}) clone target(artifact[manacost=10]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=12) {T}{12}:name(mana cost {12}) clone target(artifact[manacost=11]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=13) {T}{13}:name(mana cost {13}) clone target(artifact[manacost=12]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=14) {T}{14}:name(mana cost {14}) clone target(artifact[manacost=13]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=15) {T}{15}:name(mana cost {15}) clone target(artifact[manacost=14]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=16) {T}{16}:name(mana cost {16}) clone target(artifact[manacost=15]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=17) {T}{17}:name(mana cost {17}) clone target(artifact[manacost=16]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=18) {T}{18}:name(mana cost {18}) clone target(artifact[manacost=17]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=19) {T}{19}:name(mana cost {19}) clone target(artifact[manacost=18]|myexile) oneshot
+auto=if paid(alternative) then this(variable{storedmanacost}=20) {T}{20}:name(mana cost {20}) clone target(artifact[manacost=19]|myexile) oneshot
+text=Imprint -- When Prototype Portal enters the battlefield, you may exile an artifact card from your hand. -- {X},{T}: Create a token that's a copy of the exiled card. X is the converted mana cost of that card.
 mana={4}
 type=Artifact
 [/card]
@@ -35204,8 +35204,8 @@ toughness=3
 [/card]
 [card]
 name=Unsubstantiate
-auto=choice target(creature|battlefield) moveTo(ownerHand)
-auto=choice target(*[-land]|stack) moveTo(ownerHand)
+auto=choice name(Return target creature) target(creature|battlefield) moveTo(ownerHand)
+auto=choice name(Return target spell) target(*[-land]|stack) fizzleto(hand) 
 text=Return target spell or creature to its owner’s hand.
 mana={1}{U}
 type=Instant

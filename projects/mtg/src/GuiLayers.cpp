@@ -29,6 +29,8 @@ GuiLayer::~GuiLayer()
 
 void GuiLayer::Add(JGuiObject *object)
 {
+    if(!object)
+        return;
     mObjects.push_back(object);
     AbilityFactory af(observer);
 
