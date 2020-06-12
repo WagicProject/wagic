@@ -3330,6 +3330,25 @@ int AANewTarget::resolve()
                         source->types[1] = 1;
                     }
                 }
+                for (unsigned int i = 0; i < (unsigned int)Constants::NB_BASIC_ABILITIES; i++){
+                    if(_target->basicAbilities[i] == 1){
+                        source->basicAbilities[i] = 1; // The mutated card gains all abilities from the parent
+                        _target->basicAbilities[i] = 0; // The parent card looses all abilities.
+                    }
+                }
+                _target->basicAbilities[(int)Constants::INDESTRUCTIBLE] = 1; // The parent card cannot be directly destroyed or targeted from anything because it has to follow the fate of the mutated card
+                _target->basicAbilities[(int)Constants::PROTECTIONBLACK] = 1;
+                _target->basicAbilities[(int)Constants::PROTECTIONBLUE] = 1;
+                _target->basicAbilities[(int)Constants::PROTECTIONGREEN] = 1;
+                _target->basicAbilities[(int)Constants::PROTECTIONRED] = 1;
+                _target->basicAbilities[(int)Constants::PROTECTIONWHITE] = 1;
+                _target->basicAbilities[(int)Constants::PROTECTIONFROMCOLOREDSPELLS] = 1;
+                TargetChooserFactory tcf(_target->getObserver());
+                TargetChooser * fromTc = tcf.createTargetChooser("*", _target);
+                if (fromTc){
+                    fromTc->setAllZones();
+                    _target->getObserver()->addObserver(NEW ACantBeTargetFrom(_target->getObserver(), _target->getObserver()->mLayers->actionLayer()->getMaxId(), _target, source, fromTc));
+                }
                 _target->colors = 0; // The parent card loose all its colors 
                 for (int i = ((int)_target->types.size())-1; i >= 0; --i) // The parent card looses all types and becomes a dummy Mutated type
                     _target->removeType(_target->types[i]);

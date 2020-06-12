@@ -1507,7 +1507,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
     // Variables for touch events
     public float y2;
-    public final int DELTA_Y = 300;
+    public final int DELTA_Y = 800;
 
     // Startup
     public SDLSurface(Context context, SDLActivity app) {
