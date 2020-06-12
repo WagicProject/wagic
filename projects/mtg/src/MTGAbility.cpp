@@ -5855,7 +5855,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             if (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
                 return 0;
         }
-        if (source->has(Constants::NOACTIVATED))
+        if (source->has(Constants::NOACTIVATED) || (source->mutation && source->parentCards.size() > 0)) // Mutated Over/Under card doesn't have to react to click anymore
             return 0;
         AbilityFactory af(game);
         MTGAbility * fmp = NULL;

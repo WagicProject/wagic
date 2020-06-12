@@ -1428,11 +1428,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={5}{U} name(Mutate)
 auto=transforms((,newability[@mutated(this):name(Tap X creatures) thisforeach(mutations) may target(creature) freeze]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-deathtouch])) forever all(this) && mutateover target(other creature[-human]|mybattlefield)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-deathtouch])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {5}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, tap up to X target creatures, where X is the number of times this creature has mutated. Those creatures don't untap during their controller's next untap step.
 mana={5}{U}{U}
 type=Creature
@@ -2047,12 +2052,17 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={5}{G} name(Mutate)
 auto=transforms((,newability[@mutated(this):thisforeach(mutations) ability$!name(Reveal) reveal:1 optionone name(Exile top card) target(<1>*[sorcery;instant]|myreveal) moveto(myexile) optiononeend optiontwo name(Play exiled card) target(<1>*[-sorcery;-instant]|myreveal) activate castcard(normal) optiontwoend revealend!$ controller]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,green)])) forever all(this)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green)])) forever
-auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) 
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green)])) forever
+auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under)&& mutateunder target(other creature[-human]|mybattlefield) 
 text=Mutate {5}{G} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, exile cards from the top of your library until you exile X permanent cards, where X is the number of times this creature has mutated. Put those permanent cards onto the battlefield.
 mana={4}{G}
 type=Creature
@@ -3903,11 +3913,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{BG}{BG} name(Mutate)
 auto=transforms((,newability[@mutated(this):moveto(myhand) target(*|mygraveyard)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{BG}{BG} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, return target permanent card from your graveyard to your hand.
 mana={2}{B}{G}
 type=Creature
@@ -4381,10 +4396,15 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{UB}{G}{G} name(Mutate)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-trample])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[trample])) forever
-auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-trample])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[trample])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 autograveyard={2}{UB}{G}{G}:name(Mutate from graveyard) activate castcard(alternative)
 text=Mutate {2}{UB}{G}{G} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Trample -- You may cast Brokkos, Apex of Forever from your graveyard using its mutate ability.
 mana={2}{B}{G}{U}
@@ -5282,11 +5302,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{B} name(Mutate)
 auto=transforms((,newability[@mutated(this):ability$!name(discard) target(*|myhand) reject!$ opponent]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-menace])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[menace])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-menace])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[menace])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{B} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Menace (This creature can't be blocked except by two or more creatures.) -- Whenever this creature mutates, each opponent discards a card.
 mana={4}{B}
 type=Creature
@@ -5730,44 +5755,44 @@ type=Sorcery
 name=Channeled Force
 auto=if type(*|myHand)~morethan~0 then choice ability$!name(X=1, you draw) target(*|myhand) reject and!(draw:1)! !$ controller && damage:1 target(creature,planeswalker)
 auto=if type(*|myHand)~morethan~0 then choice ability$!name(X=1, opponent draw) target(*|myhand) reject !$ controller && draw:1 opponent && damage:1 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2, you draw) target(<2>*|myhand) reject and!(draw:1)! !$ controller && damage:2 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2, opponent draw) target(<2>*|myhand) reject !$ controller && draw:1 opponent && damage:2 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=3, you draw) target(<3>*|myhand) reject and!(draw:1)! !$ controller && damage:3 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=3, opponent draw) target(<3>*|myhand) reject !$ controller && draw:1 opponent && damage:3 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~3 then choice ability$!name(X=4, you draw) target(<4>*|myhand) reject and!(draw:1)! !$ controller && damage:4 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~3 then choice ability$!name(X=4, opponent draw) target(<4>*|myhand) reject !$ controller && draw:1 opponent && damage:4 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~4 then choice ability$!name(X=5, you draw) target(<5>*|myhand) reject and!(draw:1)! !$ controller && damage:5 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~4 then choice ability$!name(X=5, opponent draw) target(<5>*|myhand) reject !$ controller && draw:1 opponent && damage:5 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~5 then choice ability$!name(X=6, you draw) target(<6>*|myhand) reject and!(draw:1)! !$ controller && damage:6 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~5 then choice ability$!name(X=6, opponent draw) target(<6>*|myhand) reject !$ controller && draw:1 opponent && damage:6 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~6 then choice ability$!name(X=7, you draw) target(<7>*|myhand) reject and!(draw:1)! !$ controller && damage:7 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~6 then choice ability$!name(X=7, opponent draw) target(<7>*|myhand) reject !$ controller && draw:1 opponent && damage:7 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~7 then choice ability$!name(X=8, you draw) target(<8>*|myhand) reject and!(draw:1)! !$ controller && damage:8 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~7 then choice ability$!name(X=8, opponent draw) target(<8>*|myhand) reject !$ controller && draw:1 opponent && damage:8 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~8 then choice ability$!name(X=9, you draw) target(<9>*|myhand) reject and!(draw:1)! !$ controller && damage:9 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~8 then choice ability$!name(X=9, opponent draw) target(<9>*|myhand) reject !$ controller && draw:1 opponent && damage:9 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~9 then choice ability$!name(X=10, you draw) target(<10>*|myhand) reject and!(draw:1)! !$ controller && damage:10 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~9 then choice ability$!name(X=10, opponent draw) target(<10>*|myhand) reject !$ controller && draw:1 opponent && damage:10 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~10 then choice ability$!name(X=11, you draw) target(<11>*|myhand) reject and!(draw:1)! !$ controller && damage:11 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~10 then choice ability$!name(X=11, opponent draw) target(<11>*|myhand) reject !$ controller && draw:1 opponent && damage:11 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~11 then choice ability$!name(X=12, you draw) target(<12>*|myhand) reject and!(draw:1)! !$ controller && damage:12 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~11 then choice ability$!name(X=12, opponent draw) target(<12>*|myhand) reject !$ controller && draw:1 opponent && damage:12 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~12 then choice ability$!name(X=13, you draw) target(<13>*|myhand) reject and!(draw:1)! !$ controller && damage:13 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~12 then choice ability$!name(X=13, opponent draw) target(<13>*|myhand) reject !$ controller && draw:1 opponent && damage:13 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~13 then choice ability$!name(X=14, you draw) target(<14>*|myhand) reject and!(draw:1)! !$ controller && damage:14 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~13 then choice ability$!name(X=14, opponent draw) target(<14>*|myhand) reject !$ controller && draw:1 opponent && damage:14 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~14 then choice ability$!name(X=15, you draw) target(<15>*|myhand) reject and!(draw:1)! !$ controller && damage:15 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~14 then choice ability$!name(X=15, opponent draw) target(<15>*|myhand) reject !$ controller && draw:1 opponent && damage:15 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~15 then choice ability$!name(X=16, you draw) target(<16>*|myhand) reject and!(draw:1)! !$ controller && damage:16 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~15 then choice ability$!name(X=16, opponent draw) target(<16>*|myhand) reject !$ controller && draw:1 opponent && damage:16 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~16 then choice ability$!name(X=17, you draw) target(<17>*|myhand) reject and!(draw:1)! !$ controller && damage:17 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~16 then choice ability$!name(X=17, opponent draw) target(<17>*|myhand) reject !$ controller && draw:1 opponent && damage:17 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~17 then choice ability$!name(X=18, you draw) target(<18>*|myhand) reject and!(draw:1)! !$ controller && damage:18 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~17 then choice ability$!name(X=18, opponent draw) target(<18>*|myhand) reject !$ controller && draw:1 opponent && damage:18 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~18 then choice ability$!name(X=19, you draw) target(<19>*|myhand) reject and!(draw:1)! !$ controller && damage:19 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~18 then choice ability$!name(X=19, opponent draw) target(<19>*|myhand) reject !$ controller && draw:1 opponent && damage:19 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~19 then choice ability$!name(X=20, you draw) target(<20>*|myhand) reject and!(draw:1)! !$ controller && damage:20 target(creature,planeswalker)
-auto=if type(*|myHand)~morethan~19 then choice ability$!name(X=20, opponent draw) target(<20>*|myhand) reject !$ controller && draw:1 opponent && damage:20 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2, you draw) target(<2>*|myhand) reject and!(draw:2)! !$ controller && damage:2 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2, opponent draw) target(<2>*|myhand) reject !$ controller && draw:2 opponent && damage:2 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=3, you draw) target(<3>*|myhand) reject and!(draw:3)! !$ controller && damage:3 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=3, opponent draw) target(<3>*|myhand) reject !$ controller && draw:3 opponent && damage:3 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~3 then choice ability$!name(X=4, you draw) target(<4>*|myhand) reject and!(draw:4)! !$ controller && damage:4 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~3 then choice ability$!name(X=4, opponent draw) target(<4>*|myhand) reject !$ controller && draw:4 opponent && damage:4 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~4 then choice ability$!name(X=5, you draw) target(<5>*|myhand) reject and!(draw:5)! !$ controller && damage:5 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~4 then choice ability$!name(X=5, opponent draw) target(<5>*|myhand) reject !$ controller && draw:5 opponent && damage:5 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~5 then choice ability$!name(X=6, you draw) target(<6>*|myhand) reject and!(draw:6)! !$ controller && damage:6 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~5 then choice ability$!name(X=6, opponent draw) target(<6>*|myhand) reject !$ controller && draw:6 opponent && damage:6 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~6 then choice ability$!name(X=7, you draw) target(<7>*|myhand) reject and!(draw:7)! !$ controller && damage:7 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~6 then choice ability$!name(X=7, opponent draw) target(<7>*|myhand) reject !$ controller && draw:7 opponent && damage:7 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~7 then choice ability$!name(X=8, you draw) target(<8>*|myhand) reject and!(draw:8)! !$ controller && damage:8 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~7 then choice ability$!name(X=8, opponent draw) target(<8>*|myhand) reject !$ controller && draw:8 opponent && damage:8 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~8 then choice ability$!name(X=9, you draw) target(<9>*|myhand) reject and!(draw:9)! !$ controller && damage:9 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~8 then choice ability$!name(X=9, opponent draw) target(<9>*|myhand) reject !$ controller && draw:9 opponent && damage:9 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~9 then choice ability$!name(X=10, you draw) target(<10>*|myhand) reject and!(draw:10)! !$ controller && damage:10 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~9 then choice ability$!name(X=10, opponent draw) target(<10>*|myhand) reject !$ controller && draw:10 opponent && damage:10 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~10 then choice ability$!name(X=11, you draw) target(<11>*|myhand) reject and!(draw:11)! !$ controller && damage:11 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~10 then choice ability$!name(X=11, opponent draw) target(<11>*|myhand) reject !$ controller && draw:11 opponent && damage:11 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~11 then choice ability$!name(X=12, you draw) target(<12>*|myhand) reject and!(draw:12)! !$ controller && damage:12 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~11 then choice ability$!name(X=12, opponent draw) target(<12>*|myhand) reject !$ controller && draw:12 opponent && damage:12 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~12 then choice ability$!name(X=13, you draw) target(<13>*|myhand) reject and!(draw:13)! !$ controller && damage:13 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~12 then choice ability$!name(X=13, opponent draw) target(<13>*|myhand) reject !$ controller && draw:13 opponent && damage:13 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~13 then choice ability$!name(X=14, you draw) target(<14>*|myhand) reject and!(draw:14)! !$ controller && damage:14 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~13 then choice ability$!name(X=14, opponent draw) target(<14>*|myhand) reject !$ controller && draw:14 opponent && damage:14 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~14 then choice ability$!name(X=15, you draw) target(<15>*|myhand) reject and!(draw:15)! !$ controller && damage:15 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~14 then choice ability$!name(X=15, opponent draw) target(<15>*|myhand) reject !$ controller && draw:15 opponent && damage:15 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~15 then choice ability$!name(X=16, you draw) target(<16>*|myhand) reject and!(draw:16)! !$ controller && damage:16 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~15 then choice ability$!name(X=16, opponent draw) target(<16>*|myhand) reject !$ controller && draw:16 opponent && damage:16 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~16 then choice ability$!name(X=17, you draw) target(<17>*|myhand) reject and!(draw:17)! !$ controller && damage:17 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~16 then choice ability$!name(X=17, opponent draw) target(<17>*|myhand) reject !$ controller && draw:17 opponent && damage:17 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~17 then choice ability$!name(X=18, you draw) target(<18>*|myhand) reject and!(draw:18)! !$ controller && damage:18 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~17 then choice ability$!name(X=18, opponent draw) target(<18>*|myhand) reject !$ controller && draw:18 opponent && damage:18 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~18 then choice ability$!name(X=19, you draw) target(<19>*|myhand) reject and!(draw:19)! !$ controller && damage:19 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~18 then choice ability$!name(X=19, opponent draw) target(<19>*|myhand) reject !$ controller && draw:19 opponent && damage:19 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~19 then choice ability$!name(X=20, you draw) target(<20>*|myhand) reject and!(draw:20)! !$ controller && damage:20 target(creature,planeswalker)
+auto=if type(*|myHand)~morethan~19 then choice ability$!name(X=20, opponent draw) target(<20>*|myhand) reject !$ controller && draw:20 opponent && damage:20 target(creature,planeswalker)
 text=As an additional cost to cast this spell, discard X cards. -- Target player draws X cards. Channeled Force deals X damage to up to one target creature or planeswalker.
 mana={2}{U}{R}
 type=Instant
@@ -6022,11 +6047,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={4}{B} name(Mutate)
 auto=transforms((,newability[@mutated(this):ability$!sacrifice name(opponent sacrifices creature) notatarget(creature|mybattlefield)!$ opponent]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {4}{B} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, each opponent sacrifices a creature.
 mana={5}{B}
 type=Creature
@@ -6422,11 +6452,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{R} name(Mutate)
 auto=transforms((,newability[@mutated(this):may reject notatarget(*|myhand) and!( draw:1 controller )!]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-reach])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[reach])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-reach])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[reach])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{R} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Reach -- Whenever this creature mutates, you may discard a card. If you do, draw a card.
 mana={4}{R}
 type=Creature
@@ -7594,11 +7629,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{W}{W} name(Mutate)
 auto=transforms((,newability[@mutated(this):token(Cat Cub)*2]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-lifelink])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[lifelink])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-lifelink])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[lifelink])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{W}{W} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Lifelink -- Whenever this creature mutates, create two 1/1 white Cat creature tokens with lifelink.
 mana={3}{W}
 type=Creature
@@ -9387,11 +9427,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{B}{B} name(Mutate)
 auto=transforms((,newability[@mutated(this):target(*[creature;planeswalker]|opponentBattlefield) destroy]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flash],newability[-flying])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[flash],newability[flying])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flash],newability[-flying])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flash],newability[flying])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {4}{B}{B} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flash -- Flying -- Whenever this creature mutates, destroy target creature or planeswalker an opponent controls.
 mana={2}{B}{B}
 type=Creature
@@ -10195,11 +10240,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{U} name(Mutate)
 auto=transforms((,newability[@mutated(this):draw:1 controller]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[flying])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flying])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying -- Whenever this creature mutates, draw a card.
 mana={4}{U}
 type=Creature
@@ -11685,11 +11735,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{R} name(Mutate)
 auto=transforms((,newability[@mutated(this):token(Feather Eve)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[flying])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flying])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{R} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying -- Whenever this creature mutates, create a red artifact token named Feather with "{1}, Sacrifice Feather: Return target Phoenix card from your graveyard to the battlefield tapped."
 mana={2}{R}{R}
 type=Creature
@@ -12302,6 +12357,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Favor of the Mighty
+auto=lord(creature[manacost=convertedcost:highest:*:battlefield]|battlefield) protection from white
+auto=lord(creature[manacost=convertedcost:highest:*:battlefield]|battlefield) protection from blue
+auto=lord(creature[manacost=convertedcost:highest:*:battlefield]|battlefield) protection from black
+auto=lord(creature[manacost=convertedcost:highest:*:battlefield]|battlefield) protection from red
+auto=lord(creature[manacost=convertedcost:highest:*:battlefield]|battlefield) protection from green
+text=Each creature with the highest converted mana cost has protection from all colors.
+mana={1}{W}
+type=Tribal Enchantment
+subtype=Giant
+[/card]
+[card]
 name=Favored of Iroas
 auto=@movedTo(enchantment|myBattlefield):double strike ueot
 text=Constellation -- Whenever an enchantment enters the battlefield under your control, Favored of Iroas gains double strike until end of turn.
@@ -12330,6 +12397,13 @@ type=Creature
 subtype=Human Warrior
 power=3
 toughness=2
+[/card]
+[card]
+name=Feast on the Fallen
+auto=@each upkeep restriction{lastturn(oplifelost)~morethan~0}:counter(1/1,1) target(creature[myBattlefield])
+text=At the beginning of each upkeep, if an opponent lost life last turn, put a +1/+1 counter on target creature you control.
+mana={2}{B}
+type=Enchantment
 [/card]
 [card]
 name=Feaster of Fools
@@ -12607,6 +12681,28 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
+name=Fiery Confluence
+auto=choice name(Damage creatures 1 time) damage:1 all(creature|battlefield)
+auto=choice name(Damage creatures 2 times) damage:2 all(creature|battlefield)
+auto=choice name(Damage creatures 3 times) damage:3 all(creature|battlefield)
+auto=choice name(Damage opponent 1 time) damage:2 opponent
+auto=choice name(Damage opponent 2 times) damage:4 opponent
+auto=choice name(Damage opponent 3 times) damage:6 opponent
+auto=choice name(Destroy 1 Artifact) destroy target(<1>*[artifact]|battlefield)
+auto=choice name(Destroy 2 Artifacts) destroy target(<2>*[artifact]|battlefield)
+auto=choice name(Destroy 3 Artifacts) destroy target(<3>*[artifact]|battlefield)
+auto=choice name(Damage creatures 2 times and Damage opponent 1 time) damage:2 all(creature|battlefield) && damage:2 opponent
+auto=choice name(Damage creatures 2 times and Destroy 1 Artifact) damage:2 all(creature|battlefield) && destroy target(<1>*[artifact]|battlefield)
+auto=choice name(Damage creatures 1 time and Damage opponent 2 times) damage:1 all(creature|battlefield) && damage:4 opponent
+auto=choice name(Damage creatures 1 time and Destroy 2 Artifacts) damage:1 all(creature|battlefield) && destroy target(<2>*[artifact]|battlefield)
+auto=choice name(Damage opponent 1 time and Destroy 2 Artifacts) damage:2 opponent && destroy target(<2>*[artifact]|battlefield)
+auto=choice name(Damage opponent 2 times and Destroy 1 Artifact) damage:4 opponent && destroy target(<1>*[artifact]|battlefield)
+auto=choice name(Damage opponent 1 time, Damage creatures 1 time and Destroy 1 Artifact) damage:1 all(creature|battlefield) && damage:2 opponent && destroy target(<1>*[artifact]|battlefield)
+text=Choose three. You may choose the same mode more than once. -- • Fiery Confluence deals 1 damage to each creature. -- • Fiery Confluence deals 2 damage to each opponent. -- • Destroy target artifact.
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Fiery Finish
 target=creature
 auto=damage:7
@@ -12629,6 +12725,19 @@ auto={T}{L:1}=add {R}
 auto={1}{T}{S}:draw:1
 text={T}, Pay 1 life: Add {U} or {R}. -- {1}, {T}, Sacrifice Fiery Islet: Draw a card.
 type=Land
+[/card]
+[card]
+name=Fiery Justice
+target=planeswalker,player
+auto=life:5 opponent
+auto=damage:1
+auto=damage:1 target(planeswalker,player)
+auto=ability$!name(damage) choice target(planeswalker,player) damage:1!$ controller
+auto=ability$!name(damage) choice target(planeswalker,player) damage:1!$ controller
+auto=ability$!name(damage) choice target(planeswalker,player) damage:1!$ controller
+text=Fiery Justice deals 5 damage divided as you choose among any number of target creatures and/or players. Target opponent gains 5 life.
+mana={R}{G}{W}
+type=Sorcery
 [/card]
 [card]
 name=Fight as One
@@ -12746,6 +12855,14 @@ mana={0}
 type=Instant
 [/card]
 [card]
+name=Fire and Brimstone
+auto=if type(creature[attacking]|opponentbattlefield)~morethan~0 then damage:4 opponent
+auto=damage:4 controller
+text=Fire and Brimstone deals 4 damage to target player who declared an attacking creature this turn and 4 damage to you.
+mana={3}{W}{W}
+type=Instant
+[/card]
+[card]
 name=Fire Prophecy
 target=creature
 auto=damage:3
@@ -12753,6 +12870,17 @@ auto=may bottomoflibrary target(*|myHand) && draw:1 controller
 text=Fire Prophecy deals 3 damage to target creature. You may put a card from your hand on the bottom of your library. If you do, draw a card.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Fire Servant
+auto=@damaged(creature,player) from(*[red]|mybattlefield) once:damage:thatmuch all(trigger[to])
+auto=@damaged(creature,player) from(*[red]|mystack) once:damage:thatmuch all(trigger[to])
+text=If a red instant or sorcery spell you control would deal damage, it deals double that damage instead.
+mana={3}{R}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=3
 [/card]
 [card]
 name=Fire Shrine Keeper
@@ -12886,6 +13014,58 @@ power=4
 toughness=6
 [/card]
 [card]
+name=Firestorm
+auto=if type(*|myHand)~morethan~0 then choice ability$!name(X=1, damage 1 creature or opponent) target(*|myhand) reject!$ controller && damage:1 target(creature,player)
+auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2, damage 1 creature and opponent) target(<2>*|myhand) reject!$ controller && damage:2 target(creature) && damage:2 opponent
+auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=2, damage 2 creatures) target(<2>*|myhand) reject!$ controller && damage:2 target(<2>creature)
+auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=3, damage 2 creature and opponent) target(<3>*|myhand) reject!$ controller && damage:3 target(<2>creature) && damage:3 opponent
+auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=3, damage 3 creatures) target(<3>*|myhand) reject!$ controller && damage:3 target(<3>creature)
+auto=if type(*|myHand)~morethan~3 then choice ability$!name(X=4, damage 3 creature and opponent) target(<4>*|myhand) reject!$ controller && damage:4 target(<3>creature) && damage:4 opponent
+auto=if type(*|myHand)~morethan~3 then choice ability$!name(X=4, damage 4 creatures) target(<4>*|myhand) reject!$ controller && damage:4 target(<4>creature)
+auto=if type(*|myHand)~morethan~4 then choice ability$!name(X=5, damage 4 creature and opponent) target(<5>*|myhand) reject!$ controller && damage:5 target(<4>creature) && damage:5 opponent
+auto=if type(*|myHand)~morethan~4 then choice ability$!name(X=5, damage 5 creatures) target(<5>*|myhand) reject!$ controller && damage:5 target(<5>creature)
+auto=if type(*|myHand)~morethan~5 then choice ability$!name(X=6, damage 5 creature and opponent) target(<6>*|myhand) reject!$ controller && damage:6 target(<5>creature) && damage:6 opponent
+auto=if type(*|myHand)~morethan~5 then choice ability$!name(X=6, damage 6 creatures) target(<6>*|myhand) reject!$ controller && damage:6 target(<6>creature)
+auto=if type(*|myHand)~morethan~6 then choice ability$!name(X=7, damage 6 creature and opponent) target(<7>*|myhand) reject!$ controller && damage:7 target(<6>creature) && damage:7 opponent
+auto=if type(*|myHand)~morethan~6 then choice ability$!name(X=7, damage 7 creatures) target(<7>*|myhand) reject!$ controller && damage:7 target(<7>creature)
+auto=if type(*|myHand)~morethan~7 then choice ability$!name(X=8, damage 7 creature and opponent) target(<8>*|myhand) reject!$ controller && damage:8 target(<7>creature) && damage:8 opponent
+auto=if type(*|myHand)~morethan~7 then choice ability$!name(X=8, damage 8 creatures) target(<8>*|myhand) reject!$ controller && damage:8 target(<8>creature)
+auto=if type(*|myHand)~morethan~8 then choice ability$!name(X=9, damage 8 creature and opponent) target(<9>*|myhand) reject!$ controller && damage:9 target(<8>creature) && damage:9 opponent
+auto=if type(*|myHand)~morethan~8 then choice ability$!name(X=9, damage 9 creatures) target(<9>*|myhand) reject!$ controller && damage:9 target(<9>creature)
+auto=if type(*|myHand)~morethan~9 then choice ability$!name(X=10, damage 9 creature and opponent) target(<10>*|myhand) reject!$ controller && damage:10 target(<9>creature) && damage:10 opponent
+auto=if type(*|myHand)~morethan~9 then choice ability$!name(X=10, damage 10 creatures) target(<10>*|myhand) reject!$ controller && damage:10 target(<10>creature)
+auto=if type(*|myHand)~morethan~10 then choice ability$!name(X=11, damage 10 creature and opponent) target(<11>*|myhand) reject!$ controller && damage:11 target(<10>creature) && damage:11 opponent
+auto=if type(*|myHand)~morethan~10 then choice ability$!name(X=11, damage 11 creatures) target(<11>*|myhand) reject!$ controller && damage:11 target(<11>creature)
+auto=if type(*|myHand)~morethan~11 then choice ability$!name(X=12, damage 11 creature and opponent) target(<12>*|myhand) reject!$ controller && damage:12 target(<11>creature) && damage:12 opponent
+auto=if type(*|myHand)~morethan~11 then choice ability$!name(X=12, damage 12 creatures) target(<12>*|myhand) reject!$ controller && damage:12 target(<12>creature)
+auto=if type(*|myHand)~morethan~12 then choice ability$!name(X=13, damage 12 creature and opponent) target(<13>*|myhand) reject!$ controller && damage:13 target(<12>creature) && damage:13 opponent
+auto=if type(*|myHand)~morethan~12 then choice ability$!name(X=13, damage 13 creatures) target(<13>*|myhand) reject!$ controller && damage:13 target(<13>creature)
+auto=if type(*|myHand)~morethan~13 then choice ability$!name(X=14, damage 13 creature and opponent) target(<14>*|myhand) reject!$ controller && damage:14 target(<13>creature) && damage:14 opponent
+auto=if type(*|myHand)~morethan~13 then choice ability$!name(X=14, damage 14 creatures) target(<14>*|myhand) reject!$ controller && damage:14 target(<14>creature)
+auto=if type(*|myHand)~morethan~14 then choice ability$!name(X=15, damage 14 creature and opponent) target(<15>*|myhand) reject!$ controller && damage:15 target(<14>creature) && damage:15 opponent
+auto=if type(*|myHand)~morethan~14 then choice ability$!name(X=15, damage 15 creatures) target(<15>*|myhand) reject!$ controller && damage:15 target(<15>creature)
+auto=if type(*|myHand)~morethan~15 then choice ability$!name(X=16, damage 15 creature and opponent) target(<16>*|myhand) reject!$ controller && damage:16 target(<15>creature) && damage:16 opponent
+auto=if type(*|myHand)~morethan~15 then choice ability$!name(X=16, damage 16 creatures) target(<16>*|myhand) reject!$ controller && damage:16 target(<16>creature)
+auto=if type(*|myHand)~morethan~16 then choice ability$!name(X=17, damage 16 creature and opponent) target(<17>*|myhand) reject!$ controller && damage:17 target(<16>creature) && damage:17 opponent
+auto=if type(*|myHand)~morethan~16 then choice ability$!name(X=17, damage 17 creatures) target(<17>*|myhand) reject!$ controller && damage:17 target(<17>creature)
+auto=if type(*|myHand)~morethan~17 then choice ability$!name(X=18, damage 17 creature and opponent) target(<18>*|myhand) reject!$ controller && damage:18 target(<17>creature) && damage:18 opponent
+auto=if type(*|myHand)~morethan~17 then choice ability$!name(X=18, damage 18 creatures) target(<18>*|myhand) reject!$ controller && damage:18 target(<18>creature)
+auto=if type(*|myHand)~morethan~18 then choice ability$!name(X=19, damage 18 creature and opponent) target(<19>*|myhand) reject!$ controller && damage:19 target(<18>creature) && damage:19 opponent
+auto=if type(*|myHand)~morethan~18 then choice ability$!name(X=19, damage 19 creatures) target(<19>*|myhand) reject!$ controller && damage:19 target(<19>creature)
+auto=if type(*|myHand)~morethan~19 then choice ability$!name(X=20, damage 19 creature and opponent) target(<20>*|myhand) reject!$ controller && damage:20 target(<19>creature) && damage:20 opponent
+auto=if type(*|myHand)~morethan~19 then choice ability$!name(X=20, damage 20 creatures) target(<20>*|myhand) reject!$ controller && damage:20 target(<20>creature)
+text=As an additional cost to cast Firestorm, discard X cards. -- Firestorm deals X damage to each of X target creatures and/or players.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=First Response
+auto=@each upkeep restriction{lastturn(life)~morethan~0}:token(Soldier,Creature Soldier,1/1,white)
+text=At the beginning of each upkeep, if you lost life last turn, put a 1/1 white Soldier creature token onto the battlefield.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
 name=First Sliver's Chosen
 auto=lord(sliver|mybattlefield) exalted
 text=Sliver creatures you control have exalted. (Whenever a creature you control attacks alone, it gets +1/+1 until end of turn for each instance of exalted among permanents you control.)
@@ -12908,6 +13088,15 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Fissure Ventù
+target=artifact,land[-basic]
+auto=choice name(Choose one) destroy
+auto=choice name(Choose both) destroy && destroy target(artifact,land[-basic])
+text=Choose one or both — -- • Destroy target artifact. -- • Destroy target nonbasic land.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Fists of Flame
 target=creature
 auto=draw:1
@@ -12915,6 +13104,54 @@ auto=thisforeach(variable{pdrewcount}>0) 1/1 ueot && trample ueot
 text=Draw a card. Until end of turn, target creature gains trample and gets +1/+0 for each card you've drawn this turn.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Flaccify
+target=*|stack
+auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
+text=Counter target spell unless its controller pays {3}.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Flailing Manticore
+abilities=flying,first strike
+auto={1}:1/1 ueot
+auto={1}:-1/-1 ueot
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 1) pay[[{1}]] name(Pay 1) -1/-1 notatarget(Flailing Manticore|opponentBattlefield)ueot?donothing!$ opponent])) forever
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 1) pay[[{1}]] name(Pay 1) 1/1 notatarget(Flailing Manticore|opponentBattlefield)ueot?donothing!$ opponent])) forever
+text=Flying, first strike -- {1}: Flailing Manticore gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Manticore gets -1/-1 until end of turn. Any player may activate this ability.
+mana={3}{R}
+type=Creature
+subtype=Manticore
+power=3
+toughness=3
+[/card]
+[card]
+name=Flailing Ogre
+auto={1}:1/1 ueot
+auto={1}:-1/-1 ueot
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 1) pay[[{1}]] name(Pay 1) -1/-1 notatarget(Flailing Ogre|opponentBattlefield)ueot?donothing!$ opponent])) forever
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 1) pay[[{1}]] name(Pay 1) 1/1 notatarget(Flailing Ogre|opponentBattlefield)ueot?donothing!$ opponent])) forever
+text={1}: Flailing Ogre gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Ogre gets -1/-1 until end of turn. Any player may activate this ability.
+mana={2}{R}
+type=Creature
+subtype=Ogre
+power=3
+toughness=3
+[/card]
+[card]
+name=Flailing Soldier
+auto={1}:1/1 ueot
+auto={1}:-1/-1 ueot
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 1) pay[[{1}]] name(Pay 1) -1/-1 notatarget(Flailing Soldier|opponentBattlefield)ueot?donothing!$ opponent])) forever
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 1) pay[[{1}]] name(Pay 1) 1/1 notatarget(Flailing Soldier|opponentBattlefield)ueot?donothing!$ opponent])) forever
+text={1}: Flailing Soldier gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Soldier gets -1/-1 until end of turn. Any player may activate this ability.
+mana={R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
 [/card]
 [card]
 name=Flame Spill
@@ -12991,6 +13228,15 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+name=Flash Foliage
+restriction=blockersonly
+auto=token(Saproling,Creature Saproling,1/1,green) and!(transforms((,newability[mustblock])) ueot)!
+auto=draw:1 controller
+text=Cast Flash Foliage only during combat after blockers are declared. -- Put a 1/1 green Saproling creature token onto the battlefield blocking target creature attacking you.  -- Draw a card.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
 name=Flawless Maneuver
 auto=all(creature|myBattlefield) indestructible ueot
 other={0} name(Cast without Paying its Mana Cost)
@@ -13021,6 +13267,18 @@ type=Creature
 subtype=Fish
 power=6
 toughness=6
+[/card]
+[card]
+name=Flesh // Blood
+target=creature|mybattlefield
+other={R}{G} name(Blood)
+kicker={R}{G}
+auto=if paid(alternative) then transforms((,newability[target(player,creature|opponentbattlefield) dynamicability<!powerstrike!>])) forever
+auto=kicker ifnot paid(alternative) then transforms((,newability[target(player,creature|opponentbattlefield) dynamicability<!powerstrike!>])) forever
+auto=ifnot paid(alternative) then counter(1/1,storedpower) target(creature)
+text=Exile target creature card from a graveyard. Put X +1/+1 counters on target creature, where X is the power of the card you exiled. --  //  -- Target creature you control deals damage equal to its power to target creature or player. -- Fuse (You may cast one or both halves of this card from your hand.)
+mana={3}{B}{G}{E(*[creature]|graveyard)}
+type=Sorcery
 [/card]
 [card]
 name=Flicker of Fate
@@ -13976,12 +14234,17 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={1}{G}{G} name(Mutate)
 auto=transforms((,newability[@mutated(this):target(*[artifact;enchantment]|opponentBattlefield) destroy]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,green)])) forever all(this)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-reach],newability[-trample])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[reach],newability[trample],newability[becomes(,,green)])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-reach],newability[-trample])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[reach],newability[trample])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green)])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {1}{G}{G} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Reach, trample -- Whenever this creature mutates, destroy target artifact or enchantment an opponent controls.
 mana={3}{G}
 type=Creature
@@ -14606,11 +14869,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{G} name(Mutate)
 auto=transforms((,newability[@mutated(this):counter(1/1) && counter(1/1)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-reach])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[reach])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-reach])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[reach])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{G} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Reach -- Whenever this creature mutates, put two +1/+1 counters on it.
 mana={2}{G}
 type=Creature
@@ -16962,11 +17230,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{W} name(Mutate)
 auto=transforms((,newability[@mutated(this):name(All creatures X/X ueot) thisforeach(mutations) all(other creature|myBattlefield) 1/1 ueot]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-deathtouch])) forever all(this) && mutateover target(other creature[-human]|mybattlefield)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-deathtouch])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{W} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, other creatures you control get +X/+X until end of turn, where X is the number of times this creature has mutated.
 mana={3}{W}
 type=Creature
@@ -17197,12 +17470,17 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{RG}{U}{U} name(Mutate)
 auto=transforms((,newability[@mutated(this):ability$!name(Reveal) reveal:1 revealzone(mylibrary) revealuntil(*[-artifact;-land;-instant;-sorcery]|mylibrary) optionone name(Choose non land permanent) target(<upto:1>*[-artifact;-land;-instant;-sorcery]|myreveal) moveto(mybattlefield) optiononeend optiontwo name(Put back into library) all(*|myreveal) bottomoflibrary optiontwoend revealend!$ controller]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,green,blue,red)])) forever all(this)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying],newability[-trample])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green,blue,red)],newability[flying],newability[trample])) forever
-auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying],newability[-trample])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flying],newability[trample])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green,blue,red)])) forever
+auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{RG}{U}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying, trample -- Whenever this creature mutates, exile cards from the top of your library until you exile a nonland permanent card. Put that card onto the battlefield or into your hand.
 mana={2}{G}{U}{R}
 type=Legendary Creature
@@ -17629,11 +17907,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{B} name(Mutate)
 auto=transforms((,newability[@mutated(this):name(Life and damage) thisforeach(mutations) life:1 controller && life:-1 opponent]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-deathtouch])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[deathtouch])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-deathtouch])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[deathtouch])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{B} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Deathtouch -- Whenever this creature mutates, each opponent loses X life and you gain X life, where X is the number of times this creature has mutated.
 mana={3}{B}
 type=Creature
@@ -20191,11 +20474,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={UR}{UR} name(Mutate)
 auto=transforms((,newability[@mutated(this):moveto(myhand) target(*[instant;sorcery]|mygraveyard)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {UR}{UR} -- (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, return target instant or sorcery card from your graveyard to your hand.
 mana={1}{U}{R}
 type=Creature
@@ -20554,18 +20842,23 @@ toughness=2
 [/card]
 [card]
 name=Majestic Auricorn
-otherrestriction=type(creature[-human]|mybattlefield)~morethan~0
 abilities=vigilance,mutate
+otherrestriction=type(creature[-human]|mybattlefield)~morethan~0
 other={3}{W} name(Mutate)
 auto=@movedTo(mytgt|graveyard) from(battlefield):all(this) moveTo(myGraveyard)
 auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 auto=transforms((,newability[@mutated(this):life:4 controller]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-vigilance])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[vigilance])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-vigilance])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[vigilance])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{W} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Vigilance -- Whenever this creature mutates, you gain 4 life.
 mana={4}{W}
 type=Creature
@@ -21295,7 +21588,7 @@ toughness=2
 name=Midnight Clock
 auto={T}:add{1}
 auto={2}{U}:counter(0/0,1,hour)
-auto=@each my upkeep:counter(0/0,1,hour)
+auto=@each upkeep:counter(0/0,1,hour)
 auto={C(0/0,12,hour)}{E}:moveto(myLibrary) all(*|myGraveyard) && moveto(myLibrary) all(*|myHand) && shuffle && draw:7 controller
 text={T}: Add {U}. -- {2}{U}: Put an hour counter on Midnight Clock. -- At the beginning of each upkeep, put an hour counter on Midnight Clock. -- When the twelfth hour counter is put on Midnight Clock, shuffle your hand and graveyard into your library, then draw seven cards. Exile Midnight Clock.
 mana={2}{U}
@@ -21330,12 +21623,17 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{G} name(Mutate)
 auto=transforms((,newability[@mutated(this):ability$!name(Reveal) reveal:plibrarycount optionone name(choose basic land) target(<1>land[basic]|reveal) moveto(myBattlefield) optiononeend optiontwo name(put back) moveto(ownerlibrary) all(*|reveal) optiontwoend afterrevealed tap(noevent) target(basic[fresh]|myBattlefield) afterrevealedend revealend!$ controller]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,green)])) forever all(this)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green)])) forever
-auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) 
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green)])) forever
+auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield) 
 text=Mutate {2}{G} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
 mana={3}{G}
 type=Creature
@@ -21392,12 +21690,17 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={4}{B} name(Mutate)
 auto=transforms((,newability[@mutated(this):ability$!name(Reveal) reveal:1 revealzone(opponentlibrary) optionone name(Exile opponent top card?) target(<upto:1>*|myreveal) moveto(opponentexile) optiononeend optiontwo name(Play exiled card) target(<1>*|myreveal) activate castcard(normal) optiontwoend revealend!$ controller]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,black)])) forever all(this)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,black)],newability[flying])) forever
-auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flying])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,black)])) forever
+auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {4}{B} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying -- Whenever this creature mutates, exile the top card of each opponent's library face down. You may look at and play those cards for as long as they remain exiled.
 mana={4}{B}{B}
 type=Creature
@@ -22341,11 +22644,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{WB}{WB} name(Mutate)
 auto=transforms((,newability[@mutated(this):target(creature[manacost<=3]|mygraveyard) moveTo(myBattlefield)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{WB}{WB} -- (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.
 mana={1}{W}{B}
 type=Creature
@@ -22528,11 +22836,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={4}{GW}{B}{B} name(Mutate)
 auto=transforms((,newability[@mutated(this):target(<anyamount>creature[manacost<=10]|mygraveyard) moveTo(myBattlefield)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-deathtouch],newability[-lifelink])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[deathtouch],newability[lifelink])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-deathtouch],newability[-lifelink])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[deathtouch],newability[lifelink])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {4}{GW}{B}{B} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Deathtouch, lifelink -- Whenever this creature mutates, return any number of target creature cards with total power 10 or less from your graveyard to the battlefield.
 mana={2}{W}{B}{G}
 type=Legendary Creature
@@ -23915,11 +24228,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={1}{B}{G}{U} name(Mutate)
 auto=transforms((,newability[@combatdamaged(player) from(this):moveto(myhand) target(creature[mutate]|mygraveyard)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-trample])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[trample])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-trample])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[trample])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {1}{B}{G}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Trample -- Whenever this creature deals combat damage to a player, return target creature card with mutate from your graveyard to your hand.
 mana={3}{B}{G}{U}
 type=Legendary Creature
@@ -24109,7 +24427,7 @@ toughness=3
 [/card]
 [card]
 name=Paladin of Atonement
-auto=@each my upkeep restriction{lastturn(life)~morethan~0}:counter(1/1,1)
+auto=@each upkeep restriction{lastturn(life)~morethan~0}:counter(1/1,1)
 auto=@movedTo(this|graveyard) from(battlefield):dynamicability<!toughnesslifegain srccontroller!>
 text=At the beginning of each upkeep, if you lost life last turn, put a +1/+1 counter on Paladin of Atonement. -- When Paladin of Atonement dies, you gain life equal to its toughness.
 mana={1}{W}
@@ -24183,13 +24501,17 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={G}{U} name(Mutate)
-auto=ifnot paid(alternative) then transforms((,newability[name(Look top card) {1}{T}:ability$!name(Reveal) reveal:1 optionone if type(*[-land]|reveal)~morethan~0 then name(Put card back to library) name(Put card back to library) target(<1>*|reveal) moveto(mylibrary) else name(May move to battlefield) target(<upto:1>*[land]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put land in hand) target(<1>*[land]|reveal) moveto(myhand) optiontwoend revealend!$ controller])) forever all(this)
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,blue,green)])) forever all(this)
-auto=@mutated(parents):transforms((,newability[name(Look top card) {1}{T}:ability$!name(Reveal) reveal:1 optionone if type(*[-land]|reveal)~morethan~0 then name(Put card back to library) name(Put card back to library) target(<1>*|reveal) moveto(mylibrary) else name(May move to battlefield) target(<upto:1>*[land]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put land in hand) target(<1>*[land]|reveal) moveto(myhand) optiontwoend revealend!$ controller])) all(parents)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && becomes(,,blue,green) forever
-auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=transforms((,newability[name(Look top card) {1}{T}:ability$!name(Reveal) reveal:1 optionone if type(*[-land]|reveal)~morethan~0 then name(Put card back to library) name(Put card back to library) target(<1>*|reveal) moveto(mylibrary) else name(May move to battlefield) target(<upto:1>*[land]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put land in hand) target(<1>*[land]|reveal) moveto(myhand) optiontwoend revealend!$ controller]))
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield) && becomes(,,blue,green) forever
+auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {G}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- {1}, {T}: Look at the top card of your library. If it's a land card, you may put it onto the battlefield. If you don't put the card onto the battlefield, put it into your hand.
 mana={2}{G}{U}
 type=Creature
@@ -24760,11 +25082,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{R} name(Mutate)
-auto=ifnot paid(alternative) then transforms((,newability[name(damage target) {T}:name(damage target) thisforeach(mutations) damage:1 target(creature;player;planeswalker)])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[name(damage target) {T}:name(damage target) thisforeach(mutations) damage:1 target(creature;player;planeswalker)])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[name(damage target) {T}:name(damage target) thisforeach(mutations) damage:1 target(creature;player;planeswalker)])) forever
+auto=transforms((,newability[name(damage target) {T}:name(damage target) thisforeach(mutations) damage:1 target(creature;player;planeswalker)]))
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{R} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- {T}: This creature deals X damage to any target, where X is the number of times this creature has mutated.
 mana={3}{R}
 type=Creature
@@ -24828,11 +25155,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{U} name(Mutate)
 auto=transforms((,newability[@mutated(this):may target(creature|opponentbattlefield) moveTo(opponenthand)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flash])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[flash])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flash])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flash])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flash -- Whenever this creature mutates, you may return target creature an opponent controls to its owner's hand.
 mana={4}{U}
 type=Creature
@@ -26419,11 +26751,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={1}{RW}{RW} name(Mutate)
 auto=transforms((,newability[@mutated(this):all(other creature|myBattlefield) 2/1 ueot]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {1}{RW}{RW} -- (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, other creatures you control get +2/+1 until end of turn.
 mana={R}{W}
 type=Creature
@@ -28115,11 +28452,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{G} name(Mutate)
 auto=transforms((,newability[@mutated(this):name(Destroy and create token) ability$!name(Choose one) choice name(Controller) target(*[-creature]|myBattlefield) destroy && token(Beast Saw) controller _ choice name(opponent) target(*[-creature]|opponentBattlefield) destroy && token(Beast Saw) opponent!$ controller]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-trample])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[trample])) forever
-auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-trample])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[trample])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{G} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Trample -- Whenever this creature mutates, destroy target noncreature permanent. Its controller creates a 3/3 green Beast creature token.
 mana={4}{G}{G}
 type=Creature
@@ -28441,11 +28783,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={1}{U} name(Mutate)
 auto=transforms((,newability[@combatdamaged(player) from(this):draw:1 controller]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flash])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[flash])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flash])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flash])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {1}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flash -- Whenever this creature deals combat damage to a player, draw a card.
 mana={1}{U}{U}
 type=Creature
@@ -30200,11 +30547,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{B}{R}{W}{W} name(Mutate)
 auto=transforms((,newability[@mutated(this):life:4 controller],newability[@mutated(this):damage:4 target(*[creature;planeswalker]|opponentBattlefield)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-double strike])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[double strike])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-double strike])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[double strike])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{B}{R}{W}{W} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Double strike -- Whenever this creature mutates, it deals 4 damage to target creature or planeswalker an opponent controls and you gain 4 life.
 mana={1}{R}{W}{B}
 type=Legendary Creature
@@ -30615,12 +30967,17 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={5}{U} name(Mutate)
 auto=transforms((,newability[@mutated(this):target(artifact[-creature]|opponentbattlefield) moveTo(myBattlefield)]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,blue)])) forever all(this)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[flying],newability[becomes(,,blue)])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying]])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flying])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,blue)])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {5}{U} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying -- Whenever this creature mutates, gain control of target noncreature artifact.
 mana={4}{U}
 type=Creature
@@ -31022,7 +31379,7 @@ toughness=3
 [card]
 name=Spires of Orazca
 auto={T}:Add{1}
-auto={T}:target(creataure[attacking]|opponentbattlefield) untap && removefromcombat
+auto={T}:target(creature[attacking]|opponentbattlefield) untap && removefromcombat
 text=(Transforms from Thaumatic Compass.) -- {T}: Add {1} to your mana pool. -- {T}: Untap target attacking creature an opponent controls and remove it from combat.
 type=Land
 [/card]
@@ -34593,11 +34950,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{GU}{GU} name(Mutate)
 auto=transforms((,newability[@mutated(this):token(Beast Tru)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateover target(other creature[-human]|mybattlefield)
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {3}{GU}{GU} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Whenever this creature mutates, create a 3/3 green Beast creature token.
 mana={1}{G}{U}
 type=Creature
@@ -35312,11 +35674,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={1}{WU}{R}{R name(Mutate)
 auto=transforms((,newability[@mutated(this):may castcard(normal) target(*[-creature;manacost<=3]|mygraveyard)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-first strike],newability[-flying])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[first strike],newability[flying])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-first strike],newability[-flying])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[first strike],newability[flying])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {1}{WU}{R}{R} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying, first strike -- Whenever this creature mutates, you may cast target noncreature card with converted mana cost 3 or less from your graveyard without paying its mana cost.
 mana={U}{R}{W}
 type=Legendary Creature
@@ -35988,7 +36355,7 @@ name=Vivien, Arkbow Ranger
 auto=counter(0/0,4,loyalty)
 aicode=activate target(creature|mysideboard) moveto(myhand)
 auto={C(0/0,1,Loyalty)}:target(<upto:2>creature|myBattlefield) counter(1/1)
-auto={C(0/0,-3,Loyalty)}:transforms((,newability[dynamicability<!powerstrike!> target(creature,planeswalker)])) target(creates|myBattlefield)
+auto={C(0/0,-3,Loyalty)}:transforms((,newability[dynamicability<!powerstrike!> target(creature,planeswalker)])) target(creature|myBattlefield)
 auto={C(0/0,-5,Loyalty)}:name(search card) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose card) target(<1>creature|reveal) moveto(myhand) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend revealend
 text=+1: Distribute two +1/+1 counters among up to two target creatures. They gain trample until end of turn. -- -3: Target creature you control deals damage equal to its power to target creature or planeswalker. -- -5: You may choose a creature card you own from outside the game, reveal it, and put it into your hand.
 mana={1}{G}{G}{G}
@@ -36292,11 +36659,16 @@ auto=@movedTo(mytgt|hand) from(battlefield):all(this) moveTo(myHand)
 auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
+auto=@movedTo(this|graveyard) from(battlefield):all(parents) moveTo(myGraveyard)
+auto=@movedTo(this|hand) from(battlefield):all(parents) moveTo(myHand)
+auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
+auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
+auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{W} name(Mutate)
 auto=transforms((,newability[@mutated(this):counter(1/1)]))
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[flying])) forever
-auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) transforms((,newability[protection from(*)],newability[indestructible],newability[cantbetargetof(*)],newability[-flying])) forever all(this) && mutateunder target(other creature[-human]|mybattlefield) && transforms((,newability[flying])) forever
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
+auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{W} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Flying -- Whenever this creature mutates, put a +1/+1 counter on it.
 mana={3}{W}
 type=Creature

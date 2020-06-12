@@ -4366,19 +4366,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Favor of the Mighty
-text=Each creature with the highest converted mana cost has protection from all colors.
-mana={1}{W}
-type=Tribal Enchantment
-subtype=Giant
-[/card]
-[card]
-name=Feast on the Fallen
-text=At the beginning of each upkeep, if an opponent lost life last turn, put a +1/+1 counter on target creature you control.
-mana={2}{B}
-type=Enchantment
-[/card]
-[card]
 name=Feed the Machine
 text=When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, he or she sacrifices two creatures. If the player chooses others, each of your other opponents sacrifices a creature.
 type=Scheme
@@ -4473,21 +4460,9 @@ mana={1}{R}
 type=Enchantment
 [/card]
 [card]
-name=Fiery Confluence
-text=Choose three. You may choose the same mode more than once. -- • Fiery Confluence deals 1 damage to each creature. -- • Fiery Confluence deals 2 damage to each opponent. -- • Destroy target artifact.
-mana={2}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Fiery Gambit
 text=Flip a coin until you lose a flip or choose to stop flipping. If you lose a flip, Fiery Gambit has no effect. If you win one or more flips, Fiery Gambit deals 3 damage to target creature. If you win two or more flips, Fiery Gambit deals 6 damage to each opponent. If you win three or more flips, draw nine cards and untap all lands you control.
 mana={2}{R}
-type=Sorcery
-[/card]
-[card]
-name=Fiery Justice
-text=Fiery Justice deals 5 damage divided as you choose among any number of target creatures and/or players. Target opponent gains 5 life.
-mana={R}{G}{W}
 type=Sorcery
 [/card]
 [card]
@@ -4518,21 +4493,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Fire Servant
-text=If a red instant or sorcery spell you control would deal damage, it deals double that damage instead.
-mana={3}{R}{R}
-type=Creature
-subtype=Elemental
-power=4
-toughness=3
-[/card]
-[card]
-name=Fire and Brimstone
-text=Fire and Brimstone deals 4 damage to target player who declared an attacking creature this turn and 4 damage to you.
-mana={3}{W}{W}
-type=Instant
-[/card]
-[card]
 name=Firecat Blitz
 text=Put X 1/1 red Elemental Cat creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step. -- Flashback—{R}{R}, Sacrifice X Mountains. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={X}{R}{R}
@@ -4543,12 +4503,6 @@ name=Fires of Invention
 text=You can cast spells only during your turn and you can cast no more than two spells each turn. -- You may cast spells with converted mana cost less than or equal to the number of lands you control without paying their mana costs.
 mana={3}{R}
 type=Enchantment
-[/card]
-[card]
-name=Firestorm
-text=As an additional cost to cast Firestorm, discard X cards. -- Firestorm deals X damage to each of X target creatures and/or players.
-mana={R}
-type=Instant
 [/card]
 [card]
 name=Firestorm Phoenix
@@ -4573,18 +4527,6 @@ mana={3}{G}
 type=Instant
 [/card]
 [card]
-name=First Response
-text=At the beginning of each upkeep, if you lost life last turn, put a 1/1 white Soldier creature token onto the battlefield.
-mana={3}{W}
-type=Enchantment
-[/card]
-[card]
-name=Fissure Vent
-text=Choose one or both — -- • Destroy target artifact. -- • Destroy target nonbasic land.
-mana={3}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Fist of Suns
 text=You may pay {W}{U}{B}{R}{G} rather than pay the mana cost for spells that you cast.
 mana={3}
@@ -4601,40 +4543,6 @@ name=Five-Finger Discount
 text=Put target nonland permanent into your hand. You may spend mana as though it were mana of any color the next time you cast that card.
 mana={4}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Flaccify
-text=Counter target spell unless its controller pays {3}.
-mana={2}{U}
-type=Instant
-[/card]
-[card]
-name=Flailing Manticore
-abilities=flying,first strike
-text=Flying, first strike -- {1}: Flailing Manticore gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Manticore gets -1/-1 until end of turn. Any player may activate this ability.
-mana={3}{R}
-type=Creature
-subtype=Manticore
-power=3
-toughness=3
-[/card]
-[card]
-name=Flailing Ogre
-text={1}: Flailing Ogre gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Ogre gets -1/-1 until end of turn. Any player may activate this ability.
-mana={2}{R}
-type=Creature
-subtype=Ogre
-power=3
-toughness=3
-[/card]
-[card]
-name=Flailing Soldier
-text={1}: Flailing Soldier gets +1/+1 until end of turn. Any player may activate this ability. -- {1}: Flailing Soldier gets -1/-1 until end of turn. Any player may activate this ability.
-mana={R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
 [/card]
 [card]
 name=Flame-Wreathed Phoenix
@@ -4680,12 +4588,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Flash Foliage
-text=Cast Flash Foliage only during combat after blockers are declared. -- Put a 1/1 green Saproling creature token onto the battlefield blocking target creature attacking you.  -- Draw a card.
-mana={2}{G}
-type=Instant
-[/card]
-[card]
 name=Flash of Insight
 text=Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order. -- Flashback—{1}{U}, Exile X blue cards from your graveyard. (You may cast this card from your graveyard for its flashback cost, then exile it. You can't exile Flash of Insight to pay for its own flashback cost.)
 mana={X}{1}{U}
@@ -4699,12 +4601,6 @@ type=Creature
 subtype=Bird Advisor
 power=2
 toughness=2
-[/card]
-[card]
-name=Flesh // Blood
-text=Exile target creature card from a graveyard. Put X +1/+1 counters on target creature, where X is the power of the card you exiled. --  //  -- Target creature you control deals damage equal to its power to target creature or player. --  -- Fuse (You may cast one or both halves of this card from your hand.)
-mana={3}{B}{G} // {R}{G}
-type=Sorcery // Sorcery
 [/card]
 [card]
 name=Flesh Allergy
