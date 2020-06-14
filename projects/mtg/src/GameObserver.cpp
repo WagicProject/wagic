@@ -1035,6 +1035,12 @@ void GameObserver::gameStateBasedEffects()
                 MTGCardInstance * card = f->cards[k];
                 card->fresh = 0;
             }
+            MTGGameZone * fe = p->game->exile;
+            for (int k = 0; k < fe->nb_cards; k++)
+            {
+                MTGCardInstance * card = fe->cards[k]; // Remove fresh attribute to previous exiled cards
+                card->fresh = 0;
+            }
         }
         if (z->nb_cards == 0)
         {

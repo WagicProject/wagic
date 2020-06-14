@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "AllAbilities.h"
 #include "Translate.h"
-
+#include "MTGRules.h"
 
 //display a text animation, this is not a real ability.
 MTGEventText::MTGEventText(GameObserver* observer, int _id, MTGCardInstance * card, string textToShow) :
@@ -1606,6 +1606,7 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be copied, they will follow the fate of top-card
         bool tokencopied = false;
         if(_target->isToken || (_target->isACopier && _target->hasCopiedToken))
             tokencopied = true;
@@ -1756,6 +1757,7 @@ int AAPhaseOut::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be phased out, they will follow the fate of top-card
         _target->isPhased = true;
         
         _target->phasedTurn = game->turn;
@@ -1792,6 +1794,7 @@ int AAImprint::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be imprinted, they will follow the fate of top-card
         Player * p = _target->controller();
         if(p)
             p->game->putInExile(_target);
@@ -2893,6 +2896,7 @@ int AABuryCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be buried, they will follow the fate of top-card
         //Bury (Obsolete)
         //A term that meant “put [a permanent] into its owner’s graveyard.”
         //In general, cards that were printed with the term “bury” have received errata 
@@ -2955,6 +2959,7 @@ int AADestroyCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be destroyed, they will follow the fate of top-card
         _target->destroy();
         while(_target->next)
             _target = _target->next;
@@ -3007,6 +3012,7 @@ int AASacrificeCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be sacrificed, they will follow the fate of top-card
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;
         p->game->putInGraveyard(_target);
@@ -3184,6 +3190,7 @@ int AAFrozen::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be frozen, they will follow the fate of top-card
         while (_target->next)
             _target = _target->next; //This is for cards such as rampant growth
         if (freeze)
@@ -3329,6 +3336,11 @@ int AANewTarget::resolve()
                         source->types[0] = 7;
                         source->types[1] = 1;
                     }
+                    if(source->hasType(Subtypes::TYPE_LEGENDARY)){ // Check if the mutated card is a duplicated legendary card
+                        MTGNewLegend *testlegend = NEW MTGNewLegend(source->getObserver(),source->getObserver()->mLayers->actionLayer()->getMaxId());
+                        testlegend->CheckLegend(source);
+                        SAFE_DELETE(testlegend);
+                    }
                 }
                 for (unsigned int i = 0; i < (unsigned int)Constants::NB_BASIC_ABILITIES; i++){
                     if(_target->basicAbilities[i] == 1){
@@ -3388,6 +3400,7 @@ int AAMorph::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be morphed, they will follow the fate of top-card
         while (_target->next)
             _target = _target->next; 
 
@@ -3505,6 +3518,7 @@ int AAMeld::resolve()
     MTGCardInstance * _target = (MTGCardInstance *)target;
     if (_target && _target->controller() == source->controller() && _target->owner == source->owner && !_target->isToken && !source->isToken)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be melded, they will follow the fate of top-card
         source->controller()->game->putInExile(source);
         _target->controller()->game->putInExile(_target);
         source->next->controller()->game->putInZone(source->next, source->next->currentZone, source->next->controller()->game->temp);
@@ -3550,6 +3564,7 @@ int AAFlip::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be flipped, they will follow the fate of top-card
         if(((_target->isACopier||_target->isToken) && !isflipcard) || _target->has(Constants::CANTTRANSFORM))
         {
             game->removeObserver(this);
@@ -4374,6 +4389,7 @@ int AACloner::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (!_target)
         return 0;
+    if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be cloned, they will follow the fate of top-card
 
     MTGCard * clone = NULL;
 
@@ -4649,6 +4665,7 @@ int AAMover::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be moved to any zone, they will follow the fate of top-card
         if(necro)
             _target->basicAbilities[Constants::NECROED] = 1;
         Player* p = _target->controller();
@@ -4888,6 +4905,7 @@ int AARandomMover::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be randomly moved to any zone, they will follow the fate of top-card
         Player* p = _target->controller();
         if (p)
         {
@@ -5201,6 +5219,7 @@ int AATapper::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be tapped, they will follow the fate of top-card
         while (_target->next)
             _target = _target->next; //This is for cards such as rampant growth
         _target->tap(_sendNoEvent);
@@ -5231,6 +5250,7 @@ int AAUntapper::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be untapped, they will follow the fate of top-card
         while (_target->next)
             _target = _target->next; //This is for cards such as rampant growth
         _target->untap();
@@ -8013,6 +8033,7 @@ InstantAbility(observer, id, card, target)
 int AABlock::resolve()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be blocked, they will follow the fate of top-card
     source = (MTGCardInstance*)source;
     if (_target && source->canBlock(_target))
     {
@@ -8064,6 +8085,7 @@ InstantAbility(observer, id, card, target)
 int dredgeCard::resolve()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be dredged, they will follow the fate of top-card
     if(_target)
     {
         for(int j = 0; j < _target->data->dredge();j++)
@@ -8092,6 +8114,7 @@ InstantAbility(observer, id, card, target)
 int AAConnect::resolve()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be connected, they will follow the fate of top-card
     if (_target)
     {
         while (_target->next)

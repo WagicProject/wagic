@@ -301,8 +301,6 @@ target=creature[flying]
 auto=damage:1
 auto=damage:1 target(creature[flying])
 auto=ability$!name(damage) choice target(creature[flying]) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature[flying]) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature[flying]) damage:1!$ controller
 text=Aerial Volley deals 3 damage divided as you choose among one, two, or three target creatures with flying.
 mana={G}
 type=Instant
@@ -13550,6 +13548,33 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Foriysian Brigade
+text=Foriysian Brigade can block an additional creature.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
+name=Foriysian Interceptor
+abilities=flash,defender
+text=Flash (You may cast this spell any time you could cast an instant.) -- Defender -- Foriysian Interceptor can block an additional creature.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=0
+toughness=5
+[/card]
+[card]
+name=Foriysian Totem
+auto={T}:add{R}
+auto={4}{R}:transforms((Giant Artifact Creature,setpower=4,settoughness=4,red,trample)) ueot all(this)
+text={T}: Add {R} to your mana pool. -- {4}{R}: Foriysian Totem becomes a 4/4 red Giant artifact creature with trample until end of turn. -- As long as Foriysian Totem is a creature, it can block an additional creature.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Forked Lightning
 target=creature
 auto=damage:1
@@ -13576,6 +13601,15 @@ auto=token(-473141)
 text=Creatures you control get +0/+1. -- When Fortifying Provisions enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={2}{W}
 type=Enchantment
+[/card]
+[card]
+name=Fortuitous Find
+target=*[artifact;creature]|mygraveyard
+auto=choice name(Return target artifact or creature) moveto(myhand)
+auto=choice name(Return target artifact and creature) moveto(myhand) && moveto(myhand) target(*[artifact;creature]|mygraveyard)
+text=Choose one or both — -- • Return target artifact card from your graveyard to your hand. -- • Return target creature card from your graveyard to your hand.
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Foulmire Knight // Profane Insight
@@ -13609,6 +13643,17 @@ auto={3}{S}:draw:1
 text=At the beginning of your upkeep, you gain 1 life. -- {3}, Sacrifice Fountain of Renewal: Draw a card.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Fowl Play
+target=creature
+auto=teach(creature) loseabilities
+auto=teach(creature) transforms((,setpower=1,settoughness=1))
+auto=teach(creature) transforms((,Chicken))
+text=Enchanted creature loses all abilities and is a 1/1 creature that counts as a Chicken.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Fractured Identity
@@ -13668,6 +13713,16 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=1
+[/card]
+[card]
+name=Frightful Delusion
+target=*|stack
+auto=fizzle
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=ability$!name(discard) notatarget(*|myhand) reject!$ opponent
+text=Counter target spell unless its controller pays {1}. That player discards a card.
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 name=Frilled Deathspitter
@@ -13821,6 +13876,19 @@ autograveyard=name(Escape-{3}{B},exile three) {3}{B}{E(other *|myGraveyard)}{E(o
 text=Target player loses 2 life. Escape—{3}{B}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={B}
 type=Instant
+[/card]
+[card]
+name=Fruitcake Elemental
+abilities=indestructible
+auto={3}:name(Opponent gains control) moveTo(opponentBattlefield) target(Fruitcake Elemental|battlefield)
+auto={3}:name(You gain control) moveTo(myBattlefield) target(Fruitcake Elemental|battlefield)
+auto=@each endofturn restriction{myturnonly}:damage:7 controller
+text=Fruitcake Elemental is indestructible. -- At the end of your turn, Fruitcake Elemental deals 7 damage to you. -- {3}: Target player gains control of Fruitcake Elemental.
+mana={1}{G}{G}
+type=Creature
+subtype=Elemental
+power=7
+toughness=7
 [/card]
 [card]
 name=Fry
@@ -14003,6 +14071,18 @@ auto=moveto(exile)
 text=Assist (Another player can pay up to {5} of this spell's cost.) -- Each player shuffles their hand and graveyard into their library, then draws seven cards. Exile Game Plan.
 mana={5}{U}
 type=Sorcery
+[/card]
+[card]
+name=Gang of Devils
+auto=@movedTo(this|graveyard) from(battlefield):damage:1 target(player,creature)
+auto=@movedTo(this|graveyard) from(battlefield):ability$!name(damage) choice target(creature,player) damage:1!$ controller
+auto=@movedTo(this|graveyard) from(battlefield):ability$!name(damage) choice target(creature,player) damage:1!$ controller
+text=When Gang of Devils dies, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
+mana={5}{R}
+type=Creature
+subtype=Devil
+power=3
+toughness=3
 [/card]
 [card]
 name=Gang Up
@@ -17477,7 +17557,7 @@ auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
 auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
 other={3}{RG}{U}{U} name(Mutate)
-auto=transforms((,newability[@mutated(this):ability$!name(Reveal) reveal:1 revealzone(mylibrary) revealuntil(*[-artifact;-land;-instant;-sorcery]|mylibrary) optionone name(Choose non land permanent) target(<upto:1>*[-artifact;-land;-instant;-sorcery]|myreveal) moveto(mybattlefield) optiononeend optiontwo name(Put back into library) all(*|myreveal) bottomoflibrary optiontwoend revealend!$ controller]))
+auto=transforms((,newability[@mutated(this):ability$!name(Reveal) reveal:1 revealzone(mylibrary) revealuntil(*[-land;-instant;-sorcery]|mylibrary) optionone name(May move non land permanent on battlefield) target(<upto:1>*[-land;-instant;-sorcery]|myreveal) moveto(mybattlefield) optiononeend optiontwo name(Move revealed cards to exile) all(*|myreveal) moveto(myexile) optiontwoend afterrevealed name(Move last exiled non land permanent to hand) moveto(myhand) target(*[fresh;-land;-instant;-sorcery]|myexile) afterrevealedend revealend!$ controller]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,green,blue,red)])) forever all(this)
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green,blue,red)])) forever
 auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
@@ -30553,11 +30633,11 @@ auto=@movedTo(this|exile) from(battlefield):all(parents) moveTo(myExile)
 auto=@movedTo(this|library) from(battlefield):all(parents) moveTo(myLibrary)
 auto=@movedTo(this|sideboard) from(battlefield):all(parents) moveTo(mySideboard)
 auto={9999}:equip
-other={2}{B}{R}{W}{W} name(Mutate)
+other={2}{BR}{W}{W} name(Mutate)
 auto=transforms((,newability[@mutated(this):life:4 controller],newability[@mutated(this):damage:4 target(*[creature;planeswalker]|opponentBattlefield)]))
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
-text=Mutate {2}{B}{R}{W}{W} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Double strike -- Whenever this creature mutates, it deals 4 damage to target creature or planeswalker an opponent controls and you gain 4 life.
+text=Mutate {2}{BR}{W}{W} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- Double strike -- Whenever this creature mutates, it deals 4 damage to target creature or planeswalker an opponent controls and you gain 4 life.
 mana={1}{R}{W}{B}
 type=Legendary Creature
 subtype=Dinosaur Cat Nightmare
@@ -35816,9 +35896,9 @@ type=Legendary Enchantment
 [/card]
 [card]
 name=Vandalize
-auto=choice name(Destroy target artifact) destroy target(artifact)
-auto=choice name(Destroy target land) destroy target(land)
-auto=choice name(Destroy target artifact and land) destroy target(artifact) && destroy target(land)
+target=land,artifact
+auto=choice name(Destroy target artifact or land) destroy
+auto=choice name(Destroy target artifact and land) destroy && destroy target(artifact,land)
 text=Choose one or both — -- • Destroy target artifact. -- • Destroy target land.
 mana={4}{R}
 type=Sorcery

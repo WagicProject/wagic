@@ -4700,31 +4700,6 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
-name=Foriysian Brigade
-text=Foriysian Brigade can block an additional creature.
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=4
-[/card]
-[card]
-name=Foriysian Interceptor
-abilities=flash
-text=Flash (You may cast this spell any time you could cast an instant.) -- Defender -- Foriysian Interceptor can block an additional creature.
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=0
-toughness=5
-[/card]
-[card]
-name=Foriysian Totem
-text={T}: Add {R} to your mana pool. -- {4}{R}: Foriysian Totem becomes a 4/4 red Giant artifact creature with trample until end of turn. -- As long as Foriysian Totem is a creature, it can block an additional creature.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Form of the Squirrel
 text=As Form of the Squirrel comes into play, put a 1/1 green Squirrel creature token into play. You lose the game when it leaves play. -- Creatures can't attack you. -- You can't be the target of spells or abilities. -- You can't play spells.
 mana={G}
@@ -4741,12 +4716,6 @@ name=Fortified Area
 text=Wall creatures you control get +1/+0 and have banding. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={1}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Fortuitous Find
-text=Choose one or both — -- • Return target artifact card from your graveyard to your hand. -- • Return target creature card from your graveyard to your hand.
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
 name=Fortune's Favor
@@ -4768,14 +4737,6 @@ name=Foul Renewal
 text=Return target creature card from your graveyard to your hand. Target creature gets -X/-X until end of turn, where X is the toughness of the card returned this way.
 mana={3}{B}
 type=Instant
-[/card]
-[card]
-name=Fowl Play
-text=Enchanted creature loses all abilities and is a 1/1 creature that counts as a Chicken.
-mana={2}{U}
-type=Enchant Creature
-power=
-toughness=
 [/card]
 [card]
 name=Fraction Jackson
@@ -4818,7 +4779,7 @@ toughness=3
 [/card]
 [card]
 name=Fraternal Exaltation
-text=
+text=Sneak into your parents’ closet to get a deck. Your new brother is joining the game.
 mana={U}{U}{U}{U}
 type=Sorcery
 [/card]
@@ -4851,12 +4812,6 @@ mana={3}{R}
 type=Instant
 [/card]
 [card]
-name=Frightful Delusion
-text=Counter target spell unless its controller pays {1}. That player discards a card.
-mana={2}{U}
-type=Instant
-[/card]
-[card]
 name=From the Ashes
 text=Destroy all nonbasic lands. For each land destroyed this way, its controller may search his or her library for a basic land card and put it onto the battlefield. Then each player who searched his or her library this way shuffles it.
 mana={3}{R}
@@ -4867,15 +4822,6 @@ name=Frontier Siege
 text=As Frontier Siege enters the battlefield, choose Khans or Dragons. -- • Khans — At the beginning of each of your main phases, add {G}{G} to your mana pool. -- • Dragons — Whenever a creature with flying enters the battlefield under your control, you may have it fight target creature you don't control.
 mana={3}{G}
 type=Enchantment
-[/card]
-[card]
-name=Fruitcake Elemental
-text=Fruitcake Elemental is indestructible. -- At the end of your turn, Fruitcake Elemental deals 7 damage to you. -- {3}: Target player gains control of Fruitcake Elemental.
-mana={1}{G}{G}
-type=Creature
-subtype=Elemental
-power=7
-toughness=7
 [/card]
 [card]
 name=Fulgent Distraction
@@ -4954,15 +4900,6 @@ name=Game of Chaos
 text=Flip a coin. If you win the flip, you gain 1 life and target opponent loses 1 life, and you decide whether to flip again. If you lose the flip, you lose 1 life and that opponent gains 1 life, and that player decides whether to flip again. Double the life stakes with each flip.
 mana={R}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Gang of Devils
-text=When Gang of Devils dies, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
-mana={5}{R}
-type=Creature
-subtype=Devil
-power=3
-toughness=3
 [/card]
 [card]
 name=Garbage Elemental (a)
