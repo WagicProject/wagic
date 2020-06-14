@@ -3290,6 +3290,10 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
             e->card->fresh = 1;
             e->card->entersBattlefield = 1;
         }
+        if (e->to == e->card->controller()->game->exile) // Apply fresh attribute for new exiled cards
+        {
+            e->card->fresh = 1;
+        }
 
         if (card && card->basicAbilities[(int)Constants::UNEARTH])
         {
@@ -3408,7 +3412,9 @@ int MTGNewLegend::receiveEvent(WEvent * e)
             MTGCardInstance * card = ev1->card;
              if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
             {
-                CheckLegend(card);
+                if(card->basicAbilities[(int)Constants::MUTATE] && card->alternateCostPaid[(int)ManaCost::MANA_PAID_WITH_ALTERNATIVE])
+                    return 0; // The Leged rule for Mutating card will be checked later just if it's a Mutation Over choice
+				CheckLegend(card);
                 return 1;
             }
         }
@@ -3481,7 +3487,7 @@ void MTGNewLegend::MoveLegend(MTGCardInstance * card)
     vector<MTGAbility*>selection;
     MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
     TargetChooserFactory tfL(game);
-    tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",myClone);
+    tcL = tfL.createTargetChooser("*[-Mutated;share!name!]|mybattlefield",myClone); // The Mutated down cards cannot be considered as Legendary card anymore
     tcL->targetter = NULL;
     tcL->maxtargets = 1;
     Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");

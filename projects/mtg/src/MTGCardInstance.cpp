@@ -928,7 +928,7 @@ int MTGCardInstance::countDuplicateCardNames()
         int nb_cards = controller()->game->battlefield->nb_cards;
         for(int x = 0; x < nb_cards; x++)
         {
-            if(controller()->game->battlefield->cards[x]->name == this->name)
+            if(controller()->game->battlefield->cards[x]->name == this->name && !(controller()->game->battlefield->cards[x]->mutation && controller()->game->battlefield->cards[x]->parentCards.size() > 0)) // Don't count Mutated down card
                 count+=1;
         }
     }
