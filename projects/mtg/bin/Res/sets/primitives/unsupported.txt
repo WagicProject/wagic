@@ -5024,25 +5024,10 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Generator Servant
-text={T}, Sacrifice Generator Servant: Add {2} to your mana pool. If that mana is spent on a creature spell, it gains haste until end of turn. (That creature can attack and {T} as soon as it comes under your control.)
-mana={1}{R}
-type=Creature
-subtype=Elemental
-power=2
-toughness=1
-[/card]
-[card]
 name=Genetic Recombinator
 text=Whenever you crank Genetic Recombinator, up to two target creatures each get +2/+2 until end of turn.
 type=Artifact
 subtype=Contraption
-[/card]
-[card]
-name=Geosurge
-text=Add {R}{R}{R}{R}{R}{R}{R} to your mana pool. Spend this mana only to cast artifact or creature spells.
-mana={R}{R}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Gerrymandering
@@ -5063,12 +5048,6 @@ mana={5}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Ghastly Haunting
-text=Enchant creature -- You control enchanted creature.
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Ghazban Ogress
 text=When Ghazban Ogress comes into play, the player who has won the most Magic games that day gains control of it. If more than one player has won the same number of games, you retain control of Ghazban Ogress.
 mana={G}
@@ -5079,12 +5058,6 @@ subtype=Ogre
 name=Ghired's Belligerence
 text=Ghired's Belligerence deals X damage divided as you choose among any number of target creatures. Whenever a creature dealt damage this way dies this turn, populate. (Create a token that's a copy of a creature token you control.)
 mana={X}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Ghitu Fire
-text=You may cast Ghitu Fire any time you could cast an instant if you pay {2} more to cast it. -- Ghitu Fire deals X damage to target creature or player.
-mana={X}{R}
 type=Sorcery
 [/card]
 [card]
@@ -5133,15 +5106,6 @@ type=Creature
 subtype=Oyster
 power=0
 toughness=3
-[/card]
-[card]
-name=Giant Slug
-text={5}: At the beginning of your next upkeep, choose a basic land type. Giant Slug gains landwalk of the chosen type until the end of that turn.
-mana={1}{B}
-type=Creature
-subtype=Slug
-power=1
-toughness=1
 [/card]
 [card]
 name=Giant Turtle
