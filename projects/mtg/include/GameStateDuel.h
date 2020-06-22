@@ -278,6 +278,7 @@ public:
         MENUITEM_FILL_NEXT_STAGE_HARD = -30,
         MENUITEM_FILL_NEXT_STAGE = -31,
 /////// End Tournament Mod ///////////
+        MENUITEM_TOGGLEATTACK_ALL_CREATURES = -32,
         MENUITEM_MORE_INFO = kInfoMenuID
     };
 
