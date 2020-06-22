@@ -939,6 +939,9 @@ void GameStateDuel::Update(float dt)
                     menu->Add(MENUITEM_MULLIGAN, "Mulligan");
                 }
                 //END almosthumane - mulligan
+                if(game->getCurrentGamePhase() == MTG_PHASE_COMBATATTACKERS){ // During attack phase it shows a button to toggle all creatures to attack mode
+                    menu->Add(MENUITEM_TOGGLEATTACK_ALL_CREATURES, "Toggle Attack all Creatures");
+                }
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
 #ifdef TESTSUITE
                 menu->Add(MENUITEM_UNDO, "Undo");
@@ -1663,6 +1666,15 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 //          menu->Close();
 //          mGamePhase = DUEL_STATE_CONTINUE;
 //          break;
+        case MENUITEM_TOGGLEATTACK_ALL_CREATURES:
+            for(unsigned int i = 0; i < game->players[0]->inPlay()->cards.size(); i++){
+                if(game->players[0]->inPlay()->cards[i]->canAttack()){
+                    game->players[0]->inPlay()->cards[i]->toggleAttacker();
+                }
+            }
+            menu->Close();
+            setGamePhase(DUEL_STATE_CANCEL);
+            break;
         case MENUITEM_SPEED_FAST:
             tournament->setFastTimerMode(true);
             setAISpeed();
