@@ -6466,8 +6466,8 @@ int ATransformer::destroy()
         {
             for (unsigned int i = 0;i < newAbilities[_target].size(); i++)
             {
-                // The primitives Dead Presence and the mutated cards probably cause a double free error and a crash in Wagic, so for now they have been exluded...
-                if(newAbilities[_target].at(i) && strcmp(_target->name.c_str(),"Dread Presence") && !_target->mutation)
+                // The mutated cards probably cause a double free error and a crash in Wagic, so for now they have been exluded...
+                if(newAbilities[_target].at(i) && !_target->mutation)
                 {
                     newAbilities[_target].at(i)->forceDestroy = 1;
                     newAbilities[_target].at(i)->removeFromGame();

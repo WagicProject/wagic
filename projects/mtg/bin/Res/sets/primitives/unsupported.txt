@@ -10025,15 +10025,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Palace Guard
-text=Palace Guard can block any number of creatures.
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=4
-[/card]
-[card]
 name=Palace Jailer
 text=When Palace Jailer enters the battlefield, you become the monarch. -- When Palace Jailer enters the battlefield, exile target creature an opponent controls until an opponent becomes the monarch. (That creature returns under its owner's control.)
 mana={2}{W}{W}
@@ -10095,26 +10086,12 @@ name=Panharmonicon
 text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Panoptic Mirror
-text=Imprint — {X}, {T}: You may exile an instant or sorcery card with converted mana cost X from your hand. -- At the beginning of your upkeep, you may copy a card exiled with Panoptic Mirror. If you do, you may cast the copy without paying its mana cost.
-mana={5}
-type=Artifact
-[/card]
+[/card
 [card]
 name=Panopticon
 text=When you planeswalk to Panopticon, draw a card. -- At the beginning of your draw step, draw an additional card. -- Whenever you roll {C}, draw a card.
 type=Plane
 subtype=Mirrodin
-[/card]
-[card]
-name=Paper Tiger
-text=Rock Lobsters cannot attack or block.
-mana={4}
-type=Artifact Creature
-power=4
-toughness=3
 [/card]
 [card]
 name=Paperfin Rascal
@@ -10166,13 +10143,6 @@ text=All damage that would be dealt to you is dealt to equipped creature instead
 mana={5}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Paroxysm
-text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, that player reveals the top card of his or her library. If that card is a land card, destroy that creature. Otherwise, it gets +3/+3 until end of turn.
-mana={1}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Parting Thoughts
@@ -10280,15 +10250,6 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
-name=Petalmane Baku
-text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Petalmane Baku. -- {1}, Remove X ki counters from Petalmane Baku: Add X mana of any one color to your mana pool.
-mana={1}{G}
-type=Creature
-subtype=Spirit
-power=1
-toughness=2
-[/card]
-[card]
 name=Petra Sphinx
 text={T}: Target player names a card, then reveals the top card of his or her library. If that card is the named card, that player puts it into his or her hand. If it isn't, the player puts it into his or her graveyard.
 mana={2}{W}{W}{W}
@@ -10303,12 +10264,6 @@ text=Enchant creature -- Enchanted creature gets +2/+2. -- Suspend 2—{G} (Rather
 mana={2}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Phalanx Formation
-text=Strive — Phalanx Formation costs {1}{W} more to cast for each target beyond the first. -- Any number of target creatures each gain double strike until end of turn. (They deal both first-strike and regular combat damage.)
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Phantasmagorian
@@ -10363,44 +10318,10 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Phyrexian Colossus
-text=Phyrexian Colossus doesn't untap during your untap step. -- Pay 8 life: Untap Phyrexian Colossus. -- Phyrexian Colossus can't be blocked except by three or more creatures.
-mana={7}
-type=Artifact Creature
-subtype=Golem
-power=8
-toughness=8
-[/card]
-[card]
-name=Phyrexian Dreadnought
-abilities=trample
-text=Trample -- When Phyrexian Dreadnought enters the battlefield, sacrifice it unless you sacrifice any number of creatures with total power 12 or greater.
-mana={1}
-type=Artifact Creature
-subtype=Dreadnought
-power=12
-toughness=12
-[/card]
-[card]
-name=Phyrexian Furnace
-text={T}: Exile the bottom card of target player's graveyard. -- {1}, Sacrifice Phyrexian Furnace: Exile target card from a graveyard. Draw a card.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Phyrexian Grimoire
 text={4}, {T}: Target opponent chooses one of the top two cards of your graveyard. Exile that card and put the other one into your hand.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Phyrexian Ingester
-text=Imprint — When Phyrexian Ingester enters the battlefield, you may exile target nontoken creature. -- Phyrexian Ingester gets +X/+Y, where X is the exiled creature card's power and Y is its toughness.
-mana={6}{U}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
 [/card]
 [card]
 name=Phyrexian Librarian
@@ -10425,18 +10346,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Phyrexian Purge
-text=Destroy any number of target creatures. -- Phyrexian Purge costs 3 life more to cast for each target.
-mana={2}{B}{R}
-type=Sorcery
-[/card]
-[card]
-name=Phyrexian Rebirth
-text=Destroy all creatures, then create an X/X colorless Horror artifact creature token, where X is the number of creatures destroyed this way.
-mana={4}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Phyrexian Revoker
 text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
 mana={2}
@@ -10444,12 +10353,6 @@ type=Artifact Creature
 subtype=Horror
 power=2
 toughness=1
-[/card]
-[card]
-name=Phyrexian Splicer
-text={2}, {T}: Choose one — flying; first strike; shadow; or trample. Target creature with that ability loses it until end of turn and another target creature gains it until end of turn.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Pia's Revolution
@@ -10488,11 +10391,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Pillar of the Paruns
-text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a multicolored spell.
-type=Land
-[/card]
-[card]
 name=Pine Walker
 text=Morph {4}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- Whenever Pine Walker or another creature you control is turned face up, untap that creature.
 mana={3}{G}{G}
@@ -10500,12 +10398,6 @@ type=Creature
 subtype=Elemental
 power=5
 toughness=5
-[/card]
-[card]
-name=Pinpoint Avalanche
-text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
-mana={3}{R}{R}
-type=Instant
 [/card]
 [card]
 name=Pippa, Duchess of Dice
@@ -10543,12 +10435,6 @@ name=Plague of Vermin
 text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
 mana={6}{B}
 type=Sorcery
-[/card]
-[card]
-name=Planar Chaos
-text=At the beginning of your upkeep, flip a coin. If you lose the flip, sacrifice Planar Chaos. -- Whenever a player casts a spell, that player flips a coin. If he or she loses the flip, counter that spell.
-mana={2}{R}
-type=Enchantment
 [/card]
 [card]
 name=Planar Overlay
@@ -10598,27 +10484,10 @@ mana={G}{G}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Plated Pegasus
-abilities=flash
-text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- If a spell would deal damage to a creature or player, prevent 1 damage that spell would deal to that creature or player.
-mana={2}{W}
-type=Creature
-subtype=Pegasus
-power=1
-toughness=2
-[/card]
-[card]
 name=Plea for Power
 text=Will of the council — Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
 mana={3}{U}
 type=Sorcery
-[/card]
-[card]
-name=Plow Through Reito
-text=Sweep — Return any number of Plains you control to their owner's hand. Target creature gets +1/+1 until end of turn for each Plains returned this way.
-mana={1}{W}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
 name=Plunge into Darkness
@@ -10631,12 +10500,6 @@ name=Pointy Finger of Doom
 text={3}, {T}: Spin Pointy Finger of Doom in the middle of the table so that it rotates completely at least once, then destroy the closest permanent the finger points to.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Political Trickery
-text=Exchange control of target land you control and target land an opponent controls. (This effect lasts indefinitely.)
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
 name=Pollen Lullaby
@@ -10658,12 +10521,6 @@ type=Legendary Creature
 subtype=Hydra
 power=5
 toughness=5
-[/card]
-[card]
-name=Polymorphist's Jest
-text=Until end of turn, each creature target player controls loses all abilities and becomes a blue Frog with base power and toughness 1/1.
-mana={1}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Polymorphous Rush
@@ -10696,12 +10553,6 @@ mana={3}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Postmortem Lunge
-text=({PB} can be paid with either {B} or 2 life.) -- Return target creature card with converted mana cost X from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step.
-mana={X}{PB}
-type=Sorcery
-[/card]
-[card]
 name=Poultrygeist
 text=Flying -- Whenever a creature is put into any graveyard from play, you may roll a six-sided die. On a 1, sacrifice Poultrygeist. Otherwise, put a +1/+1 counter on Poultrygeist.
 mana={2}{B}
@@ -10725,12 +10576,6 @@ name=Power Sink
 text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
 mana={X}{U}
 type=Instant
-[/card]
-[card]
-name=Power Surge
-text=At the beginning of each player's upkeep, Power Surge deals X damage to that player, where X is the number of untapped lands he or she controlled at the beginning of this turn.
-mana={R}{R}
-type=Enchantment
 [/card]
 [card]
 name=Powerleech
@@ -10763,12 +10608,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Predatory Focus
-text=You may have creatures you control assign their combat damage this turn as though they weren't blocked.
-mana={3}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Predict
 text=Name a card, then put the top card of target player's library into his or her graveyard. If that card is the named card, you draw two cards. Otherwise, you draw a card.
 mana={1}{U}
@@ -10784,17 +10623,6 @@ type=Enchantment
 name=Premature Burial
 text=Destroy target nonblack creature that entered the battlefield since your last turn ended.
 mana={1}{B}
-type=Sorcery
-[/card]
-[card]
-name=Primal Beyond
-text=As Primal Beyond enters the battlefield, you may reveal an Elemental card from your hand. If you don't, Primal Beyond enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast an Elemental spell or activate an ability of an Elemental.
-type=Land
-[/card]
-[card]
-name=Primal Command
-text=Choose two — Target player gains 7 life; or put target noncreature permanent on top of its owner's library; or target player shuffles his or her graveyard into his or her library; or search your library for a creature card, reveal it, put it into your hand, then shuffle your library.
-mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
@@ -10864,18 +10692,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Profit // Loss
-text=Creatures you control get +1/+1 until end of turn. --  //  -- Creatures your opponents control get -1/-1 until end of turn. --  -- Fuse (You may cast one or both halves of this card from your hand.)
-mana={1}{W} // {2}{B}
-type=Instant // Instant
-[/card]
-[card]
-name=Prohibit
-text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Counter target spell if its converted mana cost is 2 or less. If Prohibit was kicked, counter that spell if its converted mana cost is 4 or less instead.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Proper Laboratory Attire
 text=Equipped creature gets +2/+1 and has protection from die rolls. (Nothing that lets a player roll a die can block, target, deal damage to, or attach to equipped creature.) -- Equip {2}
 mana={1}
@@ -10884,7 +10700,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Proposal
-text=
+text=Allows Richard to propose to Lily. If the proposal is accepted both players win; mix the cards in play, both libraries, and both graveyards as a shared deck.
 mana={W}{W}{W}{W}
 type=Sorcery
 [/card]
@@ -10896,12 +10712,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Protect // Serve
-text=Target creature gets +2/+4 until end of turn. --  //  -- Target creature gets -6/-0 until end of turn. --  -- Fuse (You may cast one or both halves of this card from your hand.)
-mana={2}{W} // {1}{U}
-type=Instant // Instant
 [/card]
 [card]
 name=Protective Sphere
@@ -10917,12 +10727,6 @@ type=Creature
 subtype=Giant Soldier
 power=2
 toughness=5
-[/card]
-[card]
-name=Providence
-text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, your life total becomes 26. -- Your life total becomes 26.
-mana={5}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Prowling Pangolin
@@ -11013,22 +10817,10 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Pull from the Deep
-text=Return up to one target instant card and up to one target sorcery card from your graveyard to your hand. Exile Pull from the Deep.
-mana={2}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Pulling Teeth
 text=Clash with an opponent. If you win, target player discards two cards. Otherwise, that player discards a card. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{B}
 type=Sorcery
-[/card]
-[card]
-name=Pulse of Llanowar
-text=If a basic land you control is tapped for mana, it produces mana of a color of your choice instead of any other type.
-mana={3}{G}
-type=Enchantment
 [/card]
 [card]
 name=Punctuate
@@ -11042,12 +10834,6 @@ text=Enchant creature -- When enchanted creature dies, return that card to its o
 mana={U}{U}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Pure // Simple
-text=Destroy target multicolored permanent. --  //  -- Destroy all Auras and Equipment.
-mana={1}{R}{G} // {1}{G}{W}
-type=Sorcery // Sorcery
 [/card]
 [card]
 name=Pure Intentions
@@ -11071,12 +10857,6 @@ type=Creature
 subtype=Elemental Incarnation
 power=6
 toughness=6
-[/card]
-[card]
-name=Put Away
-text=Counter target spell. You may shuffle up to one target card from your graveyard into your library.
-mana={2}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Pygmy Giant
@@ -11112,12 +10892,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Pyrokinesis
-text=You may exile a red card from your hand rather than pay Pyrokinesis's mana cost. -- Pyrokinesis deals 4 damage divided as you choose among any number of target creatures.
-mana={4}{R}{R}
-type=Instant
-[/card]
-[card]
 name=Pyromancer Ascension
 text=Whenever you cast an instant or sorcery spell that has the same name as a card in your graveyard, you may put a quest counter on Pyromancer Ascension. -- Whenever you cast an instant or sorcery spell while Pyromancer Ascension has two or more quest counters on it, you may copy that spell. You may choose new targets for the copy.
 mana={1}{R}
@@ -11148,43 +10922,10 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Pyrotechnics
-text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
-mana={4}{R}
-type=Sorcery
-[/card]
-[card]
 name=Pyxis of Pandemonium
 text={T}: Each player exiles the top card of his or her library face down. -- {7}, {T}, Sacrifice Pyxis of Pandemonium: Each player turns face up all cards he or she owns exiled with Pyxis of Pandemonium, then puts all permanent cards among them onto the battlefield.
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Qarsi Deceiver
-text={T}: Add {1} to your mana pool. Spend this mana only to cast a face-down creature spell, pay a mana cost to turn a manifested creature face up, or pay a morph cost. (A megamorph cost is a morph cost.)
-mana={1}{U}
-type=Creature
-subtype=Naga Wizard
-power=0
-toughness=4
-[/card]
-[card]
-name=Quarry Colossus
-text=When Quarry Colossus enters the battlefield, put target creature into its owner's library just beneath the top X cards of that library, where X is the number of Plains you control.
-mana={5}{W}{W}
-type=Creature
-subtype=Giant
-power=5
-toughness=6
-[/card]
-[card]
-name=Quarum Trench Gnomes
-text={T}: If target Plains is tapped for mana, it produces colorless mana instead of white mana. (This effect lasts indefinitely.)
-mana={3}{R}
-type=Creature
-subtype=Gnome
-power=1
-toughness=1
 [/card]
 [card]
 name=Queen Marchesa
@@ -11194,12 +10935,6 @@ type=Legendary Creature
 subtype=Human Assassin
 power=3
 toughness=3
-[/card]
-[card]
-name=Quenchable Fire
-text=Quenchable Fire deals 3 damage to target player. It deals an additional 3 damage to that player at the beginning of your next upkeep step unless he or she pays {U} before that step.
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
 name=Quest for Pure Flame
@@ -11222,12 +10957,6 @@ name=Quick-Stick Lick Trick
 text=Whenever you crank Quick-Stick Lick Trick, target creature gets +1/+1 and gains lifelink until end of turn.
 type=Artifact
 subtype=Contraption
-[/card]
-[card]
-name=Quicken
-text=The next sorcery card you cast this turn can be cast as though it had flash. -- Draw a card.
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Quickening Licid
@@ -11268,22 +10997,6 @@ name=Quicksilver Sea
 text=When you planeswalk to Quicksilver Sea or at the beginning of your upkeep, scry 4. (Look at the top four cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.) -- Whenever you roll {K}, reveal the top card of your library. You may play it without paying its mana cost.
 type=Plane
 subtype=Mirrodin
-[/card]
-[card]
-name=Quicksilver Wall
-abilities=defender
-text=Defender (This creature can't attack.) -- {4}: Return Quicksilver Wall to its owner's hand. Any player may activate this ability.
-mana={2}{U}
-type=Creature
-subtype=Wall
-power=1
-toughness=6
-[/card]
-[card]
-name=Quiet Speculation
-text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
-mana={1}{U}
-type=Sorcery
 [/card]
 [card]
 name=R&D's Secret Lair
@@ -11328,21 +11041,6 @@ name=Rain of Gore
 text=If a spell or ability would cause its controller to gain life, that player loses that much life instead.
 mana={B}{R}
 type=Enchantment
-[/card]
-[card]
-name=Rain of Rust
-text=Choose one — Destroy target artifact; or destroy target land. -- Entwine {3}{R} (Choose both if you pay the entwine cost.)
-mana={3}{R}{R}
-type=Instant
-[/card]
-[card]
-name=Rakavolver
-text=Kicker {1}{W} and/or {U} (You may pay an additional {1}{W} and/or {U} as you cast this spell.) -- If Rakavolver was kicked with its {1}{W} kicker, it enters the battlefield with two +1/+1 counters on it and with "Whenever Rakavolver deals damage, you gain that much life." -- If Rakavolver was kicked with its {U} kicker, it enters the battlefield with a +1/+1 counter on it and with flying.
-mana={2}{R}
-type=Creature
-subtype=Volver
-power=2
-toughness=2
 [/card]
 [card]
 name=Rakdos Riteknife
@@ -11410,18 +11108,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Read the Runes
-text=Draw X cards. For each card drawn this way, discard a card unless you sacrifice a permanent.
-mana={X}{U}
-type=Instant
-[/card]
-[card]
-name=Ready // Willing
-text=Creatures you control are indestructible this turn. Untap each creature you control. --  //  -- Creatures you control gain deathtouch and lifelink until end of turn. --  -- Fuse (You may cast one or both halves of this card from your hand.)
-mana={1}{G}{W} // {1}{W}{B}
-type=Instant // Instant
-[/card]
-[card]
 name=Reality Acid
 text=Enchant permanent -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Reality Acid leaves the battlefield, enchanted permanent's controller sacrifices it.
 mana={2}{U}
@@ -11432,15 +11118,6 @@ subtype=Aura
 name=Reality Shaping
 text=When you encounter Reality Shaping, starting with you, each player may put a permanent card from his or her hand onto the battlefield. (Then planeswalk away from this phenomenon.)
 type=Phenomenon
-[/card]
-[card]
-name=Reality Smasher
-text=({C} represents colorless mana.) -- Trample, haste -- Whenever Reality Smasher becomes the target of a spell an opponent controls, counter that spell unless its controller discards a card.
-mana={4}{C}
-type=Creature
-subtype=Eldrazi
-power=5
-toughness=5
 [/card]
 [card]
 name=Reality Strobe
@@ -11470,12 +11147,6 @@ name=Realms Uncharted
 text=Search your library for four land cards with different names and reveal them. An opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
 mana={2}{G}
 type=Instant
-[/card]
-[card]
-name=Reap and Sow
-text=Choose one — Destroy target land; or search your library for a land card, put that card onto the battlefield, then shuffle your library. -- Entwine {1}{G} (Choose both if you pay the entwine cost.)
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
 name=Rebellion of the Flamekin
@@ -12154,14 +11825,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Rock Lobster
-text=Scissors Lizards cannot attack or block.
-mana={4}
-type=Artifact Creature
-power=4
-toughness=3
-[/card]
-[card]
 name=Rock Slide
 text=Rock Slide deals X damage divided as you choose among any number of target attacking or blocking creatures without flying.
 mana={X}{R}
@@ -12645,14 +12308,6 @@ type=Legendary Creature
 subtype=Dragon Avatar
 power=4
 toughness=4
-[/card]
-[card]
-name=Scissors Lizard
-text=Paper Tigers cannot attack or block.
-mana={4}
-type=Artifact Creature
-power=4
-toughness=3
 [/card]
 [card]
 name=Scorched Earth

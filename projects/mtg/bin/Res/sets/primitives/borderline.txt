@@ -8427,7 +8427,7 @@ toughness=2
 [card]
 name=Deathless Ancient
 abilities=flying
-autograveyard={T(<3>vampire[untapped])}:moveto(myhand)
+autograveyard={T(<3>vampire[-tapped])}:moveto(myhand)
 text=Flying -- Tap three untapped Vampires you control: Return Deathless Ancient from your graveyard to your hand.
 mana={4}{B}{B}
 type=Creature
@@ -9981,7 +9981,7 @@ type=Sorcery
 [/card]
 [card]
 name=Dread Presence
-auto=@movedTo(Swamp|myBattlefield):name(choose one) transforms((,newability[choice name(Draw and Lose Life) draw:1 controller && life:-1 controller],newability[choice name(Damage and Gain Life) life:2 controller && damage:2 opponent]))
+auto=@movedTo(Swamp|myBattlefield):name(Choose one) ability$!name(Choose one) choice name(Draw and lose life) draw:1 controller && life:-1 controller _ choice name(Damage player and gain life) damage:2 target(player) && life:2 controller _ choice name(Damage creature and gain life) damage:2 target(creature) && life:2 controller _ choice name(Damage planeswalker and gain life) damage:2 target(planeswalker) && life:2 controller!$ controller
 text=Whenever a Swamp enters the battlefield under your control, choose one — -- • You draw a card and you lose 1 life. -- • Dread Presence deals 2 damage to any target and you gain 2 life.
 mana={3}{B}
 type=Creature
@@ -23186,26 +23186,26 @@ toughness=3
 [/card]
 [card]
 name=Merchant's Dockhand
-auto=if type(artifact|myBattlefield)~morethan~0 then {3}{U}{T}:name(Tap 1 artifact) tap(noevent) target(artifact[untapped]|mybattlefield) && name(look) reveal:1 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~1 then {3}{U}{T}:name(Tap 2 artifact) tap(noevent) target(<2>artifact[untapped]|mybattlefield) && name(look) reveal:2 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~2 then {3}{U}{T}:name(Tap 3 artifact) tap(noevent) target(<3>artifact[untapped]|mybattlefield) && name(look) reveal:3 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~3 then {3}{U}{T}:name(Tap 4 artifact) tap(noevent) target(<4>artifact[untapped]|mybattlefield) && name(look) reveal:4 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~4 then {3}{U}{T}:name(Tap 5 artifact) tap(noevent) target(<5>artifact[untapped]|mybattlefield) && name(look) reveal:5 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~5 then {3}{U}{T}:name(Tap 6 artifact) tap(noevent) target(<6>artifact[untapped]|mybattlefield) && name(look) reveal:6 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~6 then {3}{U}{T}:name(Tap 7 artifact) tap(noevent) target(<7>artifact[untapped]|mybattlefield) && name(look) reveal:7 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~7 then {3}{U}{T}:name(Tap 8 artifact) tap(noevent) target(<8>artifact[untapped]|mybattlefield) && name(look) reveal:8 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~8 then {3}{U}{T}:name(Tap 9 artifact) tap(noevent) target(<9>artifact[untapped]|mybattlefield) && name(look) reveal:9 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~9 then {3}{U}{T}:name(Tap 10 artifact) tap(noevent) target(<10>artifact[untapped]|mybattlefield) && name(look) reveal:10 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~10 then {3}{U}{T}:name(Tap 11 artifact) tap(noevent) target(<11>artifact[untapped]|mybattlefield) && name(look) reveal:11 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~11 then {3}{U}{T}:name(Tap 12 artifact) tap(noevent) target(<12>artifact[untapped]|mybattlefield) && name(look) reveal:12 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~12 then {3}{U}{T}:name(Tap 13 artifact) tap(noevent) target(<13>artifact[untapped]|mybattlefield) && name(look) reveal:13 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~13 then {3}{U}{T}:name(Tap 14 artifact) tap(noevent) target(<14>artifact[untapped]|mybattlefield) && name(look) reveal:14 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~14 then {3}{U}{T}:name(Tap 15 artifact) tap(noevent) target(<15>artifact[untapped]|mybattlefield) && name(look) reveal:15 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~15 then {3}{U}{T}:name(Tap 16 artifact) tap(noevent) target(<16>artifact[untapped]|mybattlefield) && name(look) reveal:16 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~16 then {3}{U}{T}:name(Tap 17 artifact) tap(noevent) target(<17>artifact[untapped]|mybattlefield) && name(look) reveal:17 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~17 then {3}{U}{T}:name(Tap 18 artifact) tap(noevent) target(<18>artifact[untapped]|mybattlefield) && name(look) reveal:18 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~18 then {3}{U}{T}:name(Tap 19 artifact) tap(noevent) target(<19>artifact[untapped]|mybattlefield) && name(look) reveal:19 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~19 then {3}{U}{T}:name(Tap 20 artifact) tap(noevent) target(<20>artifact[untapped]|mybattlefield) && name(look) reveal:20 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~0 then {3}{U}{T}:name(Tap 1 artifact) tap(noevent) target(artifact[-tapped]|mybattlefield) && name(look) reveal:1 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~1 then {3}{U}{T}:name(Tap 2 artifact) tap(noevent) target(<2>artifact[-tapped]|mybattlefield) && name(look) reveal:2 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~2 then {3}{U}{T}:name(Tap 3 artifact) tap(noevent) target(<3>artifact[-tapped]|mybattlefield) && name(look) reveal:3 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~3 then {3}{U}{T}:name(Tap 4 artifact) tap(noevent) target(<4>artifact[-tapped]|mybattlefield) && name(look) reveal:4 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~4 then {3}{U}{T}:name(Tap 5 artifact) tap(noevent) target(<5>artifact[-tapped]|mybattlefield) && name(look) reveal:5 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~5 then {3}{U}{T}:name(Tap 6 artifact) tap(noevent) target(<6>artifact[-tapped]|mybattlefield) && name(look) reveal:6 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~6 then {3}{U}{T}:name(Tap 7 artifact) tap(noevent) target(<7>artifact[-tapped]|mybattlefield) && name(look) reveal:7 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~7 then {3}{U}{T}:name(Tap 8 artifact) tap(noevent) target(<8>artifact[-tapped]|mybattlefield) && name(look) reveal:8 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~8 then {3}{U}{T}:name(Tap 9 artifact) tap(noevent) target(<9>artifact[-tapped]|mybattlefield) && name(look) reveal:9 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~9 then {3}{U}{T}:name(Tap 10 artifact) tap(noevent) target(<10>artifact[-tapped]|mybattlefield) && name(look) reveal:10 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~10 then {3}{U}{T}:name(Tap 11 artifact) tap(noevent) target(<11>artifact[-tapped]|mybattlefield) && name(look) reveal:11 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~11 then {3}{U}{T}:name(Tap 12 artifact) tap(noevent) target(<12>artifact[-tapped]|mybattlefield) && name(look) reveal:12 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~12 then {3}{U}{T}:name(Tap 13 artifact) tap(noevent) target(<13>artifact[-tapped]|mybattlefield) && name(look) reveal:13 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~13 then {3}{U}{T}:name(Tap 14 artifact) tap(noevent) target(<14>artifact[-tapped]|mybattlefield) && name(look) reveal:14 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~14 then {3}{U}{T}:name(Tap 15 artifact) tap(noevent) target(<15>artifact[-tapped]|mybattlefield) && name(look) reveal:15 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~15 then {3}{U}{T}:name(Tap 16 artifact) tap(noevent) target(<16>artifact[-tapped]|mybattlefield) && name(look) reveal:16 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~16 then {3}{U}{T}:name(Tap 17 artifact) tap(noevent) target(<17>artifact[-tapped]|mybattlefield) && name(look) reveal:17 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~17 then {3}{U}{T}:name(Tap 18 artifact) tap(noevent) target(<18>artifact[-tapped]|mybattlefield) && name(look) reveal:18 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~18 then {3}{U}{T}:name(Tap 19 artifact) tap(noevent) target(<19>artifact[-tapped]|mybattlefield) && name(look) reveal:19 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if type(artifact|myBattlefield)~morethan~19 then {3}{U}{T}:name(Tap 20 artifact) tap(noevent) target(<20>artifact[-tapped]|mybattlefield) && name(look) reveal:20 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
 text={3}{U}, {T}, Tap X untapped artifacts you control: Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order.
 mana={1}
 type=Artifact Creature
@@ -26899,6 +26899,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Palace Guard
+text=Palace Guard can block any number of creatures.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=4
+[/card]
+[card]
 name=Paladin of Atonement
 auto=@each upkeep restriction{lastturn(life)~morethan~0}:counter(1/1,1)
 auto=@movedTo(this|graveyard) from(battlefield):dynamicability<!toughnesslifegain srccontroller!>
@@ -26929,6 +26938,64 @@ type=Legendary Creature
 subtype=Elder Dragon
 power=6
 toughness=6
+[/card]
+[card]
+name=Panoptic Mirror
+auto={0}{T}:if type(instant[manacost=0]|myhand)~morethan~0 then name(Exile instant with manacost 0) transforms((,newability[moveTo(myexile) target(instant[manacost=0]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=0]|myexile)])) forever
+auto={0}{T}:if type(sorcery[manacost=0]|myhand)~morethan~0 then name(Exile sorcery with manacost 0) transforms((,newability[moveTo(myexile) target(sorcery[manacost=0]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=0]|myexile)])) forever
+auto={1}{T}:if type(instant[manacost=1]|myhand)~morethan~0 then name(Exile instant with manacost 1) transforms((,newability[moveTo(myexile) target(instant[manacost=1]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=1]|myexile)])) forever
+auto={1}{T}:if type(sorcery[manacost=1]|myhand)~morethan~0 then name(Exile sorcery with manacost 1) transforms((,newability[moveTo(myexile) target(sorcery[manacost=1]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=1]|myexile)])) forever
+auto={2}{T}:if type(instant[manacost=2]|myhand)~morethan~0 then name(Exile instant with manacost 2) transforms((,newability[moveTo(myexile) target(instant[manacost=2]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=2]|myexile)])) forever
+auto={2}{T}:if type(sorcery[manacost=2]|myhand)~morethan~0 then name(Exile sorcery with manacost 2) transforms((,newability[moveTo(myexile) target(sorcery[manacost=2]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=2]|myexile)])) forever
+auto={3}{T}:if type(instant[manacost=3]|myhand)~morethan~0 then name(Exile instant with manacost 3) transforms((,newability[moveTo(myexile) target(instant[manacost=3]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=3]|myexile)])) forever
+auto={3}{T}:if type(sorcery[manacost=3]|myhand)~morethan~0 then name(Exile sorcery with manacost 3) transforms((,newability[moveTo(myexile) target(sorcery[manacost=3]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=3]|myexile)])) forever
+auto={4}{T}:if type(instant[manacost=4]|myhand)~morethan~0 then name(Exile instant with manacost 4) transforms((,newability[moveTo(myexile) target(instant[manacost=4]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=4]|myexile)])) forever
+auto={4}{T}:if type(sorcery[manacost=4]|myhand)~morethan~0 then name(Exile sorcery with manacost 4) transforms((,newability[moveTo(myexile) target(sorcery[manacost=4]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=4]|myexile)])) forever
+auto={5}{T}:if type(instant[manacost=5]|myhand)~morethan~0 then name(Exile instant with manacost 5) transforms((,newability[moveTo(myexile) target(instant[manacost=5]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=5]|myexile)])) forever
+auto={5}{T}:if type(sorcery[manacost=5]|myhand)~morethan~0 then name(Exile sorcery with manacost 5) transforms((,newability[moveTo(myexile) target(sorcery[manacost=5]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=5]|myexile)])) forever
+auto={6}{T}:if type(instant[manacost=6]|myhand)~morethan~0 then name(Exile instant with manacost 6) transforms((,newability[moveTo(myexile) target(instant[manacost=6]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=6]|myexile)])) forever
+auto={6}{T}:if type(sorcery[manacost=6]|myhand)~morethan~0 then name(Exile sorcery with manacost 6) transforms((,newability[moveTo(myexile) target(sorcery[manacost=6]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=6]|myexile)])) forever
+auto={7}{T}:if type(instant[manacost=7]|myhand)~morethan~0 then name(Exile instant with manacost 7) transforms((,newability[moveTo(myexile) target(instant[manacost=7]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=7]|myexile)])) forever
+auto={7}{T}:if type(sorcery[manacost=7]|myhand)~morethan~0 then name(Exile sorcery with manacost 7) transforms((,newability[moveTo(myexile) target(sorcery[manacost=7]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=7]|myexile)])) forever
+auto={8}{T}:if type(instant[manacost=8]|myhand)~morethan~0 then name(Exile instant with manacost 8) transforms((,newability[moveTo(myexile) target(instant[manacost=8]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=8]|myexile)])) forever
+auto={8}{T}:if type(sorcery[manacost=8]|myhand)~morethan~0 then name(Exile sorcery with manacost 8) transforms((,newability[moveTo(myexile) target(sorcery[manacost=8]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=8]|myexile)])) forever
+auto={9}{T}:if type(instant[manacost=9]|myhand)~morethan~0 then name(Exile instant with manacost 9) transforms((,newability[moveTo(myexile) target(instant[manacost=9]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=9]|myexile)])) forever
+auto={9}{T}:if type(sorcery[manacost=9]|myhand)~morethan~0 then name(Exile sorcery with manacost 9) transforms((,newability[moveTo(myexile) target(sorcery[manacost=9]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=9]|myexile)])) forever
+auto={10}{T}:if type(instant[manacost=10]|myhand)~morethan~0 then name(Exile instant with manacost 10) transforms((,newability[moveTo(myexile) target(instant[manacost=10]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=10]|myexile)])) forever
+auto={10}{T}:if type(sorcery[manacost=10]|myhand)~morethan~0 then name(Exile sorcery with manacost 10) transforms((,newability[moveTo(myexile) target(sorcery[manacost=10]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=10]|myexile)])) forever
+auto={11}{T}:if type(instant[manacost=11]|myhand)~morethan~0 then name(Exile instant with manacost 11) transforms((,newability[moveTo(myexile) target(instant[manacost=11]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=11]|myexile)])) forever
+auto={11}{T}:if type(sorcery[manacost=11]|myhand)~morethan~0 then name(Exile sorcery with manacost 11) transforms((,newability[moveTo(myexile) target(sorcery[manacost=11]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=11]|myexile)])) forever
+auto={12}{T}:if type(instant[manacost=12]|myhand)~morethan~0 then name(Exile instant with manacost 12) transforms((,newability[moveTo(myexile) target(instant[manacost=12]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=12]|myexile)])) forever
+auto={12}{T}:if type(sorcery[manacost=12]|myhand)~morethan~0 then name(Exile sorcery with manacost 12) transforms((,newability[moveTo(myexile) target(sorcery[manacost=12]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=12]|myexile)])) forever
+auto={13}{T}:if type(instant[manacost=13]|myhand)~morethan~0 then name(Exile instant with manacost 13) transforms((,newability[moveTo(myexile) target(instant[manacost=13]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=13]|myexile)])) forever
+auto={13}{T}:if type(sorcery[manacost=13]|myhand)~morethan~0 then name(Exile sorcery with manacost 13) transforms((,newability[moveTo(myexile) target(sorcery[manacost=13]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=13]|myexile)])) forever
+auto={14}{T}:if type(instant[manacost=14]|myhand)~morethan~0 then name(Exile instant with manacost 14) transforms((,newability[moveTo(myexile) target(instant[manacost=14]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=14]|myexile)])) forever
+auto={14}{T}:if type(sorcery[manacost=14]|myhand)~morethan~0 then name(Exile sorcery with manacost 14) transforms((,newability[moveTo(myexile) target(sorcery[manacost=14]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=14]|myexile)])) forever
+auto={15}{T}:if type(instant[manacost=15]|myhand)~morethan~0 then name(Exile instant with manacost 15) transforms((,newability[moveTo(myexile) target(instant[manacost=15]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=15]|myexile)])) forever
+auto={15}{T}:if type(sorcery[manacost=15]|myhand)~morethan~0 then name(Exile sorcery with manacost 15) transforms((,newability[moveTo(myexile) target(sorcery[manacost=15]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=15]|myexile)])) forever
+auto={16}{T}:if type(instant[manacost=16]|myhand)~morethan~0 then name(Exile instant with manacost 16) transforms((,newability[moveTo(myexile) target(instant[manacost=16]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=16]|myexile)])) forever
+auto={16}{T}:if type(sorcery[manacost=16]|myhand)~morethan~0 then name(Exile sorcery with manacost 16) transforms((,newability[moveTo(myexile) target(sorcery[manacost=16]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=16]|myexile)])) forever
+auto={17}{T}:if type(instant[manacost=17]|myhand)~morethan~0 then name(Exile instant with manacost 17) transforms((,newability[moveTo(myexile) target(instant[manacost=17]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=17]|myexile)])) forever
+auto={17}{T}:if type(sorcery[manacost=17]|myhand)~morethan~0 then name(Exile sorcery with manacost 17) transforms((,newability[moveTo(myexile) target(sorcery[manacost=17]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=17]|myexile)])) forever
+auto={18}{T}:if type(instant[manacost=18]|myhand)~morethan~0 then name(Exile instant with manacost 18) transforms((,newability[moveTo(myexile) target(instant[manacost=18]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=18]|myexile)])) forever
+auto={18}{T}:if type(sorcery[manacost=18]|myhand)~morethan~0 then name(Exile sorcery with manacost 18) transforms((,newability[moveTo(myexile) target(sorcery[manacost=18]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=18]|myexile)])) forever
+auto={19}{T}:if type(instant[manacost=19]|myhand)~morethan~0 then name(Exile instant with manacost 19) transforms((,newability[moveTo(myexile) target(instant[manacost=19]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=19]|myexile)])) forever
+auto={19}{T}:if type(sorcery[manacost=19]|myhand)~morethan~0 then name(Exile sorcery with manacost 19) transforms((,newability[moveTo(myexile) target(sorcery[manacost=19]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=19]|myexile)])) forever
+auto={20}{T}:if type(instant[manacost=20]|myhand)~morethan~0 then name(Exile instant with manacost 20) transforms((,newability[moveTo(myexile) target(instant[manacost=20]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=20]|myexile)])) forever
+auto={20}{T}:if type(sorcery[manacost=20]|myhand)~morethan~0 then name(Exile sorcery with manacost 20) transforms((,newability[moveTo(myexile) target(sorcery[manacost=20]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=20]|myexile)])) forever
+text=Imprint — {X}, {T}: You may exile an instant or sorcery card with converted mana cost X from your hand. -- At the beginning of your upkeep, you may copy a card exiled with Panoptic Mirror. If you do, you may cast the copy without paying its mana cost.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Paper Tiger
+auto=all(Rock Lobsters|battlefield) cantblock
+auto=all(Rock Lobsters|battlefield) cantattack
+text=Rock Lobsters cannot attack or block.
+mana={4}
+type=Artifact Creature
+power=4
+toughness=3
 [/card]
 [card]
 name=Paradise Druid
@@ -27023,6 +27090,16 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=3
+[/card]
+[card]
+name=Paroxysm
+target=creature
+auto=teach(creature) transforms((,newability[@each targetController upkeep:ability$!name(Reveal) reveal:1 optionone name(look first card) target(<1>*|reveal) moveto(ownerlibrary) optiononeend optiontwo name(put back) moveto(ownerlibrary) all(*|reveal) optiontwoend revealend!$ controller])) forever
+auto=teach(creature) transforms((,newability[@each targetController upkeep:if type(land[zpos=1]|ownerlibrary)~morethan~0 then destroy else 3/3 ueot])) forever
+text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, that player reveals the top card of his or her library. If that card is a land card, destroy that creature. Otherwise, it gets +3/+3 until end of turn.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Pashalik Mons
@@ -27162,6 +27239,27 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Petalmane Baku
+auto={1}{C(0/0,-1,Ki)}:ability$! choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller
+auto=@movedTo(spirit,arcane|mystack):may counter(0/0,1,Ki)
+text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Petalmane Baku. -- {1}, Remove X ki counters from Petalmane Baku: Add X mana of any one color to your mana pool.
+mana={1}{G}
+type=Creature
+subtype=Spirit
+power=1
+toughness=2
+[/card]
+[card]
+name=Phalanx Formation
+target=creature
+auto=double strike ueot
+kicker=multi{1}{W}
+auto=kicker target(<kicked>creature) double strike ueot
+text=Strive — Phalanx Formation costs {1}{W} more to cast for each target beyond the first. -- Any number of target creatures each gain double strike until end of turn. (They deal both first-strike and regular combat damage.)
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 name=Phalanx Tactics
 target=creature
 auto=target (creature|myBattlefield) 2/1 ueot
@@ -27244,6 +27342,56 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Phyrexian Colossus
+abilities=doesnotuntap,menace
+auto={L:8}:untap
+auto=@combat(attacking) source(this):if type(creature[blocking]|opponentBattlefield)~lessthan~3 then unblockable ueot
+text=Phyrexian Colossus doesn't untap during your untap step. -- Pay 8 life: Untap Phyrexian Colossus. -- Phyrexian Colossus can't be blocked except by three or more creatures.
+mana={7}
+type=Artifact Creature
+subtype=Golem
+power=8
+toughness=8
+[/card]
+[card]
+name=Phyrexian Dreadnought
+abilities=trample
+auto=choice name(Sacrifice this) sacrifice
+auto=choice name(Sacrifice 12 creatures with power 1 or greater) sacrifice target(<12>creature[power>=1]|mybattlefield)
+auto=choice name(Sacrifice 6 creatures with power 2 or greater) sacrifice target(<6>creature[power>=2]|mybattlefield)
+auto=choice name(Sacrifice 4 creatures with power 3 or greater) sacrifice target(<4>creature[power>=3]|mybattlefield)
+auto=choice name(Sacrifice 3 creatures with power 4 or greater) sacrifice target(<3>creature[power>=4]|mybattlefield)
+auto=choice name(Sacrifice 2 creatures with power 6 or greater) sacrifice target(<2>creature[power>=6]|mybattlefield)
+auto=choice name(Sacrifice 1 creature with power 12 or greater) sacrifice target(creature[power>=12]|mybattlefield)
+text=Trample -- When Phyrexian Dreadnought enters the battlefield, sacrifice it unless you sacrifice any number of creatures with total power 12 or greater.
+mana={1}
+type=Artifact Creature
+subtype=Dreadnought
+power=12
+toughness=12
+[/card]
+[card]
+name=Phyrexian Furnace
+auto={T}:name(Exile bottom card from my graveyard) moveTo(myexile) all(*[zpos=type:*:mygraveyard]|mygraveyard)
+auto={T}:name(Exile bottom card from opponent's graveyard) moveTo(opponentexile) all(*[zpos=type:*:opponentgraveyard]|opponentgraveyard)
+auto={1}{S}:name(Exile target card from my graveyard) moveTo(myexile) target(*|mygraveyard) && draw:1 controller
+auto={1}{S}:name(Exile target card from opponent's graveyard) moveTo(opponentexile) target(*|opponentgraveyard) && draw:1 controller
+text={T}: Exile the bottom card of target player's graveyard. -- {1}, Sacrifice Phyrexian Furnace: Exile target card from a graveyard. Draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Phyrexian Ingester
+other={6}{U}{E(creature[-token]|mybattlefield)} name(Imprint)
+auto=if paid(alternative) then storedpower/storedtoughness
+text=Imprint — When Phyrexian Ingester enters the battlefield, you may exile target nontoken creature. -- Phyrexian Ingester gets +X/+Y, where X is the exiled creature card's power and Y is its toughness.
+mana={6}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
 name=Phyrexian Metamorph
 auto=may copy NotATarget(creature,artifact) transform(artifact) forever
 text=({U/P} can be paid with either {U} or 2 life.) -- You may have Phyrexian Metamorph enter the battlefield as a copy of any artifact or creature on the battlefield, except it’s an artifact in addition to its other types.
@@ -27252,6 +27400,42 @@ type=Artifact Creature
 subtype=Shapeshifter
 power=0
 toughness=0
+[/card]
+[card]
+name=Phyrexian Purge
+auto=choice name(pay 0 life) donothing
+auto=choice name(pay 3 life) life:-3 controller && target(creature) destroy
+auto=choice name(pay 6 life) life:-6 controller && target(<2>creature) destroy
+auto=choice name(pay 9 life) life:-9 controller && target(<3>creature) destroy
+auto=choice name(pay 12 life) life:-12 controller && target(<4>creature) destroy
+auto=choice name(pay 15 life) life:-15 controller && target(<5>creature) destroy
+auto=choice name(pay 18 life) life:-18 controller && target(<6>creature) destroy
+auto=choice name(pay 21 life) life:-21 controller && target(<7>creature) destroy
+auto=choice name(pay 24 life) life:-24 controller && target(<8>creature) destroy
+auto=choice name(pay 27 life) life:-27 controller && target(<9>creature) destroy
+auto=choice name(pay 30 life) life:-30 controller && target(<10>creature) destroy
+auto=choice name(pay 33 life) life:-33 controller && target(<11>creature) destroy
+auto=choice name(pay 36 life) life:-36 controller && target(<12>creature) destroy
+auto=choice name(pay 39 life) life:-39 controller && target(<13>creature) destroy
+auto=choice name(pay 42 life) life:-42 controller && target(<14>creature) destroy
+auto=choice name(pay 45 life) life:-45 controller && target(<15>creature) destroy
+auto=choice name(pay 48 life) life:-48 controller && target(<16>creature) destroy
+auto=choice name(pay 51 life) life:-51 controller && target(<17>creature) destroy
+auto=choice name(pay 54 life) life:-54 controller && target(<18>creature) destroy
+auto=choice name(pay 57 life) life:-57 controller && target(<19>creature) destroy
+auto=choice name(pay 60 life) life:-60 controller && target(<20>creature) destroy
+text=Destroy any number of target creatures. -- Phyrexian Purge costs 3 life more to cast for each target.
+mana={2}{B}{R}
+type=Sorcery
+[/card]
+[card]
+name=Phyrexian Rebirth
+auto=count(type:creature:battlefield)
+auto=all(creature|battlefield) destroy
+auto=token(Horror,Creature Artifact Horror, countedamount/countedamount, artifact)
+text=Destroy all creatures, then create an X/X colorless Horror artifact creature token, where X is the number of creatures destroyed this way.
+mana={4}{W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Phyrexian Scriptures
@@ -27265,6 +27449,15 @@ text=(As this Saga enters and after your draw step, add a lore counter. Sacrific
 mana={2}{B}{B}
 type=Enchantment
 subtype=Saga
+[/card]
+[card]
+name=Phyrexian Splicer
+auto={2}{T}:name(Choose flying) transforms((,newability[target(creature[flying]) -flying ueot],newability[target(creature) flying ueot])) ueot
+auto={2}{T}:name(Choose first strike) transforms((,newability[target(creature[first strike]) -first strike ueot],newability[target(creature) flying first strike])) ueot
+auto={2}{T}:name(Choose trample) transforms((,newability[target(creature[trample]) -trample ueot],newability[target(creature) trample ueot])) ueot
+text={2}, {T}: Choose one — flying; first strike; shadow; or trample. Target creature with that ability loses it until end of turn and another target creature gains it until end of turn.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Pierce the Sky
@@ -27287,11 +27480,33 @@ toughness=1
 [/card]
 [card]
 name=Pillar of Origins
-auto=
-auto={T}:
+auto={T}:add{W}
+auto={T}:add{R}
+auto={T}:add{G}
+auto={T}:add{U}
+auto={T}:add{B}
 text=As Pillar of Origins enters the battlefield, choose a creature type. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell of the chosen type.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Pillar of the Paruns
+auto={T}:add{W}
+auto={T}:add{R}
+auto={T}:add{G}
+auto={T}:add{U}
+auto={T}:add{B}
+text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a multicolored spell.
+type=Land
+[/card]
+[card]
+name=Pinpoint Avalanche
+#MISSING: damage can't be prevented
+target=creature
+auto=damage:4
+text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
+mana={3}{R}{R}
+type=Instant
 [/card]
 [card]
 name=Pious Interdiction
@@ -27442,6 +27657,15 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Planar Chaos
+auto=@each my upkeep:name(Flip a coin) flipacoin loseability sacrifice loseabilityend flipend
+auto=@movedTo(*|mystack):name(Flip a coin) flipacoin loseability fizzle target(*|mystack) loseabilityend flipend
+auto=@movedTo(*|opponentstack):ability$!name(Flip a coin) flipacoin loseability fizzle target(*|mystack) loseabilityend flipend!$ opponent
+text=At the beginning of your upkeep, flip a coin. If you lose the flip, sacrifice Planar Chaos. -- Whenever a player casts a spell, that player flips a coin. If he or she loses the flip, counter that spell.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
 name=Planebound Accomplice
 auto={R}:may moveto(myBattlefield) target(planeswalker|myHand) && treason
 text={R}: You may put a planeswalker card from your hand onto the battlefield. Sacrifice it at the beginning of the next end step.
@@ -27459,6 +27683,19 @@ mana={5}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Plated Pegasus
+abilities=flash,flying
+auto=all(creature|battlefield) absorb
+auto=@damaged(controller):life:1 controller
+auto=@damaged(opponent):life:1 opponent
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- If a spell would deal damage to a creature or player, prevent 1 damage that spell would deal to that creature or player.
+mana={2}{W}
+type=Creature
+subtype=Pegasus
+power=1
+toughness=2
+[/card]
+[card]
 name=Play of the Game
 auto=moveto(exile) all(*[-land])
 text=Assist (Another player can pay up to {6} of this spell's cost.) -- Exile all nonland permanents.
@@ -27474,6 +27711,15 @@ mana={1}{G}{W}
 type=Instant
 [/card]
 [card]
+name=Plow Through Reito
+target=creature
+auto=foreach(plains|mybattlefield) may moveTo(myhand) target(plains|mybattlefield) && 1/1 ueot
+text=Sweep — Return any number of Plains you control to their owner's hand. Target creature gets +1/+1 until end of turn for each Plains returned this way.
+mana={1}{W}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
 name=Poison-Tip Archer
 abilities=deathtouch, reach
 auto=@movedTo(other creature|graveyard) from(battlefield):life:-1 opponent
@@ -27483,6 +27729,15 @@ type=Creature
 subtype=Elf Archer
 power=2
 toughness=3
+[/card]
+[card]
+name=Political Trickery
+target=land|opponentbattlefield
+auto=moveto(mybattlefield)
+auto=moveto(opponentbattlefield) target(land|mybattlefield)
+text=Exchange control of target land you control and target land an opponent controls. (This effect lasts indefinitely.)
+mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 name=Pollenbright Druid
@@ -27519,6 +27774,19 @@ type=Legendary Creature
 subtype=Zombie Hydra
 power=0
 toughness=0
+[/card]
+[card]
+name=Polymorphist's Jest
+other={1}{U}{U} name(Target Controller)
+auto=if paid(alternative) then all(creature|mybattlefield) loseabilities ueot
+auto=if paid(alternative) then all(creature|mybattlefield) transforms((,setpower=1,settoughness=1)) ueot
+auto=if paid(alternative) then all(creature|mybattlefield) transforms((Frog,blue)) ueot
+auto=ifnot paid(alternative) then all(creature|opponentbattlefield) loseabilities ueot
+auto=ifnot paid(alternative) then all(creature|opponentbattlefield) transforms((,setpower=1,settoughness=1)) ueot
+auto=ifnot paid(alternative) then all(creature|opponentbattlefield) transforms((Frog,blue)) ueot
+text=Until end of turn, each creature target player controls loses all abilities and becomes a blue Frog with base power and toughness 1/1.
+mana={1}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Polyraptor
@@ -27582,6 +27850,14 @@ power=0
 toughness=3
 [/card]
 [card]
+name=Postmortem Lunge
+other={X}{L:2} name(Pay with 2 life)
+auto=target(creature[manacost=X]|mygraveyard) moveto(mybattlefield) && transforms((,treson,haste)) forever
+text=({PB} can be paid with either {B} or 2 life.) -- Return target creature card with converted mana cost X from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step.
+mana={X}{B}
+type=Sorcery
+[/card]
+[card]
 name=Pounce
 target=creature|myBattlefield
 auto=transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot
@@ -27639,6 +27915,14 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Power Surge
+auto=@each my upkeep:damage:type:land[-tapped]:mybattlefield controller
+auto=@each opponent upkeep:damage:type:land[-tapped]:opponentbattlefield opponent
+text=At the beginning of each player's upkeep, Power Surge deals X damage to that player, where X is the number of untapped lands he or she controlled at the beginning of this turn.
+mana={R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Powerstone Shard
 auto={T}:foreach(Powerstone Shard|myBattlefield) add{1}
 text={T}: Add {C} for each artifact you control named Powerstone Shard.
@@ -27691,6 +27975,13 @@ auto=draw:3
 text=Draw three cards. -- Addendum — If you cast this spell during your main phase, instead scry 3, then draw three cards.
 mana={3}{U}{U}
 type=Instant
+[/card]
+[card]
+name=Predatory Focus
+auto=all(creature[blocked]|mybattlefield) transforms((,newability[target(player) dynamicability<!powerstrike!>])) ueot
+text=You may have creatures you control assign their combat damage this turn as though they weren't blocked.
+mana={3}{G}{G}
+type=Sorcery
 [/card]
 [card]
 name=Predatory Impetus
@@ -27773,6 +28064,24 @@ auto={0}restriction{type(this[counter{charge}=>4])~morethan~0}:flip(Primal Wells
 text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever you cast an instant or sorcery spell, put a charge counter on Primal Amulet. Then if there are four or more charge counters on it, you may remove those counters and transform it.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Primal Beyond
+auto=aslongas(Elemental|myhand) tap(noevent) <1 oneshot
+auto={T}:add{1}
+auto={T}:if type(*[elemental]|myhand)~morethan~0 then ability$!choice add{W} _ choice add{G} _ choice add{R} _choice add{U} _choice add{B}!$ controller
+text=As Primal Beyond enters the battlefield, you may reveal an Elemental card from your hand. If you don't, Primal Beyond enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast an Elemental spell or activate an ability of an Elemental.
+type=Land
+[/card]
+[card]
+name=Primal Command
+target=player
+auto=choice name(Choose 1 and 2) life:7 targetedplayer && target(player) moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)
+auto=choice name(Choose 1 and 3) life:7 targetedplayer && Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>creature|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=choice name(Choose 2 and 3) moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard) && Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>creature|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+text=Choose two — Target player gains 7 life; or put target noncreature permanent on top of its owner's library; or target player shuffles his or her graveyard into his or her library; or search your library for a creature card, reveal it, put it into your hand, then shuffle your library.
+mana={3}{G}{G}
+type=Sorcery
 [/card]
 [card]
 name=Primal Empathy
@@ -27880,6 +28189,26 @@ mana={X}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Profit // Loss
+other={2}{B} name(Loss)
+auto=if paid(alternative) then all(creature|opponentbattlefield) -1/-1 ueot
+kicker={2}{B}
+auto=kicker ifnot paid(alternative) then all(creature|opponentbattlefield) -1/-1 ueot
+auto=ifnot paid(alternative) then all(creature|mybattlefield) 1/1 ueot
+text=Creatures you control get +1/+1 until end of turn. // Creatures your opponents control get -1/-1 until end of turn. -- Fuse (You may cast one or both halves of this card from your hand.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Prohibit
+other={3}{U} name(Kicker)
+auto=ifnot paid(alternative) then target(*[manacost<=2]|stack) fizzle
+auto=if paid(alternative) then target(*[manacost<=4]|stack) fizzle
+text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Counter target spell if its converted mana cost is 2 or less. If Prohibit was kicked, counter that spell if its converted mana cost is 4 or less instead.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Prophet of the Peak
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Prophet of the Peak enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
@@ -27919,6 +28248,17 @@ type=Creature
 subtype=Shapeshifter Pirate
 power=2
 toughness=2
+[/card]
+[card]
+name=Protect // Serve
+other={1}{U} name(Serve)
+auto=if paid(alternative) then target(creature) -6/0 ueot
+kicker={1}{U}
+auto=kicker ifnot paid(alternative) then target(creature) -6/0 ueot
+auto=ifnot paid(alternative) then target(creature) 2/4 ueot
+text=Target creature gets +2/+4 until end of turn. // Target creature gets -6/-0 until end of turn. -- Fuse (You may cast one or both halves of this card from your hand.)
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Protection of the Hekma
@@ -27986,6 +28326,14 @@ type=Creature
 subtype=Human Warrior
 power=1
 toughness=1
+[/card]
+[card]
+name=Providence
+abilities=leyline
+auto=lifeset:26 controller
+text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, your life total becomes 26. -- Your life total becomes 26.
+mana={5}{W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Prowling Caracal
@@ -28063,11 +28411,28 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Pull from the Deep
+target=<upto:1>*[instant]|mygraveyard
+auto=moveto(exile) all(this)
+auto=moveto(myhand)
+auto=moveto(myhand) target(<upto:1>*[sorcery]|mygraveyard)
+text=Return up to one target instant card and up to one target sorcery card from your graveyard to your hand. Exile Pull from the Deep.
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
 name=Pull from Tomorrow
 auto=draw:X && reject notatarget(*|myhand)
 text=Draw X cards, then discard a card.
 mana={X}{U}{U}
 type=Instant
+[/card]
+[card]
+name=Pulse of Llanowar
+auto=all(land[basic]|mybattlefield) transforms((,newability[producecolor:land],newability[producecolor:green],newability[producecolor:blue],newability[producecolor:red],newability[producecolor:black],newability[producecolor:white])) forever
+text=If a basic land you control is tapped for mana, it produces mana of a color of your choice instead of any other type.
+mana={3}{G}
+type=Enchantment
 [/card]
 [card]
 name=Puncturing Blow
@@ -28076,6 +28441,15 @@ auto=damage:5
 auto=exiledeath
 text=Puncturing Blow deals 5 damage to target creature. If that creature would die this turn, exile it instead.
 mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Pure // Simple
+other={1}{G}{W} name(Simple)
+auto=ifnot paid(alternative) then target(creature[multicolor]|battlefield) destroy
+auto=if paid(alternative) then all(*[aura;equipment]|battlefield) destroy
+text=Destroy target multicolored permanent. // Destroy all Auras and Equipment.
+mana={1}{R}{G}
 type=Sorcery
 [/card]
 [card]
@@ -28116,6 +28490,15 @@ auto=all(creature[attacking]) 2/0
 autohand=__CYCLING__({2})
 text=Attacking creatures get +2/+0 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{R}
+type=Instant
+[/card]
+[card]
+name=Put Away
+target=*|stack
+auto=fizzle
+auto=may moveto(mylibrary) target(*|mygraveyard) && shuffle controller
+text=Counter target spell. You may shuffle up to one target card from your graveyard into your library.
+mana={2}{U}{U}
 type=Instant
 [/card]
 [card]
@@ -28166,6 +28549,18 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Pyrokinesis
+target=creature
+other={E(*[red]|myhand)} name(Exile red card)
+auto=damage:1
+auto=damage:1 target(creature)
+auto=ability$!name(1 damage to target creature) choice target(creature) damage:1!$ controller
+auto=ability$!name(1 damage to target creature) choice target(creature) damage:1!$ controller
+text=You may exile a red card from your hand rather than pay Pyrokinesis's mana cost. -- Pyrokinesis deals 4 damage divided as you choose among any number of target creatures.
+mana={4}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Pyromantic Pilgrim
 abilities=haste
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
@@ -28192,6 +28587,27 @@ auto=all(creature[coward]) cantblock ueot
 text=Pyrophobia deals 3 damage to target creature. Cowards can't block this turn.
 mana={1}{R}
 type=Sorcery
+[/card]
+[card]
+name=Pyrotechnics
+target=creature,player
+auto=damage:1
+auto=damage:1 target(creature,player)
+auto=ability$!name(1 damage to target creature or player) choice target(creature,player) damage:1!$ controller
+auto=ability$!name(1 damage to target creature or player) choice target(creature,player) damage:1!$ controller
+text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Qarsi Deceiver
+auto={T}:add{1}
+text={T}: Add {1} to your mana pool. Spend this mana only to cast a face-down creature spell, pay a mana cost to turn a manifested creature face up, or pay a morph cost. (A megamorph cost is a morph cost.)
+mana={1}{U}
+type=Creature
+subtype=Naga Wizard
+power=0
+toughness=4
 [/card]
 [card]
 name=Qasali Ambusher
@@ -28248,6 +28664,17 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Quarry Colossus
+auto=choice name(Choose your creature) target(creature|mybattlefield) moveto(mylibrary) && foreach(plains|mybattlefield) moverandom(*|mylibrary) from(mylibrary) to(mylibrary)
+auto=choice name(Choose an opponent's creature) target(creature|opponentbattlefield) moveto(opponentlibrary) && foreach(plains|mybattlefield) moverandom(*|opponentlibrary) from(opponentlibrary) to(opponentlibrary)
+text=When Quarry Colossus enters the battlefield, put target creature into its owner's library just beneath the top X cards of that library, where X is the number of Plains you control.
+mana={5}{W}{W}
+type=Creature
+subtype=Giant
+power=5
+toughness=6
+[/card]
+[card]
 name=Quarry Hauler
 auto=target(proliferation) proliferate
 text=When Quarry Hauler enters the battlefield, for each kind of counter on target permanent, put another counter of that kind on it or remove one from it.
@@ -28267,6 +28694,16 @@ type=Creature
 subtype=Dinosaur Beast
 power=6
 toughness=6
+[/card]
+[card]
+name=Quarum Trench Gnomes
+auto={T}:target(plains|battlefield) loseabilities && transforms((,newability[producecolor:land])) forever
+text={T}: If target Plains is tapped for mana, it produces colorless mana instead of white mana. (This effect lasts indefinitely.)
+mana={3}{R}
+type=Creature
+subtype=Gnome
+power=1
+toughness=1
 [/card]
 [card]
 name=Quasiduplicate
@@ -28327,6 +28764,15 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Quenchable Fire
+target=player
+auto=damage:3
+auto=ability$!name(Pay or lifeloss) pay[[{U}]] name(Pay blue mana) donothing?damage:3!$ targetedplayer
+text=Quenchable Fire deals 3 damage to target player. It deals an additional 3 damage to that player at the beginning of your next upkeep step unless he or she pays {U} before that step.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 name=Questing Beast
 abilities=vigilance,deathtouch,haste
 auto=cantbeblockedby(creature[power<=2])
@@ -28338,6 +28784,34 @@ type=Legendary Creature
 subtype=Beast
 power=4
 toughness=4
+[/card]
+[card]
+name=Quicken
+auto=target(sorcery|myhand) transforms((,newability[flash])) ueot
+auto=draw:1 controller
+text=The next sorcery card you cast this turn can be cast as though it had flash. -- Draw a card.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Quicksilver Wall
+abilities=defender
+auto={4}:moveto(myhand)
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 4) pay[[{4}]] name(Pay 4) moveto(opponenthand) notatarget(Quicksilver Wall|opponentBattlefield)?donothing!$ opponent])) forever
+text=Defender (This creature can't attack.) -- {4}: Return Quicksilver Wall to its owner's hand. Any player may activate this ability.
+mana={2}{U}
+type=Creature
+subtype=Wall
+power=1
+toughness=6
+[/card]
+[card]
+name=Quiet Speculation
+target=player
+auto=Reveal:type:*:targetedpersonslibrary revealzone(targetedpersonslibrary) optionone name(Choose 3 cards with flashback) target(<upto:3>*[flashback]|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put back) all(*|reveal) moveto(ownerlibrary) optiontwoend revealend
+text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
+mana={1}{U}
+type=Sorcery
 [/card]
 [card]
 name=Radiating Lightning
@@ -28464,6 +28938,16 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
+name=Rain of Rust
+target=artifact,land
+other={3}{R} name(Entwine)
+auto=ifnot paid(alternative) then destroy
+auto=if paid(alternative) then destroy && destroy target(artifact,land)
+text=Choose one — Destroy target artifact; or destroy target land. -- Entwine {3}{R} (Choose both if you pay the entwine cost.)
+mana={3}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Rain of Thorns
 auto=choice name(Destroy target artifact) destroy target(artifact)
 auto=choice name(Destroy target land) destroy target(land)
@@ -28482,6 +28966,20 @@ type=Legendary Creature
 subtype=Angel
 power=6
 toughness=3
+[/card]
+[card]
+name=Rakavolver
+other={2}{R}{U} name(Kicker blu mana}
+auto=if paid(alternative) then counter(1/1) && flying
+kicker={1}{W}
+auto=kicker ifnot paid(alternative) then counter(1/1,2) && lifelink
+auto=kicker if paid(alternative) then counter(1/1,3) && lifelink && flying
+text=Kicker {1}{W} and/or {U} (You may pay an additional {1}{W} and/or {U} as you cast this spell.) -- If Rakavolver was kicked with its {1}{W} kicker, it enters the battlefield with two +1/+1 counters on it and with "Whenever Rakavolver deals damage, you gain that much life." -- If Rakavolver was kicked with its {U} kicker, it enters the battlefield with a +1/+1 counter on it and with flying.
+mana={2}{R}
+type=Creature
+subtype=Volver
+power=2
+toughness=2
 [/card]
 [card]
 name=Rakdos Augermage
@@ -29004,6 +29502,24 @@ power=8
 toughness=8
 [/card]
 [card]
+name=Read the Runes
+auto=thisforeach(X) draw:1 controller && ability$!name(Choose one) choice name(Discard a card) target(*|myhand) reject _ choice name(Sacrifice a permanent) target(*|mybattlefield) sacrifice!$ controller
+text=Draw X cards. For each card drawn this way, discard a card unless you sacrifice a permanent.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Ready // Willing
+other={1}{W}{B} name(Willing)
+auto=if paid(alternative) then all(creature|mybattlefield) transforms((,newability[lifelink ueot],newability[deathtouch ueot])) ueot
+kicker={1}{W}{B}
+auto=kicker ifnot paid(alternative) then all(creature|mybattlefield) transforms((,newability[lifelink ueot],newability[deathtouch ueot],newability[indestructible ueot],newability[untap])) ueot
+auto=ifnot paid(alternative) then all(creature|mybattlefield) transforms((,newability[indestructible ueot],newability[untap])) ueot
+text=Creatures you control are indestructible this turn. Untap each creature you control. // Creatures you control gain deathtouch and lifelink until end of turn. -- Fuse (You may cast one or both halves of this card from your hand.)
+mana={1}{G}{W}
+type=Instant
+[/card]
+[card]
 name=Reality Shift
 target=creature
 auto=moveto(exile)
@@ -29011,6 +29527,17 @@ auto=manifest all(*[zpos=1]|mylibrary) controller
 text=Exile target creature. Its controller manifests the top card of their library. (That player puts the top card of their library onto the battlefield face down as a 2/2 creature. If it’s a creature card, it can be turned face up any time for its mana cost.)
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Reality Smasher
+abilities=trample,haste
+auto=@targeted(this) from(*|opponentcastingzone):all(trigger[from]) transforms((,newability[pay[[{D:1}]] name(Discard a card) donothing?fizzle])) forever
+text=({C} represents colorless mana.) -- Trample, haste -- Whenever Reality Smasher becomes the target of a spell an opponent controls, counter that spell unless its controller discards a card.
+mana={4}{C}
+type=Creature
+subtype=Eldrazi
+power=5
+toughness=5
 [/card]
 [card]
 name=Realm-Cloaked Giant // Cast Off
@@ -29023,6 +29550,16 @@ type=Creature
 subtype=Giant
 power=7
 toughness=7
+[/card]
+[card]
+name=Reap and Sow
+other={1}{G} name(Entwine)
+auto=ifnot paid(alternative) then choice name(Destroy land) destroy target(land|battlefield)
+auto=ifnot paid(alternative) then choice name(Reveal land) reveal:plibrarycount optionone name(choose card) target(land|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend
+auto=if paid(alternative) then destroy target(land|battlefield) && name(Reveal land) reveal:plibrarycount optionone name(choose card) target(land|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend
+text=Choose one — Destroy target land; or search your library for a land card, put that card onto the battlefield, then shuffle your library. -- Entwine {1}{G} (Choose both if you pay the entwine cost.)
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 name=Reap the Past
@@ -29896,6 +30433,16 @@ mana={2}{W}
 type=Creature
 subtype=Bird
 power=1
+toughness=3
+[/card]
+[card]
+name=Rock Lobster
+auto=all(Scissors Lizards|battlefield) cantblock
+auto=all(Scissors Lizards|battlefield) cantattack
+text=Scissors Lizards cannot attack or block.
+mana={4}
+type=Artifact Creature
+power=4
 toughness=3
 [/card]
 [card]
@@ -31044,6 +31591,16 @@ mana={5}{U}{U}
 type=Creature
 subtype=Human Wizard
 power=3
+toughness=3
+[/card]
+[card]
+name=Scissors Lizard
+text=Paper Tigers cannot attack or block.
+auto=all(Paper Tigers|battlefield) cantblock
+auto=all(Paper Tigers|battlefield) cantattack
+mana={4}
+type=Artifact Creature
+power=4
 toughness=3
 [/card]
 [card]
