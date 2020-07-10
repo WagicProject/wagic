@@ -3200,15 +3200,6 @@ mana={U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Deepglow Skate
-text=When Deepglow Skate enters the battlefield, double the number of each kind of counter on any number of target permanents.
-mana={4}{U}
-type=Creature
-subtype=Fish
-power=3
-toughness=3
-[/card]
-[card]
 name=Defective Detective
 text=Defective Detective can't be blocked. -- When Defective Detective enters the battlefield, a person outside the game looks at target opponent's hand and chooses a card from it. That player reveals that card.
 mana={2}{U}
@@ -3589,12 +3580,6 @@ name=Doubling Chant
 text=For each creature you control, you may search your library for a creature card with the same name as that creature. Put those cards onto the battlefield, then shuffle your library.
 mana={5}{G}
 type=Sorcery
-[/card]
-[card]
-name=Doubling Season
-text=If an effect would put one or more tokens onto the battlefield under your control, it puts twice that many of those tokens onto the battlefield instead. -- If an effect would place one or more counters on a permanent you control, it places twice that many of those counters on that permanent instead.
-mana={4}{G}
-type=Enchantment
 [/card]
 [card]
 name=Dovin Baan
@@ -14630,17 +14615,6 @@ text=If a player would begin an extra turn, that player skips that turn instead.
 mana={5}
 type=Legendary Artifact
 [/card]
-#TBD
-[card]
-name=Ulamog's Nullifier
-abilities=devoid
-text=Devoid (This card has no color.) -- Flash -- Flying -- When Ulamog's Nullifier enters the battlefield, you may put two cards your opponents own from exile into their owners' graveyards. If you do, counter target spell.
-mana={2}{U}{B}
-type=Creature
-subtype=Eldrazi Processor
-power=2
-toughness=3
-[/card]
 [card]
 name=Umbra Mystic
 text=Auras attached to permanents you control have totem armor. (If an enchanted permanent you control would be destroyed, instead remove all damage from it and destroy an Aura attached to it.)
@@ -14711,62 +14685,10 @@ text=Black legendary creatures you control have "bands with other legendary crea
 type=Land
 [/card]
 [card]
-name=Unifying Theory
-text=Whenever a player casts a spell, that player may pay {2}. If the player does, he or she draws a card.
-mana={1}{U}
-type=Enchantment
-[/card]
-[card]
-name=Unliving Psychopath
-text={B}: Unliving Psychopath gets +1/-1 until end of turn. -- {B}, {T}: Destroy target creature with power less than Unliving Psychopath's power.
-mana={2}{B}{B}
-type=Creature
-subtype=Zombie Assassin
-power=0
-toughness=4
-[/card]
-[card]
-name=Unnatural Aggression
-text=Devoid (This card has no color.) -- Target creature you control fights target creature an opponent controls. If the creature an opponent controls would die this turn, exile it instead.
-mana={2}{G}
-type=Instant
-[/card]
-[card]
 name=Unpredictable Cyclone
 text=If a cycling ability of another nonland card would cause you to draw a card, instead exile cards from the top of your library until you exile a card that shares a card type with the cycled card. You may cast that card without paying its mana cost. Then put the exiled cards that weren't cast this way on the bottom of your library in a random order. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Unsettled Mariner
-abilities=changeling
-auto=@targeted(*|mybattlefield) from(*|opponentbattlefield,opponenthand,opponentstack,opponentgraveyard,opponentexile,opponentlibrary):transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
-text=Changeling (This card is every creature type.) -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}.
-mana={W}{U}
-type=Creature
-subtype=Shapeshifter
-power=2
-toughness=2
-[/card]
-[card]
-name=Unstable Footing
-text=Kicker {3}{R} (You may pay an additional {3}{R} as you cast this spell.) -- Damage can't be prevented this turn. If Unstable Footing was kicked, it deals 5 damage to target player.
-mana={R}
-type=Instant
-[/card]
-[card]
-name=Untaidake, the Cloud Keeper
-text=Untaidake, the Cloud Keeper enters the battlefield tapped. -- {T}, Pay 2 life: Add {2} to your mana pool. Spend this mana only to cast legendary spells.
-type=Legendary Land
-[/card]
-[card]
-name=Urborg Panther
-text={B}, Sacrifice Urborg Panther: Destroy target creature blocking Urborg Panther. -- Sacrifice a creature named Feral Shadow, a creature named Breathstealer, and Urborg Panther: Search your library for a card named Spirit of the Night and put that card onto the battlefield. Then shuffle your library.
-mana={2}{B}
-type=Creature
-subtype=Nightstalker Cat
-power=2
-toughness=2
 [/card]
 [card]
 name=Uro, Titan of Nature's Wrath
@@ -14778,12 +14700,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Urza's Armor
-text=If a source would deal damage to you, prevent 1 of that damage.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Urza's Avenger
 text={0}: Urza's Avenger gets -1/-1 and gains your choice of banding, flying, first strike, or trample until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={6}
@@ -14791,12 +14707,6 @@ type=Artifact Creature
 subtype=Shapeshifter
 power=4
 toughness=4
-[/card]
-[card]
-name=Urza's Bauble
-text={T}, Sacrifice Urza's Bauble: Look at a card at random in target player's hand. You draw a card at the beginning of the next turn's upkeep.
-mana={0}
-type=Artifact
 [/card]
 [card]
 name=Urza's Contact Lenses
@@ -14819,18 +14729,6 @@ name=Urza's Hot Tub
 text={2}, Discard a card: Search your library for a card that shares a complete word in its name with the discarded card, reveal it, and put it into your hand. Then shuffle your library.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Urza's Miter
-text=Whenever an artifact you control is put into a graveyard from the battlefield, if it wasn't sacrificed, you may pay {3}. If you do, draw a card.
-mana={3}
-type=Artifact
-[/card]
-[card]
-name=Urza's Rage
-text=Kicker {8}{R} (You may pay an additional {8}{R} as you cast this spell.) -- Urza's Rage can't be countered by spells or abilities. -- Urza's Rage deals 3 damage to target creature or player. If Urza's Rage was kicked, instead it deals 10 damage to that creature or player and the damage can't be prevented.
-mana={2}{R}
-type=Instant
 [/card]
 [card]
 name=Urza's Science Fair Project
@@ -14873,13 +14771,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Vanguard's Shield
-text=Equipped creature gets +0/+3 and can block an additional creature. -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Vanish into Memory
 text=Exile target creature. You draw cards equal to that creature's power. At the beginning of your next upkeep, return that card to the battlefield under its owner's control. If you do, discard cards equal to its toughness.
 mana={2}{W}{U}
@@ -14901,24 +14792,6 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
-name=Vedalken Engineer
-text={T}: Add two mana of any one color to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
-mana={1}{U}
-type=Creature
-subtype=Vedalken Artificer
-power=1
-toughness=1
-[/card]
-[card]
-name=Vedalken Plotter
-text=When Vedalken Plotter enters the battlefield, exchange control of target land you control and target land an opponent controls.
-mana={2}{U}
-type=Creature
-subtype=Vedalken Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Veil of Secrecy
 text=Target creature gains shroud until end of turn and is unblockable this turn. -- Splice onto Arcane—Return a blue creature you control to its owner's hand. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}
@@ -14932,23 +14805,10 @@ mana={G}
 type=Instant
 [/card]
 [card]
-name=Veiled Crocodile
-text=When a player has no cards in hand, if Veiled Crocodile is an enchantment, Veiled Crocodile becomes a 4/4 Crocodile creature.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
 name=Veiled Sentry
 text=When an opponent casts a spell, if Veiled Sentry is an enchantment, Veiled Sentry becomes an Illusion creature with power and toughness each equal to that spell's converted mana cost.
 mana={U}
 type=Enchantment
-[/card]
-[card]
-name=Venarian Gold
-text=Enchant creature -- When Venarian Gold enters the battlefield, tap enchanted creature and put X sleep counters on it. -- Enchanted creature doesn't untap during its controller's untap step if it has a sleep counter on it. -- At the beginning of the upkeep of enchanted creature's controller, remove a sleep counter from that creature.
-mana={X}{U}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Vengeful Archon
@@ -14961,44 +14821,10 @@ power=7
 toughness=7
 [/card]
 [card]
-name=Vengeful Dreams
-text=As an additional cost to cast Vengeful Dreams, discard X cards. -- Exile X target attacking creatures.
-mana={W}{W}
-type=Instant
-[/card]
-[card]
-name=Vengeful Rebirth
-text=Return target card from your graveyard to your hand. If you return a nonland card to your hand this way, Vengeful Rebirth deals damage equal to that card's converted mana cost to target creature or player. -- Exile Vengeful Rebirth.
-mana={4}{R}{G}
-type=Sorcery
-[/card]
-[card]
 name=Venomous Breath
 text=Choose target creature. At end of combat, destroy all creatures that blocked or were blocked by it this turn.
 mana={3}{G}
 type=Instant
-[/card]
-[card]
-name=Venser, Shaper Savant
-abilities=flash
-text=Flash (You may cast this spell any time you could cast an instant.) -- When Venser, Shaper Savant enters the battlefield, return target spell or permanent to its owner's hand.
-mana={2}{U}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=2
-toughness=2
-[/card]
-[card]
-name=Verdant Confluence
-text=Choose three. You may choose the same mode more than once. -- • Put two +1/+1 counters on target creature. -- • Return target permanent card from your graveyard to your hand. -- • Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
-mana={4}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Verdant Crescendo
-text=Search your library for a basic land card and put it onto the battlefield tapped. Search your library and graveyard for a card named Nissa, Nature's Artisan, reveal it, and put it into your hand. Then shuffle your library.
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
 name=Very Cryptic Command (a)
@@ -15070,39 +14896,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Vexing Devil
-text=When Vexing Devil enters the battlefield, any opponent may have it deal 4 damage to him or her. If a player does, sacrifice Vexing Devil.
-mana={R}
-type=Creature
-subtype=Devil
-power=4
-toughness=3
-[/card]
-[card]
-name=Vicious Betrayal
-text=As an additional cost to cast Vicious Betrayal, sacrifice any number of creatures. -- Target creature gets +2/+2 until end of turn for each creature sacrificed this way.
-mana={3}{B}{B}
-type=Sorcery
-[/card]
-[card]
-name=Victimize
-text=Choose two target creature cards in your graveyard. Sacrifice a creature. If you do, return the chosen cards to the battlefield tapped.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
-name=View from Above
-text=Target creature gains flying until end of turn. If you control a white permanent, return View from Above to its owner's hand.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
-name=Vigil for the Lost
-text=Whenever a creature you control dies, you may pay {X}. If you do, you gain X life.
-mana={3}{W}
-type=Enchantment
-[/card]
-[card]
 name=Vile Bile
 text=Whenever a player's skin or fingernail touches Vile Bile, that player loses 2 life.
 mana={1}{B}
@@ -15112,38 +14905,10 @@ power=2{1/2}
 toughness=2{1/2}
 [/card]
 [card]
-name=Vintara Elephant
-abilities=trample
-text=Trample -- {3}: Vintara Elephant loses trample until end of turn. Any player may activate this ability.
-mana={4}{G}
-type=Creature
-subtype=Elephant
-power=4
-toughness=3
-[/card]
-[card]
-name=Violent Eruption
-text=Violent Eruption deals 4 damage divided as you choose among any number of target creatures and/or players. -- Madness {1}{R}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={1}{R}{R}{R}
-type=Instant
-[/card]
-[card]
-name=Virulent Wound
-text=Put a -1/-1 counter on target creature. When that creature dies this turn, its controller gets a poison counter.
-mana={B}
-type=Instant
-[/card]
-[card]
 name=Vision Charm
 text=Choose one — Target player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Visions
-text=Look at the top five cards of target player's library. You may then have that player shuffle that library.
-mana={W}
-type=Sorcery
 [/card]
 [card]
 name=Vital Surge
@@ -15170,25 +14935,6 @@ type=Creature
 subtype=Wall
 power=0
 toughness=4
-[/card]
-[card]
-name=Voice of Many
-text=When Voice of Many enters the battlefield, draw a card for each opponent who controls fewer creatures than you.
-mana={2}{G}{G}
-type=Creature
-subtype=Elf Druid
-power=3
-toughness=3
-[/card]
-[card]
-name=Void Maw
-abilities=trample
-text=Trample -- If another creature would die, exile it instead. -- Put a card exiled with Void Maw into its owner's graveyard: Void Maw gets +2/+2 until end of turn.
-mana={4}{B}{B}
-type=Creature
-subtype=Horror
-power=4
-toughness=5
 [/card]
 [card]
 name=Voidmage Husher
@@ -15238,18 +14984,6 @@ mana={4}{R}
 type=Instant
 [/card]
 [card]
-name=Volcanic Vision
-text=Return target instant or sorcery card from your graveyard to your hand. Volcanic Vision deals damage equal to that card's converted mana cost to each creature your opponents control. Exile Volcanic Vision.
-mana={5}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Volcanic Wind
-text=Volcanic Wind deals X damage divided as you choose among any number of target creatures, where X is the number of creatures on the battlefield as you cast Volcanic Wind.
-mana={4}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Volcano Hellion
 text=Volcano Hellion has echo {X}, where X is your life total. (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Volcano Hellion enters the battlefield, it deals an amount of damage of your choice to you and target creature. The damage can't be prevented.
 mana={2}{R}{R}
@@ -15259,23 +14993,11 @@ power=6
 toughness=5
 [/card]
 [card]
-name=Volley of Boulders
-text=Volley of Boulders deals 6 damage divided as you choose among any number of target creatures and/or players. -- Flashback {R}{R}{R}{R}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={8}{R}
-type=Sorcery
-[/card]
-[card]
 name=Volrath's Curse
 text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. That creature's controller may sacrifice a permanent for that player to ignore this effect until end of turn. -- {1}{U}: Return Volrath's Curse to its owner's hand.
 mana={1}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Volrath's Dungeon
-text=Pay 5 life: Destroy Volrath's Dungeon. Any player may activate this ability but only during his or her turn. -- Discard a card: Target player puts a card from his or her hand on top of his or her library. Activate this ability only any time you could cast a sorcery.
-mana={2}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Volrath's Motion Sensor
@@ -15313,15 +15035,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Voracious Vacuum
-text=When this creature enters the battlefield, put a +1/+1 counter on target creature.
-mana={3}
-type=Host Artifact Creature
-subtype=Construct
-power=1
-toughness=1
-[/card]
-[card]
 name=Vortex Elemental
 text={U}: Put Vortex Elemental and each creature blocking or blocked by it on top of their owners' libraries, then those players shuffle their libraries. -- {3}{U}{U}: Target creature blocks Vortex Elemental this turn if able.
 mana={U}
@@ -15341,16 +15054,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Wall of Corpses
-abilities=defender
-text=Defender (This creature can't attack.) -- {B}, Sacrifice Wall of Corpses: Destroy target creature Wall of Corpses is blocking.
-mana={1}{B}
-type=Creature
-subtype=Wall
-power=0
-toughness=2
-[/card]
-[card]
 name=Wall of Deceit
 abilities=defender
 text=Defender (This creature can't attack.) -- {3}: Turn Wall of Deceit face down. -- Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
@@ -15368,16 +15071,6 @@ type=Artifact Creature
 subtype=Wall
 power=0
 toughness=4
-[/card]
-[card]
-name=Wall of Glare
-abilities=defender
-text=Defender (This creature can't attack.) -- Wall of Glare can block any number of creatures.
-mana={1}{W}
-type=Creature
-subtype=Wall
-power=0
-toughness=5
 [/card]
 [card]
 name=Wall of Shadows
@@ -15425,22 +15118,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Wandering Eye
-abilities=flying
-text=Flying -- Players play with their hands revealed.
-mana={2}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=3
-[/card]
-[card]
-name=War Barge
-text={3}: Target creature gains islandwalk until end of turn. When War Barge leaves the battlefield this turn, destroy that creature. A creature destroyed this way can't be regenerated.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=War Elephant
 abilities=trample,banding
 text=Trample; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
@@ -15483,25 +15160,10 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Warmonger
-text={2}: Warmonger deals 1 damage to each creature without flying and each player. Any player may activate this ability.
-mana={3}{R}
-type=Creature
-subtype=Minotaur Monger
-power=3
-toughness=3
-[/card]
-[card]
 name=Warp World
 text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way onto the battlefield, then does the same for enchantment cards, then puts all cards revealed this way that weren't put onto the battlefield on the bottom of his or her library.
 mana={5}{R}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Warping Wail
-text=({C} represents colorless mana.) -- Choose one — -- • Exile target creature with power or toughness 1 or less. -- • Counter target sorcery spell. -- • Put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {C} to your mana pool."
-mana={1}{C}
-type=Instant
 [/card]
 [card]
 name=Warrior en-Kor
@@ -15522,16 +15184,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Watcher in the Web
-abilities=reach
-text=Reach (This creature can block creatures with flying.) -- Watcher in the Web can block an additional seven creatures each combat.
-mana={4}{G}
-type=Creature
-subtype=Spider
-power=2
-toughness=5
-[/card]
-[card]
 name=Water Gun Balloon Game
 text=As Water Gun Balloon Game comes into play, each player puts a pop counter on a 0. -- Whenever a player plays a spell, move that player's pop counter up 1. -- Whenever a player's pop counter hits 5, that player puts a 5/5 pink Giant Teddy Bear creature token into play and resets all pop counters to 0.
 mana={2}
@@ -15549,22 +15201,10 @@ mana={5}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Wax // Wane
-text=Target creature gets +2/+2 until end of turn. --  //  -- Destroy target enchantment.
-mana={G} // {W}
-type=Instant // Instant
-[/card]
-[card]
 name=Waxing Moon
 text=Transform up to one target Werewolf you control. Creatures you control gain trample until end of turn.
 mana={1}{G}
 type=Instant
-[/card]
-[card]
-name=Wear // Tear
-text=Destroy target artifact. --  //  -- Destroy target enchantment. --  -- Fuse (You may cast one or both halves of this card from your hand.)
-mana={1}{R} // {W}
-type=Instant // Instant
 [/card]
 [card]
 name=Wear Away
@@ -15616,23 +15256,10 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Well of Knowledge
-text={2}: Draw a card. Any player may activate this ability but only during his or her draw step.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Wet Willie of the Damned
 text=Wet Willie of the Damned deals 2½ damage to target creature or player and you gain 2½ life.
 mana={2}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Wheel of Sun and Moon
-text=Enchant player -- If a card would be put into enchanted player's graveyard from anywhere, instead that card is revealed and put on the bottom of that player's library.
-mana={GW}{GW}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=When Fluffy Bunnies Attack
@@ -15741,15 +15368,6 @@ text=Who -- {X}{W} -- Instant -- Target player gains X life. -- ----- -- What --
 type=Instant
 [/card]
 [card]
-name=Wicked Akuba
-text={B}: Target player dealt damage by Wicked Akuba this turn loses 1 life.
-mana={B}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-[/card]
-[card]
 name=Widespread Panic
 text=Whenever a spell or ability causes its controller to shuffle his or her library, that player puts a card from his or her hand on top of his or her library.
 mana={2}{R}
@@ -15762,25 +15380,10 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
-name=Wild Crocodile
-text=When this creature enters the battlefield, search your library for a basic land card, reveal it, put it into your hand, then shuffle your library.
-mana={1}{G}
-type=Host Creature
-subtype=Crocodile
-power=1
-toughness=1
-[/card]
-[card]
 name=Wild Evocation
 text=At the beginning of each player's upkeep, that player reveals a card at random from his or her hand. If it's a land card, the player puts it onto the battlefield. Otherwise, the player casts it without paying its mana cost if able.
 mana={5}{R}
 type=Enchantment
-[/card]
-[card]
-name=Wild Might
-text=Target creature gets +1/+1 until end of turn. That creature gets an additional +4/+4 until end of turn unless any player pays {2}.
-mana={1}{G}
-type=Instant
 [/card]
 [card]
 name=Wild Pair
@@ -15792,12 +15395,6 @@ type=Enchantment
 name=Wild Ricochet
 text=You may choose new targets for target instant or sorcery spell. Then copy that spell. You may choose new targets for the copy.
 mana={2}{R}{R}
-type=Instant
-[/card]
-[card]
-name=Wild Slash
-text=Ferocious — If you control a creature with power 4 or greater, damage can't be prevented this turn. -- Wild Slash deals 2 damage to target creature or player.
-mana={R}
 type=Instant
 [/card]
 [card]
@@ -15858,25 +15455,9 @@ type=Plane
 subtype=Belenon
 [/card]
 [card]
-name=Winds of Abandon
-abilities=overload
-other={4}{W}{W} name(Overload)
-target=creature|opponentbattlefield
-auto=moveto(exile)
-text=Exile target creature you don't control. For each creature exiled this way, its controller searches their library for a basic land card. Those players put those cards onto the battlefield tapped, then shuffle their libraries. -- Overload {4}{W}{W} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={1}{W}
-type=Sorcery
-[/card]
-[card]
 name=Winter's Chill
 text=Cast Winter's Chill only during combat before blockers are declared. -- X can't be greater than the number of snow lands you control. -- Choose X target attacking creatures. For each of those creatures, its controller may pay {1} or {2}. If that player doesn't, destroy that creature at end of combat. If that player pays only {1}, prevent all combat damage that would be dealt to and dealt by that creature this combat.
 mana={X}{U}
-type=Instant
-[/card]
-[card]
-name=Winterflame
-text=Choose one or both — -- • Tap target creature. -- • Winterflame deals 2 damage to target creature.
-mana={1}{U}{R}
 type=Instant
 [/card]
 [card]
@@ -15887,12 +15468,6 @@ type=Creature
 subtype=Unicorn Monger
 power=3
 toughness=3
-[/card]
-[card]
-name=Withdraw
-text=Return target creature to its owner's hand. Then return another target creature to its owner's hand unless its controller pays {1}.
-mana={U}{U}
-type=Instant
 [/card]
 [card]
 name=Wojek Apothecary
@@ -16029,16 +15604,6 @@ mana={4}{WU}{WU}{WU}{WU}
 type=Sorcery
 [/card]
 [card]
-name=Wormfang Crab
-abilities=unblockable.
-text=Wormfang Crab is unblockable. -- When Wormfang Crab enters the battlefield, an opponent chooses a permanent you control other than Wormfang Crab and exiles it. -- When Wormfang Crab leaves the battlefield, return the exiled card to the battlefield under its owner's control.
-mana={3}{U}
-type=Creature
-subtype=Nightmare Crab
-power=3
-toughness=6
-[/card]
-[card]
 name=Worms of the Earth
 text=Players can't play lands. -- Lands can't enter the battlefield. -- At the beginning of each upkeep, any player may sacrifice two lands or have Worms of the Earth deal 5 damage to him or her. If a player does either, destroy Worms of the Earth.
 mana={2}{B}{B}{B}
@@ -16080,12 +15645,6 @@ type=Legendary Planeswalker
 subtype=Wrenn
 [/card]
 [card]
-name=Wretched Confluence
-text=Choose three. You may choose the same mode more than once. -- • Target player draws a card and loses 1 life. -- • Target creature gets -2/-2 until end of turn. -- • Return target creature card from your graveyard to your hand.
-mana={3}{B}{B}
-type=Instant
-[/card]
-[card]
 name=Write into Being
 text=Look at the top two cards of your library. Manifest one of those cards, then put the other on the top or bottom of your library. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
 mana={2}{U}
@@ -16099,21 +15658,6 @@ type=Legendary Creature
 subtype=Human Spy
 power=2
 toughness=2
-[/card]
-[card]
-name=Xenic Poltergeist
-text={T}: Until your next upkeep, target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost.
-mana={1}{B}{B}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-[/card]
-[card]
-name=Yare
-text=Target creature defending player controls gets +3/+0 until end of turn. That creature can block up to two additional creatures this turn.
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Yarok, the Desecrated
@@ -16239,16 +15783,6 @@ type=Legendary Creature
 subtype=Minotaur Monk
 power=2
 toughness=4
-[/card]
-[card]
-name=Zerapa Minotaur
-abilities=first strike
-text=First strike -- {2}: Zerapa Minotaur loses first strike until end of turn. Any player may activate this ability.
-mana={2}{R}{R}
-type=Creature
-subtype=Minotaur
-power=3
-toughness=3
 [/card]
 [card]
 name=Zhalfirin Crusader

@@ -2276,8 +2276,8 @@ toughness=2
 [card]
 name=Aven Wind Guide
 abilities=flying, vigilance
-auto=lord(token|mybattlefield) flying
-auto=lord(token|mybattlefield) vigilance
+auto=lord(*[token]|mybattlefield) flying
+auto=lord(*[token]|mybattlefield) vigilance
 autograveyard={4}{W}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
 text=Flying, vigilance -- Creature tokens you control have flying and vigilance. -- Embalm {4}{W}{U} ({4}{W}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Bird Warrior with no mana cost. Embalm only as a sorcery.)
 mana={2}{W}{U}
@@ -9130,6 +9130,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Deepglow Skate
+auto=target(<anyamount>*|battlefield) duplicatecounters(all)
+text=When Deepglow Skate enters the battlefield, double the number of each kind of counter on any number of target permanents.
+mana={4}{U}
+type=Creature
+subtype=Fish
+power=3
+toughness=3
+[/card]
+[card]
 name=Deeproot Champion
 auto=@movedTo(*[-creature]|mystack):counter(1/1,1)
 text=Whenever you cast a noncreature spell, put a +1/+1 counter on Deeproot Champion.
@@ -10349,6 +10359,14 @@ auto=@movedto(*[instant;sorcery]|myStack): castcard(copied noevent) target(*[ins
 text=When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy.
 mana={R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Doubling Season
+auto=@tokencreated(*|myBattlefield):name(Double the token) all(trigger) clone options(notrigger)
+auto=@counteradded(duplicateAll) from(*|myBattlefield):ability$!name(Double the counter) donothing!$ controller
+text=If an effect would put one or more tokens onto the battlefield under your control, it puts twice that many of those tokens onto the battlefield instead. -- If an effect would place one or more counters on a permanent you control, it places twice that many of those counters on that permanent instead.
+mana={4}{G}
+type=Enchantment
 [/card]
 [card]
 name=Douser of Lights
@@ -17668,9 +17686,8 @@ toughness=2
 [/card]
 [card]
 name=Heartless Act
-#To remove just 3 counter is not supported ATM, so it removes all counters from target creature
 auto=choice name(Destroy):destroy target(creature[counter{notany}])
-auto=choice name(Remove three counters):removeallcounters(All) target(creature[counter{any}])
+auto=choice name(Remove three counters):target(creature) removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1)
 text=Choose one — -- • Destroy target creature with no counters on it. -- • Remove up to three counters from target creature.
 mana={1}{B}
 type=Instant
@@ -23920,7 +23937,7 @@ subtype=Equipment
 name=Mantle of the Wolf
 target=creature
 auto=4/4
-auto=@movedto(this|graveyard):token(Wolf,Man)*2
+auto=@movedto(this|graveyard):token(Wolf,Creature Wolf,2/2,green)*2
 text=Enchant creature -- Enchanted creature gets +4/+4. -- When Mantle of the Wolf is put into a graveyard from the battlefield, create two 2/2 green Wolf creature tokens.
 mana={3}{G}
 type=Enchantment
@@ -24404,7 +24421,6 @@ auto=choice name(Remove Quest counter) counter(0/0,-1,Quest) target(*|battlefiel
 auto=choice name(Remove Devotion counter) counter(0/0,-1,Devotion) target(*|battlefield)
 auto=choice name(Remove Blood counter) counter(0/0,-1,Blood) target(*|battlefield)
 auto=choice name(Remove Death counter) counter(0/0,-1,Death) target(*|battlefield)
-auto=choice name(Remove Bounty counter) counter(0/0,-1,Bounty) target(*|battlefield)
 auto=choice name(Remove Age counter) counter(0/0,-1,Age) target(*|battlefield)
 auto=choice name(Remove Fuse counter) counter(0/0,-1,Fuse) target(*|battlefield)
 auto=choice name(Remove Unity counter) counter(0/0,-1,Unity) target(*|battlefield)
@@ -29458,97 +29474,7 @@ toughness=3
 [/card]
 [card]
 name=Power Conduit
-auto={T}:if type(*[counter{1/1}]|battlefield)~morethan~0 then name(Remove 1/1 counter) counter(1/1,-1) target(*[counter{1/1}]|myBattlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Loyalty}]|battlefield)~morethan~0 then name(Remove Loyalty counter) counter(0/0,-1,Loyalty) target(*[counter{0/0.1.Loyalty}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Flying}]|battlefield)~morethan~0 then name(Remove Flying counter) counter(0/0,-1,Flying) target(*[counter{0/0.1.Flying}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Trample}]|battlefield)~morethan~0 then name(Remove Trample counter) counter(0/0,-1,Trample) target(*[counter{0/0.1.Trample}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.First Strike}]|battlefield)~morethan~0 then name(Remove First Strike counter) counter(0/0,-1,First Strike) target(*[counter{0/0.1.First Strike}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Vigilance}]|battlefield)~morethan~0 then name(Remove Vigilance counter) counter(0/0,-1,Vigilance) target(*[counter{0/0.1.Vigilance}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Deathtouch}]|battlefield)~morethan~0 then name(Remove Deathtouch counter) counter(0/0,-1,Deathtouch) target(*[counter{0/0.1.Deathtouch}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Lifelink}]|battlefield)~morethan~0 then name(Remove Lifelink counter) counter(0/0,-1,Lifelink) target(*[counter{0/0.1.Lifelink}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Flash}]|battlefield)~morethan~0 then name(Remove Flash counter) counter(0/0,-1,Flash) target(*[counter{0/0.1.Flash}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Hexproof}]|battlefield)~morethan~0 then name(Remove Hexproof counter) counter(0/0,-1,Hexproof) target(*[counter{0/0.1.Hexproof}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Double Strike}]|battlefield)~morethan~0 then name(Remove Double Strike counter) counter(0/0,-1,Double Strike) target(*[counter{0/0.1.Double Strike}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Charge}]|battlefield)~morethan~0 then name(Remove Charge counter) counter(0/0,-1,Charge) target(*[counter{0/0.1.Charge}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Verse}]|battlefield)~morethan~0 then name(Remove Verse counter) counter(0/0,-1,Verse) target(*[counter{0/0.1.Verse}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Gold}]|battlefield)~morethan~0 then name(Remove Gold counter) counter(0/0,-1,Gold) target(*[counter{0/0.1.Gold}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Storage}]|battlefield)~morethan~0 then name(Remove Storage counter) counter(0/0,-1,Storage) target(*[counter{0/0.1.Storage}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Slumber}]|battlefield)~morethan~0 then name(Remove Slumber counter) counter(0/0,-1,Slumber) target(*[counter{0/0.1.Slumber}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Time}]|battlefield)~morethan~0 then name(Remove Time counter) counter(0/0,-1,Time) target(*[counter{0/0.1.Time}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Coin}]|battlefield)~morethan~0 then name(Remove Coin counter) counter(0/0,-1,Coin) target(*[counter{0/0.1.Coin}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Reach}]|battlefield)~morethan~0 then name(Remove Reach counter) counter(0/0,-1,Reach) target(*[counter{0/0.1.Reach}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Flood}]|battlefield)~morethan~0 then name(Remove Flood counter) counter(0/0,-1,Flood) target(*[counter{0/0.1.Flood}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Menace}]|battlefield)~morethan~0 then name(Remove Menace counter) counter(0/0,-1,Menace) target(*[counter{0/0.1.Menace}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Lore}]|battlefield)~morethan~0 then name(Remove Lore counter) counter(0/0,-1,Lore) target(*[counter{0/0.1.Lore}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Fury}]|battlefield)~morethan~0 then name(Remove Fury counter) counter(0/0,-1,Fury) target(*[counter{0/0.1.Fury}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Bounty}]|battlefield)~morethan~0 then name(Remove Bounty counter) counter(0/0,-1,Bounty) target(*[counter{0/0.1.Bounty}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Egg}]|battlefield)~morethan~0 then name(Remove Egg counter) counter(0/0,-1,Egg) target(*[counter{0/0.1.Egg}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Level}]|battlefield)~morethan~0 then name(Remove Level counter) counter(0/0,-1,Level) target(*[counter{0/0.1.Level}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Doom}]|battlefield)~morethan~0 then name(Remove Doom counter) counter(0/0,-1,Doom) target(*[counter{0/0.1.Doom}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Eyeball}]|battlefield)~morethan~0 then name(Remove Eyeball counter) counter(0/0,-1,Eyeball) target(*[counter{0/0.1.Eyeball}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Brick}]|battlefield)~morethan~0 then name(Remove Brick counter) counter(0/0,-1,Brick) target(*[counter{0/0.1.Brick}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Magnet}]|battlefield)~morethan~0 then name(Remove Magnet counter) counter(0/0,-1,Magnet) target(*[counter{0/0.1.Magnet}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Hour}]|battlefield)~morethan~0 then name(Remove Hour counter) counter(0/0,-1,Hour) target(*[counter{0/0.1.Hour}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Foreshadow}]|battlefield)~morethan~0 then name(Remove Foreshadow counter) counter(0/0,-1,Foreshadow) target(*[counter{0/0.1.Foreshadow}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Redmana}]|battlefield)~morethan~0 then name(Remove Redmana counter) counter(0/0,-1,Redmana) target(*[counter{0/0.1.Redmana}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Growth}]|battlefield)~morethan~0 then name(Remove Growth counter) counter(0/0,-1,Growth) target(*[counter{0/0.1.Growth}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Knowledge}]|battlefield)~morethan~0 then name(Remove Knowledge counter) counter(0/0,-1,Knowledge) target(*[counter{0/0.1.Knowledge}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Landmark}]|battlefield)~morethan~0 then name(Remove Landmark counter) counter(0/0,-1,Landmark) target(*[counter{0/0.1.Landmark}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Wish}]|battlefield)~morethan~0 then name(Remove Wish counter) counter(0/0,-1,Wish) target(*[counter{0/0.1.Wish}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Ki}]|battlefield)~morethan~0 then name(Remove Ki counter) counter(0/0,-1,Ki) target(*[counter{0/0.1.Ki}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Filibuster}]|battlefield)~morethan~0 then name(Remove Filibuster counter) counter(0/0,-1,Filibuster) target(*[counter{0/0.1.Filibuster}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Page}]|battlefield)~morethan~0 then name(Remove Page counter) counter(0/0,-1,Page) target(*[counter{0/0.1.Page}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Muster}]|battlefield)~morethan~0 then name(Remove Muster counter) counter(0/0,-1,Muster) target(*[counter{0/0.1.Muster}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Quest}]|battlefield)~morethan~0 then name(Remove Quest counter) counter(0/0,-1,Quest) target(*[counter{0/0.1.Quest}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Devotion}]|battlefield)~morethan~0 then name(Remove Devotion counter) counter(0/0,-1,Devotion) target(*[counter{0/0.1.Devotion}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Blood}]|battlefield)~morethan~0 then name(Remove Blood counter) counter(0/0,-1,Blood) target(*[counter{0/0.1.Blood}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Death}]|battlefield)~morethan~0 then name(Remove Death counter) counter(0/0,-1,Death) target(*[counter{0/0.1.Death}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Bounty}]|battlefield)~morethan~0 then name(Remove Bounty counter) counter(0/0,-1,Bounty) target(*[counter{0/0.1.Bounty}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Age}]|battlefield)~morethan~0 then name(Remove Age counter) counter(0/0,-1,Age) target(*[counter{0/0.1.Age}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Fuse}]|battlefield)~morethan~0 then name(Remove Fuse counter) counter(0/0,-1,Fuse) target(*[counter{0/0.1.Fuse}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Unity}]|battlefield)~morethan~0 then name(Remove Unity counter) counter(0/0,-1,Unity) target(*[counter{0/0.1.Unity}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Strife}]|battlefield)~morethan~0 then name(Remove Strife counter) counter(0/0,-1,Strife) target(*[counter{0/0.1.Strife}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Ice}]|battlefield)~morethan~0 then name(Remove Ice counter) counter(0/0,-1,Ice) target(*[counter{0/0.1.Ice}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Payment}]|battlefield)~morethan~0 then name(Remove Payment counter) counter(0/0,-1,Payment) target(*[counter{0/0.1.Payment}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Spore}]|battlefield)~morethan~0 then name(Remove Spore counter) counter(0/0,-1,Spore) target(*[counter{0/0.1.Spore}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Infection}]|battlefield)~morethan~0 then name(Remove Infection counter) counter(0/0,-1,Infection) target(*[counter{0/0.1.Infection}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Paralyzation}]|battlefield)~morethan~0 then name(Remove Paralyzation counter) counter(0/0,-1,Paralyzation) target(*[counter{0/0.1.Paralyzation}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Essence}]|battlefield)~morethan~0 then name(Remove Essence counter) counter(0/0,-1,Essence) target(*[counter{0/0.1.Essence}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Blaze}]|battlefield)~morethan~0 then name(Remove Blaze counter) counter(0/0,-1,Blaze) target(*[counter{0/0.1.Blaze}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Wind}]|battlefield)~morethan~0 then name(Remove Wind counter) counter(0/0,-1,Wind) target(*[counter{0/0.1.Wind}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Healing}]|battlefield)~morethan~0 then name(Remove Healing counter) counter(0/0,-1,Healing) target(*[counter{0/0.1.Healing}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Study}]|battlefield)~morethan~0 then name(Remove Study counter) counter(0/0,-1,Study) target(*[counter{0/0.1.Study}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Bribe}]|battlefield)~morethan~0 then name(Remove Bribe counter) counter(0/0,-1,Bribe) target(*[counter{0/0.1.Bribe}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Tide}]|battlefield)~morethan~0 then name(Remove Tide counter) counter(0/0,-1,Tide) target(*[counter{0/0.1.Tide}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Pressure}]|battlefield)~morethan~0 then name(Remove Pressure counter) counter(0/0,-1,Pressure) target(*[counter{0/0.1.Pressure}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Depletion}]|battlefield)~morethan~0 then name(Remove Depletion counter) counter(0/0,-1,Depletion) target(*[counter{0/0.1.Depletion}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Hoofprint}]|battlefield)~morethan~0 then name(Remove Hoofprint counter) counter(0/0,-1,Hoofprint) target(*[counter{0/0.1.Hoofprint}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Credit}]|battlefield)~morethan~0 then name(Remove Credit counter) counter(0/0,-1,Credit) target(*[counter{0/0.1.Credit}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Javelin}]|battlefield)~morethan~0 then name(Remove Javelin counter) counter(0/0,-1,Javelin) target(*[counter{0/0.1.Javelin}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Feather}]|battlefield)~morethan~0 then name(Remove Feather counter) counter(0/0,-1,Feather) target(*[counter{0/0.1.Feather}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Treasure}]|battlefield)~morethan~0 then name(Remove Treasure counter) counter(0/0,-1,Treasure) target(*[counter{0/0.1.Treasure}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Matrix}]|battlefield)~morethan~0 then name(Remove Matrix counter) counter(0/0,-1,Matrix) target(*[counter{0/0.1.Matrix}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Vitality}]|battlefield)~morethan~0 then name(Remove Vitality counter) counter(0/0,-1,Vitality) target(*[counter{0/0.1.Vitality}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Petal}]|battlefield)~morethan~0 then name(Remove Petal counter) counter(0/0,-1,Petal) target(*[counter{0/0.1.Petal}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Eon}]|battlefield)~morethan~0 then name(Remove Eon counter) counter(0/0,-1,Eon) target(*[counter{0/0.1.Eon}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Winch}]|battlefield)~morethan~0 then name(Remove Winch counter) counter(0/0,-1,Winch) target(*[counter{0/0.1.Winch}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Mine}]|battlefield)~morethan~0 then name(Remove Mine counter) counter(0/0,-1,Mine) target(*[counter{0/0.1.Mine}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Divinity}]|battlefield)~morethan~0 then name(Remove Divinity counter) counter(0/0,-1,Divinity) target(*[counter{0/0.1.Divinity}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Theft}]|battlefield)~morethan~0 then name(Remove Theft counter) counter(0/0,-1,Theft) target(*[counter{0/0.1.Theft}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Fate}]|battlefield)~morethan~0 then name(Remove Fate counter) counter(0/0,-1,Fate) target(*[counter{0/0.1.Fate}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Shield}]|battlefield)~morethan~0 then name(Remove Shield counter) counter(0/0,-1,Shield) target(*[counter{0/0.1.Shield}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Plague}]|battlefield)~morethan~0 then name(Remove Plague counter) counter(0/0,-1,Plague) target(*[counter{0/0.1.Plague}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Isolation}]|battlefield)~morethan~0 then name(Remove Isolation counter) counter(0/0,-1,Isolation) target(*[counter{0/0.1.Isolation}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Shell}]|battlefield)~morethan~0 then name(Remove Shell counter) counter(0/0,-1,Shell) target(*[counter{0/0.1.Shell}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Wage}]|battlefield)~morethan~0 then name(Remove Wage counter) counter(0/0,-1,Wage) target(*[counter{0/0.1.Wage}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Corpse}]|battlefield)~morethan~0 then name(Remove Corpse counter) counter(0/0,-1,Corpse) target(*[counter{0/0.1.Corpse}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Hourglass}]|battlefield)~morethan~0 then name(Remove Hourglass counter) counter(0/0,-1,Hourglass) target(*[counter{0/0.1.Hourglass}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Velocity}]|battlefield)~morethan~0 then name(Remove Velocity counter) counter(0/0,-1,Velocity) target(*[counter{0/0.1.Velocity}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Pain}]|battlefield)~morethan~0 then name(Remove Pain counter) counter(0/0,-1,Pain) target(*[counter{0/0.1.Pain}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Currency}]|battlefield)~morethan~0 then name(Remove Currency counter) counter(0/0,-1,Currency) target(*[counter{0/0.1.Currency}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Trap}]|battlefield)~morethan~0 then name(Remove Trap counter) counter(0/0,-1,Trap) target(*[counter{0/0.1.Trap}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Hatchling}]|battlefield)~morethan~0 then name(Remove Hatchling counter) counter(0/0,-1,Hatchling) target(*[counter{0/0.1.Hatchling}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
-auto={T}:if type(*[counter{0/0.1.Pin}]|battlefield)~morethan~0 then name(Remove Pin counter) counter(0/0,-1,Pin) target(*[counter{0/0.1.Pin}]|battlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
+auto={T}:name(Remove a counter from permanent) removesinglecountertype(1) target(*[counter{any}]|myBattlefield) && ability$!name(Choose one) choice name(Put 1/1 counter) counter(1/1,1) target(creature) _ choice name(Put charge counter) counter(0/0,1,Charge) target(artifact)!$ controller
 text={T}, Remove a counter from a permanent you control: Choose one — -- • Put a charge counter on target artifact. -- • Put a +1/+1 counter on target creature.
 mana={2}
 type=Artifact
@@ -31643,7 +31569,7 @@ toughness=2
 [/card]
 [card]
 name=Renowned Weaponsmith
-auto=if type(artifact|myhand,mybattlefield)~morethan~0 then add{C}{C}
+auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{C}{C}
 aicode=activate moveTo(myBattlefield) target(*[Vial of Dragonfire;Heart-Piercer Bow]|myLibrary)
 auto={U}{T}:name(search card) reveal:plibrarycount revealzone(mylibrary) optionone name(choose card) target(<1>*[Vial of Dragonfire;Heart-Piercer Bow]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 text={T}: Add {2} to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts. -- {U}, {T}: Search your library for a card named Heart-Piercer Bow or Vial of Dragonfire, reveal it, put it into your hand, then shuffle your library.
@@ -37902,97 +37828,8 @@ toughness=2
 [card]
 name=Spinal Parasite
 abilities=sunburst
-auto={C(1/1,-2)}:choice name(Remove 1/1 counter) counter(1/1,-1) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Loyalty counter) counter(0/0,-1,Loyalty) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Flying counter) counter(0/0,-1,Flying) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Trample counter) counter(0/0,-1,Trample) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove First Strike counter) counter(0/0,-1,First Strike) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Vigilance counter) counter(0/0,-1,Vigilance) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Deathtouch counter) counter(0/0,-1,Deathtouch) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Lifelink counter) counter(0/0,-1,Lifelink) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Flash counter) counter(0/0,-1,Flash) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Hexproof counter) counter(0/0,-1,Hexproof) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Double Strike counter) counter(0/0,-1,Double Strike) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Charge counter) counter(0/0,-1,Charge) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Verse counter) counter(0/0,-1,Verse) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Gold counter) counter(0/0,-1,Gold) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Storage counter) counter(0/0,-1,Storage) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Slumber counter) counter(0/0,-1,Slumber) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Time counter) counter(0/0,-1,Time) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Coin counter) counter(0/0,-1,Coin) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Reach counter) counter(0/0,-1,Reach) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Flood counter) counter(0/0,-1,Flood) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Menace counter) counter(0/0,-1,Menace) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Lore counter) counter(0/0,-1,Lore) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Fury counter) counter(0/0,-1,Fury) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Bounty counter) counter(0/0,-1,Bounty) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Egg counter) counter(0/0,-1,Egg) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Level counter) counter(0/0,-1,Level) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Doom counter) counter(0/0,-1,Doom) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Eyeball counter) counter(0/0,-1,Eyeball) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Brick counter) counter(0/0,-1,Brick) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Magnet counter) counter(0/0,-1,Magnet) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Hour counter) counter(0/0,-1,Hour) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Foreshadow counter) counter(0/0,-1,Foreshadow) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Redmana counter) counter(0/0,-1,Redmana) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Growth counter) counter(0/0,-1,Growth) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Knowledge counter) counter(0/0,-1,Knowledge) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Landmark counter) counter(0/0,-1,Landmark) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Wish counter) counter(0/0,-1,Wish) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Ki counter) counter(0/0,-1,Ki) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Filibuster counter) counter(0/0,-1,Filibuster) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Page counter) counter(0/0,-1,Page) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Muster counter) counter(0/0,-1,Muster) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Quest counter) counter(0/0,-1,Quest) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Devotion counter) counter(0/0,-1,Devotion) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Blood counter) counter(0/0,-1,Blood) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Death counter) counter(0/0,-1,Death) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Bounty counter) counter(0/0,-1,Bounty) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Age counter) counter(0/0,-1,Age) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Fuse counter) counter(0/0,-1,Fuse) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Unity counter) counter(0/0,-1,Unity) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Strife counter) counter(0/0,-1,Strife) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Ice counter) counter(0/0,-1,Ice) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Payment counter) counter(0/0,-1,Payment) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Spore counter) counter(0/0,-1,Spore) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Infection counter) counter(0/0,-1,Infection) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Paralyzation counter) counter(0/0,-1,Paralyzation) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Essence counter) counter(0/0,-1,Essence) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Blaze counter) counter(0/0,-1,Blaze) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Wind counter) counter(0/0,-1,Wind) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Healing counter) counter(0/0,-1,Healing) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Study counter) counter(0/0,-1,Study) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Bribe counter) counter(0/0,-1,Bribe) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Tide counter) counter(0/0,-1,Tide) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Pressure counter) counter(0/0,-1,Pressure) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Depletion counter) counter(0/0,-1,Depletion) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Hoofprint counter) counter(0/0,-1,Hoofprint) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Credit counter) counter(0/0,-1,Credit) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Javelin counter) counter(0/0,-1,Javelin) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Feather counter) counter(0/0,-1,Feather) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Treasure counter) counter(0/0,-1,Treasure) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Matrix counter) counter(0/0,-1,Matrix) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Vitality counter) counter(0/0,-1,Vitality) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Petal counter) counter(0/0,-1,Petal) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Eon counter) counter(0/0,-1,Eon) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Winch counter) counter(0/0,-1,Winch) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Mine counter) counter(0/0,-1,Mine) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Divinity counter) counter(0/0,-1,Divinity) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Theft counter) counter(0/0,-1,Theft) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Fate counter) counter(0/0,-1,Fate) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Shield counter) counter(0/0,-1,Shield) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Plague counter) counter(0/0,-1,Plague) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Isolation counter) counter(0/0,-1,Isolation) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Shell counter) counter(0/0,-1,Shell) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Wage counter) counter(0/0,-1,Wage) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Corpse counter) counter(0/0,-1,Corpse) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Hourglass counter) counter(0/0,-1,Hourglass) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Velocity counter) counter(0/0,-1,Velocity) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Pain counter) counter(0/0,-1,Pain) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Currency counter) counter(0/0,-1,Currency) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Trap counter) counter(0/0,-1,Trap) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Hatchling counter) counter(0/0,-1,Hatchling) target(*|battlefield)
-auto={C(1/1,-2)}:choice name(Remove Pin counter) counter(0/0,-1,Pin) target(*|battlefield)
+auto=counter(1/1,sunburst)
+auto={C(1/1,-2)}:name(Remove a counter from permanent) removesinglecountertype(1) target(*[counter{any}]|myBattlefield)
 text=Sunburst (This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.) -- Remove two +1/+1 counters from Spinal Parasite: Remove a counter from target permanent.
 mana={5}
 type=Artifact Creature
@@ -40621,7 +40458,7 @@ subtype=Teferi
 [/card]
 [card]
 name=Temmet, Vizier of Naktamun
-auto=@combat(attacking):target(token|mybattlefield) 1/1 ueot && unblockable ueot
+auto=@combat(attacking):target(*[token]|mybattlefield) 1/1 ueot && unblockable ueot
 autograveyard={3}{W}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
 text=At the beginning of combat on your turn, target creature token you control gets +1/+1 until end of turn and can't be blocked this turn. -- Embalm {3}{W}{U} ({3}{W}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Human Cleric with no mana cost. Embalm only as a sorcery.)
 mana={W}{U}
@@ -43200,13 +43037,24 @@ toughness=8
 [/card]
 [card]
 name=Ulamog's Despoiler
-auto=if type(*|opponentexile)~morethan~1 then may target(<2>*|opponentexile) moveto(opponentgraveyard) && counter(1/1,4) all(this)
+auto=if type(*|opponentexile)~morethan~1 then may target(<2>*|opponentexile) moveto(ownergraveyard) && counter(1/1,4) all(this)
 text=As Ulamog's Despoiler enters the battlefield, you may put two cards your opponents own from exile into their owners' graveyards. If you do, Ulamog's Despoiler enters the battlefield with four +1/+1 counters on it.
 mana={6}
 type=Creature
 subtype=Eldrazi Processor
 power=5
 toughness=5
+[/card]
+[card]
+name=Ulamog's Nullifier
+abilities=devoid,flash,flying
+auto=if type(*|opponentexile)~morethan~1 then may target(<2>*|opponentexile) moveto(ownergraveyard) && ability$!name(Counter spell) target(*|stack) fizzle!$ controller
+text=Devoid (This card has no color.) -- Flash -- Flying -- When Ulamog's Nullifier enters the battlefield, you may put two cards your opponents own from exile into their owners' graveyards. If you do, counter target spell.
+mana={2}{U}{B}
+type=Creature
+subtype=Eldrazi Processor
+power=2
+toughness=3
 [/card]
 [card]
 name=Umezawa's Charm
@@ -43481,6 +43329,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Unifying Theory
+auto=@movedTo(*|mystack):ability$!name(Pay 2) pay[[{2}]] draw:2!$ controller
+auto=@movedTo(*|opponentstack):ability$!name(Pay 2) pay[[{2}]] draw:2!$ opponent
+text=Whenever a player casts a spell, that player may pay {2}. If the player does, he or she draws a card.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
 name=Universal Automaton
 abilities=changeling
 text=Changeling (This card is every creature type.)
@@ -43508,6 +43364,46 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Unliving Psychopath
+auto={B}:1/-1 ueot
+auto=this(power=1) {B}{T}:destroy target(creature[power<1])
+auto=this(power=2) {B}{T}:destroy target(creature[power<2])
+auto=this(power=3) {B}{T}:destroy target(creature[power<3])
+auto=this(power=4) {B}{T}:destroy target(creature[power<4])
+auto=this(power=5) {B}{T}:destroy target(creature[power<5])
+auto=this(power=6) {B}{T}:destroy target(creature[power<6])
+auto=this(power=7) {B}{T}:destroy target(creature[power<7])
+auto=this(power=8) {B}{T}:destroy target(creature[power<8])
+auto=this(power=9) {B}{T}:destroy target(creature[power<9])
+auto=this(power=10) {B}{T}:destroy target(creature[power<10])
+auto=this(power=11) {B}{T}:destroy target(creature[power<11])
+auto=this(power=12) {B}{T}:destroy target(creature[power<12])
+auto=this(power=13) {B}{T}:destroy target(creature[power<13])
+auto=this(power=14) {B}{T}:destroy target(creature[power<14])
+auto=this(power=15) {B}{T}:destroy target(creature[power<15])
+auto=this(power=16) {B}{T}:destroy target(creature[power<16])
+auto=this(power=17) {B}{T}:destroy target(creature[power<17])
+auto=this(power=18) {B}{T}:destroy target(creature[power<18])
+auto=this(power=19) {B}{T}:destroy target(creature[power<19])
+auto=this(power=20) {B}{T}:destroy target(creature[power<20])
+text={B}: Unliving Psychopath gets +1/-1 until end of turn. -- {B}, {T}: Destroy target creature with power less than Unliving Psychopath's power.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Assassin
+power=0
+toughness=4
+[/card]
+[card]
+name=Unnatural Aggression
+abilities=devoid
+target=creature|mybattlefield
+auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!> && exiledeath ueot])) ueot
+restriction=type(creature|opponentbattlefield)~morethan~0
+text=Devoid (This card has no color.) -- Target creature you control fights target creature an opponent controls. If the creature an opponent controls would die this turn, exile it instead.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
 name=Unquenchable Thirst
 target=creature
 auto=aslongas(Desert|mybattlefield,myGraveyard) tap
@@ -43529,12 +43425,39 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Unsettled Mariner
+abilities=changeling
+auto=@movedto(*|opponentstack):target(*|opponentstack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
+text=Changeling (This card is every creature type.) -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}.
+mana={W}{U}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
+name=Unstable Footing
+#MISSING: Damage can't be prevented is not supported ATM
+kicker={3}{R}
+auto=kicker damage:5 target(player)
+text=Kicker {3}{R} (You may pay an additional {3}{R} as you cast this spell.) -- Damage can't be prevented this turn. If Unstable Footing was kicked, it deals 5 damage to target player.
+mana={R}
+type=Instant
+[/card]
+[card]
 name=Unsubstantiate
 auto=choice name(Return target creature) target(creature|battlefield) moveTo(ownerHand)
 auto=choice name(Return target spell) target(*[-land]|stack) fizzleto(hand) 
 text=Return target spell or creature to its owner’s hand.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Untaidake, the Cloud Keeper
+auto=tap(noevent)
+auto={T}{L:2}:if type(*[legendary]|myhand)~morethan~0 then add{2}
+text=Untaidake, the Cloud Keeper enters the battlefield tapped. -- {T}, Pay 2 life: Add {2} to your mana pool. Spend this mana only to cast legendary spells.
+type=Legendary Land
 [/card]
 [card]
 name=Untamed Kavu
@@ -43569,6 +43492,17 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Urborg Panther
+auto={B}{S}:destroy target(creature[blocking])
+auto={S(*[Feral Shadow|mybattlefield)}{S(*[Breathstealer]|mybattlefield)}{S(*[Urborg Panther]|mybattlefield)}:name(search card) reveal:plibrarycount optionone name(choose card) target(*[Spirit of the Night]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend
+text={B}, Sacrifice Urborg Panther: Destroy target creature blocking Urborg Panther. -- Sacrifice a creature named Feral Shadow, a creature named Breathstealer, and Urborg Panther: Search your library for a card named Spirit of the Night and put that card onto the battlefield. Then shuffle your library.
+mana={2}{B}
+type=Creature
+subtype=Nightstalker Cat
+power=2
+toughness=2
+[/card]
+[card]
 name=Urgoros, the Empty One
 abilities=flying
 auto=@combatdamaged(player) from(this):ability$!name(discard) reject notatarget(*|myhand)!$ 
@@ -43589,6 +43523,40 @@ type=Creature
 subtype=Human Berserker
 power=2
 toughness=2
+[/card]
+[card]
+name=Urza's Armor
+auto=@damaged(controller):life:1 controller
+text=If a source would deal damage to you, prevent 1 of that damage.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Urza's Bauble
+aicode=name(look) activate name(look) phaseaction[upkeep once] draw:1 controller
+auto={T}{S}:target(player) reveal:1 revealzone(opponenthand) optionone name(Look a card) target(<1>*|reveal) moveto(ownerhand) optiononeend afterrevealed transforms((,newability[phaseaction[upkeep once] draw:1 controller])) oneshot afterrevealedend revealend
+text={T}, Sacrifice Urza's Bauble: Look at a card at random in target player's hand. You draw a card at the beginning of the next turn's upkeep.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Urza's Miter
+auto=@movedTo(artifact|mygraveyard) from(mybattlefield):may pay({3}) draw:1
+text=Whenever an artifact you control is put into a graveyard from the battlefield, if it wasn't sacrificed, you may pay {3}. If you do, draw a card.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Urza's Rage
+#MISSING: damage can't be prevented not supported ATM
+target=creature,player
+abilities=nofizzle
+kicker={8}{R}
+auto=damage:3
+auto=kicker damage:7
+text=Kicker {8}{R} (You may pay an additional {8}{R} as you cast this spell.) -- Urza's Rage can't be countered by spells or abilities. -- Urza's Rage deals 3 damage to target creature or player. If Urza's Rage was kicked, instead it deals 10 damage to that creature or player and the damage can't be prevented.
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 name=Urza's Ruinous Blast
@@ -43639,7 +43607,7 @@ auto=@movedTo(mytgt|exile) from(battlefield):all(this) moveTo(myExile)
 auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
 auto={9999}:equip
-other={1}{WU}{R}{R name(Mutate)
+other={1}{WU}{R}{R} name(Mutate)
 auto=transforms((,newability[@mutated(this):may castcard(normal) target(*[-creature;manacost<=3]|mygraveyard)]))
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
@@ -43794,6 +43762,15 @@ mana={4}{R}
 type=Sorcery
 [/card]
 [card]
+name=Vanguard's Shield
+auto={3}:equip
+auto=teach(creature) 0/3
+text=Equipped creature gets +0/+3 and can block an additional creature. -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Vanquish the Weak
 target=creature[power<=3]
 auto=destroy
@@ -43862,6 +43839,20 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Vedalken Engineer
+auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{W}{W}
+auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{G}{G}
+auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{B}{B}
+auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{R}{R}
+auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{U}{U}
+text={T}: Add two mana of any one color to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
+mana={1}{U}
+type=Creature
+subtype=Vedalken Artificer
+power=1
+toughness=1
+[/card]
+[card]
 name=Vedalken Humiliator
 auto=@combat(attacking) source(this):restriction{aslongas(artifact|mybattlefield) lord(creature|opponentBattlefield) loseabilities && lord(creature|opponentBattlefield) transforms((,setpower=1,settoughness=1))) >2 ueot}
 text=Metalcraft — Whenever Vedalken Humiliator attacks, if you control three or more artifacts, creatures your opponents control lose all abilities and have base power and toughness 1/1 until end of turn.
@@ -43880,6 +43871,24 @@ type=Creature
 subtype=Vedalken Wizard
 power=2
 toughness=1
+[/card]
+[card]
+name=Vedalken Plotter
+auto=target(land|opponentbattlefield) moveto(mybattlefield) && ability$!name(Exchange control) target(land|myBattlefield) moveto(opponentbattlefield)!$ controller
+text=When Vedalken Plotter enters the battlefield, exchange control of target land you control and target land an opponent controls.
+mana={2}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Veiled Crocodile
+auto=aslongas(*|myhand) transforms((Crocodile Creature,setpower=4,settoughness=4)) forever all(this) <1
+auto=aslongas(*|opponenthand) transforms((Crocodile Creature,setpower=4,settoughness=4)) forever all(this) <1
+text=When a player has no cards in hand, if Veiled Crocodile is an enchantment, Veiled Crocodile becomes a 4/4 Crocodile creature.
+mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 name=Veiled Shade
@@ -43913,6 +43922,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Venarian Gold
+target=creature
+auto=counter(0/0,x,Sleep)
+auto=@each targetController upkeep:counter(0/0,-1,Sleep)
+auto=transforms((,newability[tap(noevent)],newability[this(counter{0/0.1.Sleep)}>0) doesnotuntap])) forever
+text=Enchant creature -- When Venarian Gold enters the battlefield, tap enchanted creature and put X sleep counters on it. -- Enchanted creature doesn't untap during its controller's untap step if it has a sleep counter on it. -- At the beginning of the upkeep of enchanted creature's controller, remove a sleep counter from that creature.
+mana={X}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Vengeant Vampire
 abilities=lifelink
 auto=@movedto(this|graveyard) from(battlefield):destroy target(creature|opponentBattlefield) && life:4 controller
@@ -43933,6 +43953,61 @@ type=Creature
 subtype=Devil
 power=1
 toughness=1
+[/card]
+[card]
+name=Vengeful Dreams
+auto=if type(*|myHand)~morethan~0 then choice ability$!name(X=1) target(*|myhand) reject!$ controller && moveto(exile) target(creature[attacking])
+auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2) target(<2>*|myhand) reject!$ controller && moveto(exile) target(<2>creature[attacking])
+auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=3) target(<3>*|myhand) reject!$ controller && moveto(exile) target(<3>creature[attacking])
+auto=if type(*|myHand)~morethan~3 then choice ability$!name(X=4) target(<4>*|myhand) reject!$ controller && moveto(exile) target(<4>creature[attacking])
+auto=if type(*|myHand)~morethan~4 then choice ability$!name(X=5) target(<5>*|myhand) reject!$ controller && moveto(exile) target(<5>creature[attacking])
+auto=if type(*|myHand)~morethan~5 then choice ability$!name(X=6) target(<6>*|myhand) reject!$ controller && moveto(exile) target(<6>creature[attacking])
+auto=if type(*|myHand)~morethan~6 then choice ability$!name(X=7) target(<7>*|myhand) reject!$ controller && moveto(exile) target(<7>creature[attacking])
+auto=if type(*|myHand)~morethan~7 then choice ability$!name(X=8) target(<8>*|myhand) reject!$ controller && moveto(exile) target(<8>creature[attacking])
+auto=if type(*|myHand)~morethan~8 then choice ability$!name(X=9) target(<9>*|myhand) reject!$ controller && moveto(exile) target(<9>creature[attacking])
+auto=if type(*|myHand)~morethan~9 then choice ability$!name(X=10) target(<10>*|myhand) reject!$ controller && moveto(exile) target(<10>creature[attacking])
+auto=if type(*|myHand)~morethan~10 then choice ability$!name(X=11) target(<11>*|myhand) reject!$ controller && moveto(exile) target(<11>creature[attacking])
+auto=if type(*|myHand)~morethan~11 then choice ability$!name(X=12) target(<12>*|myhand) reject!$ controller && moveto(exile) target(<12>creature[attacking])
+auto=if type(*|myHand)~morethan~12 then choice ability$!name(X=13) target(<13>*|myhand) reject!$ controller && moveto(exile) target(<13>creature[attacking])
+auto=if type(*|myHand)~morethan~13 then choice ability$!name(X=14) target(<14>*|myhand) reject!$ controller && moveto(exile) target(<14>creature[attacking])
+auto=if type(*|myHand)~morethan~14 then choice ability$!name(X=15) target(<15>*|myhand) reject!$ controller && moveto(exile) target(<15>creature[attacking])
+auto=if type(*|myHand)~morethan~15 then choice ability$!name(X=16) target(<16>*|myhand) reject!$ controller && moveto(exile) target(<16>creature[attacking])
+auto=if type(*|myHand)~morethan~16 then choice ability$!name(X=17) target(<17>*|myhand) reject!$ controller && moveto(exile) target(<17>creature[attacking])
+auto=if type(*|myHand)~morethan~17 then choice ability$!name(X=18) target(<18>*|myhand) reject!$ controller && moveto(exile) target(<18>creature[attacking])
+auto=if type(*|myHand)~morethan~18 then choice ability$!name(X=19) target(<19>*|myhand) reject!$ controller && moveto(exile) target(<19>creature[attacking])
+auto=if type(*|myHand)~morethan~19 then choice ability$!name(X=20) target(<20>*|myhand) reject!$ controller && moveto(exile) target(<20>creature[attacking])
+text=As an additional cost to cast Vengeful Dreams, discard X cards. -- Exile X target attacking creatures.
+mana={W}{W}
+type=Instant
+[/card]
+[card]
+name=Vengeful Rebirth
+auto=moveto(myexile) all(this)
+auto=if type(land|mygraveyard)~morethan~0 then choice name(Return land card):target(land|mygraveyard) moveto(myhand)
+auto=if type(*[manacost=0]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 0):target(*[manacost=0] moveto(myhand)
+auto=if type(*[manacost=1]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 1):target(*[manacost=1] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:1!$ controller
+auto=if type(*[manacost=2]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 2):target(*[manacost=2] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:2!$ controller
+auto=if type(*[manacost=3]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 3):target(*[manacost=3] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:3!$ controller
+auto=if type(*[manacost=4]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 4):target(*[manacost=4] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:4!$ controller
+auto=if type(*[manacost=5]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 5):target(*[manacost=5] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:5!$ controller
+auto=if type(*[manacost=6]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 6):target(*[manacost=6] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:6!$ controller
+auto=if type(*[manacost=7]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 7):target(*[manacost=7] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:7!$ controller
+auto=if type(*[manacost=8]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 8):target(*[manacost=8] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:8!$ controller
+auto=if type(*[manacost=9]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 9):target(*[manacost=9] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:9!$ controller
+auto=if type(*[manacost=10]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 10):target(*[manacost=10] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:10!$ controller
+auto=if type(*[manacost=11]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 11):target(*[manacost=11] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:11!$ controller
+auto=if type(*[manacost=12]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 12):target(*[manacost=12] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:12!$ controller
+auto=if type(*[manacost=13]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 13):target(*[manacost=13] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:13!$ controller
+auto=if type(*[manacost=14]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 14):target(*[manacost=14] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:14!$ controller
+auto=if type(*[manacost=15]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 15):target(*[manacost=15] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:15!$ controller
+auto=if type(*[manacost=16]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 16):target(*[manacost=16] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:16!$ controller
+auto=if type(*[manacost=17]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 17):target(*[manacost=17] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:17!$ controller
+auto=if type(*[manacost=18]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 18):target(*[manacost=18] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:18!$ controller
+auto=if type(*[manacost=19]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 19):target(*[manacost=19] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:19!$ controller
+auto=if type(*[manacost>=20]|mygraveyard)~morethan~0 then choice name(Return non land card with manacost 20):target(*[manacost>=20] moveto(myhand) && ability$!name(Damage target creature or player) target(creature,player) damage:20!$ controller
+text=Return target card from your graveyard to your hand. If you return a nonland card to your hand this way, Vengeful Rebirth deals damage equal to that card's converted mana cost to target creature or player. -- Exile Vengeful Rebirth.
+mana={4}{R}{G}
+type=Sorcery
 [/card]
 [card]
 name=Vengeful Warchief
@@ -43966,12 +44041,47 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Venser, Shaper Savant
+abilities=flash
+auto=target(*) moveto(ownerhand)
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Venser, Shaper Savant enters the battlefield, return target spell or permanent to its owner's hand.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Venser's Diffusion
 target=*[-land]
 auto=moveTo(ownerhand)
 text=Return target nonland permanent or suspended card to its owner's hand.
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Verdant Confluence
+aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(<3>land[basic]|myLibrary)
+auto=choice name(Choose 1, 1, 1) target(<3>*[creature]) counter(1/1,2)
+auto=choice name(Choose 1, 1, 2) target(<2>*[creature]) counter(1/1,2) && ability$!name(Return permanent to hand) moveto(myhand) target(*[-sorcery;-instant]|mygraveyard)!$ controller
+auto=choice name(Choose 1, 2, 2) target(*[creature]) counter(1/1,2) && ability$!name(Return 2 permanents to hand) moveto(myhand) target(<2>*[-sorcery;-instant]|mygraveyard)!$ controller
+auto=choice name(Choose 1, 2, 3) target(*[creature]) counter(1/1,2) && ability$!name(Return permanent to hand) moveto(myhand) target(*[-sorcery;-instant]|mygraveyard)!$ controller && ability$!name(Reveal) reveal:plibrarycount optionone name(choose land card) target(<1>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend!$ controller
+auto=choice name(Choose 1, 3, 3) target(*[creature]) counter(1/1,2) && ability$!name(Reveal) reveal:plibrarycount optionone name(choose 2 land cards) target(<2>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend!$ controller
+auto=choice name(Choose 2, 2, 2) target(<3>*[-sorcery;-instant]|mygraveyard) moveto(myhand) 
+auto=choice name(Choose 2, 2, 3) target(<2>*[-sorcery;-instant]|mygraveyard) moveto(myhand) && ability$!name(Reveal) reveal:plibrarycount optionone name(choose land card) target(<1>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend!$ controller
+auto=choice name(Choose 2, 3, 3) target(*[-sorcery;-instant]|mygraveyard) moveto(myhand) && ability$!name(Reveal) reveal:plibrarycount optionone name(choose 2 land cards) target(<2>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend!$ controller
+auto=choice name(Choose 3, 3, 3) reveal:plibrarycount optionone name(choose 3 land cards) target(<3>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
+text=Choose three. You may choose the same mode more than once. -- • Put two +1/+1 counters on target creature. -- • Return target permanent card from your graveyard to your hand. -- • Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Verdant Crescendo
+aicode=activate target(Nissa, Nature's Artisan|mylibrary,mygraveyard) moveto(myhand) && shuffle
+auto=reveal:plibrarycount optionone name(choose card) target(land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend && ability$!name(Search Nissa, Nature's Artisan) moveto(myhand) target(Nissa, Nature's Artisan|mylibrary,mygraveyard) && shuffle!$ controller
+text=Search your library for a basic land card and put it onto the battlefield tapped. Search your library and graveyard for a card named Nissa, Nature's Artisan, reveal it, and put it into your hand. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 name=Verdant Rebirth
@@ -44038,6 +44148,16 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=1
+[/card]
+[card]
+name=Vexing Devil
+auto=ability$!name(Choose one) choice name(Damage 4) damage:4 && sacrifice notatarget(Vexing Devil|opponentbattlefield) _ choice name(Donothing) donothing)!$ opponent
+text=When Vexing Devil enters the battlefield, any opponent may have it deal 4 damage to him or her. If a player does, sacrifice Vexing Devil.
+mana={R}
+type=Creature
+subtype=Devil
+power=4
+toughness=3
 [/card]
 [card]
 name=Vexing Gull
@@ -44113,6 +44233,32 @@ power=4
 toughness=1
 [/card]
 [card]
+name=Vicious Betrayal
+auto=if type(*[creature]|myBattlefield)~morethan~0 then choice name(Sacrifice 1 creature) ability$!sacrifice notatarget(creature|mybattlefield)!$ controller && target(creature) 2/2 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~1 then choice name(Sacrifice 2 creatures) ability$!sacrifice notatarget(<2>creature|mybattlefield)!$ controller && target(creature) 4/4 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~2 then choice name(Sacrifice 3 creatures) ability$!sacrifice notatarget(<3>creature|mybattlefield)!$ controller && target(creature) 6/6 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~3 then choice name(Sacrifice 4 creatures) ability$!sacrifice notatarget(<4>creature|mybattlefield)!$ controller && target(creature) 8/8 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~4 then choice name(Sacrifice 5 creatures) ability$!sacrifice notatarget(<5>creature|mybattlefield)!$ controller && target(creature) 10/10 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~5 then choice name(Sacrifice 6 creatures) ability$!sacrifice notatarget(<6>creature|mybattlefield)!$ controller && target(creature) 12/12 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~6 then choice name(Sacrifice 7 creatures) ability$!sacrifice notatarget(<7>creature|mybattlefield)!$ controller && target(creature) 14/14 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~7 then choice name(Sacrifice 8 creatures) ability$!sacrifice notatarget(<8>creature|mybattlefield)!$ controller && target(creature) 16/16 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~8 then choice name(Sacrifice 9 creatures) ability$!sacrifice notatarget(<9>creature|mybattlefield)!$ controller && target(creature) 18/18 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~9 then choice name(Sacrifice 10 creatures) ability$!sacrifice notatarget(<10>creature|mybattlefield)!$ controller && target(creature) 20/20 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~10 then choice name(Sacrifice 11 creatures) ability$!sacrifice notatarget(<11>creature|mybattlefield)!$ controller && target(creature) 22/22 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~11 then choice name(Sacrifice 12 creatures) ability$!sacrifice notatarget(<12>creature|mybattlefield)!$ controller && target(creature) 24/24 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~12 then choice name(Sacrifice 13 creatures) ability$!sacrifice notatarget(<13>creature|mybattlefield)!$ controller && target(creature) 26/26 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~13 then choice name(Sacrifice 14 creatures) ability$!sacrifice notatarget(<14>creature|mybattlefield)!$ controller && target(creature) 28/28 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~14 then choice name(Sacrifice 15 creatures) ability$!sacrifice notatarget(<15>creature|mybattlefield)!$ controller && target(creature) 30/30 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~15 then choice name(Sacrifice 16 creatures) ability$!sacrifice notatarget(<16>creature|mybattlefield)!$ controller && target(creature) 32/32 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~16 then choice name(Sacrifice 17 creatures) ability$!sacrifice notatarget(<17>creature|mybattlefield)!$ controller && target(creature) 34/34 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~17 then choice name(Sacrifice 18 creatures) ability$!sacrifice notatarget(<18>creature|mybattlefield)!$ controller && target(creature) 36/36 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~18 then choice name(Sacrifice 19 creatures) ability$!sacrifice notatarget(<19>creature|mybattlefield)!$ controller && target(creature) 38/38 ueot
+auto=if type(*[creature]|myBattlefield)~morethan~19 then choice name(Sacrifice 20 creatures) ability$!sacrifice notatarget(<20>creature|mybattlefield)!$ controller && target(creature) 40/40 ueot
+text=As an additional cost to cast Vicious Betrayal, sacrifice any number of creatures. -- Target creature gets +2/+2 until end of turn for each creature sacrificed this way.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Vicious Conquistador
 auto=@combat(attacking) source(this):life:-1 opponent
 text=Whenever Vicious Conquistador attacks, each opponent loses 1 life.
@@ -44133,6 +44279,14 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Victimize
+target=<2>*[creature]|mygraveyard
+auto=moveto(mybattlefield) and!(tap(noevent))!
+text=Choose two target creature cards in your graveyard. Sacrifice a creature. If you do, return the chosen cards to the battlefield tapped.
+mana={2}{B}{S(*[creature]|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=Victory Chimes
 auto=@each upkeep:untap
 auto={T}:target(player) add{c}
@@ -44149,6 +44303,22 @@ type=Creature
 subtype=Human Cleric
 power=3
 toughness=3
+[/card]
+[card]
+name=View from Above
+target=creature
+auto=flying ueot
+auto=if type(*[white]|mybattlefield)~morethan~0 then moveto(myhand) all(this)
+text=Target creature gains flying until end of turn. If you control a white permanent, return View from Above to its owner's hand.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Vigil for the Lost
+auto=@movedTo(creature|graveyard) from(mybattlefield):may pay({x}) name(Pay X) life:X controller 
+text=Whenever a creature you control dies, you may pay {X}. If you do, you gain X life.
+mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 name=Vigilant Baloth
@@ -44229,6 +44399,31 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Vintara Elephant
+abilities=trample
+auto={3}:-trample ueot
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 3) pay[[{3}]] name(Pay 3) notatarget(Vintara Elephant[trample]|opponentBattlefield) -trample ueot?donothing!$ opponent])) forever
+text=Trample -- {3}: Vintara Elephant loses trample until end of turn. Any player may activate this ability.
+mana={4}{G}
+type=Creature
+subtype=Elephant
+power=4
+toughness=3
+[/card]
+[card]
+name=Violent Eruption
+target=creature,player
+auto=damage:1
+auto=damage:1 target(creature,player)
+auto=ability$!name(damage) choice target(creature,player) damage:1!$ controller
+auto=ability$!name(damage) choice target(creature,player) damage:1!$ controller
+abilities=madness
+autoexile=restriction{discarded} pay({1}{R}{R}) name(pay 1RR to cast) activate name(pay 1RR to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Violent Eruption deals 4 damage divided as you choose among any number of target creatures and/or players. -- Madness {1}{R}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{R}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Violent Impact
 target=artifact,land
 auto=destroy
@@ -44250,6 +44445,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Virulent Wound
+target=creature
+auto=counter(-1/-1)
+auto=transforms((,newability[@movedto(this|mygraveyard):alterpoison:1 controller])) ueot
+text=Put a -1/-1 counter on target creature. When that creature dies this turn, its controller gets a poison counter.
+mana={B}
+type=Instant
+[/card]
+[card]
 name=Visage of Bolas
 auto=may moveto(myhand) target(Nicol Bolas, the Deceiver|mylibrary)
 auto={T}:Add{U}
@@ -44258,6 +44462,15 @@ auto={T}:Add{R}
 text=When Visage of Bolas enters the battlefield, you may search your library and/or graveyard for a card named Nicol Bolas, the Deceiver, reveal it, and put it into your hand. If you search your library this way, shuffle it. -- {T}: Add {U}, {B}, or {R} to your mana pool.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Visions
+target=player
+aicode=activate moveto(targetedpersonshand) target(<upto:7>*|targetedpersonslibrary)
+auto=name(Look 5 cards) reveal:5 revealzone(targetedpersonslibrary) optionone name(Look cards) target(<5>*|reveal) moveto(ownerhand) optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(may shuffle)! )! optiontwoend revealend
+text=Look at the top five cards of target player's library. You may then have that player shuffle that library.
+mana={W}
+type=Sorcery
 [/card]
 [card]
 name=Vitality Hunter
@@ -44462,6 +44675,16 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Voice of Many
+auto=if type(*[creature]|mybattlefield)~morethan~type(*[creature]|opponentbattlefield) then draw:1 controller
+text=When Voice of Many enters the battlefield, draw a card for each opponent who controls fewer creatures than you.
+mana={2}{G}{G}
+type=Creature
+subtype=Elf Druid
+power=3
+toughness=3
+[/card]
+[card]
 name=Void Beckoner
 abilities=deathtouch
 autohand=__CYCLING__({2}{B})
@@ -44472,6 +44695,19 @@ type=Creature
 subtype=Nightmare Horror
 power=8
 toughness=8
+[/card]
+[card]
+name=Void Maw
+abilities=trample
+auto=@movedto(creature|graveyard) from(battlefield):all(trigger[from]) moveto(ownerexile)
+auto={0}:name(Target opponent creature) moveto(opponentgraveyard) target(creature|opponentexile) && 2/2 ueot all(this)
+auto={0}:name(Target your creature) moveto(mygraveyard) target(creature|myexile) && 2/2 ueot all(this)
+text=Trample -- If another creature would die, exile it instead. -- Put a card exiled with Void Maw into its owner's graveyard: Void Maw gets +2/+2 until end of turn.
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=5
 [/card]
 [card]
 name=Volatile Claws
@@ -44490,6 +44726,22 @@ mana={10}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Volcanic Vision
+target=*[instant;sorcery]|mygraveyard
+auto=moveto(myhand) && damage:manacost all(creature|opponentbattlefield)
+auto=moveto(exile) all(this)
+text=Return target instant or sorcery card from your graveyard to your hand. Volcanic Vision deals damage equal to that card's converted mana cost to each creature your opponents control. Exile Volcanic Vision.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Volcanic Wind
+auto=foreach(creature|mybattlefield) ability$!name(Damage) damage:1 target(creature)!$ controller
+text=Volcanic Wind deals X damage divided as you choose among any number of target creatures, where X is the number of creatures on the battlefield as you cast Volcanic Wind.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Volley Veteran
 auto=damage:type:goblin:mybattlefield target(creature|opponentBattlefield)
 text=When Volley Veteran enters the battlefield, it deals damage to target creature an opponent controls equal to the number of Goblins you control.
@@ -44498,6 +44750,20 @@ type=Creature
 subtype=Goblin Warrior
 power=4
 toughness=2
+[/card]
+[card]
+name=Volley of Boulders
+target=creature,player
+flashback={R}{R}{R}{R}{R}{R}
+auto=damage:1
+auto=damage:1 target(creature,player)
+auto=ability$!name(Damage) damage:1 target(creature,player)!$ controller
+auto=ability$!name(Damage) damage:1 target(creature,player)!$ controller
+auto=ability$!name(Damage) damage:1 target(creature,player)!$ controller
+auto=ability$!name(Damage) damage:1 target(creature,player)!$ controller
+text=Volley of Boulders deals 6 damage divided as you choose among any number of target creatures and/or players. -- Flashback {R}{R}{R}{R}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={8}{R}
+type=Sorcery
 [/card]
 [card]
 name=Volrath, the Shapestealer
@@ -44509,6 +44775,22 @@ type=Legendary Creature
 subtype=Shapeshifter
 power=7
 toughness=5
+[/card]
+[card]
+name=Volrath's Dungeon
+auto={L:5}:sacrifice myturnonly
+auto=@each opponent upkeep:ability$!name(Pay 5 life) pay[[{L:5}]] name(Pay 5 life) sacrifice notatarget(Volrath's Dungeon|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent untap:ability$!name(Pay 5 life) pay[[{L:5}]] name(Pay 5 life) sacrifice notatarget(Volrath's Dungeon|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent draw:ability$!name(Pay 5 life) pay[[{L:5}]] name(Pay 5 life) sacrifice notatarget(Volrath's Dungeon|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent combatbegins:ability$!name(Pay 5 life) pay[[{L:5}]] name(Pay 5 life) sacrifice notatarget(Volrath's Dungeon|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent blockers:ability$!name(Pay 5 life) pay[[{L:5}]] name(Pay 5 life) sacrifice notatarget(Volrath's Dungeon|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent firstmain:ability$!name(Pay 5 life) pay[[{L:5}]] name(Pay 5 life) sacrifice notatarget(Volrath's Dungeon|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent endofturn:ability$!name(Pay 5 life) pay[[{L:5}]] name(Pay 5 life) sacrifice notatarget(Volrath's Dungeon|opponentBattlefield)?donothing!$ opponent
+auto={D(*|myhand)}:name(Target player) moveto(mylibrary) target(*|myhand) asSorcery
+auto={D(*|myhand)}:name(Target opponent) moveto(opponentlibrary) target(*|opponenthand) asSorcery
+text=Pay 5 life: Destroy Volrath's Dungeon. Any player may activate this ability but only during his or her turn. -- Discard a card: Target player puts a card from his or her hand on top of his or her library. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Voltaic Servant
@@ -44577,6 +44859,16 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Voracious Vacuum
+auto=target(creature) counter(1/1)
+text=When this creature enters the battlefield, put a +1/+1 counter on target creature.
+mana={3}
+type=Host Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
 name=Voracious Vampire
 abilities=menace
 auto=target(vampire|myBattlefield)) 1/1 && menace ueot
@@ -44589,7 +44881,7 @@ toughness=2
 [/card]
 [card]
 name=Vorel of the Hull Clade
-auto={G}{U}{T}: target(*[artifact;creature;land]) propagate
+auto={G}{U}{T}:target(*[artifact;creature;land]) duplicatecounters(all)
 text={G}{U}, {T}: Double the number of each kind of counter on target artifact, creature, or land.
 mana={1}{G}{U}
 type=Legendary Creature
@@ -44730,6 +45022,17 @@ mana={B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Wall of Corpses
+abilties=defender
+auto={B}:if type(Wall of Corpses[blocking]|mybattlefield)~morethan~0 then destroy target(creature[blocked]|opponentbattlefield)
+text=Defender (This creature can't attack.) -- {B}, Sacrifice Wall of Corpses: Destroy target creature Wall of Corpses is blocking.
+mana={1}{B}
+type=Creature
+subtype=Wall
+power=0
+toughness=2
+[/card]
+[card]
 name=Wall of Forgotten Pharaohs
 abilities=defender
 auto={T}{restriction type(desert|mybattlefield,mygraveyard)~morethan~0}:damage:1 target(player)
@@ -44739,6 +45042,16 @@ type=Artifact Creature
 subtype=Wall
 power=0
 toughness=4
+[/card]
+[card]
+name=Wall of Glare
+abilities=defender
+text=Defender (This creature can't attack.) -- Wall of Glare can block any number of creatures.
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=0
+toughness=5
 [/card]
 [card]
 name=Wall of Lost Thoughts
@@ -44809,6 +45122,17 @@ mana={4}{W}
 type=Sorcery
 [/card]
 [card]
+name=Wandering Eye
+abilities=flying
+auto={0}:Reveal:type:*:opponenthand revealzone(opponenthand) revealtype(*|opponenthand) optionone target(*|reveal) moveto(opponenthand) optiononeend optiontwo name(Put Back) target(*|reveal) transforms((,newability[all(*|reveal) moveto(ownerhand)])) ueot optiontwoend revealend
+text=Flying -- Players play with their hands revealed.
+mana={2}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=3
+[/card]
+[card]
 name=Wandermare
 auto=@movedto(creature[adventure]|mystack) from(mylibrary):counter(1/1,1)
 text=Whenever you cast a creature spell that has an Adventure, put a +1/+1 counter on Wandermare. (It doesn't need to have gone on the adventure first.)
@@ -44827,6 +45151,13 @@ type=Creature
 subtype=Human Pirate
 power=4
 toughness=3
+[/card]
+[card]
+name=War Barge
+auto={3}:target(creature) islandwalk ueot && transforms((,newability[@movedto(War Barge|graveyard) from(battlefield):bury all(this)])) forever
+text={3}: Target creature gains islandwalk until end of turn. When War Barge leaves the battlefield this turn, destroy that creature. A creature destroyed this way can't be regenerated.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=War Screecher
@@ -44934,6 +45265,27 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
+name=Warmonger
+auto={2}:damage:2 all(creature[-flying]) && damage:2 all(player)
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 2) pay[[{2}]] name(Pay 2) damage:2 all(creature[-flying]) && damage:2 all(player)?donothing!$ opponent])) forever
+text={2}: Warmonger deals 1 damage to each creature without flying and each player. Any player may activate this ability.
+mana={3}{R}
+type=Creature
+subtype=Minotaur Monger
+power=3
+toughness=3
+[/card]
+[card]
+name=Warping Wail
+auto=choice name(Exile creature with power 1 or less) target(creature[power<=1]) moveto(exile)
+auto=choice name(Exile creature with toughness 1 or less) target(creature[toughness<=1]) moveto(exile)
+auto=choice name(Counter sorcery) target(*[sorcery]|stack) fizzle
+auto=choice name(Create Eldrazi Scion) token(Eldrazi Scion,Creature Eldrazi Scion,1/1) and!( transforms((,newability[{S}:Add{C}])) forever )! controller
+text=({C} represents colorless mana.) -- Choose one — -- • Exile target creature with power or toughness 1 or less. -- • Counter target sorcery spell. -- • Put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {C} to your mana pool."
+mana={1}{C}
+type=Instant
+[/card]
+[card]
 name=Warrior
 abilities=trample,haste
 text=Trample, Haste
@@ -45006,6 +45358,16 @@ type=Creature
 subtype=Spirit
 power=3
 toughness=4
+[/card]
+[card]
+name=Watcher in the Web
+abilities=reach
+text=Reach (This creature can block creatures with flying.) -- Watcher in the Web can block an additional seven creatures each combat.
+mana={4}{G}
+type=Creature
+subtype=Spider
+power=2
+toughness=5
 [/card]
 [card]
 name=Watcher of the Roost
@@ -45123,6 +45485,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Wax // Wane
+other={W} name(Wane)
+auto=ifnot paid(alternative) then target(creature) 2/2 ueot
+auto=if paid(alternative) then target(enchantment) destroy
+text=Target creature gets +2/+2 until end of turn. // Destroy target enchantment.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Wayward Swordtooth
 abilities=cantattack,cantblock
 auto=maxPlay(land)+1
@@ -45151,6 +45522,17 @@ auto={2}{S(creature|myBattlefield}:damage:2 target(creature,player,planeswalker)
 text={2}, Sacrifice a creature: Weaponize the Monsters deals 2 damage to any target.
 mana={R}
 type=Enchantment
+[/card]
+[card]
+name=Wear // Tear
+other={W} name(Tear)
+auto=if paid(alternative) then destroy target(enchantment)
+kicker={W}
+auto=kicker ifnot paid(alternative) then destroy target(enchantment)
+auto=ifnot paid(alternative) then destroy target(artifact)
+text=Destroy target artifact. // Destroy target enchantment. -- Fuse (You may cast one or both halves of this card from your hand.)
+mana={1}{R}
+type=Instant
 [/card]
 [card]
 name=Weaselback Redcap
@@ -45223,11 +45605,28 @@ toughness=*
 color=blue,red
 [/card]
 [card]
+name=Well of Knowledge
+auto=@each my draw:may pay[[{2}]] draw:2 controller
+auto=@each opponent draw:ability$!name(pay 2) pay[[{2}]] name(pay 2 mana) draw:1?donothing!$ opponent
+text={2}: Draw a card. Any player may activate this ability but only during his or her draw step.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Well of Lost Dreams
 auto=@lifeof(player):foreach:life: may pay({lifeof}) draw:thatmuch controller
 text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Wheel of Sun and Moon
+target=player
+auto=@movedto(*|targetedpersonsgraveyard) from(battlefield):all(trigger[from]) bottomoflibrary
+text=Enchant player -- If a card would be put into enchanted player's graveyard from anywhere, instead that card is revealed and put on the bottom of that player's library.
+mana={GW}{GW}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Whale Reef
@@ -45302,6 +45701,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Wicked Akuba
+auto=damaged(player) from(this):transforms((,newability[{B}:damage:1 opponent])) ueot
+text={B}: Target player dealt damage by Wicked Akuba this turn loses 1 life.
+mana={B}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+[card]
 name=Wicked Guardian
 auto=may ability$!name(damage) damage:2 target(other creature|myBattlefield) and!(draw:1) controller!$
 text=When Wicked Guardian enters the battlefield, you may have it deal 2 damage to another creature you control. If you do, draw a card.
@@ -45338,12 +45747,40 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Wild Crocodile
+auto=reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>land[basic]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+text=When this creature enters the battlefield, search your library for a basic land card, reveal it, put it into your hand, then shuffle your library.
+mana={1}{G}
+type=Host Creature
+subtype=Crocodile
+power=1
+toughness=1
+[/card]
+[card]
+name=Wild Might
+target=creature
+auto=1/1 ueot
+auto=ability$!name(pay or 4/4) pay[[{2}]] name(pay 2 mana) donothing?target(creature|opponentbattlefield) 4/4 ueot!$ opponent
+text=Target creature gets +1/+1 until end of turn. That creature gets an additional +4/+4 until end of turn unless any player pays {2}.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Wild Onslaught
 kicker={4}
 auto=kicker all(creature|myBattlefield) counter(1/1)
 auto=all(creature|myBattlefield) counter(1/1)
 text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Put a +1/+1 counter on each creature you control. If this spell was kicked, put two +1/+1 counters on each creature you control instead.
 mana={3}{G}
+type=Instant
+[/card]
+[card]
+name=Wild Slash
+#MISSING:Damage can't be prevented is not supported ATM
+target=player,creature
+auto=damage:2
+text=Ferocious — If you control a creature with power 4 or greater, damage can't be prevented this turn. -- Wild Slash deals 2 damage to target creature or player.
+mana={R}
 type=Instant
 [/card]
 [card]
@@ -45526,6 +45963,19 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
+name=Winds of Abandon
+target=creature|opponentbattlefield
+abilities=overload
+other={4}{W}{W} name(Overload)
+auto=overload moveto(exile) all(creature|opponentbattlefield)
+auto=paidmana moveto(exile)
+auto=paidmana ability$!name(Reveal) reveal:plibrarycount optionone name(choose basic land) target(<1>land[basic]|reveal) moveto(myBattlefield) optiononeend optiontwo name(put back) moveto(ownerlibrary) all(*|reveal) optiontwoend afterrevealed tap(noevent) notatarget(basic[fresh]|myBattlefield) afterrevealedend revealend!$ opponent
+auto=overload ability$!name(Reveal) reveal:plibrarycount optionone name(choose basic lands) target(<type:creature:mybattlefield>land[basic]|reveal) moveto(myBattlefield) optiononeend optiontwo name(put back) moveto(ownerlibrary) all(*|reveal) optiontwoend afterrevealed tap(noevent) notatarget(basic[fresh]|myBattlefield) afterrevealedend revealend!$ opponent
+text=Exile target creature you don't control. For each creature exiled this way, its controller searches their library for a basic land card. Those players put those cards onto the battlefield tapped, then shuffle their libraries. -- Overload {4}{W}{W} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
 name=Winds of Rebuke
 target=*[-land]
 auto=moveto(ownerhand)
@@ -45640,6 +46090,15 @@ type=Snow Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Winterflame
+auto=choice name(Tap creature) tap(noevent) target(creature)
+auto=choice name(Damage 2 target creature) damage:2 target(creature)
+auto=choice name(Choose both) tap(noevent) target(creature) && ability$!name(Damage 2 target creature) damage:2 target(creature)!$ controller
+text=Choose one or both — -- • Tap target creature. -- • Winterflame deals 2 damage to target creature.
+mana={1}{U}{R}
+type=Instant
+[/card]
+[card]
 name=Wintermoor Commander
 abilities=deathtouch
 anyzone=2/type:creature[knight]:battlefield cdaactive
@@ -45728,6 +46187,14 @@ mana={U}
 type=Artifact
 [/card]
 [card]
+name=Withdraw
+auto=ability$!name(Bounce) moveto(ownerhand) notatarget(creature)!$ controller
+auto=target(creature) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?moveto(ownerhand)])) forever
+text=Return target creature to its owner's hand. Then return another target creature to its owner's hand unless its controller pays {1}.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
 name=Without Weakness
 target=creature|myBattlefield
 auto=indestructible
@@ -45811,22 +46278,6 @@ mana={4}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Wolf,Man
-type=Creature
-subtype=Wolf
-power=2
-toughness=2
-color=green
-[/card]
-[card]
-name=Wolf,Wol
-type=Creature
-subtype=Wolf
-power=2
-toughness=2
-color=green
-[/card]
-[card]
 name=Wolfrider's Saddle
 auto=livingweapontoken(Wolf,Creature Wolf,2/2,green)
 auto={3}:equip
@@ -45841,7 +46292,7 @@ subtype=Equipment
 name=Wolfwillow Haven
 target=land
 auto=teach(land) transforms((,newability[@tappedformana(mytgt):produceextra:{G}]))
-auto={4}{G}{S}:token(Wolf,Wol) restriction{during my turn}
+auto={4}{G}{S}:token(Wolf,Creature Wolf,2/2,green) myTurnOnly
 text=Enchant land -- Whenever enchanted land is tapped for mana, its controller adds an additional {G}. -- {4}{G}, Sacrifice Wolfwillow Haven: Create a 2/2 green Wolf creature token. Activate this ability only during your turn.
 mana={1}{G}
 type=Enchantment
@@ -45849,7 +46300,7 @@ subtype=Aura
 [/card]
 [card]
 name=Woodland Champion
-auto=@movedTo(token|myBattlefield) counter(1/1,1)
+auto=@movedTo(*[token]|myBattlefield) counter(1/1,1)
 text=Whenever one or more tokens enter the battlefield under your control, put that many +1/+1 counters on Woodland Champion.
 mana={1}{G}
 type=Creature
@@ -45901,6 +46352,17 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Wormfang Crab
+abilities=unblockable
+auto=ability$!name(Exile permanent) notatarget(*[-Wormfang Crab]|opponentbattlefield) (blink)forsrc!$ opponent
+text=Wormfang Crab is unblockable. -- When Wormfang Crab enters the battlefield, an opponent chooses a permanent you control other than Wormfang Crab and exiles it. -- When Wormfang Crab leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+mana={3}{U}
+type=Creature
+subtype=Nightmare Crab
+power=3
+toughness=6
+[/card]
+[card]
 name=Worthy Knight
 auto=@movedTo(creature[knight]|mystack):create(Human:creature Human:1/1:white)
 text=Whenever you cast a Knight spell, create a 1/1 white Human creature token.
@@ -45937,14 +46399,28 @@ toughness=3
 [/card]
 [card]
 name=Wretched Camel
-auto=@movedTo(this|graveyard) from(battlefield):may target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
-#aslongas(Desert|mybattlefield,myGraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):if type(*[desert]|mybattlefield,myGraveyard)~morethan~0 then target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
 text=When Wretched Camel dies, if you control a Desert or there is a Desert card in your graveyard, target player discards a card.
 mana={1}{B}
 type=Creature
 subtype=Zombie Camel
 power=2
 toughness=1
+[/card]
+[card]
+name=Wretched Confluence
+auto=choice name(Choose 1,1,1) target(player) draw:3 && life:-3
+auto=choice name(Choose 1,1,2) target(player) draw:2 && life:-2 && ability$!name(Creature gets -2/-2) notatarget(creature) -2/-2 ueot!$ controller
+auto=choice name(Choose 1,2,2) target(player) draw:1 && life:-1 && ability$!name(Creature gets -2/-2) notatarget(creature) -2/-2 ueot!$ controller && ability$!name(Creature gets -2/-2) notatarget(creature) -2/-2 ueot!$ controller
+auto=choice name(Choose 1,2,3) target(player) draw:1 && life:-1 && ability$!name(Creature gets -2/-2) notatarget(creature) -2/-2 ueot!$ controller && ability$!name(Return creature to hand) notatarget(creature|mygraveyard) moveto(myhand)!$ controller
+auto=choice name(Choose 1,3,3) target(player) draw:1 && life:-1 && ability$!name(Return creature to hand) notatarget(<2>creature|mygraveyard) moveto(myhand)!$ controller
+auto=choice name(Choose 2,2,2) target(creature) -2/-2 ueot && ability$!name(Creature gets -2/-2) notatarget(creature) -2/-2 ueot!$ controller && ability$!name(Creature gets -2/-2) notatarget(creature) -2/-2 ueot!$ controller
+auto=choice name(Choose 2,2,3) target(creature) -2/-2 ueot && ability$!name(Creature gets -2/-2) notatarget(creature) -2/-2 ueot!$ controller && ability$!name(Return creature to hand) notatarget(creature|mygraveyard) moveto(myhand)!$ controller
+auto=choice name(Choose 2,3,3) target(creature) -2/-2 ueot && ability$!name(Return creature to hand) notatarget(<2>creature|mygraveyard) moveto(myhand)!$ controller
+auto=choice name(Choose 3,3,3) target(<3>creature|mygraveyard) moveto(myhand)
+text=Choose three. You may choose the same mode more than once. -- • Target player draws a card and loses 1 life. -- • Target creature gets -2/-2 until end of turn. -- • Return target creature card from your graveyard to your hand.
+mana={3}{B}{B}
+type=Instant
 [/card]
 [card]
 name=Xantcha, Sleeper Agent
@@ -45957,6 +46433,16 @@ type=Legendary Creature
 subtype=Minion
 power=5
 toughness=5
+[/card]
+[card]
+name=Xenic Poltergeist
+auto={T}:target(artifact[-creature]) transforms((creature,setpower=0,settoughness=1,newability[dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[0/-1 ueot all(this)],newability[@each opponent untap:dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[@each opponent upkeep:0/-1 ueot all(this)])) uynt
+text={T}: Until your next upkeep, target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost.
+mana={1}{B}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
 [/card]
 [card]
 name=Xyris, the Writhing Storm
@@ -45993,6 +46479,14 @@ type=Legendary Creature
 subtype=Hyena Beast
 power=3
 toughness=3
+[/card]
+[card]
+name=Yare
+target=creature[blocking]
+auto=3/0 ueot
+text=Target creature defending player controls gets +3/+0 until end of turn. That creature can block up to two additional creatures this turn.
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Yargle, Glutton of Urborg
@@ -46184,6 +46678,18 @@ type=Creature
 subtype=Bird
 power=1
 toughness=1
+[/card]
+[card]
+name=Zerapa Minotaur
+abilities=first strike
+auto={2}:-first strike ueot
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 2) pay[[{2}]] name(Pay 2) notatarget(Zerapa Minotaur[first strike]|opponentBattlefield) -first strike ueot?donothing!$ opponent])) forever
+text=First strike -- {2}: Zerapa Minotaur loses first strike until end of turn. Any player may activate this ability.
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur
+power=3
+toughness=3
 [/card]
 [card]
 name=Zetalpa, Primal Dawn

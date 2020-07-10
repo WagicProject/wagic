@@ -38,14 +38,14 @@ bool Counter::cancels(int _power, int _toughness)
     return (power == -_power && toughness == -_toughness);
 }
 
-int Counter::cancelCounter(int power, int toughness)
+int Counter::cancelCounter(int power, int toughness, MTGCardInstance * _source)
 {
     while(this->target->counters->hasCounter(power,toughness) && this->target->counters->hasCounter(power*-1,toughness*-1))
     {
         GameObserver *g = this->target->getObserver();
         this->removed();
         this->nb--;
-        WEvent * t = NEW WEventCounters(NULL,"",power*-1,toughness*-1,false,true);
+        WEvent * t = NEW WEventCounters(NULL,"",power*-1,toughness*-1,false,true,_source);
         dynamic_cast<WEventCounters*>(t)->targetCard = this->target;
         g->receiveEvent(t);
         this->target->counters->removeCounter(power,toughness);
@@ -98,7 +98,7 @@ Counters::~Counters()
     }
 }
 
-int Counters::addCounter(const char * _name, int _power, int _toughness, bool _noevent)
+int Counters::addCounter(const char * _name, int _power, int _toughness, bool _noevent, bool duplicated, MTGCardInstance * _source)
 {
     /*420.5n If a permanent has both a +1/+1 counter and a -1/-1 counter on it, N +1/+1 and N -1/-1 counters are removed from it, where N is the smaller of the number of +1/+1 and -1/-1 counters on it.*/
     GameObserver *g = target->getObserver();
@@ -112,9 +112,12 @@ int Counters::addCounter(const char * _name, int _power, int _toughness, bool _n
             {
                 counters[i]->added();
                 counters[i]->nb++;
-                WEvent * j = NEW WEventCounters(this,_name,_power,_toughness,true,false);
-                dynamic_cast<WEventCounters*>(j)->targetCard = this->target;
-                g->receiveEvent(j);
+                if (!duplicated)
+                {
+                    WEvent * j = NEW WEventCounters(this,_name,_power,_toughness,true,false,_source);
+                    dynamic_cast<WEventCounters*>(j)->targetCard = this->target;
+                    g->receiveEvent(j);
+                }
                 delete(e);
                 return mCount;
             }
@@ -122,13 +125,13 @@ int Counters::addCounter(const char * _name, int _power, int _toughness, bool _n
         Counter * counter = NEW Counter(target, _name, _power, _toughness);
         counters.push_back(counter);
         counter->added();
-        if (!_noevent)
+        mCount++;
+        if (!_noevent && !duplicated)
         {
-            WEvent * w = NEW WEventCounters(this,_name,_power,_toughness,true,false);
+            WEvent * w = NEW WEventCounters(this,_name,_power,_toughness,true,false,_source);
             dynamic_cast<WEventCounters*>(w)->targetCard = this->target;
             g->receiveEvent(w);
         }
-        mCount++;
         /*the damage test should be handled on game state based effect i think*/
         //this->target->doDamageTest = 1;
         //this->target->afterDamage();
@@ -160,7 +163,7 @@ int Counters::init()
     return 1;
 }
 
-int Counters::removeCounter(const char * _name, int _power, int _toughness)
+int Counters::removeCounter(const char * _name, int _power, int _toughness, bool _noevent, bool duplicated, MTGCardInstance * _source)
 {
     for (int i = 0; i < mCount; i++)
     {
@@ -172,10 +175,12 @@ int Counters::removeCounter(const char * _name, int _power, int _toughness)
             counters[i]->removed();
             counters[i]->nb--;
             GameObserver *g = target->getObserver();
-            WEvent * e = NEW WEventCounters(this,_name,_power,_toughness,false,true);
-            dynamic_cast<WEventCounters*>(e)->targetCard = this->target;
-            g->receiveEvent(e);
-
+            if (!_noevent && !duplicated)
+            {
+                WEvent * e = NEW WEventCounters(this,_name,_power,_toughness,false,true,_source);
+                dynamic_cast<WEventCounters*>(e)->targetCard = this->target;
+                g->receiveEvent(e);
+            }
             // special case: when the last time counter is removed from non-suspended card
             // sacrifice that card
             if (!target->suspended && counters[i]->name == "time" && counters[i]->nb == 0) {

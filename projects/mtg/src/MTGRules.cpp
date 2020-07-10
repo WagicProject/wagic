@@ -911,7 +911,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         ManaCost * Xcost = NEW ManaCost();
         Xcost->copy(alternateCost);
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
-		card->X = card->setX; // Fix to don't loose X value on alternative cast
+        card->X = card->setX; // Fix to don't loose X value on alternative cast
         Xcost->remove(7, 1);//remove the X
         if (playerMana->canAfford(Xcost))
         {
@@ -3414,7 +3414,7 @@ int MTGNewLegend::receiveEvent(WEvent * e)
             {
                 if(card->basicAbilities[(int)Constants::MUTATE] && card->alternateCostPaid[(int)ManaCost::MANA_PAID_WITH_ALTERNATIVE])
                     return 0; // The Leged rule for Mutating card will be checked later just if it's a Mutation Over choice
-				CheckLegend(card);
+                CheckLegend(card);
                 return 1;
             }
         }

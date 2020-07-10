@@ -1894,7 +1894,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     }
                     if(!maxNb || (maxNb && currentAmount < maxNb))
                     {
-                        _target->counters->addCounter(name.c_str(), power, toughness);
+                        _target->counters->addCounter(name.c_str(), power, toughness, false, false, source);
                     }
                 }
             }
@@ -1904,7 +1904,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                 {
                     while (_target->next)
                         _target = _target->next;
-                    _target->counters->removeCounter(name.c_str(), power, toughness);
+                    _target->counters->removeCounter(name.c_str(), power, toughness, false, false, source);
                 }
             }
 
@@ -1920,7 +1920,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                 {
                     if (_target->counters->counters[i]->cancels(power, toughness) && !name.size() && _target->counters->counters[i]->nb > 0)
                     {
-                        _target->counters->counters[i]->cancelCounter(power,toughness);
+                        _target->counters->counters[i]->cancelCounter(power,toughness, source);
                     }
                 }
             }
@@ -2157,8 +2157,147 @@ AARemoveAllCounter * AARemoveAllCounter::clone() const
     return NEW AARemoveAllCounter(*this);
 }
 
+//remove a single counter of a spefic kind chosen by user 
+AARemoveSingleCounter::AARemoveSingleCounter(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost, int nb) :
+ActivatedAbility(observer, id, source, cost, 0), nb(nb)
+{
+    this->GetId();
+}
+ 
+int AARemoveSingleCounter::resolve()
+{
+    if (!target)
+        return 0;
+
+    vector<MTGAbility*>pcounters;
+    
+    Player * pTarget = dynamic_cast<Player *>(target);
+    MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(target);
+
+    if(pTarget && pTarget->poisonCount)
+    {
+        MTGAbility * a = NEW AAAlterPoison(game, game->mLayers->actionLayer()->getMaxId(), source, target, -nb, NULL);
+        a->oneShot = true;
+        pcounters.push_back(a);
+    }
+    else if(pTarget && pTarget->energyCount)
+    {
+        MTGAbility * a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, -nb, NULL);
+        a->oneShot = true;
+        pcounters.push_back(a);
+    }
+    else if (cTarget && cTarget->counters)
+    {
+        Counters * counters = cTarget->counters;
+        for(size_t i = 0; i < counters->counters.size(); ++i)
+        {
+            Counter * counter = counters->counters[i];
+            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, -nb, 0);
+            a->oneShot = true;
+            pcounters.push_back(a);
+        }
+    }
+    if(pcounters.size())
+    {
+        MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
+        a->resolve();
+    }
+    return 1;
+
+}
+
+const string AARemoveSingleCounter::getMenuText()
+{
+    return "Remove single specific counter";
+}
+
+AARemoveSingleCounter * AARemoveSingleCounter::clone() const
+{
+    return NEW AARemoveSingleCounter(*this);
+}
+
+AARemoveSingleCounter::~AARemoveSingleCounter()
+{
+}
+
+//duplicate counters 
+AADuplicateCounters::AADuplicateCounters(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost) :
+ActivatedAbility(observer, id, source, cost, 0)
+{
+    this->GetId();
+    allcounters = false;
+}
+ 
+int AADuplicateCounters::resolve()
+{
+    if (!target)
+        return 0;
+
+    vector<MTGAbility*>pcounters;
+    
+    Player * pTarget = dynamic_cast<Player *>(target);
+    MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(target);
+
+    if(pTarget && pTarget->poisonCount)
+    {
+        MTGAbility * a = NEW AAAlterPoison(game, game->mLayers->actionLayer()->getMaxId(), source, target, pTarget->poisonCount, NULL);
+        a->oneShot = true;
+        pcounters.push_back(a);
+    }
+    else if(pTarget && pTarget->energyCount)
+    {
+        MTGAbility * a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, pTarget->energyCount, NULL);
+        a->oneShot = true;
+        pcounters.push_back(a);
+    }
+    else if (cTarget && cTarget->counters)
+    {
+        Counters * counters = cTarget->counters;
+        for(size_t i = 0; i < counters->counters.size(); ++i)
+        {
+            Counter * counter = counters->counters[i];
+            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, counter->nb, 0);
+            a->oneShot = true;
+            pcounters.push_back(a);
+        }
+    }
+    if(pcounters.size())
+    {
+        if(allcounters)
+        {
+             for(size_t j = 0; j < pcounters.size(); j++)
+             {
+                 pcounters[j]->resolve();
+             }
+        }
+        else
+        {
+            MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
+            a->resolve();
+        }
+    }
+    return 1;
+
+}
+
+const string AADuplicateCounters::getMenuText()
+{
+    if(allcounters)
+        return "Duplicate all Counters";
+    return "Duplicate specific Counters";
+}
+
+AADuplicateCounters * AADuplicateCounters::clone() const
+{
+    return NEW AADuplicateCounters(*this);
+}
+
+AADuplicateCounters::~AADuplicateCounters()
+{
+}
+
 //proliferate a target
-AAProliferate::AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,ManaCost * cost) :
+AAProliferate::AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost) :
 ActivatedAbility(observer, id, source, cost, 0)
 {
     this->GetId();
@@ -2193,7 +2332,7 @@ int AAProliferate::resolve()
         for(size_t i = 0; i < counters->counters.size(); ++i)
         {
             Counter * counter = counters->counters[i];
-            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, 1,0);
+            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
             a->oneShot = true;
             pcounters.push_back(a);
         }
@@ -4366,12 +4505,13 @@ AALifeSet::~AALifeSet()
 //AACloner 
 //cloning...this makes a token thats a copy of the target.
 AACloner::AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int who,
-        string abilitiesStringList,string TypesList) :
+        string abilitiesStringList, string TypesList, string optionsList) :
     ActivatedAbility(observer, _id, _source, _cost, 0), who(who)
 {
     aType = MTGAbility::CLONING;
     target = _target;
     source = _source;
+    options = optionsList;
     if (abilitiesStringList.size() > 0)
     {
         PopulateAbilityIndexVector(awith, abilitiesStringList);
@@ -4496,6 +4636,10 @@ int AACloner::resolve()
             {
                 andAbilityClone->addToGame();
             }
+        }
+        if(options.find("notrigger") == string::npos){ // check if the @tokencreated trigger has to be activated or not
+            WEvent * e = NEW WEventTokenCreated(spell->source);
+            source->getObserver()->receiveEvent(e); // triggers the @tokencreated event for any other listener.
         }
         delete spell;
     }
