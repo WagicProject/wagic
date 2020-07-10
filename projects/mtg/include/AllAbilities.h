@@ -578,13 +578,9 @@ private:
         {
             intValue = card->controller()->opponent()->energyCount;
         }
-        else if (s == "pyidarocount")
+        else if (s == "pyidarocount" || s == "oyidarocount")
         {
-            intValue = card->controller()->yidaroCount;
-        }
-        else if (s == "oyidarocount")
-        {
-            intValue = card->controller()->opponent()->yidaroCount;
+            intValue = (s == "pyidarocount")?card->controller()->yidaroCount:card->controller()->opponent()->yidaroCount;
         }
         else if (s == "praidcount")
         {
@@ -1672,6 +1668,29 @@ public:
     }
 };
 
+class TrTokenCreated: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrTokenCreated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
+        Trigger(observer, id, source,once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventTokenCreated * e = dynamic_cast<WEventTokenCreated *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        return 1;
+    }
+
+    TrTokenCreated * clone() const
+    {
+        return NEW TrTokenCreated(*this);
+    }
+};
+
 class TrCardSacrificed: public Trigger
 {
 public:
@@ -1920,8 +1939,10 @@ class TrCounter: public Trigger
 public:
     Counter * counter;
     int type;
-    TrCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0,bool once = false) :
-    Trigger(observer, id, source, once, tc),counter(counter), type(type)
+    bool duplicate;
+    MTGCardInstance * counterException; //added exception to avid a counter loop (eg. Doubling Season)
+    TrCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, MTGCardInstance * counterException = NULL) :
+    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), counterException(counterException)
     {
     }
 
@@ -1931,8 +1952,15 @@ public:
         if (!e) return 0;
         if (type == 0 && !e->removed) return 0;
         if (type == 1 && !e->added) return 0;
-        if (!(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)) return 0;
+        if (counterException && e->source && !strcmp(counterException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of counter gain/loss it's the exception card it doesn't have effect (loop avoidance);        
+        if (counter && !(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)) return 0;
         if (tc && !tc->canTarget(e->targetCard)) return 0;
+        if (duplicate){
+            if(type == 1)
+                e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            else
+                e->targetCard->counters->removeCounter(counter->name.c_str(),counter->power,counter->toughness,true,true,e->source);
+        }
         return 1;
     }
 
@@ -2147,11 +2175,33 @@ class AAProliferate: public ActivatedAbility
 {
 public:
     bool allcounters;
-    AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,ManaCost * cost = NULL);
+    AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
     AAProliferate * clone() const;
     ~AAProliferate();
+};
+
+class AADuplicateCounters: public ActivatedAbility
+{
+public:
+    bool allcounters;
+    AADuplicateCounters(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost = NULL);
+    int resolve();
+    const string getMenuText();
+    AADuplicateCounters * clone() const;
+    ~AADuplicateCounters();
+};
+
+class AARemoveSingleCounter: public ActivatedAbility
+{
+public:
+    int nb;
+    AARemoveSingleCounter(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost = NULL, int nb = 1);
+    int resolve();
+    const string getMenuText();
+    AARemoveSingleCounter * clone() const;
+    ~AARemoveSingleCounter();
 };
 
 //MultiAbility : triggers several actions for a cost
@@ -2243,13 +2293,14 @@ public:
     int who;
     string with;
     string types;
+    string options;
     list<int> awith;
     list<int> colors;
     list<int> typesToAdd;
     MTGAbility * andAbility;
 
     AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, int who = 0,
-            string abilitiesStringList = "",string typeslist = "");
+            string abilitiesStringList = "", string typeslist = "", string optionsList = "");
     int resolve();
     const string getMenuText();
     virtual ostream& toString(ostream& out) const;
@@ -4060,6 +4111,8 @@ public:
                     andAbilityClone->addToGame();
                 }
             }
+            WEvent * e = NEW WEventTokenCreated(myToken);
+            source->getObserver()->receiveEvent(e); // triggers the @tokencreated event for any other listener.
             delete spell;
         }
         return 1;
@@ -7035,7 +7088,7 @@ public:
     bool noEvent;
     bool putinplay;
     bool asNormalMadness;
-	bool alternative;
+    bool alternative;
     AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false);
 
     int testDestroy(){return 0;};

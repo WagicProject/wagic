@@ -63,7 +63,8 @@ struct WEventCounters : public WEvent {
   int toughness;
   bool added;
   bool removed;
-  WEventCounters(Counters *counter,string name,int power, int toughness,bool added = false, bool removed = false);
+  MTGCardInstance * source;
+  WEventCounters(Counters *counter,string name,int power, int toughness,bool added = false, bool removed = false, MTGCardInstance * source = NULL);
   using WEvent::getTarget;
   virtual Targetable * getTarget();
 };
@@ -354,6 +355,12 @@ struct WEventplayerEnergized : public WEvent {
 //mutation event
 struct WEventCardMutated : public WEventCardUpdate {
     WEventCardMutated(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//token creation event
+struct WEventTokenCreated : public WEventCardUpdate {
+    WEventTokenCreated(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);
 };
 

@@ -43,8 +43,8 @@ WEventCardUpdate::WEventCardUpdate(MTGCardInstance * card) :
 }
 ;
 
-WEventCounters::WEventCounters(Counters *counter,string name,int power,int toughness,bool added,bool removed) :
-WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed)
+WEventCounters::WEventCounters(Counters *counter,string name,int power,int toughness,bool added,bool removed, MTGCardInstance* source) :
+WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed),source(source)
 {
 }
 
@@ -291,6 +291,11 @@ WEventCardMutated::WEventCardMutated(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
 }
+
+WEventTokenCreated::WEventTokenCreated(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
 ;
 
 Targetable * WEventDamage::getTarget(int target)
@@ -490,6 +495,12 @@ Targetable * WEventCardCopiedACard::getTarget(int target)
 }
 
 Targetable * WEventCardMutated::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventTokenCreated::getTarget(int target)
 {
     if (target) return card;
     return NULL;

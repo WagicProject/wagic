@@ -1072,9 +1072,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             fromTc = tcf.createTargetChooser(starget, card);
             fromTc->targetter = NULL; //avoid protection from
         }
-        TriggeredAbility * mover = NEW TrCardAddedToZone(observer, id, card, (TargetZoneChooser *) toTc,
-            toTcCard, (TargetZoneChooser *) fromTc, fromTcCard, once, sourceUntapped, isSuspended, limitOnceATurn);
-        if(neverRemove)
+        TriggeredAbility * mover = NEW TrCardAddedToZone(observer, id, card, (TargetZoneChooser *) toTc, toTcCard, (TargetZoneChooser *) fromTc, fromTcCard, once, sourceUntapped, isSuspended, limitOnceATurn);
+        if(neverRemove && mover)
         {
             mover->forcedAlive = 1;
             mover->forceDestroy = -1;
@@ -1172,6 +1171,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     //Card is mutated
     if (TargetChooser * tc = parseSimpleTC(s, "mutated", card))
         return NEW TrCardMutated(observer, id, card, tc,once);
+    
+    //Token has been created
+    if (TargetChooser * tc = parseSimpleTC(s, "tokencreated", card))
+        return NEW TrTokenCreated(observer, id, card, tc,once);
 
     //Card is sacrificed
     if (TargetChooser * tc = parseSimpleTC(s, "sacrificed", card))
@@ -1331,17 +1334,35 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (s.find("counteradded(") != string::npos)
     {
         vector<string>splitCounter = parseBetween(s,"counteradded(",")");
-        Counter * counter = parseCounter(splitCounter[1],card,NULL);
+        Counter * counter = NULL;
+        bool duplicate = false;
+        if(s.find("(duplicateall)") != string::npos)
+            duplicate = true;
+        else if(s.find("(any)") == string::npos)
+            counter = parseCounter(splitCounter[1],card,NULL);
         TargetChooser * tc = parseSimpleTC(s, "from", card);
-        return NEW TrCounter(observer, id, card, counter, tc, 1,once);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
+        if(exception)
+            return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate, exception->source);
+        else
+            return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate);
     }
 
     if (s.find("counterremoved(") != string::npos)
     {
         vector<string>splitCounter = parseBetween(s,"counterremoved(",")");
-        Counter * counter = parseCounter(splitCounter[1],card,NULL);
+        Counter * counter = NULL;
+        bool duplicate = false;
+        if(s.find("(duplicateall)") != string::npos)
+            duplicate = true;
+        else if(s.find("(any)") == string::npos)
+            counter = parseCounter(splitCounter[1],card,NULL);
         TargetChooser * tc = parseSimpleTC(s, "from", card);
-        return NEW TrCounter(observer, id, card, counter, tc, 0,once);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
+        if(exception)
+            return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate, exception->source);
+        else
+            return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate);
     }
 
     int who = 0;
@@ -3047,6 +3068,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         string with = "";
         string types = "";
+        string options = "";
         vector<string> splitWith = parseBetween(s, "with(", ")");
         if (splitWith.size())
         {
@@ -3057,7 +3079,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             types = splitTypes[1];
         }
-        MTGAbility * a = NEW AACloner(observer, id, card, target, 0, who, with,types);
+        vector<string> splitOptions = parseBetween(s, "options(", ")");
+        if (splitOptions.size())
+        {
+            options = splitOptions[1];
+        }
+        MTGAbility * a = NEW AACloner(observer, id, card, target, 0, who, with, types, options);
         a->oneShot = 1;
         if(storedAndAbility.size())
         {
@@ -3132,7 +3159,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool asNormalMadness = splitCastCard[1].find("madness") != string::npos;
         bool sendNoEvent = splitCastCard[1].find("noevent") != string::npos;
         bool putinplay = splitCastCard[1].find("putinplay") != string::npos;
-		bool alternative = splitCastCard[1].find("alternative") != string::npos;
+        bool alternative = splitCastCard[1].find("alternative") != string::npos;
         string nameCard = "";
         if(splitCastCard[1].find("named!:") != string::npos)
         {
@@ -3719,6 +3746,28 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string splitCounterTrack = splitCounterTracking[1];
         return NEW ACounterTracker(observer, id, card, target,splitCounterTrack);
     }
+    //duplicate counters
+    vector<string> splitDuplicateCounters = parseBetween(s, "duplicatecounters(", ")");
+    if (splitDuplicateCounters.size())
+    {
+        MTGAbility * a = NEW AADuplicateCounters(observer, id, card, target, NULL);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        string counterString = splitDuplicateCounters[1];
+        if(counterString.find("all") != string::npos)
+            ((AADuplicateCounters*)a)->allcounters = true;
+        return a;
+    }
+    //remove single counter of any type
+    vector<string> splitRemoveSpecificCounters = parseBetween(s, "removesinglecountertype(", ")");
+    if (splitRemoveSpecificCounters.size())
+    {
+        int nb = atoi(splitRemoveSpecificCounters[1].c_str());
+        MTGAbility * a = NEW AARemoveSingleCounter(observer, id, card, target, NULL, nb);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
     //removes all counters of the specifified type.
     vector<string> splitRemoveCounter = parseBetween(s, "removeallcounters(", ")");
     if (splitRemoveCounter.size())
@@ -4176,7 +4225,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         ((AAProliferate*)a)->allcounters = true;
         return a;
     }
-    
+
     //frozen, next untap this does not untap.
     found = s.find("frozen");
     if (found != string::npos)
