@@ -803,6 +803,28 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         {
             restriction.push_back("lastturn(*[-token]|opponentstack,opponentbattlefield)~lessthan~1");
         }
+        check = restriction[i].find("control three or more lands with same name");
+        if(check != string::npos)
+        {
+            if(player != observer->currentPlayer)
+                return 0;
+            bool found = false;
+            for(unsigned int i = 0; i < observer->currentPlayer->game->inPlay->cards.size() && !found; i++){
+                if(observer->currentPlayer->game->inPlay->cards[i]->hasType("land")){
+                    for(unsigned int j = i+1; j < observer->currentPlayer->game->inPlay->cards.size() && !found; j++){
+                        if(observer->currentPlayer->game->inPlay->cards[j]->hasType("land") && observer->currentPlayer->game->inPlay->cards[j]->name == observer->currentPlayer->game->inPlay->cards[i]->name){
+                            for(unsigned int k = j+1; k < observer->currentPlayer->game->inPlay->cards.size() && !found; k++){
+                                if(observer->currentPlayer->game->inPlay->cards[k]->hasType("land") && observer->currentPlayer->game->inPlay->cards[k]->name == observer->currentPlayer->game->inPlay->cards[i]->name){
+                                    found = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(!found)
+                return 0;
+        }
         check = restriction[i].find("paid(");
         if(check != string::npos)
         {

@@ -4639,7 +4639,7 @@ int AACloner::resolve()
         }
         if(options.find("notrigger") == string::npos){ // check if the @tokencreated trigger has to be activated or not
             WEvent * e = NEW WEventTokenCreated(spell->source);
-            source->getObserver()->receiveEvent(e); // triggers the @tokencreated event for any other listener.
+            spell->getObserver()->receiveEvent(e); // triggers the @tokencreated event for any other listener.
         }
         delete spell;
     }

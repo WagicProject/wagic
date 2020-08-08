@@ -190,7 +190,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "discardtoplaybyopponent",
     "modular",
     "mutate", //it can mutate
-    "adventure" //it can be adventure
+    "adventure", //it can be adventure
+    "mentor",
+    "prowess"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
