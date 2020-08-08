@@ -1,3 +1,4 @@
+grade=borderline
 #Bordeline Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 #I sorted this programatically - Vitty85 04-07-2020
@@ -518,61 +519,6 @@ mana={W}
 type=Enchantment
 [/card]
 [card]
-name=Ajani, Adversary of Tyrants
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,+1,Loyalty)}:name(+1: Put a +1/+1 counter on up to two...) target(<upto:2>other creature|battlefield) counter(1/1,1) 
-auto={C(0/0,-2,Loyalty)}:name(-2: Return target creature from graveyard) moveTo(mybattlefield) target(creature[manacost<=2]|mygraveyard)
-auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Create three tokens) emblem transforms((,newability[@each my endofturn:create(Cat:Creature Cat:1/1:lifelink:white)*3] )) forever dontremove
-text=+1: Put a +1/+1 counter on each of up to two target creatures. -- -2: Return target creature card with converted mana cost 2 or less from your graveyard to the battlefield. -- -7: You get an emblem with "At the beginning of your end step, create three 1/1 white Cat creature tokens with lifelink."
-mana={2}{W}{W}
-type=Legendary Planeswalker
-subtype=Ajani
-[/card]
-[card]
-name=Ajani, Inspiring Leader
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:target(creature) counter(1/1,2) && life:2
-auto={C(0/0,-3,Loyalty)}:moveto(exile) target(creature) && life:2 targetController
-auto={C(0/0,-10,Loyalty)}:all(creature|myBattlefield) flying && double strike ueot
-text=+2: You gain 2 life. Put two +1/+1 counters on up to one target creature. -- -3: Exile target creature. Its controller gains 2 life. -- -10: Creatures you control gain flying and double strike until end of turn.
-mana={4}{W}{W}
-type=Legendary Planeswalker
-subtype=Ajani
-[/card]
-[card]
-name=Ajani, Mentor of Heroes
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Distribute counters) ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
-auto={C(0/0,1,Loyalty)}:name(+1: Look 4 cards) reveal:4 optionone name(Get a card) target(<1>*[creature;planeswalker;aura]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-8,Loyalty)}:name(-8: Earn 100 life) life:100 controller
-text=+1: Distribute three +1/+1 counters among one, two, or three target creatures you control. -- +1: Look at the top four cards of your library. You may reveal an Aura, creature, or planeswalker card from among them and put it into your hand. Put the rest on the bottom of your library in any order. -- -8: You gain 100 life.
-mana={3}{G}{W}
-type=Planeswalker
-subtype=Ajani
-[/card]
-[card]
-name=Ajani, Strength of the Pride
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Gain Life) life:type:creature:myBattlefield controller && life:type:planeswalkers:myBattlefield controller
-auto={C(0/0,-2,Loyalty)}:name(-2: Create Ajani's Pridemate) token(447141)
-auto={C(0/0,0,Loyalty)}:name(0: Exile) if compare(lifetotal)~morethan~34 then moveto(exile) all(this) && moveto(exile) all(creature,artifact|opponentbattlefield)
-text=+1: You gain life equal to the number of creatures you control plus the number of planeswalkers you control. -- -2: Create a 2/2 white Cat Soldier creature token named Ajani's Pridemate with "Whenever you gain life, put a +1/+1 counter on Ajani's Pridemate." -- 0: If you have at least 15 life more than your starting life total, exile Ajani, Strength of the Pride and each artifact and creature your opponents control.
-mana={2}{W}{W}
-type=Legendary Planeswalker
-subtype=Ajani
-[/card]
-[card]
-name=Ajani, the Greathearted
-auto=counter(0/0,5,loyalty)
-auto=lord(creature|myBattlefield) vigilance
-auto={C(0/0,1,Loyalty)}:life:3
-auto={C(0/0,-2,Loyalty)}:counter(1/1) all(creature|myBattlefield) && counter(0/0,1,Loyalty)all(other planeswalker|myBattlefield)
-text=Creatures you control have vigilance. -- +1: You gain 3 life. -- -2: Put a +1/+1 counter on each creature you control and a loyalty counter on each other planeswalker you control.
-mana={2}{G}{W}
-type=Legendary Planeswalker
-subtype=Ajani
-[/card]
-[card]
 name=Akim, the Soaring Wind
 abilities=flying
 auto=@movedTo(*[token]|myBattlefield):token(Bird,creature Bird,1/1,white,flying) limit:1
@@ -846,10 +792,10 @@ subtype=Equipment
 [/card]
 [card]
 name=Anax, Hardened in the Forge
-auto=type:manaR:mybattlefield/3 cdaactive
-auto=@movedTo(this|mygraveyard) from(Battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)
-auto=@movedTo(other creature[-token]|mygraveyard) from(Battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)
-auto=@movedTo(other creature[-token,power>=4]|mygraveyard) from(Battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)*2
+anyzone=type:manaR:mybattlefield/3 cdaactive
+auto=@movedTo(this|mygraveyard) from(battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)
+auto=@movedTo(other creature[-token;power<=3]|mygraveyard) from(Battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)
+auto=@movedTo(other creature[-token;power>=4]|mygraveyard) from(Battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)*2
 text=Anax’s power is equal to your devotion to red. (Each {R} in the mana costs of permanents you control counts toward your devotion to red.) -- Whenever Anax or another nontoken creature you control dies, create a 1/1 red Satyr creature token with “This creature can’t block.” If the creature had power 4 or greater, create two of those tokens instead.
 mana={1}{R}{R}
 type=Legendary Enchantment Creature
@@ -1141,17 +1087,6 @@ auto=ability$! name(sacrifices planeswalker) sacrifice notatarget(planeswalker|m
 text=Choose one — -- • Target player sacrifices an artifact. -- • Target player sacrifices a creature. -- • Target player sacrifices a planeswalker.
 mana={B}{R}
 type=Sorcery
-[/card]
-[card]
-name=Angrath, Captain of Chaos
-auto=counter(0/0,5,loyalty)
-auto=lord(creature|myBattlefield) menace
-auto={C(0/0,-2,Loyalty)}:counter(1/1,2) notATarget(army|myBattlefield)
-auto={C(0/0,-2,Loyalty)}:create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1,2) notATarget(army|myBattlefield))!
-text=Creatures you control have menace. -- -2: Amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
-mana={2}{BR}{BR}
-type=Legendary Planeswalker
-subtype=Angrath
 [/card]
 [card]
 name=Animal Sanctuary
@@ -1600,7 +1535,7 @@ toughness=4
 name=Archon of Sun's Grace
 abilities=flying,lifelink
 auto=lord(creature[Pegasus]|myBattlefield) lifelink
-auto=@movedTo(enchantment|myBattlefield):token(Pegasus,Arc)
+auto=@movedTo(enchantment|myBattlefield):token(Pegasus,creature Pegasus,2/2,white,flying)
 text=Flying, lifelink -- Pegasus creatures you control have lifelink. -- Constellation -- Whenever an enchantment enters the battlefield under your control, create a 2/2 white Pegasus creature token with flying.
 mana={2}{W}{W}
 type=Creature
@@ -1644,6 +1579,7 @@ toughness=2
 [card]
 name=Arcum's Astrolabe
 other={i}
+auto=draw:1 controller
 auto={1}{T}:Add{W}
 auto={1}{T}:Add{U}
 auto={1}{T}:Add{B}
@@ -1758,16 +1694,6 @@ type=Creature
 subtype=Wolf
 power=3
 toughness=2
-[/card]
-[card]
-name=Arlinn, Voice of the Pack
-auto=counter(0/0,7,loyalty)
-auto=@movedTo(*[Wolf;Werewolf]|myBattlefield):all(trigger[to]) counter(1/1)
-auto={C(0/0,-2,Loyalty)}:create(wolf:creature wolf:2/2:green)
-text=Each creature you control that's a Wolf or Werewolf enters the battlefield with an additional +1/+1 counter on it. -- -2: Create a 2/2 green Wolf creature token.
-mana={4}{G}{G}
-type=Legendary Planeswalker
-subtype=Arlinn
 [/card]
 [card]
 name=Armed // Dangerous
@@ -1931,38 +1857,6 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Ashiok, Dream Render
-auto=counter(0/0,5,loyalty)
-auto=lord(*|opponentlibrary) shroud
-auto={C(0/0,-1,Loyalty)}:target(player) deplete:4 && moveTo(exile) all(*|opponentgraveyard)
-text=Spells and abilities your opponents control can't cause their controller to search their library. -- -1: Target player puts the top four cards of their library into their graveyard. Then exile each opponent's graveyard.
-mana={1}{UB}{UB}
-type=Legendary Planeswalker
-subtype=Ashiok
-[/card]
-[card]
-name=Ashiok, Nightmare Muse
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(Create a Blue black nightmare) token(Nightmare,Nig)
-auto={C(0/0,-3,Loyalty)}:name (Return target nonland and exiles) moveTo(ownerhand) target(*[-land]) && moveTo(exile) NotATarget(*|opponenthand)
-auto={C(0/0,-7,Loyalty)}:name (Cast up to three cards from exile) castcard(normal) target(*|opponentExile) && castcard(normal) target(*|opponentExile) && castcard(normal) target(*|opponentExile)
-text=+1: Create a 2/3 blue and black Nightmare creature token with "Whenever this creature attacks or blocks, each opponent exiles the top two cards of their library." -- -3: Return target nonland permanent to its owner's hand, then that player exiles a card from their hand. -- -7: You may cast up to three face-up cards your opponents own from exile without paying their mana costs.
-mana={3}{U}{B}
-type=Legendary Planeswalker
-subtype=Ashiok
-[/card]
-[card]
-name=Ashiok, Sculptor of Fears
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:name(Draw a card and put two cards...) draw:1 controller && deplete:2 opponent deplete:2 controller
-auto={C(0/0,-5,Loyalty)}:name(Return target creature from graveyars) moveTo(myBattlefield) target(creature|Graveyard)
-auto={C(0/0,-11,Loyalty)}:name(Gain control of all creatures..) moveTo(myBattlefield) all(creature|opponentBattlefield)
-text=+2: Draw a card. Each player puts the top two cards of their library into their graveyard. -- -5: Put target creature card from a graveyard onto the battlefield under your control. -- -11: Gain control of all creatures target opponent controls.
-mana={4}{U}{B}
-type=Legendary Planeswalker
-subtype=Ashiok
-[/card]
-[card]
 name=Aspect of Lamprey
 target=creature|myBattlefield
 auto=target(opponent) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
@@ -2119,10 +2013,30 @@ toughness=2
 [/card]
 [card]
 name=Aurelia, Exemplar of Justice
-abilities=flying
-auto=_MENTOR_
-auto=@each my combatbegins:target(creature|myBattlefield) 2/0 ueot
-#&& teach(creature[red]) trample && teach(creature[white]) vigilance
+abilities=flying,mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
+auto=@each my combatbegins:ability$!name(Choose a creature) choice name(Choose non-red, non-white creature) target(creature[-red;-white]|myBattlefield) 2/0 ueot _ choice name(Choose red creature) target(creature[red]|myBattlefield) transforms((,newability[2/0 ueot],newability[trample ueot])) ueot _ name(Choose white creature) target(creature[white]|myBattlefield) transforms((,newability[2/0 ueot],newability[vigilance ueot])) ueot!$ conroller
 text=Flying -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- At the beginning of combat on your turn, choose up to one target creature you control. Until end of turn, that creature gets +2/+0, gains trample if it's red, and gains vigilance if it's white.
 mana={2}{R}{W}
 type=Legendary Creature
@@ -2675,8 +2589,29 @@ type=Instant
 [/card]
 [card]
 name=Barging Sergeant
-abilities=haste
-auto=_MENTOR_
+abilities=haste,mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 text=Haste -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={4}{R}
 type=Creature
@@ -2779,17 +2714,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Basri Ket
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:counter(1/1,1) target(creature) && indestructible ueot
-auto={C(0/0,-2,Loyalty)}:transforms((,newability[@combat(attacking) source(creature[-token]):token(Soldier Bas,Creature Soldier,1/1,white,battleready)])) oneshot
-auto={C(0/0,-6,Loyalty)}:emblem transforms((,newability[@each my combatbegins:token(Soldier Bas) && counter(1/1,1) all(creature|myBattlefield)])) forever dontremove
-text=+1: Put a +1/+1 counter on up to one target creature. It gains indestructible until end of turn. -- -2: Whenever one or more nontoken creatures attack this turn, create that many 1/1 white Soldier creature tokens that are tapped and attacking. -- -6: You get an emblem with "At the beginning of combat on your turn, create a 1/1 white Soldier creature token, then put a +1/+1 counter on each creature you control."
-mana={1}{W}{W}
-type=Legendary Planeswalker
-subtype=Basri
-[/card]
-[card]
 name=Basri's Acolyte
 abilities=lifelink
 auto=counter(1/1,1) target(<upto:2>other creature|myBattlefield)
@@ -2830,17 +2754,6 @@ auto=all(creature|mybattlefield) counter(1/1,1)
 text=Put a +1/+1 counter on each creature you control.
 mana={1}{W}
 type=Sorcery
-[/card]
-[card]
-name=Basri, Devoted Paladin
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:counter(1/1,1) target(creature) && vigilance ueot
-auto={C(0/0,-1,Loyalty)}:newability[@combat(attacking) source(creature|Battlefield):all(trigger[to]) counter(1/1,1)] ueot oneshot
-auto={C(0/0,-6,Loyalty)}:all(creature|myBattlefield) 2/2 && flying ueot
-text=+1: Put a +1/+1 counter on up to one target creature. It gains vigilance until end of turn. -- -1: Whenever a creature attacks this turn, put a +1/+1 counter on it. -- -6: Creatures you control get +2/+2 and gain flying until end of turn.
-mana={4}{W}{W}
-type=Legendary Planeswalker
-subtype=Basri
 [/card]
 [card]
 name=Bastion Protector
@@ -3397,7 +3310,29 @@ type=Instant
 [/card]
 [card]
 name=Blade Instructor
-auto=_MENTOR_
+abilities=mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={2}{W}
 type=Creature
@@ -3537,7 +3472,7 @@ type=Instant
 name=Blessed Reincarnation
 target=creature|opponentbattlefield
 auto=moveto(exile) and!( transforms((,newability[Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone all(creature|reveal) moveto(mybattlefield) optiononeend optiontwo all(*|myreveal) bottomoflibrary optiontwoend revealend])) oneshot )!
-auto=if rebound then moveto(exile)
+auto=if rebound then ability$!moveto(exile) all(Blessed Reincarnation|mystack)!$ controller
 autoexile=@rebounded:may activate castcard(normal)
 text=Exile target creature an opponent controls. That player reveals cards from the top of his or her library until a creature card is revealed. The player puts that card onto the battlefield, then shuffles the rest into his or her library. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={3}{U}
@@ -3888,7 +3823,7 @@ toughness=2
 [/card]
 [card]
 name=Bloodwater Entity
-abilities=flying
+abilities=flying,prowess
 auto=may moveto(mylibrary) target(instant,sorcery|mygraveyard)
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 text=Flying -- Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- When Bloodwater Entity enters the battlefield, you may put target instant or sorcery card from your graveyard on top of your library.
@@ -4323,7 +4258,29 @@ toughness=4
 [/card]
 [card]
 name=Boros Challenger
-auto=_MENTOR_
+abilities=mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 auto={2}{R}{W}:1/1 ueot
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- {2}{R}{W}: Boros Challenger gets +1/+1 until end of turn.
 mana={R}{W}
@@ -5031,19 +4988,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=3
-[/card]
-[card]
-name=Calix, Destiny's Hand
-abilities=hiddenface
-aicode=activate target(*[zpos<=4]|mylibrary) moveto(ownerhand)
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:reveal:4 optionone name(Look at the top four cards) target(*[enchantment]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-3,Loyalty)}:name(Exile enchantment until...) aslongas(enchantment|mybattlefield) choice notatarget(creature,enchantment|opponentbattlefield) (blink)forsrc oneshot
-auto={C(0/0,-7,Loyalty)}:name(Retunr all enchantments) moveTo(myBattlefield) all(enchantment|myGraveyard)
-text=+1: Look at the top four cards of your library. You may reveal an enchantment card from among them and put that card into your hand. Put the rest on the bottom of your library in a random order. -- -3: Exile target creature or enchantment you don't control until target enchantment you control leaves the battlefield. -- -7: Return all enchantment cards from your graveyard to the battlefield.
-mana={2}{G}{W}
-type=Legendary Planeswalker
-subtype=Calix
 [/card]
 [card]
 name=Call of the Death-Dweller
@@ -6072,116 +6016,6 @@ auto=aslongas(planeswalker[Chandra]|mybattlefield) damage:2
 text=Chandra's Triumph deals 3 damage to target creature or planeswalker an opponent controls. Chandra's Triumph deals 5 damage to that permanent instead if you control a Chandra planeswalker.
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Chandra, Awakened Inferno
-auto=nofizzle
-auto=counter(0/0,6,loyalty)
-auto={C(0/0,2,Loyalty)}:@each opponent upkeep:damage:1 target(opponent) forever
-auto={C(0/0,-3,Loyalty)}:damage:3 all(creature[-elemental])
-auto={C(0/0,-X,Loyalty)}:damage:X target(creature,planeswalker) exiledeath ueot
-text=This spell can't be countered. -- +2: Each opponent gets an emblem with "At the beginning of your upkeep, this emblem deals 1 damage to you." -- -3: Chandra, Awakened Inferno deals 3 damage to each non-Elemental creature. -- -X: Chandra, Awakened Inferno deals X damage to target creature or planeswalker. If a permanent dealt damage this way would die this turn, exile it instead.
-mana={4}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Bold Pyromancer
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Add two red mana and deals 2 damage to target player) add{R}{R} && damage:2 target(player)
-auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damage to target creature or planeswalker) damage: 3 target (creature, planeswalker)
-auto={C(0/0,-7,Loyalty)}:name(-7: Deals 10 damage to target player and on each his or her creatures and planeswalkers) target(player) damage:10 && damage:10 all(creature|targetedpersonsbattlefield) && damage:10 all(planeswalker|targetedpersonsbattlefield)
-text=+1: Add {R}{R}. Chandra, Bold Pyromancer deals 2 damage to target player. -- -3: Chandra, Bold Pyromancer deals 3 damage to target creature or planeswalker. -- -7: Chandra, Bold Pyromancer deals 10 damage to target player and each creature and planeswalker they control.
-mana={4}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Fire Artisan
-auto=counter(0/0,4,loyalty)
-auto=@counterremoved(0/0,1,Loyalty) from(this):damage:1 target(opponent)
-auto={C(0/0,1,Loyalty)}:moveto(exile) and!(transforms((,canplayfromexile))ueot)! all(*[zpos=1]|mylibrary)
-auto={C(0/0,-7,Loyalty)}:name(ultimate) moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos<=7]|mylibrary)
-text=Whenever one or more loyalty counters are removed from Chandra, Fire Artisan, she deals that much damage to target opponent or planeswalker. -- +1: Exile the top card of your library. You may play it this turn. -- -7: Exile the top seven cards of your library. You may play them this turn.
-mana={2}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Flame's Catalyst
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(Damage opponent) damage:3 opponent
-auto={C(0/0,-2,Loyalty)}:name(May cast red instants or sorcery) transforms((,newability[may activate castcard(normal) target(*[instant;sorcery;red]|myGraveyard)],newability[@movedTo(*[instant;sorcery;red]|myGraveyard):all(trigger[to]) moveTo(exile)])) ueot
-auto={C(0/0,-8,Loyalty)}:name(Discard hand) ability$!name(Discard hand) reject all(*|myHand)!$ controller && draw:7 controller && transforms((,newability[all(*[-land]|myHand) zerocast])) ueot
-text=+1: Chandra, Flame's Catalyst deals 3 damage to each opponent. -- -2: You may cast target red instant or sorcery card from your graveyard. If that spell would be put into your graveyard this turn, exile it instead. -- -8: Discard your hand, then draw seven cards. Until end of turn, you may cast spells from your hand without paying their mana costs.
-mana={4}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Flame's Fury
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:damage:2 target(creature,player)
-auto={C(0/0,-2,Loyalty)}:damage:4 target(creature) && damage:2 targetController
-auto={C(0/0,-8,Loyalty)}:damage:10 target(player) && damage:10 targetController && damage:10 all(creature|targetedpersonsbattlefield)
-text=+1: Chandra, Flame's Fury deals 2 damage to any target. -- -2: Chandra, Flame's Fury deals 4 damage to target creature and 2 damage to that creature's controller. -- -8: Chandra, Flame's Fury deals 10 damage to target player and each creature that player controls.
-mana={4}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Gremlin Wrangler
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Create a 2/2 red Gremlin creature token) token(Gremlin,Creature Gremlin,2/2,red)
-auto={C(0/0,-2,Loyalty)}:name(-2: Deals X damage to any target... ) foreach(creature[Gremlin]|myBattlefield) damage:1 target(creature,player,planeswalker)
-text=+1: Create a 2/2 red Gremlin creature token. -- -2: Chandra, Gremlin Wrangler deals X damage to any target, where X is the number of Gremlins you control.
-mana={2}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Heart of Fire
-aicode=activate moveto(exile) target(<anyamount>*[instant;sorcery;red]|myLibrary,myGraveyard) and!( canplayfromexile )!
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:ability$!name(Discard hand) reject all(*|myHand)!$ controller && moveTo(exile) all(*[zpos<=3]|mylibrary) && transforms((,newability[canplayfromexile])) ueot
-auto={C(0/0,1,Loyalty)}:ability$!name(Choose one) choice name(Damage player) damage:2 target(player) _ choice name(Damage creature) damage:2 target(creature) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
-auto={C(0/0,-9,Loyalty)}:target(<anyamount>*[instant;sorcery;red]|myLibrary,myGraveyard) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot )! && shuffle controller && add{R}{R}{R}{R}{R}{R}
-text=+1: Discard your hand, then exile the top three cards of your library. Until end of turn, you may play cards exiled this way. -- +1: Chandra, Heart of Fire deals 2 damage to any target. -- -9: Search your graveyard and library for any number of red instant and/or sorcery cards, exile them, then shuffle your library. You may cast them this turn. Add six {R}.
-mana={3}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Novice Pyromancer
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:all(creature[elemental]|mybattlefield) 2/0 ueot
-auto={C(0/0,-1,Loyalty)}:add {R}{R}
-auto={C(0/0,-2,Loyalty)}:damage:2 target(creature,player)
-text=+1: Elementals you control get +2/+0 until end of turn. -- -1: Add {R}{R}. -- -2: Chandra, Novice Pyromancer deals 2 damage to any target.
-mana={3}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Roaring Flame
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:damage:2 target(player)
-auto={C(0/0,-2,Loyalty)}:damage:2 target(creature)
-auto={C(0/0,-7,Loyalty)}:damage:6 opponent && @each opponent upkeep:damage:3 target(opponent) forever
-text=+1: Chandra, Roaring Flame deals 2 damage to target player. -- -2: Chandra, Roaring Flame deals 2 damage to target creature. -- -7: Chandra, Roaring Flame deals 6 damage to each opponent. Each player dealt damage this way gets an emblem with "At the beginning of your upkeep, this emblem deals 3 damage to you."
-type=Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, the Firebrand
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:damage:1 target(creature,player)
-auto={C(0/0,-2,Loyalty)}:@movedto(*[instant;sorcery]|myStack): castcard(copied noevent) target(*[instant;sorcery]|mystack)
-auto={C(0/0,-6,Loyalty)}:damage:6 target(<upto:6>creature,player)
-text=+1: Chandra, the Firebrand deals 1 damage to target creature or player. -- -2: When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- -6: Chandra, the Firebrand deals 6 damage to each of up to six target creatures and/or players.
-mana={3}{R}
-type=Planeswalker
-subtype=Chandra
 [/card]
 [card]
 name=Changeling Outcast
@@ -8496,17 +8330,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Daretti, Ingenious Iconoclast
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 colorless Construct) token(Construct,Artifact Creature Construct,1/1,defender)
-auto={C(0/0,-1,Loyalty)}:name(-1: Sacrifice artifact to destroy) {S(artifact|mybattlefield)}:destroy target(creature,artifact|battlefield)
-auto={C(0/0,-6,Loyalty)}:name(-6: Create three copies of an artifact...) clone target(artifact|graveyard,battlefield)*3
-text=+1: Create a 1/1 colorless Construct artifact creature token with defender. -- -1: You may sacrifice an artifact. If you do, destroy target artifact or creature. -- -6: Choose target artifact card in a graveyard or artifact on the battlefield. Create three tokens that are copies of it.
-mana={1}{B}{R}
-type=Legendary Planeswalker
-subtype=Daretti
-[/card]
-[card]
 name=Darigaaz Reincarnated
 abilities=flying, trample, haste
 autograveyard=@movedto(this|graveyard) from(battlefield):moveTo(exile) && counter(0/0,3,egg)
@@ -8645,16 +8468,6 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
-name=Davriel, Rogue Shadowmage
-auto=counter(0/0,3,loyalty)
-auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~2}:life:-2 opponent
-auto={C(0/0,-1,Loyalty)}:ability$!name(discard) reject notatarget(*|myhand)!$ target(player)
-text=At the beginning of each opponent's upkeep, if that player has one or fewer cards in hand, Davriel, Rogue Shadowmage deals 2 damage to them. -- -1: Target player discards a card.
-mana={2}{B}
-type=Legendary Planeswalker
-subtype=Davriel
-[/card]
-[card]
 name=Dawn Charm
 auto=choice name(Prevent Damage) preventAllcombatDamage ueot
 auto=choice name(Regenerate Creature) regenerate target(creature)
@@ -8715,7 +8528,7 @@ toughness=2
 [/card]
 [card]
 name=Daxos, Blessed by the Sun
-auto=2/type:manaW:mybattlefield cdaactive
+anyzone=2/type:manaW:mybattlefield cdaactive
 auto=@movedto(other creature|myBattlefield):life:1 controller
 auto=@movedto(other creature|myGraveyard) from(mybattlefield):life:1 controller
 text=Daxos’s toughness is equal to your devotion to white. (Each {W} in the mana costs of permanents you control counts toward your devotion to white.) -- Whenever another creature you control enters the battlefield or dies, you gain 1 life.
@@ -10271,18 +10084,6 @@ power=5
 toughness=2
 [/card]
 [card]
-name=Domri, Anarch of Bolas
-auto=counter(0/0,3,loyalty)
-auto=lord(other creature|myBattlefield) +1/+0
-auto={C(0/0,1,Loyalty)}:add{R}
-auto={C(0/0,1,Loyalty)}:add{G}
-auto={C(0/0,-2,Loyalty)}:target(creature|myBattlefield) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
-text=Creatures you control get +1/+0. -- +1: Add {R} or {G}. Creature spells you cast this turn can't be countered. -- -2: Target creature you control fights target creature you don't control.
-mana={1}{R}{G}
-type=Legendary Planeswalker
-subtype=Domri
-[/card]
-[card]
 name=Doom Foretold
 auto=@each my upkeep:ability$!if type(*[-land;-token]|myBattlefield)~morethan~0 then sacrifice(*[-land;-token]|myBattlefield) itnot reject life:-2 controller draw:1 life:2 token(Knight,Creature Knight,2/2,white,vigilance) sacrifice(Doom Foretold) !$ opponent
 auto=@each my upkeep:ability$!if type(*[-land;-token]|myBattlefield)~morethan~0 then sacrifice(*[-land;-token]|myBattlefield) itnot reject life:-2 controller draw:1 life:2 token(Knight,Creature Knight,2/2,white,vigilance) sacrifice(Doom Foretold) !$ opponent
@@ -10395,16 +10196,6 @@ auto=fizzle
 text=This spell can't be countered. -- Counter target noncreature spell.
 mana={W}{U}
 type=Instant
-[/card]
-[card]
-name=Dovin, Hand of Control
-auto=counter(0/0,5,loyalty)
-auto=lord(*[Artifact;instant;sorcery]|opponentcastingzone) altercost(colorless,+1)
-auto={C(0/0,-1,Loyalty)}:target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
-text=Artifact, instant, and sorcery spells your opponents cast cost {1} more to cast. -- -1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls.
-mana={2}{WU}
-type=Legendary Planeswalker
-subtype=Dovin
 [/card]
 [card]
 name=Down // Dirty
@@ -11576,6 +11367,7 @@ type=Artifact
 [/card]
 [card]
 name=Elsha of the Infinite
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 abilities=showfromtoplibrary,canplayartifactlibrarytop,canplayinstantsorcerylibrarytop
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- You may look at the top card of your library any time. -- You may cast the top card of your library if it's a noncreature, nonland card, and you may cast it as though it had flash.
@@ -11619,29 +11411,6 @@ text=I - Destroy target creature an opponent controls with power 2 or less. -- I
 mana={2}{B}
 type=Enchantment
 subtype=Saga
-[/card]
-[card]
-name=Elspeth, Sun's Nemesis
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,-1,Loyalty)}:name(Up to two creature gets +2/+1) target (<upto:2>creature|myBattlefield) 2/1 ueot
-auto={C(0/0,-2,Loyalty)}:name(Create two human soldiers) token(Human,Els)*2
-auto={C(0/0,-6,Loyalty)}:name(Gain 5 life) life:5 controller
-autograveyard=name(Escape-{4}{W}{W}, exile four) {4}{W}{W}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
-text=-1: Up to two target creatures you control each get +2/+1 until end of turn. -- -2: Create two 1/1 white Human Soldier creature tokens. -- -3: You gain 5 life. -- Escape—{4}{W}{W}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
-mana={2}{W}{W}
-type=Legendary Planeswalker
-subtype=Elspeth
-[/card]
-[card]
-name=Elspeth, Undaunted Hero
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:name(Put up to two counters +1/+1) target (<upto:2>creature|myBattlefield) counter(1/1,1) ueot
-auto={C(0/0,-2,Loyalty)}:name(Search a Sunlit Hoplite) moveto(myBattlefield) target(Sunlit Hoplite|mylibrary,mygraveyard) && shuffle
-auto={C(0/0,-8,Loyalty)}:name(Creatures you control get +X) type:manaW:myBattlefield/type:manaW:myBattlefield all(creature|myBattlefield) && flying ueot
-text=+2: Put a +1/+1 counter on each of up to two target creatures. -- -2: Search your library and/or graveyard for a card named Sunlit Hoplite and put it onto the battlefield. If you search your library this way, shuffle it. -- -8: Until end of turn, creatures you control gain flying and get +X/+X, where X is your devotion to white.
-mana={2}{W}{W}{W}
-type=Legendary Planeswalker
-subtype=Elspeth
 [/card]
 [card]
 name=Elvish Clancaller
@@ -11896,6 +11665,13 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Endless Atlas
+auto={2}{T}:draw:1 controller restriction{control three or more lands with same name}
+text={2}, {T}: Draw a card. Activate this ability only if you control three or more lands with the same name.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Endless Sands
 auto={T}:Add{1}
 auto={2}{T}:(blink)forsrc target(creature|myBattlefield)
@@ -12100,8 +11876,9 @@ toughness=5
 [/card]
 [card]
 name=Ephemerate
-auto=target(creature|mybattlefield) moveto(exile) and!(moveto(ownerbattlefield))!
-auto=if rebound then moveto(exile)
+target=creature|mybattlefield)
+auto=moveto(exile) and!(moveto(ownerbattlefield))!
+auto=if rebound then ability$!moveto(exile) all(Ephemerate|mystack)!$ controller
 autoexile=@rebounded:may activate castcard(normal)
 text=Exile target creature you control, then return it to the battlefield under its owner's control. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={W}
@@ -13722,6 +13499,35 @@ power=4
 toughness=6
 [/card]
 [card]
+name=Fires of Invention
+auto=maxCast(*)2 controller
+auto=this(variable{opponentturn}>0) maxCast(*)0 controller
+auto=lord(*[manacost<=type:land:mybattlefield;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~1}:lord(*[manacost<=1;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~2}:lord(*[manacost<=2;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~3}:lord(*[manacost<=3;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~4}:lord(*[manacost<=4;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~5}:lord(*[manacost<=5;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~6}:lord(*[manacost<=6;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~7}:lord(*[manacost<=7;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~8}:lord(*[manacost<=8;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~9}:lord(*[manacost<=9;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~10}:lord(*[manacost<=10;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~11}:lord(*[manacost<=11;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~12}:lord(*[manacost<=12;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~13}:lord(*[manacost<=13;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~14}:lord(*[manacost<=14;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~15}:lord(*[manacost<=15;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~16}:lord(*[manacost<=16;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~17}:lord(*[manacost<=17;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~18}:lord(*[manacost<=18;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~19}:lord(*[manacost<=19;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+auto=@movedto(land|myBattlefield,myHand,myGraveyard,myExile,mySideboard,myLibrary) restriction{compare(type:land:mybattlefield)~equalto~20}:lord(*[manacost<=20;-land]|myHand,myGraveyard,myExile,mySideboard,myLibrary) zerocast
+text=You can cast spells only during your turn and you can cast no more than two spells each turn. -- You may cast spells with converted mana cost less than or equal to the number of lands you control without paying their mana costs.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
 name=Firestorm
 auto=if type(*|myHand)~morethan~0 then choice ability$!name(X=1, damage 1 creature or opponent) target(*|myhand) reject!$ controller && damage:1 target(creature,player)
 auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2, damage 1 creature and opponent) target(<2>*|myhand) reject!$ controller && damage:2 target(creature) && damage:2 opponent
@@ -14995,40 +14801,6 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Garruk, Cursed Huntsman
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,0,Loyalty)}:name(0: Wolf) token(Wolf Gar)
-auto={C(0/0,-3,Loyalty)}:name(-3: Destroy) target(creature) destroy && draw:1 controller
-auto={C(0/0,-6,Loyalty)}:name(-6: Emblem) emblem transforms((,newability[lord(creature|mybattlefield)trample],newability[lord(creature|mybattlefield) 3/3])) forever dontremove
-text=0: Create two 2/2 black and green Wolf creature tokens with "When this creature dies, put a loyalty counter on each Garruk you control." -- -3: Destroy target creature. Draw a card. -- -6: You get an emblem with "Creatures you control get +3/+3 and have trample."
-mana={4}{B}{G}
-type=Legendary Planeswalker
-subtype=Garruk
-[/card]
-[card]
-name=Garruk, Savage Herald
-aicode=activate transforms((,newability[if type(creature[zpos=1]|mylibrary)~morethan~0 then target(creature[zpos=1]|mylibrary) moveto(ownerHand) else target(*[zpos=1]|mylibrary) bottomoflibrary])) ueot
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(Reveal the top card) reveal:1 optionone target(creature|reveal) moveto(myhand) optiononeend optiontwo name(Put in bottom of library) target(<1>*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-2,Loyalty)}:name(Deals damage to target creature) target(creature|mybattlefield) transforms((,newability[target(other creature) dynamicability<!powerstrike!>])) oneshot
-auto={C(0/0,-7,Loyalty)}:name(Creatures you control assign damage) all(creature|myBattlefield) transforms((,newability[@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) damage:power opponent && fog from(this)])) ueot
-text=+1: Reveal the top card of your library. If it's a creature card, put it into your hand. Otherwise, put it on the bottom of your library. -- -2: Target creature you control deals damage equal to its power to another target creature. -- -7: Until end of turn, creatures you control gain "You may have this creature assign its combat damage as though it weren't blocked."
-mana={4}{G}{G}
-type=Legendary Planeswalker
-subtype=Garruk
-[/card]
-[card]
-name=Garruk, Unleashed
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+3/+3 and trample) target(creature) 3/3 ueot && trample ueot
-auto={C(0/0,-2,Loyalty)}:name(Create a Beast) token(Beast Gar) && transforms((,newability[if type(creature|opponentbattlefield)~morethan~type(creature|mybattlefield) then counter(0/0,1,Loyalty) all(this)])) oneshot
-auto={C(0/0,-7,Loyalty)}:name(Emblem search a creature) emblem transforms((,newability[@each my endofturn:may moveto(myBattlefield) target(creature|myLibrary) && shuffle])) forever dontremove
-text=+1: Up to one target creature gets +3/+3 and gains trample until end of turn. -- -2: Create a 3/3 green Beast creature token. Then if an opponent controls more creatures than you, put a loyalty counter on Garruk, Unleashed. -- -7: You get an emblem with "At the beginning of your end step, you may search your library for a creature card, put it onto the battlefield, then shuffle your library."
-mana={2}{G}{G}
-type=Legendary Planeswalker
-subtype=Garruk
-[/card]
-[card]
 name=Gate Colossus
 anyzone=foreach(land[Gate]|myBattlefield) changecost(colorless:-1) forcedalive
 auto=cantbeblockedby(creature[power>=2])
@@ -15423,44 +15195,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Gideon Blackblade
-auto=counter(0/0,4,loyalty)
-auto=this(variable{controllerturn}>0) transforms((Human Soldier Creature,setpower=4,settoughness=4,indestructible)) ueot && transforms((,newability[preventAllDamage to(this)])) ueot
-auto=@each my beginofturn:transforms((Human Soldier Creature,setpower=4,settoughness=4,indestructible)) ueot && transforms((,newability[preventAllDamage to(this)])) ueot
-auto={C(0/0,1,Loyalty)}:target(other creature|myBattlefield) vigilance
-auto={C(0/0,1,Loyalty)}:target(other creature|myBattlefield) lifelink
-auto={C(0/0,1,Loyalty)}:target(other creature|myBattlefield) indestructible
-auto={C(0/0,1,Loyalty)}:name(no targets) donothing
-auto={C(0/0,-6,Loyalty)}:moveTo(exile) target(*[-land])
-text=As long as it's your turn, Gideon Blackblade is a 4/4 Human Soldier creature with indestructible that's still a planeswalker. -- Prevent all damage that would be dealt to Gideon Blackblade during your turn. -- +1: Up to one other target creature you control gains your choice of vigilance, lifelink, or indestructible until end of turn. -- -6: Exile target nonland permanent.
-mana={1}{W}{W}
-type=Legendary Planeswalker
-subtype=Gideon
-[/card]
-[card]
-name=Gideon Jura
-auto=counter(0/0,6,loyalty)
-auto={C(0/0,2,Loyalty)}:name (Creatures attack Guideon Jura) all(creature|opponentbattlefield) mustattack (Gideon Jura) ueot
-auto={C(0/0,-2,Loyalty)}:name (Destroy target tapped creature) destroy target(creature[tapped])
-auto={C(0/0,0,Loyalty)}:name (Transforms Gideon to 6/6) this(becomes(Planeswalker Creature Human Soldier,6/6) and!( transforms((,newability[preventalldamage to this])) ueot
-text=+2: During target opponent’s next turn, creatures that player controls attack Gideon Jura if able. -- -2: Destroy target tapped creature. -- 0: Until end of turn, Gideon Jura becomes a 6/6 Human Soldier creature that’s still a planeswalker. Prevent all damage that would be dealt to him this turn.
-mana={3}{W}{W}
-type=Legendary Planeswalker
-subtype=Gideon
-[/card]
-[card]
-name=Gideon of the Trials
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:target(*|battlefield) transforms((,newability[preventalldamage from(this)])) uynt
-auto={C(0/0,0,Loyalty)}:name(becomes 4/4) transforms((Creature Human Soldier,setpower=4,settoughness=4,indestructible,newability[preventAllDamage to(this)])) ueot
-auto={C(0/0,0,Loyalty)}:emblem transforms((,newability[lord(gideon|mybattlefield) cantlose])) forever dontremove
-text=+1: You gain 2 life. -- -1: Put a +1/+1 counter on each creature you control. Those creatures gain vigilance until end of turn. -- -6: Put a white Avatar creature token onto the battlefield. It has "This creature's power and toughness are each equal to your life total."
-text=+1: Until your next turn, prevent all damage target permanent would deal. -- 0: Until end of turn, Gideon of the Trials becomes a 4/4 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- 0: You get an emblem with "As long as you control a Gideon planeswalker, you can't lose the game and your opponents can't win the game."
-mana={1}{W}{W}
-type=Legendary Planeswalker
-subtype=Gideon
-[/card]
-[card]
 name=Gideon's Battle Cry
 auto=all(creature|myBattlefield) counter(1/1)
 auto=target(planeswalker[gideon&manacost=6]|mylibrary) moveto(myhand)
@@ -15504,28 +15238,6 @@ auto=aslongas(planeswalker[Gideon]|mybattlefield) ability$!name(sacrifice) targe
 text=Target opponent sacrifices a creature that attacked or blocked this turn. If you control a Gideon planeswalker, that player sacrifices two of those creatures instead.
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Gideon, Martial Paragon
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:all(creature|mybattlefield) 1/1 && untap
-auto={C(0/0,0,Loyalty)}:name(+1: becomes human) transforms((Creature Human Soldier,setpower=5,settoughness=5,indestructible,newability[preventAllDamage to(this)])) ueot
-auto={C(0/0,-10,Loyalty)}:all(creature|opponentbattlefield) tap && all(creature|mybattlefield) 2/2 ueot
-text=+2: Untap all creatures you control. Those creatures get +1/+1 until end of turn.   -- 0: Until end of turn, Gideon, Martial Paragon becomes a 5/5 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- -10: Creatures you control get +2/+2 until end of turn. Tap all creatures your opponents control.
-mana={4}{W}
-type=Legendary Planeswalker
-subtype=Gideon
-[/card]
-[card]
-name=Gideon, the Oathsworn
-auto=counter(0/0,4,loyalty)
-auto=@each my blockers restriction{type(creature[-gideon&attacking]|myBattlefield)~morethan~1}:counter(1/1) all(creature[-gideon&attacking]|myBattlefield)
-auto={C(0/0,2,Loyalty)}:transforms((Human Soldier Creature,setpower=5,settoughness=5,newability[preventAllDamage to(this)])) ueot
-auto={C(0/0,-9,Loyalty)}:moveTo(exile) all(creature|opponentBattlefield) && moveTo(exile) all(this) 
-text=Whenever you attack with two or more non-Gideon creatures, put a +1/+1 counter on each of those creatures. -- +2: Until end of turn, Gideon, the Oathsworn becomes a 5/5 white Soldier creature that's still a planeswalker. Prevent all damage that would be dealt to him this turn. (He can't attack if he was cast this turn.) -- -9: Exile Gideon, the Oathsworn and each creature your opponents control.
-mana={4}{W}{W}
-type=Legendary Planeswalker
-subtype=Gideon
 [/card]
 [card]
 name=Gift of Growth
@@ -15759,6 +15471,17 @@ auto=lord(creature[multicolor]|myBattlefield) +1/+1
 text=Multicolored creatures you control get +1/+1.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Gleaming Barrier
+abilities=defender
+auto=@movedTo(this|graveyard) from(battlefield):token(Treasure Sur)
+text=Defender -- When Gleaming Barrier dies, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
+mana={2}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=4
 [/card]
 [card]
 name=Gleaming Overseer
@@ -16053,7 +15776,29 @@ toughness=1
 [/card]
 [card]
 name=Goblin Banneret
-auto=_MENTOR_
+abilities=mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 auto={1}{R}:2/0 ueot
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- {1}{R}: Goblin Banneret gets +2/+0 until end of turn.
 mana={R}
@@ -16262,6 +16007,7 @@ type=Sorcery
 [/card]
 [card]
 name=Goblin Wiz
+abilities=prowess
 auto=@movedTo(*[-creature]|myStack) 1/1 ueot
 text=Whenever you cast a noncreature spell, this get +1/+1 until end of turn.
 type=Creature
@@ -17240,7 +16986,29 @@ type=Legendary Land
 [/card]
 [card]
 name=Hammer Dropper
-auto=_MENTOR_
+abilities=mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={2}{R}{W}
 type=Creature
@@ -17675,6 +17443,7 @@ type=Instant
 [/card]
 [card]
 name=Heartfire Immolator
+abilities=prowess
 auto=@movedTo(*[-creature]|myStack) 1/1 ueot
 auto={R}{S}:target(creature,planeswalker) dynamicability<!powerstrike!>
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- {R}, Sacrifice Heartfire Immolator: It deals damage equal to its power to target creature or planeswalker.
@@ -18570,38 +18339,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Huatli, Dinosaur Knight
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,2,Loyalty)}:target(<upto:1>dinosaur|mybattlefield) counter(1/1,2)
-auto={C(0/0,-3,Loyalty)}:target(dinosaur|mybattlefield) transforms((,newability[dynamicability<!powerstrike!> target(creature|opponentbattlefield)
-auto={C(0/0,-7,Loyalty)}:all(dinosaur|mybattlefield) 4/4 ueot
-text=+2: Put two +1/+1 counters on up to one target Dinosaur you control. -- -3: Target Dinosaur you control deals damage equal to its power to target creature you don't control. -- -7: Dinosaurs you control get +4/+4 until end of turn.
-mana={4}{R}{W}
-type=Legendary Planeswalker
-subtype=Huatli
-[/card]
-[card]
-name=Huatli, Warrior Poet
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,2,Loyalty)}:target(creature|mybattlefield) life:power controller
-auto={C(0/0,0,Loyalty)}:token(Dinosaur,creature Dinosaur,3/3,green,trample)
-auto={C(0/0,-1,Loyalty)}:damage:1 target(crature|opponentbattlefield) && cantblock ueot
-text=+2: You gain life equal to the greatest power among creatures you control. -- 0: Create a 3/3 green Dinosaur creature token with trample. -- -X: Huatli, Warrior Poet deals X damage divided as you choose among any number of target creatures. Creatures dealt damage this way can't block this turn.
-mana={3}{R}{W}
-type=Legendary Planeswalker
-subtype=Huatli
-[/card]
-[card]
-name=Huatli, the Sun's Heart
-auto=counter(0/0,7,loyalty)
-auto=lord(creature|myBattlefield) combattoughness
-auto={C(0/0,-3,Loyalty)}:life:toughness:highest:creature:myBattlefield
-text=Each creature you control assigns combat damage equal to its toughness rather than its power. -- -3: You gain life equal to the greatest toughness among creatures you control.
-mana={2}{GW}
-type=Legendary Planeswalker
-subtype=Huatli
-[/card]
-[card]
 name=Huddle Up
 auto=draw:2
 auto=draw:2 target(opponent)
@@ -19004,7 +18741,7 @@ toughness=3
 name=Ice-Fang Coatl
 abilities=flash,flying
 auto=draw:1
-auto=aslongas(*[snow]|myBattlefield)~morethan~3:deathtouch
+auto=aslongas(*[snow]|myBattlefield) deathtouch >2
 text=Flash -- Flying -- When Ice-Fang Coatl enters the battlefield, draw a card. -- Ice-Fang Coatl has deathtouch as long as you control at least three other snow permanents.
 mana={G}{U}
 type=Snow Creature
@@ -20394,95 +20131,6 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
-name=Jace, Arcane Strategist
-auto=counter(0/0,4,loyalty)
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:counter(1/1) target(creature|myBattlefield)])) ueot
-auto={C(0/0,1,Loyalty)}:draw:1
-auto={C(0/0,-7,Loyalty)}:all(creature|myBattlefield) unblockable
-text=Whenever you draw your second card each turn, put a +1/+1 counter on target creature you control. -- +1: Draw a card. -- -7: Creatures you control can't be blocked this turn.
-mana={4}{U}{U}
-type=Legendary Planeswalker
-subtype=Jace
-[/card]
-[card]
-name=Jace, Architect of Thought
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Attacking creatures get -1/-0) all(creature[attacking]|opponentBattlefield) -1/-0 ueot
-auto={C(0/0,-2,Loyalty)}:name(-2: CAN BE CODED) donothing
-auto={C(0/0,-8,Loyalty)}:name(-8: deplete 20) moveto(exile) target(*|opponentLibrary)and!( transforms((,canplayfromexile,castcard(normal))) ueot )! 
-text=+1: Until your next turn, whenever a creature an opponent controls attacks, it gets -1/-0 until end of turn. -- -2: Reveal the top three cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other on the bottom of your library in any order. -- -8: For each player, search that player’s library for a nonland card and exile it, then that player shuffles their library. You may cast those cards without paying their mana costs.
-mana={2}{U}{U}
-type=Legendary Planeswalker
-subtype=Jace
-[/card]
-[card]
-name=Jace, Cunning Castaway
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name (Whenever a creature deals combat...) @each combatdamage restriction{opponentdamagedbycombat}:draw:1 controller then reject target(*|myhand) ueot
-auto={C(0/0,-2,Loyalty)}:name (Create a 2/2 blue Illusion...) token(Illusion,Creature Illusion,2/2) and!( transforms((,newability[@targeted(this):sacrifice])) forever )!
-auto={C(0/0,-5,Loyalty)}:name (Create two tokens of Jace Cunning Castaway) clone all(this) with([-Legendary])*2
-text=+1: Whenever one or more creatures you control deal combat damage to a player this turn, draw a card, then discard a card. -- -2: Create a 2/2 blue Illusion creature token with “When this creature becomes the target of a spell, sacrifice it.” -- -5: Create two tokens that are copies of Jace, Cunning Castaway, except they’re not legendary.
-mana={1}{U}{U}
-type=Legendary Planeswalker
-subtype=Jace
-[/card]
-[card]
-name=Jace, Ingenious Mind-Mage
-auto=counter(0/0,5,Loyalty)
-auto={counter(0/0,1,Loyalty)}:draw:1
-auto={counter(0/0,1,Loyalty)}:untap all(creature|mybattlefield)
-auto={counter(0/0,-9,Loyalty)}:target(<upto:3>creature) moveto(mybattlefield)
-text=+1: Draw a card. -- +1: Untap all creatures you control. -- -9: Gain control of up to three target creatures.
-mana={4}{U}{U}
-type=Legendary Planeswalker
-subtype=Jace
-[/card]
-[card]
-name=Jace, Telepath Unbound
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: creature gets -2/0) target(creature) -2/0 uynt
-auto={C(0/0,-3,Loyalty)}:name(-3: cast from graveyard) transforms((,newability[@movedTo(instant,sorcery|graveyard):all(trigger) moveTo(exile) limit:1],newability[target(*[instant;sorcery]|mygraveyard) activate castcard(normal)])) ueot
-auto={C(0/0,-9,Loyalty)}:name(-9: emblem) emblem transforms((,newability[@movedTo(*|mystack):deplete:5 opponent])) forever dontremove
-text=+1: Up to one target creature gets -2/-0 until your next turn. -- -3: You may cast target instant or sorcery card from your graveyard this turn. If that card would be put into your graveyard this turn, exile it instead. -- -9: You get an emblem with "Whenever you cast a spell, target opponent puts the top five cards of his or her library into his or her graveyard."
-type=Planeswalker
-subtype=Jace
-[/card]
-[card]
-name=Jace, Vryn's Prodigy
-auto={T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
-auto=@discarded(*|myhand):if type(*|mygraveyard)~morethan~4 then moveto(exile)
-auto=@movedTo(this|exile):all(trigger[to]) transforms((,newability[flip(Jace, Telepath Unbound)],newability[moveto(mybattlefield)])) forever
-text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
-mana={1}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=0
-toughness=2
-[/card]
-[card]
-name=Jace, Wielder of Mysteries
-abilities=cantmilllose
-auto=counter(0/0,4,loyalty)
-auto=@drawof(player) restriction{type(*|mylibrary)~equalto~0}:wingame
-auto={C(0/0,1,Loyalty)}:target(player) deplete:2 && draw:1
-auto={C(0/0,-8,Loyalty)}:name(absolute madman) if type(*|mylibrary)~lessthan~8 then wingame else draw:7
-text=If you would draw a card while your library has no cards in it, you win the game instead. -- +1: Target player puts the top two cards of their library into their graveyard. Draw a card. -- -8: Draw seven cards. Then if your library has no cards in it, you win the game.
-mana={1}{U}{U}{U}
-type=Legendary Planeswalker
-subtype=Jace
-[/card]
-[card]
-name=Jace, the Living Guildpact
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:reveal:2 optionone name(put in graveyard) target(<1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
-auto={C(0/0,-3,Loyalty)}:target(other *[-land]) moveTo(ownerhand)
-auto={C(0/0,-8,Loyalty)}:moveto(opponentlibrary) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle && moveto(mylibrary) all(*|myhand) && moveto(mylibrary) all(*|mygraveyard) && shuffle && draw:7
-text=+1: Look at the top two cards of your library. Put one of them into your graveyard. -- -3: Return another target nonland permanent to its owner's hand. -- -8: Each player shuffles their hand and graveyard into their library. You draw seven cards.
-mana={2}{U}{U}
-type=Legendary Planeswalker
-subtype=Jace
-[/card]
-[card]
 name=Jade Bearer
 auto=counter(1/1) target(other merfolk|myBattlefield)
 text=When Jade Bearer enters the battlefield, put a +1/+1 counter on another target Merfolk you control.
@@ -20609,31 +20257,6 @@ type=Legendary Creature
 subtype=Human Artificer
 power=3
 toughness=3
-[/card]
-[card]
-name=Jiang Yanggu
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +2/+2 until end of turn.) target(creature) 2/2 ueot
-auto={C(0/0,-1,Loyalty)}:name(-1: Create a legendary 3/3 green Mowu creature token) restriction{type(Mowu|myBattlefield)~lessthan~1}:token(Mowu)
-auto={C(0/0,-5,Loyalty)}:name(-5: Target creature gains trample and +X/+X until end of turn.) target(creature) foreach(land|myBattlefield) 1/1 && trample ueot
-text=+1: Target creature gets +2/+2 until end of turn. -- -1: If you don't control a creature named Mowu, create a legendary 3/3 green Hound creature token named Mowu. -- -5: Until end of turn, target creature gains trample and gets +X/+X, where X is the number of lands you control.
-mana={4}{G}
-type=Legendary Planeswalker
-subtype=Yanggu
-[/card]
-[card]
-name=Jiang Yanggu, Wildcrafter
-auto=counter(0/0,3,loyalty)
-auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{W}
-auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{U}
-auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{B}
-auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{R}
-auto=lord(creature[counter{1/1.1}]|myBattlefield) {T}:Add{G}
-auto={C(0/0,-1,Loyalty)}:counter(1/1) target(creature)
-text=Each creature you control with a +1/+1 counter on it has "{T}: Add one mana of any color." -- -1: Put a +1/+1 counter on target creature.
-mana={2}{G}
-type=Legendary Planeswalker
-subtype=Yanggu
 [/card]
 [card]
 name=Jirina Kudro
@@ -20962,17 +20585,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Karn Liberated
-auto=counter(0/0,6,loyalty)
-auto={C(0/0,4,Loyalty)}:target(player) ability$!moveto(exile) and!( becomes(tobecast) forever )! target(*|myhand)!$ targetedplayer
-auto={C(0/0,-3,Loyalty)}:moveto(exile) and!( becomes(tobecast) forever )! target(*)
-auto={C(0/0,-14,Loyalty)}:name(ultimate) moveto(ownerlibrary) all(*|opponenthand) && moveto(ownerlibrary) all(*|opponentgraveyard) && moveto(ownerlibrary) all(*|opponentbattlefield) && moveto(ownerlibrary) all(*[-tobecast;aura;instant;sorcery]|opponentexile) && shuffle && draw:7 opponent && lifeset:startinglife opponent && moveto(ownerlibrary) all(*|myhand) && moveto(ownerlibrary) all(*|mygraveyard) && moveto(ownerlibrary) all(*|mybattlefield) && moveto(ownerlibrary) all(*[-tobecast;aura;instant;sorcery]|myexile) && shuffle && draw:7 && lifeset:startinglife && moveto(myBattlefield) all(tobecast|exile) && all(creature|myBattlefield) haste && removemana(*)
-text=+4: Target player exiles a card from their hand. -- -3: Exile target permanent. -- -14: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.
-mana={7}
-type=Legendary Planeswalker
-subtype=Karn
-[/card]
-[card]
 name=Karn's Bastion
 auto={T}:Add{C}
 auto={4}{T}:_PROLIFERATE_
@@ -20989,19 +20601,6 @@ text=(You may cast a legendary sorcery only if you control a legendary creature 
 restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
 mana={4}{U}{U}
 type=Legendary Sorcery
-[/card]
-[card]
-name=Karn, the Great Creator
-auto=counter(0/0,5,loyalty)
-auto=lord(artifact|opponentBattlefield) noactivatedability
-auto={C(0/0,1,Loyalty)}:name(+1 Becomes a creature) target(artifact[-creature]) transforms((creature,setpower=0,settoughness=1,newability[dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[0/-1 ueot all(this)],newability[@each opponent untap:dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[@each opponent upkeep:0/-1 ueot all(this)])) uynt
-auto={C(0/0,1,Loyalty)}:name(+1 Loyalty counter) donothing
-auto={C(0/0,-2,Loyalty)}:name(-2 move a card from exile) moveto(ownerhand) target(artifact|myexile)
-auto={C(0/0,-2,Loyalty)}:name(-2 move a card from sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose card) target(<1>*[artifact]|reveal) moveto(myhand) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend revealend
-text=Activated abilities of artifacts your opponents control can't be activated. -- +1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost. -- -2: You may choose an artifact card you own from outside the game or in exile, reveal that card, and put it into your hand.
-mana={4}
-type=Legendary Planeswalker
-subtype=Karn
 [/card]
 [card]
 name=Karplusan Hound
@@ -21069,27 +20668,6 @@ auto=@movedto(graveyard) from(creature|myBattlefield):life:1
 text=Destroy all creatures. You gain life equal to the number of creatures you controlled that were destroyed this way.
 mana={W}{W}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Kaya, Bane of the Dead
-auto=counter(0/0,7,loyalty)
-auto=lord(*|opponentBattlefield) -opponentshroud
-auto={C(0/0,-3,Loyalty)}:moveto(exile) target(creature)
-text=Your opponents and permanents your opponents control with hexproof can be the target of spells and abilities you control as though they didn't have hexproof. -- -3: Exile target creature.
-mana={3}{WB}{WB}{WB}
-type=Legendary Planeswalker
-subtype=Kaya
-[/card]
-[card]
-name=Kaya, Ghost Assassin
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,0,Loyalty)}:name(+0: Exile Kaya or creature) @next upkeep: target(creature,(Kaya, Ghost Assassin)|battlefield) moveto(exile) and!(moveto(mybattlefield))! && life:-2 controller
-auto={C(0/0,-1,Loyalty)}:name(-1: Each opponent loses life and gain) life:-2 opponent && life:2 controller
-auto={C(0/0,-2,Loyalty)}:name(-2: Each opponent discard and draw) reject:1 opponent && draw:1 controller
-text=0: Exile Kaya, Ghost Assassin or up to one target creature. Return that card to the battlefield under its owner’s control at the beginning of your next upkeep. You lose 2 life. -- -1: Each opponent loses 2 life and you gain 2 life. -- -2: Each opponent discards a card and you draw a card.
-mana={2}{W}{B}
-type=Legendary Planeswalker
-subtype=Kaya
 [/card]
 [card]
 name=Kazarov, Sengir Pureblood
@@ -21499,16 +21077,6 @@ auto=kicker target(<kicked>*[enchantment]) moveto(ownerhand)
 text=Strive — Kiora's Dismissal costs {U} more to cast for each target beyond the first. -- Return any number of target enchantments to their owners' hands.
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Kiora, Behemoth Beckoner
-auto=counter(0/0,7,loyalty)
-auto=@movedTo(creature[power>=4]|myBattlefield):draw:1
-auto={C(0/0,-1,Loyalty)}:untap target(*)
-text=Whenever a creature with power 4 or greater enters the battlefield under your control, draw a card. -- -1: Untap target permanent.
-mana={2}{GU}
-type=Legendary Planeswalker
-subtype=Kiora
 [/card]
 [card]
 name=Kitesail Corsair
@@ -22388,7 +21956,29 @@ toughness=2
 [/card]
 [card]
 name=Legion Warboss
-auto=_MENTOR_
+abilities=mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 auto=@each my combatbegins:create(goblin:creature goblin:1/1:red:haste ueot:mustattack ueot)
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- At the beginning of combat on your turn, create a 1/1 red Goblin creature token. That token gains haste until end of turn and attacks this combat if able.
 mana={2}{R}
@@ -22671,8 +22261,29 @@ subtype=Aura
 [/card]
 [card]
 name=Light of the Legion
-abilities=flying
-auto=_MENTOR_
+abilities=flying,mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 auto=@movedTo(this|graveyard) from(battlefield):counter(1/1)(creature[white]|myBattlefield)
 text=Flying -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- When Light of the Legion dies, put a +1/+1 counter on each white creature you control.
 mana={4}{W}{W}
@@ -22737,6 +22348,7 @@ type=Sorcery
 [/card]
 [card]
 name=Lightning Visionary
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
 mana={1}{R}
@@ -22775,17 +22387,6 @@ text=Enchant creature -- Enchanted creature is a Treefolk with base power and to
 mana={1}{G}
 type=Tribal Enchantment
 subtype=Treefolk Aura
-[/card]
-[card]
-name=Liliana of the Veil
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
-auto={C(0/0,-2,Loyalty)}:name(-2: sacrifice creature) transforms((,newability[target(player) ability$!name(sacrifice creature) notatarget(creature|myBattlefield) sacrifice!$ targetedplayer])) ueot
-auto={C(0/0,-6,Loyalty)}:name(-6: sacrifice half) transforms((,newability[target(player) ability$!name(sacrifice half permanents) notatarget(<halfuptype:*:opponentbattlefield>*|myBattlefield) sacrifice!$ targetedplayer])) ueot
-text=+1: each player discards a card -- -2: target player sacrifices a creature -- -6: an opponent sacrifices half the permanents they control rounded up
-mana={1}{B}{B}
-type=Planeswalker
-subtype=Liliana
 [/card]
 [card]
 name=Liliana's Defeat
@@ -22872,73 +22473,6 @@ auto=aslongas(planeswalker[Liliana]|mybattlefield) ability$!name(discard) reject
 text=Each opponent sacrifices a creature. If you control a Liliana planeswalker, each opponent also discards a card.
 mana={1}{B}
 type=Instant
-[/card]
-[card]
-name=Liliana, Death Mage
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:target(creature|mygraveyard) moveto(myhand)
-auto={C(0/0,-3,Loyalty)}:destroy target(creature) && life:-2 targetController
-auto={C(0/0,-7,Loyalty)}:life:twicetype:creature:opponentgraveyard opponent
-text=+1: Return up to one target creature card from your graveyard to your hand. -- -3: Destroy target creature. Its controller loses 2 life. -- -7: Target opponent loses 2 life for each creature card in their graveyard.
-mana={4}{B}{B}
-type=Legendary Planeswalker
-subtype=Liliana
-[/card]
-[card]
-name=Liliana, Death Wielder
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:counter(-1/-1) target(creature)
-auto={C(0/0,-3,Loyalty)}:destroy target(creature[counter{-1/-1}])
-auto={C(0/0,-10,Loyalty)}:moveto(mybattlefield) all(creature|mygraveyard)
-text=+2: Put a -1/-1 counter on up to one target creature. -- -3: Destroy target creature with a -1/-1 counter on it. -- -10: Return all creature cards from your graveyard to the battlefield.
-mana={5}{B}{B}
-type=Legendary Planeswalker
-subtype=Liliana
-[/card]
-[card]
-name=Liliana, Death's Majesty
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:deplete:2 controller && token(Zombie,creature Zombie,2/2,black)
-auto={C(0/0,-3,Loyalty)}:moveto(mybattlefield) target(creature|mygraveyard) and!(transforms((Zombie,newcolors[black])) forever)!
-auto={C(0/0,-7,Loyalty)}:destroy all(creature[-zombie])
-text=+1: Create a 2/2 black Zombie creature token. Put the top two cards of your library into your graveyard. -- -3: Return target creature card from your graveyard to the battlefield. That creature is a black Zombie in addition to its other colors and types. -- -7: Destroy all non-Zombie creatures.
-mana={3}{B}{B}
-type=Legendary Planeswalker
-subtype=Liliana
-[/card]
-[card]
-name=Liliana, Dreadhorde General
-auto=counter(0/0,6,loyalty)
-auto=@movedTo(creature|graveyard) from(mybattlefield):draw:1
-auto={C(0/0,1,Loyalty)}:create(zombie:creature zombie:2/2:black)
-auto={C(0/0,-4,Loyalty)}:sacrifice notatarget(<upto:2>creature|mybattlefield) && ability$! sacrifice notatarget(<2>creature|mybattlefield) !$ opponent
-auto={C(0/0,-9,Loyalty)}:ability$! sacrifice notatarget(<type:creature:mybattlefieldminus1minusend>creature|mybattlefield) and!( sacrifice notatarget(<type:land:mybattlefieldminus1minusend>land|mybattlefield) and!( sacrifice notatarget(<type:enchantment:mybattlefieldminus1minusend>enchantment|mybattlefield) and!( sacrifice notatarget(<type:artifact:mybattlefieldminus1minusend>artifact|mybattlefield) and!( sacrifice notatarget(<type:planeswalker:mybattlefieldminus1minusend>planeswalker|mybattlefield))! )! )! !$ opponent
-text=Whenever a creature you control dies, draw a card. -- +1: Create a 2/2 black Zombie creature token. -- -4: Each player sacrifices two creatures. -- -9: Each opponent chooses a permanent they control of each permanent type and sacrifices the rest.
-mana={4}{B}{B}
-type=Legendary Planeswalker
-subtype=Liliana
-[/card]
-[card]
-name=Liliana, Untouched by Death
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name (Put the top three cards of your library...) deplete:3:@movedTo(creature[zombie]|mygraveyard):life:-2 opponent && life:2 controller
-auto={C(0/0,-2,Loyalty)}:name (Target creature gets -X/-X until end...) target(creature) foreach(zombie) -1/-1
-auto={C(0/0,-3,Loyalty)}:name (Yoy may cast Zombie cards...) (creature[zombie]|myGraveyard) CanPlayFromGraveyard
-text=+1: Put the top three cards of your library into your graveyard. If at least one of them is a Zombie card, each opponent loses 2 life and you gain 2 life. -- -2: Target creature gets -X/-X until end of turn, where X is the number of Zombies you control. -- -3: You may cast Zombie cards from your graveyard this turn.
-mana={2}{B}{B}
-type=Legendary Planeswalker
-subtype=Liliana
-[/card]
-[card]
-name=Liliana, Waker of the Dead
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:transforms((,newability[if type(*|opponenthand)~lessthan~1 then life:-3 opponent else ability$!name(Discard a card) target(*|myhand) reject!$ opponent],newability[if type(*|myhand)~lessthan~1 then life:-3 controller else ability$!name(Discard a card) target(*|myhand) reject!$ controller])) oneshot
-auto={C(0/0,-3,Loyalty)}:target(creature) -type:*:myGraveyard/-type:*:myGraveyard ueot
-auto={C(0/0,-7,Loyalty)}:emblem transforms((,newability[@each my combatbegins:target(creature|graveyard) moveTo(myBattlefield) and!(transforms((,newability[haste])))!])) forever dontremove
-text=+1: Each player discards a card. Each opponent who can't loses 3 life. -- -3: Target creature gets -X/-X until end of turn, where X is the number of cards in your graveyard. -- -7: You get an emblem with "At the beginning of combat on your turn, put target creature card from a graveyard onto the battlefield under your control. It gains haste."
-mana={2}{B}{B}
-type=Legendary Planeswalker
-subtype=Liliana
 [/card]
 [card]
 name=Lilting Refrain
@@ -23476,17 +23010,6 @@ type=Legendary Creature
 subtype=Human Wizard
 power=1
 toughness=4
-[/card]
-[card]
-name=Lukka, Coppercoat Outcast
-auto=counter(0/0,5,Loyalty)
-auto={C(0/0,1,Loyalty)}:name(Exile 3 crards) moveto(exile) and!( transforms((,canplayfromexile)) )! all(*[zpos<=3]|mylibrary)
-auto={C(0/0,-2,Loyalty)}{E(*[creature]|myBattlefield)}:name(Exile and reveal) reveal:1 revealzone(mylibrary) revealuntil(creature[manacost>storedmanacost]|mylibrary) optionone choice name(Get Card) target(creature[manacost>storedmanacost]|reveal)  moveto(myBattlefield) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-7,Loyalty)}:name(Each creature deals damage) lord(creature|myBattlefield) transforms((,newability[all(opponent) dynamicability<!powerstrike!>])) forever
-text=+1: Exile the top three cards of your library. Creature cards exiled this way gain "You may cast this card from exile as long as you control a Lukka planeswalker." -- -2: Exile target creature you control, then reveal cards from the top of your library until you reveal a creature card with higher converted mana cost. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- -7: Each creature you control deals damage equal to its power to each opponent.
-mana={3}{R}{R}
-type=Legendary Planeswalker
-subtype=Lukka
 [/card]
 [card]
 name=Luminous Bonds
@@ -25163,7 +24686,7 @@ toughness=2
 [/card]
 [card]
 name=Mistral Singer
-abilities=flying
+abilities=flying,prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 text=Flying -- Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
 mana={2}{U}
@@ -25504,39 +25027,6 @@ auto={T}:Add{R}
 auto={T}:Add{G}
 text=Suspend 3 — {0} (Rather than cast this card from your hand, pay 0 and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- {T}: Add one mana of any color.
 type=Artifact
-[/card]
-[card]
-name=Mu Yanling
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Target creature can't be blocked) unblockable target(creature)
-auto={C(0/0,-3,Loyalty)}:name(-3: Draw two cards) draw:2 controller
-auto={C(0/0,-10,Loyalty)}:name(-10: Tap all creatures and take and extra turn) tap all(creature|opponentbattlefield) && turns:+1 controller
-text=+2: Target creature can't be blocked this turn. -- -3: Draw two cards. -- -10: Tap all creatures your opponents control. You take an extra turn after this one.
-mana={4}{U}{U}
-type=Legendary Planeswalker
-subtype=Yanling
-[/card]
-[card]
-name=Mu Yanling, Celestial Wind
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:target(creature) -5/0 ueot
-auto={C(0/0,-3,Loyalty)}:target(<2>creature) moveTo(ownerhand)
-auto={C(0/0,-7,Loyalty)}:all(creature[flying]|myBattlefield) 5/5 ueot
-text=+1: Until your next turn, up to one target creature gets -5/-0. -- -3: Return up to two target creatures to their owners' hands. -- -7: Creatures you control with flying get +5/+5 until end of turn.
-mana={4}{U}{U}
-type=Legendary Planeswalker
-subtype=Yanling
-[/card
-[card]
-name=Mu Yanling, Sky Dancer
-auto=counter(0/0,2,loyalty)
-auto={C(0/0,2,Loyalty)}:target(creature) 2/0 && -flying ueot
-auto={C(0/0,-3,Loyalty)}:create(Elemental Bird:creature Elemental Bird:4/4:blue:flying)
-auto={C(0/0,-8,Loyalty)}:all(island|mybattlefield) transforms((,newability[{T}:draw:1) forever
-text=+2: Until your next turn, up to one target creature gets -2/-0 and loses flying. -- -3: Create a 4/4 blue Elemental Bird creature token with flying. -- -8: You get an emblem with "Islands you control have ‘ {T}: Draw a card.'"
-mana={1}{U}{U}
-type=Legendary Planeswalker
-subtype=Yanling
 [/card]
 [card]
 name=Multani, Yavimaya's Avatar
@@ -25886,24 +25376,6 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-name=Nahiri, Storm of Stone
-auto=counter(0/0,6,loyalty)
-auto=this(variable{controllerturn}>0) lord(creature|myBattlefield) first strike
-auto={C(0/0,-1,Loyalty)}:name(-1 counter) damage:1 target(creature[tapped]) damage:1
-auto={C(0/0,-2,Loyalty)}:name(-2 counters) damage:2 target(creature[tapped])
-auto={C(0/0,-3,Loyalty)}:name(-3 counters) damage:3 target(creature[tapped])
-auto={C(0/0,-4,Loyalty)}:name(-4 counters) damage:4 target(creature[tapped])
-auto={C(0/0,-5,Loyalty)}:name(-5 counters) damage:5 target(creature[tapped])
-auto={C(0/0,-6,Loyalty)}:name(-6 counters) damage:6 target(creature[tapped])
-auto={C(0/0,-7,Loyalty)}:name(-7 counters) damage:7 target(creature[tapped])
-auto={C(0/0,-8,Loyalty)}:name(-8 counters) damage:8 target(creature[tapped])
-auto={C(0/0,-9,Loyalty)}:name(-9 counters) damage:9 target(creature[tapped])
-text=As long as it's your turn, creatures you control have first strike and equip abilities you activate cost {1} less to activate. -- -X: Nahiri, Storm of Stone deals X damage to target tapped creature.
-mana={2}{RW}{RW}
-type=Legendary Planeswalker
-subtype=Nahiri
-[/card]
-[card]
 name=Naiad of Hidden Coves
 auto=aslongas opponentturnonly: (*|mycastingzone) changecost(colorless:-1)
 text=As long as it’s not your turn, spells you cast cost {1} less to cast.
@@ -25933,18 +25405,6 @@ type=Creature
 subtype=Shade
 power=1
 toughness=1
-[/card]
-[card]
-name=Narset of the Ancient Way
-auto=counter(0/0,4,Loyalty)
-auto={C(0/0,1,Loyalty)}:name(Gain 2 life and produce mana) life:2 controller && if type(*[-creature]|myhand)~morethan~0 then  ability$!choice add{U} _ choice add{R} _ choice add{W}!$ controller
-auto={C(0/0,-2,Loyalty)}:name(Draw and may discard land) draw:1 controller && transforms((,newability[may target(*[land]|myhand) reject])) forever
-auto={C(0/0,-2,Loyalty)}{D(*[-land]|myhand)}:name(Draw, discard nonland and damage) draw:1 controller && damage:storedmanacost target(creature;planeswalker)
-auto={C(0/0,-6,Loyalty)}:name(Emblem gain life) emblem transforms((,newability[@movedTo(*[-creature]|mystack):ability$! name(2 damages to player) choice name(2 damages to player) damage:2 target(player) _ choice name(2 damages to planeswalker) damage:2 target(planeswalker) _ choice name(2 damages to creature) damage:2 target(creature) !$ controller])) forever dontremove
-text=+1: You gain 2 life. Add {U}, {R}, or {W}. Spend this mana only to cast a noncreature spell. -- -2: Draw a card, then you may discard a card. When you discard a nonland card this way, Narset of the Ancient Way deals damage equal to that card's converted mana cost to target creature or planeswalker. -- -6: You get an emblem with "Whenever you cast a noncreature spell, this emblem deals 2 damage to any target."
-mana={1}{U}{R}{W}
-type=Legendary Planeswalker
-subtype=Narset
 [/card]
 [card]
 name=Narset's Reversal
@@ -26460,64 +25920,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Nicol Bolas, Dragon-God
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,0,Loyalty)}:clone and!( transforms((,newability[unearth])) )! notatarget(planeswalker)
-auto={C(0/0,1,Loyalty)}:draw:1 && ability$!moveto(exile) target(*|myhand,myBattlefield)!$ opponent
-auto={C(0/0,-3,Loyalty)}:destroy target(creature,planeswalker)
-auto={C(0/0,-8,Loyalty)}:name(ultimate) if type(creature[legendary]|opponentbattlefield)~lessthan~1 then wingame
-text=Nicol Bolas, Dragon-God has all loyalty abilities of all other planeswalkers on the battlefield. -- +1: You draw a card. Each opponent exiles a card from their hand or a permanent they control. -- -3: Destroy target creature or planeswalker. -- -8: Each opponent who doesn't control a legendary creature or planeswalker loses the game.
-mana={U}{B}{B}{B}{R}
-type=Legendary Planeswalker
-subtype=Bolas
-[/card]
-[card]
-name=Nicol Bolas, God-Pharaoh
-auto=counter(0/0,7,loyalty)
-auto={C(0/0,2,Loyalty)}:moverandom(*[-land]) from(opponentlibrary) to(myhand) && altercost(colorless,blue,green,red,black,white,-15)
-auto={C(0/0,1,Loyalty)}:ability$!moveto(exile) target(<2>*|myhand)!$ opponent
-auto={C(0/0,-4,Loyalty)}:damage:7 target(creature,player)
-auto={C(0/0,-12,Loyalty)}:moveto(exile) all(*[-land]|opponentbattlefield)
-text=+2: Target opponent exiles cards from the top of his or her library until he or she exiles a nonland card. Until end of turn, you may cast that card without paying its mana cost. -- +1: Each opponent exiles two cards from his or her hand. -- -4: Nicol Bolas, God-Pharaoh deals 7 damage to target opponent or creature an opponent controls. -- -12: Exile each nonland permanent your opponents control.
-mana={4}{U}{B}{R}
-type=Legendary Planeswalker
-subtype=Bolas
-[/card]
-[card]
-name=Nicol Bolas, the Arisen
-auto={C(0/0,2,Loyalty)}:draw:2
-auto={C(0/0,-3,Loyalty)}:damage:10 target(creature,planeswalker)
-auto={C(0/0,-4,Loyalty)}:target(creature,planeswalker|graveyard) moveto(myBattlefield)
-auto={C(0/0,-12,Loyalty)}:moveTo(exile) all(*[zpos<=type:*:opponentlibraryminus1minusend]|library) target(player)
-text=+2: Draw two cards. -- -3: Nicol Bolas, the Arisen deals 10 damage to target creature or planeswalker. -- -4: Put target creature or planeswalker card from a graveyard onto the battlefield under your control. -- -12: Exile all but the bottom card of target player's library.
-type=Legendary Planeswalker
-subtype=Bolas
-[/card]
-[card]
-name=Nicol Bolas, the Deceiver
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,3,Loyalty)}:ability$!choice life:-3 controller choice sacrifice notatarget(*[-land]|mybattlefield) choice target(*|myhand) reject$! opponent
-auto={C(0/0,-3,Loyalty)}:destroy target(creature) and!(draw:1)!
-auto={C(0/0,-11,Loyalty)}:damage:7 opponent and!(draw:7)!
-text=+3: Each opponent loses 3 life unless that player sacrifices a nonland permanent or discards a card. -- -3: Destroy target creature. Draw a card. -- -11: Nicol Bolas, the Deceiver deals 7 damage to each opponent. You draw seven cards.
-mana={5}{U}{B}{R}
-type=Legendary Planeswalker
-subtype=Bolas
-[/card]
-[card]
-name=Nicol Bolas, the Ravager
-abilities=flying
-auto=ability$!name(discard) reject notatarget(*|myhand)!$ opponent
-auto={4}{U}{B}{R}:moveto(exile) and!( transforms((,newability[moveto(ownerbattlefield)],newability[counter(0/0.7.loyalty)])) forever )!
-auto=this(counter{0/0.1.loyalty}) flip(Nicol Bolas, the Arisen) asSorcery
-text=Flying -- When Nicol Bolas, the Ravager enters the battlefield, each opponent discards a card. -- {4}{U}{B}{R}: Exile Nicol Bolas, the Ravager, then return him to the battlefield transformed under his owner's control. Activate this ability only any time you could cast a sorcery.
-mana={1}{U}{B}{R}
-type=Legendary Creature
-subtype=Elder Dragon
-power=4
-toughness=4
-[/card]
-[card]
 name=Night // Day
 other={2}{W} name(Day)
 auto=ifnot paid(alternative) then target(creature) -1/-1 ueot
@@ -26578,7 +25980,7 @@ mana={B}
 type=Instant
 [/card]
 [card]
-name=Nightmare,Nig
+name=Nightmare Nig
 auto=@combat(attacking) source(this):ingest:2 opponent
 auto=@combat(blocking) source(this):ingest:2 opponent
 text=Whenever this creature attacks or blocks, each opponent exiles the top two cards of their library.
@@ -26746,6 +26148,7 @@ toughness=1
 [/card]
 [card]
 name=Nimble-Blade Khenra
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
 mana={1}{R}
@@ -26832,39 +26235,6 @@ auto=aslongas(*[nissa]|mybattlefield))>0 transforms((,newability[name(search 3 l
 text=Search your library for up to two basic Forest cards. If you control a Nissa planeswalker, instead search your library for up to three land cards. Reveal those cards, put them into your hand, then shuffle your library.
 mana={G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Nissa, Genesis Mage
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:untap target(<upto:2>creature) && transforms((,newability[untap target(<upto:2>land)])) ueot
-auto={C(0/0,-3,Loyalty)}:target(creature) 5/5 ueot
-auto={C(0/0,-10,Loyalty)}:moverandom(<upto:4>land) from(mylibrary) to(mybattlefield) && moverandom(<upto:4>creature) from(mylibrary) to(mybattlefield)
-text=+2: Untap up to two target creatures and up to two target lands. -- -3: Target creature gets +5/+5 until end of turn. -- -10: Look at the top ten cards of your library. You may put any number of creature and/or land cards from among them onto the battlefield. Put the rest on the bottom of your library in a random order.
-mana={5}{G}{G}
-type=Legendary Planeswalker
-subtype=Nissa
-[/card]
-[card]
-name=Nissa, Steward of Elements
-auto=counter(0/0,X,loyalty)
-auto={C(0/0,2,Loyalty)}:deplete:2 controller && transforms((,newability[may moveto(mylibrary) target(<upto:2>*|mygraveyard)])) ueot
-auto={C(0/0,0,Loyalty)}:flipacoin winability moverandom(creature,land[convertedmanacost<=counter(loyalty)]) from(mylibrary) to(mybattleifeld) winabilityend flipend
-auto={C(0/0,-6,Loyalty)}:untap target(<upto:2>land|mybattlefield) && transforms((,creature,setpower=5,settoughness=5,newability[haste],newability[flying])) ueot
-text=+2: Scry 2. -- 0: Look at the top card of your library. If it's a land card or a creature card with converted mana cost less than or equal to the number of loyalty counters on Nissa, Steward of Elements, you may put that card onto the battlefield. -- -6: Untap up to two target lands you control. They become 5/5 Elemental creatures with flying and haste until end of turn. They're still lands.
-mana={X}{G}{U}
-type=Legendary Planeswalker
-subtype=Nissa
-[/card]
-[card]
-name=Nissa, Who Shakes the World
-auto=counter(0/0,5,loyalty)
-auto=lord(forest|mybattlefield) transforms((,newability[producecolor:green]))
-auto={C(0/0,1,Loyalty)}:target(*[land;-creature]|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[vigilance],newability[haste],newability[untap])) forever
-auto={C(0/0,-8,Loyalty)}:reveal:plibrarycount optionone name(choose card) target(<anyamount>land[forest]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(mybattlefield) and!( emblem transforms((,newability[lord(land|myBattlefield) indestructible])) forever dontremove ) forever )! oneshot)! afterrevealedend revealend
-text=Whenever you tap a Forest for mana, add an additional {G}. -- +1: Put three +1/+1 counters on up to one target noncreature land you control. Untap it. It becomes a 0/0 Elemental creature with vigilance and haste that's still a land. -- -8: You get an emblem with "Lands you control have indestructible." Search your library for any number of Forest cards, put them onto the battlefield tapped, then shuffle your library.
-mana={3}{G}{G}
-type=Legendary Planeswalker
-subtype=Nissa
 [/card]
 [card]
 name=Niv-Mizzet Reborn
@@ -27256,17 +26626,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Ob Nixilis of the Black Oath
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Each opponent loses 1 life...) life:-1 opponent && life:1 controller
-auto={C(0/0,-2,Loyalty)}:name(-2: Create a 5/5 black Demon with flying...) token(Demon,Creature Demon,5/5,black,flying) && life:-2 controller
-auto={C(0/0,-8,Loyalty)}:name(-8: "{1}{B}, sacrifice a creature: Draw and gain life...) emblem transforms((,newability[{1}{B}{S(creature|myBattlefield}:draw:storedpower && life:storedpower])) forever dontremove
-text=+2: Each opponent loses 1 life. You gain life equal to the life lost this way. -- -2: Create a 5/5 black Demon creature token with flying. You lose 2 life. -- -8: You get an emblem with “{1}{B}, Sacrifice a creature: You gain X life and draw X cards, where X is the sacrificed creature’s power.” -- Ob Nixilis of the Black Oath can be your commander.
-mana={3}{B}{B}
-type=Legendary Planeswalker
-subtype=Nixilis
-[/card]
-[card]
 name=Ob Nixilis's Cruelty
 target=creature
 auto=exiledeath
@@ -27274,16 +26633,6 @@ auto=-5/-5
 text=Target creature gets -5/-5 until end of turn. If that creature would die this turn, exile it instead.
 mana={2}{B}
 type=Instant
-[/card]
-[card]
-name=Ob Nixilis, the Hate-Twisted
-auto=counter(0/0,5,loyalty)
-auto=@drawfoeof(player):damage:1 opponent
-auto={C(0/0,-2,Loyalty)}:destroy target(creature) && draw:2 targetcontroller
-text=Whenever an opponent draws a card, Ob Nixilis, the Hate-Twisted deals 1 damage to that player. -- -2: Destroy target creature. Its controller draws two cards.
-mana={3}{B}{B}
-type=Legendary Planeswalker
-subtype=Nixilis
 [/card]
 [card]
 name=Obelisk Spider
@@ -27508,28 +26857,6 @@ auto=moveto(myhand) target(Oko, the Trickster|mygraveyard)
 text=Creatures you control have base power and toughness 3/3 until end of turn. You may search your library and/or graveyard for a card named Oko, the Trickster, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{G}{U}
 type=Instant
-[/card]
-[card]
-name=Oko, Thief of Crowns
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Food) token(-473141)
-auto={C(0/0,1,Loyalty)}:name(+1: Transform Artifact) target(artifact) loseabilities && transforms((,setpower=3,settoughness=3)) && transforms((Elk,green))
-auto={C(0/0,-5,Loyalty)}:name(-5: Exchange) moveto(mybattlefield) target(creature[power<=3]|opponentbattlefield) && moveto(opponentbattlefield) target(*[creature;artifact]|mybattlefield)
-text=+2: Create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- +1: Target artifact or creature loses all abilities and becomes a green Elk creature with base power and toughness 3/3. -- -5: Exchange control of target artifact or creature you control and target creature an opponent controls with power 3 or less.
-mana={1}{G}{U}
-type=Legendary Planeswalker
-subtype=Oko
-[/card]
-[card]
-name=Oko, the Trickster
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Counters) counter(1/1,2) target(creature|myBattlefield)
-auto={C(0/0,0,Loyalty)}:name(0: Copy and Prevent) target(creature|myBattlefield) copy ueot && transforms((,newability[preventAllDamage to(this)])) ueot
-auto={C(0/0,-7,Loyalty)}:name(-7: Power and Trample) all(creature|myBattlefield) transforms((,setpower=10,settoughness=10)) ueot && all(creature|myBattlefield) trample ueot
-text=+1: Put two +1/+1 counters on up to one target creature you control. -- 0: Until end of turn, Oko, the Trickster becomes a copy of target creature you control. Prevent all damage that would be dealt to him this turn. -- -7: Until end of turn, each creature you control has base power and toughness 10/10 and gains trample.
-mana={4}{G}{U}
-type=Legendary Planeswalker
-subtype=Oko
 [/card]
 [card]
 name=Old-Growth Dryads
@@ -28553,7 +27880,7 @@ toughness=1
 [card]
 name=Paradox Haze
 target=player
-auto=@each my upkeep: nextphasealter(add,upkeep,controller,after<this>)
+auto=@each my upkeep:nextphasealter(add,upkeep,controller,after<draw>)
 text=Enchant player. -- At the beginning of enchanted player's first upkeep each turn, that player gets an additional upkeep step after this step.
 mana={2}{U}
 type=Enchantment
@@ -28620,8 +27947,29 @@ toughness=5
 [/card]
 [card]
 name=Parhelion Patrol
-abilities=flying, vigilance
-auto=_MENTOR_
+abilities=flying,vigilance,mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 text=Flying, vigilance -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={3}{W}
 type=Creature
@@ -28746,13 +28094,56 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Pegasus,Arc
-abilities=Flying
+name=Pelt Collector
+auto=@movedto(other creature[power=0]|myBattlefield):this(power<0) counter(1/1)
+auto=@movedto(other creature[power=0]|myGraveyard) from(mybattlefield):this(power<0) counter(1/1)
+auto=@movedto(other creature[power=1]|myBattlefield):this(power<1) counter(1/1)
+auto=@movedto(other creature[power=1]|myGraveyard) from(mybattlefield):this(power<1) counter(1/1)
+auto=@movedto(other creature[power=2]|myBattlefield):this(power<2) counter(1/1)
+auto=@movedto(other creature[power=2]|myGraveyard) from(mybattlefield):this(power<2) counter(1/1)
+auto=@movedto(other creature[power=3]|myBattlefield):this(power<3) counter(1/1)
+auto=@movedto(other creature[power=3]|myGraveyard) from(mybattlefield):this(power<3) counter(1/1)
+auto=@movedto(other creature[power=4]|myBattlefield):this(power<4) counter(1/1)
+auto=@movedto(other creature[power=4]|myGraveyard) from(mybattlefield):this(power<4) counter(1/1)
+auto=@movedto(other creature[power=5]|myBattlefield):this(power<5) counter(1/1)
+auto=@movedto(other creature[power=5]|myGraveyard) from(mybattlefield):this(power<5) counter(1/1)
+auto=@movedto(other creature[power=6]|myBattlefield):this(power<6) counter(1/1)
+auto=@movedto(other creature[power=6]|myGraveyard) from(mybattlefield):this(power<6) counter(1/1)
+auto=@movedto(other creature[power=7]|myBattlefield):this(power<7) counter(1/1)
+auto=@movedto(other creature[power=7]|myGraveyard) from(mybattlefield):this(power<7) counter(1/1)
+auto=@movedto(other creature[power=8]|myBattlefield):this(power<8) counter(1/1)
+auto=@movedto(other creature[power=8]|myGraveyard) from(mybattlefield):this(power<8) counter(1/1)
+auto=@movedto(other creature[power=9]|myBattlefield):this(power<9) counter(1/1)
+auto=@movedto(other creature[power=9]|myGraveyard) from(mybattlefield):this(power<9) counter(1/1)
+auto=@movedto(other creature[power=10]|myBattlefield):this(power<10) counter(1/1)
+auto=@movedto(other creature[power=10]|myGraveyard) from(mybattlefield):this(power<10) counter(1/1)
+auto=@movedto(other creature[power=11]|myBattlefield):this(power<11) counter(1/1)
+auto=@movedto(other creature[power=11]|myGraveyard) from(mybattlefield):this(power<11) counter(1/1)
+auto=@movedto(other creature[power=12]|myBattlefield):this(power<12) counter(1/1)
+auto=@movedto(other creature[power=12]|myGraveyard) from(mybattlefield):this(power<12) counter(1/1)
+auto=@movedto(other creature[power=13]|myBattlefield):this(power<13) counter(1/1)
+auto=@movedto(other creature[power=13]|myGraveyard) from(mybattlefield):this(power<13) counter(1/1)
+auto=@movedto(other creature[power=14]|myBattlefield):this(power<14) counter(1/1)
+auto=@movedto(other creature[power=14]|myGraveyard) from(mybattlefield):this(power<14) counter(1/1)
+auto=@movedto(other creature[power=15]|myBattlefield):this(power<15) counter(1/1)
+auto=@movedto(other creature[power=15]|myGraveyard) from(mybattlefield):this(power<15) counter(1/1)
+auto=@movedto(other creature[power=16]|myBattlefield):this(power<16) counter(1/1)
+auto=@movedto(other creature[power=16]|myGraveyard) from(mybattlefield):this(power<16) counter(1/1)
+auto=@movedto(other creature[power=17]|myBattlefield):this(power<17) counter(1/1)
+auto=@movedto(other creature[power=17]|myGraveyard) from(mybattlefield):this(power<17) counter(1/1)
+auto=@movedto(other creature[power=18]|myBattlefield):this(power<18) counter(1/1)
+auto=@movedto(other creature[power=18]|myGraveyard) from(mybattlefield):this(power<18) counter(1/1)
+auto=@movedto(other creature[power=19]|myBattlefield):this(power<19) counter(1/1)
+auto=@movedto(other creature[power=19]|myGraveyard) from(mybattlefield):this(power<19) counter(1/1)
+auto=@movedto(other creature[power=20]|myBattlefield):this(power<20) counter(1/1)
+auto=@movedto(other creature[power=20]|myGraveyard) from(mybattlefield):this(power<20) counter(1/1)
+auto=this(counter{1/1}>=3) trample
+text=Whenever another creature you control enters the battlefield or dies, if that creature's power is greater than Pelt Collector's, put a +1/+1 counter on Pelt Collector. -- As long as Pelt Collector has three or more +1/+1 counters on it, it has trample.
+mana={G}
 type=Creature
-subtype=Pegasus
-power=2
-toughness=2
-color=white
+subtype=Elf Warrior
+power=1
+toughness=1
 [/card]
 [card]
 name=Perilous Voyage
@@ -30703,17 +30094,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Ral, Caller of Storms
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:draw:1
-auto={C(0/0,-2,Loyalty)}:damage:1 target(creature,player) && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
-auto={C(0/0,-7,Loyalty)}:draw:7 && damage:7 all(creature|opponentBattlefield)
-text=+1: Draw a card. -- -2: Ral, Caller of Storms deals 3 damage divided as you choose among one, two, or three targets. -- -7: Draw seven cards. Ral, Caller of Storms deals 7 damage to each creature your opponents control.
-mana={4}{U}{R}
-type=Legendary Planeswalker
-subtype=Ral
-[/card]
-[card]
 name=Rally for the Throne
 auto=create(Human:creature Human:1/1:white)*2
 other={W}{W}{W} name(Adamant)
@@ -31547,7 +30927,7 @@ type=Sorcery
 [/card]
 [card]
 name=Renata, Called to the Hunt
-auto=type:manaG:mybattlefield/3 cdaactive
+anyzone=type:manaG:mybattlefield/3 cdaactive
 auto=@movedTo(other creature|mybattlefield):all(trigger[to]) counter(1/1.1)
 text=Renata’s power is equal to your devotion to green. (Each {G} in the mana costs of permanents you control counts towards your devotion to green.) -- Each other creature you control enters the battlefield with an additional +1/+1 counter on it.
 mana={2}{G}{G}
@@ -32813,17 +32193,6 @@ power=5
 toughness=2
 [/card]
 [card]
-name=Rowan, Fearless Sparkmage
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Power and First Strike) target(creature) 3/0 ueot && first strike ueot
-auto={C(0/0,-2,Loyalty)}:name(-2: Damage) target(<upto:2>creature) damage:1 && cantblock ueot
-auto={C(0/0,-9,Loyalty)}:name(-9: Gain Control) all(creature|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-text=+1: Up to one target creature gets +3/+0 and gains first strike until end of turn. -- -2: Rowan, Fearless Sparkmage deals 1 damage to each of up to two target creatures. Those creatures can't block this turn. -- -9: Gain control of all creatures until end of turn. Untap them. They gain haste until end of turn.
-mana={3}{R}{R}
-type=Legendary Planeswalker
-subtype=Rowan
-[/card]
-[card]
 name=Rowdy Crew
 abilities=trample
 auto=draw:3 && discard:2 controller
@@ -33224,6 +32593,7 @@ toughness=1
 [/card]
 [card]
 name=Sage-Eye Avengers
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 auto=@combat(attacking) source(this): may moveTo(ownerhand) target(creature[power<=this])
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Sage-Eye Avengers attacks, you may return target creature to its owner’s hand if its power is less than Sage-Eye Avengers’s power.
@@ -33241,17 +32611,6 @@ auto=damage:1 all(creature[flying]|opponentBattlefield)
 text=Destroy target creature with flying. Sagittars' Volley deals 1 damage to each creature with flying your opponents control.
 mana={2}{G}
 type=Instant
-[/card]
-[card]
-name=Saheeli Rai
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:damage:1 opponent && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
-auto={C(0/0,-2,Loyalty)}:clone with(unearth,haste) target(artifact,creature)
-auto={C(0/0,-7,Loyalty)}:name(search cards) reveal:plibrarycount optionone name(choose cards) target(<upto:3>artifact|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend
-text=+1: Scry 1. Saheeli Rai deals 1 damage to each opponent. -- -2: Create a token that's a copy of target artifact or creature you control, except it's an artifact in addition to its other types. That token gains haste. Exile it at the beginning of the next end step. -- -7: Search your library for up to three artifact cards with different names, put them onto the battlefield, then shuffle your library.
-mana={1}{U}{R}
-type=Planeswalker
-subtype=Saheeli
 [/card]
 [card]
 name=Saheeli's Artistry
@@ -33279,27 +32638,6 @@ type=Artifact Creature
 subtype=Drake
 power=2
 toughness=3
-[/card]
-[card]
-name=Saheeli, Sublime Artificer
-auto=counter(0/0,5,loyalty)
-auto=@movedTo(*[-creature]|mystack):create(servo artifact:creature servo artifact:1/1:colorless)
-auto={C(0/0,-2,Loyalty)}:target(artifact) transforms((,newability[copy target(*[artifact;creature]|mybattlefield)]))
-text=Whenever you cast a noncreature spell, create a 1/1 colorless Servo artifact creature token. -- -2: Target artifact you control becomes a copy of another target artifact or creature you control until end of turn, except it's an artifact in addition to its other types.
-mana={1}{UR}{UR}
-type=Legendary Planeswalker
-subtype=Saheeli
-[/card]
-[card]
-name=Saheeli, the Gifted
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 colorless Servo) token(Servo,Artifact Creature Servo,1/1)
-auto={C(0/0,-1,Loyalty)}:name(-1: The next spell has affinity for artifacts) lord(*|mycastingzone):affinityartifacts oneshot
-auto={C(0/0,-7,Loyalty)}:name(-7: Create a token for each artifact) clone all(artifact|mybattlefield) with (unreath)
-text=+1: Create a 1/1 colorless Servo artifact creature token. -- +1: The next spell you cast this turn costs {1} less to cast for each artifact you control as you cast it. -- -7: For each artifact you control, create a token that’s a copy of it. Those tokens gain haste. Exile those tokens at the beginning of the next end step. -- Saheeli, the Gifted can be your commander.
-mana={2}{U}{R}
-type=Legendary Planeswalker
-subtype=Saheeli
 [/card]
 [card]
 name=Sai, Master Thopterist
@@ -33390,16 +32728,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Samut, Tyrant Smasher
-auto=counter(0/0,5,loyalty)
-auto=lord(other creature|myBattlefield) haste
-auto={C(0/0,-1,Loyalty)}:target(creature) 2/1 && haste ueot && _SCRY_(1)
-text=Creatures you control have haste. -- -1: Target creature gets +2/+1 and gains haste until end of turn. Scry 1.
-mana={2}{RG}{RG}
-type=Legendary Planeswalker
-subtype=Samut
-[/card]
-[card]
 name=Samut, Voice of Dissent
 abilities=flash, double strike, vigilance, haste
 auto=lord(other creature|mybattlefield) haste
@@ -33410,17 +32738,6 @@ type=Legendary Creature
 subtype=Human Warrior
 power=3
 toughness=4
-[/card]
-[card]
-name=Samut, the Tested
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:target(<upto:1>creature) double strike ueot
-auto={C(0/0,-2,Loyalty)}:name(split damage) damage:1 target(creature,player) && transforms((,newability[damage:1 target(creature,player)])) ueot
-auto={C(0/0,-7,Loyalty)}:moveto(mybattlefield) target(<upto:2>*[creature;planeswalker]|mylibrary)
-text=+1: Up to one target creature gains double strike until end of turn. -- -2: Samut, the Tested deals 2 damage divided as you choose among one or two target creatures and/or players. -- -7: Search your library for up to two creature and/or planeswalker cards, put them onto the battlefield, then shuffle your library.
-mana={2}{R}{G}
-type=Legendary Planeswalker
-subtype=Samut
 [/card]
 [card]
 name=Sanctuary Blade
@@ -33485,7 +32802,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Sanctum of Calm Waters
-auto=@each my firstmain:foreach(*[shrine]|mybattlefield) draw:1 controller && transforms((,newability[target(*|myhand) reject])) oneshot
+auto=@each my firstmain:may foreach(*[shrine]|mybattlefield) name(draw a card for each shrine) draw:1 controller && transforms((,newability[target(*|myhand) reject])) oneshot
 text=At the beginning of your precombat main phase, you may draw X cards, where X is the number of Shrines you control. If you do, discard a card.
 mana={3}{U}
 type=Legendary Enchantment
@@ -33524,12 +32841,12 @@ subtype=Shrine
 [/card]
 [card]
 name=Sanctum of Tranquil Light
-auto=if type(*[shrine]|myBattlefield)~equalto~0 then transforms((,newability[{5}{W}:tap target(creature)])) ueot
-auto=if type(*[shrine]|myBattlefield)~equalto~1 then transforms((,newability[{4}{W}:tap target(creature)])) ueot
-auto=if type(*[shrine]|myBattlefield)~equalto~2 then transforms((,newability[{3}{W}:tap target(creature)])) ueot
-auto=if type(*[shrine]|myBattlefield)~equalto~3 then transforms((,newability[{2}{W}:tap target(creature)])) ueot
-auto=if type(*[shrine]|myBattlefield)~equalto~4 then transforms((,newability[{1}{W}:tap target(creature)])) ueot
-auto=if type(*[shrine]|myBattlefield)~morethan~4 then transforms((,newability[{W}:tap target(creature)])) ueot
+auto={5}{W}:name({5}{W}:tap target creature) tap target(creature)
+auto={4}{W} restriction{type(*[shrine]|myBattlefield)~morethan~0}:name({4}{W}:tap target creature) tap target(creature)
+auto={3}{W} restriction{type(*[shrine]|myBattlefield)~morethan~1}:name({3}{W}:tap target creature) tap target(creature)
+auto={2}{W} restriction{type(*[shrine]|myBattlefield)~morethan~2}:name({2}{W}:tap target creature) tap target(creature)
+auto={1}{W} restriction{type(*[shrine]|myBattlefield)~morethan~3}:name({1}{W}:tap target creature) tap target(creature)
+auto={W} restriction{type(*[shrine]|myBattlefield)~morethan~4}:name({W}:tap target creature) tap target(creature)
 text={5}{W}: Tap target creature. This ability costs 1 less to activate for each Shrine you control.
 mana={W}
 type=Legendary Enchantment
@@ -33652,17 +32969,6 @@ auto=foreach(creature|mybattlefield) token(Saproling,Creature Saproling,1/1,gree
 text=You may cast Saproling Symbiosis any time you could cast an instant if you pay {2} more to cast it. -- Put a 1/1 green Saproling creature token onto the battlefield for each creature you control.
 mana={3}{G}
 type=Sorcery
-[/card]
-[card]
-name=Sarkhan the Masterless
-auto=counter(0/0,5,loyalty)
-auto=@each blockers:all(creature[attacking]|opponentBattlefield) damage:type:dragon:myBattlefield
-auto={C(0/0,1,Loyalty)}:all(planeswalker|myBattlefield) becomes(dragon creature,4/4,red,flying)
-auto={C(0/0,-3,Loyalty)}:create(dragon:creature dragon:4/4:red:flying)
-text=Whenever a creature attacks you or a planeswalker you control, each Dragon you control deals 1 damage to that creature. -- +1: Until end of turn, each planeswalker you control becomes a 4/4 red Dragon creature and gains flying. -- -3: Create a 4/4 red Dragon creature token with flying.
-mana={3}{R}{R}
-type=Legendary Planeswalker
-subtype=Sarkhan
 [/card]
 [card]
 name=Sarkhan's Catharsis
@@ -34808,17 +34114,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Serra the Benevolent
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,2,Loyalty)}:target(creature[flying) 1/1 ueot
-auto={C(0/0,-3,Loyalty)}:token(Angel,Creature Angel,4/4,flying,white,vigilance)
-auto={C(0/0,-6,Loyalty)}:if type(creature[power>=4]|mybattlefield)~morethan~0 then this(controllerlife >= 1) transforms((,newability[reduceto:1])) forever
-text=+2: Creatures you control with flying get +1/+1 until end of turn. -- -3: Create a 4/4 white Angel creature token with flying and vigilance. -- -6: You get an emblem with "If you control a creature, damage that would reduce your life total to less than 1 reduces it to 1 instead."
-mana={2}{W}{W}
-type=Legendary Planeswalker
-subtype=Serra
-[/card]
-[card]
 name=Serra's Guardian
 abilities=flying, vigilance
 auto=lord(other creature|myBattlefield) vigilance
@@ -35425,6 +34720,7 @@ toughness=6
 [/card]
 [card]
 name=Shipwreck Dowser
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 auto=moveTo(myHand) target(*[instant;sorcery]|myGraveyard)
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- When Shipwreck Dowser enters the battlefield, return target instant or sorcery card from your graveyard to your hand.
@@ -37094,17 +36390,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Sorin Markov
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: deals 2 damage to a creature and gain life...) damage:2 target(creature,player,planeswalker) && life:2 controller
-auto={C(0/0,-3,Loyalty)}:name(-3: Target opponent's life total becomes 10) lifeset:10 opponent
-auto={C(0/0,-7,Loyalty)}:name(-7: you control target player -'Loses turn'-) turns:-1 opponent
-text=+2: Sorin Markov deals 2 damage to any target and you gain 2 life. -- -3: Target opponent’s life total becomes 10. -- -7: You control target player during that player’s next turn.
-mana={3}{B}{B}{B}
-type=Legendary Planeswalker
-subtype=Sorin
-[/card]
-[card]
 name=Sorin's Guide
 auto=may moveto(myhand) target(Sorin, Vampire Lord|mylibrary)
 auto=may moveto(myhand) target(Sorin, Vampire Lord|mygraveyard)
@@ -37114,47 +36399,6 @@ type=Creature
 subtype=Vampire
 power=4
 toughness=2
-[/card]
-[card]
-name=Sorin, Imperious Bloodlord
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:target(creature|myBattlefield) deathtouch ueot && lifelink ueot && restriction{type(creature[vampire]) counter(1/1)
-auto={C(0/0,1,Loyalty)}:[S(vampire|myBattlefield)}:damage:3 target(creature,player) && life:3 controller
-auto={C(0/0,-3,Loyalty)}:moveto(myBattlefield) target(creature[vampire]|myHand)
-text=+1: Target creature you control gains deathtouch and lifelink until end of turn. If it's a Vampire, put a +1/+1 counter on it. -- +1: You may sacrifice a Vampire. When you do, Sorin, Imperious Bloodlord deals 3 damage to any target and you gain 3 life. -- -3: You may put a Vampire creature card from your hand onto the battlefield.
-mana={2}{B}
-type=Legendary Planeswalker
-subtype=Sorin
-[/card]
-[card]
-name=Sorin, Vampire Lord
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:target(creature) 2/0 ueot
-auto={C(0/0,-2,Loyalty)}:damage:4 target(creature,player) && life:4 controller
-auto={C(0/0,-8,Loyalty)}:all(creature[vampire]|mybattlefield) transforms((,newability[{T}:moveTo(mybattlefield) target(creature)]) ueot
-text=+1: Up to one target creature gets +2/+0 until end of turn. -- -2: Sorin, Vampire Lord deals 4 damage to any target. You gain 4 life. -- -8: Until end of turn, each Vampire you control gains " {T}: Gain control of target creature."
-mana={4}{B}{B}
-type=Legendary Planeswalker
-subtype=Sorin
-[/card]
-[card]
-name=Sorin, Vengeful Bloodlord
-auto=counter(0/0,4,loyalty)
-auto=this(variable{controllerturn}>0) lord(creature,planeswalker|myBattlefield) lifelink
-auto={C(0/0,2,Loyalty)}:damage:1 target(player,planeswalker)
-auto={C(0/0,-1,Loyalty)}:name(-1 counter) target(creature[manacost=1]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-auto={C(0/0,-2,Loyalty)}:name(-2 counters) target(creature[manacost=2]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-auto={C(0/0,-3,Loyalty)}:name(-3 counters) target(creature[manacost=3]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-auto={C(0/0,-4,Loyalty)}:name(-4 counters) target(creature[manacost=4]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-auto={C(0/0,-5,Loyalty)}:name(-5 counters) target(creature[manacost=5]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-auto={C(0/0,-6,Loyalty)}:name(-6 counters) target(creature[manacost=6]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-auto={C(0/0,-7,Loyalty)}:name(-7 counters) target(creature[manacost=7]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-auto={C(0/0,-8,Loyalty)}:name(-8 counters) target(creature[manacost=8]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-auto={C(0/0,-9,Loyalty)}:name(-9 counters) target(creature[manacost=9]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-text=As long as it's your turn, creatures and planeswalkers you control have lifelink. -- +2: Sorin, Vengeful Bloodlord deals 1 damage to target player or planeswalker. -- -X: Return target creature card with converted mana cost X from your graveyard to the battlefield. That creature is a Vampire in addition to its other types.
-mana={2}{W}{B}
-type=Legendary Planeswalker
-subtype=Sorin
 [/card]
 [card]
 name=Soul Barrier
@@ -37292,6 +36536,7 @@ type=Artifact
 [/card]
 [card]
 name=Soul-Scar Mage
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 auto=@targeted(creature|opponentbattlefield) from(*|mybattlefield): all(*|mystack) wither ueot
 auto=@targeted(creature|opponentbattlefield) from(*|mystack): all(*|mystack) wither ueot
@@ -37716,6 +36961,7 @@ toughness=4
 [/card]
 [card]
 name=Spellweaver Eternal
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 auto=@combat(blocked,turnlimited) source(this):life:-2 opponent
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Afflict 2 (Whenever this creature becomes blocked, defending player loses 2 life.)
@@ -38972,7 +38218,7 @@ toughness=3
 [/card]
 [card]
 name=Stormwing Entity
-abilities=flying
+abilities=flying,prowess
 anyzone=@movedTo(*[instant;sorcery]|mystack) once:changecost(colorless:-2) ueot forcedalive
 anyzone=@movedTo(*[instant;sorcery]|mystack) once:altercost(blue:-1) ueot forcedalive
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
@@ -39309,8 +38555,29 @@ toughness=10
 [/card]
 [card]
 name=Sunhome Stalwart
-abilities=first strike
-auto=_MENTOR_
+abilities=first strike,mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 text=First strike -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={1}{W}
 type=Creature
@@ -39992,7 +39259,7 @@ toughness=1
 [/card]
 [card]
 name=Taigam, Ojutai Master
-auto=lord(instant,sorcery,dragon|mycastingzone): nofizzle
+auto=lord(instant,sorcery,dragon|mycastingzone) nofizzle
 auto=@movedto(*[instant;sorcery]|mystack) restriction{lastturn(this[attacking]|myBattlefield)}: rebound
 text=Instant, sorcery, and Dragon spells you control can’t be countered. -- Whenever you cast an instant or sorcery spell from your hand, if Taigam, Ojutai Master attacked this turn, that spell gains rebound. (Exile the spell as it resolves. At the beginning of your next upkeep, you may cast that card from exile without paying its mana cost.)
 mana={2}{W}{U}
@@ -40047,8 +39314,29 @@ toughness=3
 [/card]
 [card]
 name=Tajic, Legion's Edge
-abilities=haste
-auto=_MENTOR_
+abilities=haste,mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 auto=lord(other creature|myBattlefield) preventAllNoncombatDamage
 auto={R}{W}:first strike ueot
 text=Haste -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- Prevent all noncombat damage that would be dealt to other creatures you control. -- {R}{W}: Tajic, Legion's Edge gains first strike until end of turn.
@@ -40169,17 +39457,6 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
-name=Tamiyo, Field Researcher
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Damage and draw) target(<2>creature) transforms((,newability[@combatdamaged(creature,player) from(this):draw:1 controller])) uynt
-auto={C(0/0,-2,Loyalty)}:name(-3: Tap and freeze) target(<2>*[-land]) freeze
-auto={C(0/0,-7,Loyalty)}:name(-7: emblem) draw:3 controller && emblem transforms((,newability[lord(*[-land]|myhand) zerocast])) forever dontremove
-text=+1: Choose up to two target creatures. Until your next turn, whenever either of those creatures deals combat damage, you draw a card. -- -2: Tap up to two target nonland permanents. They don't untap during their controller's next untap step. -- -7: Draw three cards. You get an emblem with "You may cast nonland cards from your hand without paying their mana costs."
-mana={1}{G}{W}{U}
-type=Planeswalker
-subtype=Tamiyo
-[/card]
-[card]
 name=Tana, the Bloodsower
 abilities=trample
 auto=@combatdamaged(player) from(mytgt):token(Saproling,Creature Saproling,1/1,green)*thatmuch
@@ -40243,6 +39520,7 @@ toughness=3
 [/card]
 [card]
 name=Target Minotaur
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)
 mana={1}{R}
@@ -40399,62 +39677,6 @@ type=Legendary Creature
 subtype=Human Wizard
 power=3
 toughness=4
-[/card]
-[card]
-name=Teferi, Master of Time
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:draw:1 controller && transforms((,newability[target(*|myhand) reject])) oneshot
-auto={C(0/0,-3,Loyalty)}:target(creature|opponentBattlefield) phaseout
-auto={C(0/0,-10,Loyalty)}:turns:+2 controller
-text=You may activate loyalty abilities of Teferi, Master of Time on any player's turn any time you could cast an instant. -- +1: Draw a card, then discard a card. -- -3: Target creature you don't control phases out. (Treat it and anything attached to it as though they don't exist until its controller's next turn.) -- -10: Take two extra turns after this one.
-mana={2}{U}{U}
-type=Legendary Planeswalker
-subtype=Teferi
-[/card]
-[card]
-name=Teferi, Temporal Archmage
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: look 2 cards) reveal:2 optionone name(Look 2 cards) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo target(<1>*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-1,Loyalty)}:name(-1: untap 4 permanents) target(<upto:4>*|battlefield) untap
-#auto={C(0/0,-10,Loyalty)}:name(-10: emblem) donothing
-text=+1: Look at the top two cards of your library. Put one of them into your hand and the other on the bottom of your library. -- -1: Untap up to four target permanents. -- -10: You get an emblem with "You may activate loyalty abilities of planeswalkers you control on any player's turn any time you could cast an instant." -- Teferi, Temporal Archmage can be your commander.
-mana={4}{U}{U}
-type=Planeswalker
-subtype=Teferi
-[/card]
-[card]
-name=Teferi, Time Raveler
-auto=counter(0/0,4,loyalty)
-auto=this(variable{controllerturn}>0) maxCast(*)0 opponent
-auto={C(0/0,1,Loyalty)}:lord(sorcery|mycastingzone) flash uynt
-auto={C(0/0,-3,Loyalty)}:target(*[artifact;creature;enchantment]) moveTo(ownerhand) && draw:1 controller
-text=Each opponent can cast spells only any time they could cast a sorcery. -- +1: Until your next turn, you may cast sorcery spells as though they had flash. -- -3: Return up to one target artifact, creature, or enchantment to its owner's hand. Draw a card.
-mana={1}{W}{U}
-type=Legendary Planeswalker
-subtype=Teferi
-[/card]
-[card]
-name=Teferi, Timebender
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:untap target(artifact,creature)
-auto={C(0/0,2,Loyalty)}:name(no targets)
-auto={C(0/0,-3,Loyalty)}:life:2 && draw:2
-auto={C(0/0,-9,Loyalty)}:turns:+1
-text=+2: Untap up to one target artifact or creature. -- -3: You gain 2 life and draw two cards. -- -9: Take an extra turn after this one.
-mana={4}{W}{U}
-type=Legendary Planeswalker
-subtype=Teferi
-[/card]
-[card]
-name=Teferi, Timeless Voyager
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:draw:1 controller
-auto={C(0/0,-3,Loyalty)}:moveTo(ownerLibrary) target(creature)
-auto={C(0/0,-8,Loyalty)}:phaseout all(creature|opponentbattlefield)
-text=+1: Draw a card. -- -3: Put target creature on top of its owner's library. -- -8: Each creature target opponent controls phases out. Until the end of your next turn, they can't phase in. (Treat them and anything attached to them as though they don't exist.)
-mana={4}{U}{U}
-type=Legendary Planeswalker
-subtype=Teferi
 [/card]
 [card]
 name=Temmet, Vizier of Naktamun
@@ -40735,16 +39957,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Teyo, the Shieldmage
-abilities=playershroud
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,-2,Loyalty)}:create(wall:creature wall:0/3:white:defender)
-text=You have hexproof. (You can't be the target of spells or abilities your opponents control.) -- -2: Create a 0/3 white Wall creature token with defender.
-mana={2}{W}
-type=Legendary Planeswalker
-subtype=Teyo
-[/card]
-[card]
 name=Tezzeret's Betrayal
 target=creature
 auto=destroy
@@ -40763,18 +39975,6 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=1
-[/card]
-[card]
-name=Tezzeret, Master of the Bridge
-auto=counter(0/0,5,loyalty)
-auto=lord(*[creature;planeswalker]|mycastingzone) affinityartifacts
-auto={C(0/0,2,Loyalty)}:life:-type:artifact:mybattlefield opponent && life:type:artifact:mybattlefield controller
-auto={C(0/0,-3,Loyalty)}:target(artifact|mygraveyard) moveto(ownerhand)
-auto={C(0/0,-8,Loyalty)}:reveal:10 optionone name(Get artifact Cards) all(artifact|reveal) moveto(mybattlefield) optiononeend optiontwo all(*|reveal) moveTo(exile) optiontwoend revealend
-text=Creature and planeswalker spells you cast have affinity for artifacts. -- +2: Tezzeret, Master of the Bridge deals X damage to each opponent, where X is the number of artifacts you control. You gain X life. -- -3: Return target artifact card from your graveyard to your hand. -- -8: Exile the top ten cards of your library. Put all artifact cards from among them onto the battlefield.
-mana={4}{U}{B}
-type=Legendary Planeswalker
-subtype=Tezzeret
 [/card]
 [card]
 name=Thalia's Geistcaller
@@ -41086,17 +40286,6 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
-name=The Royal Scions
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Draw and Discard) draw:1 && transforms((,newability[target(*|myhand) reject]))
-auto={C(0/0,1,Loyalty)}:name(+1: Power and First Strike) target(creature) 2/0 ueot && first strike ueot && trample ueot
-auto={C(0/0,-8,Loyalty)}:name(-8: Draw four cards) draw:4 controller && damage:phandcount target(player,creature,planeswalker)
-text=+1: Draw a card, then discard a card. -- +1: Target creature gets +2/+0 and gains first strike and trample until end of turn. -- -8: Draw four cards. When you do, The Royal Scions deals damage to any target equal to the number of cards in your hand.
-mana={1}{U}{R}
-type=Legendary Planeswalker
-subtype=Will Rowan
-[/card]
-[card]
 name=The Scarab God
 auto={2}{U}{B}:target(creature|graveyard) clone and!( transforms((Zombie,setpower=4,settoughness=4,black)) forever )! && moveTo(exile)
 auto=@each my upkeep:foreach(zombie|mybattlefield) life:-1 opponent
@@ -41145,16 +40334,6 @@ type=Legendary Creature
 subtype=Dragon Avatar
 power=10
 toughness=10
-[/card]
-[card]
-name=The Wanderer
-auto=counter(0/0,5,loyalty)
-auto=preventallnoncombatdamage to(other *|myBattlefield)
-auto=preventallnoncombatdamage to(controller)
-auto={C(0/0,-2,Loyalty)}:moveto(exile) target(creature[power>=4])
-text=Prevent all noncombat damage that would be dealt to you and other permanents you control. -- -2: Exile target creature with power 4 or greater.
-mana={3}{W}
-type=Legendary Planeswalker
 [/card]
 [card]
 name=Thicket Crasher
@@ -41261,7 +40440,7 @@ type=Instant
 [/card]
 [card]
 name=Thorned Moloch
-abilities=first strike
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 auto=@combat(attacking) source(this):first strike ueot
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Thorned Moloch has first strike as long as it's attacking.
@@ -41649,16 +40828,6 @@ type=Creature
 subtype=Devil
 power=1
 toughness=2
-[/card]
-[card]
-name=Tibalt, Rakish Instigator
-auto=counter(0/0,5,loyalty)
-abilities=nolifegainopponent
-auto={C(0/0,-2,Loyalty)}:create(devil:creature devil:1/1:red) and!( transforms((,newability[@movedto(this|mygraveyard):damage:1 target(*[creature;player])])) forever )!
-text=Your opponents can't gain life. -- -2: Create a 1/1 red Devil creature token with "Whenever this creature dies, it deals 1 damage to any target."
-mana={2}{R}
-type=Legendary Planeswalker
-subtype=Tibalt
 [/card]
 [card]
 name=Tidal Barracuda
@@ -42576,7 +41745,29 @@ toughness=1
 [/card]
 [card]
 name=Truefire Captain
-auto=_MENTOR_
+abilities=mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 auto=@damaged(this):damage:thatmuch target(player)
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- Whenever Truefire Captain is dealt damage, it deals that much damage to target player.
 mana={R}{R}{W}{W}
@@ -42631,7 +41822,7 @@ toughness=3
 [card]
 name=Trumpeting Herd
 auto=create(Elephant:creature Elephant:3/3:green)
-auto=if rebound then moveto(exile)
+auto=if rebound then ability$!moveto(exile) all(Trumpeting Herd|mystack)!$ controller
 autoexile=@rebounded:may activate castcard(normal)
 text=Create a 3/3 green Elephant creature token. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={2}{G}{G}
@@ -42940,7 +42131,7 @@ subtype=Saga
 [/card]
 [card]
 name=Tymaret, Chosen from Death
-auto=2/type:manaB:mybattlefield cdaactive
+anyzone=2/type:manaB:mybattlefield cdaactive
 auto={1}{B}:name (exile cards) moveto(exile) target(<upto:2>*|graveyard)
 auto={1}{B}:name (exile creature cards) moveto(exile) target(<upto:2>*|graveyard) && newability[@movedto(creature|Exile) from(graveyard):life:1]
 text=Tymaret’s toughness is equal to your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) -- {1}{B}: Exile up to two target cards from graveyards. You gain 1 life for each creature card exiled this way.
@@ -42998,17 +42189,6 @@ type=Creature
 subtype=Spirit Monk
 power=0
 toughness=0
-[/card]
-[card]
-name=Ugin, the Ineffable
-auto=counter(0/0,4,loyalty)
-auto=lord(*[colorless]|mycastingzone) altercost(colorless,-2)
-auto={C(0/0,1,Loyalty)}:create(spirit:creature spirit:2/2:colorless) and!( transforms((,newability[@movedto(this|nonbattlezone):draw:1])])) forever )!
-auto={C(0/0,-3,Loyalty)}:destroy target(*[white;blue;black;red;green])
-text=Colorless spells you cast cost {2} less to cast. -- +1: Exile the top card of your library face down and look at it. Create a 2/2 colorless Spirit creature token. When that token leaves the battlefield, put the exiled card into your hand. -- -3: Destroy target permanent that's one or more colors.
-mana={6}
-type=Legendary Planeswalker
-subtype=Ugin
 [/card]
 [card]
 name=Ukkima, Stalking Shadow
@@ -44514,17 +43694,6 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
-name=Vivien of the Arkbow
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,+2,Loyalty)}:name(+2: Put two counters) target(creature) counter(1/1.2)
-auto={C(0/0,-3,Loyalty)}:name(-3: Target creature deals) target(creature|myBattlefield) transforms((,newability[dynamicability<!powerstrike!> target(creature|opponentBattlefield)])) forever
-auto={C(0/0,-9,Loyalty)}:name(-9: Creatures my control get...) all(creature|myBattlefield) 4/4 && trample
-text=+2: Put two +1/+1 counters on up to one target creature. -- -3: Target creature you control deals damage equal to its power to target creature you don't control. -- -9: Creatures you control get +4/+4 and gain trample until end of turn.
-mana={4}{G}{G}
-type=Legendary Planeswalker
-subtype=Vivien
-[/card]
-[card]
 name=Vivien's Arkbow
 auto={X}{T}{D(*|myhand)}:reveal:x optionone target(creature[manacost<=x]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
 text={X}, {T}, Discard a card: Look at the top X cards of your library. You may put a creature card with converted mana cost X or less from among them onto the battlefield. Put the rest on the bottom of your library in a random order.
@@ -44550,53 +43719,6 @@ type=Creature
 subtype=Bear Spirit
 power=2
 toughness=3
-[/card]
-[card]
-name=Vivien, Arkbow Ranger
-auto=counter(0/0,4,loyalty)
-aicode=activate target(creature|mysideboard) moveto(myhand)
-auto={C(0/0,1,Loyalty)}:target(<upto:2>creature|myBattlefield) counter(1/1)
-auto={C(0/0,-3,Loyalty)}:transforms((,newability[dynamicability<!powerstrike!> target(creature,planeswalker)])) target(creature|myBattlefield)
-auto={C(0/0,-5,Loyalty)}:name(search card) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose card) target(<1>creature|reveal) moveto(myhand) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend revealend
-text=+1: Distribute two +1/+1 counters among up to two target creatures. They gain trample until end of turn. -- -3: Target creature you control deals damage equal to its power to target creature or planeswalker. -- -5: You may choose a creature card you own from outside the game, reveal it, and put it into your hand.
-mana={1}{G}{G}{G}
-type=Legendary Planeswalker
-subtype=Vivien
-[/card]
-[card]
-name=Vivien, Champion of the Wilds
-auto=counter(0/0,4,loyalty)
-auto=lord(creature|mycastingzone) flash
-auto={C(0/0,1,Loyalty)}:target(creature) vigilance && reach uynt
-auto={C(0/0,-2,Loyalty)}:reveal:3 optionone name(Get a card) target(<1>creature|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
-text=You may cast creature spells as though they had flash. -- +1: Until your next turn, up to one target creature gains vigilance and reach. -- -2: Look at the top three cards of your library. Exile one face down and put the rest on the bottom of your library in any order. For as long as it remains exiled, you may look at that card and you may cast it if it's a creature card.
-mana={2}{G}
-type=Legendary Planeswalker
-subtype=Vivien
-[/card]
-[card]
-name=Vivien, Monsters' Advocate
-abilities=showfromtoplibrary
-aicode=activate moveto(myBattlefield) target(creature[manacost<=storedmanacost]|mylibrary)
-auto=canplaycreaturelibrarytop
-auto=counter(0/0,3,Loyalty)
-auto={C(0/0,1,Loyalty)}:token(Beast Viv)
-auto={C(0/0,-2,Loyalty)}:emblem transforms((,newability[@movedTo(creature|myStak):moveTo(myBattlefield) target(creature[manacost<=storedmanacost]|myLibrary) && shuffle])) oneshot
-text=You may look at the top card of your library any time. -- You may cast creature spells from the top of your library. -- +1: Create a 3/3 green Beast creature token. Put your choice of a vigilance counter, a reach counter, or a trample counter on it. -- -2: When you cast your next creature spell this turn, search your library for a creature card with lesser converted mana cost, put it onto the battlefield, then shuffle your library.
-mana={3}{G}{G}
-type=Legendary Planeswalker
-subtype=Vivien
-[/card]
-[card]
-name=Vivien, Nature's Avenger
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:target(creature) counter(1/1,3)
-auto={C(0/0,-1,Loyalty)}:Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal)  moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-6,Loyalty)}:target(creature) 10/10 && trample ueot
-text=+1: Put three +1/+1 counters on up to one target creature. -- -1: Reveal cards from the top of your library until you reveal a creature card. Put that card into your hand and the rest on the bottom of your library in a random order. -- -6: Target creature gets +10/+10 and gains trample until end of turn.
-mana={4}{G}{G}
-type=Legendary Planeswalker
-subtype=Vivien
 [/card]
 [card]
 name=Vizier of Many Faces
@@ -44839,6 +43961,7 @@ toughness=1
 [/card]
 [card]
 name=Voracious Reader
+abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 auto=lord(*[instant;sorcery]|mycastingzone) altercost(colorless,-1)
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Instant and sorcery spells you cast cost {1} less to cast.
@@ -44915,38 +44038,6 @@ auto=destroy
 text=Destroy target creature. You gain life equal to its toughness. You may search your library and/or graveyard for a card named Vraska, Regal Gorgon, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={4}{B}{G}
 type=Sorcery
-[/card]
-[card]
-name=Vraska, Regal Gorgon
-auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:may counter(1/1) target(creature) && menace ueot
-auto={C(0/0,-3,Loyalty)}:destroy target(creature)
-auto={C(0/0,-10,Loyalty)}:name(-10 Ultimate) foreach(creature|mygraveyard) counter(1/1) all(creature|myBattlefield)
-text=+2: Put a +1/+1 counter on up to one target creature. That creature gains menace until end of turn. -- -3: Destroy target creature. -- -10: For each creature card in your graveyard, put a +1/+1 counter on each creature you control.
-mana={5}{B}{G}
-type=Legendary Planeswalker
-subtype=Vraska
-[/card]
-[card]
-name=Vraska, Relic Seeker
-auto=counter(0/0,6,loyalty)
-auto={C(0/0,2,Loyalty)}:token(Pirate,creature Pirate,2/2,black,menace)
-auto={C(0/0,-3,Loyalty)}:destroy target(enchantment,artifact,creature) && token(435451)
-auto={C(0/0,-10,Loyalty)}:lifeset:1 opponent
-text=+2: Create a 2/2 black Pirate creature token with menace. -- -3: Destroy target artifact, creature, or enchantment. Create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool." -- -10: Target player's life total becomes 1.
-mana={4}{B}{G}
-type=Legendary Planeswalker
-subtype=Vraska
-[/card]
-[card]
-name=Vraska, Swarm's Eminence
-auto=counter(0/0,5,loyalty)
-auto=lord(creature[deathtouch]|myBattlefield) @combatdamaged(player,planeswalker) from(this):counter(1/1)
-auto={C(0/0,-2,Loyalty)}:create(assassin:creature assassin:1/1:black:deathtouch)
-text=Whenever a creature you control with deathtouch deals damage to a player or planeswalker, put a +1/+1 counter on that creature. -- -2: Create a 1/1 black Assassin creature token with deathtouch and "Whenever this creature deals damage to a planeswalker, destroy that planeswalker."
-mana={2}{BG}{BG}
-type=Legendary Planeswalker
-subtype=Vraska
 [/card]
 [card]
 name=Vulpikeet
@@ -46251,7 +45342,29 @@ toughness=2
 [/card]
 [card]
 name=Wojek Bodyguard
-auto=_MENTOR_
+abilities=mentor
+auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:counter(1/1,1) target(other creature[attacking;power<=0]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:counter(1/1,1) target(other creature[attacking;power<=1]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:counter(1/1,1) target(other creature[attacking;power<=2]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:counter(1/1,1) target(other creature[attacking;power<=3]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:counter(1/1,1) target(other creature[attacking;power<=4]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:counter(1/1,1) target(other creature[attacking;power<=5]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:counter(1/1,1) target(other creature[attacking;power<=6]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:counter(1/1,1) target(other creature[attacking;power<=7]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:counter(1/1,1) target(other creature[attacking;power<=8]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:counter(1/1,1) target(other creature[attacking;power<=9]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:counter(1/1,1) target(other creature[attacking;power<=10]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:counter(1/1,1) target(other creature[attacking;power<=11]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:counter(1/1,1) target(other creature[attacking;power<=12]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:counter(1/1,1) target(other creature[attacking;power<=13]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:counter(1/1,1) target(other creature[attacking;power<=14]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:counter(1/1,1) target(other creature[attacking;power<=15]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:counter(1/1,1) target(other creature[attacking;power<=16]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(1/1,1) target(other creature[attacking;power<=17]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
 auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
 auto=@combat(blocking) source(this) restriction{type(creature[blocking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- Wojek Bodyguard can't attack or block alone.

@@ -1396,7 +1396,13 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/f/b/fbdf8dc1-1b10-4fce-97b9-1f5600500cc1.jpg?1592324494";
         else if(id.equals("48966311t"))
             cardurl = "https://img.scryfall.com/cards/large/front/4/f/4f8107b3-8539-4b9c-8d0d-c512c940838f.jpg?1592324480";
-
+        else if(id.equals("489987t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/f/b/fb248ba0-2ee7-4994-be57-2bcc8df29680.jpg?1596043510";
+        else if(id.equals("489822t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/c/7/c7e7822b-f155-4f3f-b835-ec64f3a71307.jpg?1596044257";
+        else if(id.equals("489930t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/7/9/791f5fa0-f972-455e-9802-ff299853607f.jpg?1596044240";
+        
         return cardurl;
     }
 
@@ -1832,6 +1838,12 @@ public class ImgDownloader {
             tokenurl="https://img.scryfall.com/cards/large/front/c/f/cf9a289f-cd3f-42a0-9296-8c7cc7d01a91.jpg?1561758108";
         else if(id.equals("489363t"))
             tokenurl="https://img.scryfall.com/cards/large/front/8/3/83dcacd3-8707-4354-a1a5-9863d677d67f.jpg?1562702177";
+        else if(id.equals("489900t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/8/6/8676704a-419e-4a00-a052-bca2ad34ecae.jpg?1596044091";
+        else if(id.equals("489695t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/7/b/7becaa04-f142-4163-9286-00018b95c4ca.jpg?1596044169";
+        else if(id.equals("489907t"))
+            tokenurl = "https://img.scryfall.com/cards/large/front/9/e/9ecc467e-b345-446c-b9b7-5f164e6651a4.jpg?1596043489";
 
         return tokenurl;
     }
@@ -1850,7 +1862,7 @@ public class ImgDownloader {
                 id.equals("470620") || id.equals("470754") || id.equals("470750") || id.equals("470739") || id.equals("470708") || id.equals("470581") ||
                 id.equals("470578") || id.equals("470571") || id.equals("470552") || id.equals("394490") || id.equals("114921") || id.equals("49775")  ||
                 id.equals("473123") || id.equals("473160") || id.equals("16743")  || id.equals("16741") || id.equals("294493") || id.equals("293253") ||
-                id.equals("293198") || id.equals("479634") || id.equals("479702"))
+                id.equals("293198") || id.equals("479634") || id.equals("479702") || id.equals("489837") || id.equals("489861"))
             return false;
         return true;
     }

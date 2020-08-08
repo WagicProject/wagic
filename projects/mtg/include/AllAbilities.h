@@ -4112,7 +4112,7 @@ public:
                 }
             }
             WEvent * e = NEW WEventTokenCreated(myToken);
-            source->getObserver()->receiveEvent(e); // triggers the @tokencreated event for any other listener.
+            spell->getObserver()->receiveEvent(e); // triggers the @tokencreated event for any other listener.
             delete spell;
         }
         return 1;

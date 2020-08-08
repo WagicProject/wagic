@@ -584,14 +584,6 @@ power=4
 toughness=1
 [/card]
 [card]
-name=Ashiok, Nightmare Weaver
-auto=counter(0/0,3,loyalty)
-text=+2: Exile the top three cards of target opponent's library. -- -X: Put a creature card with converted mana cost X exiled with Ashiok, Nightmare Weaver onto the battlefield under your control. That creature is a Nightmare in addition to its other types. -- -10: Exile all cards from all opponents' hands and graveyards.
-mana={1}{U}{B}
-type=Planeswalker
-subtype=Ashiok
-[/card]
-[card]
 name=Ashling's Prerogative
 text=As Ashling's Prerogative enters the battlefield, choose odd or even. (Zero is even.) -- Each creature with converted mana cost of the chosen value has haste. -- Each creature without converted mana cost of the chosen value enters the battlefield tapped.
 mana={1}{R}
@@ -823,13 +815,6 @@ text=You must play both B.F.M. cards to put -- leaves play, sacrifice the other.
 mana={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}
 type=Summon
 subtype=The Biggest, Baddest, Nastiest,
-[/card]
-[card]
-name=B.O.B. (Bevy of Beebles)
-text=As B.O.B. enters the battlefield, create four 1/1 blue Beeble creature tokens. -- The number of loyalty counters on B.O.B. is equal to the number of Beebles you control. (Create or sacrifice Beebles whenever B.O.B. gains or loses loyalty.) -- +1: Up to X target Beebles can't be blocked this turn, where X is the number of cards in your hand. -- -1: Draw a card.
-mana={3}{U}{U}
-type=Legendary Planeswalker
-subtype=B.O.B.
 [/card]
 [card]
 name=Back from the Brink
@@ -2058,37 +2043,6 @@ mana={1}{R}
 type=Legendary Artifact
 [/card]
 [card]
-name=Chandra, Acolyte of Flame
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,0,Loyalty)}:target(planeswalker[red]|myBattlefield) counter(0/0,1,loyalty)
-auto={C(0/0,0,Loyalty)}:token(Elemental,Creature Elemental,1/1,red,haste)*2
-auto={C(0/0,-2,Loyalty)}:
-text=0: Put a loyalty counter on each red planeswalker you control. -- 0: Create two 1/1 red Elemental creature tokens. They gain haste. Sacrifice them at the beginning of the next end step. -- -2: You may cast target instant or sorcery card with converted mana cost 3 or less from your graveyard. If that card would be put into your graveyard this turn, exile it instead.
-mana={1}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Fire of Kaladesh
-auto=@movedTo(*[red]|mystack):untap
-auto={T}:damage:1 target(player)
-#auto=transforms((,newability[flip(Chandra, Roaring Flame)],newability[moveto(mybattlefield)])) forever
-text=Whenever you cast a red spell, untap Chandra, Fire of Kaladesh. -- {T}: Chandra, Fire of Kaladesh deals 1 damage to target player. If Chandra has dealt 3 or more damage this turn, exile her, then return her to the battlefield transformed under her owner's control.
-mana={1}{R}{R}
-type=Legendary Creature
-subtype=Human Shaman
-power=2
-toughness=2
-[/card]
-[card]
-name=Chandra, Pyromaster
-auto=counter(0/0,4,loyalty)
-text=+1: Chandra, Pyromaster deals 1 damage to target player and 1 damage to up to one target creature that player controls. That creature can't block this turn. -- 0: Exile the top card of your library. You may play it this turn. -- -7: Exile the top ten cards of your library. Choose an instant or sorcery card exiled this way and copy it three times. You may cast the copies without paying their mana costs.
-mana={2}{R}{R}
-type=Planeswalker
-subtype=Chandra
-[/card]
-[card]
 name=Channel Harm
 text=Prevent all damage that would be dealt to you and permanents you control this turn by sources you don't control. If damage is prevented this way, you may have Channel Harm deal that much damage to target creature.
 mana={5}{W}
@@ -3007,14 +2961,6 @@ mana={1}{G}{U}
 type=Instant
 [/card]
 [card]
-name=Dack Fayden
-auto=counter(0/0,3,loyalty)
-text=+1: Target player draws two cards, then discards two cards. -- -2: Gain control of target artifact. -- -6: You get an emblem with "Whenever you cast a spell that targets one or more permanents, gain control of those permanents."
-mana={1}{U}{R}
-type=Planeswalker
-subtype=Dack
-[/card]
-[card]
 name=Dakra Mystic
 text={U}, {T}: Each player reveals the top card of his or her library. You may put the revealed cards into their owners' graveyards. If you don't, each player draws a card.
 mana={U}
@@ -3580,14 +3526,6 @@ name=Doubling Chant
 text=For each creature you control, you may search your library for a creature card with the same name as that creature. Put those cards onto the battlefield, then shuffle your library.
 mana={5}{G}
 type=Sorcery
-[/card]
-[card]
-name=Dovin Baan
-auto=counter(0/0,3,loyalty)
-text=+1: Until your next turn, up to one target creature gets -3/-0 and its activated abilities can't be activated. -- -1: You gain 2 life and draw a card. -- -7: You get an emblem with "Your opponents can't untap more than two permanents during their untap steps."
-mana={2}{W}{U}
-type=Planeswalker
-subtype=Dovin
 [/card]
 [card]
 name=Dr. Julius Jumblemorph
@@ -4488,12 +4426,6 @@ mana={X}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Fires of Invention
-text=You can cast spells only during your turn and you can cast no more than two spells each turn. -- You may cast spells with converted mana cost less than or equal to the number of lands you control without paying their mana costs.
-mana={3}{R}
-type=Enchantment
-[/card]
-[card]
 name=Firestorm Phoenix
 abilities=flying
 text=Flying -- If Firestorm Phoenix would die, return Firestorm Phoenix to its owner's hand instead. Until that player's next turn, that player plays with that card revealed in his or her hand and can't play it.
@@ -5104,13 +5036,6 @@ type=Creature
 subtype=Turtle
 power=2
 toughness=4
-[/card]
-[card]
-name=Gideon, Battle-Forged
-auto=counter(0/0,3,loyalty)
-text=+2: Up to one target creature an opponent controls attacks Gideon, Battle-Forged during its controller's next turn if able. -- +1: Until your next turn, target creature gains indestructible. Untap that creature. -- 0: Until end of turn, Gideon, Battle-Forged becomes a 4/4 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
-type=Planeswalker
-subtype=Gideon
 [/card]
 [card]
 name=Gift Horse
@@ -7411,14 +7336,6 @@ mana={5}
 type=Legendary Artifact
 [/card]
 [card]
-name=Kiora, Master of the Depths
-auto=counter(0/0,4,loyalty)
-text=+1: Untap up to one target creature and up to one target land. -- -2: Reveal the top four cards of your library. You may put a creature card and/or a land card from among them into your hand. Put the rest into your graveyard. -- -8: You get an emblem with "Whenever a creature enters the battlefield under your control, you may have it fight target creature." Then put three 8/8 blue Octopus creature tokens onto the battlefield.
-mana={2}{G}{U}
-type=Planeswalker
-subtype=Kiora
-[/card]
-[card]
 name=Kira, Great Glass-Spinner
 abilities=flying
 text=Flying -- Creatures you control have "Whenever this creature becomes the target of a spell or ability for the first time in a turn, counter that spell or ability."
@@ -7751,15 +7668,6 @@ name=Kyren Archive
 text=At the beginning of your upkeep, you may exile the top card of your library face down. -- {5}, Discard your hand, Sacrifice Kyren Archive: Put all cards exiled with Kyren Archive into their owner's hand.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Kytheon, Hero of Akros
-text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn.
-mana={W}
-type=Legendary Creature
-subtype=Human Soldier
-power=2
-toughness=1
 [/card]
 [card]
 name=Labro Bot
@@ -9324,14 +9232,6 @@ name=Nantuko Shrine
 text=Whenever a player casts a spell, that player puts X 1/1 green Squirrel creature tokens onto the battlefield, where X is the number of cards in all graveyards with the same name as that spell.
 mana={1}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Narset Transcendent
-auto=counter(0/0,6,loyalty)
-text=+1: Look at the top card of your library. If it's a noncreature, nonland card, you may reveal it and put it into your hand. -- -2: When you cast your next instant or sorcery spell from your hand this turn, it gains rebound. -- -9: You get an emblem with "Your opponents can't cast noncreature spells."
-mana={2}{W}{U}
-type=Planeswalker
-subtype=Narset
 [/card]
 [card]
 name=Nath's Elite
@@ -15632,17 +15532,6 @@ type=Creature
 subtype=Goblin Rigger
 power=1
 toughness=1
-[/card]
-[card]
-name=Wrenn and Six
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:moveto(myhand) target(land|mygraveyard)
-auto={C(0/0,-1,Loyalty)}:damage:1 target(creature,player)
-auto={C(0/0,-7,Loyalty)}:emblem transforms((,newability[lord(*[instant;sorcery]|mygraveyard) retrace])) forever dontremove
-text=+1: Return up to one target land card from your graveyard to your hand. -- -1: Wrenn and Six deals 1 damage to any target. -- -7: You get an emblem with "Instant and sorcery cards in your graveyard have retrace." (You may cast instant and sorcery cards from your graveyard by discarding a land card in addition to paying their other costs.)
-mana={R}{G}
-type=Legendary Planeswalker
-subtype=Wrenn
 [/card]
 [card]
 name=Write into Being

@@ -283,7 +283,9 @@ class Constants
       MODULAR = 157,
       MUTATE = 158,
       ADVENTURE = 159,
-      NB_BASIC_ABILITIES = 160,
+      MENTOR = 160,
+      PROWESS = 161,
+      NB_BASIC_ABILITIES = 162,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
