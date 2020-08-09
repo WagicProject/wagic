@@ -1887,6 +1887,16 @@ mana={B}{G}
 type=Instant
 [/card]
 [card]
+name=Assassin Vra
+abilities=deathtouch
+auto=@damaged(planeswalker) from(this):all(trigger[to]) destroy
+type=Creature
+subtype=Assassin
+power=1
+toughness=1
+color=black
+[/card]
+[card]
 name=Assault // Battery
 other={3}{G} name(Battery)
 auto=if paid (alternative) then token(Elephant,creature elephant, 3/3,green)
@@ -5938,6 +5948,17 @@ mana={1}{R}{W}
 type=Instant
 [/card]
 [card]
+name=Chandra, Fire of Kaladesh
+auto=@movedTo(*[red]|mystack):untap all(this)
+auto={T}:damage:1 target(player) limit^moveto(ownerBattlefield) && flip(Chandra, Roaring Flame)^3
+text=Whenever you cast a red spell, untap Chandra, Fire of Kaladesh. -- {T}: Chandra, Fire of Kaladesh deals 1 damage to target player. If Chandra has dealt 3 or more damage this turn, exile her, then return her to the battlefield transformed under her owner's control.
+mana={1}{R}{R}
+type=Legendary Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Chandra's Defeat
 auto=choice name(target red creature) damage:5 target(creature[red])
 auto=choice name(target red planeswalker) damage:5 target(planeswalker[red])
@@ -7365,6 +7386,15 @@ type=Artifact Creature
 subtype=Construct
 power=4
 toughness=4
+color=colorless
+[/card]
+[card]
+name=Construct Kar
+anyzone=type:artifact:myBattlefield/type:artifact:myBattlefield cdaactive
+type=Artifact Creature
+subtype=Construct
+power=*
+toughness=*
 color=colorless
 [/card]
 [card]
@@ -20084,6 +20114,16 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Jace, Vryn's Prodigy
+auto={T}:draw:1 controller && ability$!name(Discard a card) reject notAtarget(*|myhand)!$ controller && ability$!(Transform Jace) if type(*|myGraveyard)~morethan~4 then all(Jace, Vryn's Prodigy) moveto(ownerBattlefield)!$ controller && && ability$!(Transform Jace) if type(*|myGraveyard)~morethan~4 then all(Jace, Vryn's Prodigy) flip(Jace, Telepath Unbound)$! controller
+text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=0
+toughness=2
+[/card]
+[card]
 name=Jace's Defeat
 target=*[blue]|stack
 auto=fizzle
@@ -21554,6 +21594,17 @@ type=Legendary Creature
 subtype=Bird Wizard
 power=3
 toughness=3
+[/card]
+[card]
+name=Kytheon, Hero of Akros
+auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:moveto(ownerBattlefield) && flip(Gideon, Battle-Forged)
+auto={2}{W}:all(this) indestructible ueot
+text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn.
+mana={W}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=1
 [/card]
 [card]
 name=Labyrinth Guardian
@@ -23734,6 +23785,14 @@ type=Legendary Creature
 subtype=Elf Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Mask Est
+abilities=totemarmor
+target=*
+type=Enchantment
+subtype=Aura
+color=white
 [/card]
 [card]
 name=Mask of Immolation
@@ -26209,6 +26268,18 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
+[/card]
+[card]
+name=Nissa, Vastwood Seer
+aicode=activate target(forest[basic]|mylibrary) moveto(myhand)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>forest[basic]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=@movedto(land|mybattlefield) restriction{type(land|mybattlefield)~morethan~6}:all(this) moveto(ownerBattlefield) && flip(Nissa, Sage Animist)
+text=When Nissa, Vastwood Seer enters the battlefield, you may search your library for a basic Forest card, reveal it, put it into your hand, then shuffle your library. -- Whenever a land enters the battlefield under your control, if you control seven or more lands, exile Nissa, then return her to the battlefield transformed under her owner's control.
+mana={2}{G}
+type=Legendary Creature
+subtype=Elf Scout
+power=2
+toughness=2
 [/card]
 [card]
 name=Nissa's Defeat
