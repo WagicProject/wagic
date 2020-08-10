@@ -543,17 +543,6 @@ type=Legendary Planeswalker
 subtype=Chandra
 [/card]
 [card]
-name=Chandra, Fire of Kaladesh
-auto=@movedTo(*[red]|mystack):untap all(this)
-auto={T}:damage:1 target(player) limit^moveto(ownerBattlefield) && flip(Chandra, Roaring Flame)^3
-text=Whenever you cast a red spell, untap Chandra, Fire of Kaladesh. -- {T}: Chandra, Fire of Kaladesh deals 1 damage to target player. If Chandra has dealt 3 or more damage this turn, exile her, then return her to the battlefield transformed under her owner's control.
-mana={1}{R}{R}
-type=Legendary Creature
-subtype=Human Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Chandra, Roaring Flame
 auto=counter(0/0.4.loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 2 damage to player or planeswalker) ability$!name(Choose one) choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
@@ -1401,18 +1390,8 @@ type=Legendary Planeswalker
 subtype=Liliana
 [/card]
 [card]
-name=Liliana, Heretical Healer
-abilities=lifelink
-auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):if this cantargetcard(*[-planeswalker]|mybattlefield) then moveto(exile) and!( transforms((,newability[moveto(ownerBattlefield)],newability[flip(Liliana, Defiant Necromancer)],newability[counter(0/0.3.loyalty)],newability[token(Zombie Lil) controller])) forever )!
-text=Lifelink -- Whenever another nontoken creature you control dies, exile Liliana, Heretical Healer, then return her to the battlefield transformed under her owner's control. If you do, put a 2/2 black Zombie creature token onto the battlefield.
-mana={1}{B}{B}
-type=Legendary Creature
-subtype=Human Cleric
-power=2
-toughness=3
-[/card]
-[card]
 name=Liliana, Defiant Necromancer
+auto=counter(0/0,3,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Each Player Discard) ability$!name(discard) notatarget(*|myhand) reject!$ controller && ability$!name(discard) notatarget(*|myhand) reject!$ opponent
 auto={C(0/0,-0,Loyalty)}:name(-0: Reanimate nonLegendary creature with manacost 0) moveto(mybattlefield) target(creature[-legendary;manacost=0]|mygraveyard)
 auto={C(0/0,-1,Loyalty)}:name(-1: Reanimate nonLegendary creature with manacost 1) moveto(mybattlefield) target(creature[-legendary;manacost=1]|mygraveyard)
@@ -1698,19 +1677,8 @@ type=Legendary Planeswalker
 subtype=Bolas
 [/card]
 [card]
-name=Nicol Bolas, the Ravager
-abilities=flying
-auto=ability$!name(discard) reject notatarget(*|myhand)!$ opponent
-auto={4}{U}{B}{R}:moveto(exile) and!( transforms((,newability[moveto(ownerBattlefield)],newability[flip(Nicol Bolas, the Arisen)],newability[counter(0/0.7.loyalty)])) forever )! asSorcery
-text=Flying -- When Nicol Bolas, the Ravager enters the battlefield, each opponent discards a card. -- {4}{U}{B}{R}: Exile Nicol Bolas, the Ravager, then return him to the battlefield transformed under his owner's control. Activate this ability only any time you could cast a sorcery.
-mana={1}{U}{B}{R}
-type=Legendary Creature
-subtype=Elder Dragon
-power=4
-toughness=4
-[/card]
-[card]
 name=Nicol Bolas, the Arisen
+auto=counter(0/0,7,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Draw two cards) draw:2 controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Deals 10 damage to creature or planeswalker) damage:10 target(creature,planeswalker)
 auto={C(0/0,-4,Loyalty)}:name(-4: Reanimate a creature or planeswalker) target(*[creature;planeswalker]|graveyard) moveto(myBattlefield)

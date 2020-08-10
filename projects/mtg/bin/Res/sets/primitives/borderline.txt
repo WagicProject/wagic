@@ -6751,6 +6751,18 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Clone Shell
+aicode=activate target(*[zpos<=4]|mylibrary) moveTo(myExile)
+auto=may name(look) reveal:4 optionone choice name(put in exile) target(*|reveal) moveTo(ownerExile) optiononeend optiontwo choice name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
+auto=@movedTo(this|Graveyard) from(myBattlefield):castcard(normal) target(*|myExile)
+text=Imprint — When Clone Shell enters the battlefield, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library in any order. -- When Clone Shell dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
+mana={5}
+type=Artifact Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
 name=Cloudkin Seer
 abilities=flying
 auto=draw:1
@@ -7668,6 +7680,17 @@ auto={3}{T}{S}:token(Zombie,creature Zombie,2/2,black) assorcery
 text={T}: Add {1} to your mana pool. -- {3}, {T}, Sacrifice Cradle of the Accursed: Create a 2/2 black Zombie creature token. Activate this ability only any time you could cast a sorcery.
 type=Land
 subtype=Desert
+[/card]
+[card]
+name=Cragganwick Cremator
+other={2}{R}{R}{D(*[creature]|myhand)} name(Discard a creature)
+auto=if paid(alternative) then damage:storedpower target(player,planeswalker)
+text=When Cragganwick Cremator enters the battlefield, discard a card at random. If you discard a creature card this way, Cragganwick Cremator deals damage equal to that card’s power to target player or planeswalker.
+mana={2}{R}{R}{D(*[-creature]|myhand)}
+type=Creature
+subtype=Giant Shaman
+power=5
+toughness=4
 [/card]
 [card]
 name=Crash Through
@@ -22440,6 +22463,17 @@ type=Tribal Enchantment
 subtype=Treefolk Aura
 [/card]
 [card]
+name=Liliana, Heretical Healer
+abilities=lifelink
+auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):moveto(ownerBattlefield) && flip(Liliana, Defiant Necromancer) && ability$!name(Create Zombie) token(Zombie,Creature Zombie,2/2,black)!$ controller
+text=Lifelink -- Whenever another nontoken creature you control dies, exile Liliana, Heretical Healer, then return her to the battlefield transformed under her owner's control. If you do, put a 2/2 black Zombie creature token onto the battlefield.
+mana={1}{B}{B}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=3
+[/card]
+[card]
 name=Liliana's Defeat
 auto=choice name(target black creature) destroy target(creature[black])
 auto=choice name(target black planeswalker) destroy target(planeswalker[black])
@@ -23416,6 +23450,13 @@ auto={T}:Add{G}
 text=When Mana Geode enters the battlefield, scry 1. -- {T}: Add one mana of any color.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Mana Reflection
+auto=@tappedformana(*|myBattlefield):all(trigger) transforms((,newability[produceextra:selectmana])) oneshot
+text=If you tap a permanent for mana, it produces twice as much of that mana instead.
+mana={4}{G}{G}
+type=Enchantment
 [/card]
 [card]
 name=Mana Screw
@@ -25977,6 +26018,18 @@ type=Legendary Creature
 subtype=Human Cleric
 power=2
 toughness=2
+[/card]
+[card]
+name=Nicol Bolas, the Ravager
+abilities=flying
+auto=ability$!name(discard) reject notatarget(*|myhand)!$ opponent
+auto={4}{U}{B}{R}:moveto(ownerBattlefield) && flip(Nicol Bolas, the Arisen) asSorcery
+text=Flying -- When Nicol Bolas, the Ravager enters the battlefield, each opponent discards a card. -- {4}{U}{B}{R}: Exile Nicol Bolas, the Ravager, then return him to the battlefield transformed under his owner's control. Activate this ability only any time you could cast a sorcery.
+mana={1}{U}{B}{R}
+type=Legendary Creature
+subtype=Elder Dragon
+power=4
+toughness=4
 [/card]
 [card]
 name=Night // Day
@@ -34041,6 +34094,16 @@ mana={1}{G}{G}
 type=Legendary Creature
 subtype=Elf Scout
 power=2
+toughness=3
+[/card]
+[card]
+name=Sen Triplets
+auto=@each my upkeep:all(*|opponentBattlefield) noactivatedability && all(*|opponentcastingzone) maxCast(*)0 && may castcard(normal) target(*|opponenthand)
+text=At the beginning of your upkeep, choose target opponent. This turn, that player can't cast spells or activate abilities and plays with his or her hand revealed. You may play cards from that player's hand this turn.
+mana={2}{W}{U}{B}
+type=Legendary Artifact Creature
+subtype=Human Wizard
+power=3
 toughness=3
 [/card]
 [card]
