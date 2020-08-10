@@ -2321,15 +2321,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Clone Shell
-text=Imprint — When Clone Shell enters the battlefield, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library in any order. -- When Clone Shell dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
-mana={5}
-type=Artifact Creature
-subtype=Shapeshifter
-power=2
-toughness=2
-[/card]
-[card]
 name=Coalition Flag
 text=Enchant creature you control -- Enchanted creature is a Flagbearer. -- While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
 mana={W}
@@ -2672,15 +2663,6 @@ type=Host Creature
 subtype=Octopus Rigger
 power=1
 toughness=3
-[/card]
-[card]
-name=Cragganwick Cremator
-text=When Cragganwick Cremator enters the battlefield, discard a card at random. If you discard a creature card this way, Cragganwick Cremator deals damage equal to that card's power to target player.
-mana={2}{R}{R}
-type=Creature
-subtype=Giant Shaman
-power=5
-toughness=4
 [/card]
 [card]
 name=Cramped Bunker
@@ -8266,12 +8248,6 @@ mana={1}{U}
 type=Enchantment
 [/card]
 [card]
-name=Mana Reflection
-text=If you tap a permanent for mana, it produces twice as much of that mana instead.
-mana={4}{G}{G}
-type=Enchantment
-[/card]
-[card]
 name=Mana Web
 text=Whenever a land an opponent controls is tapped for mana, tap all lands that player controls that could produce any type of mana that land could produce.
 mana={3}
@@ -11891,15 +11867,6 @@ name=Selvala's Stampede
 text=Council's dilemma — Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
 mana={4}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Sen Triplets
-text=At the beginning of your upkeep, choose target opponent. This turn, that player can't cast spells or activate abilities and plays with his or her hand revealed. You may play cards from that player's hand this turn.
-mana={2}{W}{U}{B}
-type=Legendary Artifact Creature
-subtype=Human Wizard
-power=3
-toughness=3
 [/card]
 [card]
 name=Sentinel
