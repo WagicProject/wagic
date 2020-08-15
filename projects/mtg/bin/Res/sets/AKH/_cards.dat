@@ -1050,152 +1050,77 @@ id=426911
 rarity=U
 [/card]
 [card]
-primitive=Dusk
+primitive=Dusk // Dawn
 id=426912
 rarity=R
 [/card]
 [card]
-primitive=Dawn
-id=426912
-rarity=R
-[/card]
-[card]
-primitive=Commit
+primitive=Commit // Memory
 id=426913
 rarity=R
 [/card]
 [card]
-primitive=Memory
-id=426913
-rarity=R
-[/card]
-[card]
-primitive=Never
+primitive=Never // Return
 id=426914
 rarity=R
 [/card]
 [card]
-primitive=Return
-id=426914
-rarity=R
-[/card]
-[card]
-primitive=Insult
+primitive=Insult // Injury
 id=426915
 rarity=R
 [/card]
 [card]
-primitive=Injury
-id=426915
-rarity=R
-[/card]
-[card]
-primitive=Mouth
+primitive=Mouth // Feed
 id=426916
 rarity=R
 [/card]
 [card]
-primitive=Feed
-id=426916
-rarity=R
-[/card]
-[card]
-primitive=Start
+primitive=Start // Finish
 id=426917
 rarity=U
 [/card]
 [card]
-primitive=Finish
-id=426917
-rarity=U
-[/card]
-[card]
-primitive=Reduce
+primitive=Reduce // Rubble
 id=426918
 rarity=U
 [/card]
 [card]
-primitive=Rubble
-id=426918
-rarity=U
-[/card]
-[card]
-primitive=Destined
+primitive=Destined // Lead
 id=426919
 rarity=U
 [/card]
 [card]
-primitive=Lead
-id=426919
-rarity=U
-[/card]
-[card]
-primitive=Onward
+primitive=Onward // Victory
 id=426920
 rarity=U
 [/card]
 [card]
-primitive=Victory
-id=426920
-rarity=U
-[/card]
-[card]
-primitive=Spring
+primitive=Spring // Mind
 id=426921
 rarity=U
 [/card]
 [card]
-primitive=Mind
-id=426921
-rarity=U
-[/card]
-[card]
-primitive=Prepare
+primitive=Prepare // Fight
 id=426922
 rarity=R
 [/card]
 [card]
-primitive=Fight
-id=426922
-rarity=R
-[/card]
-[card]
-primitive=Failure
+primitive=Failure // Comply
 id=426923
 rarity=R
 [/card]
 [card]
-primitive=Comply
-id=426923
-rarity=R
-[/card]
-[card]
-primitive=Rags
+primitive=Rags // Riches
 id=426924
 rarity=R
 [/card]
 [card]
-primitive=Riches
-id=426924
-rarity=R
-[/card]
-[card]
-primitive=Cut
+primitive=Cut // Ribbons
 id=426925
 rarity=R
 [/card]
 [card]
-primitive=Ribbons
-id=426925
-rarity=R
-[/card]
-[card]
-primitive=Heaven
-id=426926
-rarity=R
-[/card]
-[card]
-primitive=Earth
+primitive=Heaven // Earth
 id=426926
 rarity=R
 [/card]

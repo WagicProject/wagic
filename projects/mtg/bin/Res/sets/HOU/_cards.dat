@@ -740,102 +740,52 @@ id=430836
 rarity=U
 [/card]
 [card]
-primitive=Farm
+primitive=Farm // Market
 id=430837
 rarity=U
 [/card]
 [card]
-primitive=Market
-id=430837
-rarity=U
-[/card]
-[card]
-primitive=Consign
+primitive=Consign // Oblivion
 id=430838
 rarity=U
 [/card]
 [card]
-primitive=Oblivion
-id=430838
-rarity=U
-[/card]
-[card]
-primitive=Claim
+primitive=Claim // Fame
 id=430839
 rarity=U
 [/card]
 [card]
-primitive=Fame
-id=430839
-rarity=U
-[/card]
-[card]
-primitive=Struggle
+primitive=Struggle // Survive
 id=430840
 rarity=U
 [/card]
 [card]
-primitive=Survive
-id=430840
-rarity=U
-[/card]
-[card]
-primitive=Appeal
+primitive=Appeal // Authority
 id=430841
 rarity=U
 [/card]
 [card]
-primitive=Authority
-id=430841
-rarity=U
-[/card]
-[card]
-primitive=Leave
+primitive=Leave // Chance
 id=430842
 rarity=R
 [/card]
 [card]
-primitive=Chance
-id=430842
-rarity=R
-[/card]
-[card]
-primitive=Reason
+primitive=Reason // Believe
 id=430843
 rarity=R
 [/card]
 [card]
-primitive=Believe
-id=430843
-rarity=R
-[/card]
-[card]
-primitive=Grind
+primitive=Grind // Dust
 id=430844
 rarity=R
 [/card]
 [card]
-primitive=Dust
-id=430844
-rarity=R
-[/card]
-[card]
-primitive=Refuse
+primitive=Refuse // Cooperate
 id=430845
 rarity=R
 [/card]
 [card]
-primitive=Cooperate
-id=430845
-rarity=R
-[/card]
-[card]
-primitive=Driven
-id=430846
-rarity=R
-[/card]
-[card]
-primitive=Despair
+primitive=Driven // Despair
 id=430846
 rarity=R
 [/card]
