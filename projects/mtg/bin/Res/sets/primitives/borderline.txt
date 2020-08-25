@@ -1234,11 +1234,11 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Appeal
+name=Appeal // Authority
 target=creature
 auto=foreach(creature|mybattlefield) 1/1
 auto=trample
-autograveyard={1}{W}{E}:all(creature|mybattlefield) vigilance ueot && target(<upto:2>creature|opponentbattlefield) tap assorcery
+autograveyard={1}{W}{E}:all(creature|mybattlefield) vigilance ueot && target(<upto:2>creature|opponentbattlefield) tap asSorcery
 text=Until end of turn, target creature gains trample and gets +X/+X, where X is the number of creatures you control. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Tap up to two target creatures your opponents control. Creatures you control gain vigilance until end of turn.
 mana={G}
 type=Sorcery
@@ -1250,6 +1250,14 @@ auto=moveTo(ownerHand) target(creature)
 text=Choose one or both — -- • Target creature gets +1/+1 until end of turn. -- • Return target creature to its owner's hand.
 mana={G}{U}
 type=Instant
+[/card]
+[card]
+name=Approach of the Second Sun
+auto=if compare(oyidarocount)~morethan~0 then winGame else alteryidarocount:1 opponent && life:7 controller
+auto=@movedto(this|mygraveyard):ability$!name(Put back in your library) moveto(mylibrary) and!(shuffle)! target(Approach of the Second Sun|mygraveyard)!$ controller
+text=If this spell was cast from your hand and you've cast another spell named Approach of the Second Sun this game, you win the game. Otherwise, put Approach of the Second Sun into its owner's library seventh from the top and you gain 7 life.
+mana={6}{W}
+type=Sorcery
 [/card]
 [card]
 name=Aquatic Incursion
@@ -2504,6 +2512,17 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
+[/card]
+[card]
+name=Baloth Packhunter
+abilities=trample
+auto=all(other creature[Baloth Packhunter]|mybattlefield) counter(1/1,2)
+text=Trample -- When Baloth Packhunter enters the battlefield, put two +1/+1 counters on each other creature you control named Baloth Packhunter.
+mana={3}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=2
 [/card]
 [card]
 name=Band Together
@@ -6576,7 +6595,7 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Claim
+name=Claim // Fame
 target=creature[manacost<=2]|mygraveyard
 auto=moveto(mybattlefield)
 autograveyard={1}{R}{E}:target(creature) 2/0 ueot && haste ueot assorcery
@@ -7100,10 +7119,10 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Commit
+name=Commit // Memory
 target=*[-land]
 auto=moveto(ownerlibrary) && ability$!moverandom(*) from(mylibrary) to(mylibrary)!$ controller
-autograveyard={4}{U}{U}:moveto(opponentgraveyard) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle && draw:7 opponent && moveto(mygraveyard) all(*|myhand) && moveto(mylibrary) all(*|mygraveyard) && shuffle && draw:7 controller && moveto(exile)
+autograveyard={4}{U}{U}{E}:moveto(opponentgraveyard) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle && draw:7 opponent && moveto(mygraveyard) all(*|myhand) && moveto(mylibrary) all(*|mygraveyard) && shuffle && draw:7 controller asSorcery
 text=Put target spell or nonland permanent into its owner's library second from the top. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) each player shuffles their hand and graveyard into their library and draws seven cards
 mana={3}{U}
 type=Instant
@@ -7154,6 +7173,15 @@ autohand=__CYCLING__({2}{U})
 auto=@discarded(this):transforms((,newability[pay[[{1}]] name(pay 3 mana) donothing?fizzle])) oneshot
 text=Counter target spell unless its controller pays {3}. -- Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) -- When you cycle Complicate, you may counter target spell unless its controller pays {1}.
 mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Compound Fracture
+target=creature
+auto=-1/-1 ueot
+auto=foreach(Compound Fracture|mygraveyard) -1/-1
+text=Target creature gets -1/-1 until end of turn. It gets an additional -1/-1 until end of turn for each card named Compound Fracture in your graveyard.
+mana={B}
 type=Instant
 [/card]
 [card]
@@ -7338,7 +7366,7 @@ power=2
 toughness=10
 [/card]
 [card]
-name=Consign
+name=Consign // Oblivion
 target=*[-land]
 auto=moveto(ownerhand)
 autograveyard={4}{B}{E}:ability$!reject(<2>*|myhand)!$ opponent assorcery
@@ -8271,10 +8299,10 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Cut
+name=Cut // Ribbon
 target=creature
 auto=damage:4
-autograveyard={X}{B}{B}:life:-X opponent
+autograveyard={X}{B}{B}{E}:life:-X opponent asSorcery
 text=Cut deals 4 damage to target creature. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Each opponent loses X life.
 mana={1}{R}
 type=Sorcery
@@ -9428,11 +9456,11 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Destined
+name=Destined // Lead
 target=creature
 auto=1/0
 auto=indestructible
-autograveyard={3}{G}:target(creature) lure && moveto(exile)
+autograveyard={3}{G}{E}:target(creature) lure asSorcery
 text=Target creature gets +1/+0 and gains indestructible until end of turn. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) All creatures able to block target creature this turn do so.
 mana={1}{B}
 type=Instant
@@ -10738,7 +10766,7 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Driven
+name=Driven // Despair
 auto=all(creature|mybattlefeild) trample
 auto=all(creature|mybattlefield) transforms((,newability[@combatdamaged(player) from(this):draw:1])) ueot
 autograveyard={1}{B}{E}:all(creature|mybattlefield) menace && transforms((,newability[@combatdamaged(player) from(this):ability$!target(*|myhand) reject!$ opponent])) ueot assorcery
@@ -10906,9 +10934,9 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Dusk
+name=Dusk // Dawn
 auto=destroy all(creature[power>=3])
-autograveyard={3}{W}{W}:moveto(myhand) all(creature[power<=2]|mygraveyard) && moveto(exile)
+autograveyard={3}{W}{W}{E}:moveto(myhand) all(creature[power<=2]|mygraveyard) asSorcery
 text=Destroy all creatures with power 3 or greater. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Return all creature cards with power 2 or less from your graveyard to your hand.
 mana={2}{W}{W}
 type=Sorcery
@@ -11500,6 +11528,13 @@ type=Creature
 subtype=Elf Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Embalmer's Tools
+auto={T(zombie[-tapped]|mybattlefield)}:deplete:1 target(player)
+text=Activated abilities of creature cards in your graveyard cost {1} less to activate. -- Tap an untapped Zombie you control: Target player mills a card.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Embercleave
@@ -12787,10 +12822,10 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Farm
+name=Farm // Market
 target=creature[attacking;blocking]
 auto=destroy
-autograveyard={3}{E}:draw:2 && transforms((,newability[target(<2>*|myhand) reject])) forever
+autograveyard={3}{E}:draw:2 && transforms((,newability[target(<2>*|myhand) reject])) forever asSorcery
 text=Destroy target attacking or blocking creature. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Draw two cards, then discard two cards.
 mana={2}{W}
 type=Instant
@@ -16677,7 +16712,7 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Grind
+name=Grind // Dust
 target=<upto:2>creature
 auto=counter(-1/-1,1)
 autograveyard={3}{W}{E}:target(<anyamount>creature[counter{-1/-1}]) moveto(exile) assorcery
@@ -17039,6 +17074,16 @@ text=Hall of the Bandit Lord enters the battlefield tapped. -- {T}, Pay 3 life: 
 type=Legendary Land
 [/card]
 [card]
+name=Hallowed Priest
+auto=@lifeof(player):counter(1/1,1)
+text=Whenever you gain life, put a +1/+1 counter on Hallowed Priest
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Hammer Dropper
 abilities=mentor
 auto=@combat(attacking) source(this) restriction{compare(p)~lessthan~1}:counter(1/1,1) target(other creature[attacking;power<=-1]|myBattlefield)
@@ -17257,6 +17302,14 @@ auto=if type(*|mygraveyard)~morethan~19 then choice name(Exile 20 cards) ability
 text=As an additional cost to cast Harvest Pyre, exile X cards from your graveyard. -- Harvest Pyre deals X damage to target creature.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Harvest Season
+aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(<upto:type:creature[tapped]:mybattlefield>land[basic]|myLibrary)
+auto=name(search card) reveal:plibrarycount optionone name(choose card) target(<upto:type:creature[tapped]:mybattlefield>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
+text=Search your library for up to X basic land cards, where X is the number of tapped creatures you control, and put those cards onto the battlefield tapped. Then shuffle your library.
+mana={2}{G}
+type=Sorcery
 [/card]
 [card]
 name=Hashep Oasis
@@ -17533,9 +17586,9 @@ mana={2}{R}{W}
 type=Instant
 [/card]
 [card]
-name=Heaven
+name=Heaven // Earth
 auto=damage:X all(creature[flying])
-autograveyard={X}{R}{R}:damage:X all(creature[-flying])
+autograveyard={X}{R}{R}{E}:damage:X all(creature[-flying]) asSorcery
 text=Heaven deals X damage to each creature with flying. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Earth deals X damage to each creature without flying.
 mana={X}{G}
 type=Instant
@@ -19778,17 +19831,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Insult
+name=Insult // Injury
 auto=@damaged(creature,player) from(*|mybattlefield) once:damage:thatmuch all(trigger[to])
 auto=@damaged(creature,player) from(*|mystack) once:damage:thatmuch all(trigger[to])
-autograveyard={2}{R}:damage:2 target(creature) && transforms((,newability[damage:2 controller])) ueot && moveto(exile)
+autograveyard={2}{R}{E}:damage:2 target(creature) && transforms((,newability[damage:2 controller])) ueot asSorcery
 text=Damage can't be prevented this turn. If a source you control would deal damage this turn, it deals double that damage instead. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Injury deals 2 damage to target creature and 2 damage to target player.
 mana={2}{R}
 type=Sorcery
 [/card]
 [card]
 name=Intellectual Offering
-#wagic only supports single opponent
 auto=draw:3 all(player)
 auto=untap all(*[-land])
 text=Choose an opponent. You and that player each draw three cards. -- Choose an opponent. Untap all nonland permanents you control and all nonland permanents that player controls.
@@ -21952,7 +22004,7 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Leave
+name=Leave // Chance
 target=<anyamount>*|mybattlefield
 auto=moveto(myhand)
 autograveyard={3}{R}{E}:target(<anyamount>*|myhand) reject && teach(*) draw:1 controller assorcery
@@ -23679,6 +23731,15 @@ mana={X}{G}{W}{W}
 type=Instant
 [/card]
 [card]
+name=Mardu Outrider
+text=As an additional cost to cast this spell, discard a card.
+mana={1}{B}{B}{D(*|myhand)}
+type=Creature
+subtype=Orc Warrior
+power=5
+toughness=5
+[/card]
+[card]
 name=Marit Lage's Slumber
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto=@movedTo(*[snow]|mybattlefield):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
@@ -25065,9 +25126,9 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Mouth
+name=Mouth // Feed
 auto=token(Hippo,creature Hippo,3/3,green)
-autograveyard={3}{G}:foreach(creature[power>=3]|mybattlefield) draw:1 controller && moveto(exile)
+autograveyard={3}{G}{E}:foreach(creature[power>=3]|mybattlefield) draw:1 controller asSorcery
 text=Create a 3/3 green Hippo creature token. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Draw a card for each creature you control with power 3 or greater.
 mana={2}{G}
 type=Sorcery
@@ -25929,10 +25990,10 @@ mana={1}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Never
+name=Never // Return
 target=creature,planeswalker
 auto=destroy
-autograveyard={3}{B}:moveto(exile) target(*|graveyard) && token(Zombie,creature Zombie,2/2,black) && moveto(exile)
+autograveyard={3}{B}{E}:moveto(exile) target(*|graveyard) && token(Zombie,creature Zombie,2/2,black) asSorcery
 text=Destroy target creature or planeswalker. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Exile target card from a graveyard. Create a 2/2 black Zombie creature token.
 mana={1}{B}{B}
 type=Sorcery
@@ -27190,10 +27251,10 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Onward
+name=Onward // Victory
 target=creature
 auto=power/0
-autograveyard={2}{W}:target(creature) double strike && moveto(exile)
+autograveyard={2}{W}{E}:target(creature) double strike asSorcery
 text=Target creature gets +X/+0 until end of turn, where X is its power. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Target creature gains double strike until end of turn.
 mana={2}{R}
 type=Instant
@@ -29087,12 +29148,12 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Prepare
+name=Prepare // Fight
 target=creature
 auto=untap
 auto=lifelink
 auto=2/2
-autograveyard={3}{G}:target(creature) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot && moveto(exile)
+autograveyard={3}{G}{E}:target(creature) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot asSorcery
 text=Untap target creature. It gets +2/+2 and gains lifelink until end of turn. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Target creature you control fights target creature an opponent controls.
 mana={1}{W}
 type=Instant
@@ -30051,9 +30112,9 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Rags
+name=Rags // Riches
 auto=all(creature) -2/-2 ueot
-autograveyard={5}{U}{U}:ability$!moveto(opponentbattlefield) target(creature|mybattlefield)!$ opponent && moveto(exile)
+autograveyard={5}{U}{U}{E}:ability$!moveto(opponentbattlefield) target(creature|mybattlefield)!$ opponent asSorcery
 text=All creatures get -2/-2 until end of turn. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Each opponent chooses a creature he or she controls. You gain control of those creatures.
 mana={2}{B}{B}
 type=Sorcery
@@ -30737,7 +30798,7 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Reason
+name=Reason // Believe
 auto=deplete:3 controller && transforms((,newability[may moveto(mylibrary) target(<upto:3>*|mygraveyard)])) ueot
 autograveyard={4}{G}{E}:flipacoin winability moverandom(creature) from(mylibrary) to(mybattlefield) winabilityend loseability moverandom(*[-creature]) from(mylibrary) to(myhand) loseabilityend flipend assorcery
 text=Scry 3. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Look at the top card of your library. You may put it onto the battlefield if it's a creature card. If you don't, put it into your hand.
@@ -30841,10 +30902,10 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Reduce
+name=Reduce // Rubble
 target=*|stack
 auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever restriction{type(*|stack)~morethan~0}
-autograveyard={2}{R}:target(<upto:3>land) freeze && moveto(exile)
+autograveyard={2}{R}{E}:target(<upto:3>land) freeze asSorcery
 text=Counter target spell unless its controller pays {3}. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Up to three target lands don't untap during their controller's next untap step.
 mana={2}{U}
 type=Instant
@@ -30860,7 +30921,7 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Refuse
+name=Refuse // Cooperate
 target=*|stack
 auto=damage:manacost
 autograveyard={2}{U}{E}:castcard(noevent) target(*|stack)
@@ -32607,6 +32668,13 @@ type=Creature
 subtype=Cat
 power=1
 toughness=1
+[/card]
+[card]
+name=Sacred Excavation
+auto=moveTo(myhand) target(<2>*[__cycling__]|myGraveyard)
+text=Return up to two target cards with cycling from your graveyard to your hand.
+mana={3}{U}
+type=Sorcery
 [/card]
 [card]
 name=Sacred Ground
@@ -34422,6 +34490,13 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=2
+[/card]
+[card]
+name=Shadow of the Grave
+auto=moveto(myhand) all(*[fresh]|mygraveyard)
+text=Return to your hand all cards in your graveyard that you cycled or discarded this turn.
+mana={1}{B}
+type=Instant
 [/card]
 [card]
 name=Shadowspear
@@ -37538,9 +37613,9 @@ mana={4}{B}
 type=Sorcery
 [/card]
 [card]
-name=Spring
+name=Spring // Mind
 auto=moveto(mybattlefield) target(basic|mylibrary) && tap
-autograveyard={4}{U}{U}:draw:2 controller && moveto(exile)
+autograveyard={4}{U}{U}{E}:draw:2 controller
 text=Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Draw two cards.
 mana={2}{G}
 type=Sorcery
@@ -37834,9 +37909,9 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Start
+name=Start // Finish
 auto=token(Warrior,creature Warrior,1/1,white,vigilance)*2
-autograveyard={2}{B}{S(creature|mybattlefield)}:destroy target(creature) && moveto(exile)
+autograveyard={2}{B}{E}{S(creature|mybattlefield)}:destroy target(creature) asSorcery
 text=Create two 1/1 white Warrior creature tokens with vigilance. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) As an additional cost to cast Finish, sacrifice a creature. -- Destroy target creature.
 mana={2}{W}
 type=Instant
@@ -38472,7 +38547,7 @@ mana={5}{R}
 type=Sorcery
 [/card]
 [card]
-name=Struggle
+name=Struggle // Survive
 target=creature
 auto=foreach(land|mybattlefield) damage:1
 autograveyard={1}{G}{E}:moveTo(mylibrary) all(*|mygraveyard) && shuffle && transforms((,newability[moveTo(opponentlibrary) all(*|opponentgraveyard)],newability[ability$!shuffle!$ opponent])) ueot assorcery
@@ -41078,6 +41153,16 @@ type=Summon
 subtype=Legend
 [/card]
 [card]
+name=Tin Street Cadet 
+auto=@combat(blocked) source(this):token(Goblin,Creature Goblin,1/1,red)
+text=Whenever Tin Street Cadet becomes blocked, create a 1/1 red Goblin creature token.
+mana={R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+[/card]
+[card]
 name=Tin Street Dodger
 abilities=haste
 auto={R}:transforms((,newability[cantbeblockedby(creature[-defender])]))
@@ -41910,6 +41995,16 @@ type=Creature
 subtype=Human Knight
 power=4
 toughness=3
+[/card]
+[card]
+name=Trueheart Duelist
+autograveyard={2}{W}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
+text=Trueheart Duelist can block an additional creature each combat. -- Embalm {2}{W} ({2}{W}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Human Warrior with no mana cost. Embalm only as a sorcery.)
+mana={1}{W}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=2
 [/card]
 [card]
 name=Trueheart Twins
@@ -42828,6 +42923,22 @@ type=Legendary Creature
 subtype=Specter
 power=4
 toughness=3
+[/card]
+[card]
+name=Uro, Titan of Nature's Wrath
+other={G}{G}{U}{U}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)} name(Escape)
+auto=ifnot paid(alternative) then sacrifice
+auto=life:3 controller && draw:1 controller
+auto=may moveto(mybattlefield) target(land|myhand)
+auto=@combat(attacking) source(this):life:3 controller && draw:1 controller
+auto=@combat(attacking) source(this):may moveto(mybattlefield) target(land|myhand)
+autograveyard={G}{G}{U}{U}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}:activate castcard(alternative)
+text=When Uro enters the battlefield, sacrifice it unless it escaped. -- Whenever Uro enters the battlefield or attacks, you gain 3 life and draw a card, then you may put a land card from your hand onto the battlefield. -- Escape— {G}{G}{U}{U}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Elder Giant
+power=6
+toughness=6
 [/card]
 [card]
 name=Ursine Champion
@@ -43856,6 +43967,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Vizier of Deferment
+abilities=flash
+auto=may (blink)ueot target(creature[attacking;blocking])
+text=Flash -- When Vizier of Deferment enters the battlefield, you may exile target creature if it attacked or blocked this turn. Return that card to the battlefield under its owner's control at the beginning of the next end step.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
 name=Vizier of Many Faces
 auto=may copy notatarget(creature)
 autograveyard={3}{U}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
@@ -43865,6 +43987,16 @@ type=Creature
 subtype=Shapeshifter Cleric
 power=0
 toughness=0
+[/card]
+[card]
+name=Vizier of Remedies
+auto=@counteradded(-1/-1) from(creature|myBattlefield):counter(-1/-1,-1) all(trigger[from]) limit:1
+text=If one or more -1/-1 counters would be put on a creature you control, that many -1/-1 counters minus one are put on it instead.
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=1
 [/card]
 [card]
 name=Vizier of Tumbling Sands

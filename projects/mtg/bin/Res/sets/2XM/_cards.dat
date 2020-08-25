@@ -2,8 +2,23 @@
 author=Wagic Team
 name=Double Masters
 year=2020-08-07
-total=381
+total=424
 [/meta]
+[card]
+primitive=Wurm
+id=-491377
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-491372
+rarity=T
+[/card]
+[card]
+primitive=Germ
+id=-491365
+rarity=T
+[/card]
 [card]
 primitive=Avatar
 id=-489987
@@ -1857,6 +1872,206 @@ rarity=C
 [card]
 primitive=Wooded Bastion
 id=490005
+rarity=R
+[/card]
+[card]
+primitive=Karn Liberated
+id=491334
+rarity=M
+[/card]
+[card]
+primitive=Jace, the Mind Sculptor
+id=491335
+rarity=M
+[/card]
+[card]
+primitive=Avacyn, Angel of Hope
+id=491344
+rarity=M
+[/card]
+[card]
+primitive=Council's Judgment
+id=491345
+rarity=R
+[/card]
+[card]
+primitive=Stoneforge Mystic
+id=491346
+rarity=R
+[/card]
+[card]
+primitive=Brainstorm
+id=491347
+rarity=R
+[/card]
+[card]
+primitive=Cyclonic Rift
+id=491348
+rarity=R
+[/card]
+[card]
+primitive=Force of Will
+id=491349
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Metamorph
+id=491350
+rarity=R
+[/card]
+[card]
+primitive=Dark Confidant
+id=491351
+rarity=M
+[/card]
+[card]
+primitive=Fatal Push
+id=491352
+rarity=R
+[/card]
+[card]
+primitive=Thoughtseize
+id=491353
+rarity=R
+[/card]
+[card]
+primitive=Toxic Deluge
+id=491354
+rarity=R
+[/card]
+[card]
+primitive=Blood Moon
+id=491355
+rarity=R
+[/card]
+[card]
+primitive=Goblin Guide
+id=491356
+rarity=R
+[/card]
+[card]
+primitive=Sneak Attack
+id=491357
+rarity=M
+[/card]
+[card]
+primitive=Crop Rotation
+id=491358
+rarity=R
+[/card]
+[card]
+primitive=Doubling Season
+id=491359
+rarity=M
+[/card]
+[card]
+primitive=Exploration
+id=491360
+rarity=R
+[/card]
+[card]
+primitive=Noble Hierarch
+id=491361
+rarity=R
+[/card]
+[card]
+primitive=Atraxa, Praetors' Voice
+id=491362
+rarity=M
+[/card]
+[card]
+primitive=Kaalia of the Vast
+id=491363
+rarity=M
+[/card]
+[card]
+primitive=Meddling Mage
+id=491364
+rarity=R
+[/card]
+[card]
+primitive=Batterskull
+id=491365
+rarity=M
+[/card]
+[card]
+primitive=Blightsteel Colossus
+id=491366
+rarity=M
+[/card]
+[card]
+primitive=Chrome Mox
+id=491367
+rarity=M
+[/card]
+[card]
+primitive=Expedition Map
+id=491368
+rarity=R
+[/card]
+[card]
+primitive=Lightning Greaves
+id=491369
+rarity=R
+[/card]
+[card]
+primitive=Mana Crypt
+id=491370
+rarity=M
+[/card]
+[card]
+primitive=Mox Opal
+id=491371
+rarity=M
+[/card]
+[card]
+primitive=Sword of Body and Mind
+id=491372
+rarity=M
+[/card]
+[card]
+primitive=Sword of Feast and Famine
+id=491373
+rarity=M
+[/card]
+[card]
+primitive=Sword of Fire and Ice
+id=491374
+rarity=M
+[/card]
+[card]
+primitive=Sword of Light and Shadow
+id=491375
+rarity=M
+[/card]
+[card]
+primitive=Sword of War and Peace
+id=491376
+rarity=M
+[/card]
+[card]
+primitive=Wurmcoil Engine
+id=491377
+rarity=M
+[/card]
+[card]
+primitive=Academy Ruins
+id=491378
+rarity=R
+[/card]
+[card]
+primitive=Urza's Mine
+id=491379
+rarity=R
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=491380
+rarity=R
+[/card]
+[card]
+primitive=Urza's Tower
+id=491381
 rarity=R
 [/card]
 [card]

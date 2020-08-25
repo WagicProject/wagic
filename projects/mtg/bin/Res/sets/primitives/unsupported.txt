@@ -3334,6 +3334,12 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
+name=Dispossess
+text=Choose an artifact card name. Search target opponent's graveyard, hand, and library for any number of cards with the chosen name and exile them. Then that player shuffles their library.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=Disruption Aura
 text=Enchant artifact -- Enchanted artifact has "At the beginning of your upkeep, sacrifice this artifact unless you pay its mana cost."
 mana={2}{U}
@@ -4191,6 +4197,12 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
+name=Failure // Comply
+text=Return target spell to its owner's hand. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Choose a card name. Until your next turn, your opponents can't cast spells with the chosen name.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Faith's Shield
 auto=this(controllerlife > 5) ability$! choice name(protection from white) target(*|myBattlefield) protection from white ueot _ choice name(protection from blue) target(*|myBattlefield) protection from blue ueot _ choice name(protection from black) target(*|myBattlefield) protection from black ueot _ choice name(protection from red) target(*|myBattlefield) protection from red ueot _ choice name(protection from green) target(*|myBattlefield) protection from green ueot !$ controller
 auto=this(controllerlife < 6) ability$! choice name(protection from white) all(*|myBattlefield) protection from white ueot _ choice name(protection from blue) all(*|myBattlefield) protection from blue ueot _ choice name(protection from black) all(*|myBattlefield) protection from black ueot _ choice name(protection from red) all(*|myBattlefield) protection from red ueot _ choice name(protection from green) all(*|myBattlefield) protection from green ueot !$ controller
@@ -5020,6 +5032,12 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Gideon's Intervention
+text=As Gideon's Intervention enters the battlefield, choose a card name. -- Your opponents can't cast spells with the chosen name. -- Prevent all damage that would be dealt to you and permanents you control by sources with the chosen name.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Gift Horse
 text=Whenever you crank Gift Horse, roll two six-sided dice. Create a number of 1/1 red Goblin creature tokens equal to the difference between those results.
 type=Artifact
@@ -5212,6 +5230,12 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=1
+[/card]
+[card]
+name=Glorious End
+text=End the turn. (Exile all spells and abilities from the stack, including this card. The player whose turn it is discards down to their maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.) -- At the beginning of your next end step, you lose the game.
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 name=Gluetius Maximus
@@ -5960,6 +5984,16 @@ text=As Harsh Judgment enters the battlefield, choose a color. -- If an instant 
 mana={2}{W}{W}
 type=Enchantment
 [/card]
+[card]
+name=Harsh Mentor
+text=Whenever an opponent activates an ability of an artifact, creature, or land on the battlefield, if it isn't a mana ability, Harsh Mentor deals 2 damage to that player.
+mana={1}{R}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
 [card]
 name=Haunting Wind
 text=Whenever an artifact becomes tapped or a player activates an artifact's ability without {T} in its activation cost, Haunting Wind deals 1 damage to that artifact's controller.
@@ -14558,15 +14592,6 @@ mana={3}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Uro, Titan of Nature's Wrath
-text=When Uro enters the battlefield, sacrifice it unless it escaped. -- Whenever Uro enters the battlefield or attacks, you gain 3 life and draw a card, then you may put a land card from your hand onto the battlefield. -- Escape— {G}{G}{U}{U}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
-mana={1}{G}{U}
-type=Legendary Creature
-subtype=Elder Giant
-power=6
-toughness=6
-[/card]
-[card]
 name=Urza's Avenger
 text={0}: Urza's Avenger gets -1/-1 and gains your choice of banding, flying, first strike, or trample until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={6}
@@ -14772,6 +14797,15 @@ power=2{1/2}
 toughness=2{1/2}
 [/card]
 [card]
+name=Vile Manifestation
+text=Vile Manifestation gets +1/+0 for each card with cycling in your graveyard. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{B}
+type=Creature
+subtype=Horror
+power=0
+toughness=4
+[/card]
+[card]
 name=Vision Charm
 text=Choose one — Target player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
@@ -14783,6 +14817,15 @@ text=You gain 3 life. -- Splice onto Arcane {1}{G} (As you cast an Arcane spell,
 mana={1}{G}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+name=Vizier of the Anointed
+text=When Vizier of the Anointed enters the battlefield, you may search your library for a creature card with eternalize or embalm, put that card into your graveyard, then shuffle your library. -- Whenever you activate an eternalize or embalm ability, draw a card.
+mana={3}{U}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=4
 [/card]
 [card]
 name=Vizkopa Confessor
