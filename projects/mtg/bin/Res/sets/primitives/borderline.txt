@@ -223,7 +223,8 @@ toughness=3
 [card]
 name=Admiral's Order
 target=spell
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 altercost(colorless,-1) altercost(blue,-1)
+other={U} name(Raid)
+otherrestriction=raid
 auto=fizzle
 text=Raid — If you attacked with a creature this turn, you may pay {U} rather than pay this spell's mana cost. -- Counter target spell.
 mana={1}{U}{U}
@@ -4960,6 +4961,17 @@ power=2
 toughness=5
 [/card]
 [card]
+name=Caged Sun
+auto=choice name(Green) transforms((,newability[lord(creature[green]|myBattlefield) 1/1],newability[lord(forest|myBattlefield) producecolor:green])) forever
+auto=choice name(White) transforms((,newability[lord(creature[white]|myBattlefield) 1/1],newability[lord(plains|myBattlefield) producecolor:white])) forever
+auto=choice name(Red) transforms((,newability[lord(creature[red]|myBattlefield) 1/1],newability[lord(mountain|myBattlefield) producecolor:red])) forever
+auto=choice name(Black) transforms((,newability[lord(creature[black]|myBattlefield) 1/1],newability[lord(swamp|myBattlefield) producecolor:black])) forever
+auto=choice name(Blue) transforms((,newability[lord(creature[blue]|myBattlefield) 1/1],newability[lord(island|myBattlefield) producecolor:blue])) forever
+text=As Caged Sun enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+1. -- Whenever a land's ability adds one or more mana of the chosen color to your mana pool, add one additional mana of that color to your mana pool.
+mana={6}
+type=Artifact
+[/card
+[card]
 name=Caged Zombie
 auto={1}{B}{T}:life:-2 opponent restriction{morbid}
 text={1}{B}, {T}: Each opponent loses 2 life. Activate this ability only if a creature died this turn.
@@ -7731,7 +7743,7 @@ type=Sorcery
 [card]
 name=Crash of Rhino Beetles
 abilities=trample
-auto=aslongas(land|myBattlefield)~morethan~9 10/10
+auto=aslongas(land|myBattlefield) 10/10 >9
 text=Trample -- Crash of Rhino Beetles gets +10/+10 as long as you control ten or more lands.
 mana={4}{G}
 type=Creature
@@ -7771,9 +7783,12 @@ toughness=4
 [/card]
 [card]
 name=Crashing Footfalls
-suspend(4)={G}
-auto=token(Rhino,creature Rhino,4/4,green,trample)
+auto=token(Rhino,creature Rhino,4/4,green,trample)*2
 text=Suspend {4} — G} (Rather than cast this card from your hand, pay {G} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Create two 4/4 green Rhino creature tokens with trample.
+color=green
+restriction=turn:100
+mana={0}
+suspend(4)={G}
 type=Sorcery
 [/card]
 [card]
@@ -8770,7 +8785,7 @@ toughness=2
 [/card]
 [card]
 name=Deadeye Tormentor
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then ability$!discard(*|myhand)!$ opponent
+auto=if raid then ability$!discard(*|myhand)!$ opponent
 text=Raid — When Deadeye Tormentor enters the battlefield, if you attacked with a creature this turn, target opponent discards a card.
 mana={2}{B}
 type=Creature
@@ -9414,7 +9429,7 @@ type=Instant
 [/card]
 [card]
 name=Desperate Castaways
-auto=aslongas(artifact|mybattlefield)<1 cantattack
+auto=aslongas(artifact|mybattlefield) cantattack <1
 text=Desperate Castaways can't attack unless you control an artifact.
 mana={1}{B}
 type=Creature
@@ -10822,7 +10837,6 @@ toughness=3
 [/card]
 [card]
 name=Drudge Sentinel
-abilities=indestructible
 auto={3}:tap && indestructible ueot
 text={3}: Tap Drudge Sentinel. It gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
 mana={2}{B}
@@ -11168,8 +11182,8 @@ flashback={2}{U}
 auto=ability$! moveto(mylibrary) all(*|myhand,mygraveyard) !$ controller
 auto=ability$! moveto(mylibrary) all(*|myhand,mygraveyard) !$ opponent
 auto=shuffle all(player)
-auto=ability$! if type(*|mylibrary)~morethan~6 then may draw:7 _ if type(*|mylibrary)~morethan~5 then may draw:6 _ if type(*|mylibrary)~morethan~4 then may draw:5 _ if type(*|mylibrary)~morethan~3 then may draw:4 _ if type(*|mylibrary)~morethan~2 then may draw:3 _ if type(*|mylibrary)~morethan~1 then may draw:2 _ if type(*|mylibrary)~morethan~0 then may draw:1 !$ opponent
-auto=ability$! if type(*|mylibrary)~morethan~6 then may draw:7 _ if type(*|mylibrary)~morethan~5 then may draw:6 _ if type(*|mylibrary)~morethan~4 then may draw:5 _ if type(*|mylibrary)~morethan~3 then may draw:4 _ if type(*|mylibrary)~morethan~2 then may draw:3 _ if type(*|mylibrary)~morethan~1 then may draw:2 _ if type(*|mylibrary)~morethan~0 then may draw:1 !$ controller
+auto=draw:7 opponent
+auto=draw:7 controller
 text=Each player shuffles their hand and graveyard into their library, then draws seven cards. -- Flashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={4}{U}{U}
 type=Sorcery
@@ -13524,7 +13538,7 @@ toughness=1
 name=Firecannon Blast
 target=creature
 auto=damage:3
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then damage:3
+auto=if raid then damage:3
 text=Firecannon Blast deals 3 damage to target creature. -- Raid — Firecannon Blast deals 6 damage to that creature instead if you attacked with a creature this turn.
 mana={1}{R}{R}
 type=Sorcery
@@ -16473,8 +16487,7 @@ toughness=1
 [card]
 name=Gravebreaker Lamia
 abilities=lifelink,hiddenface
-aicode=activate moveTo(myhand) target(*|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>*|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=activate moveTo(mygraveyard) target(*|mylibrary)
 auto=lord(*|myGraveyard) changecost(colorless:-1)
 text=Lifelink -- When Gravebreaker Lamia enters the battlefield, search your library for a card, put it into your graveyard, then shuffle your library. -- Spells you cast from your graveyard cost {1} less to cast.
 mana={4}{B}
@@ -17571,7 +17584,7 @@ type=Instant
 name=Heartless Pillage
 target=opponent
 auto=ability$!discard(<2>*|myhand)!$ targetedplayer
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then token(435451)
+auto=if raid then token(435451)
 text=Target opponent discards two cards. -- Raid — If you attacked with a creature this turn, create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
 mana={2}{B}
 type=Sorcery
@@ -20919,7 +20932,7 @@ auto={T}:damage:1 target(creature|opponentBattlefield) transforms((,newability[@
 text=Vigilance, haste -- Kelsien, the Plague gets +1/+1 for each experience counter you have. -- {T}: Kelsien deals 1 damage to target creature you don’t control. When that creature dies this turn, you get an experience counter.
 mana={R}{W}{B}
 type=Legendary Creature
-subtype=Human Assasin
+subtype=Human Assassin
 power=2
 toughness=2
 [/card]
@@ -23666,7 +23679,7 @@ toughness=3
 [/card]
 [card]
 name=Marauding Looter
-auto=@each my endofturn:if type(creature[attacking]|mybattlefield)~morethan~0 then draw:1 && discard(*|myhand)
+auto=@each my endofturn:if raid then draw:1 && discard(*|myhand)
 text=Raid — At the beginning of your end step, if you attacked with a creature this turn, you may draw a card. If you do, discard a card.
 mana={2}{U}{R}
 type=Creature
@@ -25637,7 +25650,7 @@ type=Sorcery
 [/card]
 [card]
 name=Navigator's Ruin
-auto=@each my endofturn restriction{type(creature[attacking]|mybattlefield)~morethan~0}:deplete:4 opponent
+auto=@each my endofturn restriction{raid}:deplete:4 opponent
 text=Raid — At the beginning of your end step, if you attacked with a creature this turn, target opponent puts the top four cards of his or her library into his or her graveyard.
 mana={2}{U}
 type=Enchantment
@@ -26213,7 +26226,7 @@ toughness=1
 [/card]
 [card]
 name=Nightsquad Commando
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then token(Human Soldier Nig)
+auto=if raid then token(Human Soldier Nig)
 text=When Nightsquad Commando enters the battlefield, if you attacked this turn, create a 1/1 white Human Soldier creature token.
 mana={2}{B}
 type=Creature
@@ -30121,7 +30134,7 @@ type=Sorcery
 [card]
 name=Raiders' Wake
 auto=@discarded(*|opponenthand):life:-2 opponent
-auto=@each my endofturn:if type(creature[attacking]|mybattlefield)~morethan~0 then ability$!discard(*|myhand)!$ opponent
+auto=@each my endofturn:if raid then ability$!discard(*|myhand)!$ opponent
 text=Whenever an opponent discards a card, that player loses 2 life. -- Raid — At the beginning of your end step, if you attacked with a creature this turn, target opponent discards a card.
 mana={3}{B}
 type=Enchantment
@@ -31148,7 +31161,7 @@ toughness=3
 name=Repeating Barrage
 target=creature,player
 auto=damage:3
-autograveyard={3}{R}{R}restriction{if type(creature[attacking]|mybattlefield)~morethan~0}:moveto(myhand)
+autograveyard={3}{R}{R} restriction{raid}:moveto(myhand)
 text=Repeating Barrage deals 3 damage to target creature or player. -- Raid — {3}{R}{R}: Return Repeating Barrage from your graveyard to your hand. Activate this ability only if you attacked with a creature this turn.
 mana={1}{R}{R}
 type=Sorcery
@@ -31638,7 +31651,7 @@ toughness=1
 [card]
 name=Rigging Runner
 abilities=first strike
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then counter(1/1,1)
+auto=if raid then counter(1/1,1)
 text=First strike -- Raid — Rigging Runner enters the battlefield with a +1/+1 counter on it if you attacked with a creature this turn.
 mana={R}
 type=Creature
@@ -32450,7 +32463,7 @@ toughness=3
 [/card]
 [card]
 name=Ruin Raider
-auto=@each my endofturn:if type(creature[attacking]|mybattlefield)~morethan~0 then draw:1 && life:-manacost
+auto=@each my endofturn:if raid then draw:1 && life:-manacost
 text=Raid — At the beginning of your end step, if you attacked with a creature this turn, reveal the top card of your library and put that card into your hand. You lose life equal to the card's converted mana cost.
 mana={2}{B}
 type=Creature
@@ -34941,7 +34954,7 @@ toughness=3
 [/card]
 [card]
 name=Shipwreck Looter
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then may draw:1 && discard(*|myhand)
+auto=if raid then may draw:1 && discard(*|myhand)
 text=Raid — When Shipwreck Looter enters the battlefield, if you attacked with a creature this turn, you may draw a card. If you do, discard a card.
 mana={1}{U}
 type=Creature
@@ -38259,7 +38272,7 @@ toughness=4
 [card]
 name=Storm Fleet Aerialist
 abilities=flying
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then counter(1/1,1)
+auto=if raid then counter(1/1,1)
 text=Flying -- Raid — Storm Fleet Aerialist enters the battlefield with a +1/+1 counter on it if you attacked with a creature this turn.
 mana={1}{U}
 type=Creature
@@ -38269,7 +38282,7 @@ toughness=2
 [/card]
 [card]
 name=Storm Fleet Arsonist
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then ability$!sacrifice target(creature|mybattlefield)!$ opponent
+auto=if raid then ability$!sacrifice target(creature|mybattlefield)!$ opponent
 text=Raid — When Storm Fleet Arsonist enters the battlefield, if you attacked with a creature this turn, target opponent sacrifices a permanent.
 mana={4}{R}
 type=Creature
@@ -38279,7 +38292,7 @@ toughness=4
 [/card]
 [card]
 name=Storm Fleet Pyromancer
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then damage:2 target(creature,player)
+auto=if raid then damage:2 target(creature,player)
 text=Raid — When Storm Fleet Pyromancer enters the battlefield, if you attacked with a creature this turn, Storm Fleet Pyromancer deals 2 damage to target creature or player.
 mana={4}{R}
 type=Creature
@@ -38299,7 +38312,7 @@ toughness=2
 [/card]
 [card]
 name=Storm Fleet Spy
-auto=if type(creature[attacking]|mybattlefield)~morethan~0 then draw:1
+auto=if raid then draw:1
 text=Raid — When Storm Fleet Spy enters the battlefield, if you attacked with a creature this turn, draw a card.
 mana={2}{U}
 type=Creature
@@ -39200,8 +39213,8 @@ name=Sword of Sinew and Steel
 auto=teach(creature) 2/2
 auto=teach(creature) protection from black
 auto=teach(creature) protection from red
-auto=@combatdamaged(player) from(mytgt):destroy target(planeswalker)
-auto=@combatdamaged(player) from(mytgt):destroy target(artifact)
+auto=@combatdamaged(player) from(mytgt):may destroy target(planeswalker)
+auto=@combatdamaged(player) from(mytgt):may destroy target(artifact)
 auto={2}:equip
 text=Equipped creature gets +2/+2 and has protection from black and from red. -- Whenever equipped creature deals combat damage to a player, destroy up to one target planeswalker and up to one target artifact. -- Equip {2}
 mana={3}
@@ -40610,7 +40623,7 @@ toughness=1
 [card]
 name=Thopter Spy Network
 auto=@each my upkeep:if type(artifact|mybattlefield)~morethan~0 then token token(Thopter,Artifact Creature Thopter,1/1,flying)
-auto=@each combatdamage restriction{opponentdamagedbycombat}:draw:1 controller
+auto=@each combatdamage restriction{opponentdamagedbycombat}:draw:1 controller limit:1
 text=At the beginning of your upkeep, if you control an artifact, put a 1/1 colorless Thopter artifact creature token with flying onto the battlefield. -- Whenever one or more artifact creatures you control deal combat damage to a player, draw a card.
 mana={2}{U}{U}
 type=Enchantment
@@ -42104,7 +42117,7 @@ name=Trynn, Champion of Freedom
 abilities=hiddenface
 aicode=activate moveTo(myhand) target(Silvar, Devourer of the Free|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Silvar, Devourer of the Free|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Silvar, Devourer of the Free|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=@each my endofturn:if type(creature[attacking]|mybattlefield)~morethan~0 then token(Soldier Try)
+auto=@each my endofturn:if raid then token(Soldier Try)
 text=Partner with Silvar, Devourer of the Free (When this creature enters the battlefield, target player may put Silvar into their hand from their library, then shuffle.) -- At the beginning of your end step, if you attacked this turn, create a 1/1 white Human Soldier creature token.
 mana={3}{W}
 type=Legendary Creature
