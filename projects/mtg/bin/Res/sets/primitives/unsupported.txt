@@ -305,6 +305,14 @@ mana={6}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Alpine Moon
+auto=may counter(0/0,1,Alpine) target(land[-basic]|opponentBattlefield)
+auto=lord(land[counter{0/0,1,Alpine};share!name!]|opponentBattlefield) loseabilities && losesubtypesof(land) && transforms((newability[{T}:add{G}],newability[{T}:add{R}],newability[{T}:add{U}],newability[{T}:add{B}],newability[{T}:add{W}])) forever
+text=As Alpine Moon enters the battlefield, choose a nonbasic land card name. -- Lands your opponents control with the chosen name lose all land types and abilities, and they gain “{T}: Add one mana of any color.”
+mana={R}
+type=Enchantment
+[/card]
+[card]
 name=Altar of the Pantheon
 text=Your devotion to each color and each combination of colors is increased by one. -- {T}: Add one mana of any color. If you control a God, a Demigod, or a legendary enchantment, you gain 1 life.
 mana={3}
@@ -1657,12 +1665,6 @@ name=Cabal Therapy
 text=Name a nonland card. Target player reveals his or her hand and discards all cards with that name. -- Flashback—Sacrifice a creature. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={B}
 type=Sorcery
-[/card]
-[card]
-name=Caged Sun
-text=As Caged Sun enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+1. -- Whenever a land's ability adds one or more mana of the chosen color to your mana pool, add one additional mana of that color to your mana pool.
-mana={6}
-type=Artifact
 [/card]
 [card]
 name=Call of the Nightwing

@@ -223,7 +223,8 @@ toughness=3
 [card]
 name=Admiral's Order
 target=spell
-auto=if raid altercost(colorless,-1) altercost(blue,-1)
+other={U} name(Raid)
+otherrestriction=raid
 auto=fizzle
 text=Raid — If you attacked with a creature this turn, you may pay {U} rather than pay this spell's mana cost. -- Counter target spell.
 mana={1}{U}{U}
@@ -4959,6 +4960,17 @@ subtype=Dinosaur
 power=2
 toughness=5
 [/card]
+[card]
+name=Caged Sun
+auto=choice name(Green) transforms((,newability[lord(creature[green]|myBattlefield) 1/1],newability[lord(forest|myBattlefield) producecolor:green])) forever
+auto=choice name(White) transforms((,newability[lord(creature[white]|myBattlefield) 1/1],newability[lord(plains|myBattlefield) producecolor:white])) forever
+auto=choice name(Red) transforms((,newability[lord(creature[red]|myBattlefield) 1/1],newability[lord(mountain|myBattlefield) producecolor:red])) forever
+auto=choice name(Black) transforms((,newability[lord(creature[black]|myBattlefield) 1/1],newability[lord(swamp|myBattlefield) producecolor:black])) forever
+auto=choice name(Blue) transforms((,newability[lord(creature[blue]|myBattlefield) 1/1],newability[lord(island|myBattlefield) producecolor:blue])) forever
+text=As Caged Sun enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+1. -- Whenever a land's ability adds one or more mana of the chosen color to your mana pool, add one additional mana of that color to your mana pool.
+mana={6}
+type=Artifact
+[/card
 [card]
 name=Caged Zombie
 auto={1}{B}{T}:life:-2 opponent restriction{morbid}
@@ -31149,7 +31161,7 @@ toughness=3
 name=Repeating Barrage
 target=creature,player
 auto=damage:3
-autograveyard={3}{R}{R}restriction{if raid}:moveto(myhand)
+autograveyard={3}{R}{R} restriction{raid}:moveto(myhand)
 text=Repeating Barrage deals 3 damage to target creature or player. -- Raid — {3}{R}{R}: Return Repeating Barrage from your graveyard to your hand. Activate this ability only if you attacked with a creature this turn.
 mana={1}{R}{R}
 type=Sorcery
