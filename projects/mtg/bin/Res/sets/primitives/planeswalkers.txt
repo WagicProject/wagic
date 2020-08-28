@@ -736,7 +736,7 @@ subtype=Duck
 [card]
 name=Elspeth, Knight-Errant
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 soldier) token(Soldier Els)
+auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 soldier) create(Soldier:creature Soldier:1/1:white)
 auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +3/+3 and flying) 3/3 ueot && flying target(creature) ueot
 auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Permanents becomes indestructible") emblem transforms((,newability[lord(*[artifact;creature;land;enchantment]|mybattlefield) indestructible])) forever dontremove
 text=+1: Put a 1/1 white Soldier creature token onto the battlefield. -- +1: Target creature gets +3/+3 and gains flying until end of turn. -- -8: For the rest of the game, artifacts, creatures, enchantments, and lands you control are indestructible.
@@ -747,7 +747,7 @@ subtype=Elspeth
 [card]
 name=Elspeth, Sun's Champion
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Create three 1/1 Soldier) token(Soldier Els)*3
+auto={C(0/0,1,Loyalty)}:name(+1: Create three 1/1 Soldier) create(Soldier:creature Soldier:1/1:white)*3
 auto={C(0/0,-3,Loyalty)}:name(-3: Destroy all power 4 or more) Destroy all(creature[power>=4]|battlefield)
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Creatures get +2/+2 and flying") emblem transforms((,newability[lord(creature|mybattlefield) 2/2],newability[lord(creature|mybattlefield) flying])) forever dontremove
 text=+1: Put three 1/1 white Soldier creature tokens onto the battlefield. -- -3: Destroy all creature with power 4 or greater -- -7: You get an emblem with "Creatures you control get +2/+2 and have flying." -- Starting Loyalty 4
@@ -953,7 +953,7 @@ name=Gideon Jura
 auto=counter(0/0,6,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Creatures attack Guideon Jura) all(creature|opponentbattlefield) mustattack (Gideon Jura) ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Destroy target tapped creature) destroy target(creature[tapped])
-auto={C(0/0,0,Loyalty)}:name(+0: Transforms Gideon to 6/6) this(becomes(Planeswalker Creature Human Soldier,6/6) and!( transforms((,newability[preventalldamage to this])) ueot
+auto={C(0/0,0,Loyalty)}:name(+0: Transforms Gideon to 6/6) transforms((Creature Human Soldier,setpower=6,settoughness=6,newability[preventAllDamage to(this)])) ueot
 text=+2: During target opponent’s next turn, creatures that player controls attack Gideon Jura if able. -- -2: Destroy target tapped creature. -- 0: Until end of turn, Gideon Jura becomes a 6/6 Human Soldier creature that’s still a planeswalker. Prevent all damage that would be dealt to him this turn.
 mana={3}{W}{W}
 type=Legendary Planeswalker
@@ -1446,7 +1446,7 @@ subtype=Liliana
 [card]
 name=Liliana, the Last Hope
 auto=counter(0/0,3,Loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets -2/-1) target(creature) -2/-1 uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets -2/-1) may target(creature) -2/-1 uynt
 auto={C(0/0,-2,Loyalty)}:name(-2: Mils two and return a creature) deplete:2 && moveto(myhand) target(creature|mygraveyard)
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Each my end of turn create X 2/2 Zombie plus two) emblem transforms((,newability[phaseactionmulti[my endofturn] foreach(zombie|mybattlefield) create(Zombie:Creature Zombie:2/2:black:tnum.4143881) && create(Zombie:Creature Zombie:2/2:black:tnum.4143881)*2])) forever dontremove
 text=+1: Up to one target creature gets -2/-1 until your next turn. -- -2: Put the top two cards of your library into your graveyard, then you may return a creature card from your graveyard to your hand. -- -7: You get an emblem with "At the beginning of your end step, put X 2/2 black Zombie creature tokens onto the battlefield, where X is two plus the number of Zombies you control."
@@ -2311,7 +2311,7 @@ subtype=Tezzeret
 name=Tezzeret, Cruel Machinist
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw a card) draw:1 controller
-auto={C(0/0,0,Loyalty)}:name(+0: Target artifact becomes 5/5) target(artifact) transforms(Artifact Creature,setpower=5,settoughness=5) uynt
+auto={C(0/0,0,Loyalty)}:name(+0: Target artifact becomes 5/5) target(artifact) transforms((Artifact Creature,setpower=5,settoughness=5)) uynt                        
 auto={C(0/0,-7,Loyalty)}:name(-7: Manifest any number of cards form your hand) manifest notatarget(<anyamount>*|myHand) and!( transforms((Artifact Creature,setpower=5,settoughness=5) forever )!
 text=+1: Draw a card. -- 0: Until your next turn, target artifact you control becomes a 5/5 creature in addition to its other types. -- −7: Put any number of cards from your hand onto the battlefield face down. They’re 5/5 artifact creatures.
 mana={4}{U}{U}
