@@ -4,7 +4,7 @@
 # it means that if you have a macro named MACRO and a macro named MACRO2, you'll run into trouble because MACRO2 will match MACRO
 # Because of that, you need to use a unique delimiter at the beginning and the end of a macro, I personally use "__"
 #
-# Limitations: parameter inside macro must not contian ")"
+# Limitations: parameter inside macro must not contain ")"
 
 # Standard Cycling
 #AUTO_DEFINE __CYCLING__($cost) $cost{cycle}:name(cycling) draw:1
@@ -21,8 +21,92 @@
 # Scry, Evergreen
 #AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
 
-# Amass, Set WAR
-#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1,$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1,$c) notATarget(army|myBattlefield))!
+# Rampage
+#AUTO_DEFINE _RAMPAGE_($c) @combat(blocked) source(this):foreach(<>=1>creature[blocking]|opponentBattlefield) $c/$c ueot
+
+# Echo
+#AUTO_DEFINE _ECHO_($cost) $cost[{$c};next upkeep] sacrifice
+
+# Threshold
+#AUTO_DEFINE _THRESHOLD_ aslongas(*|myGraveyard) >6
+
+# Affinity
+#AUTO_DEFINE _AFFINITY_($Word) anyzone=foreach($Word|myZones) altercost(-1,colorless)
+
+# Bushido
+#AUTO_DEFINE _BUSHIDO_($c) @combat(blocking,blocked) source(this): $c/$c ueot
+
+# Soulshift
+#AUTO_DEFINE _SOULSHIFT_($c) @movedTo(this|myGraveyard) from(battlefield):may moveTo(myHand) target(creature[spirit;manacost<=$c]|myGraveyard)
+
+# Splice onto Arcane
+#AUTO_DEFINE _SPLICEARCANE_ movedTo(*[Arcane]|myStack):may castcard(copied noevent) target(*[Arcane]|myHand)
+
+# Ripple
+#AUTO_DEFINE _RIPPLE_($c) autostack=if casted(this) then reveal:$c optionone name(Cast Card) target(<upto:$c>[share!name!]|reveal) moveTo(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(<$c>*|reveal) bottomoflibrary optiontwoend afterrevealed all(tobecast|mylibrary) moveTo(myLibrary) and!( activate castcard(normal) )! afterrevealedend revealend
+
+# Recover
+#AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
+
+# Champion
+#AUTO_DEFINE _CHAMPION_($Word) aslongas(other $word|myBattlefield) choice notAtarget(other $word|myBattlefield) (blink)forsrc oneshot
+
+# Evoke
+#AUTO_DEFINE _EVOKE_($cost) {$cost}:sacrifice
+
+# Clash
+$AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Erratic Explosion. Meaby it would work with a few fix
+
+# Conspire
+#AUTO_DEFINE _CONSPIRE_ @movedTo(this|myStak):may {T(creature|myBattlefield)}{T(creature|myBattlefield)} castcard(copied noevent) target(*|myStack)
+
+# Metalcraft
+#AUTO_DEFINE _METALCRAFT_ aslongas(artifact|mybattlefield) >2
+
+# Proliferate
+#AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notAtarget(<anyamount>*) propagate
+
+# Proliferate, still need to target players since the old code doesn't work (*[artifact;creature;...;players]) just let you target creature and player
+#AUTO_DEFINE _OLDPROLIFERATE_ name(proliferate) notatarget(<anyamount>*) proliferate
+
+# Populate
+#AUTO_DEFINE _POPULATE_ name(Populate) clone notAtarget(creature[token]|myBattlefield)
+
+# Scavenge
+#AUTO_DEFINE _SCAVENGE_($cost) name(Scavenge) autograveyard={$cost}{E}:counter(1/1,$c) target(creature) asSorcery
+
+# Monstrosity
+#AUTO_DEFINE _MONSTROSITY_($cost) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1,$c)
+
+# Heroic
+#AUTO_DEFINE _HEROIC_ @targeted(this) from(*[instant;sorcery;enchantment;aura]|myCastingzone):
+
+# Outlast
+#AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1,1) all(this) asSorcery
+
+# Ferocious
+#AUTO_DEFINE _FEROCIOUS_ if type(creature[power>=4]|myBattlefield)~morethan~0 then
+
+# Rally
+#AUTO_DEFINE _RALLY_ @movedTo(other creature[Ally]|myBattlefield):
+
+# Landfall
+#AUTO_DEFINE _LANDFALL_ @movedTo(land|myBattlefield):
+
+# Investigate token, Shadows over Innistrad SOI
+#AUTO_DEFINE _INVESTIGATE_ create(Clue:Artifact:0/0:"{2}, Sacrifice this artifact: Draw a card.") and!( transforms((,newability[{2}{S}:draw:1 controller])) forever )!
+
+# Fabricate
+#AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
+
+# Exert
+#AUTO_DEFINE _EXERT_ @combat(attacking) source(this):may name(Exert) frozen
+
+# Afflict
+#AUTO_DEFINE _AFFLICT_ @combat(blocked,turnlimited) source(this):life:-3 opponent
+
+# Enrage
+#AUTO_DEFINE _ENRAGE_ @damaged(this):
 
 # Ascend, Set XLN
 #AUTO_DEFINE _ASCEND_ if type(*[city's_blessing]|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then create(city's_blessing:city's_blessing:0/0:shroud:indestructible)]))
@@ -30,11 +114,41 @@
 # Effect with the City's blessing, Set XLN
 #AUTO_DEFINE _CITY'S_BLESSING_ aslongas(*[city's_blessing]|mybattlefield)>0
 
+# Explore
+#AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+
 # Treasure token, Set XLN
 #AUTO_DEFINE _TREASURE_ create(Treasure:Artifact Treasure:0/0:"{T}, Sacrifice this artifact: Add one mana of any color.") and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{G}])) forever )!
 
-# Proliferate, still need to target players since the old code doesn't work (*[artifact;creature;...;players]) just let you target creature and player
-#AUTO_DEFINE _PROLIFERATE_ name(proliferate) notatarget(<anyamount>*) proliferate
+# Historic
+#AUTO_DEFINE _HISTORIC_ notAtarget(*[artifact;saga;legendary]|myZones)
 
 # Mentor, still not working with enhancements, pump effects
 #AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1,1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
+
+# Surveil
+#AUTO_DEFINE _SURVEIL_ name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+
+# Undergrowth
+#AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
+
+# Adapt
+#AUTO_DEFINE _ADAPT_($c) aslongas(this[counter{1/1}<1]|myBattlefield):counter(1/1,$c)
+
+# Addendum
+#AUTO_DEFINE _ADDENDUM_ if compare(restriction{assorcery}~morethan~0) then
+
+# Afterlife
+#AUTO_DEFINE _AFTERLIFE_($c) @movedTo(this|graveyard) from(battlefield):create(Spirit:Creature Spirit:1/1:white,black:flying)*$c
+
+# Riot
+#AUTO_DEFINE _RIOT_ movedTo(this|myBattlefield):transforms((,newability[ability$! name(Choose counter or ability) choice name(Put a +1/+1 counter) counter(1/1,1) target(creature) _ choice name(Gains Haste) haste target(creature) forever !$ controller]))
+
+# Spectacle
+#AUTO_DEFINE _SPECTACLE_($cost) compare(oplifelost)~morethan~0 {$cost}:
+
+# Amass, Set WAR
+#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1,$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1,$c) notATarget(army|myBattlefield))!
+
+# Constellation
+#AUTO_DEFINE _CONSTELLATION_ @movedTo(enchantment|myBattlefield):

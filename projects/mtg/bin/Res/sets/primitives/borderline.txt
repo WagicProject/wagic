@@ -1768,7 +1768,7 @@ subtype=Trap
 [/card]
 [card]
 name=Arterial Flow
-auto=ability$!name(discard 2 cards) target(*|myhand) reject!$ opponent
+auto=ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
 auto=aslongas(vampire|myBattlefield) life:-2 opponent
 auto=aslongas(vampire|myBattlefield) life:2
 text=Each opponent discards two cards. If you control a Vampire, each opponent loses 2 life and you gain 2 life.
@@ -1924,7 +1924,7 @@ auto={T}:name(Add X red mana) thisforeach(counter{0/0,1,Charge}) add{R}
 auto={T}:name(Add X green mana) thisforeach(counter{0/0,1,Charge}) add{G}
 kicker=multi{3}
 text=Astral Cornucopia enters the battlefield with X charge counters on it. -- {T}: Choose a color. Add one mana of that color for each charge counter on Astral Cornucopia.
-mana={X}
+mana={0}
 type=Artifact
 [/card]
 [card]
@@ -3079,7 +3079,7 @@ toughness=5
 [/card]
 [card]
 name=Bellowing Elk
-auto=aslongas(another creature[fresh]|mybattlefield) trample && indestructible
+auto=aslongas(other creature[fresh]|mybattlefield) trample && indestructible
 text=As long as you had another creature enter the battlefield under your control this turn, Bellowing Elk has trample and indestructible.
 mana={3}{G}
 type=Creature
@@ -5359,22 +5359,22 @@ subtype=Aura Cartouche
 name=Cascading Cataracts
 abilities=indestructible
 auto={T}:Add{1}
-auto={5}:name(all) add{G}{B}{W}{R}{U}
-auto={5}:name(green) add{G}{G}{G}{G}{G}
-auto={5}:name(black) add{B}{B}{B}{B}{B}
-auto={5}:name(white) add{W}{W}{W}{W}{W}
-auto={5}:name(red) add{R}{R}{R}{R}{R}
-auto={5}:name(blue) add{U}{U}{U}{U}{U}
-auto={5}:name(G/B) add{G}{G}{G}{B}{B}
-auto={5}:name(G/W) add{G}{G}{G}{W}{W}
-auto={5}:name(G/R) add{G}{G}{G}{R}{R}
-auto={5}:name(G/U) add{G}{G}{G}{U}{U}
-auto={5}:name(B/W) add{B}{B}{B}{W}{W}
-auto={5}:name(B/R) add{B}{B}{B}{R}{R}
-auto={5}:name(B/U) add{B}{B}{B}{U}{U}
-auto={5}:name(W/R) add{W}{W}{W}{R}{R}
-auto={5}:name(W/U) add{W}{W}{W}{U}{U}
-auto={5}:name(R/U) add{R}{R}{R}{U}{U}
+auto={5}{T}:name(all) add{G}{B}{W}{R}{U}
+auto={5}{T}:name(green) add{G}{G}{G}{G}{G}
+auto={5}{T}:name(black) add{B}{B}{B}{B}{B}
+auto={5}{T}:name(white) add{W}{W}{W}{W}{W}
+auto={5}{T}:name(red) add{R}{R}{R}{R}{R}
+auto={5}{T}:name(blue) add{U}{U}{U}{U}{U}
+auto={5}{T}:name(G/B) add{G}{G}{G}{B}{B}
+auto={5}{T}:name(G/W) add{G}{G}{G}{W}{W}
+auto={5}{T}:name(G/R) add{G}{G}{G}{R}{R}
+auto={5}{T}:name(G/U) add{G}{G}{G}{U}{U}
+auto={5}{T}:name(B/W) add{B}{B}{B}{W}{W}
+auto={5}{T}:name(B/R) add{B}{B}{B}{R}{R}
+auto={5}{T}:name(B/U) add{B}{B}{B}{U}{U}
+auto={5}{T}:name(W/R) add{W}{W}{W}{R}{R}
+auto={5}{T}:name(W/U) add{W}{W}{W}{U}{U}
+auto={5}{T}:name(R/U) add{R}{R}{R}{U}{U}
 text=Indestructible -- {T}: Add {1} to your mana pool. -- {5}, {T}: Add five mana in any combination of colors to your mana pool.
 type=Land
 [/card]
@@ -5700,7 +5700,7 @@ toughness=2
 [/card]
 [card]
 name=Cenn's Tactician
-auto={w}{T}:counter(1/1,1) target(creature[soldieri])
+auto={w}{T}:counter(1/1,1) target(creature[soldier])
 text={W}, {T}: Put a +1/+1 counter on target Soldier creature. -- Each creature you control with a +1/+1 counter on it can block an additional creature.
 mana={W}
 type=Creature
@@ -7201,7 +7201,7 @@ name=Compulsory Rest
 target=creature
 auto=cantattack
 auto=cantblock
-auto={2}{S}:life:2
+auto=teach(creature) {2}{S}:life:2
 text=Enchant creature -- Enchanted creature can't attack or block. -- Enchanted creature has "{2}, Sacrifice this creature: You gain 2 life."
 mana={1}{W}
 type=Enchantment
@@ -7805,7 +7805,7 @@ type=Sorcery
 name=Creeping Chill
 auto=damage:3 opponent
 auto=life:3
-autograveyard=@movedTo(this|mygraveyard) from(mylibrary):may moveTo(myBattlefield): damage:3 opponent && life:3 && moveto(exile)
+autograveyard=@movedTo(this|mygraveyard) from(mylibrary):may damage:3 opponent && life:3 && moveto(exile)
 text=Creeping Chill deals 3 damage to each opponent and you gain 3 life. -- When Creeping Chill is put into your graveyard from your library, you may exile it. If you do, Creeping Chill deals 3 damage to each opponent and you gain 3 life.
 mana={3}{B}
 type=Sorcery
@@ -9827,7 +9827,7 @@ toughness=1
 [/card]
 [card]
 name=Dire Fleet Captain
-auto=@combat(attacking) source(this):foreach(other pirate[attacking]) 1/1 ueot
+auto=@combat(attacking) source(this):all(this) foreach(other pirate[attacking]) 1/1 ueot
 text=Whenever Dire Fleet Captain attacks, it gets +1/+1 until end of turn for each other attacking Pirate.
 mana={B}{R}
 type=Creature
@@ -12244,7 +12244,7 @@ type=Instant
 [/card]
 [card]
 name=Ever-Watching Threshold
-auto=auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0} draw:1
+auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0} draw:1
 text=Whenever an opponent attacks you and/or a planeswalker you control with one or more creatures, draw a card.
 mana={2}{U}
 type=Enchantment
@@ -13299,8 +13299,8 @@ type=Sorcery
 [/card]
 [card]
 name=Fiery Islet
-auto={T}{L:1}=add {U}
-auto={T}{L:1}=add {R}
+auto={T}{L:1}:Add{U}
+auto={T}{L:1}:Add{R}
 auto={1}{T}{S}:draw:1
 text={T}, Pay 1 life: Add {U} or {R}. -- {1}, {T}, Sacrifice Fiery Islet: Draw a card.
 type=Land
@@ -15356,11 +15356,11 @@ type=Instant
 name=Gift of Paradise
 target=land
 auto=life:3 controller
-auto={T}:add{G}{G}
-auto={T}:add{B}{B}
-auto={T}:add{W}{W}
-auto={T}:add{R}{R}
-auto={T}:add{U}{U}
+auto=teach(land) {T}:add{G}{G}
+auto=teach(land) {T}:add{W}{W}
+auto=teach(land) {T}:add{U}{U}
+auto=teach(land) {T}:add{B}{B}
+auto=teach(land) {T}:add{R}{R}
 text=Enchant land -- When Gift of Paradise enters the battlefield, you gain 3 life. -- Enchanted land has "{T}: Add two mana of any one color to your mana pool."
 mana={2}{G}
 type=Enchantment
@@ -15530,7 +15530,7 @@ type=Sorcery
 [/card]
 [card]
 name=Glademuse
-auto=@movedTo(*|opponentStack): restriction{opponentturnonly} then draw:1 opponent
+auto=@movedTo(*|opponentStack): restriction{myturnonly} then draw:1 opponent
 auto=@movedTo(*|myStack): restriction{opponentturnonly} then draw:1 controller
 text=Whenever a player casts a spell, if it’s not their turn, that player draws a card.
 mana={2}{G}
@@ -15973,7 +15973,7 @@ toughness=2
 [/card]
 [card]
 name=Goblin Engineer
-auto=may moveto(myhand) target(artifact|mylibrary)
+auto=may moveto(mygraveyard) target(artifact|mylibrary)
 auto={R}{T}{S(artifact|myBattlefield)}:target(artifact[manacost<=3]|mygraveyard) moveto(mybattlefield)
 text=When Goblin Engineer enters the battlefield, you may search your library for an artifact card, put it into your graveyard, then shuffle your library. -- {R}, {T}, Sacrifice an artifact: Return target artifact card with converted mana cost 3 or less from your graveyard to the battlefield.
 mana={1}{R}
@@ -18459,8 +18459,8 @@ type=Instant
 [/card]
 [card]
 name=Huddle Up
-auto=draw:2
-auto=draw:2 target(opponent)
+auto=draw:1
+auto=draw:1 target(opponent)
 text=Assist (Another player can pay up to {2} of this spell's cost.) -- Two target players each draw a card.
 mana={2}{U}
 type=Sorcery
@@ -19801,6 +19801,7 @@ toughness=2
 name=Inspiring Commander
 auto=@movedto(other creature[power<2]|mybattlefield):all(trigger[to]) life:1 controller && draw:1 controller
 text=Whenever another creature with power 2 or less enters the battlefield under your control, you gain 1 life and draw a card.
+mana={4}{W}{W}
 type=Creature
 subtype=Human Soldier
 power=1
@@ -21721,7 +21722,7 @@ toughness=2
 [card]
 name=Labyrinth of Skophos
 auto={T}:Add{C}
-auto={4}{T}:removefromcombat target(creature[attacking,blocking]|battlefield)
+auto={4}{T}:removefromcombat target(creature[attacking;blocking]|battlefield)
 text={T}:Add {C}. -- {4},{T}: Remove target attacking or blocking creature from combat.
 type=Land
 [/card]
@@ -24838,7 +24839,7 @@ toughness=1
 [/card]
 [card]
 name=Mistford River Turtle
-auto=@combat(attacking) source(this):target(creature[-human,attacking]) unblockable ueot
+auto=@combat(attacking) source(this):target(creature[-human;attacking]) unblockable ueot
 text=Whenever Mistford River Turtle attacks, another target attacking non-Human creature can't be blocked this turn.
 mana={3}{U}
 type=Creature
@@ -25500,7 +25501,7 @@ toughness=1
 [/card]
 [card]
 name=Nadir Kraken
-auto=@drawfoeof(player):may pay({1}) draw:1 && counter(1/1,1) all (this) && token(Tentacle,Nad)
+auto=@drawof(player):may pay({1}) counter(1/1,1) all(this) && create(Tentacle:creature Tentacle:1/1:blue)
 text=Whenever you draw a card, you may pay {1}. If you do, put a +1/+1 counter on Nadir Kraken and create a 1/1 blue Tentacle creature token.
 mana={1}{U}{U}
 type=Creature
@@ -25851,15 +25852,15 @@ toughness=2
 [/card]
 [card]
 name=Nemesis of Mortals
-anyzone=foreach(creature|mygraveyard) altercost(-1,colorless)
-auto=if type(creature|mygraveyard)~equalto~0 then this(cantargetcard(*[-monstrous]) {7}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-auto=if type(creature|mygraveyard)~equalto~1 then this(cantargetcard(*[-monstrous]) {6}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-auto=if type(creature|mygraveyard)~equalto~2 then this(cantargetcard(*[-monstrous]) {5}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-auto=if type(creature|mygraveyard)~equalto~3 then this(cantargetcard(*[-monstrous]) {5}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-auto=if type(creature|mygraveyard)~equalto~4 then this(cantargetcard(*[-monstrous]) {4}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-auto=if type(creature|mygraveyard)~equalto~5 then this(cantargetcard(*[-monstrous]) {3}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-auto=if type(creature|mygraveyard)~equalto~6 then this(cantargetcard(*[-monstrous]) {1}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-auto=if type(creature|mygraveyard)~morethan~6 then this(cantargetcard(*[-monstrous]) {G}{G}:becomes(monstrous) forever && counter(1/1,5)
+anyzone=foreach(creature|mygraveyard) changecost(colorless:-1) forcedalive
+#auto=if type(creature|mygraveyard)~equalto~0 then this(cantargetcard(*[-monstrous]) {7}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
+#auto=if type(creature|mygraveyard)~equalto~1 then this(cantargetcard(*[-monstrous]) {6}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
+#auto=if type(creature|mygraveyard)~equalto~2 then this(cantargetcard(*[-monstrous]) {5}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
+#auto=if type(creature|mygraveyard)~equalto~3 then this(cantargetcard(*[-monstrous]) {5}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
+#auto=if type(creature|mygraveyard)~equalto~4 then this(cantargetcard(*[-monstrous]) {4}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
+#auto=if type(creature|mygraveyard)~equalto~5 then this(cantargetcard(*[-monstrous]) {3}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
+#auto=if type(creature|mygraveyard)~equalto~6 then this(cantargetcard(*[-monstrous]) {1}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
+#auto=if type(creature|mygraveyard)~morethan~6 then this(cantargetcard(*[-monstrous]) {G}{G}:becomes(monstrous) forever && counter(1/1,5)
 text=Nemesis of Mortals costs {1} less to cast for each creature card in your graveyard. -- {7}{G}{G}: Monstrosity 5. This ability costs {1} less to activate for each creature card in your graveyard. (If this creature isn't monstrous, put five +1/+1 counters on it and it becomes monstrous.)
 mana={4}{G}{G}
 type=Creature
@@ -26021,13 +26022,12 @@ type=Sorcery
 [card]
 name=New Horizons
 target=land
-auto="{T}: Add two mana of any one color to your mana pool
 auto=counter(1/1,1) target(creature)
-auto={T}:add{G}{G}
-auto={T}:add{B}{B}
-auto={T}:add{W}{W}
-auto={T}:add{R}{R}
-auto={T}:add{U}{U}
+auto=teach(land) {T}:add{G}{G}
+auto=teach(land) {T}:add{W}{W}
+auto=teach(land) {T}:add{U}{U}
+auto=teach(land) {T}:add{B}{B}
+auto=teach(land) {T}:add{R}{R}
 text=Enchant land -- When New Horizons enters the battlefield, put a +1/+1 counter on target creature you control. -- Enchanted land has "{T}: Add two mana of any one color to your mana pool."
 mana={2}{G}
 type=Enchantment
@@ -26602,8 +26602,8 @@ type=Enchantment
 [/card]
 [card]
 name=Nurturing Peatland
-auto={T}{L:1}=add {G}
-auto={T}{L:1}=add {B}
+auto={T}{L:1}:Add{G}
+auto={T}{L:1}:Add{B}
 auto={1}{T}{S}:draw:1
 text={T}, Pay 1 life: Add {B} or {G}. -- {1}, {T}, Sacrifice Nurturing Peatland: Draw a card.
 type=Land
@@ -26795,7 +26795,7 @@ type=Legendary Enchantment
 [/card]
 [card]
 name=Oath of Lim-Dul
-auto=auto=@lifelostof(player):name(Choose one) ability$!name(discard cards) choice name(discard cards) discard:storedthatmuch controller _ choice name(sacrifice permanents) sacrifice notatarget(<storedthatmuch>*[-Oath of Lim-Dul]|mybattlefield)!$ controller
+auto=@lifelostof(player):name(Choose one) ability$!name(discard cards) choice name(discard cards) discard:storedthatmuch controller _ choice name(sacrifice permanents) sacrifice notatarget(<storedthatmuch>*[-Oath of Lim-Dul]|mybattlefield)!$ controller
 auto={B}{B}: draw:1 controller
 text=Whenever you lose life, for each 1 life you lost, sacrifice a permanent other than Oath of Lim-Dul unless you discard a card. (Damage dealt to you causes you to lose life.) -- {B}{B}: Draw a card.
 mana={3}{B}
@@ -27777,7 +27777,7 @@ name=Outpost Siege
 aicode=activate target(*|mylibrary) may castcard(restricted)
 auto=choice name(Khans) transforms((,newability[counter(0/0.1.Khans)],newability[@each my upkeep:reveal:1 optionone may castcard(restricted) target(*|reveal) optiononeend optiontwo name(Put Back On Top) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend])) forever
 auto=choice name(Dragons) transforms((,newability[counter(0/0.1.Dragons)],newability[@movedto(this|nonbattlezone):damage:1 target(*)])) forever
-text=As Palace Siege enters the battlefield, choose Khans or Dragons. -- -- Khans -- At the beginning of your upkeep, return target creature card from your graveyard to your hand. -- -- Dragons -- At the beginning of your upkeep, each opponent loses 2 life and you gain 2 life.
+text=As Outpost Siege enters the battlefield, choose Khans or Dragons. -- Khans -- At the beginning of your upkeep, exile the top card of your library. Until end of turn, you may play that card. -- Dragons -- Whenever a creature you control leaves the battlefield, Outpost Siege deals 1 damage to any target.
 mana={3}{R}
 type=Enchantment
 [/card]
@@ -29651,7 +29651,7 @@ name=Purphoros, Bronze-Blooded
 abilities=indestructible
 auto=this(variable{type:manar}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
 auto=this(variable{type:manar}>4) transforms((Legendary Enchantment Creature))
-auto=lord(creature|myBattlefield) haste
+auto=lord(other creature|myBattlefield) haste
 auto={2}{R}:may moveto(mybattlefield) target(creature,artifact|myhand) && transforms((,treason)) oneshot
 text=Indestructible -- As long as your devotion to red is less than five, Purphoros isn’t a creature. -- Other creatures you control have haste. -- {2}{R}: You may put a red creature card or an artifact creature card from your hand onto the battlefield. Sacrifice it at the beginning of the next end step.
 mana={4}{R}
@@ -35286,7 +35286,7 @@ toughness=4
 [card]
 name=Silas Renn, Seeker Adept
 abilities=deathtouch
-auto=auto=@combatdamaged(player) from(this):may name(cast card) castcard(normal) target(*[artifact]|mygraveyard)
+auto=@combatdamaged(player) from(this):may name(cast card) castcard(normal) target(*[artifact]|mygraveyard)
 text=Deathtouch -- Whenever Silas Renn, Seeker Adept deals combat damage to a player, choose target artifact card in your graveyard. You may cast that card this turn. -- Partner (You can have two commanders if both have partner.)
 mana={1}{U}{B}
 type=Legendary Artifact Creature
@@ -35296,8 +35296,8 @@ toughness=2
 [/card]
 [card]
 name=Silent Clearing
-auto={T}{L:1}=add {W}
-auto={T}{L:1}=add {B}
+auto={T}{L:1}:Add{W}
+auto={T}{L:1}:Add{B}
 auto={1}{T}{S}:draw:1
 text={T}, Pay 1 life: Add {W} or {B}. -- {1}, {T}, Sacrifice Silent Clearing: Draw a card.
 type=Land
@@ -36057,7 +36057,7 @@ name=Slaying Fire
 target=creature,player,planeswalker
 other={R}{R}{R} name(Adamant)
 auto=if paid(alternative) then damage:4
-auto=auto=ifnot paid(alternative) then damage:3
+auto=ifnot paid(alternative) then damage:3
 text=Slaying Fire deals 3 damage to any target. -- Adamant — If at least three red mana was spent to cast this spell, it deals 4 damage instead.
 mana={2}{R}
 type=Instant
@@ -37711,7 +37711,7 @@ type=Artifact
 [card]
 name=Sprite Dragon
 abilities=flying,haste
-auto=@movedto(*[-creature]|myStak):counter(1/1,1)
+auto=@movedto(*[-creature]|myStack):counter(1/1,1)
 text=Flying, haste -- Whenever you cast a noncreature spell, put a +1/+1 counter on Sprite Dragon.
 mana={U}{R}
 type=Creature
@@ -37808,7 +37808,7 @@ toughness=1
 [/card]
 [card]
 name=Squire's Devotion
-target=creature 
+target=creature
 auto=1/1
 auto=lifelink
 auto=token(Vampire,creature Vampire,1/1,white,lifelink)
@@ -38582,7 +38582,7 @@ toughness=0
 name=Subira, Tulzidi Caravanner
 abilities=haste
 auto={1}:target(other creature[power<=2]) unblockable ueot
-auto={1}{R}{T}:ability$!name(Discard hand) reject all(*|myHand)!$ controller && transforms((,newability[@combatdamagefoeof(player) from(creature[power<=2]|myBattlefield):draw:1 controller])) ueot
+auto={1}{R}{T}:reject all(*|myHand) && transforms((,newability[@combatdamagefoeof(player) from(creature[power<=2]|myBattlefield):draw:1 controller])) ueot
 text=Haste -- {1}: Another target creature with power 2 or less can't be blocked this turn. -- {1}{R}, {T}, Discard your hand: Until end of turn, whenever a creature you control with power 2 or less deals combat damage to a player, draw a card.
 mana={2}{R}
 type=Legendary Creature
@@ -38721,8 +38721,8 @@ toughness=4
 [/card]
 [card]
 name=Sunbaked Canyon
-auto={T}{L:1}=add {R}
-auto={T}{L:1}=add {W}
+auto={T}{L:1}:Add{R}
+auto={T}{L:1}:Add{W}
 auto={1}{T}{S}:draw:1
 text={T}, Pay 1 life: Add {R} or {W}. -- {1}, {T}, Sacrifice Sunbaked Canyon: Draw a card.
 type=Land
@@ -43242,7 +43242,7 @@ toughness=4
 [card]
 name=Vantress Paladin
 abilities=flying
-other={1}{B}{B}{B} name(Adamant)
+other={1}{U}{U}{U} name(Adamant)
 auto=if paid(alternative) then counter(1/1,1)
 text=Flying -- Adamant — If at least three blue mana was spent to cast this spell, Vantress Paladin enters the battlefield with a +1/+1 counter on it.
 mana={3}{U}
@@ -43620,27 +43620,27 @@ toughness=2
 [/card]
 [card]
 name=Vial Smasher the Fierce
-auto=@movedto(*[manacost=0]|mystack):damage:0 target(opponent)
-auto=@movedto(*[manacost=1]|mystack):damage:1 target(opponent)
-auto=@movedto(*[manacost=2]|mystack):damage:2 target(opponent)
-auto=@movedto(*[manacost=3]|mystack):damage:3 target(opponent)
-auto=@movedto(*[manacost=4]|mystack):damage:4 target(opponent)
-auto=@movedto(*[manacost=5]|mystack):damage:5 target(opponent)
-auto=@movedto(*[manacost=6]|mystack):damage:6 target(opponent)
-auto=@movedto(*[manacost=7]|mystack):damage:7 target(opponent)
-auto=@movedto(*[manacost=8]|mystack):damage:8 target(opponent)
-auto=@movedto(*[manacost=9]|mystack):damage:9 target(opponent)
-auto=@movedto(*[manacost=10]|mystack):damage:10 target(opponent)
-auto=@movedto(*[manacost=11]|mystack):damage:11 target(opponent)
-auto=@movedto(*[manacost=12]|mystack):damage:12 target(opponent)
-auto=@movedto(*[manacost=13]|mystack):damage:13 target(opponent)
-auto=@movedto(*[manacost=14]|mystack):damage:14 target(opponent)
-auto=@movedto(*[manacost=15]|mystack):damage:15 target(opponent)
-auto=@movedto(*[manacost=16]|mystack):damage:16 target(opponent)
-auto=@movedto(*[manacost=17]|mystack):damage:17 target(opponent)
-auto=@movedto(*[manacost=18]|mystack):damage:18 target(opponent)
-auto=@movedto(*[manacost=19]|mystack):damage:19 target(opponent)
-auto=@movedto(*[manacost=20]|mystack):damage:20 target(opponent)
+auto=@movedto(*[manacost=0]|mystack):damage:0 opponent
+auto=@movedto(*[manacost=1]|mystack):damage:1 opponent
+auto=@movedto(*[manacost=2]|mystack):damage:2 opponent
+auto=@movedto(*[manacost=3]|mystack):damage:3 opponent
+auto=@movedto(*[manacost=4]|mystack):damage:4 opponent
+auto=@movedto(*[manacost=5]|mystack):damage:5 opponent
+auto=@movedto(*[manacost=6]|mystack):damage:6 opponent
+auto=@movedto(*[manacost=7]|mystack):damage:7 opponent
+auto=@movedto(*[manacost=8]|mystack):damage:8 opponent
+auto=@movedto(*[manacost=9]|mystack):damage:9 opponent
+auto=@movedto(*[manacost=10]|mystack):damage:10 opponent
+auto=@movedto(*[manacost=11]|mystack):damage:11 opponent
+auto=@movedto(*[manacost=12]|mystack):damage:12 opponent
+auto=@movedto(*[manacost=13]|mystack):damage:13 opponent
+auto=@movedto(*[manacost=14]|mystack):damage:14 opponent
+auto=@movedto(*[manacost=15]|mystack):damage:15 opponent
+auto=@movedto(*[manacost=16]|mystack):damage:16 opponent
+auto=@movedto(*[manacost=17]|mystack):damage:17 opponent
+auto=@movedto(*[manacost=18]|mystack):damage:18 opponent
+auto=@movedto(*[manacost=19]|mystack):damage:19 opponent
+auto=@movedto(*[manacost=20]|mystack):damage:20 opponent
 text=Whenever you cast your first spell each turn, choose an opponent at random. Vial Smasher the Fierce deals damage equal to that spell’s converted mana cost to that player or a planeswalker that player controls. -- Partner (You can have two commanders if both have partner.)
 mana={1}{B}{R}
 type=Legendary Creature
@@ -44818,8 +44818,8 @@ subtype=Aura
 [/card]
 [card]
 name=Waterlogged Grove
-auto={T}{L:1}=add {G}
-auto={T}{L:1}=add {U}
+auto={T}{L:1}:Add{G}
+auto={T}{L:1}:Add{U}
 auto={1}{T}{S}:draw:1
 text={T}, Pay 1 life: Add {G} or {U}. -- {1}, {T}, Sacrifice Waterlogged Grove: Draw a card.
 type=Land
