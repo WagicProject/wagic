@@ -7087,9 +7087,8 @@ type=Land
 [/card]
 [card]
 name=Command the Dreadhorde
-target=<anyamount>creature,planeswalker|myGraveyard
-auto=life:-manacost controller
-auto=moveTo(myBattlefield)
+target=<anyamount>*[creature;planeswalker]|myGraveyard
+auto=moveto(myBattlefield) and!(transforms((,newability[dynamicability<!manacostlifestrike targetcontroller!>])))!
 text=Choose any number of target creature and/or planeswalker cards in graveyards. Command the Dreadhorde deals damage to you equal to the total converted mana cost of those cards. Put them onto the battlefield under your control.
 mana={4}{B}{B}
 type=Sorcery
@@ -14091,8 +14090,8 @@ type=Sorcery
 [card]
 name=Force of Despair
 other={E(*[black]|myhand)}
-target=creature[fresh]
-auto=destroy
+otherrestriction=opponentturnonly
+auto=destroy all(creature[fresh])
 text=If it's not your turn, you may exile a black card from your hand rather than pay this spell's mana cost. -- Destroy all creatures that entered the battlefield this turn.
 mana={1}{B}{B}
 type=Instant
@@ -30512,7 +30511,7 @@ name=Rankle, Master of Pranks
 abilities=flying,haste
 auto=@combatdamaged(player) from(this):may name(discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
 auto=@combatdamaged(player) from(this):may name(life and draw) draw:1 controller && draw:1 opponent && life:-1 controller && life:-1 opponent
-auto=@combatdamaged(player) from(this):may name(sacrifice) sacrifice target(creature|mybattlefield) controller and!(sacrifice target(creature|opponentBattlefield) opponent)!
+auto=@combatdamaged(player) from(this):may name(sacrifice) transforms((,newability[ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ controller],newability[ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent])) ueot
 text=Flying, haste -- Whenever Rankle, Master of Pranks deals combat damage to a player, choose any number — -- • Each player discards a card. -- • Each player loses 1 life and draws a card. -- • Each player sacrifices a creature.
 mana={2}{B}{B}
 type=Legendary Creature
