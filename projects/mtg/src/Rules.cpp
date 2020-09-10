@@ -368,21 +368,20 @@ Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
     string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "" };
 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
-    tempDeck->addRandomCards(1, 0, 0, -1, lands[color1].c_str());
-    tempDeck->addRandomCards(1, 0, 0, -1, lands[color2].c_str());
-    tempDeck->addRandomCards(1, 0, 0, -1, lands[color3].c_str());
-    tempDeck->addRandomCards(6, 0, 0, 'R', lands[color1].c_str());
-    tempDeck->addRandomCards(6, 0, 0, 'R', lands[color2].c_str());
-    tempDeck->addRandomCards(6, 0, 0, 'R', lands[color3].c_str());
-    tempDeck->addRandomCards(3, 0, 0, -1, "land");
+    tempDeck->addRandomCards(4, 0, 0, -1, lands[color1].c_str());
+    tempDeck->addRandomCards(4, 0, 0, -1, lands[color2].c_str());
+    tempDeck->addRandomCards(4, 0, 0, -1, lands[color3].c_str());
+    tempDeck->addRandomCards(4, 0, 0, 'R', lands[color1].c_str());
+    tempDeck->addRandomCards(4, 0, 0, 'R', lands[color2].c_str());
+    tempDeck->addRandomCards(4, 0, 0, 'R', lands[color3].c_str());
     tempDeck->addRandomCards(1, 0, 0, 'U', "land");
     tempDeck->addRandomCards(1, 0, 0, 'R', "land");
     tempDeck->addRandomCards(18, 0, 0, -1, "creature", colors, nbcolors);
     tempDeck->addRandomCards(1, 0, 0, 'R', "creature", colors, nbcolors);
     tempDeck->addRandomCards(1, 0, 0, 'M', "creature", colors, nbcolors);
-    tempDeck->addRandomCards(3, 0, 0, -1, "sorcery", colors, nbcolors);
     tempDeck->addRandomCards(3, 0, 0, -1, "enchantment", colors, nbcolors);
-    tempDeck->addRandomCards(3, 0, 0, -1, "instant", colors, nbcolors);
+	tempDeck->addRandomCards(3, 0, 0, -1, "instant", colors, nbcolors);
+	tempDeck->addRandomCards(3, 0, 0, -1, "sorcery", colors, nbcolors);
     tempDeck->addRandomCards(4, 0, 0, -1, "artifact", colors, nbcolors);
     tempDeck->addRandomCards(1, 0, 0, -1, "planeswalker", colors, nbcolors);
 
@@ -403,8 +402,8 @@ Player * Rules::loadPlayerRandomFive(GameObserver* observer, int isAI)
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
 
     tempDeck->addRandomCards(20, 0, 0, -1, "land");
-    tempDeck->addRandomCards(20, 0, 0, -1, "creature");
-    tempDeck->addRandomCards(20, 0, 0, -1, "");
+    tempDeck->addRandomCards(10, 0, 0, -1, "legendary");
+    tempDeck->addRandomCards(30, 0, 0, -1, "");
     
     string deckFile = "random";
     string deckFileSmall = "random";
@@ -426,13 +425,13 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
 
     string lands[] = { "land", "forest", "island", "mountain", "swamp", "plains" };
 
-    const char* const multicolorTribes[] = { "Ally", "Eldrazi", "Elemental", "Golem", "Dog", "Human", "Knight",
-        "Myr", "Samurai", "Shaman", "Shapeshifter", "Sliver", "Soldier", "Spellshaper", "Spirit", "Warrior", "Wizard" };
-    const char* const whiteTribes[] = { "Angel", "Bird", "Cat", "Cleric", "Griffin", "Kithkin", "Knight", "Soldier", "Spirit", "Wizard"  };
-    const char* const blueTribes[] = { "Artificer", "Bird", "Drake", "Faerie", "Illusion", "Merfolk", "Spirit", "Vedalken", "Wizard", "Zombie" };
-    const char* const blackTribes[] = { "Cleric", "Demon", "Faerie", "Horror", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Vampire", "Wizard", "Zombie" };
-    const char* const redTribes[] = { "Barbarian", "Berserker", "Cat", "Devil", "Dragon", "Goblin", "Minotaur", "Ogre", "Werewolf", "Wizard" };
-    const char* const greenTribes[] = { "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Elf", "Fungus", "Snake", "Spider", "Treefolk", "Werewolf", "Wizard" };
+    const char* const multicolorTribes[] = { "Ally", "Construct", "Drone", "Eldrazi", "Elemental", "Golem", "Human", "Myr",
+		  "Sliver", "Spellshaper", "Spirit", "Wizard" };
+    const char* const whiteTribes[] = { "Angel", "Archer", "Bird", "Cat", "Cleric", "Griffin", "Kithkin", "Knight", "Kor", "Monk", "Rebel", "Samurai", "Scout", "Soldier", "Spirit" };
+    const char* const blueTribes[] = { "Artificer", "Bird", "Drake", "Faerie", "Illusion", "Merfolk", "Mutant", "Nightmare", "Pirate", "Shapeshifter", "Sphinx", "Spirit", "Vedalken", "Wizard" };
+    const char* const blackTribes[] = { "Assassin", "Cleric", "Demon", "Faerie", "Horror", "Insect", "Knight", "Nightmare", "Orc", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Spirit", "Vampire", "Wizard", "Zombie" };
+    const char* const redTribes[] = { "Artificer", "Beast", "Berserker", "Devil", "Dinosaur", "Dragon", "Dwarf", "Goblin", "Kavu", "Lizard", "Minotaur", "Ogre", "Orc", "Shaman", "Viashino", "Warrior", "Werewolf" };
+    const char* const greenTribes[] = { "Archer", "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Dryad", "Elf", "Fungus", "Insect", "Kavu", "Lizard", "Mutant", "Plant", "Scout", "Shaman", "Snake", "Spider", "Treefolk", "Warrior", "Werewolf", "Wurm" };
 
     int multicolorTribesSize = sizeof(multicolorTribes)/sizeof(multicolorTribes[0]);
     int whiteTribesSize = sizeof(whiteTribes)/sizeof(whiteTribes[0]);
@@ -465,10 +464,10 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
     }
 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
-    tempDeck->addRandomCards(16, 0, 0, -1, lands[tribeColor[0]].c_str());
-    tempDeck->addRandomCards(4, 0, 0, 'R', lands[tribeColor[0]].c_str());
-    tempDeck->addRandomCards(4, 0, 0, -1, "land");
-    tempDeck->addRandomCards(21, 0, 0, -1, randomTribe);    
+    tempDeck->addRandomCards(14, 0, 0, -1, lands[tribeColor[0]].c_str());
+    tempDeck->addRandomCards(5, 0, 0, 'R', lands[tribeColor[0]].c_str());
+    tempDeck->addRandomCards(5, 0, 0, -1, "land");
+    tempDeck->addRandomCards(21, 0, 0, -1, randomTribe);
     tempDeck->addRandomCards(5, 0, 0, -1, "enchantment", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "instant", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "sorcery", tribeColor, nbColors);
