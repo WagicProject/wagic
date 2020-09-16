@@ -11,6 +11,6 @@ auto=draw:7
 
 auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{W}
 auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{U}
-auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{R}
 auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{B}
+auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{R}
 auto=lord(*[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{G}
