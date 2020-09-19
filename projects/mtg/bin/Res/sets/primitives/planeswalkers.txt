@@ -171,7 +171,7 @@ subtype=Ajani
 [card]
 name=Ajani, Wise Counselor
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Gain 1 life for each creature) foreach(creature|myBattlefield) life:type:creature:myBattlefield controller
+auto={C(0/0,2,Loyalty)}:name(+2: Gain 1 life for each creature) life:type:creature:myBattlefield controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Creatures gets +2/+2) all(creature|myBattlefield) 2/2 ueot
 auto={C(0/0,-9,Loyalty)}:name(-9: Put X +1/+1 counter) counter(1/1,lifetotal) target(creature)
 text=+2: You gain 1 life for each creature you control. -- −3: Creatures you control get +2/+2 until end of turn. -- −9: Put X +1/+1 counters on target creature, where X is your life total.
