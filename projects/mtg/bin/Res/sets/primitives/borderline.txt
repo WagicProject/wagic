@@ -7230,7 +7230,7 @@ toughness=2
 [/card]
 [card]
 name=Conclave Mentor
-auto=@counteradded(1/1) from(creature|myBattlefield):counter(1/1) all(trigger[from])
+auto=@counteradded(1/1) from(creature|mybattlefield) except(Conclave Mentor):may counter(1/1) target(creature[counter{1/1.1}]|myBattlefield)
 auto=@movedTo(this|graveyard) from(battlefield):life:power controller
 text=If one or more +1/+1 counters would be put on a creature you control, that many plus one +1/+1 counters are put on that creature instead. -- When Conclave Mentor dies, you gain life equal to its power.
 mana={G}{W}
@@ -17223,7 +17223,7 @@ toughness=2
 [/card]
 [card]
 name=Hardened Scales
-auto=@counteradded(1/1) from(creature|mybattlefield):all(trigger[from]) counter(1/1) limit:1
+auto=@counteradded(1/1) from(creature|mybattlefield) except(Hardened Scales):may counter(1/1) target(creature[counter{1/1.1}]|myBattlefield)
 text=If one or more +1/+1 counters would be placed on a creature you control, that many plus one +1/+1 counters are placed on it instead.
 mana={G}
 type=Enchantment
@@ -21864,7 +21864,7 @@ toughness=4
 [/card]
 [card]
 name=Lavabelly Sliver
-auto=lord(sliver|mybattlefield) transforms((,newability[@movedTo(mybattlefield) source(this):damage:1 target(*[planeswalker;player])]))
+auto=lord(sliver|mybattlefield) transforms((,newability[@movedTo(mybattlefield) from(this):damage:1 target(*[planeswalker;player])]))
 text=Sliver creatures you control have "When this creature enters the battlefield, it deals 1 damage to target player or planeswalker and you gain 1 life."
 mana={1}{R}{W}
 type=Creature
@@ -25155,7 +25155,7 @@ toughness=3
 [card]
 name=Mowu, Loyal Companion
 abilities=vigilance,trample
-auto=@counteradded(1/1) from(this) restriction{once}:counter(1/1)
+auto=@counteradded(1/1) from(this) except(Mowu, Loyal Companion):may counter(1/1)
 text=Trample, vigilance -- If one or more +1/+1 counters would be put on Mowu, Loyal Companion, that many plus one +1/+1 counters are put on it instead.
 mana={3}{G}
 type=Legendary Creature
@@ -40713,11 +40713,10 @@ type=Sorcery
 [/card]
 [card]
 name=Thought Erasure
-target=opponent
-aicode=activate reject notatarget(*[-land]|targetedpersonshand)
-auto=reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
+aicode=activate reject notatarget(*[-land]|opponenthand)
+auto=reveal:type:*:opponenthand revealzone(opponenthand) optionone name(choose discards) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
 aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=1]|mylibrary) moverandom(*[zpos<=1]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend controller
+auto=name(Reveal) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. -- Surveil 1. (Look at the top card of your library. You may put it into your graveyard.)
 mana={U}{B}
 type=Sorcery
@@ -41321,7 +41320,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Tolarian Kraken
-auto=@drawof(player):pay({1}) ability$!name(Choose one) choice name(tap target creature) target(creature) tap(noevent) _ choice name(tap target creature) target(creature) untap!$ controller
+auto=@drawof(player):pay({1}) ability$!name(Pay 1) choice name(Tap target creature) target(creature) tap(noevent) _ choice name(Untap target creature) target(creature) untap!$ controller
 text=Whenever you draw a card, you may pay 1 . When you do, you may tap or untap target creature.
 mana={4}{U}{U}
 type=Creature
