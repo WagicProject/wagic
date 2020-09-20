@@ -2294,7 +2294,7 @@ type=Instant
 [/card]
 [card]
 name=Awaken the Sky Tyrant
-auto=@damageof(player) from(*|opponentstack,opponentbattlefield,opponentgraveyard,opponenthand,opponentexile,opponentsideboard):ability$!name(Create a 5/5 red Dragon) [S(this)]:token(Dragon,Creature Dragon,5/5,red,flying)
+auto=@damageof(player) from(*|opponentstack,opponentbattlefield,opponentgraveyard,opponenthand,opponentexile,opponentsideboard):may sacrifice && token(Dragon,Creature Dragon,5/5,red,flying) controller
 text=When a source an opponent controls deals damage to you, sacrifice Awaken the Sky Tyrant. If you do, create a 5/5 red Dragon creature token with flying.
 mana={3}{R}
 type=Enchantment
@@ -38335,7 +38335,7 @@ toughness=2
 [card]
 name=Storm Herald
 abilities=haste
-auto=moveto(myBattlefield) target(enchantment[aura]|myGraveyard) with(@each my endofturn: transforms((,treason,exiledeath)) forever)
+auto=castcard(normal) target(<anyamount>aura|myGraveyard) and!(transforms((,newability[treason],newability[exiledeath])) forever)!
 text=Haste -- When Storm Herald enters the battlefield, return any number of Aura cards from your graveyard to the battlefield attached to creatures you control. Exile those Auras at the beginning of your next end step. If those Auras would leave the battlefield, exile them instead of putting them anywhere else.
 mana={2}{R}
 type=Creature
