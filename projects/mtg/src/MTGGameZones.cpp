@@ -242,7 +242,6 @@ void MTGPlayerCards::drawFromLibrary()
         return;
     }
     MTGCardInstance * toMove = library->cards[library->nb_cards - 1];
-    library->lastCardDrawn = toMove;
     if (!library->miracle)
     {
         library->miracle = true;
@@ -270,9 +269,12 @@ void MTGPlayerCards::drawFromLibrary()
         }
     }
 
-    if(putInZone(toMove, library, hand))
+    MTGCardInstance * ret = putInZone(toMove, library, hand);
+    if(ret)
     {
         toMove->currentZone = hand;
+        ret->currentZone = hand;
+        library->lastCardDrawn = ret;
     }
 }
 

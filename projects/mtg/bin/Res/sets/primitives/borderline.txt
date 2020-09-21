@@ -25852,14 +25852,14 @@ toughness=2
 [card]
 name=Nemesis of Mortals
 anyzone=foreach(creature|mygraveyard) changecost(colorless:-1) forcedalive
-#auto=if type(creature|mygraveyard)~equalto~0 then this(cantargetcard(*[-monstrous]) {7}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-#auto=if type(creature|mygraveyard)~equalto~1 then this(cantargetcard(*[-monstrous]) {6}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-#auto=if type(creature|mygraveyard)~equalto~2 then this(cantargetcard(*[-monstrous]) {5}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-#auto=if type(creature|mygraveyard)~equalto~3 then this(cantargetcard(*[-monstrous]) {5}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-#auto=if type(creature|mygraveyard)~equalto~4 then this(cantargetcard(*[-monstrous]) {4}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-#auto=if type(creature|mygraveyard)~equalto~5 then this(cantargetcard(*[-monstrous]) {3}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-#auto=if type(creature|mygraveyard)~equalto~6 then this(cantargetcard(*[-monstrous]) {1}{G}{G}:becomes(monstrous) forever && counter(1/1,5)
-#auto=if type(creature|mygraveyard)~morethan~6 then this(cantargetcard(*[-monstrous]) {G}{G}:becomes(monstrous) forever && counter(1/1,5)
+auto=this(cantargetcard(*[-monstrous]) {7}{G}{G}:becomes(monstrous) forever && counter(1/1,5) restriction{type(creature|mygraveyard)~equalto~0}
+auto=this(cantargetcard(*[-monstrous]) {6}{G}{G}:becomes(monstrous) forever && counter(1/1,5) restriction{type(creature|mygraveyard)~equalto~1}
+auto=this(cantargetcard(*[-monstrous]) {5}{G}{G}:becomes(monstrous) forever && counter(1/1,5) restriction{type(creature|mygraveyard)~equalto~2}
+auto=this(cantargetcard(*[-monstrous]) {4}{G}{G}:becomes(monstrous) forever && counter(1/1,5) restriction{type(creature|mygraveyard)~equalto~3}
+auto=this(cantargetcard(*[-monstrous]) {3}{G}{G}:becomes(monstrous) forever && counter(1/1,5) restriction{type(creature|mygraveyard)~equalto~4}
+auto=this(cantargetcard(*[-monstrous]) {2}{G}{G}:becomes(monstrous) forever && counter(1/1,5) restriction{type(creature|mygraveyard)~equalto~5}
+auto=this(cantargetcard(*[-monstrous]) {1}{G}{G}:becomes(monstrous) forever && counter(1/1,5) restriction{type(creature|mygraveyard)~equalto~6}
+auto=this(cantargetcard(*[-monstrous]) {G}{G}:becomes(monstrous) forever && counter(1/1,5) restriction{type(creature|mygraveyard)~morethan~6}
 text=Nemesis of Mortals costs {1} less to cast for each creature card in your graveyard. -- {7}{G}{G}: Monstrosity 5. This ability costs {1} less to activate for each creature card in your graveyard. (If this creature isn't monstrous, put five +1/+1 counters on it and it becomes monstrous.)
 mana={4}{G}{G}
 type=Creature
@@ -26139,7 +26139,7 @@ toughness=1
 [card]
 name=Nightmare Shepherd
 abilities=flying
-auto=@movedto(mygraveyard) from(creature[-token]|myBattlefield):may moveto(exile) && clone with(newability[transforms((,Nigthmare,setpower=1,settoughness=1)])
+auto=@movedto(mygraveyard) from(other creature[-token]|myBattlefield):may all(trigger) clone and!( transforms((Nigthmare,setpower=1,settoughness=1)) forever )! && moveTo(exile) all(trigger)
 text=Flying -- Whenever another nontoken creature you control dies, you may exile it. If you do, create a token that’s a copy of that creature, except it’s 1/1 and it’s a Nightmare in addition to its other types.
 mana={2}{B}{B}
 type=Enchantment Creature

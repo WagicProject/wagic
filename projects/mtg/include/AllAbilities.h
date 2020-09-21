@@ -6355,6 +6355,7 @@ public:
 
     int resolve()
     {
+        source->tap(true);
         source->controller()->game->putInGraveyard(source->controller()->game->library->lastCardDrawn);
         game->mLayers->stackLayer()->addDraw(source->controller());
         return 1;
