@@ -1172,6 +1172,18 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Anowon, the Ruin Thief
+auto=lord(other creature[rogue]|mybattlefield) 1/1
+auto=@combatdamagefoeof(player) from(creature[rogue]|myBattlefield) restriction{type(creature[zpos<=thatmuch]|opponentlibrary)~lessthan~1}:deplete:thatmuch opponent
+auto=@combatdamagefoeof(player) from(creature[rogue]|myBattlefield) restriction{type(creature[zpos<=thatmuch]|opponentlibrary)~morethan~0}:deplete:thatmuch opponent && draw:1 controller
+text=Other Rogues you control get +1/+1. -- Whenever one or more Rogues you control deal combat damage to a player, that player mills a card for each 1 damage dealt to them. If the player mills at least one creature card this way, you draw a card. (To mill a card, a player puts the top card of their library into their graveyard.)
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Vampire Rogue
+power=2
+toughness=4
+[/card]
+[card]
 name=Answered Prayers
 auto=@movedTo(creature|myBattlefield):life:1
 auto=@movedTo(creature|myBattlefield):becomes(Angel Creature,3/3,flying) ueot
@@ -7936,6 +7948,15 @@ type=Enchantment
 subtype=Aura Curse
 [/card]
 [card]
+name=Crush Contraband
+auto=choice name(Choose Artifact) moveto(exile) target(artifact)
+auto=choice name(Choose Enchantment) moveto(exile) target(enchantment)
+auto=choice name(Choose Both) moveto(exile) target(artifact) && ability$!name(exile enchantment) moveto(exile) target(enchantment)!$ controller
+text=Choose one or both — -- • Exile target artifact. -- • Exile target enchantment.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
 name=Crush Dissent
 target=*|stack
 auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
@@ -9478,7 +9499,7 @@ type=Instant
 [card]
 name=Destiny Spinner
 auto=lord(*[creature;enchantment]|mystack) nofizzle
-auto={3}{G}:target(land|mybattlefield) transforms((Elemental Creature,setpower=type:enchantment:mybattlefield,settoughness=type:enchantment:mybattlefield,trample)) ueot
+auto={3}{G}:target(land|mybattlefield) transforms((Elemental Creature,setpower=type:enchantment:mybattlefield,settoughness=type:enchantment:mybattlefield,trample,haste)) ueot
 text=Creature and enchantment spells you control can’t be countered. -- {3}{G}: Target land you control becomes an X/X Elemental creature with trample and haste until end of turn, where X is the number of enchantments you control. It’s still a land.
 mana={1}{G}
 type=Enchantment Creature
@@ -11856,6 +11877,19 @@ type=Creature
 subtype=Drake
 power=*
 toughness=4
+[/card]
+[card]
+name=Enigma Thief
+abilities=flying
+other={3}{U} name(Prowl)
+otherrestriction=prowl
+auto=may moveTo(ownerhand) target(*[-land]|opponentbattlefield)
+text=Prowl {3}{U} (You may cast this spell for its prowl cost if you dealt combat damage to a player this turn with a Sphinx or Rogue.) -- Flying -- When Enigma Thief enters the battlefield, for each opponent, return up to one target nonland permanent that player controls to its owner's hand.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx Rogue
+power=5
+toughness=5
 [/card]
 [card]
 name=Enigmatic Incarnation
@@ -15106,6 +15140,17 @@ mana={5}
 type=Artifact Creature
 subtype=Golem
 power=5
+toughness=3
+[/card]
+[card]
+name=Geode Rager
+abilities=first strike
+auto=@movedto(land|myBattlefield):name(Choose one) ability$!name(Choose one) choice name(Goad opponent creatures) mustattack all(creature|opponentBattlefield) uynt _ choice name(Goad your creatures) mustattack all(creature|myBattlefield) uynt!$ controller
+text=First strike -- Landfall — Whenever a land enters the battlefield under your control, goad each creature target player controls. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
+mana={4}{R}{R}
+type=Creature
+subtype=Elemental
+power=4
 toughness=3
 [/card]
 [card]
@@ -26864,6 +26909,36 @@ power=0
 toughness=3
 [/card]
 [card]
+name=Obuun, Mul Daya Ancestor
+auto=@each my combatbegins restriction{compare(power)~equalto~1}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=1,settoughness=1,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~2}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=2,settoughness=2,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~3}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=3,settoughness=3,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~4}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=4,settoughness=4,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~5}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=5,settoughness=5,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~6}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=6,settoughness=6,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~7}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=7,settoughness=7,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~8}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=8,settoughness=8,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~9}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=9,settoughness=9,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~10}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=10,settoughness=10,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~11}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=11,settoughness=11,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~12}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=12,settoughness=12,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~13}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=13,settoughness=13,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~14}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=14,settoughness=14,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~15}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=15,settoughness=15,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~16}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=16,settoughness=16,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~17}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=17,settoughness=17,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~18}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=18,settoughness=18,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~equalto~19}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=19,settoughness=19,trample,haste)) ueot
+auto=@each my combatbegins restriction{compare(power)~morethan~19}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=20,settoughness=20,trample,haste)) ueot
+auto=@movedto(land|myBattlefield):counter(1/1) target(creature|mybattlefield)
+text=At the beginning of combat on your turn, up to one target land you control becomes an X/X Elemental creature with trample and haste until end of turn, where X is Obuun's power. It's still a land. -- Landfall — Whenever a land enters the battlefield under your control, put a +1/+1 counter on target creature.
+mana={1}{R}{G}{W}
+type=Legendary Creature
+subtype=Elf Spirit
+power=3
+toughness=3
+[/card]
+[card]
 name=Ochran Assassin
 abilities=deathtouch, lure
 text=Deathtouch -- All creatures able to block Ochran Assassin do so.
@@ -29178,6 +29253,18 @@ auto=counter(0/0,-5,loyalty)
 text=Remove up to five counters from target artifact, creature, planeswalker, or opponent.
 mana={B}
 type=Sorcery
+[/card]
+[card]
+name=Price of Fame
+other={1}{B} name(Target Legendary)
+otherrestriction=type(creature[legendary]|battlefield)~morethan~0
+auto=if paid(alternative) then destroy target(creature[legendary])
+auto=ifnot paid(alternative) then destroy target(creature)
+aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
+auto=name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+text=This spell costs {2} less to cast if it targets a legendary creature. -- Destroy target creature. -- Surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
+mana={3}{B}
+type=Instant
 [/card]
 [card]
 name=Prickly Marmoset
@@ -41955,6 +42042,18 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
+name=Trove Warden
+abilities=vigilance
+auto=@movedto(land|myBattlefield):moveto(exile) target(*[manacost<=3]|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveto(mybattlefield) target(<anyamount>*|myexile)
+text=Vigilance -- Landfall — Whenever a land enters the battlefield under your control, exile target permanent card with converted mana cost 3 or less from your graveyard. -- When Trove Warden dies, put each permanent card exiled with it onto the battlefield under the control of that card's owner.
+mana={2}{W}{W}
+type=Creature
+subtype=Cat Beast
+power=3
+toughness=4
+[/card]
+[card]
 name=True Love's Kiss
 target=artifact,enchantment
 auto=moveto(exile)
@@ -45068,6 +45167,17 @@ type=Legendary Creature
 subtype=Human Cleric
 power=2
 toughness=2
+[/card]
+[card]
+name=Whispersteel Dagger
+auto={3}:equip
+auto=teach(creature) 2/0
+auto=teach(creature) transforms((,newability[@combatdamageof(player) from(this):may activate castcard(normal) target(creature|mygraveyard)]))
+auto=teach(creature) transforms((,newability[@combatdamagefoeof(player) from(this):may activate castcard(normal) target(creature|opponentgraveyard)]))
+text=Equipped creature gets +2/+0. -- Whenever equipped creature deals combat damage to a player, you may cast a creature spell from that player's graveyard this turn, and you may spend mana as though it were mana of any color to cast that spell. -- Equip 3
+mana={2}{B}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Wicked Akuba

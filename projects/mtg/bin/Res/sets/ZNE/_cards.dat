@@ -1,0 +1,156 @@
+[meta]
+author=Wagic Team
+name=Zendikar Rising Expeditions
+year=2020-09-25
+total=30
+[/meta]
+[card]
+primitive=Flooded Strand
+id=497161
+rarity=M
+[/card]
+[card]
+primitive=Polluted Delta
+id=497162
+rarity=M
+[/card]
+[card]
+primitive=Bloodstained Mire
+id=497163
+rarity=M
+[/card]
+[card]
+primitive=Wooded Foothills
+id=497164
+rarity=M
+[/card]
+[card]
+primitive=Windswept Heath
+id=497165
+rarity=M
+[/card]
+[card]
+primitive=Marsh Flats
+id=497166
+rarity=M
+[/card]
+[card]
+primitive=Scalding Tarn
+id=497167
+rarity=M
+[/card]
+[card]
+primitive=Verdant Catacombs
+id=497168
+rarity=M
+[/card]
+[card]
+primitive=Arid Mesa
+id=497169
+rarity=M
+[/card]
+[card]
+primitive=Misty Rainforest
+id=497170
+rarity=M
+[/card]
+[card]
+primitive=Seachrome Coast
+id=497171
+rarity=M
+[/card]
+[card]
+primitive=Darkslick Shores
+id=497172
+rarity=M
+[/card]
+[card]
+primitive=Blackcleave Cliffs
+id=497173
+rarity=M
+[/card]
+[card]
+primitive=Copperline Gorge
+id=497174
+rarity=M
+[/card]
+[card]
+primitive=Razorverge Thicket
+id=497175
+rarity=M
+[/card]
+[card]
+primitive=Sea of Clouds
+id=497176
+rarity=M
+[/card]
+[card]
+primitive=Morphic Pool
+id=497177
+rarity=M
+[/card]
+[card]
+primitive=Luxury Suite
+id=497178
+rarity=M
+[/card]
+[card]
+primitive=Spire Garden
+id=497179
+rarity=M
+[/card]
+[card]
+primitive=Bountiful Promenade
+id=497180
+rarity=M
+[/card]
+[card]
+primitive=Ancient Tomb
+id=497181
+rarity=M
+[/card]
+[card]
+primitive=Cavern of Souls
+id=497182
+rarity=M
+[/card]
+[card]
+primitive=Celestial Colonnade
+id=497183
+rarity=M
+[/card]
+[card]
+primitive=Creeping Tar Pit
+id=497184
+rarity=M
+[/card]
+[card]
+primitive=Grove of the Burnwillows
+id=497185
+rarity=M
+[/card]
+[card]
+primitive=Horizon Canopy
+id=497186
+rarity=M
+[/card]
+[card]
+primitive=Prismatic Vista
+id=497187
+rarity=M
+[/card]
+[card]
+primitive=Strip Mine
+id=497188
+rarity=M
+[/card]
+[card]
+primitive=Valakut, the Molten Pinnacle
+id=497189
+rarity=M
+[/card]
+[card]
+primitive=Wasteland
+id=497190
+rarity=M
+[/card]
