@@ -1032,6 +1032,30 @@ private:
                     intValue += card->controller()->game->inPlay->cards[j]->getCurrentToughness();
             }
         }
+        else if (s == "calculateparty")//Count Total Creatures of party (a party consists of up to one each of Cleric, Rogue, Warrior, and Wizard)... Zendikar Rising
+        {
+            intValue = 0;
+            bool found_cleric = false;
+            bool found_warrior = false;
+            bool found_wizard = false;
+            bool found_rogue = false;
+            for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0 && intValue < 4; --j)
+            {
+                if (card->controller()->game->inPlay->cards[j]->hasType("Cleric") && !found_cleric){
+                    intValue += 1;
+                    found_cleric = true;
+                } else if (card->controller()->game->inPlay->cards[j]->hasType("Rogue") && !found_rogue){
+                    intValue += 1;
+                    found_rogue = true;
+                } else if (card->controller()->game->inPlay->cards[j]->hasType("Wizard") && !found_wizard){
+                    intValue += 1;
+                    found_wizard = true;
+                } else if (card->controller()->game->inPlay->cards[j]->hasType("Warrior") && !found_warrior){
+                    intValue += 1;
+                    found_warrior = true;
+                }
+            }
+        }
         else if (s == "mypos")
         {//hand,exile,grave & library only (library zpos is inverted so the recent one is always the top)
             intValue = card->zpos;
