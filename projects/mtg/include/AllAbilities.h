@@ -5009,7 +5009,8 @@ public:
     string flipStats;
     bool isflipcard;
     bool forcedcopy;
-    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard = false, bool forcedcopy = false);
+    string forcetype;
+    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, string flipStats, bool isflipcard = false, bool forcedcopy = false, string forcetype = "");
     int resolve();
     int testDestroy();
     const string getMenuText();

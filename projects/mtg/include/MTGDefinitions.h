@@ -285,7 +285,8 @@ class Constants
       ADVENTURE = 159,
       MENTOR = 160,
       PROWESS = 161,
-      NB_BASIC_ABILITIES = 162,
+      NOFIZZLEALTERNATIVE = 162,
+      NB_BASIC_ABILITIES = 163,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
