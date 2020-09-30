@@ -192,7 +192,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "mutate", //it can mutate
     "adventure", //it can be adventure
     "mentor",
-    "prowess"
+    "prowess",
+    "nofizzle alternative" // No fizzle if paid with alternative cost (es. Zendikar Rising Modal Double Faced cards).
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -825,6 +825,22 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!found)
                 return 0;
         }
+        check = restriction[i].find("can play land");
+        if(check != string::npos)
+        {
+            bool isLand = card->hasType("Land");
+            bool canplay = true;
+            if(!isLand)
+                card->addType("Land");
+            if (observer->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, observer->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
+                canplay = false;
+            if (!card->StackIsEmptyandSorcerySpeed())
+                canplay = false;
+            if(!isLand)
+                card->removeType("Land");
+            if(!canplay)
+                return 0;
+        }
         check = restriction[i].find("paid(");
         if(check != string::npos)
         {
@@ -4042,8 +4058,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             /*vector<string>FlipStats = split(splitFlipStat[1],'%');*/
             flipStats = splitFlipStat[1];
         }
+        vector<string> splitType = parseBetween(s, "forcetype(", ")", true); // Added to flip instants and sorceries as permanents (es. Zendikar Rising Modal Double Faced cards).
+        string forcetype = "";
+        if(splitType.size() && splitType[1].size())
+        {
+            forcetype = splitType[1];
+        }
         bool transmode = card->getdoubleFaced() == "kamiflip"?true:false;
-        MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats,transmode);
+        MTGAbility * a = NEW AAFlip(observer, id, card, target, flipStats, transmode, false, forcetype);
         return a;
     }
 

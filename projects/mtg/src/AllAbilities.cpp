@@ -2999,6 +2999,8 @@ int AAFizzler::resolve()
         sCard = sTarget->source;
     if (!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
         return 0;
+    if (sCard->has(Constants::NOFIZZLEALTERNATIVE) && sCard->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE]) // No fizzle if paid with alternative cost (es. Zendikar Rising Modal Double Faced cards).
+        return 0;
     if (source->alias == 111057 && sTarget)//Draining Whelk
     {
         for (int j = sTarget->cost->getConvertedCost(); j > 0; j--)
@@ -3683,8 +3685,8 @@ AAMeld * AAMeld::clone() const
 }
 
 // flip a card
-AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy) :
-InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy)
+AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy, string forcetype) :
+InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy),forcetype(forcetype)
 {
     target = _target;
 }
@@ -3712,6 +3714,13 @@ int AAFlip::resolve()
 
         while (_target->next)
             _target = _target->next; 
+        
+        if(forcetype != "" && _target) // Added to flip instants and sorceries as permanents (es. Zendikar Rising Modal Double Faced cards).
+        {
+            _target = _target->controller()->game->putInZone(_target,_target->currentZone,_target->controller()->game->battlefield, false);
+            source->addType(forcetype);
+            source->controller()->game->battlefield->cardsSeenThisTurn.push_back(source);
+        }
 
         AbilityFactory af(game);
         _target->isFlipped = true;
