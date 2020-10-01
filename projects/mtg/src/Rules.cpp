@@ -380,8 +380,8 @@ Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
     tempDeck->addRandomCards(1, 0, 0, 'R', "creature", colors, nbcolors);
     tempDeck->addRandomCards(1, 0, 0, 'M', "creature", colors, nbcolors);
     tempDeck->addRandomCards(3, 0, 0, -1, "enchantment", colors, nbcolors);
-	tempDeck->addRandomCards(3, 0, 0, -1, "instant", colors, nbcolors);
-	tempDeck->addRandomCards(3, 0, 0, -1, "sorcery", colors, nbcolors);
+    tempDeck->addRandomCards(3, 0, 0, -1, "instant", colors, nbcolors);
+    tempDeck->addRandomCards(3, 0, 0, -1, "sorcery", colors, nbcolors);
     tempDeck->addRandomCards(4, 0, 0, -1, "artifact", colors, nbcolors);
     tempDeck->addRandomCards(1, 0, 0, -1, "planeswalker", colors, nbcolors);
 
@@ -426,7 +426,7 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
     string lands[] = { "land", "forest", "island", "mountain", "swamp", "plains" };
 
     const char* const multicolorTribes[] = { "Ally", "Construct", "Drone", "Eldrazi", "Elemental", "Golem", "Human", "Myr",
-		  "Sliver", "Spellshaper", "Spirit", "Wizard" };
+          "Sliver", "Spellshaper", "Spirit", "Wizard" };
     const char* const whiteTribes[] = { "Angel", "Archer", "Bird", "Cat", "Cleric", "Griffin", "Kithkin", "Knight", "Kor", "Monk", "Rebel", "Samurai", "Scout", "Soldier", "Spirit" };
     const char* const blueTribes[] = { "Artificer", "Bird", "Drake", "Faerie", "Illusion", "Merfolk", "Mutant", "Nightmare", "Pirate", "Shapeshifter", "Sphinx", "Spirit", "Vedalken", "Wizard" };
     const char* const blackTribes[] = { "Assassin", "Cleric", "Demon", "Faerie", "Horror", "Insect", "Knight", "Nightmare", "Orc", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Spirit", "Vampire", "Wizard", "Zombie" };

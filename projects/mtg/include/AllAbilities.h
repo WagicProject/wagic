@@ -1044,15 +1044,22 @@ private:
                 if (card->controller()->game->inPlay->cards[j]->hasType("Cleric") && !found_cleric){
                     intValue += 1;
                     found_cleric = true;
-                } else if (card->controller()->game->inPlay->cards[j]->hasType("Rogue") && !found_rogue){
+                    continue;
+                }
+                if (card->controller()->game->inPlay->cards[j]->hasType("Rogue") && !found_rogue){
                     intValue += 1;
                     found_rogue = true;
-                } else if (card->controller()->game->inPlay->cards[j]->hasType("Wizard") && !found_wizard){
+                    continue;
+                }
+                if (card->controller()->game->inPlay->cards[j]->hasType("Wizard") && !found_wizard){
                     intValue += 1;
                     found_wizard = true;
-                } else if (card->controller()->game->inPlay->cards[j]->hasType("Warrior") && !found_warrior){
+                    continue;
+                }
+                if (card->controller()->game->inPlay->cards[j]->hasType("Warrior") && !found_warrior){
                     intValue += 1;
                     found_warrior = true;
+                    continue;
                 }
             }
         }
