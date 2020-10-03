@@ -1484,8 +1484,32 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     {
                         cd.unsecureSetTapped(1);
                     }
-                    //Token
                 }
+                //Has been kicked
+                else if (attribute.find("kicked") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetKicked(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetKicked(1);
+                    }
+                }
+                //Has kicker cost
+                else if (attribute.find("haskicker") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasKickerCost(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasKickerCost(1);
+                    }
+                }
+                //Token
                 else if (attribute.find("token") != string::npos)
                 {
                     if (minus)
@@ -1496,8 +1520,8 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     {
                         cd.isToken = 1;
                     }
-                    //put in its zone this turn
                 }
+                //put in its zone this turn
                 else if (attribute.find("fresh") != string::npos)
                 {
                     if (minus)

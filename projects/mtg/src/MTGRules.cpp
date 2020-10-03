@@ -483,10 +483,11 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     int payResult = player->getManaPool()->pay(card->getManaCost());
-    if (card->getManaCost()->getKicker() && (OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
+    if (card->getManaCost()->getKicker() && (card->kicked || OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
     {
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
         withKickerCost->add(withKickerCost->getKicker());
+        card->kicked = 0;
         if (card->getManaCost()->getKicker()->isMulti)
         {
             while(previousManaPool->canAfford(withKickerCost))
@@ -497,11 +498,14 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             for(int i = 0;i < card->kicked;i++)
                 player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         else if (previousManaPool->canAfford(withKickerCost))
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
+            card->kicked = 1;
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         delete withKickerCost;
     }
@@ -633,6 +637,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     {
         if (!game->targetListIsSet(card))
         {
+            card->kicked = 1;
             return 0;
         }
     }
@@ -649,6 +654,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     {  
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
         withKickerCost->add(withKickerCost->getKicker());
+        card->kicked = 0;
         if (card->getManaCost()->getKicker()->isMulti)
         {
             while(previousManaPool->canAfford(withKickerCost))
@@ -659,11 +665,14 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
             for(int i = 0;i < card->kicked;i++)
                 player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         else if (previousManaPool->canAfford(withKickerCost))
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
+            card->kicked = 1;
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         delete withKickerCost;
     }
@@ -722,7 +731,6 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
             copy->castX = copy->X;
         }
     }
-
     return 1;
 }
 

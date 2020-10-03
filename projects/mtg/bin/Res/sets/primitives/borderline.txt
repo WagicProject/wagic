@@ -29482,9 +29482,9 @@ type=Instant
 [/card]
 [card]
 name=Prohibit
-other={3}{U} name(Kicker)
-auto=ifnot paid(alternative) then target(*[manacost<=2]|stack) fizzle
-auto=if paid(alternative) then target(*[manacost<=4]|stack) fizzle
+kicker={2}
+auto=ifnot paid(kicker) then target(*[manacost<=2]|stack) fizzle
+auto=if paid(kicker) then target(*[manacost<=4]|stack) fizzle
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Counter target spell if its converted mana cost is 2 or less. If Prohibit was kicked, counter that spell if its converted mana cost is 4 or less instead.
 mana={1}{U}
 type=Instant

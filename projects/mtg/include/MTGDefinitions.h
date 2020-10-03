@@ -286,7 +286,8 @@ class Constants
       MENTOR = 160,
       PROWESS = 161,
       NOFIZZLEALTERNATIVE = 162,
-      NB_BASIC_ABILITIES = 163,
+      HASOTHERKICKER = 163,
+      NB_BASIC_ABILITIES = 164,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
