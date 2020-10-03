@@ -20,6 +20,7 @@ CardDescriptor::CardDescriptor()
     convertedManacost = -1;
     zposComparisonMode = COMPARISON_NONE;
     zposition = -1;
+    hasKickerCost = 0;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
@@ -48,6 +49,16 @@ int CardDescriptor::init()
     SAFE_DELETE(counters);
     SAFE_DELETE(previous);
     return result;
+}
+
+void CardDescriptor::unsecureSetKicked(int k)
+{
+    kicked = k;
+}
+
+void CardDescriptor::unsecureSetHasKickerCost(int k)
+{
+    hasKickerCost = k;
 }
 
 void CardDescriptor::unsecureSetTapped(int i)
@@ -220,6 +231,15 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if (excludedSet.any())
         return NULL;
 
+    if ((kicked == -1 && card->kicked) || (kicked == 1 && !card->kicked))
+    {
+        match = NULL;
+    }
+
+    if ((hasKickerCost == -1 && card->getManaCost()->getKicker()) || (hasKickerCost == 1 && !card->getManaCost()->getKicker()))
+    {
+        match = NULL;
+    }
 
     if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped()))
     {

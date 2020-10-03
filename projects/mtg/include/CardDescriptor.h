@@ -41,9 +41,12 @@ class CardDescriptor: public MTGCardInstance
   int convertedManacost; // might fit better into MTGCardInstance?
   int zposComparisonMode;
   int zposition;
+  int hasKickerCost;
   int anyCounter;
   int init();
   CardDescriptor();
+  void unsecureSetKicked(int i);
+  void unsecureSetHasKickerCost(int i);
   void unsecureSetTapped(int i);
   void unsecuresetfresh(int k);
   void unsecuresetrecent(int j);
