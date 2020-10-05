@@ -169,12 +169,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Aerial Formation
-text=Strive — Aerial Formation costs {2}{U} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain flying until end of turn.
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Aerial Toastmaster
 text=Flying -- {3}{W}, Sacrifice another artifact: Aerial Toastmaster assembles a Contraption. (Put the top card of your Contraption deck face up onto one of your sprockets.)
 mana={3}{W}
@@ -229,12 +223,6 @@ type=Creature
 subtype=Cat Soldier
 power=3
 toughness=3
-[/card]
-[card]
-name=Ajani's Presence
-text=Strive — Ajani's Presence costs {2}{W} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain indestructible until end of turn. (Damage and effects that say "destroy" don't destroy them.)
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Akki Lavarunner
@@ -1186,12 +1174,6 @@ type=Creature
 subtype=Bat
 power=2
 toughness=2
-[/card]
-[card]
-name=Blinding Flare
-text=Strive — Blinding Flare costs {R} more to cast for each target beyond the first. -- Any number of target creatures can't block this turn.
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Blood Feud
@@ -2423,12 +2405,6 @@ name=Collective Voyage
 text=Join forces — Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
 mana={G}
 type=Sorcery
-[/card]
-[card]
-name=Colossal Heroics
-text=Strive — Colossal Heroics costs {1}{G} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+2 until end of turn. Untap those creatures.
-mana={2}{G}
-type=Instant
 [/card]
 [card]
 name=Combustible Gearhulk
@@ -12272,12 +12248,6 @@ toughness=5
 name=Signal the Clans
 text=Search your library for three creature cards and reveal them. If you reveal three cards with different names, choose one of them at random and put that card into your hand. Shuffle the rest into your library.
 mana={R}{G}
-type=Instant
-[/card]
-[card]
-name=Silence the Believers
-text=Strive — Silence the Believers costs {2}{B} more to cast for each target beyond the first. -- Exile any number of target creatures and all Auras attached to them.
-mana={2}{B}{B}
 type=Instant
 [/card]
 [card]
