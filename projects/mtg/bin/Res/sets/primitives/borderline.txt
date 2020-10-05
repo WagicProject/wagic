@@ -2638,8 +2638,8 @@ toughness=2
 [/card]
 [card]
 name=Banish into Fable
-auto=if casted(this) restriction(type(artifact|myBattlefield)~morethan~0) then copy(Banish into Fable)
-auto=if casted(this) restriction(type(enchantment|myBattlefield)~morethan~0) then copy(Banish into Fable)
+auto=if casted(this) restriction{type(artifact|myBattlefield)~morethan~0} then copy(Banish into Fable)
+auto=if casted(this) restriction{type(enchantment|myBattlefield)~morethan~0} then copy(Banish into Fable)
 auto=moveTo(ownerhand) target(*[-land]) && token(Knight,creature Knight,2/2,white,vigilance) controller
 text=When you cast this spell from your hand, copy it if you control an artifact, then copy it if you control an enchantment. You may choose new targets for the copies. -- Return target nonland permanent to its owner's hand. You create a 2/2 white Knight creature token with vigilance.
 mana={4}{W}{U}
@@ -7169,7 +7169,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Combat Celebrant
-auto=@exerted(this) restriction(once):untap all(other creature|mybattlefield) && nextphasealter(add,combatphases,controller,after<combatends>) oneshot
+auto=@exerted(this) restriction{once}:untap all(other creature|mybattlefield) && nextphasealter(add,combatphases,controller,after<combatends>) oneshot
 auto=@combat(attacking) source(this):may exert
 text=If Combat Celebrant hasn't been exerted this turn, you may exert it as it attacks. When you do, untap all other creatures you control and after this phase, there is an additional combat phase. (An exerted creature won't untap during your next untap step.)
 mana={2}{R}
@@ -8411,7 +8411,7 @@ subtype=Aura Curse
 [card]
 name=Curse of Bounty
 target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction(once):untap all(*[-land]|myBattlefield)
+auto=@combat(attacking) source(creature|myBattlefield) restriction{once}:untap all(*[-land]|myBattlefield)
 text=Enchant player -- Whenever enchanted player is attacked, untap all nonland permanents you control. Each opponent attacking that player untaps all nonland permanents they control.
 mana={1}{G}
 type=Enchantment
@@ -8420,7 +8420,7 @@ subtype=Aura Curse
 [card]
 name=Curse of Disturbance
 target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction(once):create(zombie:creature zombie:2/2:black)
+auto=@combat(attacking) source(creature|myBattlefield) restriction{once}:create(zombie:creature zombie:2/2:black)
 text=Enchant player -- Whenever enchanted player is attacked, create a 2/2 black Zombie creature token. Each opponent attacking that player does the same.
 mana={2}{B}
 type=Enchantment
@@ -8441,7 +8441,7 @@ subtype=Aura Curse
 [card]
 name=Curse of Opulence
 target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction(once):token(435451)
+auto=@combat(attacking) source(creature|myBattlefield) restriction{once}:token(435451)
 text=Enchant player -- Whenever enchanted player is attacked, create a colorless artifact token named Gold. It has "Sacrifice this artifact: Add one mana of any color." Each opponent attacking that player does the same.
 mana={R}
 type=Enchantment
@@ -8450,7 +8450,7 @@ subtype=Aura Curse
 [card]
 name=Curse of Verbosity
 target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction(once):draw:1
+auto=@combat(attacking) source(creature|myBattlefield) restriction{once}:draw:1
 text=Enchant player -- Whenever enchanted player is attacked, you draw a card. Each opponent attacking that player does the same.
 mana={2}{U}
 type=Enchantment
@@ -8459,7 +8459,7 @@ subtype=Aura Curse
 [card]
 name=Curse of Vitality
 target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction(once):life:2
+auto=@combat(attacking) source(creature|myBattlefield)restriction{once}:life:2
 text=Enchant player -- Whenever enchanted player is attacked, you gain 2 life. Each opponent attacking that player does the same.
 mana={2}{W}
 type=Enchantment
@@ -15997,7 +15997,7 @@ toughness=3
 [card]
 name=Glyph Keeper
 abilities=flying
-auto=@targeted(this) restriction(once):all(trigger[from]) fizzle
+auto=@targeted(this) restriction{once}:all(trigger[from]) fizzle
 autograveyard={5}{U}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
 text=Flying -- Whenever Glyph Keeper becomes the target of a spell or ability for the first time each turn, counter that spell or ability. -- Embalm {5}{U}{U} ({5}{U}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Sphinx with no mana cost. Embalm only as a sorcery.)
 mana={3}{U}{U}
