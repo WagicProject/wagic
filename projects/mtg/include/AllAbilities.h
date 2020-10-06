@@ -655,10 +655,6 @@ private:
             if(card->playerTarget)
                 intValue = card->playerTarget->curses.size();
         }
-        else if (s == "oplifetotal")
-        {
-            intValue = target->controller()->opponent()->life;
-        }
         else if (s == "lifetotal")
         {
             intValue = target->controller()->life;
@@ -1023,7 +1019,7 @@ private:
                     intValue += card->controller()->game->inPlay->cards[j]->getCurrentPower();
             }
         }
-        else if (s == "toughnesstotalinplay")//Count Total toughness of Creatures you control... Formidable
+        else if (s == "toughnesstotalinplay")//Count Total toughness of Creatures you control...
         {
             intValue = 0;
             for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)

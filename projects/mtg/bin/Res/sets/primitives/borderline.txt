@@ -1661,6 +1661,7 @@ toughness=2
 [card]
 name=Arcum's Astrolabe
 other={i}
+restriction=type(*|myHand)~morethan~9999
 auto=draw:1 controller
 auto={1}{T}:Add{W}
 auto={1}{T}:Add{U}
@@ -1668,7 +1669,7 @@ auto={1}{T}:Add{B}
 auto={1}{T}:Add{R}
 auto={1}{T}:Add{G}
 text=(Snow can be paid with one mana from a snow permanent.) -- When Arcum's Astrolabe enters the battlefield, draw a card. -- {1}, {T}: Add one mana of any color.
-mana={9999}
+mana={1}
 type=Snow Artifact
 [/card]
 [card]
@@ -19154,8 +19155,9 @@ toughness=4
 [card]
 name=Icehide Golem
 other={i}
+restriction=type(*|myHand)~morethan~9999
 text=(Snow can be paid with one mana from a snow permanent.)
-mana={9999}
+mana={1}
 type=Snow Artifact Creature
 subtype=Golem
 power=2
@@ -39160,9 +39162,9 @@ type=Sorcery
 [/card]
 [card]
 name=Subtle Strike
-auto=choice name(Target creature gets -1/-1 until...) target(creature) -1/-1
-auto=choice name(Put a +1/+1 counter on target...) counter(1/1,1) target(creature)
-auto=choice name(Put a +1/+1 counter and -1/-1...) counter(1/1,1) target(creature) && target(creature) -1/-1
+auto=choice name(Target creature gets -1/-1) target(creature) -1/-1 ueot
+auto=choice name(Put a +1/+1 counter) counter(1/1,1) target(creature)
+auto=choice name(Choose both) target(creature) -1/-1 ueot && ability$!name(Put a +1/+1 counter) name(Put a +1/+1 counter) counter(1/1,1) target(creature)!$ controller
 text=Choose one or both — -- • Target creature gets -1/-1 until end of turn. -- • Put a +1/+1 counter on target creature.
 mana={1}{B}
 type=Instant
