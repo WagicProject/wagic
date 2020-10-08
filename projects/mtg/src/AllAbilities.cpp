@@ -3717,9 +3717,11 @@ int AAFlip::resolve()
         
         if(forcetype != "" && _target) // Added to flip instants and sorceries as permanents (es. Zendikar Rising Modal Double Faced cards).
         {
-            _target = _target->controller()->game->putInZone(_target,_target->currentZone,_target->controller()->game->battlefield, false);
+            _target = _target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->battlefield, false);
             source->addType(forcetype);
             source->controller()->game->battlefield->cardsSeenThisTurn.push_back(source);
+            WEvent * e = NEW WEventZoneChange(_target, _target->currentZone, _target->controller()->game->battlefield, true);
+            game->receiveEvent(e);
         }
 
         AbilityFactory af(game);

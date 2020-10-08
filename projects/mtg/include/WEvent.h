@@ -41,7 +41,8 @@ struct WEventZoneChange : public WEvent {
   MTGCardInstance * card;
   MTGGameZone * from;
   MTGGameZone * to;
-  WEventZoneChange(MTGCardInstance * card, MTGGameZone * from, MTGGameZone *to);
+  bool forcetrigger; //Added a force trigger for modal double faced card (eg. Zendikar Rising)
+  WEventZoneChange(MTGCardInstance * card, MTGGameZone * from, MTGGameZone *to, bool forcetrigger = false);
   virtual ~WEventZoneChange() {};
   virtual std::ostream& toString(std::ostream& out) const;
   virtual Targetable * getTarget(int target);

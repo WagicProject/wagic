@@ -236,7 +236,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         match = NULL;
     }
 
-    if ((hasKickerCost == -1 && card->getManaCost()->getKicker()) || (hasKickerCost == 1 && !card->getManaCost()->getKicker()))
+    if ((hasKickerCost == -1 && (card->getManaCost()->getKicker() || card->basicAbilities[Constants::HASOTHERKICKER])) || (hasKickerCost == 1 && (!card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASOTHERKICKER])))
     {
         match = NULL;
     }

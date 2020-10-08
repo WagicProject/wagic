@@ -1039,18 +1039,30 @@ subtype=Huatli
 [card]
 name=Huatli, Warrior Poet
 auto=counter(0/0,3,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Gain life equal to highest power) target(creature|mybattlefield) life:power:highest:*:mybattlefield controller
+auto=@counterremoved(0/0,1,Loyalty) from(this) restriction{myturnonly}:name(Deals 1 damage and can't block) target(creature|opponentBattlefield) transforms((,newability[damage:1],newability[cantblock])) ueot
+auto=@movedTo(this|myGraveyard) from(myBattlefield) restriction{myturnonly}:name(Deals 1 damage and can't block) target(creature|opponentBattlefield) transforms((,newability[damage:1],newability[cantblock])) ueot
+auto={C(0/0,2,Loyalty)}:name(+2: Gain life equal to highest power) life:power:highest:*:mybattlefield controller
 auto={C(0/0,0,Loyalty)}:name(+0: Create a 3/3 Dinosaur) token(Dinosaur,Creature Dinosaur,3/3,green,trample)
-auto={C(0/0,-1,Loyalty)}:name(-1: Deals 1 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-4,Loyalty)}:name(-4: Deals 4 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-5,Loyalty)}:name(-5: Deals 5 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-6,Loyalty)}:name(-6: Deals 6 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-7,Loyalty)}:name(-7: Deals 7 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-8,Loyalty)}:name(-8: Deals 8 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-9,Loyalty)}:name(-9: Deals 9 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
-auto={C(0/0,-10,Loyalty)}:name(-10: Deals 10 damage divided and can't block) ability$!name(Choose one) choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot _ choice name(Damage creature) damage:1 target(creature|opponentbattlefield) && cantblock ueot!$ controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Deals 1 damage divided and can't block) donothing
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damage divided and can't block) donothing
+auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damage divided and can't block) donothing
+auto={C(0/0,-4,Loyalty)}:name(-4: Deals 4 damage divided and can't block) donothing
+auto={C(0/0,-5,Loyalty)}:name(-5: Deals 5 damage divided and can't block) donothing
+auto={C(0/0,-6,Loyalty)}:name(-6: Deals 6 damage divided and can't block) donothing
+auto={C(0/0,-7,Loyalty)}:name(-7: Deals 7 damage divided and can't block) donothing
+auto={C(0/0,-8,Loyalty)}:name(-8: Deals 8 damage divided and can't block) donothing
+auto={C(0/0,-9,Loyalty)}:name(-9: Deals 9 damage divided and can't block) donothing
+auto={C(0/0,-10,Loyalty)}:name(-10: Deals 10 damage divided and can't block) donothing
+auto={C(0/0,-11,Loyalty)}:name(-11: Deals 11 damage divided and can't block) donothing
+auto={C(0/0,-12,Loyalty)}:name(-12: Deals 12 damage divided and can't block) donothing
+auto={C(0/0,-13,Loyalty)}:name(-13: Deals 13 damage divided and can't block) donothing
+auto={C(0/0,-14,Loyalty)}:name(-14: Deals 14 damage divided and can't block) donothing
+auto={C(0/0,-15,Loyalty)}:name(-15: Deals 15 damage divided and can't block) donothing
+auto={C(0/0,-16,Loyalty)}:name(-16: Deals 16 damage divided and can't block) donothing
+auto={C(0/0,-17,Loyalty)}:name(-17: Deals 17 damage divided and can't block) donothing
+auto={C(0/0,-18,Loyalty)}:name(-18: Deals 18 damage divided and can't block) donothing
+auto={C(0/0,-19,Loyalty)}:name(-19: Deals 19 damage divided and can't block) donothing
+auto={C(0/0,-20,Loyalty)}:name(-20: Deals 20 damage divided and can't block) donothing
 text=+2: You gain life equal to the greatest power among creatures you control. -- 0: Create a 3/3 green Dinosaur creature token with trample. -- -X: Huatli, Warrior Poet deals X damage divided as you choose among any number of target creatures. Creatures dealt damage this way can't block this turn.
 mana={3}{R}{W}
 type=Legendary Planeswalker
@@ -1120,6 +1132,40 @@ auto={C(0/0,-7,Loyalty)}:name(-7: Target players draw twenty cards) target(<anya
 text=+1: Draw a card. Target player puts the top card of his or her library into his or her graveyard. -- 0: Target player puts the top ten cards of his or her library into his or her graveyard. -- -7: Any number of target players each draw twenty cards.
 mana={3}{U}{U}
 type=Legendary Planeswalker
+subtype=Jace
+[/card]
+[card]
+name=Jace, Mirror Mage
+kicker={2}
+auto=counter(0/0,1,loyalty)
+auto=if paid(kicker) then clone
+auto=if casted(this) then counter(0/0,3,loyalty)
+auto=if casted(this) then becomes(Legendary) all(this)
+auto={C(0/0,1,Loyalty)}:name(+1: Scry 2) scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 restriction{type(*[manacost=0;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-1,loyalty) restriction{type(*[manacost=1;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-2,loyalty) restriction{type(*[manacost=2;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-3,loyalty) restriction{type(*[manacost=3;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-4,loyalty) restriction{type(*[manacost=4;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-5,loyalty) restriction{type(*[manacost=5;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-6,loyalty) restriction{type(*[manacost=6;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-7,loyalty) restriction{type(*[manacost=7;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-8,loyalty) restriction{type(*[manacost=8;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-9,loyalty) restriction{type(*[manacost=9;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-10,loyalty) restriction{type(*[manacost=10;zpos=1]|mylibrary)~morethan~0
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-11,loyalty) restriction{type(*[manacost=11;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-12,loyalty) restriction{type(*[manacost=12;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-13,loyalty) restriction{type(*[manacost=13;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-14,loyalty) restriction{type(*[manacost=14;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-15,loyalty) restriction{type(*[manacost=15;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-16,loyalty) restriction{type(*[manacost=16;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-17,loyalty) restriction{type(*[manacost=17;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-18,loyalty) restriction{type(*[manacost=18;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-19,loyalty) restriction{type(*[manacost=19;zpos=1]|mylibrary)~morethan~0}
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-20,loyalty) restriction{type(*[manacost=20;zpos=1]|mylibrary)~morethan~0}
+text=Kicker {2} -- When Jace, Mirror Mage enters the battlefield, if Jace was kicked, create a token that's a copy of Jace, Mirror Mage except it's not legendary and its starting loyalty is 1. -- +1: Scry 2. -- 0: Draw a card and reveal it. Remove a number of loyalty counters equal to that card's converted mana cost from Jace, Mirror Mage.
+mana={1}{U}{U}
+type=Planeswalker
 subtype=Jace
 [/card]
 [card]

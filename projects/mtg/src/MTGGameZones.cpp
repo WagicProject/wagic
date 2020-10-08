@@ -569,13 +569,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         if(shufflelibrary)
             copy->owner->game->library->shuffle();//shouldnt we only ever do this if you clicked close on your library gui??????
 
-    WEvent * e = NEW WEventZoneChange(copy, from, to);
-    g->receiveEvent(e);
+        WEvent * e = NEW WEventZoneChange(copy, from, to);
+        g->receiveEvent(e);
     }
     if(inplaytoinplay)
     {
-    WEvent * ep = NEW WEventCardControllerChange(copy);
-    g->receiveEvent(ep);
+        WEvent * ep = NEW WEventCardControllerChange(copy);
+        g->receiveEvent(ep);
     }
     return ret;
 

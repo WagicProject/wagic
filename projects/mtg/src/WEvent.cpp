@@ -12,8 +12,8 @@ WEvent::WEvent(int type) :
 {
 }
 
-WEventZoneChange::WEventZoneChange(MTGCardInstance * card, MTGGameZone * from, MTGGameZone *to) :
-    WEvent(CHANGE_ZONE), card(card), from(from), to(to)
+WEventZoneChange::WEventZoneChange(MTGCardInstance * card, MTGGameZone * from, MTGGameZone *to, bool forcetrigger) :
+    WEvent(CHANGE_ZONE), card(card), from(from), to(to), forcetrigger(forcetrigger) //Added a force trigger for modal double faced card (eg. Zendikar Rising)
 {
 }
 

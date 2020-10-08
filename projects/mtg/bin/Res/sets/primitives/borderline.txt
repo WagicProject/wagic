@@ -11228,6 +11228,13 @@ power=2
 toughness=5
 [/card]
 [card]
+name=Dwarven Catapult
+auto=thisforeach(X) ability$!name(Choose a creature) damage:1 target(creature|opponentBattlefield)!$ controller
+text=Dwarven Catapult deals X damage divided evenly, rounded down, among all creatures target opponent controls.
+mana={X}{R}
+type=Instant
+[/card]
+[card]
 name=Dwarven Driller
 auto={T}:name(destroy) target(land) transforms((,newability[pay[[{L:2}]] name(pay 2 life) donothing?destroy])) forever
 text={T}: Destroy target land unless its controller has Dwarven Driller deal 2 damage to him or her.
@@ -13652,6 +13659,32 @@ auto=choice {1}{R}:damage:1 target(creature,player,planeswalker) && damage:1 tar
 auto=choice {1}{U}:tap target(*|battlefield) && draw:1 controller
 text=Fire deals 2 damage divided as you choose among one or two targets. -- Tap target permanent. Draw a card.
 mana={0}
+type=Instant
+[/card]
+[card]
+name=Fire Covenant
+auto=choice name(Pay 1 Life) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 2 Life) thisforeach(variable{2}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 3 Life) thisforeach(variable{3}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 4 Life) thisforeach(variable{4}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 5 Life) thisforeach(variable{5}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 6 Life) thisforeach(variable{6}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 7 Life) thisforeach(variable{7}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 8 Life) thisforeach(variable{8}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 9 Life) thisforeach(variable{9}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 10 Life) thisforeach(variable{10}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 11 Life) thisforeach(variable{11}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 12 Life) thisforeach(variable{12}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 13 Life) thisforeach(variable{13}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 14 Life) thisforeach(variable{14}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 15 Life) thisforeach(variable{15}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 16 Life) thisforeach(variable{16}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 17 Life) thisforeach(variable{17}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 18 Life) thisforeach(variable{18}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 19 Life) thisforeach(variable{19}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+auto=choice name(Pay 20 Life) thisforeach(variable{20}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && life:-1 controller
+text=As an additional cost to cast Fire Covenant, pay X life. -- Fire Covenant deals X damage divided as you choose among any number of target creatures.
+mana={1}{B}{R}
 type=Instant
 [/card]
 [card]
@@ -17289,6 +17322,13 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Hail of Arrows
+auto=thisforeach(X) ability$!name(Choose attacking creature) damage:1 target(creature[attacking])!$ controller
+text=Hail of Arrows deals X damage divided as you choose among any number of target attacking creatures.
+mana={X}{W}
+type=Instant
+[/card]
+[card]
 name=Haldan, Avid Arcanist
 abilities=hiddenface,canplayfromexile
 aicode=activate moveTo(myhand) target(Pako, Arcane Retriever|mylibrary)
@@ -19823,6 +19863,32 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Infernal Harvest
+auto=if type(swamp|myBattlefield)~morethan~0 then choice name(Move 1 Swamp) name(Move 1 Swamp) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~1 then choice name(Move 2 Swamps) name(Move 2 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<2>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~2 then choice name(Move 3 Swamps) name(Move 3 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<3>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~3 then choice name(Move 4 Swamps) name(Move 4 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<4>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~4 then choice name(Move 5 Swamps) name(Move 5 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<5>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~5 then choice name(Move 6 Swamps) name(Move 6 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<6>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~6 then choice name(Move 7 Swamps) name(Move 7 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<7>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~7 then choice name(Move 8 Swamps) name(Move 8 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<8>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~8 then choice name(Move 9 Swamps) name(Move 9 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<9>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~9 then choice name(Move 10 Swamps) name(Move 10 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<10>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~10 then choice name(Move 11 Swamps) name(Move 11 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<11>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~11 then choice name(Move 12 Swamps) name(Move 12 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<12>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~12 then choice name(Move 13 Swamps) name(Move 13 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<13>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~13 then choice name(Move 14 Swamps) name(Move 14 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<14>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~14 then choice name(Move 15 Swamps) name(Move 15 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<15>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~15 then choice name(Move 16 Swamps) name(Move 16 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<16>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~16 then choice name(Move 17 Swamps) name(Move 17 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<17>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~17 then choice name(Move 18 Swamps) name(Move 18 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<18>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~19 then choice name(Move 19 Swamps) name(Move 19 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller &&& moveto(ownerhand) target(<19>swamp|myBattlefield)
+auto=if type(swamp|myBattlefield)~morethan~19 then choice name(Move 20 Swamps) name(Move 20 Swamps) ability$!name(Choose a creature) damage:1 target(creature)!$ controller && moveto(ownerhand) target(<20>swamp|myBattlefield)
+text=As an additional cost to cast Infernal Harvest, return X Swamps you control to their owner's hand. -- Infernal Harvest deals X damage divided as you choose among any number of target creatures.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Infernal Offering
 auto=ability$!sacrifice notatarget(creature|mybattlefield)!$ controller && draw:2 controller
 auto=ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent && draw:2 opponent
@@ -20612,6 +20678,13 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Jaws of Stone
+auto=foreach(mountain|myBattlefield) ability$!name(Choose target) choice name(Damage to a creature) damage:1 target(creature) _ choice name(Damage to a player) damage:1 target(player)!$ controller
+text=Jaws of Stone deals X damage divided as you choose among any number of target creatures and/or players, where X is the number of Mountains you control as you cast Jaws of Stone.
+mana={5}{R}
+type=Sorcery
 [/card]
 [card]
 name=Jaya's Greeting
@@ -23662,6 +23735,14 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Magmatic Core
+auto=cumulativeupcost[{1}] sacrifice
+auto=@each my endofturn:thisforeach(counter{0/0.1.Age}) ability$!name(Choose creature) choice name(Damage to a creature) damage:1 target(creature)!$ controller
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, Magmatic Core deals X damage divided as you choose among any number of target creatures, where X is the number of age counters on it.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Magmatic Sinkhole
 other={delve} name(Delve)
 auto=damage:2 target(planeswalker,creature)
@@ -25362,6 +25443,32 @@ target=player
 auto=ability$!name(discard cards) target(<type:*:myhandminus1minusend>*|myhand) reject!$ targetedplayer
 text=Target player chooses a card in his or her hand and discards the rest.
 mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Monstrous Onslaught
+auto=if compare(power:highest:*:mybattlefield)~equalto~1 then ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~2 then thisforeach(variable{2}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~3 then thisforeach(variable{3}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~4 then thisforeach(variable{4}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~5 then thisforeach(variable{5}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~6 then thisforeach(variable{6}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~7 then thisforeach(variable{7}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~8 then thisforeach(variable{8}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~9 then thisforeach(variable{9}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~10 then thisforeach(variable{10}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~11 then thisforeach(variable{11}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~12 then thisforeach(variable{12}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~13 then thisforeach(variable{13}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~14 then thisforeach(variable{14}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~15 then thisforeach(variable{15}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~16 then thisforeach(variable{16}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~17 then thisforeach(variable{17}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~18 then thisforeach(variable{18}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~equalto~19 then thisforeach(variable{19}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+auto=if compare(power:highest:*:mybattlefield)~morethan~19 then thisforeach(variable{20}) ability$!name(Choose a creature) damage:1 target(creature)!$ controller
+text=Monstrous Onslaught deals X damage divided as you choose among any number of target creatures, where X is the greatest power among creatures you control as you cast Monstrous Onslaught.
+mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
@@ -31035,7 +31142,7 @@ toughness=5
 [card]
 name=Ravenous Gigantotherium
 auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,3) all(this)
-auto=damage:damage:<upto:storedpower> target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
+auto=target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
 text=Devour 3 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with three times that many +1/+1 counters on it.) -- When Ravenous Gigantotherium enters the battlefield, it deals X damage divided as you choose among up to X target creatures, where X is its power. Each of those creatures deals damage equal to its power to Ravenous Gigantotherium.
 mana={5}{G}{G}
 type=Creature
@@ -32570,6 +32677,13 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Rock Slide
+auto=thisforeach(X) ability$!name(Choose creature) choice name(Damage to a creature) damage:1 target(creature[attacking;blocking;-flying])!$ controller
+text=Rock Slide deals X damage divided as you choose among any number of target attacking or blocking creatures without flying.
+mana={X}{R}
+type=Instant
+[/card]
+[card]
 name=Rofellos's Gift
 auto=target(<upto:type:*[green]:myhand>enchantment|mygraveyard) moveto(myhand)
 text=Reveal any number of green cards in your hand. Return an enchantment card from your graveyard to your hand for each card revealed this way.
@@ -32614,6 +32728,13 @@ auto=target(other creature) -2/-0 ueot
 text=Until end of turn, target creature gets +0/+2 and another target creature gets -2/-0. --
 mana={U}
 type=Instant
+[/card]
+[card]
+name=Rolling Thunder
+auto=thisforeach(X) ability$!name(Choose target) choice name(Damage to a creature) damage:1 target(creature) _ choice name(Damage to a player) damage:1 target(player)!$ controller
+text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
+mana={X}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Root Sliver
@@ -44759,7 +44880,7 @@ type=Sorcery
 [/card]
 [card]
 name=Volcanic Wind
-auto=foreach(creature|mybattlefield) ability$!name(Damage) damage:1 target(creature)!$ controller
+auto=foreach(creature|battlefield) ability$!name(Damage) damage:1 target(creature)!$ controller
 text=Volcanic Wind deals X damage divided as you choose among any number of target creatures, where X is the number of creatures on the battlefield as you cast Volcanic Wind.
 mana={4}{R}{R}
 type=Sorcery
