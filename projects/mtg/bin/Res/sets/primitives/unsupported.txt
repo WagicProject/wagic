@@ -3637,12 +3637,6 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
-name=Dwarven Catapult
-text=Dwarven Catapult deals X damage divided evenly, rounded down, among all creatures target opponent controls.
-mana={X}{R}
-type=Instant
-[/card]
-[card]
 name=Dwarven Sea Clan
 text={T}: Choose target attacking or blocking creature whose controller controls an Island. Dwarven Sea Clan deals 2 damage to that creature at end of combat. Activate this ability only before the end of combat step.
 mana={2}{R}
@@ -4369,12 +4363,6 @@ name=Finders, Keepers
 text=Destroy target creature, then assemble a Contraption. (Put the top card of your Contraption deck face up onto one of your sprockets.)
 mana={5}{B}
 type=Sorcery
-[/card]
-[card]
-name=Fire Covenant
-text=As an additional cost to cast Fire Covenant, pay X life. -- Fire Covenant deals X damage divided as you choose among any number of target creatures.
-mana={1}{B}{R}
-type=Instant
 [/card]
 [card]
 name=Fire Juggler
@@ -5780,12 +5768,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Hail of Arrows
-text=Hail of Arrows deals X damage divided as you choose among any number of target attacking creatures.
-mana={X}{W}
-type=Instant
-[/card]
-[card]
 name=Hakim, Loreweaver
 abilities=flying
 text=Flying -- {U}{U}: Return target Aura card from your graveyard to the battlefield attached to Hakim, Loreweaver. Activate this ability only during your upkeep and only if Hakim isn't enchanted. -- {U}{U}, {T}: Destroy all Auras attached to Hakim.
@@ -6650,12 +6632,6 @@ mana={4}{B}{B}
 type=Enchantment
 [/card]
 [card]
-name=Infernal Harvest
-text=As an additional cost to cast Infernal Harvest, return X Swamps you control to their owner's hand. -- Infernal Harvest deals X damage divided as you choose among any number of target creatures.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Infernal Kirin
 abilities=flying
 text=Flying -- Whenever you cast a Spirit or Arcane spell, target player reveals his or her hand and discards all cards with that spell's converted mana cost.
@@ -6978,12 +6954,6 @@ name=Jamming Device
 text=Whenever you crank Jamming Device, creatures target player controls get -1/-1 until end of turn.
 type=Artifact
 subtype=Contraption
-[/card]
-[card]
-name=Jaws of Stone
-text=Jaws of Stone deals X damage divided as you choose among any number of target creatures and/or players, where X is the number of Mountains you control as you cast Jaws of Stone.
-mana={5}{R}
-type=Sorcery
 [/card]
 [card]
 name=Jegantha, the Wellspring
@@ -8188,12 +8158,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Magmatic Core
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, Magmatic Core deals X damage divided as you choose among any number of target creatures, where X is the number of age counters on it.
-mana={2}{R}{R}
-type=Enchantment
-[/card]
-[card]
 name=Magus of the Arena
 text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Those creatures fight each other. (Each deals damage equal to its power to the other.)
 mana={4}{R}{R}
@@ -8913,12 +8877,6 @@ type=Creature
 subtype=Goblin Waiter
 power=1
 toughness=1
-[/card]
-[card]
-name=Monstrous Onslaught
-text=Monstrous Onslaught deals X damage divided as you choose among any number of target creatures, where X is the greatest power among creatures you control as you cast Monstrous Onslaught.
-mana={3}{G}{G}
-type=Sorcery
 [/card]
 [card]
 name=Moonlight Hunt
@@ -11438,12 +11396,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Rock Slide
-text=Rock Slide deals X damage divided as you choose among any number of target attacking or blocking creatures without flying.
-mana={X}{R}
-type=Instant
-[/card]
-[card]
 name=Rocket-Powered Turbo Slug
 text=Super haste (This may attack the turn before you play it. (You may put this card into play from your hand, tapped and attacking, during your declare attackers step. If you do, you lose the game at the end of your next turn unless you pay this card's mana cost during that turn.))
 mana={3}{R}
@@ -11457,12 +11409,6 @@ name=Rod of Spanking
 text={2}, {T}: Rod of Spanking deals 1 damage to target player. Then untap Rod of Spanking unless that player says "Thank you, sir. May I have another?"
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Rolling Thunder
-text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
-mana={X}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Roots of All Evil

@@ -1326,6 +1326,10 @@ public:
             return 0;
         if(isSuspended && !source->suspended)
             return 0;
+        if(e->forcetrigger){ //Added a force trigger for modal double faced card (eg. Zendikar Rising)
+            triggeredTurn = game->turn;
+            return 1;
+        }
         if (!toTcZone->targetsZone(e->to)) return 0;
         if (!toTcCard->canTarget(e->card)) return 0;
         if (fromTcZone && !fromTcZone->targetsZone(e->from)) return 0;
