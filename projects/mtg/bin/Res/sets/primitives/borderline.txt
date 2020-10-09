@@ -42657,7 +42657,7 @@ type=Enchantment
 name=Trove Warden
 abilities=vigilance
 auto=@movedto(land|myBattlefield):moveto(exile) target(*[manacost<=3]|mygraveyard)
-auto=@movedTo(this|graveyard) from(battlefield):moveto(mybattlefield) target(<anyamount>*|myexile)
+auto=@movedTo(this|graveyard) from(battlefield):moveto(ownerbattlefield) target(<anyamount>*[manacost<=3]|myexile)
 text=Vigilance -- Landfall — Whenever a land enters the battlefield under your control, exile target permanent card with converted mana cost 3 or less from your graveyard. -- When Trove Warden dies, put each permanent card exiled with it onto the battlefield under the control of that card's owner.
 mana={2}{W}{W}
 type=Creature
