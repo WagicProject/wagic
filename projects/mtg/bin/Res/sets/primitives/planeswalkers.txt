@@ -1761,6 +1761,18 @@ type=Legendary Planeswalker
 subtype=Nissa
 [/card]
 [card]
+name=Nissa of Shadowed Boughs
+auto=counter(0/0,4,Loyalty)
+auto=_LANDFALL_counter(0/0,1,Loyalty) all(this)
+auto={C(0/0,1,Loyalty)}:name(+1: Untap a land) target(land|myBattlefield) untap
+auto={C(0/0,1,Loyalty)}:name(+1: Untap a land and becomes creature) target(land|myBattlefield) transforms((Creature Elemental,setpower=3,settoughness=3,newability[untap],newability[haste],newability[menace])) ueot
+auto={C(0/0,-5,Loyalty)}:name(-5: May put a creature from hand or graveyard) target(creature[manacost<=type:land:myBattlefield]|myGraveyard,myHand) moveTo(myBattlefield) and!(counter(1/1,2))!
+text=Landfall — Whenever a land enters the battlefield under your control, put a loyalty counter on Nissa of Shadowed Boughs. -- +1: Untap target land you control. You may have it become a 3/3 Elemental creature with haste and menace until end of turn. It's still a land. -- -5: You may put a creature card with converted mana cost less than or equal to the number of lands you control onto the battlefield from your hand or graveyard with two +1/+1 counters on it.
+mana={2}{B}{G}
+type=Legendary Planeswalker
+subtype=Nissa
+[/card]
+[card]
 name=Nissa Revane
 auto=counter(0/0,2,loyalty)
 aicode=activate moveTo(mybattlefield) target(<anyamount>creature[elf]|mylibrary)

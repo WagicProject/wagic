@@ -421,6 +421,15 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (!(copy = from->removeCard(card, doCopy)))
         return NULL; //ERROR
 
+    // Copy all the counters of the original card... (solving the bug on comparison cards with counter before zone changing events)
+    if(card->counters && doCopy && !asCopy && !inplaytoinplay){
+        for (unsigned int i = 0; i < card->counters->counters.size(); i++){
+            Counter * counter = card->counters->counters[i];
+            for(int j = 0; j < counter->nb; j++)
+                copy->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness, true);
+        }
+    }
+
     if (card->miracle)
     {
         copy->miracle = true;
@@ -571,6 +580,15 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
         WEvent * e = NEW WEventZoneChange(copy, from, to);
         g->receiveEvent(e);
+
+        // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing)
+        if(doCopy && copy->counters && copy->counters->mCount > 0){
+            for (unsigned int i = 0; i < copy->counters->counters.size(); i++){
+                Counter * counter = copy->counters->counters[i];
+                for(int j = counter->nb; j > 0; j--)
+                    copy->counters->removeCounter(counter->name.c_str(), counter->power, counter->toughness, true);
+            }
+        }
     }
     if(inplaytoinplay)
     {
