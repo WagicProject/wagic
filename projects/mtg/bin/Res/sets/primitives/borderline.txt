@@ -92,7 +92,7 @@ name=Academy Journeymage
 auto=moveto(ownerHand) target(creature|opponentBattlefield)
 text=This spell costs {1} less to cast if you control a Wizard. -- When Academy Journeymage enters the battlefield, return target creature an opponent controls to its owner's hand.
 other={3}{U} name(reduced by Wizard)
-otherrestriction=type(wizard|mybattlefield)
+otherrestriction=type(wizard|mybattlefield)~morethan~0
 mana={4}{U}
 type=Creature
 subtype=Human Wizard
@@ -11358,7 +11358,7 @@ type=Sorcery
 [card]
 name=Dread Wanderer
 auto=tap
-auto={2}{B}{restriction type(*|myhand)~lessthan~2}:moveto(mybattlefield)
+autograveyard={2}{B}:moveto(mybattlefield) asSorcery restriction{type(*|myhand)~lessthan~2}
 text=Dread Wanderer enters the battlefield tapped. -- {2}{B}: Return Dread Wanderer from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery and only if you have one or fewer cards in hand.
 mana={B}
 type=Creature
@@ -11607,7 +11607,7 @@ type=Sorcery
 [/card]
 [card]
 name=Driven // Despair
-auto=all(creature|mybattlefeild) trample
+auto=all(creature|mybattlefield) trample
 auto=all(creature|mybattlefield) transforms((,newability[@combatdamaged(player) from(this):draw:1])) ueot
 autograveyard={1}{B}{E}:all(creature|mybattlefield) menace && transforms((,newability[@combatdamaged(player) from(this):ability$!target(*|myhand) reject!$ opponent])) ueot assorcery
 text=Until end of turn, creatures you control gain trample and "Whenever this creature deals combat damage to a player, draw a card." -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Until end of turn, creatures you control gain menace and "Whenever this creature deals combat damage to a player, that player discards a card."
@@ -14498,7 +14498,7 @@ toughness=3
 [card]
 name=Fireblade Artist
 abilities=haste
-auto=@each my upkeep:may sacrifice notatarget(creature|mybattlefield) && damage:2 target(opponent)
+auto=@each my upkeep:may sacrifice notatarget(creature|mybattlefield) && ability$!name(Choose one) choice name(Damage opponent) damage:2 target(opponent) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
 text=Haste -- At the beginning of your upkeep, you may sacrifice a creature. When you do, Fireblade Artist deals 2 damage to target opponent or planeswalker.
 mana={B}{R}
 type=Creature
@@ -17018,7 +17018,7 @@ name=Goblin Barrage
 kicker={S(*[artifact;goblin]|mybattlefield)}
 target=creature
 auto=damage:4
-auto=Kicker damae:4 target(player)
+auto=Kicker damage:4 target(player)
 text=Kicker—Sacrifice an artifact or Goblin. (You may sacrifice an artifact or Goblin in addition to any other costs as you cast this spell.) -- Goblin Barrage deals 4 damage to target creature. If this spell was kicked, it also deals 4 damage to target player or planeswalker.
 mana={3}{R}
 type=Sorcery
@@ -18698,7 +18698,7 @@ toughness=4
 [/card]
 [card]
 name=Hazoret's Favor
-auto=@combat(attacking):may name(2/0 && haste) target(creature|mybattlefield) transforms((,newability[2/0],newability[haste],newability[treason])) ueot
+auto=@each my combatbegins:may name(2/0 && haste) target(creature|mybattlefield) transforms((,newability[2/0],newability[haste],newability[treason])) ueot
 text=At the beginning of combat on your turn, you may have target creature you control get +2/+0 and gain haste until end of turn. If you do, sacrifice it at the beginning of the next end step.
 mana={2}{R}
 type=Enchantment
@@ -18780,7 +18780,9 @@ type=Instant
 [/card]
 [card]
 name=Heart-Piercer Manticore
-auto=may sacrifice target(creature|mybattlefield) && dynamicability<!powerstrike!>
+other={2}{R}{R}{S(other creature|mybattlefield)} name(Sacrifice a creature)
+otherrestriction=type(creature|myBattlefield)~morethan~0
+auto=if paid(alternative) then damage:storedpower target(creature,player)
 autograveyard={5}{R}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
 text=When Heart-Piercer Manticore enters the battlefield, you may sacrifice another creature. When you do, Heart-Piercer Manticore deals damage equal to that creature's power to target creature or player. -- Embalm {5}{R} ({5}{R}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Manticore with no mana cost. Embalm only as a sorcery.)
 mana={2}{R}{R}
@@ -19483,7 +19485,7 @@ toughness=6
 [card]
 name=Hooded Blightfang
 abilities=deathtouch
-auto=@combat(attackig) source(creature[deathtouch]|myBattlefield):life:-1 opponent && life:1 controller
+auto=@combat(attacking) source(creature[deathtouch]|myBattlefield):life:-1 opponent && life:1 controller
 auto=@damaged(planeswalker) from(creature[deathtouch]|myBattlefield):all(trigger[to]) destroy
 text=Deathtouch -- Whenever a creature you control with deathtouch attacks, each opponent loses 1 life and you gain 1 life. -- Whenever a creature you control with deathtouch deals damage to a planeswalker, destroy that planeswalker.
 mana={2}{B}
@@ -21182,9 +21184,11 @@ subtype=Aura
 [/card]
 [card]
 name=Insult // Injury
-auto=@damaged(creature,player) from(*|mybattlefield) once:damage:thatmuch all(trigger[to])
-auto=@damaged(creature,player) from(*|mystack) once:damage:thatmuch all(trigger[to])
-autograveyard={2}{R}{E}:damage:2 target(creature) && transforms((,newability[damage:2 controller])) ueot asSorcery
+auto=emblem transforms((,newability[@damaged(creature) from(*[creature;artifact;enchantment;land;planeswalker]|mybattlefield):damage:thatmuch all(trigger[to])])) ueot
+auto=emblem transforms((,newability[@damaged(creature) from(*[instant;sorcery]|myStack):damage:thatmuch all(trigger[to])])) ueot
+auto=emblem transforms((,newability[@damaged(player) from(*[instant;sorcery]|myStack):damage:thatmuch all(trigger[to])])) ueot
+auto=emblem transforms((,newability[@damaged(player) from(*[creature;artifact;enchantment;land;planeswalker]|mybattlefield):damage:thatmuch all(trigger[to])])) ueot
+autograveyard={2}{R}{E}:damage:2 target(player) && ability$!name(Deal 2 damage to target creature) damage:2 target(creature)!$ controller asSorcery
 text=Damage can't be prevented this turn. If a source you control would deal damage this turn, it deals double that damage instead. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Injury deals 2 damage to target creature and 2 damage to target player.
 mana={2}{R}
 type=Sorcery
@@ -22035,7 +22039,7 @@ type=Instant
 name=Kaervek's Torch
 auto=@targeted(this) from(stack): altercost(colorless,+2)
 auto=damage:X target(creature,player,planeswalker)
-text=As long as Kaervek's Torch is on the stack, spells that target it cost {2} more to cast. -- Kaervek's Torch deals X dagame to any target.
+text=As long as Kaervek's Torch is on the stack, spells that target it cost {2} more to cast. -- Kaervek's Torch deals X damage to any target.
 mana={X}{R}
 type=Sorcery
 [/card]
@@ -25238,7 +25242,7 @@ abilities=nofizzle alternative
 other={0} name(Malakir Mire)
 otherrestriction=can play land
 auto=ifnot paid(alternative) then life:-2 controller
-auto=ifnot paid(alternative) then target(creature) transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield)])) ueot
+auto=ifnot paid(alternative) then target(creature) transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield) and!(tap(noevent))!])) ueot
 auto=if paid(alternative) then flip(Malakir Mire) forcetype(land)
 text=Choose target creature. You lose 2 life. Until end of turn, that creature gains "When this creature dies, return it to the battlefield tapped under its owner's control."
 mana={B}
@@ -26252,7 +26256,7 @@ toughness=1
 [card]
 name=Merfolk Trickster
 abilities=flash
-auto=target(creature|opponentBattlefield) tap && loseabilities ueot
+auto=target(creature|opponentBattlefield) transforms((,newability[tap(noevent)],newability[loseabilities])) ueot
 text=Flash -- When Merfolk Trickster enters the battlefield, tap target creature an opponent controls. It loses all abilities until end of turn.
 mana={U}{U}
 type=Creature
@@ -26926,8 +26930,7 @@ type=Instant
 [/card]
 [card]
 name=Moment of Triumph
-target=creature 
-auto=2/2 ueot
+auto=target(creature) 2/2 ueot
 auto=life:2 controller
 text=Target creature gets +2/+2 until end of turn. You gain 2 life.
 mana={W}
@@ -27899,7 +27902,7 @@ toughness=6
 name=Neheb, the Worthy
 abilities=first strike
 auto=lord(minotaur|mybattlefield) first strike
-auto=aslongas(type(*|myhand)~lessthan~2) lord(minotaur|mybattlefield) 2/0
+auto=aslongas(*|myhand) lord(minotaur|mybattlefield) 2/0 <2
 auto=@combatdamaged(player) from(this):ability$!target(*|myhand) reject$! opponent 
 auto=@combatdamaged(player) from(this):transforms((,newability[target(*|myhand) reject])) forever
 text=First strike -- Other Minotaurs you control have first strike. -- As long as you have one or fewer cards in hand, Minotaurs you control get +2/+0. -- Whenever Neheb, the Worthy deals combat damage to a player, each player discards a card.
@@ -28095,7 +28098,7 @@ subtype=Aura
 [card]
 name=New Perspectives
 auto=draw:3 controller
-auto=aslongas(*|myHand)~morethan~6 then all(_cycling_|mycastinzone) altercost(colorless,-99)
+auto=aslongas(*|myHand)~morethan~6 then all(_cycling_|mycastingzone) altercost(colorless,-99)
 text=When New Perspectives enters the battlefield, draw three cards. -- As long as you have seven or more cards in hand, you may pay {0} rather than pay cycling costs.
 mana={5}{U}
 type=Enchantment
@@ -32569,8 +32572,8 @@ toughness=2
 [/card]
 [card]
 name=Rakdos Firewheeler
-auto=damage:2 target(opponent)
-auto=damage:2 target(creature,planeswalker|opponentbattlefield)
+auto=ability$!name(Choose one) choice name(Don't deal damage) donothing _ choice name(Damage 1 creature) damage:2 target(creature) _ choice name(Damage 1 planeswalker) damage:2 damage(planeswalker)!$ controller
+auto=damage:2 opponent
 text=When Rakdos Firewheeler enters the battlefield, it deals 2 damage to target opponent and 2 damage to up to one target creature or planeswalker.
 mana={B}{B}{R}{R}
 type=Creature
@@ -37735,7 +37738,7 @@ toughness=4
 [card]
 name=Shining Armor
 abilities=flash
-auto=equip target(creature[knight]|mybattlefield)
+auto=rehook target(creature[knight]|mybattlefield)
 auto={3}:equip
 auto=teach(creature) 0/2
 auto=teach(creature) vigilance
@@ -39846,8 +39849,10 @@ type=Artifact
 name=Soul-Scar Mage
 abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
-auto=@targeted(creature|opponentbattlefield) from(*|mybattlefield): all(*|mystack) wither ueot
-auto=@targeted(creature|opponentbattlefield) from(*|mystack): all(*|mystack) wither ueot
+auto=@damaged(creature|opponentbattlefield) from(*[-attacking;-blocking;-blocked]|mybattlefield):all(trigger[to]) counter(-1/-1,thatmuch)
+auto=@damaged(creature|opponentbattlefield) from(*[-attacking;-blocking;-blocked]|mybattlefield):all(trigger[to]) 0/thatmuch ueot
+auto=@damaged(creature|opponentbattlefield) from(*|mystack):all(trigger[to]) counter(-1/-1,thatmuch)
+auto=@damaged(creature|opponentbattlefield) from(*|mystack):all(trigger[to]) 0/thatmuch ueot
 text=Prowess -- If a source you control would deal noncombat damage to a creature an opponent controls, put that many -1/-1 counters on that creature instead.
 mana={R}
 type=Creature
@@ -42118,8 +42123,7 @@ type=Sorcery
 [card]
 name=Supernatural Stamina
 target=creature
-auto=2/0
-auto=@movedto(mygraveyard):moveto(mybattlefield) && tap
+auto=transforms((,newability[2/0],newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield) and!(tap(noevent))!])) ueot
 text=Until end of turn, target creature gets +2/+0 and gains "When this creature dies, return it to the battlefield tapped under its owner's control."
 mana={B}
 type=Instant
@@ -43270,7 +43274,7 @@ toughness=4
 [/card]
 [card]
 name=Temmet, Vizier of Naktamun
-auto=@combat(attacking):target(*[token]|mybattlefield) 1/1 ueot && unblockable ueot
+auto=@each my combatbegins:target(creature[token]|mybattlefield) transforms((,newability[1/1],newability[unblockable])) ueot
 autograveyard={3}{W}{U}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
 text=At the beginning of combat on your turn, target creature token you control gets +1/+1 until end of turn and can't be blocked this turn. -- Embalm {3}{W}{U} ({3}{W}{U}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Human Cleric with no mana cost. Embalm only as a sorcery.)
 mana={W}{U}
@@ -43977,7 +43981,7 @@ abilities=flying,hasotherkicker
 other={X}{1}{U} name(Pay kicker)
 auto=if paid(alternative) then choice name(Choose equipment artifact) target(artifact[equipment;manacost<=X]) moveTo(myBattlefield) and!(rehook)!
 auto=if paid(alternative) then choice name(Choose non-equipment artifact) target(artifact[manacost<=X]) moveTo(myBattlefield)
-text=Kicker {X}. X can't be 0. (You may pay an additional {X} as you cast this spell.) -- Flying -- When Thieving Skydiver enters the battelfield, if it was kicked, gain control of target artifact with converted mana cost X or less. If that artifact is an Equipment, attach it to Thieving Skydiver.
+text=Kicker {X}. X can't be 0. (You may pay an additional {X} as you cast this spell.) -- Flying -- When Thieving Skydiver enters the battlefield, if it was kicked, gain control of target artifact with converted mana cost X or less. If that artifact is an Equipment, attach it to Thieving Skydiver.
 mana={1}{U}
 type=Creature
 subtype=Merfolk Rogue
@@ -44593,7 +44597,8 @@ subtype=Saga
 [/card]
 [card]
 name=Time to Reflect
-target=creature(blocking,blocked) from(zombie)
+target=creature[blocking;blocked]
+restriction=type(zombie[blocking;blocked]|battlefield)~morethan~0
 auto=moveto(exile)
 text=Exile target creature that blocked or was blocked by a Zombie this turn.
 mana={W}
@@ -47191,7 +47196,7 @@ type=Sorcery
 [card]
 name=Verdant Rebirth
 target=creature
-auto=@movedto(ownergraveyard) from(ownerbattlefield):moveto(ownerhand) ueot
+auto=transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerHand)])) ueot
 auto=draw:1 controller
 text=Until end of turn, target creature gains "When this creature dies, return it to its owner's hand." -- Draw a card.
 mana={1}{G}
@@ -48300,7 +48305,7 @@ toughness=3
 [/card]
 [card]
 name=Warfire Javelineer
-auto=foreach(instant,sorcery|mygraveyard) damage:1 target(creature|opponentbattlefield)
+auto=damage:pginstantsorcery target(creature|opponentbattlefield)
 text=When Warfire Javelineer enters the battlefield, it deals X damage to target creature an opponent controls, where X is the number of instant and sorcery cards in your graveyard.
 mana={3}{R}
 type=Creature
