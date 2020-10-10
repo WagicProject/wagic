@@ -7122,7 +7122,8 @@ public:
     bool putinplay;
     bool asNormalMadness;
     bool alternative;
-    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false);
+    int kicked;
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false,int kicked = 0);
 
     int testDestroy(){return 0;};
     void Update(float dt);

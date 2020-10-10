@@ -8463,8 +8463,8 @@ AEquip * AEquip::clone() const
 }
 
 // casting a card for free, or casting a copy of a card.
-AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative) :
-   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative)
+AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative, int kicked) :
+   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked)
 {
     target = _target;
     andAbility = NULL;
@@ -8739,6 +8739,10 @@ int AACastCard::resolveSpell()
         }
         if(alternative)
             copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
+        if(kicked > 0){
+            copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
+            copy->kicked = kicked;
+        }
         if (game->targetChooser)
         {
             game->targetChooser->Owner = source->controller();

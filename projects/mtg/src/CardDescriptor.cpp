@@ -13,6 +13,7 @@ CardDescriptor::CardDescriptor()
     counterToughness = 0;
     counterNB = 0;
     mode = CD_AND;
+    kickedComparisonMode = COMPARISON_NONE;
     powerComparisonMode = COMPARISON_NONE;
     toughnessComparisonMode = COMPARISON_NONE;
     manacostComparisonMode = COMPARISON_NONE;
@@ -152,6 +153,8 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     }
 
     // Quantified restrictions are always AND-ed:
+    if (kickedComparisonMode && !valueInRange(kickedComparisonMode, card->kicked, kicked))
+        return NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         return NULL;
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
@@ -195,6 +198,8 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
             match = NULL;
     }
 
+    if (kickedComparisonMode && !valueInRange(kickedComparisonMode, card->kicked, kicked))
+        match = NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
@@ -230,11 +235,6 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     BasicAbilitiesSet excludedSet = mAbilityExclusions & card->basicAbilities;
     if (excludedSet.any())
         return NULL;
-
-    if ((kicked == -1 && card->kicked) || (kicked == 1 && !card->kicked))
-    {
-        match = NULL;
-    }
 
     if ((hasKickerCost == -1 && (card->getManaCost()->getKicker() || card->basicAbilities[Constants::HASOTHERKICKER])) || (hasKickerCost == 1 && (!card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASOTHERKICKER])))
     {
