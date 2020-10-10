@@ -485,14 +485,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 //Has been kicked
                 else if (attribute.find("kicked") != string::npos)
                 {
-                    if (minus)
-                    {
-                        cd->unsecureSetKicked(-1);
-                    }
-                    else
-                    {
-                        cd->unsecureSetKicked(1);
-                    }
+                    cd->kicked = comparisonCriterion;
+                    cd->kickedComparisonMode = comparisonMode;
                 }
                 //Has kicker cost
                 else if (attribute.find("haskicker") != string::npos)
@@ -718,25 +712,24 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     //Power restrictions
                     cd->setPower(comparisonCriterion);
                     cd->powerComparisonMode = comparisonMode;
-                    //Toughness restrictions
                 }
                 else if (attribute.find("toughness") != string::npos)
                 {
+                    //Toughness restrictions
                     cd->setToughness(comparisonCriterion);
                     cd->toughnessComparisonMode = comparisonMode;
-                    //zpos restrictions
                 }
                 else if (attribute.find("zpos") != string::npos)
                 {
+                    //zpos restrictions
                     cd->zposition = comparisonCriterion;
                     cd->zposComparisonMode = comparisonMode;
-                    //Manacost restrictions
                 }
                 else if (attribute.find("manacost") != string::npos)
                 {
+                    //Manacost restrictions
                     cd->convertedManacost = comparisonCriterion;
                     cd->manacostComparisonMode = comparisonMode;
-                    //Counter Restrictions
                 }
                 else if (attribute.find("share!") != string::npos)
                 {

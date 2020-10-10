@@ -3207,7 +3207,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 nameCard = splitCastName[1];
             }
         }
-        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness, alternative);
+        int kicked = 0;
+        if(splitCastCard[1].find("kicked!:") != string::npos)
+        {
+            vector<string> splitCastKicked = parseBetween(splitCastCard[1], "kicked!:", ":!");
+            if(splitCastKicked.size())
+            {
+                kicked = atoi(splitCastKicked[1].c_str());
+            }
+        }
+        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness, alternative, kicked);
         a->oneShot = false;
         if(splitCastCard[1].find("trigger[to]") != string::npos)
         {

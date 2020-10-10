@@ -35,6 +35,7 @@ class CardDescriptor: public MTGCardInstance
 
   Operator mode;
   int powerComparisonMode;
+  int kickedComparisonMode;
   int toughnessComparisonMode;
   int manacostComparisonMode;
   int counterComparisonMode;

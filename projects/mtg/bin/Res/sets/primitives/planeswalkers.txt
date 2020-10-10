@@ -1604,6 +1604,18 @@ type=Legendary Planeswalker
 subtype=Yanling
 [/card]
 [card]
+name=Nahiri, Heir of the Ancients
+aicode=activate moveTo(myHand) target(*[warrior;equipment;zpos<=6]|myLibrary)
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 Kor and equip) token(Kor Warrior,Creature Kor Warrior,1/1,white) and!(transforms((,newability[may target(equipment|mybattlefield) newhook])) oneshot)!
+auto={C(0/0,-2,Loyalty)}:name(-2: Look six and put a Warrior or Equipment) name(Reveal six cards from top) reveal:6 optionone name(Get a card) target(*[warrior;equipment]|reveal) moveTo(myHand) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,-3,Loyalty)}:name(-3: Deals damage twice equipments) damage:twicetype:equipment:myBattlefield target(*[creature;planeswalker]) oneshot
+text=+1: Create a 1/1 white Kor Warrior creature token. You may attach an Equipment you control to it. -- -2: Look at the top six cards of your library. You may reveal a Warrior or Equipment card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. -- -3: Nahiri, Heir of the Ancients deals damage to target creature or planeswalker equal to twice the number of Equipment you control.
+mana={2}{R}{W}
+type=Legendary Planeswalker
+subtype=Nahiri
+[/card]
+[card]
 name=Nahiri, Storm of Stone
 auto=counter(0/0,6,loyalty)
 auto=this(variable{controllerturn}>0) lord(creature|myBattlefield) first strike
