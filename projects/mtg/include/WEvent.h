@@ -353,6 +353,12 @@ struct WEventplayerEnergized : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//surveil event
+struct WEventCardSurveiled : public WEventCardUpdate {
+    WEventCardSurveiled(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 //mutation event
 struct WEventCardMutated : public WEventCardUpdate {
     WEventCardMutated(MTGCardInstance * card);

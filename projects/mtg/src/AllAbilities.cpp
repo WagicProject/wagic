@@ -1023,6 +1023,80 @@ AAAlterPoison::~AAAlterPoison()
 {
 }
 
+//AA Surveil Event
+AASurveilEvent::AASurveilEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), card(_source)
+{
+}
+
+int AASurveilEvent::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            WEvent * e = NEW WEventCardSurveiled(card);
+            game->receiveEvent(e);
+        }
+    }
+    return 0;
+}
+
+const string AASurveilEvent::getMenuText()
+{
+    return "Surveil event called";
+}
+
+AASurveilEvent * AASurveilEvent::clone() const
+{
+    return NEW AASurveilEvent(*this);
+}
+
+AASurveilEvent::~AASurveilEvent()
+{
+}
+
+//AA Surveil Offset
+AAAlterSurveilOffset::AAAlterSurveilOffset(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int surveilOffset, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), surveilOffset(surveilOffset)
+{
+}
+
+int AAAlterSurveilOffset::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            pTarget->surveilOffset += surveilOffset;
+            if(pTarget->surveilOffset < 0)
+                pTarget->surveilOffset = 0;
+        }
+    }
+    return 0;
+}
+
+const string AAAlterSurveilOffset::getMenuText()
+{
+    WParsedInt parsedNum(surveilOffset);
+    return _(parsedNum.getStringValue() + " Surveil Offset ").c_str();
+}
+
+AAAlterSurveilOffset * AAAlterSurveilOffset::clone() const
+{
+    return NEW AAAlterSurveilOffset(*this);
+}
+
+AAAlterSurveilOffset::~AAAlterSurveilOffset()
+{
+}
+
 //AA Yidaro Count
 AAAlterYidaroCount::AAAlterYidaroCount(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int yidarocount, ManaCost * _cost,
         int who) :
