@@ -582,6 +582,10 @@ private:
         {
             intValue = (s == "pyidarocount")?card->controller()->yidaroCount:card->controller()->opponent()->yidaroCount;
         }
+        else if (s == "psurveiloffset" || s == "osurveiloffset")
+        {
+            intValue = (s == "psurveiloffset")?card->controller()->surveilOffset:card->controller()->opponent()->surveilOffset;
+        }
         else if (s == "praidcount")
         {
             intValue = card->controller()->raidcount;
@@ -1679,8 +1683,9 @@ public:
 class TrCardMutated: public Trigger
 {
 public:
-    bool thiscontroller, thisopponent;
-    TrCardMutated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardMutated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc)
     {
     }
@@ -1689,13 +1694,43 @@ public:
     {
         WEventCardMutated * e = dynamic_cast<WEventCardMutated *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
     TrCardMutated * clone() const
     {
         return NEW TrCardMutated(*this);
+    }
+};
+
+class TrCardSurveiled: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardSurveiled(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardSurveiled * e = dynamic_cast<WEventCardSurveiled *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardSurveiled * clone() const
+    {
+        return NEW TrCardSurveiled(*this);
     }
 };
 
@@ -4842,6 +4877,19 @@ public:
     AAAlterEnergy * clone() const;
     ~AAAlterEnergy();
 };
+//Surveil Event
+class AASurveilEvent: public ActivatedAbilityTP
+{
+public:
+    MTGCardInstance * card;
+
+    AASurveilEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AASurveilEvent * clone() const;
+    ~AASurveilEvent();
+};
 //Yidaro Counter
 class AAAlterYidaroCount: public ActivatedAbilityTP
 {
@@ -4854,6 +4902,19 @@ public:
     const string getMenuText();
     AAAlterYidaroCount * clone() const;
     ~AAAlterYidaroCount();
+};
+//Surveil Offset
+class AAAlterSurveilOffset: public ActivatedAbilityTP
+{
+public:
+    int surveilOffset;
+
+    AAAlterSurveilOffset(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int surveilOffset, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterSurveilOffset * clone() const;
+    ~AAAlterSurveilOffset();
 };
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager: public TargetAbility

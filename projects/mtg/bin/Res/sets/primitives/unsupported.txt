@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards up to Aether Revolt) as of 3/14/2017
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 04-07-2020
+#I sorted this programatically - Vitty85 12-10-2020
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -62,6 +62,12 @@ name=Abandoned Sarcophagus
 text=You may cast spells that have cycling from your graveyard. -- If a card with cycling would be put into your graveyard from anywhere and it wasn't cycled, exile it instead.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Aminatou's Augury
+text=Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.
+mana={6}{U}{U}
+type=Sorcery
 [/card]
 [card]
 name=Absolver Thrull
@@ -192,6 +198,12 @@ type=Creature
 subtype=Aetherborn Rogue
 power=2
 toughness=2
+[/card]
+[card]
+name=Aethermage's Touch
+text=Reveal the top four cards of your library. You may put a creature card from among them onto the battlefield. It gains "At the beginning of your end step, return this creature to its owner's hand." Then put the rest of the cards revealed this way on the bottom of your library in any order.
+mana={2}{W}{U}
+type=Instant
 [/card]
 [card]
 name=Agent of Acquisitions
@@ -1338,6 +1350,15 @@ mana={1}{G}
 type=Creature
 subtype=Elf Scout
 power=3
+toughness=1
+[/card]
+[card]
+name=Boreas Charger
+text=Flying -- When Boreas Charger leaves the battlefield, choose an opponent who controls more lands than you. Search your library for a number of Plains cards equal to the difference and reveal them. Put one of them onto the battlefield tapped and the rest into your hand. Then shuffle your library.
+mana={2}{W}
+type=Creature
+subtype=Pegasus
+power=2
 toughness=1
 [/card]
 [card]
@@ -3787,6 +3808,15 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Emissary of Grudges
+text=Flying, haste -- As Emissary of Grudges enters the battlefield, secretly choose an opponent. -- Reveal the player you chose: Choose new targets for target spell or ability if it's controlled by the chosen player and if it targets you or a permanent you control. Activate this ability only once.
+mana={5}{R}
+type=Creature
+subtype=Efreet
+power=6
+toughness=5
+[/card]
+[card]
 name=Emissary's Ploy
 text=(Start the game with this conspiracy face up in the command zone.) -- Before drawing your opening hand, choose 1, 2, or 3. -- You may spend mana as though it were mana of any color to cast creature spells with converted mana cost equal to the chosen number.
 type=Conspiracy
@@ -3809,6 +3839,12 @@ type=Legendary Creature
 subtype=Eldrazi
 power=13
 toughness=13
+[/card]
+[card]
+name=Enchanter's Bane
+text=At the beginning of your end step, target enchantment deals damage equal to its converted mana cost to its controller unless that player sacrifices it.
+mana={1}{R}
+type=Enchantment
 [/card]
 [card]
 name=Enchantment Alteration
@@ -3979,6 +4015,15 @@ type=Creature
 subtype=Avatar
 power=6
 toughness=6
+[/card]
+[card]
+name=Etrata, the Silencer
+text=Etrata, the Silencer can't be blocked. -- Whenever Etrata deals combat damage to a player, exile target creature that player controls and put a hit counter on that card. That player loses the game if they own three or more exiled cards with hit counters on them. Etrata's owner shuffles Etrata into their library.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Vampire Assassin
+power=3
+toughness=5
 [/card]
 [card]
 name=Everdream
@@ -4569,6 +4614,11 @@ mana={5}
 type=Artifact
 [/card]
 [card]
+name=Forge of Heroes
+text={T}: Add {C}. -- {T}: Choose target commander that entered the battlefield this turn. Put a +1/+1 counter on it if it's a creature and a loyalty counter on it if it's a planeswalker.
+type=Land
+[/card]
+[card]
 name=Forgotten Lore
 text=Target opponent chooses a card in your graveyard. You may pay {G}. If you do, repeat this process except that opponent can't choose a card already chosen for Forgotten Lore. Then put the last chosen card into your hand.
 mana={G}
@@ -4897,6 +4947,12 @@ name=General's Regalia
 text={3}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to target creature you control instead.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Genesis Storm
+text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. -- Reveal cards from the top of your library until you reveal a nonland permanent card. You may put that card onto the battlefield. Then put all cards revealed this way that weren't put onto the battlefield on the bottom of your library in a random order.
+mana={4}{G}{G}
+type=Sorcery
 [/card]
 [card]
 name=Genetic Recombinator
@@ -8782,6 +8838,12 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Mnemonic Betrayal
+text=Exile all cards from all opponents' graveyards. You may cast spells from among those cards this turn, and you may spend mana as though it were mana of any type to cast those spells. At the beginning of the next end step, if any of those cards remain exiled, return them to their owners' graveyards. -- Exile Mnemonic Betrayal.
+mana={1}{U}{B}
+type=Sorcery
+[/card]
+[card]
 name=Mob Mentality
 text=Enchant creature -- Enchanted creature has trample. -- Whenever all non-Wall creatures you control attack, enchanted creature gets +X/+0 until end of turn, where X is the number of attacking creatures.
 mana={R}
@@ -9100,6 +9162,12 @@ text=You may cast Mystic Veil as though it had flash. If you cast it any time a 
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Myth Unbound
+text=Your commander costs {1} less to cast for each time it's been cast from the command zone this game. -- Whenever your commander is put into the command zone from anywhere, draw a card.
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
 name=Mythos of Snapdax
@@ -9474,6 +9542,15 @@ type=Creature
 subtype=Licid
 power=1
 toughness=1
+[/card]
+[card]
+name=Nylea's Colossus
+text=Constellation — Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
+mana={6}{G}
+type=Enchantment Creature
+subtype=Giant
+power=6
+toughness=6
 [/card]
 [card]
 name=Oaken Brawler
@@ -10489,6 +10566,12 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
+name=Primordial Mist
+text=At the beginning of your end step, you may manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Exile a face-down permanent you control face up: You may play that card this turn. (You still pay its costs. Timing rules still apply.)
+mana={4}{U}
+type=Enchantment
+[/card]
+[card]
 name=Primordial Ooze
 text=Primordial Ooze attacks each turn if able. -- At the beginning of your upkeep, put a +1/+1 counter on Primordial Ooze. Then you may pay {X}, where X is the number of +1/+1 counters on it. If you don't, tap Primordial Ooze and it deals X damage to you.
 mana={R}
@@ -10949,6 +11032,12 @@ text=Enchant permanent -- Vanishing 3 (This permanent enters the battlefield wit
 mana={2}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Reality Scramble
+text=Put target permanent you own on the bottom of your library. Reveal cards from the top of your library until you reveal a card that shares a card type with that permanent. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+mana={2}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Reality Shaping
@@ -12338,6 +12427,12 @@ power=4
 toughness=1
 [/card]
 [card]
+name=Skull Storm
+text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. -- Each opponent sacrifices a creature. Each opponent who can't loses half their life, rounded up.
+mana={7}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Skullbriar, the Walking Grave
 text=Haste -- Whenever Skullbriar, the Walking Grave deals combat damage to a player, put a +1/+1 counter on it. -- Counters remain on Skullbriar as it moves to any zone other than a player's hand or library.
 mana={B}{G}
@@ -13623,6 +13718,15 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Tawnos, Urza's Apprentice
+text=Haste -- {U}{R}, {T}: Copy target activated or triggered ability you control from an artifact source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={U}{R}
+type=Legendary Creature
+subtype=Human Artificer
+power=1
+toughness=3
+[/card]
+[card]
 name=Tayam, Luminous Enigma
 text=Each other creature you control enters the battlefield with an additional vigilance counter on it. -- {3}, Remove three counters from among creatures you control: Put the top three cards of your library into your graveyard, then return a permanent card with converted mana cost 3 or less from your graveyard to the battlefield.
 mana={1}{W}{B}{G}
@@ -13917,6 +14021,16 @@ type=Creature
 subtype=Vampire
 power=1
 toughness=1
+[/card]
+[card]
+name=Thief of Sanity
+abilities=flying
+text=Flying -- Whenever Thief of Sanity deals combat damage to a player, look at the top three cards of that player's library, exile one of them face down, then put the rest into their graveyard. You may look at and cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast that spell.
+mana={1}{U}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
 [/card]
 [card]
 name=Thieves' Auction
@@ -14496,6 +14610,12 @@ type=Conspiracy
 name=Unholy Citadel
 text=Black legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 type=Land
+[/card]
+[card]
+name=Unmoored Ego
+text=Choose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles their library, then draws a card for each card exiled from their hand this way.
+mana={1}{U}{B}
+type=Sorcery
 [/card]
 [card]
 name=Unpredictable Cyclone
@@ -15499,6 +15619,15 @@ power=3
 toughness=6
 [/card]
 [card]
+name=Yennett, Cryptic Sovereign
+text=Flying, vigilance, menace -- Whenever Yennett, Cryptic Sovereign attacks, reveal the top card of your library. You may cast it without paying its mana cost if its converted mana cost is odd. If you don't cast it, draw a card.
+mana={2}{W}{U}{B}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=5
+[/card]
+[card]
 name=Yet Another AEther Vortex
 text=All creatures have haste. -- Players play with the top card of their libraries revealed. -- Noninstant, nonsorcery cards on top of a library are in play under their owner's control in addition to being in that library.
 mana={3}{R}{R}
@@ -15552,6 +15681,15 @@ type=Creature
 subtype=Ooze
 power=1
 toughness=1
+[/card]
+[card]
+name=Yuriko, the Tiger's Shadow
+text=Commander ninjutsu {U}{B} ({U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand or the command zone tapped and attacking.) -- Whenever a Ninja you control deals combat damage to a player, reveal the top card of your library and put that card into your hand. Each opponent loses life equal to that card's converted mana cost.
+mana={1}{U}{B}
+type=Legendary Creature
+subtype=Human Ninja
+power=1
+toughness=3
 [/card]
 [card]
 name=Zada, Hedron Grinder

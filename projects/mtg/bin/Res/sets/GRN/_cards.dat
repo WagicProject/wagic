@@ -1105,52 +1105,27 @@ id=452970
 rarity=C
 [/card]
 [card]
-primitive=Assemble
+primitive=Assure // Assemble
 id=452971
 rarity=R
 [/card]
 [card]
-primitive=Assure
-id=452971
-rarity=R
-[/card]
-[card]
-primitive=Concoct
+primitive=Connive // Concoct
 id=452972
 rarity=R
 [/card]
 [card]
-primitive=Connive
-id=452972
-rarity=R
-[/card]
-[card]
-primitive=Dispersal
+primitive=Discovery // Dispersal
 id=452973
 rarity=U
 [/card]
 [card]
-primitive=Discovery
-id=452973
-rarity=U
-[/card]
-[card]
-primitive=Explosion
+primitive=Expansion // Explosion
 id=452974
 rarity=R
 [/card]
 [card]
-primitive=Expansion
-id=452974
-rarity=R
-[/card]
-[card]
-primitive=Finality
-id=452975
-rarity=R
-[/card]
-[card]
-primitive=Find
+primitive=Find // Finality
 id=452975
 rarity=R
 [/card]
@@ -1160,42 +1135,22 @@ id=452976
 rarity=U
 [/card]
 [card]
-primitive=Intervention
+primitive=Integrity // Intervention
 id=452977
 rarity=U
 [/card]
 [card]
-primitive=Integrity
-id=452977
-rarity=U
-[/card]
-[card]
-primitive=Invent
+primitive=Invert // Invent
 id=452978
 rarity=U
 [/card]
 [card]
-primitive=Invert
-id=452978
-rarity=U
-[/card]
-[card]
-primitive=Resurgence
+primitive=Response // Resurgence
 id=452979
 rarity=R
 [/card]
 [card]
-primitive=Response
-id=452979
-rarity=R
-[/card]
-[card]
-primitive=Statue
-id=452980
-rarity=U
-[/card]
-[card]
-primitive=Status
+primitive=Status // Statue
 id=452980
 rarity=U
 [/card]

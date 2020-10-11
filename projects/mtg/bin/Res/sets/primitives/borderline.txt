@@ -1,7 +1,7 @@
 grade=borderline
 #Bordeline Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 10-10-2020
+#I sorted this programatically - Vitty85 12-10-2020
 [card]
 name=AEther Rift
 auto=@each my upkeep:moverandom(*) from(myHand) to(myGraveyard) 
@@ -381,6 +381,14 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Aether Gale
+target=<6>*[-land]|battlefield
+auto=moveto(ownerhand)
+text=Return six target nonland permanents to their owners' hands.
+mana={3}{U}{U}
+type=Sorcery
+[/card]
+[card]
 name=Aether Gust
 target=*[red;green]|battlefield,stack
 auto=transforms((,newability[Choice name(Top) moveto(library)],newability[Choice name(Bottom) bottomoflibrary])) controller
@@ -510,9 +518,8 @@ toughness=2
 [/card]
 [card]
 name=Agonizing Remorse
-target=opponent
-aicode=activate moveto(exile) notatarget(*[-land]|targetedpersonshand)
-auto=choice name(reveal from hand) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose to exile) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(exile)])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend && life:-1 controller
+aicode=activate moveto(exile) notatarget(*[-land]|opponenthand,opponentGraveyard)
+auto=choice name(reveal from hand) reveal:type:*:opponenthand revealzone(opponenthand) optionone name(choose to exile) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(exile)])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend && life:-1 controller
 auto=choice name(reveal from graveyard) moveto(exile) target(*[-land]|opponentGraveyard) && life:-1 controller
 text=Target opponent reveals their hand. You choose a nonland card from it or a card from their graveyard. Exile that card. You lose 1 life.
 mana={1}{B}
@@ -2018,6 +2025,15 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Artful Takedown
+auto=choice name(Tap creature) target(creature) tap(noevent)
+auto=choice name(Target creature gets -2/-4) target(creature) -2/-4 ueot
+auto=choice name(Choose both) target(creature) tap(noevent) && ability$!name(Target creature gets -2/-4) name(Target creature gets -2/-4) target(creature) -2/-4 ueot!$ controller
+text=Choose one or both — -- • Tap target creature. -- • Target creature gets -2/-4 until end of turn.
+mana={2}{U}{B}
+type=Instant
+[/card]
+[card]
 name=Artificer's Assistant
 abilities=flying
 auto=@movedTo(*[artifact;legendary;saga]|mystack):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
@@ -2166,6 +2182,15 @@ auto=ifnot paid(alternative) then damage:2 target(creature,player)
 text=Assault deals 2 damage to target creature or player. // Put a 3/3 green Elephant creature token onto the battlefield.
 mana={R}
 type=Sorcery
+[/card]
+[card]
+name=Assure // Assemble
+other={4}{G}{W} name(Assemble)
+auto=if paid(alternative) then token(Elf Knight,Creature Elf Knight,2/2,green,white,vigilance)*3
+auto=ifnot paid(alternative) then target(creature) tansforms((,newability[indestructible],newability[counter(1/1)])) ueot
+text=Put a +1/+1 counter on target creature. That creature gains indestructible until end of turn. -- Create three 2/2 green and white Elf Knight creature tokens with vigilance.
+mana={GW}{GW}
+type=Instant
 [/card]
 [card]
 name=Astral Cornucopia
@@ -2954,8 +2979,8 @@ type=Instant
 [card]
 name=Barrier of Bones
 abilities=defender
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=1]|mylibrary) moverandom(*[zpos<=1]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Defender -- When Barrier of Bones enters the battlefield, surveil 1. (Look at the top card of your library. You may put that card into your graveyard.)
 mana={B}
 type=Creature
@@ -3181,6 +3206,26 @@ type=Creature
 subtype=Human Wizard
 power=3
 toughness=4
+[/card]
+[card]
+name=Beacon Bolt
+target=creature
+auto=damage:pginstantsorcery
+auto=foreach(*[instant;sorcery]|myexile) damage:1
+flashback={1}{U}{R}{D(*|myhand)}
+text=Beacon Bolt deals damage to target creature equal to the total number of instant and sorcery cards you own in exile and in your graveyard. -- Jump-start (You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile this card.)
+mana={1}{U}{R}
+type=Sorcery
+[/card]
+[card]
+name=Beamsplitter Mage
+auto=@targeted(this) from(*[instant;sorcery]|mycastingzone):all(trigger[from]) castcard(copied noevent)
+text=Whenever you cast an instant or sorcery spell that targets only Beamsplitter Mage, if you control one or more other creatures that spell could target, choose one of those creatures. Copy that spell. The copy targets the chosen creature.
+mana={U}{R}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Beanstalk Giant // Fertile Footsteps
@@ -4068,6 +4113,18 @@ type=Creature
 subtype=Vampire
 power=4
 toughness=3
+[/card]
+[card]
+name=Blood Operative
+abilities=lifelink
+auto=may moveto(exile) target(*|graveyard)
+autograveyard=@surveiled(*|mybattlefield,mystack):pay({L:3}) name(return to hand) moveto(myhand) all(this)
+text=Lifelink -- When Blood Operative enters the battlefield, you may exile target card from a graveyard. -- Whenever you surveil, if Blood Operative is in your graveyard, you may pay 3 life. If you do, return Blood Operative to your hand.
+mana={1}{B}{B}
+type=Creature
+subtype=Vampire Assassin
+power=3
+toughness=1
 [/card]
 [card]
 name=Blood Price
@@ -6778,6 +6835,19 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Charnel Troll
+abilities=trample
+auto=upcost[{S(creature|mygraveyard)}] sacrifice
+auto=@each my upkeep:counter(1/1)
+auto={B}{G}{D(creature|myhand)}:counter(1/1)
+text=Trample -- At the beginning of your upkeep, exile a creature card from your graveyard. If you do, put a +1/+1 counter on Charnel Troll. Otherwise, sacrifice it. -- {B}{G}, Discard a creature card: Put a +1/+1 counter on Charnel Troll.
+mana={1}{B}{G}
+type=Creature
+subtype=Troll
+power=4
+toughness=4
+[/card]
+[card]
 name=Chart a Course
 auto=draw:2 controller
 auto=if type(creature[attacking])~lessthan~1 then discard(*|myhand)
@@ -7076,8 +7146,8 @@ type=Sorcery
 [card]
 name=Citywatch Sphinx
 abilities=flying
-auto=@movedTo(this|graveyard) from(battlefield):name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
+auto=@movedTo(this|graveyard) from(battlefield):surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
 text=Flying -- When Citywatch Sphinx dies, surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on the top of your library in any order.)
 mana={5}{U}
 type=Creature
@@ -7964,6 +8034,16 @@ type=Snow Creature
 subtype=Wurm
 power=4
 toughness=4
+[/card]
+[card]
+name=Connive // Concoct
+other={3}{U}{B} name(Concoct)
+aicode=if paid(alternative) then surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus3plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus3plusend]) from(mylibrary) to(mylibrary)],newability[moveto(myBattlefield) target(creature|mygraveyard)])) ueot
+auto=if paid(alternative) then surveil && name(surveil) reveal:psurveiloffsetplus3plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus3plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus3plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed target(creature|mygraveyard) moveto(myBattlefield) afterrevealedend revealend
+auto=ifnot paid(alternative) then moveTo(myBattlefield) target(creature[power<=2])
+text=Gain control of target creature with power 2 or less. -- Surveil 3, then return a creature card from your graveyard to the battlefield.
+mana={2}{UB}{UB}
+type=Sorcery
 [/card]
 [card]
 name=Conqueror's Flail
@@ -9248,6 +9328,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Darkblade Agent
+auto=@surveiled(*|mybattlefield,mystack):all(this) transforms((,newability[deathtouch],newability[@combatdamaged(player) from(this):draw:1 controller])) ueot
+text=As long as you've surveilled this turn, Darkblade Agent has deathtouch and "Whenever this creature deals combat damage to a player, you draw a card."
+mana={1}{U}{B}
+type=Creature
+subtype=Human Assassin
+power=2
+toughness=3
+[/card]
+[card]
 name=Darksteel Mutation
 target=creature
 auto=indestructible
@@ -9440,8 +9530,8 @@ type=Instant
 name=Dazzling Lights
 target=creature
 auto=-3/-0 
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Target creature gets -3/-0 until end of turn. -- Surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on the top of your library in any order.)
 mana={U}
 type=Instant
@@ -9589,8 +9679,8 @@ type=Instant
 name=Deadly Visit
 target=creature
 auto=destroy
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Destroy target creature. -- Surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
 mana={3}{B}{B}
 type=Sorcery
@@ -10568,8 +10658,8 @@ type=Instant
 [/card]
 [card]
 name=Dimir Informant
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=When Dimir Informant enters the battlefield, surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on the top of your library in any order.)
 mana={2}{U}
 type=Creature
@@ -10585,6 +10675,17 @@ auto={UB}{UB}{UB}{UB}{T}{S}:draw:2
 text={T}: Add {U} or {B}. -- {U/B}{U/B}{U/B}{U/B}, {T}, Sacrifice Dimir Locket: Draw two cards.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Dimir Spybug
+abilities=flying,menace
+auto=@surveiled(*|mybattlefield,mystack):all(this) counter(1/1)
+text=Flying -- Menace (This creature can't be blocked except by two or more creatures.) -- Whenever you surveil, put a +1/+1 counter on Dimir Spybug.
+mana={U}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
 [/card]
 [card]
 name=Dinosaur For
@@ -10772,6 +10873,27 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Discovery // Dispersal
+abilities=flash
+other={3}{U}{B} name(Dispersal)
+restriction=myturnonly
+aicode=ifnot paid(alternative) then surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)],newability[draw:1 controller])) ueot
+auto=ifnot paid(alternative) then surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed draw:1 controller afterrevealedend revealend
+auto=if paid(alternative) then ability$!name(return non-land permanent) name(return non-land permanent) moveto(ownerhand) notatarget(*[-land;manacost=convertedcost:highest:*:myBattlefield])!$ opponent && ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ opponent
+text=Surveil 2, then draw a card. -- (To surveil 2, look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.) -- Each opponent returns a nonland permanent they control with the highest converted mana cost among permanents they control to its owner’s hand, then discards a card.
+mana={1}{UB}
+type=Sorcery
+[/card]
+[card]
+name=Disinformation Campaign
+auto=draw:1 controller
+auto=ability$!name(Discard a card) notatarget(*|myhand) reject!$ opponent
+auto=@surveiled(*|mybattlefield,mystack):all(this) moveto(ownerhand)
+text=When Disinformation Campaign enters the battlefield, you draw a card and each opponent discards a card. -- Whenever you surveil, return Disinformation Campaign to its owner's hand.
+mana={1}{U}{B}
+type=Enchantment
+[/card]
+[card]
 name=Dismantling Wave
 target=artifact,enchantment
 auto=destroy
@@ -10881,6 +11003,13 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Divine Visitation
+auto=@movedto(creature[token]|mybattlefield):all(trigger) destroy && token(Angel,Creature Angel,4/4,white,flying,vigilance)
+text=If one or more creature tokens would be created under your control, that many 4/4 white Angel creature tokens with flying and vigilance are created instead.
+mana={3}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Djeru's Renunciation
 target=<upto:2>creature
 auto=tap
@@ -10987,8 +11116,8 @@ type=Enchantment
 [card]
 name=Doom Whisperer
 abilities=flying, trample
-auto={L:2}:name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
+auto={L:2}:surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
 text=Flying, trample -- Pay 2 life: Surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on the top of your library in any order.)
 mana={3}{B}{B}
 type=Creature
@@ -11463,8 +11592,8 @@ subtype=Aura
 name=Dream Eater
 abilities=flash, flying
 auto=moveTo(ownerHand) target(*[-land])
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=4]|mylibrary) moverandom(*[zpos<=4]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:4 optionone name(put in graveyard) target(<upto:4>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<4>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus4plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus4plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus4plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus4plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus4plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Flash -- Flying -- When Dream Eater enters the battlefield, surveil 4. When you do, you may return target nonland permanent an opponent controls to its owner's hand. (To surveil 4, look at the top four cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
 mana={4}{U}{U}
 type=Creature
@@ -12715,6 +12844,14 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Enhanced Surveillance
+auto=altersurvoffset:2 controller
+auto={E}:all(*|myGraveyard) moveto(myLibrary) and!(shuffle)!
+text=You may look at an additional two cards each time you surveil. -- Exile Enhanced Surveillance: Shuffle your graveyard into your library.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
 name=Enigma Drake
 abilities=flying
 auto=foreach(instant,sorcery|mygraveyard) 1/0
@@ -12929,6 +13066,36 @@ type=Legendary Creature
 subtype=Vampire Assassin
 power=3
 toughness=5
+[/card]
+[card]
+name=Erratic Cyclops
+abilities=trample
+auto=@movedto(*[instant;sorcery;manacost=1]|mystack):all(this) 1/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=2]|mystack):all(this) 2/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=3]|mystack):all(this) 3/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=4]|mystack):all(this) 4/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=5]|mystack):all(this) 5/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=6]|mystack):all(this) 6/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=7]|mystack):all(this) 7/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=8]|mystack):all(this) 8/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=9]|mystack):all(this) 9/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=10]|mystack):all(this) 10/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=11]|mystack):all(this) 11/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=12]|mystack):all(this) 12/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=13]|mystack):all(this) 13/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=14]|mystack):all(this) 14/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=15]|mystack):all(this) 15/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=16]|mystack):all(this) 16/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=17]|mystack):all(this) 17/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=18]|mystack):all(this) 18/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=19]|mystack):all(this) 19/0 ueot
+auto=@movedto(*[instant;sorcery;manacost=20]|mystack):all(this) 20/0 ueot
+text=Trample -- Whenever you cast an instant or sorcery spell, Erratic Cyclops gets +X/+0 until end of turn, where X is that spell's converted mana cost.
+mana={3}{R}
+type=Creature
+subtype=Cyclops Shaman
+power=0
+toughness=8
 [/card]
 [card]
 name=Erratic Visionary
@@ -13319,6 +13486,16 @@ auto=this(variable{plandb}>0) {t}:out{b}
 auto=this(variable{plandw}>0) {t}:out{w}
 text={T}: Add one mana of any color that a land an opponent controls could produce.
 type=Land
+[/card]
+[card]
+name=Expansion // Explosion
+other={X}{U}{U}{R}{R} name(Explosion)
+auto=if paid(alternative) then choice name(Damage any target and you draw) damage:X target(player,creature) && draw:X controller
+auto=if paid(alternative) then choice name(Damage any target and opponent draws) damage:X target(player,creature) && draw:X opponent
+auto=ifnot paid(alternative) then name(copy spell) target(*[instant;sorcery;manacost<=4]|stack) castcard(copied noevent)
+text=Copy target instant or sorcery spell with converted mana cost 4 or less. You may choose new targets for the copy. -- Explosion deals X damage to any target. Target player draws X cards.
+mana={UR}{UR}
+type=Instant
 [/card]
 [card]
 name=Expedition Champion
@@ -17989,6 +18166,16 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Gruesome Menagerie
+target=creature[manacost=1]|mygraveyard
+auto=moveto(mybattlefield)
+auto=ability$!name(Select creature with manacost 2) name(Select creature with manacost 2) moveto(mybattlefield) target(creature[manacost=2]|mygraveyard)!$ controller
+auto=ability$!name(Select creature with manacost 3) name(Select creature with manacost 3) moveto(mybattlefield) target(creature[manacost=3]|mygraveyard)!$ controller
+text=Choose a creature card with converted mana cost 1 in your graveyard, then do the same for creature cards with converted mana costs 2 and 3. Return those cards to the battlefield.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Gruesome Scourger
 auto=damage:type:creature:mybattlefield target(planeswalker,opponent)
 text=When Gruesome Scourger enters the battlefield, it deals damage to target opponent or planeswalker equal to the number of creatures you control.
@@ -18113,6 +18300,17 @@ auto=@movedTo(*[Gate]|myBattlefield):draw:1
 text=When Guild Summit enters the battlefield, you may tap any number of untapped Gates you control. Draw a card for each Gate tapped this way. -- Whenever a Gate enters the battlefield under your control, draw a card.
 mana={2}{U}
 type=Enchantment
+[/card]
+[card]
+name=Guildmages' Forum
+auto={T}:add{C}
+auto={1}{T}:emblem transforms((,newability[add{W}],newability[@movedto(creature[multicolor]|mybattlefield) once:all(trigger) counter(1/1)])) ueot
+auto={1}{T}:emblem transforms((,newability[add{U}],newability[@movedto(creature[multicolor]|mybattlefield) once:all(trigger) counter(1/1)])) ueot
+auto={1}{T}:emblem transforms((,newability[add{R}],newability[@movedto(creature[multicolor]|mybattlefield) once:all(trigger) counter(1/1)])) ueot
+auto={1}{T}:emblem transforms((,newability[add{G}],newability[@movedto(creature[multicolor]|mybattlefield) once:all(trigger) counter(1/1)])) ueot
+auto={1}{T}:emblem transforms((,newability[add{B}],newability[@movedto(creature[multicolor]|mybattlefield) once:all(trigger) counter(1/1)])) ueot
+text={T}: Add {C}. -- {1}, {T}: Add one mana of any color. If that mana is spent on a multicolored creature spell, that creature enters the battlefield with an additional +1/+1 counter on it.
+type=Land
 [/card]
 [card]
 name=Guildpact Informant
@@ -18568,6 +18766,17 @@ auto={T}{L:1}:Add{G}
 text={T}: Add {1} to your mana pool. -- {T}, Pay 1 life: Add {G} to your mana pool. -- {1}{G}{G}, {T}, Sacrifice a Desert: Target creature gets +3/+3 until end of turn. Activate this ability only any time you could cast a sorcery.
 type=Land
 subtype=Desert
+[/card]
+[card]
+name=Hatchery Spider
+abilities=reach
+auto=name(Reveal) reveal:type:creature:mygraveyard revealzone(mylibrary) optionone name(Get green permanent) target(*[green;creature;enchantment;planeswalker;manacost<=type:creature:mygraveyard]|reveal) moveto(mybattlefield) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+text=Reach -- Undergrowth — When you cast this spell, reveal the top X cards of your library, where X is the number of creature cards in your graveyard. You may put a green permanent card with converted mana cost X or less from among them onto the battlefield. Put the rest on the bottom of your library in a random order.
+mana={5}{G}{G}
+type=Creature
+subtype=Spider
+power=5
+toughness=7
 [/card]
 [card]
 name=Hate Mirage
@@ -19658,8 +19867,8 @@ type=Sorcery
 [card]
 name=House Guildmage
 auto={1}{U}{T}:target(creature) freeze
-auto={2}{B}{T}:name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
+auto={2}{B}{T}:surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
 text={1}{U}, {T}: Target creature doesn't untap during its controller's next untap step. -- {2}{B}, {T}: Surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
 mana={U}{B}
 type=Creature
@@ -20109,6 +20318,15 @@ type=Creature
 subtype=Faerie
 power=2
 toughness=1
+[/card]
+[card]
+name=Hypothesizzle
+auto=draw:2 controller 
+auto=choice name(Discard and deal damage) ability$!name(Discard non-land card) notatarget(*[-land]|myhand) reject!$ controller && damage:4 target(creature)
+auto=choice name(Don't discard) donothing
+text=Draw two cards. Then you may discard a nonland card. When you do, Hypothesizzle deals 4 damage to target creature.
+mana={3}{U}{R}
+type=Instant
 [/card]
 [card]
 name=Hyrax Tower Scout
@@ -21194,6 +21412,16 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Integrity // Intervention
+other={2}{R}{W} name(Intervention)
+auto=ifnot paid(alternative) then target(creature) 2/2 ueot 
+auto=if paid(alternative) then life:3 controller
+auto=if paid(alternative) then ability$!name(Choose one) choice name(Damage player) damage:3 target(player) _ choice name(Damage creature) damage:3 target(creature) _ choice name(Damage planeswalker) damage:3 target(planeswalker)!$ controller
+text=Target creature gets +2/+2 until end of turn. -- Intervention deals 3 damage to any target and you gain 3 life.
+mana={R or W}
+type=Instant
+[/card]
+[card]
 name=Intellectual Offering
 auto=draw:3 all(player)
 auto=untap all(*[-land])
@@ -21278,6 +21506,15 @@ type=Creature
 subtype=Zombie Manticore
 power=4
 toughness=5
+[/card]
+[card]
+name=Invert // Invent
+other={4}{U}{R} name(Invent)
+auto=ifnot paid(alternative) then target(<upto:2>creature) transforms((,setpower=toughness,settoughness=power)) ueot
+auto=if paid(alternative) then target(<upto:2>*[instant;sorcery]|myLibrary) moveTo(myHand) and!(shuffle)!
+text=Switch the power and toughness of each of up to two target creatures until end of turn. -- Search your library for an instant card and/or a sorcery card, reveal them, put them into your hand, then shuffle your library.
+mana={UR}
+type=Instant
 [/card]
 [card]
 name=Invigorated Rampage
@@ -21478,6 +21715,13 @@ auto=moveto(exile)
 text=Exile target permanent with converted mana cost 1.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Isolated Watchtower
+auto={T}:add{C}
+auto={2}{T}:scry:1 scrycore delayed target(land[zpos<=1]|mylibrary) moveto(mybattlefield) and!(tap(noevent))! scrycoreend scryend restriction{type(land|opponentbattlefield)~morethan~1}
+text={T}: Add {C}. -- {2}, {T}: Scry 1, then you may reveal the top card of your library. If a basic land card is revealed this way, put it onto the battlefield tapped. Activate this ability only if an opponent controls at least two more lands than you.
+type=Land
 [/card]
 [card]
 name=Itlimoc, Cradle of the Sun
@@ -23116,6 +23360,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Kraul Harpooner
+abilities=reach
+auto=may name(Fight with flying creature) type:creature:mygraveyard/0 ueot && transforms((,newability[target(creature[flying]|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+text=Reach -- Undergrowth — When Kraul Harpooner enters the battlefield, choose up to one target creature with flying you don't control. Kraul Harpooner gets +X/+0 until end of turn, where X is the number of creature cards in your graveyard, then you may have Kraul Harpooner fight that creature.
+mana={1}{G}
+type=Creature
+subtype=Insect Warrior
+power=3
+toughness=2
+[/card]
+[card]
 name=Kraul Raider
 abilities=menace
 text=Menace (This creature can't be blocked except by two or more creatures.)
@@ -23547,6 +23802,18 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Lazav, the Multifarious
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+auto={X}:target(creature[manacost<=X]|mygraveyard) copy and!( transforms((Legendary)) forever )!
+text=When Lazav, the Multifarious enters the battlefield, surveil 1. (Look at the top card of your library. You may put it into your graveyard.) -- {X}: Lazav, the Multifarious becomes a copy of target creature card in your graveyard with converted mana cost X, except its name is Lazav, the Multifarious, it's legendary in addition to its other types, and it has this ability.
+mana={U}{B}
+type=Legendary Creature
+subtype=Shapeshifter
+power=1
+toughness=3
+[/card]
+[card]
 name=Lazotep Behemoth
 mana={4}{B}
 type=Creature
@@ -23606,6 +23873,17 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=League Guildmage
+auto={3}{U}{T}:draw:1 controller
+auto={X}{R}{T}:name(copy target instant or sorcery) name(copy target instant or sorcery) target(*[instant;sorcery;manacost<=X]|mystack) castcard(copied noevent)
+text={3}{U},{T}: Draw a card. -- {X}{R}, {T}: Copy target instant or sorcery spell you control with converted mana cost X. You may choose new targets for the copy.
+mana={U}{R}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Leap of Flame
@@ -26106,8 +26384,8 @@ toughness=2
 [card]
 name=Mephitic Vapors
 auto=all(creature) -1/-1
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=All creatures get -1/-1 until end of turn. -- Surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on the top of your library in any order.)
 mana={2}{B}
 type=Sorcery
@@ -26727,6 +27005,14 @@ text={T}: Add {3}. Spend this mana only to cast artifact spells.
 type=Land
 [/card]
 [card]
+name=Mission Briefing
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed target(*[instant;sorcery;fresh]|mygraveyard) transforms((,newability[canplayfromgraveyard],newability[exiledeath])) ueot afterrevealedend revealend
+text=Surveil 2, then choose an instant or sorcery card in your graveyard. You may cast it this turn. If that spell would be put into your graveyard this turn, exile it instead. (To surveil 2, look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
+mana={U}{U}
+type=Instant
+[/card]
+[card]
 name=Mist-Cloaked Herald
 abilities=unblockable
 text=Mist-Cloaked Herald can't be blocked.
@@ -26990,6 +27276,16 @@ auto=target(creature) mustblock ueot
 text=Target creature gets +7/+7 until end of turn. Up to one other target creature blocks it this turn if able. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{G}
 type=Sorcery
+[/card]
+[card]
+name=Moodmark Painter
+auto=target(creature) transforms((,newability[menace],newability[type:creature:mygraveyard/0])) ueot
+text=Undergrowth — When Moodmark Painter enters the battlefield, target creature gains menace and gets +X/+0 until end of turn, where X is the number of creature cards in your graveyard. (It can't be blocked except by two or more creatures.)
+mana={2}{B}{B}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=3
 [/card]
 [card]
 name=Moon-Eating Dog
@@ -28074,6 +28370,15 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Never Happened
+aicode=activate moveto(exile) notatarget(*[-land]|opponentGraveyard,opponenthand)
+auto=choice name(exile from hand) reveal:type:*:opponenthand revealzone(opponenthand) optionone name(choose to exile) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(exile)])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
+auto=choice name(exile from graveyard) moveto(exile) target(*[-land]|opponentGraveyard)
+text=Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=New Frontiers
 auto=thisforeach(X) ability$!notatarget(land|mylibrary) moveto(ownerhand) && tap!$ opponent
 auto=name(search basic lands) reveal:plibrarycount optionone name(choose card) target(<upto:prex>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
@@ -28337,8 +28642,8 @@ toughness=3
 [card]
 name=Nightveil Sprite
 abilities=flying
-auto=@combat(attacking) source(this):name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=1]|mylibrary) moverandom(*[zpos<=1]) from(mylibrary) to(mylibrary)])) ueot
+auto=@combat(attacking) source(this):surveil && name(surveil) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
 text=Flying -- Whenever Nightveil Sprite attacks, surveil 1. (Look at the top card of your library. You may put that card into your graveyard.)
 mana={1}{U}
 type=Creature
@@ -28664,8 +28969,8 @@ type=Sorcery
 [/card]
 [card]
 name=Notion Rain
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 auto=damage:2
 auto=draw:2
 text=Surveil 2, then draw two cards. Notion Rain deals 2 damage to you. (To surveil 2, look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
@@ -28722,6 +29027,20 @@ auto=hmodifer:-5 controller
 text=Skip your draw step. -- Whenever you play a card, draw a card. -- Your maximum hand size is two.
 mana={4}{B}{B}
 type=Enchantment
+[/card]
+[card]
+name=Nullhide Ferox
+abilities=opponentshroud
+auto=maxCast(*[-creature])0
+auto={2}:transforms((,newability[loseabilities])) ueot
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 2) pay[[{2}]] name(Pay 2) loseabilities notatarget(Nullhide Ferox|opponentBattlefield)ueot?donothing!$ opponent])) forever
+autograveyard=while(restriction{discardbyopponent}) moveto(ownerbattlefield)
+text=Hexproof -- You can't cast noncreature spells. -- {2}: Nullhide Ferox loses all abilities until end of turn. Any player may activate this ability. -- If a spell or ability an opponent controls causes you to discard Nullhide Ferox, put it onto the battlefield instead of putting it into your graveyard.
+mana={2}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
 [/card]
 [card]
 name=Nullpriest of Oblivion
@@ -31504,8 +31823,8 @@ other={1}{B} name(Target Legendary)
 otherrestriction=type(creature[legendary]|battlefield)~morethan~0
 auto=if paid(alternative) then destroy target(creature[legendary])
 auto=ifnot paid(alternative) then destroy target(creature)
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=This spell costs {2} less to cast if it targets a legendary creature. -- Destroy target creature. -- Surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
 mana={3}{B}
 type=Instant
@@ -33744,6 +34063,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Response // Resurgence
+other={3}{R}{W} name(Resurgence)
+otherrestriction=myturnonly
+auto=if paid(alternative) then all(creature|mybattlefield) transforms((,newability[first strike],newability[vigilance])) ueot asSorcery
+auto=if paid(alternative) then nextphasealter(add,combatphaseswithmain,controller,after<this>) asSorcery
+auto=ifnot paid(alternative) then damage:5 target(creature[attacking;blocking])
+text=Response deals 5 damage to target attacking or blocking creature. -- Creatures you control gain first strike and vigilance until end of turn. After this main phase, there is an additional combat phase followed by an additional main phase.
+mana={R or W}{R or W}
+type=Instant
+[/card]
+[card]
 name=Restless Dreams
 auto=if type(*|myHand)~morethan~0 then choice ability$!name(X=1) target(*|myhand) reject!$ controller && moveto(myhand) target(*[creature]|mygraveyard)
 auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2) target(<2>*|myhand) reject!$ controller && moveto(myhand) target(<2>*[creature]|mygraveyard)
@@ -34286,6 +34616,14 @@ type=Creature
 subtype=Human
 power=2
 toughness=2
+[/card]
+[card]
+name=Risk Factor
+auto=ability$!name(Choose one) choice name(Damage 4) damage:4 controller _ choice name(Draw cards) draw:3 opponent!$ opponent
+flashback={2}{R}{D(*|myhand)}
+text=Target opponent may have Risk Factor deal 4 damage to them. If that player doesn't, you draw three cards. -- Jump-start (You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile this card.)
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 name=Rite of Belzenlok
@@ -36803,6 +37141,13 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Selective Snare
+auto=chooseatype target(<prex>creature[chosentype]) moveto(ownerhand) chooseend
+text=Return X target creatures of the creature type of your choice to their owner's hand.
+mana={X}{U}
+type=Sorcery
+[/card]
+[card]
 name=Selesnya Eulogist
 auto={2}{G}:target(creature|graveyard) moveto(exile) && ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
 text={2}{G}: Exile target creature card from a graveyard, then populate. (Create a token that's a copy of a creature token you control.)
@@ -38418,8 +38763,8 @@ toughness=1
 name=Sinister Sabotage
 target=*|stack
 auto=fizzle
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=1]|mylibrary) moverandom(*[zpos<=1]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Counter target spell. -- Surveil 1. (Look at the top card of your library. You may put that card into your graveyard.)
 mana={1}{U}{U}
 type=Instant
@@ -41110,6 +41455,15 @@ auto=@each opponent beginofturn sourcenottap:lord(*|battlefield) doesnotuntap &&
 text=As long as Static Orb is untapped, players can’t untap more than two permanents during their untap steps.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Status // Statue
+other={2}{B}{G} name(Statue)
+auto=if paid(alternative) then target(*[creature;artifact;enchantment]) destroy
+auto=ifnot paid(alternative) then target(creature) transforms((,newability[1/1],newability[deathtouch])) ueot
+text=Target creature gets +1/+1 and gains deathtouch until end of turn. -- Destroy target artifact, creature, or enchantment.
+mana={BG}
+type=Instant
 [/card]
 [card]
 name=Staunch Shieldmate
@@ -44111,11 +44465,23 @@ type=Sorcery
 name=Thought Erasure
 aicode=activate reject notatarget(*[-land]|opponenthand)
 auto=reveal:type:*:opponenthand revealzone(opponenthand) optionone name(choose discards) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=1]|mylibrary) moverandom(*[zpos<=1]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(Reveal) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Target opponent reveals their hand. You choose a nonland card from it. That player discards that card. -- Surveil 1. (Look at the top card of your library. You may put it into your graveyard.)
 mana={U}{B}
 type=Sorcery
+[/card]
+[card]
+name=Thoughtbound Phantasm
+abilities=defender
+auto=this(counter{1/1}>=3) canattack
+auto=@surveiled(*|mybattlefield,mystack):all(this) counter(1/1)
+text=Defender -- Whenever you surveil, put a +1/+1 counter on Thoughtbound Phantasm. -- As long as Thoughtbound Phantasm has three or more +1/+1 counters on it, it can attack as though it didn't have defender.
+mana={U}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
 [/card]
 [card]
 name=Thousand-Year Elixir
@@ -44124,6 +44490,14 @@ auto={1}{T}:target(creature) untap
 text=You may activate abilities of creatures you control as though those creatures had haste. -- {1}, {T}: Untap target creature.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Thousand-Year Storm
+auto=@movedTo(instant,sorcery|mystack):foreach(instant[fresh]|mygraveyard) all(trigger[to]) castcard(copied noevent)
+auto=@movedTo(instant,sorcery|mystack):foreach(sorcery[fresh]|mygraveyard) all(trigger[to]) castcard(copied noevent)
+text=Whenever you cast an instant or sorcery spell, copy it for each other instant and sorcery spell you've cast before it this turn. You may choose new targets for the copies.
+mana={4}{U}{R}
+type=Enchantment
 [/card]
 [card]
 name=Thran Temporal Gateway
@@ -46280,8 +46654,8 @@ type=Instant
 name=Unexplained Disappearance
 target=creature
 auto=moveTo(ownerHand)
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=1]|mylibrary) moverandom(*[zpos<=1]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Return target creature to its owner's hand. -- Surveil 1. (Look at the top card of your library. You may put that card into your graveyard.)
 mana={1}{U}
 type=Instant
@@ -46474,6 +46848,20 @@ auto=untap target(<upto:3>land)
 text=Counter target noncreature spell. Untap up to three lands.
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Urban Utopia
+target=land
+auto=draw:1 controller
+auto=teach(land) {T}:add{G}
+auto=teach(land) {T}:add{W}
+auto=teach(land) {T}:add{U}
+auto=teach(land) {T}:add{R}
+auto=teach(land) {T}:add{B}
+text=Enchant land -- When Urban Utopia enters the battlefield, draw a card. -- Enchanted land has " {T}: Add one mana of any color."
+mana={1}{G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Urborg Panther
@@ -47404,6 +47792,15 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Vicious Rumors
+auto=damage:1 opponent
+auto=life:1 controller
+auto=ability$!name(Discard a card) notatarget(*|myhand) reject!$ opponent
+text=Vicious Rumors deals 1 damage to each opponent. Each opponent discards a card, then mills a card. You gain 1 life.
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Victimize
 target=<2>*[creature]|mygraveyard
 auto=moveto(mybattlefield) and!(tap(noevent))!
@@ -48133,6 +48530,16 @@ power=0
 toughness=4
 [/card]
 [card]
+name=Wall of Mist
+abilities=defender
+text=Defender
+mana={1}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=5
+[/card]
+[card]
 name=Wall of One Thousand Cuts
 abilities=defender,flying
 auto={W}:canattack ueot
@@ -48418,8 +48825,8 @@ toughness=2
 [card]
 name=Watcher in the Mist
 abilities=flying
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=2]|mylibrary) moverandom(*[zpos<=2]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:2 optionone name(put in graveyard) target(<upto:2>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Flying -- When Watcher in the Mist enters the battlefield, surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on the top of your library in any order.)
 mana={3}{U}{U}
 type=Creature
@@ -48749,8 +49156,8 @@ type=Enchantment
 [card]
 name=Whisper Agent
 abilities=flash
-aicode=name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=1]|mylibrary) moverandom(*[zpos<=1]) from(mylibrary) to(mylibrary)])) ueot
-auto=name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
+auto=surveil && name(surveil) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Flash -- When Whisper Agent enters the battlefield, surveil 1. (Look at the top card of your library. You may put it into your graveyard.)
 mana={1}{UB}{UB}
 type=Creature
@@ -48778,6 +49185,16 @@ type=Legendary Creature
 subtype=Human Cleric
 power=2
 toughness=2
+[/card]
+[card]
+name=Whispering Snitch
+auto=@surveiled(*|mybattlefield,mystack) turnlimited:damage:1 opponent && life:1 controller
+text=Whenever you surveil for the first time each turn, Whispering Snitch deals 1 damage to each opponent and you gain 1 life.
+mana={1}{B}
+type=Creature
+subtype=Vampire Rogue
+power=1
+toughness=3
 [/card]
 [card]
 name=Whispersteel Dagger

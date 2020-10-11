@@ -287,6 +287,11 @@ WEventplayerEnergized::WEventplayerEnergized(Player * player, int nb_count) :
 {
 }
 
+WEventCardSurveiled::WEventCardSurveiled(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardMutated::WEventCardMutated(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -495,6 +500,12 @@ Targetable * WEventCardCopiedACard::getTarget(int target)
 }
 
 Targetable * WEventCardMutated::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardSurveiled::getTarget(int target)
 {
     if (target) return card;
     return NULL;

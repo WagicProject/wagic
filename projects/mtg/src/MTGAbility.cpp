@@ -1208,8 +1208,12 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card is mutated
     if (TargetChooser * tc = parseSimpleTC(s, "mutated", card))
-        return NEW TrCardMutated(observer, id, card, tc,once);
-    
+        return NEW TrCardMutated(observer, id, card, tc,once,limitOnceATurn);
+
+    //Surveil has been performed from controller
+    if (TargetChooser * tc = parseSimpleTC(s, "surveiled", card))
+        return NEW TrCardSurveiled(observer, id, card, tc,once,limitOnceATurn);
+
     //Token has been created
     if (TargetChooser * tc = parseSimpleTC(s, "tokencreated", card))
         return NEW TrTokenCreated(observer, id, card, tc,once);
@@ -3387,6 +3391,27 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitMutatedUnder.size())
     {
         card->mutation += atoi(splitMutatedUnder[1].c_str());
+    }
+
+    //perform surveil
+    found = s.find("surveil");
+    if (found != string::npos)
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AASurveilEvent(observer, id, card, t, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //set surveil offset controller (eg. Enhanced Surveillance)
+    vector<string> splitSurveilOffset = parseBetween(s, "altersurvoffset:", " ", false);
+    if (splitSurveilOffset.size())
+    {
+        int surveilOffset = atoi(splitSurveilOffset[1].c_str());
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterSurveilOffset(observer, id, card, t, surveilOffset, NULL, who);
+        a->oneShot = 1;
+        return a;
     }
 
     //prevent next damage

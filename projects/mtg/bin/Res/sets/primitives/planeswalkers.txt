@@ -1,7 +1,7 @@
 grade=borderline
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 09-08-2020
+#We sorted this in alphabetical order - Luruz & Vitty85 12-10-2020
 [card]
 primitive=Abian, Luvion Usurper
 id=476217
