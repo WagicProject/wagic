@@ -21320,7 +21320,7 @@ auto=if paid(kicker) then ability$!name(Opponent discards 2 cards) name(Opponent
 auto=if paid(kicker) then ability$!name(Return a creature with mana cost 2 or less) name(Return a creature with mana cost 2 or less) moveTo(mybattlefield) target(creature[manacost<=2]|myGraveyard)!$ controller
 auto=if paid(kicker) then ability$!name(Destroy target creature with mana cost 3 or less) name(Destroy target creature with mana cost 3 or less) destroy target(creature[manacost<=3])!$ controller
 auto=ifnot paid(kicker) then choice name(Opponent discards 2 cards) name(Opponent discards 2 cards) ability$!name(Opponent discards 2 cards) notatarget(<2>*|myhand) reject!$ opponent
-auto=ifnot paid(kicker) then choice name(Return a creature with mana cost 2 or less) name(Return a creature with mana cost 2 or less) moveTo(mybattlfield) target(creature[manacost<=2]|myGraveyard)
+auto=ifnot paid(kicker) then choice name(Return a creature with mana cost 2 or less) name(Return a creature with mana cost 2 or less) moveTo(mybattlefield) target(creature[manacost<=2]|myGraveyard)
 auto=ifnot paid(kicker) then choice name(Destroy target creature with mana cost 3 or less) name(Destroy target creature with mana cost 3 or less) destroy target(creature[manacost<=3])
 text=Kicker {2}{B}{B} -- Choose one. If this spell was kicked, choose any number instead. -- • Target opponent discards two cards. -- • Return target creature card with converted mana cost 2 or less from your graveyard to the battlefield. -- • Destroy target creature with converted mana cost 3 or less.
 mana={2}{B}
