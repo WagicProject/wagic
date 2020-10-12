@@ -1172,12 +1172,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Blind Fury
-text=Cast Blind Fury only before the combat damage step. -- All creatures lose trample until end of turn. If a creature would deal combat damage to a creature this turn, it deals double that damage to that creature instead.
-mana={2}{R}{R}
-type=Instant
-[/card]
-[card]
 name=Blind Hunter
 abilities=flying
 text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Blind Hunter enters the battlefield or the creature it haunts dies, target player loses 2 life and you gain 2 life.
@@ -4770,12 +4764,6 @@ type=Plane
 subtype=New Phyrexia
 [/card]
 [card]
-name=Furnace of Rath
-text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
-mana={1}{R}{R}{R}
-type=Enchantment
-[/card]
-[card]
 name=GO TO JAIL
 text=When GO TO JAIL enters the battlefield, exile target creature an opponent controls until GO TO JAIL leaves the battlefield. -- At the beginning of the upkeep of the exiled card's owner, that player rolls two six-sided dice. If they roll doubles, sacrifice GO TO JAIL.
 mana={W}
@@ -5548,12 +5536,6 @@ text=Equipped creature has double strike. -- Whenever equipped creature attacks,
 mana={4}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Gratuitous Violence
-text=If a creature you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
-mana={2}{R}{R}{R}
-type=Enchantment
 [/card]
 [card]
 name=Grave Betrayal
