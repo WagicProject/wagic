@@ -2025,7 +2025,7 @@ public:
             if(type == 1)
                 e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
             else
-                e->targetCard->counters->removeCounter(counter->name.c_str(),counter->power,counter->toughness,true,true,e->source);
+                e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
         }
         return 1;
     }

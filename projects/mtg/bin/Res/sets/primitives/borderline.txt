@@ -1262,7 +1262,15 @@ toughness=3
 [/card]
 [card]
 name=Angrath's Marauders
-auto=@damaged(creature,player,planeswalker) once:damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(*[instant;sorcery]|mystack,myGraveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(*[enchantment;artifact;land;planeswalker]|mybattlefield,myGraveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(creature[-Angrath's Marauders]|mybattlefield,myGraveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(creature[Angrath's Marauders]|mybattlefield,myGraveyard):thisforeach(variable{thatmuch}) all(trigger[to]) transform((,newability[0/-1])) oneshot
+auto=@damaged(player) from(*[instant;sorcery]|mystack,myGraveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(*[enchantment;artifact;land;planeswalker]|mybattlefield,myGraveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(creature[-Angrath's Marauders]|mybattlefield,myGraveyard):damage:thatmuch all(trigger[to])
+auto=@combatdamagefoeof(player) from(this):damage:thatmuch all(trigger[to])
+auto=@counterremoved(duplicateAll) from(planeswalker|opponentBattlefield) restriction{myTurnOnly}:donothing
 text=If a source you control would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
 mana={5}{R}{R}
 type=Creature
@@ -1384,7 +1392,15 @@ type=Enchantment
 [/card]
 [card]
 name=Anthem of Rakdos
-auto=@damage(from) notatarget(*|myBattlefield,myStack,myGraveyard,mySideboard) aslongas(*|myhand) transforms((,newability[@damage:twicethatmuch])) <1
+auto=@damaged(creature) from(*[instant;sorcery]|mystack,myGraveyard) restriction{type(*|myhand)~lessthan~1}:damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(*[enchantment;artifact;land;planeswalker]|mybattlefield,myGraveyard) restriction{type(*|myhand)~lessthan~1}:damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(creature[-Angrath's Marauders]|mybattlefield,myGraveyard) restriction{type(*|myhand)~lessthan~1}:damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(creature[Angrath's Marauders]|mybattlefield,myGraveyard) restriction{type(*|myhand)~lessthan~1}:thisforeach(variable{thatmuch}) all(trigger[to]) transform((,newability[0/-1])) oneshot
+auto=@damaged(player) from(*[instant;sorcery]|mystack,myGraveyard) restriction{type(*|myhand)~lessthan~1}:damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(*[enchantment;artifact;land;planeswalker]|mybattlefield,myGraveyard) restriction{type(*|myhand)~lessthan~1}:damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(creature[-Angrath's Marauders]|mybattlefield,myGraveyard) restriction{type(*|myhand)~lessthan~1}:damage:thatmuch all(trigger[to])
+auto=@combatdamagefoeof(player) from(this) restriction{type(*|myhand)~lessthan~1}:damage:thatmuch all(trigger[to])
+auto=@counterremoved(duplicateAll) from(planeswalker|opponentBattlefield) restriction{restriction{type(*|myhand)~lessthan~1},myTurnOnly}:donothing
 auto=lord(creature[attacking]|myBattlefield) 2/0 ueot && damage:1 controller 
 text=Whenever a creature you control attacks, it gets +2/+0 until end of turn and Anthem of Rakdos deals 1 damage to you. -- Hellbent — As long as you have no cards in hand, if a source you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
 mana={2}{B}{R}{R}
@@ -3945,6 +3961,14 @@ type=Creature
 subtype=Zombie Bat
 power=2
 toughness=1
+[/card]
+[card]
+name=Blind Fury
+restriction=before battle damage
+auto=all(creature) transforms((,newability[-trample],newability[@combatdamaged(creature) from(this):damage:thatmuch all(trigger[to])])) ueot
+text=Cast Blind Fury only before the combat damage step. -- All creatures lose trample until end of turn. If a creature would deal combat damage to a creature this turn, it deals double that damage to that creature instead.
+mana={2}{R}{R}
+type=Instant
 [/card]
 [card]
 name=Blindblast
@@ -9031,7 +9055,9 @@ toughness=3
 [card]
 name=Curse of Bloodletting
 target=player
-auto=@damaged(targetedplayer) once:damage:thatmuch all(trigger[to])
+auto=@damaged(targetedplayer) from(*[instant;sorcery]|Stack,graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(targetedplayer) from(*[creature;artifact;land;planeswalker]|battlefield,graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(targetedplayer) from(enchantment[-Curse of Bloodletting]|battlefield,graveyard):damage:thatmuch all(trigger[to])
 text=Enchant player -- If a source would deal damage to enchanted player, it deals double that damage to that player instead.
 mana={3}{R}{R}
 type=Enchantment
@@ -10584,7 +10610,14 @@ toughness=3
 [card]
 name=Dictate of the Twin Gods
 abilities=flash
-auto=@damaged(creature,player,planeswalker) once:damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(*[instant;sorcery]|Stack,graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(*[creature;artifact;land;planeswalker]|battlefield,graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(enchantment[-Dictate of the Twin Gods]|battlefield,graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(*[instant;sorcery]|Stack,graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(*[creature;artifact;land;planeswalker]|battlefield,graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(enchantment[-Dictate of the Twin Gods]|battlefield,graveyard):damage:thatmuch all(trigger[to])
+auto=@counterremoved(duplicateAll) from(planeswalker|opponentBattlefield) restriction{myTurnOnly}:donothing
+auto=@counterremoved(duplicateAll) from(planeswalker|myBattlefield) restriction{opponentTurnOnly}:donothing
 text=Flash -- If a source would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
 mana={3}{R}{R}
 type=Enchantment
@@ -14622,8 +14655,8 @@ type=Instant
 [/card]
 [card]
 name=Fire Servant
-auto=@damaged(creature,player) from(*[red]|mybattlefield) once:damage:thatmuch all(trigger[to])
-auto=@damaged(creature,player) from(*[red]|mystack) once:damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(*[instant;sorcery;red]|myStack,mygraveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(*[instant;sorcery;red]|myStack,mygraveyard):damage:thatmuch all(trigger[to])
 text=If a red instant or sorcery spell you control would deal damage, it deals double that damage instead.
 mana={3}{R}{R}
 type=Creature
@@ -15809,6 +15842,18 @@ name=Furious Rise
 auto=@each my endofturn aslongas(creature[power>=4]|myBattlefield):moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary) uynt
 text=At the beginning of your end step, if you control a creature with power 4 or greater, exile the top card of your library. You may play that card until you exile another card with Furious Rise.
 mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Furnace of Rath
+auto=@damaged(creature) from(*[instant;sorcery]|stack,Graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(*[creature;artifact;land;planeswalker]|battlefield,Graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(creature) from(enchantment[-Furnace of Rath]|battlefield,Graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(*[instant;sorcery]|stack,Graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(*[creature;artifact;land;planeswalker]|battlefield,Graveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(enchantment[-Furnace of Rath]|battlefield,Graveyard):damage:thatmuch all(trigger[to])
+text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={1}{R}{R}{R}
 type=Enchantment
 [/card]
 [card]
@@ -17515,10 +17560,14 @@ toughness=2
 [/card]
 [card]
 name=Goldnight Castigator
-#need doubler damage ability...
 abilities=flying,haste
-auto=@damaged(controller):damage:thatmuch controller
-auto=@damaged(this):damage:thatmuch all(this)
+auto=@damaged(this) from(*[instant;sorcery]|stack,graveyard):damage:thatmuch all(this)
+auto=@damaged(this) from(*[enchantment;artifact;land;planeswalker]|battlefield,graveyard):damage:thatmuch all(this)
+auto=@damaged(this) from(creature[-Goldnight Castigator]|battlefield,graveyard):damage:thatmuch all(this)
+auto=@combatdamaged(this) from(creature[Goldnight Castigator]|battlefield,graveyard):damage:thatmuch all(this)
+auto=@damageof(player) from(*[instant;sorcery]|mystack,graveyard):damage:thatmuch all(trigger[to])
+auto=@damageof(player) from(*[enchantment;artifact;land;planeswalker]|mybattlefield,graveyard):damage:thatmuch all(trigger[to])
+auto=@damageof(player) from(creature[-Goldnight Castigator]|mybattlefield,graveyard):damage:thatmuch all(trigger[to])
 text=Flying, haste -- If a source would deal damage to you, it deals double that damage to you instead. -- If a source would deal damage to Goldnight Castigator, it deals double that damage to Goldnight Castigator instead.
 mana={2}{R}{R}
 type=Creature
@@ -17806,6 +17855,14 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=Gratuitous Violence
+auto=@damaged(creature) from(creature|mybattlefield,myGraveyard):damage:thatmuch all(trigger[to])
+auto=@damaged(player) from(creature|mybattlefield,myGraveyard):damage:thatmuch all(trigger[to])
+text=If a creature you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={2}{R}{R}{R}
+type=Enchantment
 [/card]
 [card]
 name=Gravebreaker Lamia
@@ -21403,10 +21460,16 @@ subtype=Aura
 [card]
 name=Insult // Injury
 auto=emblem transforms((,newability[@damaged(creature) from(*[creature;artifact;enchantment;land;planeswalker]|mybattlefield):damage:thatmuch all(trigger[to])])) ueot
+auto=emblem transforms((,newability[@damaged(creature) from(*[creature;artifact;enchantment;land;planeswalker]|mygraveyard):damage:thatmuch all(trigger[to])])) ueot
 auto=emblem transforms((,newability[@damaged(creature) from(*[instant;sorcery]|myStack):damage:thatmuch all(trigger[to])])) ueot
+auto=emblem transforms((,newability[@damaged(creature) from(*[instant;sorcery]|mygraveyard):damage:thatmuch all(trigger[to])])) ueot
 auto=emblem transforms((,newability[@damaged(player) from(*[instant;sorcery]|myStack):damage:thatmuch all(trigger[to])])) ueot
+auto=emblem transforms((,newability[@damaged(player) from(*[instant;sorcery]|mygraveyard):damage:thatmuch all(trigger[to])])) ueot
 auto=emblem transforms((,newability[@damaged(player) from(*[creature;artifact;enchantment;land;planeswalker]|mybattlefield):damage:thatmuch all(trigger[to])])) ueot
-autograveyard={2}{R}{E}:damage:2 target(player) && ability$!name(Deal 2 damage to target creature) damage:2 target(creature)!$ controller asSorcery
+auto=emblem transforms((,newability[@damaged(player) from(*[creature;artifact;enchantment;land;planeswalker]|mygraveyard):damage:thatmuch all(trigger[to])])) ueot
+auto=emblem transforms((,newability[@counterremoved(duplicateAll) from(planeswalker|opponentBattlefield) restriction{myTurnOnly}:donothing])) ueot
+autograveyard={2}{R}{E}:name(Damage yourself and target creature) damage:2 controller && damage:2 target(creature) restriction{type(creature|battlefield)~morethan~0,myTurnOnly} asSorcery
+autograveyard={2}{R}{E}:name(Damage opponent and target creature) damage:2 opponent && damage:2 target(creature) restriction{type(creature|battlefield)~morethan~0,myTurnOnly} asSorcery
 text=Damage can't be prevented this turn. If a source you control would deal damage this turn, it deals double that damage instead. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Injury deals 2 damage to target creature and 2 damage to target player.
 mana={2}{R}
 type=Sorcery
@@ -30009,7 +30072,7 @@ toughness=2
 [card]
 name=Orcish Hellraiser
 auto=upcost[{R};next upkeep] sacrifice
-auto=@movedTo(this|graveyard) from(battlefield):choice damage:2 target(planeswalker,player)
+auto=@movedTo(this|graveyard) from(battlefield):ability$!name(Choose one) choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
 text=Echo {R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Orcish Hellraiser dies, it deals 2 damage to target player or planeswalker.
 mana={1}{R}
 type=Creature
@@ -40328,7 +40391,6 @@ toughness=5
 [card]
 name=Sower of Discord
 abilities=flying
-auto=name(choose opponent) notatarget(opponent) deplete:0
 auto=@damageof(player):damage:thatmuch opponent
 text=Flying -- As Sower of Discord enters the battlefield, choose two players. -- Whenever damage is dealt to one of the chosen players, the other chosen player also loses that much life.
 mana={4}{B}{B}
@@ -45278,7 +45340,10 @@ type=Instant
 [/card]
 [card]
 name=Torbran, Thane of Red Fell
-auto=@damage(from) notatarget(*[red]|myBattlefield,myStack,myGraveyard,mySideboard) transforms((,newability[@damage:thatmuchplus2plusend]))
+auto=@damaged(creature|opponentBattlefield) from(*[instant;sorcery;red]|mystack,myGraveyard):all(trigger[to]) transforms((,newability[damage:2])) oneshot
+auto=@damaged(creature|opponentBattlefield) from(*[creature;enchantment;artifact;land;planeswalker;red]|mybattlefield,myGraveyard):all(trigger[to]) transforms((,newability[damage:2])) oneshot
+auto=@damagefoeof(player) from(*[instant;sorcery;red]|mystack,myGraveyard):ability$!name(Damage opponent) damage:2 opponent!$ controller
+auto=@damagefoeof(player) from(*[creature;enchantment;artifact;land;planeswalker;red]|mybattlefield,myGraveyard):ability$!name(Damage opponent) damage:2 opponent!$ controller
 text=If a red source you control would deal damage to an opponent or a permanent an opponent controls, it deals that much damage plus 2 instead.
 mana={1}{R}{R}{R}
 type=Legendary Creature
