@@ -723,7 +723,7 @@ toughness=4
 [/card]
 [card]
 name=Alhammarret's Archive
-auto=@lifeof(player) except(Alhammarret's Archive): life:thatmuch
+auto=@lifeof(player) from(*[-Alhammarret's Archive]):life:thatmuch
 auto=replacedraw draw:2 noreplace
 text=If you would gain life, you gain twice that much life instead. -- If you would draw a card except the first one you draw in each of your draw steps, draw two cards instead.
 mana={5}
@@ -1138,7 +1138,7 @@ toughness=4
 name=Angel of Vitality
 abilities=flying
 auto=this(controllerlife > 24) 2/2
-auto=@lifeof(player) except(Angel of Vitality): life:1
+auto=@lifeof(player) from(*[-Angel of Vitality]):life:1 controller
 text=Flying -- If you would gain life, you gain that much life plus 1 instead. -- Angel of Vitality gets +2/+2 as long as you have 25 or more life.
 mana={2}{W}
 type=Creature
@@ -1428,7 +1428,7 @@ type=Instant
 [card]
 name=Aphemia, the Cacophony
 abilities=flying
-auto=@each my endofturn:may moveto(exile) target(enchantment|myGraveyrad) && token(Zombie,Creature Zombie,2/2,black)
+auto=@each my endofturn:may moveto(exile) target(enchantment|myGraveyard) && token(Zombie,Creature Zombie,2/2,black)
 text=Flying -- At the beginning of your end step, you may exile an enchantment card from your graveyard. If you do, create a 2/2 black Zombie creature token.
 mana={1}{B}
 type=Legendary Enchantment Creature
@@ -4297,7 +4297,7 @@ type=Artifact
 [card]
 name=Bloodthirsty Aerialist
 abilities=flying
-auto=@lifeof(player): counter(1/1,1)
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):counter(1/1,1)
 text=Flying -- Whenever you gain life, put a +1/+1 counter on Bloodthirsty Aerialist.
 mana={1}{B}{B}
 type=Creature
@@ -4716,7 +4716,7 @@ type=Sorcery
 [/card]
 [card]
 name=Boon Reflection
-auto=@lifeof(player) except(Boon Reflection): life:thatmuch
+auto=@lifeof(player) from(*[-Boon Reflection]):life:thatmuch
 text=If you would gain life, you gain twice that much life instead.
 mana={4}{W}
 type=Enchantment
@@ -9451,7 +9451,7 @@ toughness=3
 [/card]
 [card]
 name=Dawn of Hope
-auto=@lifeof(player):pay({2}) draw:1
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):pay({2}) draw:1
 auto={3}{W}:create(soldier:creature soldier:1/1:white:lifelink)
 text=Whenever you gain life, you may pay {2}. If you do, draw a card. -- {3}{W}: Create a 1/1 white Soldier creature token with lifelink.
 mana={1}{W}
@@ -13045,7 +13045,7 @@ type=Sorcery
 [/card]
 [card]
 name=Epicure of Blood
-auto=@lifeof(player):life:-1 opponent
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality]):life:-1 opponent
 text=Whenever you gain life, each opponent loses 1 life.
 mana={4}{B}
 type=Creature
@@ -13893,7 +13893,7 @@ type=Instant
 [card]
 name=Famished Paladin
 auto=doesnotuntap
-auto=@lifeof(player):untap(this)
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):untap(this)
 text=Famished Paladin doesn't untap during your untap step. -- Whenever you gain life, untap Famished Paladin.
 mana={1}{W}
 type=Creature
@@ -14834,8 +14834,10 @@ type=Enchantment
 [/card]
 [card]
 name=Firesong and Sunspeaker
-auto=lord(instant,sorcery[red]|mycastingzone): lifelink
-auto=@lifeof(player) from (*[instant;sorcery[white]]|mystack):damage:3 target(creature,player,planeswalker)
+auto=@damaged(creature) from(*[instant;sorcery;red]|mystack,mygraveyard):life:thatmuch controller
+auto=@damageof(player) from(*[instant;sorcery;red]|mystack,mygraveyard):life:thatmuch controller
+auto=@damagefoeof(player) from(*[instant;sorcery;red]|mystack,mygraveyard):life:thatmuch controller
+auto=@lifeof(player) from(*[instant;sorcery;white]|mystack,mygraveyard)):damage:3 target(creature,player)
 text=Red instant and sorcery spells you control have lifelink. -- Whenever a white instant or sorcery spell causes you to gain life, Firesong and Sunspeaker deals 3 damage to target creature or player.
 mana={4}{R}{W}
 type=Legendary Creature
@@ -16573,7 +16575,7 @@ type=Sorcery
 [/card]
 [card]
 name=Gideon's Company
-auto=@lifeof(player):counter(1/1,2)
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):counter(1/1,2)
 auto={3}{W}:counter(0/0,1,Loyalty) target(planeswalker[gideon])
 text=Whenever you gain life, put two +1/+1 counters on Gideon's Company. -- {3}{W}: Put a loyalty counter on target Gideon planeswalker.
 mana={3}{W}
@@ -18562,7 +18564,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Hallowed Priest
-auto=@lifeof(player):counter(1/1,1)
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):counter(1/1,1)
 text=Whenever you gain life, put a +1/+1 counter on Hallowed Priest
 mana={1}{W}
 type=Creature
@@ -19207,7 +19209,7 @@ name=Heliod, Sun-Crowned
 abilities=indestructible
 auto=this(variable{type:manaw}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
 auto=this(variable{type:manaw}>4) transforms((Legendary Enchantment Creature))
-auto=@lifeof(player):counter(1/1,1) target(creature,enchantment|myBattlefield)
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):counter(1/1,1) target(creature,enchantment|myBattlefield)
 auto={1}{W}:lifelink target(other creature) ueot
 text=Indestructible -- As long as your devotion to white is less than five, Heliod isn’t a creature. -- Whenever you gain life, put a +1/+1 counter on target creature or enchantment you control. -- {1}{W}: Another target creature gains lifelink until end of turn.
 mana={2}{W}
@@ -25823,7 +25825,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Marauding Blight-Priest
-auto=@lifeof(player):life:-1 opponent
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):life:-1 opponent
 text=Whenever you gain life, each opponent loses 1 life.
 mana={2}{B}
 type=Creature
@@ -29625,7 +29627,7 @@ toughness=3
 [card]
 name=Oloro, Ageless Ascetic
 auto=@each my upkeep:life:2 controller
-auto=@lifeof(player):pay({1}) draw:1 controller && life:-1 opponent
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):pay({1}) draw:1 controller && life:-1 opponent
 #wagic doesn't have command zone
 text=At the beginning of your upkeep, you gain 2 life. -- Whenever you gain life, you may pay {1}. If you do, draw a card and each opponent loses 1 life. -- At the beginning of your upkeep, if Oloro, Ageless Ascetic is in the command zone, you gain 2 life.
 mana={3}{W}{U}{B}
@@ -34345,7 +34347,8 @@ toughness=2
 [card]
 name=Rhox Faithmender
 abilities=lifelink
-auto=@lifeof(player) except(Rhox Faithmender): life:thatmuch
+auto=@lifeof(player) from(*[-Rhox Faithmender]):life:thatmuch
+auto=@damaged(creature,player) from(Rhox Faithmender|myBattlefield):life:thatmuch
 text=Lifelink (Damage dealt by this creature also causes you to gain that much life.) -- If you would gain life, you gain twice that much life instead.
 mana={3}{W}
 type=Creature
@@ -36625,7 +36628,7 @@ toughness=5
 [card]
 name=Scion of the Swarm
 abilities=flying
-auto=@lifeof(player):counter(1/1,1)
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):counter(1/1,1)
 text=Flying -- Whenever you gain life, put a +1/+1 counter on Scion of the Swarm.
 mana={3}{B}{B}
 type=Creature
@@ -40640,7 +40643,7 @@ toughness=4
 [card]
 name=Spellpyre Phoenix
 abilities=flying
-auto=moveTo(myHand) target(*[instant;sorcery{_cycling_}|myGravyeard)
+auto=moveTo(myHand) target(*[instant;sorcery{_cycling_}|myGraveyard)
 autograveyard=if type(@cycled(*|myHand)~morethan~2 then moveTo(myhand) target(Spellpyre Phoenix|myGraveyard))
 text=Flying -- When Spellpyre Phoenix enters the battlefield, you may return target instant or sorcery card with a cycling ability from your graveyard to your hand. -- At the beginning of each end step, if you cycled two or more cards this turn, return Spellpyre Phoenix from your graveyard to your hand.
 mana={3}{R}{R}
@@ -46234,7 +46237,7 @@ toughness=4
 [/card]
 [card]
 name=Twinblade Paladin
-auto=@lifeof(player): counter(1/1)
+auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection]):counter(1/1)
 auto=this(controllerlife > 24) double strike
 text=Whenever you gain life, put a +1/+1 counter on Twinblade Paladin. -- As long as you have 25 or more life, Twinblade Paladin has double strike. (It deals both first-strike and regular combat damage.)
 mana={3}{W}
@@ -48083,8 +48086,8 @@ toughness=4
 [/card]
 [card]
 name=Vito, Thorn of the Dusk Rose
-auto=@lifeof(player):dynamicability<!myself thatmuchlifeloss srcopponent!>
-auto={3}{B}{B}:all(creature|myBattlefield) lifelink ueot
+auto=@lifeof(player):life:-thatmuch opponent
+auto={3}{B}{B}:all(creature|myBattlefield) transforms((,newability[lifelink])) ueot
 text=Whenever you gain life, target opponent loses that much life. -- {3}{B}{B}: Creatures you control gain lifelink until end of turn.
 mana={2}{B}
 type=Legendary Creature
@@ -49165,7 +49168,7 @@ type=Artifact
 [/card]
 [card]
 name=Well of Lost Dreams
-auto=@lifeof(player):foreach:life: may pay({lifeof}) draw:thatmuch controller
+auto=@lifeof(player):thisforeach(variable{thatmuch}) ability$!name(Pay 1 and draw 1) pay[[{1}]] name(Pay 1 and draw 1) draw:1?name(Don't pay) donothing!$ controller
 text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
 mana={4}
 type=Artifact

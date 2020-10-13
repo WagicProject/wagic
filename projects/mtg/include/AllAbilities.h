@@ -1686,8 +1686,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardMutated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc)
+        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -1889,20 +1890,26 @@ public:
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
     bool sourceUntapped, thiscontroller, thisopponent;
+    bool limitOnceATurn;
+    int triggeredTurn;
     MTGCardInstance * gainException; //added exception to avid a gainlife loop (eg. Angels of Vitality)
-    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false, bool thiscontroller = false, bool thisopponent = false, MTGCardInstance * gainException = NULL) :
-        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped) , thiscontroller(thiscontroller) , thisopponent(thisopponent), gainException(gainException)
+    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false, MTGCardInstance * gainException = NULL) :
+        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped), thiscontroller(thiscontroller), thisopponent(thisopponent), limitOnceATurn(limitOnceATurn), gainException(gainException)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventLife * e = dynamic_cast<WEventLife *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (sourceUntapped  && source->isTapped() == 1)
             return 0;
         if (!tc->canTarget(e->player)) return 0;
-        if (fromTc && !fromTc->canTarget(e->player)) return 0;
+        //if (fromTc && !fromTc->canTarget(e->player)) return 0;
+        if (fromTc && !fromTc->canTarget(e->source)) return 0; //Now it's possible to specify if a source can trigger or not the event of life gain
         if (gainException && e->source && !strcmp(gainException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of life gain it's the exception card don't gain life (loop avoidance);
         if (type == 1 && (e->amount > 0)) return 0;
         if (type == 0 && (e->amount < 0)) return 0;
@@ -1914,6 +1921,7 @@ public:
                 return 0;
         e->player->thatmuch = abs(e->amount);
         this->source->thatmuch = abs(e->amount);
+        triggeredTurn = game->turn;
 
         return 1;
     }
