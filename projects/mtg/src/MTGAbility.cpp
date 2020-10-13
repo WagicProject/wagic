@@ -1299,9 +1299,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false,limitOnceATurn,exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false,limitOnceATurn);
     }
 
     //Lifed current opponent
@@ -1310,9 +1310,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true, exception->source); 
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true,limitOnceATurn,exception->source); 
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true,limitOnceATurn);
     }
 
     //Lifed static
@@ -1321,9 +1321,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,false, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,false,limitOnceATurn,exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,false);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,false,limitOnceATurn);
     }
 
     //Life Loss current player
@@ -1332,9 +1332,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,true,false, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,true,false,limitOnceATurn,exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,true,false);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,true,false,limitOnceATurn);
     }
 
     //Life Loss current opponent
@@ -1343,9 +1343,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,true, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,true,limitOnceATurn,exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,true);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,true,limitOnceATurn);
     }
 
     //Life Loss static
@@ -1354,9 +1354,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,false, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,false,limitOnceATurn,exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,false);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,false,limitOnceATurn);
     }
 
     //Card Damaged and killed by a creature this turn
