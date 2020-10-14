@@ -50,10 +50,9 @@ install:
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
 - sudo python -m easy_install --upgrade pyOpenSSL
-- sudo pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip setuptools
-- sudo pip install pyjavaproperties
-- sudo pip install github3.py
-- sudo pip install cpp-coveralls
+- sudo pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip pyjavaproperties
+- sudo pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip github3.py
+- sudo pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip cpp-coveralls
 
 env:
   global:
