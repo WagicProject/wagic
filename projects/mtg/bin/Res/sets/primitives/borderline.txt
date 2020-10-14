@@ -12874,6 +12874,7 @@ type=Sorcery
 [card]
 name=Enhanced Surveillance
 auto=altersurvoffset:2 controller
+auto=@movedto(this|nonbattlezone) from(battlefield):altersurvoffset:-2 controller
 auto={E}:all(*|myGraveyard) moveto(myLibrary) and!(shuffle)!
 text=You may look at an additional two cards each time you surveil. -- Exile Enhanced Surveillance: Shuffle your graveyard into your library.
 mana={1}{U}
