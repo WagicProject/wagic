@@ -49,16 +49,29 @@ install:
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
-- sudo apt purge python-pip python3-pip
-- sudo rm -rf /usr/local/lib/python2.7/dist-packages/pip
-- sudo rm -rf /usr/local/lib/python3.4/dist-packages/pip
-- sudo apt install python-pip python3-pip
-- sudo pip3 install pyjavaproperties
+- python -V
+- sudo apt-get update
+- sudo apt-get install python3
+- sudo pip install virtualenv
+- sudo mkdir MYENV
+- sudo virtualenv -p python3 MYENV
+- source MYENV/bin/activate
+- python -V
+- sudo python -m easy_install --upgrade pyOpenSSL
+- sudo pip install pyjavaproperties
+- sudo pip install github3.py
+- sudo pip install cpp-coveralls
+#- sudo apt purge python-pip python3-pip
+#- sudo rm -rf /usr/local/lib/python2.7/dist-packages/pip
+#- sudo rm -rf /usr/local/lib/python3.4/dist-packages/pip
+#- sudo apt install python-pip python3-pip
+#- sudo pip3 install pyjavaproperties
 #- sudo pip3 install virtualenv --upgrade
 #- sudo pip3 install setuptools --upgrade
 #- sudo pip3 install github3.py
 #- sudo pip3 install cpp-coveralls
-- sudo python -m easy_install --upgrade pyOpenSSL
+#- sudo python -m easy_install --upgrade pyOpenSSL
+#- sudo pip3 install pyjavaproperties
 #- sudo pip install pyjavaproperties
 #- sudo pip install github3.py
 #- sudo pip install cpp-coveralls
