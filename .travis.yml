@@ -9,6 +9,20 @@ before_install:
   - export BUILD_ANDROID=YES
   - export BUILD_Qt=YES
   - export BUILD_MAC=NO
+  
+  - python -V
+  - sudo apt-get update
+  - sudo apt-get install python3
+  - sudo pip install virtualenv
+  - sudo mkdir MYENV
+  - sudo virtualenv -p python3 MYENV
+  - source MYENV/bin/activate
+  - python -V
+  - sudo python -m easy_install --upgrade pyOpenSSL
+  - sudo pip install pyjavaproperties
+  - sudo pip install github3.py
+  - sudo pip install cpp-coveralls
+  
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
 #     export BUILD_MAC=YES;
