@@ -49,7 +49,8 @@ def createStandardResFile(filename):
     if not filename:
         filename = getFilename() + '.zip'
     createResZipFile( filename )
-    print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
+    #print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
+    print('Created Resource Package for Standard Distribution: {0}'.format( filename), file=sys.stderr)
 
 def createIosResFile(filename):
     print('Preparing Resource Package for iOS')
