@@ -55,7 +55,7 @@ install:
 - sudo apt install python-pip python3-pip
 - sudo pip3 install pyjavaproperties
 - sudo pip3 install virtualenv --upgrade
-- sudo pip3 install setuptools
+- sudo pip3 install setuptools --upgrade
 - sudo python3 -m pip install github3.py
 - sudo pip3 install cpp-coveralls
 - sudo python -m easy_install --upgrade pyOpenSSL
