@@ -33880,6 +33880,7 @@ name=Relic Vial
 auto={2}{T}{S(creature|myBattlefield}:name(Draw a card) name(Draw a card) draw:1 controller
 auto=@movedTo(creature|myGraveyard) from(Battlefield) restriction{type(creature[cleric]|myBattlefield)~morethan~0}:life-1 opponent && life:1 controller
 text={2}, {T}, Sacrifice a creature: Draw a card. -- As long as you control a Cleric, Relic Vial has "Whenever a creature you control dies, each opponent loses 1 life and you gain 1 life."
+mana={3}
 type=Artifact
 [/card]
 [card]
