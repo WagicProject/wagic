@@ -458,11 +458,19 @@ toughness=4
 [/card]
 [card]
 name=Agadeem's Awakening
-abilities=nofizzle alternative
-other={0} name(Agadeem, the Undercrypt)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then name(Return any creatures from graveyard) moveTo(myBattlefield) target(<anyamount>creature[manacost<=X]|myGraveyard)
-auto=if paid(alternative) then flip(Agadeem, the Undercrypt) forcetype(land)
+autohand={0}:restriction{can play land} name(Agadeem, the Undercrypt) name(Agadeem, the Undercrypt) flip(Agadeem, the Undercrypt) forcetype(land)
+auto=this(X=0) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard)
+auto=this(X=1) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller
+auto=this(X=2) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller
+auto=this(X=3) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller
+auto=this(X=4) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller
+auto=this(X=5) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=5]|myGraveyard)!$ controller
+auto=this(X=6) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=5]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=6]|myGraveyard)!$ controller
+auto=this(X=7) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=5]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=6]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=7]|myGraveyard)!$ controller
+auto=this(X=8) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=5]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=6]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=7]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=8]|myGraveyard)!$ controller
+auto=this(X=9) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=5]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=6]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=7]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=8]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=9]|myGraveyard)!$ controller
+auto=this(X=10) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=5]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=6]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=7]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=8]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=9]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=10]|myGraveyard)!$ controller
+auto=this(X>10) name(Return any creatures from graveyard) moveTo(myBattlefield) target(<anyamount>creature[manacost<=X]|myGraveyard) 
 text=Return from your graveyard to the battlefield any number of target creature cards that each have a different converted mana cost X or less.
 mana={X}{B}{B}{B}
 type=Sorcery
@@ -677,10 +685,8 @@ type=Land
 [/card]
 [card]
 name=Akoum Warrior
-abilities=trample,nofizzle alternative
-other={0} name(Akoum Teeth)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Akoum Teeth) forcetype(land)
+abilities=trample
+autohand={0}:restriction{can play land} name(Akoum Teeth) name(Akoum Teeth) flip(Akoum Teeth) forcetype(land)
 text=Trample
 mana={5}{R}
 type=Creature
@@ -2788,11 +2794,8 @@ type=Instant
 [/card]
 [card]
 name=Bala Ged Recovery
-abilities=nofizzle alternative
-other={0} name(Bala Ged Sanctuary)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then name(Return a card from graveyard) name(Return a card from graveyard) moveTo(myHand) target(*|myGraveyard)
-auto=if paid(alternative) then flip(Bala Ged Sanctuary) forcetype(land)
+autohand={0}:restriction{can play land} name(Bala Ged Sanctuary) name(Bala Ged Sanctuary) flip(Bala Ged Sanctuary) forcetype(land)
+auto=name(Return a card from graveyard) name(Return a card from graveyard) moveTo(myHand) target(*|myGraveyard)
 text=Return target card from your graveyard to your hand.
 mana={2}{G}
 type=Sorcery
@@ -3551,11 +3554,8 @@ type=Land
 [/card]
 [card]
 name=Beyeen Veil
-abilities=nofizzle alternative
-other={0} name(Beyeen Coast)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Beyeen Coast) forcetype(land)
-auto=ifnot paid(alternative) then all(creature|opponentBattlefield) -2/0 ueot
+autohand={0}:restriction{can play land} name(Beyeen Coast) name(Beyeen Coast) flip(Beyeen Coast) forcetype(land)
+auto=all(creature|opponentBattlefield) -2/0 ueot
 text=Creatures your opponents control get -2/-0 until end of turn.
 mana={1}{U}
 type=Instant
@@ -3701,11 +3701,9 @@ type=Land
 [/card]
 [card]
 name=Blackbloom Rogue
-abilities=menace,nofizzle alternative
-other={0} name(Blackbloom Bog)
-otherrestriction=can play land
+abilities=menace
+autohand={0}:restriction{can play land} name(Blackbloom Bog) name(Blackbloom Bog) flip(Blackbloom Bog) forcetype(land)
 auto=aslongas(*|opponentGraveyard) 3/0 >7
-auto=if paid(alternative) then flip(Blackbloom Bog) forcetype(land)
 text=Menace (This creature can't be blocked except by two or more creatures.) -- Blackbloom Rogue gets +3/+0 as long as an opponent has eight or more cards in their graveyard.
 mana={2}{B}
 type=Creature
@@ -12649,12 +12647,9 @@ toughness=1
 [/card]
 [card]
 name=Emeria's Call
-abilities=nofizzle alternative
-other={0} name(Emeria, Shattered Skyclave)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Emeria, Shattered Skyclave) forcetype(land)
-auto=ifnot paid(alternative) then token(Angel,Creature Angel Warrior,4/4,flying,white)*2
-auto=ifnot paid(alternative) then all(creature[-angel]|myBattlefield) indestructible uynt
+autohand={0}:restriction{can play land} name(Emeria, Shattered Skyclave) name(Emeria, Shattered Skyclave) flip(Emeria, Shattered Skyclave) forcetype(land)
+auto=token(Angel,Creature Angel Warrior,4/4,flying,white)*2
+auto=all(creature[-angel]|myBattlefield) indestructible uynt
 text=Create two 4/4 white Angel Warrior creature tokens with flying. Non-Angel creatures you control gain indestructible until your next turn.
 mana={4}{W}{W}{W}
 type=Sorcery
@@ -16871,11 +16866,8 @@ type=Artifact
 [/card]
 [card]
 name=Glasspool Mimic
-abilities=nofizzle alternative
-other={0} name(Glasspool Shore)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Glasspool Shore) forcetype(land)
-auto=ifnot paid(alternative) then name(Clone a creature) may notatarget(creature|myBattlefield) clone addtype(Shapeshifter Rogue)
+autohand={0}:restriction{can play land} name(Glasspool Shore) name(Glasspool Shore) flip(Glasspool Shore) forcetype(land)
+auto=name(Clone a creature) name(Clone a creature) may notatarget(creature|myBattlefield) clone addtype(Shapeshifter Rogue)
 text=You may have Glasspool Mimic enter the battlefield as a copy of a creature you control, except it's a Shapeshifter Rogue in addition to its other types.
 mana={2}{U}
 type=Creature
@@ -18509,11 +18501,8 @@ toughness=0
 [card]
 name=Hagra Mauling
 anyzone=this(variable{type:land[basic]:opponenthand}<1) changecost(colorless:-1) forcedalive
-abilities=nofizzle alternative
-other={0} name(Hagra Broodpit)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then destroy target(creature)
-auto=if paid(alternative) then flip(Hagra Broodpit) forcetype(land)
+autohand={0}:restriction{can play land} name(Hagra Broodpit) name(Hagra Broodpit) flip(Hagra Broodpit) forcetype(land)
+auto=name(Destroy a creature) name(Destroy a creature) destroy target(creature)
 text=This spell costs {1} less if an opponent controls no basic lands. -- Destroy target creature.
 mana={2}{B}{B}
 type=Instant
@@ -22266,11 +22255,8 @@ type=Instant
 [/card]
 [card]
 name=Jwari Disruption
-abilities=nofizzle alternative
-other={0} name(Jwari Ruins)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Jwari Ruins) forcetype(land)
-auto=ifnot paid(alternative) then name(Counter target spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+autohand={0}:restriction{can play land} name(Jwari Ruins) name(Jwari Ruins) flip(Jwari Ruins) forcetype(land)
+auto=name(Counter target spell) name(Counter target spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 text=Counter target spell unless its controller pays {1}.
 mana={1}{U}
 type=Instant
@@ -22312,11 +22298,8 @@ type=Land
 [/card]
 [card]
 name=Kabira Takedown
-abilities=nofizzle alternative
-other={0} name(Kabira Plateau)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Kabira Plateau) forcetype(land)
-auto=ifnot paid(alternative) then target(creature,planeswalker) damage:type:creature:myBattlefield
+autohand={0}:restriction{can play land} name(Kabira Plateau) name(Kabira Plateau) flip(Kabira Plateau) forcetype(land)
+auto=name(Damage creature or planeswalker) name(Damage creature or planeswalker) target(creature,planeswalker) damage:type:creature:myBattlefield
 text=Kabira Takedown deals damage equal to the number of creatures you control to target creature or planeswalker.
 mana={1}{W}
 type=Instant
@@ -22568,11 +22551,8 @@ toughness=2
 [/card]
 [card]
 name=Kazandu Mammoth
-abilities=nofizzle alternative
-other={0} name(Kazandu Valley)
-otherrestriction=can play land
+autohand={0}:restriction{can play land} name(Kazandu Valley) name(Kazandu Valley) flip(Kazandu Valley) forcetype(land)
 auto=_LANDFALL_2/2 ueot
-auto=if paid(alternative) then flip(Kazandu Valley) forcetype(land)
 text=Landfall - Whenever a land enters the battlefield under your control, Kazandu Mammoth gains +2/+2 until end of turn.
 mana={2}{G}
 type=Creature
@@ -22629,11 +22609,8 @@ type=Land
 [/card]
 [card]
 name=Kazuul's Fury
-abilities=nofizzle alternative
-other={0} name(Kazuul's Cliffs)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then damage:storedpower target(player,creature,planeswalker)
-auto=if paid(alternative) then flip(Kazuul's Cliffs) forcetype(land)
+autohand={0}:restriction{can play land} name(Kazuul's Cliffs) name(Kazuul's Cliffs) flip(Kazuul's Cliffs) forcetype(land)
+auto=damage:storedpower target(player,creature,planeswalker)
 text=As an additional cost to cast this spell, sacrifice a creature. -- Kazuul's Fury deals damage equal to the sacrificed creatures power to any target.
 mana={2}{R}{S(creature|myBattlefield)}
 type=Instant
@@ -22858,12 +22835,9 @@ subtype=Forest Island Mountain
 [/card]
 [card]
 name=Khalni Ambush
-abilities=nofizzle alternative
-other={0} name(Khalni Territory)
-otherrestriction=can play land
-restriction=type(creature|opponentbattlefield)~morethan~0
-auto=ifnot paid(alternative) then name(fights target creature you don't control) name(fights target creature you don't control) target(creature|mybattlefield) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
-auto=if paid(alternative) then flip(Khalni Territory) forcetype(land)
+autohand={0}:restriction{can play land} name(Khalni Territory) name(Khalni Territory) flip(Khalni Territory) forcetype(land)
+restriction=type(creature|opponentbattlefield)~morethan~0,type(creature|myBattlefield)~morethan~0
+auto=name(fights target creature you don't control) name(fights target creature you don't control) target(creature|mybattlefield) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
 text=Target creature you control fights target creature you don't control. (Each deals damage equal to its power to the other.)
 mana={2}{G}
 type=Instant
@@ -25552,11 +25526,8 @@ toughness=4
 [/card]
 [card]
 name=Makindi Stampede
-abilities=nofizzle alternative
-other={0} name(Makindi Mesas)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Makindi Stampede) forcetype(land)
-auto=ifnot paid(alternative) then all(creature|myBattlefield) 2/2 ueot
+autohand={0}:restriction{can play land} name(Makindi Stampede) name(Makindi Stampede) flip(Makindi Stampede) forcetype(land)
+auto=all(creature|myBattlefield) 2/2 ueot
 text=Creatures you control get +2/+2 until end of turn.
 mana={3}{W}{W}
 type=Sorcery
@@ -25581,12 +25552,9 @@ type=Land
 [/card]
 [card]
 name=Malakir Rebirth
-abilities=nofizzle alternative
-other={0} name(Malakir Mire)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then life:-2 controller
-auto=ifnot paid(alternative) then target(creature) transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield) and!(tap(noevent))!])) ueot
-auto=if paid(alternative) then flip(Malakir Mire) forcetype(land)
+autohand={0}:restriction{can play land} name(Malakir Mire) name(Malakir Mire) flip(Malakir Mire) forcetype(land)
+auto=life:-2 controller
+auto=name(Choose a creature) name(Choose a creature) target(creature) transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield) and!(tap(noevent))!])) ueot
 text=Choose target creature. You lose 2 life. Until end of turn, that creature gains "When this creature dies, return it to the battlefield tapped under its owner's control."
 mana={B}
 type=Instant
@@ -29797,11 +29765,8 @@ type=Instant
 [/card]
 [card]
 name=Ondu Inversion
-abilities=nofizzle alternative
-other={0} name(Ondu Skyruins)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Ondu Skyruins) forcetype(land)
-auto=ifnot paid(alternative) then destroy all(*[-land])
+autohand={0}:restriction{can play land} name(Ondu Skyruins) name(Ondu Skyruins) flip(Ondu Skyruins) forcetype(land)
+auto=destroy all(*[-land])
 text=Destroy all nonland permanents.
 mana={6}{W}{W}
 type=Sorcery
@@ -30942,12 +30907,9 @@ type=Land
 [/card]
 [card]
 name=Pelakka Predation
-abilities=nofizzle alternative
-other={0} name(Pelakka Caverns)
-otherrestriction=can play land
+autohand={0}:restriction{can play land} name(Pelakka Caverns) name(Pelakka Caverns) flip(Pelakka Caverns) forcetype(land)
 aicode=activate reject notatarget(*[manacost>=3]|opponenthand)
-auto=ifnot paid(alternative) then name(reveal hand) reveal:type:*:opponenthand revealzone(opponenthand) optionone name(Choose a card) target(*[manacost>=3]|reveal) reject optiononeend optiontwo name(put back) all(*|reveal) moveto(ownerhand) optiontwoend revealend
-auto=if paid(alternative) then flip(Pelakka Caverns) forcetype(land)
+auto=name(reveal hand) reveal:type:*:opponenthand revealzone(opponenthand) optionone name(Choose a card) target(*[manacost>=3]|reveal) reject optiononeend optiontwo name(put back) all(*|reveal) moveto(ownerhand) optiontwoend revealend
 text=Target opponent reveals their hand. You may choose a card from it with converted mana cost 3 or greater. That player discards that card.
 mana={2}{B}
 type=Sorcery
@@ -36874,12 +36836,9 @@ toughness=5
 [/card]
 [card]
 name=Sea Gate Restoration
-abilities=nofizzle alternative
-other={0} name(Sea Gate, Reborn)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Sea Gate, Reborn) forcetype(land)
-auto=ifnot paid(alternative) then emblem transforms((,newability[lord(*|myBattlefield) nomaxhand])) forever dontremove
-auto=ifnot paid(alternative) then draw:type:*:myHandplus1plusend controller
+autohand={0}:restriction{can play land} name(Sea Gate, Reborn) name(Sea Gate, Reborn) flip(Sea Gate, Reborn) forcetype(land)
+auto=emblem transforms((,newability[lord(*|myBattlefield) nomaxhand])) forever dontremove
+auto=draw:type:*:myHandplus1plusend controller
 text=Draw cards equal to the number of cards in your hand plus one. You have no maximum hand size for the rest of the game.
 mana={4}{U}{U}{U}
 type=Sorcery
@@ -37184,11 +37143,8 @@ type=Land
 [/card]
 [card]
 name=Sejiri Shelter
-abilities=nofizzle alternative
-other={0} name(Sejiri Glacier)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Sejiri Glacier) forcetype(land)
-auto=ifnot paid(alternative) then name(Choose color) ability$!name(Choose color) choice name(White) protection from white target(creature|mybattlefield) ueot _ choice name(Blue) protection from blue target(creature|mybattlefield) ueot _ choice name(Black) protection from black target(creature|mybattlefield) ueot _ choice name(Red) protection from red target(creature|mybattlefield) ueot _ choice name(Green) protection from green target(creature|mybattlefield) ueot!$ controller
+autohand={0}:restriction{can play land} name(Sejiri Glacier) name(Sejiri Glacier) flip(Sejiri Glacier) forcetype(land)
+auto=name(Choose color) ability$!name(Choose color) choice name(White) protection from white target(creature|mybattlefield) ueot _ choice name(Blue) protection from blue target(creature|mybattlefield) ueot _ choice name(Black) protection from black target(creature|mybattlefield) ueot _ choice name(Red) protection from red target(creature|mybattlefield) ueot _ choice name(Green) protection from green target(creature|mybattlefield) ueot!$ controller
 text=Target creature you control gains protection from the color of your choice until end of turn.
 mana={1}{W}
 type=Instant
@@ -37928,12 +37884,9 @@ toughness=4
 [/card]
 [card]
 name=Shatterskull Smashing
-abilities=nofizzle alternative
-other={0} name(Shatterskull, the Hammer Pass)
-otherrestriction=can play land
-auto=this(X>5) ifnot paid(alternative) then thisforeach(X) ability$!name(Choose target) choice name(Damage to a creature) damage:2 target(creature) _ choice name(Damage to a planeswalker) damage:2 target(planeswalker)!$ controller
-auto=this(X<6) ifnot paid(alternative) then thisforeach(X) ability$!name(Choose target) choice name(Damage to a creature) damage:1 target(creature) _ choice name(Damage to a planeswalker) damage:1 target(planeswalker)!$ controller
-auto=if paid(alternative) then flip(Shatterskull, the Hammer Pass) forcetype(land)
+autohand={0}:restriction{can play land} name(Shatterskull, the Hammer Pass) name(Shatterskull, the Hammer Pass) flip(Shatterskull, the Hammer Pass) forcetype(land)
+auto=this(X>5) thisforeach(X) ability$!name(Choose target) choice name(Damage to a creature) damage:2 target(creature) _ choice name(Damage to a planeswalker) damage:2 target(planeswalker)!$ controller
+auto=this(X<6) thisforeach(X) ability$!name(Choose target) choice name(Damage to a creature) damage:1 target(creature) _ choice name(Damage to a planeswalker) damage:1 target(planeswalker)!$ controller
 text=Shatterskull Smashing deals X damage divided as you choose among up to two target creatures and/or planeswalkers. If X is 6 or more, Shatterskull Smashing deals twice X damage divided as you choose among them instead.
 mana={X}{R}{R}
 type=Sorcery
@@ -38645,12 +38598,9 @@ type=Land
 [/card]
 [card]
 name=Silundi Vision
-abilities=nofizzle alternative
-other={0} name(Silundi Isle)
-otherrestriction=can play land
+autohand={0}:restriction{can play land} name(Silundi Isle) name(Silundi Isle) flip(Silundi Isle) forcetype(land)
 aicode=activate target(instant,sorcery[zpos<=6]|mylibrary) moveto(myhand)
-auto=ifnot paid(alternative) then name(Reveal 6 cards) reveal:6 optionone name(Get instant or sorcery) target(instant,sorcery|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
-auto=if paid(alternative) then flip(Silundi Isle) forcetype(land)
+auto=name(Reveal 6 cards) reveal:6 optionone name(Get instant or sorcery) target(instant,sorcery|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
 text=Look at the top six cards of your library. You may reveal an instant or sorcery card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={2}{U}
 type=Instant
@@ -39267,11 +39217,8 @@ type=Land
 [/card]
 [card]
 name=Skyclave Cleric
-abilities=nofizzle alternative
-other={0} name(Skyclave Basilica)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Skyclave Basilica) forcetype(land)
-auto=ifnot paid(alternative) then life:2 controller
+autohand={0}:restriction{can play land} name(Skyclave Basilica) name(Skyclave Basilica) flip(Skyclave Basilica) forcetype(land)
+auto=life:2 controller
 text=When Skyclave Cleric enters the battlefield, you gain 2 life.
 mana={1}{W}
 type=Creature
@@ -40043,11 +39990,8 @@ type=Land
 [/card]
 [card]
 name=Song-Mad Treachery
-abilities=nofizzle alternative
-other={0} name(Song-Mad Ruins)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then name(Gain control of target creature) name(Gain control of target creature) target(creature) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
-auto=if paid(alternative) then flip(Song-Mad Ruins) forcetype(land)
+autohand={0}:restriction{can play land} name(Song-Mad Ruins) name(Song-Mad Ruins) flip(Song-Mad Ruins) forcetype(land)
+auto=name(Gain control of target creature) name(Gain control of target creature) target(creature) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
 text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.
 mana={3}{R}{R}
 type=Sorcery
@@ -40791,11 +40735,10 @@ type=Land
 [/card]
 [card]
 name=Spikefield Hazard
-abilities=nofizzle alternative
-other={0} name(Spikefield Cave)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then name(Damage any target) name(Damage any target) target(*) transforms((,newability[damage:1],newability[exiledeath])) ueot
-auto=if paid(alternative) then flip(Spikefield Cave) forcetype(land)
+autohand={0}:restriction{can play land} name(Spikefield Cave) name(Spikefield Cave) flip(Spikefield Cave) forcetype(land)
+auto=if type(creature|battlefield)~morethan~0 then choice name(Damage creature) name(Damage creature) target(creature) transforms((,newability[damage:1],newability[exiledeath])) ueot
+auto=if type(planeswalker|battlefield)~morethan~0 then choice name(Damage planeswalker) name(Damage planeswalker) target(planeswalker) transforms((,newability[damage:1],newability[exiledeath])) ueot
+auto=choice name(Damage player) name(Damage player) target(player) damage:1
 text=Spikefield Hazard deals 1 damage to any target. If a permanent dealt damage this way would die this turn, exile it instead.
 mana={R}
 type=Sorcery
@@ -43413,10 +43356,7 @@ toughness=4
 [/card]
 [card]
 name=Tangled Florahedron
-abilities=nofizzle alternative
-other={0} name(Tangled Vale)
-otherrestriction=can play land
-auto=if paid(alternative) then flip(Tangled Vale) forcetype(land)
+autohand={0}:restriction{can play land} name(Tangled Vale) name(Tangled Vale) flip(Tangled Vale) forcetype(land)
 auto={T}:add{G}
 text={T}: Add {G}.
 mana={1}{G}
@@ -46153,12 +46093,9 @@ toughness=3
 [/card]
 [card]
 name=Turntimber Symbiosis
-abilities=nofizzle alternative
-other={0} name(Turntimber, Serpentine Wood)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then choice name(Look seven and put creature with manacost 3 or less) name(Look seven and put creature with manacost 3 or less) reveal:7 optionone name(Get Creature) target(creature[manacost<=3]|reveal) moveTo(myBattlefield) and!( counter(1/1,3) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend restriction{type(creature[manacost<=3;zpos<=7]|myLibrary)~morethan~0} 
-auto=ifnot paid(alternative) then choice name(Look seven and put creature with manacost 4 or more) name(Look seven and put creature with manacost 4 or more) reveal:7 optionone name(Get Creature) target(creature[manacost>=4]|reveal) moveTo(myBattlefield) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend restriction{type(creature[manacost>=4;zpos<=7]|myLibrary)~morethan~0}  
-auto=if paid(alternative) then flip(Turntimber, Serpentine Wood) forcetype(land)
+autohand={0}:restriction{can play land} name(Turntimber, Serpentine Wood) name(Turntimber, Serpentine Wood) flip(Turntimber, Serpentine Wood) forcetype(land)
+auto=choice name(Look seven and put creature with manacost 3 or less) name(Look seven and put creature with manacost 3 or less) reveal:7 optionone name(Get Creature) target(creature[manacost<=3]|reveal) moveTo(myBattlefield) and!( counter(1/1,3) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend restriction{type(creature[manacost<=3;zpos<=7]|myLibrary)~morethan~0} 
+auto=choice name(Look seven and put creature with manacost 4 or more) name(Look seven and put creature with manacost 4 or more) reveal:7 optionone name(Get Creature) target(creature[manacost>=4]|reveal) moveTo(myBattlefield) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend restriction{type(creature[manacost>=4;zpos<=7]|myLibrary)~morethan~0}  
 text=Look at the top seven cards of your library. You may put a creature card from among them onto the battlefield. If that card has converted mana cost 3 or less, it enters with three additional +1/+1 counters on it. Put the rest on the bottom of your library in a random order.
 mana={4}{G}{G}{G}
 type=Sorcery
@@ -46470,11 +46407,8 @@ type=Land
 [/card]
 [card]
 name=Umara Wizard
-abilities=nofizzle alternative
-other={0} name(Umara Skyfalls)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then transforms((,newability[@movedTo(*[instant;sorcery;wizard]|myStack):flying ueot])) forever
-auto=if paid(alternative) then flip(Umara Skyfalls) forcetype(land)
+autohand={0}:restriction{can play land} name(Umara Skyfalls) name(Umara Skyfalls) flip(Umara Skyfalls) forcetype(land)
+auto=@movedTo(*[instant;sorcery;wizard]|myStack):flying ueot
 text=Whenever you cast an instant, sorcery, or Wizard spell, Umara Wizard gains flying until end of turn.
 mana={4}{U}
 type=Creature
@@ -47102,11 +47036,8 @@ toughness=3
 [/card]
 [card]
 name=Valakut Awakening
-abilities=nofizzle alternative
-other={0} name(Valakut Stoneforge)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then name(Put cards and draw that many) name(Put cards and draw that many) all(*|myhand) transforms((,newability[draw:1],newability[bottomoflibrary])])) && draw:1
-auto=if paid(alternative) then flip(Valakut Stoneforge) forcetype(land)
+autohand={0}:restriction{can play land} name(Valakut Stoneforge) name(Valakut Stoneforge) flip(Valakut Stoneforge) forcetype(land)
+auto=name(Put cards and draw that many) name(Put cards and draw that many) all(*|myhand) transforms((,newability[draw:1],newability[bottomoflibrary])])) && draw:1
 text=Put any number of cards from your hand on the bottom of your library, then draw that many cards plus one.
 mana={2}{R}
 type=Instant
@@ -47348,11 +47279,8 @@ toughness=4
 [/card]
 [card]
 name=Vastwood Fortification
-abilities=nofizzle alternative
-other={0} name(Vastwood Thicket)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then target(creature) counter(1/1,1)
-auto=if paid(alternative) then flip(Vastwood Thicket) forcetype(land)
+autohand={0}:restriction{can play land} name(Vastwood Thicket) name(Vastwood Thicket) flip(Vastwood Thicket) forcetype(land)
+auto=name(Choose a creature) name(Choose a creature) target(creature) counter(1/1,1)
 text=Put a +1/+1 counter on target creature.
 mana={G}
 type=Sorcery
@@ -50386,11 +50314,9 @@ type=Land
 [/card]
 [card]
 name=Zof Consumption
-abilities=nofizzle alternative
-other={0} name(Zof Bloodbog)
-otherrestriction=can play land
-auto=ifnot paid(alternative) then life:-4 opponent && life:4 controller
-auto=if paid(alternative) then flip(Zof Bloodbog) forcetype(land)
+autohand={0}:restriction{can play land} name(Zof Bloodbog) name(Zof Bloodbog) flip(Zof Bloodbog) forcetype(land)
+auto=life:-4 opponent
+auto=life:4 controller
 text=Each opponent loses 4 life and you gain 4 life.
 mana={4}{B}{B}
 type=Sorcery
