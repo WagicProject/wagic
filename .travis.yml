@@ -49,13 +49,8 @@ install:
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
-- sudo apt purge python3-pip
-- sudo rm -rf /usr/local/lib/python3.4/dist-packages/pip
-- sudo apt install python3-pip
-- sudo pip3 install pyjavaproperties
-- sudo pip3 install cpp-coveralls
 - sudo python -m easy_install --upgrade pyOpenSSL
-#- sudo pip install pyjavaproperties
+- sudo pip install pyjavaproperties
 - sudo pip install github3.py
 - sudo pip install cpp-coveralls
 
