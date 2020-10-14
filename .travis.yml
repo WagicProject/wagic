@@ -54,7 +54,7 @@ install:
 - sudo rm -rf /usr/local/lib/python3.4/dist-packages/pip
 - sudo apt install python-pip python3-pip
 - sudo pip3 install pyjavaproperties
-- sudo pip install virtualenv --upgrade
+- sudo pip3 install virtualenv --upgrade
 - sudo pip3 install setuptools --upgrade
 - sudo pip3 install github3.py
 - sudo pip3 install cpp-coveralls
