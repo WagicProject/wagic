@@ -52,13 +52,11 @@ install:
 - sudo apt purge python-pip python3-pip
 - sudo rm -rf /usr/local/lib/python2.7/dist-packages/pip
 - sudo rm -rf /usr/local/lib/python3.4/dist-packages/pip
-- sudo apt-cache show python3
-- sudo apt-get install python3=3.5.1*
 - sudo apt install python-pip python3-pip
 - sudo pip3 install pyjavaproperties
 - sudo pip3 install virtualenv --upgrade
 - sudo pip3 install setuptools --upgrade
-- sudo pip3 install github3.py
+#- sudo pip3 install github3.py
 - sudo pip3 install cpp-coveralls
 - sudo python -m easy_install --upgrade pyOpenSSL
 #- sudo pip install pyjavaproperties
