@@ -51,7 +51,7 @@ install:
   fi
 - sudo python -m easy_install --upgrade pyOpenSSL
 - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-- sudo python -m easy_install --upgrade get-pip.py
+- sudo python get-pip.py
 - sudo pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip pyjavaproperties
 - sudo pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip github3.py
 - sudo pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip cpp-coveralls
