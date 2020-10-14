@@ -49,6 +49,7 @@ install:
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
+- sudo apt install python3-pip
 - sudo pip3 install --upgrade pip
 - sudo pip3 install pyjavaproperties
 - sudo pip3 install github3.py
