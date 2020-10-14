@@ -193,7 +193,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "adventure", //it can be adventure
     "mentor",
     "prowess",
-    "nofizzle alternative", //No fizzle if paid with alternative cost (es. Zendikar Rising Modal Double Faced cards).
+    "nofizzle alternative", //No fizzle if card has been paid with alternative cost.
     "hasotherkicker" //Kicker cost is expressed with "other" keyword (es. not mana kicker such as life and/or tap a creature)
 };
 

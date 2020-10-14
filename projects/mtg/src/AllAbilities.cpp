@@ -3073,7 +3073,7 @@ int AAFizzler::resolve()
         sCard = sTarget->source;
     if (!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
         return 0;
-    if (sCard->has(Constants::NOFIZZLEALTERNATIVE) && sCard->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE]) // No fizzle if paid with alternative cost (es. Zendikar Rising Modal Double Faced cards).
+    if (sCard->has(Constants::NOFIZZLEALTERNATIVE) && sCard->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE]) // No fizzle if card has been paid with alternative cost.
         return 0;
     if (source->alias == 111057 && sTarget)//Draining Whelk
     {
@@ -3788,14 +3788,17 @@ int AAFlip::resolve()
 
         while (_target->next)
             _target = _target->next; 
-        
-        if(forcetype != "" && _target) // Added to flip instants and sorceries as permanents (es. Zendikar Rising Modal Double Faced cards).
+
+        if(forcetype != "" && _target) // Added to flip Zendikar Rising Modal Double Faced cards.
         {
-            _target = _target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->battlefield, false);
-            source->addType(forcetype);
-            source->controller()->game->battlefield->cardsSeenThisTurn.push_back(source);
-            WEvent * e = NEW WEventZoneChange(_target, _target->currentZone, _target->controller()->game->battlefield, true);
-            game->receiveEvent(e);
+            for (int i = ((int)_target->types.size())-1; i >= 0; --i)
+                _target->removeType(_target->types[i]);
+            list<int> typesToAdd;
+            PopulateSubtypesIndexVector(typesToAdd,forcetype);
+            list<int>::iterator it;
+            for (it = typesToAdd.begin(); it != typesToAdd.end(); it++)
+                _target->addType(*it);
+            _target = _target->currentZone->removeCard(_target, true);
         }
 
         AbilityFactory af(game);
@@ -3934,8 +3937,16 @@ int AAFlip::resolve()
                 else
                     _target->isFacedown = true;
 
-                WEvent * e = NEW WEventCardTransforms(_target);
-                game->receiveEvent(e);
+                if(forcetype != "" && _target) // Added to flip Zendikar Rising Modal Double Faced cards.
+                {
+                    _target->castMethod = Constants::CAST_NORMALLY;
+                    _target->controller()->game->battlefield->addCard(_target);
+                    WEvent * e = NEW WEventZoneChange(_target, _target->controller()->game->hand, _target->controller()->game->battlefield);
+                    game->receiveEvent(e);
+                } else {
+                    WEvent * e = NEW WEventCardTransforms(_target);
+                    game->receiveEvent(e);
+                }
             }
         }
 
