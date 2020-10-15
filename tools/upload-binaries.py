@@ -1,45 +1,6 @@
-import sys
-import os
-import zipfile
-from pyjavaproperties import Properties
 from optparse import OptionParser
-from github3 import login
-
-def checkRelease(repository, remote):
-    release = None
-    for r in repository.iter_releases():
-        if r.name == 'latest-master' :
-            release = r
-            for a in r.assets :
-                if a.name == remote :
-                    # need to delete the old release
-                    print '!deleting old release! -> ' + r.name
-                    r.delete()
-                    # need also to delete the tag (reference)
-                    ref = repository.ref('tags/latest-master')
-                    print '!deleting old tag! -> latest-master'
-                    ref.delete()
-                    release = None
-
-    if release is None:
-        # now, we recreate a new one
-        release = repository.create_release('latest-master', 'master', 'latest-master',
-            'Latest successful builds of the master branch automatically uploaded by Travis or AppVeyor CI.',
-            False,
-            True)
-
-    return release
-
-
-def suffixFilename(filename, build):
-    p = Properties();
-    p.load(open('projects/mtg/build.number.properties'));
-    minor = p['build.minor'];
-    major = p['build.major'];
-    point = p['build.point'];
-    name, extension = os.path.splitext(filename)
-    filename = name + '-' + major + minor + point + '-' + build + extension
-    return filename
+from uritemplate import URITemplate
+import requests
 
 def main():
     parser = OptionParser()
@@ -51,23 +12,26 @@ def main():
 
     (options, args) = parser.parse_args()
 
-    if (options.token and options.sha and options.local and options.remote and (options.branch == 'master' or options.branch == 'travis_mac_osx')):
-        gh = login(token = options.token)
-    elif (options.branch != 'master' and options.branch != 'travis_mac_osx'):
-        print '!branch is not master or travis_mac_osx! -> ' + options.branch
-        print '-will not upload-'
-        return
+    if (options.token and options.local and options.remote):
+        repo = 'WagicProject/wagic'
+        access_token = options.token
+        r = requests.get('https://api.github.com/repos/{0}/releases/32638811'.format(repo))
+        upload_url = r.json()["upload_url"]
+        t = URITemplate(upload_url)
+        asset_url = t.expand(name = options.remote)
+    
+        headers = {
+            'Content-Type': 'application/gzip','Authorization': 'Token {0}'.format(access_token)
+        }
+
+        r = requests.post(asset_url, headers = headers, data = open(options.local, 'rb').read(),verify=False)
+        s = 'File ' + options.local + ' has been uploaded as ' + options.remote + '.'
+        print s
     else:
         parser.print_help()
         return
 
-    repository = gh.repository('Vitty85', 'wagic')
-    r = checkRelease(repository, options.remote)
-    filename = options.remote
-    with open(options.local, 'rb') as fd:
-        asset = r.upload_asset('application/zip', filename , fd)
-    s = 'File ' + options.local + ' has been uploaded as ' + asset.name + '.'
-    print s
+
 
 if __name__ == "__main__":
         main()
