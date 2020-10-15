@@ -17,16 +17,16 @@ def main():
         repo = 'WagicProject/wagic'
         access_token = options.token
         
-		r = requests.get('https://api.github.com/repos/{0}/releases/32638811'.format(repo))
+        r = requests.get('https://api.github.com/repos/{0}/releases/32638811'.format(repo))
         
-		upload_url = r.json()["upload_url"]
-		assets_url = r.json()["assets_url"]
-		
-		r = requests.get(assets_url)
+        upload_url = r.json()["upload_url"]
+        assets_url = r.json()["assets_url"]
+        
+        r = requests.get(assets_url)
         assets_num = len(r.json())
         asset_name = options.remote
         asset_id = 0
-		for asset in r.json():
+        for asset in r.json():
             if asset_name == asset["name"]:
                 asset_id = asset["id"]
 
@@ -37,9 +37,9 @@ def main():
         asset_url =  'https://api.github.com/repos/{0}/releases/assets'.format(repo) + '/' + str(asset_id)
         r = requests.delete(asset_url, headers = headers, verify=False)
         
-		time.sleep(10)
+        time.sleep(10)
         
-		t = URITemplate(upload_url)
+        t = URITemplate(upload_url)
         asset_url = t.expand(name = options.remote)
         r = requests.post(asset_url, headers = headers, data = open(options.local, 'rb').read(),verify=False)
         s = 'File ' + options.local + ' has been uploaded as ' + options.remote + '.'
