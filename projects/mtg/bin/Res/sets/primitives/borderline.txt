@@ -1713,7 +1713,7 @@ toughness=6
 [card]
 name=Archfiend's Vessel
 abilities=lifelink
-autograveyard=@movedTo(this|mybattlefield) from(mygraveyard):moveTo(exile) && token(Demon Arc)
+autograveyard=@movedTo(this|mybattlefield) from(mygraveyard):all(this) moveTo(exile) && token(Demon Arc)
 text=Lifelink (Damage dealt by this creature also causes you to gain that much life.) -- When Archfiend's Vessel enters the battlefield, if it entered from your graveyard or you cast it from your graveyard, exile it. If you do, create a 5/5 black Demon creature token with flying.
 mana={B}
 type=Creature
@@ -29953,7 +29953,6 @@ type=Artifact
 [card]
 name=Orah, Skyclave Hierophant
 abilities=lifelink
-auto=_DIES_moveTo(myBattlefield) target(cleric[manacost<=3]|myGraveyard)
 auto=@movedTo(cleric[manacost=1]|myGraveyard) from(myBattlefield):moveTo(myBattlefield) target(cleric[manacost<=0]|myGraveyard)
 auto=@movedTo(cleric[manacost=2]|myGraveyard) from(myBattlefield):moveTo(myBattlefield) target(cleric[manacost<=1]|myGraveyard)
 auto=@movedTo(cleric[manacost=3]|myGraveyard) from(myBattlefield):moveTo(myBattlefield) target(cleric[manacost<=2]|myGraveyard)
