@@ -60,7 +60,9 @@ def main():
     else:
         parser.print_help()
         return
-
+    print 'GH=' + options.branch
+    print 'COMMI=' + options.sha
+    print 'BRANCH=' + options.branch
     repository = gh.repository('WagicProject', 'wagic')
     r = checkRelease(repository, options.remote)
     filename = options.remote
