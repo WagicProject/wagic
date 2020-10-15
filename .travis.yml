@@ -9,6 +9,9 @@ before_install:
   - export BUILD_ANDROID=YES
   - export BUILD_Qt=YES
   - export BUILD_MAC=NO
+  - echo $GH_TOKEN
+  - echo $TRAVIS_COMMIT
+  - echo $TRAVIS_BRANCH
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
 #     export BUILD_MAC=YES;
