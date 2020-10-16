@@ -4931,7 +4931,7 @@ type=Enchantment
 [/card]
 [card]
 name=Branchloft Pathway
-autohand={0}:name(Boulderloft Pathway) name(Boulderloft Pathway) flip(Boulderloft Pathway) forcetype(land)
+autohand={0}:restriction{can play land} name(Boulderloft Pathway) name(Boulderloft Pathway) flip(Boulderloft Pathway) forcetype(land)
 auto={T}:add{G}
 text={T}: Add {G}.
 type=Land
@@ -5025,7 +5025,7 @@ type=Instant
 [/card]
 [card]
 name=Brightclimb Pathway
-autohand={0}:name(Grimclimb Pathway) name(Grimclimb Pathway) flip(Grimclimb Pathway) forcetype(land)
+autohand={0}:restriction{can play land} name(Grimclimb Pathway) name(Grimclimb Pathway) flip(Grimclimb Pathway) forcetype(land)
 auto={T}:add{W}
 text={T}: Add {W}.
 type=Land
@@ -7336,7 +7336,7 @@ type=Instant
 [/card]
 [card]
 name=Clearwater Pathway
-autohand={0}:name(Murkwater Pathway) name(Murkwater Pathway) flip(Murkwater Pathway) forcetype(land)
+autohand={0}:restriction{can play land} name(Murkwater Pathway) name(Murkwater Pathway) flip(Murkwater Pathway) forcetype(land)
 auto={T}:add{U}
 text={T}: Add {U}.
 type=Land
@@ -8490,7 +8490,7 @@ subtype=Desert
 [/card]
 [card]
 name=Cragcrown Pathway
-autohand={0}:name(Timbercrown Pathway) name(Timbercrown Pathway) flip(Timbercrown Pathway) forcetype(land)
+autohand={0}:restriction{can play land} name(Timbercrown Pathway) name(Timbercrown Pathway) flip(Timbercrown Pathway) forcetype(land)
 auto={T}:add{R}
 text={T}: Add {R}.
 type=Land
@@ -28183,7 +28183,7 @@ toughness=2
 [/card]
 [card]
 name=Needleverge Pathway
-autohand={0}:name(Pillarverge Pathway) name(Pillarverge Pathway) flip(Pillarverge Pathway) forcetype(land)
+autohand={0}:restriction{can play land} name(Pillarverge Pathway) name(Pillarverge Pathway) flip(Pillarverge Pathway) forcetype(land)
 auto={T}:add{R}
 text={T}: Add {R}.
 type=Land
@@ -34884,7 +34884,7 @@ type=Sorcery
 [/card]
 [card]
 name=Riverglide Pathway
-autohand={0}:name(Lavaglide Pathway) name(Lavaglide Pathway) flip(Lavaglide Pathway) forcetype(land)
+autohand={0}:restriction{can play land} name(Lavaglide Pathway) name(Lavaglide Pathway) flip(Lavaglide Pathway) forcetype(land)
 auto={T}:add{U}
 text={T}: Add {U}.
 type=Land
