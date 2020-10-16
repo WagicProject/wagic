@@ -12,7 +12,7 @@ def main():
     (options, args) = parser.parse_args()
 
     if (options.url and options.local and options.remote and options.user and options.password):
-        ftp = FTP(options.url, timeout=100)
+        ftp = FTP(options.url, timeout=1200)
         ftp.login(options.user, options.password)
         with open(options.local, 'r') as f:
             ftp.storbinary('STOR %s' % options.remote, f)
