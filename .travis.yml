@@ -62,3 +62,7 @@ after_success:
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -b $TRAVIS_BRANCH
+- python tools/ftp-upload-binaries.py -u $FTP_URL -e $FTP_USER -l core.zip -r Wagic-core.zip -p $FTP_PASSWORD
+- python tools/ftp-upload-binaries.py -u $FTP_URL -e $FTP_USER -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -p $FTP_PASSWORD
+- python tools/ftp-upload-binaries.py -u $FTP_URL -e $FTP_USER -l projects/mtg/psprelease.zip -r Wagic-psp.zip -p $FTP_PASSWORD
+- python tools/ftp-upload-binaries.py -u $FTP_URL -e $FTP_USER -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -p $FTP_PASSWORD
