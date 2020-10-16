@@ -14,10 +14,10 @@ def main():
     (options, args) = parser.parse_args()
 
     if (options.token and options.local and options.remote):
-        repo = 'WagicProject/wagic'
+        repo = 'Vitty85/wagic'
         access_token = options.token
         
-        r = requests.get('https://api.github.com/repos/{0}/releases/32638811'.format(repo))
+        r = requests.get('https://api.github.com/repos/{0}/releases/latest'.format(repo))
         
         upload_url = r.json()["upload_url"]
         assets_url = r.json()["assets_url"]
