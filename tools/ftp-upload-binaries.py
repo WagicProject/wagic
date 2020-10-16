@@ -1,3 +1,4 @@
+from optparse import OptionParser
 from ftplib import FTP
 
 def main():
