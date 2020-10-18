@@ -839,9 +839,9 @@ subtype=Garruk
 [card]
 name=Garruk, Cursed Huntsman
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,0,Loyalty)}:name(+0: Wolf) token(Wolf Gar)
+auto={C(0/0,0,Loyalty)}:name(+0: Wolf) token(Wolf Gar)*2
 auto={C(0/0,-3,Loyalty)}:name(-3: Destroy) target(creature) destroy && draw:1 controller
-auto={C(0/0,-6,Loyalty)}:name(-6: Emblem) emblem transforms((,newability[lord(creature|mybattlefield)trample],newability[lord(creature|mybattlefield) 3/3])) forever dontremove
+auto={C(0/0,-6,Loyalty)}:name(-6: Emblem) emblem transforms((,newability[lord(creature|mybattlefield) trample],newability[lord(creature|mybattlefield) 3/3])) forever dontremove
 text=0: Create two 2/2 black and green Wolf creature tokens with "When this creature dies, put a loyalty counter on each Garruk you control." -- -3: Destroy target creature. Draw a card. -- -6: You get an emblem with "Creatures you control get +3/+3 and have trample."
 mana={4}{B}{G}
 type=Legendary Planeswalker

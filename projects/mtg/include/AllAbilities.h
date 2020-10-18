@@ -4140,8 +4140,6 @@ public:
             setTokenOwner();
             tokenReciever->game->temp->addCard(myToken);
             Spell * spell = NEW Spell(game, myToken);
-            spell->resolve();
-            myToken = spell->source;
             spell->source->owner = tokenReciever;
             spell->source->lastController = tokenReciever;
             spell->source->isToken = 1;
@@ -4156,6 +4154,8 @@ public:
                     spell->source->setMTGId(-((MTGCardInstance*)source)->storedSourceCard->getMTGId());
                 }
             }
+            spell->resolve();
+            myToken = spell->source;
             if(aLivingWeapon)
             {
                 livingWeaponToken(spell->source);
