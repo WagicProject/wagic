@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Magic Online Theme Decks
 year=2010-11-08
-total=200
+total=201
 [/meta]
 [card]
 primitive=Hippo
@@ -615,9 +615,14 @@ id=51768
 rarity=C
 [/card]
 [card]
-primitive=Nezumi Graverobber // Nighteyes the Desecrator
+primitive=Nezumi Graverobber
 id=51769
 rarity=U
+[/card]
+[card]
+primitive=Nighteyes the Desecrator
+id=5176911
+rarity=T
 [/card]
 [card]
 primitive=Noble Templar

@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Commander Anthology Volume II
 year=2018-06-08
-total=312
+total=313
 [/meta]
 [card]
 primitive=The Mimeoplasm
@@ -356,8 +356,8 @@ rarity=R
 [/card]
 [card]
 primitive=Nighteyes the Desecrator
-id=446807
-rarity=U
+id=44680711
+rarity=T
 [/card]
 [card]
 primitive=Nezumi Graverobber

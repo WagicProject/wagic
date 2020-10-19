@@ -372,7 +372,7 @@ type=Instant
 [card]
 name=Aeromunculus
 abilities=flying
-auto=this(counter{1/1}<1) {2}{G}{U}:counter(1/1)
+auto={2}{G}{U}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.1)])) forever
 text=Flying -- {2}{G}{U}: Adapt 1. (If this creature has no +1/+1 counters on it, put a +1/+1 counter on it.)
 mana={1}{G}{U}
 type=Creature
@@ -3503,7 +3503,7 @@ type=Sorcery
 [/card]
 [card]
 name=Benthic Biomancer
-auto=this(counter{1/1}<1) {1}{U}:counter(1/1)
+auto={1}{U}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.1)])) forever
 auto=@counteradded(1/1) from(this):draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text={1}{U}: Adapt 1. (If this creature has no +1/+1 counters on it, put a +1/+1 counter on it.) -- Whenever one or more +1/+1 counters are put on Benthic Biomancer, draw a card, then discard a card.
 mana={U}
@@ -9143,7 +9143,7 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Cut // Ribbon
+name=Cut // Ribbons
 target=creature
 auto=damage:4
 autograveyard={X}{B}{B}{E}:life:-X opponent asSorcery
@@ -14198,6 +14198,36 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Fellwar Stone
+auto=if type(plains|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{W}])) ueot
+auto=if type(mountain|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{R}])) ueot
+auto=if type(island|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{U}])) ueot
+auto=if type(forest|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{G}])) ueot
+auto=if type(swamp|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{B}])) ueot
+auto=if type(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{C}])) ueot
+auto=@movedTo(plains|opponentBattlefield) restriction{type(plains|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{W}])) ueot
+auto=@movedTo(mountain|opponentBattlefield) restriction{type(mountain|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{R}])) ueot
+auto=@movedTo(island|opponentBattlefield) restriction{type(island|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{U}])) ueot
+auto=@movedTo(forest|opponentBattlefield) restriction{type(forest|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{G}])) ueot
+auto=@movedTo(swamp|opponentBattlefield) restriction{type(swamp|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{B}])) ueot
+auto=@movedTo(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield) restriction{type(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{C}])) ueot
+auto=@each my upkeep restriction{type(plains|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{W}])) ueot
+auto=@each my upkeep restriction{type(mountain|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{R}])) ueot
+auto=@each my upkeep restriction{type(island|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{U}])) ueot
+auto=@each my upkeep restriction{type(forest|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{G}])) ueot
+auto=@each my upkeep restriction{type(swamp|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{B}])) ueot
+auto=@each my upkeep restriction{type(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{C}])) ueot
+auto=@each opponent upkeep restriction{type(plains|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{W}])) ueot
+auto=@each opponent upkeep restriction{type(mountain|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{R}])) ueot
+auto=@each opponent upkeep restriction{type(island|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{U}])) ueot
+auto=@each opponent upkeep restriction{type(forest|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{G}])) ueot
+auto=@each opponent upkeep restriction{type(swamp|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{B}])) ueot
+auto=@each opponent upkeep restriction{type(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{C}])) ueot
+text={T}: Add one mana of any color that a land an opponent controls could produce.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Feral Abomination
 abilities=deathtouch
 text=Deathtouch
@@ -17687,6 +17717,18 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Gorm the Great
+abilities=vigilance,menace
+auto=may moveto(myhand) notatarget(Virtus the Veiled|mylibrary) and!(shuffle)!
+auto=@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot
+text=Partner with Virtus the Veiled (When this creature enters the battlefield, target player may put Virtus into their hand from their library, then shuffle.) -- Vigilance -- Gorm the Great must be blocked if able, and Gorm must be blocked by two or more creatures if able.
+mana={3}{G}
+type=Legendary Creature
+subtype=Giant Warrior
+power=2
+toughness=7
+[/card]
+[card]
 name=Govern the Guildless
 target=creature[-multicolor]
 auto=moveto(mybattlefield)
@@ -18197,7 +18239,7 @@ type=Instant
 [/card]
 [card]
 name=Growth-Chamber Guardian
-auto=this(counter{1/1}<1) {2}{G}:counter(1/1,2)
+auto={2}{G}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.2)])) forever
 auto=@counteradded(1/1) from(this):transforms((,newability[moveTo(myHand) target(Growth-Chamber Guardian|myLibrary)])) once
 text={2}{G}: Adapt 2. (If this creature has no +1/+1 counters on it, put two +1/+1 counters on it.) -- Whenever one or more +1/+1 counters are put on Growth-Chamber Guardian, you may search your library for a card named Growth-Chamber Guardian, reveal it, put it into your hand, then shuffle your library.
 mana={1}{G}
@@ -20947,7 +20989,7 @@ auto=this(counter{1/1}) this(variable{plandR}>0) {t}:out{R}{R}{R}
 auto=this(counter{1/1}) this(variable{plandB}>0) {t}:out{B}{B}{B}
 auto=this(counter{1/1}) this(variable{plandW}>0) {t}:out{W}{W}{W}
 auto=this(counter{1/1}) this(variable{plandC}>0) {t}:out{1}{1}{1}
-auto=this(counter{1/1}<1) {3}{G}{G}:counter(1/1,3)
+auto={3}{G}{G}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.3)])) forever
 text={T}: Add one mana of any type that a land you control could produce. If Incubation Druid has a +1/+1 counter on it, add three mana of that type instead. -- {3}{G}{G}: Adapt 3. (If this creature has no +1/+1 counters on it, put three +1/+1 counters on it.)
 mana={1}{G}
 type=Creature
@@ -21935,6 +21977,17 @@ type=Creature
 subtype=Merfolk Shaman
 power=3
 toughness=3
+[/card]
+[card]
+name=Jadelight Ranger
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) ueot oneshot optiontwoend revealend limit:1
+auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) ueot oneshot optiontwoend revealend limit:1
+text=When Jadelight Ranger enters the battlefield, it explores, then it explores again. (Reveal the top card of your library. Put that card into your hand if it’s a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard. Then repeat this process.)
+mana={1}{G}{G}
+type=Creature
+subtype=Merfolk Scout
+power=2
+toughness=1
 [/card]
 [card]
 name=Jar of Eyeballs
@@ -27497,6 +27550,20 @@ text=Suspend 3 — {0} (Rather than cast this card from your hand, pay 0 and exile
 type=Artifact
 [/card]
 [card]
+name=Muldrotha, the Gravetide
+auto=@each my firstmain restriction{type(land|myGraveyard)~morethan~0}:may name(Play land from graveyard) ability$!name(Play land from graveyard) name(Play land from graveyard) target(land|myGraveyard) activate castcard(normal)!$ controller
+auto=@each my firstmain restriction{type(creature|myGraveyard)~morethan~0}:may name(Cast creature from graveyard) ability$!name(Cast creature from graveyard) name(Cast creature from graveyard) target(creature|myGraveyard) activate castcard(normal)!$ controller
+auto=@each my firstmain restriction{type(planeswalker|myGraveyard)~morethan~0}:may name(Cast planeswalker from graveyard) ability$!name(Cast planeswalker from graveyard) name(Cast planeswalker from graveyard) target(planeswalker|myGraveyard) activate castcard(normal)!$ controller
+auto=@each my firstmain restriction{type(enchantment|myGraveyard)~morethan~0}:may name(Cast enchantment from graveyard) ability$!name(Cast enchantment from graveyard) name(Cast enchantment from graveyard) target(enchantment|myGraveyard) activate castcard(normal)!$ controller
+auto=@each my firstmain restriction{type(artifact|myGraveyard)~morethan~0}:may name(Cast artifact from graveyard) ability$!name(Cast artifact from graveyard) name(Cast artifact from graveyard) target(artifact|myGraveyard) activate castcard(normal)!$ controller
+text=During each of your turns, you may play a land and cast a permanent spell of each permanent type from your graveyard. (If a card has multiple permanent types, choose one as you play it.)
+mana={3}{B}{G}{U}
+type=Legendary Creature
+subtype=Elemental Avatar
+power=6
+toughness=6
+[/card]
+[card]
 name=Multani, Yavimaya's Avatar
 abilities=reach, trample
 auto=foreach(land|myBattlefield) 1/1
@@ -32271,6 +32338,24 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Pteramander
+abilities=flying
+auto={7}{U}:restriction{type(*[instant;sorcery]|myGraveyard)~equalto~0} this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
+auto={6}{U}:restriction{type(*[instant;sorcery]|myGraveyard)~equalto~1} this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
+auto={5}{U}:restriction{type(*[instant;sorcery]|myGraveyard)~equalto~2} this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
+auto={4}{U}:restriction{type(*[instant;sorcery]|myGraveyard)~equalto~3} this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
+auto={3}{U}:restriction{type(*[instant;sorcery]|myGraveyard)~equalto~4} this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
+auto={2}{U}:restriction{type(*[instant;sorcery]|myGraveyard)~equalto~5} this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
+auto={1}{U}:restriction{type(*[instant;sorcery]|myGraveyard)~equalto~6} this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
+auto={U}:restriction{type(*[instant;sorcery]|myGraveyard)~morethan~6} this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
+text=Flying -- {7}{U}: Adapt 4. This ability costs {1} less to activate for each instant and sorcery card in your graveyard. (If this creature has no +1/+1 counters on it, put four +1/+1 counters on it.)
+mana={U}
+type=Creature
+subtype=Salamander Drake
+power=1
+toughness=1
+[/card]
+[card]
 name=Pterodon Knight
 auto=if type(dinosaur|mybattlefield)~morethan~0 flying
 text=Pterodon Knight has flying as long as you control a Dinosaur.
@@ -36177,7 +36262,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sauroform Hybrid
-auto=this(counter{1/1}<1) {4}{G}{G}:counter(1/1,4)
+auto={4}{G}{G}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
 text={4}{G}{G}: Adapt 4. (If this creature has no +1/+1 counters on it, put four +1/+1 counters on it.)
 mana={1}{G}
 type=Creature
@@ -36788,7 +36873,7 @@ toughness=1
 [card]
 name=Scuttlegator
 abilities=defender
-auto=this(counter{1/1}<1) {6}{G/U}{G/U}:counter(1/1,3)
+auto={6}{GU}{GU}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.3)])) forever
 auto=this(counter{1/1}) canattack
 text=Defender -- {6}{G/U}{G/U}: Adapt 3. (If this creature has no +1/+1 counters on it, put three +1/+1 counters on it.) -- As long as Scuttlegator has a +1/+1 counter on it, it can attack as though it didn't have defender.
 mana={4}{GU}{GU}
@@ -37798,7 +37883,7 @@ type=Enchantment
 [/card]
 [card]
 name=Sharktocrab
-auto=this(counter{1/1}<1) {2}{G}{U}:counter(1/1)
+auto={2}{G}{U}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.1)])) forever
 auto=@counteradded(1/1) from(this):transforms((,newability[freeze target(creature|opponentbattlefield)])) forever
 text={2}{G}{U}: Adapt 1. (If this creature has no +1/+1 counters on it, put a +1/+1 counter on it.) -- Whenever one or more +1/+1 counters are put on Sharktocrab, tap target creature an opponent controls. That creature doesn't untap during its controller's next untap step.
 mana={2}{G}{U}
@@ -38917,7 +39002,7 @@ toughness=4
 [/card]
 [card]
 name=Skatewing Spy
-auto=this(counter{1/1}<1) {5}{U}:counter(1/1,2)
+auto={5}{U}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.2)])) forever
 auto=lord(creature[counter{1/1}]|myBattlefield) flying
 text={5}{U}: Adapt 2. (If this creature has no +1/+1 counters on it, put two +1/+1 counters on it.) -- Each creature you control with a +1/+1 counter on it has flying.
 mana={3}{U}
@@ -39006,7 +39091,7 @@ toughness=1
 [/card]
 [card]
 name=Skitter Eel
-auto=this(counter{1/1}<1) {2}{U}:counter(1/1,2)
+auto={2}{U}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.2)])) forever
 text={2}{U}: Adapt 2. (If this creature has no +1/+1 counters on it, put two +1/+1 counters on it.)
 mana={3}{U}
 type=Creature
@@ -44163,6 +44248,22 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
+name=The Flame of Keld 
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=reject all(*|myhand)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) draw:2 controller 
+auto=@damaged(creature|opponentBattlefield) from(*[instant;sorcery;red]|mystack,myGraveyard):this(counter{0/0.3.Lore}) all(trigger[to]) transforms((,newability[damage:2])) oneshot
+auto=@damaged(creature|opponentBattlefield) from(*[creature;enchantment;artifact;land;planeswalker;red]|mybattlefield,myGraveyard):this(counter{0/0.3.Lore}) all(trigger[to]) transforms((,newability[damage:2])) oneshot
+auto=@damagefoeof(player) from(*[instant;sorcery;red]|mystack,myGraveyard):this(counter{0/0.3.Lore}) ability$!name(Damage opponent) damage:2 opponent!$ controller
+auto=@damagefoeof(player) from(*[creature;enchantment;artifact;land;planeswalker;red]|mybattlefield,myGraveyard):this(counter{0/0.3.Lore}) ability$!name(Damage opponent) damage:2 opponent!$ controller
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Discard your hand. -- II — Draw two cards. -- III — If a red source you control would deal damage to a permanent or player this turn, it deals that much damage plus 2 to that permanent or player instead.
+mana={1}{R}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
 name=The Great Henge
 anyzone=if compare(power:highest:creature:mybattlefield)~equalto~1 then changecost(colorless:-1) forcedalive
 anyzone=if compare(power:highest:creature:mybattlefield)~equalto~2 then changecost(colorless:-2) forcedalive
@@ -45771,7 +45872,7 @@ type=Instant
 [/card]
 [card]
 name=Trollbred Guardian
-auto=this(counter{1/1}<1) {2}{G}:counter(1/1,2)
+auto={2}{G}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.2)])) forever
 auto=lord(creature[counter{1/1}]|myBattlefield) trample
 text={2}{G}: Adapt 2. (If this creature has no +1/+1 counters on it, put two +1/+1 counters on it.) -- Each creature you control with a +1/+1 counter on it has trample.
 mana={4}{G}
@@ -50219,7 +50320,7 @@ toughness=3
 name=Zegana, Utopian Speaker
 abilities=trample
 auto=if type(creature[(counter{1/1})]|mybattlefield)~morethan~0 then draw:1
-auto=this(counter{1/1}<1) {4}{G}{U}:counter(1/1,4)
+auto={4}{G}{U}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
 auto=lord(creature[counter{1/1}]|myBattlefield) trample
 text=When Zegana, Utopian Speaker enters the battlefield, if you control another creature with a +1/+1 counter on it, draw a card. -- {4}{G}{U}: Adapt 4. (If this creature has no +1/+1 counters on it, put four +1/+1 counters on it.) -- Each creature you control with a +1/+1 counter on it has trample.
 mana={2}{G}{U}
