@@ -1652,7 +1652,15 @@ public class ImgDownloader {
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/3/c/3c6a38dd-e8f5-420f-9576-66937c71286b.jpg?1599832044";
         else if(id.equals("495102"))
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/2/b/2b90e88b-60a3-4d1d-bb8c-14633e5005a5.jpg?1599832083";
-        
+        else if(id.equals("29530711"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/4/9/4912a0a5-2fec-4c6b-9545-9ab0c4e25268.jpg?1599764491";
+        else if(id.equals("1750411"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/8/f/8f047a8b-6c94-4b99-bcaa-10680400ee25.jpg?1562073449";
+        else if(id.equals("5176911"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/b/cbbd8a12-d916-4fb1-994a-7d4a3e2ae2ab.jpg?1562935938";
+        else if(id.equals("44680711"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/a/0/a00a7180-49bd-4ead-852a-67b6b5e4b933.jpg?1564694995";
+
         return cardurl;
     }
 
@@ -1718,7 +1726,7 @@ public class ImgDownloader {
             tokenurl = "https://deckmaster.info/images/cards/ZEN/-281-hr.jpg";
         else if(id.equals("294401t"))
             tokenurl = "https://deckmaster.info/images/cards/ARB/-316-hr.jpg";
-        else if (id.equals("175105t"))
+        else if (id.equals("175105t") || id.equals("295412t"))
             tokenurl = "https://deckmaster.info/images/cards/ALA/-325-hr.jpg";
         else if (id.equals("376496t") || id.equals("376549t") || id.equals("294519t"))
             tokenurl = "https://deckmaster.info/images/cards/ALA/-327-hr.jpg";
@@ -1802,7 +1810,7 @@ public class ImgDownloader {
         else if (id.equals("376404t"))
             tokenurl = "https://deckmaster.info/images/cards/OGW/-2189-hr.jpg";
         else if (id.equals("409810t") || id.equals("409805t") || id.equals("409953t") || id.equals("409997t") ||
-                id.equals("410032t") || id.equals("293377t") || id.equals("294345t"))
+                id.equals("410032t") || id.equals("293377t") || id.equals("294345t") || id.equals("295471t"))
             tokenurl = "https://deckmaster.info/images/cards/SOI/-2404-hr.jpg";
         else if (id.equals("3242t"))
             tokenurl = "https://deckmaster.info/images/cards/MI/-2828-hr.jpg";
@@ -2014,7 +2022,7 @@ public class ImgDownloader {
             tokenurl = "https://media.mtgsalvation.com/attachments/94/295/635032496473215708.jpg";
         else if (id.equals("3280t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/54/421/635032484680831888.jpg";
-        else if (id.equals("107091t"))
+        else if (id.equals("107091t") || id.equals("295407t"))
             tokenurl = "https://media.mtgsalvation.com/attachments/13/534/635032476540667501.jpg";
         else if (id.equals("184735t") || id.equals("376488t") || id.equals("3066t") || id.equals("121261t"))
             tokenurl = "https://i.pinimg.com/originals/a9/fb/37/a9fb37bdfa8f8013b7eb854d155838e2.jpg";
@@ -2062,7 +2070,7 @@ public class ImgDownloader {
             tokenurl = "http://4.bp.blogspot.com/-y5Fanm3qvrU/Vmd4gGnl2DI/AAAAAAAAAWY/FCrS9FTgOJk/s1600/Tatsumasa%2BToken.jpg";
         else if (id.equals("26732t"))
             tokenurl = "http://1.bp.blogspot.com/-0-mLvfUVgNk/VmdZWXWxikI/AAAAAAAAAUM/TVCIiZ_c67g/s1600/Spawn%2BToken.jpg";
-        else if (id.equals("47449t") || id.equals("52335t"))
+        else if (id.equals("47449t") || id.equals("52335t") || id.equals("295457t"))
             tokenurl = "https://1.bp.blogspot.com/-vrgXPWqThMw/XTyInczwobI/AAAAAAAADW4/SEceF3nunBkiCmHWfx6UxEUMF_gqdrvUQCLcBGAs/s1600/Kaldra%2BToken%2BUpdate.jpg";
         else if(id.equals("460140t") || id.equals("460146t"))
             tokenurl = "http://4.bp.blogspot.com/-jmiOVll5hDk/VmdvG_Hv7hI/AAAAAAAAAVg/oWYbn2yBPI8/s1600/White-Blue%2BBird%2BToken.jpg";
@@ -2096,7 +2104,7 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/9/e/9ecc467e-b345-446c-b9b7-5f164e6651a4.jpg?1596043489";
         else if(id.equals("295082t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/a/e/ae56d9e8-de05-456b-af32-b5992992ee15.jpg?1562639978";
-        else if(id.equals("496035t"))
+        else if(id.equals("496035t") || id.equals("295423t"))
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/e/d/ed666385-a2e7-4e1f-ad2c-babbfc0c50b3.jpg?1562640123";
         else if(id.equals("496036t"))
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/e/1/e1eb3b8a-f9d3-4ce1-b171-ba7b0c3f4830.jpg?1562702405";
@@ -2106,6 +2114,26 @@ public class ImgDownloader {
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/6/7/67457137-64f2-413d-b62e-658b3f1b1043.jpg?1547509251";
         else if(id.equals("495958t"))
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/b/e/be224180-a482-4b94-8a9d-3a92ee0eb34b.jpg?1562640020";
+        else if(id.equals("295356t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/7/c7e7822b-f155-4f3f-b835-ec64f3a71307.jpg?1601138813";
+        else if(id.equals("295376t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/b/cb8caa61-e294-4501-b357-a44abd77d09a.jpg?1601138497";
+        else if(id.equals("295334t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/d/c/dcee70ef-6285-4f09-8a71-8b7960e8fa99.jpg?1562636925";
+        else if(id.equals("295433t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/2/f/2f4b7c63-8430-4ca4-baee-dc958d5bd22f.jpg?1557575919";
+        else if(id.equals("295428t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/5/3/5371de1b-db33-4db4-a518-e35c71aa72b7.jpg?1562702067";
+        else if(id.equals("295377t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/e/ce90c48f-74fb-4e87-9e46-7f8c3d79cbb0.jpg?1562636904";
+        else if(id.equals("295322t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/9/0/903e30f3-580e-4a14-989b-ae0632363407.jpg?1581902165";
+        else if(id.equals("295234t"))
+            tokenurl ="https://c1.scryfall.com/file/scryfall-cards/large/front/d/c/dc77b308-9d0c-492f-b3fe-e00d60470767.jpg?1563073222";
+        else if(id.equals("295225t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/d/9/d9c95045-e806-4933-94a4-cb52ae1a215b.jpg?1562542413";
+        else if(id.equals("295217t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/0/4/0419a202-6e32-4f0a-a032-72f6c00cae5e.jpg?1562639654";
 
         return tokenurl;
     }
@@ -2125,7 +2153,8 @@ public class ImgDownloader {
                 id.equals("470578") || id.equals("470571") || id.equals("470552") || id.equals("394490") || id.equals("114921") || id.equals("49775")  ||
                 id.equals("473123") || id.equals("473160") || id.equals("16743")  || id.equals("16741") || id.equals("294493") || id.equals("293253") ||
                 id.equals("293198") || id.equals("479634") || id.equals("479702") || id.equals("489837") || id.equals("489861") || id.equals("491359") ||
-                id.equals("294872") || id.equals("295110") || id.equals("294842") || id.equals("295067") || id.equals("491767"))
+                id.equals("294872") || id.equals("295110") || id.equals("294842") || id.equals("295067") || id.equals("491767") || id.equals("295386")  ||
+                id.equals("295229") || id.equals("295387") || id.equals("295206"))
             return false;
         return true;
     }
@@ -2479,6 +2508,8 @@ public class ImgDownloader {
                 rarity = "";
             if (id != null && (id.equals("209162") || id.equals("209163") || id.equals("401721") || id.equals("401722") || id.equals("491633")))
                 rarity = "t";
+            if(id != null && (id.equals("1750411") || id.equals("5176911") || id.equals("44680711") || id.equals("29530711")))
+                rarity = "";
             int c = lines.indexOf("[/card]", lastIndex);
             if (c > 0)
                 lines = lines.substring(c + 8);
@@ -2708,7 +2739,7 @@ public class ImgDownloader {
                     || scryset.equals("PAL00") || scryset.equals("PAL01") || scryset.equals("PAL02") || scryset.equals("PAL03") || scryset.equals("PAL04")
                     || scryset.equals("PAL05") || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL") || scryset.equals("HA1")
                     || scryset.equals("SLD") || scryset.equals("MB1") || scryset.equals("HA2") || scryset.equals("HA3") || scryset.equals("SS3")
-                    || scryset.equals("AKR") || scryset.equals("ANB")){
+                    || scryset.equals("AKR") || scryset.equals("ANB") || scryset.equals("PLIST")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -2898,7 +2929,7 @@ public class ImgDownloader {
                     && !scryset.equals("PAL00") && !scryset.equals("PAL01") && !scryset.equals("PAL02") && !scryset.equals("PAL03") && !scryset.equals("PAL04")
                     && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL") && !scryset.equals("HA1")
                     && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2") && !scryset.equals("HA3") && !scryset.equals("SS3")
-                    && !scryset.equals("AKR") && !scryset.equals("ANB")){
+                    && !scryset.equals("AKR") && !scryset.equals("ANB") && !scryset.equals("PLIST")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -3012,7 +3043,7 @@ public class ImgDownloader {
                     && !scryset.equals("PAL00") && !scryset.equals("PAL01") && !scryset.equals("PAL02") && !scryset.equals("PAL03") && !scryset.equals("PAL04")
                     && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL") && !scryset.equals("HA1")
                     && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2") && !scryset.equals("HA3") && !scryset.equals("SS3")
-                    && !scryset.equals("AKR") && !scryset.equals("ANB")){
+                    && !scryset.equals("AKR") && !scryset.equals("ANB") && !scryset.equals("PLIST")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -3178,7 +3209,7 @@ public class ImgDownloader {
                             || scryset.equals("PAL01") || scryset.equals("PAL02") || scryset.equals("PAL03") || scryset.equals("PAL04") || scryset.equals("PAL05")
                             || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL") || scryset.equals("HA1") || scryset.equals("SLD")
                             || scryset.equals("MB1") || scryset.equals("HA2") || scryset.equals("HA3") || scryset.equals("SS3") || scryset.equals("AKR")
-                            || scryset.equals("ANB")){
+                            || scryset.equals("ANB") || scryset.equals("PLIST")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){

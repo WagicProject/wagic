@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Salvat 2005
 year=2005-08-22
-total=720
+total=760
 [/meta]
 [card]
 primitive=Saproling
@@ -2426,7 +2426,7 @@ id=17503
 rarity=R
 [/card]
 [card]
-primitive=Nezumi Graverobber // Nighteyes the Desecrator
+primitive=Nezumi Graverobber
 id=17504
 rarity=U
 [/card]
@@ -2486,9 +2486,9 @@ id=17515
 rarity=U
 [/card]
 [card]
-primitive=Nezumi Graverobber // Nighteyes the Desecrator
-id=17516
-rarity=U
+primitive=Nighteyes the Desecrator
+id=1750411
+rarity=T
 [/card]
 [card]
 primitive=Heedless One
