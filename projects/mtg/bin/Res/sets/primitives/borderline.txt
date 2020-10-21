@@ -9153,7 +9153,7 @@ type=Sorcery
 [/card]
 [card]
 name=Cursed Scroll
-auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Game chooses a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(The random card macthes with the named card) name(The random card macthes with the named card) choice name(Damage creature) damage:2 target(creature) _ choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
+auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Game chooses a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(The random card macthes with the named card) choice name(Damage creature) damage:2 target(creature) _ choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
 text={3}, {T}: Choose a card name, then reveal a card at random from your hand. If that card has the chosen name, Cursed Scroll deals 2 damage to any target.
 mana={1}
 type=Artifact
