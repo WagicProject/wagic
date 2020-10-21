@@ -1063,6 +1063,28 @@ private:
                 }
             }
         }
+        else if (s == "cursedscrollresult")//Return 1 if the cursed scroll has to give damage (calculated randomly basing on the number of unique cards in the player hand)...
+        {
+            intValue = 0;
+            if(card->controller()->game->hand->nb_cards){
+                list<string> unique_cards;
+                for (int j = 0; j < card->controller()->game->hand->nb_cards; j++){
+                    bool found = false;
+                    for (unsigned int k = 0; k < unique_cards.size() && !found; k++){
+                        list<string>::iterator it;
+                        for (it = unique_cards.begin(); it != unique_cards.end(); it++){
+                            if(card->controller()->game->hand->cards[j]->name == *it)
+                                found = true;
+                        }
+                    }
+                    if(!found)
+                        unique_cards.push_back(card->controller()->game->hand->cards[j]->name);
+                }
+                if(!(std::rand() % unique_cards.size()))
+                    intValue = 1;
+                unique_cards.clear();
+            }
+        }
         else if (s == "mypos")
         {//hand,exile,grave & library only (library zpos is inverted so the recent one is always the top)
             intValue = card->zpos;
