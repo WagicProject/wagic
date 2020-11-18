@@ -37783,8 +37783,9 @@ type=Instant
 [/card]
 [card]
 name=Shalai, Voice of Plenty
-abilities=flying, opponentshroud
+abilities=flying,controllershroud
 auto=lord(other creature|myBattlefield) opponentshroud
+auto=lord(planeswalker|myBattlefield) opponentshroud
 auto={4}{G}{G}:counter(1/1) all(creature|myBattlefield)
 text=Flying -- You, planeswalkers you control, and other creatures you control have hexproof. -- {4}{G}{G}: Put a +1/+1 counter on each creature you control.
 mana={3}{W}
@@ -48649,8 +48650,7 @@ toughness=7
 [/card]
 [card]
 name=Waker of the Wilds
-abilities=haste
-auto={X}{G}{G}:target(land|mybattlefield) transforms((,creature Elemental,setpower=X,settoughness=X,newability[haste])) forever
+auto={X}{G}{G}:target(land|mybattlefield) counter(1/1.X) && becomes(Elemental Creature Land,0/0,haste) forever
 text={X}{G}{G}: Put X +1/+1 counters on target land you control. That land becomes a 0/0 Elemental creature with haste. It's still a land.
 mana={2}{G}{G}
 type=Creature
