@@ -4636,7 +4636,8 @@ int AACloner::resolve()
         else
         {
             clone = _target->tokCard;
-            clone->data = _target->tokCard;//?wtf
+            if(clone) // Check if clone is not null to avoid null pointer exception. #ISSUE 1040
+                clone->data = _target->tokCard;//?wtf
         }
     }
     else
