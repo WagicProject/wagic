@@ -41128,8 +41128,8 @@ type=Sorcery
 [/card]
 [card]
 name=Splitting Slime
-auto=this(cantargetcard(*[-monstrous]) {4}{G}{G}:becomes(monstrous) forever && counter(1/1,3) && transforms((,newAbility[token(Splitting Slime])) forever
-text={G}{G}: Monstrosity 3. (If this creature isn’t monstrous, put three +1/+1 counters on it and it becomes monstrous.) -- When Splitting Slime becomes monstrous, create a token that’s a copy of Splitting Slime. (The token has no counters and isn’t monstrous.)
+auto=this(cantargetcard(*[-monstrous]) {4}{G}{G}:becomes(monstrous) forever && counter(1/1,3) && clone all(this)
+text={4}{G}{G}: Monstrosity 3. (If this creature isn’t monstrous, put three +1/+1 counters on it and it becomes monstrous.) -- When Splitting Slime becomes monstrous, create a token that’s a copy of Splitting Slime. (The token has no counters and isn’t monstrous.)
 mana={3}{G}{G}
 type=Creature
 subtype=Ooze
@@ -45268,6 +45268,14 @@ type=Creature
 subtype=Human Warrior
 power=4
 toughness=5
+[/card]
+[card]
+name=Titania's Song
+auto=lord(artifact[-creature]) transforms((creature,noactivatedability,newability[manacost/manacost]))
+auto=@movedTo(this|myGraveyard) from(battlefield):all(artifact[-creature]|myBattlefield) transforms((creature,noactivatedability,newability[manacost/manacost])) ueot
+text=Each noncreature artifact loses all abilities and becomes an artifact creature with power and toughness each equal to its converted mana cost. If Titania's Song leaves the battlefield, this effect continues until end of turn.
+mana={3}{G}
+type=Enchantment
 [/card]
 [card]
 name=Titanic Pelagosaur
@@ -50166,7 +50174,7 @@ toughness=5
 [/card]
 [card]
 name=Xenic Poltergeist
-auto={T}:target(artifact[-creature]) transforms((creature,setpower=0,settoughness=1,newability[dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[0/-1 ueot all(this)],newability[@each opponent untap:dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[@each opponent upkeep:0/-1 ueot all(this)])) uynt
+auto={T}:target(artifact[-creature]) transforms((creature,newability[manacost/manacost])) uynt
 text={T}: Until your next upkeep, target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost.
 mana={1}{B}{B}
 type=Creature

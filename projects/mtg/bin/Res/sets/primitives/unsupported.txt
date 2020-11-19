@@ -14260,12 +14260,6 @@ mana={X}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Titania's Song
-text=Each noncreature artifact loses all abilities and becomes an artifact creature with power and toughness each equal to its converted mana cost. If Titania's Song leaves the battlefield, this effect continues until end of turn.
-mana={3}{G}
-type=Enchantment
-[/card]
-[card]
 name=Togglodyte
 text=Togglodyte comes into play turned on. -- Whenever a player plays a spell, toggle Togglodyte's ON/OFF switch. -- As long as Togglodyte is turned off, it can't attack or block, and all damage it would deal is prevented.
 mana={3}

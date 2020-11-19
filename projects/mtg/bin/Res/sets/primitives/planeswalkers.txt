@@ -1296,7 +1296,7 @@ subtype=Karn
 name=Karn, the Great Creator
 auto=counter(0/0,5,loyalty)
 auto=lord(artifact|opponentBattlefield) noactivatedability
-auto={C(0/0,1,Loyalty)}:name(+1: Becomes a creature) target(artifact[-creature]) transforms((creature,setpower=0,settoughness=1,newability[dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[0/-1 ueot all(this)],newability[@each opponent untap:dynamicability<!mytgt manacostpumpboth!> becomes(creature) ueot],newability[@each opponent upkeep:0/-1 ueot all(this)])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Becomes a creature) target(artifact[-creature]) transforms((creature,newability[manacost/manacost])) uynt
 auto={C(0/0,1,Loyalty)}:name(+1: Loyalty counter) donothing restriction{compare(cantargetcre)~lessthan~1}
 auto={C(0/0,-2,Loyalty)}:name(-2: move a card from exile) moveto(ownerhand) target(artifact|myexile)
 auto={C(0/0,-2,Loyalty)}:name(-2: move a card from sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose card) target(<1>*[artifact]|reveal) moveto(myhand) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend revealend
