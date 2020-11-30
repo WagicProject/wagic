@@ -1,7 +1,7 @@
 grade=borderline
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 12-10-2020
+#We sorted this in alphabetical order - Luruz & Vitty85 30-11-2020
 [card]
 primitive=Abian, Luvion Usurper
 id=476217
@@ -2345,6 +2345,17 @@ text=Each opponent can cast spells only any time they could cast a sorcery. -- +
 mana={1}{W}{U}
 type=Legendary Planeswalker
 subtype=Teferi
+[/card]
+[card]
+name=Tevesh Szat, Doom of Fools
+abilities=partner
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Sacrifice and draw 2 cards) target(*[creature;planeswalker]|mybattlefield) sacrifice and!(draw:1)!
+auto={C(0/0,2,Loyalty)}:name(+2: Create two 0/1 black Thrull) token(Thrull,Creature Thrull,0/1,black)*2
+text=+2: Create two 0/1 black Thrull creature tokens. -- +1: You may sacrifice another creature or planeswalker. If you do, draw two cards, then draw another card if the sacrificed permanent was a commander. -- −10: Gain control of all commanders. Put all commanders from the command zone onto the battlefield under your control. -- Tevesh Szat, Doom of Fools can be your commander. -- Partner
+mana={4}{B}
+type=Legendary Planeswalker
+subtype=Szat
 [/card]
 [card]
 name=Teyo, the Shieldmage

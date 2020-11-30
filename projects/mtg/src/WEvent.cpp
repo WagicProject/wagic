@@ -287,6 +287,11 @@ WEventplayerEnergized::WEventplayerEnergized(Player * player, int nb_count) :
 {
 }
 
+WEventplayerMonarch::WEventplayerMonarch(Player * player) :
+    player(player)
+{
+}
+
 WEventCardSurveiled::WEventCardSurveiled(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -518,6 +523,12 @@ Targetable * WEventTokenCreated::getTarget(int target)
 }
 
 Targetable * WEventplayerEnergized::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerMonarch::getTarget(Player * player)
 {
     if (player) return player;
     return NULL;

@@ -53,7 +53,7 @@ install:
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
 - sudo pip install cpp-coveralls
-
+  
 script: "tools/travis-script.sh"
 
 after_success:

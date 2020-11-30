@@ -1662,6 +1662,10 @@ public class ImgDownloader {
             cardurl = "https://deckmaster.info/images/cards/KLD/-3289-hr.jpg";
         else if(id.equals("295632t"))
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/1/e/1ebc91a9-23e0-4ca1-bc6d-e710ad2efb31.jpg?1561756762";
+        else if(id.equals("295802"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/4/c/4cb8d03e-e1d2-451e-97a8-141082f92501.jpg?1598627140";
+        else if(id.equals("497724t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/6/6/661cbde4-9444-4259-b2cf-7c8f9814a071.jpg?1604666353";
 
         return cardurl;
     }
@@ -2145,6 +2149,8 @@ public class ImgDownloader {
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/0/4/0419a202-6e32-4f0a-a032-72f6c00cae5e.jpg?1562639654";
         else if(id.equals("295556t"))
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/6/2/623a08d1-f5ff-48b7-bdb6-54b8d7a4b931.jpg?1562639829";
+        else if(id.equals("503330t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/5/c5ad13b4-bbf5-4c98-868f-4d105eaf8833.jpg?1592710082";
 
         return tokenurl;
     }
@@ -2165,7 +2171,7 @@ public class ImgDownloader {
                 id.equals("473123") || id.equals("473160") || id.equals("16743")  || id.equals("16741") || id.equals("294493") || id.equals("293253") ||
                 id.equals("293198") || id.equals("479634") || id.equals("479702") || id.equals("489837") || id.equals("489861") || id.equals("491359") ||
                 id.equals("294872") || id.equals("295110") || id.equals("294842") || id.equals("295067") || id.equals("491767") || id.equals("295386")  ||
-                id.equals("295229") || id.equals("295387") || id.equals("295206") || id.equals("295706"))
+                id.equals("295229") || id.equals("295387") || id.equals("295206") || id.equals("295706") || id.equals("497549")  || id.equals("497666"))
             return false;
         return true;
     }

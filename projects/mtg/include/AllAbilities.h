@@ -328,7 +328,7 @@ private:
             if(intValue < 0)
                 intValue = 0;
         }
-        else if (s == "xx" || s == "XX")
+        else if (s == "xx" || s == "XX" || s == "halfpaid")
         {
             intValue = computeX(spell, card) / 2;
             if(intValue < 0)
@@ -570,37 +570,29 @@ private:
                     intValue +=1;
             }
         }
-        else if (s == "penergy")
+        else if (s == "penergy" || s == "oenergy")
         {
-            intValue = card->controller()->energyCount;
-        }
-        else if (s == "oenergy")
-        {
-            intValue = card->controller()->opponent()->energyCount;
+            intValue = (s == "penergy")?card->controller()->energyCount:card->controller()->opponent()->energyCount;
         }
         else if (s == "pyidarocount" || s == "oyidarocount")
         {
             intValue = (s == "pyidarocount")?card->controller()->yidaroCount:card->controller()->opponent()->yidaroCount;
         }
+        else if (s == "pmonarch" || s == "omonarch")
+        {
+            intValue = (s == "pmonarch")?card->controller()->monarch:card->controller()->opponent()->monarch;
+        }
         else if (s == "psurveiloffset" || s == "osurveiloffset")
         {
             intValue = (s == "psurveiloffset")?card->controller()->surveilOffset:card->controller()->opponent()->surveilOffset;
         }
-        else if (s == "praidcount")
+        else if (s == "praidcount" || s == "oraidcount")
         {
-            intValue = card->controller()->raidcount;
+            intValue = (s == "praidcount")?card->controller()->raidcount:card->controller()->opponent()->raidcount;
         }
-        else if (s == "oraidcount")
+        else if (s == "pstormcount" || s == "ostormcount")
         {
-            intValue = card->controller()->opponent()->raidcount;
-        }
-        else if (s == "pstormcount")
-        {
-            intValue = card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
-        }
-        else if (s == "ostormcount")
-        {
-            intValue = card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+            intValue = (s == "pstormcount")?card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL):card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
         }
         else if (s == "countallspell")
         {
@@ -1666,6 +1658,35 @@ public:
     TrplayerEnergized * clone() const
     {
         return NEW TrplayerEnergized(*this);
+    }
+};
+
+class TrplayerMonarch: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerMonarch(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerMonarch * e = dynamic_cast<WEventplayerMonarch *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerMonarch * clone() const
+    {
+        return NEW TrplayerMonarch(*this);
     }
 };
 
@@ -4928,6 +4949,18 @@ public:
     const string getMenuText();
     AAAlterYidaroCount * clone() const;
     ~AAAlterYidaroCount();
+};
+//Monarch
+class AAAlterMonarch: public ActivatedAbilityTP
+{
+public:
+
+    AAAlterMonarch(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterMonarch * clone() const;
+    ~AAAlterMonarch();
 };
 //Surveil Offset
 class AAAlterSurveilOffset: public ActivatedAbilityTP
