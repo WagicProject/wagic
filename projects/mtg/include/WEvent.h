@@ -352,6 +352,14 @@ struct WEventplayerEnergized : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//monarch event
+struct WEventplayerMonarch : public WEvent {
+    WEventplayerMonarch(Player * player);
+    Player * player;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 //surveil event
 struct WEventCardSurveiled : public WEventCardUpdate {
     WEventCardSurveiled(MTGCardInstance * card);

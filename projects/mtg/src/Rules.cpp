@@ -598,6 +598,7 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         p->preventable = initState.playerData[i].player->preventable;
         p->energyCount = initState.playerData[i].player->energyCount;
         p->yidaroCount = initState.playerData[i].player->yidaroCount;
+        p->monarch = initState.playerData[i].player->monarch;
         p->surveilOffset = initState.playerData[i].player->surveilOffset;
         if (initState.playerData[i].player->mAvatarName.size())
         {

@@ -68,5 +68,8 @@ auto=@each secondmain:removeMana(*)
 auto=@each end:removeMana(*)
 auto=@each cleanup:removeMana(*)
 
+#Monarch rule
+auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:draw:1
+
 #reset Creature damage at the cleanup phase
 auto=@each cleanup:all(*|myBattlefield) resetDamage

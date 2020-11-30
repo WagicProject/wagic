@@ -287,7 +287,8 @@ class Constants
       PROWESS = 161,
       NOFIZZLEALTERNATIVE = 162,
       HASOTHERKICKER = 163,
-      NB_BASIC_ABILITIES = 164,
+      PARTNER = 164,
+      NB_BASIC_ABILITIES = 165,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

@@ -44,6 +44,7 @@ public:
     int drawCounter;
     int energyCount;
     int yidaroCount;
+    int monarch;
     int surveilOffset;
     int epic;
     int forcefield;

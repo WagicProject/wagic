@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards up to Aether Revolt) as of 3/14/2017
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 12-10-2020
+#I sorted this programatically - Vitty85 30-11-2020
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -62,12 +62,6 @@ name=Abandoned Sarcophagus
 text=You may cast spells that have cycling from your graveyard. -- If a card with cycling would be put into your graveyard from anywhere and it wasn't cycled, exile it instead.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Aminatou's Augury
-text=Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.
-mana={6}{U}{U}
-type=Sorcery
 [/card]
 [card]
 name=Absolver Thrull
@@ -319,10 +313,25 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Amareth, the Lustrous
+text=Flying -- Whenever another permanent enters the battlefield under your control, look at the top card of your library. If it shares a card type with that permanent, you may reveal that card and put it into your hand.
+mana={3}{G}{W}{U}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
 name=Ambiguity
 text=Whenever a player plays a spell that counters a spell that has been played or a player plays a spell that comes into play with counters, that player may counter the next spell played or put an additional counter on a permanent that has already been played, but not countered.
 mana={2}{U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Aminatou's Augury
+text=Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.
+mana={6}{U}{U}
+type=Sorcery
 [/card]
 [card]
 name=Amulet of Quoz
@@ -443,6 +452,15 @@ subtype=Contraption
 name=Approach My Molten Realm
 text=When you set this scheme in motion, until your next turn, if a source would deal damage, it deals double that damage instead.
 type=Scheme
+[/card]
+[card]
+name=Araumi of the Dead Tide
+text={T}, Exile cards from your graveyard equal to the number of opponents you have: Target creature card in your graveyard gains encore until end of turn. The encore cost is equal to its mana cost. (Exile the creature card and pay its mana cost: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={1}{U}{B}
+type=Legendary Creature
+subtype=Merfolk Wizard
+power=1
+toughness=4
 [/card]
 [card]
 name=Arc Blade
@@ -690,18 +708,18 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
+name=Autumn's Veil
+text=Spells you control can't be countered by blue or black spells this turn, and creatures you control can't be the targets of blue or black spells this turn.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Autumn-Tail, Kitsune Sage
 text={1}: Attach target Aura attached to a creature to another creature.
 type=Legendary Creature
 subtype=Fox Wizard
 power=4
 toughness=5
-[/card]
-[card]
-name=Autumn's Veil
-text=Spells you control can't be countered by blue or black spells this turn, and creatures you control can't be the targets of blue or black spells this turn.
-mana={G}
-type=Instant
 [/card]
 [card]
 name=Avacyn's Judgment
@@ -768,6 +786,15 @@ type=Creature
 subtype=Bird Cleric
 power=3
 toughness=3
+[/card]
+[card]
+name=Averna, the Chaos Bloom
+text=As you cascade, you may put a land card from among the exiled cards onto the battlefield tapped. (Do this after the last card is exiled but before deciding whether to cast a nonland card.)
+mana={G}{U}{R}
+type=Legendary Creature
+subtype=Elemental Shaman
+power=4
+toughness=2
 [/card]
 [card]
 name=Awe Strike
@@ -1020,6 +1047,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Bell Borca, Spectral Sergeant
+text=Note the converted mana cost of each card as it's put into exile. -- Bell Borca, Spectral Sergeant's power is equal to the greatest number noted for it this turn. -- At the beginning of your upkeep, exile the top card of your library. You may play that card this turn.
+mana={2}{R}{W}
+type=Legendary Creature
+subtype=Spirit Soldier
+power=*
+toughness=5
+[/card]
+[card]
 name=Benalish Hero
 abilities=banding
 text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
@@ -1170,6 +1206,15 @@ type=Creature
 subtype=Insect
 power=1
 toughness=1
+[/card]
+[card]
+name=Blim, Comedic Genius
+text=Flying -- Whenever Blim, Comedic Genius deals combat damage to a player, that player gains control of target permanent you control. Then each player loses life and discards cards equal to the number of permanents they control but don't own.
+mana={2}{B}{R}
+type=Legendary Creature
+subtype=Imp
+power=4
+toughness=3
 [/card]
 [card]
 name=Blind Hunter
@@ -1739,15 +1784,6 @@ mana={G}
 type=Instant
 [/card]
 [card]
-name=Canal Courier
-text=When Canal Courier enters the battlefield, you become the monarch. -- Whenever Canal Courier and another creature attack different players, Canal Courier can't be blocked this combat.
-mana={5}{U}
-type=Creature
-subtype=Human Rogue
-power=3
-toughness=5
-[/card]
-[card]
 name=Canal Dredger
 text=Draft Canal Dredger face up. -- Each player passes the last card from each booster pack to a player who drafted a card named Canal Dredger. -- {T}: Put target card from your graveyard on the bottom of your library.
 mana={4}
@@ -2220,6 +2256,12 @@ mana={4}{W}{W}
 type=Sorcery
 [/card]
 [card]
+name=Circle of Protection: Art
+text=As Circle of Protection: Art comes into play, choose an artist. -- {1}{W}: The next time a source of your choice by the chosen artist would deal damage to you this turn, prevent that damage. -- {1}{W}: Return Circle of Protection: Art to its owner's hand.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
 name=City in a Bottle
 text=Whenever a nontoken permanent from the Arabian Nights expansion other than City in a Bottle is on the battlefield, its controller sacrifices it.  -- Players can't play cards from the Arabian Nights expansion.
 mana={2}
@@ -2553,7 +2595,6 @@ text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter 
 mana={1}{B}{R}
 type=Enchantment
 [/card]
-[/card]
 [card]
 name=Corrupting Licid
 text={B}, {T}: Corrupting Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {B} to end this effect. -- Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
@@ -2725,15 +2766,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Crown-Hunter Hireling
-text=When Crown-Hunter Hireling enters the battlefield, you become the monarch. -- Crown-Hunter Hireling can't attack unless defending player is the monarch.
-mana={4}{R}
-type=Creature
-subtype=Ogre Mercenary
-power=4
-toughness=4
-[/card]
-[card]
 name=Crucible of the Spirit Dragon
 auto={T}: Add {1}
 auto={1}{T}:counter(0/0,1,Storage)
@@ -2861,15 +2893,6 @@ name=Curtain of Light
 text=Cast Curtain of Light only during combat after blockers are declared. -- Target unblocked attacking creature becomes blocked. (This spell works on unblockable creatures.) -- Draw a card.
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Custodi Lich
-text=When Custodi Lich enters the battlefield, you become the monarch. -- Whenever you become the monarch, target player sacrifices a creature.
-mana={3}{B}{B}
-type=Creature
-subtype=Zombie Cleric
-power=4
-toughness=2
 [/card]
 [card]
 name=Custodi Peacekeeper
@@ -3701,6 +3724,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Eligeth, Crossroads Augur
+abilities=flying,partner
+text=Flying -- If you would scry a number of cards, draw that many cards instead. -- Partner (You can have two commanders if both have partner.)
+mana={4}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=5
+toughness=6
+[/card]
+[card]
 name=Elite Arcanist
 text=When Elite Arcanist enters the battlefield, you may exile an instant card from your hand. -- {X}, {T}: Copy the exiled card. You may cast the copy without paying its mana cost. X is the converted mana cost of the exiled card.
 mana={3}{U}
@@ -3896,15 +3929,6 @@ type=Sorcery
 name=Entirely Normal Armchair
 text=During your turn, if Entirely Normal Armchair is in your hand, you may hide it on the battlefield. -- {0}: Return Entirely Normal Armchair to its owner's hand. Only any opponent may activate this ability and only if they see Entirely Normal Armchair. -- {2}, Sacrifice Entirely Normal Armchair: Destroy target attacking creature.
 type=Artifact
-[/card]
-[card]
-name=Entourage of Trest
-text=When Entourage of Trest enters the battlefield, you become the monarch. -- Entourage of Trest can block an additional creature each combat as long as you're the monarch.
-mana={4}{G}
-type=Creature
-subtype=Elf Soldier
-power=4
-toughness=4
 [/card]
 [card]
 name=Epic Experiment
@@ -4869,15 +4893,6 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
-name=Garrulous Sycophant
-text=At the beginning of your end step, if you're the monarch, each opponent loses 1 life and you gain 1 life.
-mana={2}{B}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=4
-[/card]
-[card]
 name=Gather Specimens
 text=If a creature would enter the battlefield under an opponent's control this turn, it enters the battlefield under your control instead.
 mana={3}{U}{U}{U}
@@ -5478,15 +5493,6 @@ mana={W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Gyruda, Doom of Depths
-text=Companion — Your starting deck contains only cards with even converted mana costs. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Gyruda enters the battlefield, each player puts the top four cards of their library into their graveyard. Put a creature card with an even converted mana cost from among those cards onto the battlefield under your control.
-mana={4}{UB}{UB}
-type=Legendary Creature
-subtype=Demon Kraken
-power=6
-toughness=6
-[/card]
-[card]
 name=Grafdigger's Cage
 text=Creature cards can't enter the battlefield from graveyards or libraries. -- Players can't cast cards in graveyards or libraries.
 mana={1}
@@ -5780,6 +5786,15 @@ name=Gutter Grime
 text=Whenever a nontoken creature you control dies, put a slime counter on Gutter Grime, then put a green Ooze creature token onto the battlefield with "This creature's power and toughness are each equal to the number of slime counters on Gutter Grime."
 mana={4}{G}
 type=Enchantment
+[/card]
+[card]
+name=Gyruda, Doom of Depths
+text=Companion — Your starting deck contains only cards with even converted mana costs. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Gyruda enters the battlefield, each player puts the top four cards of their library into their graveyard. Put a creature card with an even converted mana cost from among those cards onto the battlefield under your control.
+mana={4}{UB}{UB}
+type=Legendary Creature
+subtype=Demon Kraken
+power=6
+toughness=6
 [/card]
 [card]
 name=Haakon, Stromgald Scourge
@@ -6283,6 +6298,16 @@ text=Hideaway (This land enters the battlefield tapped. When it does, look at th
 type=Land
 [/card]
 [card]
+name=Hullbreacher
+abilities=flash
+text=Flash -- If an opponent would draw a card except the first one they draw in each of their draw steps, instead you create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
+mana={2}{U}
+type=Creature
+subtype=Merfolk Pirate
+power=3
+toughness=2
+[/card]
+[card]
 name=Humming-
 text=Flying -- Whenever you attack with two or more creatures, -- Augment {3}{W} ({3}{W}, Reveal this card from your hand: Combine it with target host. Augment only as a sorcery.)
 type=Creature
@@ -6459,12 +6484,6 @@ name=Illicit Auction
 text=Each player may bid life for control of target creature. You start the bidding with a bid of 0. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and gains control of the creature. (This effect lasts indefinitely.)
 mana={3}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Circle of Protection: Art
-text=As Circle of Protection: Art comes into play, choose an artist. -- {1}{W}: The next time a source of your choice by the chosen artist would deal damage to you this turn, prevent that damage. -- {1}{W}: Return Circle of Protection: Art to its owner's hand.
-mana={1}{W}
-type=Enchantment
 [/card]
 [card]
 name=Illuminated Folio
@@ -7007,6 +7026,13 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Jeska, Thrice Reborn
+text=Jeska, Thrice Reborn enters the battlefield with a loyalty counter on it for each time you've cast a commander from the command zone this game. -- 0: Choose target creature. Until your next turn, if that creature would deal combat damage to one of your opponents, it deals triple that damage to that player instead. -- -X: Jeska, Thrice Reborn deals X damage to each of up to three targets. -- Jeska, Thrice Reborn can be your commander. -- Partner
+mana={2}{R}
+type=Legendary Planeswalker
+subtype=Jeska
+[/card]
+[card]
 name=Jeskai Infiltrator
 text=Jeskai Infiltrator can't be blocked as long as you control no other creatures. -- When Jeskai Infiltrator deals combat damage to a player, exile it and the top card of your library in a face-down pile, shuffle that pile, then manifest those cards. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
 mana={2}{U}
@@ -7053,6 +7079,12 @@ type=Artifact
 name=Jeweled Bird
 text=Remove Jeweled Bird from your deck before playing if you're not playing for ante. -- {T}: Put Jeweled Bird into the ante. If you do, put all other cards you own from the ante into your graveyard, then draw a card.
 mana={1}
+type=Artifact
+[/card]
+[card]
+name=Jeweled Lotus
+text={T}, Sacrifice Jeweled Lotus: Add three mana of any one color. Spend this mana only to cast your commander.
+mana={0}
 type=Artifact
 [/card]
 [card]
@@ -7199,15 +7231,6 @@ type=Legendary Creature
 subtype=Nightmare Insect
 power=3
 toughness=3
-[/card]
-[card]
-name=Keeper of Keys
-text=When Keeper of Keys enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, creatures you control can't be blocked this turn.
-mana={3}{U}{U}
-type=Creature
-subtype=Human Rogue Mutant
-power=4
-toughness=4
 [/card]
 [card]
 name=Keeper of the Lens
@@ -7529,15 +7552,6 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=2
-[/card]
-[card]
-name=Knights of the Black Rose
-text=When Knights of the Black Rose enters the battlefield, you become the monarch. -- Whenever an opponent becomes the monarch, if you were the monarch as the turn began, that player loses 2 life and you gain 2 life.
-mana={3}{W}{B}
-type=Creature
-subtype=Human Knight
-power=4
-toughness=4
 [/card]
 [card]
 name=Know Naught but Fire
@@ -8314,12 +8328,6 @@ type=Artifact Creature
 subtype=Cleric
 power=3
 toughness=3
-[/card]
-[card]
-name=Marchesa's Decree
-text=When Marchesa's Decree enters the battlefield, you become the monarch. -- Whenever a creature attacks you or a planeswalker you control, that creature's controller loses 1 life.
-mana={3}{B}
-type=Enchantment
 [/card]
 [card]
 name=Marisi, Breaker of the Coil
@@ -9718,6 +9726,15 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Opposition Agent
+text=Flash -- You control your opponents while they're searching their libraries. -- While an opponent is searching their library, they exile each card they find. You may play those cards for as long as they remain exiled, and you may spend mana as though it were mana of any color to cast them.
+mana={2}{B}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=2
+[/card]
+[card]
 name=Oppressive Rays
 text=Enchant creature -- Enchanted creature can't attack or block unless its controller pays {3}. -- Activated abilities of enchanted creature cost {3} more to activate.
 mana={W}
@@ -9912,24 +9929,6 @@ type=Creature
 subtype=Brainiac
 power=0
 toughness=3
-[/card]
-[card]
-name=Palace Jailer
-text=When Palace Jailer enters the battlefield, you become the monarch. -- When Palace Jailer enters the battlefield, exile target creature an opponent controls until an opponent becomes the monarch. (That creature returns under its owner's control.)
-mana={2}{W}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
-name=Palace Sentinels
-text=When Palace Sentinels enters the battlefield, you become the monarch.
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=4
 [/card]
 [card]
 name=Pale Moon
@@ -10615,24 +10614,6 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
-name=Protector of the Crown
-text=When Protector of the Crown enters the battlefield, you become the monarch. -- All damage that would be dealt to you is dealt to Protector of the Crown instead.
-mana={5}{W}
-type=Creature
-subtype=Giant Soldier
-power=2
-toughness=5
-[/card]
-[card]
-name=Prowling Pangolin
-text=When Prowling Pangolin enters the battlefield, any player may sacrifice two creatures. If a player does, sacrifice Prowling Pangolin.
-mana={3}{B}{B}
-type=Creature
-subtype=Beast
-power=6
-toughness=5
-[/card]
-[card]
 name=Psychic Battle
 text=Whenever a player chooses one or more targets, each player reveals the top card of his or her library. The player who reveals the card with the highest converted mana cost may change the target or targets. If two or more cards are tied for highest cost, the target or targets remain unchanged. Changing targets this way doesn't trigger this ability.
 mana={3}{U}{U}
@@ -10821,15 +10802,6 @@ name=Pyxis of Pandemonium
 text={T}: Each player exiles the top card of his or her library face down. -- {7}, {T}, Sacrifice Pyxis of Pandemonium: Each player turns face up all cards he or she owns exiled with Pyxis of Pandemonium, then puts all permanent cards among them onto the battlefield.
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Queen Marchesa
-text=Deathtouch, haste -- When Queen Marchesa enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if an opponent is the monarch, put a 1/1 black Assassin creature token with deathtouch and haste onto the battlefield.
-mana={1}{R}{W}{B}
-type=Legendary Creature
-subtype=Human Assassin
-power=3
-toughness=3
 [/card]
 [card]
 name=Quest for Pure Flame
@@ -11140,15 +11112,6 @@ text=If an opponent cast a red instant or sorcery spell this turn, you may pay {
 mana={3}{W}
 type=Instant
 subtype=Trap
-[/card]
-[card]
-name=Regal Behemoth
-text=Trample -- When Regal Behemoth enters the battlefield, you become the monarch. -- Whenever you tap a land for mana while you're the monarch, add one mana of any color to your mana pool (in addition to the mana the land produces).
-mana={4}{G}{G}
-type=Creature
-subtype=Lizard
-power=5
-toughness=5
 [/card]
 [card]
 name=Regicide
@@ -12422,15 +12385,6 @@ name=Skybreen
 text=Players play with the top card of their libraries revealed. -- Spells that share a card type with the top card of a library can't be cast. -- Whenever you roll {C}, target player loses life equal to the number of cards in his or her hand.
 type=Plane
 subtype=Kaldheim
-[/card]
-[card]
-name=Skyline Despot
-text=Flying -- When Skyline Despot enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, put a 5/5 red Dragon creature token with flying onto the battlefield.
-mana={5}{R}{R}
-type=Creature
-subtype=Dragon
-power=5
-toughness=5
 [/card]
 [card]
 name=Slaughter Games
@@ -14024,15 +13978,6 @@ power=6
 toughness=7
 [/card]
 [card]
-name=Thorn of the Black Rose
-text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Thorn of the Black Rose enters the battlefield, you become the monarch.
-mana={3}{B}
-type=Creature
-subtype=Human Assassin
-power=1
-toughness=3
-[/card]
-[card]
 name=Thought Dissector
 text={X}, {T}: Target opponent reveals cards from the top of his or her library until an artifact card or X cards are revealed, whichever comes first. If an artifact card is revealed this way, put it onto the battlefield under your control and sacrifice Thought Dissector. Put the rest of the revealed cards into that player's graveyard.
 mana={4}
@@ -14103,20 +14048,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Throne Warden
-text=At the beginning of your end step, if you're the monarch, put a +1/+1 counter on Throne Warden.
-mana={1}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
-name=Throne of the High City
-text={T}: Add {C} to your mana pool. -- {4}, {T}, Sacrifice Throne of the High City: You become the monarch.
-type=Land
-[/card]
-[card]
 name=Through the Breach
 text=You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice that creature at the beginning of the next end step. -- Splice onto Arcane {2}{R}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={4}{R}
@@ -14129,15 +14060,6 @@ text=Equipped creature gets +2/+0. -- Whenever equipped creature attacks, you ma
 mana={2}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Thrull Parasite
-text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.) -- {T}, Pay 2 life: Remove a counter from target nonland permanent.
-mana={B}
-type=Creature
-subtype=Thrull
-power=1
-toughness=1
 [/card]
 [card]
 name=Thrumming Stone
@@ -15171,6 +15093,12 @@ type=Sorcery
 name=Wet Willie of the Damned
 text=Wet Willie of the Damned deals 2½ damage to target creature or player and you gain 2½ life.
 mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Wheel of Misfortune
+text=Each player secretly chooses a number 0 or greater, then all players reveal those numbers simultaneously and determine the highest and lowest numbers revealed this way. Wheel of Misfortune deals damage equal to the highest number to each player who chose that number. Each player who didn't choose the lowest number discards their hand, then draws seven cards.
+mana={2}{R}
 type=Sorcery
 [/card]
 [card]

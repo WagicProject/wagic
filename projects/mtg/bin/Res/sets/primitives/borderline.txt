@@ -1,7 +1,7 @@
 grade=borderline
 #Bordeline Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 12-10-2020
+#I sorted this programatically - Vitty85 30-11-2020
 [card]
 name=AEther Rift
 auto=@each my upkeep:moverandom(*) from(myHand) to(myGraveyard) 
@@ -35,6 +35,17 @@ text=Trample -- Abominable Treefolk's power and toughness are each equal to the 
 mana={2}{G}{U}
 type=Snow Creature
 subtype=Treefolk
+power=*
+toughness=*
+[/card]
+[card]
+name=Abomination of Llanowar
+abilities=vigilance,menace
+anyzone=type:elf:mygraveyardplustype:elf:myBattlefieldplusend/type:elf:mygraveyardplustype:elf:myBattlefieldplusend cdaactive
+text=Vigilance; menace (This creature can't be blocked except by two or more creatures.) -- Abomination of Llanowar's power and toughness are each equal to the number of Elves you control plus the number of Elf cards in your graveyard.
+mana={1}{B}{G}
+type=Legendary Creature
+subtype=Elf Horror
 power=*
 toughness=*
 [/card]
@@ -381,6 +392,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Aesi, Tyrant of Gyre Strait
+auto=maxPlay(land)+1
+auto=@movedTo(land|myBattlefield):may draw:1 controller
+text=You may play an additional land on each of your turns. -- Whenever a land enters the battlefield under your control, you may draw a card.
+mana={4}{G}{U}
+type=Legendary Creature
+subtype=Serpent
+power=5
+toughness=5
+[/card]
+[card]
 name=Aether Gale
 target=<6>*[-land]|battlefield
 auto=moveto(ownerhand)
@@ -657,7 +679,7 @@ toughness=3
 [/card]
 [card]
 name=Akiri, Line-Slinger
-abilities=first strike, vigilance
+abilities=first strike, vigilance,partner
 auto=foreach(artifact|myBattlefield) 1/0
 text=First strike, vigilance -- Akiri, Line-Slinger gets +1/+0 for each artifact you control. -- Partner (You can have two commanders if both have partner.)
 mana={R}{W}
@@ -695,6 +717,37 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Akroma's Will
+auto=choice name(Choose first) all(creature|mybattlefield) transforms((,newability[flying],newability[vigilance],newability[double strike])) ueot
+auto=choice name(Choose second) all(creature|mybattlefield) transforms((,newability[lifelink],newability[indestructible],newability[protection from blue],newability[protection from red],newability[protection from green],newability[protection from white],newability[protection from black])) ueot
+text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Creatures you control gain flying, vigilance, and double strike until end of turn. -- • Creatures you control gain lifelink, indestructible, and protection from all colors until end of turn.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Akroma, Vision of Ixidor
+abilities=flying,first strike,vigilance,trample,partner
+auto=@each combatbegins:all(creature[flying]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[first strike]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[double strike]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[haste]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[deathtouch]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[opponentshroud]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[indestructible]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[lifelink]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[menace]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[reach]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[trample]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[vigilance]|mybattlefield) 1/1 ueot
+auto=@each combatbegins:all(creature[partner]|mybattlefield) 1/1 ueot
+text=Flying, first strike, vigilance, trample -- At the beginning of each combat, until end of turn, each other creature you control gets +1/+1 if it has flying, +1/+1 if it has first strike, and so on for double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, protection, reach, trample, vigilance, and partner. -- Partner
+mana={5}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=6
+toughness=6
+[/card]
+[card]
 name=Alchemist's Gift
 target=creature
 auto=1/1 ueot
@@ -717,6 +770,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Alena, Kessig Trapper
+abilities=first strike,partner
+auto={T}:name(Choose the most powerful fresh creature) name(Choose the most powerful fresh creature) target(creature[fresh]|myBattlefield) transforms((,newability[thisforeach(variable{power}) add{R}])) oneshot
+text=First strike -- {T}: Add an amount of {R} equal to the greatest power among creatures you control that entered the battlefield this turn. -- Partner (You can have two commanders if both have partner.)
+mana={4}{R}
+type=Legendary Creature
+subtype=Human Scout
+power=4
+toughness=3
+[/card]
+[card]
 name=Alert Heedbonder
 abilities=vigilance
 auto=@each my end:life:type:creature[vigilance]|myBattlefield
@@ -734,6 +798,18 @@ auto=replacedraw draw:2 noreplace
 text=If you would gain life, you gain twice that much life instead. -- If you would draw a card except the first one you draw in each of your draw steps, draw two cards instead.
 mana={5}
 type=Legendary Artifact
+[/card]
+[card]
+name=Alharu, Solemn Ritualist
+abilities=partner
+auto=target(<upto:2>creature) counter(1/1)
+auto=@movedto(creature[-token;counter{1/1}]|mygraveyard) from(mybattlefield):token(Spirit,Creature Spirit,1/1,white,flying)
+text=When Alharu, Solemn Ritualist enters the battlefield, put a +1/+1 counter on each of up to two other target creatures. -- Whenever a nontoken creature you control with a +1/+1 counter on it dies, create a 1/1 white Spirit creature token with flying. -- Partner (You can have two commanders if both have partner.)
+mana={4}{W}
+type=Legendary Creature
+subtype=Human Monk
+power=3
+toughness=3
 [/card]
 [card]
 name=Alirios, Enraptured
@@ -951,6 +1027,29 @@ text=Equipped creature gets +3/+0 and is every creature type. -- Equip {3}
 mana={2}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Amphin Mutineer
+auto=if type(creature[-salamander]|opponentbattlefield)~morethan~0 then choice name(Exile opponent's creature) name(Exile opponent's creature) moveto(exile) target(creature[-salamander]|opponentbattlefield) && token(Salamander Warrior,Creature Salamander Warrior,4/3,blue) opponent
+auto=if type(creature[-salamander]|myBattlefield)~morethan~0 then choice name(Exile your creature) name(Exile your creature) moveto(exile) target(creature[-salamander]|mybattlefield) && token(Salamander Warrior,Creature Salamander Warrior,4/3,blue)
+auto=choice name(Don't exile any creature) name(Don't exile any creature) donothing
+autograveyard={4}{U}{U}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=When Amphin Mutineer enters the battlefield, exile up to one target non-Salamander creature. That creature's controller creates a 4/3 blue Salamander Warrior creature token. -- Encore {4}{U}{U} ({4}{U}{U}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={3}{U}
+type=Creature
+subtype=Salamander Pirate
+power=3
+toughness=3
+[/card]
+[card]
+name=Anara, Wolvid Familiar
+abilities=partner
+text=As long as it's your turn, commanders you control have indestructible. (Effects that say "destroy" don't destroy them. A creature with indestructible can't be destroyed by damage.) -- Partner (You can have two commanders if both have partner.)
+mana={3}{G}
+type=Legendary Creature
+subtype=Wolf Beast
+power=4
+toughness=4
 [/card]
 [card]
 name=Anax, Hardened in the Forge
@@ -1338,6 +1437,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Annoyed Altisaur
+abilities=reach,trample
+autostack=if casted(this) then activate choice cascade:plibrarycount
+text=Reach, trample -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.)
+mana={5}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=6
+toughness=5
+[/card]
+[card]
 name=Anointed Chorister
 abilities=lifelink
 auto={4}{W}:3/3 ueot
@@ -1375,6 +1485,17 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=3
+[/card]
+[card]
+name=Anointer of Valor
+abilities=flying
+auto=@combat(attacking) source(creature|battlefield):all(trigger[to]) transforms((,newability[pay({3}) counter(1/1)])) oneshot
+text=Flying -- Whenever a creature attacks, you may pay 3 . When you do, put a +1/+1 counter on that creature.
+mana={5}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=5
 [/card]
 [card]
 name=Anowon, the Ruin Thief
@@ -1430,6 +1551,16 @@ auto=if type(*|opponentGraveyard)~morethan~7 then scry:2 scrycore delayed dontsh
 text=Counter target creature or planeswalker spell unless its controller pays {2}. If an opponent has eight or more cards in their graveyard, instead counter that spell, then scry 2.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Apex Devastator
+autostack=if casted(this) then activate choice cascade:plibrarycount && activate choice cascade:plibrarycount && activate choice cascade:plibrarycount && activate choice cascade:plibrarycount
+text=Cascade, cascade, cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order. Multiple instances of cascade each trigger separately.)
+mana={8}{G}{G}
+type=Creature
+subtype=Chimera Hydra
+power=10
+toughness=10
 [/card]
 [card]
 name=Aphemia, the Cacophony
@@ -1676,6 +1807,17 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Archelos, Lagoon Mystic
+auto=@movedto(*[land;enchantment;creature;planeswalker;artifact]|battlefield):this(tapped) all(trigger) tap(noevent)
+auto=@movedto(*[land;enchantment;creature;planeswalker;artifact]|battlefield):this(untapped) all(trigger) untap
+text=As long as Archelos, Lagoon Mystic is tapped, other permanents enter the battlefield tapped. -- As long as Archelos is untapped, other permanents enter the battlefield untapped.
+mana={1}{B}{G}{U}
+type=Legendary Creature
+subtype=Turtle Shaman
+power=2
+toughness=4
+[/card]
+[card]
 name=Archfiend of Despair
 abilities=flying,nolifegainopponent
 auto=@each endofturn:life:-oplifelost opponent
@@ -1761,6 +1903,18 @@ type=Creature
 subtype=Archon
 power=3
 toughness=2
+[/card]
+[card]
+name=Archon of Coronation
+abilities=flying
+auto=becomesmonarch controller
+auto=this(variable{pmonarch}>0) preventalldamage to(controller)
+text=Flying -- When Archon of Coronation enters the battlefield, you become the monarch. -- As long as you're the monarch, damage doesn't cause you to lose life. (When a creature deals combat damage to you, its controller still becomes the monarch.)
+mana={4}{W}{W}
+type=Creature
+subtype=Archon
+power=5
+toughness=5
 [/card]
 [card]
 name=Archon of Emeria
@@ -1867,6 +2021,17 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Ardenn, Intrepid Archaeologist
+abilities=partner
+auto=@each my combatbegins:may target(<anyamount>equipment|battlefield) rehook
+text=At the beginning of combat on your turn, you may attach any number of Auras and Equipment you control to target permanent or player. -- Partner (You can have two commanders if both have partner.)
+mana={2}{W}
+type=Legendary Creature
+subtype=Kor Scout
+power=2
+toughness=2
+[/card]
+[card]
 name=Ardent Electromancer
 auto=if compare(calculateparty)~equalto~1 then add{R}
 auto=if compare(calculateparty)~equalto~2 then add{R}{R}
@@ -1916,7 +2081,7 @@ toughness=2
 [/card]
 [card]
 name=Arena Trickster
-auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:counter(1/1,1) all(this)
+auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:counter(1/1,1) all(this)
 text=Whenever you cast your first spell during each opponent’s turn, put a +1/+1 counter on Arena Trickster.
 mana={3}{R}
 type=Creature
@@ -1986,6 +2151,28 @@ auto=kicker ifnot paid(alternative) then lure ueot
 text=Target creature gets +1/+1 and gains double strike until end of turn. // All creatures able to block target creature this turn do so. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{R}
 type=Sorcery
+[/card]
+[card]
+name=Armix, Filigree Thrasher
+abilities=partner
+auto=@combat(attacking) source(this):may name(discard a card) reject notatarget(*|myhand) && ability$!name(Choose creature) target(creature|opponentbattlefield) -type:artifact:mygraveyardplustype:artifact:myBattlefieldplusend/-type:artifact:mygraveyardplustype:artifact:myBattlefieldplusend ueot!$ controller
+text=Whenever Armix, Filigree Thrasher attacks, you may discard a card. When you do, target creature defending player controls gets -X/-X until end of turn, where X is the number of artifacts you control plus the number of artifact cards in your graveyard. -- Partner (You can have two commanders if both have partner.)
+mana={2}{B}
+type=Legendary Artifact Creature
+subtype=Golem
+power=3
+toughness=2
+[/card]
+[card]
+name=Armored Skyhunter
+abilities=flying
+auto=@combat(attacking) source(this):may name(Look) reveal:6 optionone name(Get aura or equipment) target(*[aura;equipment]|reveal) moveto(mybattlefield) and!(rehook)! optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
+text=Flying -- Whenever Armored Skyhunter attacks, look at the top six cards of your library. You may put an Aura or Equipment card from among them onto the battlefield. If an Equipment is put onto the battlefield this way, you may attach it to a creature you control. Put the rest of those cards on the bottom of your library in a random order.
+mana={3}{W}
+type=Creature
+subtype=Cat Knight
+power=3
+toughness=3
 [/card]
 [card]
 name=Armored Whirl Turtle
@@ -2091,7 +2278,6 @@ auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlef
 auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 8) destroy target(creature[power<=8])
 auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 9) destroy target(creature[power<=9])
 auto={B}{T}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}{T(knight|myBattlefield)}:name(creature with power 10) destroy target(creature[power<=10])
-auto=lord(creature|myBattlefield) creature with power x or less
 text=Vigilance -- {2}{W}, {T}: Create a 2/2 white Knight creature token with vigilance. -- {B}, {T}, Tap X untapped Knights you control: Destroy target creature with power X or less.
 mana={2}{W}{B}
 type=Legendary Creature
@@ -2406,6 +2592,17 @@ type=Creature
 subtype=Elf Warrior
 power=3
 toughness=2
+[/card]
+[card]
+name=Aurora Phoenix
+abilities=flying,partner
+autostack=if casted(this) then cascade:plibrarycount
+text=Flying -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- Whenever you cast a spell with cascade, return Aurora Phoenix from your graveyard to your hand.
+mana={4}{R}{R}
+type=Creature
+subtype=Phoenix
+power=5
+toughness=3
 [/card]
 [card]
 name=Auspicious Starrix
@@ -2731,6 +2928,17 @@ text=Ninjutsu {1}{B} ({1}{B}, Return an unblocked attacker you control to hand: 
 mana={3}{B}
 type=Creature
 subtype=Azra Ninja
+power=3
+toughness=3
+[/card]
+[card]
+name=Azure Fleet Admiral
+auto=becomesmonarch controller
+auto=this(variable{omonarch}>0) unblockable
+text=When Azure Fleet Admiral enters the battlefield, you become the monarch. -- Azure Fleet Admiral can't be blocked by creatures the monarch controls.
+mana={3}{U}
+type=Creature
+subtype=Human Pirate
 power=3
 toughness=3
 [/card]
@@ -3406,6 +3614,17 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Belbe, Corrupted Observer
+text=At the beginning of each player's postcombat main phase, that player adds {C}{C} for each of your opponents who lost life this turn. (Damage causes loss of life.)
+auto=@each my secondmain restriction{compare(oplifelost)~morethan~0}:add{C}{C}
+auto=@each opponent secondmain restriction{compare(lifelost)~morethan~0}:add{C}{C} opponent
+mana={B}{G}
+type=Legendary Creature
+subtype=Zombie Elf
+power=2
+toughness=2
+[/card]
+[card]
 name=Belle of the Brawl
 abilities=menace
 auto=@combat(attacking) source(this):lord(other creature[knight]|myBattlefield) 1/0 ueot
@@ -3502,6 +3721,16 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
+name=Benevolent Blessing
+abilities=auraward,flash
+target=creature
+auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
+text=Flash -- Enchant creature -- As Benevolent Blessing enters the battlefield, choose a color. -- Enchanted creature has protection from the chosen color. This effect doesn't remove Auras and Equipment you control that are already attached to it.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Benthic Biomancer
 auto={1}{U}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.1)])) forever
 auto=@counteradded(1/1) from(this):draw:1 && transforms((,newability[target(*|myhand) reject])) forever
@@ -3593,6 +3822,16 @@ type=Creature
 subtype=Ooze
 power=2
 toughness=2
+[/card]
+[card]
+name=Biowaste Blob
+auto=lord(*[ooze]|mybattlefield) 1/1
+text=Oozes you control get +1/+1. -- At the beginning of your upkeep, if you control a commander, create a token that's a copy of Biowaste Blob.
+mana={2}{G}{G}
+type=Creature
+subtype=Ooze
+power=0
+toughness=0
 [/card]
 [card]
 name=Bird Fal
@@ -3796,6 +4035,18 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Bladegriff Prototype
+abilities=flying
+auto=@combatdamagefoeof(player) from(this):ability$!name(destroy) notatarget(*[-land]|mybattlefield) destroy!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(destroy) notatarget(*[-land]|mybattlefield) destroy!$ controller
+text=Flying -- Whenever Bladegriff Prototype deals combat damage to a player, destroy target nonland permanent of that player's choice that one of your opponents controls.
+mana={5}
+type=Artifact Creature
+subtype=Griffin
+power=3
+toughness=2
+[/card]
+[card]
 name=Blaring Captain
 auto=may moveto(myhand) notatarget(blaring recruiter|mylibrary)
 auto=@combat(attacking) source(this):all(warrior[attacking]) 1/1
@@ -3841,6 +4092,16 @@ auto=target(creature[power>=controllerlife]) moveto(exile)
 text=Exile target creature with power greater than or equal to your life total.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Blazing Sunsteel
+auto={4}:equip
+auto=teach(creature) 1/0
+auto=@damaged(mytgt):damage:thatmuch target(player,creature)
+text=Equipped creature gets +1/+0 for each opponent you have. -- Whenever equipped creature is dealt damage, it deals that much damage to any target. -- Equip {4}
+mana={1}{R}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Blazing Torch
@@ -4380,6 +4641,29 @@ auto=reveal:5 optionone name(Get historic) target(*[artifact;legendary;saga]|rev
 text=Look at the top five cards of your library. You may reveal a historic card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. (Artifacts, legendaries, and Sagas are historic.)
 mana={1}{W}
 type=Sorcery
+[/card]
+[card]
+name=Boarding Party
+abilities=haste
+autostack=if casted(this) then cascade:plibrarycount
+text=Haste -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.)
+mana={5}{R}
+type=Creature
+subtype=Human Pirate
+power=6
+toughness=3
+[/card]
+[card]
+name=Body of Knowledge
+abilities=nomaxhand
+anyzone=type:*:myhand/type:*:myhand cdaactive
+auto=@damaged(this):draw:thatmuch controller
+text=Body of Knowledge's power and toughness are each equal to the number of cards in your hand. -- You have no maximum hand size. -- Whenever Body of Knowledge is dealt damage, draw that many cards.
+mana={3}{U}{U}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
 [/card]
 [card]
 name=Bog Naughty
@@ -4998,6 +5282,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Brazen Freebooter
+auto=token(Treasure Sur)
+text=When Brazen Freebooter enters the battlefield, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
+mana={3}{R}
+type=Creature
+subtype=Human Pirate
+power=3
+toughness=3
+[/card]
+[card]
 name=Breaking // Entering
 auto=choice {U}{B}:deplete:8 target(player)
 auto=choice {4}{B}{R}:target(creature|graveyard) moveTo(mybattlefield) && transforms((,newability,haste)) ueot
@@ -5013,6 +5307,49 @@ auto=damage:2
 text=Breath of Fire deals 2 damage to target creature.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Breeches, Brazen Plunderer
+abilities=menace,partner
+auto=@combatdamagefoeof(player) from(*[pirate]|myBattlefield):moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|opponentlibrary)
+auto={0}:name(Cast creature from exile with manacost 0) activate castcard(normal) target(*[manacost=0;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=0;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={1}:name(Cast creature from exile with manacost 1) activate castcard(normal) target(*[manacost=1;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=1;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={2}:name(Cast creature from exile with manacost 2) activate castcard(normal) target(*[manacost=2;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=2;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={3}:name(Cast creature from exile with manacost 3) activate castcard(normal) target(*[manacost=3;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=3;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={4}:name(Cast creature from exile with manacost 4) activate castcard(normal) target(*[manacost=4;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=4;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={5}:name(Cast creature from exile with manacost 5) activate castcard(normal) target(*[manacost=5;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=5;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={6}:name(Cast creature from exile with manacost 6) activate castcard(normal) target(*[manacost=6;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=6;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={7}:name(Cast creature from exile with manacost 7) activate castcard(normal) target(*[manacost=7;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=7;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={8}:name(Cast creature from exile with manacost 8) activate castcard(normal) target(*[manacost=8;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=8;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={9}:name(Cast creature from exile with manacost 9) activate castcard(normal) target(*[manacost=9;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=9;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={10}:name(Cast creature from exile with manacost 10) activate castcard(normal) target(*[manacost=10;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=10;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={11}:name(Cast creature from exile with manacost 11) activate castcard(normal) target(*[manacost=11;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=11;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={12}:name(Cast creature from exile with manacost 12) activate castcard(normal) target(*[manacost=12;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=12;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={13}:name(Cast creature from exile with manacost 13) activate castcard(normal) target(*[manacost=13;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=13;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={14}:name(Cast creature from exile with manacost 14) activate castcard(normal) target(*[manacost=14;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=14;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={15}:name(Cast creature from exile with manacost 15) activate castcard(normal) target(*[manacost=15;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=15;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={16}:name(Cast creature from exile with manacost 16) activate castcard(normal) target(*[manacost=16;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=16;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={17}:name(Cast creature from exile with manacost 17) activate castcard(normal) target(*[manacost=17;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=17;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={18}:name(Cast creature from exile with manacost 18) activate castcard(normal) target(*[manacost=18;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=18;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={19}:name(Cast creature from exile with manacost 19) activate castcard(normal) target(*[manacost=19;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=19;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto={20}:name(Cast creature from exile with manacost 20 or more) activate castcard(normal) target(*[manacost>19;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost>19;canplayfromexile;fresh]|opponentexile)~morethan~0}
+text=Menace -- Whenever one or more Pirates you control deal damage to your opponents, exile the top card of each of those opponents' libraries. You may play those cards this turn, and you may spend mana as though it were mana of any color to cast those spells. -- Partner (You can have two commanders if both have partner.)
+mana={3}{R}
+type=Legendary Creature
+subtype=Goblin Pirate
+power=3
+toughness=3
+[/card]
+[card]
+name=Briarblade Adept
+auto=@combat(attacking) source(this):target(creature|opponentbattlefield) -1/-1 ueot
+autograveyard={3}{B}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Whenever Briarblade Adept attacks, target creature an opponent controls gets -1/-1 until end of turn. -- Encore {3}{B} ({3}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={4}{B}
+type=Creature
+subtype=Elf Assassin
+power=3
+toughness=4
 [/card]
 [card]
 name=Bright Reprisal
@@ -5116,6 +5453,18 @@ type=Creature
 subtype=Merfolk Pirate
 power=2
 toughness=1
+[/card]
+[card]
+name=Brinelin, the Moon Kraken
+abilities=partner
+auto=moveto(ownerhand) target(*[-land]|battlefield)
+auto=@movedto(*[manacost>=6]|mystack):moveto(ownerhand) target(*[-land]|battlefield)
+text=When Brinelin, the Moon Kraken enters the battlefield or whenever you cast a spell with converted mana cost 6 or greater, you may return target nonland permanent to its owner's hand. -- Partner (You can have two commanders if both have partner.)
+mana={6}{U}{U}
+type=Legendary Creature
+subtype=Kraken
+power=6
+toughness=8
 [/card]
 [card]
 name=Bring Down
@@ -5231,6 +5580,7 @@ toughness=4
 [/card]
 [card]
 name=Bruse Tarl, Boorish Herder
+abilities=partner
 auto=target(creature|mybattlefield) double strike && lifelink ueot
 auto=@combat(attacking) source(this):target(creature|mybattlefield) double strike && lifelink ueot
 text=Whenever Bruse Tarl, Boorish Herder enters the battlefield or attacks, target creature you control gains double strike and lifelink until end of turn. -- Partner (You can have two commanders if both have partner.)
@@ -5607,6 +5957,16 @@ mana={4}{G}{W}
 type=Sorcery
 [/card]
 [card]
+name=Canal Courier
+auto=becomesmonarch controller
+text=When Canal Courier enters the battlefield, you become the monarch. -- Whenever Canal Courier and another creature attack different players, Canal Courier can't be blocked this combat.
+mana={5}{U}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=5
+[/card]
+[card]
 name=Canal Monitor
 mana={4}{B}
 type=Creature
@@ -5704,6 +6064,15 @@ type=Legendary Creature
 subtype=Human Pirate
 power=2
 toughness=2
+[/card]
+[card]
+name=Captain Vargus Wrath
+text=Whenever Captain Vargus Wrath attacks, Pirates you control get +1/+1 until end of turn for each time you've cast a commander from the command zone this game.
+mana={U}{R}
+type=Legendary Creature
+subtype=Orc Pirate
+power=1
+toughness=1
 [/card]
 [card]
 name=Captain's Maneuver
@@ -7511,6 +7880,18 @@ power=1
 toughness=5
 [/card]
 [card]
+name=Coastline Marauders
+abilities=trample
+auto=@combat(attacking) source(this):type:land:opponentbattlefield/0 ueot
+autograveyard={4}{R}{R}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Trample -- Whenever Coastline Marauders attacks, it gets +1/+0 until end of turn for each land defending player controls. -- Encore {4}{R}{R} ({4}{R}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={2}{R}
+type=Creature
+subtype=Human Pirate
+power=0
+toughness=3
+[/card]
+[card]
 name=Coat of Arms
 auto=lord(creature|battlefield) transforms((,newability[foreach(other *[creature;share!types!]|battlefield) 1/1]))
 text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, it two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
@@ -7535,6 +7916,17 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Coercive Recruiter
+auto=target(creature|battlefield) moveto(mybattlefield) and!(transforms((Pirate,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
+auto=@movedto(pirate|mybattlefield):target(creature|battlefield) moveto(mybattlefield) and!(transforms((Pirate,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
+text=Whenever Coercive Recruiter or another Pirate enters the battlefield under your control, gain control of target creature until end of turn. Untap that creature. Until end of turn, it gains haste and becomes a Pirate in addition to its other types.
+mana={4}{R}
+type=Creature
+subtype=Orc Pirate
+power=4
+toughness=3
+[/card]
+[card]
 name=Coils of the Medusa
 target=creature
 auto=1/-1
@@ -7553,6 +7945,36 @@ type=Creature
 subtype=Turtle
 power=4
 toughness=5
+[/card]
+[card]
+name=Colfenor, the Last Yew
+abilities=vigilance,reach
+auto=@movedTo(creature[power=1]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<1]|myGraveyard)
+auto=@movedTo(creature[power=3]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<2]|myGraveyard)
+auto=@movedTo(creature[power=4]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<3]|myGraveyard)
+auto=@movedTo(creature[power=5]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<4]|myGraveyard)
+auto=@movedTo(creature[power=6]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<5]|myGraveyard)
+auto=@movedTo(creature[power=7]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<6]|myGraveyard)
+auto=@movedTo(creature[power=8]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<7]|myGraveyard)
+auto=@movedTo(creature[power=9]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<8]|myGraveyard)
+auto=@movedTo(creature[power=10]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<9]|myGraveyard)
+auto=@movedTo(creature[power=11]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<10]|myGraveyard)
+auto=@movedTo(creature[power=12]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<11]|myGraveyard)
+auto=@movedTo(creature[power=13]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<12]|myGraveyard)
+auto=@movedTo(creature[power=14]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<13]|myGraveyard)
+auto=@movedTo(creature[power=15]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<14]|myGraveyard)
+auto=@movedTo(creature[power=16]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<15]|myGraveyard)
+auto=@movedTo(creature[power=17]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<16]|myGraveyard)
+auto=@movedTo(creature[power=18]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<17]|myGraveyard)
+auto=@movedTo(creature[power=19]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<18]|myGraveyard)
+auto=@movedTo(creature[power=20]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature[power<19]|myGraveyard)
+auto=@movedTo(creature[power>20]|myGraveyard) from(mybattlefield):moveto(myhand) target(creature|myGraveyard)
+text=Vigilance, reach -- Whenever Colfenor, the Last Yew or another creature you control dies, return up to one other target creature card with lesser toughness from your graveyard to your hand.
+mana={3}{W}{B}{G}
+type=Legendary Creature
+subtype=Treefolk Shaman
+power=3
+toughness=7
 [/card]
 [card]
 name=Collar the Culprit
@@ -7797,6 +8219,16 @@ auto=damage:5
 text=Command the Storm deals 5 damage to target creature.
 mana={4}{R}
 type=Instant
+[/card]
+[card]
+name=Commander's Plate
+target=creature
+auto={3}:equip
+auto=teach(creature) 3/3
+text=Equipped creature gets +3/+3 and has protection from each color that's not in your commander's color identity. -- Equip commander {3} -- Equip {5}
+mana={1}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Commander's Sphere
@@ -8430,6 +8862,51 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Court of Ambition
+auto=becomesmonarch controller
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:ability$!name(Choose one) choice name(Loose 3 life) life:-3 _ choice name(Discrd a card) reject notatarget(*|myhand)!$ opponent
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:ability$!name(Choose one) choice name(Loose 6 life) life:-6 _ choice name(Discrd 2 cards) reject notatarget(<2>*|myhand)!$ opponent
+text=When Court of Ambition enters the battlefield, you become the monarch. -- At the beginning of your upkeep, each opponent loses 3 life unless they discard a card. If you're the monarch, instead each opponent loses 6 life unless they discard two cards.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Court of Bounty
+auto=becomesmonarch controller
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:may moveto(myBattlefield) target(land|myHand)
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:may moveto(myBattlefield) target(*[land;creature]|myHand)
+text=When Court of Bounty enters the battlefield, you become the monarch. -- At the beginning of your upkeep, you may put a land card from your hand onto the battlefield. If you're the monarch, instead you may put a creature or land card from your hand onto the battlefield.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Court of Cunning
+auto=becomesmonarch controller
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:ability$!name(Choose one) choice name(Opponent mills cards) deplete:3 opponent _ choice name(You mill cards) deplete:3 controller _ choice name(Both player mill cards) deplete:3 controller && deplete:3 opponent _ choice name(No one mills cards) donothing!$ controller
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:ability$!name(Choose one) choice name(Opponent mills cards) deplete:10 opponent _ choice name(You mill cards) deplete:10 controller _ choice name(Both player mill cards) deplete:10 controller && deplete:10 opponent _ choice name(No one mills cards) donothing!$ controller 
+text=When Court of Cunning enters the battlefield, you become the monarch. -- At the beginning of your upkeep, any number of target players each mill two cards. If you're the monarch, each of those players mills ten cards instead. (To mill a card, a player puts the top card of their library into their graveyard.)
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Court of Grace
+auto=becomesmonarch controller
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:token(Spirit,Creature Spirit,1/1,white,flying)
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:token(Angel,Creature Angel,4/4,white,flying)
+text=When Court of Grace enters the battlefield, you become the monarch. -- At the beginning of your upkeep, create a 1/1 white Spirit creature token with flying. If you're the monarch, create a 4/4 white Angel creature token with flying instead.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Court of Ire
+auto=becomesmonarch controller
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:ability$!name(Choose one) choice name(Damage creature) damage:2 target(creature) _ choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:ability$!name(Choose one) choice name(Damage creature) damage:7 target(creature) _ choice name(Damage player) damage:7 target(player) _ choice name(Damage planeswalker) damage:7 target(planeswalker)!$ controller
+text=When Court of Ire enters the battlefield, you become the monarch. -- At the beginning of your upkeep, Court of Ire deals 2 damage to any target. If you're the monarch, it deals 7 damage instead.
+mana={3}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Coveted Jewel
 auto=draw:3
 auto={T}:Add{W}{W}{W}
@@ -8656,6 +9133,17 @@ mana={3}{W}{B}
 type=Sorcery
 [/card]
 [card]
+name=Crimson Fleet Commodore
+abilities=trample
+auto=becomesmonarch controller
+text=Trample -- When Crimson Fleet Commodore enters the battlefield, you become the monarch.
+mana={3}{R}
+type=Creature
+subtype=Ogre Pirate
+power=5
+toughness=2
+[/card]
+[card]
 name=Crimson Honor Guard
 abilities=trample
 auto=@each my end:damage:4 controller
@@ -8699,6 +9187,17 @@ auto={1}{E}:moveto(exile) all(*|graveyard)
 text={1}, {T}: Exile target card from a graveyard. -- {1}, Exile Crook of Condemnation: Exile all cards from all graveyards.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Crown-Hunter Hireling
+auto=becomesmonarch controller
+auto=this(variable{omonarch}<1) cantattack
+text=When Crown-Hunter Hireling enters the battlefield, you become the monarch. -- Crown-Hunter Hireling can't attack unless defending player is the monarch.
+mana={4}{R}
+type=Creature
+subtype=Ogre Mercenary
+power=4
+toughness=4
 [/card]
 [card]
 name=Cruel Celebrant
@@ -9139,6 +9638,24 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Cursed Scroll
+auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Game chooses a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(The random card macthes with the named card) choice name(Damage creature) damage:2 target(creature) _ choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
+text={3}, {T}: Choose a card name, then reveal a card at random from your hand. If that card has the chosen name, Cursed Scroll deals 2 damage to any target.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Custodi Lich
+auto=becomesmonarch controller
+auto=@becomesmonarchof(player):target(player) ability$!name(sacrifice) target(creature|mybattlefield) sacrifice!$ targetedplayer
+text=When Custodi Lich enters the battlefield, you become the monarch. -- Whenever you become the monarch, target player sacrifices a creature.
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie Cleric
+power=4
+toughness=2
+[/card]
+[card]
 name=Custodi Soulcaller
 auto=@combat(attacking) source(this):1/1 ueot
 auto=@combat(attacking) source(this):moveto(mybattlefield) target(creature[manacost<=1]|mygraveyard)
@@ -9157,13 +9674,6 @@ autograveyard={X}{B}{B}{E}:life:-X opponent asSorcery
 text=Cut deals 4 damage to target creature. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Each opponent loses X life.
 mana={1}{R}
 type=Sorcery
-[/card]
-[card]
-name=Cursed Scroll
-auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Game chooses a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(The random card macthes with the named card) choice name(Damage creature) damage:2 target(creature) _ choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
-text={3}, {T}: Choose a card name, then reveal a card at random from your hand. If that card has the chosen name, Cursed Scroll deals 2 damage to any target.
-mana={1}
-type=Artifact
 [/card]
 [card]
 name=Cyclopean Giant
@@ -9270,6 +9780,17 @@ type=Legendary Creature
 subtype=Human Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Dargo, the Shipwrecker
+abilities=trample,partner
+other={2}{R}{S(*[artifact;creature]|mybattlefield)}{S(*[artifact;creature]|mybattlefield)} name(Sacrifice 2 permanents)
+text=As an additional cost to cast this spell, you may sacrifice any number of artifacts and/or creatures. This spell costs {2} less to cast for each permanent sacrificed this way and {2} less to cast for each other artifact or creature you've sacrificed this turn. -- Trample -- Partner (You can have two commanders if both have partner.)
+mana={6}{R}
+type=Legendary Creature
+subtype=Giant Pirate
+power=7
+toughness=5
 [/card]
 [card]
 name=Darigaaz Reincarnated
@@ -9474,6 +9995,17 @@ auto=choice name(Both) destroy && moveTo(myhand) target(enchantment|mygraveyard)
 text=Choose one or both — Return target enchantment card from your graveyard to your hand; and/or destroy target enchantment.
 mana={2}{W}{W}
 type=Sorcery
+[/card]
+[card]
+name=Dawnglade Regent
+auto=becomesmonarch controller
+auto=lord(*|myBattlefield) transforms((,newability[this(variable{pmonarch}>0) opponentshroud]))
+text=When Dawnglade Regent enters the battlefield, you become the monarch. -- As long as you're the monarch, permanents you control have hexproof.
+mana={5}{G}{G}
+type=Creature
+subtype=Elk
+power=8
+toughness=8
 [/card]
 [card]
 name=Dawning Angel
@@ -10137,11 +10669,19 @@ target=creature
 auto=3/1
 auto=flying
 auto=transforms((Demon))
-autograveyard={1}{B}{B}{L:3}{D(*|myHand}:activate castcard(normal)
+autograveyard={1}{B}{B}{L:3}{D(*|myHand)}:activate castcard(normal)
 text=Enchant creature -- Enchanted creature gets +3/+1, has flying, and is a Demon in addition to its other types. -- You may cast Demonic Embrace from your graveyard by paying 3 life and discarding a card in addition to paying its other costs.
 mana={1}{B}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Demonic Lore
+auto=draw:3 controller
+auto=@each my endofturn:life:-twicetype:*:myhand
+text=When Demonic Lore enters the battlefield, draw three cards. -- At the beginning of your end step, you lose 2 life for each card in your hand.
+mana={2}{B}
+type=Enchantment
 [/card]
 [card]
 name=Demonic Vigor
@@ -11671,7 +12211,7 @@ name=Dream Trawler
 abilities=flying,lifelink
 auto=@drawof(player):1/0 ueot
 auto=@combat(attacking) source(this):draw:1 controller
-auto={D(*|myHand}:opponentshroud && tap(this) ueot
+auto={D(*|myHand)}:opponentshroud && tap(this) ueot
 text=Flying, lifelink -- Whenever you draw a card, Dream Trawler gets +1/+0 until end of turn. -- Whenever Dream Trawler attacks, draw a card. -- Discard a card: Dream Trawler gains hexproof until end of turn. Tap it.
 mana={2}{W}{W}{U}{U}
 type=Creature
@@ -11713,7 +12253,7 @@ toughness=4
 [/card]
 [card]
 name=Dreamstalker Manticore
-auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:damage:1 target(creature,planeswalker|opponentBattlefield)
+auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:damage:1 target(creature,planeswalker|opponentBattlefield)
 text=Whenever you cast your first spell during each opponent’s turn, Dreamstalker Manticore deals 1 damage to any target.
 mana={2}{R}
 type=Creature
@@ -12532,6 +13072,28 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Elvish Doomsayer
+auto=@movedto(this|ownergraveyard) from(battlefield):ability$!name(discard) notatarget(*|myhand) reject!$ opponent
+text=When Elvish Doomsayer dies, each opponent discards a card.
+mana={1}{B}
+type=Creature
+subtype=Elf Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Elvish Dreadlord
+abilities=deathtouch
+auto=@movedto(this|ownergraveyard) from(battlefield):all(creature[-elf]|battlefield) -3/-3 ueot
+autograveyard={5}{B}{B}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Deathtouch -- When Elvish Dreadlord dies, non-Elf creatures get -3/-3 until end of turn. -- Encore {5}{B}{B} ({5}{B}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie Elf
+power=3
+toughness=3
+[/card]
+[card]
 name=Elvish Reclaimer
 aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(land|myLibrary)
 auto=aslongas(land|myGraveyard) 2/2 >2
@@ -12621,6 +13183,17 @@ type=Creature
 subtype=Minotaur Warrior
 power=4
 toughness=3
+[/card]
+[card]
+name=Emberwilde Captain
+auto=becomesmonarch controller
+auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0}:if compare(pmonarch)~morethan~0 then damage:type:*:opponenthand opponent
+text=When Emberwilde Captain enters the battlefield, you become the monarch. -- Whenever an opponent attacks you while you're the monarch, Emberwilde Captain deals damage to that player equal to the number of cards in their hand.
+mana={3}{R}
+type=Creature
+subtype=Djinn Pirate
+power=4
+toughness=2
 [/card]
 [card]
 name=Emergence Zone
@@ -12989,6 +13562,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Entourage of Trest
+auto=becomesmonarch controller
+text=When Entourage of Trest enters the battlefield, you become the monarch. -- Entourage of Trest can block an additional creature each combat as long as you're the monarch.
+mana={4}{G}
+type=Creature
+subtype=Elf Soldier
+power=4
+toughness=4
+[/card]
+[card]
 name=Entrancing Lyre
 abilities=shackler
 auto={X}{T}:shackle target(creature[power<=X])
@@ -13191,6 +13774,16 @@ mana={3}{R}{G}
 type=Sorcery
 [/card]
 [card]
+name=Esior, Wardwing Familiar
+abilities=flying,partner
+text=Flying -- Spells your opponents cast that target one or more commanders you control cost {3} more to cast. -- Partner (You can have two commanders if both have partner.)
+mana={1}{U}
+type=Legendary Creature
+subtype=Bird
+power=1
+toughness=3
+[/card]
+[card]
 name=Essence Capture
 target=creature|stack
 auto=fizzle
@@ -13338,7 +13931,7 @@ type=Instant
 [/card]
 [card]
 name=Ever-Watching Threshold
-auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0} draw:1
+auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0}:draw:1
 text=Whenever an opponent attacks you and/or a planeswalker you control with one or more creatures, draw a card.
 mana={2}{U}
 type=Enchantment
@@ -13616,6 +14209,23 @@ mana={2}{U}{R}
 type=Sorcery
 [/card]
 [card]
+name=Explorer's Scope
+auto={1}:equip
+auto=@combat(attacking) source(mytgt):reveal:1 optionone target(<1>land|reveal) moveto(ownerbattlefield) and!(tap(noevent))! optiononeend optiontwo target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend
+text=Whenever equipped creature attacks, look at the top card of your library. If it's a land card, you may put it onto the battlefield tapped. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Explosion of Riches
+auto=draw:1 controller
+auto=ability$!name(Choose one) choice name(Draw and loose life) life:-5 && draw:1 _ choice name(Don'd draw) donothing!$ opponent
+text=Draw a card, then each other player may draw a card. Whenever a card is drawn this way, Explosion of Riches deals 5 damage to target opponent chosen at random from among your opponents.
+mana={5}{R}
+type=Sorcery
+[/card]
+[card]
 name=Expose to Daylight
 target=artifact,enchantment
 auto=destroy
@@ -13643,6 +14253,17 @@ auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then nofizzle
 text=Exquisite Firecraft deals 4 damage to any target. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, this spell can’t be countered.
 mana={1}{R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Exquisite Huntmaster
+auto=@movedTo(this|graveyard) from(battlefield):token(Elf Warrior,Creature Elf Warrior,1/1,green)
+autograveyard={4}{B}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=When Exquisite Huntmaster dies, create a 1/1 green Elf Warrior creature token. -- Encore {4}{B} ({4}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={3}{B}
+type=Creature
+subtype=Elf Warrior
+power=4
+toughness=2
 [/card]
 [card]
 name=Exuberant Wolfbear
@@ -13675,6 +14296,17 @@ type=Creature
 subtype=Faerie
 power=1
 toughness=1
+[/card]
+[card]
+name=Eyeblight Cullers
+auto=@movedTo(this|graveyard) from(battlefield):token(Elf Warrior,Creature Elf Warrior,1/1,green)*3
+auto=@movedTo(this|graveyard) from(battlefield):deplete:3 controller
+text=When Eyeblight Cullers dies, create three 1/1 green Elf Warrior creature tokens, then mill three cards. (Put the top three cards of your library into your graveyard.)
+mana={4}{B}
+type=Creature
+subtype=Elf Warrior
+power=3
+toughness=3
 [/card]
 [card]
 name=Eyekite
@@ -13869,6 +14501,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Fall from Favor
+target=creature
+auto=tap
+auto=this(variable{omonarch}<1) doesnotuntap
+text=Enchant creature -- When Fall from Favor enters the battlefield, tap enchanted creature and you become the monarch. -- Enchanted creature doesn't untap during its controller's untap step unless that player is the monarch.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Fall of the Thran
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
@@ -13903,6 +14545,16 @@ auto=if paid(alternative) then 0/0 target(other creature) && fog from(mytgt) one
 text=Kicker—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Prevent all combat damage target creature would deal this turn. If Falling Timber was kicked, prevent all combat damage another target creature would deal this turn.
 mana={2}{G}
 type=Instant
+[/card]
+[card]
+name=Falthis, Shadowcat Familiar
+abilities=partner
+text=Commanders you control have menace and deathtouch. -- Partner (You can have two commanders if both have partner.)
+mana={2}{B}
+type=Legendary Creature
+subtype=Nightmare Cat
+power=2
+toughness=2
 [/card]
 [card]
 name=Famished Paladin
@@ -14061,6 +14713,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Fathom Fleet Swordjack
+auto=@combat(attacking) source(this):target(planeswalker,player) damage:type:artifact:mybattlefield
+autograveyard={5}{R}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Whenever Fathom Fleet Swordjack attacks, it deals damage to the player or planeswalker it's attacking equal to the number of artifacts you control. -- Encore {5}{R} ({5}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={3}{R}
+type=Creature
+subtype=Orc Pirate
+power=4
+toughness=3
+[/card]
+[card]
 name=Favor of the Mighty
 auto=lord(creature[manacost=convertedcost:highest:*:battlefield]|battlefield) protection from white
 auto=lord(creature[manacost=convertedcost:highest:*:battlefield]|battlefield) protection from blue
@@ -14112,6 +14775,14 @@ type=Creature
 subtype=Human Warrior
 power=3
 toughness=2
+[/card]
+[card]
+name=Feast of Succession
+auto=becomesmonarch controller
+auto=all(creature|battlefield) -4/-4 ueot
+text=All creatures get -4/-4 until end of turn. You become the monarch.
+mana={4}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Feast on the Fallen
@@ -14559,6 +15230,17 @@ auto=Kicker damage:10
 text=Kicker {5}{R} (You may pay an additional {5}{R} as you cast this spell.) -- Fight with Fire deals 5 damage to target creature. If this spell was kicked, it deals 10 damage divided as you choose among any number of targets instead. (Those targets can include players and planeswalkers.)
 mana={2}{R}
 type=Sorcery
+[/card]
+[card]
+name=Fin-Clade Fugitives
+auto=cantbeblockedby(creature[power<=2])
+autograveyard={4}{G}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Fin-Clade Fugitives can't be blocked by creatures with power 2 or less. -- Encore {4}{G} ({4}{G}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={5}{G}
+type=Creature
+subtype=Elf Salamander Rogue
+power=7
+toughness=4
 [/card]
 [card]
 name=Final Death
@@ -15092,6 +15774,15 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Flamekin Herald
+text=Commander spells you cast have cascade. (Whenever you cast a commander, exile cards from the top of your library until you exile a nonland card with lesser converted mana cost. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.)
+mana={2}{R}
+type=Creature
+subtype=Elemental Wizard
+power=3
+toughness=2
+[/card]
+[card]
 name=Flamerush Rider
 other={2}{R}{R} name(Dash)
 auto=@combat(attacking) source(this):clone((other creature[attacking;tapped]) with(unearth,haste[attacking]))
@@ -15402,6 +16093,15 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Forceful Denial
+target=*|stack
+auto=fizzle
+autostack=if casted(this) then cascade:plibrarycount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- Counter target spell.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Forebear's Blade
 auto=teach(creature) +3/+0
 auto=teach(creature) vigilance
@@ -15627,6 +16327,17 @@ type=Creature
 subtype=Dinosaur
 power=4
 toughness=2
+[/card]
+[card]
+name=Frenzied Saddlebrute
+abilities=haste
+auto=lord(creature|myBattlefield) haste
+text=Haste -- All creatures can attack your opponents and planeswalkers your opponents control as though those creatures had haste.
+mana={4}{R}
+type=Creature
+subtype=Orc Warrior
+power=5
+toughness=4
 [/card]
 [card]
 name=Fresh-Faced Recruit
@@ -16193,6 +16904,16 @@ power=3
 toughness=5
 [/card]
 [card]
+name=Garrulous Sycophant
+auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:life:-1 opponent && life:1 controller
+text=At the beginning of your end step, if you're the monarch, each opponent loses 1 life and you gain 1 life.
+mana={2}{B}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=4
+[/card]
+[card]
 name=Gate Colossus
 anyzone=foreach(land[Gate]|myBattlefield) changecost(colorless:-1) forcedalive
 auto=cantbeblockedby(creature[power>=2])
@@ -16479,6 +17200,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Ghen, Arcanum Weaver
+auto={R}{W}{B}{T}{S(enchantment|mybattlefield)}:moveto(mybattlefield) target(enchantment|mygraveyard)
+text={R}{W}{B}, {T}, Sacrifice an enchantment: Return target enchantment card from your graveyard to the battlefield.
+mana={R}{W}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
 name=Ghired, Conclave Exile
 auto=token(Rhino,Creature Rhino,4/4,green,trample)
 auto=@combat(attacking) restriction{type(creature[token]|mybattlefield)~morethan~0}:ability$! name(populate) clone notatarget(creature[token]|mybattlefield) ninjutsu !$ controller
@@ -16544,6 +17275,18 @@ type=Creature
 subtype=Human Warrior
 power=2
 toughness=2
+[/card]
+[card]
+name=Ghost of Ramirez DePietro
+abilities=partner
+auto=cantbeblockedby(creature[power>=3])
+auto=@combatdamaged(player) from(this):target(*[fresh]|graveyard) moveto(ownerhand)
+text=Ghost of Ramirez DePietro can't be blocked by creatures with toughness 3 or greater. -- Whenever Ghost of Ramirez DePietro deals combat damage to a player, choose up to one target card in a graveyard that was discarded or put there from a library this turn. Put that card into its owner's hand. -- Partner (You can have two commanders if both have partner.)
+mana={2}{U}
+type=Legendary Creature
+subtype=Spirit Pirate
+power=2
+toughness=3
 [/card]
 [card]
 name=Ghostly Pilferer
@@ -16723,6 +17466,17 @@ power=10
 toughness=10
 [/card]
 [card]
+name=Gilanra, Caller of Wirewood
+abilities=partner
+auto={T}:transforms((,newability[add{G}],newability[@movedto(*[manacost>=6]|mystack):draw:1 controller limit:1])) ueot
+text={T}: Add {G}. When you spend this mana to cast a spell with converted mana cost 6 or greater, draw a card. -- Partner (You can have two commanders if both have partner.)
+mana={2}{G}
+type=Legendary Creature
+subtype=Elf Druid
+power=1
+toughness=2
+[/card]
+[card]
 name=Gilded Cerodon
 auto=@combat(attacking) source(this):aslongas(Desert|mybattlefield,myGraveyard) target(creature) cantblock ueot
 text=Whenever Gilded Cerodon attacks, if you control a Desert or there is a Desert card in your graveyard, target creature can't block this turn.
@@ -16866,6 +17620,36 @@ auto=name(Look) reveal:6 optionone name(Get Snow) target(<anyamount>*[snow]|reve
 text=Reveal the top six cards of your library. You may put any number of snow permanent cards from among them into your hand. Put the rest into your graveyard.
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+name=Glacian, Powerstone Engineer
+abilities=partner
+auto={T}{T(artifact[-tapped]|myBattlefield)}:name(Tap 1 artifact) name(Tap 1 artifact) reveal:1 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 2 artifact) name(Tap 2 artifact) reveal:2 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 3 artifact) name(Tap 3 artifact) reveal:3 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 4 artifact) name(Tap 4 artifact) reveal:4 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 5 artifact) name(Tap 5 artifact) reveal:5 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 6 artifact) name(Tap 6 artifact) reveal:6 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 7 artifact) name(Tap 7 artifact) reveal:7 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 8 artifact) name(Tap 8 artifact)  reveal:8 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 9 artifact) name(Tap 9 artifact) reveal:9 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 10 artifact) name(Tap 10 artifact) reveal:10 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 11 artifact) name(Tap 11 artifact) reveal:11 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 12 artifact) name(Tap 12 artifact) reveal:12 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 13 artifact) name(Tap 13 artifact) reveal:13 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 14 artifact) name(Tap 14 artifact) reveal:14 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 15 artifact) name(Tap 15 artifact) reveal:15 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 16 artifact) name(Tap 16 artifact) reveal:16 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 17 artifact) name(Tap 17 artifact) reveal:17 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 18 artifact) name(Tap 18 artifact) reveal:18 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 19 artifact) name(Tap 19 artifact) reveal:19 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 20 artifact) name(Tap 20 artifact) reveal:20 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+text={T}, Tap X untapped artifacts you control: Look at the top X cards of your library. Put one of those cards into your hand and the rest into your graveyard. -- Partner (You can have two commanders if both have partner.)
+mana={5}{U}
+type=Legendary Creature
+subtype=Human Artificer
+power=3
+toughness=6
 [/card]
 [card]
 name=Glademuse
@@ -17195,6 +17979,18 @@ type=Host Artifact Creature
 subtype=Construct
 power=2
 toughness=2
+[/card]
+[card]
+name=Gnostro, Voice of the Crags
+auto={T}:name(Scry) name(Scry) scry:pstormcount scrycore delayed dontshow donothing scrycoreend scryend
+auto={T}:name(Damage creature) name(Damage creature) damage:pstormcount target(creature)
+auto={T}:name(Gain life) name(Gain life) life:pstormcount controller
+text={T}: Choose one. X is the number of spells you've cast this turn. -- • Scry X. -- • Gnostro, Voice of the Crags deals X damage to target creature. -- • You gain X life.
+mana={1}{U}{R}{W}
+type=Legendary Creature
+subtype=Chimera
+power=3
+toughness=3
 [/card]
 [card]
 name=Go for Blood
@@ -17678,6 +18474,19 @@ mana={1}{G}{W}
 type=Creature
 subtype=Unicorn
 power=2
+toughness=2
+[/card]
+[card]
+name=Gor Muldrak, Amphinologist
+auto=protection from(salamanders)
+auto=preventalldamage to(controller) from(creature[salamander])
+auto=@each my endofturn restriction{type(creature|opponentbattlefield)~morethan~type(creature|mybattlefield)}:token(Salamander Warrior,Creature Warrior Salamander,4/3,blue)
+auto=@each my endofturn restriction{type(creature|opponentbattlefield)~lessthan~type(creature|mybattlefield)}:token(Salamander Warrior,Creature Warrior Salamander,4/3,blue) opponent
+text=You and permanents you control have protection from Salamanders. -- At the beginning of your end step, each player who controls the fewest creatures creates a 4/3 blue Salamander Warrior creature token.
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Human Scout
+power=3
 toughness=2
 [/card]
 [card]
@@ -18414,6 +19223,14 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
+name=Guildless Commons
+auto=tap(noevent)
+auto=moveto(ownerhand) target(land|mybattlefield)
+auto={T}:add{C}{C}
+text=Guildless Commons enters the battlefield tapped. -- When Guildless Commons enters the battlefield, return a land you control to its owner's hand. -- {T}: Add {C}{C}.
+type=Land
+[/card]
+[card]
 name=Guildmages' Forum
 auto={T}:add{C}
 auto={1}{T}:emblem transforms((,newability[add{W}],newability[@movedto(creature[multicolor]|mybattlefield) once:all(trigger) counter(1/1)])) ueot
@@ -18576,6 +19393,17 @@ mana={X}{W}
 type=Instant
 [/card]
 [card]
+name=Halana, Kessig Ranger
+abilities=reach,partner
+auto=@movedTo(other creature|mybattlefield):may pay({2}) name(Pay 2) all(trigger[to]) transforms((,newability[name(Damage creature) dynamicability<!powerstrike!> target(creature)])) oneshot
+text=Reach -- Whenever another creature enters the battlefield under your control, you may pay {2}. When you do, that creature deals damage equal to its power to target creature. -- Partner (You can have two commanders if both have partner.)
+mana={3}{G}
+type=Legendary Creature
+subtype=Human Archer
+power=3
+toughness=4
+[/card]
+[card]
 name=Haldan, Avid Arcanist
 abilities=hiddenface,canplayfromexile
 aicode=activate moveTo(myhand) target(Pako, Arcane Retriever|mylibrary)
@@ -18674,6 +19502,17 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Hamza, Guardian of Arashin
+anyzone=foreach(creature[counter{1/1}]|mybattlefield) changecost(colorless:-1) forcedalive
+auto=lord(creature|mycastingzone) foreach(creature[counter{1/1}]|mybattlefield) changecost(colorless:-1) forcedalive
+text=This spell costs {1} less to cast for each creature you control with a +1/+1 counter on it. -- Creature spells you cast cost {1} less to cast for each creature you control with a +1/+1 counter on it.
+mana={4}{G}{W}
+type=Legendary Creature
+subtype=Elephant Warrior
+power=5
+toughness=5
+[/card]
+[card]
 name=Hand to Hand
 auto=while(restriction{combatbeginsonly}) maxCast(*[instant])0 opponent
 auto=while(restriction{attackersonly}) maxCast(*[instant])0 opponent
@@ -18698,6 +19537,16 @@ auto=while(restriction{combatendsonly}) noactivatedability controller
 text=During combat, players can't cast instant spells or activate abilities that aren't mana abilities.
 mana={2}{R}
 type=Enchantment
+[/card]
+[card]
+name=Hans Eriksson
+auto=@combat(attacking) source(this):reveal:1 optionone name(Reveal) target(creature|reveal) moveto(mybattlefield) and!( transforms((,newability[ninjutsu],newability[target(Hans Eriksson|mybattlefield) dynamicability<!powerstrike eachother!>])) forever )! optiononeend optiontwo target(<1>*|reveal) moveto(myhand) optiontwoend revealend
+text=Whenever Hans Eriksson attacks, reveal the top card of your library. If it's a creature card, put it onto the battlefield tapped and attacking defending player or a planeswalker they control. Otherwise, put that card into your hand. When you put a creature card onto the battlefield this way, it fights Hans Eriksson.
+mana={2}{R}{G}
+type=Legendary Creature
+subtype=Human Scout
+power=1
+toughness=4
 [/card]
 [card]
 name=Hapatra's Mark
@@ -19292,6 +20141,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Hellkite Courser
+abilities=flying
+text=Flying -- When Hellkite Courser enters the battlefield, you may put a commander you own from the command zone onto the battlefield. It gains haste. Return it to the command zone at the beginning of the next end step.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=6
+toughness=5
+[/card]
+[card]
 name=Hellkite Punisher
 abilities=flying
 auto={R}:1/0 ueot
@@ -19834,6 +20693,17 @@ type=Creature
 subtype=Human Druid
 power=2
 toughness=2
+[/card]
+[card]
+name=Horizon Stone
+auto=mypoolsave(red)
+auto=mypoolsave(white)
+auto=mypoolsave(black)
+auto=mypoolsave(green)
+auto=mypoolsave(blue)
+text=If you would lose unspent mana, that mana becomes colorless instead.
+mana={5}
+type=Artifact
 [/card]
 [card]
 name=Horn of Plenty
@@ -20481,6 +21351,19 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Ich-Tekik, Salvage Splicer
+abilities=partner
+auto=token(Golem,Artifact Creature Golem,3/3)
+auto=@movedTo(graveyard) from(artifact|battlefield):counter(1/1)
+auto=@movedTo(graveyard) from(artifact|battlefield):counter(1/1) all(*[golem]|mybattlefield)
+text=When Ich-Tekik, Salvage Splicer enters the battlefield, create a 3/3 colorless Golem artifact creature token. -- Whenever an artifact is put into a graveyard from the battlefield, put a +1/+1 counter on Ich-Tekik and a +1/+1 counter on each Golem you control. -- Partner (You can have two commanders if both have partner.)
+mana={4}{G}
+type=Legendary Creature
+subtype=Human Artificer
+power=1
+toughness=1
+[/card]
+[card]
 name=Ichthyomorphosis
 target=creature
 auto=teach(creature) loseabilities
@@ -20596,7 +21479,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ikra Shidiqi, the Usurper
-abilities=menace
+abilities=menace,partner
 auto=@combatdamaged(player) from(creature|myBattlefield):dynamicability<!mytgt toughnesslifegain srccontroller!>
 text=Menace -- Whenever a creature you control deals combat damage to a player, you gain life equal to that creature’s toughness. -- Partner (You can have two commanders if both have partner.)
 mana={3}{B}{G}
@@ -20778,6 +21661,16 @@ power=5
 toughness=3
 [/card]
 [card]
+name=Imoti, Celebrant of Bounty
+autostack=if casted(this) then cascade:plibrarycount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- Spells you cast with converted mana cost 6 or greater have cascade.
+mana={3}{G}{U}
+type=Legendary Creature
+subtype=Naga Druid
+power=3
+toughness=1
+[/card]
+[card]
 name=Impale
 target=creature
 auto=destroy
@@ -20926,6 +21819,17 @@ auto={4}{U}{R}:draw:1 && transforms((,newability[target(*|myhand) reject])) fore
 text=Whenever you draw your second card each turn, create a 1/1 blue Faerie creature token with flying. -- {4}{U}{R}: Draw a card, then discard a card.
 mana={U}{R}
 type=Enchantment
+[/card]
+[card]
+name=Impulsive Pilferer
+auto=@movedTo(this|graveyard) from(battlefield):token(Treasure Sur)
+autograveyard={3}{R}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=When Impulsive Pilferer dies, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.") -- Encore {3}{R} ({3}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={R}
+type=Creature
+subtype=Goblin Pirate
+power=1
+toughness=1
 [/card]
 [card]
 name=In Bolas's Clutches
@@ -21242,6 +22146,14 @@ type=Creature
 subtype=Vedalken Ninja
 power=2
 toughness=3
+[/card]
+[card]
+name=Ingenuity Engine
+autostack=if casted(this) then cascade:plibrarycount
+auto={1}{T}{S(artifact|mybattlefield)}:moveto(ownerhand) target(artifact|mybattlefield)
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- {1} , {T}, Sacrifice an artifact: Return target artifact you control to its owner's hand.
+mana={7}
+type=Artifact
 [/card]
 [card]
 name=Initiate of Blood
@@ -21814,7 +22726,7 @@ toughness=3
 [/card]
 [card]
 name=Ishai, Ojutai Dragonspeaker
-abilities=flying
+abilities=flying,partner
 auto=@movedTo(*|stack): counter(1/1,1)
 text=Flying -- Whenever an opponent casts a spell, put a +1/+1 counter on Ishai, Ojutai Dragonspeaker. -- Partner (You can have two commanders if both have partner.)
 mana={2}{W}{U}
@@ -22050,6 +22962,17 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Jared Carthalion, True Heir
+auto=becomesmonarch opponent
+auto=this(variable{pmonarch}>0) vigor
+text=When Jared Carthalion, True Heir enters the battlefield, target opponent becomes the monarch. You can't become the monarch this turn. -- If damage would be dealt to Jared Carthalion while you're the monarch, prevent that damage and put that many +1/+1 counters on it.
+mana={R}{G}{W}
+type=Legendary Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
 name=Jasmine Seer
 auto={2}{W}{T}:life:twicetype:*[white]:myhand controller
 text={2}{W}, {T}: Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
@@ -22093,6 +23016,14 @@ type=Creature
 subtype=Homunculus
 power=0
 toughness=4
+[/card]
+[card]
+name=Jeska's Will
+auto=choice name(Add Red mana) foreach(*|opponenthand) add{R}
+auto=choice name(Exile 3 cards) moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos<=3]|mylibrary)
+text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Add {R} for each card in target opponent's hand. -- • Exile the top three cards of your library. You may play them this turn.
+mana={2}{R}
+type=Sorcery
 [/card]
 [card]
 name=Jhoira's Familiar
@@ -22318,6 +23249,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Juri, Master of the Revue
+auto=@sacrificed(*|mybattlefield):counter(1/1) all(this)
+auto=@movedTo(this|graveyard) from(Battlefield):damage:power target(player,creature)
+text=Whenever you sacrifice a permanent, put a +1/+1 counter on Juri, Master of the Revue. -- When Juri dies, it deals damage equal to its power to any target.
+mana={B}{R}
+type=Legendary Creature
+subtype=Human Shaman
+power=1
+toughness=1
+[/card]
+[card]
 name=Justice Strike
 target=creature
 auto=transforms((,newability[all(this) dynamicability<!powerstrike!>])) ueot
@@ -22478,6 +23420,50 @@ text=(You may cast a legendary sorcery only if you control a legendary creature 
 restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
 mana={X}{G}{G}
 type=Legendary Sorcery
+[/card]
+[card]
+name=Kamahl's Will
+auto=choice name(Choose first) target(<anyamount>land|mybattlefield) transforms((Elemental Creature,setpower=1,settoughness=1,newability[vigilance],newability[haste],newability[indestructible])) ueot
+auto=choice name(Choose second) damage:powertotalinplay target(creature|opponentbattlefield)
+text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Until end of turn, any number of target lands you control become 1/1 Elemental creatures with vigilance, indestructible, and haste. They're still lands. -- • Choose target creature you don't control. Each creature you control deals damage equal to its power to that creature.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
+name=Kamahl, Heart of Krosa
+abilities=partner
+auto={1}{G}:target(land|mybattlefield) transforms((Elemental Creature,setpower=1,settoughness=1,newability[vigilance],newability[haste],newability[indestructible])) ueot
+auto=@each my combatbegins:all(creature|mybattlefield) transforms((,newability[3/3],newability[trample])) ueot
+text=At the beginning of combat on your turn, creatures you control get +3/+3 and gain trample until end of turn. -- {1}{G}: Until end of turn, target land you control becomes a 1/1 Elemental creature with vigilance, indestructible, and haste. It's still a land. -- Partner (You can have two commanders if both have partner.)
+mana={6}{G}{G}
+type=Legendary Creature
+subtype=Human Druid
+power=5
+toughness=5
+[/card]
+[card]
+name=Kangee's Lieutenant
+abilities=flying
+auto=@combat(attacking) source(this):all(creature[attacking;flying]) 1/1 ueot
+autograveyard={5}{W}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Flying -- Whenever Kangee's Lieutenant attacks, attacking creatures with flying get +1/+1 until end of turn. -- Encore {5}{W} ({5}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={2}{W}
+type=Creature
+subtype=Bird Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Kangee, Sky 
+abilities=flying,vigilance
+auto=@combat(attacking) source(this):all(creature[flying;attacking]) 2/0 ueot
+auto=@combat(blocking) source(this):all(creature[flying;blocking]) 0/2 ueot
+text=Flying, vigilance -- Whenever Kangee, Sky Warden attacks, attacking creatures with flying get +2/+0 until end of turn. -- Whenever Kangee blocks, blocking creatures with flying get +0/+2 until end of turn.
+mana={3}{W}{U}
+type=Legendary Creature
+subtype=Bird Wizard
+power=3
+toughness=3
 [/card]
 [card]
 name=Karador, Ghost Chieftain
@@ -22696,6 +23682,16 @@ mana={2}{R}{S(creature|myBattlefield)}
 type=Instant
 [/card]
 [card]
+name=Kediss, Emberclaw Familiar
+abilities=partner
+text=Whenever a commander you control deals combat damage to an opponent, it deals that much damage to each other opponent. -- Partner (You can have two commanders if both have partner.)
+mana={1}{R}
+type=Legendary Creature
+subtype=Elemental Lizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Keen Glidemaster
 auto={2}{U}:target(creature) flying ueot
 text={2}{U}: Target creature gains flying until end of turn.
@@ -22735,6 +23731,28 @@ type=Creature
 subtype=Cat
 power=4
 toughness=5
+[/card]
+[card]
+name=Keeper of Keys
+auto=becomesmonarch controller
+auto=@each my upkeep restriction{compare(pmonarch)~morethan~0}:lord(creature|mybattlefield) unblockable
+text=When Keeper of Keys enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, creatures you control can't be blocked this turn.
+mana={3}{U}{U}
+type=Creature
+subtype=Human Rogue Mutant
+power=4
+toughness=4
+[/card]
+[card]
+name=Keeper of the Accord
+auto=@each opponent endofturn restriction{type(creature|opponentbattlefield)~morethan~type(creature|mybattlefield)}:token(Soldier,Creature Soldier,1/1,white)
+auto=@each opponent endofturn restriction{type(land|opponentbattlefield)~morethan~type(land|mybattlefield)}:may name(search basic plains) reveal:plibrarycount optionone name(choose basic plains) target(plains[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
+text=At the beginning of each opponent's end step, if that player controls more creatures than you, create a 1/1 white Soldier creature token. -- At the beginning of each opponent's end step, if that player controls more lands than you, you may search your library for a basic Plains card, put it onto the battlefield tapped, then shuffle your library.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=4
 [/card]
 [card]
 name=Kefnet the Mindful
@@ -22799,6 +23817,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Keleth, Sunmane Familiar
+abilities=partner
+text=Whenever a commander you control attacks, put a +1/+1 counter on it. -- Partner (You can have two commanders if both have partner.)
+mana={1}{W}
+type=Legendary Creature
+subtype=Horse
+power=1
+toughness=1
+[/card]
+[card]
 name=Kels, Fight Fixer
 auto=menace
 auto=@sacrificed(creature|mybattlefield):pay({RU}) draw:1 controller
@@ -22857,6 +23885,17 @@ mana={2}{R}{R}
 type=Creature
 subtype=Human Monk
 power=4
+toughness=3
+[/card]
+[card]
+name=Keskit, the Flesh Sculptor
+abilities=partner
+auto={T}{S(other *[creature;artifact]|mybattlefield)}{S(other *[creature;artifact]|mybattlefield)}{S(other *[creature;artifact]|mybattlefield)}:name(Look) reveal:3 optionone name(Get 2 cards) target(<2>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) target(<3>*|reveal) moveto(mygraveyard) optiontwoend revealend
+text={T}, Sacrifice three other artifacts and/or creatures: Look at the top three cards of your library. Put two of them into your hand and the other into your graveyard. -- Partner (You can have two commanders if both have partner.)
+mana={2}{B}
+type=Legendary Creature
+subtype=Human Artificer
+power=1
 toughness=3
 [/card]
 [card]
@@ -23077,6 +24116,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Kinsbaile Courier
+auto=counter(1/1) target(creature)
+autograveyard={2}{W}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=When Kinsbaile Courier enters the battlefield, put a +1/+1 counter on target creature. -- Encore {2}{W} ({2}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={2}{W}
+type=Creature
+subtype=Kithkin Soldier
+power=2
+toughness=1
+[/card]
+[card]
 name=Kiora Bests the Sea God
 auto=token(Kraken Omi)
 auto=counter(0/0,1,Lore)
@@ -23156,6 +24206,18 @@ type=Creature
 subtype=Human Pirate
 power=1
 toughness=2
+[/card]
+[card]
+name=Kitesail Skirmisher
+abilities=flying
+auto=@combat(attacking) source(this):name(Other creature gains flying) target(other creature|myBattlefield) transforms((,newability[flying])) ueot
+autograveyard={4}{U}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Flying -- Whenever Kitesail Skirmisher attacks, another target creature attacking the same player or planeswalker gains flying until end of turn. -- Encore {4}{U} ({4}{U}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={3}{U}
+type=Creature
+subtype=Human Pirate
+power=3
+toughness=1
 [/card]
 [card]
 name=Kjeldoran Elite Guard
@@ -23342,6 +24404,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Knights of the Black Rose
+auto=becomesmonarch controller
+auto=@becomesmonarchfoeof(player):life:-2 opponent && life:2 controller
+text=When Knights of the Black Rose enters the battlefield, you become the monarch. -- Whenever an opponent becomes the monarch, if you were the monarch as the turn began, that player loses 2 life and you gain 2 life.
+mana={3}{W}{B}
+type=Creature
+subtype=Human Knight
+power=4
+toughness=4
+[/card]
+[card]
 name=Knights' Charge
 auto=@combat(attacking) source(creature[Knight]|mybattlefield):life:1 controller
 auto=@combat(attacking) source(creature[Knight]|mybattlefield):life:-1 opponent
@@ -23360,6 +24433,37 @@ type=Legendary Creature
 subtype=Spirit
 power=*
 toughness=*
+[/card]
+[card]
+name=Kodama of the East Tree
+abilities=reach,partner
+auto=@movedTo(*[manacost=0]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=0]|myHand)
+auto=@movedTo(*[manacost=1]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=1]|myHand)
+auto=@movedTo(*[manacost=2]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=2]|myHand)
+auto=@movedTo(*[manacost=3]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=3]|myHand)
+auto=@movedTo(*[manacost=4]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=4]|myHand)
+auto=@movedTo(*[manacost=5]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=5]|myHand)
+auto=@movedTo(*[manacost=6]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=6]|myHand)
+auto=@movedTo(*[manacost=7]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=7]|myHand)
+auto=@movedTo(*[manacost=8]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=8]|myHand)
+auto=@movedTo(*[manacost=9]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=9]|myHand)
+auto=@movedTo(*[manacost=10]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=10]|myHand)
+auto=@movedTo(*[manacost=11]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=11]|myHand)
+auto=@movedTo(*[manacost=12]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=12]|myHand)
+auto=@movedTo(*[manacost=13]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=13]|myHand)
+auto=@movedTo(*[manacost=14]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=14]|myHand)
+auto=@movedTo(*[manacost=15]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=15]|myHand)
+auto=@movedTo(*[manacost=16]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=16]|myHand)
+auto=@movedTo(*[manacost=17]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=17]|myHand)
+auto=@movedTo(*[manacost=18]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=18]|myHand)
+auto=@movedTo(*[manacost=19]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=19]|myHand)
+auto=@movedTo(*[manacost=20]|myBattlefield) from(mystack,mylibrary,mysideboard,mygraveyard,myexile):moveTo(myBattlefield) target(*[manacost<=20]|myHand)
+text=Reach -- Whenever another permanent enters the battlefield under your control, if it wasn't put onto the battlefield with this ability, you may put a permanent card with equal or lesser converted mana cost from your hand onto the battlefield. -- Partner (You can have two commanders if both have partner.)
+mana={4}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=6
+toughness=6
 [/card]
 [card]
 name=Kogla, the Titan Ape
@@ -23456,6 +24560,17 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Krark, the Thumbless
+abilities=partner
+auto=@movedTo(instant,sorcery|mystack):name(flip a coin) all(trigger[to]) flipacoin winability activate castcard(copied noevent) winabilityend loseability fizzleto(hand) loseabilityend flipend
+text=Whenever you cast an instant or sorcery spell, flip a coin. If you lose the flip, return that spell to its owner's hand. If you win the flip, copy that spell, and you may choose new targets for the copy. -- Partner (You can have two commanders if both have partner.)
+mana={1}{R}
+type=Legendary Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Krasis Incubation
 target=creature
 auto=cantattack
@@ -23522,7 +24637,7 @@ toughness=1
 [/card]
 [card]
 name=Kraum, Ludevic's Opus
-abilities=flying,haste
+abilities=flying,haste,partner
 auto=@restriction=thisturn(*|stack)~equalto~2:draw:1
 text=Flying, haste -- Whenever an opponent casts their second spell each turn, draw a card. -- Partner (You can have two commanders if both have partner.)
 mana={3}{U}{R}
@@ -23613,6 +24728,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Kwain, Itinerant Meddler
+auto={T}:ability$!name(draw and gain life) may draw:1 && life:1!$ controller && ability$!name(draw and gain life) may draw:1 && life:1!$ opponent
+text={T}: Each player may draw a card, then each player who drew a card this way gains 1 life.
+mana={W}{U}
+type=Legendary Creature
+subtype=Rabbit Wizard
+power=1
+toughness=3
+[/card]
+[card]
 name=Kwende, Pride of Femeref
 abilities=double strike
 auto=lord(other creature[first strike]|myBattlefield) double strike
@@ -23626,6 +24751,7 @@ toughness=2
 [card]
 name=Kydele, Chosen of Kruphix
 #wagic don't support commander atm
+abilities=partner
 auto={T}:thisforeach(variable{pdrewcount}>0) add{C}
 text={T}: Add {C} to your mana pool for each card you've drawn this turn. -- Partner (You can have two commanders if both have partner.)
 mana={2}{G}{U}
@@ -23656,6 +24782,16 @@ type=Legendary Creature
 subtype=Human Soldier
 power=2
 toughness=1
+[/card]
+[card]
+name=Laboratory Drudge
+auto=@movedto(*|mystack) from(mygraveyard) turnlimited:phaseaction[endofturn once] draw:1 controller
+text=At the beginning of each end step, draw a card if you've cast a spell from a graveyard or activated an ability of a card in a graveyard this turn.
+mana={3}{U}
+type=Creature
+subtype=Zombie Horror
+power=3
+toughness=4
 [/card]
 [card]
 name=Labyrinth Guardian
@@ -23753,6 +24889,17 @@ auto=if type(*[creature]|mybattlefield)~morethan~19 then choice name(Sacrifice 2
 text=Sacrifice any number of creatures. Last-Ditch Effort deals that much damage to target creature or player.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Lathiel, the Bounteous Dawn
+abilities=lifelink
+auto=@each endofturn restriction{compare(lifegain)~morethan~0}:thisforeach(variable{lifegain}) ability$!name(Choose a creature) counter(1/1) target(other creature[-Lathiel])!$ controller
+text=Lifelink -- At the beginning of each end step, if you gained life this turn, distribute up to that many +1/+1 counters among any number of other target creatures.
+mana={2}{G}{W}
+type=Legendary Creature
+subtype=Unicorn Lathiel
+power=2
+toughness=2
 [/card]
 [card]
 name=Lathliss, Dragon Queen
@@ -24406,6 +25553,18 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Liesa, Shroud of Dusk
+abilities=flying,lifelink
+auto=@movedTo(*|mystack):life:-2 controller
+auto=@movedTo(*|opponentstack):life:-2 opponent
+text=Rather than pay {2} for each previous time you've cast this spell from the command zone this game, pay 2 life that many times. -- Flying, lifelink -- Whenever a player casts a spell, they lose 2 life.
+mana={2}{W}{W}{B}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
 name=Life // Death
 auto=choice {G}:lord(land|myBattlefield) becomes(Creature,1/1) ueot
 auto=choice {1}{B}:target (creature|myGraveyard) moveTo(myBattlefield) then life:-manacost controller
@@ -24848,6 +26007,18 @@ power=2
 toughness=5
 [/card]
 [card]
+name=Livio, Oathsworn Sentinel
+abilities=partner
+auto={1}{W}:target(other creature) moveto(exile)
+auto={2}{W}{T}:moveto(ownerbattlefield) all(creature|exile)
+text={1}{W}: Choose another target creature. Its controller may exile it with an aegis counter on it. -- {2}{W}, {T}: Return all exiled cards with aegis counters on them to the battlefield under their owners' control. -- Partner (You can have two commanders if both have partner.)
+mana={1}{W}
+type=Legendary Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
 name=Llanowar Envoy
 auto={1}{G}:Add{W}
 auto={1}{G}:Add{U}
@@ -25245,6 +26416,7 @@ type=Artifact
 [card]
 name=Ludevic, Necro-Alchemist
 #wagic don't support commander atm
+abilities=partner
 auto=@each my end restriction{compare(oplifelost)~morethan~0}:may draw:1 controller
 auto=@each opponent end restriction{compare(oplifelost)~morethan~0}:may draw:1 controller
 text=At the beginning of each player's end step, that player may draw a card if a player other than you lost life this turn. -- Partner (You can have two commanders if both have partner.)
@@ -25448,6 +26620,16 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
+name=Maelstrom Colossus
+autostack=if casted(this) then cascade:plibrarycount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.)
+mana={8}
+type=Artifact Creature
+subtype=Golem
+power=7
+toughness=7
+[/card]
+[card]
 name=Magma Hellion
 abilities=trample, haste
 text=Assist (Another player can pay up to {6} of this spell's cost.) -- Trample, haste
@@ -25515,6 +26697,17 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Magus of the Order
+aicode=activate moveTo(myBattlefield) target(creature[green]|myLibrary)
+auto={G}{T}{S}{S(creature|mybattlefield)}:name(search card) reveal:plibrarycount optionone name(choose card) target(creature[green]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(activate castcard(putinplay))! afterrevealedend revealend
+text={G}, {T}, Sacrifice Magus of the Order and another green creature: Search your library for a green creature card, put it onto the battlefield, then shuffle your library.
+mana={2}{G}{G}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
 [/card]
 [card]
 name=Majestic Auricorn
@@ -25638,6 +26831,17 @@ auto=name(Choose a creature) name(Choose a creature) target(creature) transforms
 text=Choose target creature. You lose 2 life. Until end of turn, that creature gains "When this creature dies, return it to the battlefield tapped under its owner's control."
 mana={B}
 type=Instant
+[/card]
+[card]
+name=Malcolm, Keen-Eyed Navigator
+abilities=flying,partner
+auto=@combatdamagefoeof(player) from(*[pirate]|myBattlefield):token(Treasure Sur)
+text=Flying -- Whenever one or more Pirates you control deal damage to your opponents, you create a Treasure token for each opponent dealt damage. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.") -- Partner (You can have two commanders if both have partner.)
+mana={2}{U}
+type=Legendary Creature
+subtype=Siren Pirate
+power=2
+toughness=2
 [/card]
 [card]
 name=Malefic Scythe
@@ -25955,6 +27159,14 @@ auto=this(X>20) create(Soldier:creature Soldier:1/1:white:lifelink)*X
 text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of the creature's color.) -- Create X 1/1 white Soldier creature tokens with lifelink.
 mana={X}{G}{W}{W}
 type=Instant
+[/card]
+[card]
+name=Marchesa's Decree
+auto=becomesmonarch controller
+auto=@each blockers:foreach(creature[attacking]|opponentBattlefield) life:-1 opponent
+text=When Marchesa's Decree enters the battlefield, you become the monarch. -- Whenever a creature attacks you or a planeswalker you control, that creature's controller loses 1 life.
+mana={3}{B}
+type=Enchantment
 [/card]
 [card]
 name=Mardu Outrider
@@ -26514,6 +27726,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Merchant Raiders
+auto=@movedto(pirate|mybattlefield):target(creature) transforms((,doesnotuntap,newability[tap]))
+auto=target(creature) transforms((,doesnotuntap,newability[tap]))
+text=Whenever Merchant Raiders or another Pirate enters the battlefield under your control, tap up to one target creature. That creature doesn't untap during its controller's untap step for as long as you control Merchant Raiders.
+mana={3}{U}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=4
+[/card]
+[card]
 name=Merchant of the Vale // Haggle
 abilities=canplayfromexile,flash,adventure
 restriction=myturnonly
@@ -26529,26 +27752,26 @@ toughness=3
 [/card]
 [card]
 name=Merchant's Dockhand
-auto=if type(artifact|myBattlefield)~morethan~0 then {3}{U}{T}:name(Tap 1 artifact) tap(noevent) target(artifact[-tapped]|mybattlefield) && name(look) reveal:1 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~1 then {3}{U}{T}:name(Tap 2 artifact) tap(noevent) target(<2>artifact[-tapped]|mybattlefield) && name(look) reveal:2 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~2 then {3}{U}{T}:name(Tap 3 artifact) tap(noevent) target(<3>artifact[-tapped]|mybattlefield) && name(look) reveal:3 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~3 then {3}{U}{T}:name(Tap 4 artifact) tap(noevent) target(<4>artifact[-tapped]|mybattlefield) && name(look) reveal:4 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~4 then {3}{U}{T}:name(Tap 5 artifact) tap(noevent) target(<5>artifact[-tapped]|mybattlefield) && name(look) reveal:5 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~5 then {3}{U}{T}:name(Tap 6 artifact) tap(noevent) target(<6>artifact[-tapped]|mybattlefield) && name(look) reveal:6 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~6 then {3}{U}{T}:name(Tap 7 artifact) tap(noevent) target(<7>artifact[-tapped]|mybattlefield) && name(look) reveal:7 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~7 then {3}{U}{T}:name(Tap 8 artifact) tap(noevent) target(<8>artifact[-tapped]|mybattlefield) && name(look) reveal:8 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~8 then {3}{U}{T}:name(Tap 9 artifact) tap(noevent) target(<9>artifact[-tapped]|mybattlefield) && name(look) reveal:9 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~9 then {3}{U}{T}:name(Tap 10 artifact) tap(noevent) target(<10>artifact[-tapped]|mybattlefield) && name(look) reveal:10 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~10 then {3}{U}{T}:name(Tap 11 artifact) tap(noevent) target(<11>artifact[-tapped]|mybattlefield) && name(look) reveal:11 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~11 then {3}{U}{T}:name(Tap 12 artifact) tap(noevent) target(<12>artifact[-tapped]|mybattlefield) && name(look) reveal:12 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~12 then {3}{U}{T}:name(Tap 13 artifact) tap(noevent) target(<13>artifact[-tapped]|mybattlefield) && name(look) reveal:13 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~13 then {3}{U}{T}:name(Tap 14 artifact) tap(noevent) target(<14>artifact[-tapped]|mybattlefield) && name(look) reveal:14 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~14 then {3}{U}{T}:name(Tap 15 artifact) tap(noevent) target(<15>artifact[-tapped]|mybattlefield) && name(look) reveal:15 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~15 then {3}{U}{T}:name(Tap 16 artifact) tap(noevent) target(<16>artifact[-tapped]|mybattlefield) && name(look) reveal:16 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~16 then {3}{U}{T}:name(Tap 17 artifact) tap(noevent) target(<17>artifact[-tapped]|mybattlefield) && name(look) reveal:17 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~17 then {3}{U}{T}:name(Tap 18 artifact) tap(noevent) target(<18>artifact[-tapped]|mybattlefield) && name(look) reveal:18 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~18 then {3}{U}{T}:name(Tap 19 artifact) tap(noevent) target(<19>artifact[-tapped]|mybattlefield) && name(look) reveal:19 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
-auto=if type(artifact|myBattlefield)~morethan~19 then {3}{U}{T}:name(Tap 20 artifact) tap(noevent) target(<20>artifact[-tapped]|mybattlefield) && name(look) reveal:20 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}:name(Tap 1 artifact) name(Tap 1 artifact) reveal:1 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 2 artifact) name(Tap 2 artifact) reveal:2 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 3 artifact) name(Tap 3 artifact) reveal:3 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 4 artifact) name(Tap 4 artifact) reveal:4 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 5 artifact) name(Tap 5 artifact) reveal:5 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 6 artifact) name(Tap 6 artifact) reveal:6 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 7 artifact) name(Tap 7 artifact) reveal:7 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 8 artifact) name(Tap 8 artifact)  reveal:8 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 9 artifact) name(Tap 9 artifact) reveal:9 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 10 artifact) name(Tap 10 artifact) reveal:10 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 11 artifact) name(Tap 11 artifact) reveal:11 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 12 artifact) name(Tap 12 artifact) reveal:12 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 13 artifact) name(Tap 13 artifact) reveal:13 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 14 artifact) name(Tap 14 artifact) reveal:14 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 15 artifact) name(Tap 15 artifact) reveal:15 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 16 artifact) name(Tap 16 artifact) reveal:16 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 17 artifact) name(Tap 17 artifact) reveal:17 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 18 artifact) name(Tap 18 artifact) reveal:18 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 19 artifact) name(Tap 19 artifact) reveal:19 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={3}{U}{T}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}{T(artifact[-tapped]|myBattlefield)}:name(Tap 20 artifact) name(Tap 20 artifact) reveal:20 optionone name(Get Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
 text={3}{U}, {T}, Tap X untapped artifacts you control: Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order.
 mana={1}
 type=Artifact Creature
@@ -26734,6 +27957,28 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
+[/card]
+[card]
+name=Meteoric Mace
+autostack=if casted(this) then cascade:plibrarycount
+auto=teach(creature) trample
+auto=teach(creature) 4/0
+auto={4}:equip
+text=Equipped creature gets +4/+0 and has trample. -- Equip {4} -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.)
+mana={4}{R}{R}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Miara, Thorn of the Glade
+abilities=partner
+auto=@movedTo(*[elf]|mygraveyard) from(mybattlefield):may pay({1}{L:1}) name(draw card) draw:1 controller
+text=Whenever Miara, Thorn of the Glade or another Elf you control dies, you may pay {1} and 1 life. If you do, draw a card. -- Partner (You can have two commanders if both have partner.)
+mana={1}{B}
+type=Legendary Creature
+subtype=Elf Scout
+power=1
+toughness=2
 [/card]
 [card]
 name=Miasmic Mummy
@@ -27083,7 +28328,7 @@ type=Instant
 [card]
 name=Mischievous Chimera
 abilities=flying
-auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:damage:1 target(opponent) && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:damage:1 target(opponent) && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- Whenever you cast your first spell during each opponent's turn, Mischievous Chimera deals 1 damage to each opponent. Scry 1.
 mana={U}{R}
 type=Enchantment Creature
@@ -27200,6 +28445,16 @@ auto=paidmana moveto(exile) and!( may castcard(copied noevent) )!
 auto=overload all(*[instant;sorcery]|mygraveyard) moveto(exile) and!( may castcard(copied noevent) )!
 text=Exile target card that's an instant or sorcery from your graveyard. For each card exiled this way, copy it, and you may cast the copy without paying its mana cost. Exile Mizzix's Mastery. -- Overload {5}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
 mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Mnemonic Deluge
+abilities=exiledeath
+target=*[instant;sorcery]|graveyard
+auto=moveto(exile)
+auto=activate castcard(copied noevent) && activate castcard(copied noevent) && activate castcard(copied noevent)
+text=Exile target instant or sorcery card from a graveyard. Copy that card three times. You may cast the copies without paying their mana costs. Exile Mnemonic Deluge.
+mana={6}{U}{U}{U}
 type=Sorcery
 [/card]
 [card]
@@ -27939,6 +29194,28 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Nadier's Nightblade
+auto=@movedTo(*[token]|nonbattlezone) from(battlefield):life:1 controller && life:-1 opponent
+text=Whenever a token you control leaves the battlefield, each opponent loses 1 life and you gain 1 life.
+mana={2}{B}
+type=Creature
+subtype=Elf Warrior
+power=1
+toughness=3
+[/card]
+[card]
+name=Nadier, Agent of the Duskenel
+abilities=partner
+auto=@movedTo(*[token]|nonbattlezone) from(mybattlefield):counter(1/1)
+auto=@movedTo(this|nonbattlezone) from(mybattlefield):token(Elf Warrior,Creature Elf Warrior,1/1,green)*power controller
+text=Whenever a token you control leaves the battlefield, put a +1/+1 counter on Nadier, Agent of the Duskenel. -- When Nadier leaves the battlefield, create a number of 1/1 green Elf Warrior creature tokens equal to its power. -- Partner (You can have two commanders if both have partner.)
+mana={5}{B}
+type=Legendary Creature
+subtype=Elf Warrior
+power=3
+toughness=3
+[/card]
+[card]
 name=Nadir Kraken
 auto=@drawof(player):may pay({1}) counter(1/1,1) all(this) && create(Tentacle:creature Tentacle:1/1:blue)
 text=Whenever you draw a card, you may pay {1}. If you do, put a +1/+1 counter on Nadir Kraken and create a 1/1 blue Tentacle creature token.
@@ -28072,6 +29349,15 @@ type=Creature
 subtype=Shapeshifter
 power=1
 toughness=1
+[/card]
+[card]
+name=Natural Reclamation
+target=enchantment,artifact
+auto=destroy
+autostack=if casted(this) then cascade:plibrarycount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- Destroy target artifact or enchantment.
+mana={4}{G}
+type=Instant
 [/card]
 [card]
 name=Nature's Chant
@@ -28238,6 +29524,22 @@ type=Creature
 subtype=Demon
 power=4
 toughness=5
+[/card]
+[card]
+name=Necrotic Hex
+auto=ability$!name(sacrifice six creatures) sacrifice notatarget(<6>creature|mybattlefield)!$ opponent
+auto=if type(creature|mybattlefield)~equalto~1 then target(creature|mybattlefield) sacrifice and!( thisforeach(variable{6}) token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )! )!
+auto=if type(creature|mybattlefield)~equalto~2 then target(<2>creature|mybattlefield) sacrifice and!( thisforeach(variable{3}) token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )! )!
+auto=if type(creature|mybattlefield)~equalto~3 then target(<3>creature|mybattlefield) sacrifice and!( thisforeach(variable{2}) token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )! )!
+auto=if type(creature|mybattlefield)~equalto~4 then target(<4>creature|mybattlefield) sacrifice and!( token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )! )!
+auto=if type(creature|mybattlefield)~equalto~4 then thisforeach(variable{2}) token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+auto=if type(creature|mybattlefield)~equalto~5 then target(<5>creature|mybattlefield) sacrifice and!( token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )! )!
+auto=if type(creature|mybattlefield)~equalto~5 then token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+auto=if type(creature|mybattlefield)~morethan~5 then target(<6>creature|mybattlefield) sacrifice and!( token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )! )!
+auto=if type(creature|mybattlefield)~equalto~0 then ability$!thisforeach(variable{6}) token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )! !$ controller
+text=Each player sacrifices six creatures. You create six tapped 2/2 black Zombie creature tokens.
+mana={6}{B}
+type=Sorcery
 [/card]
 [card]
 name=Necrotic Wound
@@ -28505,6 +29807,18 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Nevinyrral, Urborg Tyrant
+auto=cantbetargetof(*[artifact;creature;enchantment])
+auto=foreach(creature[fresh]|graveyard) token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+auto=@movedto(this|graveyard) from(battlefield):pay({1}) name(destroy all artifacts, creatures, and enchantments) destroy all(artifact,creature,enchantment)
+text=Hexproof from artifacts, creatures, and enchantments -- When Nevinyrral, Urborg Tyrant enters the battlefield, create a tapped 2/2 black Zombie creature token for each creature that died this turn. -- When Nevinyrral dies, you may pay {1} . When you do, destroy all artifacts, creatures, and enchantments.
+mana={3}{W}{U}{B}
+type=Legendary Creature
+subtype=Zombie Wizard
+power=3
+toughness=6
+[/card]
+[card]
 name=New Frontiers
 auto=thisforeach(X) ability$!notatarget(land|mylibrary) moveto(ownerhand) && tap!$ opponent
 auto=name(search basic lands) reveal:plibrarycount optionone name(choose card) target(<upto:prex>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
@@ -28723,6 +30037,17 @@ type=Creature
 subtype=Human Assassin
 power=2
 toughness=1
+[/card]
+[card]
+name=Nightshade Harvester
+auto=@movedto(land|opponentbattlefield):counter(1/1)
+auto=@movedto(land|opponentbattlefield):life:-1 opponent
+text=Whenever a land enters the battlefield under an opponent's control, that player loses 1 life. Put a +1/+1 counter on Nightshade Harvester.
+mana={3}{B}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=2
 [/card]
 [card]
 name=Nightshade Seer
@@ -29181,6 +30506,17 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Numa, Joraga Chieftain
+abilities=partner
+auto={X}{X} restriction{attackersonly}:name(Distribute counters) thisforeach(variable{halfpaid}) ability$!name(Choose elf) name(Choose elf) counter(1/1) target(creature[elf])!$ controller limit:1
+text=At the beginning of combat on your turn, you may pay {X}{X} . When you do, distribute X +1/+1 counters among any number of target Elves. -- Partner (You can have two commanders if both have partner.)
+mana={2}{G}
+type=Legendary Creature
+subtype=Elf Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Nurturing Peatland
 auto={T}{L:1}:Add{G}
 auto={T}{L:1}:Add{B}
@@ -29232,6 +30568,17 @@ mana={3}{G}
 type=Legendary Enchantment Creature
 subtype=God
 power=5
+toughness=6
+[/card]
+[card]
+name=Nymris, Oona's Trickster
+abilities=flash,flying
+auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:name(Look 2 cards) reveal:2 optionone name(Put in hand) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(Put in graveyard) target(<1>*|reveal) moveto(mygraveyard) optiontwoend revealend
+text=Flash -- Flying -- Whenever you cast your first spell during each opponent's turn, look at the top two cards of your library. Put one of those cards into your hand and the other into your graveyard.
+mana={3}{U}{B}
+type=Legendary Creature
+subtype=Faerie Knight
+power=1
 toughness=6
 [/card]
 [card]
@@ -29411,6 +30758,17 @@ auto=-5/-5
 text=Target creature gets -5/-5 until end of turn. If that creature would die this turn, exile it instead.
 mana={2}{B}
 type=Instant
+[/card]
+[card]
+name=Obeka, Brute Chronologist
+auto={T}:nextphasealter(remove,draw,opponent) && nextphasealter(remove,firstmain,opponent) && nextphasealter(remove,combatbegin,opponent) && nextphasealter(remove,combatattackers,opponent) && nextphasealter(remove,combatblockers,opponent) && nextphasealter(remove,combatdamage,opponent) && nextphasealter(remove,combatend,opponent) && nextphasealter(remove,secondmain,opponent) opponentturnonly
+auto={T}:nextphasealter(remove,draw,controller) && nextphasealter(remove,firstmain,controller) && nextphasealter(remove,combatbegin,controller) && nextphasealter(remove,combatattackers,controller) && nextphasealter(remove,combatblockers,controller) && nextphasealter(remove,combatdamage,controller) && nextphasealter(remove,combatend,controller) && nextphasealter(remove,secondmain,controller) myTurnOnly
+text={T}: The player whose turn it is may end the turn. (Exile all spells and abilities from the stack. The player whose turn it is discards down to their maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
+mana={1}{U}{B}{R}
+type=Legendary Creature
+subtype=Ogre Wizard
+power=3
+toughness=4
 [/card]
 [card]
 name=Obelisk Spider
@@ -30670,6 +32028,28 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Palace Jailer
+auto=becomesmonarch controller
+auto=moveto(opponentexile) target(creature|opponentbattlefield)
+auto=@becomesmonarchfoeof(player) once:moveto(ownerbattlefield) target(creature|opponentexile)
+text=When Palace Jailer enters the battlefield, you become the monarch. -- When Palace Jailer enters the battlefield, exile target creature an opponent controls until an opponent becomes the monarch. (That creature returns under its owner's control.)
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Palace Sentinels
+auto=becomesmonarch controller
+text=When Palace Sentinels enters the battlefield, you become the monarch.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
 name=Paladin of Atonement
 auto=@each upkeep restriction{lastturn(life)~morethan~0}:counter(1/1,1)
 auto=@movedTo(this|graveyard) from(battlefield):dynamicability<!toughnesslifegain srccontroller!>
@@ -31319,7 +32699,7 @@ type=Sorcery
 name=Phyrexian Rebirth
 auto=count(type:creature:battlefield)
 auto=all(creature|battlefield) destroy
-auto=token(Horror,Creature Artifact Horror, countedamount/countedamount, artifact)
+auto=token(Horror,Creature Artifact Horror,countedamount/countedamount)
 text=Destroy all creatures, then create an X/X colorless Horror artifact creature token, where X is the number of creatures destroyed this way.
 mana={4}{W}{W}
 type=Sorcery
@@ -31345,6 +32725,17 @@ auto={2}{T}:name(Choose trample) transforms((,newability[target(creature[trample
 text={2}, {T}: Choose one — flying; first strike; shadow; or trample. Target creature with that ability loses it until end of turn and another target creature gains it until end of turn.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Phyrexian Triniform
+auto=@movedTo(this|graveyard) from(battlefield):token(Golem,Creature Artifact Golem,3/3)*3
+autograveyard={12}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=When Phyrexian Triniform dies, create three 3/3 colorless Golem artifact creature tokens. -- Encore {12} ({12}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={9}
+type=Artifact Creature
+subtype=Golem
+power=9
+toughness=9
 [/card]
 [card]
 name=Pierce the Sky
@@ -31537,6 +32928,17 @@ type=Creature
 subtype=Nightmare Horse
 power=2
 toughness=2
+[/card]
+[card]
+name=Plague Reaver
+auto=@each my endofturn:sacrifice all(other creature|mybattlefield)
+auto={D(*|myhand)}{D(*|myhand)}:sacrifice and!(phaseaction[opponent upkeep once] name(choose Plague Reaver) moveto(opponentbattlefield) target(Plague Reaver[fresh]|mygraveyard))!
+text=At the beginning of your end step, sacrifice each other creature you control. -- Discard two cards, Sacrifice Plague Reaver: Choose target opponent. Return Plague Reaver to the battlefield under that player's control at the beginning of their next upkeep.
+mana={2}{B}
+type=Creature
+subtype=Beast
+power=6
+toughness=5
 [/card]
 [card]
 name=Plague Wight
@@ -31736,6 +33138,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Port Razer
+auto=@combatdamaged(player) from(this):nextphasealter(add,combatphases,controller,after<combatends>) && untap all(creature[attacking])
+auto=@combatdamaged(player) from(this):transforms((,newability[untap],newability[removefromcombat],newability[cantattack])) ueot
+text=Whenever Port Razer deals combat damage to a player, untap each creature you control. After this combat phase, there is an additional combat phase. -- Port Razer can't attack a player it has already attacked this turn.
+mana={3}{R}{R}
+type=Creature
+subtype=Orc Pirate
+power=4
+toughness=4
+[/card]
+[card]
 name=Portal of Sanctuary
 target=creature|battlefield
 auto={1}{T}:transforms((,newability[moveto(ownerhand) all(mychild)],newability[moveto(ownerhand)])) myturnonly
@@ -31864,6 +33277,18 @@ power=1
 toughness=5
 [/card]
 [card]
+name=Prava of the Steel Legion
+abilities=partner
+auto=this(variable{controllerturn}>0) lord(creature[token]|mybattlefield) 1/4
+auto={3}{W}:token(Soldier,Creature Soldier,1/1,white)
+text=As long as it's your turn, creature tokens you control get +1/+4. -- {3}{W}: Create a 1/1 white Soldier creature token. -- Partner (You can have two commanders if both have partner.)
+mana={2}{W}
+type=Legendary Creature
+subtype=Cat Soldier
+power=1
+toughness=4
+[/card]
+[card]
 name=Precision Bolt
 target=player,creature
 auto=damage:3
@@ -31980,6 +33405,13 @@ auto=all(creature|mybattlefield) 1/1
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Creatures you control get +1/+1 until end of turn. If you have the city's blessing, those creatures get +2/+2 until end of turn instead.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Pride of the Perfect
+auto=lord(elf|mybattlefield) 2/0
+text=Elves you control get +2/+0.
+mana={3}{B}
+type=Enchantment
 [/card]
 [card]
 name=Pridemalkin
@@ -32145,6 +33577,14 @@ mana={X}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Profane Transfusion
+auto=exchangelife opponent
+auto=if compare(lifetotal)~morethan~compare(opponentlifetotal) then token(Horror,Creature Artifact Horror,lifetotalminusopponentlifetotalminusend/lifetotalminusopponentlifetotalminusend) else token(Horror,Creature Artifact Horror,opponentlifetotalminuslifetotalminusend/opponentlifetotalminuslifetotalminusend)
+text=Two target players exchange life totals. You create an X/X colorless Horror artifact creature token, where X is the difference between those players' life totals.
+mana={6}{B}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Profit // Loss
 other={2}{B} name(Loss)
 auto=if paid(alternative) then all(creature|opponentbattlefield) -1/-1 ueot
@@ -32163,6 +33603,14 @@ auto=if paid(kicker) then target(*[manacost<=4]|stack) fizzle
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Counter target spell if its converted mana cost is 2 or less. If Prohibit was kicked, counter that spell if its converted mana cost is 4 or less instead.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Promise of Tomorrow
+auto=@movedTo(creature|graveyard) from(mybattlefield):all(trigger[to]) moveTo(exile)
+auto=@each my endofturn restriction{type(creature|myBattlefield)~lessthan~1}:sacrifice all(this) && moveTo(myBattlefield) all(creature|myExile)
+text=Whenever a creature you control dies, exile it. -- At the beginning of each end step, if you control no creatures, sacrifice Promise of Tomorrow and return all cards exiled with it to the battlefield under your control.
+mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 name=Prophet of the Peak
@@ -32222,6 +33670,17 @@ auto=@damaged(controller):life:1
 text=If a source an opponent controls would deal damage to you, prevent 1 of that damage.
 mana={4}{W}
 type=Enchantment
+[/card]
+[card]
+name=Protector of the Crown
+auto=becomesmonarch controller
+auto=@damageof(player):life:1 controller && damage:1 all(this)
+text=When Protector of the Crown enters the battlefield, you become the monarch. -- All damage that would be dealt to you is dealt to Protector of the Crown instead.
+mana={5}{W}
+type=Creature
+subtype=Giant Soldier
+power=2
+toughness=5
 [/card]
 [card]
 name=Prototype Portal
@@ -32309,6 +33768,18 @@ type=Creature
 subtype=Cat Beast
 power=2
 toughness=3
+[/card]
+[card]
+name=Prowling Pangolin
+auto=choice name(Opponent sacrifice 2 creatures and you sacrifice Pangolin) sacrifice && ability$!name(Sacrifice 2 creatures) target(<2>creature|mybattlefield) sacrifice!$ opponent
+auto=choice name(You sacrifices 2 creatures and Pangolin) sacrifice && ability$!name(Sacrifice 2 creatures) target(<2>creature|mybattlefield) sacrifice!$ controller
+auto=choice name(No one sacrifices creatures) donothing
+text=When Prowling Pangolin enters the battlefield, any player may sacrifice two creatures. If a player does, sacrifice Prowling Pangolin.
+mana={3}{B}{B}
+type=Creature
+subtype=Beast
+power=6
+toughness=5
 [/card]
 [card]
 name=Prowling Serpopard
@@ -32737,6 +34208,18 @@ mana={1}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Queen Marchesa
+abilities=deathtouch,haste
+auto=becomesmonarch controller
+auto=@each my upkeep restriction{compare(omonarch)~morethan~0}:token(Assassin,Creature Assassin,1/1,black,deathtouch,haste)
+text=Deathtouch, haste -- When Queen Marchesa enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if an opponent is the monarch, put a 1/1 black Assassin creature token with deathtouch and haste onto the battlefield.
+mana={1}{R}{W}{B}
+type=Legendary Creature
+subtype=Human Assassin
+power=3
+toughness=3
+[/card]
+[card]
 name=Queen of Ice // Rage of Winter
 abilities=canplayfromexile,adventure
 other={1}{U} name(Adventure)
@@ -32847,6 +34330,21 @@ type=Legendary Creature
 subtype=Elf Warrior
 power=3
 toughness=3
+[/card]
+[card]
+name=Radiant, Serra Archangel
+abilities=flying,partner
+auto={T(other creature[flying]|mybattlefield)}:protection from white ueot
+auto={T(other creature[flying]|mybattlefield)}:protection from blue ueot
+auto={T(other creature[flying]|mybattlefield)}:protection from black ueot
+auto={T(other creature[flying]|mybattlefield)}:protection from red ueot
+auto={T(other creature[flying]|mybattlefield)}:protection from green ueot
+text=Flying -- Tap another untapped creature you control with flying: Radiant, Serra Archangel gains protection from the color of your choice until end of turn. -- Partner (You can have two commanders if both have partner.)
+mana={6}{W}
+type=Legendary Creature
+subtype=Angel
+power=6
+toughness=4
 [/card]
 [card]
 name=Radiating Lightning
@@ -33087,6 +34585,17 @@ autohand=__CYCLYNG__({2})
 text=Target creature gains double strike until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Rakshasa Debaser
+auto=@combat(attacking) source(this):moveTo(myBattlefield) target(creature|opponentgraveyard)
+autograveyard={6}{B}{B}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Whenever Rakshasa Debaser attacks, put target creature card from defending player's graveyard onto the battlefield under your control. -- Encore {6}{B}{B} ({6}{B}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={4}{B}{B}
+type=Creature
+subtype=Cat Demon
+power=6
+toughness=6
 [/card]
 [card]
 name=Ral's Dispersal
@@ -33505,7 +35014,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ravos, Soultender
-abilities=flying
+abilities=flying,partner
 auto=lord(other creature|myBattlefield) 1/1
 auto=@each my upkeep: may moveTo(myhand) target(creature|mygraveyard)
 text=Flying -- Other creatures you control get +1/+1. -- At the beginning of your upkeep, you may return target creature card from your graveyard to your hand. -- Partner (You can have two commanders if both have partner.)
@@ -33662,6 +35171,16 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
+name=Rebbec, Architect of Ascension
+abilities=partner
+text=Artifacts you control have protection from each converted mana cost among artifacts you control. -- Partner (You can have two commanders if both have partner.)
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Artificer
+power=3
+toughness=4
+[/card]
+[card]
 name=Rebuff the Wicked
 target=*|opponentstack
 auto=fizzle
@@ -33788,6 +35307,18 @@ mana={3}{R}
 type=Instant
 [/card]
 [card]
+name=Regal Behemoth
+abilities=trample
+auto=becomesmonarch controller
+auto=lord(land|myBattlefield) transforms((,newability[this(variable{pmonarch}>0) produceextra:selectmana]))
+text=Trample -- When Regal Behemoth enters the battlefield, you become the monarch. -- Whenever you tap a land for mana while you're the monarch, add one mana of any color to your mana pool (in addition to the mana the land produces).
+mana={4}{G}{G}
+type=Creature
+subtype=Lizard
+power=5
+toughness=5
+[/card]
+[card]
 name=Regal Bloodlord
 abilities=flying
 auto=@each endofturn restriction{compare(lifegain)}:create(bat:creature bat:1/1:black:flying)
@@ -33886,6 +35417,14 @@ auto=transforms(,newability[@movedTo(this|graveyard) from(battlefield):target(cr
 text=Choose target creature. When that creature dies this turn, return a creature card from its owner's graveyard to the battlefield under the control of that creature's owner.
 mana={1}{G}{G}
 type=Instant
+[/card]
+[card]
+name=Rejuvenating Springs
+auto=tap(noevent)
+auto={T}:add{G}
+auto={T}:add{U}
+text=Rejuvenating Springs enters the battlefield tapped unless you have two or more opponents. -- {T}: Add {G} or {U}.
+type=Land
 [/card]
 [card]
 name=Release the Dogs
@@ -34124,6 +35663,13 @@ mana={G}{U}
 type=Instant
 [/card]
 [card]
+name=Reshape the Earth
+auto=name(search 10 lands) reveal:plibrarycount optionone name(choose card) target(<upto:10>land|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
+text=Search your library for up to ten land cards, put them onto the battlefield tapped, then shuffle your library.
+mana={6}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Resilient Khenra
 auto=may target(creature) dynamicability<!powerpumpboth!> ueot
 autograveyard={4}{G}{G}{E}:name(Eternalize) clone and!( transforms((Zombie,removemc,setpower=4,settoughness=4,black)) forever )! assorcery
@@ -34346,7 +35892,19 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Reyav, Master Smith
+auto=@combat(attacking) source(creature[enchanted]|myBattlefield):all(trigger[to]) transforms((,newability[double strike])) ueot
+auto=@combat(attacking) source(creature[geared]|myBattlefield):all(trigger[to]) transforms((,newability[double strike])) ueot
+text=Whenever a creature you control that's enchanted or equipped attacks, that creature gains double strike until end of turn.
+mana={R}{W}
+type=Legendary Creature
+subtype=Dwarf Artificer
+power=2
+toughness=2
+[/card]
+[card]
 name=Reyhan, Last of the Abzan
+abilities=partner
 auto=counter(1/1,3)
 auto=@movedTo(mygraveyard) from(creature[counter{1/1<anyamount>}]|myBattlefield):may target (creature|myBattlefield) counter(1/1<anyamount>)
 text=Reyhan, Last of the Abzan enters the battlefield with three +1/+1 counters on it. -- Whenever a creature you control dies or is put into the command zone, if it had one or more +1/+1 counters on it, you may put that many +1/+1 counters on target creature. -- Partner (You can have two commanders if both have partner.)
@@ -35087,6 +36645,16 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Rock Equipment
+auto={1}:equip
+auto=teach(creature) {1}{T}{S(Rock Equipment|myBattlefield)}:name(Damage player) name(Damage player) damage:2 target(player)
+auto=teach(creature) {1}{T}{S(Rock Equipment|myBattlefield)}:name(Damage creature) name(Damage creature) damage:2 target(creature) restriction{type(creature|battlefield)~morethan~0}
+auto=teach(creature) {1}{T}{S(Rock Equipment|myBattlefield)}:name(Damage planeswalker) name(Damage planeswalker) damage:2 target(planeswalker) restriction{type(planeswalker|battlefield)~morethan~0}
+text=Equiped creature has "{1}, {T}, Sacrifice Rock: This creature deals 2 damage to any target" --  Equip {1}.
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Rock Lobster
 auto=all(Scissors Lizards|battlefield) cantblock
 auto=all(Scissors Lizards|battlefield) cantattack
@@ -35119,6 +36687,16 @@ auto=target(<upto:type:*[green]:myhand>enchantment|mygraveyard) moveto(myhand)
 text=Reveal any number of green cards in your hand. Return an enchantment card from your graveyard to your hand for each card revealed this way.
 mana={G}
 type=Sorcery
+[/card]
+[card]
+name=Rograkh, Son of Rohgahh
+abilities=first strike,menace,trample,partner
+text=First strike, menace, trample -- Partner (You can have two commanders if both have partner.)
+mana={0}
+type=Legendary Creature
+subtype=Kobold Warrior
+power=0
+toughness=1
 [/card]
 [card]
 name=Rogue
@@ -35232,6 +36810,17 @@ type=Creature
 subtype=Lizard
 power=4
 toughness=4
+[/card]
+[card]
+name=Rootweaver Druid
+auto=ability$!name(fetch land) target(<upto:2>land[basic]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent
+auto=ability$!name(fetch land) target(land[basic]|mylibrary) moveto(opponentbattlefield) and!( tap(noevent) )! !$ opponent
+text=When Rootweaver Druid enters the battlefield, each opponent may search their library for up to three basic land cards. They each put one of those cards onto the battlefield tapped under your control and the rest onto the battlefield tapped under their control. Then each player who searched their library this way shuffles it.
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=1
 [/card]
 [card]
 name=Rosemane Centaur
@@ -35906,6 +37495,36 @@ type=Creature
 subtype=Human Pirate
 power=1
 toughness=4
+[/card]
+[card]
+name=Sakashima of a Thousand Faces
+abilities=partner,legendruleremove
+auto=may copy target(creature|mybattlefield) && all(this) transforms((,newability[partner],newability[legendruleremove])) forever
+text=You may have Sakashima of a Thousand Faces enter the battlefield as a copy of another creature you control, except it has Sakashima of a Thousand Faces's other abilities. -- The "legend rule" doesn't apply to permanents you control. -- Partner (You can have two commanders if both have partner.)
+mana={3}{U}
+type=Legendary Creature
+subtype=Human Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Sakashima's Protege
+abilities=flash
+autostack=if casted(this) then cascade:plibrarycount
+auto=may copy NotATarget(*[fresh]|battlefield)
+text=Flash -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- You may have Sakashima's Protege enter the battlefield as a copy of any permanent that entered the battlefield this turn.
+mana={4}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=1
+[/card]
+[card]
+name=Sakashima's Will
+auto=ability$!name(Choose creature) target(creature|mybattlefield) moveto(opponentbattlefield)!$ opponent
+text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Target opponent chooses a creature they control. You gain control of it. -- • Choose a creature you control. Each other creature you control becomes a copy of that creature until end of turn.
+mana={3}{U}
+type=Sorcery
 [/card]
 [card]
 name=Saltcrusted Steppe
@@ -37412,6 +39031,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Sengir, the Dark Baron
+abilities=flying,partner
+auto=@movedTo(other creature|graveyard) from(battlefield):counter(1/1,2)
+text=Flying -- Whenever another creature dies, put two +1/+1 counters on Sengir, the Dark Baron. -- Whenever another player loses the game, you gain life equal to that player's life total as the turn began. -- Partner (You can have two commanders if both have partner.)
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Vampire Noble
+power=4
+toughness=4
+[/card]
+[card]
 name=Sentinel Totem
 auto=_SCRY_(1)
 text=When Sentinel Totem enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.) -- {T}, Exile Sentinel Totem: Exile all cards from all graveyards.
@@ -37486,6 +39116,17 @@ type=Creature
 subtype=Angel
 power=4
 toughness=4
+[/card]
+[card]
+name=Seraphic Greatsword
+auto={4}:equip
+auto=teach(creature) 2/2
+auto=@combat(attacking) source(mytgt):if compare(lifetotal)~lessthan~compare(opponentlifetotal) then token(Angel,Creature Angel,4/4,white,flying,battleready)
+auto=@combat(attacking) source(mytgt):if compare(lifetotal)~equalto~compare(opponentlifetotal) then token(Angel,Creature Angel,4/4,white,flying,battleready)
+text=Equipped creature gets +2/+2. -- Whenever equipped creature attacks the player with the most life or tied for most life, create a 4/4 white Angel creature token with flying that's tapped and attacking that player. -- Equip {4}
+mana={1}{W}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Sergeant-at-Arms
@@ -38425,6 +40066,17 @@ mana={1}{R}{R}
 type=Instant
 [/card]
 [card]
+name=Siani, Eye of the Storm
+abilities=flying,partner
+auto=@combat(attacking) source(this):scry:type:creature[attacking;flying]:battlefield scrycore delayed dontshow donothing scrycoreend scryend
+text=Flying -- Whenever Siani, Eye of the Storm attacks, scry X, where X is the number of attacking creatures with flying. -- Partner (You can have two commanders if both have partner.)
+mana={3}{U}
+type=Legendary Creature
+subtype=Djinn Monk
+power=3
+toughness=2
+[/card]
+[card]
 name=Sickening Dreams
 auto=if type(*|myHand)~morethan~0 then choice ability$!name(X=1) target(*|myhand) reject!$ controller && damage:1 all(creature) && damage:1 all(player)
 auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2) target(<2>*|myhand) reject!$ controller && damage:2 all(creature) && damage:2 all(player)
@@ -38462,7 +40114,7 @@ toughness=2
 [/card]
 [card]
 name=Sidar Kondo of Jamuraa
-abilities=flanking
+abilities=flanking,partner
 auto=lord(creature[-flying,-reach]|opponentBattlefield) cantbeblockerof(creature[power<=2])
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Creatures your opponents control without flying or reach can’t block creatures with power 2 or less. -- Partner (You can have two commanders if both have partner.)
 mana={2}{G}{W}
@@ -38622,7 +40274,7 @@ toughness=4
 [/card]
 [card]
 name=Silas Renn, Seeker Adept
-abilities=deathtouch
+abilities=deathtouch,partner
 auto=@combatdamaged(player) from(this):may name(cast card) castcard(normal) target(*[artifact]|mygraveyard)
 text=Deathtouch -- Whenever Silas Renn, Seeker Adept deals combat damage to a player, choose target artifact card in your graveyard. You may cast that card this turn. -- Partner (You can have two commanders if both have partner.)
 mana={1}{U}{B}
@@ -39466,6 +41118,18 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Skyline Despot
+abilities=flying
+auto=becomesmonarch controller
+auto=@each my upkeep restriction{compare(pmonarch)~morethan~0}:token(Dragon,Creature Dragon,5/5,red,flying)
+text=Flying -- When Skyline Despot enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, put a 5/5 red Dragon creature token with flying onto the battlefield.
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
 name=Skyline Scout
 auto=@combat(attacking) source(this):pay({1}{w}):flying ueot
 text=Whenever Skyline Scout attacks, you may pay {1}{W}. If you do, it gains flying until end of turn.
@@ -39551,6 +41215,22 @@ auto=damage:2
 text=Slash of Talons deals 2 damage to target attacking or blocking creature.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Slash the Ranks
+auto=all(creature|battlefield) destroy
+auto=all(planeswalker|battlefield) destroy
+text=Destroy all creatures and planeswalkers except for commanders.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Slaughter the Strong
+auto=sacrifice all(creature[power>4]|mybattlefield)
+auto=ability$!name(Sacrifice) sacrifice all(creature[power>4]|mybattlefield)!$ opponent
+text=Each player chooses any number of creatures they control with total power 4 or less, then sacrifices all other creatures they control.
+mana={1}{W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Slaughter-Priest of Mogis
@@ -39676,6 +41356,18 @@ auto={T}:if type(creature[sliver]|myhand)~morethan~0 then add{R}
 auto={5}{T}:if type(creature[sliver]|mybattlefield)~morethan~0 then token(Sliver,Creature Sliver,1/1)
 text={T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a Sliver spell. -- {5}, {T}: Put a 1/1 colorless Sliver creature token onto the battlefield. Activate this ability only if you control a Sliver.
 type=Land
+[/card]
+[card]
+name=Slurrk, All-Ingesting
+abilities=partner
+auto=counter(1/1,5)
+auto=@movedTo(creature[counter{1/1}]|mygraveyard) from(mybattlefield):counter(1/1) all(creature[counter{1/1}]|mybattlefield)
+text=Slurrk, All-Ingesting enters the battlefield with five +1/+1 counters on it. -- Whenever Slurrk or another creature you control dies, if it had a +1/+1 counter on it, put a +1/+1 counter on each creature you control that has a +1/+1 counter on it. -- Partner (You can have two commanders if both have partner.)
+mana={5}{G}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
 [/card]
 [card]
 name=Smelt-Ward Ignus
@@ -40296,6 +41988,17 @@ mana={X}{B}
 type=Sorcery
 [/card]
 [card]
+name=Soul of Eternity
+anyzone=lifetotal/lifetotal cdaactive
+autograveyard={7}{W}{W}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=Soul of Eternity's power and toughness are each equal to your life total. -- Encore {7}{W}{W} ({7}{W}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={5}{W}{W}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
+[/card]
+[card]
 name=Soul of Shandalar
 abilities=first strike
 auto={3}{R}{R}:damage:3 target(creature|opponentbattlefield) && damage:3 opponent
@@ -40376,6 +42079,33 @@ type=Creature
 subtype=Elf Warrior
 power=2
 toughness=2
+[/card]
+[card]
+name=Soulfire Eruption
+auto=choice name(Choose opponent) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost opponent])) ueot )! all(*[zpos=1]|mylibrary)
+auto=choice name(Choose 1 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=1]|mylibrary)
+auto=choice name(Choose 2 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=2]|mylibrary)
+auto=choice name(Choose 3 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=3]|mylibrary)
+auto=choice name(Choose 4 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=4]|mylibrary)
+auto=choice name(Choose 5 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=5]|mylibrary)
+auto=choice name(Choose 6 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=6]|mylibrary)
+auto=choice name(Choose 7 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=7]|mylibrary)
+auto=choice name(Choose 8 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=8]|mylibrary)
+auto=choice name(Choose 9 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=9]|mylibrary)
+auto=choice name(Choose 10 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=10]|mylibrary)
+auto=choice name(Choose 11 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=11]|mylibrary)
+auto=choice name(Choose 12 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=12]|mylibrary)
+auto=choice name(Choose 13 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=13]|mylibrary)
+auto=choice name(Choose 14 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=14]|mylibrary)
+auto=choice name(Choose 15 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=15]|mylibrary)
+auto=choice name(Choose 16 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=16]|mylibrary)
+auto=choice name(Choose 17 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=17]|mylibrary)
+auto=choice name(Choose 18 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=18]|mylibrary)
+auto=choice name(Choose 19 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=19]|mylibrary)
+auto=choice name(Choose 20 creatures or planeswalkers) moveto(exile) and!( transforms((,canplayfromexile,newability[damage:manacost target(*[creature;planeswalker]|battlefield)])) ueot )! all(*[zpos<=20]|mylibrary)
+text=Choose any number of target creatures, planeswalkers, and/or players. For each of them, exile the top card of your library, then Soulfire Eruption deals damage equal to that card's converted mana cost to that permanent or player. You may play the exiled cards until the end of your next turn.
+mana={6}{R}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Soulgorger Orgg
@@ -40615,6 +42345,14 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Spectator Seating
+auto=tap(noevent)
+auto={T}:add{R}
+auto={T}:add{W}
+text=Spectator Seating enters the battlefield tapped unless you have two or more opponents. -- {T}: Add {R} or {W}.
+type=Land
+[/card]
+[card]
 name=Spectral Grasp
 target=creature
 auto=cantattack
@@ -40836,6 +42574,19 @@ type=Artifact Creature
 subtype=Sphinx
 power=5
 toughness=5
+[/card]
+[card]
+name=Sphinx of the Second Sun
+abilities=flying
+auto=@each my endofturn:nextphasealter(add,untap,controller,after<this>)
+auto=@each my endofturn:nextphasealter(add,upkeep,controller,after<this>)
+auto=@each my endofturn:nextphasealter(add,draw,controller,after<this>)
+text=Flying -- At the beginning of your postcombat main phase, there is an additional beginning phase after this phase. (The beginning phase includes the untap, upkeep, and draw steps.)
+mana={6}{U}{U}
+type=Creature
+subtype=Sphinx
+power=6
+toughness=6
 [/card]
 [card]
 name=Sphinx's Insight
@@ -41618,6 +43369,17 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Staunch Throneguard
+abilities=vigilance
+auto=becomesmonarch controller
+text=Vigilance -- When Staunch Throneguard enters the battlefield, you become the monarch.
+mana={5}
+type=Artifact Creature
+subtype=Construct
+power=2
+toughness=5
+[/card]
+[card]
 name=Steadfast Armasaur
 abilities=vigilance
 auto=@combat(attacking,blocking) source(this):transforms((,newability[{1}{W}{T}:damage:toughness target(creature[attacking;blocking])])) ueot
@@ -41786,8 +43548,7 @@ toughness=2
 [/card]
 [card]
 name=Stinging Lionfish
-auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:may tap target(*[-land]|battlefield)
-auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:may untap target(*[-land]|battlefield)
+auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:ability$!name(Choose one) choice name(Tap non-land) tap(noevent) target(*[-land]|battlefield) _  choice name(Untap non-land) untap target(*[-land]|battlefield) _ choice name(Do nothing) donothing!$ controller
 text=Whenever you cast your first spell during each opponent’s turn, you may tap or untap target nonland permanent.
 mana={1}{U}
 type=Enchantment Creature
@@ -42280,6 +44041,16 @@ autograveyard={1}{G}{E}:moveTo(mylibrary) all(*|mygraveyard) && shuffle && trans
 text=Struggle deals damage to target creature equal to the number of lands you control. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Each player shuffles his or her graveyard into his or her library.
 mana={2}{R}
 type=Instant
+[/card]
+[card]
+name=Stumpsquall 
+auto=counter(1/1,X)
+text=When Stumpsquall Hydra enters the battlefield, distribute X +1/+1 counters among it and any number of commanders.
+mana={X}{G}{G}{G}
+type=Creature
+subtype=Hydra
+power=1
+toughness=1
 [/card]
 [card]
 name=Stunt Double
@@ -42858,6 +44629,18 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
+name=Sweet-Gum Recluse
+abilities=flash,reach
+autostack=if casted(this) then cascade:plibrarycount
+auto=target(<anyamount>creature[fresh]|battlefield) counter(1/1,3)
+text=Flash -- Cascade -- Reach -- When Sweet-Gum Recluse enters the battlefield, put three +1/+1 counters on each of any number of target creatures that entered the battlefield this turn.
+mana={4}{G}{G}
+type=Creature
+subtype=Spider
+power=0
+toughness=3
+[/card]
+[card]
 name=Sweltering Suns
 auto=damage:3 all(creature)
 autohand=__CYCLING__({3})
@@ -43195,6 +44978,14 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Szat's Will
+auto=choice name(Sacrifice creature):ability$!name(Sacrifice) sacrifice notatarget(creature[power=power:highest:creature:myBattlefield]|mybattlefield)!$ opponent
+auto=choice name(Exile all cards):token(Thrull,Creature Thrull,0/1,black)*power:highest:creature:opponentGraveyard and!( moveTo(exile) all(*|opponentgraveyard) )!
+text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Each opponent sacrifices a creature they control with the greatest power. -- • Exile all cards from all opponents' graveyards, then create X 0/1 black Thrull creature tokens, where X is the greatest power among creature cards exiled this way.
+mana={4}{B}
+type=Instant
+[/card]
+[card]
 name=Taborax, Hope's Demise
 abilities=flying
 auto=this(counter{1/1.1}>4) lifelink
@@ -43471,7 +45262,7 @@ type=Sorcery
 [/card]
 [card]
 name=Tana, the Bloodsower
-abilities=trample
+abilities=trample,partner
 auto=@combatdamaged(player) from(mytgt):token(Saproling,Creature Saproling,1/1,green)*thatmuch
 text=Trample -- Whenever Tana, the Bloodsower deals combat damage to a player, create that many 1/1 green Saproling creature tokens. -- Partner (You can have two commanders if both have partner.)
 mana={2}{R}{G}
@@ -44097,6 +45888,16 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Thalisse, Reverent Medium
+auto=@each endofturn:token(Spirit,Creature Spirit,1/1,flying)*type:*[token;fresh]:mybattlefield
+text=At the beginning of each end step, create X 1/1 white Spirit creature tokens with flying, where X is the number of tokens you created this turn.
+mana={3}{W}{B}
+type=Legendary Creature
+subtype=Human Cleric
+power=3
+toughness=4
+[/card]
+[card]
 name=Thallid Omnivore
 auto={1}{S(other creature|mybattlefield)}:+2/+2 ueot 
 auto={1}{S(other creature[saproling]|mybattlefield)}:+2/+2 && life:2
@@ -44430,6 +46231,16 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
+name=The Prismatic Piper
+abilities=partner
+text=If The Prismatic Piper is your commander, choose a color before the game begins. The Prismatic Piper is the chosen color. -- Partner (You can have two commanders if both have partner.)
+mana={5}
+type=Legendary Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
 name=The Scarab God
 auto={2}{U}{B}:target(creature|graveyard) clone and!( transforms((Zombie,setpower=4,settoughness=4,black)) forever )! && moveTo(exile)
 auto=@each my upkeep:foreach(zombie|mybattlefield) life:-1 opponent
@@ -44587,6 +46398,17 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Thorn of the Black Rose
+abilities=deathtouch
+auto=becomesmonarch controller
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Thorn of the Black Rose enters the battlefield, you become the monarch.
+mana={3}{B}
+type=Creature
+subtype=Human Assassin
+power=1
+toughness=3
+[/card]
+[card]
 name=Thornado
 target=creature[flying]
 auto=destroy
@@ -44725,6 +46547,7 @@ toughness=4
 [/card]
 [card]
 name=Thrasios, Triton Hero
+abilities=partner
 aicode=activate may bottomoflibrary all(*[zpos=1]|mylibrary)
 aicode=activate target(<1>*[zpos=1]|mylibrary) name(revealed card) moveto(myhand) name(revealed card) and!(if cantargetcard(land|*) then moveto(mybattlefield) tap(noevent))!
 auto={4}:name(Scry 1) reveal:1 optionone name(Put On Top) target(*|reveal) moveto(mylibrary) optiononeend optiontwo name(put on bottom) target(<1>*|reveal) bottomoflibrary optiontwoend revealend && reveal:1 optionone target(land|reveal) moveto(mybattlefield) tap(noevent) optiononeend optiontwo name(Put in hand) target(<1>*|reveal) moveto(myhand) optiontwoend revealend
@@ -44844,6 +46667,16 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+name=Throne Warden
+auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:counter(1/1)
+text=At the beginning of your end step, if you're the monarch, put a +1/+1 counter on Throne Warden.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Throne of Makindi
 auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Charge)
@@ -44861,6 +46694,113 @@ auto=@each my endofturn:foreach(creature[tapped]|mybattlefield) life:-1 opponent
 text=At the beginning of your end step, each opponent loses life equal to the number of tapped creatures you control.
 mana={2}
 type=Legendary Artifact
+[/card]
+[card]
+name=Throne of the High City
+auto={T}:add{C}
+auto={4}{T}{S}:becomesmonarch controller
+text={T}: Add {C} to your mana pool. -- {4}, {T}, Sacrifice Throne of the High City: You become the monarch.
+type=Land
+[/card]
+[card]
+name=Thrull Parasite
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+auto={T}{L:2}:name(Remove 1/1 counter) counter(1/1,-1) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Loyalty counter) counter(0/0,-1,Loyalty) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Flying counter) counter(0/0,-1,Flying) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Trample counter) counter(0/0,-1,Trample) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove First Strike counter) counter(0/0,-1,First Strike) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Vigilance counter) counter(0/0,-1,Vigilance) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Deathtouch counter) counter(0/0,-1,Deathtouch) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Lifelink counter) counter(0/0,-1,Lifelink) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Flash counter) counter(0/0,-1,Flash) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Hexproof counter) counter(0/0,-1,Hexproof) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Double Strike counter) counter(0/0,-1,Double Strike) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Charge counter) counter(0/0,-1,Charge) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Verse counter) counter(0/0,-1,Verse) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Gold counter) counter(0/0,-1,Gold) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Storage counter) counter(0/0,-1,Storage) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Slumber counter) counter(0/0,-1,Slumber) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Time counter) counter(0/0,-1,Time) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Coin counter) counter(0/0,-1,Coin) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Reach counter) counter(0/0,-1,Reach) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Flood counter) counter(0/0,-1,Flood) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Menace counter) counter(0/0,-1,Menace) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Lore counter) counter(0/0,-1,Lore) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Fury counter) counter(0/0,-1,Fury) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Bounty counter) counter(0/0,-1,Bounty) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Egg counter) counter(0/0,-1,Egg) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Level counter) counter(0/0,-1,Level) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Doom counter) counter(0/0,-1,Doom) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Eyeball counter) counter(0/0,-1,Eyeball) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Brick counter) counter(0/0,-1,Brick) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Magnet counter) counter(0/0,-1,Magnet) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Hour counter) counter(0/0,-1,Hour) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Foreshadow counter) counter(0/0,-1,Foreshadow) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Redmana counter) counter(0/0,-1,Redmana) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Growth counter) counter(0/0,-1,Growth) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Knowledge counter) counter(0/0,-1,Knowledge) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Landmark counter) counter(0/0,-1,Landmark) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Wish counter) counter(0/0,-1,Wish) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Ki counter) counter(0/0,-1,Ki) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Filibuster counter) counter(0/0,-1,Filibuster) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Page counter) counter(0/0,-1,Page) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Muster counter) counter(0/0,-1,Muster) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Quest counter) counter(0/0,-1,Quest) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Devotion counter) counter(0/0,-1,Devotion) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Blood counter) counter(0/0,-1,Blood) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Death counter) counter(0/0,-1,Death) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Age counter) counter(0/0,-1,Age) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Fuse counter) counter(0/0,-1,Fuse) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Unity counter) counter(0/0,-1,Unity) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Strife counter) counter(0/0,-1,Strife) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Ice counter) counter(0/0,-1,Ice) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Payment counter) counter(0/0,-1,Payment) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Spore counter) counter(0/0,-1,Spore) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Infection counter) counter(0/0,-1,Infection) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Paralyzation counter) counter(0/0,-1,Paralyzation) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Essence counter) counter(0/0,-1,Essence) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Blaze counter) counter(0/0,-1,Blaze) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Wind counter) counter(0/0,-1,Wind) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Healing counter) counter(0/0,-1,Healing) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Study counter) counter(0/0,-1,Study) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Bribe counter) counter(0/0,-1,Bribe) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Tide counter) counter(0/0,-1,Tide) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Pressure counter) counter(0/0,-1,Pressure) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Depletion counter) counter(0/0,-1,Depletion) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Hoofprint counter) counter(0/0,-1,Hoofprint) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Credit counter) counter(0/0,-1,Credit) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Javelin counter) counter(0/0,-1,Javelin) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Feather counter) counter(0/0,-1,Feather) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Treasure counter) counter(0/0,-1,Treasure) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Matrix counter) counter(0/0,-1,Matrix) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Vitality counter) counter(0/0,-1,Vitality) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Petal counter) counter(0/0,-1,Petal) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Eon counter) counter(0/0,-1,Eon) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Winch counter) counter(0/0,-1,Winch) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Mine counter) counter(0/0,-1,Mine) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Divinity counter) counter(0/0,-1,Divinity) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Theft counter) counter(0/0,-1,Theft) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Fate counter) counter(0/0,-1,Fate) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Shield counter) counter(0/0,-1,Shield) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Plague counter) counter(0/0,-1,Plague) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Isolation counter) counter(0/0,-1,Isolation) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Shell counter) counter(0/0,-1,Shell) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Wage counter) counter(0/0,-1,Wage) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Corpse counter) counter(0/0,-1,Corpse) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Hourglass counter) counter(0/0,-1,Hourglass) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Velocity counter) counter(0/0,-1,Velocity) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Pain counter) counter(0/0,-1,Pain) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Currency counter) counter(0/0,-1,Currency) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Trap counter) counter(0/0,-1,Trap) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Hatchling counter) counter(0/0,-1,Hatchling) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove Pin counter) counter(0/0,-1,Pin) target(*[-land]|battlefield)
+text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.) -- {T}, Pay 2 life: Remove a counter from target nonland permanent.
+mana={B}
+type=Creature
+subtype=Thrull
+power=1
+toughness=1
 [/card]
 [card]
 name=Thryx, the Sudden Storm
@@ -45061,6 +47001,17 @@ mana={4}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Tiana, Ship's Caretaker
+abilities=flying,first strike
+auto=@movedto(*[aura;enchantment]|myGraveyard) from(Battlefield):may phaseaction[endofturn once] name(Move to hand) moveto(ownerhand) target(*[aura;enchantment;fresh]|myGraveyard)
+text=Flying, first strike -- Whenever an Aura or Equipment you control is put into a graveyard from the battlefield, you may return that card to its owner's hand at the beginning of the next end step.
+mana={3}{R}{W}
+type=Legendary Creature
+subtype=Angel Artificer
+power=3
+toughness=3
+[/card]
+[card]
 name=Tibalt's Rager
 auto=_DIES_damage:1 target(creature,player)
 auto={1}{R}:2/0 ueot
@@ -45170,6 +47121,15 @@ auto=moveto(exile)
 text=Exile target creature that blocked or was blocked by a Zombie this turn.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Timely Ward
+target=creature
+auto=teach(creature) indestructible
+text=You may cast this spell as though it had flash if it targets a commander. -- Enchant creature -- Enchanted creature has indestructible.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Timestream Navigator
@@ -45332,6 +47292,17 @@ auto={1}:target(creature[counter{any}]) transforms((,newability[@movedTo(this|gr
 text=When Together Forever enters the battlefield, support 2. (Put a +1/+1 counter on each of up to two other target creatures.) -- {1}: Choose target creature with a counter on it. When that creature dies this turn, return that card to its owner's hand.
 mana={W}{W}
 type=Enchantment
+[/card]
+[card]
+name=Toggo, Goblin Weaponsmith
+abilities=partner
+auto=@movedTo(land|myBattlefield):token(Rock Equipment)
+text=Whenever a land enters the battlefield under your control, create a colorless Equipment artifact token named Rock with "Equipped creature has '{1}, {T}, Sacrifice Rock: This creature deals 2 damage to any target'" and equip {1}. -- Partner (You can have two commanders if both have partner.)
+mana={2}{R}
+type=Legendary Creature
+subtype=Goblin Artificer
+power=2
+toughness=2
 [/card]
 [card]
 name=Toil // Trouble
@@ -45541,6 +47512,21 @@ mana={2}{B}{B}
 type=Instant
 [/card]
 [card]
+name=Tormod, the Desecrator
+abilities=partner
+auto=@movedto(*|mybattlefield) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+auto=@movedto(*|myhand) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+auto=@movedto(*|mylibrary) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+auto=@movedto(*|myexile) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+auto=@movedto(*|mysideboard) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+text=Whenever one or more cards leave your graveyard, create a tapped 2/2 black Zombie creature token. -- Partner (You can have two commanders if both have partner.)
+mana={3}{B}
+type=Legendary Creature
+subtype=Zombie Wizard
+power=4
+toughness=2
+[/card]
+[card]
 name=Torrent of Lava
 auto=all(creature[-flying]|battlefield) transforms((,newability[{T}:prevent:1])) ueot
 auto=damage:X all(creature[-flying])
@@ -45657,6 +47643,14 @@ auto=if paid(kicker) then draw:kicked controller
 text=Replicate {1}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Draw a card.
 mana={1}{U}
 type=Sorcery
+[/card]
+[card]
+name=Training Center
+auto=tap(noevent)
+auto={T}:add{R}
+auto={T}:add{U}
+text=Training Center enters the battlefield tapped unless you have two or more opponents. -- {T}: Add {U} or {R}.
+type=Land
 [/card]
 [card]
 name=Traitorous Greed
@@ -45856,6 +47850,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Trench Behemoth
+auto={H(land|mybattlefield)}:name(Untap and gain hexproof) name(Untap and gain hexproof) transforms((,newability[untap],newability[opponentshroud])) ueot
+auto=@movedTo(land|myBattlefield):name(Target creature must attack) name(Target creature must attack) target(creature|opponentbattlefield) transforms((,newability[mustattack])) uynt
+text=Return a land you control to its owner's hand: Untap Trench Behemoth. It gains hexproof until end of turn. -- Whenever a land enters the battlefield under your control, target creature an opponent controls attacks during its controller's next combat phase if able.
+mana={5}{U}{U}
+type=Creature
+subtype=Kraken
+power=7
+toughness=7
+[/card]
+[card]
 name=Trespasser's Curse
 target=player
 auto=@movedto(creature|opponentbattlefield):life:-1 targetedplayer && life:1 targetedplayer
@@ -45956,6 +47961,15 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
+name=Triumphant Reckoning
+auto=moveTo(mybattlefield) all(enchantment|mygraveyard)
+auto=moveTo(mybattlefield) all(artifact|mygraveyard)
+auto=moveTo(mybattlefield) all(planeswalker|mygraveyard)
+text=Return all artifact, enchantment, and planeswalker cards from your graveyard to the battlefield.
+mana={6}{W}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Triumphant Surge
 target=creature[power>=4]
 auto=destroy && life:3 controller
@@ -45985,6 +47999,17 @@ type=Legendary Creature
 subtype=Dryad
 power=1
 toughness=4
+[/card]
+[card]
+name=Trove Tracker
+auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller
+autograveyard={5}{U}{U}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+text=When Trove Tracker dies, draw a card. -- Encore {5}{U}{U} ({5}{U}{U}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={2}{U}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
 [/card]
 [card]
 name=Trove Warden
@@ -46327,6 +48352,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Tuya Bearclaw
+auto=@combat(attacking) source(this):power:highest:*:mybattlefield/power:highest:*:mybattlefield ueot
+text=Whenever Tuya Bearclaw attacks, it gets +X/+X until end of turn, where X is the greatest power among other creatures you control.
+mana={1}{R}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Twilight Panther
 auto={B}:deathtouch
 text={B}: Twilight Panther gains deathtouch until end of turn.
@@ -46490,7 +48525,7 @@ toughness=*
 [/card]
 [card]
 name=Tymna the Weaver
-abilities=lifelink
+abilities=lifelink,partner
 auto=@each my postbattle: damagefoeof(player) may {L:1}:draw:1
 text=Lifelink -- At the beginning of your postcombat main phase, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards. -- Partner (You can have two commanders if both have partner.)
 mana={1}{W}{B}
@@ -46736,6 +48771,14 @@ auto=if type(creature[power>=4]|mybattlefield)~morethan~0 then life:4 controller
 text=Target opponent sacrifices a creature. If you control a creature with power 4 or greater, you gain 4 life.
 mana={2}{B}
 type=Instant
+[/card]
+[card]
+name=Undergrowth Stadium
+auto=tap(noevent)
+auto={T}:add{G}
+auto={T}:add{B}
+text=Undergrowth Stadium enters the battlefield tapped unless you have two or more opponents. -- {T}: Add {B} or {G}.
+type=Land
 [/card]
 [card]
 name=Underrealm Lich
@@ -47498,6 +49541,14 @@ text=Vastwood Thicket enters the battlefield tapped. -- {T}: Add {G}.
 type=Land
 [/card]
 [card]
+name=Vault of Champions
+auto=tap(noevent)
+auto={T}:add{W}
+auto={T}:add{B}
+text=Vault of Champions enters the battlefield tapped unless you have two or more opponents. -- {T}: Add {W} or {B}.
+type=Land
+[/card]
+[card]
 name=Vedalken Engineer
 auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{W}{W}
 auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{G}{G}
@@ -47894,6 +49945,7 @@ toughness=2
 [/card]
 [card]
 name=Vial Smasher the Fierce
+abilities=partner
 auto=@movedto(*[manacost=0]|mystack):damage:0 opponent
 auto=@movedto(*[manacost=1]|mystack):damage:1 opponent
 auto=@movedto(*[manacost=2]|mystack):damage:2 opponent
@@ -48421,6 +50473,15 @@ mana={10}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Volcanic Torrent
+autostack=if casted(this) then cascade:plibrarycount
+auto=all(creature|opponentBattlefield) damage:pstormcount
+auto=all(planeswalker|opponentBattlefield) damage:pstormcount
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- Volcanic Torrent deals X damage to each creature and planeswalker your opponents control, where X is the number of spells you've cast this turn.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
 name=Volcanic Vision
 target=*[instant;sorcery]|mygraveyard
 auto=moveto(myhand) && damage:manacost all(creature|opponentbattlefield)
@@ -48584,6 +50645,18 @@ type=Legendary Creature
 subtype=Human Merfolk
 power=1
 toughness=4
+[/card]
+[card]
+name=Vow of Torment
+target=creature
+auto=2/2
+auto=trample
+auto=teach(creature|opponentbattlefield) cantattack
+auto=teach(creature|opponentbattlefield) cantpwattack
+text=Enchant creature -- Enchanted creature gets +2/+2, has menace, and can't attack you or a planeswalker you control. (It can't be blocked except by two or more creatures.)
+mana={2}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Vraska's Contempt
@@ -48831,6 +50904,13 @@ auto={3}:target(creature) islandwalk ueot && transforms((,newability[@movedto(Wa
 text={3}: Target creature gains islandwalk until end of turn. When War Barge leaves the battlefield this turn, destroy that creature. A creature destroyed this way can't be regenerated.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=War Room
+auto={T}:add{C}
+auto={L:1}{3}{T}:draw:1 controller
+text={T}: Add {C}. -- {3}, {T}, Pay life equal to the number of colors in your commanders' color identity: Draw a card.
+type=Land
 [/card]
 [card]
 name=War Screecher
@@ -49139,7 +51219,7 @@ toughness=2
 [/card]
 [card]
 name=Wavebreak Hippocamp
-auto=@movedto(*|mystack) restriction{thisturn,opponentturnonly(*|mystack)~equalto~0}:draw:1 controller
+auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:draw:1 controller
 text=Whenever you cast your first spell during each opponent’s turn, draw a card.
 mana={2}{U}
 type=Enchantment Creature
@@ -50161,6 +52241,26 @@ mana={3}{B}{B}
 type=Instant
 [/card]
 [card]
+name=Wrong Turn
+target=creature
+auto=moveto(opponentbattlefield)
+text=Target opponent gains control of target creature. (If an attacking or blocking creature changes controllers, it's removed from combat.)
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Wyleth, Soul of Steel
+abilities=trample
+auto=@combat(attacking) source(this):thisforeach(auras > 0) draw:1 controller
+auto=@combat(attacking) source(this):thisforeach(gear) draw:1 controller
+text=Trample -- Whenever Wyleth, Soul of Steel attacks, draw a card for each Aura and Equipment attached to it.
+mana={1}{R}{W}
+type=Legendary Creature
+subtype=Human Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Xantcha, Sleeper Agent
 auto=moveto(opponentBattlefield)
 auto=this(cantattack)
@@ -50334,6 +52434,17 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Yurlok of Scorch Thrash
+abilities=vigilance
+auto={1}{T}:add{B}{R}{G} && add{B}{R}{G} opponent
+text=Vigilance -- A player losing unspent mana causes that player to lose that much life. -- {1}, {T}: Each player adds {B}{R}{G}.
+mana={1}{B}{R}{G}
+type=Legendary Creature
+subtype=Viashino Shaman
+power=4
+toughness=4
+[/card]
+[card]
 name=Zacama, Primal Calamity
 abilities=vigilance, reach, trample
 auto=if casted(this) then untap all(land|mybattlefield)
@@ -50401,6 +52512,17 @@ type=Legendary Creature
 subtype=Djinn
 power=5
 toughness=6
+[/card]
+[card]
+name=Zara, Renegade Recruiter
+abilities=flying
+auto=@combat(attacking) source(this):reveal:type:*:opponenthand revealzone(opponenthand) optionone name(Reveal) target(creature|reveal) moveto(mybattlefield) and!( transforms((,newability[ninjutsu],newability[phaseaction[endofturn] moveto(ownerhand) all(this)])) forever )! optiononeend optiontwo all(*|reveal) moveto(opponenthand) optiontwoend revealend
+text=Flying -- Whenever Zara, Renegade Recruiter attacks, look at defending player's hand. You may put a creature card from it onto the battlefield under your control tapped and attacking that player or a planeswalker they control. Return that creature to its owner's hand at the beginning of the next end step.
+mana={3}{U}{R}
+type=Legendary Creature
+subtype=Human Pirate
+power=4
+toughness=3
 [/card]
 [card]
 name=Zareth San, the Trickster

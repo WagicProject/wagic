@@ -1194,6 +1194,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "energizedfoeof", card))
         return NEW TrplayerEnergized(observer, id, card, tc,once,false,true);
 
+    //becomes monarch - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "becomesmonarchof", card))
+        return NEW TrplayerMonarch(observer, id, card, tc,once,true,false);
+
+    //becomes monarch - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "becomesmonarchfoeof", card))
+        return NEW TrplayerMonarch(observer, id, card, tc,once,false,true);
+
     //drawn player - controller of card - dynamic version drawof(player) -> returns current controller even with exchange of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "drawof", card))
         return NEW TrcardDrawn(observer, id, card, tc,once,true,false);
@@ -3368,6 +3376,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         int yidarocount = atoi(splitYidaroCounter[1].c_str());
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AAAlterYidaroCount(observer, id, card, t, yidarocount, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //becomes monarch
+    vector<string> splitMonarch = parseBetween(s, "becomesmonarch", " ", false);
+    if (splitMonarch.size())
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterMonarch(observer, id, card, t, NULL, who);
         a->oneShot = 1;
         return a;
     }

@@ -1135,6 +1135,46 @@ AAAlterYidaroCount::~AAAlterYidaroCount()
 {
 }
 
+//AA Monarch
+AAAlterMonarch::AAAlterMonarch(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who)
+{
+}
+
+int AAAlterMonarch::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            if(!pTarget->monarch){
+                pTarget->monarch = 1;
+			    pTarget->opponent()->monarch = 0;
+                WEvent * e = NEW WEventplayerMonarch(pTarget);
+                game->receiveEvent(e);
+			}
+        }
+    }
+    return 0;
+}
+
+const string AAAlterMonarch::getMenuText()
+{
+    return _("A player becomes the Monarch").c_str();
+}
+
+AAAlterMonarch * AAAlterMonarch::clone() const
+{
+    return NEW AAAlterMonarch(*this);
+}
+
+AAAlterMonarch::~AAAlterMonarch()
+{
+}
+
 //AA Energy Counters
 AAAlterEnergy::AAAlterEnergy(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int energy, ManaCost * _cost,
         int who) :

@@ -194,7 +194,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "mentor",
     "prowess",
     "nofizzle alternative", //No fizzle if card has been paid with alternative cost.
-    "hasotherkicker" //Kicker cost is expressed with "other" keyword (es. not mana kicker such as life and/or tap a creature)
+    "hasotherkicker", //Kicker cost is expressed with "other" keyword (es. not mana kicker such as life and/or tap a creature),
+    "partner" //Has partner ability
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

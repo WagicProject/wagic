@@ -36,6 +36,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     drawCounter = 0;
     energyCount = 0;
     yidaroCount = 0;
+    monarch = 0;
     surveilOffset = 0;
     epic = 0;
     forcefield = 0;
