@@ -3843,16 +3843,6 @@ text=(Start the game with this conspiracy face up in the command zone.) -- Befor
 type=Conspiracy
 [/card]
 [card]
-name=Empyrial Archangel
-abilities=flying,shroud
-text=Flying, shroud -- All damage that would be dealt to you is dealt to Empyrial Archangel instead.
-mana={4}{G}{W}{W}{U}
-type=Creature
-subtype=Angel
-power=5
-toughness=8
-[/card]
-[card]
 name=Emrakul, the Promised End
 text=Emrakul, the Promised End costs {1} less to cast for each card type among cards in your graveyard. -- When you cast Emrakul, you gain control of target opponent during that player's next turn. After that turn, that player takes an extra turn. -- Flying, trample, protection from instants
 mana={13}
@@ -9951,15 +9941,6 @@ text=Reveal Paliano, the High City as you draft it. The player to your right cho
 type=Legendary Land
 [/card]
 [card]
-name=Palisade Giant
-text=All damage that would be dealt to you or another permanent you control is dealt to Palisade Giant instead.
-mana={4}{W}{W}
-type=Creature
-subtype=Giant Soldier
-power=2
-toughness=7
-[/card]
-[card]
 name=Panglacial Wurm
 abilities=trample
 text=Trample -- While you're searching your library, you may cast Panglacial Wurm from your library.
@@ -10017,20 +9998,6 @@ type=Creature
 subtype=Dragon
 power=4
 toughness=4
-[/card]
-[card]
-name=Pariah
-text=Enchant creature -- All damage that would be dealt to you is dealt to enchanted creature instead.
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Pariah's Shield
-text=All damage that would be dealt to you is dealt to equipped creature instead. -- Equip {3}
-mana={5}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Parting Thoughts
@@ -12103,15 +12070,6 @@ name=Shifting Loyalties
 text=Exchange control of two target permanents that share a card type. (Artifact, creature, enchantment, land, and planeswalker are card types.)
 mana={5}{U}
 type=Sorcery
-[/card]
-[card]
-name=Shimian Night Stalker
-text={B}, {T}: All damage that would be dealt to you this turn by target attacking creature is dealt to Shimian Night Stalker instead.
-mana={3}{B}{B}
-type=Creature
-subtype=Nightstalker
-power=4
-toughness=4
 [/card]
 [card]
 name=Shimmering Efreet
