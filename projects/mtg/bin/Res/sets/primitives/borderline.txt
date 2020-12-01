@@ -866,13 +866,13 @@ toughness=1
 [/card]
 [card]
 name=Ally Encampment
-auto={T}:add{1}
-auto={T}:if type(creature[ally]|myhand)~morethan~0 then add{U}
-auto={T}:if type(creature[ally]|myhand)~morethan~0 then add{B}
-auto={T}:if type(creature[ally]|myhand)~morethan~0 then add{G}
-auto={T}:if type(creature[ally]|myhand)~morethan~0 then add{R}
-auto={T}:if type(creature[ally]|myhand)~morethan~0 then add{W}
-auto={1}{T}{S}:target(creature[ally]|myBattlefield) moveTo(ownerhand)
+auto={T}:add{C}
+auto={T} restriction{type(ally|myhand)~morethan~0}:add{B}
+auto={T} restriction{type(ally|myhand)~morethan~0}:add{R}
+auto={T} restriction{type(ally|myhand)~morethan~0}:add{G}
+auto={T} restriction{type(ally|myhand)~morethan~0}:add{W}
+auto={T} restriction{type(ally|myhand)~morethan~0}:add{U}
+auto={1}{T}{S}:target(ally|myBattlefield) moveTo(ownerhand)
 text={T}: Add {C} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast an Ally spell. -- {1}, {T}, Sacrifice Ally Encampment: Return target Ally you control to its owner's hand.
 type=Land
 [/card]
@@ -961,16 +961,16 @@ type=Artifact
 [card]
 name=Altar of the Lost
 auto=tap(noevent)
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{W}{B}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{W}{R}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{W}{G}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{W}{U}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{B}{R}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{B}{G}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{B}{U}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{R}{G}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{R}{U}
-auto={T}:if type(*[flashback]|mygraveyard)~morethan~0 then add{U}{G}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{W}{B}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{W}{R}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{W}{G}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{W}{U}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{B}{R}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{B}{G}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{B}{U}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{R}{G}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{R}{U}
+auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{U}{G}
 text=Altar of the Lost enters the battlefield tapped. -- {T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast spells with flashback from a graveyard.
 mana={3}
 type=Artifact
@@ -1138,11 +1138,11 @@ toughness=12
 [/card]
 [card]
 name=Ancient Ziggurat
-auto={T}:if type(creature|myhand)~morethan~0 then add{B}
-auto={T}:if type(creature|myhand)~morethan~0 then add{R}
-auto={T}:if type(creature|myhand)~morethan~0 then add{G}
-auto={T}:if type(creature|myhand)~morethan~0 then add{W}
-auto={T}:if type(creature|myhand)~morethan~0 then add{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell.
 type=Land
 [/card]
@@ -3270,11 +3270,11 @@ toughness=1
 name=Base Camp
 auto=tap(noevent)
 auto={T}:add{C}
-auto={T}:if type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0 then add{B}
-auto={T}:if type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0 then add{R}
-auto={T}:if type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0 then add{G}
-auto={T}:if type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0 then add{W}
-auto={T}:if type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0 then add{U}
+auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{B}
+auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{R}
+auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{G}
+auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{W}
+auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{U}
 text={T}: Add {C}. -- {T}: Add one mana of any color. Spend this mana only to cast a Cleric, Rogue, Warrior, or Wizard spell, or to activate an ability of a Cleric, Rogue, Warrior, or Wizard.
 type=Land
 [/card]
@@ -3573,11 +3573,11 @@ toughness=4
 [card]
 name=Beastcaller Savant
 abilities=haste
-auto={T}:if type(creature|myhand)~morethan~0 then add{B}
-auto={T}:if type(creature|myhand)~morethan~0 then add{R}
-auto={T}:if type(creature|myhand)~morethan~0 then add{G}
-auto={T}:if type(creature|myhand)~morethan~0 then add{W}
-auto={T}:if type(creature|myhand)~morethan~0 then add{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}
 text=Haste -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell.
 mana={1}{G}
 type=Creature
@@ -6341,7 +6341,7 @@ type=Land
 name=Castle Garenbrig
 auto={T}:add{G}
 auto=aslongas(land[forest]|myBattlefield) tap(noevent) <1 oneshot
-auto={2}{G}{G}{T}:if type(creature|myhand,mybattlefield)~morethan~0 then add{G}{G}{G}{G}{G}{G}
+auto={2}{G}{G}{T} restriction{type(creature|myhand,mybattlefield)~morethan~0}:add{G}{G}{G}{G}{G}{G}
 text=Castle Garenbrig enters the battlefield tapped unless you control a Forest. -- {T}: Add {G}. -- {2}{G}{G}, {T}: Add six {G}. Spend this mana only to cast creature spells or activate abilities of creatures.
 type=Land
 [/card]
@@ -6913,8 +6913,8 @@ type=Instant
 [/card]
 [card]
 name=Chandra's Embercat
-auto={T}:if type(creature[elemental]|myhand)~morethan~0 then add{R}
-auto={T}:if type(planeswalker[chandra]|myhand)~morethan~0 then add{R}
+auto={T} restriction{type(creature[elemental]|myhand)~morethan~0}:add{R}
+auto={T} restriction{type(planeswalker[chandra]|myhand)~morethan~0}:add{R}
 text={T}: Add {R}. Spend this mana only to cast an Elemental spell or a Chandra planeswalker spell.
 mana={1}{R}
 type=Creature
@@ -8798,12 +8798,12 @@ toughness=2
 [/card]
 [card]
 name=Corrupted Crossroads
-auto={T}:add{1}
-auto={T}{L:1}:if type(*[devoid]|myhand)~morethan~0 then add{W}
-auto={T}{L:1}:if type(*[devoid]|myhand)~morethan~0 then add{B}
-auto={T}{L:1}:if type(*[devoid]|myhand)~morethan~0 then add{R}
-auto={T}{L:1}:if type(*[devoid]|myhand)~morethan~0 then add{U}
-auto={T}{L:1}:if type(*[devoid]|myhand)~morethan~0 then add{G}
+auto={T}:add{C}
+auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{W}
+auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{B}
+auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{R}
+auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{U}
+auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{G}
 text={T}: Add {C} to your mana pool. ({C} represents colorless mana.) -- {T}, Pay 1 life: Add one mana of any color to your mana pool. Spend this mana only to cast a spell with devoid.
 type=Land
 [/card]
@@ -9432,7 +9432,7 @@ toughness=2
 [card]
 name=Cultivator Drone
 abilities=devoid
-auto={T}:if type(*[-red;-black;-blue;-green;-white]|myhand)~morethan~0 then add{1}
+auto={T}:add{C}
 text=Devoid (This card has no color.) -- {T}: Add {C} to your mana pool. Spend this mana only to cast a colorless spell, activate an ability of a colorless permanent, or pay a cost that contains {C}. ({C} represents colorless mana.)
 mana={2}{U}
 type=Creature
@@ -9512,7 +9512,7 @@ type=Instant
 [/card]
 [card]
 name=Curious Homunculus
-auto={T}:if type(*[instant;sorcery]|myhand)~morethan~0 then add{1}
+auto={T} restriction{type(*[instant;sorcery]|myhand)~morethan~0}:add{C}
 auto=@each my upkeep:aslongas(*[instant;sorcery]|myBattlefield) flip(Voracious Reader) >2
 text={T}: Add {C} to your mana pool. Spend this mana only to cast an instant or sorcery spell. -- At the beginning of your upkeep, if there are three or more instant and/or sorcery cards in your graveyard, transform Curious Homunculus.
 mana={1}{U}
@@ -9750,7 +9750,7 @@ toughness=0
 [/card]
 [card]
 name=Dalakos, Crafter of Wonders
-auto={T}:if type(*[artifact]|myhand,myBattlefield)~morethan~0 then Add{C}{C}
+auto={T} restriction{type(*[artifact]|myhand,myBattlefield)~morethan~0}:add{C}{C}
 auto=lord(creature[geared]|mybattlefield) flying
 auto=lord(creature[geared]|mybattlefield) haste
 text={T}: Add {C}{C}. Spend this mana only to cast artifact spells or activate abilities of artifacts. -- Equipped creatures you control have flying and haste.
@@ -12842,7 +12842,7 @@ toughness=1
 [card]
 name=Eldrazi Temple
 auto={T}:add{1}
-auto={T}:if type(*[eldrazi;-black;-blue;-red;-green;-white]|myhand,myBattlefield)~morethan~0 then Add{C}{C}
+auto={T} restriction{type(eldrazi[-black;-blue;-red;-green;-white]|myhand,myBattlefield)~morethan~0}:add{C}{C}
 text={T}: Add {1} to your mana pool. -- {T}: Add {2} to your mana pool. Spend this mana only to cast colorless Eldrazi spells or activate abilities of colorless Eldrazi.
 type=Land
 [/card]
@@ -13325,6 +13325,18 @@ type=Creature
 subtype=Bird Spirit
 power=2
 toughness=3
+[/card]
+[card]
+name=Empyrial Archangel
+abilities=flying,shroud
+abilities=cantlifelose
+auto=@damageof(player):life:thatmuch controller && damage:thatmuch all(this)
+text=Flying, shroud -- All damage that would be dealt to you is dealt to Empyrial Archangel instead.
+mana={4}{G}{W}{W}{U}
+type=Creature
+subtype=Angel
+power=5
+toughness=8
 [/card]
 [card]
 name=Empyrial Storm
@@ -17142,8 +17154,7 @@ type=Sorcery
 [/card]
 [card]
 name=Geosurge
-auto=
-auto={T}:if type(*[artifact;creature]|myhand)~morethan~0 then add{R}{R}{R}{R}{R}{R}{R}
+auto={T} restriction{type(*[artifact;creature]|myhand)~morethan~0}:add{R}{R}{R}{R}{R}{R}{R}
 text=Add {R}{R}{R}{R}{R}{R}{R} to your mana pool. Spend this mana only to cast artifact or creature spells.
 mana={R}{R}{R}{R}
 type=Sorcery
@@ -17961,8 +17972,8 @@ toughness=2
 [/card]
 [card]
 name=Gnarlroot Trapper
-auto={T}{L:1}:if type(creature[elf]|myhand)~morethan~0 then add{G}
-auto={T}:target(*[elf;attacking]|mybattlefield) deathtouch ueot
+auto={T}{L:1} restriction{type(creature[elf]|myhand)~morethan~0}:add{G}
+auto={T}:target(elf[attacking]|mybattlefield) transforms((,newability[deathtouch])) ueot
 text={T}, Pay 1 life: Add {G} to your mana pool. Spend this mana only to cast an Elf creature spell. -- {T}: Target attacking Elf you control gains deathtouch until end of turn. (Any amount of damage it deals to a creature is enough to destroy it.)
 mana={B}
 type=Creature
@@ -19811,11 +19822,11 @@ type=Sorcery
 [card]
 name=Haven of the Spirit Dragon
 auto={T}:add{1}
-auto={T}:if type(creature[dragon]|myhand)~morethan~0 then add{W}
-auto={T}:if type(creature[dragon]|myhand)~morethan~0 then add{U}
-auto={T}:if type(creature[dragon]|myhand)~morethan~0 then add{R}
-auto={T}:if type(creature[dragon]|myhand)~morethan~0 then add{G}
-auto={T}:if type(creature[dragon]|myhand)~morethan~0 then add{B}
+auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{W}
+auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{U}
+auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{R}
+auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{G}
+auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{B}
 auto={2}{T}{S}:name(Move dragon) moveto(myhand) target(creature[dragon]|mygraveyard)
 auto={2}{T}{S}:name(Move Ugin, the Ineffable) moveto(myhand) target(Ugin, the Ineffable|mygraveyard)
 auto={2}{T}{S}:name(Move Ugin, the Spirit Dragon) moveto(myhand) target(Ugin, the Spirit Dragon|mygraveyard)
@@ -21072,11 +21083,11 @@ color=white
 [/card]
 [card]
 name=Humble Naturalist
-auto={T}:if type(creature|myhand)~morethan~0 then Add{G}
-auto={T}:if type(creature|myhand)~morethan~0 then Add{W}
-auto={T}:if type(creature|myhand)~morethan~0 then Add{U}
-auto={T}:if type(creature|myhand)~morethan~0 then Add{B}
-auto={T}:if type(creature|myhand)~morethan~0 then Add{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}
 text={T}: Add one mana of any color. Spend this mana only to cast a creature spell.
 mana={1}{G}
 type=Creature
@@ -21580,11 +21591,16 @@ subtype=Aura
 [/card]
 [card]
 name=Ilysian Caryatid
-auto={T}:if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{G}{G} else Add{G}
-auto={T}:if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{W}{W} else Add{W}
-auto={T}:if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{U}{U} else Add{U}
-auto={T}:if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{B}{B} else Add{B}
-auto={T}:if type(creature[power>=4]|mybattlefield)~morethan~0 then Add{R}{R} else Add{R}
+auto={T} restriction{type(creature[power>=4]|myhand)~morethan~0}:add{G}{G}
+auto={T} restriction{type(creature[power>=4]|myhand)~morethan~0}:add{W}{W}
+auto={T} restriction{type(creature[power>=4]|myhand)~morethan~0}:add{U}{U}
+auto={T} restriction{type(creature[power>=4]|myhand)~morethan~0}:add{B}{B}
+auto={T} restriction{type(creature[power>=4]|myhand)~morethan~0}:add{R}{R}
+auto={T} restriction{type(creature[power>=4]|myhand)~lessthan~1}:add{G}
+auto={T} restriction{type(creature[power>=4]|myhand)~lessthan~1}:add{W}
+auto={T} restriction{type(creature[power>=4]|myhand)~lessthan~1}:add{U}
+auto={T} restriction{type(creature[power>=4]|myhand)~lessthan~1}:add{B}
+auto={T} restriction{type(creature[power>=4]|myhand)~lessthan~1}:add{R}
 text={T}: Add one mana of any color. If you control a creature with power 4 or greater, add two mana of any one color instead.
 mana={1}{G}
 type=Creature
@@ -22460,16 +22476,16 @@ type=Instant
 name=Interplanar Beacon
 auto=@movedTo(planeswalker|mystack):life:1
 auto={T}:Add{C}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{W}{U}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{W}{B}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{W}{R}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{W}{G}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{U}{B}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{U}{R}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{U}{G}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{B}{R}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{B}{G}
-auto={1}{T}:if type(planeswalker|myhand)~morethan~0 then Add{R}{G}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{W}{U}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{W}{B}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{W}{R}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{W}{G}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{U}{B}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{U}{R}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{U}{G}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{B}{R}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{B}{G}
+auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{R}{G}
 text=Whenever you cast a planeswalker spell, you gain 1 life. -- {T}: Add {C}. -- {1}, {T}: Add two mana of different colors. Spend this mana only to cast planeswalker spells.
 type=Land
 [/card]
@@ -28358,7 +28374,7 @@ toughness=2
 [/card]
 [card]
 name=Mishra's Workshop
-auto={T}:if type(artifact|myhand)~morethan~0 then add{3}
+auto={T} restriction{ype(artifact|myhand)~morethan~0}:add{C}{C}{C}
 text={T}: Add {3}. Spend this mana only to cast artifact spells.
 type=Land
 [/card]
@@ -29015,7 +29031,7 @@ type=Artifact
 [/card]
 [card]
 name=Myr Reservoir
-auto={T}:if type(*[myr]|myhand,myBattlefield)~morethan~0 then add{2}
+auto={T} restriction{type(myr|myhand,myBattlefield)~morethan~0}:add{C}{C}
 auto={3}{T}:moveto(myhand) target(Myr|mygraveyard)
 text={T}: Add {2} to your mana pool. Spend this mana only to cast Myr spells or activate abilities of Myr. -- {3}, {T}: Return target Myr card from your graveyard to your hand.
 mana={3}
@@ -32071,6 +32087,17 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Palisade Giant
+abilities=cantlifelose
+auto=@damageof(player):life:thatmuch controller && damage:thatmuch all(this)
+text=All damage that would be dealt to you or another permanent you control is dealt to Palisade Giant instead.
+mana={4}{W}{W}
+type=Creature
+subtype=Giant Soldier
+power=2
+toughness=7
+[/card]
+[card]
 name=Palladia-Mors, the Ruiner
 abilities=flying, opponentshroud, vigilance, trample
 auto=@damaged(this):-opponentshroud forever
@@ -32083,48 +32110,48 @@ toughness=6
 [/card]
 [card]
 name=Panoptic Mirror
-auto={0}{T}:if type(instant[manacost=0]|myhand)~morethan~0 then name(Exile instant with manacost 0) transforms((,newability[moveTo(myexile) target(instant[manacost=0]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=0]|myexile)])) forever
-auto={0}{T}:if type(sorcery[manacost=0]|myhand)~morethan~0 then name(Exile sorcery with manacost 0) transforms((,newability[moveTo(myexile) target(sorcery[manacost=0]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=0]|myexile)])) forever
-auto={1}{T}:if type(instant[manacost=1]|myhand)~morethan~0 then name(Exile instant with manacost 1) transforms((,newability[moveTo(myexile) target(instant[manacost=1]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=1]|myexile)])) forever
-auto={1}{T}:if type(sorcery[manacost=1]|myhand)~morethan~0 then name(Exile sorcery with manacost 1) transforms((,newability[moveTo(myexile) target(sorcery[manacost=1]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=1]|myexile)])) forever
-auto={2}{T}:if type(instant[manacost=2]|myhand)~morethan~0 then name(Exile instant with manacost 2) transforms((,newability[moveTo(myexile) target(instant[manacost=2]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=2]|myexile)])) forever
-auto={2}{T}:if type(sorcery[manacost=2]|myhand)~morethan~0 then name(Exile sorcery with manacost 2) transforms((,newability[moveTo(myexile) target(sorcery[manacost=2]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=2]|myexile)])) forever
-auto={3}{T}:if type(instant[manacost=3]|myhand)~morethan~0 then name(Exile instant with manacost 3) transforms((,newability[moveTo(myexile) target(instant[manacost=3]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=3]|myexile)])) forever
-auto={3}{T}:if type(sorcery[manacost=3]|myhand)~morethan~0 then name(Exile sorcery with manacost 3) transforms((,newability[moveTo(myexile) target(sorcery[manacost=3]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=3]|myexile)])) forever
-auto={4}{T}:if type(instant[manacost=4]|myhand)~morethan~0 then name(Exile instant with manacost 4) transforms((,newability[moveTo(myexile) target(instant[manacost=4]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=4]|myexile)])) forever
-auto={4}{T}:if type(sorcery[manacost=4]|myhand)~morethan~0 then name(Exile sorcery with manacost 4) transforms((,newability[moveTo(myexile) target(sorcery[manacost=4]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=4]|myexile)])) forever
-auto={5}{T}:if type(instant[manacost=5]|myhand)~morethan~0 then name(Exile instant with manacost 5) transforms((,newability[moveTo(myexile) target(instant[manacost=5]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=5]|myexile)])) forever
-auto={5}{T}:if type(sorcery[manacost=5]|myhand)~morethan~0 then name(Exile sorcery with manacost 5) transforms((,newability[moveTo(myexile) target(sorcery[manacost=5]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=5]|myexile)])) forever
-auto={6}{T}:if type(instant[manacost=6]|myhand)~morethan~0 then name(Exile instant with manacost 6) transforms((,newability[moveTo(myexile) target(instant[manacost=6]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=6]|myexile)])) forever
-auto={6}{T}:if type(sorcery[manacost=6]|myhand)~morethan~0 then name(Exile sorcery with manacost 6) transforms((,newability[moveTo(myexile) target(sorcery[manacost=6]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=6]|myexile)])) forever
-auto={7}{T}:if type(instant[manacost=7]|myhand)~morethan~0 then name(Exile instant with manacost 7) transforms((,newability[moveTo(myexile) target(instant[manacost=7]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=7]|myexile)])) forever
-auto={7}{T}:if type(sorcery[manacost=7]|myhand)~morethan~0 then name(Exile sorcery with manacost 7) transforms((,newability[moveTo(myexile) target(sorcery[manacost=7]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=7]|myexile)])) forever
-auto={8}{T}:if type(instant[manacost=8]|myhand)~morethan~0 then name(Exile instant with manacost 8) transforms((,newability[moveTo(myexile) target(instant[manacost=8]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=8]|myexile)])) forever
-auto={8}{T}:if type(sorcery[manacost=8]|myhand)~morethan~0 then name(Exile sorcery with manacost 8) transforms((,newability[moveTo(myexile) target(sorcery[manacost=8]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=8]|myexile)])) forever
-auto={9}{T}:if type(instant[manacost=9]|myhand)~morethan~0 then name(Exile instant with manacost 9) transforms((,newability[moveTo(myexile) target(instant[manacost=9]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=9]|myexile)])) forever
-auto={9}{T}:if type(sorcery[manacost=9]|myhand)~morethan~0 then name(Exile sorcery with manacost 9) transforms((,newability[moveTo(myexile) target(sorcery[manacost=9]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=9]|myexile)])) forever
-auto={10}{T}:if type(instant[manacost=10]|myhand)~morethan~0 then name(Exile instant with manacost 10) transforms((,newability[moveTo(myexile) target(instant[manacost=10]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=10]|myexile)])) forever
-auto={10}{T}:if type(sorcery[manacost=10]|myhand)~morethan~0 then name(Exile sorcery with manacost 10) transforms((,newability[moveTo(myexile) target(sorcery[manacost=10]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=10]|myexile)])) forever
-auto={11}{T}:if type(instant[manacost=11]|myhand)~morethan~0 then name(Exile instant with manacost 11) transforms((,newability[moveTo(myexile) target(instant[manacost=11]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=11]|myexile)])) forever
-auto={11}{T}:if type(sorcery[manacost=11]|myhand)~morethan~0 then name(Exile sorcery with manacost 11) transforms((,newability[moveTo(myexile) target(sorcery[manacost=11]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=11]|myexile)])) forever
-auto={12}{T}:if type(instant[manacost=12]|myhand)~morethan~0 then name(Exile instant with manacost 12) transforms((,newability[moveTo(myexile) target(instant[manacost=12]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=12]|myexile)])) forever
-auto={12}{T}:if type(sorcery[manacost=12]|myhand)~morethan~0 then name(Exile sorcery with manacost 12) transforms((,newability[moveTo(myexile) target(sorcery[manacost=12]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=12]|myexile)])) forever
-auto={13}{T}:if type(instant[manacost=13]|myhand)~morethan~0 then name(Exile instant with manacost 13) transforms((,newability[moveTo(myexile) target(instant[manacost=13]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=13]|myexile)])) forever
-auto={13}{T}:if type(sorcery[manacost=13]|myhand)~morethan~0 then name(Exile sorcery with manacost 13) transforms((,newability[moveTo(myexile) target(sorcery[manacost=13]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=13]|myexile)])) forever
-auto={14}{T}:if type(instant[manacost=14]|myhand)~morethan~0 then name(Exile instant with manacost 14) transforms((,newability[moveTo(myexile) target(instant[manacost=14]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=14]|myexile)])) forever
-auto={14}{T}:if type(sorcery[manacost=14]|myhand)~morethan~0 then name(Exile sorcery with manacost 14) transforms((,newability[moveTo(myexile) target(sorcery[manacost=14]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=14]|myexile)])) forever
-auto={15}{T}:if type(instant[manacost=15]|myhand)~morethan~0 then name(Exile instant with manacost 15) transforms((,newability[moveTo(myexile) target(instant[manacost=15]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=15]|myexile)])) forever
-auto={15}{T}:if type(sorcery[manacost=15]|myhand)~morethan~0 then name(Exile sorcery with manacost 15) transforms((,newability[moveTo(myexile) target(sorcery[manacost=15]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=15]|myexile)])) forever
-auto={16}{T}:if type(instant[manacost=16]|myhand)~morethan~0 then name(Exile instant with manacost 16) transforms((,newability[moveTo(myexile) target(instant[manacost=16]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=16]|myexile)])) forever
-auto={16}{T}:if type(sorcery[manacost=16]|myhand)~morethan~0 then name(Exile sorcery with manacost 16) transforms((,newability[moveTo(myexile) target(sorcery[manacost=16]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=16]|myexile)])) forever
-auto={17}{T}:if type(instant[manacost=17]|myhand)~morethan~0 then name(Exile instant with manacost 17) transforms((,newability[moveTo(myexile) target(instant[manacost=17]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=17]|myexile)])) forever
-auto={17}{T}:if type(sorcery[manacost=17]|myhand)~morethan~0 then name(Exile sorcery with manacost 17) transforms((,newability[moveTo(myexile) target(sorcery[manacost=17]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=17]|myexile)])) forever
-auto={18}{T}:if type(instant[manacost=18]|myhand)~morethan~0 then name(Exile instant with manacost 18) transforms((,newability[moveTo(myexile) target(instant[manacost=18]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=18]|myexile)])) forever
-auto={18}{T}:if type(sorcery[manacost=18]|myhand)~morethan~0 then name(Exile sorcery with manacost 18) transforms((,newability[moveTo(myexile) target(sorcery[manacost=18]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=18]|myexile)])) forever
-auto={19}{T}:if type(instant[manacost=19]|myhand)~morethan~0 then name(Exile instant with manacost 19) transforms((,newability[moveTo(myexile) target(instant[manacost=19]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=19]|myexile)])) forever
-auto={19}{T}:if type(sorcery[manacost=19]|myhand)~morethan~0 then name(Exile sorcery with manacost 19) transforms((,newability[moveTo(myexile) target(sorcery[manacost=19]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=19]|myexile)])) forever
-auto={20}{T}:if type(instant[manacost=20]|myhand)~morethan~0 then name(Exile instant with manacost 20) transforms((,newability[moveTo(myexile) target(instant[manacost=20]|myhand)],newability[@each my upkeep:may clone target(instant[manacost=20]|myexile)])) forever
-auto={20}{T}:if type(sorcery[manacost=20]|myhand)~morethan~0 then name(Exile sorcery with manacost 20) transforms((,newability[moveTo(myexile) target(sorcery[manacost=20]|myhand)],newability[@each my upkeep:may clone target(sorcery[manacost=20]|myexile)])) forever
+auto={0}{T} restriction{type(instant[manacost=0]|myhand)~morethan~0}:name(Exile instant with manacost 0) transforms((,newability[moveTo(myexile) target(instant[manacost=0]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=0]|myexile)])) forever
+auto={0}{T} restriction{type(sorcery[manacost=0]|myhand)~morethan~0}:name(Exile sorcery with manacost 0) transforms((,newability[moveTo(myexile) target(sorcery[manacost=0]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=0]|myexile)])) forever
+auto={1}{T} restriction{type(instant[manacost=1]|myhand)~morethan~0}:name(Exile instant with manacost 1) transforms((,newability[moveTo(myexile) target(instant[manacost=1]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=1]|myexile)])) forever
+auto={1}{T} restriction{type(sorcery[manacost=1]|myhand)~morethan~0}:name(Exile sorcery with manacost 1) transforms((,newability[moveTo(myexile) target(sorcery[manacost=1]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=1]|myexile)])) forever
+auto={2}{T} restriction{type(instant[manacost=2]|myhand)~morethan~0}:name(Exile instant with manacost 2) transforms((,newability[moveTo(myexile) target(instant[manacost=2]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=2]|myexile)])) forever
+auto={2}{T} restriction{type(sorcery[manacost=2]|myhand)~morethan~0}:name(Exile sorcery with manacost 2) transforms((,newability[moveTo(myexile) target(sorcery[manacost=2]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=2]|myexile)])) forever
+auto={3}{T} restriction{type(instant[manacost=3]|myhand)~morethan~0}:name(Exile instant with manacost 3) transforms((,newability[moveTo(myexile) target(instant[manacost=3]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=3]|myexile)])) forever
+auto={3}{T} restriction{type(sorcery[manacost=3]|myhand)~morethan~0}:name(Exile sorcery with manacost 3) transforms((,newability[moveTo(myexile) target(sorcery[manacost=3]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=3]|myexile)])) forever
+auto={4}{T} restriction{type(instant[manacost=4]|myhand)~morethan~0}:name(Exile instant with manacost 4) transforms((,newability[moveTo(myexile) target(instant[manacost=4]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=4]|myexile)])) forever
+auto={4}{T} restriction{type(sorcery[manacost=4]|myhand)~morethan~0}:name(Exile sorcery with manacost 4) transforms((,newability[moveTo(myexile) target(sorcery[manacost=4]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=4]|myexile)])) forever
+auto={5}{T} restriction{type(instant[manacost=5]|myhand)~morethan~0}:name(Exile instant with manacost 5) transforms((,newability[moveTo(myexile) target(instant[manacost=5]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=5]|myexile)])) forever
+auto={5}{T} restriction{type(sorcery[manacost=5]|myhand)~morethan~0}:name(Exile sorcery with manacost 5) transforms((,newability[moveTo(myexile) target(sorcery[manacost=5]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=5]|myexile)])) forever
+auto={6}{T} restriction{type(instant[manacost=6]|myhand)~morethan~0}:name(Exile instant with manacost 6) transforms((,newability[moveTo(myexile) target(instant[manacost=6]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=6]|myexile)])) forever
+auto={6}{T} restriction{type(sorcery[manacost=6]|myhand)~morethan~0}:name(Exile sorcery with manacost 6) transforms((,newability[moveTo(myexile) target(sorcery[manacost=6]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=6]|myexile)])) forever
+auto={7}{T} restriction{type(instant[manacost=7]|myhand)~morethan~0}:name(Exile instant with manacost 7) transforms((,newability[moveTo(myexile) target(instant[manacost=7]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=7]|myexile)])) forever
+auto={7}{T} restriction{type(sorcery[manacost=7]|myhand)~morethan~0}:name(Exile sorcery with manacost 7) transforms((,newability[moveTo(myexile) target(sorcery[manacost=7]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=7]|myexile)])) forever
+auto={8}{T} restriction{type(instant[manacost=8]|myhand)~morethan~0}:name(Exile instant with manacost 8) transforms((,newability[moveTo(myexile) target(instant[manacost=8]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=8]|myexile)])) forever
+auto={8}{T} restriction{type(sorcery[manacost=8]|myhand)~morethan~0}:name(Exile sorcery with manacost 8) transforms((,newability[moveTo(myexile) target(sorcery[manacost=8]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=8]|myexile)])) forever
+auto={9}{T} restriction{type(instant[manacost=9]|myhand)~morethan~0}:name(Exile instant with manacost 9) transforms((,newability[moveTo(myexile) target(instant[manacost=9]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=9]|myexile)])) forever
+auto={9}{T} restriction{type(sorcery[manacost=9]|myhand)~morethan~0}:name(Exile sorcery with manacost 9) transforms((,newability[moveTo(myexile) target(sorcery[manacost=9]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=9]|myexile)])) forever
+auto={10}{T} restriction{type(instant[manacost=10]|myhand)~morethan~0}:name(Exile instant with manacost 10) transforms((,newability[moveTo(myexile) target(instant[manacost=10]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=10]|myexile)])) forever
+auto={10}{T} restriction{type(sorcery[manacost=10]|myhand)~morethan~0}:name(Exile sorcery with manacost 10) transforms((,newability[moveTo(myexile) target(sorcery[manacost=10]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=10]|myexile)])) forever
+auto={11}{T} restriction{type(instant[manacost=11]|myhand)~morethan~0}:name(Exile instant with manacost 11) transforms((,newability[moveTo(myexile) target(instant[manacost=11]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=11]|myexile)])) forever
+auto={11}{T} restriction{type(sorcery[manacost=11]|myhand)~morethan~0}:name(Exile sorcery with manacost 11) transforms((,newability[moveTo(myexile) target(sorcery[manacost=11]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=11]|myexile)])) forever
+auto={12}{T} restriction{type(instant[manacost=12]|myhand)~morethan~0}:name(Exile instant with manacost 12) transforms((,newability[moveTo(myexile) target(instant[manacost=12]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=12]|myexile)])) forever
+auto={12}{T} restriction{type(sorcery[manacost=12]|myhand)~morethan~0}:name(Exile sorcery with manacost 12) transforms((,newability[moveTo(myexile) target(sorcery[manacost=12]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=12]|myexile)])) forever
+auto={13}{T} restriction{type(instant[manacost=13]|myhand)~morethan~0}:name(Exile instant with manacost 13) transforms((,newability[moveTo(myexile) target(instant[manacost=13]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=13]|myexile)])) forever
+auto={13}{T} restriction{type(sorcery[manacost=13]|myhand)~morethan~0}:name(Exile sorcery with manacost 13) transforms((,newability[moveTo(myexile) target(sorcery[manacost=13]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=13]|myexile)])) forever
+auto={14}{T} restriction{type(instant[manacost=14]|myhand)~morethan~0}:name(Exile instant with manacost 14) transforms((,newability[moveTo(myexile) target(instant[manacost=14]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=14]|myexile)])) forever
+auto={14}{T} restriction{type(sorcery[manacost=14]|myhand)~morethan~0}:name(Exile sorcery with manacost 14) transforms((,newability[moveTo(myexile) target(sorcery[manacost=14]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=14]|myexile)])) forever
+auto={15}{T} restriction{type(instant[manacost=15]|myhand)~morethan~0}:name(Exile instant with manacost 15) transforms((,newability[moveTo(myexile) target(instant[manacost=15]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=15]|myexile)])) forever
+auto={15}{T} restriction{type(sorcery[manacost=15]|myhand)~morethan~0}:name(Exile sorcery with manacost 15) transforms((,newability[moveTo(myexile) target(sorcery[manacost=15]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=15]|myexile)])) forever
+auto={16}{T} restriction{type(instant[manacost=16]|myhand)~morethan~0}:name(Exile instant with manacost 16) transforms((,newability[moveTo(myexile) target(instant[manacost=16]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=16]|myexile)])) forever
+auto={16}{T} restriction{type(sorcery[manacost=16]|myhand)~morethan~0}:name(Exile sorcery with manacost 16) transforms((,newability[moveTo(myexile) target(sorcery[manacost=16]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=16]|myexile)])) forever
+auto={17}{T} restriction{type(instant[manacost=17]|myhand)~morethan~0}:name(Exile instant with manacost 17) transforms((,newability[moveTo(myexile) target(instant[manacost=17]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=17]|myexile)])) forever
+auto={17}{T} restriction{type(sorcery[manacost=17]|myhand)~morethan~0}:name(Exile sorcery with manacost 17) transforms((,newability[moveTo(myexile) target(sorcery[manacost=17]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=17]|myexile)])) forever
+auto={18}{T} restriction{type(instant[manacost=18]|myhand)~morethan~0}:name(Exile instant with manacost 18) transforms((,newability[moveTo(myexile) target(instant[manacost=18]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=18]|myexile)])) forever
+auto={18}{T} restriction{type(sorcery[manacost=18]|myhand)~morethan~0}:name(Exile sorcery with manacost 18) transforms((,newability[moveTo(myexile) target(sorcery[manacost=18]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=18]|myexile)])) forever
+auto={19}{T} restriction{type(instant[manacost=19]|myhand)~morethan~0}:name(Exile instant with manacost 19) transforms((,newability[moveTo(myexile) target(instant[manacost=19]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=19]|myexile)])) forever
+auto={19}{T} restriction{type(sorcery[manacost=19]|myhand)~morethan~0}:name(Exile sorcery with manacost 19) transforms((,newability[moveTo(myexile) target(sorcery[manacost=19]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=19]|myexile)])) forever
+auto={20}{T} restriction{type(instant[manacost=20]|myhand)~morethan~0}:name(Exile instant with manacost 20) transforms((,newability[moveTo(myexile) target(instant[manacost=20]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(instant[manacost=20]|myexile)])) forever
+auto={20}{T} restriction{type(sorcery[manacost=20]|myhand)~morethan~0}:name(Exile sorcery with manacost 20) transforms((,newability[moveTo(myexile) target(sorcery[manacost=20]|myhand)],newability[@each my upkeep:may activate castcard(copied noevent) target(sorcery[manacost=20]|myexile)])) forever
 text=Imprint — {X}, {T}: You may exile an instant or sorcery card with converted mana cost X from your hand. -- At the beginning of your upkeep, you may copy a card exiled with Panoptic Mirror. If you do, you may cast the copy without paying its mana cost.
 mana={5}
 type=Artifact
@@ -32253,6 +32280,27 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=3
+[/card]
+[card]
+name=Pariah
+target=creature
+auto=teach(creature) cantlifelose
+auto=teach(creature) transforms((,newability[@damageof(player):life:thatmuch controller && damage:thatmuch all(this)]))
+text=Enchant creature -- All damage that would be dealt to you is dealt to enchanted creature instead.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Pariah's Shield
+auto={3}:equip
+auto=teach(creature) cantlifelose
+auto=teach(creature) transforms((,newability[@damageof(player):life:thatmuch controller && damage:thatmuch all(this)]))
+auto=@damageof(player):life:thatmuch controller && damage:thatmuch all(this)
+text=All damage that would be dealt to you is dealt to equipped creature instead. -- Equip {3}
+mana={5}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Paroxysm
@@ -32758,24 +32806,18 @@ toughness=1
 [/card]
 [card]
 name=Pillar of Origins
-auto=chooseatype counter(0/0,1,chosentype) chooseend
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{W}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{W}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{R}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{G}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{U}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{B}
+auto=chooseatype transforms((,newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{B}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{U}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{G}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{R}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{W}])) forever chooseend
 text=As Pillar of Origins enters the battlefield, choose a creature type. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell of the chosen type.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Pillar of the Paruns
-auto={T}:if type(*[multicolor]|myhand)~morethan~0 then add{W}
-auto={T}:if type(*[multicolor]|myhand)~morethan~0 then add{R}
-auto={T}:if type(*[multicolor]|myhand)~morethan~0 then add{G}
-auto={T}:if type(*[multicolor]|myhand)~morethan~0 then add{U}
-auto={T}:if type(*[multicolor]|myhand)~morethan~0 then add{B}
+auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{W}
+auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{R}
+auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{G}
+auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{U}
+auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{B}
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a multicolored spell.
 type=Land
 [/card]
@@ -33673,8 +33715,9 @@ type=Enchantment
 [/card]
 [card]
 name=Protector of the Crown
+abilities=cantlifelose
 auto=becomesmonarch controller
-auto=@damageof(player):life:1 controller && damage:1 all(this)
+auto=@damageof(player):life:thatmuch controller && damage:thatmuch all(this)
 text=When Protector of the Crown enters the battlefield, you become the monarch. -- All damage that would be dealt to you is dealt to Protector of the Crown instead.
 mana={5}{W}
 type=Creature
@@ -39445,31 +39488,31 @@ type=Instant
 [/card]
 [card]
 name=Shaman of Forgotten Ways
-auto={T}:if type(creature|myhand)~morethan~0 then add{G}{G}
-auto={T}:if type(creature|myhand)~morethan~0 then add{G}{W}
-auto={T}:if type(creature|myhand)~morethan~0 then add{G}{R}
-auto={T}:if type(creature|myhand)~morethan~0 then add{G}{B}
-auto={T}:if type(creature|myhand)~morethan~0 then add{G}{U}
-auto={T}:if type(creature|myhand)~morethan~0 then add{B}{B}
-auto={T}:if type(creature|myhand)~morethan~0 then add{B}{W}
-auto={T}:if type(creature|myhand)~morethan~0 then add{B}{R}
-auto={T}:if type(creature|myhand)~morethan~0 then add{B}{U}
-auto={T}:if type(creature|myhand)~morethan~0 then add{B}{G}
-auto={T}:if type(creature|myhand)~morethan~0 then add{R}{R}
-auto={T}:if type(creature|myhand)~morethan~0 then add{R}{G}
-auto={T}:if type(creature|myhand)~morethan~0 then add{R}{W}
-auto={T}:if type(creature|myhand)~morethan~0 then add{R}{B}
-auto={T}:if type(creature|myhand)~morethan~0 then add{R}{U}
-auto={T}:if type(creature|myhand)~morethan~0 then add{U}{U}
-auto={T}:if type(creature|myhand)~morethan~0 then add{U}{B}
-auto={T}:if type(creature|myhand)~morethan~0 then add{U}{W}
-auto={T}:if type(creature|myhand)~morethan~0 then add{U}{R}
-auto={T}:if type(creature|myhand)~morethan~0 then add{U}{G}
-auto={T}:if type(creature|myhand)~morethan~0 then add{W}{W}
-auto={T}:if type(creature|myhand)~morethan~0 then add{W}{U}
-auto={T}:if type(creature|myhand)~morethan~0 then add{W}{B}
-auto={T}:if type(creature|myhand)~morethan~0 then add{W}{R}
-auto={T}:if type(creature|myhand)~morethan~0 then add{W}{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{G}
 auto={9}{G}{G}{T}:lifeset:type:creature:myBattlefield controller && lifeset:type:creature:opponentBattlefield opponent restriction{compare(powertotalinplay)~morethan~7}
 text={T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast creature spells. -- Formidable — {9}{G}{G}, {T}: Each player's life total becomes the number of creatures he or she controls. Activate this ability only if creatures you control have total power 8 or greater.
 mana={2}{G}
@@ -39811,6 +39854,35 @@ type=Creature
 subtype=Shapeshifter
 power=1
 toughness=1
+[/card]
+[card]
+name=Shimian Night Stalker
+auto={B}{T} restriction{type(creature[attacking;power=1])~morethan~0}:name(Choose creature with power 1) target(creature[attacking;power=1]) transforms((,newability[fog from(this)])) ueot && damage:1 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=2])~morethan~0}:name(Choose creature with power 2) target(creature[attacking;power=2]) transforms((,newability[fog from(this)])) ueot && damage:2 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=3])~morethan~0}:name(Choose creature with power 3) target(creature[attacking;power=3]) transforms((,newability[fog from(this)])) ueot && damage:3 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=4])~morethan~0}:name(Choose creature with power 4) target(creature[attacking;power=4]) transforms((,newability[fog from(this)])) ueot && damage:4 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=5])~morethan~0}:name(Choose creature with power 5) target(creature[attacking;power=5]) transforms((,newability[fog from(this)])) ueot && damage:5 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=6])~morethan~0}:name(Choose creature with power 6) target(creature[attacking;power=6]) transforms((,newability[fog from(this)])) ueot && damage:6 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=7])~morethan~0}:name(Choose creature with power 7) target(creature[attacking;power=7]) transforms((,newability[fog from(this)])) ueot && damage:7 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=8])~morethan~0}:name(Choose creature with power 8) target(creature[attacking;power=8]) transforms((,newability[fog from(this)])) ueot && damage:8 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=9])~morethan~0}:name(Choose creature with power 9) target(creature[attacking;power=9]) transforms((,newability[fog from(this)])) ueot && damage:9 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=10])~morethan~0}:name(Choose creature with power 10) target(creature[attacking;power=10]) transforms((,newability[fog from(this)])) ueot && damage:10 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=11])~morethan~0}:name(Choose creature with power 11) target(creature[attacking;power=11]) transforms((,newability[fog from(this)])) ueot && damage:11 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=12])~morethan~0}:name(Choose creature with power 12) target(creature[attacking;power=12]) transforms((,newability[fog from(this)])) ueot && damage:12 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=13])~morethan~0}:name(Choose creature with power 13) target(creature[attacking;power=13]) transforms((,newability[fog from(this)])) ueot && damage:13 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=14])~morethan~0}:name(Choose creature with power 14) target(creature[attacking;power=14]) transforms((,newability[fog from(this)])) ueot && damage:14 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=15])~morethan~0}:name(Choose creature with power 15) target(creature[attacking;power=15]) transforms((,newability[fog from(this)])) ueot && damage:15 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=16])~morethan~0}:name(Choose creature with power 16) target(creature[attacking;power=16]) transforms((,newability[fog from(this)])) ueot && damage:16 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=17])~morethan~0}:name(Choose creature with power 17) target(creature[attacking;power=17]) transforms((,newability[fog from(this)])) ueot && damage:17 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=18])~morethan~0}:name(Choose creature with power 18) target(creature[attacking;power=18]) transforms((,newability[fog from(this)])) ueot && damage:18 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=19])~morethan~0}:name(Choose creature with power 19) target(creature[attacking;power=19]) transforms((,newability[fog from(this)])) ueot && damage:19 all(this)
+auto={B}{T} restriction{type(creature[attacking;power=20])~morethan~0}:name(Choose creature with power 20) target(creature[attacking;power=20]) transforms((,newability[fog from(this)])) ueot && damage:20 all(this)
+text={B}, {T}: All damage that would be dealt to you this turn by target attacking creature is dealt to Shimian Night Stalker instead.
+mana={3}{B}{B}
+type=Creature
+subtype=Nightstalker
+power=4
+toughness=4
 [/card]
 [card]
 name=Shimmer Dragon
@@ -41347,13 +41419,13 @@ toughness=2
 [/card]
 [card]
 name=Sliver Hive
-auto={T}:add{1}
-auto={T}:if type(creature[sliver]|myhand)~morethan~0 then add{W}
-auto={T}:if type(creature[sliver]|myhand)~morethan~0 then add{U}
-auto={T}:if type(creature[sliver]|myhand)~morethan~0 then add{B}
-auto={T}:if type(creature[sliver]|myhand)~morethan~0 then add{G}
-auto={T}:if type(creature[sliver]|myhand)~morethan~0 then add{R}
-auto={5}{T}:if type(creature[sliver]|mybattlefield)~morethan~0 then token(Sliver,Creature Sliver,1/1)
+auto={T}:add{C}
+auto={T} restriction{type(sliver|myhand)~morethan~0}:add{W}
+auto={T} restriction{type(sliver|myhand)~morethan~0}:add{U}
+auto={T} restriction{type(sliver|myhand)~morethan~0}:add{B}
+auto={T} restriction{type(sliver|myhand)~morethan~0}:add{G}
+auto={T} restriction{type(sliver|myhand)~morethan~0}:add{R}
+auto={5}{T} restriction{type(sliver|mybattlefield)~morethan~0}:token(Sliver,Creature Sliver,1/1)
 text={T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a Sliver spell. -- {5}, {T}: Put a 1/1 colorless Sliver creature token onto the battlefield. Activate this ability only if you control a Sliver.
 type=Land
 [/card]
@@ -41423,31 +41495,31 @@ subtype=Aura
 [/card]
 [card]
 name=Smokebraider
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{G}{G}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{G}{W}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{G}{R}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{G}{B}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{G}{U}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{B}{B}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{B}{W}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{B}{R}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{B}{U}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{B}{G}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{R}{R}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{R}{G}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{R}{W}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{R}{B}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{R}{U}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{U}{U}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{U}{B}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{U}{W}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{U}{R}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{U}{G}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{W}{W}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{W}{U}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{W}{B}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{W}{R}
-auto={T}:if type(creature[elemental]|myhand,mybattlefield)~morethan~0 then add{W}{G}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{G}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{W}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{R}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{B}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{U}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{B}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{W}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{R}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{U}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{G}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{R}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{G}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{W}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{B}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{U}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{U}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{B}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{W}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{R}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{G}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{W}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{U}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{B}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{R}
+auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{G}
 text={T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast Elemental spells or activate abilities of Elementals.
 mana={1}{R}
 type=Creature
@@ -41627,7 +41699,7 @@ type=Artifact
 [/card]
 [card]
 name=Soldevi Machinist
-auto={T}:if type(artifact|mybattlefield)~morethan~0 then add{2}
+auto={T} restriction{type(artifact|mybattlefield)~morethan~0}:add{C}{C}
 text={T}: Add {2} to your mana pool. Spend this mana only to activate abilities of artifacts.
 mana={1}{U}
 type=Creature
@@ -41744,11 +41816,11 @@ toughness=2
 [/card]
 [card]
 name=Somberwald Sage
-auto={T}:if type(creature|myhand)~morethan~0 then add{W}{W}{W}
-auto={T}:if type(creature|myhand)~morethan~0 then add{G}{G}{G}
-auto={T}:if type(creature|myhand)~morethan~0 then add{R}{R}{R}
-auto={T}:if type(creature|myhand)~morethan~0 then add{U}{U}{U}
-auto={T}:if type(creature|myhand)~morethan~0 then add{B}{B}{B}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{W}{W}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{G}{G}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{R}{R}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{U}{U}
+auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{B}{B}
 text={T}: Add three mana of any one color to your mana pool. Spend this mana only to cast creature spells.
 mana={2}{G}
 type=Creature
@@ -46680,11 +46752,11 @@ toughness=2
 name=Throne of Makindi
 auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Charge)
-auto={T}{C(0/0,-1,Charge)}:if type(*[haskicker]|myhand)~morethan~0 then add{B}{B}
-auto={T}{C(0/0,-1,Charge)}:if type(*[haskicker]|myhand)~morethan~0 then add{R}{R}
-auto={T}{C(0/0,-1,Charge)}:if type(*[haskicker]|myhand)~morethan~0 then add{G}{G}
-auto={T}{C(0/0,-1,Charge)}:if type(*[haskicker]|myhand)~morethan~0 then add{W}{W}
-auto={T}{C(0/0,-1,Charge)}:if type(*[haskicker]|myhand)~morethan~0 then add{U}{U}
+auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{B}{B}
+auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{R}{R}
+auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{G}{G}
+auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{W}{W}
+auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{U}{U}
 text={T}: Add {C}. -- {1}, {T}: Put a charge counter on Throne of Makindi -- {T}, remove a charge counter from Throne of Makindi: Add two mana of any color. Use this mana only to cast kicker spells.
 type=Land
 [/card]
@@ -47546,10 +47618,10 @@ type=Instant
 [/card]
 [card]
 name=Tournament Grounds
-auto={T}:Add{1}
-auto={T}:if type(*[knight;equipment]|myhand)~morethan~0 then Add{R}
-auto={T}:if type(*[knight;equipment]|myhand)~morethan~0 then Add{W}
-auto={T}:if type(*[knight;equipment]|myhand)~morethan~0 then Add{B}
+auto={T}:add{C}
+auto={T} restriction{type(*[knight;equipment]|myhand)~morethan~0}:add{R}
+auto={T} restriction{type(*[knight;equipment]|myhand)~morethan~0}:add{W}
+auto={T} restriction{type(*[knight;equipment]|myhand)~morethan~0}:add{B}
 text={T}: Add {1}. -- {T}: Add {R}, {W}, or {B}. Spend this mana only to cast a Knight or Equipment spell.
 type=Land
 [/card]
@@ -48695,13 +48767,7 @@ toughness=1
 [/card]
 [card]
 name=Unclaimed Territory
-auto=chooseatype counter(0/0,1,chosentype) chooseend
-auto={T}:add{1}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{W}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{U}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{B}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{R}
-auto={T}:if type(creature[chosentype]|myhand)~morethan~0 then add{G}
+auto=chooseatype transforms((,newability[{T}:add{C}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{B}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{U}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{G}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{R}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{W}])) forever chooseend
 text=As Unclaimed Territory enters the battlefield, choose a creature type. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell of the chosen type.
 type=Land
 [/card]
@@ -49054,7 +49120,7 @@ type=Instant
 [card]
 name=Untaidake, the Cloud Keeper
 auto=tap(noevent)
-auto={T}{L:2}:if type(*[legendary]|myhand)~morethan~0 then add{2}
+auto={T}{L:2} restriction{type(*[legendary]|myhand)~morethan~0}:add{C}{C}
 text=Untaidake, the Cloud Keeper enters the battlefield tapped. -- {T}, Pay 2 life: Add {2} to your mana pool. Spend this mana only to cast legendary spells.
 type=Legendary Land
 [/card]
@@ -49550,11 +49616,11 @@ type=Land
 [/card]
 [card]
 name=Vedalken Engineer
-auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{W}{W}
-auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{G}{G}
-auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{B}{B}
-auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{R}{R}
-auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{U}{U}
+auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{W}{W}
+auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{G}{G}
+auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{B}{B}
+auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{R}{R}
+auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{U}{U}
 text={T}: Add two mana of any one color to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
 mana={1}{U}
 type=Creature
@@ -50771,7 +50837,7 @@ toughness=2
 [card]
 name=Wall of Forgotten Pharaohs
 abilities=defender
-auto={T}{restriction type(desert|mybattlefield,mygraveyard)~morethan~0}:damage:1 target(player)
+auto={T} restriction{type(desert|mybattlefield,mygraveyard)~morethan~0}:damage:1 target(player)
 text=Defender -- {T}: Wall of Forgotten Pharaohs deals 1 damage to target player. Activate this ability only if you control a Desert or there is a Desert card in your graveyard.
 mana={2}
 type=Artifact Creature
