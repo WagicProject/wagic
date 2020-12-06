@@ -478,12 +478,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Arcane Signet
-text={T}: Add one mana of any color in your commander's color identity.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Arcanum Wings
 text=Enchant creature -- Enchanted creature has flying. -- Aura swap {2}{U} ({2}{U}: Exchange this Aura with an Aura card in your hand.)
 mana={1}{U}

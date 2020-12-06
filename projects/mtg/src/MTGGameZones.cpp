@@ -78,6 +78,22 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
             }
         }
     }
+    //commander zone init
+    if(deck->CommandZone.size())
+    {
+        for(unsigned int j = 0; j < deck->CommandZone.size(); j++)
+        {
+            string cardID = deck->CommandZone[j];
+            MTGCard * card = MTGCollection()->getCardById(atoi(cardID.c_str()));
+            if(card)
+            {
+                MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+                //commander zone
+                newCard->basicAbilities[Constants::ISCOMMANDER] = 1;
+                commandzone->addCard(newCard);
+            }
+        }
+    }
 }
 
 MTGPlayerCards::~MTGPlayerCards()
@@ -91,6 +107,7 @@ MTGPlayerCards::~MTGPlayerCards()
     SAFE_DELETE(garbage);
     SAFE_DELETE(reveal);
     SAFE_DELETE(sideboard);
+    SAFE_DELETE(commandzone);
     SAFE_DELETE(temp);
     SAFE_DELETE(playRestrictions);
 }
@@ -110,6 +127,7 @@ void MTGPlayerCards::beforeBeginPhase()
     garbage->beforeBeginPhase();
     reveal->beforeBeginPhase();
     sideboard->beforeBeginPhase();
+    commandzone->beforeBeginPhase();
     temp->beforeBeginPhase();
 }
 
@@ -126,6 +144,7 @@ void MTGPlayerCards::setOwner(Player * player)
     garbageLastTurn->setOwner(player);
     reveal->setOwner(player);
     sideboard->setOwner(player);
+    commandzone->setOwner(player);
     temp->setOwner(player);
 }
 
@@ -301,6 +320,7 @@ void MTGPlayerCards::init()
     garbageLastTurn = garbage;
     reveal = NEW MTGGameZone();
     sideboard = NEW MTGGameZone();
+    commandzone = NEW MTGGameZone();
     temp = NEW MTGGameZone();
 
     playRestrictions = NEW PlayRestrictions();
@@ -393,7 +413,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         }
 
         //close the currently open MAIN display.
-        if (from == g->players[i]->game->library || from == g->players[i]->game->graveyard || from == g->players[i]->game->exile)
+        if (from == g->players[i]->game->library || from == g->players[i]->game->graveyard || from == g->players[i]->game->exile || from == g->players[i]->game->commandzone)
         {
             if (g->guiOpenDisplay)
             {
@@ -418,6 +438,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         inplaytoinplay = true;//try sending different event...
     }
 
+    //Increase the number of time this card has been casted from commandzone to recalculate cost.
+    if(from == g->players[0]->game->commandzone || from == g->players[1]->game->commandzone){
+        card->numofcastfromcommandzone++;
+        card->controller()->numOfCommandCast++;
+    }
+
     if (!(copy = from->removeCard(card, doCopy)))
         return NULL; //ERROR
 
@@ -428,6 +454,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             for(int j = 0; j < counter->nb; j++)
                 copy->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness, true);
         }
+    }
+
+    //Commander is going back to Command Zone, so we recalculate cost according to how many times it has been casted from there.
+    if(to == g->players[0]->game->commandzone || to == g->players[1]->game->commandzone){
+        for(int i = 0; i < copy->numofcastfromcommandzone; i++)
+            copy->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT,2);
     }
 
     if (card->miracle)
@@ -713,6 +745,9 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->storedSourceCard = card->storedSourceCard;
                 copy->lastController = card->controller();
                 copy->previousController = card->controller();
+                copy->basicAbilities[Constants::ISCOMMANDER] = card->basicAbilities[Constants::ISCOMMANDER];
+                copy->damageInflictedAsCommander = card->damageInflictedAsCommander;
+                copy->numofcastfromcommandzone = card->numofcastfromcommandzone;
                 for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
                     copy->alternateCostPaid[i] = card->alternateCostPaid[i];
 
@@ -1237,6 +1272,13 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     case SIDEBOARD:
         return p->game->sideboard;
 
+    case MY_COMMANDZONE:
+        return p->game->commandzone;
+    case OPPONENT_COMMANDZONE:
+        return p->opponent()->game->commandzone;
+    case COMMANDZONE:
+        return p->game->commandzone;
+
     }
     if (!p2) return NULL;
     switch (zoneId)
@@ -1264,6 +1306,9 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
 
     case TARGET_CONTROLLER_SIDEBOARD:
         return p2->game->sideboard;
+
+    case TARGET_CONTROLLER_COMMANDZONE:
+        return p2->game->commandzone;
 
     default:
         return NULL;
@@ -1385,6 +1430,17 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
             return source->playerTarget->game->sideboard;
         else return source->controller()->game->sideboard;
 
+    case TARGET_OWNER_COMMANDZONE:
+        return target->owner->game->commandzone;
+    case COMMANDZONE:
+        return target->owner->game->commandzone;
+    case OWNER_COMMANDZONE:
+        return target->owner->game->commandzone;
+    case TARGETED_PLAYER_COMMANDZONE:
+        if (source->playerTarget)
+            return source->playerTarget->game->commandzone;
+        else return source->controller()->game->commandzone;
+
     default:
         return NULL;
     }
@@ -1416,6 +1472,8 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     "mysideboard", "opponentsideboard", "targetownersideboard", "targetcontrollersideboard", "ownersideboard", "sideboard","targetedpersonssideboard",
 
+                    "mycommandzone", "opponentcommandzone", "targetownercommandzone", "targetcontrollercommandzone", "ownercommandzone", "commandzone","targetedpersonscommandzone",
+
     };
 
     int values[] = { MY_GRAVEYARD, OPPONENT_GRAVEYARD, TARGET_OWNER_GRAVEYARD, TARGET_CONTROLLER_GRAVEYARD, OWNER_GRAVEYARD,
@@ -1439,7 +1497,9 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     MY_REVEAL, OPPONENT_REVEAL, TARGET_OWNER_REVEAL, TARGET_CONTROLLER_REVEAL, OWNER_REVEAL, REVEAL,TARGETED_PLAYER_REVEAL,
 
-                    MY_SIDEBOARD, OPPONENT_SIDEBOARD, TARGET_OWNER_SIDEBOARD, TARGET_CONTROLLER_SIDEBOARD, OWNER_SIDEBOARD, SIDEBOARD,TARGETED_PLAYER_SIDEBOARD };
+                    MY_SIDEBOARD, OPPONENT_SIDEBOARD, TARGET_OWNER_SIDEBOARD, TARGET_CONTROLLER_SIDEBOARD, OWNER_SIDEBOARD, SIDEBOARD,TARGETED_PLAYER_SIDEBOARD,
+
+                    MY_COMMANDZONE, OPPONENT_COMMANDZONE, TARGET_OWNER_COMMANDZONE, TARGET_CONTROLLER_COMMANDZONE, OWNER_COMMANDZONE, COMMANDZONE,TARGETED_PLAYER_COMMANDZONE };
 
     int max = sizeof(values) / sizeof *(values);
 

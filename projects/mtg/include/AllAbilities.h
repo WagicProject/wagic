@@ -429,8 +429,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
-                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->sideboard };//wish cards use sideboard
-                for (int k = 0; k < 6; k++)
+                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->sideboard, p->game->commandzone };//wish cards use sideboard
+                for (int k = 0; k < 7; k++)
                 {
                     MTGGameZone * zone = zones[k];
                     if (tc->targetsZone(zone, card))
@@ -605,6 +605,10 @@ private:
         else if (s == "countmynoncrespell")
         {
             intValue = card->controller()->game->stack->seenThisTurn("*[-creature]", Constants::CAST_ALL);
+        }
+        else if(s == "pnumofcommandcast" || s == "onumofcommandcast")
+        {
+            intValue = (s == "pnumofcommandcast")?card->controller()->numOfCommandCast:card->controller()->opponent()->numOfCommandCast;
         }
         else if (s == "evictg")
         {

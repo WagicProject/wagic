@@ -887,10 +887,76 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                     meta_unlockRequirements = s.substr(found + 7);
                     continue;
                 }
-                found = s.find("SB:");
+                found = s.find("SB:"); // Now it's possible to add cards to Sideboard even using their Name instead of ID such as normal deck cards.
                 if (found != string::npos)
                 {
-                    Sideboard.push_back(s.substr(found + 3));
+                    s = s.substr(found + 3);
+                    s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);
+                    s.erase(0, s.find_first_not_of("\t\n\v\f\r "));
+                    std::string::const_iterator it = s.begin();
+                    while (it != s.end() && std::isdigit(*it)) ++it;
+                    if(!s.empty() && it == s.end())
+                        Sideboard.push_back(s);
+                    else {
+                        int numberOfCopies = 1;
+                        size_t found = s.find(" *");
+                        if (found != string::npos){
+                            numberOfCopies = atoi(s.substr(found + 2).c_str());
+                            s = s.substr(0, found);
+                        }
+                        MTGCard * card = database->getCardByName(s);
+                        if (card){
+                            for (int i = 0; i < numberOfCopies; i++){
+                                std::stringstream str_id;
+                                str_id << card->getId();
+                                Sideboard.push_back(str_id.str());
+                            }
+                        }else {
+                            DebugTrace("could not add to Sideboard any card with name: " << s);
+                        }
+                    }
+                    continue;
+                }
+                found = s.find("CMD:"); // Now it's possible to add a card to Command Zone even using their Name instead of ID such as normal deck cards.
+                if (found != string::npos)
+                {
+                    s = s.substr(found + 4);
+                    s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);
+                    s.erase(0, s.find_first_not_of("\t\n\v\f\r "));
+                    std::string::const_iterator it = s.begin();
+                    while (it != s.end() && std::isdigit(*it)) ++it;
+                    if(!s.empty() && it == s.end()){
+                        MTGCard * newcard = database->getCardById(atoi(s.c_str()));
+                        if(!CommandZone.size() && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])) // If no commander has been added you can add one.
+                            CommandZone.push_back(s);
+                        else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])){ // If a commander has been added you can add a new one just if both have partner ability.
+                            if(newcard && newcard->data->basicAbilities[Constants::PARTNER]){
+                                MTGCard * oldcard = database->getCardById(atoi((CommandZone.at(0)).c_str()));
+                                if(oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && oldcard->data->name != newcard->data->name)
+                                    CommandZone.push_back(s);
+                            }
+                        }
+                    }else {
+                        size_t found = s.find(" *");
+                        if (found != string::npos)
+                            s = s.substr(0, found);
+                        MTGCard * newcard = database->getCardByName(s);
+                        if (newcard){
+                            std::stringstream str_id;
+                            str_id << newcard->getId();
+                            if(!CommandZone.size() && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])) // If no commander has been added you can add one.
+                                CommandZone.push_back(str_id.str());
+                            else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])){ // If a commander has been added you can add a new one just if both have partner ability.
+                                if(newcard->data->basicAbilities[Constants::PARTNER]){
+                                    MTGCard * oldcard = database->getCardById(atoi((CommandZone.at(0)).c_str()));
+                                    if(oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && oldcard->data->name != newcard->data->name)
+                                        CommandZone.push_back(str_id.str());
+                                }
+                            }
+                        }else {
+                            DebugTrace("could not add to CommandZone any card with name: " << s);
+                        }
+                    }
                     continue;
                 }
                 continue;

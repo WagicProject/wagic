@@ -175,6 +175,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
             }
+            else if (zoneName.compare("commandzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
+            }
             else if (zoneName.compare("reveal") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_REVEAL;
@@ -210,6 +215,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else if (zoneName.compare("stack") == 0)
             {
@@ -228,6 +235,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
                 zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
             }
             else if (zoneName.compare("opponentcastingzone") == 0)
             {
@@ -235,18 +243,22 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else if (zoneName.compare("mynonplaynonexile") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
                 zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
             }
             else if (zoneName.compare("opponentnonplaynonexile") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else if (zoneName.compare("myzones") == 0)
             {
@@ -256,6 +268,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
             }
             else if (zoneName.compare("opponentzones") == 0)
             {
@@ -265,6 +279,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else
             {
@@ -1154,8 +1170,8 @@ bool TargetChooser::validTargetsExist(int maxTargets)
         int maxAmount = 0;
         Player *p = observer->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard };
-        for (int k = 0; k < 8; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard, p->game->commandzone };
+        for (int k = 0; k < 9; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -1188,8 +1204,8 @@ int TargetChooser::countValidTargets(bool withoutProtections)
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard };
-        for (int k = 0; k < 8; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard, p->game->commandzone };
+        for (int k = 0; k < 9; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))

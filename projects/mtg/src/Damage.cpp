@@ -256,6 +256,8 @@ int Damage::resolve()
             else
             {
                 ((MTGCardInstance*)source)->damageToOpponent = true;
+                if(((MTGCardInstance*)source)->basicAbilities[Constants::ISCOMMANDER])
+                    ((MTGCardInstance*)source)->damageInflictedAsCommander += damage;
             }
             target->lifeLostThisTurn += damage;
             if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
@@ -271,6 +273,8 @@ int Damage::resolve()
             }
             WEvent * lifed = NEW WEventLife((Player*)target,-damage, source);
             observer->receiveEvent(lifed);
+            if(((MTGCardInstance*)source)->damageInflictedAsCommander > 20) // if a Commander has dealt 21 or more damages to a player, he loose game.
+                observer->setLoser(((MTGCardInstance*)source)->controller()->opponent());
         }
     }
 

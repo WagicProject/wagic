@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Wagic</string>
-    <string name="app_version">0.22.3</string>
+    <string name="app_version">0.23.1</string>
     <string name="info_text">All Rights Reserved.</string>
 </resources>

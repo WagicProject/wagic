@@ -8,6 +8,7 @@ class GuiGraveyard;
 class GuiLibrary;
 class GuiOpponentHand;
 class GuiExile;
+class GuiCommandZone;
 class GuiAvatars: public GuiLayer
 {
 protected:
@@ -16,6 +17,7 @@ protected:
     GuiLibrary* selfLibrary, *opponentLibrary;
     GuiOpponentHand *opponentHand;
     GuiExile* selfExile, *opponentExile;
+    GuiCommandZone* selfCommandZone, *opponentCommandZone;
     GuiAvatar* active;
 
 public:

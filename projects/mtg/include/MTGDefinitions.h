@@ -288,7 +288,9 @@ class Constants
       NOFIZZLEALTERNATIVE = 162,
       HASOTHERKICKER = 163,
       PARTNER = 164,
-      NB_BASIC_ABILITIES = 165,
+      CANBECOMMANDER = 165,
+      ISCOMMANDER = 166,
+      NB_BASIC_ABILITIES = 167,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

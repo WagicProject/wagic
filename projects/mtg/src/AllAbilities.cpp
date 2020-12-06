@@ -1152,10 +1152,10 @@ int AAAlterMonarch::resolve()
         {
             if(!pTarget->monarch){
                 pTarget->monarch = 1;
-			    pTarget->opponent()->monarch = 0;
+                pTarget->opponent()->monarch = 0;
                 WEvent * e = NEW WEventplayerMonarch(pTarget);
                 game->receiveEvent(e);
-			}
+            }
         }
     }
     return 0;

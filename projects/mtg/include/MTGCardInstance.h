@@ -63,6 +63,8 @@ public:
     int sunburst;
     int equipment;
     int mutation;
+    int damageInflictedAsCommander;
+    int numofcastfromcommandzone;
     int auras;
     bool wasDealtDamage;
     bool combatdamageToOpponent;

@@ -1765,6 +1765,18 @@ text={T}: Add {C} to your mana pool. -- {1}, {T}: Until end of turn, creatures y
 type=Land
 [/card]
 [card]
+name=Arcane Signet
+auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R}])) forever
+auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W}])) forever
+auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
+auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
+auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
+auto=if type(artifact|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
+text={T}: Add one mana of any color in your commander's color identity.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Arcanist's Owl
 abilities=flying
 auto=name(look) reveal:4 optionone name(Get an artifact card) target(<1>*[artifact;enchantment]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
@@ -4048,6 +4060,7 @@ toughness=2
 [/card]
 [card]
 name=Blaring Captain
+abilities=partner
 auto=may moveto(myhand) notatarget(blaring recruiter|mylibrary)
 auto=@combat(attacking) source(this):all(warrior[attacking]) 1/1
 text=Partner with Blaring Recruiter (When this creature enters the battlefield, target player may put Blaring Recruiter into their hand from their library, then shuffle.) -- Whenever Blaring Captain attacks, attacking Warriors get +1/+1 until end of turn.
@@ -4059,6 +4072,7 @@ toughness=2
 [/card]
 [card]
 name=Blaring Recruiter
+abilities=partner
 auto=may moveto(myhand) notatarget(blaring captain|mylibrary)
 auto={2}{W}:create(warrior:creature warrior:1/1:white:)
 text=Partner with Blaring Captain (When this creature enters the battlefield, target player may put Blaring Captain into their hand from their library, then shuffle.) -- {2}{W}: Create a 1/1 white Warrior creature token.
@@ -5154,12 +5168,12 @@ type=Enchantment
 [/card]
 [card]
 name=Brallin, Skyshark Rider
-abilities=hiddenface
+abilities=hiddenface,partner
 aicode=activate moveTo(myhand) target(Shabraz, the Skyshark|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Shabraz, the Skyshark|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Shabraz, the Skyshark|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@discarded(*|myHand):all(this) counter(1/1,1) && damage:1 opponent
 auto={R}:target(creature[Shark]) trample ueot
-text=Partner with Shabraz, the Skyshark (When this creature enters the battlefield, target player may put Shabraz into their hand from their library, then shuffle.) -- Whenever you discard a card, put a +1/+1 counter on Brallin, Skyshark Rider and it deals 1 damage to each opponent. / {R}: Target Shark gains trample until end of turn.
+text=Partner with Shabraz, the Skyshark (When this creature enters the battlefield, target player may put Shabraz into their hand from their library, then shuffle.) -- Whenever you discard a card, put a +1/+1 counter on Brallin, Skyshark Rider and it deals 1 damage to each opponent. -- {R}: Target Shark gains trample until end of turn.
 mana={3}{R}
 type=Legendary Creature
 subtype=Human Shaman
@@ -6590,7 +6604,7 @@ toughness=4
 [/card]
 [card]
 name=Cazur, Ruthless Stalker
-abilities=hiddenface
+abilities=hiddenface,partner
 aicode=activate moveTo(myhand) target(Ukkima, Stalking Shadow|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Ukkima, Stalking Shadow|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Ukkima, Stalking Shadow|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@combatdamaged(player) from(creature|myBattlefield):all(trigger[from]) counter(1/1)
@@ -6766,6 +6780,7 @@ toughness=4
 [/card]
 [card]
 name=Chakram Retriever
+abilities=partner
 auto=may moveto(myhand) notatarget(chakram slinger|mylibrary)
 auto=@movedTo(*|mystack) restriction{myturnonly}:untap target(creature)
 text=Partner with Chakram Slinger (When this creature enters the battlefield, target player may put Chakram Slinger into their hand from their library, then shuffle.) -- Whenever you cast a spell during your turn, untap target creature.
@@ -6777,6 +6792,7 @@ toughness=4
 [/card]
 [card]
 name=Chakram Slinger
+abilities=partner
 auto=may moveto(myhand) notatarget(chakram retriever|mylibrary)
 auto={R}{T}:damage:2 target(player)
 text=Partner with Chakram Retriever (When this creature enters the battlefield, target player may put Chakram Retriever into their hand from their library, then shuffle.) -- {R}, {T}: Chakram Slinger deals 2 damage to target player or planeswalker.
@@ -8200,7 +8216,12 @@ type=Land
 [/card]
 [card]
 name=Command Tower
-auto=chooseacolor transforms((,newability[{T}:add{chosencolor}])) forever chooseend
+auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R}])) forever
+auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W}])) forever
+auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
+auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
+auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
+auto=if type(artifact|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
 text={T}: Add to your mana pool one mana of any color in your commander's color identity.
 type=Land
 [/card]
@@ -8223,8 +8244,15 @@ type=Instant
 [card]
 name=Commander's Plate
 target=creature
-auto={3}:equip
+auto={5}:equip
+auto={3} restriction{type(creature[iscommander]|mybattlefield)~morethan~0}:name(equip commander) rehook target(creature[iscommander]|mybattlefield)
 auto=teach(creature) 3/3
+auto=if type(*[red]|myzones)~lessthan~1 then teach(creature) protection from red
+auto=if type(*[white]|myzones)~lessthan~1 then teach(creature) protection from white
+auto=if type(*[green]|myzones)~lessthan~1 then teach(creature) protection from green
+auto=if type(*[blue]|myzones)~lessthan~1 then teach(creature) protection from blue
+auto=if type(*[black]|myzones)~lessthan~1 then teach(creature) protection from black
+auto=if type(artifact|myzones)~lessthan~1 then teach(creature) protection from(artifact)
 text=Equipped creature gets +3/+3 and has protection from each color that's not in your commander's color identity. -- Equip commander {3} -- Equip {5}
 mana={1}
 type=Artifact
@@ -8232,7 +8260,12 @@ subtype=Equipment
 [/card]
 [card]
 name=Commander's Sphere
-auto=chooseacolor transforms((,newability[{T}:add{chosencolor}])) forever chooseend
+auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R}])) forever
+auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W}])) forever
+auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
+auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
+auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
+auto=if type(artifact|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
 auto={S}:draw:1 controller
 text={T}: Add to your mana pool one mana of any color in your commander's color identity. -- Sacrifice Commander's Sphere: Draw a card.
 mana={3}
@@ -18560,7 +18593,7 @@ toughness=3
 [/card]
 [card]
 name=Gorm the Great
-abilities=vigilance,menace
+abilities=vigilance,menace,partner
 auto=may moveto(myhand) notatarget(Virtus the Veiled|mylibrary) and!(shuffle)!
 auto=@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot
 text=Partner with Virtus the Veiled (When this creature enters the battlefield, target player may put Virtus into their hand from their library, then shuffle.) -- Vigilance -- Gorm the Great must be blocked if able, and Gorm must be blocked by two or more creatures if able.
@@ -19416,7 +19449,7 @@ toughness=4
 [/card]
 [card]
 name=Haldan, Avid Arcanist
-abilities=hiddenface,canplayfromexile
+abilities=hiddenface,canplayfromexile,partner
 aicode=activate moveTo(myhand) target(Pako, Arcane Retriever|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Pako, Arcane Retriever|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Pako, Arcane Retriever|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=lord(*[-creature]|mycastingzone) transforms((,newability[anytypeofmana]))
@@ -24029,7 +24062,7 @@ toughness=4
 [/card]
 [card]
 name=Khorvath Brightflame
-abilities=flying,haste
+abilities=flying,haste,partner
 auto=may moveto(myhand) notatarget(sylvia brightspear|mylibrary)
 auto=lord(knight|myBattlefield) flying
 auto=lord(knight|myBattlefield) haste
@@ -25427,6 +25460,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ley Weaver
+abilities=partner
 auto=may moveto(myhand) notatarget(lore weaver|mylibrary)
 auto={T}:untap <2>target(land)
 text=Partner with Lore Weaver (When this creature enters the battlefield, target player may put Lore Weaver into their hand from their library, then shuffle.) -- {T}: Untap two target lands.
@@ -26256,6 +26290,7 @@ toughness=3
 [/card]
 [card]
 name=Lore Weaver
+abilities=partner
 auto=may moveto(myhand) notatarget(ley weaver|mylibrary)
 auto={5}{U}{U}:draw:2 target(player)
 text=Partner with Ley Weaver (When this creature enters the battlefield, target player may put Ley Weaver into their hand from their library, then shuffle.) -- {5}{U}{U}: Target player draws two cards.
@@ -30120,7 +30155,7 @@ toughness=2
 [/card]
 [card]
 name=Nikara, Lair Scavenger
-abilities=menace
+abilities=menace,partner
 auto=may moveto(myhand) target(Yannik, Scavenging Sentinel|mylibrary)
 auto=@movedTo(other creature[counter{1/1<anyamount>}]|nonbattlezone) from(mybattlefield):draw:1 && life:-1 controller
 text=Partner with Yannik, Scavenging Sentinel (When this creature enters the battlefield, target player may put Yannik into their hand from their library, then shuffle.) -- Menace -- Whenever another creature you control leaves the battlefield, if it had one or more counters on it, you draw a card and you lose 1 life.
@@ -32023,7 +32058,7 @@ toughness=2
 [/card]
 [card]
 name=Pako, Arcane Retriever
-abilities=hiddenface,haste
+abilities=hiddenface,haste,partner
 aicode=activate moveTo(myhand) target(Haldan, Avid Arcanist|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Haldan, Avid Arcanist|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Haldan, Avid Arcanist|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@combat(attacking) source(this):NOTCODED
@@ -33755,6 +33790,7 @@ type=Artifact
 [/card]
 [card]
 name=Proud Mentor
+abilities=partner
 auto=may moveto(myhand) notatarget(impetuous protege|mylibrary)
 auto={W}{T}:tap target(creature)
 text=Partner with Impetuous Protege (When this creature enters the battlefield, target player may put Impetuous Protege into their hand from their library, then shuffle.) -- {W}, {T}: Tap target creature.
@@ -35434,7 +35470,7 @@ type=Sorcery
 [/card]
 [card]
 name=Regna, the Redeemer
-abilities=flying
+abilities=flying,partner
 auto=may moveto(myhand) notatarget(krav, the unredeemed|mylibrary)
 auto=@each endofturn restriction{compare(lifegain)~morethan~0}:create(warrior:creature warrior:1/1:white:)*2
 text=Partner with Krav, the Unredeemed (When this creature enters the battlefield, target player may put Krav into their hand from their library, then shuffle.) -- Flying -- At the beginning of each end step, if your team gained life this turn, create two 1/1 white Warrior creature tokens.
@@ -39372,7 +39408,7 @@ toughness=2
 [/card]
 [card]
 name=Shabraz, the Skyshark
-abilities=hiddenface
+abilities=hiddenface,partner
 aicode=activate moveTo(myhand) target(Brallin, Skyshark Rider|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Brallin, Skyshark Rider|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Brallin, Skyshark Rider|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@drawof(player:all(this) counter(1/1,1) && life:1 controller
@@ -40459,7 +40495,7 @@ type=Instant
 [/card]
 [card]
 name=Silvar, Devourer of the Free
-abilities=hiddenface,menace
+abilities=hiddenface,menace,partner
 aicode=activate moveTo(myhand) target(Trynn, Champion of Freedom|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Trynn, Champion of Freedom|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Trynn, Champion of Freedom|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto={S(Human|myBattlefield)}:all(this) counter(1/1) && indestructible ueot
@@ -42131,7 +42167,7 @@ subtype=Aura
 [/card]
 [card]
 name=Soulblade Corrupter
-abilities=deathtouch
+abilities=deathtouch,partner
 auto=may moveto(myhand) notatarget(soulblade renewer|mylibrary)
 auto=@combat(attacking) source(creature[counter{1/1.1}]|mybattlefield):deathtouch ueot
 text=Partner with Soulblade Renewer (When this creature enters the battlefield, target player may put Soulblade Renewer into their hand from their library, then shuffle.) -- Deathtouch -- Whenever a creature with a +1/+1 counter on it attacks one of your opponents, that creature gains deathtouch until end of turn.
@@ -42143,6 +42179,7 @@ toughness=3
 [/card]
 [card]
 name=Soulblade Renewer
+abilities=partner
 auto=may moveto(myhand) notatarget(soulblade corrupter|mylibrary)
 auto=target(<upto:2>other creature|battlefield) counter(1/1) 
 text=Partner with Soulblade Corrupter (When this creature enters the battlefield, target player may put Soulblade Corrupter into their hand from their library, then shuffle.) -- When Soulblade Renewer enters the battlefield, support 2. (Put a +1/+1 counter on each of up to two other target creatures.)
@@ -44878,7 +44915,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sylvia Brightspear
-abilities=double strike
+abilities=double strike,partner
 auto=lord(dragon|myBattlefield) haste double strike
 auto=may moveto(myhand) notatarget(khorvath brightflame|mylibrary)
 text=Partner with Khorvath Brightflame (When this creature enters the battlefield, target player may put Khorvath into their hand from their library, then shuffle.) -- Double strike -- Dragons your team controls have double strike.
@@ -47500,6 +47537,7 @@ toughness=3
 [/card]
 [card]
 name=Toothy, Imaginary Friend
+abilities=partner
 auto=may moveto(myhand) notatarget(pir, imaginative rascal|mylibrary)
 auto=@drawof(player):counter(1/1)
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):thisforeach(counter{1/1,1}) draw:1 controller
@@ -48261,7 +48299,7 @@ toughness=3
 [/card]
 [card]
 name=Trynn, Champion of Freedom
-abilities=hiddenface
+abilities=hiddenface,partner
 aicode=activate moveTo(myhand) target(Silvar, Devourer of the Free|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Silvar, Devourer of the Free|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Silvar, Devourer of the Free|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@each my endofturn:if raid then token(Soldier Try)
@@ -48646,7 +48684,7 @@ toughness=0
 [/card]
 [card]
 name=Ukkima, Stalking Shadow
-abilities=hiddenface,unblockable
+abilities=hiddenface,unblockable,partner
 aicode=activate moveTo(myhand) target(Cazur, Ruthless Stalker|mylibrary)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Cazur, Ruthless Stalker|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Cazur, Ruthless Stalker|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@movedto(this|nonbattlezone):damage:storedpower target(opponent) && life:storedpower controller
@@ -50284,7 +50322,7 @@ type=Sorcery
 [/card]
 [card]
 name=Virtus the Veiled
-abilities=deathtouch
+abilities=deathtouch,partner
 auto=may moveto(myhand) notatarget(gorm the great|mylibrary)
 auto=@combatdamaged(player) from(this):life:-halfdownopponentlifetotal opponent
 text=Partner with Gorm the Great (When this creature enters the battlefield, target player may put Gorm into their hand from their library, then shuffle.) -- Deathtouch -- Whenever Virtus the Veiled deals combat damage to a player, that player loses half their life, rounded up.
@@ -50974,7 +51012,11 @@ type=Artifact
 [card]
 name=War Room
 auto={T}:add{C}
-auto={L:1}{3}{T}:draw:1 controller
+auto={L:1}{3}{T}:name(1 color in your identity) name(1 color in your identity) draw:1 controller
+auto={L:2}{3}{T}:name(2 colors in your identity) name(2 colors in your identity) draw:1 controller
+auto={L:3}{3}{T}:name(3 colors in your identity) name(3 colors in your identity) draw:1 controller
+auto={L:4}{3}{T}:name(4 colors in your identity) name(4 colors in your identity) draw:1 controller
+auto={L:5}{3}{T}:name(5 colors in your identity) name(5 colors in your identity) draw:1 controller
 text={T}: Add {C}. -- {3}, {T}, Pay life equal to the number of colors in your commanders' color identity: Draw a card.
 type=Land
 [/card]
@@ -52374,7 +52416,7 @@ toughness=4
 [/card]
 [card]
 name=Yannik, Scavenging Sentinel
-abilities=vigilance
+abilities=vigilance,partner
 auto=may moveto(myhand) target(Nikara, Lair Scavenger|mylibrary)
 auto=(blink)forsrc target(other creature|mybattlefield) && target(creature) counter(1/1,storedpower)
 text=Partner with Nikara, Lair Scavenger -- Vigilance -- When Yannik, Scavenging Sentinel enters the battlefield, exile another creature you control until Yannik leaves the battlefield. When you do, distribute X +1/+1 counters among any number of target creatures, where X is the exiled creature's power.

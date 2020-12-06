@@ -215,6 +215,7 @@ public:
     string meta_name;
     vector<string> meta_AIHints;
     vector<string> Sideboard;
+    vector<string> CommandZone;
     string meta_unlockRequirements;
 
     int meta_id;

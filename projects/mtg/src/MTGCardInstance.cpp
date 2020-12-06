@@ -238,6 +238,8 @@ void MTGCardInstance::initMTGCI()
     sunburst = 0;
     equipment = 0;
     mutation = 0;
+    damageInflictedAsCommander = 0;
+    numofcastfromcommandzone = 0;
     auras = 0;
     combatdamageToOpponent = false;
     damageToOpponent = false;

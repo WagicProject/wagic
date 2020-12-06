@@ -598,20 +598,22 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         p->preventable = initState.playerData[i].player->preventable;
         p->energyCount = initState.playerData[i].player->energyCount;
         p->yidaroCount = initState.playerData[i].player->yidaroCount;
+        p->numOfCommandCast = initState.playerData[i].player->numOfCommandCast;
         p->monarch = initState.playerData[i].player->monarch;
         p->surveilOffset = initState.playerData[i].player->surveilOffset;
         if (initState.playerData[i].player->mAvatarName.size())
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->reveal, p->game->sideboard };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->reveal, p->game->sideboard, p->game->commandzone };
         MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
                                               initState.playerData[i].player->game->library,
                                               initState.playerData[i].player->game->hand,
                                               initState.playerData[i].player->game->inPlay,
                                               initState.playerData[i].player->game->exile,
                                               initState.playerData[i].player->game->reveal,
-                                              initState.playerData[i].player->game->sideboard };
+                                              initState.playerData[i].player->game->sideboard,
+                                              initState.playerData[i].player->game->commandzone };
         for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
