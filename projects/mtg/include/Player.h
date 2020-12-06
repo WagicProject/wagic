@@ -44,6 +44,7 @@ public:
     int drawCounter;
     int energyCount;
     int yidaroCount;
+    int numOfCommandCast;
     int monarch;
     int surveilOffset;
     int epic;

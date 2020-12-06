@@ -1346,6 +1346,8 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
         graveyard->toggleDisplay();
     else if (GuiExile* exile = dynamic_cast<GuiExile*>(target))
         exile->toggleDisplay();
+    else if (GuiCommandZone* commandzone = dynamic_cast<GuiCommandZone*>(target))
+        commandzone->toggleDisplay();
     //opponenthand
     else if (GuiOpponentHand* opponentHand = dynamic_cast<GuiOpponentHand*>(target))
         if (opponentHand->showCards)

@@ -207,7 +207,7 @@ void GuiGameZone::Render()
     bool showopponenttop = (zone && zone->owner->opponent()->game->battlefield->nb_cards && zone->owner->opponent()->game->battlefield->hasAbility(Constants::SHOWOPPONENTTOPLIBRARY))?true:false;
 
     quad->SetColor(ARGB((int)(actA),255,255,255));
-    if(type == GUI_EXILE)
+    if(type == GUI_EXILE || type == GUI_COMMANDZONE)
     {
         quad->SetColor(ARGB((int)(actA),255,240,255));
     }
@@ -217,7 +217,8 @@ void GuiGameZone::Render()
     JQuadPtr iconhand = WResourceManager::Instance()->RetrieveTempQuad("iconhand.png");
     JQuadPtr iconlibrary = WResourceManager::Instance()->RetrieveTempQuad("iconlibrary.png");
     JQuadPtr iconexile = WResourceManager::Instance()->RetrieveTempQuad("iconexile.png");
-    
+    JQuadPtr iconcommandzone = WResourceManager::Instance()->RetrieveTempQuad("iconcommandzone.png");
+
     if(iconlibrary && type == GUI_LIBRARY)
     {
         scale2 = defaultHeight / iconlibrary->mHeight;
@@ -249,6 +250,14 @@ void GuiGameZone::Render()
         mody = -2.f;
         iconexile->SetColor(ARGB((int)(actA),255,255,255));
         quad = iconexile;
+    }
+    if(iconcommandzone && type == GUI_COMMANDZONE)
+    {
+        scale2 = defaultHeight / iconcommandzone->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconcommandzone->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconcommandzone;
     }
     //
 
@@ -518,6 +527,52 @@ int GuiExile::receiveEventMinus(WEvent* e)
 ostream& GuiExile::toString(ostream& out) const
 {
     return out << "GuiExile :::";
+}
+
+GuiCommandZone::GuiCommandZone(float x, float y, bool hasFocus, Player * player, GuiAvatars* parent) :
+    GuiGameZone(x, y, hasFocus, player->game->commandzone, parent), player(player)
+{
+    type = GUI_COMMANDZONE;
+}
+
+int GuiCommandZone::receiveEventPlus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->to == zone)
+        {
+            CardView* t;
+            if (event->card->view)
+                t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
+            else
+                t = NEW CardView(CardView::nullZone, event->card, x, y);
+            t->x = x + Width / 2;
+            t->y = y + Height / 2;
+            t->zoom = 0.6f;
+            t->alpha = 0;
+            cards.push_back(t);
+            return 1;
+        }
+    return 0;
+}
+
+int GuiCommandZone::receiveEventMinus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->from == zone)
+            for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+                if (event->card->previous == (*it)->card)
+                {
+                    CardView* cv = *it;
+                    cards.erase(it);
+                    zone->owner->getObserver()->mTrash->trash(cv);
+                    return 1;
+                }
+    return 0;
+}
+
+ostream& GuiCommandZone::toString(ostream& out) const
+{
+    return out << "GuiCommandZone :::";
 }
 
 //opponenthand begins

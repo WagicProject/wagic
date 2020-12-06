@@ -1908,7 +1908,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
     for (int i = 0; i < 2; i++)
     {
         Player * p = observer->players[i];
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay,p->game->stack,p->game->exile, p->game->reveal, p->game->sideboard };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay,p->game->stack,p->game->exile, p->game->reveal, p->game->sideboard, p->game->commandzone };
         if(a->getActionTc()->canTarget((Targetable*)p))
         {
             if(a->getActionTc()->maxtargets == 1)
@@ -1919,7 +1919,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
             else
                 potentialTargets.push_back(p);
         }
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < 9; j++)
         {
             MTGGameZone * zone = playerZones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -2395,8 +2395,8 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
             }
         }
         MTGPlayerCards * playerZones = target->game;
-        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack,playerZones->exile,playerZones->reveal, playerZones->sideboard };
-        for (int j = 0; j < 8; j++)
+        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack,playerZones->exile,playerZones->reveal, playerZones->sideboard, playerZones->commandzone };
+        for (int j = 0; j < 9; j++)
         {
             MTGGameZone * zone = zones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -3032,6 +3032,135 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     shouldPlayPercentage = shouldPlayPercentage/3;
             }
             DebugTrace("Should I play from hand" << (card ? card->name : "Nothing" ) << "?" << endl 
+                <<"shouldPlayPercentage = "<< shouldPlayPercentage);
+            if(card->getRestrictions().size())
+            {
+                AbilityFactory af(observer);
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+            }
+            int randomChance = randomGenerator.random();
+            int chance = randomChance % 100;
+            if (chance > shouldPlayPercentage)
+                continue;
+            if(shouldPlayPercentage <= 10)
+            {
+                DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
+            }
+            nextCardToPlay = card;
+            maxCost = currentCost;
+            if (hasX)
+                maxCost = pMana->getConvertedCost();
+        }
+    }
+    //play from commandzone
+    while ((card = cd.nextmatch(game->commandzone, card)))
+    {
+        if (!CanHandleCost(card->getManaCost(),card))
+            continue;
+
+        if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+            continue;
+        
+        if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
+            continue;
+        
+        if(hints && hints->HintSaysItsForCombo(observer,card))
+        {
+            if(hints->canWeCombo(observer,card,this))
+            {
+                AbilityFactory af(observer);
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+                nextCardToPlay = card;
+                gotPayments.clear();
+                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                return activateCombo();
+            }
+            else
+            {
+                nextCardToPlay = NULL;
+                    continue;
+            }
+        }
+        int currentCost = card->getManaCost()->getConvertedCost();
+        int hasX = card->getManaCost()->hasX();
+        gotPayments.clear();
+        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost());
+            //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+        {
+            TargetChooserFactory tcf(observer);
+            TargetChooser * tc = tcf.createTargetChooser(card);
+            int shouldPlayPercentage = 0;
+            if (tc)
+            {
+                int hasTarget = chooseTarget(tc,NULL,NULL,true);
+                if(
+                    (tc->maxtargets > hasTarget && tc->maxtargets > 1 && !tc->targetMin && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS) ||//target=<3>creature
+                    (tc->maxtargets == TargetChooser::UNLITMITED_TARGETS && hasTarget < 1)//target=creatures
+                    )
+                    hasTarget = 0;
+                if (!hasTarget)//single target covered here.
+                {
+                    SAFE_DELETE(tc);
+                    continue;
+                }
+                shouldPlayPercentage = 90;
+                if(tc->targetMin && hasTarget < tc->maxtargets)
+                    shouldPlayPercentage = 0;
+                if(tc->maxtargets > 1 && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS && hasTarget <= tc->maxtargets)
+                {
+                    int maxA = hasTarget-tc->maxtargets;
+                    shouldPlayPercentage += (10*maxA);//reduce the chances of playing multitarget if we are not above max targets.
+                }
+                if(tc->maxtargets == TargetChooser::UNLITMITED_TARGETS)
+                {
+                    shouldPlayPercentage = 40 + (10*hasTarget);
+                    int totalCost = pMana->getConvertedCost()-currentCost;
+                    int totalTargets = hasTarget+hasTarget;
+                    if(hasX &&  totalCost <= totalTargets)// {x} spell with unlimited targeting tend to divide damage, we want atleast 1 damage per target before casting.
+                    {
+                        shouldPlayPercentage = 0;
+                    }
+                }
+                SAFE_DELETE(tc);
+            }
+            else
+            {
+                int shouldPlay = effectBadOrGood(card);
+                if (shouldPlay == BAKA_EFFECT_GOOD)    {
+                    shouldPlayPercentage = 90;
+                }                
+                else if (BAKA_EFFECT_DONTKNOW == shouldPlay) {
+                    //previously shouldPlayPercentage = 80;, I found this a little to high
+                    //for cards which AI had no idea how to use.
+                    shouldPlayPercentage = 60;
+                }                
+                else {
+                    // shouldPlay == baka_effect_bad giving it a 10 for odd ball lottery chance.
+                    shouldPlayPercentage = 10;
+                }
+            }
+            //Reduce the chances of playing a spell with X cost if available mana is low
+            if (hasX)
+            {
+                int xDiff = pMana->getConvertedCost() - currentCost;
+                if (xDiff < 0)
+                    xDiff = 0;
+                shouldPlayPercentage = shouldPlayPercentage - static_cast<int> ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
+            }
+            if(card->getManaCost() && card->getManaCost()->getKicker() && card->getManaCost()->getKicker()->isMulti)
+            {
+                shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->getKicker()->getConvertedCost()));
+                if(shouldPlayPercentage <= 10)
+                    shouldPlayPercentage = shouldPlayPercentage/3;
+            }
+            DebugTrace("Should I play from commandzone" << (card ? card->name : "Nothing" ) << "?" << endl 
                 <<"shouldPlayPercentage = "<< shouldPlayPercentage);
             if(card->getRestrictions().size())
             {

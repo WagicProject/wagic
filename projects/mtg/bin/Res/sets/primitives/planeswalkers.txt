@@ -181,6 +181,7 @@ subtype=Ajani
 [/card]
 [card]
 name=Aminatou, the Fateshifter
+abilities=canbecommander
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw a card and return a card on top) ability$!draw:1 controller _ choice target(*|myhand) moveTo(mylibrary)!$ controller
 auto={C(0/0,-3,Loyalty)}:name(-1: Exile other permanent and return it) moveTo(exile) target(other *|myBattlefield) and! moveTo(myBattlefield)!
@@ -601,6 +602,7 @@ subtype=Daretti
 [/card]
 [card]
 name=Daretti, Scrap Savant
+abilities=canbecommander
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Discard and Draw) reject notatarget(<upto:2>*|myhand) and!( draw:1 controller )!
 auto={C(0/0,-2,Loyalty)}:name(-2: Sacrifice an Artifact) sacrifice notatarget(artifact|mybattlefield) and!( moveto(mybattlefield) target(artifact|mygraveyard) )!
@@ -792,6 +794,7 @@ subtype=Elspeth
 [/card]
 [card]
 name=Estrid, the Masked
+abilities=canbecommander
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Untap each enchanted permanent) untap all(*[geared]|myBattlefield)
 auto={C(0/0,-1,Loyalty)}:name(-1: Create an Aura Mask) token(Mask Est)
@@ -803,6 +806,7 @@ subtype=Estrid
 [/card]
 [card]
 name=Freyalise, Llanowar's Fury
+abilities=canbecommander
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Create a 1/1 Elf Druid) token(Elf Druid,Creature Elf Druid,1/1,green) and!(transforms((,newability[{T}:Add{G}])) forever)!
 auto={C(0/0,-2,Loyalty)}:name(-2: Destroy target artifact or enchantment) target(artifact,enchantment) destroy
@@ -1550,6 +1554,7 @@ subtype=Liliana
 [/card]
 [card]
 name=Lord Windgrace
+abilities=canbecommander
 auto=counter(0/0,5,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Discard and Draw) draw:1 controller && ability$!name(Choose one) choice name(Discard land) reject notatarget(*[land]|myhand) && draw:1 conroller _ choice name(Discard non-land) reject notatarget(*[-land]|myhand)!$ controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Return up to two lands from graveyard) moveTo(myBattlefield) target(<upto:2>*[land]|myGraveyard)
@@ -1648,6 +1653,7 @@ subtype=Nahiri
 [/card]
 [card]
 name=Nahiri, the Lithomancer
+abilities=canbecommander
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Create a 1/1 Soldier and may equip) token(Kor Soldier,Creature Kor Soldier,1/1,white) and!(transforms((,newability[may target(equipment|mybattlefield) newhook])) oneshot)!
 auto={C(0/0,-2,Loyalty)}:name(-2: Put an Equipment from hand or graveyard) notatarget(equipment|mygraveyard,myhand) moveto(ownerbattlefield)
@@ -1866,6 +1872,7 @@ subtype=Nissa
 [/card]
 [card]
 name=Ob Nixilis of the Black Oath
+abilities=canbecommander
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Each opponent loses 1 life...) life:-1 opponent && life:1 controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Create a 5/5 black Demon with flying...) token(Demon,Creature Demon,5/5,black,flying) && life:-2 controller
@@ -1976,6 +1983,7 @@ subtype=Rowan
 [/card]
 [card]
 name=Rowan Kenrith
+abilities=partner,canbecommander
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Opponent creatures must attack) all(creature|opponentbattlefield) mustattack ueot
 auto={C(0/0,2,Loyalty)}:name(+2: Your creatures must attack) all(creature|mybattlefield) mustattack ueot
@@ -2009,6 +2017,7 @@ subtype=Saheeli
 [/card]
 [card]
 name=Saheeli, the Gifted
+abilities=canbecommander
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 colorless Servo) token(Servo,Artifact Creature Servo,1/1)
 auto={C(0/0,-1,Loyalty)}:name(-1: The next spell has affinity for artifacts) lord(*|mycastingzone):affinityartifacts oneshot
@@ -2303,6 +2312,7 @@ subtype=Teferi
 [/card]
 [card]
 name=Teferi, Temporal Archmage
+abilities=canbecommander
 auto=counter(0/0,5,loyalty)
 aicode=activate transforms((,newability[moveto(myhand) all(*[zpos=1]|mylibrary) && bottomoflibrary all(*[zpos=2]|mylibrary)])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Look at the top two, one in hand other to bottom) name(Look) reveal:2 optionone name(Get a card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend revealend
@@ -2348,7 +2358,7 @@ subtype=Teferi
 [/card]
 [card]
 name=Tevesh Szat, Doom of Fools
-abilities=partner
+abilities=partner,canbecommander
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Sacrifice and draw 2 cards) target(*[creature;planeswalker]|mybattlefield) sacrifice and!(draw:1)!
 auto={C(0/0,2,Loyalty)}:name(+2: Create two 0/1 black Thrull) token(Thrull,Creature Thrull,0/1,black)*2
@@ -2696,9 +2706,10 @@ subtype=Vraska
 [/card]
 [card]
 name=Will Kenrith
+abilities=partner,canbecommander
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Up to two creatures 0/3 no abilities) target(<upto:2>creatures) transforms(setpower=0,settoughness=3,loseabilities) uynt
-auto={C(0/0,-2,Loyalty)}:name(-2: Draw two cards and cost {2} less) target(player) draw:2 targetedplayer && emblem transforms((,newability[lord(*[instant;sorcery;planeswalker]|mycastingzone) altercost(colorless,-2)])) uynt
+auto={C(0/0,-2,Loyalty)}:name(-2: Draw two cards and cost {2} less) target(player) draw:2 targetedplayer && all(this) transforms((,newability[lord(*[instant;sorcery;planeswalker]|mycastingzone) altercost(colorless,-2)])) uynt
 auto={C(0/0,-8,Loyalty)}:name(-8: Whenever cast instant or sorcery copy spell) emblem transforms((,newability[@movedTo(*[instant;sorcery]|myStack):may castcard(copied noevent) target(*[instant;sorcery]|mystack)])) forever dontremove
 text=+2: Until your next turn, up to two target creatures each have base power and toughness 0/3 and lose all abilities. -- −2: Target player draws two cards. Until your next turn, instant, sorcery, and planeswalker spells that player casts cost {2} less to cast. -- −8: Target player gets an emblem with "Whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy." -- Partner with Rowan Kenrith -- Will Kenrith can be your commander.
 mana={4}{U}{U}
