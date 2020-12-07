@@ -9086,12 +9086,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Myth Unbound
-text=Your commander costs {1} less to cast for each time it's been cast from the command zone this game. -- Whenever your commander is put into the command zone from anywhere, draw a card.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Mythos of Snapdax
 text=Each player chooses an artifact, a creature, an enchantment, and a planeswalker from among the nonland permanents they control, then sacrifices the rest. If {B}{R} was spent to cast this spell, you choose the permanents for each player instead.
 mana={2}{W}{W}
@@ -9649,11 +9643,6 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Opal Palace
-text={T}: Add {C} to your mana pool. -- {1}, {T}: Add to your mana pool one mana of any color in your commander's color identity. If you spend this mana to cast your commander, it enters the battlefield with a number of additional +1/+1 counters on it equal to the number of times it's been cast from the command zone this game.
-type=Land
-[/card]
-[card]
 name=Opal-Eye, Konda's Yojimbo
 abilities=defender
 text=Defender (This creature can't attack.) -- Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- {T}: The next time a source of your choice would deal damage this turn, that damage is dealt to Opal-Eye, Konda's Yojimbo instead. -- {1}{W}: Prevent the next 1 damage that would be dealt to Opal-Eye this turn.
@@ -9961,11 +9950,6 @@ type=Creature
 subtype=Goblin Berserker
 power=3
 toughness=3
-[/card]
-[card]
-name=Path of Ancestry
-text=Path of Ancestry enters the battlefield tapped. -- {T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1.
-type=Land
 [/card]
 [card]
 name=Patriarch's Bidding
@@ -12270,12 +12254,6 @@ type=Creature
 subtype=Zombie Head
 power=4
 toughness=1
-[/card]
-[card]
-name=Skull Storm
-text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. -- Each opponent sacrifices a creature. Each opponent who can't loses half their life, rounded up.
-mana={7}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Skullbriar, the Walking Grave
@@ -15485,15 +15463,6 @@ type=Creature
 subtype=Ooze
 power=1
 toughness=1
-[/card]
-[card]
-name=Yuriko, the Tiger's Shadow
-text=Commander ninjutsu {U}{B} ({U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand or the command zone tapped and attacking.) -- Whenever a Ninja you control deals combat damage to a player, reveal the top card of your library and put that card into your hand. Each opponent loses life equal to that card's converted mana cost.
-mana={1}{U}{B}
-type=Legendary Creature
-subtype=Human Ninja
-power=1
-toughness=3
 [/card]
 [card]
 name=Zada, Hedron Grinder

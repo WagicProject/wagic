@@ -81,23 +81,38 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
                     if(newCard->hasType("Land") && newCard->hasType("Basic")){ //There are no limitations for basic lands cards.
                         library->addCard(newCard);
                     } else{
-                        bool colorFound = false; // All the cards have to share at least one color with commander identity color.
+                        bool colorFound = false; // All the cards have to share at least one color with commander identity color (any symbol in manacost or magic text).
+						bool colorless = false; // Colorless card can be always added to deck.
                         for(unsigned int i = 0; i < commandzone->cards.size() && !colorFound; i++){
                             if((newCard->hasColor(Constants::MTG_COLOR_WHITE) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_WHITE)) ||
                                 (newCard->hasColor(Constants::MTG_COLOR_BLACK) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_BLACK)) ||
                                 (newCard->hasColor(Constants::MTG_COLOR_RED) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_RED)) ||
                                 (newCard->hasColor(Constants::MTG_COLOR_BLUE) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_BLUE)) ||
-                                (newCard->hasColor(Constants::MTG_COLOR_GREEN) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_GREEN))){
-                                colorFound = true;
-                            } else if((newCard->hasColor(Constants::MTG_COLOR_WHITE) && commandzone->cards[i]->magicText.find("{W}") != std::string::npos) ||
-                                (newCard->hasColor(Constants::MTG_COLOR_BLACK) && commandzone->cards[i]->magicText.find("{B}") != std::string::npos)||
-                                (newCard->hasColor(Constants::MTG_COLOR_RED) && commandzone->cards[i]->magicText.find("{R}") != std::string::npos) ||
-                                (newCard->hasColor(Constants::MTG_COLOR_BLUE) && commandzone->cards[i]->magicText.find("{U}") != std::string::npos) ||
-                                (newCard->hasColor(Constants::MTG_COLOR_GREEN) && commandzone->cards[i]->magicText.find("{G}") != std::string::npos)){
+                                (newCard->hasColor(Constants::MTG_COLOR_GREEN) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_GREEN)) ||
+								(newCard->hasColor(Constants::MTG_COLOR_WHITE) && commandzone->cards[i]->magicText.find("{w}") != std::string::npos) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_BLACK) && commandzone->cards[i]->magicText.find("{b}") != std::string::npos)||
+                                (newCard->hasColor(Constants::MTG_COLOR_RED) && commandzone->cards[i]->magicText.find("{r}") != std::string::npos) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_BLUE) && commandzone->cards[i]->magicText.find("{u}") != std::string::npos) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_GREEN) && commandzone->cards[i]->magicText.find("{g}") != std::string::npos) || 
+								(newCard->magicText.find("{w}") != std::string::npos && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_WHITE)) ||
+                                (newCard->magicText.find("{b}") != std::string::npos && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_BLACK)) ||
+                                (newCard->magicText.find("{r}") != std::string::npos && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_RED)) ||
+                                (newCard->magicText.find("{u}") != std::string::npos && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_BLUE)) ||
+                                (newCard->magicText.find("{g}") != std::string::npos && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_GREEN)) ||
+								(newCard->magicText.find("{w}") != std::string::npos && commandzone->cards[i]->magicText.find("{w}") != std::string::npos) ||
+                                (newCard->magicText.find("{b}") != std::string::npos && commandzone->cards[i]->magicText.find("{b}") != std::string::npos)||
+                                (newCard->magicText.find("{r}") != std::string::npos && commandzone->cards[i]->magicText.find("{r}") != std::string::npos) ||
+                                (newCard->magicText.find("{u}") != std::string::npos && commandzone->cards[i]->magicText.find("{u}") != std::string::npos) ||
+                                (newCard->magicText.find("{g}") != std::string::npos && commandzone->cards[i]->magicText.find("{g}") != std::string::npos)){
                                 colorFound = true;
                             }
                         }
-                        if(colorFound || newCard->hasColor(Constants::MTG_COLOR_ARTIFACT) || newCard->colors == Constants::MTG_UNCOLORED || newCard->hasColor(Constants::MTG_COLOR_LAND)){
+						if(!colorFound)
+                            colorless = (newCard->magicText.find("{g}") == std::string::npos && newCard->magicText.find("{w}") == std::string::npos && newCard->magicText.find("{b}") == std::string::npos && 
+							newCard->magicText.find("{r}") == std::string::npos && newCard->magicText.find("{u}") == std::string::npos && !newCard->hasColor(Constants::MTG_COLOR_BLUE) && 
+							!newCard->hasColor(Constants::MTG_COLOR_RED) &&  !newCard->hasColor(Constants::MTG_COLOR_WHITE) && !newCard->hasColor(Constants::MTG_COLOR_GREEN) && 
+							!newCard->hasColor(Constants::MTG_COLOR_BLACK));
+                        if(colorFound || colorless){
                             bool onlyInstance = true; // In commander format only single cards are allowed if they are not basic lands.
                             for(unsigned int k = 0; k < library->cards.size() && onlyInstance; k++){
                                 if(library->cards[k]->name == newCard->name)
