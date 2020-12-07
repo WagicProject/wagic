@@ -1783,7 +1783,7 @@ auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W
 auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
 auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
 auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
-auto=if type(artifact|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
+auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
 text={T}: Add one mana of any color in your commander's color identity.
 mana={2}
 type=Artifact
@@ -8235,7 +8235,7 @@ auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W
 auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
 auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
 auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
-auto=if type(artifact|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
+auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
 text={T}: Add to your mana pool one mana of any color in your commander's color identity.
 type=Land
 [/card]
@@ -8273,7 +8273,7 @@ auto=if type(*[white]|myzones)~lessthan~1 then teach(creature) protection from w
 auto=if type(*[green]|myzones)~lessthan~1 then teach(creature) protection from green
 auto=if type(*[blue]|myzones)~lessthan~1 then teach(creature) protection from blue
 auto=if type(*[black]|myzones)~lessthan~1 then teach(creature) protection from black
-auto=if type(artifact|myzones)~lessthan~1 then teach(creature) protection from(artifact)
+auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~lessthan~1 then teach(creature) protection from(artifact)
 text=Equipped creature gets +3/+3 and has protection from each color that's not in your commander's color identity. -- Equip commander {3} -- Equip {5}
 mana={1}
 type=Artifact
@@ -8286,7 +8286,7 @@ auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W
 auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
 auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
 auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
-auto=if type(artifact|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
+auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
 auto={S}:draw:1 controller
 text={T}: Add to your mana pool one mana of any color in your commander's color identity. -- Sacrifice Commander's Sphere: Draw a card.
 mana={3}
@@ -29242,6 +29242,14 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Myth Unbound
+auto=thisforeach(variable{pnumofcommandcast}) lord(*[iscommander]|mycastingzone) altercost(colorless, -1)
+auto=@movedto(*[iscommander]|mycommandzone):draw:1 controller
+text=Your commander costs {1} less to cast for each time it's been cast from the command zone this game. -- Whenever your commander is put into the command zone from anywhere, draw a card.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
 name=Mythos of Brokkos
 abilities=hiddenface
 aicode=activate moveto(myGraveyard) target(*|mylibrary)
@@ -31414,6 +31422,19 @@ auto={0}:transforms((removetypes,newability[becomes(Enchantment)])) forever
 text=Whenever an opponent casts a creature spell, if Opal Acrolith is an enchantment, Opal Acrolith becomes a 2/4 Soldier creature. -- {0}: Opal Acrolith becomes an enchantment.
 mana={2}{W}
 type=Enchantment
+[/card]
+[card]
+name=Opal Palace
+auto={T}:add{C}
+auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R}])) forever
+auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W}])) forever
+auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
+auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
+auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
+auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
+auto=@movedto(*[iscommander]|mybattlefield) from(mycommandzone):all(trigger[to]) counter(1/1,pnumofcommandcast) limit:1
+text={T}: Add {C} to your mana pool. -- {1}, {T}: Add to your mana pool one mana of any color in your commander's color identity. If you spend this mana to cast your commander, it enters the battlefield with a number of additional +1/+1 counters on it equal to the number of times it's been cast from the command zone this game.
+type=Land
 [/card]
 [card]
 name=Opal Titan
@@ -41042,6 +41063,14 @@ type=Creature
 subtype=Human Druid
 power=3
 toughness=1
+[/card]
+[card]
+name=Skull Storm
+auto=if type(creature|opponentbattlefield)~lessthan~compare(pnumofcommandcastplus1plusend) then life:-halfupopponentlifetotal opponent
+auto=thisforeach(variable{pnumofcommandcastplus1plusend}) ability$!name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
+text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. -- Each opponent sacrifices a creature. Each opponent who can't loses half their life, rounded up.
+mana={7}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Skullcrack
@@ -52594,6 +52623,18 @@ type=Legendary Creature
 subtype=Giant Noble
 power=0
 toughness=0
+[/card]
+[card]
+name=Yuriko, the Tiger's Shadow
+autohand={U}{B}{N}:ninjutsu
+auto=@combatdamagefoeof(player) from(ninja|myBattlefield):moveto(myhand) and!( transforms((,newability[damage:manacost opponent])) ueot )! all(*[zpos=1]|mylibrary)
+auto=@combatdamageof(player) from(ninja|myBattlefield):moveto(myhand) and!( transforms((,newability[damage:manacost controller])) ueot )! all(*[zpos=1]|mylibrary)
+text=Commander ninjutsu {U}{B} ({U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand or the command zone tapped and attacking.) -- Whenever a Ninja you control deals combat damage to a player, reveal the top card of your library and put that card into your hand. Each opponent loses life equal to that card's converted mana cost.
+mana={1}{U}{B}
+type=Legendary Creature
+subtype=Human Ninja
+power=1
+toughness=3
 [/card]
 [card]
 name=Yurlok of Scorch Thrash
