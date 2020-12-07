@@ -233,6 +233,7 @@ public:
     int add(MTGCard * card);
     int remove(MTGCard * card);
     void replaceSB(vector<string> newSB = vector<string>());
+    void replaceCMD(vector<string> newCMD = vector<string>());
     string getFilename();
     int save();
     int save(const string& destFileName, bool useExpandedDescriptions, const string& deckTitle, const string& deckDesc);

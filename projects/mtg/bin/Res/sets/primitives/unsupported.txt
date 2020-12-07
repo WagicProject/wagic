@@ -370,16 +370,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Angelic Field Marshal
-abilities=flying
-text=Flying -- Lieutenant — As long as you control your commander, Angelic Field Marshal gets +2/+2 and creatures you control have vigilance.
-mana={2}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=3
-[/card]
-[card]
 name=Animal Magnetism
 text=Reveal the top five cards of your library. An opponent chooses a creature card from among them. Put that card onto the battlefield and the rest into your graveyard.
 mana={4}{G}
@@ -2478,12 +2468,6 @@ name=Commandeer
 text=You may exile two blue cards from your hand rather than pay Commandeer's mana cost. -- Gain control of target noncreature spell. You may choose new targets for it. (If that spell is an artifact, enchantment, or planeswalker, the permanent enters the battlefield under your control.)
 mana={5}{U}{U}
 type=Instant
-[/card]
-[card]
-name=Commander's Insignia
-text=Creatures you control get +1/+1 for each time you've cast your commander from the command zone this game.
-mana={2}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Common Cause
@@ -4610,11 +4594,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Forge of Heroes
-text={T}: Add {C}. -- {T}: Choose target commander that entered the battlefield this turn. Put a +1/+1 counter on it if it's a creature and a loyalty counter on it if it's a planeswalker.
-type=Land
-[/card]
-[card]
 name=Forgotten Lore
 text=Target opponent chooses a card in your graveyard. You may pay {G}. If you do, repeat this process except that opponent can't choose a card already chosen for Forgotten Lore. Then put the last chosen card into your hand.
 mana={G}
@@ -4928,12 +4907,6 @@ name=General's Regalia
 text={3}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to target creature you control instead.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Genesis Storm
-text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. -- Reveal cards from the top of your library until you reveal a nonland permanent card. You may put that card onto the battlefield. Then put all cards revealed this way that weren't put onto the battlefield on the bottom of your library in a random order.
-mana={4}{G}{G}
-type=Sorcery
 [/card]
 [card]
 name=Genetic Recombinator
@@ -7010,13 +6983,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Jeska, Thrice Reborn
-text=Jeska, Thrice Reborn enters the battlefield with a loyalty counter on it for each time you've cast a commander from the command zone this game. -- 0: Choose target creature. Until your next turn, if that creature would deal combat damage to one of your opponents, it deals triple that damage to that player instead. -- -X: Jeska, Thrice Reborn deals X damage to each of up to three targets. -- Jeska, Thrice Reborn can be your commander. -- Partner
-mana={2}{R}
-type=Legendary Planeswalker
-subtype=Jeska
-[/card]
-[card]
 name=Jeskai Infiltrator
 text=Jeskai Infiltrator can't be blocked as long as you control no other creatures. -- When Jeskai Infiltrator deals combat damage to a player, exile it and the top card of your library in a face-down pile, shuffle that pile, then manifest those cards. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
 mana={2}{U}
@@ -7063,12 +7029,6 @@ type=Artifact
 name=Jeweled Bird
 text=Remove Jeweled Bird from your deck before playing if you're not playing for ante. -- {T}: Put Jeweled Bird into the ante. If you do, put all other cards you own from the ante into your graveyard, then draw a card.
 mana={1}
-type=Artifact
-[/card]
-[card]
-name=Jeweled Lotus
-text={T}, Sacrifice Jeweled Lotus: Add three mana of any one color. Spend this mana only to cast your commander.
-mana={0}
 type=Artifact
 [/card]
 [card]
@@ -7789,12 +7749,6 @@ type=Legendary Creature
 subtype=Shapeshifter
 power=3
 toughness=3
-[/card]
-[card]
-name=Leadership Vacuum
-text=Target player returns each commander they control from the battlefield to the command zone. -- Draw a card.
-mana={2}{U}
-type=Instant
 [/card]
 [card]
 name=Leech Bonder

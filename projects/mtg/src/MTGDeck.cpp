@@ -1190,6 +1190,16 @@ void MTGDeck::replaceSB(vector<string> newSB)
     return;
 }
 
+void MTGDeck::replaceCMD(vector<string> newCMD)
+{
+    if(newCMD.size())
+    {
+        CommandZone.clear();
+        CommandZone = newCMD;
+    }
+    return;
+}
+
 int MTGDeck::remove(int cardid)
 {
     if (cards.find(cardid) == cards.end() || cards[cardid] == 0) return 0;
@@ -1268,6 +1278,17 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
                 int checkID = atoi(Sideboard[k].c_str());
                 if(checkID)
                     file << "#SB:" << checkID << "\n";
+            }
+        }
+        //save commanders
+        if(CommandZone.size())
+        {
+            sort(CommandZone.begin(), CommandZone.end());
+            for(unsigned int k = 0; k < CommandZone.size(); k++)
+            {
+                int checkID = atoi(CommandZone[k].c_str());
+                if(checkID)
+                    file << "#CMD:" << checkID << "\n";
             }
         }
 
