@@ -33,7 +33,8 @@ enum
     SBMENU_CHOICE = 802,
     SBMENU_ADD_NORMAL = 803,
     SBMENU_ADD_SB = 804,
-    SBMENU_ADD_CANCEL = 805
+    SBMENU_ADD_CMD = 805,
+    SBMENU_ADD_CANCEL = 806
 };
 
 // enums for menu options
@@ -75,7 +76,7 @@ private:
     DeckViewerStages mStage;
     JMusic * bgMusic;
     
-    InteractiveButton *toggleDeckButton, *sbButton, *sellCardButton, *statsPrevButton, *filterButton, *toggleViewButton, *toggleUpButton, *toggleDownButton, *toggleLeftButton, *toggleRightButton;
+    InteractiveButton *toggleDeckButton, *sb_cmd_Button, *sellCardButton, *statsPrevButton, *filterButton, *toggleViewButton, *toggleUpButton, *toggleDownButton, *toggleLeftButton, *toggleRightButton;
 
     WGuiFilters * filterMenu;
     WSrcDeckViewer * source;
@@ -89,6 +90,7 @@ private:
     DeckDataWrapper * myDeck;
     DeckDataWrapper * myCollection;
     DeckDataWrapper * mySideboard;
+    DeckDataWrapper * myCommandZone;
     StatsWrapper * mStatsWrapper;
 
     int hudAlpha;
@@ -112,6 +114,7 @@ private:
     void setupView(AvailableView view, DeckDataWrapper *deck);
     void toggleView();
     void insertSideBoard();
+    void insertCommandZone();
 public:
     GameStateDeckViewer(GameApp* parent);
     virtual ~GameStateDeckViewer();
@@ -119,11 +122,12 @@ public:
     void updateFilters();
     void rebuildFilters();
     void toggleCollection();
-    void toggleSideBoard();
+    void toggleSB_CMD();
     void Start();
     virtual void End();
     void addRemove(MTGCard * card);
     void SBaddRemove(MTGCard * card);
+    void CMDaddRemove(MTGCard * card);
     void choiceAddRemove(MTGCard * card);
     virtual void Update(float dt);
     void renderOnScreenBasicInfo();

@@ -38,6 +38,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     myCollection = NULL;
     myDeck = NULL;
     mySideboard = NULL;
+    myCommandZone = NULL;
     filterMenu = NULL;
     source = NULL;
     hudAlpha = 0;
@@ -49,7 +50,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "Stats",  SCREEN_WIDTH_F - 35, SCREEN_HEIGHT_F - 20, JGE_BTN_PREV);
     toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
     sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 125, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
-    sbButton = NEW InteractiveButton(NULL, kSBActionId, Fonts::MAIN_FONT, "View SB", (SCREEN_WIDTH_F/ 2) - 35, SCREEN_HEIGHT_F - 20, JGE_BTN_SOUND);
+    sb_cmd_Button = NEW InteractiveButton(NULL, kSBActionId, Fonts::MAIN_FONT, "View SB/CMD", (SCREEN_WIDTH_F/ 2) - 35, SCREEN_HEIGHT_F - 20, JGE_BTN_SOUND);
     filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "Filter", (SCREEN_WIDTH_F - 116), SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
     //TODO: Check if that button is available:
     toggleViewButton = NEW InteractiveButton(NULL, kSwitchViewButton, Fonts::MAIN_FONT, "Grid", (SCREEN_WIDTH_F/ 2) + 50, SCREEN_HEIGHT_F - 20, JGE_BTN_MAX);
@@ -64,7 +65,7 @@ GameStateDeckViewer::~GameStateDeckViewer()
     SAFE_DELETE(bgMusic);
     SAFE_DELETE(toggleDeckButton);
     SAFE_DELETE(sellCardButton);
-    SAFE_DELETE(sbButton);
+    SAFE_DELETE(sb_cmd_Button);
     SAFE_DELETE(statsPrevButton);
     SAFE_DELETE(filterButton);
     SAFE_DELETE(toggleViewButton);
@@ -83,6 +84,11 @@ GameStateDeckViewer::~GameStateDeckViewer()
     {
         SAFE_DELETE(mySideboard->parent);
         SAFE_DELETE(mySideboard);
+    }
+    if (myCommandZone)
+    {
+        SAFE_DELETE(myCommandZone->parent);
+        SAFE_DELETE(myCommandZone);
     }
     if (myCollection)
     {
@@ -119,7 +125,7 @@ void GameStateDeckViewer::updateFilters()
 
 void GameStateDeckViewer::toggleCollection()
 {
-    if(mView->deck() == mySideboard)
+    if(mView->deck() == mySideboard || mView->deck() == myCommandZone)
         return;
 
     if (mView->deck() == myCollection)
@@ -136,7 +142,7 @@ void GameStateDeckViewer::toggleCollection()
     updateFilters();
 }
 
-void GameStateDeckViewer::toggleSideBoard()
+void GameStateDeckViewer::toggleSB_CMD()
 {
     if(mView->deck() == myDeck)
         return;
@@ -144,10 +150,17 @@ void GameStateDeckViewer::toggleSideBoard()
     if (mView->deck() == myCollection)
     {
         mView->SetDeck(mySideboard);
+        sb_cmd_Button->setText("View CMD");
+    }
+    else if (mView->deck() == mySideboard)
+    {
+        mView->SetDeck(myCommandZone);
+        sb_cmd_Button->setText("View Coll.");
     }
     else
     {
         mView->SetDeck(myCollection);
+        sb_cmd_Button->setText("View SB/CMD");
     }
     //source->swapSrc();
     //updateFilters();
@@ -196,6 +209,7 @@ void GameStateDeckViewer::Start()
     sbMenu = NULL;
     myDeck = NULL;
     mySideboard = NULL;
+    myCommandZone = NULL;
     mStage = STAGE_WELCOME;
 
     last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
@@ -263,6 +277,11 @@ void GameStateDeckViewer::End()
         SAFE_DELETE(mySideboard->parent);
         SAFE_DELETE(mySideboard);
     }
+    if (myCommandZone)
+    {
+        SAFE_DELETE(myCommandZone->parent);
+        SAFE_DELETE(myCommandZone);
+    }
     SAFE_DELETE(pricelist);
     SAFE_DELETE(playerdata);
     SAFE_DELETE(filterMenu);
@@ -313,6 +332,28 @@ void GameStateDeckViewer::SBaddRemove(MTGCard * card)
     mView->reloadIndexes();
 }
 
+void GameStateDeckViewer::CMDaddRemove(MTGCard * card)
+{
+    if (!card) return;
+    if ((card->getRarity() == Constants::RARITY_T) || (card->getId() < 1)) return;
+    if (mView->deck()->Remove(card, 1, (mView->deck() == myCommandZone)))
+    {
+        if (mView->deck() == myCollection)
+        {
+            myCommandZone->Add(card);
+            myCommandZone->Sort(WSrcCards::SORT_ALPHA);
+        }
+        else
+        {
+            myCollection->Add(card);
+        }
+    }
+    myCollection->validate();
+    myCommandZone->validate();
+    mStatsWrapper->needUpdate = true;
+    mView->reloadIndexes();
+}
+
 void GameStateDeckViewer::choiceAddRemove(MTGCard * card)
 {
     if (!card) return;
@@ -327,6 +368,8 @@ void GameStateDeckViewer::choiceAddRemove(MTGCard * card)
             sbMenu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), SBMENU_CHOICE, this, Fonts::MAIN_FONT, menuXOffset, menuYOffset, "Add/Remove Cards");
             sbMenu->Add(SBMENU_ADD_NORMAL, "Add to Deck");
             sbMenu->Add(SBMENU_ADD_SB, "Add to Sideboard");
+            if(card->data->hasType("Legendary") && (card->data->hasType("Creature") || card->data->basicAbilities[Constants::CANBECOMMANDER]))
+                sbMenu->Add(SBMENU_ADD_CMD, "Choose as Commander");
             sbMenu->Add(SBMENU_ADD_CANCEL, "Cancel");
         }
         else
@@ -334,6 +377,8 @@ void GameStateDeckViewer::choiceAddRemove(MTGCard * card)
             sbMenu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), SBMENU_CHOICE, this, Fonts::MAIN_FONT, menuXOffset, menuYOffset, "Add/Remove Cards");
             sbMenu->Add(SBMENU_ADD_NORMAL, "Remove Card");
             //sbMenu->Add(SBMENU_ADD_SB, "Add to Sideboard");
+            if(card->data->hasType("Legendary") && (card->data->hasType("Creature") || card->data->basicAbilities[Constants::CANBECOMMANDER]))
+                sbMenu->Add(SBMENU_ADD_CMD, "Choose as Commander");
             sbMenu->Add(SBMENU_ADD_CANCEL, "Cancel");
         }
     }
@@ -360,6 +405,26 @@ void GameStateDeckViewer::insertSideBoard()
     }
 }
 
+void GameStateDeckViewer::insertCommandZone()
+{
+    if(myCommandZone->getCount())
+    {
+        vector<string> newCMD;
+        for (int i = 0; i < myCommandZone->Size(true); i++)
+        {
+            MTGCard * current = myCommandZone->getCard(i, true);
+            int howmanyinDeck = myCommandZone->count(current);
+            for (int i = 0; i < howmanyinDeck; i++)
+            {
+                stringstream cid;
+                cid << current->getMTGId();
+                newCMD.push_back(cid.str());
+            }
+        }
+        myDeck->parent->replaceCMD(newCMD);
+    }
+}
+
 void GameStateDeckViewer::saveDeck()
 {
     //update the corresponding meta data object
@@ -369,6 +434,8 @@ void GameStateDeckViewer::saveDeck()
     mSwitching = true;
     //insert sideboards to mydeck parents
     insertSideBoard();
+    //insert commanders to mydeck parents
+    insertCommandZone();
     //save deck
     myDeck->save();
     playerdata->save();
@@ -424,7 +491,7 @@ bool GameStateDeckViewer::userPressedButton()
 {
     return ((toggleDeckButton->ButtonPressed())
             || (sellCardButton->ButtonPressed())
-            || (sbButton->ButtonPressed())
+            || (sb_cmd_Button->ButtonPressed())
             || (statsPrevButton->ButtonPressed())
             || (filterButton->ButtonPressed())
             || (toggleViewButton->ButtonPressed())
@@ -439,7 +506,7 @@ void GameStateDeckViewer::setButtonState(bool state)
 {
     toggleDeckButton->setIsSelectionValid(state);
     sellCardButton->setIsSelectionValid(state);
-    sbButton->setIsSelectionValid(state);
+    sb_cmd_Button->setIsSelectionValid(state);
     statsPrevButton->setIsSelectionValid(state);
     filterButton->setIsSelectionValid(state);
     toggleViewButton->setIsSelectionValid(state);
@@ -451,12 +518,12 @@ void GameStateDeckViewer::setButtonState(bool state)
 
 void GameStateDeckViewer::RenderButtons()
 {
-    if(mView->deck() != mySideboard)
+    if(mView->deck() != mySideboard && mView->deck() != myCommandZone)
         toggleDeckButton->Render();
     sellCardButton->Render();
     if(mView->deck() != myDeck)
-        sbButton->Render();
-    if(mView->deck() != mySideboard)
+        sb_cmd_Button->Render();
+    if(mView->deck() != mySideboard && mView->deck() != myCommandZone)
         filterButton->Render();
     statsPrevButton->Render();
     toggleViewButton->Render();
@@ -564,7 +631,7 @@ void GameStateDeckViewer::Update(float dt)
             if (last_user_activity > 0.2)
             {
                 last_user_activity = 0;
-                toggleSideBoard();
+                toggleSB_CMD();
             }
             break;
         case JGE_BTN_PRI:
@@ -618,9 +685,9 @@ void GameStateDeckViewer::Update(float dt)
             break;
 
         case JGE_BTN_MENU:
-            if(mView->deck() == mySideboard)
+            if(mView->deck() == mySideboard || mView->deck() == myCommandZone)
             {
-                toggleSideBoard();
+                toggleSB_CMD();
             }
             else
             {
@@ -629,7 +696,7 @@ void GameStateDeckViewer::Update(float dt)
             }
             break;
         case JGE_BTN_CTRL:
-            if (mView->deck() == mySideboard)
+            if (mView->deck() == mySideboard || mView->deck() == myCommandZone)
                 break;//SB is for viewing add or remove only
             else if(!mView->ButtonPressed(JGE_BTN_CTRL))
             {
@@ -917,8 +984,8 @@ void GameStateDeckViewer::renderOnScreenMenu()
         int nb_letters = 0;
         int value = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
         int sb_value = mySideboard->getCount(WSrcDeck::UNFILTERED_COPIES);
-
-        sprintf(buffer, _("Your Deck: %i cards.\nSideboard: %i cards").c_str(), value, sb_value);
+        int cmd_value = myCommandZone->getCount(WSrcDeck::UNFILTERED_COPIES);
+        sprintf(buffer, _("Your Deck: %i cards.\nSideboard: %i cards.\nCommanders: %i cards").c_str(), value, sb_value,cmd_value);
         font->DrawString(buffer, SCREEN_WIDTH - 200 + rightTransition, SCREEN_HEIGHT / 2 + 15);
 
         for (int j = 0; j < Constants::NB_Colors; j++)
@@ -1552,8 +1619,14 @@ int GameStateDeckViewer::loadDeck(int deckid)
         SAFE_DELETE(mySideboard->parent);
         SAFE_DELETE(mySideboard);
     }
+    //cmd
+    if (myCommandZone)
+    {
+        SAFE_DELETE(myCommandZone->parent);
+        SAFE_DELETE(myCommandZone);
+    }
     //temp deck for sb?
-    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
+    MTGDeck * sbtempDeck = NEW MTGDeck(MTGCollection());
     if(myDeck->parent)
     {//add cards from sdeboard lists
         if(myDeck->parent->Sideboard.size())
@@ -1561,11 +1634,11 @@ int GameStateDeckViewer::loadDeck(int deckid)
             for(unsigned int j = 0; j < myDeck->parent->Sideboard.size(); j++)
             {
                 string cardID = myDeck->parent->Sideboard[j];
-                tempDeck->add(atoi(cardID.c_str()));
+                sbtempDeck->add(atoi(cardID.c_str()));
             }
         }
     }
-    mySideboard = NEW DeckDataWrapper(tempDeck);
+    mySideboard = NEW DeckDataWrapper(sbtempDeck);
     for (int i = 0; i < mySideboard->Size(true); i++)
     {
         MTGCard * current = mySideboard->getCard(i, true);
@@ -1593,9 +1666,51 @@ int GameStateDeckViewer::loadDeck(int deckid)
         myCollection->validate();
     }
     //endsb
+    //temp deck for cmd?
+    MTGDeck * cmdtempDeck = NEW MTGDeck(MTGCollection());
+    if(myDeck->parent)
+    {//add cards from commanders lists
+        if(myDeck->parent->CommandZone.size())
+        {
+            for(unsigned int j = 0; j < myDeck->parent->CommandZone.size(); j++)
+            {
+                string cardID = myDeck->parent->CommandZone[j];
+                cmdtempDeck->add(atoi(cardID.c_str()));
+            }
+        }
+    }
+    myCommandZone = NEW DeckDataWrapper(cmdtempDeck);
+    for (int i = 0; i < myCommandZone->Size(true); i++)
+    {
+        MTGCard * current = myCommandZone->getCard(i, true);
+        int howmanyinDeck = myCommandZone->count(current);
+        for (int i = myCollection->count(current); i < howmanyinDeck; i++)
+        {
+            cPure = false;
+            if (cheatmode)
+            { //Are we cheating?
+                playerdata->collection->add(current); //Yup, add it to collection permanently.
+                myCollection->Add(current);
+            }
+            else
+            {
+                myCommandZone->Remove(current,howmanyinDeck-i); //Nope. Remove it from sb.
+                break;
+            }
+        }
+
+        myCollection->Remove(current, myCommandZone->count(current));
+    }
+    if (!cPure)
+    {
+        myCommandZone->validate();
+        myCollection->validate();
+    }
+    //endcmd
 
     myDeck->Sort(WSrcCards::SORT_ALPHA);
     mySideboard->Sort(WSrcCards::SORT_ALPHA);
+    myCommandZone->Sort(WSrcCards::SORT_ALPHA);
     SAFE_DELETE(filterMenu);
     rebuildFilters();
     mView->reloadIndexes();
@@ -1751,6 +1866,14 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             MTGCard * card = mView->getActiveCard();
             if (card)
                 SBaddRemove(card);
+            sbMenu->Close();
+            break;
+        }
+        case SBMENU_ADD_CMD:
+        {
+            MTGCard * card = mView->getActiveCard();
+            if (card)
+                CMDaddRemove(card);
             sbMenu->Close();
             break;
         }

@@ -1302,6 +1302,18 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
+name=Angelic Field Marshal
+abilities=flying
+auto=aslongas(*[iscommander]|mybattlefield) 2/2 >0
+auto=aslongas(*[iscommander]|mybattlefield) lord(creature|mybattlefield) vigilance >0
+text=Flying -- Lieutenant — As long as you control your commander, Angelic Field Marshal gets +2/+2 and creatures you control have vigilance.
+mana={2}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+[card]
 name=Angelic Guardian
 abilities=flying
 auto=@combat(attacking) source(creature|myBattlefield):all(creature[attacking]|mybattlefield) indestructible ueot
@@ -7916,7 +7928,9 @@ type=Artifact
 [/card]
 [card]
 name=Coax from the Blind Eternities
-auto=may moveto(myhand) target(*[eldrazi]|myexile,mysideboard)
+auto=choice name(Look Exile) moveto(myhand) target(*[eldrazi]|myexile)
+auto=choice name(Look Sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(Choose eldrazi) target(*[eldrazi]|reveal) moveto(myhand) optiononeend optiontwo name(put back) all(other *|reveal) moveto(ownersideboard) optiontwoend revealend
+auto=choice name(Don't choose) donothing
 text=You may choose an Eldrazi card you own from outside the game or in exile, reveal that card, and put it into your hand.
 mana={2}{U}
 type=Sorcery
@@ -8066,8 +8080,8 @@ toughness=2
 [/card]
 [card]
 name=Collector Protector
-auto={W}:moveTo(opponentbattlefield) target(*[-land]|mysideboard) && prevent:1 controller
-auto={W}:moveTo(opponentbattlefield) target(*[-land]|mysideboard) && prevent:1
+auto={W}:name(Give card and prevent 1 damage to you) prevent:1 controller && name(Look Sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(Choose non-land card) target(*[-land]|reveal) moveto(opponentBattlefield) optiononeend optiontwo name(put back) all(other *|reveal) moveto(ownersideboard) optiontwoend revealend
+auto={W}:name(Give card and prevent 1 damage to Collector Protector) prevent:1 && name(Look Sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(Choose non-land card) target(*[-land]|reveal) moveto(opponentBattlefield) optiononeend optiontwo name(put back) all(other *|reveal) moveto(ownersideboard) optiontwoend revealend
 text={W}, Give an opponent a nonland card you own from outside the game: Prevent the next 1 damage that would be dealt to you or Collector Protector this turn.
 mana={3}{W}{W}
 type=Creature
@@ -8209,8 +8223,8 @@ type=Instant
 [/card]
 [card]
 name=Command Beacon
-auto={T}:add{1}
-auto={T}{S}:target(*[commander]|sideboard) moveto(myhand)
+auto={T}:add{C}
+auto={T}{S}:target(*[iscommander]|mycommandzone) moveto(myhand)
 text={T}: Add {C} to your mana pool. -- {T}, Sacrifice Command Beacon: Put your commander into your hand from the command zone.
 type=Land
 [/card]
@@ -8240,6 +8254,13 @@ auto=damage:5
 text=Command the Storm deals 5 damage to target creature.
 mana={4}{R}
 type=Instant
+[/card]
+[card]
+name=Commander's Insignia
+auto=lord(creature|myBattlefield) pnumofcommandcast/pnumofcommandcast
+text=Creatures you control get +1/+1 for each time you've cast your commander from the command zone this game.
+mana={2}{W}{W}
+type=Enchantment
 [/card]
 [card]
 name=Commander's Plate
@@ -16191,6 +16212,14 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Forge of Heroes
+auto={T}:add{C}
+auto={T} restriction{type(creature[iscommander;fresh]|mybattlefield)~morethan~0}:name(Add 1/1 counter to Commander) target(creature[iscommander;fresh]|mybattlefield) counter(1/1)
+auto={T} restriction{type(planeswalker[iscommander;fresh]|mybattlefield)~morethan~0}:name(Add loyalty counter to Commander) target(planeswalker[iscommander;fresh]|mybattlefield) counter(0/0,1,Loyalty)
+text={T}: Add {C}. -- {T}: Choose target commander that entered the battlefield this turn. Put a +1/+1 counter on it if it's a creature and a loyalty counter on it if it's a planeswalker.
+type=Land
+[/card]
+[card]
 name=Forgotten Sentinel
 auto=tap(noevent)
 text=Forgotten Sentinel enters the battlefield tapped.
@@ -17146,6 +17175,15 @@ type=Creature
 subtype=Cat
 power=1
 toughness=2
+[/card]
+[card]
+name=Genesis Storm
+aicode=activate target(<pnumofcommandcastplus1plusend>*[-land;-instant;-sorcery]|mylibrary) moveto(mybattlefield)
+auto=if compare(pnumofcommandcast)~equalto~0 then name(Reveal from top) name(Reveal from top) Reveal:1 revealzone(mylibrary) revealuntil(*[-land;-instant;-sorcery]|mylibrary) optionone choice name(Get non-land permanent) target(*[-land;-instant;-sorcery]|reveal) moveto(mybattlefield) optiononeend optiontwo choice name(Put on Bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=if compare(pnumofcommandcast)~morethan~0 then name(Reveal from top) name(Reveal from top) Reveal:type:*:mylibrary revealzone(mylibrary) optionone choice name(Get non-land permanents) target(<pnumofcommandcastplus1plusend>*[-land;-instant;-sorcery]|reveal) moveto(mybattlefield) optiononeend optiontwo choice name(Put on Bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. -- Reveal cards from the top of your library until you reveal a nonland permanent card. You may put that card onto the battlefield. Then put all cards revealed this way that weren't put onto the battlefield on the bottom of your library in a random order.
+mana={4}{G}{G}
+type=Sorcery
 [/card]
 [card]
 name=Genesis Ultimatum
@@ -23075,6 +23113,13 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Jeweled Lotus
+auto={T}{S} restriction{type(*[iscommander]|mycommandzone)~morethan~0}:ability$!name(Choose one) choice name(Add 3 white mana) add{W}{W}{W} _ choice name(Add 3 black mana) add{B}{B}{B} _ choice name(Add 3 green mana) add{G}{G}{G} _ choice name(Add 3 red mana) add{R}{R}{R} _ choice name(Add 3 blue mana) add{U}{U}{U}!$ controller
+text={T}, Sacrifice Jeweled Lotus: Add three mana of any one color. Spend this mana only to cast your commander.
+mana={0}
+type=Artifact
+[/card]
+[card]
 name=Jhoira's Familiar
 abilities=flying
 auto=lord(*[artifact;legendary;saga]|mystack|mycastingzone) altercost(colorless,-1)
@@ -25156,6 +25201,15 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Leadership Vacuum
+target=player
+auto=ability$!name(Put back each commander) name(Put back each commander) all(*[iscommander]|mybattlefield) moveto(mycommandzone)!$ targetedplayer
+auto=draw:1 controller
+text=Target player returns each commander they control from the battlefield to the command zone. -- Draw a card.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 name=Leafkin Avenger
 auto={T}:foreach(creature[power>=4]|myBattlefield) add{G}
 auto={7}{R}:target(creature,planeswalker) dynamicability<!powerstrike!>
@@ -25288,7 +25342,7 @@ type=Instant
 name=Legion Angel
 abilities=flying
 aicode=activate target(Legion Angel|mySideboard) moveTo(myHand)
-auto=may name(Search Sideaboar) reveal:type:*:mySideboard revealzone(mySideboard) optionone name(choose card) target(<1>Legion Angel|reveal) moveTo(myHand) and!(all(other *|reveal) moveto(ownerSideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveTo(ownerSideboard) and!(all(other *|reveal) moveto(ownerSideboard))! optiontwoend revealend
+auto=may name(Search Sideaboard) reveal:type:*:mySideboard revealzone(mySideboard) optionone name(choose card) target(<1>Legion Angel|reveal) moveTo(myHand) and!(all(other *|reveal) moveto(ownerSideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveTo(ownerSideboard) and!(all(other *|reveal) moveto(ownerSideboard))! optiontwoend revealend
 text=Flying -- When Legion Angel enters the battlefield, you may reveal a card you own named Legion Angel from outside the game and put it into your hand.
 mana={2}{W}{W}
 type=Creature
@@ -29793,7 +29847,7 @@ toughness=4
 [/card]
 [card]
 name=Netherborn Altar
-auto={T}:counter(0/0,1,Soul) && transforms((,newability[moveTo(myHand) target(commander|sideboard)] && life:-3 foreach(counter{0/0,1,Soul}) all(this) controller))
+auto={T} restriction{type(*[iscommander]|mycommandzone)~morethan~0}:transforms((,newability[counter(0/0.1.Soul) all(this)],newability[moveTo(myHand) target(*[iscommander]|mycommandzone)],newability[thisforeach(counter{0/0.1.Soul}) life:-3 controller])) oneshot
 text={T}, Put a soul counter on Netherborn Altar: Put your commander into your hand from the command zone. Then you lose 3 life for each soul counter on Netherborn Altar.
 mana={1}{B}
 type=Artifact
@@ -35737,7 +35791,7 @@ other={3}{U}{R} name(Development)
 auto=ifnot paid(alternative) then choice name(Search sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose 4 cards) target(<upto:4>*|reveal) moveto(mylibrary) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend afterrevealed shuffle controller afterrevealedend revealend
 auto=ifnot paid(alternative) then choice name(Search exile) moveto(mylibrary) target(<upto:4>*|myexile) && shuffle controller
 auto=if paid(alternative) then ability$!name(Choose one) choice name(Create Elemental) create(Elemental:creature Elemental:3/1:red)*2 opponent _ choice name(Draw cards) draw:2 opponent!$ opponent
-text=Choose up to four cards you own from outside the game and shuffle them into your library. --  //  -- Put a 3/1 red Elemental creature token onto the battlefield unless any opponent has you draw a card. Repeat this process two more times.
+text=Choose up to four cards you own from outside the game and shuffle them into your library. // Put a 3/1 red Elemental creature token onto the battlefield unless any opponent has you draw a card. Repeat this process two more times.
 mana={G}{U}
 type=Instant
 [/card]

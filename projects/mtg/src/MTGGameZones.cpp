@@ -50,16 +50,64 @@ MTGPlayerCards::MTGPlayerCards(MTGDeck * deck)
 void MTGPlayerCards::initDeck(MTGDeck * deck)
 {
     resetLibrary();
+    //commander zone init
+    if(deck->CommandZone.size())
+    {
+        for(unsigned int j = 0; j < deck->CommandZone.size(); j++)
+        {
+            string cardID = deck->CommandZone[j];
+            MTGCard * card = MTGCollection()->getCardById(atoi(cardID.c_str()));
+            if(card)
+            {
+                MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+                //commander zone
+                newCard->basicAbilities[Constants::ISCOMMANDER] = 1;
+                commandzone->addCard(newCard);
+            }
+        }
+    }
     map<int, int>::iterator it;
     for (it = deck->cards.begin(); it != deck->cards.end(); it++)
     {
         MTGCard * card = deck->getCardById(it->first);
         if (card)
         {
-            for (int i = 0; i < it->second; i++)
+            for (int j = 0; j < it->second; j++)
             {
                 MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
-                library->addCard(newCard);
+                if(!commandzone->cards.size()){ //If no commander in Deck there are no limitations for cards.
+                    library->addCard(newCard);
+                } else {
+                    if(newCard->hasType("Land") && newCard->hasType("Basic")){ //There are no limitations for basic lands cards.
+                        library->addCard(newCard);
+                    } else{
+                        bool colorFound = false; // All the cards have to share at least one color with commander identity color.
+                        for(unsigned int i = 0; i < commandzone->cards.size() && !colorFound; i++){
+                            if((newCard->hasColor(Constants::MTG_COLOR_WHITE) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_WHITE)) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_BLACK) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_BLACK)) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_RED) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_RED)) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_BLUE) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_BLUE)) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_GREEN) && commandzone->cards[i]->hasColor(Constants::MTG_COLOR_GREEN))){
+                                colorFound = true;
+                            } else if((newCard->hasColor(Constants::MTG_COLOR_WHITE) && commandzone->cards[i]->magicText.find("{W}") != std::string::npos) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_BLACK) && commandzone->cards[i]->magicText.find("{B}") != std::string::npos)||
+                                (newCard->hasColor(Constants::MTG_COLOR_RED) && commandzone->cards[i]->magicText.find("{R}") != std::string::npos) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_BLUE) && commandzone->cards[i]->magicText.find("{U}") != std::string::npos) ||
+                                (newCard->hasColor(Constants::MTG_COLOR_GREEN) && commandzone->cards[i]->magicText.find("{G}") != std::string::npos)){
+                                colorFound = true;
+                            }
+                        }
+                        if(colorFound || newCard->hasColor(Constants::MTG_COLOR_ARTIFACT) || newCard->colors == Constants::MTG_UNCOLORED || newCard->hasColor(Constants::MTG_COLOR_LAND)){
+                            bool onlyInstance = true; // In commander format only single cards are allowed if they are not basic lands.
+                            for(unsigned int k = 0; k < library->cards.size() && onlyInstance; k++){
+                                if(library->cards[k]->name == newCard->name)
+                                    onlyInstance = false;
+                            }
+                            if(onlyInstance)
+                                library->addCard(newCard);
+                        }
+                    }
+                }
             }
         }
     }
@@ -75,22 +123,6 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
                 MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
                 //sb zone
                 sideboard->addCard(newCard);
-            }
-        }
-    }
-    //commander zone init
-    if(deck->CommandZone.size())
-    {
-        for(unsigned int j = 0; j < deck->CommandZone.size(); j++)
-        {
-            string cardID = deck->CommandZone[j];
-            MTGCard * card = MTGCollection()->getCardById(atoi(cardID.c_str()));
-            if(card)
-            {
-                MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
-                //commander zone
-                newCard->basicAbilities[Constants::ISCOMMANDER] = 1;
-                commandzone->addCard(newCard);
             }
         }
     }

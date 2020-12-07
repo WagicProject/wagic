@@ -1231,6 +1231,46 @@ type=Legendary Planeswalker
 subtype=Jace
 [/card]
 [card]
+name=Jeska, Thrice Reborn
+abilities=canbecommander,partner
+auto=counter(0/0,pnumofcommandcast,loyalty)
+auto={C(0/0,0,Loyalty)}:name(+0: target creature deals triple damage) target(creature) transforms((,newability[@combatdamaged(player) from(this):damage:twicethatmuch opponent])) uynt
+auto={C(0/0,-1,Loyalty)}:name(-1: Deals damage to 1 player and to each of up to 2 creatures or planeswalkers) damage:1 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:1!$ controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Deals damage to 2 players and to each of up to 1 creature or planeswalker) damage:1 opponent && damage:1 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:1!$ controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Deals damage to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:1!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:2 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:2!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damages to 2 players and to each of up to 1 creature or planeswalker) damage:2 opponent && damage:2 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:2!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:2!$ controller
+auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:3 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:3!$ controller
+auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damages to 2 players and to each of up to 1 creature or planeswalker) damage:3 opponent && damage:3 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:3!$ controller
+auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:3!$ controller
+auto={C(0/0,-4,Loyalty)}:name(-4: Deals 4 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:4 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:4!$ controller
+auto={C(0/0,-4,Loyalty)}:name(-4: Deals 4 damages to 2 players and to each of up to 1 creature or planeswalker) damage:4 opponent && damage:4 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:4!$ controller
+auto={C(0/0,-4,Loyalty)}:name(-4: Deals 4 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:4!$ controller
+auto={C(0/0,-5,Loyalty)}:name(-5: Deals 5 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:5 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:5!$ controller
+auto={C(0/0,-5,Loyalty)}:name(-5: Deals 5 damages to 2 players and to each of up to 1 creature or planeswalker) damage:5 opponent && damage:5 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:5!$ controller
+auto={C(0/0,-5,Loyalty)}:name(-5: Deals 5 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:5!$ controller
+auto={C(0/0,-6,Loyalty)}:name(-6: Deals 6 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:6 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:6!$ controller
+auto={C(0/0,-6,Loyalty)}:name(-6: Deals 6 damages to 2 players and to each of up to 1 creature or planeswalker) damage:6 opponent && damage:6 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:6!$ controller
+auto={C(0/0,-6,Loyalty)}:name(-6: Deals 6 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:6!$ controller
+auto={C(0/0,-7,Loyalty)}:name(-7: Deals 7 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:7 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:7!$ controller
+auto={C(0/0,-7,Loyalty)}:name(-7: Deals 7 damages to 2 players and to each of up to 1 creature or planeswalker) damage:7 opponent && damage:7 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:7!$ controller
+auto={C(0/0,-7,Loyalty)}:name(-7: Deals 7 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:7!$ controller
+auto={C(0/0,-8,Loyalty)}:name(-8: Deals 8 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:8 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:8!$ controller
+auto={C(0/0,-8,Loyalty)}:name(-8: Deals 8 damages to 2 players and to each of up to 1 creature or planeswalker) damage:8 opponent && damage:8 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:8!$ controller
+auto={C(0/0,-8,Loyalty)}:name(-8: Deals 8 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:8!$ controller
+auto={C(0/0,-9,Loyalty)}:name(-9: Deals 9 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:9 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:9!$ controller
+auto={C(0/0,-9,Loyalty)}:name(-9: Deals 9 damages to 2 players and to each of up to 1 creature or planeswalker) damage:9 opponent && damage:9 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:9!$ controller
+auto={C(0/0,-9,Loyalty)}:name(-9: Deals 9 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:9!$ controller
+auto={C(0/0,-10,Loyalty)}:name(-10: Deals 10 damages to 1 player and to each of up to 2 creatures or planeswalkers) damage:10 target(player) && ability$!name(Choose 2 targets) target(<upto:2>*[creature;planeswalker]|battlefield) damage:10!$ controller
+auto={C(0/0,-10,Loyalty)}:name(-10: Deals 10 damages to 2 players and to each of up to 1 creature or planeswalker) damage:10 opponent && damage:10 controller && ability$!name(Choose 1 target) target(<upto:1>*[creature;planeswalker]|battlefield) damage:10!$ controller
+auto={C(0/0,-10,Loyalty)}:name(-10: Deals 10 damages to each of up to 3 creatures or planeswalkers) ability$!name(Choose 3 targets) target(<upto:3>*[creature;planeswalker]|battlefield) damage:10!$ controller
+text=Jeska, Thrice Reborn enters the battlefield with a loyalty counter on it for each time you've cast a commander from the command zone this game. -- 0: Choose target creature. Until your next turn, if that creature would deal combat damage to one of your opponents, it deals triple that damage to that player instead. -- -X: Jeska, Thrice Reborn deals X damage to each of up to three targets. -- Jeska, Thrice Reborn can be your commander. -- Partner
+mana={2}{R}
+type=Legendary Planeswalker
+subtype=Jeska
+[/card]
+[card]
 name=Jaya Ballard
 auto=counter(0/0,5,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Add {R}{R}{R}) if type(*[instant;sorcery]|myhand)~morethan~0 then add{R}{R}{R}
