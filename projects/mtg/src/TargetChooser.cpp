@@ -1170,7 +1170,7 @@ bool TargetChooser::validTargetsExist(int maxTargets)
         int maxAmount = 0;
         Player *p = observer->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard, p->game->commandzone };
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->commandzone, p->game->sideboard, p->game->reveal };
         for (int k = 0; k < 9; k++)
         {
             MTGGameZone * z = zones[k];
@@ -1204,7 +1204,7 @@ int TargetChooser::countValidTargets(bool withoutProtections)
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard, p->game->commandzone };
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->commandzone, p->game->sideboard, p->game->reveal };
         for (int k = 0; k < 9; k++)
         {
             MTGGameZone * z = zones[k];

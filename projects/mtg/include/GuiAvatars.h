@@ -9,6 +9,7 @@ class GuiLibrary;
 class GuiOpponentHand;
 class GuiExile;
 class GuiCommandZone;
+class GuiSideboard;
 class GuiAvatars: public GuiLayer
 {
 protected:
@@ -18,6 +19,7 @@ protected:
     GuiOpponentHand *opponentHand;
     GuiExile* selfExile, *opponentExile;
     GuiCommandZone* selfCommandZone, *opponentCommandZone;
+    GuiSideboard* selfSideboard;
     GuiAvatar* active;
 
 public:

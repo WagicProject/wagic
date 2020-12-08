@@ -100,6 +100,7 @@ Random 3 Colors=Aleatorio de 3 colores
 Random 5 Colors=Aleatorio de 5 colores
 Set Limited=Edicion Limitada
 Blitzkrieg Mode Unlocked=Modo Asalto relampago desbloqueado
+Commander Format=Modo Comandante
 
 #Juegos por partida:
 How many games per match?=Cuantos juegos por partida?

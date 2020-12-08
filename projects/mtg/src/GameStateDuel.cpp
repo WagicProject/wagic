@@ -211,7 +211,7 @@ void GameStateDuel::Start()
 
     // match mode is available in classic and demo mode.
     // in both modes player 1 is from type PLAYER_TYPE_CPU
-    if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
+    if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
     {
         //initialize match
         // only reset "Played Games" and "Victories" info if we didn't come here from within a match
@@ -385,7 +385,7 @@ void GameStateDuel::ConstructOpponentMenu()
             GameStateDuel::selectedAIDeckId, true);
 
         int nbUnlockedDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
-        if ((mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&&mParent->players[1] == PLAYER_TYPE_CPU)
+        if ((mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO) && mParent->players[1] == PLAYER_TYPE_CPU)
         {
             if (!tournamentSelection)
             {
@@ -618,7 +618,7 @@ void GameStateDuel::Update(float dt)
             }
             else
             {
-                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
+                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_DEMO))
                 {
                     if (deckmenu && (!popupScreen || popupScreen->isClosed())) deckmenu->Update(dt);
                 }
@@ -675,7 +675,7 @@ void GameStateDuel::Update(float dt)
             }
             else
             {
-                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
+                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_DEMO))
                 {
                     ConstructOpponentMenu();
                     opponentMenu->Update(dt);
@@ -766,7 +766,7 @@ void GameStateDuel::Update(float dt)
                 sprintf(temp, "ai_baka_music%i.mp3", OpponentsDeckid);
                 musictrack.assign(temp);
             }
-            else if (mParent->gameType == GAME_TYPE_CLASSIC)
+            else if (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_COMMANDER)
                 musictrack = "ai_baka_music.mp3";
             else if (mParent->gameType == GAME_TYPE_MOMIR)
                 musictrack = "ai_baka_music_momir.mp3";
@@ -781,7 +781,7 @@ void GameStateDuel::Update(float dt)
 
             GameApp::playMusic(musictrack);
             // init Score table
-            if ( (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&& mParent->players[1] == PLAYER_TYPE_CPU)
+            if ( (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO) && mParent->players[1] == PLAYER_TYPE_CPU)
             {
                 tournament->updateScoreTable(game->players[0], game->players[1], mParent->gameType);
                 tournament->setScoreDisplayed(false);
@@ -799,7 +799,7 @@ void GameStateDuel::Update(float dt)
         if (game->didWin())
         {
             //the following section will be called only in a classic or demo gamemode and if a tournament or match with more than one game is activ
-            if ( (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&& mParent->players[1] == PLAYER_TYPE_CPU && (tournament->isTournament() || tournament->getGamesToPlay()>1 ))
+            if ( (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO) && mParent->players[1] == PLAYER_TYPE_CPU && (tournament->isTournament() || tournament->getGamesToPlay()>1 ))
             {
                 setGamePhase(DUEL_STATE_SHOW_SCORE);
                 /* Determine the winner of this game.
@@ -950,7 +950,7 @@ void GameStateDuel::Update(float dt)
                 menu->Add(MENUITEM_LOAD, "Load");
 #endif
 
-                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
+                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
                 {
                     menu->Add(MENUITEM_SHOW_SCORE, "Show current score");
                     if (mParent->players[0] == PLAYER_TYPE_CPU)
@@ -1180,6 +1180,7 @@ void GameStateDuel::Render()
             && mParent->gameType != GAME_TYPE_SLAVE
 #endif //NETWORK_SUPPORT
             && mParent->gameType != GAME_TYPE_STONEHEWER
+            && mParent->gameType != GAME_TYPE_COMMANDER
             && mParent->gameType != GAME_TYPE_HERMIT)
             mFont->DrawString(_("LOADING DECKS").c_str(), 0, SCREEN_HEIGHT / 2);
         else
@@ -2693,7 +2694,7 @@ void Tournament::renderScoreTable()
         // For some reason, there's currently no player avatar prepared in-game:
         if (p1IsAI)
         {
-            if (mgameType == GAME_TYPE_CLASSIC || mgameType == GAME_TYPE_DEMO)
+            if (mgameType == GAME_TYPE_COMMANDER || mgameType == GAME_TYPE_CLASSIC || mgameType == GAME_TYPE_DEMO)
                 r->RenderQuad(p1Quad.get(), x_score, 70, 0,1,1);
         }
         else
@@ -2703,7 +2704,7 @@ void Tournament::renderScoreTable()
         }
         if (p0IsAI)
         {
-            if (mgameType == GAME_TYPE_CLASSIC || mgameType == GAME_TYPE_DEMO)
+            if (mgameType == GAME_TYPE_COMMANDER || mgameType == GAME_TYPE_CLASSIC || mgameType == GAME_TYPE_DEMO)
                 r->RenderQuad(p0Quad.get(), x_score+190, 215, 0,1,1);
         }
         else

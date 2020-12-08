@@ -908,6 +908,7 @@ void GameObserver::gameStateBasedEffects()
             {
                 card->graveEffects = false;
                 card->exileEffects = false;
+                card->commandZoneEffects = false;
 
                 if(card->isCreature())
                 {
@@ -1348,6 +1349,8 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
         exile->toggleDisplay();
     else if (GuiCommandZone* commandzone = dynamic_cast<GuiCommandZone*>(target))
         commandzone->toggleDisplay();
+    else if (GuiSideboard* sideboard = dynamic_cast<GuiSideboard*>(target))
+        sideboard->toggleDisplay();
     //opponenthand
     else if (GuiOpponentHand* opponentHand = dynamic_cast<GuiOpponentHand*>(target))
         if (opponentHand->showCards)
@@ -1679,6 +1682,17 @@ int GameObserver::isInExile(MTGCardInstance * card)
     {
         MTGGameZone * exile = players[i]->game->exile;
         if (players[i]->game->isInZone(card,exile)) 
+            return 1;
+    }
+    return 0;
+}
+int GameObserver::isInCommandZone(MTGCardInstance * card)
+{
+
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * commandzone = players[i]->game->commandzone;
+        if (players[i]->game->isInZone(card,commandzone)) 
             return 1;
     }
     return 0;

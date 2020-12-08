@@ -18,6 +18,8 @@ GuiAvatars::GuiAvatars(DuelLayers* duelLayers) :
     Add(selfExile = NEW GuiExile(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 30, false, mpDuelLayers->getRenderedPlayer(), this));
     //mycommandZone
     Add(selfCommandZone = NEW GuiCommandZone(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 + 9, SCREEN_HEIGHT - GuiAvatar::Height - 30, false, mpDuelLayers->getRenderedPlayer(), this));
+    //mySideboard
+    Add(selfSideboard = NEW GuiSideboard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 + 29, SCREEN_HEIGHT - GuiAvatar::Height - 30, false, mpDuelLayers->getRenderedPlayer(), this));
 
     Add(opponent = NEW GuiAvatar(0, 0, false, mpDuelLayers->getRenderedPlayerOpponent(), GuiAvatar::TOP_LEFT, this));
     opponent->zoom = 0.9f;
@@ -42,13 +44,14 @@ GuiAvatars::GuiAvatars(DuelLayers* duelLayers) :
     observer->getCardSelector()->Add(selfExile);
     observer->getCardSelector()->Add(selfCommandZone);
     observer->getCardSelector()->Add(selfLibrary);
+    observer->getCardSelector()->Add(selfSideboard);
     observer->getCardSelector()->Add(opponent);
     observer->getCardSelector()->Add(opponentGraveyard);
     observer->getCardSelector()->Add(opponentExile);
     observer->getCardSelector()->Add(opponentCommandZone);
     observer->getCardSelector()->Add(opponentLibrary);
     observer->getCardSelector()->Add(opponentHand);
-    selfGraveyard->alpha = selfExile->alpha = selfCommandZone->alpha = opponentCommandZone->alpha = opponentExile->alpha = selfLibrary->alpha = opponentGraveyard->alpha = opponentLibrary->alpha = opponentHand->alpha = 0;
+    selfGraveyard->alpha = selfExile->alpha = selfCommandZone->alpha = selfSideboard->alpha = opponentCommandZone->alpha = opponentExile->alpha = selfLibrary->alpha = opponentGraveyard->alpha = opponentLibrary->alpha = opponentHand->alpha = 0;
 }
 
 float GuiAvatars::LeftBoundarySelf()
@@ -71,9 +74,9 @@ void GuiAvatars::Activate(PlayGuiObject* c)
         active = opponent;
         opponent->zoom = 1.2f;
     }
-    else if ((selfGraveyard == c) || (selfExile == c) || (selfCommandZone == c) || (selfLibrary == c) || (self == c))
+    else if ((selfGraveyard == c) || (selfExile == c) || (selfCommandZone == c) || (selfSideboard == c) || (selfLibrary == c) || (self == c))
     {
-        selfGraveyard->alpha = selfExile->alpha = selfCommandZone->alpha = selfLibrary->alpha = 128.0f;
+        selfGraveyard->alpha = selfExile->alpha = selfSideboard->alpha = selfCommandZone->alpha = selfLibrary->alpha = 128.0f;
         self->zoom = 1.0f;
         active = self;
     }
@@ -90,9 +93,9 @@ void GuiAvatars::Deactivate(PlayGuiObject* c)
         opponent->zoom = 0.9f;
         active = NULL;
     }
-    else if ((selfGraveyard == c) || (selfExile == c) || (selfCommandZone == c) || (selfLibrary == c) || (self == c))
+    else if ((selfGraveyard == c) || (selfExile == c) || (selfCommandZone == c) || (selfSideboard == c) || (selfLibrary == c) || (self == c))
     {
-        selfGraveyard->alpha = selfExile->alpha = selfCommandZone->alpha = selfLibrary->alpha = 0;
+        selfGraveyard->alpha = selfExile->alpha = selfSideboard->alpha = selfCommandZone->alpha = selfLibrary->alpha = 0;
         self->zoom = 0.5f;
         active = NULL;
     }
@@ -100,7 +103,7 @@ void GuiAvatars::Deactivate(PlayGuiObject* c)
 
 int GuiAvatars::receiveEventPlus(WEvent* e)
 {
-    return selfGraveyard->receiveEventPlus(e) | selfExile->receiveEventPlus(e) | selfCommandZone->receiveEventPlus(e) | opponentExile->receiveEventPlus(e) | opponentCommandZone->receiveEventPlus(e) | opponentGraveyard->receiveEventPlus(e) | opponentHand->receiveEventPlus(e);
+    return selfGraveyard->receiveEventPlus(e) | selfExile->receiveEventPlus(e) | selfSideboard->receiveEventPlus(e) | selfCommandZone->receiveEventPlus(e) | opponentExile->receiveEventPlus(e) | opponentCommandZone->receiveEventPlus(e) | opponentGraveyard->receiveEventPlus(e) | opponentHand->receiveEventPlus(e);
 }
 
 int GuiAvatars::receiveEventMinus(WEvent* e)
@@ -108,6 +111,7 @@ int GuiAvatars::receiveEventMinus(WEvent* e)
     selfGraveyard->receiveEventMinus(e);
     selfExile->receiveEventMinus(e);
     selfCommandZone->receiveEventMinus(e);
+    selfSideboard->receiveEventMinus(e);
     opponentGraveyard->receiveEventMinus(e);
     opponentExile->receiveEventMinus(e);
     opponentCommandZone->receiveEventMinus(e);
@@ -126,6 +130,8 @@ bool GuiAvatars::CheckUserInput(JButton key)
     if (selfExile->CheckUserInput(key))
         return true;
     if (selfCommandZone->CheckUserInput(key))
+        return true;
+    if (selfSideboard->CheckUserInput(key))
         return true;
     if (opponentGraveyard->CheckUserInput(key))
         return true;
@@ -149,6 +155,7 @@ void GuiAvatars::Update(float dt)
     selfGraveyard->Update(dt);
     selfExile->Update(dt);
     selfCommandZone->Update(dt);
+    selfSideboard->Update(dt);
     opponentHand->Update(dt);
     opponentGraveyard->Update(dt);
     opponentExile->Update(dt);
@@ -169,8 +176,8 @@ void GuiAvatars::Render()
     }
     else if (self == active)
     {
-        r->FillRect(self->actX - w * self->actZ - 4.5f, self->actY - h-28 * self->actZ, 24 * self->actZ + 19, h+28 * self->actZ, ARGB(200,0,0,0));
-        //r->FillRect(self->actX - w * self->actZ - 4.5f, self->actY - h * self->actZ, w * self->actZ, h * self->actZ, ARGB(200,0,0,0));
+        r->FillRect(self->actX - w * self->actZ - 4.5f, self->actY - h-28 * self->actZ, 24 * self->actZ + 35, h+28 * self->actZ, ARGB(200,0,0,0));
+        r->FillRect(self->actX - w * self->actZ - 4.5f, self->actY - h * self->actZ, w * self->actZ, h * self->actZ, ARGB(200,0,0,0));
     }
     GuiLayer::Render();
 

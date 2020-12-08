@@ -497,6 +497,8 @@ Player * Rules::initPlayer(GameObserver *g, int playerId)
             return loadPlayerMomir(g, isAI);
         case GAME_TYPE_CLASSIC:
             return NULL; //Error for the time being
+        case GAME_TYPE_COMMANDER:
+            return NULL; //Error for the time being
         case GAME_TYPE_RANDOM1:
             return loadPlayerRandom(g, isAI, GAME_TYPE_RANDOM1);
         case GAME_TYPE_RANDOM2:
@@ -528,9 +530,12 @@ MTGDeck * Rules::buildDeck(int playerId)
                                           initState.playerData[playerId].player->game->library,
                                           initState.playerData[playerId].player->game->hand,
                                           initState.playerData[playerId].player->game->inPlay,
-                                          initState.playerData[playerId].player->game->exile };
+                                          initState.playerData[playerId].player->game->exile,
+                                          initState.playerData[playerId].player->game->commandzone,
+                                          initState.playerData[playerId].player->game->sideboard,
+                                          initState.playerData[playerId].player->game->reveal };
 
-    for (int j = 0; j < 5; j++)
+    for (int j = 0; j < 7; j++)
     {
         for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
         {
@@ -605,16 +610,16 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->reveal, p->game->sideboard, p->game->commandzone };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->commandzone, p->game->sideboard, p->game->reveal };
         MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
                                               initState.playerData[i].player->game->library,
                                               initState.playerData[i].player->game->hand,
                                               initState.playerData[i].player->game->inPlay,
                                               initState.playerData[i].player->game->exile,
-                                              initState.playerData[i].player->game->reveal,
+                                              initState.playerData[i].player->game->commandzone,
                                               initState.playerData[i].player->game->sideboard,
-                                              initState.playerData[i].player->game->commandzone };
-        for (int j = 0; j < 5; j++)
+                                              initState.playerData[i].player->game->reveal };
+        for (int j = 0; j < 7; j++)
         {
             MTGGameZone * zone = playerZones[j];
             for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
@@ -699,7 +704,7 @@ Rules::Rules(string _bg)
 
 bool Rules::canChooseDeck() 
 {
-    return (gamemode == GAME_TYPE_CLASSIC || gamemode == GAME_TYPE_STONEHEWER || gamemode == GAME_TYPE_HERMIT); 
+    return (gamemode == GAME_TYPE_CLASSIC || gamemode == GAME_TYPE_STONEHEWER || gamemode == GAME_TYPE_HERMIT || gamemode == GAME_TYPE_COMMANDER); 
 }
 
 int Rules::load(string _filename)
@@ -826,5 +831,6 @@ GameType Rules::strToGameMode(string s)
     if (s.compare("story") == 0) return GAME_TYPE_STORY;
     if (s.compare("stonehewer") == 0) return GAME_TYPE_STONEHEWER;
     if (s.compare("hermit") == 0) return GAME_TYPE_HERMIT;
+    if (s.compare("commander") == 0) return GAME_TYPE_COMMANDER;
     return GAME_TYPE_CLASSIC;
 }

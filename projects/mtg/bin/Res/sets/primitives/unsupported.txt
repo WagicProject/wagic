@@ -9958,12 +9958,6 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Pay No Heed
-text=Prevent all damage a source of your choice would deal this turn.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Peace Talks
 text=This turn and next turn, creatures can't attack, and players and permanents can't be the targets of spells or activated abilities.
 mana={1}{W}
