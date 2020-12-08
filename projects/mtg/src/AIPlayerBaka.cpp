@@ -1908,7 +1908,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
     for (int i = 0; i < 2; i++)
     {
         Player * p = observer->players[i];
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay,p->game->stack,p->game->exile, p->game->reveal, p->game->sideboard, p->game->commandzone };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay,p->game->stack,p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
         if(a->getActionTc()->canTarget((Targetable*)p))
         {
             if(a->getActionTc()->maxtargets == 1)
@@ -2395,7 +2395,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
             }
         }
         MTGPlayerCards * playerZones = target->game;
-        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack,playerZones->exile,playerZones->reveal, playerZones->sideboard, playerZones->commandzone };
+        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack,playerZones->exile,playerZones->commandzone, playerZones->sideboard, playerZones->reveal };
         for (int j = 0; j < 9; j++)
         {
             MTGGameZone * zone = zones[j];

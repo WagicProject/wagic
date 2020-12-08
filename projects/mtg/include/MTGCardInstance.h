@@ -104,6 +104,7 @@ public:
     bool handEffects;
     bool graveEffects;
     bool exileEffects;
+    bool commandZoneEffects;
     bool suspended;
     bool miracle;
     bool hasCopiedToken;

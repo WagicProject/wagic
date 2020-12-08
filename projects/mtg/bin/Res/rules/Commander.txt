@@ -1,7 +1,7 @@
 name=Commander Format
 unlock=prx_commander
 [INIT]
-mode=mtg
+mode=commander
 
 #MTG Game specific rules
 auto=bonusrule
@@ -37,6 +37,7 @@ auto=bestowrule
 [PLAYERS]
 life:40
 offerinterruptonphase=draw
+auto=ability$!all(*[iscommander]|myzones) moveto(mycommandzone)!$ controller
 
 auto=shuffle
 auto=draw:7
@@ -66,6 +67,9 @@ auto=@each combatEnds:removeMana(*)
 auto=@each secondmain:removeMana(*)
 auto=@each end:removeMana(*)
 auto=@each cleanup:removeMana(*)
+
+#Monarch rule
+auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:draw:1
 
 #reset Creature damage at the cleanup phase
 auto=@each cleanup:all(*|myBattlefield) resetDamage

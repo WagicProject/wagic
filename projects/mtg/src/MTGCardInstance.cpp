@@ -320,6 +320,7 @@ void MTGCardInstance::initMTGCI()
     blocked = false;
     graveEffects = false;
     exileEffects = false;
+    commandZoneEffects = false;
     currentZone = NULL;
     cardsAbilities = vector<MTGAbility *>();
     //cardsAbilitiesFilter = vector<MTGAbility *>();

@@ -4918,6 +4918,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
     {
         card->graveEffects = false;
         card->exileEffects = false;
+        card->commandZoneEffects = false;
         card->handEffects = false;
         for (int i = 0; i < 2; ++i)
         {
@@ -4945,7 +4946,13 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
                 card->exileEffects = true;
                 break;
             }
-             if (dest == zones->library)
+            if (dest == zones->commandzone)
+            {
+                magicText = card->magicTexts["commandzone"];
+                card->commandZoneEffects = true;
+                break;
+            }
+            if (dest == zones->library)
             {
                 magicText = card->magicTexts["library"];
                 break;
@@ -5847,6 +5854,8 @@ int MTGAbility::testDestroy()
         return 0;
     if(source->exileEffects && game->isInExile(source))
         return 0;
+    if(source->commandZoneEffects && game->isInCommandZone(source))
+        return 0;
     if(this->forcedAlive == 1)
         return 0;
     if (!game->isInPlay(source))
@@ -6506,7 +6515,7 @@ void ListMaintainerAbility::updateTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile ,p->game->reveal, p->game->sideboard, p->game->commandzone };
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
         for (int k = 0; k < 9; k++)
         {
             MTGGameZone * zone = zones[k];
@@ -6578,7 +6587,7 @@ void ListMaintainerAbility::checkTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->reveal, p->game->sideboard, p->game->commandzone };
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
         for (int k = 0; k < 9; k++)
         {
             MTGGameZone * zone = zones[k];

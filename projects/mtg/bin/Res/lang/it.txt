@@ -86,6 +86,7 @@ Random 3 Colors=Tre colori casuali
 Random 5 Colors=Cinque colori casuali
 Set Limited=Edizione limitata
 Blitzkrieg Mode Unlocked=Modalita Assalto fulmineo sbloccata
+Commander Format=Modalita' Commander
 
 #Games per match:
 How many games per match?=Quante mani per partita?

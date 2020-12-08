@@ -32456,6 +32456,18 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Path of Ancestry
+auto=tap(noevent)
+auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
+auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend}])) forever
+auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
+auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
+auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
+auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
+text=Path of Ancestry enters the battlefield tapped. -- {T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1.
+type=Land
+[/card]
+[card]
 name=Pathmaker Initiate
 auto={T}:target(creature[power<=2]) unblockable ueot
 text={T}: Target creature with power 2 or less can't be blocked this turn.
@@ -32507,6 +32519,13 @@ other={convoke} name(Convoke)
 auto=preventAllcombatDamage ueot
 text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Prevent all combat damage that would be dealt this turn.
 mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Pay No Heed
+auto=name(prevent all damage) notatarget(*|battlefield,stack,hand,graveyard) transforms((,newability[preventalldamage from(this)])) ueot
+text=Prevent all damage a source of your choice would deal this turn.
+mana={W}
 type=Instant
 [/card]
 [card]
@@ -52627,6 +52646,7 @@ toughness=0
 [card]
 name=Yuriko, the Tiger's Shadow
 autohand={U}{B}{N}:ninjutsu
+autocommandzone={U}{B}{N}:ninjutsu
 auto=@combatdamagefoeof(player) from(ninja|myBattlefield):moveto(myhand) and!( transforms((,newability[damage:manacost opponent])) ueot )! all(*[zpos=1]|mylibrary)
 auto=@combatdamageof(player) from(ninja|myBattlefield):moveto(myhand) and!( transforms((,newability[damage:manacost controller])) ueot )! all(*[zpos=1]|mylibrary)
 text=Commander ninjutsu {U}{B} ({U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand or the command zone tapped and attacking.) -- Whenever a Ninja you control deals combat damage to a player, reveal the top card of your library and put that card into your hand. Each opponent loses life equal to that card's converted mana cost.

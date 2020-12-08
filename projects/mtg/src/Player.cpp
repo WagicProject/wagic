@@ -439,7 +439,7 @@ bool Player::parseLine(const string& s)
 
 void HumanPlayer::End()
 {
-    if(!premade && opponent() && (observer->gameType() == GAME_TYPE_CLASSIC))
+    if(!premade && opponent() && (observer->gameType() == GAME_TYPE_CLASSIC || observer->gameType() == GAME_TYPE_COMMANDER))
         DeckStats::GetInstance()->saveStats(this, opponent(), observer);
 }
 
