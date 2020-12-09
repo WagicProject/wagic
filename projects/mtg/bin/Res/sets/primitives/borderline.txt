@@ -32699,6 +32699,13 @@ power=9
 toughness=9
 [/card]
 [card]
+name=Patriarch's Bidding
+auto=chooseatype moveto(ownerbattlefield) all(creature[chosentype]|graveyard) chooseend
+text=Each player chooses a creature type. Each player returns all creature cards of a type chosen this way from his or her graveyard to the battlefield.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Patron of the Vein
 abilities=flying
 auto=destroy target(creature|opponentBattlefield)
@@ -32830,6 +32837,15 @@ type=Creature
 subtype=Elf Warrior
 power=1
 toughness=1
+[/card]
+[card]
+name=Pendrell Flux
+target=creature
+auto=teach(creature) transforms((,newability[@each my upkeep:thisforeach(variable{manacost}) pay[[{1}]] name(pay manacost) donothing?sacrifice])) forever
+text=Enchant creature -- Enchanted creature has "At the beginning of your upkeep, sacrifice this creature unless you pay its mana cost."
+mana={1}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Perilous Voyage

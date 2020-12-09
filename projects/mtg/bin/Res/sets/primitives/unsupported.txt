@@ -9902,12 +9902,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Patriarch's Bidding
-text=Each player chooses a creature type. Each player returns all creature cards of a type chosen this way from his or her graveyard to the battlefield.
-mana={3}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Penance
 text=Put a card from your hand on top of your library: The next time a black or red source of your choice would deal damage this turn, prevent that damage.
 mana={2}{W}
@@ -9918,13 +9912,6 @@ name=Pendant of Prosperity
 text=Pendant of Prosperity enters the battlefield under the control of an opponent of your choice. -- {2}, {T}: Draw a card, then you may put a land card from your hand onto the battlefield. Pendant of Prosperity's owner draws a card, then that player may put a land card from their hand onto the battlefield.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Pendrell Flux
-text=Enchant creature -- Enchanted creature has "At the beginning of your upkeep, sacrifice this creature unless you pay its mana cost."
-mana={1}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Pentagram of the Ages
