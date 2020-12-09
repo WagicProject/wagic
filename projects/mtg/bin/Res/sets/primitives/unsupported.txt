@@ -9578,15 +9578,6 @@ mana={6}
 type=Artifact
 [/card]
 [card]
-name=Omnath, Locus of Mana
-text=Green mana doesn't empty from your mana pool as steps and phases end. -- Omnath, Locus of Mana gets +1/+1 for each green mana in your mana pool.
-mana={2}{G}
-type=Legendary Creature
-subtype=Elemental
-power=1
-toughness=1
-[/card]
-[card]
 name=Onakke Catacomb
 text=All creatures are black and have deathtouch. -- Whenever you roll {K}, creatures you control get +1/+0 and gain first strike until end of turn.
 type=Plane
@@ -9829,12 +9820,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Pale Moon
-text=Until end of turn, if a player taps a nonbasic land for mana, it produces colorless mana instead of any other type.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Paliano Vanguard
 text=Draft Paliano Vanguard face up. -- As you draft a creature card, you may reveal it, note its creature types, then turn Paliano Vanguard face down. -- Other creatures you control of a type you noted for cards named Paliano Vanguard get +1/+1.
 mana={1}{W}
@@ -9908,12 +9893,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Parting Thoughts
-text=Destroy target creature. You draw X cards and you lose X life, where X is the number of counters on that creature.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
 name=Party Crasher
 text=Haste -- You can attack with Party Crasher once each combat during each opponent's turn.
 mana={4}{R}
@@ -9926,12 +9905,6 @@ toughness=3
 name=Patriarch's Bidding
 text=Each player chooses a creature type. Each player returns all creature cards of a type chosen this way from his or her graveyard to the battlefield.
 mana={3}{B}{B}
-type=Sorcery
-[/card]
-[card]
-name=Peace Talks
-text=This turn and next turn, creatures can't attack, and players and permanents can't be the targets of spells or activated abilities.
-mana={1}{W}
 type=Sorcery
 [/card]
 [card]
@@ -13367,12 +13340,6 @@ toughness=3
 name=Sylvan Echoes
 text=Whenever you clash and win, you may draw a card. (This ability triggers after the clash ends.)
 mana={G}
-type=Enchantment
-[/card]
-[card]
-name=Sylvan Library
-text=At the beginning of your draw step, you may draw two additional cards. If you do, choose two cards in your hand drawn this turn. For each of those cards, pay 4 life or put the card on top of your library.
-mana={1}{G}
 type=Enchantment
 [/card]
 [card]

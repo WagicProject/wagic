@@ -709,57 +709,33 @@ private:
             if(card && card->thatmuch > intValue)
                 intValue = card->thatmuch;
         }
-        else if (s == "oplifelost")
+        else if (s == "lifelost" || s == "oplifelost")
         {
-            intValue = target->controller()->opponent()->lifeLostThisTurn;
+            intValue = (s == "lifelost")?intValue = target->controller()->lifeLostThisTurn:target->controller()->opponent()->lifeLostThisTurn;
         }
-        else if (s == "lifelost")
+        else if (s == "lifegain" || s == "oplifegain")
         {
-            intValue = target->controller()->lifeLostThisTurn;
+            intValue = (s == "lifegain")?intValue = target->controller()->lifeGainedThisTurn:target->controller()->opponent()->lifeGainedThisTurn;
         }
-        else if (s == "oplifegain")
+        else if (s == "pdcount" || s == "odcount")
         {
-            intValue = target->controller()->opponent()->lifeGainedThisTurn;
+            intValue = (s == "pdcount")?target->controller()->damageCount:target->controller()->opponent()->damageCount;
         }
-        else if (s == "lifegain")
+        else if (s == "pdnoncount" || s == "odnoncount")
         {
-            intValue = target->controller()->lifeGainedThisTurn;
+            intValue = (s == "pdnoncount")?target->controller()->nonCombatDamage:target->controller()->opponent()->nonCombatDamage;
         }
-        else if (s == "pdcount")
+        else if (s == "mypoisoncount" || s == "opponentpoisoncount")
         {
-            intValue = target->controller()->damageCount;
-        }
-        else if (s == "odcount")
-        {
-            intValue = target->controller()->opponent()->damageCount;
-        }
-        else if (s == "pdnoncount")
-        {
-            intValue = target->controller()->nonCombatDamage;
-        }
-        else if (s == "odnoncount")
-        {
-            intValue = target->controller()->opponent()->nonCombatDamage;
-        }
-        else if (s == "mypoisoncount")
-        {
-            intValue = target->controller()->poisonCount;
-        }
-        else if (s == "opponentpoisoncount")
-        {
-            intValue = target->controller()->opponent()->poisonCount;
+            intValue = (s == "mypoisoncount")?target->controller()->poisonCount:intValue = target->controller()->opponent()->poisonCount;
         }
         else if (s == "opponentlifetotal")
         {
             intValue = target->controller()->opponent()->life;
         }
-        else if (s == "pdrewcount")
+        else if (s == "pdrewcount" || s == "odrewcount")
         {
-            intValue = target->controller()->drawCounter;
-        }
-        else if (s == "odrewcount")
-        {
-            intValue = target->controller()->opponent()->drawCounter;
+            intValue = (s == "pdrewcount")?target->controller()->drawCounter:target->controller()->opponent()->drawCounter;
         }
         else if (s == "epicactivated")
         {
@@ -769,13 +745,33 @@ private:
         {//this is just to count the number of snow mana produced ... just for debugging purposes...
             intValue = target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
         }
-        else if (s == "mypoolcount")
+        else if (s == "mypoolcount" || s == "opponentpoolcount")
         {//manapool
-            intValue = target->controller()->getManaPool()->getConvertedCost();
+            intValue = (s == "mypoolcount")?target->controller()->getManaPool()->getConvertedCost():target->controller()->opponent()->getManaPool()->getConvertedCost();
         }
-        else if (s == "opponentpoolcount")
-        {//manapool opponent
-            intValue = target->controller()->opponent()->getManaPool()->getConvertedCost();
+        else if (s == "mygreenpoolcount" || s == "opponentgreenpoolcount")
+        {
+            intValue = (s == "mygreenpoolcount")?target->controller()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_GREEN):target->controller()->opponent()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_GREEN);
+        }
+        else if (s == "myredpoolcount" || s == "opponentredpoolcount")
+        {
+            intValue = (s == "myredpoolcount")?target->controller()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_RED):target->controller()->opponent()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_RED);
+        }
+        else if (s == "mybluepoolcount" || s == "opponentbluepoolcount")
+        {
+            intValue = (s == "mybluepoolcount")?target->controller()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_BLUE):target->controller()->opponent()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_BLUE);
+        }
+        else if (s == "mywhitepoolcount" || s == "opponentwhitepoolcount")
+        {
+            intValue = (s == "mywhitepoolcount")?target->controller()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_WHITE):target->controller()->opponent()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_WHITE);
+        }
+        else if (s == "myblackpoolcount" || s == "opponentblackpoolcount")
+        {
+            intValue = (s == "myblackpoolcount")?target->controller()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_BLACK):target->controller()->opponent()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_BLACK);
+        }
+        else if (s == "mycolorlesspoolcount" || s == "opponentcolorlesspoolcount")
+        {
+            intValue = (s == "mycolorlesspoolcount")?target->controller()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT):target->controller()->opponent()->getManaPool()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
         }
         else if (s == "p" || s == "power")
         {
@@ -785,21 +781,13 @@ private:
         {
             intValue = target->getCurrentToughness();
         }
-        else if (s == "countedamount")
+        else if (s == "countedamount" || s == "countedbamount")
         {
-            intValue = target->CountedObjects;
+            intValue = (s == "countedamount")?target->CountedObjects:target->CountedObjectsB;
         }
-        else if (s == "countedbamount")
+        else if (s == "kicked" || s == "handsize")
         {
-            intValue = target->CountedObjectsB;
-        }
-        else if (s == "kicked")
-        {
-            intValue = target->kicked;
-        }
-        else if (s == "handsize")
-        {
-            intValue = target->controller()->handsize;
+            intValue = (s == "kicked")?target->kicked:target->controller()->handsize;
         }
         else if (s == "olandg")
         {
@@ -875,13 +863,9 @@ private:
             if ( target->controller()->opponent() == target->getObserver()->currentPlayer)
                 intValue = 1;
         }
-        else if (s == "phandcount")
+        else if (s == "phandcount" || s == "ohandcount")
         {
-            intValue = target->controller()->game->hand->nb_cards;
-        }
-        else if (s == "ohandcount")
-        {
-            intValue = target->controller()->opponent()->game->hand->nb_cards;
+            intValue = (s == "phandcount")?target->controller()->game->hand->nb_cards:target->controller()->opponent()->game->hand->nb_cards;
         }
         else if (s == "urzatron")//Urza lands
         {

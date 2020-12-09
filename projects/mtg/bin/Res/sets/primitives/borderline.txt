@@ -31420,6 +31420,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Omnath, Locus of Mana
+auto=mypoolsave(green)
+anyzone=mygreenpoolcountplus1plusend/mygreenpoolcountplus1plusend cdaactive
+text=Green mana doesn't empty from your mana pool as steps and phases end. -- Omnath, Locus of Mana gets +1/+1 for each green mana in your mana pool.
+mana={2}{G}
+type=Legendary Creature
+subtype=Elemental
+power=1
+toughness=1
+[/card]
+[card]
 name=Omnath, Locus of the Roil
 target=creature,opponent
 auto=damage:type:elemental:mybattlefield
@@ -32359,6 +32370,14 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Pale Moon
+auto=lord(land|mybattlefield) loseabilities && transforms((,newability[producecolor:land])) ueot
+auto=lord(land|opponentbattlefield) loseabilities && transforms((,newability[producecolor:land])) ueot
+text=Until end of turn, if a player taps a nonbasic land for mana, it produces colorless mana instead of any other type.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Palisade Giant
 abilities=cantlifelose
 auto=@damageof(player):life:thatmuch controller && damage:thatmuch all(this)
@@ -32585,6 +32604,33 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Parting Thoughts
+auto=if type(creature[-counter{1/1.1}]|battlefield)~morethan~0 then choice name(Destroy creature with no counters 1/1) target(creature[-counter{1/1.1}]|battlefield) destroy
+auto=if type(creature[counter{1/1.1}]|battlefield)~morethan~0 then choice name(Destroy creature with 1 counter 1/1) target(creature[counter{1/1.1}]|battlefield) transforms((,newability[destroy],newability[draw:1 controller],newability[life:-1 controller])) forever
+auto=if type(creature[counter{1/1.2}]|battlefield)~morethan~0 then choice name(Destroy creature with 2 counters 1/1) target(creature[counter{1/1.2}]|battlefield) transforms((,newability[destroy],newability[draw:2 controller],newability[life:-2 controller])) forever
+auto=if type(creature[counter{1/1.3}]|battlefield)~morethan~0 then choice name(Destroy creature with 3 counters 1/1) target(creature[counter{1/1.3}]|battlefield) transforms((,newability[destroy],newability[draw:3 controller],newability[life:-3 controller])) forever
+auto=if type(creature[counter{1/1.4}]|battlefield)~morethan~0 then choice name(Destroy creature with 4 counters 1/1) target(creature[counter{1/1.4}]|battlefield) transforms((,newability[destroy],newability[draw:4 controller],newability[life:-4 controller])) forever
+auto=if type(creature[counter{1/1.5}]|battlefield)~morethan~0 then choice name(Destroy creature with 5 counters 1/1) target(creature[counter{1/1.5}]|battlefield) transforms((,newability[destroy],newability[draw:5 controller],newability[life:-5 controller])) forever
+auto=if type(creature[counter{1/1.6}]|battlefield)~morethan~0 then choice name(Destroy creature with 6 counters 1/1) target(creature[counter{1/1.6}]|battlefield) transforms((,newability[destroy],newability[draw:6 controller],newability[life:-6 controller])) forever
+auto=if type(creature[counter{1/1.7}]|battlefield)~morethan~0 then choice name(Destroy creature with 7 counters 1/1) target(creature[counter{1/1.7}]|battlefield) transforms((,newability[destroy],newability[draw:7 controller],newability[life:-7 controller])) forever
+auto=if type(creature[counter{1/1.8}]|battlefield)~morethan~0 then choice name(Destroy creature with 8 counters 1/1) target(creature[counter{1/1.8}]|battlefield) transforms((,newability[destroy],newability[draw:8 controller],newability[life:-8 controller])) forever
+auto=if type(creature[counter{1/1.9}]|battlefield)~morethan~0 then choice name(Destroy creature with 9 counters 1/1) target(creature[counter{1/1.9}]|battlefield) transforms((,newability[destroy],newability[draw:9 controller],newability[life:-9 controller])) forever
+auto=if type(creature[counter{1/1.10}]|battlefield)~morethan~0 then choice name(Destroy creature with 10 counters 1/1) target(creature[counter{1/1.10}]|battlefield) transforms((,newability[destroy],newability[draw:10 controller],newability[life:-10 controller])) forever
+auto=if type(creature[counter{1/1.11}]|battlefield)~morethan~0 then choice name(Destroy creature with 11 counters 1/1) target(creature[counter{1/1.11}]|battlefield) transforms((,newability[destroy],newability[draw:11 controller],newability[life:-11 controller])) forever
+auto=if type(creature[counter{1/1.12}]|battlefield)~morethan~0 then choice name(Destroy creature with 12 counters 1/1) target(creature[counter{1/1.12}]|battlefield) transforms((,newability[destroy],newability[draw:12 controller],newability[life:-12 controller])) forever
+auto=if type(creature[counter{1/1.13}]|battlefield)~morethan~0 then choice name(Destroy creature with 13 counters 1/1) target(creature[counter{1/1.13}]|battlefield) transforms((,newability[destroy],newability[draw:13 controller],newability[life:-13 controller])) forever
+auto=if type(creature[counter{1/1.14}]|battlefield)~morethan~0 then choice name(Destroy creature with 14 counters 1/1) target(creature[counter{1/1.14}]|battlefield) transforms((,newability[destroy],newability[draw:14 controller],newability[life:-14 controller])) forever
+auto=if type(creature[counter{1/1.15}]|battlefield)~morethan~0 then choice name(Destroy creature with 15 counters 1/1) target(creature[counter{1/1.15}]|battlefield) transforms((,newability[destroy],newability[draw:15 controller],newability[life:-15 controller])) forever
+auto=if type(creature[counter{1/1.16}]|battlefield)~morethan~0 then choice name(Destroy creature with 16 counters 1/1) target(creature[counter{1/1.16}]|battlefield) transforms((,newability[destroy],newability[draw:16 controller],newability[life:-16 controller])) forever
+auto=if type(creature[counter{1/1.17}]|battlefield)~morethan~0 then choice name(Destroy creature with 17 counters 1/1) target(creature[counter{1/1.17}]|battlefield) transforms((,newability[destroy],newability[draw:17 controller],newability[life:-17 controller])) forever
+auto=if type(creature[counter{1/1.18}]|battlefield)~morethan~0 then choice name(Destroy creature with 18 counters 1/1) target(creature[counter{1/1.18}]|battlefield) transforms((,newability[destroy],newability[draw:18 controller],newability[life:-18 controller])) forever
+auto=if type(creature[counter{1/1.19}]|battlefield)~morethan~0 then choice name(Destroy creature with 19 counters 1/1) target(creature[counter{1/1.19}]|battlefield) transforms((,newability[destroy],newability[draw:19 controller],newability[life:-19 controller])) forever
+auto=if type(creature[counter{1/1.20}]|battlefield)~morethan~0 then choice name(Destroy creature with 20 counters 1/1) target(creature[counter{1/1.20}]|battlefield) transforms((,newability[destroy],newability[draw:20 controller],newability[life:-20 controller])) forever
+text=Destroy target creature. You draw X cards and you lose X life, where X is the number of counters on that creature.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=Pashalik Mons
 auto=@movedto(other creature[goblin]|graveyard) from(mybattlefield):damage:1 target(creature,player)
 auto=@movedto(this|graveyard) from(mybattlefield):damage:1 target(creature,player)
@@ -32689,6 +32735,14 @@ auto=name(prevent all damage) notatarget(*|battlefield,stack,hand,graveyard) tra
 text=Prevent all damage a source of your choice would deal this turn.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Peace Talks
+auto=lord(creature|battlefield) transforms((,newability[cantattack])) uynt
+auto=lord(*|battlefield) transforms((,newability[shroud],newability[controllershroud])) uynt
+text=This turn and next turn, creatures can't attack, and players and permanents can't be the targets of spells or activated abilities.
+mana={1}{W}
+type=Sorcery
 [/card]
 [card]
 name=Peer into the Abyss
@@ -45227,6 +45281,13 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Sylvan Library
+auto=@each my draw:may thisforeach(variable{2}) name(Draw 2 cards) name(Draw 2 cards) draw:1 && ability$!name(Pay life or discard) choice name(Pay Life) life:-4 controller _ choice name(Put on top of library) target(*|myhand) moveto(mylibrary)!$ controller
+text=At the beginning of your draw step, you may draw two additional cards. If you do, choose two cards in your hand drawn this turn. For each of those cards, pay 4 life or put the card on top of your library.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 name=Sylvan Offering
 auto=token(Treefolk,Creature Treefolk,X/X,green,tnum:2) opponent
 auto=token(Treefolk,Creature Treefolk,X/X,green,tnum:2) controller
@@ -48978,7 +49039,7 @@ toughness=*
 [card]
 name=Tymna the Weaver
 abilities=lifelink,partner
-auto=@each my endofturn restriction{compare(oplifelost)~morethan~0}:may pay({L:1}) draw:1 controller
+auto=@each my secondmain restriction{compare(odcountminusodnoncountminusend)~morethan~0}:may pay({L:1}) draw:1 controller
 text=Lifelink -- At the beginning of your postcombat main phase, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards. -- Partner (You can have two commanders if both have partner.)
 mana={1}{W}{B}
 type=Legendary Creature
