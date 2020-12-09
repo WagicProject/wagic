@@ -727,7 +727,7 @@ private:
         }
         else if (s == "mypoisoncount" || s == "opponentpoisoncount")
         {
-            intValue = (s == "mypoisoncount")?target->controller()->poisonCount:intValue = target->controller()->opponent()->poisonCount;
+            intValue = (s == "mypoisoncount")?target->controller()->poisonCount:target->controller()->opponent()->poisonCount;
         }
         else if (s == "opponentlifetotal")
         {
