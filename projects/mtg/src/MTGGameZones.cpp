@@ -490,7 +490,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
 
     //Increase the number of time this card has been casted from commandzone to recalculate cost.
-    if(from == g->players[0]->game->commandzone || from == g->players[1]->game->commandzone){
+    if(from != to && (from == g->players[0]->game->commandzone || from == g->players[1]->game->commandzone)){
         card->numofcastfromcommandzone++;
         card->controller()->numOfCommandCast++;
     }

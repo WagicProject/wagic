@@ -3610,15 +3610,6 @@ power=3{1/2}
 toughness=2
 [/card]
 [card]
-name=Duplicant
-text=Imprint — When Duplicant enters the battlefield, you may exile target nontoken creature. -- As long as the exiled card is a creature card, Duplicant has that card's power, toughness, and creature types. It's still a Shapeshifter.
-mana={6}
-type=Artifact Creature
-subtype=Shapeshifter
-power=2
-toughness=4
-[/card]
-[card]
 name=Duplication Device
 text=Whenever you crank Duplication Device, until end of turn, target creature becomes a copy of any creature on the battlefield, except it's an artifact in addition to its other types.
 type=Artifact
@@ -3747,26 +3738,6 @@ text=When you play Elvish Impersonators, roll two six-sided dice one after the o
 mana={3}{G}
 type=Summon
 subtype=Elves
-[/card]
-[card]
-name=Embermaw Hellion
-abilities=trample
-text=Trample (This creature can deal excess combat damage to defending player or planeswalker while attacking.) -- If another red source you control would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.
-mana={3}{R}{R}
-type=Creature
-subtype=Hellion
-power=4
-toughness=5
-[/card]
-[card]
-name=Emberwilde Djinn
-abilities=flying
-text=Flying -- At the beginning of each player's upkeep, that player may pay {R}{R} or 2 life. If he or she does, the player gains control of Emberwilde Djinn.
-mana={2}{R}{R}
-type=Creature
-subtype=Djinn
-power=5
-toughness=4
 [/card]
 [card]
 name=Emblazoned Golem
@@ -14491,12 +14462,6 @@ text=Target creature gains shroud until end of turn and is unblockable this turn
 mana={1}{U}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Veil of Summer
-text=Draw a card if an opponent has cast a blue or black spell this turn. Spells you control can't be countered this turn. You and permanents you control gain hexproof from blue and from black until end of turn. (You and they can't be the targets of blue or black spells or abilities your opponents control.)
-mana={G}
-type=Instant
 [/card]
 [card]
 name=Veiled Sentry

@@ -720,6 +720,7 @@ toughness=5
 name=Akroma's Will
 auto=choice name(Choose first) all(creature|mybattlefield) transforms((,newability[flying],newability[vigilance],newability[double strike])) ueot
 auto=choice name(Choose second) all(creature|mybattlefield) transforms((,newability[lifelink],newability[indestructible],newability[protection from blue],newability[protection from red],newability[protection from green],newability[protection from white],newability[protection from black])) ueot
+auto=if type(*[iscommander]|mybattlefield)~morethan~0 then choice name(Choose both) name(Choose both) all(creature|mybattlefield) transforms((,newability[flying],newability[vigilance],newability[double strike],newability[lifelink],newability[indestructible],newability[protection from blue],newability[protection from red],newability[protection from green],newability[protection from white],newability[protection from black])) ueot
 text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Creatures you control gain flying, vigilance, and double strike until end of turn. -- • Creatures you control gain lifelink, indestructible, and protection from all colors until end of turn.
 mana={3}{W}
 type=Instant
@@ -1044,6 +1045,7 @@ toughness=3
 [card]
 name=Anara, Wolvid Familiar
 abilities=partner
+auto=this(variable{controllerturn}>0) lord(*[iscommander]|mybattlefield) indestructible
 text=As long as it's your turn, commanders you control have indestructible. (Effects that say "destroy" don't destroy them. A creature with indestructible can't be destroyed by damage.) -- Partner (You can have two commanders if both have partner.)
 mana={3}{G}
 type=Legendary Creature
@@ -3357,8 +3359,8 @@ type=Sorcery
 [/card]
 [card]
 name=Bastion Protector
-auto=all(creature[commander]) 2/2
-auto=all(creature[commander]) indestructible
+auto=lord(creature[iscommander]|mybattlefield) 2/2
+auto=lord(*[iscommander]) indestructible
 text=Commander creatures you control get +2/+2 and have indestructible.
 mana={2}{W}
 type=Creature
@@ -3850,6 +3852,7 @@ toughness=2
 [card]
 name=Biowaste Blob
 auto=lord(*[ooze]|mybattlefield) 1/1
+auto=@each my upkeep restriction{type(*[iscommander]|myBattlefield)~morethan~0}:clone all(this)
 text=Oozes you control get +1/+1. -- At the beginning of your upkeep, if you control a commander, create a token that's a copy of Biowaste Blob.
 mana={2}{G}{G}
 type=Creature
@@ -4565,6 +4568,8 @@ type=Artifact
 [card]
 name=Bloodsworn Steward
 abilities=flying
+auto=lord(creature[iscommander]|mybattlefield) 2/2
+auto=lord(creature[iscommander]) haste
 text=Flying -- Commander creatures you control get +2/+2 and have haste.
 mana={2}{R}{R}
 type=Creature
@@ -6093,6 +6098,7 @@ toughness=2
 [/card]
 [card]
 name=Captain Vargus Wrath
+auto=@combat(attacking) source(this):all(pirate|myBattlefield) pnumofcommandcast/pnumofcommandcast ueot
 text=Whenever Captain Vargus Wrath attacks, Pirates you control get +1/+1 until end of turn for each time you've cast a commander from the command zone this game.
 mana={U}{R}
 type=Legendary Creature
@@ -9200,8 +9206,8 @@ toughness=2
 [card]
 name=Crimson Honor Guard
 abilities=trample
-auto=@each my end:damage:4 controller
-auto=@each opponent end:damage:4 opponent
+auto=@each my end restriction{type(*[iscommander]|myBattlefield)~lessthan~1}:damage:4 controller
+auto=@each opponent end restriction{type(*[iscommander]|opponentBattlefield)~lessthan~1}:damage:4 opponent
 text=Trample -- At the beginning of each player's end step, Crimson Honor Guard deals 4 damage to that player unless they control a commander.
 mana={3}{R}{R}
 type=Creature
@@ -10298,7 +10304,7 @@ name=Deadly Rollick
 target=creature
 auto=moveTo(exile)
 other={0} name(Cast without Paying its Mana Cost)
-otherrestriction=type(commander|mybattlefield)~morethan~0
+otherrestriction=type(*[iscommander]|mybattlefield)~morethan~0
 text=If you control a commander, you may cast this spell without paying its mana cost. -- Exile target creature.
 mana={3}{B}
 type=Instant
@@ -10614,7 +10620,7 @@ name=Deflecting Swat
 target=*|stack
 auto=castcard(copied noevent)
 other={0} name(Cast without Paying its Mana Cost)
-otherrestriction=type(commander|mybattlefield)~morethan~0
+otherrestriction=type(*[iscommander]|mybattlefield)~morethan~0
 text=If you control a commander, you may cast this spell without paying its mana cost. -- You may choose new targets for target spell or ability.
 mana={2}{R}
 type=Instant
@@ -10688,7 +10694,9 @@ toughness=7
 [card]
 name=Demon of Wailing Agonies
 abilities=flying
-#wagic doesnt have commander zone
+auto=aslongas(*[iscommander]|mybattlefield) 2/2 >0
+auto=@combatdamagefoeof(player) from(this) restriction{type(*[iscommander]|myBattlefield)~morethan~0}:ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=@combatdamageof(player) from(this) restriction{type(*[iscommander]|myBattlefield)~morethan~0}:ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ controller
 text=Flying -- Lieutenant — As long as you control your commander, Demon of Wailing Agonies gets +2/+2 and has "Whenever Demon of Wailing Agonies deals combat damage to a player, that player sacrifices a creature."
 mana={3}{B}{B}
 type=Creature
@@ -12536,6 +12544,116 @@ type=Land
 subtype=Desert
 [/card]
 [card]
+name=Duplicant
+auto=choice name(Don't exile any creature) donothing
+auto=if type(creature[-token;power=1;toughness=1]|battlefield)~morethan~0 then choice name(Exile 1/1 creature) transforms((,setpower=1,settoughness=1,newability[moveto(exile) target(creature[-token;power=1;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=2]|battlefield)~morethan~0 then choice name(Exile 1/2 creature) transforms((,setpower=1,settoughness=2,newability[moveto(exile) target(creature[-token;power=1;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=3]|battlefield)~morethan~0 then choice name(Exile 1/3 creature) transforms((,setpower=1,settoughness=3,newability[moveto(exile) target(creature[-token;power=1;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=4]|battlefield)~morethan~0 then choice name(Exile 1/4 creature) transforms((,setpower=1,settoughness=4,newability[moveto(exile) target(creature[-token;power=1;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=5]|battlefield)~morethan~0 then choice name(Exile 1/5 creature) transforms((,setpower=1,settoughness=5,newability[moveto(exile) target(creature[-token;power=1;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=6]|battlefield)~morethan~0 then choice name(Exile 1/6 creature) transforms((,setpower=1,settoughness=6,newability[moveto(exile) target(creature[-token;power=1;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=7]|battlefield)~morethan~0 then choice name(Exile 1/7 creature) transforms((,setpower=1,settoughness=7,newability[moveto(exile) target(creature[-token;power=1;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=8]|battlefield)~morethan~0 then choice name(Exile 1/8 creature) transforms((,setpower=1,settoughness=8,newability[moveto(exile) target(creature[-token;power=1;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=9]|battlefield)~morethan~0 then choice name(Exile 1/9 creature) transforms((,setpower=1,settoughness=9,newability[moveto(exile) target(creature[-token;power=1;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=1;toughness=10]|battlefield)~morethan~0 then choice name(Exile 1/10 creature) transforms((,setpower=1,settoughness=10,newability[moveto(exile) target(creature[-token;power=1;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=1]|battlefield)~morethan~0 then choice name(Exile 2/1 creature) transforms((,setpower=2,settoughness=1,newability[moveto(exile) target(creature[-token;power=2;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=2]|battlefield)~morethan~0 then choice name(Exile 2/2 creature) transforms((,setpower=2,settoughness=2,newability[moveto(exile) target(creature[-token;power=2;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=3]|battlefield)~morethan~0 then choice name(Exile 2/3 creature) transforms((,setpower=2,settoughness=3,newability[moveto(exile) target(creature[-token;power=2;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=4]|battlefield)~morethan~0 then choice name(Exile 2/4 creature) transforms((,setpower=2,settoughness=4,newability[moveto(exile) target(creature[-token;power=2;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=5]|battlefield)~morethan~0 then choice name(Exile 2/5 creature) transforms((,setpower=2,settoughness=5,newability[moveto(exile) target(creature[-token;power=2;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=6]|battlefield)~morethan~0 then choice name(Exile 2/6 creature) transforms((,setpower=2,settoughness=6,newability[moveto(exile) target(creature[-token;power=2;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=7]|battlefield)~morethan~0 then choice name(Exile 2/7 creature) transforms((,setpower=2,settoughness=7,newability[moveto(exile) target(creature[-token;power=2;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=8]|battlefield)~morethan~0 then choice name(Exile 2/8 creature) transforms((,setpower=2,settoughness=8,newability[moveto(exile) target(creature[-token;power=2;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=9]|battlefield)~morethan~0 then choice name(Exile 2/9 creature) transforms((,setpower=2,settoughness=9,newability[moveto(exile) target(creature[-token;power=2;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=2;toughness=10]|battlefield)~morethan~0 then choice name(Exile 2/10 creature) transforms((,setpower=2,settoughness=10,newability[moveto(exile) target(creature[-token;power=2;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=1]|battlefield)~morethan~0 then choice name(Exile 3/1 creature) transforms((,setpower=3,settoughness=1,newability[moveto(exile) target(creature[-token;power=3;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=2]|battlefield)~morethan~0 then choice name(Exile 3/2 creature) transforms((,setpower=3,settoughness=2,newability[moveto(exile) target(creature[-token;power=3;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=3]|battlefield)~morethan~0 then choice name(Exile 3/3 creature) transforms((,setpower=3,settoughness=3,newability[moveto(exile) target(creature[-token;power=3;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=4]|battlefield)~morethan~0 then choice name(Exile 3/4 creature) transforms((,setpower=3,settoughness=4,newability[moveto(exile) target(creature[-token;power=3;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=5]|battlefield)~morethan~0 then choice name(Exile 3/5 creature) transforms((,setpower=3,settoughness=5,newability[moveto(exile) target(creature[-token;power=3;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=6]|battlefield)~morethan~0 then choice name(Exile 3/6 creature) transforms((,setpower=3,settoughness=6,newability[moveto(exile) target(creature[-token;power=3;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=7]|battlefield)~morethan~0 then choice name(Exile 3/7 creature) transforms((,setpower=3,settoughness=7,newability[moveto(exile) target(creature[-token;power=3;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=8]|battlefield)~morethan~0 then choice name(Exile 3/8 creature) transforms((,setpower=3,settoughness=8,newability[moveto(exile) target(creature[-token;power=3;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=9]|battlefield)~morethan~0 then choice name(Exile 3/9 creature) transforms((,setpower=3,settoughness=9,newability[moveto(exile) target(creature[-token;power=3;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=3;toughness=10]|battlefield)~morethan~0 then choice name(Exile 3/10 creature) transforms((,setpower=3,settoughness=10,newability[moveto(exile) target(creature[-token;power=3;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=1]|battlefield)~morethan~0 then choice name(Exile 4/1 creature) transforms((,setpower=4,settoughness=1,newability[moveto(exile) target(creature[-token;power=4;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=2]|battlefield)~morethan~0 then choice name(Exile 4/2 creature) transforms((,setpower=4,settoughness=2,newability[moveto(exile) target(creature[-token;power=4;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=3]|battlefield)~morethan~0 then choice name(Exile 4/3 creature) transforms((,setpower=4,settoughness=3,newability[moveto(exile) target(creature[-token;power=4;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=4]|battlefield)~morethan~0 then choice name(Exile 4/4 creature) transforms((,setpower=4,settoughness=4,newability[moveto(exile) target(creature[-token;power=4;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=5]|battlefield)~morethan~0 then choice name(Exile 4/5 creature) transforms((,setpower=4,settoughness=5,newability[moveto(exile) target(creature[-token;power=4;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=6]|battlefield)~morethan~0 then choice name(Exile 4/6 creature) transforms((,setpower=4,settoughness=6,newability[moveto(exile) target(creature[-token;power=4;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=7]|battlefield)~morethan~0 then choice name(Exile 4/7 creature) transforms((,setpower=4,settoughness=7,newability[moveto(exile) target(creature[-token;power=4;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=8]|battlefield)~morethan~0 then choice name(Exile 4/8 creature) transforms((,setpower=4,settoughness=8,newability[moveto(exile) target(creature[-token;power=4;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=9]|battlefield)~morethan~0 then choice name(Exile 4/9 creature) transforms((,setpower=4,settoughness=9,newability[moveto(exile) target(creature[-token;power=4;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=4;toughness=10]|battlefield)~morethan~0 then choice name(Exile 4/10 creature) transforms((,setpower=4,settoughness=10,newability[moveto(exile) target(creature[-token;power=4;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=1]|battlefield)~morethan~0 then choice name(Exile 5/1 creature) transforms((,setpower=5,settoughness=1,newability[moveto(exile) target(creature[-token;power=5;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=2]|battlefield)~morethan~0 then choice name(Exile 5/2 creature) transforms((,setpower=5,settoughness=2,newability[moveto(exile) target(creature[-token;power=5;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=3]|battlefield)~morethan~0 then choice name(Exile 5/3 creature) transforms((,setpower=5,settoughness=3,newability[moveto(exile) target(creature[-token;power=5;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=4]|battlefield)~morethan~0 then choice name(Exile 5/4 creature) transforms((,setpower=5,settoughness=4,newability[moveto(exile) target(creature[-token;power=5;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=5]|battlefield)~morethan~0 then choice name(Exile 5/5 creature) transforms((,setpower=5,settoughness=5,newability[moveto(exile) target(creature[-token;power=5;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=6]|battlefield)~morethan~0 then choice name(Exile 5/6 creature) transforms((,setpower=5,settoughness=6,newability[moveto(exile) target(creature[-token;power=5;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=7]|battlefield)~morethan~0 then choice name(Exile 5/7 creature) transforms((,setpower=5,settoughness=7,newability[moveto(exile) target(creature[-token;power=5;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=8]|battlefield)~morethan~0 then choice name(Exile 5/8 creature) transforms((,setpower=5,settoughness=8,newability[moveto(exile) target(creature[-token;power=5;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=9]|battlefield)~morethan~0 then choice name(Exile 5/9 creature) transforms((,setpower=5,settoughness=9,newability[moveto(exile) target(creature[-token;power=5;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=5;toughness=10]|battlefield)~morethan~0 then choice name(Exile 5/10 creature) transforms((,setpower=5,settoughness=10,newability[moveto(exile) target(creature[-token;power=5;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=1]|battlefield)~morethan~0 then choice name(Exile 6/1 creature) transforms((,setpower=6,settoughness=1,newability[moveto(exile) target(creature[-token;power=6;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=2]|battlefield)~morethan~0 then choice name(Exile 6/2 creature) transforms((,setpower=6,settoughness=2,newability[moveto(exile) target(creature[-token;power=6;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=3]|battlefield)~morethan~0 then choice name(Exile 6/3 creature) transforms((,setpower=6,settoughness=3,newability[moveto(exile) target(creature[-token;power=6;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=4]|battlefield)~morethan~0 then choice name(Exile 6/4 creature) transforms((,setpower=6,settoughness=4,newability[moveto(exile) target(creature[-token;power=6;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=5]|battlefield)~morethan~0 then choice name(Exile 6/5 creature) transforms((,setpower=6,settoughness=5,newability[moveto(exile) target(creature[-token;power=6;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=6]|battlefield)~morethan~0 then choice name(Exile 6/6 creature) transforms((,setpower=6,settoughness=6,newability[moveto(exile) target(creature[-token;power=6;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=7]|battlefield)~morethan~0 then choice name(Exile 6/7 creature) transforms((,setpower=6,settoughness=7,newability[moveto(exile) target(creature[-token;power=6;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=8]|battlefield)~morethan~0 then choice name(Exile 6/8 creature) transforms((,setpower=6,settoughness=8,newability[moveto(exile) target(creature[-token;power=6;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=9]|battlefield)~morethan~0 then choice name(Exile 6/9 creature) transforms((,setpower=6,settoughness=9,newability[moveto(exile) target(creature[-token;power=6;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=6;toughness=10]|battlefield)~morethan~0 then choice name(Exile 6/10 creature) transforms((,setpower=6,settoughness=10,newability[moveto(exile) target(creature[-token;power=6;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=1]|battlefield)~morethan~0 then choice name(Exile 7/1 creature) transforms((,setpower=7,settoughness=1,newability[moveto(exile) target(creature[-token;power=7;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=2]|battlefield)~morethan~0 then choice name(Exile 7/2 creature) transforms((,setpower=7,settoughness=2,newability[moveto(exile) target(creature[-token;power=7;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=3]|battlefield)~morethan~0 then choice name(Exile 7/3 creature) transforms((,setpower=7,settoughness=3,newability[moveto(exile) target(creature[-token;power=7;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=4]|battlefield)~morethan~0 then choice name(Exile 7/4 creature) transforms((,setpower=7,settoughness=4,newability[moveto(exile) target(creature[-token;power=7;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=5]|battlefield)~morethan~0 then choice name(Exile 7/5 creature) transforms((,setpower=7,settoughness=5,newability[moveto(exile) target(creature[-token;power=7;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=6]|battlefield)~morethan~0 then choice name(Exile 7/6 creature) transforms((,setpower=7,settoughness=6,newability[moveto(exile) target(creature[-token;power=7;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=7]|battlefield)~morethan~0 then choice name(Exile 7/7 creature) transforms((,setpower=7,settoughness=7,newability[moveto(exile) target(creature[-token;power=7;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=8]|battlefield)~morethan~0 then choice name(Exile 7/8 creature) transforms((,setpower=7,settoughness=8,newability[moveto(exile) target(creature[-token;power=7;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=9]|battlefield)~morethan~0 then choice name(Exile 7/9 creature) transforms((,setpower=7,settoughness=9,newability[moveto(exile) target(creature[-token;power=7;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=7;toughness=10]|battlefield)~morethan~0 then choice name(Exile 7/10 creature) transforms((,setpower=7,settoughness=10,newability[moveto(exile) target(creature[-token;power=7;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=1]|battlefield)~morethan~0 then choice name(Exile 8/1 creature) transforms((,setpower=8,settoughness=1,newability[moveto(exile) target(creature[-token;power=8;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=2]|battlefield)~morethan~0 then choice name(Exile 8/2 creature) transforms((,setpower=8,settoughness=2,newability[moveto(exile) target(creature[-token;power=8;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=3]|battlefield)~morethan~0 then choice name(Exile 8/3 creature) transforms((,setpower=8,settoughness=3,newability[moveto(exile) target(creature[-token;power=8;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=4]|battlefield)~morethan~0 then choice name(Exile 8/4 creature) transforms((,setpower=8,settoughness=4,newability[moveto(exile) target(creature[-token;power=8;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=5]|battlefield)~morethan~0 then choice name(Exile 8/5 creature) transforms((,setpower=8,settoughness=5,newability[moveto(exile) target(creature[-token;power=8;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=6]|battlefield)~morethan~0 then choice name(Exile 8/6 creature) transforms((,setpower=8,settoughness=6,newability[moveto(exile) target(creature[-token;power=8;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=7]|battlefield)~morethan~0 then choice name(Exile 8/7 creature) transforms((,setpower=8,settoughness=7,newability[moveto(exile) target(creature[-token;power=8;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=8]|battlefield)~morethan~0 then choice name(Exile 8/8 creature) transforms((,setpower=8,settoughness=8,newability[moveto(exile) target(creature[-token;power=8;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=9]|battlefield)~morethan~0 then choice name(Exile 8/9 creature) transforms((,setpower=8,settoughness=9,newability[moveto(exile) target(creature[-token;power=8;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=8;toughness=10]|battlefield)~morethan~0 then choice name(Exile 8/10 creature) transforms((,setpower=8,settoughness=10,newability[moveto(exile) target(creature[-token;power=8;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=1]|battlefield)~morethan~0 then choice name(Exile 9/1 creature) transforms((,setpower=9,settoughness=1,newability[moveto(exile) target(creature[-token;power=9;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=2]|battlefield)~morethan~0 then choice name(Exile 9/2 creature) transforms((,setpower=9,settoughness=2,newability[moveto(exile) target(creature[-token;power=9;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=3]|battlefield)~morethan~0 then choice name(Exile 9/3 creature) transforms((,setpower=9,settoughness=3,newability[moveto(exile) target(creature[-token;power=9;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=4]|battlefield)~morethan~0 then choice name(Exile 9/4 creature) transforms((,setpower=9,settoughness=4,newability[moveto(exile) target(creature[-token;power=9;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=5]|battlefield)~morethan~0 then choice name(Exile 9/5 creature) transforms((,setpower=9,settoughness=5,newability[moveto(exile) target(creature[-token;power=9;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=6]|battlefield)~morethan~0 then choice name(Exile 9/6 creature) transforms((,setpower=9,settoughness=6,newability[moveto(exile) target(creature[-token;power=9;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=7]|battlefield)~morethan~0 then choice name(Exile 9/7 creature) transforms((,setpower=9,settoughness=7,newability[moveto(exile) target(creature[-token;power=9;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=8]|battlefield)~morethan~0 then choice name(Exile 9/8 creature) transforms((,setpower=9,settoughness=8,newability[moveto(exile) target(creature[-token;power=9;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=9]|battlefield)~morethan~0 then choice name(Exile 9/9 creature) transforms((,setpower=9,settoughness=9,newability[moveto(exile) target(creature[-token;power=9;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=9;toughness=10]|battlefield)~morethan~0 then choice name(Exile 9/10 creature) transforms((,setpower=9,settoughness=10,newability[moveto(exile) target(creature[-token;power=9;toughness=10]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=1]|battlefield)~morethan~0 then choice name(Exile 10/1 creature) transforms((,setpower=10,settoughness=1,newability[moveto(exile) target(creature[-token;power=10;toughness=1]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=2]|battlefield)~morethan~0 then choice name(Exile 10/2 creature) transforms((,setpower=10,settoughness=2,newability[moveto(exile) target(creature[-token;power=10;toughness=2]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=3]|battlefield)~morethan~0 then choice name(Exile 10/3 creature) transforms((,setpower=10,settoughness=3,newability[moveto(exile) target(creature[-token;power=10;toughness=3]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=4]|battlefield)~morethan~0 then choice name(Exile 10/4 creature) transforms((,setpower=10,settoughness=4,newability[moveto(exile) target(creature[-token;power=10;toughness=4]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=5]|battlefield)~morethan~0 then choice name(Exile 10/5 creature) transforms((,setpower=10,settoughness=5,newability[moveto(exile) target(creature[-token;power=10;toughness=5]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=6]|battlefield)~morethan~0 then choice name(Exile 10/6 creature) transforms((,setpower=10,settoughness=6,newability[moveto(exile) target(creature[-token;power=10;toughness=6]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=7]|battlefield)~morethan~0 then choice name(Exile 10/7 creature) transforms((,setpower=10,settoughness=7,newability[moveto(exile) target(creature[-token;power=10;toughness=7]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=8]|battlefield)~morethan~0 then choice name(Exile 10/8 creature) transforms((,setpower=10,settoughness=8,newability[moveto(exile) target(creature[-token;power=10;toughness=8]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=9]|battlefield)~morethan~0 then choice name(Exile 10/9 creature) transforms((,setpower=10,settoughness=9,newability[moveto(exile) target(creature[-token;power=10;toughness=9]|battlefield)]) forever
+auto=if type(creature[-token;power=10;toughness=10]|battlefield)~morethan~0 then choice name(Exile 10/10 creature) transforms((,setpower=10,settoughness=10,newability[moveto(exile) target(creature[-token;power=10;toughness=10]|battlefield)]) forever
+text=Imprint — When Duplicant enters the battlefield, you may exile target nontoken creature. -- As long as the exiled card is a creature card, Duplicant has that card's power, toughness, and creature types. It's still a Shapeshifter.
+mana={6}
+type=Artifact Creature
+subtype=Shapeshifter
+power=2
+toughness=4
+[/card]
+[card]
 name=Durable Coilbug
 autograveyard={4}{B}:moveto(myhand)
 text={4}{B}: Return Durable Coilbug from your graveyard to your hand.
@@ -12777,8 +12895,7 @@ type=Instant
 [/card]
 [card]
 name=Echo Storm
-target=artifact
-auto=clone
+auto=thisforeach(variable{pnumofcommandcastplus1plusend}) ability$!name(Copy an artifact) name(Copy an artifact) clone target(artifact)!$ controller
 text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. You may choose new targets for the copies. -- Create a token that's a copy of target artifact.
 mana={3}{U}{U}
 type=Sorcery
@@ -13239,6 +13356,25 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Embermaw Hellion
+abilities=trample
+auto=@damaged(*|battlefield) from(*[instant;sorcery;red]|mystack,myGraveyard):all(trigger[to]) transforms((,newability[damage:1])) oneshot
+auto=@damaged(*|battlefield) from(*[enchantment;artifact;land;planeswalker;red]|mybattlefield,myGraveyard):all(trigger[to]) transforms((,newability[damage:1])) oneshot
+auto=@damaged(*|battlefield) from(other creature[red]|mybattlefield,myGraveyard):all(trigger[to]) transforms((,newability[damage:1])) oneshot
+auto=@damagefoeof(player) from(*[instant;sorcery;red]|mystack,myGraveyard):ability$!name(Damage opponent) damage:1 opponent!$ controller
+auto=@damagefoeof(player) from(*[enchantment;artifact;land;planeswalker;red]|mybattlefield,myGraveyard):ability$!name(Damage opponent) damage:1 opponent!$ controller
+auto=@damagefoeof(player) from(other creature[red]|mybattlefield,myGraveyard):ability$!name(Damage opponent) damage:1 opponent!$ controller
+auto=@damageof(player) from(*[instant;sorcery;red]|mystack,myGraveyard):ability$!name(Damage controller) damage:1 controller!$ controller
+auto=@damageof(player) from(*[enchantment;artifact;land;planeswalker;red]|mybattlefield,myGraveyard):ability$!name(Damage controller) damage:1 controller!$ controller
+auto=@damageof(player) from(other creature[red]|mybattlefield,myGraveyard):ability$!name(Damage controller) damage:1 controller!$ controller
+text=Trample (This creature can deal excess combat damage to defending player or planeswalker while attacking.) -- If another red source you control would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.
+mana={3}{R}{R}
+type=Creature
+subtype=Hellion
+power=4
+toughness=5
+[/card]
+[card]
 name=Emberwilde Captain
 auto=becomesmonarch controller
 auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0}:if compare(pmonarch)~morethan~0 then damage:type:*:opponenthand opponent
@@ -13248,6 +13384,20 @@ type=Creature
 subtype=Djinn Pirate
 power=4
 toughness=2
+[/card]
+[card]
+name=Emberwilde Djinn
+abilities=flying
+auto=@each opponent upkeep restriction{type(Emberwilde Djinn|opponentbattlefield)~morethan~0}:ability$!name(Pay RR) pay[[{R}{R}]] name(Gain Control) notatarget(Emberwilde Djinn|opponentbattlefield) moveto(mybattlefield)!$ opponent
+auto=@each opponent upkeep restriction{type(Emberwilde Djinn|opponentbattlefield)~morethan~0}:ability$!name(Pay 2 life) pay[[{L:2}]] name(Gain Control) notatarget(Emberwilde Djinn|opponentbattlefield) moveto(mybattlefield)!$ opponent
+auto=@each my upkeep restriction{type(Emberwilde Djinn|opponentbattlefield)~morethan~0}:ability$!name(Pay RR) pay[[{R}{R}]] name(Gain Control) notatarget(Emberwilde Djinn|opponentbattlefield) moveto(mybattlefield)!$ controller
+auto=@each my upkeep restriction{type(Emberwilde Djinn|opponentbattlefield)~morethan~0}:ability$!name(Pay 2 Life) pay[[{L:2}]] name(Gain Control) notatarget(Emberwilde Djinn|opponentbattlefield) moveto(mybattlefield)!$ controller
+text=Flying -- At the beginning of each player's upkeep, that player may pay {R}{R} or 2 life. If he or she does, the player gains control of Emberwilde Djinn.
+mana={2}{R}{R}
+type=Creature
+subtype=Djinn
+power=5
+toughness=4
 [/card]
 [card]
 name=Emergence Zone
@@ -13394,7 +13544,7 @@ toughness=8
 [/card]
 [card]
 name=Empyrial Storm
-auto=create(Angel:creature Angel:4/4:white:flying)
+auto=thisforeach(variable{pnumofcommandcastplus1plusend}) create(Angel:creature Angel:4/4:white:flying)
 text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. -- Create a 4/4 white Angel creature token with flying.
 mana={4}{W}{W}
 type=Sorcery
@@ -14615,6 +14765,8 @@ type=Instant
 [card]
 name=Falthis, Shadowcat Familiar
 abilities=partner
+auto=lord(*[iscommander]|mybattlefield) menace
+auto=lord(*[iscommander]|mybattlefield) deathtouch
 text=Commanders you control have menace and deathtouch. -- Partner (You can have two commanders if both have partner.)
 mana={2}{B}
 type=Legendary Creature
@@ -15185,7 +15337,7 @@ name=Fierce Guardianship
 target=*[-creature]|stack
 auto=fizzle
 other={0} name(Cast without Paying its Mana Cost)
-otherrestriction=type(commander|mybattlefield)~morethan~0
+otherrestriction=type(*[iscommander]|mybattlefield)~morethan~0
 text=If you control a commander, you may cast this spell without paying its mana cost. -- Counter target noncreature spell.
 mana={2}{U}
 type=Instant
@@ -15841,6 +15993,7 @@ toughness=1
 [/card]
 [card]
 name=Flamekin Herald
+auto=@movedto(*[iscommander]|mystack):all(trigger[to]) transforms((,newability[activate choice cascade:plibrarycount])) oneshot
 text=Commander spells you cast have cascade. (Whenever you cast a commander, exile cards from the top of your library until you exile a nonland card with lesser converted mana cost. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.)
 mana={2}{R}
 type=Creature
@@ -15893,7 +16046,7 @@ type=Instant
 name=Flawless Maneuver
 auto=all(creature|myBattlefield) indestructible ueot
 other={0} name(Cast without Paying its Mana Cost)
-otherrestriction=type(commander|mybattlefield)~morethan~0
+otherrestriction=type(*[iscommander|mybattlefield)~morethan~0
 text=If you control a commander, you may cast this spell without paying its mana cost. -- Creatures you control gain indestructible until end of turn.
 mana={2}{W}
 type=Instant
@@ -16689,8 +16842,7 @@ type=Enchantment
 [/card]
 [card]
 name=Fury Storm
-target=*[instant;sorcery]|stack
-auto=castcard(copied noevent)
+auto=thisforeach(variable{pnumofcommandcastplus1plusend}) ability$!name(Copy target instant or sorcery spell) name(Copy target instant or sorcery spell) castcard(copied noevent) target(*[instant;sorcery]|stack)!$ controller
 text=When you cast this spell, copy it for each time you've cast your commander from the command zone this game. You may choose new targets for the copies. -- Copy target instant or sorcery spell. You may choose new targets for the copy.
 mana={2}{R}{R}
 type=Instant
@@ -17196,6 +17348,8 @@ type=Sorcery
 [card]
 name=Geode Golem
 abilities=trample
+auto=@combatdamagefoeof(player) from(this):may activate castcard(normal) target(*[iscommander]|mycommandzone)
+auto=@combatdamageof(player) from(this):may activate castcard(normal) target(*[iscommander]|mycommandzone)
 text=Trample -- Whenever Geode Golem deals combat damage to a player, you may cast your commander from the command zone without paying its mana cost. (You still pay any additional costs.)
 mana={5}
 type=Artifact Creature
@@ -20225,6 +20379,7 @@ toughness=2
 [card]
 name=Hellkite Courser
 abilities=flying
+auto=may target(*[iscommander]|mycommandzone) moveto(mybattlefield) and!( transforms((,newability[haste],newability[phaseactionmulti[endofturn once] moveto(ownercommandzone)])) ueot )!
 text=Flying -- When Hellkite Courser enters the battlefield, you may put a commander you own from the command zone onto the battlefield. It gains haste. Return it to the command zone at the beginning of the next end step.
 mana={4}{R}{R}
 type=Creature
@@ -22474,7 +22629,7 @@ toughness=4
 [/card]
 [card]
 name=Inspiring Unicorn
-auto=@combat(attacking) source(this):all(creature|myBattlefield)) 1/1 ueot
+auto=@combat(attacking) source(this):all(creature|myBattlefield) 1/1 ueot
 text=Whenever Inspiring Unicorn attacks, creatures you control get +1/+1 until end of turn.
 mana={2}{W}{W}
 type=Creature
@@ -23108,6 +23263,7 @@ toughness=4
 name=Jeska's Will
 auto=choice name(Add Red mana) foreach(*|opponenthand) add{R}
 auto=choice name(Exile 3 cards) moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos<=3]|mylibrary)
+auto=if type(*[iscommander]|mybattlefield)~morethan~0 then choice name(Choose both) name(Choose both) moveto(exile) and!( transforms((,canplayfromexile])) ueot )! all(*[zpos<=3]|mylibrary) && foreach(*|opponenthand) add{R}
 text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Add {R} for each card in target opponent's hand. -- • Exile the top three cards of your library. You may play them this turn.
 mana={2}{R}
 type=Sorcery
@@ -23142,7 +23298,7 @@ toughness=3
 [/card]
 [card]
 name=Jirina Kudro
-auto=token(Human Soldier Jir)*foreach(creature[commander]|myStack)
+auto=token(Human Soldier Jir)*pnumofcommandcast
 auto=lord(other creature[Human]|myBattlefield) 2/0
 text=When Jirina Kudro enters the battlefield, create a 1/1 white Human Soldier creature token for each time you’ve cast a commander from the command zone this game. -- Other Humans you control get +2/+0.
 mana={1}{R}{W}{B}
@@ -23517,8 +23673,10 @@ type=Legendary Sorcery
 [/card]
 [card]
 name=Kamahl's Will
-auto=choice name(Choose first) target(<anyamount>land|mybattlefield) transforms((Elemental Creature,setpower=1,settoughness=1,newability[vigilance],newability[haste],newability[indestructible])) ueot
-auto=choice name(Choose second) damage:powertotalinplay target(creature|opponentbattlefield)
+auto=if type(*[iscommander]|mybattlefield)~lessthan~1 then choice name(Choose first) target(<anyamount>land|mybattlefield) transforms((Elemental Creature,setpower=1,settoughness=1,newability[vigilance],newability[haste],newability[indestructible])) ueot
+auto=if type(*[iscommander]|mybattlefield)~lessthan~1 then choice name(Choose second) damage:powertotalinplay target(creature|opponentbattlefield)
+auto=if type(*[iscommander]|mybattlefield)~morethan~0 then may name(Transform Lands) name(Transform Lands)  target(<anyamount>land|mybattlefield) transforms((Elemental Creature,setpower=1,settoughness=1,newability[vigilance],newability[haste],newability[indestructible])) ueot
+auto=if type(*[iscommander]|mybattlefield)~morethan~0 then name(Damage Creature) ability$!name(Damage Creature) name(Damage Creature) damage:powertotalinplay target(<upto:1>creature|battlefield)!$ controller
 text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Until end of turn, any number of target lands you control become 1/1 Elemental creatures with vigilance, indestructible, and haste. They're still lands. -- • Choose target creature you don't control. Each creature you control deals damage equal to its power to that creature.
 mana={3}{G}
 type=Instant
@@ -23913,6 +24071,7 @@ toughness=2
 [card]
 name=Keleth, Sunmane Familiar
 abilities=partner
+auto=@combat(attacking) source(creature[iscommander]|myBattlefield):all(trigger[to]) counter(1/1,1)
 text=Whenever a commander you control attacks, put a +1/+1 counter on it. -- Partner (You can have two commanders if both have partner.)
 mana={1}{W}
 type=Legendary Creature
@@ -24844,7 +25003,6 @@ toughness=2
 [/card]
 [card]
 name=Kydele, Chosen of Kruphix
-#wagic don't support commander atm
 abilities=partner
 auto={T}:thisforeach(variable{pdrewcount}>0) add{C}
 text={T}: Add {C} to your mana pool for each card you've drawn this turn. -- Partner (You can have two commanders if both have partner.)
@@ -26463,7 +26621,8 @@ toughness=3
 [/card]
 [card]
 name=Loyal Apprentice
-abilities=flying, haste
+abilities=haste
+auto=@each my combatbegins restriction{type(*[iscommander]|mybattlefield)~morethan~0}:token(Thopter,Artifact Creature Thopter,1/1,flying) and!( transforms((,newability[haste])) ueot )!
 text=Haste -- Lieutenant — At the beginning of combat on your turn, if you control your commander, create a 1/1 colorless Thopter artifact creature token with flying. That token gains haste until end of turn.
 mana={1}{R}
 type=Creature
@@ -26474,6 +26633,7 @@ toughness=1
 [card]
 name=Loyal Drake
 abilities=flying
+auto=@each my combatbegins restriction{type(*[iscommander]|mybattlefield)~morethan~0}:draw:1 controller
 text=Flying -- Lieutenant — At the beginning of combat on your turn, if you control your commander, draw a card.
 mana={2}{U}
 type=Creature
@@ -26484,6 +26644,7 @@ toughness=2
 [card]
 name=Loyal Guardian
 abilities=trample
+auto=@each my combatbegins restriction{type(*[iscommander]|mybattlefield)~morethan~0}:all(creature|mybattlefield) counter(1/1)
 text=Trample -- Lieutenant — At the beginning of combat on your turn, if you control your commander, put a +1/+1 counter on each creature you control.
 mana={4}{G}
 type=Creature
@@ -26494,6 +26655,7 @@ toughness=4
 [card]
 name=Loyal Subordinate
 abilities=menace
+auto=@each my combatbegins restriction{type(*[iscommander]|mybattlefield)~morethan~0}:life:-3 opponent
 text=Menace -- Lieutenant — At the beginning of combat on your turn, if you control your commander, each opponent loses 3 life.
 mana={2}{B}
 type=Creature
@@ -26504,6 +26666,8 @@ toughness=1
 [card]
 name=Loyal Unicorn
 abilities=vigilance
+auto=@each my combatbegins restriction{type(*[iscommander]|mybattlefield)~morethan~0}:all(other creature|mybattlefield) transforms((,newability[vigilance])) ueot
+auto=@each my combatbegins restriction{type(*[iscommander]|mybattlefield)~morethan~0}:preventAllCombatDamage to(creature|myBattlefield) ueot
 text=Vigilance -- Lieutenant — At the beginning of combat on your turn, if you control your commander, prevent all combat damage that would be dealt to creatures you control this turn. Other creatures you control gain vigilance until end of turn.
 mana={3}{W}
 type=Creature
@@ -26520,7 +26684,6 @@ type=Artifact
 [/card]
 [card]
 name=Ludevic, Necro-Alchemist
-#wagic don't support commander atm
 abilities=partner
 auto=@each my end restriction{compare(oplifelost)~morethan~0}:may draw:1 controller
 auto=@each opponent end restriction{compare(oplifelost)~morethan~0}:may draw:1 controller
@@ -30908,7 +31071,7 @@ type=Instant
 name=Obscuring Haze
 auto=preventAllCombatDamage from(creature|opponentbattlefield) ueot
 other={0} name(Cast without Paying its Mana Cost)
-otherrestriction=type(commander|mybattlefield)~morethan~0
+otherrestriction=type(*[iscommander]|mybattlefield)~morethan~0
 text=If you control a commander, you may cast this spell without paying its mana cost. -- Prevent all damage that would be dealt this turn by creatures your opponents control.
 mana={2}{G}
 type=Instant
@@ -31431,7 +31594,6 @@ auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W
 auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
 auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
 auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
-auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
 auto=@movedto(*[iscommander]|mybattlefield) from(mycommandzone):all(trigger[to]) counter(1/1,pnumofcommandcast) limit:1
 text={T}: Add {C} to your mana pool. -- {1}, {T}: Add to your mana pool one mana of any color in your commander's color identity. If you spend this mana to cast your commander, it enters the battlefield with a number of additional +1/+1 counters on it equal to the number of times it's been cast from the command zone this game.
 type=Land
@@ -35346,6 +35508,28 @@ type=Instant
 [card]
 name=Rebbec, Architect of Ascension
 abilities=partner
+auto=aslongas(artifact[manacost=0]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=0])]))
+auto=aslongas(artifact[manacost=1]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=1])]))
+auto=aslongas(artifact[manacost=2]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=2])]))
+auto=aslongas(artifact[manacost=3]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=3])]))
+auto=aslongas(artifact[manacost=4]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=4])]))
+auto=aslongas(artifact[manacost=5]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=5])]))
+auto=aslongas(artifact[manacost=6]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=6])]))
+auto=aslongas(artifact[manacost=7]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=7])]))
+auto=aslongas(artifact[manacost=8]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=8])]))
+auto=aslongas(artifact[manacost=9]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=9])]))
+auto=aslongas(artifact[manacost=10]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=10])]))
+auto=aslongas(artifact[manacost=11]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=11])]))
+auto=aslongas(artifact[manacost=12]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=12])]))
+auto=aslongas(artifact[manacost=13]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=13])]))
+auto=aslongas(artifact[manacost=14]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=14])]))
+auto=aslongas(artifact[manacost=15]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=15])]))
+auto=aslongas(artifact[manacost=16]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=16])]))
+auto=aslongas(artifact[manacost=17]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=17])]))
+auto=aslongas(artifact[manacost=18]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=18])]))
+auto=aslongas(artifact[manacost=19]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=19])]))
+auto=aslongas(artifact[manacost=20]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost=20])]))
+auto=aslongas(artifact[manacost>20]|myBattlefield) lord(artifact|mybattlefield) transforms((,newability[protection from(*[manacost>20])]))
 text=Artifacts you control have protection from each converted mana cost among artifacts you control. -- Partner (You can have two commanders if both have partner.)
 mana={3}{W}
 type=Legendary Creature
@@ -36079,7 +36263,46 @@ toughness=2
 name=Reyhan, Last of the Abzan
 abilities=partner
 auto=counter(1/1,3)
-auto=@movedTo(mygraveyard) from(creature[counter{1/1<anyamount>}]|myBattlefield):may target (creature|myBattlefield) counter(1/1<anyamount>)
+auto=@movedTo(creature[counter{1/1.1}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,1)
+auto=@movedTo(creature[counter{1/1.1}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,1)
+auto=@movedTo(creature[counter{1/1.2}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,2)
+auto=@movedTo(creature[counter{1/1.2}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,2)
+auto=@movedTo(creature[counter{1/1.3}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,3)
+auto=@movedTo(creature[counter{1/1.3}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,3)
+auto=@movedTo(creature[counter{1/1.4}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,4)
+auto=@movedTo(creature[counter{1/1.4}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,4)
+auto=@movedTo(creature[counter{1/1.5}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,5)
+auto=@movedTo(creature[counter{1/1.5}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,5)
+auto=@movedTo(creature[counter{1/1.6}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,6)
+auto=@movedTo(creature[counter{1/1.6}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,6)
+auto=@movedTo(creature[counter{1/1.7}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,7)
+auto=@movedTo(creature[counter{1/1.7}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,7)
+auto=@movedTo(creature[counter{1/1.8}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,8)
+auto=@movedTo(creature[counter{1/1.8}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,8)
+auto=@movedTo(creature[counter{1/1.9}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,9)
+auto=@movedTo(creature[counter{1/1.9}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,9)
+auto=@movedTo(creature[counter{1/1.10}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,10)
+auto=@movedTo(creature[counter{1/1.10}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,10)
+auto=@movedTo(creature[counter{1/1.11}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,11)
+auto=@movedTo(creature[counter{1/1.11}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,11)
+auto=@movedTo(creature[counter{1/1.12}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,12)
+auto=@movedTo(creature[counter{1/1.12}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,12)
+auto=@movedTo(creature[counter{1/1.13}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,13)
+auto=@movedTo(creature[counter{1/1.13}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,13)
+auto=@movedTo(creature[counter{1/1.14}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,14)
+auto=@movedTo(creature[counter{1/1.14}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,14)
+auto=@movedTo(creature[counter{1/1.15}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,15)
+auto=@movedTo(creature[counter{1/1.15}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,15)
+auto=@movedTo(creature[counter{1/1.16}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,16)
+auto=@movedTo(creature[counter{1/1.16}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,16)
+auto=@movedTo(creature[counter{1/1.17}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,17)
+auto=@movedTo(creature[counter{1/1.17}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,17)
+auto=@movedTo(creature[counter{1/1.18}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,18)
+auto=@movedTo(creature[counter{1/1.18}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,18)
+auto=@movedTo(creature[counter{1/1.19}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,19)
+auto=@movedTo(creature[counter{1/1.19}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,19)
+auto=@movedTo(creature[counter{1/1.20}]|mygraveyard) from(Battlefield):may target(creature|myBattlefield) counter(1/1,20)
+auto=@movedTo(creature[counter{1/1.20}]|mycommandzone) from(Battlefield):may target(creature|myBattlefield) counter(1/1,20)
 text=Reyhan, Last of the Abzan enters the battlefield with three +1/+1 counters on it. -- Whenever a creature you control dies or is put into the command zone, if it had one or more +1/+1 counters on it, you may put that many +1/+1 counters on target creature. -- Partner (You can have two commanders if both have partner.)
 mana={1}{B}{G}
 type=Legendary Creature
@@ -36761,12 +36984,10 @@ toughness=2
 [/card]
 [card]
 name=Road of Return
-#MISSING: Commander not supported ATM.
-target=*|mygraveyard
 other={2}{G}{G} name(Entwine)
-auto=ifnot paid alternative then choice name(Return permanent) moveto(myhand)
-auto=ifnot paid alternative then choice name(Return commander) moveto(myhand) target(*[commander])
-auto=if paid(alternative) then moveto(myhand) && moveto(myhand) target(*[commander])
+auto=ifnot paid alternative then choice name(Return permanent) moveto(myhand) target(*|mygraveyard)
+auto=ifnot paid alternative then choice name(Return commander) moveto(myhand) target(*[iscommander]|mycommandzone)
+auto=if paid(alternative) then moveto(myhand) target(*|mygraveyard) && ability$!name(Choose commander from command zone) name(Choose commander from command zone) moveto(myhand) target(*[iscommander]|mycommandzone)!$ controller
 text=Choose one — -- • Return target permanent card from your graveyard to your hand. -- • Put your commander into your hand from the command zone. -- Entwine 2 (Choose both if you pay the entwine cost.)
 mana={G}{G}
 type=Sorcery
@@ -37839,7 +38060,7 @@ subtype=Shrine
 [card]
 name=Sanctum of Eternity
 auto={T}:add{1}
-auto={2}{T}:moveTo(myHand) target(creature[commander]|mybattlefield) myTurnOnly
+auto={2}{T}:moveTo(myHand) target(*[iscommander]|mybattlefield) myTurnOnly
 text={T}: Add {1}. -- {2}, {T}: Return target commander you own from the battlefield to your hand. Activate this ability only during your turn.
 type=Land
 [/card]
@@ -41308,7 +41529,7 @@ toughness=2
 [card]
 name=Skyfire Phoenix
 abilities=flying,haste
-autograveyard=@movedTo(*[commander]|mystack):moveTo(mybattlefield)
+autograveyard=@movedTo(*[iscommander]|mystack):moveTo(mybattlefield)
 text=Flying, haste -- When you cast your commander, return Skyfire Phoenix from your graveyard to the battlefield.
 mana={2}{R}{R}
 type=Creature
@@ -41428,8 +41649,8 @@ type=Instant
 [/card]
 [card]
 name=Slash the Ranks
-auto=all(creature|battlefield) destroy
-auto=all(planeswalker|battlefield) destroy
+auto=all(creature[-iscommander]|battlefield) destroy
+auto=all(planeswalker[-iscommander]|battlefield) destroy
 text=Destroy all creatures and planeswalkers except for commanders.
 mana={3}{W}{W}
 type=Sorcery
@@ -47047,7 +47268,8 @@ toughness=3
 [card]
 name=Thunderfoot Baloth
 abilities=trample
-#wagic doesnt have commander zone
+auto=aslongas(*[iscommander]|mybattlefield) 2/2 >0
+auto=aslongas(*[iscommander]|mybattlefield) lord(other creature|mybattlefield) transforms((,newability[trample],newability[2/2])) >0
 text=Trample -- Lieutenant — As long as you control your commander, Thunderfoot Baloth gets +2/+2 and other creatures you control get +2/+2 and have trample.
 mana={4}{G}{G}
 type=Creature
@@ -47335,8 +47557,12 @@ type=Instant
 [/card]
 [card]
 name=Timely Ward
+abilities=flash
 target=creature
 auto=teach(creature) indestructible
+other={2}{W} name(Cast as it has flash)
+restriction=myturnonly
+otherrestriction=type(*[iscommander]|mybattlefield)~morethan~0,opponentTurnOnly
 text=You may cast this spell as though it had flash if it targets a commander. -- Enchant creature -- Enchanted creature has indestructible.
 mana={2}{W}
 type=Enchantment
@@ -47606,8 +47832,8 @@ toughness=1
 [card]
 name=Tome of Legends
 auto=counter(0/0,1,Page) all(this)
-auto=@movedto(creature[Commander]|myBattlefield):conunter(0/0,1,Page) all(this)
-auto=@combat(attacking) source(creature[Commander]|myBattlefield):conunter(0/0,1,Page) all(this)
+auto=@movedto(*[iscommander]|myBattlefield):conunter(0/0,1,Page) all(this)
+auto=@combat(attacking) source(creature[iscommander]|myBattlefield):conunter(0/0,1,Page) all(this)
 auto={1}{T}{C(0/0,-1,Page)}:Draw:1 controller
 text=Tome of Legends enters the battlefield with a page counter on it. -- Whenever your commander enters the battlefield or attacks, put a page counter on Tome of Legends. -- {1}, {T}, Remove a page counter from Tome of Legends: Draw a card.
 mana={2}
@@ -47731,6 +47957,7 @@ auto=@movedto(*|myhand) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black
 auto=@movedto(*|mylibrary) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
 auto=@movedto(*|myexile) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
 auto=@movedto(*|mysideboard) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
+auto=@movedto(*|mycommandzone) from(mygraveyard):token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
 text=Whenever one or more cards leave your graveyard, create a tapped 2/2 black Zombie creature token. -- Partner (You can have two commanders if both have partner.)
 mana={3}{B}
 type=Legendary Creature
@@ -48584,6 +48811,19 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Twilight Prophet
+abilities=flying
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@each my upkeep restriction{type(*[city's_blessing]|mybattlefield)~morethan~0}:moveto(myhand) and!( transforms((,newability[damage:manacost opponent],newability[life:manacost controller])) ueot )! all(*[zpos=1]|mylibrary)
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- At the beginning of your upkeep, if you have the city's blessing, reveal the top card of your library and put it into your hand. Each opponent loses X life and you gain X life, where X is that card's converted mana cost.
+mana={2}{B}{B}
+type=Creature
+subtype=Vampire Cleric
+power=2
+toughness=4
+[/card]
+[card]
 name=Twilight's Call
 abilities=flash
 restriction=myturnonly
@@ -48738,7 +48978,7 @@ toughness=*
 [card]
 name=Tymna the Weaver
 abilities=lifelink,partner
-auto=@each my postbattle: damagefoeof(player) may {L:1}:draw:1
+auto=@each my endofturn restriction{compare(oplifelost)~morethan~0}:may pay({L:1}) draw:1 controller
 text=Lifelink -- At the beginning of your postcombat main phase, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards. -- Partner (You can have two commanders if both have partner.)
 mana={1}{W}{B}
 type=Legendary Creature
@@ -48749,7 +48989,8 @@ toughness=2
 [card]
 name=Tyrant's Familiar
 abilities=flying,haste
-#wagic doesnt have commander zone
+auto=aslongas(*[iscommander]|mybattlefield) 2/2 >0
+auto=@combat(attacking) source(this) restriction{type(*[iscommander]|myBattlefield)~morethan~0}:damage:7 target(creature|opponentBattlefield)
 text=Flying, haste -- Lieutenant — As long as you control your commander, Tyrant's Familiar gets +2/+2 and has "Whenever Tyrant's Familiar attacks, it deals 7 damage to target creature defending player controls."
 mana={5}{R}{R}
 type=Creature
@@ -49799,6 +50040,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Veil of Summer
+auto=if thisturn(*[blue;black]|opponentstack)~morethan~0 then draw:1 controller
+auto=lord(*|myStack) nofizzle ueot
+auto=lord(*|myBattlefield) cantbetargetof(*[blue;black]) ueot
+text=Draw a card if an opponent has cast a blue or black spell this turn. Spells you control can't be countered this turn. You and permanents you control gain hexproof from blue and from black until end of turn. (You and they can't be the targets of blue or black spells or abilities your opponents control.)
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Veiled Crocodile
 auto=aslongas(*|myhand) transforms((Crocodile Creature,setpower=4,settoughness=4)) forever all(this) <1
 auto=aslongas(*|opponenthand) transforms((Crocodile Creature,setpower=4,settoughness=4)) forever all(this) <1
@@ -50152,27 +50402,26 @@ toughness=2
 [card]
 name=Vial Smasher the Fierce
 abilities=partner
-auto=@movedto(*[manacost=0]|mystack):damage:0 opponent
-auto=@movedto(*[manacost=1]|mystack):damage:1 opponent
-auto=@movedto(*[manacost=2]|mystack):damage:2 opponent
-auto=@movedto(*[manacost=3]|mystack):damage:3 opponent
-auto=@movedto(*[manacost=4]|mystack):damage:4 opponent
-auto=@movedto(*[manacost=5]|mystack):damage:5 opponent
-auto=@movedto(*[manacost=6]|mystack):damage:6 opponent
-auto=@movedto(*[manacost=7]|mystack):damage:7 opponent
-auto=@movedto(*[manacost=8]|mystack):damage:8 opponent
-auto=@movedto(*[manacost=9]|mystack):damage:9 opponent
-auto=@movedto(*[manacost=10]|mystack):damage:10 opponent
-auto=@movedto(*[manacost=11]|mystack):damage:11 opponent
-auto=@movedto(*[manacost=12]|mystack):damage:12 opponent
-auto=@movedto(*[manacost=13]|mystack):damage:13 opponent
-auto=@movedto(*[manacost=14]|mystack):damage:14 opponent
-auto=@movedto(*[manacost=15]|mystack):damage:15 opponent
-auto=@movedto(*[manacost=16]|mystack):damage:16 opponent
-auto=@movedto(*[manacost=17]|mystack):damage:17 opponent
-auto=@movedto(*[manacost=18]|mystack):damage:18 opponent
-auto=@movedto(*[manacost=19]|mystack):damage:19 opponent
-auto=@movedto(*[manacost=20]|mystack):damage:20 opponent
+auto=@movedto(*[-land;manacost=1]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:1 opponent _ choice name(Damage planeswalker) damage:1 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=2]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:2 opponent _ choice name(Damage planeswalker) damage:2 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=3]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:3 opponent _ choice name(Damage planeswalker) damage:3 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=4]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:4 opponent _ choice name(Damage planeswalker) damage:4 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=5]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:5 opponent _ choice name(Damage planeswalker) damage:5 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=6]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:6 opponent _ choice name(Damage planeswalker) damage:6 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=7]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:7 opponent _ choice name(Damage planeswalker) damage:7 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=8]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:8 opponent _ choice name(Damage planeswalker) damage:8 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=9]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:9 opponent _ choice name(Damage planeswalker) damage:9 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=10]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:10 opponent _ choice name(Damage planeswalker) damage:10 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=11]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:11 opponent _ choice name(Damage planeswalker) damage:11 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=12]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:12 opponent _ choice name(Damage planeswalker) damage:12 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=13]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:13 opponent _ choice name(Damage planeswalker) damage:13 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=14]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:14 opponent _ choice name(Damage planeswalker) damage:14 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=15]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:15 opponent _ choice name(Damage planeswalker) damage:15 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=16]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:16 opponent _ choice name(Damage planeswalker) damage:16 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=17]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:17 opponent _ choice name(Damage planeswalker) damage:17 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=18]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:18 opponent _ choice name(Damage planeswalker) damage:18 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost=19]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:19 opponent _ choice name(Damage planeswalker) damage:19 target(planeswalker|opponentBattlefield)!$ controller
+auto=@movedto(*[-land;manacost>=20]|mystack) restriction{thisturn(*|mystack)~lessthan~1} turnlimited:ability$!name(Choose one) choice name(Damage opponent) damage:20 opponent _ choice name(Damage planeswalker) damage:20 target(planeswalker|opponentBattlefield)!$ controller
 text=Whenever you cast your first spell each turn, choose an opponent at random. Vial Smasher the Fierce deals damage equal to that spell’s converted mana cost to that player or a planeswalker that player controls. -- Partner (You can have two commanders if both have partner.)
 mana={1}{B}{R}
 type=Legendary Creature
