@@ -711,11 +711,11 @@ private:
         }
         else if (s == "lifelost" || s == "oplifelost")
         {
-            intValue = (s == "lifelost")?intValue = target->controller()->lifeLostThisTurn:target->controller()->opponent()->lifeLostThisTurn;
+            intValue = (s == "lifelost")?target->controller()->lifeLostThisTurn:target->controller()->opponent()->lifeLostThisTurn;
         }
         else if (s == "lifegain" || s == "oplifegain")
         {
-            intValue = (s == "lifegain")?intValue = target->controller()->lifeGainedThisTurn:target->controller()->opponent()->lifeGainedThisTurn;
+            intValue = (s == "lifegain")?target->controller()->lifeGainedThisTurn:target->controller()->opponent()->lifeGainedThisTurn;
         }
         else if (s == "pdcount" || s == "odcount")
         {
