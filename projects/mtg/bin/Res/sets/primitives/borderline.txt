@@ -14589,6 +14589,13 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Fact or Fiction
+auto=reveal:5 optionone target(<upto:3>*|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) target(<5>*|reveal) moveto(mygraveyard) and!( all(*|reveal) moveto(mygraveyard) )! optiontwoend revealend
+text=Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
 name=Fade Away
 auto=foreach(creature|myBattlefield) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?sacrifice target(*|mybattlefield) controller]))
 auto=foreach(creature|opponentBattlefield) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?sacrifice target(*|mybattlefield) opponent]))
@@ -35861,6 +35868,14 @@ mana={3}{W}
 type=Sorcery
 [/card]
 [card]
+name=Release to the Wind
+target=*[-land]|battlefield
+auto=moveto(exile) and!( transforms((,canplayfromexile)) forever )!
+text=Exile target nonland permanent. For as long as that card remains exiled, its owner may cast it without paying its mana cost.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
 name=Relentless Advance
 auto=_AMASS_(3) 
 text=Amass 3. (Put three +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
@@ -41836,6 +41851,18 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Slithermuse
+other={3}{U} name(Evoke)
+auto=if paid(alternative) then sacrifice
+auto=@movedto(this|nonbattlezone) from(battlefield):if compare(ohandcount)~morethan~compare(phandcount) then draw:ohandcountminusphandcountminusend controller
+text=When Slithermuse leaves the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference. -- Evoke {3}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
+mana={2}{U}{U}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
 name=Slitherwisp
 abilities=flash
 auto=@movedto(*[flash]|mycastingzone) restriction{thisturn(*[flash]|mycastingzone)~equalto~1}:draw:1 controller && life:-1 opponent
@@ -42620,6 +42647,17 @@ type=Creature
 subtype=Nightmare Orgg
 power=6
 toughness=6
+[/card]
+[card]
+name=Soulherder
+auto=@movedto(creature|exile) from(battlefield):counter(1/1) all(this)
+auto=@each my end:may name(Move to exile) target(creature|mybattlefield) moveto(exile) and!(moveto(mybattlefield))!
+text=Whenever a creature is exiled from the battlefield, put a +1/+1 counter on Soulherder. -- At the beginning of your end step, you may exile another target creature you control, then return that card to the battlefield under its owner's control.
+mana={1}{W}{U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
 [/card]
 [card]
 name=Soulhunter Rakshasa
@@ -44578,6 +44616,27 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Sublime Epiphany
+auto=choice name(Choose 1) target(*|stack) fizzle
+auto=choice name(Choose 3) target(*[-land]|battlefield) moveto(ownerhand)
+auto=choice name(Choose 4) clone notatarget(creature|mybattlefield)
+auto=choice name(Choose 5) target(player) draw:1
+auto=choice name(Choose 1,3) target(*|stack) fizzle && ability$!name(Return permanent) name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller
+auto=choice name(Choose 1,4) target(*|stack) fizzle && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller
+auto=choice name(Choose 1,5) target(*|stack) fizzle && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
+auto=choice name(Choose 3,4) target(*[-land]|battlefield) moveto(ownerhand) && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller
+auto=choice name(Choose 3,5) target(*[-land]|battlefield) moveto(ownerhand) && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
+auto=choice name(Choose 4,5) clone notatarget(creature|mybattlefield) && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
+auto=choice name(Choose 1,3,4) target(*|stack) fizzle && ability$!name(Return permanent) name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller
+auto=choice name(Choose 1,3,5) target(*|stack) fizzle && ability$!name(Return permanent) name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
+auto=choice name(Choose 1,4,5) target(*|stack) fizzle && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
+auto=choice name(Choose 3,4,5) target(*[-land]|battlefield) moveto(ownerhand) && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
+auto=choice name(Choose 1,3,4,5) target(*|stack) fizzle && ability$!name(Return permanent) name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
+text=Choose one or more — • Counter target spell. -- • Counter target activated or triggered ability. -- • Return target nonland permanent to its owner's hand. -- • Create a token that's a copy of target creature you control. -- • Target player draws a card.
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Subterranean Tremors
 auto=this(X>=4) destroy all(artifacts)
 auto=this(X>=8) token(Lizard,Creature Lizard,8/8,red) && destroy all(artifacts)
@@ -44645,6 +44704,14 @@ type=Creature
 subtype=Elf Druid
 power=2
 toughness=1
+[/card]
+[card]
+name=Summary Dismissal
+auto=all(other *|mystack) fizzleto(exile)
+auto=all(*|opponentstack) fizzleto(exile)
+text=Exile all other spells and counter all abilities.
+mana={2}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Summary Judgment
@@ -48132,6 +48199,20 @@ auto=scry:3 scrycore delayed dontshow donothing scrycoreend scryend
 auto=reveal:1 optionone if type(*[land;creature]|reveal)~morethan~0 then draw:1 controller optiononeend optiontwo name(back to library) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend
 text=Scry 3, then reveal the top card of your library. If it's a creature or land card, draw a card. (To scry 3, look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+name=Tragic Arrogance
+auto=if type(artifact[-land]|mybattlefield)~morethan~1 then ability$!name(Sacrifice your artifacts) name(Sacrifice your artifacts) sacrifice notatarget(<type:artifact[-land]:mybattlefieldminus1minusend>artifact[-land]|mybattlefield)!$ controller
+auto=if type(artifact[-land]|opponentbattlefield)~morethan~1 then ability$!name(Sacrifice opponent's artifacts) name(Sacrifice opponent's artifacts) sacrifice notatarget(<type:artifact[-land]:opponentbattlefieldminus1minusend>artifact[-land]|opponentbattlefield)!$ controller
+auto=if type(creature[-land]|mybattlefield)~morethan~1 then ability$!name(Sacrifice your creatures) name(Sacrifice your creatures) sacrifice notatarget(<type:creature[-land]:mybattlefieldminus1minusend>creature[-land]|mybattlefield)!$ controller
+auto=if type(creature[-land]|opponentbattlefield)~morethan~1 then ability$!name(Sacrifice opponent's creatures) name(Sacrifice opponent's creatures) sacrifice notatarget(<type:creature[-land]:opponentbattlefielddminus1minusend>creature[-land]|opponentbattlefield)!$ controller
+auto=if type(enchantment[-land]|mybattlefield)~morethan~1 then ability$!name(Sacrifice your enchantments) name(Sacrifice your enchantments) sacrifice notatarget(<type:enchantment[-land]:mybattlefieldminus1minusend>enchantment[-land]|mybattlefield) !$ controller
+auto=if type(enchantment[-land]|opponentbattlefield)~morethan~1 then ability$!name(Sacrifice opponent's enchantments) name(Sacrifice opponent's enchantments) sacrifice notatarget(<type:enchantment[-land]:opponentbattlefieldminus1minusend>enchantment[-land]|opponentbattlefield)!$ controller
+auto=if type(planeswalker[-land]|mybattlefield)~morethan~1 then ability$!name(Sacrifice your planeswalkers) name(Sacrifice your planeswalkers) sacrifice notatarget(<type:planeswalker[-land]:mybattlefieldminus1minusend>planeswalker[-land]|mybattlefield)!$ controller
+auto=if type(planeswalker[-land]|opponentbattlefield)~morethan~1 then ability$!name(Sacrifice opponent's planeswalkers) name(Sacrifice opponent's planeswalkers) sacrifice notatarget(<type:planeswalker[-land]:opponentbattlefieldminus1minusend>planeswalker[-land]|opponentbattlefield)!$ controller
+text=For each player, you choose from among the permanents that player controls an artifact, a creature, an enchantment, and a planeswalker. Then each player sacrifices all other nonland permanents he or she controls.
+mana={3}{W}{W}
 type=Sorcery
 [/card]
 [card]
@@ -51961,6 +52042,13 @@ mana={X}{U}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Whirlwind Denial
+auto=all(*|opponentstack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+text=For each spell and ability your opponents control, counter it unless its controller pays 4 .
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 name=Whirlwind of Thought
 auto=@movedto(*[-creature]|myStak):draw:1 controller
 text=Whenever you cast a noncreature spell, draw a card.
@@ -52957,6 +53045,17 @@ type=Creature
 subtype=Zombie Wizard
 power=2
 toughness=1
+[/card]
+[card]
+name=Yorion, Sky Nomad
+abilities=flying
+auto=target(<anyamount>*[-land]|mybattlefield) transforms((,newability[moveto(myexile),newability[phaseaction[endofturn once] moveto(ownerbattlefield)])) ueot
+text=Companion — Your starting deck contains at least twenty cards more than the minimum deck size. (If this card is your chosen companion, you may cast it once from outside the game.) -- Flying -- When Yorion enters the battlefield, exile any number of other nonland permanents you own and control. Return those cards to the battlefield at the beginning of the next end step.
+mana={3}{WU}{WU}
+type=Legendary Creature
+subtype=Bird Serpent
+power=4
+toughness=5
 [/card]
 [card]
 name=Yorvo, Lord of Garenbrig

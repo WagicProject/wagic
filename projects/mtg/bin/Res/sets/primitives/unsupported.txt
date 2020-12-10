@@ -4147,12 +4147,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Fact or Fiction
-text=Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
-mana={3}{U}
-type=Instant
-[/card]
-[card]
 name=Faerie Aerie
 text=Whenever you crank Faerie Aerie, create two 1/1 blue Faerie Spy creature tokens with flying, haste, and "Whenever this creature deals combat damage to a player, draw a card." Exile them at the beginning of the next end step.
 type=Artifact
@@ -12235,15 +12229,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Slithermuse
-text=When Slithermuse leaves the battlefield, choose an opponent. If that player has more cards in hand than you, draw cards equal to the difference. -- Evoke {3}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={2}{U}{U}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-[/card]
-[card]
 name=Sly Spy (a)
 text=Whenever Sly Spy deals combat damage to a player, that player reveals their hand. You choose a card from it with the longest name. That player discards that card.
 mana={2}{B}
@@ -12479,15 +12464,6 @@ type=Creature
 subtype=Demon
 power=4
 toughness=4
-[/card]
-[card]
-name=Soulherder
-text=Whenever a creature is exiled from the battlefield, put a +1/+1 counter on Soulherder. -- At the beginning of your end step, you may exile another target creature you control, then return that card to the battlefield under its owner's control.
-mana={1}{W}{U}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
 [/card]
 [card]
 name=Soulless Revival
@@ -13185,12 +13161,6 @@ name=Sulfuric Vapors
 text=If a red spell would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead.
 mana={3}{R}
 type=Enchantment
-[/card]
-[card]
-name=Summary Dismissal
-text=Exile all other spells and counter all abilities.
-mana={2}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Summon the Pack
@@ -14062,12 +14032,6 @@ toughness=3
 name=Trade Secrets
 text=Target opponent draws two cards, then you draw up to four cards. That opponent may repeat this process as many times as he or she chooses.
 mana={1}{U}{U}
-type=Sorcery
-[/card]
-[card]
-name=Tragic Arrogance
-text=For each player, you choose from among the permanents that player controls an artifact, a creature, an enchantment, and a planeswalker. Then each player sacrifices all other nonland permanents he or she controls.
-mana={3}{W}{W}
 type=Sorcery
 [/card]
 [card]
@@ -14965,12 +14929,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Whirlwind Denial
-text=For each spell and ability your opponents control, counter it unless its controller pays 4 .
-mana={2}{U}
-type=Instant
-[/card]
-[card]
 name=Whispergear Sneak
 text=Draft Whispergear Sneak face up. -- During the draft, you may turn Whispergear Sneak face down. If you do, look at any unopened booster pack in the draft or any booster pack not being looked at by another player.
 mana={1}
@@ -15333,15 +15291,6 @@ name=Yet Another Aether Vortex
 text=All creatures have haste. -- Players play with the top card of their libraries revealed. -- Noninstant, nonsorcery cards on top of a library are on the battlefield under their owner's control in addition to being in that library.
 mana={3}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Yorion, Sky Nomad
-text=Companion — Your starting deck contains at least twenty cards more than the minimum deck size. (If this card is your chosen companion, you may cast it once from outside the game.) -- Flying -- When Yorion enters the battlefield, exile any number of other nonland permanents you own and control. Return those cards to the battlefield at the beginning of the next end step.
-mana={3}{WU}{WU}
-type=Legendary Creature
-subtype=Bird Serpent
-power=4
-toughness=5
 [/card]
 [card]
 name=Yosei, the Morning Star
