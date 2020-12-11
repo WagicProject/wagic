@@ -5599,6 +5599,14 @@ mana={W}{W}
 type=Instant
 [/card]
 [card]
+name=Browbeat
+auto=choice name(You draw) ability$!name(Damage or draw) choice name(Opponent draws) draw:3 opponent _ choice name(Damage 5) damage:5 controller!$ opponent 
+auto=choice name(Opponent draws) ability$!name(Damage or draw) choice name(Opponent draws) draw:3 opponent _ choice name(Damage 5) damage:5 controller!$ controller 
+text=Any player may have Browbeat deal 5 damage to him or her. If no one does, target player draws three cards.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
 name=Brudiclad, Telchor Engineer
 auto=lord(creature[token]|myBattlefield) haste
 auto=@each my combatbegins:token(Myr,Artifact Creature Myr,1/1) && lord(other creature[token]|myBattlefield) transforms((,newability[becomes clone target(Creature[token]|myBattlefield)]))
@@ -6937,6 +6945,16 @@ mana={1}{R}{W}
 type=Instant
 [/card]
 [card]
+name=Chancellor of the Tangle
+abilities=reach,vigilance
+text=You may reveal this card from your opening hand. If you do, at the beginning of your first main phase, add {G} to your mana pool. -- Vigilance, reach
+mana={4}{G}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=7
+[/card]
+[card]
 name=Chandra's Defeat
 auto=choice name(target red creature) damage:5 target(creature[red])
 auto=choice name(target red planeswalker) damage:5 target(planeswalker[red])
@@ -7366,6 +7384,18 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Chisei, Heart of Oceans
+abilities=flying
+auto=@each my upkeep:choice name(Don't remove any counter and sacrifice) sacrifice
+auto=@each my upkeep restriction{type(*[counter{any}]|myBattlefield)~morethan~0}:choice name(Remove a counter) removesinglecountertype(1) target(*[counter{any}]|myBattlefield)
+text=Flying -- At the beginning of your upkeep, sacrifice Chisei, Heart of Oceans unless you remove a counter from a permanent you control.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+[card]
 name=Chittering Harvester
 abilities=mutate
 otherrestriction=type(creature[-human]|mybattlefield)~morethan~0
@@ -7676,6 +7706,13 @@ auto=transforms((,newability[target(other creature|battlefield) dynamicability<!
 text=Target creature fights another target creature. (Each deals damage equal to its power to the other.)
 mana={3}{R}{R}
 type=Instant
+[/card]
+[card]
+name=Cleansing
+auto=all(land|battlefield) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?destroy])) forever
+text=For each land, destroy that land unless any player pays 1 life.
+mana={W}{W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Cleansing Meditation
@@ -8499,6 +8536,15 @@ mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Conflagrate
+flashback={R}{R}
+auto=ifnot gravecast then thisforeach(X) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,player) damage:1!$ controller
+auto=if gravecast then all(*|myhand) transforms((,newability[may name(Discard and damage) moveto(mygraveyard) && damage:1 opponent])) ueot
+text=Conflagrate deals X damage divided as you choose among any number of target creatures and/or players. -- Flashback—{R}{R}, Discard X cards. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={X}{X}{R}
+type=Sorcery
+[/card]
+[card]
 name=Conflux
 auto=ability$!name(white card) moveto(myhand) notatarget(*[white]|mylibrary)!$ controller
 auto=ability$!name(blue card) moveto(myhand) notatarget(*[blue]|mylibrary)!$ controller
@@ -8759,6 +8805,13 @@ autohand=__CYCLING__({2})
 text=Creatures you control get +2/+1 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{W}
 type=Instant
+[/card]
+[card]
+name=Copy Enchantment
+auto=may copy target(enchantment|battlefield)
+text=You may have Copy Enchantment enter the battlefield as a copy of any enchantment on the battlefield.
+mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 name=Coral Commando
@@ -13628,6 +13681,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Enduring Renewal
+auto=replacedraw if type(creature[zpos=1|mylibrary)~morethan~0 then moveto(ownergraveyard) all(*[zpos=1|mylibrary) else draw:1 controller
+auto=@movedTo(creature|mygraveyard) from(battlefield):all(trigger[to]) moveTo(myhand)
+text=Play with your hand revealed. -- If you would draw a card, reveal the top card of your library instead. If it's a creature card, put it into your graveyard. Otherwise, draw a card. -- Whenever a creature is put into your graveyard from the battlefield, return it to your hand.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Enduring Scalelord
 abilities=flying
 auto=@<anyamount>counter(1/1,1) target(creature|myBattlefield):may counter(1/1,1)
@@ -18410,6 +18471,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Goblin Flectomancer
+auto={S}:target(*[instant;sorcery]|stack) transforms((,newability[fizzle],newability[activate castcard(copied noevent)])) forever 
+text=Sacrifice Goblin Flectomancer: You may change the targets of target instant or sorcery spell.
+mana={U}{R}{R}
+type=Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Goblin Gang Leader
 auto=token(Goblin,Creature Goblin,1/1,red)*2
 text=When Goblin Gang Leader enters the battlefield, create two 1/1 red Goblin creature tokens.
@@ -18768,9 +18839,8 @@ toughness=2
 [/card]
 [card]
 name=Gorilla Berserkers
-abilities=trample,menace
+abilities=trample,threeblockers
 auto=rampage(2/2,1)
-#The restriction blocking by 3 or more creature not fully supported ATM
 auto=@combat(attacking) source(this):if type(creature[blocking]|opponentBattlefield)~lessthan~3 then unblockable ueot
 text=Trample; rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) -- Gorilla Berserkers can't be blocked except by three or more creatures.
 mana={3}{G}{G}
@@ -18801,6 +18871,13 @@ type=Legendary Creature
 subtype=Giant Warrior
 power=2
 toughness=7
+[/card]
+[card]
+name=Gossamer Chains
+auto={H}:name(prevent all combat damage that would be dealt by target creature) donothing target(creature[attacking]) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
+text=Return Gossamer Chains to its owner's hand: Prevent all combat damage that would be dealt by target unblocked creature this turn.
+mana={W}{W}
+type=Enchantment
 [/card]
 [card]
 name=Govern the Guildless
@@ -18884,6 +18961,16 @@ type=Creature
 subtype=Elemental
 power=5
 toughness=4
+[/card]
+[card]
+name=Grappling Hook
+auto={4}:equip
+auto=teach(creature) double strike
+auto=@combat(attacking) source(mytgt):may name(Target creature must block) name(Target creature must block) target(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot
+text=Equipped creature has double strike. -- Whenever equipped creature attacks, you may have target creature block it this turn if able. -- Equip {4}
+mana={4}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Grappling Sundew
@@ -18970,6 +19057,15 @@ auto=@damaged(player) from(creature|mybattlefield,myGraveyard):damage:thatmuch a
 text=If a creature you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
 mana={2}{R}{R}{R}
 type=Enchantment
+[/card]
+[card]
+name=Grave Consequences
+auto=draw:1 controller
+auto=all(*|mygraveyard) transforms((,newability[choice name(Exile) moveto(exile)],newability[choice name(Loose 1 life) life:-1 controller])) ueot
+auto=all(*|opponentgraveyard) transforms((,newability[choice name(Exile) moveto(exile)],newability[choice name(Loose 1 life) life:-1 controller])) ueot
+text=Each player may exile any number of cards from his or her graveyard. Then each player loses 1 life for each card in his or her graveyard. -- Draw a card.
+mana={1}{B}
+type=Instant
 [/card]
 [card]
 name=Gravebreaker Lamia
@@ -19084,12 +19180,36 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Grenzo's Rebuttal
+auto=token(Ogre,Creature Ogre,4/4,red)
+auto=ability$!name(Destroy artifact) name(destroy artifact) target(artifact|opponentBattlefield) destroy!$ controller
+auto=ability$!name(Destroy creature) name(destroy creature) target(creature|opponentBattlefield) destroy!$ controller
+auto=ability$!name(Destroy land) name(destroy land) target(land|opponentBattlefield) destroy!$ controller
+auto=ability$!name(Destroy artifact) name(destroy artifact) target(artifact|opponentBattlefield) destroy!$ opponent
+auto=ability$!name(Destroy creature) name(destroy creature) target(creature|opponentBattlefield) destroy!$ opponent
+auto=ability$!name(Destroy land) name(destroy land) target(land|opponentBattlefield) destroy!$ opponent
+text=Put a 4/4 red Ogre creature token onto the battlefield. Starting with you, each player chooses an artifact, a creature, and a land from among the permanents controlled by the player to his or her left. Destroy each permanent chosen this way.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Grenzo's Ruffians
 auto=@combat(attacking) source(this):1/1 ueot
 text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Whenever Grenzo's Ruffians deals combat damage to an opponent, it deals that much damage to each other opponent.
 mana={2}{R}{R}
 type=Creature
 subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
+name=Grenzo, Dungeon Warden
+auto=counter(1/1,X)
+auto={2}:transforms((,newability[if type(creature[power<=power;zpos=type:*:mylibrary]|mylibrary)~equalto~0 then all(*[zpos=type:*:mylibrary]|mylibrary) moveto(mygraveyard) else all(*[zpos=type:*:mylibrary]|mylibrary) moveto(mygraveyard) and!( moveto(mybattlefield) )!])) oneshot
+text=Grenzo, Dungeon Warden enters the battlefield with X +1/+1 counters on it. -- {2}: Put the bottom card of your library into your graveyard. If it's a creature card with power less than or equal to Grenzo's power, put it onto the battlefield.
+mana={X}{B}{R}
+type=Legendary Creature
+subtype=Goblin Rogue
 power=2
 toughness=2
 [/card]
@@ -19224,6 +19344,15 @@ autograveyard={3}{W}{E}:target(<anyamount>creature[counter{-1/-1}]) moveto(exile
 text=Put a -1/-1 counter on each of up to two target creatures. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Exile any number of target creatures that have -1/-1 counters on them.
 mana={1}{B}
 type=Sorcery
+[/card]
+[card]
+name=Grip of Amnesia
+auto=draw:1 controller
+auto=if type(*|opponentGraveyard)~lessthan~10 then ability$!name(Choose one) choice name(Exile all cards from graveyard) all(*|mygraveyard) moveto(exile) _ choice name(Counter your spell) target(*|mystack) fizzle!$ opponent
+auto=if type(*|opponentGraveyard)~morethan~9 then ability$!name(Choose one) choice name(Counter your spell) target(*|mystack) fizzle _ choice name(Exile all cards from graveyard) all(*|mygraveyard) moveto(exile)!$ opponent
+text=Counter target spell unless its controller exiles all cards from his or her graveyard. -- Draw a card.
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=Grisly Survivor
@@ -19496,6 +19625,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Guile
+abilities=trheeblockers,shufflelibrarydeath
+auto={D(instant|myhand)}:target(*|stack) fizzleto(exile) && may activate castcard(copied noevent)
+text=Guile can't be blocked except by three or more creatures. -- If a spell or ability you control would counter a spell, instead exile that spell and you may play that card without paying its mana cost. -- When Guile is put into a graveyard from anywhere, shuffle it into its owner's library.
+mana={3}{U}{U}{U}
+type=Creature
+subtype=Elemental Incarnation
+power=6
+toughness=6
+[/card]
+[card]
 name=Gurmag Drowner
 auto=may name(Exploit) sacrifice notatarget(creature|mybattlefield) && name(look) reveal:4 optionone name(Get a card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) target(<4>*|reveal) moveto(graveyard) optiontwoend afterrevealed afterrevealedend revealend
 text=Exploit (When this creature enters the battlefield, you may sacrifice a creature.) -- When Gurmag Drowner exploits a creature, look at the top four cards of your library. Put one of them into your hand and the rest into your graveyard.
@@ -19567,6 +19707,19 @@ type=Legendary Creature
 subtype=Hydra
 power=0
 toughness=0
+[/card]
+[card]
+name=Haakon, Stromgald Scourge
+autograveyard={1}{B}{B}:activate castcard(normal)
+restriction=type(land|mygraveyard)~morethan~9999
+auto=lord(knight|mygraveyard) canPlayFromGraveyard
+auto=@movedTo(this|graveyard) from(battlefield):life:-2 controller
+text=You may cast Haakon, Stromgald Scourge from your graveyard, but not from anywhere else. -- As long as Haakon is on the battlefield, you may play Knight cards from your graveyard. -- When Haakon dies, you lose 2 life.
+mana={1}{B}{B}
+type=Legendary Creature
+subtype=Zombie Knight
+power=3
+toughness=3
 [/card]
 [card]
 name=Haazda Marshal
@@ -22903,6 +23056,17 @@ power=2
 toughness=5
 [/card]
 [card]
+name=Ironfist Crusher
+facedown={3}
+autofacedown={3}{W}:morph
+text=Ironfist Crusher can block any number of creatures. -- Morph {3}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
 name=Ironroot Warlord
 anyzone=type:creature:myBattlefield/type:creature:myBattlefield cdaactive
 auto={3}{G}{W}:token(Soldier,Creature Soldier,1/1,white)
@@ -22985,6 +23149,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Island Sanctuary
+auto=replacedraw ability$!name(Choose one) choice name(Skip draw and become unattackable) lord(creature[-flying;-islandwalk]|opponentBattlefield) cantattack uynt _ choice name(Draw card) draw:1 controller!$ controller
+text=If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and/or islandwalk.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
 name=Isolate
 target=*(manacost=1)
 auto=moveto(exile)
@@ -23045,6 +23216,34 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Ixidor's Will
+target=*|stack
+auto=if type(wizard|battlefield)~equalto~0 then transforms((,newability[pay[[{0}]] name(pay 0 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~1 then transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~2 then transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~3 then transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~4 then transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~5 then transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~6 then transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~7 then transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~8 then transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~9 then transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~10 then transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~11 then transforms((,newability[pay[[{22}]] name(pay 22 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~12 then transforms((,newability[pay[[{24}]] name(pay 24 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~13 then transforms((,newability[pay[[{26}]] name(pay 26 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~14 then transforms((,newability[pay[[{28}]] name(pay 28 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~15 then transforms((,newability[pay[[{30}]] name(pay 30 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~16 then transforms((,newability[pay[[{32}]] name(pay 32 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~17 then transforms((,newability[pay[[{34}]] name(pay 34 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~18 then transforms((,newability[pay[[{36}]] name(pay 36 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~equalto~19 then transforms((,newability[pay[[{38}]] name(pay 38 mana) donothing?fizzle])) forever
+auto=if type(wizard|battlefield)~morethan~19 then transforms((,newability[pay[[{40}]] name(pay 40 mana) donothing?fizzle])) forever
+text=Counter target spell unless its controller pays {2} for each Wizard on the battlefield.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 name=Izoni, Thousand-Eyed
 auto=foreach(creature|mygraveyard) create(insect:creature insect:1/1:black,green:)
 auto={B}{G}{S(othercreature|mybattlefield)}:life:1 && draw:1
@@ -23081,6 +23280,18 @@ auto=if casted(this) then if type(jace|opponentstack)~morethan~0 then scry:2 scr
 text=Counter target blue spell. If it was a Jace planeswalker spell, scry 2.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Jace's Mindseeker
+abilities=flying
+aicode=if type(*[instant;sorcery;zpos<=5]|opponentlibrary)~morethan~0 then activate castcard(normal) target(*[instant;sorcery;zpos<=5]|opponentlibrary) && deplete:4 opponent else deplete:5 opponent
+auto=name(Put 5 cards in graveyard) reveal:5 revealzone(opponentlibrary) optionone name(cast an istant or sorcery) target(<1>*[instant;sorcery]|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put in graveyard) target(<5>*|reveal) moveto(opponentgraveyard) optiontwoend afterrevealed all(tobecast|mylibrary) moveto(opponentGraveyard) and!( activate castcard(normal) )! afterrevealedend revealend
+text=Flying -- When Jace's Mindseeker enters the battlefield, target opponent puts the top five cards of his or her library into his or her graveyard. You may cast an instant or sorcery card from among them without paying its mana cost.
+mana={4}{U}{U}
+type=Creature
+subtype=Fish Illusion
+power=4
+toughness=4
 [/card]
 [card]
 name=Jace's Projection
@@ -23160,6 +23371,18 @@ type=Creature
 subtype=Merfolk Shaman
 power=3
 toughness=3
+[/card]
+[card]
+name=Jaded Response
+restriction=type(creature[blue;black;red;green;white]|mybattlefield)~morethan~0
+auto=if type(creature[blue]|mybattlefield)~morethan~0 then choice name(Counter blue spell) target(*[blue]|stack) fizzle
+auto=if type(creature[black]|mybattlefield)~morethan~0 then choice name(Counter black spell) target(*[black]|stack) fizzle
+auto=if type(creature[red]|mybattlefield)~morethan~0 then choice name(Counter red spell) target(*[red]|stack) fizzle
+auto=if type(creature[green]|mybattlefield)~morethan~0 then choice name(Counter green spell) target(*[green]|stack) fizzle
+auto=if type(creature[white]|mybattlefield)~morethan~0 then choice name(Counter white spell) target(*[white]|stack) fizzle
+text=Counter target spell if it shares a color with a creature you control.
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=Jadelight Ranger
@@ -23276,6 +23499,14 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Jester's Mask
+auto=tap(noevent)
+auto={1}{T}{S}:count(type:*:opponenthand) && moveto(opponentlibrary) all(*|opponenthand) && reveal:type:*:opponentlibrary revealzone(opponentlibrary) optionone name(Put in hand) target(<countedamount>*|reveal) moveto(opponenthand) optiononeend optiontwo name(Put back) all(*|reveal) moveto(opponentlibrary) optiontwoend afterrevealed shuffle opponent afterrevealedend revealend
+text=Jester's Mask enters the battlefield tapped. -- {1}, {T}, Sacrifice Jester's Mask: Target opponent puts the cards from his or her hand on top of his or her library. Search that player's library for that many cards. That player puts those cards into his or her hand, then shuffles his or her library.
+mana={5}
+type=Artifact
+[/card]
+[card]
 name=Jeweled Lotus
 auto={T}{S} restriction{type(*[iscommander]|mycommandzone)~morethan~0}:ability$!name(Choose one) choice name(Add 3 white mana) add{W}{W}{W} _ choice name(Add 3 black mana) add{B}{B}{B} _ choice name(Add 3 green mana) add{G}{G}{G} _ choice name(Add 3 red mana) add{R}{R}{R} _ choice name(Add 3 blue mana) add{U}{U}{U}!$ controller
 text={T}, Sacrifice Jeweled Lotus: Add three mana of any one color. Spend this mana only to cast your commander.
@@ -23331,6 +23562,14 @@ auto=all(creature|myBattlefield) opponentshroud
 auto=all(creature|myBattlefield) indestructible
 text=Untap all creatures you control. They gain hexproof and indestructible until end of turn. (They can't be the targets of spells or abilities your opponents control. Damage and effects that say "destroy" don't destroy them.)
 mana={3}{G}{W}
+type=Instant
+[/card]
+[card]
+name=Joint Assault
+target=creature
+auto=2/2 ueot
+text=Target creature gets +2/+2 until end of turn. If it's paired with a creature, that creature also gets +2/+2 until end of turn.
+mana={G}
 type=Instant
 [/card]
 [card]
@@ -23546,6 +23785,19 @@ auto=tap(noevent)
 auto={T}:add{U}
 text=Jwari Ruins enters the battlefield tapped. -- {T}: Add {U}.
 type=Land
+[/card]
+[card]
+name=K'rrik, Son of Yawgmoth
+abilities=lifelink
+other={4} name(Pay with life)
+auto=if paid(alternative) then thisforeach(variable{3}) ability$!name(Pay Life or B) pay[[{B}]] name(Pay B) donothing?life:-2!$ controller
+auto=@movedTo(*[black]|mystack):counter(1/1)
+text=(Phyrexian {B} can be paid with either {B} or 2 life.) -- Lifelink -- For each {B} in a cost, you may pay 2 life rather than pay that mana. -- Whenever you cast a black spell, put a +1/+1 counter on K'rrik, Son of Yawgmoth.
+mana={4}{B}{B}{B}
+type=Legendary Creature
+subtype=Horror Minion
+power=2
+toughness=2
 [/card]
 [card]
 name=Kaalia, Zenith Seeker
@@ -27797,97 +28049,7 @@ type=Artifact
 [/card]
 [card]
 name=Medicine Runner
-auto=choice name(Don't remove any counter) donothing
-auto=choice name(Remove 1/1 counter) counter(1/1,-1) target(*|battlefield)
-auto=choice name(Remove Loyalty counter) counter(0/0,-1,Loyalty) target(*|battlefield)
-auto=choice name(Remove Flying counter) counter(0/0,-1,Flying) target(*|battlefield)
-auto=choice name(Remove Trample counter) counter(0/0,-1,Trample) target(*|battlefield)
-auto=choice name(Remove First Strike counter) counter(0/0,-1,First Strike) target(*|battlefield)
-auto=choice name(Remove Vigilance counter) counter(0/0,-1,Vigilance) target(*|battlefield)
-auto=choice name(Remove Deathtouch counter) counter(0/0,-1,Deathtouch) target(*|battlefield)
-auto=choice name(Remove Lifelink counter) counter(0/0,-1,Lifelink) target(*|battlefield)
-auto=choice name(Remove Flash counter) counter(0/0,-1,Flash) target(*|battlefield)
-auto=choice name(Remove Hexproof counter) counter(0/0,-1,Hexproof) target(*|battlefield)
-auto=choice name(Remove Double Strike counter) counter(0/0,-1,Double Strike) target(*|battlefield)
-auto=choice name(Remove Charge counter) counter(0/0,-1,Charge) target(*|battlefield)
-auto=choice name(Remove Verse counter) counter(0/0,-1,Verse) target(*|battlefield)
-auto=choice name(Remove Gold counter) counter(0/0,-1,Gold) target(*|battlefield)
-auto=choice name(Remove Storage counter) counter(0/0,-1,Storage) target(*|battlefield)
-auto=choice name(Remove Slumber counter) counter(0/0,-1,Slumber) target(*|battlefield)
-auto=choice name(Remove Time counter) counter(0/0,-1,Time) target(*|battlefield)
-auto=choice name(Remove Coin counter) counter(0/0,-1,Coin) target(*|battlefield)
-auto=choice name(Remove Reach counter) counter(0/0,-1,Reach) target(*|battlefield)
-auto=choice name(Remove Flood counter) counter(0/0,-1,Flood) target(*|battlefield)
-auto=choice name(Remove Menace counter) counter(0/0,-1,Menace) target(*|battlefield)
-auto=choice name(Remove Lore counter) counter(0/0,-1,Lore) target(*|battlefield)
-auto=choice name(Remove Fury counter) counter(0/0,-1,Fury) target(*|battlefield)
-auto=choice name(Remove Bounty counter) counter(0/0,-1,Bounty) target(*|battlefield)
-auto=choice name(Remove Egg counter) counter(0/0,-1,Egg) target(*|battlefield)
-auto=choice name(Remove Level counter) counter(0/0,-1,Level) target(*|battlefield)
-auto=choice name(Remove Doom counter) counter(0/0,-1,Doom) target(*|battlefield)
-auto=choice name(Remove Eyeball counter) counter(0/0,-1,Eyeball) target(*|battlefield)
-auto=choice name(Remove Brick counter) counter(0/0,-1,Brick) target(*|battlefield)
-auto=choice name(Remove Magnet counter) counter(0/0,-1,Magnet) target(*|battlefield)
-auto=choice name(Remove Hour counter) counter(0/0,-1,Hour) target(*|battlefield)
-auto=choice name(Remove Foreshadow counter) counter(0/0,-1,Foreshadow) target(*|battlefield)
-auto=choice name(Remove Redmana counter) counter(0/0,-1,Redmana) target(*|battlefield)
-auto=choice name(Remove Growth counter) counter(0/0,-1,Growth) target(*|battlefield)
-auto=choice name(Remove Knowledge counter) counter(0/0,-1,Knowledge) target(*|battlefield)
-auto=choice name(Remove Landmark counter) counter(0/0,-1,Landmark) target(*|battlefield)
-auto=choice name(Remove Wish counter) counter(0/0,-1,Wish) target(*|battlefield)
-auto=choice name(Remove Ki counter) counter(0/0,-1,Ki) target(*|battlefield)
-auto=choice name(Remove Filibuster counter) counter(0/0,-1,Filibuster) target(*|battlefield)
-auto=choice name(Remove Page counter) counter(0/0,-1,Page) target(*|battlefield)
-auto=choice name(Remove Muster counter) counter(0/0,-1,Muster) target(*|battlefield)
-auto=choice name(Remove Quest counter) counter(0/0,-1,Quest) target(*|battlefield)
-auto=choice name(Remove Devotion counter) counter(0/0,-1,Devotion) target(*|battlefield)
-auto=choice name(Remove Blood counter) counter(0/0,-1,Blood) target(*|battlefield)
-auto=choice name(Remove Death counter) counter(0/0,-1,Death) target(*|battlefield)
-auto=choice name(Remove Age counter) counter(0/0,-1,Age) target(*|battlefield)
-auto=choice name(Remove Fuse counter) counter(0/0,-1,Fuse) target(*|battlefield)
-auto=choice name(Remove Unity counter) counter(0/0,-1,Unity) target(*|battlefield)
-auto=choice name(Remove Strife counter) counter(0/0,-1,Strife) target(*|battlefield)
-auto=choice name(Remove Ice counter) counter(0/0,-1,Ice) target(*|battlefield)
-auto=choice name(Remove Payment counter) counter(0/0,-1,Payment) target(*|battlefield)
-auto=choice name(Remove Spore counter) counter(0/0,-1,Spore) target(*|battlefield)
-auto=choice name(Remove Infection counter) counter(0/0,-1,Infection) target(*|battlefield)
-auto=choice name(Remove Paralyzation counter) counter(0/0,-1,Paralyzation) target(*|battlefield)
-auto=choice name(Remove Essence counter) counter(0/0,-1,Essence) target(*|battlefield)
-auto=choice name(Remove Blaze counter) counter(0/0,-1,Blaze) target(*|battlefield)
-auto=choice name(Remove Wind counter) counter(0/0,-1,Wind) target(*|battlefield)
-auto=choice name(Remove Healing counter) counter(0/0,-1,Healing) target(*|battlefield)
-auto=choice name(Remove Study counter) counter(0/0,-1,Study) target(*|battlefield)
-auto=choice name(Remove Bribe counter) counter(0/0,-1,Bribe) target(*|battlefield)
-auto=choice name(Remove Tide counter) counter(0/0,-1,Tide) target(*|battlefield)
-auto=choice name(Remove Pressure counter) counter(0/0,-1,Pressure) target(*|battlefield)
-auto=choice name(Remove Depletion counter) counter(0/0,-1,Depletion) target(*|battlefield)
-auto=choice name(Remove Hoofprint counter) counter(0/0,-1,Hoofprint) target(*|battlefield)
-auto=choice name(Remove Credit counter) counter(0/0,-1,Credit) target(*|battlefield)
-auto=choice name(Remove Javelin counter) counter(0/0,-1,Javelin) target(*|battlefield)
-auto=choice name(Remove Feather counter) counter(0/0,-1,Feather) target(*|battlefield)
-auto=choice name(Remove Treasure counter) counter(0/0,-1,Treasure) target(*|battlefield)
-auto=choice name(Remove Matrix counter) counter(0/0,-1,Matrix) target(*|battlefield)
-auto=choice name(Remove Vitality counter) counter(0/0,-1,Vitality) target(*|battlefield)
-auto=choice name(Remove Petal counter) counter(0/0,-1,Petal) target(*|battlefield)
-auto=choice name(Remove Eon counter) counter(0/0,-1,Eon) target(*|battlefield)
-auto=choice name(Remove Winch counter) counter(0/0,-1,Winch) target(*|battlefield)
-auto=choice name(Remove Mine counter) counter(0/0,-1,Mine) target(*|battlefield)
-auto=choice name(Remove Divinity counter) counter(0/0,-1,Divinity) target(*|battlefield)
-auto=choice name(Remove Theft counter) counter(0/0,-1,Theft) target(*|battlefield)
-auto=choice name(Remove Fate counter) counter(0/0,-1,Fate) target(*|battlefield)
-auto=choice name(Remove Shield counter) counter(0/0,-1,Shield) target(*|battlefield)
-auto=choice name(Remove Plague counter) counter(0/0,-1,Plague) target(*|battlefield)
-auto=choice name(Remove Isolation counter) counter(0/0,-1,Isolation) target(*|battlefield)
-auto=choice name(Remove Shell counter) counter(0/0,-1,Shell) target(*|battlefield)
-auto=choice name(Remove Wage counter) counter(0/0,-1,Wage) target(*|battlefield)
-auto=choice name(Remove Corpse counter) counter(0/0,-1,Corpse) target(*|battlefield)
-auto=choice name(Remove Hourglass counter) counter(0/0,-1,Hourglass) target(*|battlefield)
-auto=choice name(Remove Velocity counter) counter(0/0,-1,Velocity) target(*|battlefield)
-auto=choice name(Remove Pain counter) counter(0/0,-1,Pain) target(*|battlefield)
-auto=choice name(Remove Currency counter) counter(0/0,-1,Currency) target(*|battlefield)
-auto=choice name(Remove Trap counter) counter(0/0,-1,Trap) target(*|battlefield)
-auto=choice name(Remove Hatchling counter) counter(0/0,-1,Hatchling) target(*|battlefield)
-auto=choice name(Remove Pin counter) counter(0/0,-1,Pin) target(*|battlefield)
+auto=if type(*[counter{any}]|battlefield)~morethan~0 then may name(Remove a counter) removesinglecountertype(1) target(*[counter{any}]|battlefield)
 text=When Medicine Runner enters the battlefield, you may remove a counter from target permanent.
 mana={1}{GW}
 type=Creature
@@ -32694,10 +32856,8 @@ toughness=1
 [/card]
 [card]
 name=Pathrazer of Ulamog
-abilities=menace
-#restriction blocking by 3 or more creature not fully supported ATM
+abilities=threeblockers
 auto=@combat(attacking) source(this):name(Annihilate 3) ability$!name(sacrifice) notatarget(<3>*|mybattlefield) sacrifice!$ opponent
-auto=@combat(attacking) source(this):if type(creature[blocking]|opponentBattlefield)~lessthan~3 then unblockable ueot
 text=Annihilator 3 (Whenever this creature attacks, defending player sacrifices three permanents.) -- Pathrazer of Ulamog can’t be blocked except by three or more creatures.
 mana={11}
 type=Creature
@@ -33026,9 +33186,8 @@ toughness=5
 [/card]
 [card]
 name=Phyrexian Colossus
-abilities=doesnotuntap,menace
+abilities=doesnotuntap,threeblockers
 auto={L:8}:untap
-auto=@combat(attacking) source(this):if type(creature[blocking]|opponentBattlefield)~lessthan~3 then unblockable ueot
 text=Phyrexian Colossus doesn't untap during your untap step. -- Pay 8 life: Untap Phyrexian Colossus. -- Phyrexian Colossus can't be blocked except by three or more creatures.
 mana={7}
 type=Artifact Creature
@@ -42357,8 +42516,7 @@ type=Instant
 [card]
 name=Sonorous Howlbonder
 abilities=menace
-#The restriction blocking by 3 or more creature not fully supported ATM
-auto=@combat(attacking) source(creature[menace]|myBattlefield):if type(creature[blocking]|opponentBattlefield)~lessthan~thricetype:creature[attacking,menace]:mybattlefield then lord(creature[menace]|myBattlefield) unblockable ueot
+auto=lord(creature[menace]|mybattlefield) transforms((,newability[threeblockers]))
 text=Menace -- Each creature you control with menace can't be blocked except by three or more creatures.
 mana={1}{BR}{BR}
 type=Creature
@@ -43130,11 +43288,39 @@ toughness=6
 [/card]
 [card]
 name=Sphinx's Insight
-auto=if compare(restriction{assorcery}~morethan~0) then life:2 else
+auto=if compare(restriction{assorcery}~morethan~0) then life:2
 auto=draw:2
 text=Draw two cards. -- Addendum — If you cast this spell during your main phase, you gain 2 life.
 mana={2}{W}{U}
 type=Instant
+[/card]
+[card]
+name=Spike Cannibal
+auto=counter(1/1)
+auto=all(other creature|mybattlefield) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) target(Spike Cannibal[fresh]|mybattlefield) && counter(1/1.-1) all(this)])) oneshot
+auto=all(creature|opponentbattlefield) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) target(Spike Cannibal[fresh]|opponentbattlefield) && counter(1/1.-1) all(this)])) oneshot
+text=Spike Cannibal enters the battlefield with a +1/+1 counter on it. -- When Spike Cannibal enters the battlefield, move all +1/+1 counters from all creatures onto it.
+mana={1}{B}{B}
+type=Creature
+subtype=Spike
+power=0
+toughness=0
+[/card]
+[card]
+name=Spike, Tournament Grinder
+other={2} name(Pay with life)
+auto=if paid(alternative) then thisforeach(variable{2}) ability$!name(Pay Life or B) pay[[{B}]] name(Pay B) donothing?life:-2!$ controller
+auto={B}{B}{B}{B}:name(Pay 4 black mana) name(Pay 4 black mana) target(*|mysideboard) moveto(myhand)
+auto={B}{B}{B}{L:2}:name(Pay 3 black mana and 2 life) name(Pay 3 black mana and 2 life) target(*|mysideboard) moveto(myhand)
+auto={B}{B}{L:4}:name(Pay 2 black mana and 4 life) name(Pay 2 black mana and 4 life) target(*|mysideboard) moveto(myhand)
+auto={B}{L:6}:name(Pay 1 black mana and 6 life) name(Pay 1 black mana and 6 life) target(*|mysideboard) moveto(myhand)
+auto={L:8}:name(Pay 8 life) target(*|mysideboard) moveto(myhand)
+text=(Phyrexian {B} can be paid with either {B} or 2 life.) -- Phyrexian {B} Phyrexian {B} Phyrexian {B} Phyrexian {B}: Choose a card you own from outside the game that has been banned or restricted in a Constructed format, reveal that card, and put it into your hand.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Human Gamer
+power=1
+toughness=1
 [/card]
 [card]
 name=Spike-Tailed Ceratops
@@ -43455,6 +43641,13 @@ mana={B}
 type=Instant
 [/card]
 [card]
+name=Spoils of War
+auto=if type(*[artifact;creature]|opponentgraveyard)~equalto~compare(X) then name(Distribute 1/1 counters) thisforeach(X) ability$!name(Put 1/1 counter) name(Put 1/1 counter) target(creature) counter(1/1)!$ controller
+text=X is the number of artifact and/or creature cards in an opponent's graveyard as you cast Spoils of War. -- Distribute X +1/+1 counters among any number of target creatures.
+mana={X}{B}
+type=Sorcery
+[/card]
+[card]
 name=Spontaneous Flight
 target=creature
 auto=2/2 ueot
@@ -43737,6 +43930,19 @@ type=Creature
 subtype=Goblin Rogue
 power=2
 toughness=2
+[/card]
+[card]
+name=Squealing Devil
+abilities=fear
+other={X}{B}{R} name(Pay with B)
+auto=ifnot paid(alternative) then sacrifice
+auto=target(creature) X/0 ueot
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- When Squealing Devil enters the battlefield, you may pay {X}. If you do, target creature gets +X/+0 until end of turn. -- When Squealing Devil enters the battlefield, sacrifice it unless {B} was spent to cast it.
+mana={X}{1}{R}
+type=Creature
+subtype=Devil
+power=2
+toughness=1
 [/card]
 [card]
 name=Squee, the Immortal
@@ -49403,6 +49609,21 @@ auto=@each my endofturn:sacrifice(this)
 text=Each nonland card in your graveyard has escape. The escape cost is equal to the card’s mana cost plus exile three other cards from your graveyard. (You may cast cards from your graveyard for their escape cost.) -- At the beginning of the end step, sacrifice Underworld Breach.
 mana={1}{R}
 type=Enchantment
+[/card]
+[card]
+name=Underworld Cerberus
+abilities=threeblockers
+auto=lord(*|mygraveyard) cantbetargetof(*|opponentzones)
+auto=lord(*|mygraveyard) cantbetargetof(*|myzones)
+auto=lord(*|opponentgraveyard) cantbetargetof(*|opponentzones)
+auto=lord(*|opponentgraveyard) cantbetargetof(*|myzones)
+auto=@movedto(this|mygraveyard) from(battlefield):moveto(myexile) all(this) && moveto(myHand) all(creature|myGraveyard) && moveto(opponentHand) all(creature|opponentGraveyard)
+text=Underworld Cerberus can't be blocked except by three or more creatures. -- Cards in graveyards can't be the targets of spells or abilities. -- When Underworld Cerberus dies, exile it and each player returns all creature cards from his or her graveyard to his or her hand.
+mana={3}{B}{R}
+type=Creature
+subtype=Hound
+power=6
+toughness=6
 [/card]
 [card]
 name=Underworld Charger
