@@ -1564,12 +1564,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Browbeat
-text=Any player may have Browbeat deal 5 damage to him or her. If no one does, target player draws three cards.
-mana={2}{R}
-type=Sorcery
-[/card]
-[card]
 name=Brown Ouphe
 text={1}{G}, {T}: Counter target activated ability from an artifact source. (Mana abilities can't be targeted.)
 mana={G}
@@ -1996,15 +1990,6 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Chancellor of the Annex
-text=You may reveal this card from your opening hand. If you do, when each opponent casts his or her first spell of the game, counter that spell unless that player pays {1}. -- Flying -- Whenever an opponent casts a spell, counter it unless that player pays {1}.
-mana={4}{W}{W}{W}
-type=Creature
-subtype=Angel
-power=5
-toughness=6
-[/card]
-[card]
 name=Chancellor of the Dross
 text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, each opponent loses 3 life, then you gain life equal to the life lost this way. -- Flying, lifelink
 mana={4}{B}{B}{B}
@@ -2170,16 +2155,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Chisei, Heart of Oceans
-abilities=flying
-text=Flying -- At the beginning of your upkeep, sacrifice Chisei, Heart of Oceans unless you remove a counter from a permanent you control.
-mana={2}{U}{U}
-type=Legendary Creature
-subtype=Spirit
-power=4
-toughness=4
-[/card]
-[card]
 name=Chittering Doom
 text=Whenever you roll a 4 or higher on a die, create a 1/1 green Squirrel creature token.
 mana={3}{G}
@@ -2284,12 +2259,6 @@ mana={3}
 type=Artifact Creature
 power=1
 toughness=1
-[/card]
-[card]
-name=Cleansing
-text=For each land, destroy that land unless any player pays 1 life.
-mana={W}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Clear the Land
@@ -2482,13 +2451,6 @@ mana={2}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Conflagrate
-flashback={R}{R}
-text=Conflagrate deals X damage divided as you choose among any number of target creatures and/or players. -- Flashback—{R}{R}, Discard X cards. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={X}{X}{R}
-type=Sorcery
-[/card]
-[card]
 name=Confusion in the Ranks
 text=Whenever an artifact, creature, or enchantment enters the battlefield, its controller chooses target permanent another player controls that shares a card type with it. Exchange control of those permanents.
 mana={3}{R}{R}
@@ -2544,12 +2506,6 @@ text=Enchant creature -- Enchanted creature has banding. (Any creatures with ban
 mana={2}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Copy Enchantment
-text=You may have Copy Enchantment enter the battlefield as a copy of any enchantment on the battlefield.
-mana={2}{U}
-type=Enchantment
 [/card]
 [card]
 name=Corpse Dance
@@ -3822,12 +3778,6 @@ type=Enchantment
 name=Endless Horizons
 text=When Endless Horizons enters the battlefield, search your library for any number of Plains cards and exile them. Then shuffle your library. -- At the beginning of your upkeep, you may put a card you own exiled with Endless Horizons into your hand.
 mana={3}{W}
-type=Enchantment
-[/card]
-[card]
-name=Enduring Renewal
-text=Play with your hand revealed. -- If you would draw a card, reveal the top card of your library instead. If it's a creature card, put it into your graveyard. Otherwise, draw a card. -- Whenever a creature is put into your graveyard from the battlefield, return it to your hand.
-mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
@@ -5235,15 +5185,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Goblin Flectomancer
-text=Sacrifice Goblin Flectomancer: You may change the targets of target instant or sorcery spell.
-mana={U}{R}{R}
-type=Creature
-subtype=Goblin Wizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Goblin Flotilla
 abilities=islandwalk
 text=Islandwalk -- At the beginning of combat, unless you pay {R}, whenever Goblin Flotilla blocks or becomes blocked by a creature this combat, that creature gains first strike until end of turn.
@@ -5409,12 +5350,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Gossamer Chains
-text=Return Gossamer Chains to its owner's hand: Prevent all combat damage that would be dealt by target unblocked creature this turn.
-mana={W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Grafdigger's Cage
 text=Creature cards can't enter the battlefield from graveyards or libraries. -- Players can't cast cards in graveyards or libraries.
 mana={1}
@@ -5453,23 +5388,10 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
-name=Grappling Hook
-text=Equipped creature has double strike. -- Whenever equipped creature attacks, you may have target creature block it this turn if able. -- Equip {4}
-mana={4}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Grave Betrayal
 text=Whenever a creature you don't control dies, return it to the battlefield under your control with an additional +1/+1 counter on it at the beginning of the next end step. That creature is a black Zombie in addition to its other colors and types.
 mana={5}{B}{B}
 type=Enchantment
-[/card]
-[card]
-name=Grave Consequences
-text=Each player may exile any number of cards from his or her graveyard. Then each player loses 1 life for each card in his or her graveyard. -- Draw a card.
-mana={1}{B}
-type=Instant
 [/card]
 [card]
 name=Grave Servitude
@@ -5540,21 +5462,6 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-name=Grenzo's Rebuttal
-text=Put a 4/4 red Ogre creature token onto the battlefield. Starting with you, each player chooses an artifact, a creature, and a land from among the permanents controlled by the player to his or her left. Destroy each permanent chosen this way.
-mana={4}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Grenzo, Dungeon Warden
-text=Grenzo, Dungeon Warden enters the battlefield with X +1/+1 counters on it. -- {2}: Put the bottom card of your library into your graveyard. If it's a creature card with power less than or equal to Grenzo's power, put it onto the battlefield.
-mana={X}{B}{R}
-type=Legendary Creature
-subtype=Goblin Rogue
-power=2
-toughness=2
-[/card]
-[card]
 name=Grenzo, Havoc Raiser
 text=Whenever a creature you control deals combat damage to a player, choose one — -- • Goad target creature that player controls.  -- • Exile the top card of that player's library. Until end of turn, you may cast that card and you may spend mana as though it were mana of any color to cast it.
 mana={R}{R}
@@ -5583,12 +5490,6 @@ name=Grinning Totem
 text={2}, {T}, Sacrifice Grinning Totem: Search target opponent's library for a card and exile it. Then that player shuffles his or her library. Until the beginning of your next upkeep, you may play that card. At the beginning of your next upkeep, if you haven't played it, put it into its owner's graveyard.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Grip of Amnesia
-text=Counter target spell unless its controller exiles all cards from his or her graveyard. -- Draw a card.
-mana={1}{U}
-type=Instant
 [/card]
 [card]
 name=Grip of Chaos
@@ -5682,15 +5583,6 @@ mana={5}{R}
 type=Enchantment
 [/card]
 [card]
-name=Guile
-text=Guile can't be blocked except by three or more creatures. -- If a spell or ability you control would counter a spell, instead exile that spell and you may play that card without paying its mana cost. -- When Guile is put into a graveyard from anywhere, shuffle it into its owner's library.
-mana={3}{U}{U}{U}
-type=Creature
-subtype=Elemental Incarnation
-power=6
-toughness=6
-[/card]
-[card]
 name=Gus
 text=Gus comes into play with one +1/+1 counter on it for each game you have lost to your opponent since you last won a Magic game against him or her.
 mana={2}{G}
@@ -5717,15 +5609,6 @@ type=Legendary Creature
 subtype=Demon Kraken
 power=6
 toughness=6
-[/card]
-[card]
-name=Haakon, Stromgald Scourge
-text=You may cast Haakon, Stromgald Scourge from your graveyard, but not from anywhere else. -- As long as Haakon is on the battlefield, you may play Knight cards from your graveyard. -- When Haakon dies, you lose 2 life.
-mana={1}{B}{B}
-type=Legendary Creature
-subtype=Zombie Knight
-power=3
-toughness=3
 [/card]
 [card]
 name=Haazda Shield Mate
@@ -6798,21 +6681,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Ironfist Crusher
-text=Ironfist Crusher can block any number of creatures. -- Morph {3}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=4
-[/card]
-[card]
-name=Island Sanctuary
-text=If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and/or islandwalk.
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Isle of Vesuva
 text=Whenever a nontoken creature enters the battlefield, its controller puts a token onto the battlefield that's a copy of that creature. -- Whenever you roll {C}, destroy target creature and all other creatures with the same name as that creature.
 type=Plane
@@ -6841,12 +6709,6 @@ toughness=4
 name=Iterative Analysis
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell with the chosen name, you may draw a card.
 type=Conspiracy
-[/card]
-[card]
-name=Ixidor's Will
-text=Counter target spell unless its controller pays {2} for each Wizard on the battlefield.
-mana={2}{U}
-type=Instant
 [/card]
 [card]
 name=Ixidor, Reality Sculptor
@@ -6879,16 +6741,6 @@ mana={3}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Jace's Mindseeker
-abilities=flying
-text=Flying -- When Jace's Mindseeker enters the battlefield, target opponent puts the top five cards of his or her library into his or her graveyard. You may cast an instant or sorcery card from among them without paying its mana cost.
-mana={4}{U}{U}
-type=Creature
-subtype=Fish Illusion
-power=4
-toughness=4
-[/card]
-[card]
 name=Jack-in-the-Mox
 text={T}: Roll a six-sided die for Jack-in-the-Mox. On a 1, sacrifice Jack-in-the-Mox and lose 5 life. Otherwise, Jack-in-the-Mox has one of the following effects. Treat this ability as a mana source. -- 2 Add {W} to your mana pool. -- 3 Add {U} to your mana pool. -- 4 Add {B} to your mana pool. -- 5 Add {R} to your mana pool. -- 6 Add {G} to your mana pool.
 mana={0}
@@ -6908,12 +6760,6 @@ name=Jade Monolith
 text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Jaded Response
-text=Counter target spell if it shares a color with a creature you control.
-mana={1}{U}
-type=Instant
 [/card]
 [card]
 name=Jalum Grifter
@@ -6955,12 +6801,6 @@ type=Creature
 subtype=Human Monk
 power=2
 toughness=3
-[/card]
-[card]
-name=Jester's Mask
-text=Jester's Mask enters the battlefield tapped. -- {1}, {T}, Sacrifice Jester's Mask: Target opponent puts the cards from his or her hand on top of his or her library. Search that player's library for that many cards. That player puts those cards into his or her hand, then shuffles his or her library.
-mana={5}
-type=Artifact
 [/card]
 [card]
 name=Jester's Scepter
@@ -7015,12 +6855,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Joint Assault
-text=Target creature gets +2/+2 until end of turn. If it's paired with a creature, that creature also gets +2/+2 until end of turn.
-mana={G}
-type=Instant
-[/card]
-[card]
 name=Jotun Grunt
 text=Cumulative upkeep—Put two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{W}
@@ -7056,18 +6890,6 @@ name=Juxtapose
 text=You and target player exchange control of the creature you each control with the highest converted mana cost. Then exchange control of artifacts the same way. If two or more permanents a player controls are tied for highest cost, their controller chooses one of them.
 mana={3}{U}
 type=Sorcery
-[/card]
-[card]
-name=K'rrik, Son of Yawgmoth
-abilities=lifelink
-other={4}{L:6} name(Pay with life)
-auto=@movedTo(*[black]|mystack):counter(1/1)
-text=(Phyrexian {B} can be paid with either {B} or 2 life.) -- Lifelink -- For each {B} in a cost, you may pay 2 life rather than pay that mana. -- Whenever you cast a black spell, put a +1/+1 counter on K'rrik, Son of Yawgmoth.
-mana={4}{B}{B}{B}
-type=Legendary Creature
-subtype=Horror Minion
-power=2
-toughness=2
 [/card]
 [card]
 name=Kaboom!
@@ -12652,24 +12474,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Spike Cannibal
-text=Spike Cannibal enters the battlefield with a +1/+1 counter on it. -- When Spike Cannibal enters the battlefield, move all +1/+1 counters from all creatures onto it.
-mana={1}{B}{B}
-type=Creature
-subtype=Spike
-power=0
-toughness=0
-[/card]
-[card]
-name=Spike, Tournament Grinder
-text=(Phyrexian {B} can be paid with either {B} or 2 life.) -- Phyrexian {B} Phyrexian {B} Phyrexian {B} Phyrexian {B}: Choose a card you own from outside the game that has been banned or restricted in a Constructed format, reveal that card, and put it into your hand.
-mana={2}{Phyrexian B}{Phyrexian B}
-type=Legendary Creature
-subtype=Human Gamer
-power=1
-toughness=1
-[/card]
-[card]
 name=Spire Phantasm
 text=Reveal Spire Phantasm as you draft it. The next time a player drafts a card from this booster pack, guess that card's name. Then that player reveals the drafted card. -- Flying -- When Spire Phantasm enters the battlefield, if you guessed correctly for a card named Spire Phantasm, draw a card.
 mana={2}{U}{U}
@@ -12741,12 +12545,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Spoils of War
-text=X is the number of artifact and/or creature cards in an opponent's graveyard as you cast Spoils of War. -- Distribute X +1/+1 counters among any number of target creatures.
-mana={X}{B}
-type=Sorcery
-[/card]
-[card]
 name=Spoils of the Vault
 text=Name a card. Reveal cards from the top of your library until you reveal the named card, then put that card into your hand. Exile all other cards revealed this way, and you lose 1 life for each of the exiled cards.
 mana={B}
@@ -12779,16 +12577,6 @@ name=Spy Network
 text=Look at target player's hand, the top card of that player's library, and any face-down creatures he or she controls. Look at the top four cards of your library, then put them back in any order.
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Squealing Devil
-abilities=fear
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- When Squealing Devil enters the battlefield, you may pay {X}. If you do, target creature gets +X/+0 until end of turn. -- When Squealing Devil enters the battlefield, sacrifice it unless {B} was spent to cast it.
-mana={1}{R}
-type=Creature
-subtype=Devil
-power=2
-toughness=1
 [/card]
 [card]
 name=Squee's Revenge
@@ -14250,15 +14038,6 @@ subtype=Ravnica
 name=Underdome
 text={T}: Add {X}. -- {T}: Add one mana of any color. Spend this mana only to pay silver-bordered costs.
 type=Land
-[/card]
-[card]
-name=Underworld Cerberus
-text=Underworld Cerberus can't be blocked except by three or more creatures. -- Cards in graveyards can't be the targets of spells or abilities. -- When Underworld Cerberus dies, exile it and each player returns all creature cards from his or her graveyard to his or her hand.
-mana={3}{B}{R}
-type=Creature
-subtype=Hound
-power=6
-toughness=6
 [/card]
 [card]
 name=Unexpected Potential

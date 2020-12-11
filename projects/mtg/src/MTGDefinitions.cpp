@@ -197,7 +197,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "hasotherkicker", //Kicker cost is expressed with "other" keyword (eg. not mana kicker such as life and/or tap a creature),
     "partner", //Has partner ability
     "canbecommander", //Can be a commander (eg. some planeswalkers can)
-    "iscommander" //It's the current commander
+    "iscommander", //It's the current commander
+    "threeblockers" //It can be blocked just by 3 creatures or more.
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

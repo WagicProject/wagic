@@ -291,7 +291,8 @@ class Constants
       PARTNER = 164,
       CANBECOMMANDER = 165,
       ISCOMMANDER = 166,
-      NB_BASIC_ABILITIES = 167,
+      THREEBLOCKERS = 167,
+      NB_BASIC_ABILITIES = 168,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

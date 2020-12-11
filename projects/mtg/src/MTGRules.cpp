@@ -2366,6 +2366,24 @@ int MTGBlockRule::receiveEvent(WEvent *e)
             }
          }
     }
+    if (dynamic_cast<WEventBlockersChosen*>(e))
+    {
+        //if a card with threeblockers is not blocked by 3 or more, remove any known blockers and attacking as normal.
+        MTGGameZone * z = p->game->inPlay;
+        for (int i = 0; i < z->nb_cards; i++)
+        {
+            MTGCardInstance * card = z->cards[i];
+            if (card->isAttacker() && card->has(Constants::THREEBLOCKERS) && card->blockers.size() < 3)
+            {
+                while (card->blockers.size())
+                {
+                    MTGCardInstance * blockingCard = card->blockers.front();
+                    if(blockingCard->getNextOpponent() == card)
+                        blockingCard->toggleDefenser(NULL);
+                }
+            }
+         }
+    }
         return 1;
 
     }
