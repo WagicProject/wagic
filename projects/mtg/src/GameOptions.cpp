@@ -74,6 +74,7 @@ const string Options::optionNames[] = {
   "prx_eviltwin",
   "prx_rnddeck",
   "aw_collector",
+  "prx_commander",
 
 };
 

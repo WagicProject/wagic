@@ -262,6 +262,8 @@ void MTGCardInstance::initMTGCI()
     chooseacolor = -1;
     chooseasubtype = "";
     coinSide = -1;
+    dieSide = 0;
+    lastRollResult = 0;
     isAttacking = NULL;
     storedCard = NULL;
     storedSourceCard = NULL;

@@ -366,6 +366,12 @@ struct WEventCardSurveiled : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//roll die event
+struct WEventCardRollDie : public WEventCardUpdate {
+    WEventCardRollDie(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 //mutation event
 struct WEventCardMutated : public WEventCardUpdate {
     WEventCardMutated(MTGCardInstance * card);

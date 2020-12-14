@@ -113,7 +113,9 @@ public:
     int chooseacolor;
     string chooseasubtype;
     int coinSide;//1 = tails
-        
+    int dieSide;
+    int lastRollResult;
+
     int stillInUse();
     int didattacked;
     int didblocked;

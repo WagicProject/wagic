@@ -277,6 +277,12 @@ void Credits::compute(GameObserver* g, GameApp * _app)
                     goa = (GameOptionAward*) &options[Options::EVILTWIN_MODE_UNLOCKED];
                     goa->giveAward();
                 }
+                else if ((unlocked = isCommanderUnlocked()))
+                {
+                    unlockedTextureName = "commander_unlocked.png";
+                    goa = (GameOptionAward*) &options[Options::COMMANDER_MODE_UNLOCKED];
+                    goa->giveAward();
+                }
                 else if ((unlocked = isRandomDeckUnlocked()))
                 {
                     unlockedTextureName = "randomdeck_unlocked.png";
@@ -665,6 +671,15 @@ int Credits::isEvilTwinUnlocked()
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
         return 0;
     if (p1->game->inPlay->nb_cards && (p1->game->inPlay->nb_cards == p2->game->inPlay->nb_cards))
+        return 1;
+    return 0;
+}
+
+int Credits::isCommanderUnlocked()
+{
+    if (options[Options::COMMANDER_MODE_UNLOCKED].number)
+        return 0;
+    if (p1->life >= 40 && p2->game->graveyard->nb_cards && (p1->game->graveyard->nb_cards < p2->game->graveyard->nb_cards))
         return 1;
     return 0;
 }

@@ -1216,23 +1216,33 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card is mutated
     if (TargetChooser * tc = parseSimpleTC(s, "mutated", card))
-        return NEW TrCardMutated(observer, id, card, tc,once,limitOnceATurn);
+        return NEW TrCardMutated(observer, id, card, tc, once, limitOnceATurn);
 
     //Surveil has been performed from controller
     if (TargetChooser * tc = parseSimpleTC(s, "surveiled", card))
-        return NEW TrCardSurveiled(observer, id, card, tc,once,limitOnceATurn);
+        return NEW TrCardSurveiled(observer, id, card, tc, once, limitOnceATurn);
+
+    //Roll die has been performed from a card
+    if (TargetChooser * tc = parseSimpleTC(s, "dierolled", card)){
+        int rollresult = 0;
+        vector<string>res = parseBetween(s, "result(",")");
+        if(res.size()){
+            rollresult = atoi(res[1].c_str());
+        }
+        return NEW TrCardRolledDie(observer, id, card, tc, once, limitOnceATurn, rollresult);
+    }
 
     //Token has been created
     if (TargetChooser * tc = parseSimpleTC(s, "tokencreated", card))
-        return NEW TrTokenCreated(observer, id, card, tc,once);
+        return NEW TrTokenCreated(observer, id, card, tc, once);
 
     //Card is sacrificed
     if (TargetChooser * tc = parseSimpleTC(s, "sacrificed", card))
-        return NEW TrCardSacrificed(observer, id, card, tc,once);
+        return NEW TrCardSacrificed(observer, id, card, tc ,once);
 
     //Card is Discarded
     if (TargetChooser * tc = parseSimpleTC(s, "discarded", card))
-        return NEW TrCardDiscarded(observer, id, card, tc,once);
+        return NEW TrCardDiscarded(observer, id, card, tc, once);
 
     //Card is cycled
     if (TargetChooser * tc = parseSimpleTC(s, "cycled", card))
@@ -2585,7 +2595,23 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitFlipCoin.size())
     {
         string a1 = splitFlipCoin[1];
-        MTGAbility * a = NEW GenericFlipACoin(observer, id, card, target,a1);
+        MTGAbility * a = NEW GenericFlipACoin(observer, id, card, target, a1);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+
+    //roll a die
+    vector<string> splitRollDie = parseBetween(s, "rolladie ", " rollend");
+    if (splitRollDie.size())
+    {
+        string a1 = splitRollDie[1];
+        int userchoice = 0;
+        if(a1[0] >= 48 && a1[0] <= 57){
+            userchoice = a1[0] - 48;
+            a1 = a1.substr(2);
+        }
+        MTGAbility * a = NEW GenericRollDie(observer, id, card, target, a1, NULL, userchoice);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
@@ -2600,6 +2626,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->canBeInterrupted = false;
         return a;
     }
+
     //Upkeep Cost
     found = s.find("upcost");
     if (found != string::npos)

@@ -655,9 +655,9 @@ private:
             if(card->playerTarget)
                 intValue = card->playerTarget->curses.size();
         }
-        else if (s == "lifetotal")
+        else if (s == "lifetotal" || s == "opponentlifetotal")
         {
-            intValue = target->controller()->life;
+            intValue = (s == "lifetotal")?target->controller()->life:target->controller()->opponent()->life;
         }
         else if (s == "startinglife")
         {
@@ -729,9 +729,9 @@ private:
         {
             intValue = (s == "mypoisoncount")?target->controller()->poisonCount:target->controller()->opponent()->poisonCount;
         }
-        else if (s == "opponentlifetotal")
+        else if(s == "lastrollresult" || s == "lastrollchoice")
         {
-            intValue = target->controller()->opponent()->life;
+            intValue = (s == "lastrollresult")?target->lastRollResult:target->dieSide;
         }
         else if (s == "pdrewcount" || s == "odrewcount")
         {
@@ -1759,6 +1759,36 @@ public:
     TrCardSurveiled * clone() const
     {
         return NEW TrCardSurveiled(*this);
+    }
+};
+
+class TrCardRolledDie: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    int rollresult;
+    TrCardRolledDie(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, int rollresult = 0) :
+        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn), rollresult(rollresult)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardRollDie * e = dynamic_cast<WEventCardRollDie *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (rollresult > 0 && rollresult != e->card->lastRollResult)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardRolledDie * clone() const
+    {
+        return NEW TrCardRolledDie(*this);
     }
 };
 
@@ -7410,6 +7440,35 @@ public:
     const string getMenuText();
     GenericFlipACoin * clone() const;
     ~GenericFlipACoin();
+
+};
+//------------------------------------------------
+//Roll a die and call it, with win or lose abilities
+class AASetDie: public InstantAbility
+{
+public:
+    int side;
+    string abilityToAlter;
+    string abilityWin;
+    string abilityLose;
+    MTGAbility * abilityAltered;
+    AASetDie(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1,string toAdd = "");
+    int resolve();
+    const string getMenuText();
+    AASetDie * clone() const;
+    ~AASetDie();
+};
+class GenericRollDie: public ActivatedAbility
+{
+public:
+    string baseAbility;
+    AASetDie * setDie;
+    int userchoice;
+    GenericRollDie(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL, int userchoice = 0);
+    int resolve();
+    const string getMenuText();
+    GenericRollDie * clone() const;
+    ~GenericRollDie();
 
 };
 //------------

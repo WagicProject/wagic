@@ -255,6 +255,7 @@ public:
         MENUITEM_RANDOM_AI = kRandomAIPlayerMenuID,
         MENUITEM_MAIN_MENU = -13,
         MENUITEM_EVIL_TWIN = kEvilTwinMenuID,
+        MENUITEM_COMMANDER = kCommanderMenuID,
         MENUITEM_MULLIGAN = -15,
         MENUITEM_UNDO = -16,
 #ifdef TESTSUITE

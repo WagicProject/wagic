@@ -1105,102 +1105,52 @@ id=457364
 rarity=C
 [/card]
 [card]
-primitive=Bedazzle
+primitive=Bedeck // Bedazzle
 id=457365
 rarity=R
 [/card]
 [card]
-primitive=Bedeck
-id=457365
-rarity=R
-[/card]
-[card]
-primitive=Carnage
+primitive=Carnival // Carnage
 id=457366
 rarity=U
 [/card]
 [card]
-primitive=Carnival
-id=457366
-rarity=U
-[/card]
-[card]
-primitive=Colossus
+primitive=Collision // Colossus
 id=457367
 rarity=U
 [/card]
 [card]
-primitive=Collision
-id=457367
-rarity=U
-[/card]
-[card]
-primitive=Consume
+primitive=Consecrate // Consume
 id=457368
 rarity=U
 [/card]
 [card]
-primitive=Consecrate
-id=457368
-rarity=U
-[/card]
-[card]
-primitive=Deploy
+primitive=Depose // Deploy
 id=457369
 rarity=U
 [/card]
 [card]
-primitive=Depose
-id=457369
-rarity=U
-[/card]
-[card]
-primitive=Incongruity
+primitive=Incubation // Incongruity
 id=457370
 rarity=U
 [/card]
 [card]
-primitive=Incubation
-id=457370
-rarity=U
-[/card]
-[card]
-primitive=Replicate
+primitive=Repudiate // Replicate
 id=457371
 rarity=R
 [/card]
 [card]
-primitive=Repudiate
-id=457371
-rarity=R
-[/card]
-[card]
-primitive=Revenge
+primitive=Revival // Revenge
 id=457372
 rarity=R
 [/card]
 [card]
-primitive=Revival
-id=457372
-rarity=R
-[/card]
-[card]
-primitive=Threat
+primitive=Thrash // Threat
 id=457373
 rarity=R
 [/card]
 [card]
-primitive=Thrash
-id=457373
-rarity=R
-[/card]
-[card]
-primitive=Warden
-id=457374
-rarity=R
-[/card]
-[card]
-primitive=Warrant
+primitive=Warrant // Warden
 id=457374
 rarity=R
 [/card]

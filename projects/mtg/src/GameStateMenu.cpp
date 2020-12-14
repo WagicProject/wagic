@@ -222,6 +222,8 @@ void GameStateMenu::fillScroller()
         scroller->Add(_("You haven't unlocked the random deck mode yet"));
     if (!options[Options::EVILTWIN_MODE_UNLOCKED].number)
         scroller->Add(_("You haven't unlocked the evil twin mode yet"));
+    if (!options[Options::COMMANDER_MODE_UNLOCKED].number)
+        scroller->Add(_("You haven't unlocked the commander format yet"));
 
     //Unlocked sets
     int nbunlocked = 0;
@@ -262,6 +264,10 @@ int GameStateMenu::gamePercentComplete() {
 
     total++;
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
+        done++;
+
+    total++;
+    if (options[Options::COMMANDER_MODE_UNLOCKED].number)
         done++;
 
     //Unlocked sets
