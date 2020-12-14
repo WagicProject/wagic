@@ -61,6 +61,9 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
             case kRandomAIPlayerMenuID:
                 mImageFilename = "noavatar.jpg";
                 break;
+            case kCommanderMenuID:
+                mImageFilename = "noavatar.jpg";
+                break;
             case kEvilTwinMenuID:
                 {
                     mImageFilename = "avatar.jpg";

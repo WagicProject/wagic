@@ -2670,7 +2670,7 @@ AASetTypeChosen::~AASetTypeChosen()
 }
 
 //
-//choosing a type or color
+//choosing flip coin
 GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd, ManaCost * cost) :
 ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd)
 {
@@ -2717,7 +2717,7 @@ GenericFlipACoin::~GenericFlipACoin()
 {
 }
 
-//set color choosen
+//set coin result
  AASetCoin::AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target,int _side , string toAlter):
     InstantAbility(observer, id, source),side(_side), abilityToAlter(toAlter)
 {
@@ -2807,6 +2807,166 @@ AASetCoin * AASetCoin::clone() const
 }
 
 AASetCoin::~AASetCoin()
+{
+}
+
+//
+//rolling a 6 side die
+GenericRollDie::GenericRollDie(GameObserver* observer, int id, MTGCardInstance * source, Targetable *, string _toAdd, ManaCost * cost, int userchoice) :
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd), userchoice(userchoice)
+{
+    this->GetId();
+    setDie = NULL;
+}
+
+int GenericRollDie::resolve()
+{
+    if (!target)
+        return 0;
+    vector<MTGAbility*>selection;
+    if(userchoice > 0 && userchoice < 7){
+        setDie = NEW AASetDie(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, userchoice, baseAbility);
+        MTGAbility * set = setDie->clone();
+        set->oneShot = true;
+        game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
+        set->resolve();
+        SAFE_DELETE(setDie);
+    } else{
+        for (int i = 1; i < 7; ++i)
+        {
+            setDie = NEW AASetDie(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, baseAbility);
+            MTGAbility * set = setDie->clone();
+            set->oneShot = true;
+            selection.push_back(set);
+            SAFE_DELETE(setDie);
+        }
+    }
+    if(selection.size() > 1)
+    {
+        MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source, false, selection);
+        game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
+        a1->resolve();
+    }
+    return 1;
+
+}
+
+const string GenericRollDie::getMenuText()
+{
+return "Roll a Die";
+}
+
+GenericRollDie * GenericRollDie::clone() const
+{
+    GenericRollDie * a = NEW GenericRollDie(*this);
+    return a;
+}
+
+GenericRollDie::~GenericRollDie()
+{
+}
+
+//set color choosen
+ AASetDie::AASetDie(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int _side, string toAlter):
+    InstantAbility(observer, id, source),side(_side), abilityToAlter(toAlter)
+{
+    this->target = _target;
+    abilityAltered = NULL;
+}
+
+int AASetDie::resolve()
+{
+    MTGCardInstance * _target =  (MTGCardInstance *)target; 
+    _target->dieSide = side;
+
+    int roll = 1 + game->getRandomGenerator()->random() % 6;
+    _target->lastRollResult = roll;
+    WEvent * e = NEW WEventCardRollDie(_target);
+    game->receiveEvent(e);
+    vector<string>Win = parseBetween(abilityToAlter,"winability "," winabilityend");
+    if(Win.size())
+    {
+        abilityWin = Win[1];
+    }
+    vector<string>Lose = parseBetween(abilityToAlter,"loseability "," loseabilityend");
+    if(Lose.size())
+    {
+        abilityLose = Lose[1];
+    }
+
+    if(abilityWin.size() && roll == side)
+    {
+        AbilityFactory af(game);
+        abilityAltered = af.parseMagicLine(abilityWin, 0, NULL, _target);
+        abilityAltered->canBeInterrupted = false;
+        if(abilityAltered->oneShot)
+        {
+            abilityAltered->resolve();
+            SAFE_DELETE(abilityAltered);
+        }
+        else
+        {
+            abilityAltered->addToGame();
+        }
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Won The Die Roll");
+        message->oneShot = true;
+        message->addToGame();
+    }
+    else if(abilityWin.size() && !abilityLose.size())
+    {
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Lost The Die Roll");
+        message->oneShot = true;
+        message->addToGame();
+    }
+    else if(abilityLose.size() && roll != side)
+    {
+        AbilityFactory af(game);
+        abilityAltered = af.parseMagicLine(abilityLose, 0, NULL, _target);
+        abilityAltered->canBeInterrupted = false;
+        if(abilityAltered->oneShot)
+        {
+            abilityAltered->resolve();
+            SAFE_DELETE(abilityAltered);
+        }
+        else
+        {
+            abilityAltered->addToGame();
+        }
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Lost The Die Roll");
+        message->oneShot = true;
+        message->addToGame();
+    }
+    else if(abilityLose.size())
+    {
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Won The Die Roll");
+        message->oneShot = true;
+        message->addToGame();
+    }
+    _target->skipDamageTestOnce = true;
+    return 1;
+}
+
+const string AASetDie::getMenuText()
+{
+    if(side == 1)
+        return "Your choice is 1";
+    if(side == 2)
+        return "Your choice is 2";
+    if(side == 3)
+        return "Your choice is 3";
+    if(side == 4)
+        return "Your choice is 4";
+    if(side == 5)
+        return "Your choice is 5";
+    return "Your choice is 6";
+}
+
+AASetDie * AASetDie::clone() const
+{
+    return NEW AASetDie(*this);
+}
+
+AASetDie::~AASetDie()
 {
 }
 

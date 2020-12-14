@@ -91,6 +91,10 @@ void GameStateAwards::Start()
     btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::AWARD_COLLECTOR, this);
     listview->Add(btn);
 
+    aw = NEW WGuiAward(Options::COMMANDER_MODE_UNLOCKED, "Commander Format", "Play a Commander Format game.");
+    btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::COMMANDER_MODE_UNLOCKED, this);
+    listview->Add(btn);
+
     wgh = NEW WGuiHeader("");
     listview->Add(wgh);
 
