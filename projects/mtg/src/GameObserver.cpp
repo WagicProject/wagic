@@ -1030,17 +1030,35 @@ void GameObserver::gameStateBasedEffects()
                 c->Provoker = NULL;
             }
 
-            MTGGameZone * f = p->game->graveyard;
-            for (int k = 0; k < f->nb_cards; k++)
+            MTGGameZone * fg = p->game->graveyard;
+            for (int k = 0; k < fg->nb_cards; k++)
             {
-                MTGCardInstance * card = f->cards[k];
-                card->fresh = 0;
+                MTGCardInstance * card = fg->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in graveyard last turn
             }
             MTGGameZone * fe = p->game->exile;
             for (int k = 0; k < fe->nb_cards; k++)
             {
-                MTGCardInstance * card = fe->cards[k]; // Remove fresh attribute to previous exiled cards
-                card->fresh = 0;
+                MTGCardInstance * card = fe->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in exile last turn
+            }
+            MTGGameZone * fh = p->game->hand;
+            for (int k = 0; k < fh->nb_cards; k++)
+            {
+                MTGCardInstance * card = fh->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in hand last turn
+            }
+            MTGGameZone * fc = p->game->commandzone;
+            for (int k = 0; k < fc->nb_cards; k++)
+            {
+                MTGCardInstance * card = fc->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in commandzone last turn
+            }
+            MTGGameZone * fl = p->game->commandzone;
+            for (int k = 0; k < fl->nb_cards; k++)
+            {
+                MTGCardInstance * card = fl->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in library last turn
             }
         }
         if (z->nb_cards == 0)

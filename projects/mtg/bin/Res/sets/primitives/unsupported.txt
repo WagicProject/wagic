@@ -133,15 +133,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Adorable Kitten
-text=When this creature enters the battlefield, roll a six-sided die. You gain life equal to the result.
-mana={W}
-type=Host Creature
-subtype=Cat
-power=1
-toughness=1
-[/card]
-[card]
 name=Adriana's Valor
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever a creature you control with the chosen name attacks, you may pay {W}. If you do, that creature gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
 type=Conspiracy
@@ -1081,15 +1072,6 @@ mana={G}{W}
 type=Sorcery
 [/card]
 [card]
-name=Big Boa Constrictor
-text=When this creature enters the battlefield, roll a six-sided die. Target opponent loses life equal to the result.
-mana={3}{B}
-type=Host Creature
-subtype=Snake
-power=1
-toughness=2
-[/card]
-[card]
 name=Bind
 text=Counter target activated ability. (Mana abilities can't be targeted.) -- Draw a card.
 mana={1}{G}
@@ -1328,6 +1310,12 @@ mana={X}{X}{R}
 type=Sorcery
 [/card]
 [card]
+name=Bonus Round
+text=Until end of turn, whenever a player casts an instant or sorcery spell, that player copies it and may choose new targets for the copy.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Booby Trap
 text=As Booby Trap enters the battlefield, name a card other than a basic land card and choose an opponent. -- The chosen player reveals each card he or she draws. -- When the chosen player draws the named card, sacrifice Booby Trap. If you do, Booby Trap deals 10 damage to that player.
 mana={6}
@@ -1428,12 +1416,6 @@ name=Bounty of the Hunt
 text=You may exile a green card from your hand rather than pay Bounty of the Hunt's mana cost. -- Distribute three +1/+1 counters among one, two, or three target creatures. For each +1/+1 counter you put on a creature this way, remove a +1/+1 counter from that creature at the beginning of the next cleanup step.
 mana={3}{G}{G}
 type=Instant
-[/card]
-[card]
-name=Box of Free-Range Goblins
-text=Roll a six-sided die. Create a number of 1/1 red Goblin creature tokens equal to the result.
-mana={4}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Brago's Favor
@@ -1993,6 +1975,15 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
+name=Chancellor of the Annex
+text=You may reveal this card from your opening hand. If you do, when each opponent casts his or her first spell of the game, counter that spell unless that player pays {1}. -- Flying -- Whenever an opponent casts a spell, counter it unless that player pays {1}.
+mana={4}{W}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=6
+[/card]
+[card]
 name=Chancellor of the Dross
 text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, each opponent loses 3 life, then you gain life equal to the life lost this way. -- Flying, lifelink
 mana={4}{B}{B}{B}
@@ -2017,15 +2008,6 @@ mana={4}{U}{U}{U}
 type=Creature
 subtype=Sphinx
 power=5
-toughness=7
-[/card]
-[card]
-name=Chancellor of the Tangle
-text=You may reveal this card from your opening hand. If you do, at the beginning of your first main phase, add {G} to your mana pool. -- Vigilance, reach
-mana={4}{G}{G}{G}
-type=Creature
-subtype=Beast
-power=6
 toughness=7
 [/card]
 [card]
@@ -2124,29 +2106,6 @@ name=Checks and Balances
 text=Whenever any spell is played, counter that spell if each player, other than the caster and his or her teammates, agrees to choose and discard a card. Those players must discard those cards after agreeing. -- Checks and Balances may be played only in a game with three or more players.
 mana={2}{U}
 type=Enchantment
-[/card]
-[card]
-name=Chicken Egg
-text=During your upkeep, roll a six-sided die. On a 6, sacrifice Chicken Egg and put a Giant Chicken token into play. Treat this token as a 4/4 red creature that counts as a Chicken.
-mana={1}{R}
-type=Summon
-subtype=Egg
-[/card]
-[card]
-name=Chicken a la King
-text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Chicken in play. (You may roll dice only when a card instructs you to.) -- Tap a Chicken you control: Roll a six-sided die.
-mana={1}{U}{U}
-type=Summon
-subtype=Chicken
-[/card]
-[card]
-name=Chicken à la King
-text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Bird. (You may roll dice only when instructed to.) -- Tap an untapped Bird you control: Roll a six-sided die. (Like now.)
-mana={1}{U}{U}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
 [/card]
 [card]
 name=Chipper Chopper
@@ -3685,13 +3644,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Elvish Impersonators
-text=When you play Elvish Impersonators, roll two six-sided dice one after the other. Elvish Impersonators comes into play with power equal to the first die roll and toughness equal to the second.
-mana={3}{G}
-type=Summon
-subtype=Elves
-[/card]
-[card]
 name=Emblazoned Golem
 text=Kicker {X} (You may pay an additional {X} as you cast this spell.) -- Spend only colored mana on X. No more than one mana of each color may be spent this way. -- If Emblazoned Golem was kicked, it enters the battlefield with X +1/+1 counters on it.
 mana={2}
@@ -4632,6 +4584,12 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Fumble
+text=Return target creature to its owner's hand. Gain control of all Auras and Equipment that were attached to it, then attach them to another creature.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Fungal Behemoth
 text=Fungal Behemoth's power and toughness are each equal to the number of +1/+1 counters on creatures you control. -- Suspend X—{X}{G}{G}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{G}{G} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Fungal Behemoth while it's exiled, you may put a +1/+1 counter on target creature.
 mana={3}{G}
@@ -4716,25 +4674,9 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Garbage Elemental (c)
-text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- When Garbage Elemental enters the battlefield, roll two six-sided dice. Create a number of 1/1 red Goblin creature tokens equal to the difference between those results.
-mana={4}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=2
-[/card]
-[card]
-name=Garbage Elemental (d)
-text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- When Garbage Elemental enters the battlefield, roll a six-sided die. Garbage Elemental deals damage equal to the result to target opponent or planeswalker.
-mana={4}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-[/card]
-[card]
 name=Garbage Elemental (e)
+auto=may counter(1/1) all(this)
+auto=this(counter{1/1.1}>0) cantblock
 text=Unleash (You may have this creature enter the battlefield with a +1/+1 counter on it. It can't block as long as it has a +1/+1 counter on it.) -- Each creature you control with any kind of counter on it has art menace. (They can't be blocked except by creatures with two or more visible figures in their art.)
 mana={4}{R}
 type=Creature
@@ -5165,13 +5107,6 @@ type=Summon
 subtype=Goblin
 [/card]
 [card]
-name=Goblin Bowling Team
-text=Whenever Goblin Bowling Team damages any creature or player, roll a six-sided die. Goblin Bowling Team deals to that creature or player additional damage equal to the die roll.
-mana={3}{R}
-type=Summon
-subtype=Goblins
-[/card]
-[card]
 name=Goblin Charbelcher
 text={3}, {T}: Reveal cards from the top of your library until you reveal a land card. Goblin Charbelcher deals damage equal to the number of nonland cards revealed this way to target creature or player. If the revealed land card was a Mountain, Goblin Charbelcher deals double that damage instead. Put the revealed cards on the bottom of your library in any order.
 mana={4}
@@ -5263,35 +5198,10 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Goblin Test Pilot
-abilities=flying
-text=Flying -- {T}: Goblin Test Pilot deals 2 damage to target creature or player chosen at random.
-mana={1}{U}{R}
-type=Creature
-subtype=Goblin Wizard
-power=0
-toughness=2
-[/card]
-[card]
 name=Goblin Tutor
 text=Roll a six-sided die for Goblin Tutor. On a 1, Goblin Tutor has no effect. Otherwise, search your library for the indicated card, reveal that card to all players, and put it into your hand. Shuffle your library afterwards. -- 2 Any Goblin Tutor -- 3 Any enchantment -- 4 Any artifact -- 5 Any creature -- 6 Any sorcery, instant, or interrupt
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Goblin War Cry
-text=Target opponent chooses a creature he or she controls. Other creatures he or she controls can't block this turn.
-mana={2}{R}
-type=Sorcery
-[/card]
-[card]
-name=Godo's Irregulars
-text={R}: Godo's Irregulars deals 1 damage to target creature blocking it.
-mana={R}
-type=Creature
-subtype=Human Warrior
-power=1
-toughness=1
 [/card]
 [card]
 name=Godsend
@@ -5491,16 +5401,19 @@ mana={4}{R}{R}
 type=Enchantment
 [/card]
 [card]
+name=Grothama, All-Devouring
+text=Other creatures have "Whenever this creature attacks, you may have it fight Grothama, All-Devouring." -- When Grothama leaves the battlefield, each player draws cards equal to the amount of damage dealt to Grothama this turn by sources they controlled.
+mana={3}{G}{G}
+type=Legendary Creature
+subtype=Wurm
+power=10
+toughness=8
+[/card]
+[card]
 name=Grove of the Dreampods
 text=When you planeswalk to Grove of the Dreampods or at the beginning of your upkeep, reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- Whenever you roll {K}, return target creature card from your graveyard to the battlefield.
 type=Plane
 subtype=Fabacin
-[/card]
-[card]
-name=Growth Spurt
-text=Roll a six-sided die. Target creature gets +X/+X until end of turn, where X is equal to the die roll.
-mana={1}{G}
-type=Instant
 [/card]
 [card]
 name=Grudge Keeper
@@ -5685,12 +5598,6 @@ type=Instant
 name=Halls of Mist
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Creatures that attacked during their controller's last turn can't attack.
 type=Land
-[/card]
-[card]
-name=Hammer Helper
-text=Gain control of target creature until end of turn. Untap that creature and roll a six-sided die. Until end of turn, it gains haste and gets +X/+0, where X is the result.
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
 name=Hammerfest Boomtacular
@@ -6137,15 +6044,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Hydradoodle
-text=As Hydradoodle enters the battlefield, roll X six-sided dice. Hydradoodle enters the battlefield with a number of +1/+1 counters on it equal to the total of those results. -- Reach, trample
-mana={X}{X}{G}{G}
-type=Creature
-subtype=Hydra Hound
-power=0
-toughness=0
-[/card]
-[card]
 name=Hymn of the Wilds
 text=(Start the game with this conspiracy face up in the command zone.) -- The first creature spell you cast each turn costs {1} less to cast. -- You can't cast instant or sorcery spells.
 type=Conspiracy
@@ -6538,15 +6436,6 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
-name=Inhumaniac
-text=At the beginning of your upkeep, roll a six-sided die. On a 3 or 4, put a +1/+1 counter on Inhumaniac. On a 5 or higher, put two +1/+1 counters on it. On a 1, remove all +1/+1 counters from Inhumaniac.
-mana={1}{B}
-type=Creature
-subtype=Brainiac
-power=1
-toughness=1
-[/card]
-[card]
 name=Ink-Treader Nephilim
 text=Whenever a player casts an instant or sorcery spell, if Ink-Treader Nephilim is the only target of that spell, copy the spell for each other creature that spell could target. Each copy targets a different one of those creatures.
 mana={R}{G}{W}{U}
@@ -6716,12 +6605,6 @@ mana={3}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Jack-in-the-Mox
-text={T}: Roll a six-sided die for Jack-in-the-Mox. On a 1, sacrifice Jack-in-the-Mox and lose 5 life. Otherwise, Jack-in-the-Mox has one of the following effects. Treat this ability as a mana source. -- 2 Add {W} to your mana pool. -- 3 Add {U} to your mana pool. -- 4 Add {B} to your mana pool. -- 5 Add {R} to your mana pool. -- 6 Add {G} to your mana pool.
-mana={0}
-type=Artifact
-[/card]
-[card]
 name=Jackknight
 text=Whenever another artifact enters the battlefield under your control, put a +1/+1 counter on Jackknight. If that artifact is a Contraption, Jackknight gains lifelink until end of turn.
 mana={1}{W}
@@ -6855,13 +6738,6 @@ type=Creature
 subtype=Goblin Rigger
 power=3
 toughness=3
-[/card]
-[card]
-name=Jumbo Imp
-text=Flying -- When you play Jumbo Imp, roll a six-sided die. Jumbo Imp comes into play with a number of +1/+1 counters on it equal to the die roll. -- During your upkeep, roll a six-sided die and put on Jumbo Imp a number of +1/+1 counters equal to the die roll. -- At the end of your turn, roll a six-sided die and remove from Jumbo Imp a number of +1/+1 counters equal to the die roll.
-mana={2}{B}
-type=Summon
-subtype=Imp
 [/card]
 [card]
 name=Just Desserts
@@ -7323,13 +7199,6 @@ mana={2}
 type=Legendary Artifact
 [/card]
 [card]
-name=Krazy Kow
-text=During your upkeep, roll a six-sided die. On a 1, sacrifice Krazy Kow and it deals 3 damage to each creature and player.
-mana={3}{R}
-type=Summon
-subtype=Cow
-[/card]
-[card]
 name=Kresh the Bloodbraided
 text=Whenever another creature dies, you may put X +1/+1 counters on Kresh the Bloodbraided, where X is that creature's power.
 mana={2}{B}{R}{G}
@@ -7742,13 +7611,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Lobe Lobber
-text=Equipped creature has " {T}: This creature deals 1 damage to target player or planeswalker. Roll a six-sided die. On a 5 or higher, untap it." -- Equip {2}
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Locket of Yesterdays
 text=Spells you cast cost {1} less to cast for each card with the same name as that spell in your graveyard.
 mana={1}
@@ -7851,12 +7713,6 @@ type=Legendary Creature
 subtype=Elemental Otter
 power=3
 toughness=2
-[/card]
-[card]
-name=Mad Science Fair Project
-text={T}: Roll a six-sided die. On a 3 or lower, -- target player adds {1} . Otherwise, that player adds one mana of any color they choose.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Maddening Imp
@@ -8688,15 +8544,6 @@ text=Hideaway (This land enters the battlefield tapped. When it does, look at th
 type=Land
 [/card]
 [card]
-name=Mother Kangaroo
-text=When this creature enters the battlefield, roll a six-sided die. Put a number of +1/+1 counters on this creature equal to the result.
-mana={4}{G}
-type=Host Creature
-subtype=Kangaroo
-power=1
-toughness=1
-[/card]
-[card]
 name=Mother of Goons
 text=Whenever a creature an opponent controls is put into a graveyard from play, sacrifice Mother of Goons unless you insult that creature.
 mana={2}{B}
@@ -9219,15 +9066,6 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-name=Numbing Jellyfish
-text=When this creature enters the battlefield, roll a six-sided die. Target player puts the top X cards of their library into their graveyard, where X is the result.
-mana={3}{U}
-type=Host Creature
-subtype=Jellyfish
-power=2
-toughness=3
-[/card]
-[card]
 name=Nurturing Licid
 text={G}, {T}: Nurturing Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {G} to end this effect. -- {G}: Regenerate enchanted creature.
 mana={1}{G}
@@ -9339,6 +9177,15 @@ type=Creature
 subtype=Ogre Warrior
 power=4
 toughness=4
+[/card]
+[card]
+name=Okaun, Eye of Chaos
+text=Partner with Zndrsplt, Eye of Wisdom (When this creature enters the battlefield, target player may put Zndrsplt into their hand from their library, then shuffle.) -- At the beginning of combat on your turn, flip a coin until you lose a flip. -- Whenever a player wins a coin flip, double Okaun's power and toughness until end of turn.
+mana={4}{R}
+type=Legendary Creature
+subtype=Cyclops Berserker
+power=3
+toughness=3
 [/card]
 [card]
 name=Okk
@@ -9621,15 +9468,6 @@ name=Pain's Reward
 text=Each player may bid life. You start the bidding with a bid of any number. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and draws four cards.
 mana={2}{B}
 type=Sorcery
-[/card]
-[card]
-name=Painiac
-text=At the beginning of your upkeep, roll a six-sided die. Painiac gets +X/+0 until end of turn, where X is the result.
-mana={2}{R}
-type=Creature
-subtype=Brainiac
-power=0
-toughness=3
 [/card]
 [card]
 name=Paliano Vanguard
@@ -9933,6 +9771,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Pir, Imaginative Rascal
+auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(Toothy, Imaginary Friend|mylibrary)
+text=Partner with Toothy, Imaginary Friend (When this creature enters the battlefield, target player may put Toothy into their hand from their library, then shuffle.) -- If one or more counters would be put on a permanent your team controls, that many plus one of each of those kinds of counters are put on that permanent instead.
+mana={2}{G}
+type=Legendary Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
 name=Piracy
 text=Until end of turn, you may tap lands you don't control for mana. Spend this mana only to cast spells.
 mana={U}{U}
@@ -10075,13 +9923,6 @@ name=Possibility Storm
 text=Whenever a player casts a spell from his or her hand, that player exiles it, then exiles cards from the top of his or her library until he or she exiles a card that shares a card type with it. That player may cast that card without paying its mana cost. Then he or she puts all cards exiled with Possibility Storm on the bottom of his or her library in a random order.
 mana={3}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Poultrygeist
-text=Flying -- Whenever a creature is put into any graveyard from play, you may roll a six-sided die. On a 1, sacrifice Poultrygeist. Otherwise, put a +1/+1 counter on Poultrygeist.
-mana={2}{B}
-type=Summon
-subtype=Chicken
 [/card]
 [card]
 name=Power Artifact
@@ -12092,15 +11933,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Sly Spy (f)
-text=Whenever Sly Spy deals combat damage to a player, roll a six-sided die. That player loses life equal to the result.
-mana={2}{B}
-type=Creature
-subtype=Human Spy
-power=2
-toughness=2
-[/card]
-[card]
 name=Smart Ass
 text=Whenever Smart Ass attacks, name a card. Defending player may reveal his or her hand and show you that the named card isn't there. If that player doesn't, Smart Ass is unblockable this turn.
 mana={2}{U}
@@ -12908,6 +12740,12 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Stunning Reversal
+text=The next time you would lose the game this turn, instead draw seven cards and your life total becomes 1. -- Exile Stunning Reversal.
+mana={3}{B}
+type=Instant
+[/card]
+[card]
 name=Subcontract
 text=A person outside the game looks at target opponent's hand and chooses a nonland card from it. That player discards that card.
 mana={B}
@@ -13321,15 +13159,6 @@ type=Plane
 subtype=Iquatana
 [/card]
 [card]
-name=The Big Idea
-text={2}{B} or {R}{B} or {R}, {T}: Roll a six-sided die. Create a number of 1/1 red Brainiac creature tokens equal to the result. -- Tap three untapped Brainiacs you control: The next time you would roll a six-sided die, instead roll two six-sided dice and use the total of those results.
-mana={4}{R}{R}
-type=Legendary Creature
-subtype=Brainiac Villain
-power=4
-toughness=4
-[/card]
-[card]
 name=The Chain Veil
 text=At the beginning of your end step, if you didn't activate a loyalty ability of a planeswalker this turn, you lose 2 life. -- {4}, {T}: For each planeswalker you control, you may activate one of its loyalty abilities once this turn as though none of its loyalty abilities have been activated this turn.
 mana={4}
@@ -13668,12 +13497,6 @@ name=Time Machine
 text={T}: Remove Time Machine and target nontoken creature you own from the game. Return both cards to play at the beginning of your upkeep on your turn X of the next game you play with the same opponent, where X is the removed creature's converted mana cost.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Time Out
-text=Roll a six-sided die. Put target nonland permanent into its owner's library just beneath the top X cards of that library, where X is the result.
-mana={4}{U}
-type=Instant
 [/card]
 [card]
 name=Time Stop
@@ -14078,14 +13901,6 @@ name=Urza's Hot Tub
 text={2}, Discard a card: Search your library for a card that shares a complete word in its name with the discarded card, reveal it, and put it into your hand. Then shuffle your library.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Urza's Science Fair Project
-text={2}: Roll a six-sided die for Urza's Science Fair Project. -- 1 It gets -2/-2 until end of turn. -- 2 It deals no combat damage this turn. -- 3 Attacking does not cause it to tap this turn. -- 4 It gains first strike until end of turn. -- 5 It gains flying until end of turn. -- 6 It gets +2/+2 until end of turn.
-mana={6}
-type=Artifact Creature
-power=4
-toughness=4
 [/card]
 [card]
 name=Urza, Academy Headmaster
@@ -15143,6 +14958,15 @@ type=Legendary Creature
 subtype=Elemental Fox
 power=3
 toughness=3
+[/card]
+[card]
+name=Zndrsplt, Eye of Wisdom
+text=Partner with Okaun, Eye of Chaos (When this creature enters the battlefield, target player may put Okaun into their hand from their library, then shuffle.) -- At the beginning of combat on your turn, flip a coin until you lose a flip. -- Whenever a player wins a coin flip, draw a card.
+mana={4}{U}
+type=Legendary Creature
+subtype=Homunculus
+power=1
+toughness=4
 [/card]
 [card]
 name=Zombie Fanboy

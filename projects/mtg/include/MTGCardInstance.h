@@ -113,6 +113,7 @@ public:
     int chooseacolor;
     string chooseasubtype;
     int coinSide;//1 = tails
+    int lastFlipResult;
     int dieSide;
     int lastRollResult;
 

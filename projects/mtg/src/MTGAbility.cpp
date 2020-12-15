@@ -1229,7 +1229,33 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         if(res.size()){
             rollresult = atoi(res[1].c_str());
         }
-        return NEW TrCardRolledDie(observer, id, card, tc, once, limitOnceATurn, rollresult);
+        string playerName = "";
+        vector<string>from = parseBetween(s, "from(",")");
+        if(from.size() && from[1] == "opponent"){
+            playerName = card->controller()->opponent()->getDisplayName();
+        } else if(from.size() && from[1] == "controller"){
+            playerName = card->controller()->getDisplayName();
+        } 
+        return NEW TrCardRolledDie(observer, id, card, tc, once, limitOnceATurn, rollresult, playerName);
+    }
+
+    //Fip coin has been performed from a card
+    if (TargetChooser * tc = parseSimpleTC(s, "coinflipped", card)){
+        int flipresult = -1;
+        vector<string>res = parseBetween(s, "result(",")");
+        if(res.size() && res[1] == "head"){
+            flipresult = 0;
+        } else if(res.size() && (res[1] == "tails" || res[1] == "tail")){
+            flipresult = 1;
+        }
+        string playerName = "";
+        vector<string>from = parseBetween(s, "from(",")");
+        if(from.size() && from[1] == "opponent"){
+            playerName = card->controller()->opponent()->getDisplayName();
+        } else if(from.size() && from[1] == "controller"){
+            playerName = card->controller()->getDisplayName();
+        }
+        return NEW TrCardFlippedCoin(observer, id, card, tc, once, limitOnceATurn, flipresult, playerName);
     }
 
     //Token has been created
