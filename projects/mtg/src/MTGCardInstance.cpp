@@ -262,6 +262,7 @@ void MTGCardInstance::initMTGCI()
     chooseacolor = -1;
     chooseasubtype = "";
     coinSide = -1;
+    lastFlipResult = -1;
     dieSide = 0;
     lastRollResult = 0;
     isAttacking = NULL;

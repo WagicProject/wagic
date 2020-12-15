@@ -345,7 +345,7 @@ struct WEventCardCopiedACard : public WEventCardUpdate {
 
 //alterenergy event
 struct WEventplayerEnergized : public WEvent {
-    WEventplayerEnergized(Player * player,int nb_count);
+    WEventplayerEnergized(Player * player, int nb_count);
     Player * player;
     int nb_count;
     using WEvent::getTarget;
@@ -368,7 +368,15 @@ struct WEventCardSurveiled : public WEventCardUpdate {
 
 //roll die event
 struct WEventCardRollDie : public WEventCardUpdate {
-    WEventCardRollDie(MTGCardInstance * card);
+    string playerName;
+    WEventCardRollDie(MTGCardInstance * card, string playerName);
+    virtual Targetable * getTarget(int target);
+};
+
+//flip coin event
+struct WEventCardFlipCoin : public WEventCardUpdate {
+    string playerName;
+    WEventCardFlipCoin(MTGCardInstance * card, string playerName);
     virtual Targetable * getTarget(int target);
 };
 

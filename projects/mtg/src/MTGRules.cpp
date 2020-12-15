@@ -3311,12 +3311,28 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
         {
             e->card->fresh = 1;
         }
+        if (e->from == e->card->controller()->game->stack && e->to == e->card->controller()->game->graveyard) // Apply fresh attribute for new casted spells
+        {
+            e->card->fresh = 1;
+        }
         if (e->to == e->card->controller()->game->battlefield)
         {
             e->card->fresh = 1;
             e->card->entersBattlefield = 1;
         }
         if (e->to == e->card->controller()->game->exile) // Apply fresh attribute for new exiled cards
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->hand) // Apply fresh attribute for cards just put in hand
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->commandzone) // Apply fresh attribute for cards just put in commandzone
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->library) // Apply fresh attribute for cards just put in library
         {
             e->card->fresh = 1;
         }

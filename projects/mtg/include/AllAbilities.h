@@ -733,6 +733,10 @@ private:
         {
             intValue = (s == "lastrollresult")?target->lastRollResult:target->dieSide;
         }
+        else if(s == "lastflipresult" || s == "lastflipchoice")
+        {
+            intValue = (s == "lastflipresult")?target->lastFlipResult:target->coinSide;
+        }
         else if (s == "pdrewcount" || s == "odrewcount")
         {
             intValue = (s == "pdrewcount")?target->controller()->drawCounter:target->controller()->opponent()->drawCounter;
@@ -1768,8 +1772,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     int rollresult;
-    TrCardRolledDie(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, int rollresult = 0) :
-        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn), rollresult(rollresult)
+    string playerName;
+    TrCardRolledDie(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, int rollresult = 0, string playerName = "") :
+    Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn), rollresult(rollresult), playerName(playerName)
     {
     }
 
@@ -1781,6 +1786,8 @@ public:
             return 0;
         if (rollresult > 0 && rollresult != e->card->lastRollResult)
             return 0;
+        if (playerName != "" && playerName != e->playerName)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
         triggeredTurn = game->turn;
         return 1;
@@ -1789,6 +1796,39 @@ public:
     TrCardRolledDie * clone() const
     {
         return NEW TrCardRolledDie(*this);
+    }
+};
+
+class TrCardFlippedCoin: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    int flipresult;
+    string playerName;
+    TrCardFlippedCoin(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, int flipresult = -1, string playerName = "") :
+    Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn), flipresult(flipresult), playerName(playerName)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardFlipCoin * e = dynamic_cast<WEventCardFlipCoin *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (flipresult > -1 && flipresult != e->card->lastFlipResult)
+            return 0;
+        if (playerName != "" && playerName != e->playerName)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardFlippedCoin * clone() const
+    {
+        return NEW TrCardFlippedCoin(*this);
     }
 };
 

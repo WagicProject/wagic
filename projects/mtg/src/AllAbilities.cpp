@@ -2731,6 +2731,9 @@ int AASetCoin::resolve()
     _target->coinSide = side;
 
     int flip = game->getRandomGenerator()->random() % 2;
+    _target->lastFlipResult = flip;
+    WEvent * e = NEW WEventCardFlipCoin(_target, source->controller()->getDisplayName());
+    game->receiveEvent(e);
     vector<string>Win = parseBetween(abilityToAlter,"winability "," winabilityend");
     if(Win.size())
     {
@@ -2881,7 +2884,7 @@ int AASetDie::resolve()
 
     int roll = 1 + game->getRandomGenerator()->random() % 6;
     _target->lastRollResult = roll;
-    WEvent * e = NEW WEventCardRollDie(_target);
+    WEvent * e = NEW WEventCardRollDie(_target, source->controller()->getDisplayName());
     game->receiveEvent(e);
     vector<string>Win = parseBetween(abilityToAlter,"winability "," winabilityend");
     if(Win.size())
@@ -2894,6 +2897,7 @@ int AASetDie::resolve()
         abilityLose = Lose[1];
     }
 
+    std::stringstream msg;
     if(abilityWin.size() && roll == side)
     {
         AbilityFactory af(game);
@@ -2908,13 +2912,15 @@ int AASetDie::resolve()
         {
             abilityAltered->addToGame();
         }
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Won The Die Roll");
+        msg << "Result is: " << roll << ". You Won The Die Roll";
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
     else if(abilityWin.size() && !abilityLose.size())
     {
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Lost The Die Roll");
+        msg << "Result is: " << roll << ". You Lost The Die Roll";
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
@@ -2932,13 +2938,15 @@ int AASetDie::resolve()
         {
             abilityAltered->addToGame();
         }
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Lost The Die Roll");
+        msg << "Result is: " << roll << ". You Lost The Die Roll";
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
     else if(abilityLose.size())
     {
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Won The Die Roll");
+        msg << "Result is: " << roll << ". You Won The Die Roll";
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
@@ -2948,17 +2956,9 @@ int AASetDie::resolve()
 
 const string AASetDie::getMenuText()
 {
-    if(side == 1)
-        return "Your choice is 1";
-    if(side == 2)
-        return "Your choice is 2";
-    if(side == 3)
-        return "Your choice is 3";
-    if(side == 4)
-        return "Your choice is 4";
-    if(side == 5)
-        return "Your choice is 5";
-    return "Your choice is 6";
+    std::stringstream msg;
+    msg << "Your choice is: " << side;
+    return msg.str();
 }
 
 AASetDie * AASetDie::clone() const

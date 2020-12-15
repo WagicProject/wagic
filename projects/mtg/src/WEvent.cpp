@@ -297,8 +297,13 @@ WEventCardSurveiled::WEventCardSurveiled(MTGCardInstance * card) :
 {
 }
 
-WEventCardRollDie::WEventCardRollDie(MTGCardInstance * card) :
-    WEventCardUpdate(card)
+WEventCardRollDie::WEventCardRollDie(MTGCardInstance * card, string playerName) :
+    WEventCardUpdate(card), playerName(playerName)
+{
+}
+
+WEventCardFlipCoin::WEventCardFlipCoin(MTGCardInstance * card, string playerName) :
+    WEventCardUpdate(card), playerName(playerName)
 {
 }
 
@@ -522,6 +527,12 @@ Targetable * WEventCardSurveiled::getTarget(int target)
 }
 
 Targetable * WEventCardRollDie::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardFlipCoin::getTarget(int target)
 {
     if (target) return card;
     return NULL;

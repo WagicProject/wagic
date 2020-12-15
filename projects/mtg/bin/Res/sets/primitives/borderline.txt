@@ -27,6 +27,14 @@ mana={X}{1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Abnormal Endurance
+target=creature
+auto=transforms((,newability[2/0],newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield) and!(tap(noevent))!])) ueot
+text=Until end of turn, target creature gets +2/+0 and gains "When this creature dies, return it to the battlefield tapped under its owner's control."
+mana={1}{B}
+type=Instant
+[/card]
+[card]
 name=Abominable Treefolk
 abilities=trample
 anyzone=type:*[snow]:myBattlefield/type:*[snow]:myBattlefield cdaactive
@@ -259,6 +267,16 @@ auto=fizzle
 text=Raid — If you attacked with a creature this turn, you may pay {U} rather than pay this spell's mana cost. -- Counter target spell.
 mana={1}{U}{U}
 type=Instant
+[/card]
+[card]
+name=Adorable Kitten
+auto=rolladie 6 winability life:lastrollresult controller winabilityend loseability life:lastrollresult controller loseabilityend rollend
+text=When this creature enters the battlefield, roll a six-sided die. You gain life equal to the result.
+mana={W}
+type=Host Creature
+subtype=Cat
+power=1
+toughness=1
 [/card]
 [card]
 name=Adorned Pouncer
@@ -2343,12 +2361,12 @@ type=Enchantment
 [card]
 name=As Luck Would Have It
 abilities=opponentshroud
-auto=@dierolled(creature|battlefield) result(1):counter(0/0,1,Luck) all(this)
-auto=@dierolled(creature|battlefield) result(2):counter(0/0,2,Luck) all(this)
-auto=@dierolled(creature|battlefield) result(3):counter(0/0,3,Luck) all(this)
-auto=@dierolled(creature|battlefield) result(4):counter(0/0,4,Luck) all(this)
-auto=@dierolled(creature|battlefield) result(5):counter(0/0,5,Luck) all(this)
-auto=@dierolled(creature|battlefield) result(6):counter(0/0,6,Luck) all(this)
+auto=@dierolled(*|battlefield) result(1) from(controller):counter(0/0,1,Luck) all(this)
+auto=@dierolled(*|battlefield) result(2) from(controller):counter(0/0,2,Luck) all(this)
+auto=@dierolled(*|battlefield) result(3) from(controller):counter(0/0,3,Luck) all(this)
+auto=@dierolled(*|battlefield) result(4) from(controller):counter(0/0,4,Luck) all(this)
+auto=@dierolled(*|battlefield) result(5) from(controller):counter(0/0,5,Luck) all(this)
+auto=@dierolled(*|battlefield) result(6) from(controller):counter(0/0,6,Luck) all(this)
 auto=this(counter{0/0.100.Luck}=)) wingame controller
 text=Hexproof -- Whenever you roll a die, put a number of luck counters on As Luck Would Have It equal to the result. Then if there are 100 or more luck counters on As Luck Would Have It, you win the game. (Count both rolls if you reroll a die.)
 mana={G}
@@ -3868,6 +3886,16 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Big Boa Constrictor
+auto=rolladie 6 winability life:-lastrollresult opponent winabilityend loseability life:-lastrollresult opponent loseabilityend rollend
+text=When this creature enters the battlefield, roll a six-sided die. Target opponent loses life equal to the result.
+mana={3}{B}
+type=Host Creature
+subtype=Snake
+power=1
+toughness=2
+[/card]
+[card]
 name=Binding Mummy
 auto=@movedto(other zombie|mybattlefield):may tap target(artifact,creature)
 text=Whenever another Zombie enters the battlefield under your control, you may tap target artifact or creature.
@@ -5267,6 +5295,13 @@ auto=@each my firstmain:if type(this[counter(flood)])~morethan~0 ability$!thisfo
 text=At the beginning of your precombat main phase, remove all flood counters from Bounty of the Luxa. If no counters were removed this way, put a flood counter on Bounty of the Luxa and draw a card. Otherwise, add {1}{G}{U} to your mana pool.
 mana={2}{G}{U}
 type=Enchantment
+[/card]
+[card]
+name=Box of Free-Range Goblins
+auto=rolladie 6 winability token(Goblin,Creature Goblin,1/1,red)*lastrollresult winabilityend loseability token(Goblin,Creature Goblin,1/1,red)*lastrollresult loseabilityend rollend
+text=Roll a six-sided die. Create a number of 1/1 red Goblin creature tokens equal to the result.
+mana={4}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Brallin, Skyshark Rider
@@ -7442,6 +7477,35 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Chicken a la King
+auto=@dierolled(*|battlefield) result(6) from(controller):all(chicken|battlefield) counter(1/1)
+auto={T(*[chicken]|mybattlefield)}:rolladie 6 winability donothing winabilityend rollend
+text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Chicken in play. (You may roll dice only when a card instructs you to.) -- Tap a Chicken you control: Roll a six-sided die.
+mana={1}{U}{U}
+type=Summon
+subtype=Chicken
+[/card]
+[card]
+name=Chicken à la King
+auto=@dierolled(*|battlefield) result(6) from(controller):all(chicken|battlefield) counter(1/1)
+auto={T(*[chicken]|mybattlefield)}:rolladie 6 winability donothing winabilityend rollend
+text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Bird. (You may roll dice only when instructed to.) -- Tap an untapped Bird you control: Roll a six-sided die. (Like now.)
+mana={1}{U}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
+name=Chicken Egg
+auto=@each my upkeep:rolladie 6 winability donothing winabilityend rollend
+auto=@dierolled(this) result(6) from(controller):all(this) sacrifice && token(Giant Chicken,Creature Giant Chicken,4/4,red) myupkeeponly
+text=During your upkeep, roll a six-sided die. On a 6, sacrifice Chicken Egg and put a Giant Chicken token into play. Treat this token as a 4/4 red creature that counts as a Chicken.
+mana={1}{R}
+type=Summon
+subtype=Egg
+[/card]
+[card]
 name=Chief Engineer
 auto=lord(artifact|myhand,mylibrary,mygraveyard,myexile,mysideboard) convoke
 text=Artifact spells you cast have convoke. (Your creatures can help cast those spells. Each creature you tap while casting an artifact spell pays for {1} or one mana of that creature’s color.)
@@ -7512,9 +7576,9 @@ toughness=4
 [/card]
 [card]
 name=Chittering Doom
-auto=@dierolled(creature|battlefield) result(4):token(Squirrel,Creature Squirrel,1/1,green)
-auto=@dierolled(creature|battlefield) result(5):token(Squirrel,Creature Squirrel,1/1,green)
-auto=@dierolled(creature|battlefield) result(6):token(Squirrel,Creature Squirrel,1/1,green)
+auto=@dierolled(*|battlefield) result(4) from(controller):token(Squirrel,Creature Squirrel,1/1,green)
+auto=@dierolled(*|battlefield) result(5) from(controller):token(Squirrel,Creature Squirrel,1/1,green)
+auto=@dierolled(*|battlefield) result(6) from(controller):token(Squirrel,Creature Squirrel,1/1,green)
 text=Whenever you roll a 4 or higher on a die, create a 1/1 green Squirrel creature token.
 mana={3}{G}
 type=Enchantment
@@ -7780,7 +7844,7 @@ type=Sorcery
 [/card]
 [card]
 name=Clam-I-Am
-auto=@dierolled(creature|battlefield) result(3):all(this) rolladie 6 winability donothing winabilityend loseability donothing loseabilityend rollend
+auto=@dierolled(*|battlefield) result(3) from(controller):all(this) rolladie 6 winability donothing winabilityend loseability donothing loseabilityend rollend
 text=Whenever you roll a 3 on a six-sided die, you may reroll that die.
 mana={2}{U}
 type=Summon
@@ -13536,6 +13600,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Elvish Impersonators
+auto=all(this) transforms((Creature Summon Elves,setpower=1,settoughness=1)) forever
+auto=all(this) rolladie 6 winability lastrollresultminus1minusend/0 winabilityend loseability lastrollresultminus1minusend/0 loseabilityend rollend
+auto=all(this) rolladie 6 winability 0/lastrollresultminus1minusend winabilityend loseability 0/lastrollresultminus1minusend loseabilityend rollend
+text=When you play Elvish Impersonators, roll two six-sided dice one after the other. Elvish Impersonators comes into play with power equal to the first die roll and toughness equal to the second.
+mana={3}{G}
+type=Summon
+subtype=Elves
+[/card]
+[card]
 name=Elvish Reclaimer
 aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(land|myLibrary)
 auto=aslongas(land|myGraveyard) 2/2 >2
@@ -17352,6 +17426,29 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Garbage Elemental (c)
+auto=@combat(attacking) source(this):all(other creature[attacking]) 1/0 ueot
+suto=all(this) rolladie winability token(Goblin,Creature Goblin,1/1,red)*lastrollresultminuslastrollchoiceminusend winabilityend loseability token(Goblin,Creature Goblin,1/1,red)*lastrollresultminuslastrollchoiceminusend loseabilityend rollend
+text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- When Garbage Elemental enters the battlefield, roll two six-sided dice. Create a number of 1/1 red Goblin creature tokens equal to the difference between those results.
+mana={4}{R}
+type=Creature
+subtype=Elemental
+power=3
+toughness=2
+[/card]
+[card]
+name=Garbage Elemental (d)
+autostack=if casted(this) then cascade:plibrarycount
+auto=choice name(Damage opponent) all(this) rolladie 6 winability damage:lastrollresult opponent winabilityend loseability damage:lastrollresult opponent loseabilityend rollend
+auto=if type(planeswalker|battlefield)~morethan~0 then choice name(Damage planeswalker) target(planeswalker) rolladie 6 winability damage:lastrollresult winabilityend loseability damage:lastrollresult loseabilityend rollend
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- When Garbage Elemental enters the battlefield, roll a six-sided die. Garbage Elemental deals damage equal to the result to target opponent or planeswalker.
+mana={4}{R}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
 name=Garenbrig Carver // Shield's Might
 abilities=canplayfromexile,flash,adventure
 restriction=myturnonly
@@ -18695,6 +18792,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Goblin Bowling Team
+auto=@damaged(creature) from(this):all(trigger[to]) rolladie 6 winability damage:lastrollresult winabilityend loseability damage:lastrollresult loseabilityend rollend
+auto=@damageof(player) from(this):all(this) rolladie 6 winability damage:lastrollresult controller winabilityend loseability damage:lastrollresult controller loseabilityend rollend
+auto=@damagefoeof(player) from(this):all(this) rolladie 6 winability damage:lastrollresult opponent winabilityend loseability damage:lastrollresult opponent loseabilityend rollend
+text=Whenever Goblin Bowling Team damages any creature or player, roll a six-sided die. Goblin Bowling Team deals to that creature or player additional damage equal to the die roll.
+mana={3}{R}
+type=Summon
+subtype=Goblins
+[/card]
+[card]
 name=Goblin Bruiser
 mana={1}{R}{R}
 type=Creature
@@ -18868,6 +18975,26 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Goblin Test Pilot
+abilities=flying
+auto={T}:all(this) rolladie 6 winability counter(0/0,1,GoblinEffect) winabilityend loseability counter(0/0,1,GoblinEffect) loseabilityend rollend
+auto=@dierolled(this) result(1) from(controller):this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 to opponent) name(Damage 2 to opponent) damage:2 opponent && counter(0/0,-1,GoblinEffect) all(this)
+auto=@dierolled(this) result(2) from(controller):this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 to yourself) name(Damage 2 to yourself) damage:2 controller && counter(0/0,-1,GoblinEffect) all(this)
+auto=@dierolled(this) result(3) from(controller) restriction{type(creature|myBattlefield)~lessthan~2}:this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 to yourself) name(Damage 2 to yourself) damage:2 controller && counter(0/0,-1,GoblinEffect) all(this)
+auto=@dierolled(this) result(3) from(controller) restriction{type(creature|myBattlefield)~morethan~1}:this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 to your creature) name(Damage 2 to your creature) ability$!name(Damage creature) damage:2 target(creature|opponentBattlefield)!$ opponent && counter(0/0,-1,GoblinEffect) all(this)
+auto=@dierolled(this) result(4) from(controller) restriction{type(creature|opponentBattlefield)~morethan~0}:this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 opponent's creature) name(Damage 2 to opponent's creature) ability$!name(Damage creature) damage:2 target(creature|myBattlefield)!$ opponent && counter(0/0,-1,GoblinEffect) all(this)
+auto=@dierolled(this) result(4) from(controller) restriction{type(creature|opponentBattlefield)~equalto~0}:this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 to opponent) name(Damage 2 to opponent) damage:2 opponent && counter(0/0,-1,GoblinEffect) all(this)
+auto=@dierolled(this) result(5) from(controller) restriction{type(creature|opponentBattlefield)~morethan~0}:this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 opponent's creature) name(Damage 2 to opponent's creature) ability$!name(Damage creature) damage:2 target(creature|myBattlefield)!$ opponent && counter(0/0,-1,GoblinEffect) all(this)
+auto=@dierolled(this) result(5) from(controller) restriction{type(creature|opponentBattlefield)~equalto~0}:this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 to opponent) name(Damage 2 to opponent) damage:2 opponent && counter(0/0,-1,GoblinEffect) all(this)
+auto=@dierolled(this) result(6) from(controller):this(counter{0/0.1.GoblinEffect}=1) name(Damage 2 to your creature) name(Damage 2 to your creature) ability$!name(Damage creature) damage:2 target(creature|opponentBattlefield)!$ opponent && counter(0/0,-1,GoblinEffect) all(this)
+text=Flying -- {T}: Goblin Test Pilot deals 2 damage to target creature or player chosen at random.
+mana={1}{U}{R}
+type=Creature
+subtype=Goblin Wizard
+power=0
+toughness=2
+[/card]
+[card]
 name=Goblin Trailblazer
 abilities=menace
 text=Menace
@@ -18914,6 +19041,13 @@ auto=token(Goblin Wiz)*2
 text=Create two 1/1 red Goblin Wizard creature tokens with prowess. (Whenever you cast a noncreature spell, they get +1/+1 until end of turn.)
 mana={3}{R}
 type=Instant
+[/card]
+[card]
+name=Goblin War Cry
+auto=thisforeach(variable{type:creature:opponentBattlefieldminus1minusend}) ability$!name(Creature can't block) name(Creature can't block) target(creature|myBattlefield) cantblock ueot!$ opponent
+text=Target opponent chooses a creature he or she controls. Other creatures he or she controls can't block this turn.
+mana={2}{R}
+type=Sorcery
 [/card]
 [card]
 name=God-Eternal Bontu
@@ -18986,6 +19120,16 @@ auto=@each my endofturn:life:-1 opponent
 text=Spells your opponents cast cost {2} more to cast. -- At the beginning of your end step, each opponent loses 1 life.
 mana={6}
 type=Legendary Artifact
+[/card]
+[card]
+name=Godo's Irregulars
+auto=@combat(blocked) source(this):all(this) transforms((,newability[{R}:damage:1 target(creature[blocking]|opponentbattlefield)])) ueot
+text={R}: Godo's Irregulars deals 1 damage to target creature blocking it.
+mana={R}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
 [/card]
 [card]
 name=Goka the Unjust
@@ -19744,8 +19888,8 @@ type=Instant
 [card]
 name=Ground Pounder
 auto={3}{G}:all(this) rolladie 6 winability lastrollresult/lastrollresult ueot winabilityend loseability lastrollresult/lastrollresult ueot loseabilityend rollend
-auto=@dierolled(creature|battlefield) result(5):name(Gains trample) name(Gains trample) all(this) transforms((,newability[trample])) ueot
-auto=@dierolled(creature|battlefield) result(6):name(Gains trample) name(Gains trample) all(this) transforms((,newability[trample])) ueot
+auto=@dierolled(*|battlefield) result(5) from(controller):name(Gains trample) name(Gains trample) all(this) transforms((,newability[trample])) ueot
+auto=@dierolled(*|battlefield) result(6) from(controller):name(Gains trample) name(Gains trample) all(this) transforms((,newability[trample])) ueot
 text={3}{G}: Roll a six-sided die. Ground Pounder gets +X/+X until end of turn, where X is the result. -- Whenever you roll a 5 or higher on a die, Ground Pounder gains trample until end of turn.
 mana={1}{G}
 type=Creature
@@ -19785,6 +19929,13 @@ auto=draw:1
 auto=may moveto(myBattlefield) target(land|myHand)
 text=Draw a card. You may put a land card from your hand onto the battlefield.
 mana={G}{U}
+type=Instant
+[/card]
+[card]
+name=Growth Spurt
+auto=target(creature) rolladie 6 winability lastrollresult/lastrollresult ueot winabilityend loseability lastrollresult/lastrollresult ueot loseabilityend rollend
+text=Roll a six-sided die. Target creature gets +X/+X until end of turn, where X is equal to the die roll.
+mana={1}{G}
 type=Instant
 [/card]
 [card]
@@ -20244,14 +20395,22 @@ power=5
 toughness=2
 [/card]
 [card]
+name=Hammer Helper
+target=creature
+auto=moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[all(this) rolladie 6 winability lastrollresult/0 ueot winabilityend loseability lastrollresult/0 ueot loseabilityend rollend],newability[untap],haste)) ueot)!
+text=Gain control of target creature until end of turn. Untap that creature and roll a six-sided die. Until end of turn, it gains haste and gets +X/+0, where X is the result.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 name=Hammer Jammer
 auto={3}{G}:all(this) rolladie 6 winability counter(1/1,lastrollresult) winabilityend loseability counter(1/1,lastrollresult) loseabilityend rollend
-auto=@dierolled(creature|battlefield) result(1):name(Get counter) name(Get counter) removeallcounters(1/1) && transforms((,newability[counter(1/1.1)])) all(this) 
-auto=@dierolled(creature|battlefield) result(2):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.2)])) all(this) 
-auto=@dierolled(creature|battlefield) result(3):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.3)])) all(this) 
-auto=@dierolled(creature|battlefield) result(4):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.4)])) all(this) 
-auto=@dierolled(creature|battlefield) result(5):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.5)])) all(this) 
-auto=@dierolled(creature|battlefield) result(6):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.6)])) all(this) 
+auto=@dierolled(*|battlefield) result(1) from(controller):name(Get counter) name(Get counter) removeallcounters(1/1) && transforms((,newability[counter(1/1.1)])) all(this) 
+auto=@dierolled(*|battlefield) result(2) from(controller):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.2)])) all(this) 
+auto=@dierolled(*|battlefield) result(3) from(controller):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.3)])) all(this) 
+auto=@dierolled(*|battlefield) result(4) from(controller):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.4)])) all(this) 
+auto=@dierolled(*|battlefield) result(5) from(controller):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.5)])) all(this) 
+auto=@dierolled(*|battlefield) result(6) from(controller):name(Get counters) name(Get counters) removeallcounters(1/1) && transforms((,newability[counter(1/1.6)])) all(this) 
 text=As Hammer Jammer enters the battlefield, roll a six-sided die. Hammer Jammer enters the battlefield with a number of +1/+1 counters on it equal to the result. -- Whenever you roll a die, remove all +1/+1 counters from Hammer Jammer, then put a number of +1/+1 counters on it equal to the result.
 mana={3}{R}
 type=Creature
@@ -22018,6 +22177,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Hydradoodle
+abilities=reach,trample
+auto=thisforeach(variable{halfpaid}) all(this) rolladie 6 winability counter(1/1,lastrollresult) winabilityend loseability counter(1/1,lastrollresult) loseabilityend rollend
+text=As Hydradoodle enters the battlefield, roll X six-sided dice. Hydradoodle enters the battlefield with a number of +1/+1 counters on it equal to the total of those results. -- Reach, trample
+mana={X}{X}{G}{G}
+type=Creature
+subtype=Hydra Hound
+power=0
+toughness=0
+[/card]
+[card]
 name=Hydroid Krasis
 abilities=flying, trample
 autostack=if casted(this) then draw:3
@@ -22589,6 +22759,17 @@ power=6
 toughness=1
 [/card]
 [card]
+name=Impetuous Protege
+auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(*[Proud Mentor]|mylibrary)
+auto=@combat(attacking) source(this):all(this) power:highest:creature[tapped]:opponentbattlefield/0 ueot
+text=Partner with Proud Mentor (When this creature enters the battlefield, target player may put Proud Mentor into their hand from their library, then shuffle.) -- Whenever Impetuous Protege attacks, it gets +X/+0 until end of turn, where X is the greatest power among tapped creatures your opponents control.
+mana={2}{R}
+type=Creature
+subtype=Human Warrior
+power=0
+toughness=4
+[/card]
+[card]
 name=Imposing Vantasaur
 abilities=vigilance
 autohand=__CYCLING__({1})
@@ -22974,6 +23155,21 @@ auto={1}{T}{S(artifact|mybattlefield)}:moveto(ownerhand) target(artifact|mybattl
 text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- {1} , {T}, Sacrifice an artifact: Return target artifact you control to its owner's hand.
 mana={7}
 type=Artifact
+[/card]
+[card]
+name=Inhumaniac
+auto=@each my upkeep:rolladie 6 winability donothing winabilityend rollend
+auto=@dierolled(this) result(1) from(controller):all(this) removeallcounters(1/1) myupkeeponly
+auto=@dierolled(this) result(3) from(controller):all(this) counter(1/1,1) myupkeeponly
+auto=@dierolled(this) result(4) from(controller):all(this) counter(1/1,1) myupkeeponly
+auto=@dierolled(this) result(5) from(controller):all(this) counter(1/1,2) myupkeeponly
+auto=@dierolled(this) result(6) from(controller):all(this) counter(1/1,2) myupkeeponly
+text=At the beginning of your upkeep, roll a six-sided die. On a 3 or 4, put a +1/+1 counter on Inhumaniac. On a 5 or higher, put two +1/+1 counters on it. On a 1, remove all +1/+1 counters from Inhumaniac.
+mana={1}{B}
+type=Creature
+subtype=Brainiac
+power=1
+toughness=1
 [/card]
 [card]
 name=Initiate of Blood
@@ -23772,6 +23968,19 @@ power=0
 toughness=2
 [/card]
 [card]
+name=Jack-in-the-Mox
+auto={T}:all(this) rolladie 6 winability counter(0/0,1,JackEffect) winabilityend loseability counter(0/0,1,JackEffect) loseabilityend rollend
+auto=@dierolled(this) result(1) from(controller):this(counter{0/0.1.JackEffect}=1) name(Sacrifice Jack-in-the-Mox) name(Sacrifice Jack-in-the-Mox) sacrifice && counter(0/0,-1,JackEffect) all(this)
+auto=@dierolled(this) result(2) from(controller):this(counter{0/0.1.JackEffect}=1) name(Add white mana) name(Add white mana) add{W} && counter(0/0,-1,JackEffect) all(this)
+auto=@dierolled(this) result(3) from(controller):this(counter{0/0.1.JackEffect}=1) name(Add blue mana) name(Add blue mana) add{U} && counter(0/0,-1,JackEffect) all(this)
+auto=@dierolled(this) result(4) from(controller):this(counter{0/0.1.JackEffect}=1) name(Add black mana) name(Add black mana) add{B} && counter(0/0,-1,JackEffect) all(this)
+auto=@dierolled(this) result(5) from(controller):this(counter{0/0.1.JackEffect}=1) name(Add red mana) name(Add red mana) add{R} && counter(0/0,-1,JackEffect) all(this)
+auto=@dierolled(this) result(6) from(controller):this(counter{0/0.1.JackEffect}=1) name(Add green mana) name(Add green mana) add{G} && counter(0/0,-1,JackEffect) all(this)
+text={T}: Roll a six-sided die for Jack-in-the-Mox. On a 1, sacrifice Jack-in-the-Mox and lose 5 life. Otherwise, Jack-in-the-Mox has one of the following effects. Treat this ability as a mana source. -- 2 Add {W} to your mana pool. -- 3 Add {U} to your mana pool. -- 4 Add {B} to your mana pool. -- 5 Add {R} to your mana pool. -- 6 Add {G} to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
 name=Jade Bearer
 auto=counter(1/1) target(other merfolk|myBattlefield)
 text=When Jade Bearer enters the battlefield, put a +1/+1 counter on another target Merfolk you control.
@@ -24131,6 +24340,18 @@ type=Legendary Creature
 subtype=Human Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Jumbo Imp
+abilities=flying
+auto=transforms((Creature Summon Imp,setpower=0,settoughness=0)) forever
+auto=all(this) rolladie 6 winability counter(1/1,lastrollresult) winabilityend loseability counter(1/1,lastrollresult) loseabilityend rollend
+auto=@each my upkeep:all(this) rolladie 6 winability counter(1/1,lastrollresult) winabilityend loseability counter(1/1,lastrollresult) loseabilityend rollend
+auto=@each my endofturn:all(this) rolladie 6 winability counter(1/1,-lastrollresult) winabilityend loseability counter(1/1,-lastrollresult) loseabilityend rollend
+text=Flying -- When you play Jumbo Imp, roll a six-sided die. Jumbo Imp comes into play with a number of +1/+1 counters on it equal to the die roll. -- During your upkeep, roll a six-sided die and put on Jumbo Imp a number of +1/+1 counters equal to the die roll. -- At the end of your turn, roll a six-sided die and remove from Jumbo Imp a number of +1/+1 counters equal to the die roll.
+mana={2}{B}
+type=Summon
+subtype=Imp
 [/card]
 [card]
 name=Jungle Creeper
@@ -25474,6 +25695,14 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Khorvath's Fury
+auto=count(type:*:myhand) && all(*|myhand) reject && draw:countedamountplus1plusend controller
+auto=damage:ohandcount opponent
+text=For each player, choose friend or foe. Each friend discards all cards from their hand, then draws that many cards plus one. Khorvath's Fury deals damage to each foe equal to the number of cards in their hand.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
 name=Korvold, Fae-Cursed King
 abilities=flying
 auto=sacrifice target(*|mybattlefield)
@@ -25598,6 +25827,45 @@ type=Legendary Creature
 subtype=Zombie Horror
 power=4
 toughness=4
+[/card]
+[card]
+name=Krav, the Unredeemed
+auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(Regna, the Redeemer|mylibrary)
+auto={B}{S(creature|myBattlefield)}:name(Sacrifice 1 creature and target yourself) name(Sacrifice 1 creature and target yourself) all(this) counter(1/1,1) && life:1 controller && draw:1 conroller
+auto={B}{S(creature|myBattlefield)}:name(Sacrifice 1 creature and target opponent) name(Sacrifice 1 creature and target opponent) all(this) counter(1/1,1) && life:1 opponent && draw:1 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 2 creatures and target yourself) name(Sacrifice 2 creatures and target yourself) all(this) counter(1/1,2) && life:2 controller && draw:2 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 2 creatures and target opponent) name(Sacrifice 2 creatures and target opponent) all(this) counter(1/1,2) && life:2 opponent && draw:2 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 3 creatures and target yourself) name(Sacrifice 3 creatures and target yourself) all(this) counter(1/1,3) && life:3 controller && draw:3 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 3 creatures and target opponent) name(Sacrifice 3 creatures and target opponent) all(this) counter(1/1,3) && life:3 opponent && draw:3 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 4 creatures and target yourself) name(Sacrifice 4 creatures and target yourself) all(this) counter(1/1,4) && life:4 controller && draw:4 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 4 creatures and target opponent) name(Sacrifice 4 creatures and target opponent) all(this) counter(1/1,4) && life:4 opponent && draw:4 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 5 creatures and target yourself) name(Sacrifice 5 creatures and target yourself) all(this) counter(1/1,5) && life:5 controller && draw:5 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 5 creatures and target opponent) name(Sacrifice 5 creatures and target opponent) all(this) counter(1/1,5) && life:5 opponent && draw:5 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 6 creatures and target yourself) name(Sacrifice 6 creatures and target yourself) all(this) counter(1/1,6) && life:6 controller && draw:6 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 6 creatures and target opponent) name(Sacrifice 6 creatures and target opponent) all(this) counter(1/1,6) && life:6 opponent && draw:6 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 7 creatures and target yourself) name(Sacrifice 7 creatures and target yourself) all(this) counter(1/1,7) && life:7 controller && draw:7 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 7 creatures and target opponent) name(Sacrifice 7 creatures and target opponent) all(this) counter(1/1,7) && life:7 opponent && draw:7 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 8 creatures and target yourself) name(Sacrifice 8 creatures and target yourself) all(this) counter(1/1,8) && life:8 controller && draw:8 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 8 creatures and target opponent) name(Sacrifice 8 creatures and target opponent) all(this) counter(1/1,8) && life:8 opponent && draw:8 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 9 creatures and target yourself) name(Sacrifice 9 creatures and target yourself) all(this) counter(1/1,9) && life:9 controller && draw:9 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 9 creatures and target opponent) name(Sacrifice 9 creatures and target opponent) all(this) counter(1/1,9) && life:9 opponent && draw:9 opponent
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 10 creatures and target yourself) name(Sacrifice 10 creatures and target yourself) all(this) counter(1/1,10) && life:10 controller && draw:10 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 10 creatures and target opponent) name(Sacrifice 10 creatures and target opponent) all(this) counter(1/1,10) && life:10 opponent && draw:10 opponent
+text=Partner with Regna, the Redeemer (When this creature enters the battlefield, target player may put Regna into their hand from their library, then shuffle.) -- {B}, Sacrifice X creatures: Target player draws X cards and gains X life. Put X +1/+1 counters on Krav, the Unredeemed.
+mana={4}{B}
+type=Legendary Creature
+subtype=Demon Krav
+power=3
+toughness=3
+[/card]
+[card]
+name=Krazy Kow
+auto=@each my upkeep:all(this) rolladie 6 winability donothing winabilityend rollend
+auto=@dierolled(this) result(1) from(controller):name(Sacrifice and damage) name(Sacrifice and damage) sacrifice all(this) && damage:3 opponent && damage:3 controller && damage:3 all(creature|battlefield)
+text=During your upkeep, roll a six-sided die. On a 1, sacrifice Krazy Kow and it deals 3 damage to each creature and player.
+mana={3}{R}
+type=Summon
+subtype=Cow
 [/card]
 [card]
 name=Krenko, Tin Street Kingpin
@@ -27098,6 +27366,15 @@ power=4
 toughness=1
 [/card]
 [card]
+name=Lobe Lobber
+auto={2}:equip
+auto=teach(creature) transforms((,newability[{T} restriction{type(planeswalker|battlefield)~morethan~0}:name(Damage planeswalker) name(Damage planeswalker) target(planeswalker) damage:1 && all(this) rolladie 5 winability untap winabilityend loseability if compare(lastrollresult)~equalto~6 then untap loseabilityend rollend],newability[{T}:name(Damage opponent) name(Damage opponent) damage:1 opponent && all(this) rolladie 5 winability untap winabilityend loseability if compare(lastrollresult)~equalto~6 then untap loseabilityend rollend],newability[{T}:name(Damage controller) name(Damage controller) damage:1 controller && all(this) rolladie 5 winability untap winabilityend loseability if compare(lastrollresult)~equalto~6 then untap loseabilityend rollend]))
+text=Equipped creature has " {T}: This creature deals 1 damage to target player or planeswalker. Roll a six-sided die. On a 5 or higher, untap it." -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Loch Dragon
 abilities=flying
 auto=may ability$!name(discard) reject notatarget(*|myhand) and!(draw:1)! !$ controller
@@ -27648,6 +27925,19 @@ type=Creature
 subtype=Goblin
 power=1
 toughness=2
+[/card]
+[card]
+name=Mad Science Fair Project
+auto={T}:all(this) rolladie 6 winability counter(0/0,1,MadEffect) winabilityend loseability counter(0/0,1,MadEffect) loseabilityend rollend
+auto=@dierolled(this) result(1) from(controller):this(counter{0/0.1.MadEffect}=1) ability$!name(Add colorless) name(Add colorless) add{C}!$ controller && counter(0/0,-1,MadEffect) all(this)
+auto=@dierolled(this) result(2) from(controller):this(counter{0/0.1.MadEffect}=1) ability$!name(Add colorless) name(Add colorless) add{C}!$ controller && counter(0/0,-1,MadEffect) all(this)
+auto=@dierolled(this) result(3) from(controller):this(counter{0/0.1.MadEffect}=1) ability$!name(Add colorless) name(Add colorless) add{C}!$ controller && counter(0/0,-1,MadEffect) all(this)
+auto=@dierolled(this) result(4) from(controller):this(counter{0/0.1.MadEffect}=1) ability$!name(Add any color) choice name(Add White) add{W} _ choice name(Add Blue) add{U} _ choice name(Add Black) add{B} _ choice name(Add Red) add{R} _ choice name(Add Green) add{G}!$ controller && counter(0/0,-1,MadEffect) all(this)
+auto=@dierolled(this) result(5) from(controller):this(counter{0/0.1.MadEffect}=1) ability$!name(Add any color) choice name(Add White) add{W} _ choice name(Add Blue) add{U} _ choice name(Add Black) add{B} _ choice name(Add Red) add{R} _ choice name(Add Green) add{G}!$ controller && counter(0/0,-1,MadEffect) all(this)
+auto=@dierolled(this) result(6) from(controller):this(counter{0/0.1.MadEffect}=1) ability$!name(Add any color) choice name(Add White) add{W} _ choice name(Add Blue) add{U} _ choice name(Add Black) add{B} _ choice name(Add Red) add{R} _ choice name(Add Green) add{G}!$ controller && counter(0/0,-1,MadEffect) all(this)
+text={T}: Roll a six-sided die. On a 3 or lower, target player adds {1} . Otherwise, that player adds one mana of any color they choose.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Maddening Cacophony
@@ -29064,6 +29354,16 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Mindblade Render
+auto=@combatdamagefoeof(player) from(*[warrior]|battlefield):draw:1 controller && life:-1 controller
+text=Whenever your opponents are dealt combat damage, if any of that damage was dealt by a Warrior, you draw a card and you lose 1 life.
+mana={1}{B}
+type=Creature
+subtype=Azra Warrior
+power=1
+toughness=3
+[/card]
+[card]
 name=Mindleecher
 abilities=flying,mutate
 otherrestriction=type(creature[-human]|mybattlefield)~morethan~0
@@ -29707,6 +30007,16 @@ type=Creature
 subtype=Bear
 power=2
 toughness=2
+[/card]
+[card]
+name=Mother Kangaroo
+auto=all(this) rolladie 6 winability counter(1/1,lastrollresult) winabilityend loseability counter(1/1,lastrollresult) loseabilityend rollend
+text=When this creature enters the battlefield, roll a six-sided die. Put a number of +1/+1 counters on this creature equal to the result.
+mana={4}{G}
+type=Host Creature
+subtype=Kangaroo
+power=1
+toughness=1
 [/card]
 [card]
 name=Mounted Archers
@@ -31486,6 +31796,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Numbing Jellyfish
+auto=all(this) rolladie 6 winability deplete:lastrollresult opponent winabilityend loseability deplete:lastrollresult opponent loseabilityend rollend
+text=When this creature enters the battlefield, roll a six-sided die. Target player puts the top X cards of their library into their graveyard, where X is the result.
+mana={3}{U}
+type=Host Creature
+subtype=Jellyfish
+power=2
+toughness=3
+[/card]
+[card]
 name=Nurturing Peatland
 auto={T}{L:1}:Add{G}
 auto={T}{L:1}:Add{B}
@@ -32966,6 +33286,16 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Painiac
+auto=@each my upkeep:all(this) rolladie 6 winability lastrollresult/0 ueot winabilityend loseability lastrollresult/0 ueot loseabilityend rollend
+text=At the beginning of your upkeep, roll a six-sided die. Painiac gets +X/+0 until end of turn, where X is the result.
+mana={2}{R}
+type=Creature
+subtype=Brainiac
+power=0
+toughness=3
+[/card]
+[card]
 name=Painted Bluffs
 auto={T}:Add{1}
 auto={1}{T}:add{G}
@@ -33932,6 +34262,15 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Pir's Whim
+aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(land|myLibrary)
+auto=name(Search land) reveal:plibrarycount optionone name(choose card) target(land|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
+auto=ability$!name(Sacrifice artifact or enchantment) name(Sacrifice artifact or enchantment) target(*[artifact;enchantment]|mybattlefield) sacrifice!$ opponent
+text=For each player, choose friend or foe. Each friend searches their library for a land card, puts it onto the battlefield tapped, then shuffles their library. Each foe sacrifices an artifact or enchantment they control.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
 name=Pirate Pur
 abilities=cantblock
 auto=all(creature|mybattlefield) mustattack
@@ -34296,6 +34635,16 @@ auto=target(creature[manacost=X]|mygraveyard) moveto(mybattlefield) && transform
 text=({PB} can be paid with either {B} or 2 life.) -- Return target creature card with converted mana cost X from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step.
 mana={X}{B}
 type=Sorcery
+[/card]
+[card]
+name=Poultrygeist
+abilities=flying
+auto=this(counter{1/1.1}>0) transforms((Creature Summon Chicken,setpower=0,settoughness=0)) forever
+auto=@movedto(creature|graveyard) from(battlefield):may name(Roll a die) name(Roll a die) all(this) rolladie 1 winability sacrifice winabilityend loseability counter(1/1) loseabilityend rollend
+text=Flying -- Whenever a creature is put into any graveyard from play, you may roll a six-sided die. On a 1, sacrifice Poultrygeist. Otherwise, put a +1/+1 counter on Poultrygeist.
+mana={2}{B}
+type=Summon
+subtype=Chicken
 [/card]
 [card]
 name=Pounce
@@ -36567,7 +36916,7 @@ auto=@each endofturn restriction{compare(lifegain)~morethan~0}:create(warrior:cr
 text=Partner with Krav, the Unredeemed (When this creature enters the battlefield, target player may put Krav into their hand from their library, then shuffle.) -- Flying -- At the beginning of each end step, if your team gained life this turn, create two 1/1 white Warrior creature tokens.
 mana={5}{W}
 type=Legendary Creature
-subtype=Angel
+subtype=Angel Regna
 power=4
 toughness=4
 [/card]
@@ -40346,6 +40695,13 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Sentinel Tower
+auto=@movedTo(*[instant;sorcery]|stack) restriction{myturnonly}:name(Damage any target) name(Damage any target) ability$!name(Choose one) choice name(Damage player) damage:type:*[sorcery;instant;fresh]:graveyardplus1plusend target(player) _ choice name(Damage creature) damage:type:*[sorcery;instant;fresh]:graveyardplus1plusend target(creature) _ choice name(Damage planeswalker) damage:type:*[sorcery;instant;fresh]:graveyardplus1plusend target(planeswalker)!$ controller
+text=Whenever an instant or sorcery spell is cast during your turn, Sentinel Tower deals damage to any target equal to 1 plus the number of instant and sorcery spells cast before that spell this turn.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Sentinel's Eyes
 target=creature
 auto=vigilance
@@ -42734,6 +43090,17 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Sly Spy (f)
+auto=@combatdamagefoeof(player) from(this):all(this) rolladie 6 winability life:-lastrollresult opponent winabilityend loseability life:-lastrollresult opponent loseabilityend rollend
+auto=@combatdamageof(player) from(this):all(this) rolladie 6 winability life:-lastrollresult controller winabilityend loseability life:-lastrollresult controller loseabilityend rollend
+text=Whenever Sly Spy deals combat damage to a player, roll a six-sided die. That player loses life equal to the result.
+mana={2}{B}
+type=Creature
+subtype=Human Spy
+power=2
+toughness=2
+[/card]
+[card]
 name=Smelt-Ward Ignus
 auto={2}{R}{S}:auto=target(creature[power<=3]|battlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot asSorcery
 text={2}{R}, Sacrifice Smelt-Ward Ignus: Gain control of target creature with power 3 or less until end of turn. Untap that creature. It gains haste until end of turn. Activate this ability only any time you could cast a sorcery.
@@ -44897,8 +45264,8 @@ toughness=4
 [card]
 name=Steel Squirrel
 auto={6}:all(this) rolladie 6 winability donothing winabilityend loseability donothing loseabilityend rollend
-auto=@dierolled(creature|battlefield) result(5):name(Get 5/5) name(Get 5/5) 5/5 ueot 
-auto=@dierolled(creature|battlefield) result(6):name(Get 6/6) name(Get 6/6) 6/6 ueot 
+auto=@dierolled(*|battlefield) result(5) from(controller):name(Get 5/5) name(Get 5/5) 5/5 ueot 
+auto=@dierolled(*|battlefield) result(6) from(controller):name(Get 6/6) name(Get 6/6) 6/6 ueot 
 text=Whenever you roll a 5 or higher on a die, Steel Squirrel gets +X/+X until end of turn, where X is the result. -- {6}: Roll a six-sided die.
 mana={2}
 type=Artifact Creature
@@ -45082,6 +45449,15 @@ mana={X}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Stolen Strategy
+auto=@each my upkeep:all(*[zpos=1]|opponentlibrary) moveto(exile) and!( transforms((,newability[counter(0/0.1.StolenExiled)])) forever )!
+auto={0}:name(Cast instants exiled with Stolen Strategy) name(Cast instants exiled with Stolen Strategy) target(<anyamount>instant[fresh;counter{0/0.1.StolenExiled}]|opponentexile) activate castcard(normal)
+auto={0}:name(Cast sorceries exiled with Stolen Strategy) name(Cast sorceries exiled with Stolen Strategy) target(<anyamount>sorcery[fresh;counter{0/0.1.StolenExiled}]|opponentexile) activate castcard(normal)
+text=At the beginning of your upkeep, exile the top card of each opponent's library. Until end of turn, you may cast spells from among those exiled cards, and you may spend mana as though it were mana of any color to cast those spells.
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
 name=Stone Haven Pilgrim
 auto=@combat(attacking) source(this) restriction{type(*[artifact;enchantment]|myBattlefield)~morethan~0}:1/1 ueot && lifelink ueot
 text=Whenever Stone Haven Pilgrim attacks, if you control an artifact or enchantment, Stone Haven Pilgrim gets +1/+1 and gains lifelink until end of turn.
@@ -45116,7 +45492,7 @@ toughness=2
 [card]
 name=Stonework Packbeast
 auto=becomes(Cleric Rogue Warrior Wizard)
-auto={2}:ability$! name(Add any color) choice name(Add White) add{W} _ choice name(Add Blue) add{B} _ choice name(Add Black) add{B} _ choice name(Add Red) add{R} _ choice name(Add Green) add{G}!$ controller
+auto={2}:ability$! name(Add any color) choice name(Add White) add{W} _ choice name(Add Blue) add{U} _ choice name(Add Black) add{B} _ choice name(Add Red) add{R} _ choice name(Add Green) add{G}!$ controller
 text=Stonework Packbeast is also a Cleric, Rogue, Warrior, and Wizard. -- {2}: Add one mana of any color.
 mana={2}
 type=Artifact Creature
@@ -47510,6 +47886,16 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
+name=The Big Idea
+auto={2}{BR}{BR}{T}:all(this) rolladie 6 winability token(Brainiac,Creature Brainiac,1/1,red)*lastrollresult winabilityend loseability token(Brainiac,Creature Brainiac,1/1,red)*lastrollresult loseabilityend rollend
+text={2}{BR}{BR}, {T}: Roll a six-sided die. Create a number of 1/1 red Brainiac creature tokens equal to the result. -- Tap three untapped Brainiacs you control: The next time you would roll a six-sided die, instead roll two six-sided dice and use the total of those results.
+mana={4}{R}{R}
+type=Legendary Creature
+subtype=Brainiac Villain
+power=4
+toughness=4
+[/card]
+[card]
 name=The Binding of the Titans
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
@@ -48602,6 +48988,13 @@ name=Timbercrown Pathway
 auto={T}:add{G}
 text={T}: Add {G}.
 type=Land
+[/card]
+[card]
+name=Time Out
+auto=target(*[-land]|battlefield) rolladie 6 winability moveto(ownerlibrary) and!(shuffle)! winabilityend loseability moveto(ownerlibrary) and!(shuffle)! loseabilityend rollend
+text=Roll a six-sided die. Put target nonland permanent into its owner's library just beneath the top X cards of that library, where X is the result.
+mana={4}{U}
+type=Instant
 [/card]
 [card]
 name=Time Vault
@@ -50794,6 +51187,21 @@ mana={4}{W}
 type=Legendary Sorcery
 [/card]
 [card]
+name=Urza's Science Fair Project
+auto={2}:all(this) rolladie 6 winability counter(0/0,1,UrzaEffect) winabilityend loseability counter(0/0,1,UrzaEffect) loseabilityend rollend
+auto=@dierolled(this) result(1) from(controller):this(counter{0/0.1.UrzaEffect}=1) name(Gets -2/-2) name(Gets -2/-2) all(this) transforms((,newability[-2/-2],newability[counter(0/0.-1.UrzaEffect)])) ueot
+auto=@dierolled(this) result(2) from(controller):this(counter{0/0.1.UrzaEffect}=1) name(It deals no combat damage) name(It deals no combat damage) all(this) transforms((,newability[preventAllCombatDamage from(this)],newability[counter(0/0.-1.UrzaEffect)])) ueot
+auto=@dierolled(this) result(3) from(controller):this(counter{0/0.1.UrzaEffect}=1) name(Gains vigilance) name(Gains vigilance) all(this) transforms((,newability[vigilance],newability[counter(0/0.-1.UrzaEffect)])) ueot
+auto=@dierolled(this) result(4) from(controller):this(counter{0/0.1.UrzaEffect}=1) name(Gains first strike) name(Gains first strike) all(this) transforms((,newability[first strike],newability[counter(0/0.-1.UrzaEffect)])) ueot
+auto=@dierolled(this) result(5) from(controller):this(counter{0/0.1.UrzaEffect}=1) name(Gains flying) name(Gains flying) all(this) transforms((,newability[flying],newability[counter(0/0.-1.UrzaEffect)])) ueot
+auto=@dierolled(this) result(6) from(controller):this(counter{0/0.1.UrzaEffect}=1) name(Gets 2/2) name(Gets 2/2) all(this) transforms((,newability[2/2],newability[counter(0/0.-1.UrzaEffect)])) ueot
+text={2}: Roll a six-sided die for Urza's Science Fair Project. -- 1 It gets -2/-2 until end of turn. -- 2 It deals no combat damage this turn. -- 3 Attacking does not cause it to tap this turn. -- 4 It gains first strike until end of turn. -- 5 It gains flying until end of turn. -- 6 It gets +2/+2 until end of turn.
+mana={6}
+type=Artifact Creature
+power=4
+toughness=4
+[/card]
+[card]
 name=Urza's Tome
 auto={3}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 auto={3}{T} restriction{type(*[artifact;legendary;saga]|mygraveyard)~morethan~0}:draw:1 && exile notatarget(*[artifact;legendary;saga]|mygraveyard)
@@ -51828,6 +52236,14 @@ auto=destroy
 autohand=__CYCLING__({2})
 text=Destroy target artifact or land. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Virtus's Maneuver
+auto=ability$!name(Return to hand) name(Return to hand) target(creature|mygraveyard) moveto(ownerhand)!$ opponent
+auto=ability$!name(Sacrifice creature) name(Sacrifice creature) target(creature|mybattlefield) sacrifice!$ opponent
+text=For each player, choose friend or foe. Each friend returns a creature card from their graveyard to their hand. Each foe sacrifices a creature they control.
+mana={2}{B}
 type=Sorcery
 [/card]
 [card]
@@ -53308,9 +53724,9 @@ type=Instant
 name=Willing Test Subject
 abilities=reach
 auto={6}:all(this) rolladie 6 winability donothing winabilityend loseability donothing loseabilityend rollend
-auto=@dierolled(creature|battlefield) result(4):name(Get 1/1 counter) name(Get 1/1 counter) counter(1/1) all(this)
-auto=@dierolled(creature|battlefield) result(5):name(Get 1/1 counter) name(Get 1/1 counter) counter(1/1) all(this)
-auto=@dierolled(creature|battlefield) result(6):name(Get 1/1 counter) name(Get 1/1 counter) counter(1/1) all(this)
+auto=@dierolled(*|battlefield) result(4) from(controller):name(Get 1/1 counter) name(Get 1/1 counter) counter(1/1) all(this)
+auto=@dierolled(*|battlefield) result(5) from(controller):name(Get 1/1 counter) name(Get 1/1 counter) counter(1/1) all(this)
+auto=@dierolled(*|battlefield) result(6) from(controller):name(Get 1/1 counter) name(Get 1/1 counter) counter(1/1) all(this)
 text=Reach -- Whenever you roll a 4 or higher on a die, put a +1/+1 counter on Willing Test Subject. -- {6}: Roll a six-sided die.
 mana={2}{G}
 type=Creature
@@ -54309,6 +54725,14 @@ type=Creature
 subtype=Goblin Berserker
 power=2
 toughness=2
+[/card]
+[card]
+name=Zndrsplt's Judgment
+auto=ability$!name(Create a token copy) name(Create a token copy) target(creature|mybattlefield) clone!$ controller
+auto=ability$!name(Return to hand) name(Return to hand) target(creature|mybattlefield) moveto(ownerhand)!$ opponent
+text=For each player, choose friend or foe. Each friend creates a token that's a copy of a creature they control. Each foe returns a creature they control to its owner's hand.
+mana={4}{U}
+type=Sorcery
 [/card]
 [card]
 name=Zof Bloodbog
