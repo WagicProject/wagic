@@ -589,6 +589,18 @@ int PutInGraveyard::resolve()
         card->controller()->game->putInZone(card, zone, card->owner->game->exile);
         return 1;
     }
+    if (card->basicAbilities[(int)Constants::HANDDEATH])
+    {
+        card->controller()->game->putInZone(card, zone, card->owner->game->hand);
+        return 1;
+    }
+    if (card->basicAbilities[(int)Constants::INPLAYDEATH] || card->basicAbilities[(int)Constants::INPLAYTAPDEATH])
+    {
+        card->controller()->game->putInZone(card, zone, card->owner->game->battlefield);
+        if(card->basicAbilities[(int)Constants::INPLAYTAPDEATH])
+            card->tap(true);
+        return 1;
+    }
     if (zone == observer->players[0]->game->inPlay || zone == observer->players[1]->game->inPlay)
     {
         card->controller()->game->putInZone(card, zone, card->owner->game->graveyard);

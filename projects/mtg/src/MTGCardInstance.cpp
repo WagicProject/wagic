@@ -510,6 +510,18 @@ int MTGCardInstance::toGrave( bool forced )
         p->game->putInZone(this, p->game->inPlay, owner->game->exile);
         return 1;
     }
+    if (basicAbilities[(int)Constants::HANDDEATH])
+    {
+        p->game->putInZone(this, p->game->inPlay, owner->game->hand);
+        return 1;
+    }
+    if (basicAbilities[(int)Constants::INPLAYDEATH] || basicAbilities[(int)Constants::INPLAYTAPDEATH])
+    {
+        p->game->putInZone(this, p->game->inPlay, owner->game->battlefield);
+        if(basicAbilities[(int)Constants::INPLAYTAPDEATH])
+            tap(true);
+        return 1;
+    }
     if (!basicAbilities[(int)Constants::INDESTRUCTIBLE])
     {
         p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);

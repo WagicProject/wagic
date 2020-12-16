@@ -198,7 +198,10 @@ const char* Constants::MTGBasicAbilities[] = {
     "partner", //Has partner ability
     "canbecommander", //Can be a commander (eg. some planeswalkers can)
     "iscommander", //It's the current commander
-    "threeblockers" //It can be blocked just by 3 creatures or more.
+    "threeblockers", //It can be blocked just by 3 creatures or more.
+    "handdeath", //It goes in hand after death.
+    "inplaydeath", //It goes back in play untapped after death.
+    "inplaytapdeath" //It goes back in play tapped after death.
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
