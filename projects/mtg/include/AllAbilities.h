@@ -1047,6 +1047,31 @@ private:
                 }
             }
         }
+        else if (s.find("cardcounttype") != string::npos)//Count Total Creatures of specific type
+        {
+            intValue = 0;
+            bool different_names = (s.find("diffcardcounttype")!=string::npos)?true:false;
+            string type = (s.find("diffcardcounttype")!=string::npos)?s.substr(17):s.substr(13);
+            vector<string> list;
+            for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->inPlay->cards[j]->hasType(type)){
+                    if(!different_names)
+                        intValue += 1;
+                    else{
+                        bool name_found = false;
+                        for(unsigned int i = 0; i < list.size() && !name_found; i++){
+                            if(list[i] == card->controller()->game->inPlay->cards[j]->name)
+                                name_found = true;
+                        }
+                        if(!name_found){
+                            list.push_back(card->controller()->game->inPlay->cards[j]->name);
+                            intValue += 1;
+                        }
+                    }
+                }
+            }
+        }
         else if (s == "cursedscrollresult")//Return 1 if the cursed scroll has to give damage (calculated randomly basing on the number of unique cards in the player hand)...
         {
             intValue = 0;

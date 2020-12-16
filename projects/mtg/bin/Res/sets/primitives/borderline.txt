@@ -639,6 +639,24 @@ mana={2}{G}{W}
 type=Enchantment
 [/card]
 [card]
+name=Ajani's Influence
+target=creature
+auto=counter(1/1,2)
+aicode=activate target(*[white;zpos<=5]|mylibrary) moveto(myhand)
+auto=name(Get white card) Reveal:5 revealzone(mylibrary) optionone name(choose white card) target(<1>*[white]|reveal) moveto(myhand) optiononeend optiontwo name(Put bottomoflibrary) target(<1>*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
+text=Put two +1/+1 counters on target creature. -- Look at the top five cards of your library. You may reveal a white card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Ajani's Last Stand
+autohand=@targeted(this) from(*|opponentzones) restriction{type(plains|mybattlefield)~morethan~0}:may name(Discarded from opponent?) name(Discarded from opponent?) token(Avatar,Creature Avatar,4/4,white,flying)
+auto=@movedTo(*[creature;planeswalker]|mygraveyard) from(battlefield):may name(Sacrifice and create avatar) name(Sacrifice and create avatar) sacrifice all(this) && token(Avatar,Creature Avatar,4/4,white,flying)
+text=Whenever a creature or planeswalker you control dies, you may sacrifice Ajani's Last Stand. If you do, create a 4/4 white Avatar creature token with flying. -- When a spell or ability an opponent controls causes you to discard this card, if you control a Plains, create a 4/4 white Avatar creature token with flying.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Ajani's Presence
 kicker=multi{2}{W}
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[1/1],newability[indestructible])) ueot
@@ -7323,6 +7341,13 @@ type=Creature
 subtype=Hellion
 power=6
 toughness=6
+[/card]
+[card]
+name=Chaos Wand
+auto={4}{T}:Reveal:1 revealzone(opponentlibrary) revealuntil(*[instant;sorcery]|opponentlibrary) optionone choice name(Cast revelead instant or sorcery?) target(<upto:1>*[instant;sorcery]|reveal) moveto(ownerexile) and!( transforms((,newability[counter(0/0.1.ChaosExiledCast)])) forever )! optiononeend optiontwo choice name(put exile) target(<1>*|reveal) bottomoflibrary and!( all(*|reveal) moveto(ownerexile) and!( transforms((,newability[counter(0/0.1.ChaosExiled)])) forever )! )! optiontwoend afterrevealed all(*[counter{0/0.1.ChaosExiled}]|opponentexile) bottomoflibrary and!( name(Cast instant or sorcery) name(Cast instant or sorcery) target(*[counter{0/0.1.ChaosExiledCast}]|opponentexile) activate castcard(normal) )! afterrevealedend revealend
+text={4}, {T}: Target opponent exiles cards from the top of their library until they exile an instant or sorcery card. You may cast that card without paying its mana cost. Then put the exiled cards that weren't cast this way on the bottom of that library in a random order.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Charge
@@ -16982,6 +17007,18 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Fraying Omnipotence
+auto=life:-halfupopponentlifetotal opponent
+auto=life:-halfuplifetotal controller
+auto=ability$!name(Discard half of hand) name(Discard half of hand) reject notatarget(<halfuptype:*:myhand>*|myhand)!$ controller
+auto=ability$!name(Discard half of hand) name(Discard half of hand) reject notatarget(<halfuptype:*:myhand>*|myhand)!$ opponent
+auto=ability$!name(Sacrifice half of creatures) name(Sacrifice half of creatures) sacrifice notatarget(<halfuptype:creature:mybattlefield>creature|mybattlefield)!$ controller
+auto=ability$!name(Sacrifice half of creatures) name(Sacrifice half of creatures) sacrifice notatarget(<halfuptype:creature:mybattlefield>creature|mybattlefield)!$ opponent
+text=Each player loses half their life, then discards half the cards in their hand, then sacrifices half the creatures they control. Round up each time.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Fraying Sanity
 target=player
 auto=@each endofturn:deplete:type:*[fresh]:targetedpersonsgraveyard targetedplayer
@@ -17925,6 +17962,16 @@ type=Legendary Creature
 subtype=Elder Dinosaur
 power=12
 toughness=12
+[/card]
+[card]
+name=Ghastbark Twins
+abilities=trample
+text=Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.) -- Ghastbark Twins can block an additional creature each combat.
+mana={5}{G}{G}
+type=Creature
+subtype=Treefolk
+power=7
+toughness=7
 [/card]
 [card]
 name=Ghastly Gloomhunter
@@ -27057,6 +27104,15 @@ type=Tribal Enchantment
 subtype=Treefolk Aura
 [/card]
 [card]
+name=Liliana's Contract
+auto=life:-4 controller
+auto=draw:4 controller
+auto=@each my upkeep restriction{compare(diffcardcounttypedemon)~morethan~3}:wingame controller
+text=When Liliana's Contract enters the battlefield, you draw four cards and you lose 4 life. -- At the beginning of your upkeep, if you control four or more Demons with different names, you win the game.
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Liliana's Defeat
 auto=choice name(target black creature) destroy target(creature[black])
 auto=choice name(target black planeswalker) destroy target(planeswalker[black])
@@ -27112,6 +27168,15 @@ type=Creature
 subtype=Human Wizard
 power=3
 toughness=2
+[/card]
+[card]
+name=Liliana's Spoils
+aicode=activate target(*[black;zpos<=5]|mylibrary) moveto(myhand)
+auto=name(look) reveal:5 optionone name(Get black card) target(<upto:1>*[black]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
+auto=ability$!name(Discard a card) reject notatarget(*|myhand)!$ opponent
+text=Target opponent discards a card. -- Look at the top five cards of your library. You may reveal a black card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+mana={3}{B}
+type=Sorcery
 [/card]
 [card]
 name=Liliana's Standard Bearer
@@ -29688,6 +29753,16 @@ mana={2}{U}
 type=Creature
 subtype=Naga Ninja
 power=3
+toughness=1
+[/card]
+[card]
+name=Mistcaller
+auto={S}:lord(creature[-token;fresh]|battlefield) transforms((,newability[ifnot casted(this) then moveto(exile)])) ueot
+text=Sacrifice Mistcaller: Until end of turn, if a nontoken creature would enter the battlefield and it wasn't cast, exile it instead.
+mana={U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
 toughness=1
 [/card]
 [card]
@@ -33792,6 +33867,16 @@ type=Creature
 subtype=Eldrazi
 power=9
 toughness=9
+[/card]
+[card]
+name=Patient Rebuilding
+auto=@each my upkeep restriction{type(land[zpos<=3]|opponentlibrary)~equalto~0}:deplete:3 opponent
+auto=@each my upkeep restriction{type(land[zpos<=3]|opponentlibrary)~equalto~1}:deplete:3 opponent && draw:1 controller
+auto=@each my upkeep restriction{type(land[zpos<=3]|opponentlibrary)~equalto~2}:deplete:3 opponent && draw:2 controller
+auto=@each my upkeep restriction{type(land[zpos<=3]|opponentlibrary)~equalto~3}:deplete:3 opponent && draw:3 controller
+text=At the beginning of your upkeep, target opponent mills three cards, then you draw a card for each land card put into their graveyard this way.
+mana={3}{U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Patriarch's Bidding
@@ -39552,6 +39637,15 @@ mana={4}{R}
 type=Instant
 [/card]
 [card]
+name=Sarkhan's Dragonfire
+aicode=activate target(*[red;zpos<=5]|mylibrary) moveto(myhand)
+auto=name(look) reveal:5 optionone name(Get red card) target(<upto:1>*[red]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
+auto=ability$!name(Choose one) choice name(Damage player) damage:3 target(player) _ choice name(Damage creature) damage:3 target(creature) _ choice name(Damage planeswalker) damage:3 target(planeswalker)!$ controller
+text=Sarkhan's Dragonfire deals 3 damage to any target. -- Look at the top five cards of your library. You may reveal a red card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Sarkhan's Unsealing
 auto=@movedTo(creature[power=4]|mystack):damage:4 target(creature,player)
 auto=@movedTo(creature[power=5]|mystack):damage:4 target(creature,player)
@@ -39561,6 +39655,18 @@ auto=@movedTo(creature[power>=7]|mystack):damage:4 opponent
 text=Whenever you cast a creature spell with power 4, 5, or 6, Sarkhan's Unsealing deals 4 damage to any target. -- Whenever you cast a creature spell with power 7 or greater, Sarkhan's Unsealing deals 4 damage to each opponent and each creature and planeswalker they control.
 mana={3}{R}
 type=Enchantment
+[/card]
+[card]
+name=Sarkhan's Whelp
+abilities=flying
+auto=@counterremoved(0/0,1,Loyalty) from(planeswalker[sarkhan]|myBattlefield) restriction{myturnonly}:ability$!name(Choose one) choice name(Damage player) damage:1 target(player) _ choice name(Damage creature) damage:1 target(creature) _ choice name(Damage planeswalker) damage:1 target(planeswalker)!$ controller
+auto=@counteradded(0/0,1,Loyalty) from(planeswalker[sarkhan]|myBattlefield) restriction{myturnonly}:ability$!name(Choose one) choice name(Damage player) damage:1 target(player) _ choice name(Damage creature) damage:1 target(creature) _ choice name(Damage planeswalker) damage:1 target(planeswalker)!$ controller
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Whenever you activate an ability of a Sarkhan planeswalker, Sarkhan's Whelp deals 1 damage to any target.
+mana={2}{R}
+type=Creature
+subtype=Dragon
+power=2
+toughness=2
 [/card]
 [card]
 name=Saruli Caretaker
@@ -42507,6 +42613,17 @@ auto=damage:4
 text=Sizzling Barrage deals 4 damage to target creature that blocked this turn.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Skalla Wolf
+aicode=activate target(*[green;zpos<=5]|mylibrary) moveto(myhand)
+auto=name(look) reveal:5 optionone name(Get green card) target(<upto:1>*[green]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
+text=When Skalla Wolf enters the battlefield, look at the top five cards of your library. You may reveal a green card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+mana={3}{G}{G}
+type=Creature
+subtype=Wolf Spirit
+power=3
+toughness=3
 [/card]
 [card]
 name=Skarrgan Hellkite
@@ -47863,6 +47980,15 @@ mana={3}{U}{B}
 type=Sorcery
 [/card]
 [card]
+name=Tezzeret's Gatebreaker
+aicode=activate target(*[blue;artifact;zpos<=5]|mylibrary) moveto(myhand)
+auto=name(look) reveal:5 optionone name(Get blue or artifact card) target(<upto:1>*[blue;artifact]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
+auto={5}{U}{T}{S}:all(creature|mybattlefield) transforms((,newability[unblockable])) ueot
+text=When Tezzeret's Gatebreaker enters the battlefield, look at the top five cards of your library. You may reveal a blue or artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. -- {5}{U}, {T}, Sacrifice Tezzeret's Gatebreaker: Creatures you control can't be blocked this turn.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Tezzeret's Strider
 auto=aslongas(planeswalker[tezzeret]|myBattlefield) menace
 text=As long as you control a Tezzeret planeswalker, Tezzeret's Strider has menace. (It can't be blocked except by two or more creatures.)
@@ -48052,6 +48178,22 @@ auto={2}{B}{T}{L:2}:moveTo(myBattlefield) target(creature|mygraveyard) asSorcery
 text=This spell costs {2} less to cast for each creature card in your graveyard. -- Whenever a creature you control dies, put it on the bottom of its owner's library. -- {2}{B}, {T}, Pay 2 life: Return target creature card from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery.
 mana={10}{B}{B}
 type=Legendary Artifact
+[/card]
+[card]
+name=The Cheese Stands Alone
+auto=@each untap restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each upkeep restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each draw restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each firstmain restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each combatbegins restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each blockers restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each combatends restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each secondmain restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each endofturn restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+auto=@each end restriction{type(*|myBattlefield)~equalto~1,type(*|myhand)~equalto~0}:winGame controller
+text=If you control no cards in play other than The Cheese Stands Alone and have no cards in your hand, you win the game.
+mana={4}{W}{W}
+type=Enchantment
 [/card]
 [card]
 name=The Circle of Loyalty
@@ -48530,6 +48672,13 @@ auto={4}{T}:notatarget(*[artifact;legendary;saga]|myhand) moveTo(mybattlefield)
 text={4}, {T}: You may put a historic permanent card from your hand onto the battlefield. (Artifacts, legendaries, and Sagas are historic.)
 mana={4}
 type=Legendary Artifact
+[/card]
+[card]
+name=Thran Tome
+auto={5}{T}:ability$!name(Put in graveyard) name(Put in graveyard) moveto(opponentgraveyard) notatarget(*[zpos<=3]|opponentlibrary) and!(draw:2 opponent)! !$ opponent
+text={5}, {T}: Reveal the top three cards of your library. Target opponent chooses one of those cards. Put that card into your graveyard, then draw two cards.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Thrash // Threat
@@ -49159,6 +49308,15 @@ mana={W}
 type=Instant
 [/card]
 [card]
+name=Timecrafting
+target=*[counter{0/0.1.Time}]|battlefield
+auto=choice name(Remove X time counters) counter(0/0,-X,Time)
+auto=choice name(Put X time counters) counter(0/0,X,Time)
+text=Choose one — Remove X time counters from target permanent or suspended card; or put X time counters on target permanent with a time counter on it or suspended card.
+mana={X}{R}
+type=Instant
+[/card]
+[card]
 name=Timely Ward
 abilities=flash
 target=creature
@@ -49770,6 +49928,14 @@ auto=ability$!name(Reveal) reveal:1 revealzone(mylibrary) revealuntil(creature|m
 text=Exile target creature. That creature's controller reveals cards from the top of their library until they reveal a creature card. That player puts that card onto the battlefield, then shuffles the rest into their library.
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Transmogrifying Wand
+auto=counter(0/0,3,Charge)
+auto={1}{T}{C(0/0,-1,Charge)}:target(creature) destroy && token(Ox,Creature Ox,2/4,white) targetController asSorcery
+text=Transmogrifying Wand enters the battlefield with three charge counters on it. -- {1}, {T}, Remove a charge counter from Transmogrifying Wand: Destroy target creature. Its controller creates a 2/4 white Ox creature token. Activate this ability only any time you could cast a sorcery.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Trap Runner
@@ -51401,6 +51567,18 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Vaevictis Asmadi, the Dire
+abilities=flying
+auto=@combat(attacking) source(this) restriction{type(*|mybattlefield)~morethan~0}:target(*|mybattlefield) sacrifice and!( reveal:1 optionone target(<1>*[-instant;-sorcery]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put on Top) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend )!
+auto=@combat(attacking) source(this) restriction{type(*|opponentbattlefield)~morethan~0}:target(*|opponentbattlefield) sacrifice and!( reveal:1 revealzone(opponentlibrary) optionone target(<1>*[-instant;-sorcery]|reveal) moveto(opponentbattlefield) optiononeend optiontwo name(Put on Top) target(<1>*|reveal) moveto(opponentlibrary) optiontwoend revealend )!
+text=Flying -- Whenever Vaevictis Asmadi, the Dire attacks, for each player, choose target permanent that player controls. Those players sacrifice those permanents. Each player who sacrificed a permanent this way reveals the top card of their library, then puts it onto the battlefield if it's a permanent card.
+mana={3}{B}{R}{G}
+type=Legendary Creature
+subtype=Elder Dragon
+power=6
+toughness=6
+[/card]
+[card]
 name=Valakut Awakening
 autohand={0}:restriction{can play land} name(Valakut Stoneforge) name(Valakut Stoneforge) flip(Valakut Stoneforge) forcetype(land)
 auto=name(Put cards and draw that many) name(Put cards and draw that many) all(*|myhand) transforms((,newability[draw:1],newability[bottomoflibrary])])) && draw:1
@@ -52475,6 +52653,25 @@ type=Creature
 subtype=Bear Spirit
 power=2
 toughness=3
+[/card]
+[card]
+name=Vivien's Invocation
+aicode=activate target(creature[zpos<=7]|mylibrary) moveto(mybattlefield) and!(transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike!>])) oneshot)!
+auto=reveal:7 optionone name(Get Creature) target(<1>creature|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike!>])) oneshot)! afterrevealedend revealend
+text=Look at the top seven cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in a random order. When a creature is put onto the battlefield this way, it deals damage equal to its power to target creature an opponent controls.
+mana={5}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Vivien's Jaguar
+abilities=reach
+autograveyard={2}[G} restriction{type(planeswalker[vivien]|mybattlefield)~morethan~0}:name(Return to hand) name(Return to hand) moveto(myhand)
+text=Reach (This creature can block creatures with flying.) -- {2}{G}: Return Vivien's Jaguar from your graveyard to your hand. Activate this ability only if you control a Vivien planeswalker.
+mana={2}{G}
+type=Creature
+subtype=Cat Spirit
+power=3
+toughness=2
 [/card]
 [card]
 name=Vizier of Deferment
