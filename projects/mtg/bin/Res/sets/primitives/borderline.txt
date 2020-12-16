@@ -29,7 +29,7 @@ type=Sorcery
 [card]
 name=Abnormal Endurance
 target=creature
-auto=transforms((,newability[2/0],newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield) and!(tap(noevent))!])) ueot
+auto=transforms((,newability[2/0],newability[inplaytapdeath])) ueot
 text=Until end of turn, target creature gets +2/+0 and gains "When this creature dies, return it to the battlefield tapped under its owner's control."
 mana={1}{B}
 type=Instant
@@ -1603,6 +1603,24 @@ type=Creature
 subtype=Chimera Hydra
 power=10
 toughness=10
+[/card]
+[card]
+name=Apex of Power
+autohand={7}{R}{R}{R}:name(Cast from hand and add 10 white mana) name(Cast from hand and add 10 white mana) add{W}{W}{W}{W}{W}{W}{W}{W}{W}{W} controller && target(Apex of Power|myhand) activate castcard(restricted)
+autohand={7}{R}{R}{R}:name(Cast from hand and add 10 black mana) name(Cast from hand and add 10 black mana) add{B}{B}{B}{B}{B}{B}{B}{B}{B}{B} controller && target(Apex of Power|myhand) activate castcard(restricted)
+autohand={7}{R}{R}{R}:name(Cast from hand and add 10 blue mana) name(Cast from hand and add 10 blue mana) add{U}{U}{U}{U}{U}{U}{U}{U}{U}{U} controller && target(Apex of Power|myhand) activate castcard(restricted)
+autohand={7}{R}{R}{R}:name(Cast from hand and add 10 green mana) name(Cast from hand and add 10 green mana) add{G}{G}{G}{G}{G}{G}{G}{G}{G}{G} controller && target(Apex of Power|myhand) activate castcard(restricted)
+autohand={7}{R}{R}{R}:name(Cast from hand and add 10 red mana) name(Cast from hand and add 10 red mana) add{R}{R}{R}{R}{R}{R}{R}{R}{R}{R} controller && target(Apex of Power|myhand) activate castcard(restricted)
+auto=if type(land[zpos=1]|mylibrary)~equalto~1 then all(*[zpos=1|mylibrary) moveto(exile) else all(*[zpos=1|mylibrary) moveto(exile) and!( transforms((,canplayfromexile)) ueot )!
+auto=if type(land[zpos=2]|mylibrary)~equalto~1 then all(*[zpos=2|mylibrary) moveto(exile) else all(*[zpos=2|mylibrary) moveto(exile) and!( transforms((,canplayfromexile)) ueot )!
+auto=if type(land[zpos=3]|mylibrary)~equalto~1 then all(*[zpos=3|mylibrary) moveto(exile) else all(*[zpos=3|mylibrary) moveto(exile) and!( transforms((,canplayfromexile)) ueot )!
+auto=if type(land[zpos=4]|mylibrary)~equalto~1 then all(*[zpos=4|mylibrary) moveto(exile) else all(*[zpos=4|mylibrary) moveto(exile) and!( transforms((,canplayfromexile)) ueot )!
+auto=if type(land[zpos=5]|mylibrary)~equalto~1 then all(*[zpos=5|mylibrary) moveto(exile) else all(*[zpos=5|mylibrary) moveto(exile) and!( transforms((,canplayfromexile)) ueot )!
+auto=if type(land[zpos=6]|mylibrary)~equalto~1 then all(*[zpos=6|mylibrary) moveto(exile) else all(*[zpos=6|mylibrary) moveto(exile) and!( transforms((,canplayfromexile)) ueot )!
+auto=if type(land[zpos=7]|mylibrary)~equalto~1 then all(*[zpos=7|mylibrary) moveto(exile) else all(*[zpos=7|mylibrary) moveto(exile) and!( transforms((,canplayfromexile)) ueot )!
+text=Exile the top seven cards of your library. Until end of turn, you may cast spells from among them. -- If this spell was cast from your hand, add ten mana of any one color.
+mana={7}{R}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Aphemia, the Cacophony
@@ -5287,6 +5305,19 @@ target=creature
 auto=+3/+3
 text=Target creature gets +3/+3 until end of turn. -- Target creature gets +3/+3 until end of turn. -- Target creature gets +3/+3 until end of turn.
 mana={4}{G}{G}
+type=Instant
+[/card]
+[card]
+name=Bounty of the Hunt
+target=creature
+restriction=type(creature|battlefield)~morethan~0
+otherrestriction=type(creature|battlefield)~morethan~0
+other={E(other *[green]|myhand)} name(Exile green card)
+auto=transforms((,newability[counter(1/1) all(this)],newability[phaseaction[cleanup once] counter(1/1.-1) all(this)])) oneshot
+auto=choice name(Give other 2 counters to 1 creature) name(Give other 2 counters to 1 creature) target(other creature) transforms((,newability[counter(1/1.2) all(this)],newability[phaseaction[cleanup once] counter(1/1.-2) all(this)])) oneshot
+auto=if type(creature|battlefield)~morethan~2 then choice name(Give 1 counter to other 2 creatures) name(Give 1 counter to other 2 creatures) target(<2>other creature) transforms((,newability[counter(1/1) all(this)],newability[phaseaction[cleanup once] counter(1/1.-1) all(this)])) oneshot
+text=You may exile a green card from your hand rather than pay Bounty of the Hunt's mana cost. -- Distribute three +1/+1 counters among one, two, or three target creatures. For each +1/+1 counter you put on a creature this way, remove a +1/+1 counter from that creature at the beginning of the next cleanup step.
+mana={3}{G}{G}
 type=Instant
 [/card]
 [card]
@@ -11345,6 +11376,13 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Detection Tower
+auto={T}:add{C}
+auto={1}{T}:lord(*[opponentshroud;controllershroud]|opponentbattlefield) transforms((,newability[-opponentshroud]),newability[-controllershroud])) ueot
+text={T}: Add {C}. -- {1}, {T}: Until end of turn, your opponents and creatures your opponents control with hexproof can be the targets of spells and abilities you control as though they didn't have hexproof.
+type=Land
+[/card]
+[card]
 name=Devastating Dreams
 auto=if type(*|myHand)~morethan~0 then choice name(Discard 1 card) discard:1 controller && damage:1 all(creature) && ability$!sacrifice notatarget(land|mybattlefield)!$ controller && ability$!sacrifice notatarget(land|mybattlefield)!$ opponent
 auto=if type(*|myHand)~morethan~1 then choice name(Discard 2 cards) discard:2 controller && damage:2 all(creature) && ability$!sacrifice notatarget(<2>land|mybattlefield)!$ controller && ability$!sacrifice notatarget(<2>land|mybattlefield)!$ opponent
@@ -16365,6 +16403,18 @@ auto=damage:2 all(creature[-flying]|mybattlefield)
 text=Flame Sweep deals 2 damage to each creature except for creatures you control with flying.
 mana={2}{R}
 type=Instant
+[/card]
+[card]
+name=Flame-Wreathed Phoenix
+abilities=flying
+auto=all(this) flipacoin winability counter(0/0,1,TributeUnpaid) winabilityend loseability counter(1/1,2) loseabilityend flipend
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:all(this) transforms((,newability[counter(0/0.-1.TributeUnpaid)],newability[haste],newability[handdeath])) forever
+text=Flying -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Flame-Wreathed Phoenix enters the battlefield, if tribute wasn't paid, it gains haste and "When this creature dies, return it to its owner's hand."
+mana={2}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
 [/card]
 [card]
 name=Flameblade Adept
@@ -28156,7 +28206,7 @@ type=Land
 name=Malakir Rebirth
 autohand={0}:restriction{can play land} name(Malakir Mire) name(Malakir Mire) flip(Malakir Mire) forcetype(land)
 auto=life:-2 controller
-auto=name(Choose a creature) name(Choose a creature) target(creature) transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield) and!(tap(noevent))!])) ueot
+auto=name(Choose a creature) name(Choose a creature) target(creature) transforms((,newability[inplaytapdeath])) ueot
 text=Choose target creature. You lose 2 life. Until end of turn, that creature gains "When this creature dies, return it to the battlefield tapped under its owner's control."
 mana={B}
 type=Instant
@@ -30959,6 +31009,18 @@ power=10
 toughness=6
 [/card]
 [card]
+name=Nessian Demolok
+auto=all(this) flipacoin winability counter(0/0,1,TributeUnpaid) winabilityend loseability counter(1/1,3) loseabilityend flipend
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:all(this) counter(0/0,-1,TributeUnpaid)
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:target(*[-creature]|battlefield) destroy
+text=Tribute 3 (As this creature enters the battlefield, an opponent of your choice may place three +1/+1 counters on it.) -- When Nessian Demolok enters the battlefield, if tribute wasn't paid, destroy target noncreature permanent.
+mana={3}{G}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
 name=Nessian Hornbeetle
 auto=@each my combatbegins restriction{type(creature[power>=4]|mybattlefield)~morethan~0}:counter(1/1,1)
 text=At the beginning of combat on your turn, if you control another creature with power 4 or greater, put a +1/+1 counter on Nessian Hornbeetle.
@@ -32705,6 +32767,18 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Oracle of Bones
+auto=if type(*[instant;sorcery]|mygraveyard)~morethan~0 then all(this) flipacoin winability counter(0/0,1,TributeUnpaid) winabilityend loseability counter(1/1,2) loseabilityend flipend
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:counter(0/0,-1,TributeUnpaid) all(this)
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:may name(Cast instant or sorcery) name(Cast instant or sorcery) activate castcard(normal) target(*[sorcery;instant]|mygraveyard)
+text=Haste -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Oracle of Bones enters the battlefield, if tribute wasn't paid, you may cast an instant or sorcery card from your hand without paying its mana cost.
+mana={2}{R}{R}
+type=Creature
+subtype=Minotaur Shaman
+power=3
+toughness=1
+[/card]
+[card]
 name=Oracle's Vault
 auto={2}{T}{counter(0/0,1,brick)}:deplete:1 controller
 auto={T}{restriction type(this[counter(brick)>=3])~morethan~0}:deplete:1 controller
@@ -33983,6 +34057,16 @@ type=Creature
 subtype=Illusion Ninja
 power=2
 toughness=2
+[/card]
+[card]
+name=Pharagax Giant
+auto=all(this) flipacoin winability damage:5 opponent winabilityend loseability counter(1/1,2) loseabilityend flipend
+text=Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Pharagax Giant enters the battlefield, if tribute wasn't paid, Pharagax Giant deals 5 damage to each opponent.
+mana={4}{R}
+type=Creature
+subtype=Giant
+power=3
+toughness=3
 [/card]
 [card]
 name=Pharika's Libation
@@ -41131,6 +41215,18 @@ power=*
 toughness=3
 [/card]
 [card]
+name=Shambling Swarm
+auto=@movedTo(this|graveyard) from(battlefield):choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
+auto=@movedTo(this|graveyard) from(battlefield):choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
+auto=@movedTo(this|graveyard) from(battlefield):choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
+text=When Shambling Swarm dies, distribute three -1/-1 counters among one, two, or three target creatures. For each -1/-1 counter you put on a creature this way, remove a -1/-1 counter from that creature at the beginning of the next end step.
+mana={1}{B}{B}{B}
+type=Creature
+subtype=Horror
+power=3
+toughness=3
+[/card]
+[card]
 name=Shanna, Sisay's Legacy
 auto=cantbetargetof(artifact,creatures,enchantment[-auras],land,planeswalker|opponentbattlefield,opponentgraveyard)
 auto=foreach(creature|myBattlefield) 1/1
@@ -41709,6 +41805,19 @@ type=Creature
 subtype=Zombie Bird Warrior
 power=2
 toughness=1
+[/card]
+[card]
+name=Shrike Harpy
+abilities=flying
+auto=all(this) flipacoin winability counter(0/0,1,TributeUnpaid) winabilityend loseability counter(1/1,2) loseabilityend flipend
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:all(this) counter(0/0,-1,TributeUnpaid)
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:ability$!name(Sacrifice a creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
+text=Flying -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Shrike Harpy enters the battlefield, if tribute wasn't paid, target opponent sacrifices a creature.
+mana={3}{B}{B}
+type=Creature
+subtype=Harpy
+power=2
+toughness=2
 [/card]
 [card]
 name=Shrine Keeper
@@ -42326,6 +42435,19 @@ type=Creature
 subtype=Siren Pirate
 power=1
 toughness=2
+[/card]
+[card]
+name=Siren of the Fanged Coast
+abilities=flying
+auto=if type(creature|opponentBattlefield)~morethan~0 then all(this) flipacoin winability counter(0/0,1,TributeUnpaid) winabilityend loseability counter(1/1,3) loseabilityend flipend
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:all(this) counter(0/0,-1,TributeUnpaid)
+auto=@counteradded(0/0,1,TributeUnpaid) from(this) once:target(creature) moveto(mybattlefield)
+text=Flying -- Tribute 3 (As this creature enters the battlefield, an opponent of your choice may place three +1/+1 counters on it.) -- When Siren of the Fanged Coast enters the battlefield, if tribute wasn't paid, gain control of target creature.
+mana={3}{U}{U}
+type=Creature
+subtype=Siren
+power=1
+toughness=1
 [/card]
 [card]
 name=Siren Reaver
@@ -46250,7 +46372,7 @@ type=Sorcery
 [card]
 name=Supernatural Stamina
 target=creature
-auto=transforms((,newability[2/0],newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerBattlefield) and!(tap(noevent))!])) ueot
+auto=transforms((,newability[2/0],newability[inplaytapdeath])) ueot
 text=Until end of turn, target creature gets +2/+0 and gains "When this creature dies, return it to the battlefield tapped under its owner's control."
 mana={B}
 type=Instant
@@ -51841,7 +51963,7 @@ type=Sorcery
 [card]
 name=Verdant Rebirth
 target=creature
-auto=transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerHand)])) ueot
+auto=transforms((,newability[handdeath])) ueot
 auto=draw:1 controller
 text=Until end of turn, target creature gains "When this creature dies, return it to its owner's hand." -- Draw a card.
 mana={1}{G}

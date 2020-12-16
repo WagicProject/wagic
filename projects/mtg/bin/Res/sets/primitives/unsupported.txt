@@ -1412,12 +1412,6 @@ mana={3}{B}{G} // {G}{U}
 type=Instant // Instant
 [/card]
 [card]
-name=Bounty of the Hunt
-text=You may exile a green card from your hand rather than pay Bounty of the Hunt's mana cost. -- Distribute three +1/+1 counters among one, two, or three target creatures. For each +1/+1 counter you put on a creature this way, remove a +1/+1 counter from that creature at the beginning of the next cleanup step.
-mana={3}{G}{G}
-type=Instant
-[/card]
-[card]
 name=Brago's Favor
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Spells with the chosen name you cast cost {1} less to cast.
 type=Conspiracy
@@ -4297,16 +4291,6 @@ name=Five-Finger Discount
 text=Put target nonland permanent into your hand. You may spend mana as though it were mana of any color the next time you cast that card.
 mana={4}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Flame-Wreathed Phoenix
-abilities=flying
-text=Flying -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Flame-Wreathed Phoenix enters the battlefield, if tribute wasn't paid, it gains haste and "When this creature dies, return it to its owner's hand."
-mana={2}{R}{R}
-type=Creature
-subtype=Phoenix
-power=3
-toughness=3
 [/card]
 [card]
 name=Flames of the Blood Hand
@@ -8878,15 +8862,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Nessian Demolok
-text=Tribute 3 (As this creature enters the battlefield, an opponent of your choice may place three +1/+1 counters on it.) -- When Nessian Demolok enters the battlefield, if tribute wasn't paid, destroy target noncreature permanent.
-mana={3}{G}{G}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-[/card]
-[card]
 name=Nesting Grounds
 auto={T}:add{1}
 text={T}: Add {1}. -- {1}, {T}: Move a counter from target permanent you control onto another target permanent. Activate this ability only any time you could cast a sorcery.
@@ -9305,15 +9280,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Oracle of Bones
-text=Haste -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Oracle of Bones enters the battlefield, if tribute wasn't paid, you may cast an instant or sorcery card from your hand without paying its mana cost.
-mana={2}{R}{R}
-type=Creature
-subtype=Minotaur Shaman
-power=3
-toughness=1
-[/card]
-[card]
 name=Oracle's Attendants
 text={T}: All damage that would be dealt to target creature this turn by a source of your choice is dealt to Oracle's Attendants instead.
 mana={3}{W}
@@ -9645,15 +9611,6 @@ type=Creature
 subtype=Illusion Horse
 power=1
 toughness=1
-[/card]
-[card]
-name=Pharagax Giant
-text=Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Pharagax Giant enters the battlefield, if tribute wasn't paid, Pharagax Giant deals 5 damage to each opponent.
-mana={4}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=3
 [/card]
 [card]
 name=Phoebe, Head of S.N.E.A.K.
@@ -11443,15 +11400,6 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
-name=Shambling Swarm
-text=When Shambling Swarm dies, distribute three -1/-1 counters among one, two, or three target creatures. For each -1/-1 counter you put on a creature this way, remove a -1/-1 counter from that creature at the beginning of the next end step.
-mana={1}{B}{B}{B}
-type=Creature
-subtype=Horror
-power=3
-toughness=3
-[/card]
-[card]
 name=Shape Stealer
 text=Whenever Shape Stealer blocks or becomes blocked by a creature, change Shape Stealer's power and toughness to that creature's power and toughness until end of turn.
 mana={U}{U}
@@ -11636,16 +11584,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Shrike Harpy
-abilities=flying
-text=Flying -- Tribute 2 (As this creature enters the battlefield, an opponent of your choice may place two +1/+1 counters on it.) -- When Shrike Harpy enters the battlefield, if tribute wasn't paid, target opponent sacrifices a creature.
-mana={3}{B}{B}
-type=Creature
-subtype=Harpy
-power=2
-toughness=2
-[/card]
-[card]
 name=Shrouded Lore
 text=Target opponent chooses a card in your graveyard. You may pay {B}. If you do, repeat this process except that opponent can't choose a card already chosen for Shrouded Lore. Then put the last chosen card into your hand.
 mana={B}
@@ -11741,16 +11679,6 @@ type=Creature
 subtype=Ogre Mutant
 power=3
 toughness=2
-[/card]
-[card]
-name=Siren of the Fanged Coast
-abilities=flying
-text=Flying -- Tribute 3 (As this creature enters the battlefield, an opponent of your choice may place three +1/+1 counters on it.) -- When Siren of the Fanged Coast enters the battlefield, if tribute wasn't paid, gain control of target creature.
-mana={3}{U}{U}
-type=Creature
-subtype=Siren
-power=1
-toughness=1
 [/card]
 [card]
 name=Siren's Call

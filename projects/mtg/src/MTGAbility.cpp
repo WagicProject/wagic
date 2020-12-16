@@ -4925,6 +4925,9 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::NOMANA] = true;
     badAbilities[(int)Constants::ONLYMANA] = true;
     badAbilities[(int)Constants::EXILEDEATH] = true;
+    badAbilities[(int)Constants::HANDDEATH] = true;
+    badAbilities[(int)Constants::INPLAYDEATH] = true;
+    badAbilities[(int)Constants::INPLAYTAPDEATH] = true;
     badAbilities[(int)Constants::WEAK] = true;
     badAbilities[(int)Constants::NOLIFEGAIN] = true;
     badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
@@ -5741,7 +5744,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         if (card->basicAbilities[(int)Constants::EXILEDEATH])
         {
             card->controller()->game->putInZone(card, card->getCurrentZone(), card->owner->game->exile);
-
+        }
+        else if (card->basicAbilities[(int)Constants::HANDDEATH])
+        {
+            card->controller()->game->putInZone(card, card->getCurrentZone(), card->owner->game->hand);
         }
         else if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] > 0)
         {
