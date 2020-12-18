@@ -121,10 +121,26 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     if (found != string::npos)
     {
         int maxtargets = 1;
-        size_t several = s.find("<anyamount>");
+        size_t several = s.find("<");
+        if (several != string::npos){
+            size_t idx = s.find(">");
+            if(idx != string::npos){
+                string tmp = s.substr(several+1,idx-1);
+                WParsedInt* parser = NEW WParsedInt(tmp, card);
+                maxtargets = parser->intValue;
+				SAFE_DELETE(parser);
+            }
+        }
+        several = s.find("<anyamount>");
         if (several != string::npos) maxtargets = TargetChooser::UNLITMITED_TARGETS;
+        found = s.find("creature,planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        found = s.find("planeswalker,creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
         found = s.find("creature");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other); //Any Damageable target (player, creature)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other); //2 Damageable target (player, creature)
+        found = s.find("planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "planeswalker"); //2 Damageable target (player, planeswalker)
         return NEW PlayerTargetChooser(observer, card, maxtargets); //Any player
     }
 
@@ -1280,9 +1296,18 @@ bool CardTargetChooser::equals(TargetChooser * tc)
 TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type, MTGCardInstance * card, int _maxtargets, bool other,bool targetMin) :
     TargetZoneChooser(observer, card, _maxtargets, other,targetMin)
 {
-    int id = MTGAllCards::findType(_type);
-    nbtypes = 0;
-    addType(id);
+    if(!strcmp(_type,"creature,planeswalker")){
+        int id = MTGAllCards::findType("creature");
+        nbtypes = 0;
+        addType(id);
+        id = MTGAllCards::findType("planeswalker");
+        addType(id);
+    }
+    else {
+        int id = MTGAllCards::findType(_type);
+        nbtypes = 0;
+        addType(id);
+    }
     int default_zones[] = { MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD };
     init(default_zones, 2);
 }

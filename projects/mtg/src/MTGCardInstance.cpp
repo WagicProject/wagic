@@ -505,14 +505,16 @@ int MTGCardInstance::totem(bool noregen)
 int MTGCardInstance::toGrave( bool forced )
 {
     Player * p = controller();
-    if (basicAbilities[(int)Constants::EXILEDEATH])
+    if (basicAbilities[(int)Constants::EXILEDEATH] || basicAbilities[(int)Constants::GAINEDEXILEDEATH])
     {
         p->game->putInZone(this, p->game->inPlay, owner->game->exile);
+        basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
         return 1;
     }
-    if (basicAbilities[(int)Constants::HANDDEATH])
+    if (basicAbilities[(int)Constants::HANDDEATH] || basicAbilities[(int)Constants::GAINEDHANDDEATH])
     {
         p->game->putInZone(this, p->game->inPlay, owner->game->hand);
+        basicAbilities[(int)Constants::GAINEDHANDDEATH] = 0;
         return 1;
     }
     if (basicAbilities[(int)Constants::INPLAYDEATH] || basicAbilities[(int)Constants::INPLAYTAPDEATH])

@@ -201,7 +201,10 @@ const char* Constants::MTGBasicAbilities[] = {
     "threeblockers", //It can be blocked just by 3 creatures or more.
     "handdeath", //It goes in hand after death.
     "inplaydeath", //It goes back in play untapped after death.
-    "inplaytapdeath" //It goes back in play tapped after death.
+    "inplaytapdeath", //It goes back in play tapped after death.
+    "gainedexiledeath", //It goes to exile after death (use just to give add ability to instants and sorceries which originally have not, e.g. with transforms keyword)
+    "gainedhanddeath", //It goes to hand after death (use just to give add ability to instants and sorceries which originally have not, e.g. with transforms keyword)
+    "cycling" //It has cycling ability
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
