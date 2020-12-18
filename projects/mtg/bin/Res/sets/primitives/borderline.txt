@@ -250,7 +250,9 @@ toughness=1
 [card]
 name=Admiral Beckett Brass
 auto=lord(other pirate|mybattlefield) 1/1
-auto=@each my endofturn restriction{type(opponent[damaged]) from(<~morethan~3>creature)~morethan~0}:moveto(mybattlefield) target(*|opponentbattlefield)
+auto=@combatdamagefoeof(player) from(*[pirate]|myBattlefield):counter(0/0,1,PirateDamage) all(this)
+auto=@each my endofturn:this(counter{0/0.1.PirateDamage}>=3) removeallcounters(0/0,1,PirateDamage) && ability$!name(Gain control of permanent) name(Gain control of permanent) moveto(mybattlefield) target(*[-land]|opponentbattlefield)!$ controller
+auto=@each my endofturn:this(counter{0/0.1.PirateDamage}<3) removeallcounters(0/0,1,PirateDamage)
 text=Other Pirates you control get +1/+1. -- At the beginning of your end step, gain control of target nonland permanent controlled by a player who was dealt combat damage by three or more Pirates this turn.
 mana={1}{U}{B}{R}
 type=Legendary Creature
@@ -575,7 +577,7 @@ type=Sorcery
 [/card]
 [card]
 name=Agonizing Syphon
-auto=damage:3 target(creature,player) && life:3
+auto=damage:3 target(player,creature,planeswalker) && life:3
 text=Agonizing Syphon deals 3 damage to any target and you gain 3 life.
 mana={3}{B}
 type=Sorcery
@@ -1070,7 +1072,7 @@ name=Amphin Mutineer
 auto=if type(creature[-salamander]|opponentbattlefield)~morethan~0 then choice name(Exile opponent's creature) name(Exile opponent's creature) moveto(exile) target(creature[-salamander]|opponentbattlefield) && token(Salamander Warrior,Creature Salamander Warrior,4/3,blue) opponent
 auto=if type(creature[-salamander]|myBattlefield)~morethan~0 then choice name(Exile your creature) name(Exile your creature) moveto(exile) target(creature[-salamander]|mybattlefield) && token(Salamander Warrior,Creature Salamander Warrior,4/3,blue)
 auto=choice name(Don't exile any creature) name(Don't exile any creature) donothing
-autograveyard={4}{U}{U}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={4}{U}{U}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Amphin Mutineer enters the battlefield, exile up to one target non-Salamander creature. That creature's controller creates a 4/3 blue Salamander Warrior creature token. -- Encore {4}{U}{U} ({4}{U}{U}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={3}{U}
 type=Creature
@@ -1313,7 +1315,7 @@ toughness=3
 [/card]
 [card]
 name=Angel of the God-Pharaoh
-abilities=flying
+abilities=flying,cycling
 autohand=__CYCLING__({2})
 text=Flying -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{W}{W}
@@ -1931,7 +1933,7 @@ toughness=6
 [/card]
 [card]
 name=Archfiend of Ifnir
-abilities=flying
+abilities=flying,cycling
 auto=@movedto(*|mygraveyard) from(myhand):all(creature|opponentbattlefield) counter(-1/-1,1)
 autohand=__CYCLING__({2})
 text=Flying -- Whenever you cycle or discard another card, put a -1/-1 counter on each creature your opponents control. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -2530,6 +2532,7 @@ type=Artifact
 [/card]
 [card]
 name=Astral Drift
+abilities=cycling
 auto=@cycled(*|myHand):may (blink)ueot target(creature)
 autohand=@cycled(this|myHand):may (blink)ueot target(creature)
 autohand=__CYCLING__({2}{W})
@@ -2667,7 +2670,7 @@ auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:counter(
 auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:counter(1/1,1) target(other creature[attacking;power<=18]|myBattlefield)
 auto=@combat(attacking) source(this) restriction{compare(p)~equalto~20}:counter(1/1,1) target(other creature[attacking;power<=19]|myBattlefield)
 auto=@combat(attacking) source(this) restriction{compare(p)~morethan~20}:counter(1/1,1) target(other creature[attacking;power<=20]|myBattlefield)
-auto=@each my combatbegins:ability$!name(Choose a creature) choice name(Choose non-red, non-white creature) target(creature[-red;-white]|myBattlefield) 2/0 ueot _ choice name(Choose red creature) target(creature[red]|myBattlefield) transforms((,newability[2/0 ueot],newability[trample ueot])) ueot _ name(Choose white creature) target(creature[white]|myBattlefield) transforms((,newability[2/0 ueot],newability[vigilance ueot])) ueot!$ conroller
+auto=@each my combatbegins:ability$!name(Choose a creature) choice name(Choose non-red, non-white creature) target(creature[-red;-white]|myBattlefield) 2/0 ueot _ choice name(Choose red creature) target(creature[red]|myBattlefield) transforms((,newability[2/0 ueot],newability[trample ueot])) ueot _ name(Choose white creature) target(creature[white]|myBattlefield) transforms((,newability[2/0 ueot],newability[vigilance ueot])) ueot!$ controller
 text=Flying -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- At the beginning of combat on your turn, choose up to one target creature you control. Until end of turn, that creature gets +2/+0, gains trample if it's red, and gains vigilance if it's white.
 mana={2}{R}{W}
 type=Legendary Creature
@@ -2877,7 +2880,7 @@ toughness=3
 [/card]
 [card]
 name=Avian Oddity
-abilities=flying
+abilities=flying,cycling
 autohand=__CYCLING__({2}{U})
 autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,Flying],newability[this(counter{0/0.1.Flying}>=1) flying target(creature|myBattlefield)]))
 text=Flying -- Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) -- When you cycle Avian Oddity, put a flying counter on target creature you control.
@@ -2989,7 +2992,8 @@ toughness=2
 [card]
 name=Azcanta, the Sunken Ruin
 auto={T}:Add{U}
-auto={2}{U}{T}:moverandom(*[-land;-creature]) from(mylibrary) to(myhand)
+aicode={2}{U}{T}:activate target(*[-land;-human;zpos<=4]|mylibrary) moveto(myhand)
+auto={2}{U}{T}:name(Look top 4 cards) reveal:4 optionone name(Get a card) target(<upto:1>*[-land;-creature]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 text=(Transforms from Search for Azcanta.) -- {T}: Add {U} to your mana pool. -- {2}{U}, {T}: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
 type=Legendary Land
 [/card]
@@ -3839,6 +3843,7 @@ toughness=1
 [/card]
 [card]
 name=Beneath the Sands
+abilities=cycling
 auto=moveto(mybattlefield) target(land[basic]|mylibrary) and!(tap(noevent))!
 autohand=__CYCLING__({2})
 text=Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -4254,7 +4259,7 @@ type=Instant
 name=Blazing Sunsteel
 auto={4}:equip
 auto=teach(creature) 1/0
-auto=@damaged(mytgt):damage:thatmuch target(player,creature)
+auto=@damaged(mytgt):damage:thatmuch target(player,creature,planeswalker)
 text=Equipped creature gets +1/+0 for each opponent you have. -- Whenever equipped creature is dealt damage, it deals that much damage to any target. -- Equip {4}
 mana={1}{R}
 type=Artifact
@@ -4481,7 +4486,9 @@ toughness=2
 [/card]
 [card]
 name=Blitz of the Thunder-Raptor
-auto=foreach(*[instant,sorcery]|myGraveyard)) damage:1 target(creature,player,planeswalker) exiledeath
+target=creature,planeswalker
+auto=transforms((,newability[exiledeath])) ueot
+auto=damage:pginstantsorcery
 text=Blitz of the Thunder-Raptor deals damage to target creature or planeswalker equal to the number of instant and sorcery cards in your graveyard. If that creature or planeswalker would die this turn, exile it instead.
 mana={1}{R}
 type=Instant
@@ -4593,6 +4600,15 @@ auto=ability$!notatarget(creature|mygraveyard) moveto(myhand)!$ controller
 text=As an additional cost to cast this spell, sacrifice a creature. -- Return a creature card from your graveyard to the battlefield, then return another creature card from your graveyard to your hand.
 mana={3}{B}{S(creature|myBattlefield)}
 type=Sorcery
+[/card]
+[card]
+name=Blood Sun
+auto=draw:1 controller
+auto=lord(land[-basic]|battlefield) transforms((,newability[loseabilities],newability[{T}:add{C}]))
+auto=lord(land[basic]|battlefield) transforms((,newability[loseabilities]))
+text=When Blood Sun enters the battlefield, draw a card. -- All lands lose all abilities except mana abilities.
+mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 name=Bloodborn Scoundrels
@@ -4885,7 +4901,7 @@ type=Legendary Artifact
 [/card]
 [card]
 name=Bolrac-Clan Crusher
-auto={T}{C(1/1,-1),creature|mybattlefield}:damage:2 target(creature,player) 
+auto={T}{C(1/1,-1),creature|mybattlefield}:damage:2 target(player,creature,planeswalker) 
 text={T}, Remove a +1/+1 counter from a creature you control: Bolrac-Clan Crusher deals 2 damage to any target.
 mana={3}{R}{G}
 type=Creature
@@ -5065,9 +5081,10 @@ abilities=canplayfromexile,flash,adventure
 restriction=myturnonly
 other={1}{R} name(Adventure)
 #MISSING: damage can't be prevented
-auto=if paid(alternative) then ability$! name(2 damages to player) choice name(2 damages to player) damage:2 target(player) _ choice name(2 damages to planeswalker) damage:2 target(planeswalker) _ choice name(2 damages to creature) damage:2 target(creature) !$ controller
+auto=if paid(alternative) then damage:2 target(player,creature,planeswalker)
 auto=if paid(alternative) then moveto(exile) all(this)
-auto=@targeted(this):damage:2 opponent
+auto=@targeted(this) from(*|opponentzones):damage:2 opponent
+auto=@targeted(this) from(*|myzones):damage:2 controller
 text=Whenever Bonecrusher Giant becomes the target of a spell, Bonecrusher Giant deals 2 damage to that spell's controller. -- Damage can't be prevented this turn. Stomp deals 2 damage to any target.
 mana={2}{R}
 type=Creature
@@ -5185,6 +5202,7 @@ type=Enchantment
 [/card]
 [card]
 name=Boon of the Wish-Giver
+abilities=cycling
 auto=draw:4 controller
 autohand=__CYCLING__({1})
 text=Draw four cards. -- Cycling {1} ({1}, Discard this card: Draw a card.)
@@ -5544,7 +5562,7 @@ toughness=3
 [card]
 name=Briarblade Adept
 auto=@combat(attacking) source(this):target(creature|opponentbattlefield) -1/-1 ueot
-autograveyard={3}{B}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={3}{B}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Whenever Briarblade Adept attacks, target creature an opponent controls gets -1/-1 until end of turn. -- Encore {3}{B} ({3}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={4}{B}
 type=Creature
@@ -5842,6 +5860,15 @@ text=Kicker {2}{U} (You may pay an additional {2}{U} as you cast this spell.) --
 mana={U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Buccaneer's Bravado
+restriction=type(creature|battlefield)~morethan~0
+auto=choice name(Target creature gets +1/+1 and first strike) target(creature) transforms((,newability[1/1],newability[first strike])) ueot
+auto=if type(creature[pirate]|battlefield)~morethan~0 then choice name(Target pirate gets +1/+1 and double strike) target(creature[pirate]) transforms((,newability[1/1],newability[double strike])) ueot
+text=Choose one — -- • Target creature gets +1/+1 and gains first strike until end of turn. -- • Target Pirate gets +1/+1 and gains double strike until end of turn.
+mana={1}{R}
+type=Instant
 [/card]
 [card]
 name=Bull-Rush Bruiser
@@ -6245,6 +6272,7 @@ toughness=2
 [/card]
 [card]
 name=Canyon Slough
+abilities=cycling
 auto=tap
 autohand=__CYCLING__({2})
 text=({T}: Add {B} or {R} to your mana pool.) -- Canyon Slough enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -6534,7 +6562,7 @@ type=Instant
 [/card]
 [card]
 name=Cast Out
-abilities=flash
+abilities=flash,cycling
 auto=blink(*[-land]|opponentbattlefield) forsrc
 autohand=__CYCLING__({W})
 text=Flash -- When Cast Out enters the battlefield, exile target nonland permanent an opponent controls until Cast Out leaves the battlefield. -- Cycling {W} ({W}, Discard this card: Draw a card.)
@@ -6864,6 +6892,7 @@ toughness=1
 [/card]
 [card]
 name=Censor
+abilities=cycling
 target=*|stack
 auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 autohand=__CYCLING__({U})
@@ -6932,9 +6961,10 @@ toughness=1
 [/card]
 [card]
 name=Chain Lightning
-target=creature,player,planeswalker
-auto=damage:3 && transforms((,newability[pay[[{R}{R}]],newability[may name(copy chain lightning) activate name(copy chain lightning) castcard(copied noevent named!:chain lightning:!)])) forever
-text=Chain Lightning deals 3 damage to any target. Then that player or that permanent's controller may pay {R}{R}. IF the player does, he or she may copy this spell and may choose a new target for that copy.
+auto=choice name(Damage player) target(player) damage:3 && ability$!name(Pay and copy) pay[[{R}{R}]] name(copy chain lightning) activate castcard(copied noevent named!:chain lightning:!)!$ targetedplayer
+auto=if type(creature|battlefield)~morethan~0 then choice name(Damage creature) name(Damage creature) target(creature) damage:3 && ability$!name(Pay and copy) pay[[{R}{R}]] name(copy chain lightning) activate castcard(copied noevent named!:chain lightning:!)!$ targetcontroller
+auto=if type(planeswalker|battlefield)~morethan~0 then choice name(Damage planeswalker) name(Damage planeswalker) target(planeswalker) damage:3 && ability$!name(Pay and copy) pay[[{R}{R}]] name(copy chain lightning) activate castcard(copied noevent named!:chain lightning:!)!$ targetcontroller
+text=Chain Lightning deals 3 damage to any target. Then that player or that permanent's controller may pay {R}{R}. If the player does, he or she may copy this spell and may choose a new target for that copy.
 mana={R}
 type=Instant
 [/card]
@@ -7032,26 +7062,26 @@ toughness=5
 name=Chamber Sentry
 abilities=sunburst
 auto=counter(1/1,sunburst,Charge)
-auto={1}{T}{C(1/1,-1)}:damage:1 target(creature,player)
-auto={2}{T}{C(1/1,-2)}:damage:2 target(creature,player)
-auto={3}{T}{C(1/1,-3)}:damage:3 target(creature,player)
-auto={4}{T}{C(1/1,-4)}:damage:4 target(creature,player)
-auto={5}{T}{C(1/1,-5)}:damage:5 target(creature,player)
-auto={6}{T}{C(1/1,-6)}:damage:6 target(creature,player)
-auto={7}{T}{C(1/1,-7)}:damage:7 target(creature,player)
-auto={8}{T}{C(1/1,-8)}:damage:8 target(creature,player)
-auto={9}{T}{C(1/1,-9)}:damage:9 target(creature,player)
-auto={10}{T}{C(1/1,-10)}:damage:10 target(creature,player)
-auto={11}{T}{C(1/1,-11)}:damage:11 target(creature,player)
-auto={12}{T}{C(1/1,-12)}:damage:12 target(creature,player)
-auto={13}{T}{C(1/1,-13)}:damage:13 target(creature,player)
-auto={14}{T}{C(1/1,-14)}:damage:14 target(creature,player)
-auto={15}{T}{C(1/1,-15)}:damage:15 target(creature,player)
-auto={16}{T}{C(1/1,-16)}:damage:16 target(creature,player)
-auto={17}{T}{C(1/1,-17)}:damage:17 target(creature,player)
-auto={18}{T}{C(1/1,-18)}:damage:18 target(creature,player)
-auto={19}{T}{C(1/1,-19)}:damage:19 target(creature,player)
-auto={20}{T}{C(1/1,-20)}:damage:20 target(creature,player)
+auto={1}{T}{C(1/1,-1)}:damage:1 target(player,creature,planeswalker)
+auto={2}{T}{C(1/1,-2)}:damage:2 target(player,creature,planeswalker)
+auto={3}{T}{C(1/1,-3)}:damage:3 target(player,creature,planeswalker)
+auto={4}{T}{C(1/1,-4)}:damage:4 target(player,creature,planeswalker)
+auto={5}{T}{C(1/1,-5)}:damage:5 target(player,creature,planeswalker)
+auto={6}{T}{C(1/1,-6)}:damage:6 target(player,creature,planeswalker)
+auto={7}{T}{C(1/1,-7)}:damage:7 target(player,creature,planeswalker)
+auto={8}{T}{C(1/1,-8)}:damage:8 target(player,creature,planeswalker)
+auto={9}{T}{C(1/1,-9)}:damage:9 target(player,creature,planeswalker)
+auto={10}{T}{C(1/1,-10)}:damage:10 target(player,creature,planeswalker)
+auto={11}{T}{C(1/1,-11)}:damage:11 target(player,creature,planeswalker)
+auto={12}{T}{C(1/1,-12)}:damage:12 target(player,creature,planeswalker)
+auto={13}{T}{C(1/1,-13)}:damage:13 target(player,creature,planeswalker)
+auto={14}{T}{C(1/1,-14)}:damage:14 target(player,creature,planeswalker)
+auto={15}{T}{C(1/1,-15)}:damage:15 target(player,creature,planeswalker)
+auto={16}{T}{C(1/1,-16)}:damage:16 target(player,creature,planeswalker)
+auto={17}{T}{C(1/1,-17)}:damage:17 target(player,creature,planeswalker)
+auto={18}{T}{C(1/1,-18)}:damage:18 target(player,creature,planeswalker)
+auto={19}{T}{C(1/1,-19)}:damage:19 target(player,creature,planeswalker)
+auto={20}{T}{C(1/1,-20)}:damage:20 target(player,creature,planeswalker)
 autograveyard={W}{U}{B}{R}{G}:moveto(myhand)
 text=Chamber Sentry enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it. -- {X}, {T}, Remove X +1/+1 counters from Chamber Sentry: It deals X damage to any target. -- {W}{U}{B}{R}{G}: Return Chamber Sentry from your graveyard to your hand.
 mana={X}
@@ -7394,6 +7424,18 @@ type=Creature
 subtype=Dinosaur
 power=5
 toughness=5
+[/card]
+[card]
+name=Charging Tuskodon
+abilities=trample
+auto=@combatdamagefoeof(player) from(this):damage:thatmuch opponent
+auto=@combatdamageof(player) from(this):damage:thatmuch controller
+text=Trample -- If Charging Tuskodon would deal combat damage to a player, it deals double that damage to that player instead.
+mana={3}{R}{R}
+type=Creature
+subtype=Dinosaur
+power=4
+toughness=4
 [/card]
 [card]
 name=Charging War Boar
@@ -7993,8 +8035,7 @@ type=Sorcery
 [/card]
 [card]
 name=Cleansing Screech
-target=creature,player,planeswalker
-auto=damage:4
+auto=damage:4 target(player,creature,planeswalker)
 text=Cleansing Screech deals 4 damage to any target.
 mana={4}{R}
 type=Sorcery
@@ -8206,7 +8247,7 @@ toughness=5
 name=Coastline Marauders
 abilities=trample
 auto=@combat(attacking) source(this):type:land:opponentbattlefield/0 ueot
-autograveyard={4}{R}{R}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={4}{R}{R}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Trample -- Whenever Coastline Marauders attacks, it gets +1/+0 until end of turn for each land defending player controls. -- Encore {4}{R}{R} ({4}{R}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={2}{R}
 type=Creature
@@ -8508,27 +8549,27 @@ type=Sorcery
 [/card]
 [card]
 name=Comet Storm
-kicker=multi{1}
-auto=if compare(kicked)~equalto~0 then name(damage 1 target) name(damage 1 target) target(*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~1 then name(damage 2 targets) name(damage 2 targets) target(<upto:2>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~2 then name(damage 3 targets) name(damage 3 targets) target(<upto:3>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~3 then name(damage 4 targets) name(damage 4 targets) target(<upto:4>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~4 then name(damage 5 targets) name(damage 5 targets) target(<upto:5>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~5 then name(damage 6 targets) name(damage 6 targets) target(<upto:6>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~6 then name(damage 7 targets) name(damage 7 targets) target(<upto:7>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~7 then name(damage 8 targets) name(damage 8 targets) target(<upto:8>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~8 then name(damage 9 targets) name(damage 9 targets) target(<upto:9>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~9 then name(damage 10 targets) name(damage 10 targets) target(<upto:10>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~10 then name(damage 11 targets) name(damage 11 targets) target(<upto:11>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~11 then name(damage 12 targets) name(damage 12 targets) target(<upto:12>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~12 then name(damage 13 targets) name(damage 13 targets) target(<upto:13>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~13 then name(damage 14 targets) name(damage 14 targets) target(<upto:14>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~14 then name(damage 15 targets) name(damage 15 targets) target(<upto:15>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~15 then name(damage 16 targets) name(damage 16 targets) target(<upto:16>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~16 then name(damage 17 targets) name(damage 17 targets) target(<upto:17>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~17 then name(damage 18 targets) name(damage 18 targets) target(<upto:18>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~18 then name(damage 19 targets) name(damage 19 targets) target(<upto:19>*[creature;player;planeswalker]) damage:X
-auto=if compare(kicked)~equalto~19 then name(damage 20 targets) name(damage 20 targets) target(<upto:20>*[creature;player;planeswalker]) damage:X
+abilities=hasotherkicker
+auto=this(X>0) choice name(kicker = 0) name(kicker = 0) target(player,creature,planeswalker) damage:X
+auto=this(X>1) choice name(kicker = 1) name(kicker = 1) target(<2>player,creature,planeswalker) damage:Xminus1minusend
+auto=this(X>2) choice name(kicker = 2) name(kicker = 2) target(<3>player,creature,planeswalker) damage:Xminus2minusend
+auto=this(X>3) choice name(kicker = 3) name(kicker = 3) target(<4>player,creature,planeswalker) damage:Xminus3minusend
+auto=this(X>4) choice name(kicker = 4) name(kicker = 4) target(<5>player,creature,planeswalker) damage:Xminus4minusend
+auto=this(X>5) choice name(kicker = 5) name(kicker = 5) target(<6>player,creature,planeswalker) damage:Xminus5minusend
+auto=this(X>6) choice name(kicker = 6) name(kicker = 6) target(<7>player,creature,planeswalker) damage:Xminus6minusend
+auto=this(X>7) choice name(kicker = 7) name(kicker = 7) target(<8>player,creature,planeswalker) damage:Xminus7minusend
+auto=this(X>8) choice name(kicker = 8) name(kicker = 8) target(<9>player,creature,planeswalker) damage:Xminus8minusend
+auto=this(X>9) choice name(kicker = 9) name(kicker = 9) target(<10>player,creature,planeswalker) damage:Xminus9minusend
+auto=this(X>10) choice name(kicker = 10) name(kicker = 10) target(<11>player,creature,planeswalker) damage:Xminus10minusend
+auto=this(X>11) choice name(kicker = 11) name(kicker = 11) target(<12>player,creature,planeswalker) damage:Xminus11minusend
+auto=this(X>12) choice name(kicker = 12) name(kicker = 12) target(<13>player,creature,planeswalker) damage:Xminus12minusend
+auto=this(X>13) choice name(kicker = 13) name(kicker = 13) target(<14>player,creature,planeswalker) damage:Xminus13minusend
+auto=this(X>14) choice name(kicker = 14) name(kicker = 14) target(<15>player,creature,planeswalker) damage:Xminus14minusend
+auto=this(X>15) choice name(kicker = 15) name(kicker = 15) target(<16>player,creature,planeswalker) damage:Xminus15minusend
+auto=this(X>16) choice name(kicker = 16) name(kicker = 16) target(<17>player,creature,planeswalker) damage:Xminus16minusend
+auto=this(X>17) choice name(kicker = 17) name(kicker = 17) target(<18>player,creature,planeswalker) damage:Xminus17minusend
+auto=this(X>18) choice name(kicker = 18) name(kicker = 18) target(<19>player,creature,planeswalker) damage:Xminus18minusend
+auto=this(X>19) choice name(kicker = 19) name(kicker = 19) target(<20>player,creature,planeswalker) damage:Xminus19minusend
 text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose any target, then choose another target for each time this spell was kicked. Comet Storm deals X damage to each of them.
 mana={X}{R}{R}
 type=Instant
@@ -8664,6 +8705,7 @@ toughness=2
 [/card]
 [card]
 name=Compelling Argument
+abilities=cycling
 target=player
 auto=deplete:5 targetedplayer
 autohand=__CYCLING__({U})
@@ -8673,6 +8715,7 @@ type=Sorcery
 [/card]
 [card]
 name=Complicate
+abilities=cycling
 target=*|stack
 auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 autohand=__CYCLING__({2}{U})
@@ -9074,13 +9117,14 @@ type=Sorcery
 [/card]
 [card]
 name=Contraption Cannon
-auto={2}{S}:damage:allmyname target(creature,player,planeswalker)
+auto={2}{S}:damage:allmyname target(player,creature,planeswalker)
 text={2}, Sacrifice Contraption Cannon: It deals damage to any target equal to the number of Contraptions you control.
 mana={4}
 type=Artifact
 [/card]
 [card]
 name=Coordinated Charge
+abilities=cycling
 auto=all(creatures|myBattlefield) 2/1 ueot
 autohand=__CYCLING__({2})
 text=Creatures you control get +2/+1 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -9228,6 +9272,7 @@ type=Instant
 [/card]
 [card]
 name=Countervailing Winds
+abilities=cycling
 target=*|stack
 auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{value:type:*:opponentgraveyard}]] name(pay {value} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{value:type:*:mygraveyard}]] name(pay {value} mana) donothing?fizzle])) forever
 autohand=__CYCLING__({2})
@@ -9294,8 +9339,8 @@ type=Enchantment
 [card]
 name=Court of Ire
 auto=becomesmonarch controller
-auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:ability$!name(Choose one) choice name(Damage creature) damage:2 target(creature) _ choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
-auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:ability$!name(Choose one) choice name(Damage creature) damage:7 target(creature) _ choice name(Damage player) damage:7 target(player) _ choice name(Damage planeswalker) damage:7 target(planeswalker)!$ controller
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:name(Deals 2 damages to any target) name(Deals 2 damages to any target) damage:2 target(player,creature,planeswalker)
+auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:name(Deals 7 damages to any target) name(Deals 7 damages to any target) damage:7 target(player,creature,planeswalker)
 text=When Court of Ire enters the battlefield, you become the monarch. -- At the beginning of your upkeep, Court of Ire deals 2 damage to any target. If you're the monarch, it deals 7 damage instead.
 mana={3}{R}{R}
 type=Enchantment
@@ -9886,7 +9931,7 @@ toughness=3
 [/card]
 [card]
 name=Curator of Mysteries
-abilities=flying
+abilities=flying,cycling
 auto=@movedto(*|mygraveyard) from(myhand):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 autohand=__CYCLING__({U})
 text=Flying -- Whenever you cycle or discard another card, scry 1. -- Cycling {U} ({U}, Discard this card: Draw a card.)
@@ -10042,7 +10087,7 @@ type=Artifact
 [/card]
 [card]
 name=Cursed Scroll
-auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Game chooses a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(The random card macthes with the named card) choice name(Damage creature) damage:2 target(creature) _ choice name(Damage player) damage:2 target(player) _ choice name(Damage planeswalker) damage:2 target(planeswalker)!$ controller
+auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Game chooses a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(Deals 2 damages) name(Deals 2 damages) damage:2 target(player,creature,planeswalker)!$ controller
 text={3}, {T}: Choose a card name, then reveal a card at random from your hand. If that card has the chosen name, Cursed Scroll deals 2 damage to any target.
 mana={1}
 type=Artifact
@@ -10218,6 +10263,17 @@ type=Creature
 subtype=Human Artificer
 power=3
 toughness=3
+[/card]
+[card]
+name=Daring Buccaneer
+other={R} name(Reveal pirate)
+otherrestriction=type(pirate|myhand)~morethan~0
+text=As an additional cost to cast this spell, reveal a Pirate card from your hand or pay 2 .
+mana={2}{R}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
 [/card]
 [card]
 name=Daring Fiendbonder
@@ -10838,6 +10894,7 @@ type=Instant
 [/card]
 [card]
 name=Deem Worthy
+abilities=cycling
 target=creature
 auto=damage:7
 autohand=__CYCLING__({3}{R}) && damage:2 target(creature)
@@ -10998,7 +11055,7 @@ toughness=1
 name=Deliver Unto Evil
 auto=moveto(exile) all(this)
 auto=if type(planeswalker[bolas]|mybattlefield)~morethan~0 then target(<upto:4>*|mygraveyard) moveto(myhand)
-auto=if type(planeswalker[bolas]|mybattlefield)~equalto~0 then abilitiy$!name(Choose 2 cards) name(Choose 2 cards) target(<2>*|opponentgraveyard) moveto(opponenthand)!$ opponent
+auto=if type(planeswalker[bolas]|mybattlefield)~equalto~0 then ability$!name(Choose 2 cards) name(Choose 2 cards) target(<2>*|opponentgraveyard) moveto(opponenthand)!$ opponent
 text=Choose up to four target cards in your graveyard. If you control a Bolas planeswalker, return those cards to your hand. Otherwise, an opponent chooses two of them. Leave the chosen cards in your graveyard and put the rest into your hand. -- Exile Deliver Unto Evil.
 mana={2}{B}
 type=Sorcery
@@ -11223,6 +11280,7 @@ type=Artifact
 [/card]
 [card]
 name=Desert Cerodon
+abilities=cycling
 autohand=__CYCLING__({R})
 text=Cycling {R} ({R}, Discard this card: Draw a card.)
 mana={5}{R}
@@ -11233,6 +11291,7 @@ toughness=4
 [/card]
 [card]
 name=Desert of the Fervent
+abilities=cycling
 auto=tap
 auto={T}:Add{R}
 autohand=__CYCLING__({1}{R})
@@ -11242,6 +11301,7 @@ subtype=Desert
 [/card]
 [card]
 name=Desert of the Glorified
+abilities=cycling
 auto=tap
 auto={T}:Add{B}
 autohand=__CYCLING__({1}{B})
@@ -11251,6 +11311,7 @@ subtype=Desert
 [/card]
 [card]
 name=Desert of the Indomitable
+abilities=cycling
 auto=tap
 auto={T}:Add{G}
 autohand=__CYCLING__({1}{G})
@@ -11260,6 +11321,7 @@ subtype=Desert
 [/card]
 [card]
 name=Desert of the Mindful
+abilities=cycling
 auto=tap
 auto={T}:Add{U}
 autohand=__CYCLING__({1}{U})
@@ -11269,6 +11331,7 @@ subtype=Desert
 [/card]
 [card]
 name=Desert of the True
+abilities=cycling
 auto=tap
 auto={T}:Add{W}
 autohand=__CYCLING__({1}{W})
@@ -11755,6 +11818,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Dire Fleet Daredevil
+abilities=first strike
+auto=name(Exile instant or sorcery) name(Exile instant or sorcery) target(*[instant;sorcery]|opponentgraveyard) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[gainedexiledeath],newability[anytypeofmana],newability[phaseaction[endofturn once] moveTo(ownerexile)])) ueot )!
+text=First strike -- When Dire Fleet Daredevil enters the battlefield, exile target instant or sorcery card from an opponent's graveyard. You may cast it this turn, and you may spend mana as though it were mana of any type to cast that spell. If that spell would be put into a graveyard this turn, exile it instead.
+mana={1}{R}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=1
+[/card]
+[card]
 name=Dire Fleet Hoarder
 auto=@movedTo(this|graveyard) from(battlefield):token(435451)
 text=When Dire Fleet Hoarder dies, create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
@@ -11829,9 +11903,8 @@ type=Instant
 [/card]
 [card]
 name=Direct Current
-target=player,creature
+target=player,creature,planeswalker
 auto=damage:2
-auto=Direct Current deals 2 damage to any target
 flashback={1}{R}{R}{D(*|myhand)}
 text=Direct Current deals 2 damage to any target. -- Jump-start (You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile this card.)
 mana={1}{R}{R}
@@ -11916,6 +11989,7 @@ type=Enchantment
 [/card]
 [card]
 name=Dismantling Wave
+abilities=cycling
 target=artifact,enchantment
 auto=destroy
 autohand=__CYCLING__({6}{W}{W})
@@ -11980,6 +12054,7 @@ type=Instant
 [/card]
 [card]
 name=Dissenter's Deliverance
+abilities=cycling
 target=artifact
 auto=destroy
 autohand=__CYCLING__({G})
@@ -12032,6 +12107,7 @@ type=Enchantment
 [/card]
 [card]
 name=Djeru's Renunciation
+abilities=cycling
 target=<upto:2>creature
 auto=tap
 autohand=__CYCLING__({W})
@@ -12041,6 +12117,7 @@ type=Instant
 [/card]
 [card]
 name=Djeru's Resolve
+abilities=cycling
 target=creature
 auto=untap
 auto=preventalldamage to(this)
@@ -12423,9 +12500,9 @@ color=blue
 [/card]
 [card]
 name=Drakuseth, Maw of Flames
-auto=damage:4 target(creature,player)
-auto=damage:3 target(creature,player)
-auto=damage:3 target(creature,player)
+abilities=flying
+auto=@combat(attacking) source(this):may name(Deals 3 damages to each of up to two other targets) name(Deals 3 damages to each of up to two other targets) damage:3 target(<2>player,creature,planeswalker)
+auto=@combat(attacking) source(this):name(Deals 4 damages to any target) name(Deals 4 damagess to any target) damage:4 target(player,creature,planeswalker)
 text=Flying -- Whenever Drakuseth, Maw of Flames attacks, it deals 4 damage to any target and 3 damage to each of up to two other targets.
 mana={4}{R}{R}{R}
 type=Legendary Creature
@@ -12456,6 +12533,7 @@ toughness=4
 [/card]
 [card]
 name=Drannith Healer
+abilities=cycling
 auto=@cycled(*|myHand):life:1 controller
 autohand=__CYCLING__({1})
 text=Whenever you cycle another card, you gain 1 life. -- Cycling {1} ({1}, Discard this card: Draw a card.)
@@ -12477,6 +12555,7 @@ toughness=3
 [/card]
 [card]
 name=Drannith Stinger
+abilities=cycling
 auto=@cycled(*|myHand):damage:1 opponent
 autohand=__CYCLING__({1})
 text=Whenever you cycle another card, Drannith Stinger deals 1 damage to each opponent. -- Cycling {1} ({1}, Discard this card: Draw a card.)
@@ -12548,7 +12627,7 @@ subtype=Aura
 [card]
 name=Dreadhorde Arcanist
 abilities=trample
-auto=@combat(attacking) source(this):may target(*[instant;sorcery;manacost<=power]|mygraveyard) castcard(restricted) and!(transforms((,newability[exiledeath])) forever)!
+auto=@combat(attacking) source(this):may target(*[instant;sorcery;manacost<=power]|mygraveyard) activate castcard(normal) and!(transforms((,newability[gainedexiledeath])) forever)!
 text=Trample -- Whenever Dreadhorde Arcanist attacks, you may cast target instant or sorcery card with converted mana cost less than or equal to Dreadhorde Arcanist's power from your graveyard without paying its mana cost. If that card would be put into your graveyard this turn, exile it instead.
 mana={1}{R}
 type=Creature
@@ -12559,7 +12638,8 @@ toughness=3
 [card]
 name=Dreadhorde Butcher
 abilities=haste
-auto=@combatdamaged(player,planeswalker) from(this):counter(1/1)
+auto=@combatdamaged(player) from(this):counter(1/1)
+auto=@combatdamaged(planeswalker) from(this):counter(1/1)
 auto=_DIES_damage:power target(creature,player)
 text=Haste -- Whenever Dreadhorde Butcher deals combat damage to a player or planeswalker, put a +1/+1 counter on Dreadhorde Butcher. -- When Dreadhorde Butcher dies, it deals damage equal to its power to any target.
 mana={B}{R}
@@ -12702,7 +12782,7 @@ toughness=4
 [/card]
 [card]
 name=Dreamstalker Manticore
-auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:damage:1 target(creature,planeswalker|opponentBattlefield)
+auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:damage:1 target(player,creature,planeswalker)
 text=Whenever you cast your first spell during each opponent’s turn, Dreamstalker Manticore deals 1 damage to any target.
 mana={2}{R}
 type=Creature
@@ -13265,6 +13345,7 @@ toughness=5
 [/card]
 [card]
 name=Easy Prey
+abilities=cycling
 target=creature[manacost<=2]
 auto=destroy
 autohand=__CYCLING__({2})
@@ -13414,7 +13495,7 @@ type=Instant
 [/card]
 [card]
 name=Electrodominance
-auto=damage:X target(player,creature)
+auto=damage:X target(player,creature,planeswalker)
 auto=may castcard(normal) notatarget(*[-land;manacost<=X]|myhand)
 text=Electrodominance deals X damage to any target. You may cast a card with converted mana cost X or less from your hand without paying its mana cost.
 mana={X}{R}{R}
@@ -13654,7 +13735,7 @@ toughness=1
 name=Elvish Dreadlord
 abilities=deathtouch
 auto=@movedto(this|ownergraveyard) from(battlefield):all(creature[-elf]|battlefield) -3/-3 ueot
-autograveyard={5}{B}{B}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={5}{B}{B}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Deathtouch -- When Elvish Dreadlord dies, non-Elf creatures get -3/-3 until end of turn. -- Encore {5}{B}{B} ({5}{B}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={3}{B}{B}
 type=Creature
@@ -14621,7 +14702,7 @@ toughness=2
 [card]
 name=Evra, Halcyon Witness
 abilities=lifelink
-auto={4}:count(lifetotal) && transforms((,newability[lifeset:p conroller})) forever && all(this) transforms((,setpower=countedamount)) forever
+auto={4}:count(lifetotal) && transforms((,newability[lifeset:p controller})) forever && all(this) transforms((,setpower=countedamount)) forever
 text=Lifelink -- {4}: Exchange your life total with Evra, Halcyon Witness's power.
 mana={4}{W}{W}
 type=Legendary Creature
@@ -14763,9 +14844,9 @@ type=Land
 [card]
 name=Expansion // Explosion
 other={X}{U}{U}{R}{R} name(Explosion)
-auto=if paid(alternative) then choice name(Damage any target and you draw) damage:X target(player,creature) && draw:X controller
-auto=if paid(alternative) then choice name(Damage any target and opponent draws) damage:X target(player,creature) && draw:X opponent
-auto=ifnot paid(alternative) then name(copy spell) target(*[instant;sorcery;manacost<=4]|stack) castcard(copied noevent)
+auto=if paid(alternative) then choice name(Damage any target and you draw) damage:X target(player,creature,planeswalker) && draw:X controller
+auto=if paid(alternative) then choice name(Damage any target and opponent draws) damage:X target(player,creature,planeswalker) && draw:X opponent
+auto=ifnot paid(alternative) then name(copy spell) target(*[instant;sorcery;manacost<=4]|stack) activate castcard(copied noevent)
 text=Copy target instant or sorcery spell with converted mana cost 4 or less. You may choose new targets for the copy. -- Explosion deals X damage to any target. Target player draws X cards.
 mana={UR}{UR}
 type=Instant
@@ -14880,9 +14961,8 @@ toughness=5
 [/card]
 [card]
 name=Exquisite Firecraft
-target=creature,player,planeswalker
-auto=damage:4
-auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then nofizzle
+auto=damage:4 target(player,creature,planeswalker)
+autostack=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then nofizzle
 text=Exquisite Firecraft deals 4 damage to any target. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, this spell can’t be countered.
 mana={1}{R}{R}
 type=Sorcery
@@ -14890,7 +14970,7 @@ type=Sorcery
 [card]
 name=Exquisite Huntmaster
 auto=@movedTo(this|graveyard) from(battlefield):token(Elf Warrior,Creature Elf Warrior,1/1,green)
-autograveyard={4}{B}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={4}{B}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Exquisite Huntmaster dies, create a 1/1 green Elf Warrior creature token. -- Encore {4}{B} ({4}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={3}{B}
 type=Creature
@@ -15232,7 +15312,7 @@ toughness=2
 [card]
 name=Fanatical Firebrand
 abilities=haste
-auto={T}{S}:damage:1 target(creature,player)
+auto={T}{S}:damage:1 target(player,creature,planeswalker)
 text=Haste -- {T}, Sacrifice Fanatical Firebrand: It deals 1 damage to any target.
 mana={R}
 type=Creature
@@ -15306,7 +15386,7 @@ toughness=3
 [/card]
 [card]
 name=Fateful End
-target=creature,player,plansewalker
+target=player,creature,plansewalker
 auto=damage:3
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Fateful End deals 3 damage to any target. Scry 1.
@@ -15357,7 +15437,7 @@ toughness=2
 [card]
 name=Fathom Fleet Swordjack
 auto=@combat(attacking) source(this):target(planeswalker,player) damage:type:artifact:mybattlefield
-autograveyard={5}{R}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={5}{R}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Whenever Fathom Fleet Swordjack attacks, it deals damage to the player or planeswalker it's attacking equal to the number of artifacts you control. -- Encore {5}{R} ({5}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={3}{R}
 type=Creature
@@ -15715,6 +15795,7 @@ type=Instant
 [/card]
 [card]
 name=Fetid Pools
+abilities=cycling
 auto=tap
 autohand=__CYCLING__({2})
 text=({T}: Add {U} or {B} to your mana pool.) -- Fetid Pools enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -15903,7 +15984,7 @@ type=Sorcery
 [card]
 name=Fin-Clade Fugitives
 auto=cantbeblockedby(creature[power<=2])
-autograveyard={4}{G}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={4}{G}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Fin-Clade Fugitives can't be blocked by creatures with power 2 or less. -- Encore {4}{G} ({4}{G}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={5}{G}
 type=Creature
@@ -15980,19 +16061,19 @@ type=Sorcery
 [card]
 name=Finale of Promise
 target=<upto:2>*[instant;sorcery;manacost<=prex]|mygraveyard
-auto=this(X>=10) castcard(normal)
-auto=castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+auto=this(X>=10) activate castcard(copied noevent)
+auto=activate castcard(normal) and!(transforms((,newability[gainedexiledeath])) forever)!
 text=You may cast up to one target instant card and/or sorcery card from your graveyard each with converted mana cost X or less without paying their mana costs. If a card cast this way would be put into your graveyard this turn, exile it instead. If X is 10 or more, copy each of those spells twice. You may choose new targets for the copies.
 mana={X}{R}{R}
 type=Sorcery
 [/card]
 [card]
 name=Finale of Revelation
+abilties=exiledeath
 auto=this(X<10) draw:x
 auto=this(X>=10) moveto(myLibrary) all(*|myGraveyard) && shuffle && draw:x 
 auto=this(X>=10) untap notatarget(<upto:5>land)
 autoexile=lord(*|myBattlefield) nomaxhand
-auto=moveto(exile)
 text=Draw X cards. If X is 10 or more, instead shuffle your graveyard into your library, draw X cards, untap up to five lands, and you have no maximum hand size for the rest of the game. -- Exile Finale of Revelation.
 mana={X}{U}{U}
 type=Sorcery
@@ -16124,7 +16205,7 @@ toughness=2
 [card]
 name=Fireblade Charger
 auto=this(gear > 0) haste
-auto=@movedTo(this|mygraveyard) from(battlefield):damage:power target(creature,player,planeswalker)
+auto=@movedTo(this|mygraveyard) from(battlefield):name(Damage any target) name(Damage any target) target(player,creature,planeswalker) dynamicability<!powerstrike!> oneshot
 text=As long as Fireblade Charger is equipped, it has haste. -- When Fireblade Charger dies, it deals damage equal to its power to any target.
 mana={R}
 type=Creature
@@ -16203,7 +16284,7 @@ type=Artifact
 name=Firemind's Research
 auto=@movedTo(instant,sorcery|mystack):counter(0/0,charge)
 auto={1}{U}{C(0/0,-2,Charge)}:draw:1
-auto={1}{R}{C(0/0,-5,Charge)}:damage:5 target(creature,player)
+auto={1}{R}{C(0/0,-5,Charge)}:damage:5 target(player,creature,planeswalker)
 text=Whenever you cast an instant or sorcery spell, put a charge counter on Firemind's Research. -- {1}{U}, Remove two charge counters from Firemind's Research: Draw a card. -- {1}{R}, Remove five charge counters from Firemind's Research: It deals 5 damage to any target.
 mana={U}{R}
 type=Enchantment
@@ -16597,6 +16678,7 @@ type=Sorcery
 [/card]
 [card]
 name=Floodwaters
+abilities=cycling
 target=<upto:2>creature
 auto=moveto(ownerhand)
 autohand=__CYCLING__({2})
@@ -16606,6 +16688,7 @@ type=Sorcery
 [/card]
 [card]
 name=Flourishing Fox
+abilities=cycling
 auto=@cycled(*|myHand):all(this) counter(1/1,1)
 autohand=__CYCLING__({1})
 text=Whenever you cycle another card, put a +1/+1 counter on Flourishing Fox. -- Cycling {1} ({1}, Discard this card: Draw a card.)
@@ -16626,7 +16709,7 @@ type=Sorcery
 [/card]
 [card]
 name=Fluctuator
-auto=lord(*[__CYCLING__]|mycastingzone) altercost(colorless,-2)
+auto=lord(*[cycling]|mycastingzone) altercost(colorless,-2)
 text=Cycling abilities you activate cost up to {2} less to activate.
 mana={2}
 type=Artifact
@@ -16723,6 +16806,7 @@ subtype=Food
 [/card]
 [card]
 name=Footfall Crater
+abilities=cycling
 target=land
 auto=teach(land) transforms((newability[{T}:haste && trample target(creature) ueot]))
 autohand=__CYCLING__({1})
@@ -16733,7 +16817,7 @@ subtype=Aura
 [/card]
 [card]
 name=Footlight Fiend
-auto=@movedTo(this|graveyard) from(battlefield):damage:1 target(creature,player)
+auto=@movedTo(this|graveyard) from(battlefield):damage:1 target(player,creature,planeswalker)
 text=When Footlight Fiend dies, it deals 1 damage to any target.
 mana={BR}
 type=Creature
@@ -16913,6 +16997,7 @@ type=Sorcery
 [/card]
 [card]
 name=Forsake the Worldly
+abilities=cycling
 target=artifact,enchantment
 auto=moveto(exile)
 autohand=__CYCLING__({2})
@@ -18299,6 +18384,7 @@ toughness=2
 [/card]
 [card]
 name=Gilded Light
+abilities=cycling
 auto=playershroud ueot
 autohand=__CYCLING__({2})
 text=You gain shroud until end of turn. (You can't be the target of spells or abilities.) -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -18788,6 +18874,7 @@ toughness=3
 [/card]
 [card]
 name=Go for Blood
+abilities=cycling
 target=creature|myBattlefield
 auto=transforms((,newability[target(creature|opponentBattlefield) dynamicability<!powerstrike eachother!>])) ueot
 autohand=__CYCLING__({1})
@@ -19529,7 +19616,7 @@ toughness=4
 [/card]
 [card]
 name=Granitic Titan
-abilities=menace
+abilities=menace,cycling
 autohand=__CYCLING__({2})
 text=Menace -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{R}{R}
@@ -19728,6 +19815,7 @@ toughness=4
 [/card]
 [card]
 name=Greater Sandwurm
+abilities=cycling
 auto=cantbeblockedby(creature[power<=2])
 autohand=__CYCLING__({2})
 text=Greater Sandwurm can't be blocked by creatures with power 2 or less. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -20528,6 +20616,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Hampering Snare
+abilities=cycling
 auto=all(creature|opponentBattlefield) -2/-0 ueot
 autohand=__CYCLING__({2})
 text=Creatures your opponents control get -2/-0 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -20875,7 +20964,7 @@ toughness=3
 [/card]
 [card]
 name=Havoc Jester
-auto=@sacrificed(*|myBattlefield):ability$!name(Choose one) choice name(Damage player) damage:1 target(player) _ choice name(Damage creature) damage:1 target(creature) _ choice name(Damage planeswalker) damage:1 target(planeswalker)!$ controller
+auto=@sacrificed(*|myBattlefield):damage:1 target(player,creature,planeswalker)
 text=Whenever you sacrifice a permanent, Havoc Jester deals 1 damage to any target.
 mana={4}{R}
 type=Creature
@@ -20885,6 +20974,7 @@ toughness=5
 [/card]
 [card]
 name=Haze of Pollen
+abilities=cycling
 auto=preventalldamage
 autohand=__CYCLING__({3})
 text=Prevent all combat damage that would be dealt this turn. -- Cycling {3} ({3}, Discard this card: Draw a card.)
@@ -21001,7 +21091,7 @@ toughness=3
 [/card]
 [card]
 name=Heartfire
-target=player,creature
+target=player,creature,planeswalker
 auto=damage:4
 text=As an additional cost to cast this spell, sacrifice a creature or planeswalker. -- Heartfire deals 4 damage to any target.
 mana={1}{R}{S(creature,planeswalker|myBattlefield)}
@@ -21450,6 +21540,7 @@ type=Instant
 [/card]
 [card]
 name=Hieroglyphic Illumination
+abilities=cycling
 auto=draw:2 controller
 autohand=__CYCLING__({U})
 text=Draw two cards. -- Cycling {U} ({U}, Discard this card: Draw a card.)
@@ -21624,6 +21715,7 @@ toughness=1
 [/card]
 [card]
 name=Hollow One
+abilities=cycling
 anyzone=@discarded(*|myhand):changecost(colorless:-2) ueot forcedalive
 autohand=__CYCLING__({2})
 text=Hollow One costs {2} less to cast for each card you've cycled or discarded this turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -21776,6 +21868,7 @@ type=Instant
 [/card]
 [card]
 name=Horror of the Broken Lands
+abilities=cycling
 auto=@movedto(*|mygraveyard) from(myhand):2/1 ueot
 autohand=__CYCLING__({B})
 text=Whenever you cycle or discard another card, Horror of the Broken Lands gets +2/+1 until end of turn. -- Cycling {B} ({B}, Discard this card: Draw a card.)
@@ -22652,6 +22745,7 @@ toughness=1
 [/card]
 [card]
 name=Imaginary Threats
+abilities=cycling
 target=opponent
 auto=all(creature|targetedpersonsbattlefield) mustattack
 auto=all(creature|targetedpersonsbattlefield) frozen
@@ -22868,7 +22962,7 @@ toughness=4
 [/card]
 [card]
 name=Imposing Vantasaur
-abilities=vigilance
+abilities=vigilance,cycling
 autohand=__CYCLING__({1})
 text=Vigilance -- Cycling {1} ({1}, Discard this card: Draw a card.)
 mana={5}{W}
@@ -22908,7 +23002,7 @@ type=Enchantment
 [card]
 name=Impulsive Pilferer
 auto=@movedTo(this|graveyard) from(battlefield):token(Treasure Sur)
-autograveyard={3}{R}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={3}{R}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Impulsive Pilferer dies, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.") -- Encore {3}{R} ({3}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={R}
 type=Creature
@@ -23023,6 +23117,7 @@ toughness=2
 [/card]
 [card]
 name=Indatha Crystal
+abilities=cycling
 auto={T}:Add{W}
 auto={T}:Add{B}
 auto={T}:Add{G}
@@ -23033,6 +23128,7 @@ type=Artifact
 [/card]
 [card]
 name=Indatha Triome
+abilities=cycling
 auto=tap(noevent)
 autohand=__CYCLING__({3})
 text=({T}: Add {W}, {B}, or {G}.) -- Indatha Triome enters the battlefield tapped. -- Cycling {3} ({3}, Discard this card: Draw a card.)
@@ -23097,7 +23193,7 @@ toughness=4
 [card]
 name=Inescapable Blaze
 abilities=nofizzle
-target=player,creature
+target=player,creature,planeswalker
 auto=damage:6
 text=This spell can't be countered. -- Inescapable Blaze deals 6 damage to any target.
 mana={4}{R}{R}
@@ -23199,6 +23295,7 @@ toughness=3
 [/card]
 [card]
 name=Inferno Jet
+abilities=cycling
 target=opponent
 auto=damage:6
 autohand=__CYCLING__({2})
@@ -23470,7 +23567,7 @@ toughness=5
 [/card]
 [card]
 name=Inspired Ultimatum
-target=creature,planeswalker,player
+target=player,creature,planeswalker
 auto=damage: 5
 auto=life: 5 target(player)
 auto=draw: 5 controller
@@ -23556,7 +23653,7 @@ name=Integrity // Intervention
 other={2}{R}{W} name(Intervention)
 auto=ifnot paid(alternative) then target(creature) 2/2 ueot 
 auto=if paid(alternative) then life:3 controller
-auto=if paid(alternative) then ability$!name(Choose one) choice name(Damage player) damage:3 target(player) _ choice name(Damage creature) damage:3 target(creature) _ choice name(Damage planeswalker) damage:3 target(planeswalker)!$ controller
+auto=if paid(alternative) then damage:3 target(player,creature,planeswalker)
 text=Target creature gets +2/+2 until end of turn. -- Intervention deals 3 damage to any target and you gain 3 life.
 mana={R or W}
 type=Instant
@@ -23719,7 +23816,7 @@ type=Sorcery
 [/card]
 [card]
 name=Irencrag Pyromancer
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:damage:3 target(player,creature,planeswalker)])) ueot
+auto=@drawof(player):transforms((,newability[@drawof(player) once:damage:3 target(player,creature,planeswalker)])) ueot
 text=Whenever you draw your second card each turn, Irencrag Pyromancer deals 3 damage to any target.
 mana={2}{R}
 type=Creature
@@ -23740,7 +23837,7 @@ toughness=4
 [card]
 name=Iroas's Blessing
 target=creature|myBattlefield
-auto=damage:4 target(creature,planeswalker|opponentBattlefield)
+auto=damage:4 target(*[creature;planeswalker]|opponentBattlefield)
 auto=1/1
 text=Enchant creature you control -- When Iroas’s Blessing enters the battlefield, it deals 4 damage to target creature or planeswalker an opponent controls. -- Enchanted creature gets +1/+1.
 mana={3}{R}
@@ -23831,6 +23928,7 @@ toughness=2
 [/card]
 [card]
 name=Irrigated Farmland
+abilities=cycling
 auto=tap
 autohand=__CYCLING__({2})
 text=({T}: Add {W} or {U} to your mana pool.) -- Irrigated Farmland enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -24430,7 +24528,7 @@ toughness=2
 [card]
 name=Judith, the Scourge Diva
 auto=lord(other creature|myBattlefield) +1/+0
-auto=@movedto(graveyard) from(creature[-token]|myBattlefield):damage:1 target(creature,player)
+auto=@movedto(graveyard) from(creature[-token]|myBattlefield):damage:1 target(player,creature,planeswalker)
 text=Other creatures you control get +1/+0. -- Whenever a nontoken creature you control dies, Judith, the Scourge Diva deals 1 damage to any target.
 mana={1}{B}{R}
 type=Legendary Creature
@@ -24495,7 +24593,7 @@ toughness=2
 [card]
 name=Juri, Master of the Revue
 auto=@sacrificed(*|mybattlefield):counter(1/1) all(this)
-auto=@movedTo(this|graveyard) from(Battlefield):damage:power target(player,creature)
+auto=@movedTo(this|graveyard) from(Battlefield):damage:power target(player,creature,planeswalker)
 text=Whenever you sacrifice a permanent, put a +1/+1 counter on Juri, Master of the Revue. -- When Juri dies, it deals damage equal to its power to any target.
 mana={B}{R}
 type=Legendary Creature
@@ -24608,8 +24706,8 @@ type=Instant
 [/card]
 [card]
 name=Kaervek's Torch
-auto=@targeted(this) from(stack): altercost(colorless,+2)
-auto=damage:X target(creature,player,planeswalker)
+autostack=@targeted(this) from(*[instant;sorcery]|opponentcastingzone):choice name(This spell costs 2 more) name(This spell costs 2 more) target(*[instant;sorcery]|opponentzones) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) oneshot
+auto=name(Damage any target) name(Damage any target) damage:X target(player,creature,planeswalker)
 text=As long as Kaervek's Torch is on the stack, spells that target it cost {2} more to cast. -- Kaervek's Torch deals X damage to any target.
 mana={X}{R}
 type=Sorcery
@@ -24704,7 +24802,7 @@ toughness=5
 name=Kangee's Lieutenant
 abilities=flying
 auto=@combat(attacking) source(this):all(creature[attacking;flying]) 1/1 ueot
-autograveyard={5}{W}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={5}{W}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Flying -- Whenever Kangee's Lieutenant attacks, attacking creatures with flying get +1/+1 until end of turn. -- Encore {5}{W} ({5}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={2}{W}
 type=Creature
@@ -24798,7 +24896,7 @@ type=Legendary Sorcery
 [/card]
 [card]
 name=Karplusan Hound
-auto=@combat(attacking) source(this) aslongas(planeswalker[chandra]|myBattlefield):damage:2 target(creature,player)
+auto=@combat(attacking) source(this) aslongas(planeswalker[chandra]|myBattlefield):damage:2 target(player,creature,planeswalker)
 text=Whenever Karplusan Hound attacks, if you control a Chandra planeswalker, this creature deals 2 damage to any target.
 mana={3}{R}
 type=Creature
@@ -24935,7 +25033,7 @@ type=Land
 [card]
 name=Kazuul's Fury
 autohand={0}:restriction{can play land} name(Kazuul's Cliffs) name(Kazuul's Cliffs) flip(Kazuul's Cliffs) forcetype(land)
-auto=damage:storedpower target(player,creature,planeswalker)
+auto=choice name(damage:storedpower target(player,creature,planeswalker)
 text=As an additional cost to cast this spell, sacrifice a creature. -- Kazuul's Fury deals damage equal to the sacrificed creatures power to any target.
 mana={2}{R}{S(creature|myBattlefield)}
 type=Instant
@@ -25196,6 +25294,7 @@ toughness=4
 [/card]
 [card]
 name=Ketria Crystal
+abilities=cycling
 auto={T}:Add{G}
 auto={T}:Add{U}
 auto={T}:Add{R}
@@ -25206,6 +25305,7 @@ type=Artifact
 [/card]
 [card]
 name=Ketria Triome
+abilities=cycling
 auto=tap(noevent)
 autohand=__CYCLING__({3})
 text=({T}: Add {G}, {U}, or {R}.) -- Ketria Triome enters the battlefield tapped. -- Cycling {3} ({3}, Discard this card: Draw a card.)
@@ -25378,7 +25478,7 @@ toughness=2
 [card]
 name=Kinsbaile Courier
 auto=counter(1/1) target(creature)
-autograveyard={2}{W}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={2}{W}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Kinsbaile Courier enters the battlefield, put a +1/+1 counter on target creature. -- Encore {2}{W} ({2}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={2}{W}
 type=Creature
@@ -25471,7 +25571,7 @@ toughness=2
 name=Kitesail Skirmisher
 abilities=flying
 auto=@combat(attacking) source(this):name(Other creature gains flying) target(other creature|myBattlefield) transforms((,newability[flying])) ueot
-autograveyard={4}{U}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={4}{U}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Flying -- Whenever Kitesail Skirmisher attacks, another target creature attacking the same player or planeswalker gains flying until end of turn. -- Encore {4}{U} ({4}{U}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={3}{U}
 type=Creature
@@ -25928,25 +26028,25 @@ toughness=4
 [card]
 name=Krav, the Unredeemed
 auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(Regna, the Redeemer|mylibrary)
-auto={B}{S(creature|myBattlefield)}:name(Sacrifice 1 creature and target yourself) name(Sacrifice 1 creature and target yourself) all(this) counter(1/1,1) && life:1 controller && draw:1 conroller
+auto={B}{S(creature|myBattlefield)}:name(Sacrifice 1 creature and target yourself) name(Sacrifice 1 creature and target yourself) all(this) counter(1/1,1) && life:1 controller && draw:1 controller
 auto={B}{S(creature|myBattlefield)}:name(Sacrifice 1 creature and target opponent) name(Sacrifice 1 creature and target opponent) all(this) counter(1/1,1) && life:1 opponent && draw:1 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 2 creatures and target yourself) name(Sacrifice 2 creatures and target yourself) all(this) counter(1/1,2) && life:2 controller && draw:2 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 2 creatures and target yourself) name(Sacrifice 2 creatures and target yourself) all(this) counter(1/1,2) && life:2 controller && draw:2 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 2 creatures and target opponent) name(Sacrifice 2 creatures and target opponent) all(this) counter(1/1,2) && life:2 opponent && draw:2 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 3 creatures and target yourself) name(Sacrifice 3 creatures and target yourself) all(this) counter(1/1,3) && life:3 controller && draw:3 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 3 creatures and target yourself) name(Sacrifice 3 creatures and target yourself) all(this) counter(1/1,3) && life:3 controller && draw:3 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 3 creatures and target opponent) name(Sacrifice 3 creatures and target opponent) all(this) counter(1/1,3) && life:3 opponent && draw:3 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 4 creatures and target yourself) name(Sacrifice 4 creatures and target yourself) all(this) counter(1/1,4) && life:4 controller && draw:4 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 4 creatures and target yourself) name(Sacrifice 4 creatures and target yourself) all(this) counter(1/1,4) && life:4 controller && draw:4 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 4 creatures and target opponent) name(Sacrifice 4 creatures and target opponent) all(this) counter(1/1,4) && life:4 opponent && draw:4 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 5 creatures and target yourself) name(Sacrifice 5 creatures and target yourself) all(this) counter(1/1,5) && life:5 controller && draw:5 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 5 creatures and target yourself) name(Sacrifice 5 creatures and target yourself) all(this) counter(1/1,5) && life:5 controller && draw:5 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 5 creatures and target opponent) name(Sacrifice 5 creatures and target opponent) all(this) counter(1/1,5) && life:5 opponent && draw:5 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 6 creatures and target yourself) name(Sacrifice 6 creatures and target yourself) all(this) counter(1/1,6) && life:6 controller && draw:6 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 6 creatures and target yourself) name(Sacrifice 6 creatures and target yourself) all(this) counter(1/1,6) && life:6 controller && draw:6 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 6 creatures and target opponent) name(Sacrifice 6 creatures and target opponent) all(this) counter(1/1,6) && life:6 opponent && draw:6 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 7 creatures and target yourself) name(Sacrifice 7 creatures and target yourself) all(this) counter(1/1,7) && life:7 controller && draw:7 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 7 creatures and target yourself) name(Sacrifice 7 creatures and target yourself) all(this) counter(1/1,7) && life:7 controller && draw:7 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 7 creatures and target opponent) name(Sacrifice 7 creatures and target opponent) all(this) counter(1/1,7) && life:7 opponent && draw:7 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 8 creatures and target yourself) name(Sacrifice 8 creatures and target yourself) all(this) counter(1/1,8) && life:8 controller && draw:8 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 8 creatures and target yourself) name(Sacrifice 8 creatures and target yourself) all(this) counter(1/1,8) && life:8 controller && draw:8 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 8 creatures and target opponent) name(Sacrifice 8 creatures and target opponent) all(this) counter(1/1,8) && life:8 opponent && draw:8 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 9 creatures and target yourself) name(Sacrifice 9 creatures and target yourself) all(this) counter(1/1,9) && life:9 controller && draw:9 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 9 creatures and target yourself) name(Sacrifice 9 creatures and target yourself) all(this) counter(1/1,9) && life:9 controller && draw:9 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 9 creatures and target opponent) name(Sacrifice 9 creatures and target opponent) all(this) counter(1/1,9) && life:9 opponent && draw:9 opponent
-auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 10 creatures and target yourself) name(Sacrifice 10 creatures and target yourself) all(this) counter(1/1,10) && life:10 controller && draw:10 conroller
+auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 10 creatures and target yourself) name(Sacrifice 10 creatures and target yourself) all(this) counter(1/1,10) && life:10 controller && draw:10 controller
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 10 creatures and target opponent) name(Sacrifice 10 creatures and target opponent) all(this) counter(1/1,10) && life:10 opponent && draw:10 opponent
 text=Partner with Regna, the Redeemer (When this creature enters the battlefield, target player may put Regna into their hand from their library, then shuffle.) -- {B}, Sacrifice X creatures: Target player draws X cards and gains X life. Put X +1/+1 counters on Krav, the Unredeemed.
 mana={4}{B}
@@ -26302,7 +26402,7 @@ type=Sorcery
 [/card]
 [card]
 name=Lava Serpent
-abilities=haste
+abilities=haste,cycling
 autohand=__CYCLING__({2})
 text=Haste -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={5}{R}
@@ -26406,6 +26506,7 @@ type=Sorcery
 [/card]
 [card]
 name=Lay Claim
+abilities=cycling
 target=artifact,creature,enchantment,land,planeswalker
 auto=moveto(mybattlefield)
 autohand=__CYCLING__({2})
@@ -26796,7 +26897,7 @@ toughness=3
 name=Leyline Tyrant
 abilities=flying
 auto=mypoolsave(red)
-auto=_DIES_:choice name(Pay X red mana) name(Pay X red mana) ability$!name(Damage X) pay[[{X:red}]] name(Damage) target(creature,player,planeswalker) damage:X!$ controller
+auto=_DIES_:choice name(Pay X red mana) name(Pay X red mana) ability$!name(Damage X) pay[[{X:red}]] name(Damage any target) target(player,creature,planeswalker) damage:X!$ controller
 text=Flying -- You don't lose unspent red mana as steps and phases end. -- When Leyline Tyrant dies, you may pay any amount of {R}. When you do, it deals that much damage to any target.
 mana={2}{R}{R}
 type=Creature
@@ -27074,7 +27175,7 @@ toughness=1
 [/card]
 [card]
 name=Lightning-Core Excavator
-auto={5}{T}{S}:ability$!name(Choose one) choice name(Damage player) damage:3 target(player) _ choice name(Damage creature) damage:3 target(creature) _ choice name(Damage planeswalker) damage:3 target(planeswalker)!$ controller
+auto={5}{T}{S}:damage:3 target(player,creature,planeswalker)
 text={5}, {T}, Sacrifice Lightning-Core Excavator: It deals 3 damage to any target.
 mana={1}
 type=Artifact Creature
@@ -27266,6 +27367,7 @@ type=Enchantment
 [/card]
 [card]
 name=Limits of Solidarity
+abilities=cycling
 target=creature
 auto=haste
 auto=untap
@@ -27382,7 +27484,7 @@ toughness=3
 [/card]
 [card]
 name=Living Twister
-auto={1}{R}{D(land|myhand)}:damage:2 target(creature,player)
+auto={1}{R}{D(land|myhand)}:damage:2 target(player,creature,planeswalker)
 auto={G}:target(land[tapped]|myBattlefield) moveto(ownerhand)
 text={1}{R}, Discard a land card: Living Twister deals 2 damage to any target. -- {G}: Return a tapped land you control to its owner's hand.
 mana={R}{R}{G}
@@ -27911,6 +28013,7 @@ toughness=4
 [/card]
 [card]
 name=Lurching Rotbeast
+abilities=cycling
 autohand=__CYCLING__({B})
 text=Cycling {B} ({B}, Discard this card: Draw a card.)
 mana={3}{B}
@@ -28783,7 +28886,7 @@ color=white
 name=Mask of Immolation
 auto=livingweapontoken(Elemental,Creature Elemental,1/1,red)
 auto={2}:equip
-auto=teach(creature) {S}:damage:1 target(creature,player)
+auto=teach(creature) {S}:damage:1 target(player,creature,planeswalker)
 text=When Mask of Immolation enters the battlefield, create a 1/1 red Elemental creature token, then attach Mask of Immolation to it. -- Equipped creature has "Sacrifice this creature: It deals 1 damage to any target." -- Equip {2} ({2} : Attach to target creature you control. Equip only as a sorcery.)
 mana={1}{R}
 type=Artifact
@@ -28939,7 +29042,7 @@ type=Sorcery
 [/card]
 [card]
 name=Mayhem Devil
-auto=@sacrificed(*|battlefield):damage:1 target(creature,player)
+auto=@sacrificed(*|battlefield):damage:1 target(player,creature,planeswalker)
 text=Whenever a player sacrifices a permanent, Mayhem Devil deals 1 damage to any target.
 mana={1}{B}{R}
 type=Creature
@@ -29032,6 +29135,7 @@ type=Instant
 [/card]
 [card]
 name=Memory Leak
+abilities=cycling
 target=opponent
 aicode=activate moveTo(exile) notatarget(*[-land]|targetedpersonshand)
 auto=reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose Exile) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(exile)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )! and!( moveTo(exile) target(*[-land]|opponentgraveyard) )! optiontwoend revealend
@@ -29296,8 +29400,7 @@ subtype=Aura
 [/card]
 [card]
 name=Meteor Blast
-target=<prexx>(creature,player,planeswalker)
-auto=damage:4
+auto=thisforeach(X) ability$!name(Choose one) choice name(4 damages to player) damage:4 target(player) _ choice name(4 damages to planeswalker) damage:4 target(planeswalker) _ choice name(4 damages to creature) damage:4 target(creature)!$ controller
 mana={X}{R}{R}{R}
 type=Sorcery
 text=Meteor Blast deals 4 damage to each of X targets.
@@ -29322,6 +29425,18 @@ text=Equipped creature gets +4/+0 and has trample. -- Equip {4} -- Cascade (When
 mana={4}{R}{R}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Metzali, Tower of Triumph
+auto={T}:add{G}
+auto={T}:add{W}
+auto={T}:add{U}
+auto={T}:add{R}
+auto={T}:add{B}
+auto={1}{R}{T}:damage:2 opponent
+auto={2}{W}{T}:ability$!name(Destroy attacking creature) name(Destroy attacking creature) notatarget(creature[attacking]|battlefield) destroy!$ opponent
+text=(Transforms from Path of Mettle.) -- {T}: Add one mana of any color. -- {1}{R}, {T}: Metzali, Tower of Triumph deals 2 damage to each opponent. -- {2}{W}, {T}: Choose a creature at random that attacked this turn. Destroy that creature.
+type=Legendary Land
 [/card]
 [card]
 name=Miara, Thorn of the Glade
@@ -29378,6 +29493,7 @@ type=Instant
 [/card]
 [card]
 name=Migration Path
+abilities=cycling
 aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(<upto:2>land[basic]|myLibrary)
 auto=name(search card) reveal:plibrarycount optionone name(choose card) target(<upto:2>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
 autohand=__CYCLING__({2})
@@ -29729,7 +29845,7 @@ type=Land
 [card]
 name=Mission Briefing
 aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus2plusend]) from(mylibrary) to(mylibrary)])) ueot
-auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed target(*[instant;sorcery;fresh]|mygraveyard) transforms((,newability[canplayfromgraveyard],newability[exiledeath])) ueot afterrevealedend revealend
+auto=surveil && name(surveil) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed target(*[instant;sorcery;fresh]|mygraveyard) transforms((,newability[canplayfromgraveyard],newability[gainedexiledeath])) ueot afterrevealedend revealend
 text=Surveil 2, then choose an instant or sorcery card in your graveyard. You may cast it this turn. If that spell would be put into your graveyard this turn, exile it instead. (To surveil 2, look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
 mana={U}{U}
 type=Instant
@@ -29833,7 +29949,7 @@ type=Sorcery
 [/card]
 [card]
 name=Moaning Wall
-abilities=defender
+abilities=defender,cycling
 autohand=__CYCLING__({2})
 text=Defender -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{B}
@@ -31197,6 +31313,7 @@ toughness=2
 [/card]
 [card]
 name=Neutralize
+abilities=cycling
 target=*|stack
 auto=fizzle
 autohand=__CYCLING__({2})
@@ -31259,7 +31376,7 @@ subtype=Aura
 [card]
 name=New Perspectives
 auto=draw:3 controller
-auto=aslongas(*|myHand)~morethan~6 then all(_cycling_|mycastingzone) altercost(colorless,-99)
+auto=aslongas(*|myHand) all(*[cycling]|mycastingzone) altercost(colorless,-99) >6
 text=When New Perspectives enters the battlefield, draw three cards. -- As long as you have seven or more cards in hand, you may pay {0} rather than pay cycling costs.
 mana={5}{U}
 type=Enchantment
@@ -31587,7 +31704,7 @@ toughness=3
 [/card]
 [card]
 name=Nimble Obstructionist
-abilities=flash, flying
+abilities=flash,flying,cycling
 autohand=__CYCLING__({2}{U})
 auto=@discarded(this):target(*|opponentstack) fizzle
 text=Flash -- Flying -- Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) -- When you cycle Nimble Obstructionist, counter target activated or triggered ability you don't control.
@@ -31743,7 +31860,7 @@ toughness=6
 [card]
 name=Niv-Mizzet, Parun
 abilities=nofizzle, flying
-auto=@drawof(player):damage:1 target(creature,player)
+auto=@drawof(player):damage:1 target(player,creature,planeswalker)
 auto=@movedTo(instant,sorcery|stack):draw:1
 text=This spell can't be countered. -- Flying -- Whenever you draw a card, Niv-Mizzet, Parun deals 1 damage to any target. -- Whenever a player casts an instant or sorcery spell, you draw a card.
 mana={U}{U}{U}{R}{R}{R}
@@ -32139,9 +32256,9 @@ toughness=4
 [/card]
 [card]
 name=Oath of Kaya
-auto=damage:3 target(creature,player)
-auto=life:3
-auto=@damage:2 opponent && life:2
+auto=damage:3 target(player,creature,planeswalker)
+auto=life:3 controller
+auto=@counterremoved(0/0,1,Loyalty) from(planeswalker|myBattlefield) restriction{opponentturnonly}:damage:2 opponent && life:2 controller
 text=When Oath of Kaya enters the battlefield, it deals 3 damage to any target and you gain 3 life. -- Whenever an opponent attacks a planeswalker you control with one or more creatures, Oath of Kaya deals 2 damage to that player and you gain 2 life.
 mana={1}{W}{B}
 type=Legendary Enchantment
@@ -32403,7 +32520,7 @@ toughness=6
 [/card]
 [card]
 name=Oketra's Attendant
-abilities=flying
+abilities=flying,cycling
 autohand=__CYCLING__({2})
 autograveyard={3}{W}{W}{E}:name(Embalm) clone and!( transforms((Zombie,removemc,white)) forever )! asSorcery
 text=Flying -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Embalm {3}{W}{W} ({3}{W}{W}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Bird Soldier with no mana cost. Embalm only as a sorcery.)
@@ -32502,7 +32619,7 @@ type=Enchantment
 [card]
 name=Omen of the Forge
 abilities=flash
-auto=damage:2 target(creature,player,planeswalker)
+auto=damage:2 target(player,creature,planeswalker)
 auto={2}{R}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flash -- When Omen of the Forge enters the battlefield, it deals 2 damage to any target. -- {2}{R}, Sacrifice Omen of the Forge: Scry 2.
 mana={1}{R}
@@ -32538,6 +32655,7 @@ type=Enchantment
 [/card]
 [card]
 name=Ominous Seas
+abilities=cycling
 auto=@drawof(player):all(this) counter(0/0,1,Foreshadow)
 auto={C(0/0,-1,Foreshadow)}{C(0/0,-1,Foreshadow)}{C(0/0,-1,Foreshadow)}{C(0/0,-1,Foreshadow)}{C(0/0,-1,Foreshadow)}{C(0/0,-1,Foreshadow)}{C(0/0,-1,Foreshadow)}{C(0/0,-1,Foreshadow)}:token(Kraken Omi)
 autohand=__CYCLING__({2})
@@ -32582,8 +32700,7 @@ toughness=1
 [/card]
 [card]
 name=Omnath, Locus of the Roil
-target=creature,opponent
-auto=damage:type:elemental:mybattlefield
+auto=damage:type:elemental:mybattlefield target(player,creature,planeswalker)
 auto=@movedTo(land|myBattlefield):counter(1/1) target(elemental|myBattlefield)
 auto=@movedTo(land|myBattlefield):if type(land|mybattlefield)~morethan~7 then draw:1 controller
 text=When Omnath, Locus of the Roil enters the battlefield, it deals damage to any target equal to the number of Elementals you control. -- Whenever a land enters the battlefield under your control, put a +1/+1 counter on target Elemental you control. If you control eight or more lands, draw a card.
@@ -32595,7 +32712,7 @@ toughness=3
 [/card]
 [card]
 name=Omnispell Adept
-auto={2}{U}{T}:may castcard(normal) notatarget(instant,sorcery|myhand)
+auto={2}{U}{T}:may activate castcard(normal) notatarget(*[instant;sorcery]|myhand)
 text={2}{U}, {T}: You may cast an instant or sorcery card from your hand without paying its mana cost.
 mana={4}{U}
 type=Creature
@@ -32960,7 +33077,7 @@ toughness=2
 [/card]
 [card]
 name=Orcish Vandal
-auto={T}{S(artifact|myBattlefield)}:damage:2 target(creature,player)
+auto={T}{S(artifact|myBattlefield)}:damage:2 target(player,creature,planeswalker)
 text={T}, Sacrifice an artifact: Orcish Vandal deals 2 damage to any target.
 mana={1}{R}
 type=Creature
@@ -33282,9 +33399,10 @@ type=Sorcery
 [/card]
 [card]
 name=Outpost Siege
-aicode=activate target(*|mylibrary) may castcard(restricted)
-auto=choice name(Khans) transforms((,newability[counter(0/0.1.Khans)],newability[@each my upkeep:reveal:1 optionone may castcard(restricted) target(*|reveal) optiononeend optiontwo name(Put Back On Top) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend])) forever
-auto=choice name(Dragons) transforms((,newability[counter(0/0.1.Dragons)],newability[@movedto(this|nonbattlezone):damage:1 target(*)])) forever
+auto=choice name(Khans) transforms((,newability[counter(0/0.1.Khans)])) forever
+auto=choice name(Dragons) transforms((,newability[counter(0/0.1.Dragons)])) forever
+auto=@each my upkeep:this(counter{0/0.1.Khans}>=1) name(Reveal top card) reveal:1 optionone may activate castcard(restricted) target(*|reveal) optiononeend optiontwo name(Put Back On Top) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend])) forever
+auto=@movedto(creature|nonbattlezone) from(mybattlefield):this(counter{0/0.1.Dragons}>=1) damage:1 target(player,creature,planeswalker)
 text=As Outpost Siege enters the battlefield, choose Khans or Dragons. -- Khans -- At the beginning of your upkeep, exile the top card of your library. Until end of turn, you may play that card. -- Dragons -- Whenever a creature you control leaves the battlefield, Outpost Siege deals 1 damage to any target.
 mana={3}{R}
 type=Enchantment
@@ -33805,7 +33923,7 @@ type=Sorcery
 [card]
 name=Pashalik Mons
 auto=@movedto(other creature[goblin]|graveyard) from(mybattlefield):damage:1 target(creature,player)
-auto=@movedto(this|graveyard) from(mybattlefield):damage:1 target(creature,player)
+auto=@movedto(this|graveyard) from(mybattlefield):damage:1 target(player,creature,planeswalker)
 auto={3}{R}{S(creature[goblin]|myBattlefield)}:token(Goblin,Creature Goblin,1/1,red)*2
 text=Whenever Pashalik Mons or another Goblin you control dies, Pashalik Mons deals 1 damage to any target. -- {3}{R}, Sacrifice a Goblin: Create two 1/1 red Goblin creature tokens.
 mana={2}{R}
@@ -33846,6 +33964,36 @@ auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B
 auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
 text=Path of Ancestry enters the battlefield tapped. -- {T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1.
 type=Land
+[/card]
+[card]
+name=Path of Discovery
+auto=@movedTo(creature|myBattlefield):reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+text=Whenever a creature enters the battlefield under your control, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on the creature, then put the card back or put it into your graveyard.)
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Path of Mettle
+auto=all(creature[-haste;-first strike;-double strike;-vigilance]|battlefield) damage:1
+auto=@each my blockers restriction{type(creature[attacking;vigilance]|myBattlefield)~morethan~1}:flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;vigilance]|myBattlefield)~morethan~0}:if type(creature[attacking;haste]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;vigilance]|myBattlefield)~morethan~0}:if type(creature[attacking;first strike]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;vigilance]|myBattlefield)~morethan~0}:if type(creature[attacking;double strike]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(type(creature[attacking;haste]|myBattlefield)~morethan~1}:flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;haste]|myBattlefield)~morethan~0}:if type(creature[attacking;vigilance]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;haste]|myBattlefield)~morethan~0}:if type(creature[attacking;first strike]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;haste]|myBattlefield)~morethan~0}:if type(creature[attacking;double strike]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking;first strike]|myBattlefield)~morethan~1}:flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;first strike]|myBattlefield)~morethan~0}:if type(creature[attacking;vigilance]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;first strike]|myBattlefield)~morethan~0}:if type(creature[attacking;haste]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;first strike]|myBattlefield)~morethan~0}:if type(creature[attacking;double strike]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking;double strike]|myBattlefield)~morethan~1}:flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;double strike]|myBattlefield)~morethan~0}:if type(creature[attacking;vigilance]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;double strike]|myBattlefield)~morethan~0}:if type(creature[attacking;haste]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~1,type(creature[attacking;double strike]|myBattlefield)~morethan~0}:if type(creature[attacking;first strike]|myBattlefield)~morethan~0 then flip(Metzali, Tower of Triumph)
+text=When Path of Mettle enters the battlefield, it deals 1 damage to each creature that doesn't have first strike, double strike, vigilance, or haste. -- Whenever you attack with at least two creatures that have first strike, double strike, vigilance, and/or haste, transform Path of Mettle.
+mana={R}{W}
+type=Legendary Enchantment
 [/card]
 [card]
 name=Pathmaker Initiate
@@ -34338,7 +34486,7 @@ type=Artifact
 [card]
 name=Phyrexian Triniform
 auto=@movedTo(this|graveyard) from(battlefield):token(Golem,Creature Artifact Golem,3/3)*3
-autograveyard={12}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={12}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Phyrexian Triniform dies, create three 3/3 colorless Golem artifact creature tokens. -- Encore {12} ({12}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={9}
 type=Artifact Creature
@@ -34757,7 +34905,7 @@ auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{R} name(Mutate)
-auto=transforms((,newability[name(damage target) {T}:name(damage target) thisforeach(mutations) damage:1 target(creature;player;planeswalker)]))
+auto=transforms((,newability[name(damage target) {T}:name(damage target) thisforeach(mutations) damage:1 target(player,creature,planeswalker)]))
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{R} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- {T}: This creature deals X damage to any target, where X is the number of times this creature has mutated.
@@ -34930,7 +35078,7 @@ toughness=4
 [/card]
 [card]
 name=Precision Bolt
-target=player,creature
+target=player,creature,planeswalker
 auto=damage:3
 text=Precision Bolt deals 3 damage to any target.
 mana={2}{R}
@@ -35225,6 +35373,14 @@ auto=choice name(-X/-X and Fear) -X/-X target(creature) ueot && target(<upto:X>c
 text=Choose two — -- • Target player loses X life.  -- • Return target creature card with converted mana cost X or less from your graveyard to the battlefield. -- • Target creature gets -X/-X until end of turn. -- • Up to X target creatures gain fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.)
 mana={X}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Profane Procession
+auto={3}{W}{B}:target(creature) moveto(ownerexile) and!( transforms((,newability[counter(0/0.1.ProfaneExiled)])) forever )!
+auto=aslongas(*[counter{0/0.1.ProfaneExiled}]|exile) flip(Tomb of the Dusk Rose) >2
+text={3}{W}{B}: Exile target creature. Then if there are three or more cards exiled with Profane Procession, transform it.
+mana={1}{W}{B}
+type=Legendary Enchantment
 [/card]
 [card]
 name=Profane Transfusion
@@ -35595,6 +35751,7 @@ toughness=1
 [/card]
 [card]
 name=Pursue Glory
+abilities=cycling
 auto=all(creature[attacking]) 2/0
 autohand=__CYCLING__({2})
 text=Attacking creatures get +2/+0 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -35702,26 +35859,26 @@ toughness=1
 [/card]
 [card]
 name=Pyromatics
-auto=choice name(Don't replicate) ability$!name(Damage 1 target) name(Damage 1 target) target(*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 1 time) ability$!name(Damage 2 targets) pay[[{1}{R}]] name(Damage 2 targets) target(<2>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 2 times) ability$!name(Damage 3 targets) pay[[{2}{R}{R}]] name(Damage 3 targets) target(<3>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 3 times) ability$!name(Damage 4 targets) pay[[{3}{R}{R}{R}]] name(Damage 4 targets)target(<4>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 4 times) ability$!name(Damage 5 targets) pay[[{4}{R}{R}{R}{R}]] name(Damage 5 targets) target(<5>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 5 times) ability$!name(Damage 6 targets) pay[[{5}{R}{R}{R}{R}{R}]] name(Damage 6 targets) target(<6>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 6 times) ability$!name(Damage 7 targets) pay[[{6}{R}{R}{R}{R}{R}{R}]] name(Damage 7 targets) target(<7>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 7 times) ability$!name(Damage 8 targets) pay[[{7}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 8 targets) target(<8>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 8 times) ability$!name(Damage 9 targets) pay[[{8}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 9 targets) target(<9>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 9 times) ability$!name(Damage 10 targets) pay[[{9}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 10 targets) target(<10>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 10 times) ability$!name(Damage 11 targets) pay[[{10}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 11 targets) target(<11>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 11 times) ability$!name(Damage 12 targets) pay[[{11}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 12 targets) target(<12>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 12 times) ability$!name(Damage 13 targets) pay[[{12}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 13 targets) target(<13>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 13 times) ability$!name(Damage 14 targets) pay[[{13}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 14 targets)target(<14>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 14 times) ability$!name(Damage 15 targets) pay[[{14}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 15 targets) target(<15>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 15 times) ability$!name(Damage 16 targets) pay[[{15}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 16 targets) target(<16>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 16 times) ability$!name(Damage 17 targets) pay[[{16}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 17 targets) target(<17>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 17 times) ability$!name(Damage 18 targets) pay[[{17}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 18 targets) target(<18>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 18 times) ability$!name(Damage 19 targets) pay[[{18}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 19 targets) target(<19>*[creature;player;planeswalker]) damage:1!$ controller
-auto=choice name(Replicate 19 times) ability$!name(Damage 20 targets) pay[[{19}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 20 targets) target(<20>*[creature;player;planeswalker]) damage:1!$ controller
+auto=choice name(Don't replicate) ability$!name(Damage 1 target) name(Damage 1 target) target(player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 1 time) ability$!name(Damage 2 targets) pay[[{1}{R}]] name(Damage 2 targets) target(<2>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 2 times) ability$!name(Damage 3 targets) pay[[{2}{R}{R}]] name(Damage 3 targets) target(<3>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 3 times) ability$!name(Damage 4 targets) pay[[{3}{R}{R}{R}]] name(Damage 4 targets) target(<4>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 4 times) ability$!name(Damage 5 targets) pay[[{4}{R}{R}{R}{R}]] name(Damage 5 targets) target(<5>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 5 times) ability$!name(Damage 6 targets) pay[[{5}{R}{R}{R}{R}{R}]] name(Damage 6 targets) target(<6>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 6 times) ability$!name(Damage 7 targets) pay[[{6}{R}{R}{R}{R}{R}{R}]] name(Damage 7 targets) target(<7>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 7 times) ability$!name(Damage 8 targets) pay[[{7}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 8 targets) target(<8>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 8 times) ability$!name(Damage 9 targets) pay[[{8}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 9 targets) target(<9>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 9 times) ability$!name(Damage 10 targets) pay[[{9}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 10 targets) target(<10>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 10 times) ability$!name(Damage 11 targets) pay[[{10}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 11 targets) target(<11>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 11 times) ability$!name(Damage 12 targets) pay[[{11}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 12 targets) target(<12>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 12 times) ability$!name(Damage 13 targets) pay[[{12}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 13 targets) target(<13>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 13 times) ability$!name(Damage 14 targets) pay[[{13}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 14 targets)target(<14>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 14 times) ability$!name(Damage 15 targets) pay[[{14}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 15 targets) target(<15>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 15 times) ability$!name(Damage 16 targets) pay[[{15}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 16 targets) target(<16>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 16 times) ability$!name(Damage 17 targets) pay[[{16}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 17 targets) target(<17>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 17 times) ability$!name(Damage 18 targets) pay[[{17}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 18 targets) target(<18>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 18 times) ability$!name(Damage 19 targets) pay[[{18}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 19 targets) target(<19>player,creature,planeswalker) damage:1!$ controller
+auto=choice name(Replicate 19 times) ability$!name(Damage 20 targets) pay[[{19}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 20 targets) target(<20>player,creature,planeswalker) damage:1!$ controller
 text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Pyromatics deals 1 damage to any target.
 mana={1}{R}
 type=Instant
@@ -35736,11 +35893,7 @@ type=Sorcery
 [/card]
 [card]
 name=Pyrotechnics
-target=creature,player
-auto=damage:1
-auto=damage:1 target(creature,player)
-auto=ability$!name(1 damage to target creature or player) choice target(creature,player) damage:1!$ controller
-auto=ability$!name(1 damage to target creature or player) choice target(creature,player) damage:1!$ controller
+auto=thisforeach(variable{4}) ability$!name(1 damage to target creature or player) name(1 damage to target creature or player) choice target(creature,player) damage:1!$ controller
 text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
 mana={4}{R}
 type=Sorcery
@@ -35985,6 +36138,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Radiant Destiny
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=activatechooseacolor transforms((,newability[lord(creature[chosencolor]|mybattlefield) 1/1],newability[_CITY'S_BLESSING_ lord(creature[chosencolor]|mybattlefield) vigilance])) forever activatechooseend
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- As Radiant Destiny enters the battlefield, choose a creature type. -- Creatures you control of the chosen type get +1/+1. As long as you have the city's blessing, they also have vigilance.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
 name=Radiant, Serra Archangel
 abilities=flying,partner
 auto={T(other creature[flying]|mybattlefield)}:protection from white ueot
@@ -36080,7 +36242,7 @@ toughness=2
 [/card]
 [card]
 name=Raging Regisaur
-auto=@combat(attacking) source(this):damage:1 target(creature,player)
+auto=@combat(attacking) source(this):damage:1 target(player,creature,planeswalker)
 text=Whenever Raging Regisaur attacks, it deals 1 damage to any target.
 mana={2}{R}{G}
 type=Creature
@@ -36232,6 +36394,7 @@ toughness=6
 [/card]
 [card]
 name=Raking Claws
+abilities=cycling
 target=creature
 auto=double strike ueot
 autohand=__CYCLYNG__({2})
@@ -36242,7 +36405,7 @@ type=Instant
 [card]
 name=Rakshasa Debaser
 auto=@combat(attacking) source(this):moveTo(myBattlefield) target(creature|opponentgraveyard)
-autograveyard={6}{B}{B}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={6}{B}{B}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Whenever Rakshasa Debaser attacks, put target creature card from defending player's graveyard onto the battlefield under your control. -- Encore {6}{B}{B} ({6}{B}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={4}{B}{B}
 type=Creature
@@ -36260,7 +36423,7 @@ type=Instant
 [/card]
 [card]
 name=Ral's Outburst
-target=player,creature
+target=player,creature,planeswalker
 auto=damage:3
 auto=name(look) reveal:2 optionone name(Get a card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in graveyard) target(<2>*|reveal) moveto(mygraveyard) optiontwoend revealend
 text=Ral's Outburst deals 3 damage to any target. Look at the top two cards of your library. Put one of them into your hand and the other into your graveyard.
@@ -36389,7 +36552,7 @@ toughness=3
 [/card]
 [card]
 name=Rampaging Hippo
-abilities=trample
+abilities=trample,cycling
 autohand=__CYCLING__({2})
 text=Trample -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{G}{G}
@@ -36557,6 +36720,7 @@ toughness=1
 [/card]
 [card]
 name=Raugrin Crystal
+abilities=cycling
 auto={T}:Add{U}
 auto={T}:Add{R}
 auto={T}:Add{W}
@@ -36567,6 +36731,7 @@ type=Artifact
 [/card]
 [card]
 name=Raugrin Triome
+abilities=cycling
 auto=tap(noevent)
 autohand=__CYCLING__({3})
 text=({T}: Add {U}, {R}, or {W}.) -- Raugrin Triome enters the battlefield tapped. -- Cycling {3} ({3}, Discard this card: Draw a card.)
@@ -36704,6 +36869,7 @@ toughness=1
 [/card]
 [card]
 name=Razaketh's Rite
+abilities=cycling
 auto=moveto(myhand) target(*|mylibrary)
 autohand=__CYCLING__({B})
 text=Search your library for a card and put that card into your hand. Then shuffle your library. -- Cycling {B} ({B}, Discard this card: Draw a card.)
@@ -36914,6 +37080,7 @@ type=Instant
 [/card]
 [card]
 name=Reconnaissance Mission
+abilities=cycling
 auto=@combatdamagefoeof(player) from(creature|myBattlefield):may draw:1 controller
 autohand=__CYCLING__({2})
 text=Whenever a creature you control deals combat damage to a player, you may draw a card. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -37500,8 +37667,8 @@ type=Sorcery
 [/card]
 [card]
 name=Retributive Wand
-auto={3}{T}:damage 1 target(creature,player)
-auto=@movedto(this|graveyard) from(mybattlefield):damage 5 target(creature,player)
+auto={3}{T}:damage 1 target(player,creature,planeswalker)
+auto=@movedto(this|graveyard) from(mybattlefield):damage 5 target(player,creature,planeswalker)
 text={3}, {T}: Retributive Wand deals 1 damage to any target. -- When Retributive Wand is put into a graveyard from the battlefield, it deals 5 damage to any target.
 mana={3}
 type=Artifact
@@ -38269,6 +38436,7 @@ toughness=3
 [/card]
 [card]
 name=River Serpent
+abilities=cycling
 auto=aslongas(type(*|mygraveyard)~lessthen~5) cantattack
 autohand=__CYCLING__({U})
 text=River Serpent can't attack unless there are five or more cards in your graveyard. -- Cycling {U} ({U}, Discard this card: Draw a card.)
@@ -38407,9 +38575,7 @@ toughness=3
 [card]
 name=Rock Equipment
 auto={1}:equip
-auto=teach(creature) {1}{T}{S(Rock Equipment|myBattlefield)}:name(Damage player) name(Damage player) damage:2 target(player)
-auto=teach(creature) {1}{T}{S(Rock Equipment|myBattlefield)}:name(Damage creature) name(Damage creature) damage:2 target(creature) restriction{type(creature|battlefield)~morethan~0}
-auto=teach(creature) {1}{T}{S(Rock Equipment|myBattlefield)}:name(Damage planeswalker) name(Damage planeswalker) damage:2 target(planeswalker) restriction{type(planeswalker|battlefield)~morethan~0}
+auto=teach(creature) {1}{T}{S(Rock Equipment|myBattlefield)}:name(Damage any target) name(Damage any target) damage:2 target(player,creature,planeswalker)
 text=Equiped creature has "{1}, {T}, Sacrifice Rock: This creature deals 2 damage to any target" --  Equip {1}.
 type=Artifact
 subtype=Equipment
@@ -38433,7 +38599,7 @@ type=Instant
 [/card]
 [card]
 name=Rockslide Sorcerer
-auto=@movedTo(*[instant;sorcery;wizard]|myStack):ability$!name(Choose target) choice name(Damage to a creature) damage:1 target(creature) _ choice name(Damage to a player) damage:1 target(player) _ choice name(Damage to a planeswalker) damage:1 target(planeswalker)!$ controller
+auto=@movedTo(*[instant;sorcery;wizard]|myStack):name(Delas 1 damage) name(Deals 1 damage) damage:1 target(player,creature,planeswalker)
 text=Whenever you cast an instant, sorcery, or Wizard spell, Rockslide Sorcerer deals 1 damage to any target.
 mana={3}{R}
 type=Creature
@@ -38471,8 +38637,8 @@ toughness=2
 [card]
 name=Roil Eruption
 kicker={5}
-auto=if paid(kicker) then ability$!name(Choose target) choice name(Damage to a creature) damage:5 target(creature) _ choice name(Damage to a player) damage:5 target(player) _ choice name(Damage to a planeswalker) damage:5 target(planeswalker)!$ controller
-auto=ifnot paid(kicker) then ability$!name(Choose target) choice name(Damage to a creature) damage:3 target(creature) _ choice name(Damage to a player) damage:3 target(player) _ choice name(Damage to a planeswalker) damage:3 target(planeswalker)!$ controller
+auto=if paid(kicker) then name(Deals 5 damages) name(Deals 5 damages) damage:5 target(player,creature,planeswalker)
+auto=ifnot paid(kicker) then name(Deals 3 damages) name(Deals 3 damages) damage:3 target(player,creature,planeswalker)
 text=Kicker {5} (You may pay an additional {5} as you cast this spell.) -- Roil Eruption deals 3 damage to any target. If this spell was kicked, it deals 5 damage instead.
 mana={1}{R}
 type=Sorcery
@@ -38576,7 +38742,8 @@ type=Instant
 [/card]
 [card]
 name=Rooting Moloch
-auto=moveTo(exile) target(*[__CYCLING__]|myGraveyard):all(trigger[to]) newability[canplayfromexile, uynt] uynt
+abilities=cycling
+auto=moveTo(exile) target(*[cycling]|myGraveyard) and!( transforms((newability[canplayfromexile])) uynt )!
 autohand=__CYCLING__({2})
 text=When Rooting Moloch enters the battlefield, exile target card with a cycling ability from your graveyard. Until the end of your next turn, you may play that card. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{R}
@@ -38878,7 +39045,7 @@ toughness=1
 [/card]
 [card]
 name=Ruination Rioter
-auto=@movedTo(this|graveyard) from(battlefield):damage:type:land:mygraveyard target(creature,player)
+auto=@movedTo(this|graveyard) from(battlefield):damage:type:land:mygraveyard target(player,creature,planeswalker)
 text=When Ruination Rioter dies, you may have it deal damage to any target equal to the number of land cards in your graveyard.
 mana={R}{G}
 type=Creature
@@ -39106,7 +39273,7 @@ toughness=1
 [/card]
 [card]
 name=Sacred Excavation
-auto=moveTo(myhand) target(<2>*[__cycling__]|myGraveyard)
+auto=moveTo(myhand) target(<upto:2>*[cycling]|myGraveyard)
 text=Return up to two target cards with cycling from your graveyard to your hand.
 mana={3}{U}
 type=Sorcery
@@ -39418,7 +39585,7 @@ type=Enchantment
 [/card]
 [card]
 name=Sanctuary Smasher
-abilities=first strike
+abilities=first strike,cycling
 autohand=__CYCLING__({2}{R})
 autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,First Strike],newability[this(counter{0/0.1.First Strike}>=1) first strike target(creature|myBattlefield)]))
 text=First strike -- Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) -- When you cycle Sanctuary Smasher, put a first strike counter on target creature you control.
@@ -39647,10 +39814,11 @@ type=Sorcery
 [/card]
 [card]
 name=Sarkhan's Unsealing
-auto=@movedTo(creature[power=4]|mystack):damage:4 target(creature,player)
-auto=@movedTo(creature[power=5]|mystack):damage:4 target(creature,player)
-auto=@movedTo(creature[power=6]|mystack):damage:4 target(creature,player)
-auto=@movedTo(creature[power>=7]|mystack):damage:4 all(creature,planeswalker|opponentBattlefield)
+auto=@movedTo(creature[power=4]|mystack):damage:4 target(player,creature,planeswalker)
+auto=@movedTo(creature[power=5]|mystack):damage:4 target(player,creature,planeswalker)
+auto=@movedTo(creature[power=6]|mystack):damage:4 target(player,creature,planeswalker)
+auto=@movedTo(creature[power>=7]|mystack):damage:4 all(creature|opponentBattlefield)
+auto=@movedTo(creature[power>=7]|mystack):damage:4 all(planeswalker|opponentBattlefield)
 auto=@movedTo(creature[power>=7]|mystack):damage:4 opponent
 text=Whenever you cast a creature spell with power 4, 5, or 6, Sarkhan's Unsealing deals 4 damage to any target. -- Whenever you cast a creature spell with power 7 or greater, Sarkhan's Unsealing deals 4 damage to each opponent and each creature and planeswalker they control.
 mana={3}{R}
@@ -39659,8 +39827,8 @@ type=Enchantment
 [card]
 name=Sarkhan's Whelp
 abilities=flying
-auto=@counterremoved(0/0,1,Loyalty) from(planeswalker[sarkhan]|myBattlefield) restriction{myturnonly}:ability$!name(Choose one) choice name(Damage player) damage:1 target(player) _ choice name(Damage creature) damage:1 target(creature) _ choice name(Damage planeswalker) damage:1 target(planeswalker)!$ controller
-auto=@counteradded(0/0,1,Loyalty) from(planeswalker[sarkhan]|myBattlefield) restriction{myturnonly}:ability$!name(Choose one) choice name(Damage player) damage:1 target(player) _ choice name(Damage creature) damage:1 target(creature) _ choice name(Damage planeswalker) damage:1 target(planeswalker)!$ controller
+auto=@counterremoved(0/0,1,Loyalty) from(planeswalker[sarkhan]|myBattlefield) restriction{myturnonly}:name(Deals 1 damage) name(Deals 1 damage) damage:1 target(player,creature,planeswalker)
+auto=@counteradded(0/0,1,Loyalty) from(planeswalker[sarkhan]|myBattlefield) restriction{myturnonly}:name(Deals 1 damage) name(Deals 1 damage) damage:1 target(player,creature,planeswalker)
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Whenever you activate an ability of a Sarkhan planeswalker, Sarkhan's Whelp deals 1 damage to any target.
 mana={2}{R}
 type=Creature
@@ -39821,6 +39989,7 @@ toughness=4
 [/card]
 [card]
 name=Savai Crystal
+abilities=cycling
 auto={T}:Add{R}
 auto={T}:Add{W}
 auto={T}:Add{B}
@@ -39849,6 +40018,7 @@ toughness=2
 [/card]
 [card]
 name=Savai Triome
+abilities=cycling
 auto=tap(noevent)
 autohand=__CYCLING__({3})
 text=({T}: Add {R}, {W}, or {B}.) -- Savai Triome enters the battlefield tapped. -- Cycling {3} ({3}, Discard this card: Draw a card.)
@@ -39991,6 +40161,7 @@ type=Sorcery
 [/card]
 [card]
 name=Scarab Feast
+abilities=cycling
 auto=choice name(My Graveyard) moveto(exile) target(<upto:3>*|mygraveyard)
 auto=choice name(Opponent Graveyard)moveto(exile) target(<upto:3>creature|opponentgraveyard)
 autohand=__CYCLING__({B})
@@ -40011,6 +40182,7 @@ toughness=4
 [/card]
 [card]
 name=Scattered Groves
+abilities=cycling
 auto=tap
 autohand=__CYCLING__({2})
 text=({T}: Add {G} or {W} to your mana pool.) -- Scattered Groves enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -40065,7 +40237,7 @@ type=Instant
 [/card]
 [card]
 name=Scent of Cinder
-auto={T}:target(<anyamount>[red]|myhand) transforms((,newability[foreach(*[red]|reveal) damage:1 target(creature,player,planeswalker)]))
+auto={T}:name(Damage any target) name(Damage any target) damage:type:*[red]:myhand target(player,creature,planeswalker)
 text=Reveal any number of red cards in your hand. Scent of Cinder deals X damage to any target, where X is the number of cards revealed this way.
 mana={1}{R}
 type=Sorcery
@@ -40122,7 +40294,7 @@ toughness=2
 [/card]
 [card]
 name=Scholar of the Ages
-auto=moveto(myhand) target(<upto:2> *[instant,sorcery]|mygraveyard)
+auto=moveto(myhand) target(<upto:2>*[instant,sorcery]|mygraveyard)
 text=When Scholar of the Ages enters the battlefield, return up to two target instant and/or sorcery cards from your graveyard to your hand.
 mana={5}{U}{U}
 type=Creature
@@ -40133,7 +40305,7 @@ toughness=3
 [card]
 name=Scholar of the Lost Trove
 abilities=flying
-auto=may name(cast card) castcard(normal) target(*[instant;sorcery;artifact]|mygraveyard) and!(transforms((,newability[exiledeath])) forever)!
+auto=may name(cast card) activate castcard(normal) target(*[instant;sorcery;artifact]|mygraveyard) and!(transforms((,newability[gainedexiledeath])) forever)!
 text=Flying -- When Scholar of the Lost Trove enters the battlefield, you may cast target instant, sorcery, or artifact card from your graveyard without paying its mana cost. If an instant or sorcery spell cast this way would be put into your graveyard this turn, exile it instead.
 mana={5}{U}{U}
 type=Creature
@@ -40224,7 +40396,7 @@ type=Sorcery
 name=Scorching Dragonfire
 target=creature,planeswalker
 auto=damage:3 
-auto=exiledeath
+auto=transforms((,newability[exiledeath])) ueot
 text=Scorching Dragonfire deals 3 damage to target creature or planeswalker. If that creature or planeswalker would die this turn, exile it instead.
 mana={1}{R}
 type=Instant
@@ -40886,7 +41058,7 @@ toughness=3
 [/card]
 [card]
 name=Sentinel Tower
-auto=@movedTo(*[instant;sorcery]|stack) restriction{myturnonly}:name(Damage any target) name(Damage any target) ability$!name(Choose one) choice name(Damage player) damage:type:*[sorcery;instant;fresh]:graveyardplus1plusend target(player) _ choice name(Damage creature) damage:type:*[sorcery;instant;fresh]:graveyardplus1plusend target(creature) _ choice name(Damage planeswalker) damage:type:*[sorcery;instant;fresh]:graveyardplus1plusend target(planeswalker)!$ controller
+auto=@movedTo(*[instant;sorcery]|stack) restriction{myturnonly}:name(Damage any target) name(Damage any target) damage:type:*[sorcery;instant;fresh]:graveyardplus1plusend target(player,creature,planeswalker)
 text=Whenever an instant or sorcery spell is cast during your turn, Sentinel Tower deals damage to any target equal to 1 plus the number of instant and sorcery spells cast before that spell this turn.
 mana={4}
 type=Artifact
@@ -41398,6 +41570,7 @@ type=Instant
 [/card]
 [card]
 name=Shark Typhoon
+abilities=cycling
 auto=@movedto(*[-creature]|mystack):all(trigger[to]) transforms((,newability[create(Shark:Creature Shark:manacost/manacost:blue:flying)])) oneshot
 autohand=__CYCLING__({X}{1}{U})
 autohand=@cycled(this|hand):create(Shark:Creature Shark:X/X:blue:flying)
@@ -41532,6 +41705,7 @@ subtype=Desert
 [/card]
 [card]
 name=Shefet Monitor
+abilities=cycling
 autohand=@movedto(mygraveyard) from(myhand):may moveto(mybattlefield) target(desert|mylibrary)
 autohand=__CYCLING__({3}{G})
 text=Cycling {3}{G} ({3}{G}, Discard this card: Draw a card.) -- When you cycle Shefet Monitor, you may search your library for a basic land card or a Desert card, put it onto the battlefield, then shuffle your library. (Do this before you draw.)
@@ -41553,6 +41727,7 @@ type=Instant
 [/card]
 [card]
 name=Sheltered Thicket
+abilities=cycling
 auto=tap
 autohand=__CYCLING__({2})
 text=({T}: Add {R} or {G} to your mana pool.) -- Sheltered Thicket enters the battlefield tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -41716,7 +41891,7 @@ type=Sorcery
 [/card]
 [card]
 name=Shimmerscale Drake
-abilities=flying
+abilities=flying,cycling
 autohand=__CYCLING__({2})
 text=Flying -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{U}
@@ -41885,6 +42060,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Shredded Sails
+abilities=cycling
 auto=choice name(Destroy artifact):destroy target(artifact)
 auto=choice name(Damage flying creature):damage:4 target(creature[flying])
 autohand=__CYCLING__({2})
@@ -42491,8 +42667,8 @@ subtype=Arcane
 [/card]
 [card]
 name=Sins of the Past
-auto=moveto(myexile) all(this)
-auto=may name(cast card) castcard(normal) target(*[instant;sorcery]|mygraveyard) and!(transforms((,newability[exiledeath])) forever)!
+abilities=exiledeath
+auto=may name(cast card) activate castcard(normal) target(*[instant;sorcery]|mygraveyard) and!(transforms((,newability[gainedexiledeath])) forever)!
 text=Until end of turn, you may cast target instant or sorcery card from your graveyard without paying its mana cost. If that card would be put into your graveyard this turn, exile it instead. Exile Sins of the Past.
 mana={4}{B}{B}
 type=Sorcery
@@ -42659,7 +42835,7 @@ type=Instant
 [/card]
 [card]
 name=Skeleton Archer
-auto=damage:1 target(creature,player)
+auto=damage:1 target(player,creature,planeswalker)
 text=When Skeleton Archer enters the battlefield, it deals 1 damage to any target.
 mana={3}{B}
 type=Creature
@@ -42699,7 +42875,7 @@ toughness=0
 [/card]
 [card]
 name=Skewer the Critics
-target=player,creature
+target=player,creature,planeswalker
 auto=damage:3
 text=Spectacle {R} (You may cast this spell for its spectacle cost rather than its mana cost if an opponent lost life this turn.) -- Skewer the Critics deals 3 damage to any target.
 other={R} name(Spectacle) 
@@ -43194,8 +43370,8 @@ toughness=2
 name=Slaying Fire
 target=creature,player,planeswalker
 other={R}{R}{R} name(Adamant)
-auto=if paid(alternative) then damage:4
-auto=ifnot paid(alternative) then damage:3
+auto=if paid(alternative) then name(Deals 4 damages) name(Deals 4 damages) damage:4 target(player,creature,planeswalker)
+auto=ifnot paid(alternative) then name(Deals 3 damages) name(Deals 3 damages) damage:3 target(player,creature,planeswalker)
 text=Slaying Fire deals 3 damage to any target. -- Adamant — If at least three red mana was spent to cast this spell, it deals 4 damage instead.
 mana={2}{R}
 type=Instant
@@ -43270,6 +43446,18 @@ type=Legendary Creature
 subtype=Leviathan
 power=8
 toughness=8
+[/card]
+[card]
+name=Slippery Scoundrel
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=_CITY'S_BLESSING_ transforms((,newability[cantattack],newability[opponentshroud]))
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- As long as you have the city's blessing, Slippery Scoundrel has hexproof and can't be blocked.
+mana={2}{U}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
 [/card]
 [card]
 name=Slither Blade
@@ -43361,7 +43549,7 @@ toughness=3
 [/card]
 [card]
 name=Smiting Helix
-auto=damage:3 target(player,creature)
+auto=damage:3 target(player,creature,planeswalker)
 auto=life:3 controller
 flashback={R}{W}
 text=Smiting Helix deals 3 damage to any target and you gain 3 life. -- Flashback {R}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
@@ -43966,7 +44154,7 @@ type=Sorcery
 [card]
 name=Soul of Eternity
 anyzone=lifetotal/lifetotal cdaactive
-autograveyard={7}{W}{W}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={7}{W}{W}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Soul of Eternity's power and toughness are each equal to your life total. -- Encore {7}{W}{W} ({7}{W}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={5}{W}{W}
 type=Creature
@@ -44259,7 +44447,7 @@ toughness=4
 [card]
 name=Sparktongue Dragon
 abilities=flying
-auto=may pay({2}{r}):damage:3 target(creature,player)
+auto=may pay({2}{r}):damage:3 target(player,creature,planeswalker)
 text=Flying -- When Sparktongue Dragon enters the battlefield, you may pay {2}{R}. When you do, it deals 3 damage to any target.
 mana={3}{R}{R}
 type=Creature
@@ -44440,8 +44628,8 @@ toughness=4
 [/card]
 [card]
 name=Spellpyre Phoenix
-abilities=flying
-auto=moveTo(myHand) target(*[instant;sorcery{_cycling_}|myGraveyard)
+abilities=flying,cycling
+auto=moveTo(myHand) target(*[instant;sorcery;cycling]|myGraveyard)
 autograveyard=if type(@cycled(*|myHand)~morethan~2 then moveTo(myhand) target(Spellpyre Phoenix|myGraveyard))
 text=Flying -- When Spellpyre Phoenix enters the battlefield, you may return target instant or sorcery card with a cycling ability from your graveyard to your hand. -- At the beginning of each end step, if you cycled two or more cards this turn, return Spellpyre Phoenix from your graveyard to your hand.
 mana={3}{R}{R}
@@ -44887,7 +45075,7 @@ type=Instant
 [/card]
 [card]
 name=Splendor Mare
-abilities=lifelink
+abilities=lifelink,cycling
 autohand=__CYCLING__({1}{W})
 autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,Lifelink],newability[this(counter{0/0.1.Lifelink}>=1) lifelink target(creature|myBattlefield)]))
 text=Lifelink -- Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) -- When you cycle Splendor Mare, put a lifelink counter on target creature you control.
@@ -45118,7 +45306,7 @@ type=Land
 [card]
 name=Springjaw Trap
 abilities=flash
-auto={4}{T}{S}:damage:3 target(creature,planeswalker,player)
+auto={4}{T}{S}:damage:3 target(player,creature,planeswalker)
 text=Flash -- {4}, {T}, Sacrifice Springjaw Trap: It deals 3 damage to any target.
 mana={1}
 type=Artifact
@@ -45380,6 +45568,7 @@ type=Instant
 [/card]
 [card]
 name=Startling Development
+abilities=cycling
 target=creature
 auto=ueot transforms((removetypes))
 auto=ueot transforms((blue))
@@ -45627,6 +45816,7 @@ toughness=2
 [/card]
 [card]
 name=Stinging Shot
+abilities=cycling
 target=creature[flying]
 auto=counter(-1/-1,3)
 autohand=__CYCLING__({2})
@@ -45636,6 +45826,7 @@ type=Instant
 [/card]
 [card]
 name=Stir the Sands
+abilities=cycling
 auto=token(Zombie,creature Zombie,2/2,black)*3
 autohand=@cycled(this|hand):token(Zombie,creature Zombie,2/2,black)
 autohand=__CYCLING__({3}{B})
@@ -45836,13 +46027,21 @@ toughness=2
 [card]
 name=Storm Herald
 abilities=haste
-auto=castcard(normal) target(<anyamount>aura|myGraveyard) and!(transforms((,newability[treason],newability[exiledeath])) forever)!
+auto=activate castcard(normal) target(<anyamount>aura|myGraveyard) and!(transforms((,newability[treason],newability[exiledeath])) forever)!
 text=Haste -- When Storm Herald enters the battlefield, return any number of Aura cards from your graveyard to the battlefield attached to creatures you control. Exile those Auras at the beginning of your next end step. If those Auras would leave the battlefield, exile them instead of putting them anywhere else.
 mana={2}{R}
 type=Creature
 subtype=Human Shaman
 power=3
 toughness=2
+[/card]
+[card]
+name=Storm the Vault
+auto=@each combatdamage restriction{opponentdamagedbycombat}:token(Treasure Sur)
+auto=@each my upkeep restriction{type(artifact|myBattlefield)~morethan~4}:flip(Vault of Catlacan)
+text=Whenever one or more creatures you control deal combat damage to a player, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.") -- At the beginning of your end step, if you control five or more artifacts, transform Storm the Vault.
+mana={2}{U}{R}
+type=Legendary Enchantment
 [/card]
 [card]
 name=Storm Sculptor
@@ -46062,7 +46261,7 @@ type=Instant
 [/card]
 [card]
 name=Striped Riverwinder
-abilities=opponentshroud
+abilities=opponentshroud,cycling
 autohand=__CYCLING__({U})
 text=Hexproof (This creature can't be the target of spells or abilities your opponents control.) -- Cycling {U} ({U}, Discard this card: Draw a card.)
 mana={6}{U}
@@ -46217,6 +46416,7 @@ type=Instant
 [/card]
 [card]
 name=Suffocating Fumes
+abilities=cycling
 auto=all(creature|opponentBattlefield) -1/-1 ueot
 autohand=__CYCLING__({2})
 text=Creatures your opponents control get -1/-1 until end of turn. / Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -46738,6 +46938,7 @@ toughness=3
 [/card]
 [card]
 name=Sweltering Suns
+abilities=cycling
 auto=damage:3 all(creature)
 autohand=__CYCLING__({3})
 text=Sweltering Suns deals 3 damage to each creature. -- Cycling {3} ({3}, Discard this card: Draw a card.)
@@ -47021,7 +47222,7 @@ toughness=4
 [/card]
 [card]
 name=Syr Carah, the Bold
-auto={T}:damage:1 target(creature,player)
+auto={T}:damage:1 target(player,creature,planeswalker)
 auto=@damageof(player) from(this):moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary) controller
 auto=@damagefoeof(player) from(this):moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary) controller
 text=Whenever Syr Carah, the Bold or an instant or sorcery spell you control deals damage to a player, exile the top card of your library. You may play that card this turn. -- {T}: Syr Carah deals 1 damage to any target.
@@ -47586,6 +47787,7 @@ toughness=5
 [/card]
 [card]
 name=Tectonic Reformation
+abilities=cycling
 auto=lord(land|myhand) transform((newability[__CYLCLING__({R})]))
 autohand=__CYCLING__({2})
 text=Each land card in your hand has cycling {R}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -47909,7 +48111,7 @@ toughness=5
 name=Terror of the Peaks
 abilities=flying
 auto=@targeted(this) from(*|opponentzones):life:-3 opponent
-auto=@movedTo(creature|mybattlefield):all(trigger[to]) transforms((,newability[choice name(Don't damage) donothing],newability[choice name(damage creature) target(creature) dynamicability<!powerstrike!> oneshot],newability[choice name(damage player) target(player) dynamicability<!powerstrike!> oneshot],newability[choice name(damage planeswalker) target(planeswalker) dynamicability<!powerstrike!>])) oneshot
+auto=@movedTo(creature|mybattlefield):all(trigger[to]) transforms((,newability[name(Deals damages to any target)  name(Deals damages to any target) target(player,creature,planeswalker) dynamicability<!powerstrike!>])) oneshot
 text=Flying -- Spells your opponents cast that target Terror of the Peaks cost an additional 3 life to cast. -- Whenever another creature enters the battlefield under your control, Terror of the Peaks deals damage equal to that creature's power to any target.
 mana={3}{R}{R}
 type=Creature
@@ -48882,96 +49084,7 @@ type=Land
 [card]
 name=Thrull Parasite
 auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
-auto={T}{L:2}:name(Remove 1/1 counter) counter(1/1,-1) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Loyalty counter) counter(0/0,-1,Loyalty) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Flying counter) counter(0/0,-1,Flying) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Trample counter) counter(0/0,-1,Trample) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove First Strike counter) counter(0/0,-1,First Strike) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Vigilance counter) counter(0/0,-1,Vigilance) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Deathtouch counter) counter(0/0,-1,Deathtouch) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Lifelink counter) counter(0/0,-1,Lifelink) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Flash counter) counter(0/0,-1,Flash) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Hexproof counter) counter(0/0,-1,Hexproof) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Double Strike counter) counter(0/0,-1,Double Strike) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Charge counter) counter(0/0,-1,Charge) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Verse counter) counter(0/0,-1,Verse) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Gold counter) counter(0/0,-1,Gold) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Storage counter) counter(0/0,-1,Storage) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Slumber counter) counter(0/0,-1,Slumber) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Time counter) counter(0/0,-1,Time) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Coin counter) counter(0/0,-1,Coin) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Reach counter) counter(0/0,-1,Reach) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Flood counter) counter(0/0,-1,Flood) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Menace counter) counter(0/0,-1,Menace) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Lore counter) counter(0/0,-1,Lore) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Fury counter) counter(0/0,-1,Fury) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Bounty counter) counter(0/0,-1,Bounty) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Egg counter) counter(0/0,-1,Egg) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Level counter) counter(0/0,-1,Level) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Doom counter) counter(0/0,-1,Doom) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Eyeball counter) counter(0/0,-1,Eyeball) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Brick counter) counter(0/0,-1,Brick) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Magnet counter) counter(0/0,-1,Magnet) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Hour counter) counter(0/0,-1,Hour) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Foreshadow counter) counter(0/0,-1,Foreshadow) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Redmana counter) counter(0/0,-1,Redmana) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Growth counter) counter(0/0,-1,Growth) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Knowledge counter) counter(0/0,-1,Knowledge) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Landmark counter) counter(0/0,-1,Landmark) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Wish counter) counter(0/0,-1,Wish) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Ki counter) counter(0/0,-1,Ki) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Filibuster counter) counter(0/0,-1,Filibuster) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Page counter) counter(0/0,-1,Page) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Muster counter) counter(0/0,-1,Muster) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Quest counter) counter(0/0,-1,Quest) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Devotion counter) counter(0/0,-1,Devotion) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Blood counter) counter(0/0,-1,Blood) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Death counter) counter(0/0,-1,Death) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Age counter) counter(0/0,-1,Age) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Fuse counter) counter(0/0,-1,Fuse) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Unity counter) counter(0/0,-1,Unity) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Strife counter) counter(0/0,-1,Strife) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Ice counter) counter(0/0,-1,Ice) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Payment counter) counter(0/0,-1,Payment) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Spore counter) counter(0/0,-1,Spore) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Infection counter) counter(0/0,-1,Infection) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Paralyzation counter) counter(0/0,-1,Paralyzation) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Essence counter) counter(0/0,-1,Essence) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Blaze counter) counter(0/0,-1,Blaze) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Wind counter) counter(0/0,-1,Wind) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Healing counter) counter(0/0,-1,Healing) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Study counter) counter(0/0,-1,Study) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Bribe counter) counter(0/0,-1,Bribe) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Tide counter) counter(0/0,-1,Tide) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Pressure counter) counter(0/0,-1,Pressure) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Depletion counter) counter(0/0,-1,Depletion) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Hoofprint counter) counter(0/0,-1,Hoofprint) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Credit counter) counter(0/0,-1,Credit) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Javelin counter) counter(0/0,-1,Javelin) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Feather counter) counter(0/0,-1,Feather) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Treasure counter) counter(0/0,-1,Treasure) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Matrix counter) counter(0/0,-1,Matrix) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Vitality counter) counter(0/0,-1,Vitality) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Petal counter) counter(0/0,-1,Petal) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Eon counter) counter(0/0,-1,Eon) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Winch counter) counter(0/0,-1,Winch) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Mine counter) counter(0/0,-1,Mine) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Divinity counter) counter(0/0,-1,Divinity) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Theft counter) counter(0/0,-1,Theft) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Fate counter) counter(0/0,-1,Fate) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Shield counter) counter(0/0,-1,Shield) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Plague counter) counter(0/0,-1,Plague) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Isolation counter) counter(0/0,-1,Isolation) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Shell counter) counter(0/0,-1,Shell) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Wage counter) counter(0/0,-1,Wage) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Corpse counter) counter(0/0,-1,Corpse) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Hourglass counter) counter(0/0,-1,Hourglass) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Velocity counter) counter(0/0,-1,Velocity) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Pain counter) counter(0/0,-1,Pain) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Currency counter) counter(0/0,-1,Currency) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Trap counter) counter(0/0,-1,Trap) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Hatchling counter) counter(0/0,-1,Hatchling) target(*[-land]|battlefield)
-auto={T}{L:2}:name(Remove Pin counter) counter(0/0,-1,Pin) target(*[-land]|battlefield)
+auto={T}{L:2}:name(Remove a counter) name(Remove a counter) removesinglecountertype(1) target(*[-land;counter{any}]|myBattlefield)
 text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.) -- {T}, Pay 2 life: Remove a counter from target nonland permanent.
 mana={B}
 type=Creature
@@ -48993,7 +49106,7 @@ toughness=5
 [/card]
 [card]
 name=Thud
-target=player,creature
+target=player,creature,planeswalker
 auto=damage:storedpower
 text=As an additional cost to cast this spell, sacrifice a creature. -- Thud deals damage equal to the sacrificed creature's power to any target.
 mana={R}{S(creature|mybattlefield)}
@@ -49084,7 +49197,7 @@ toughness=3
 [card]
 name=Thundering Djinn
 abilities=flying
-auto=thisforeach(variable{pdrewcount}>0) damage:1 target(player,creature)
+auto=@combat(attacking) source(this):damage:pdrewcount target(player,creature,planeswalker)
 text=Flying -- Whenever Thundering Djinn attacks, it deals damage to any target equal to the number of cards you've drawn this turn.
 mana={3}{U}{R}
 type=Creature
@@ -49191,7 +49304,7 @@ toughness=3
 [/card]
 [card]
 name=Tibalt's Rager
-auto=_DIES_damage:1 target(creature,player)
+auto=_DIES_damage:1 target(player,creature,planeswalker)
 auto={1}{R}:2/0 ueot
 text=When Tibalt's Rager dies, it deals 1 damage to any target. -- {1}{R}: Tibalt's Rager gets +2/+0 until end of turn.
 mana={1}{R}
@@ -49456,7 +49569,7 @@ toughness=6
 [/card]
 [card]
 name=Titanoth Rex
-abilities=trample
+abilities=trample,cycling
 autohand=__CYCLING__({1}{G})
 autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,Trample],newability[this(counter{0/0.1.Trample}>=1) trample target(creature|myBattlefield)])))
 text=Trample -- Cycling {1}{G} ({1}{G}, Discard this card: Draw a card.) -- When you cycle Titanoth Rex, put a trample counter on target creature you control.
@@ -49582,6 +49695,18 @@ type=Legendary Creature
 subtype=Elf Scout
 power=3
 toughness=3
+[/card]
+[card]
+name=Tomb of the Dusk Rose
+auto={T}:add{W}
+auto={T}:add{G}
+auto={T}:add{U}
+auto={T}:add{B}
+auto={T}:add{R}
+auto={2}{W}{B}{T}:name(Return a creature from exile) name(Return a creature from exile) target(creature[counter{0/0.1.ProfaneExiled}]|exile) moveto(mybattlefield)
+text=(Transforms from Profane Procession.) -- {T}: Add one mana of any color. -- {2}{W}{B}, {T}: Put a creature card exiled with this permanent onto the battlefield under your control.
+mana={1}{W}{B}
+type=Legendary Land
 [/card]
 [card]
 name=Tombfire
@@ -50259,7 +50384,7 @@ toughness=4
 [card]
 name=Trove Tracker
 auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller
-autograveyard={5}{U}{U}:moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
+autograveyard={5}{U}{U}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Trove Tracker dies, draw a card. -- Encore {5}{U}{U} ({5}{U}{U}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={2}{U}
 type=Creature
@@ -51092,8 +51217,10 @@ toughness=3
 [/card]
 [card]
 name=Underworld Fires
-auto=all(creature[-protection from red],planeswalker) exiledeath
-auto=damage:1 all(creature,planeswalker)
+auto=all(creature) exiledeath ueot
+auto=all(planeswalker) exiledeath ueot
+auto=all(creature) damage:1 
+auto=all(planeswalker) damage:1 
 text=Underworld Fires deals 1 damage to each creature and each planeswalker. If a permanent dealt damage this way would die this turn, exile it instead.
 mana={1}{R}
 type=Sorcery
@@ -51625,7 +51752,8 @@ toughness=4
 [/card]
 [card]
 name=Valiant Rescuer
-auto=@cycled(*|myHand) restriction{thisturn(*[__Cycling__]|myHand)~equalto~0}:token(Human Soldier Val)
+abilities=cycling
+auto=@cycled(*|myHand) restriction{thisturn(*[cycling]|myHand)~equalto~0}:token(Human Soldier Val)
 autohand=__CYCLING__({2})
 text=Whenever you cycle another card for the first time each turn, create a 1/1 white Human Soldier creature token. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
@@ -51847,6 +51975,17 @@ text=Vastwood Thicket enters the battlefield tapped. -- {T}: Add {G}.
 type=Land
 [/card]
 [card]
+name=Vault of Catlacan
+auto={T}:add{W}
+auto={T}:add{R}
+auto={T}:add{G}
+auto={T}:add{B}
+auto={T}:add{U}
+auto={T}:name(Add blue mana for each artifact) name(Add blue mana for each artifact) foreach(artifact|mybattlefield) add{U}
+text=(Transforms from Storm the Vault.) -- {T}: Add one mana of any color. -- {T}: Add {U} for each artifact you control.
+type=Legendary Land
+[/card]
+[card]
 name=Vault of Champions
 auto=tap(noevent)
 auto={T}:add{W}
@@ -51971,7 +52110,7 @@ toughness=4
 [card]
 name=Vengeful Devil
 abilities=haste
-auto={T}:damage:1 target(creature,player) restriction{morbid}
+auto={T}:damage:1 target(player,creature,planeswalker) restriction{morbid}
 text=Haste -- Morbid — {T}: Vengeful Devil deals 1 damage to any target. Activate this ability only if a creature died this turn.
 mana={1}{R}
 type=Creature
@@ -52531,6 +52670,7 @@ type=Instant
 [/card]
 [card]
 name=Violent Impact
+abilities=cycling
 target=artifact,land
 auto=destroy
 autohand=__CYCLING__({2})
@@ -52620,9 +52760,9 @@ toughness=1
 [/card]
 [card]
 name=Vivid Revival
-target=target(<upto:3>creature[multicolor]|mygraveyard)
+abilities=exiledeath
+target=<upto:3>*[multicolor]|mygraveyard
 auto=moveto(myhand)
-auto=exiledeath
 text=Return up to three target multicolored cards from your graveyard to your hand. Exile Vivid Revival.
 mana={4}{G}
 type=Sorcery
@@ -52707,6 +52847,7 @@ toughness=1
 [/card]
 [card]
 name=Vizier of Tumbling Sands
+abilities=cycling
 auto={T}:untap target(other *|mybattlefield)
 autohand=__CYCLING__({1}{U})
 text={T}: Untap another target permanent. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When you cycle Vizier of Tumbling Sands, untap target permanent.
@@ -52782,7 +52923,7 @@ toughness=3
 [/card]
 [card]
 name=Void Beckoner
-abilities=deathtouch
+abilities=deathtouch,cycling
 autohand=__CYCLING__({2}{B})
 autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,Deathtouch)],newability[this(counter{0/0.1.Deathtouch}>=1) deathtouch])) target(creature|myBattlefield)]
 text=Deathtouch -- Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.) -- When you cycle Void Beckoner, put a deathtouch counter on target creature you control.
@@ -52917,6 +53058,15 @@ type=Legendary Creature
 subtype=Vampire Knight
 power=4
 toughness=4
+[/card]
+[card]
+name=Vona's Hunger
+auto=_ASCEND_
+auto=if type(*[city's_blessing]|mybattlefield)~morethan~0 then ability$!name(sacrifice half creatures) notatarget(<halfuptype:creature:myBattlefield>creature|myBattlefield) sacrifice!$ opponent
+auto=if type(*[city's_blessing]|mybattlefield)~equalto~0 then ability$!name(sacrifice a creature) notatarget(creature|myBattlefield) sacrifice!$ opponent
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Each opponent sacrifices a creature. If you have the city's blessing, instead each opponent sacrifices half the creatures they control, rounded up.
+mana={2}{B}
+type=Instant
 [/card]
 [card]
 name=Voracious Greatshark
@@ -53200,6 +53350,7 @@ type=Artifact
 [/card]
 [card]
 name=Wander in Death
+abilities=cycling
 target=<upto:2>creature|mygraveyard
 auto=moveto(myhand)
 autohand=__CYCLING__({2})
@@ -53454,7 +53605,7 @@ toughness=1
 [/card]
 [card]
 name=Wasteland Scorpion
-abilities=deathtouch
+abilities=deathtouch,cycling
 autohand=__CYCLING__({2})
 text=Deathtouch -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{B}
@@ -53645,7 +53796,7 @@ type=Artifact
 [/card]
 [card]
 name=Weaponize the Monsters
-auto={2}{S(creature|myBattlefield}:damage:2 target(creature,player,planeswalker)
+auto={2}{S(creature|myBattlefield}:damage:2 target(player,creature,planeswalker)
 text={2}, Sacrifice a creature: Weaponize the Monsters deals 2 damage to any target.
 mana={R}
 type=Enchantment
@@ -54055,6 +54206,7 @@ toughness=2
 [/card]
 [card]
 name=Wilt
+abilities=cycling
 target=artifact,enchantment
 auto=destroy
 autohand=__CYCLING__({2})
@@ -54178,7 +54330,7 @@ toughness=3
 [/card]
 [card]
 name=Winged Shepherd
-abilities=flying, vigilance
+abilities=flying,vigilance,cycling
 autohand=__CYCLING__({W})
 text=Flying, vigilance -- Cycling {W} ({W}, Discard this card: Draw a card.)
 mana={5}{W}
@@ -54376,6 +54528,7 @@ type=Instant
 [/card]
 [card]
 name=Without Weakness
+abilities=cycling
 target=creature|myBattlefield
 auto=indestructible
 autohand=__CYCLING__({2})
@@ -54396,7 +54549,7 @@ toughness=4
 [/card]
 [card]
 name=Wizard's Lightning
-target=player,creature
+target=player,creature,planeswalker
 auto=damage:3
 text=This spell costs {2} less to cast if you control a Wizard. -- Wizard's Lightning deals 3 damage to any target.
 other={R} (Wizard on my Battlefield)
@@ -54785,7 +54938,7 @@ toughness=4
 [/card]
 [card]
 name=Yidaro, Wandering Monster
-abilities=trample,haste
+abilities=trample,haste,cycling
 autohand=__CYCLING__({1}{R})
 autohand=@cycled(this|hand):this(variable{pyidarocount}<3) moveto(mylibrary) && shuffle && alteryidarocount:1 controller
 autohand=@cycled(this|hand):this(variable{pyidarocount}>=3) moveto(myBattlefield)
@@ -54868,6 +55021,7 @@ toughness=9
 [/card]
 [card]
 name=Zagoth Crystal
+abilities=cycling
 auto={T}:Add{B}
 auto={T}:Add{G}
 auto={T}:Add{U}
@@ -54969,8 +55123,8 @@ toughness=4
 [/card]
 [card]
 name=Zenith Flare
-target=creature,planeswalker,player
-auto=damage:type:*[__CYCLING__]|myGraveyard && life:type:*[__CYCLING__]|myGraveyard controller
+target=player,creature,planeswalker
+auto=damage:type:*[cycling]|myGraveyard && life:type:*[cycling]|myGraveyard controller
 text=Zenith Flare deals X damage to any target and you gain X life, where X is the number of cards with a cycling ability in your graveyard.
 mana={2}{R}{W}
 type=Instant

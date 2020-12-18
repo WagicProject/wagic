@@ -153,13 +153,13 @@ class DamageableTargetChooser: public TypeTargetChooser
 {
 public:
     bool withoutProtections;
-    DamageableTargetChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
-        TypeTargetChooser(observer, "creature",_zones, _nbzones, card, _maxtargets, other, targetMin)
+    DamageableTargetChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false, string type = "creature") :
+        TypeTargetChooser(observer, type.c_str(),_zones, _nbzones, card, _maxtargets, other, targetMin)
     {
     }
     ;
-    DamageableTargetChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
-        TypeTargetChooser(observer, "creature", card, _maxtargets, other, targetMin)
+    DamageableTargetChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false, string type = "creature") :
+        TypeTargetChooser(observer, type.c_str(), card, _maxtargets, other, targetMin)
     {
     }
     ;

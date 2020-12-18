@@ -295,7 +295,10 @@ class Constants
       HANDDEATH = 168,
       INPLAYDEATH = 169,
       INPLAYTAPDEATH = 170,
-      NB_BASIC_ABILITIES = 171,
+      GAINEDEXILEDEATH = 171,
+      GAINEDHANDDEATH = 172,
+      CYCLING = 173,
+      NB_BASIC_ABILITIES = 174,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

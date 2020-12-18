@@ -385,13 +385,17 @@ void MTGPlayerCards::showHand()
 // Moves a card to its owner's graveyard
 MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card)
 {
-    if (card->getCurrentZone() != card->controller()->game->hand && card->basicAbilities[(int)Constants::EXILEDEATH])
+    if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH]))
     {
-         return putInZone(card, card->getCurrentZone(), card->owner->game->exile);
+         MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->exile);
+         ret->basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
+         return ret;
     }
-    else if (card->getCurrentZone() != card->controller()->game->hand && card->basicAbilities[(int)Constants::HANDDEATH])
+    else if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::HANDDEATH] || card->basicAbilities[(int)Constants::GAINEDHANDDEATH]))
     {
-         return putInZone(card, card->getCurrentZone(), card->owner->game->hand);
+         MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->hand);
+         ret->basicAbilities[(int)Constants::GAINEDHANDDEATH] = 0;
+         return ret;
     }
     else if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::INPLAYDEATH] || card->basicAbilities[(int)Constants::INPLAYTAPDEATH]))
     {
@@ -807,6 +811,8 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->lastController = card->controller();
                 copy->previousController = card->controller();
                 copy->basicAbilities[Constants::ISCOMMANDER] = card->basicAbilities[Constants::ISCOMMANDER];
+                copy->basicAbilities[Constants::GAINEDEXILEDEATH] = card->basicAbilities[Constants::GAINEDEXILEDEATH];
+                copy->basicAbilities[Constants::GAINEDHANDDEATH] = card->basicAbilities[Constants::GAINEDHANDDEATH];
                 copy->damageInflictedAsCommander = card->damageInflictedAsCommander;
                 copy->numofcastfromcommandzone = card->numofcastfromcommandzone;
                 for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
