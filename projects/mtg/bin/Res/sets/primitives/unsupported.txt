@@ -278,6 +278,15 @@ mana={3}{B}{R}
 type=Sorcery
 [/card]
 [card]
+name=Alms Collector
+text=Flash -- If an opponent would draw two or more cards, instead you and that player each draw a card.
+mana={3}{W}
+type=Creature
+subtype=Cat Cleric
+power=3
+toughness=4
+[/card]
+[card]
 name=Alpha Brawl
 text=Target creature an opponent controls deals damage equal to its power to each other creature that player controls, then each of those creatures deals damage equal to its power to that creature.
 mana={6}{R}{R}
@@ -5672,7 +5681,6 @@ power=2
 toughness=2
 [/card]
 [card]
-[card]
 name=Haunting Wind
 text=Whenever an artifact becomes tapped or a player activates an artifact's ability without {T} in its activation cost, Haunting Wind deals 1 damage to that artifact's controller.
 mana={3}{B}
@@ -7777,6 +7785,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mairsil, the Pretender
+text=When Mairsil, the Pretender enters the battlefield, you may exile an artifact or creature card from your hand or graveyard and put a cage counter on it. -- Mairsil, the Pretender has all activated abilities of all cards you own in exile with cage counters on them. You may activate each of those abilities only once each turn.
+mana={1}{U}{B}{R}
+type=Legendary Creature
+subtype=Human Wizard
+power=4
+toughness=4
+[/card]
+[card]
 name=Malignus
 text=Malignus's power and toughness are each equal to half the highest life total among your opponents, rounded up. -- Damage that would be dealt by Malignus can't be prevented.
 mana={3}{R}{R}
@@ -9470,7 +9487,7 @@ name=Panharmonicon
 text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
 mana={4}
 type=Artifact
-[/card
+[/card]
 [card]
 name=Panopticon
 text=When you planeswalk to Panopticon, draw a card. -- At the beginning of your draw step, draw an additional card. -- Whenever you roll {C}, draw a card.
@@ -13013,6 +13030,13 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Teferi's Protection
+abilities=exiledeath
+text=Until your next turn, your life total can't change and you gain protection from everything. All permanents you control phase out. (While they're phased out, they're treated as though they don't exist. They phase in before you untap during your untap step.) -- Exile Teferi's Protection.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 name=Teferi's Response
 text=Counter target spell or ability an opponent controls that targets a land you control. If a permanent's ability is countered this way, destroy that permanent. --  Draw two cards.
 mana={1}{U}
@@ -13045,6 +13069,15 @@ type=Creature
 subtype=Efreet
 power=3
 toughness=3
+[/card]
+[card]
+name=Temple Altisaur
+text=If a source would deal damage to another Dinosaur you control, prevent all but 1 of that damage.
+mana={4}{W}
+type=Creature
+subtype=Dinosaur
+power=3
+toughness=4
 [/card]
 [card]
 name=Tempt with Discovery

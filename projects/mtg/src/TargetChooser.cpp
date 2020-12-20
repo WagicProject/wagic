@@ -128,7 +128,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 string tmp = s.substr(several+1,idx-1);
                 WParsedInt* parser = NEW WParsedInt(tmp, card);
                 maxtargets = parser->intValue;
-				SAFE_DELETE(parser);
+                SAFE_DELETE(parser);
             }
         }
         several = s.find("<anyamount>");

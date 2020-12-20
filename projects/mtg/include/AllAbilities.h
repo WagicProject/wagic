@@ -1764,6 +1764,33 @@ public:
     }
 };
 
+class TrCardExplored: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardExplored(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardExplored * e = dynamic_cast<WEventCardExplored *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardExplored * clone() const
+    {
+        return NEW TrCardExplored(*this);
+    }
+};
+
 class TrCardSurveiled: public Trigger
 {
 public:
@@ -5019,6 +5046,19 @@ public:
     const string getMenuText();
     AASurveilEvent * clone() const;
     ~AASurveilEvent();
+};
+//Explores Event
+class AAExploresEvent: public ActivatedAbilityTP
+{
+public:
+    MTGCardInstance * card;
+
+    AAExploresEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAExploresEvent * clone() const;
+    ~AAExploresEvent();
 };
 //Yidaro Counter
 class AAAlterYidaroCount: public ActivatedAbilityTP

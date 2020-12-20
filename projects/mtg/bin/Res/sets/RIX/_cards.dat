@@ -2,8 +2,13 @@
 author=Wagic Team
 name=Rivals of Ixalan
 year=2018-01-19
-total=205
+total=213
 [/meta]
+[card]
+primitive=Elemental Phoenix
+id=-439768
+rarity=T
+[/card]
 [card]
 primitive=Baffling End
 id=439658

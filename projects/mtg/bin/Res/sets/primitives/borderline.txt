@@ -1428,6 +1428,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Angrath's Fury
+target=creature
+auto=destroy
+auto=ability$!name(Deal 3 damages) name(Deal 3 damages) damage:3 target(player,planeswalker)!$ controller
+auto=may name(Move Angrath, Minotaur Pirate to hand) name(Move Angrath, Minotaur Pirate to hand) moveto(myhand) target(Angrath, Minotaur Pirate|mylibrary,mygraveyard)
+text=Destroy target creature. Angrath's Fury deals 3 damage to target player or planeswalker. You may search your library and/or graveyard for a card named Angrath, Minotaur Pirate, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={3}{B}{R}
+type=Sorcery
+[/card]
+[card]
 name=Angrath's Marauders
 auto=@damaged(creature) from(*[instant;sorcery]|mystack,myGraveyard):damage:thatmuch all(trigger[to])
 auto=@damaged(creature) from(*[enchantment;artifact;land;planeswalker]|mybattlefield,myGraveyard):damage:thatmuch all(trigger[to])
@@ -2935,6 +2945,16 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
+name=Awakened Amalgam
+anyzone=diffcardcounttypeland/diffcardcounttypeland cdaactive
+text=Awakened Amalgam's power and toughness are each equal to the number of differently named lands you control.
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=*
+toughness=*
+[/card]
+[card]
 name=Awakening of Vitu-Ghazi
 target=land|myBattlefield
 auto=transforms((Legendary Elemental Creature, Vitu-Ghazi,newability[counter(1/1.9)],newability[haste])) forever
@@ -2996,6 +3016,26 @@ aicode={2}{U}{T}:activate target(*[-land;-human;zpos<=4]|mylibrary) moveto(myhan
 auto={2}{U}{T}:name(Look top 4 cards) reveal:4 optionone name(Get a card) target(<upto:1>*[-land;-creature]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 text=(Transforms from Search for Azcanta.) -- {T}: Add {U} to your mana pool. -- {2}{U}, {T}: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
 type=Legendary Land
+[/card]
+[card]
+name=Azor's Gateway
+auto={1}{T}:draw:1 controller && transforms((,newability[notatarget(*|myhand) moveto(myexile) and!( counter(0/0.1.AzorExiled) )!])) forever
+auto=aslongas(*[counter{0/0.1.AzorExiled}]|myexile) flip(Sanctum of the Sun) >4
+text={1}, {T}: Draw a card, then exile a card from your hand. If cards with five or more different converted mana costs are exiled with Azor's Gateway, you gain 5 life, untap Azor's Gateway, and transform it.
+mana={2}
+type=Legendary Artifact
+[/card]
+[card]
+name=Azor, the Lawbringer
+abilities=flying
+auto=phaseaction[upkeep once] maxCast(*[instant;sorcery])0 opponent ueot
+auto=@combat(attacking) source(this):may pay({X}{W}{U}{U}) name(Gain X life and draw X cards) life:x controller && draw:x controller
+text=Flying -- When Azor, the Lawbringer enters the battlefield, each opponent can't cast instant or sorcery spells during that player's next turn. -- Whenever Azor attacks, you may pay {X}{W}{U}{U}. If you do, you gain X life and draw X cards.
+mana={2}{W}{W}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=6
+toughness=6
 [/card]
 [card]
 name=Azorius Knight-Arbiter
@@ -4017,6 +4057,36 @@ auto={4}{T}:token(Shapeshifter,artifact creature Shapeshifter,2/2,changeling)
 text={4}, {T}: Create a 2/2 colorless Shapeshifter creature token with changeling. (It has every creature type.)
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Bishop of Binding
+auto=if type(creature[power=0]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 0) name(Exile creature with power 0) transforms((,newability[(blink)forsrc target(creature[power=0]|opponentbattlefield)])) forever
+auto=if type(creature[power=1]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 1) name(Exile creature with power 1) transforms((,newability[(blink)forsrc target(creature[power=1]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 1/1) name(target vampire gets 1/1) target(vampire|battlefield) 1/1 ueot])) forever
+auto=if type(creature[power=2]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 2) name(Exile creature with power 2) transforms((,newability[(blink)forsrc target(creature[power=2]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 2/2) name(target vampire gets 2/2) target(vampire|battlefield) 2/2 ueot])) forever
+auto=if type(creature[power=3]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 3) name(Exile creature with power 3) transforms((,newability[(blink)forsrc target(creature[power=3]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 3/3) name(target vampire gets 3/3) target(vampire|battlefield) 3/3 ueot])) forever
+auto=if type(creature[power=4]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 4) name(Exile creature with power 4) transforms((,newability[(blink)forsrc target(creature[power=4]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 4/4) name(target vampire gets 4/4) target(vampire|battlefield) 4/4 ueot])) forever
+auto=if type(creature[power=5]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 5) name(Exile creature with power 5) transforms((,newability[(blink)forsrc target(creature[power=5]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 5/5) name(target vampire gets 5/5) target(vampire|battlefield) 5/5 ueot])) forever
+auto=if type(creature[power=6]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 6) name(Exile creature with power 6) transforms((,newability[(blink)forsrc target(creature[power=6]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 6/6) name(target vampire gets 6/6) target(vampire|battlefield) 6/6 ueot])) forever
+auto=if type(creature[power=7]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 7) name(Exile creature with power 7) transforms((,newability[(blink)forsrc target(creature[power=7]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 7/7) name(target vampire gets 7/7) target(vampire|battlefield) 7/7 ueot])) forever
+auto=if type(creature[power=8]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 8) name(Exile creature with power 8) transforms((,newability[(blink)forsrc target(creature[power=8]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 8/8) name(target vampire gets 8/8) target(vampire|battlefield) 8/8 ueot])) forever
+auto=if type(creature[power=9]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 9) name(Exile creature with power 9) transforms((,newability[(blink)forsrc target(creature[power=9]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 9/9) name(target vampire gets 9/9) target(vampire|battlefield) 9/9 ueot])) forever
+auto=if type(creature[power=10]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 10) name(Exile creature with power 10) transforms((,newability[(blink)forsrc target(creature[power=10]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 10/10) name(target vampire gets 10/10) target(vampire|battlefield) 10/10 ueot])) forever
+auto=if type(creature[power=11]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 11) name(Exile creature with power 11) transforms((,newability[(blink)forsrc target(creature[power=11]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 11/11) name(target vampire gets 11/11) target(vampire|battlefield) 11/11 ueot])) forever
+auto=if type(creature[power=12]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 12) name(Exile creature with power 12) transforms((,newability[(blink)forsrc target(creature[power=12]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 12/12) name(target vampire gets 12/12) target(vampire|battlefield) 12/12 ueot])) forever
+auto=if type(creature[power=13]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 13) name(Exile creature with power 13) transforms((,newability[(blink)forsrc target(creature[power=13]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 13/13) name(target vampire gets 13/13) target(vampire|battlefield) 13/13 ueot])) forever
+auto=if type(creature[power=14]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 14) name(Exile creature with power 14) transforms((,newability[(blink)forsrc target(creature[power=14]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 14/14) name(target vampire gets 14/14) target(vampire|battlefield) 14/14 ueot])) forever
+auto=if type(creature[power=15]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 15) name(Exile creature with power 15) transforms((,newability[(blink)forsrc target(creature[power=15]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 15/15) name(target vampire gets 15/15) target(vampire|battlefield) 15/15 ueot])) forever
+auto=if type(creature[power=16]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 16) name(Exile creature with power 16) transforms((,newability[(blink)forsrc target(creature[power=16]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 16/16) name(target vampire gets 16/16) target(vampire|battlefield) 16/16 ueot])) forever
+auto=if type(creature[power=17]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 17) name(Exile creature with power 17) transforms((,newability[(blink)forsrc target(creature[power=17]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 17/17) name(target vampire gets 17/17) target(vampire|battlefield) 17/17 ueot])) forever
+auto=if type(creature[power=18]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 18) name(Exile creature with power 18) transforms((,newability[(blink)forsrc target(creature[power=18]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 18/18) name(target vampire gets 18/18) target(vampire|battlefield) 18/18 ueot])) forever
+auto=if type(creature[power=19]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 19) name(Exile creature with power 19) transforms((,newability[(blink)forsrc target(creature[power=19]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 19/19) name(target vampire gets 19/19) target(vampire|battlefield) 19/19 ueot])) forever
+auto=if type(creature[power>=20]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 20) name(Exile creature with power 20) transforms((,newability[(blink)forsrc target(creature[power>=20]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 20/20) name(target vampire gets 20/20) target(vampire|battlefield) 20/20 ueot])) forever
+text=When Bishop of Binding enters the battlefield, exile target creature an opponent controls until Bishop of Binding leaves the battlefield. -- Whenever Bishop of Binding attacks, target Vampire gets +X/+X until end of turn, where X is the power of the exiled card.
+mana={3}{W}
+type=Creature
+subtype=Vampire Cleric
+power=1
+toughness=1
 [/card]
 [card]
 name=Bishop of Rebirth
@@ -5492,7 +5562,7 @@ toughness=1
 [card]
 name=Brazen Buccaneers
 abilities=haste
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Haste -- When Brazen Buccaneers enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{R}
 type=Creature
@@ -6100,7 +6170,7 @@ auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then scry:2 scrycore del
 text=Counter target spell unless its controller pays {3}. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={2}{U}
 type=Instant
-[/card
+[/card]
 [card]
 name=Borrowed Grace
 other={3}{W}{W} name(Escalate)
@@ -6311,6 +6381,19 @@ type=Legendary Creature
 subtype=Orc Pirate
 power=1
 toughness=1
+[/card]
+[card]
+name=Captain's Hook
+auto={1}:equip
+auto=teach(creature) +2/+0
+auto=teach(creature) menace
+auto=teach(creature) transforms((,newability[counter(0/0.1.Hooked)]))
+auto=lord(*[counter{0/0.1.Hooked}]|mybattlefield) transforms((,newability[this(gear < 1) destroy]))
+auto=transforms((Pirate))
+text=Equipped creature gets +2/+0, has menace, and is a Pirate in addition to its other creature types. -- Whenever Captain's Hook becomes unattached from a permanent, destroy that permanent. -- Equip 1
+mana={3}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Captain's Maneuver
@@ -7561,6 +7644,27 @@ flashback={3}{U}{D(*|myhand)}
 text=Draw two cards. -- Jump-start (You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile this card.)
 mana={3}{U}
 type=Instant
+[/card]
+[card]
+name=Cherished Hatchling
+auto=@movedto(this|mygraveyard) from(mybattlefield):all(dinosaur|mycastingzone) transforms((,newability[flash])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=0]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:0 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=1]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:1 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=2]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:2 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=3]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:3 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=4]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:4 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=5]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:5 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=6]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:6 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=7]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:7 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=8]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:8 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=9]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:9 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power>=10]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:10 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:10!$ controller])) ueot
+text=When Cherished Hatchling dies, you may cast Dinosaur spells this turn as though they had flash, and whenever you cast a Dinosaur spell this turn, it gains "When this creature enters the battlefield, you may have it fight another target creature."
+mana={1}{G}
+type=Creature
+subtype=Dinosaur
+power=2
+toughness=1
 [/card]
 [card]
 name=Chevill, Bane of Monsters
@@ -9412,6 +9516,17 @@ type=Land
 subtype=Desert
 [/card]
 [card]
+name=Crafty Cutpurse
+abilities=flash
+auto=transforms((,newability[@movedto(*[token]|opponentbattlefield):all(trigger[to]) moveto(mybattlefield)])) ueot
+text=Flash -- When Crafty Cutpurse enters the battlefield, each token that would be created under an opponent's control this turn is created under your control instead.
+mana={3}{U}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+[card]
 name=Cragcrown Pathway
 autohand={0}:restriction{can play land} name(Timbercrown Pathway) name(Timbercrown Pathway) flip(Timbercrown Pathway) forcetype(land)
 auto={T}:add{R}
@@ -10572,6 +10687,15 @@ mana={R}
 type=Instant
 [/card]
 [card]
+name=Dead Man's Chest
+target=creature|opponentbattlefield
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(*[-land;zpos<=p]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever )!
+text=Enchant creature an opponent controls -- When enchanted creature dies, exile cards equal to its power from the top of its owner's library. You may cast spells from among those cards for as long as they remain exiled, and you may spend mana as though it were mana of any type to cast those spells.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Dead Reckoning
 target=creature|mygraveyard
 auto=choice name(Move and damage) moveto(mylibrary) && transforms((,newability[dynamicability<!powerstrike!> target(creature)])) ueot
@@ -10661,7 +10785,7 @@ toughness=2
 [/card]
 [card]
 name=Deadeye Tracker
-auto={1}{B}{T}:moveto(exile) target(<2>*|opponentgraveyard) && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend
+auto={1}{B}{T}:moveto(exile) target(<2>*|opponentgraveyard) && explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text={1}{B}, {T}: Exile two target cards from an opponent's graveyard. Deadeye Tracker explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={B}
 type=Creature
@@ -11841,7 +11965,7 @@ toughness=1
 [card]
 name=Dire Fleet Interloper
 abilities=menace
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Menace -- When Dire Fleet Interloper enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{B}
 type=Creature
@@ -13538,6 +13662,17 @@ toughness=4
 color=white
 [/card]
 [card]
+name=Elemental Phoenix
+auto=@each my upkeep:moveto(mybattlefield) target(Rekindling Phoenix|mygraveyard) and!( transforms((,newability[haste])) ueot )!
+auto=@each my upkeep:sacrifice all(this)
+text=At the beginning of your upkeep, sacrifice this creature and return target card named Rekindling Phoenix from your graveyard to the battlefield. It gains haste until end of turn.
+type=Creature
+subtype=Elemental
+power=0
+toughness=1
+color=red
+[/card]
+[card]
 name=Elemental Uprising
 target=land|mybattlefield
 auto=transforms(Land Creature Elemental,4/4,haste) with(newability[@combat(attacking,blocking) source(this): all(<anyamount>creature|opponentbattlefield) mustblock ueot]) ueot
@@ -13910,6 +14045,14 @@ mana={5}{W}{U}
 type=Instant
 [/card]
 [card]
+name=Emergent Growth
+target=creature
+auto=transforms((,newability[5/5],newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) ueot
+text=Target creature gets +5/+5 until end of turn and must be blocked this turn if able.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
 name=Emergent Ultimatum
 auto=ability$! notatarget(*|opponentexile) moveto(ownerlibrary) !$ opponent
 auto=transforms((,newability[choice name(Reveal 2 and cast 2) target(<2>*|mylibrary) moveTo(myBattlefield)],newability[choice name(Reveal 2 and move to exile) target(<2>*|mylibrary) moveTo(myexile)]))
@@ -13960,7 +14103,7 @@ toughness=4
 [card]
 name=Emissary of Sunrise
 abilities=first strike
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=First strike -- When Emissary of Sunrise enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{W}
 type=Creature
@@ -13980,7 +14123,7 @@ toughness=2
 [/card]
 [card]
 name=Emperor's Vanguard
-auto=@combatdamaged(player) from(this):reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend
+auto=@combatdamaged(player) from(this):explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Whenever Emperor's Vanguard deals combat damage to a player, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{G}
 type=Creature
@@ -14263,6 +14406,15 @@ auto=deplete:4 target(player)
 auto=_AMASS_(4)
 text=Enter the God-Eternals deals 4 damage to target creature and you gain life equal to the damage dealt this way. Target player puts the top four cards of their library into their graveyard. Amass 4. (Put four +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
 mana={2}{U}{U}{B}
+type=Sorcery
+[/card]
+[card]
+name=Enter the Unknown
+target=creature|mybattlefield
+auto=maxPlay(land)+1
+auto=choice name(Target creature you control explores) name(Target creature you control explores) explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
+text=Target creature you control explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on the creature, then put the card back or put it into your graveyard.) -- You may play an additional land this turn.
+mana={G}
 type=Sorcery
 [/card]
 [card]
@@ -14833,11 +14985,12 @@ toughness=2
 [/card]
 [card]
 name=Exotic Orchard
-auto=this(variable{plandg}>0) {t}:out{g}
-auto=this(variable{plandu}>0) {t}:out{u}
-auto=this(variable{plandr}>0) {t}:out{r}
-auto=this(variable{plandb}>0) {t}:out{b}
-auto=this(variable{plandw}>0) {t}:out{w}
+auto=this(variable{olandg}>0) {t}:out{g}
+auto=this(variable{olandu}>0) {t}:out{u}
+auto=this(variable{olandr}>0) {t}:out{r}
+auto=this(variable{olandb}>0) {t}:out{b}
+auto=this(variable{olandw}>0) {t}:out{w}
+auto=this(variable{olandc}>0) {t}:out{1}
 text={T}: Add one mana of any color that a land an opponent controls could produce.
 type=Land
 [/card]
@@ -15638,30 +15791,12 @@ type=Instant
 [/card]
 [card]
 name=Fellwar Stone
-auto=if type(plains|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{W}])) ueot
-auto=if type(mountain|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{R}])) ueot
-auto=if type(island|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{U}])) ueot
-auto=if type(forest|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{G}])) ueot
-auto=if type(swamp|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{B}])) ueot
-auto=if type(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield)~morethan~0 then transforms((,newability[{T}:add{C}])) ueot
-auto=@movedTo(plains|opponentBattlefield) restriction{type(plains|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{W}])) ueot
-auto=@movedTo(mountain|opponentBattlefield) restriction{type(mountain|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{R}])) ueot
-auto=@movedTo(island|opponentBattlefield) restriction{type(island|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{U}])) ueot
-auto=@movedTo(forest|opponentBattlefield) restriction{type(forest|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{G}])) ueot
-auto=@movedTo(swamp|opponentBattlefield) restriction{type(swamp|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{B}])) ueot
-auto=@movedTo(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield) restriction{type(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield)~equalto~1}:transforms((,newability[{T}:add{C}])) ueot
-auto=@each my upkeep restriction{type(plains|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{W}])) ueot
-auto=@each my upkeep restriction{type(mountain|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{R}])) ueot
-auto=@each my upkeep restriction{type(island|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{U}])) ueot
-auto=@each my upkeep restriction{type(forest|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{G}])) ueot
-auto=@each my upkeep restriction{type(swamp|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{B}])) ueot
-auto=@each my upkeep restriction{type(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{C}])) ueot
-auto=@each opponent upkeep restriction{type(plains|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{W}])) ueot
-auto=@each opponent upkeep restriction{type(mountain|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{R}])) ueot
-auto=@each opponent upkeep restriction{type(island|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{U}])) ueot
-auto=@each opponent upkeep restriction{type(forest|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{G}])) ueot
-auto=@each opponent upkeep restriction{type(swamp|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{B}])) ueot
-auto=@each opponent upkeep restriction{type(land[-basic;-forest;-swamp;-plains;-island;-mountain]|opponentBattlefield)~morethan~0}:transforms((,newability[{T}:add{C}])) ueot
+auto=this(variable{olandg}>0) {t}:out{g}
+auto=this(variable{olandu}>0) {t}:out{u}
+auto=this(variable{olandr}>0) {t}:out{r}
+auto=this(variable{olandb}>0) {t}:out{b}
+auto=this(variable{olandw}>0) {t}:out{w}
+auto=this(variable{olandc}>0) {t}:out{1}
 text={T}: Add one mana of any color that a land an opponent controls could produce.
 mana={2}
 type=Artifact
@@ -16919,6 +17054,39 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Forerunner of the Coalition
+auto=name(Search your library for a Pirate) name(Search your library for a Pirate) target(pirate|mylibrary) moveto(mysideboard) and!( moveto(mylibrary) )!
+auto=@movedTo(other pirate|myBattlefield):life:-1 opponent
+text=When Forerunner of the Coalition enters the battlefield, you may search your library for a Pirate card, reveal it, then shuffle your library and put that card on top of it. -- Whenever another Pirate enters the battlefield under your control, each opponent loses 1 life.
+mana={2}{B}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+[card]
+name=Forerunner of the Empire
+auto=name(Search your library for a Dinosaur) name(Search your library for a Dinosaur) target(dinosaur|mylibrary) moveto(mysideboard) and!( moveto(mylibrary) )!
+auto=@movedTo(dinosaur|myBattlefield):may name(Damage all creatures) name(Damage all creatures) all(creature|battlefield) damage:1
+text=When Forerunner of the Empire enters the battlefield, you may search your library for a Dinosaur card, reveal it, then shuffle your library and put that card on top of it. -- Whenever a Dinosaur enters the battlefield under your control, you may have Forerunner of the Empire deal 1 damage to each creature.
+mana={3}{R}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=3
+[/card]
+[card]
+name=Forerunner of the Heralds
+auto=name(Search your library for a Merfolk) name(Search your library for a Merfolk) target(merfolk|mylibrary) moveto(mysideboard) and!( moveto(mylibrary) )!
+auto=@movedTo(other merfolk|myBattlefield):counter(1/1)
+text=When Forerunner of the Heralds enters the battlefield, you may search your library for a Merfolk card, reveal it, then shuffle your library and put that card on top of it. -- Whenever another Merfolk enters the battlefield under your control, put a +1/+1 counter on Forerunner of the Heralds.
+mana={3}{G}
+type=Creature
+subtype=Merfolk Scout
+power=3
+toughness=2
+[/card]
+[card]
 name=Forerunner of the Legion
 aicode=activate target(vampire|mylibrary) moveto(mylibrary) and!(moveto(mylibrary))!
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(vampire|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mylibrary)])) optiononeend optiontwo bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
@@ -16986,14 +17154,18 @@ type=Artifact
 [/card]
 [card]
 name=Forked Lightning
-target=creature
-auto=damage:1
-auto=damage:1 target(creature)
-auto=ability$!name(1 damage to target creature) choice target(creature) damage:1!$ controller
-auto=ability$!name(1 damage to target creature) choice target(creature) damage:1!$ controller
+auto=thisforeach(variable{4}) ability$!name(1 damage to target creature) choice target(creature) damage:1!$ controller
 text=Forked Lightning deals 4 damage divided as you choose among one, two, or three target creatures.
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Form of the Dinosaur
+auto=lifeset:15 controller
+auto=@each my upkeep:target(creature|opponentbattlefield) transforms((,newability[dynamicability<!powerstrike targetopponent!>],newability[damage:15])) oneshot
+text=When Form of the Dinosaur enters the battlefield, your life total becomes 15. -- At the beginning of your upkeep, Form of the Dinosaur deals 15 damage to target creature an opponent controls and that creature deals damage equal to its power to you.
+mana={4}{R}{R}
+type=Enchantment
 [/card]
 [card]
 name=Forsake the Worldly
@@ -17028,6 +17200,14 @@ auto=choice name(Return target artifact or creature) moveto(myhand)
 auto=choice name(Return target artifact and creature) moveto(myhand) && moveto(myhand) target(*[artifact;creature]|mygraveyard)
 text=Choose one or both — -- • Return target artifact card from your graveyard to your hand. -- • Return target creature card from your graveyard to your hand.
 mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Fortunate Few
+auto=ability$!name(Destroy all non-land permanents except one) name(Destroy all non-land permanents except one) target(<type:*[-land]:opponentbattlefieldminus1minusend>*[-land]|opponentbattlefield) destroy!$ controller
+auto=ability$!name(Destroy all non-land permanents except one) name(Destroy all non-land permanents except one) target(<type:*[-land]:opponentbattlefieldminus1minusend>*[-land]|opponentbattlefield) destroy!$ opponent
+text=Choose a nonland permanent you don't control, then each other player chooses a nonland permanent they don't control that hasn't been chosen this way. Destroy all other nonland permanents.
+mana={3}{W}{W}
 type=Sorcery
 [/card]
 [card]
@@ -19326,6 +19506,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Gold-Forge Garrison
+auto={T}:add{W}{W}
+auto={T}:add{G}{G}
+auto={T}:add{R}{R}
+auto={T}:add{U}{U}
+auto={T}:add{B}{B}
+auto={4}{T}:token(Golem,Artifact Creature Golem,4/4)
+text=(Transforms from Golden Guardian.) -- {T}: Add two mana of any one color. -- {4}, {T}: Create a 4/4 colorless Golem artifact creature token.
+type=Land
+[/card]
+[card]
 name=Golden Egg
 auto=draw:1 controller
 auto={1}{T}:add{G}
@@ -19338,6 +19529,29 @@ text=When Golden Egg enters the battlefield, draw a card. -- {1},{T}, Sacrifice 
 mana={2}
 type=Artifact
 subtype=Food
+[/card]
+[card]
+name=Golden Demise
+auto=_ASCEND_
+auto=if type(*[city's_blessing]|mybattlefield)~equalto~0 then all(creature|myBattlefield) -2/-2 ueot
+auto=all(creature|opponentBattlefield) -2/-2 ueot
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- All creatures get -2/-2 until end of turn. If you have the city's blessing, instead only creatures your opponents control get -2/-2 until end of turn.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Golden Guardian
+abilities=defender
+auto={2}:transforms((,newability[name(Fights another creature you control) name(Fights another creature you control) target(other creature) dynamicability<!powerstrike eachother!>],newability[counter(0/0.1.GoldenFilp)])) ueot
+auto=@movedto(creature[counter{0/0.1.GoldenFilp}]|mygraveyard) from(battlefield):name(Return Golden Guardian to the battlefield transformed) name(Return Golden Guardian to the battlefield transformed) all(trigger[to]) name(Return Golden Guardian to the battlefield transformed) transforms((,newability[counter(0/0.1.GoldenFilp)])) forever
+auto=@each endofturn:this(counter{0/0.1.GoldenFilp}>=1) removeallcounters(0/0,1,GoldenFilp) 
+autograveyard=this(counter{0/0.1.GoldenFilp}>=1) flip(Gold-Forge Garrison) forcetype(land)
+text=Defender -- {2}: Golden Guardian fights another target creature you control. When Golden Guardian dies this turn, return it to the battlefield transformed under your control.
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=4
+toughness=4
 [/card]
 [card]
 name=Goldmane Griffin
@@ -20443,6 +20657,14 @@ type=Creature
 subtype=Human Rogue
 power=2
 toughness=3
+[/card]
+[card]
+name=Hadana's Climb
+auto=@each my combatbegins:name(Give 1/1 counter to target creature) name(Give 1/1 counter to target creature) target(creature|mybattlefield) transforms((,newability[counter(1/1)],newability[this(counter{1/1}>=3) name(Transform Hadana's Club) name(Transform Hadana's Club) all(Hadana's Climb|mybattlefield) counter(0/0.1.TransformHadana)])) forever
+auto=@counteradded(0/0.1.TransformHadana) from(this):flip(Winged Temple of Orazca) && removeallcounters(0/0,1,TransformHadana)
+text=At the beginning of combat on your turn, put a +1/+1 counter on target creature you control. Then if that creature has three or more +1/+1 counters on it, transform Hadana's Climb.
+mana={1}{G}{U}
+type=Legendary Enchantment
 [/card]
 [card]
 name=Hagra Broodpit
@@ -24005,7 +24227,7 @@ type=Enchantment
 [/card]
 [card]
 name=Ixalli's Diviner
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Ixalli's Diviner enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{G}
 type=Creature
@@ -24220,8 +24442,8 @@ type=Instant
 [/card]
 [card]
 name=Jadelight Ranger
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) ueot oneshot optiontwoend revealend limit:1
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) ueot oneshot optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Jadelight Ranger enters the battlefield, it explores, then it explores again. (Reveal the top card of your library. Put that card into your hand if it’s a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard. Then repeat this process.)
 mana={1}{G}{G}
 type=Creature
@@ -24455,6 +24677,17 @@ auto=may moveto(myhand) target(Jiang Yanggu|mylibrary,mygraveyard) && shuffle
 text=Search your library and graveyard for a basic land card and a card named Jiang Yanggu, reveal them, put them into your hand, then shuffle your library.
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+name=Journey to Eternity
+target=creature
+auto=@movedto(graveyard) from(mytgt|Battlefield):all(this) moveTo(mygraveyard) and!( transforms((,newability[counter(0/0.1.FlipJourney)])) forever
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(mybattlefield)
+autograveyard=this(counter{0/0.1.FlipJourney}>=1) flip(Atzal, Cave of Eternity) forcetype(land)
+text=Enchant creature you control -- When enchanted creature dies, return it to the battlefield under your control, then return Journey to Eternity to the battlefield transformed under your control.
+mana={1}{B}{G}
+type=Legendary Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Journey to Oblivion
@@ -25372,6 +25605,19 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Kheru Mind-Eater
+abilities=menace
+auto=@combatdamagefoeof(player) from(this):ability$!name(Discard a card) notatarget(*|myhand) moveto(opponentexile) and!( counter(0/0,1,KheruExiled) )! !$ opponent
+auto=@combatdamageof(player) from(this):name(Discard a card) name(Discard a card) notatarget(*|myhand) moveto(myexile) and!( counter(0/0,1,KheruExiled) )!
+auto=lord(*[counter{0/0.1.KheruExiled}]|myexile) transforms((,newability[canplayfromexile]))
+text=Menace -- Whenever Kheru Mind-Eater deals combat damage to a player, that player exiles a card from their hand face down. -- You may look at cards exiled with Kheru Mind-Eater, and you may play lands and cast spells from among those cards.
+mana={2}{B}
+type=Creature
+subtype=Vampire
+power=1
+toughness=3
+[/card]
+[card]
 name=Khorvath Brightflame
 abilities=flying,haste,partner
 auto=may moveto(myhand) notatarget(sylvia brightspear|mylibrary)
@@ -25419,6 +25665,13 @@ auto=chooseatype destroy all(creature[-chosentype]) chooseend
 text=Choose a creature type. Destroy all creatures that aren't of the chosen type.
 mana={5}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Kindred Summons
+auto=activatechooseatype all(creature[chosentype]|mybattlefield) transforms((,newability[target(creature[share!types!]|mylibrary) moveto(mybattlefield) and! shuffle )!])) oneshot activatechooseend
+text=Choose a creature type. Reveal cards from the top of your library until you reveal X creature cards of the chosen type, where X is the number of creatures you control of that type. Put those cards onto the battlefield, then shuffle the rest of the revealed cards into your library.
+mana={5}{G}{G}
+type=Instant
 [/card]
 [card]
 name=Kinetic Augur
@@ -26584,7 +26837,7 @@ type=Creature
 subtype=Elemental Druid
 power=0
 toughness=3
-[/card
+[/card]
 [card]
 name=Hanged Executioner
 abilities=flying
@@ -28034,18 +28287,7 @@ toughness=5
 [/card]
 [card]
 name=Lurking Chupacabra
-auto=@movedTo(creature[Brazen Buccaneers]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Sunrise Seeker]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Emissary of Sunrise]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Siren Lookout]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Fleet Interloper]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Queen's Agent]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Seekers' Squire]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Ixalli's Diviner]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Merfolk Branchwalker]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Tishana's Wayfinder]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@movedTo(creature[Seekers' Squire]|mybattlefield):target(creature|opponentBattlefield) -2/-2 ueot
-auto=@combatdamaged(player) from(creature[Emperor's Vanguard]):target(creature|opponentBattlefield) -2/-2 ueot
+auto=@explored(creature|mybattlefield):name(Target opponent's creature grets -2/-2) name(Target opponent's creature grets -2/-2) target(creature|opponentBattlefield) -2/-2 ueot
 text=Whenever a creature you control explores, target creature an opponent controls gets -2/-2 until end of turn.
 mana={3}{B}
 type=Creature
@@ -28244,6 +28486,16 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Magus of the Mind
+auto={U}{T}{S}:name(Exile X cards) ability$!name(Exile X cards) name(Exile X cards) all(*[zpos<=countallspell]|mylibrary) moveto(myexile) and!( canplayfromexile ueot )! !$ controller
+text={U}, {T}, Sacrifice Magus of the Mind: Shuffle your library, then exile the top X cards, where X is one plus the number of spells cast this turn. Until end of turn, you may play lands and cast spells from among cards exiled this way without paying their mana costs.
+mana={4}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=4
+toughness=5
 [/card]
 [card]
 name=Magus of the Order
@@ -28973,6 +29225,14 @@ mana={5}{U}
 type=Instant
 [/card]
 [card]
+name=Mastermind's Acquisition
+auto=choice name(Search your library) target(*|mylibrary) moveto(myhand) && shuffle
+auto=choice name(Search from outside game) target(*|myexile,mysideboard) moveto(myhand)
+text=Choose one — -- • Search your library for a card, put it into your hand, then shuffle your library. -- • Put a card you own from outside the game into your hand.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Masterwork of Ingenuity
 auto=may copy target(*[equipment]|battlefield)
 text=You may have Masterwork of Ingenuity enter the battlefield as a copy of any Equipment on the battlefield.
@@ -29002,6 +29262,19 @@ text=When Maul of the Skyclaves enters the battlefield, attach it to target crea
 mana={2}{W}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Mausoleum Harpy
+abilities=flying
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedto(other creature|mygraveyard) from(battlefield) restriction{type(*[city's_blessing]|mybattlefield)~morethan~0}:counter(1/1)
+text=Flying -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever another creature you control dies, if you have the city's blessing, put a +1/+1 counter on Mausoleum Harpy.
+mana={4}{B}
+type=Creature
+subtype=Harpy
+power=3
+toughness=3
 [/card]
 [card]
 name=Mausoleum Secrets
@@ -29260,7 +29533,7 @@ toughness=2
 [/card]
 [card]
 name=Merfolk Branchwalker
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Merfolk Branchwalker enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{G}
 type=Creature
@@ -30475,6 +30748,14 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Mutiny
+target=creature|opponentbattlefield
+auto=transforms((,newability[dynamicability<!powerstrike!> target(other creature|myBattlefield)])) ueot
+text=Target creature an opponent controls deals damage equal to its power to another target creature that player controls.
+mana={R}
+type=Sorcery
+[/card]
+[card]
 name=Mutual Destruction
 abilities=flash
 target=creature
@@ -31352,6 +31633,14 @@ power=3
 toughness=6
 [/card]
 [card]
+name=New Blood
+target=creature
+auto=moveto(mybattlefield) and!( transforms((removecreaturesubtypes)) forever && transforms((Vampire)) forever )!
+text=As an additional cost to cast this spell, tap an untapped Vampire you control. -- Gain control of target creature. Change the text of that creature by replacing all instances of one creature type with Vampire.
+mana={2}{B}{B}{T(vampire|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=New Frontiers
 auto=thisforeach(X) ability$!notatarget(land|mylibrary) moveto(ownerhand) && tap!$ opponent
 auto=name(search basic lands) reveal:plibrarycount optionone name(choose card) target(<upto:prex>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
@@ -32050,6 +32339,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Kumena's Awakening
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@each my upkeep:draw:1 controller
+auto=@each my upkeep restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:draw:1 opponent
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- At the beginning of your upkeep, each player draws a card. If you have the city's blessing, instead only you draw a card.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Numbing Jellyfish
 auto=all(this) rolladie 6 winability deplete:lastrollresult opponent winabilityend loseability deplete:lastrollresult opponent loseabilityend rollend
 text=When this creature enters the battlefield, roll a six-sided die. Target player puts the top X cards of their library into their graveyard, where X is the result.
@@ -32201,6 +32500,19 @@ type=Enchantment Creature
 subtype=Merfolk Soldier
 power=2
 toughness=5
+[/card]
+[card]
+name=O-Kagachi, Vengeful Kami
+abilities=flying,trample
+auto=@combat(attacking) source(creature|opponentbattlefield) restriction{opponentturnonly}:counter(0/0,1,KamiEffect) all(this)
+auto=@combatdamagefoeof(player) from(this):this(counter{0/0.1.KamiEffect}>=1) name(Exile non-land permanent) name(Exile non-land permanent) transforms((,newability[moveto(exile) target(*[-land]|opponentbattlefiled)])) oneshot
+auto=@each my endturn:removeallcounters(0/0,1,KamiEffect) all(this)
+text=Flying, trample -- Whenever O-Kagachi, Vengeful Kami deals combat damage to a player, if that player attacked you during their last turn, exile target nonland permanent that player controls.
+mana={1}{W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Dragon Spirit
+power=6
+toughness=6
 [/card]
 [card]
 name=Oakhame Adversary
@@ -33967,7 +34279,7 @@ type=Land
 [/card]
 [card]
 name=Path of Discovery
-auto=@movedTo(creature|myBattlefield):reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=@movedTo(creature|myBattlefield):explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Whenever a creature enters the battlefield under your control, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on the creature, then put the card back or put it into your graveyard.)
 mana={3}{G}
 type=Enchantment
@@ -34608,6 +34920,14 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Pirate's Pillage
+auto=draw:2 controller
+auto=token(Treasure Sur)*2
+text=As an additional cost to cast this spell, discard a card. -- Draw two cards and create two Treasure tokens. (They're artifacts with " {T}, Sacrifice this artifact: Add one mana of any color.")
+mana={3}{R}{D(*|myhand)}
+type=Sorcery
+[/card]
+[card]
 name=Pirate's Prize
 auto=draw:2 controller
 auto=token(435451)
@@ -34644,6 +34964,16 @@ type=Creature
 subtype=Vampire Cleric
 power=2
 toughness=2
+[/card]
+[card]
+name=Pitiless Plunderer
+auto=@movedto(other creature|graveyard) from(mybattlefield):token(Treasure Sur)
+text=Whenever another creature you control dies, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
+mana={3}{B}
+type=Creature
+subtype=Human Pirate
+power=1
+toughness=4
 [/card]
 [card]
 name=Pitiless Vizier
@@ -36042,7 +36372,7 @@ toughness=3
 [card]
 name=Queen's Agent
 abilities=lifelink
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Lifelink -- When Queen's Agent enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={5}{B}
 type=Creature
@@ -36123,6 +36453,21 @@ auto=Reveal:type:*:targetedpersonslibrary revealzone(targetedpersonslibrary) opt
 text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
 mana={1}{U}
 type=Sorcery
+[/card]
+[card]
+name=Quirion Explorer
+auto=this(variable{olandg}>0) {t}:out{g}
+auto=this(variable{olandu}>0) {t}:out{u}
+auto=this(variable{olandr}>0) {t}:out{r}
+auto=this(variable{olandb}>0) {t}:out{b}
+auto=this(variable{olandw}>0) {t}:out{w}
+auto=this(variable{olandc}>0) {t}:out{1}
+text={T}: Add one mana of any color that a land an opponent controls could produce.
+mana={1}{G}
+type=Creature
+subtype=Elf Druid Scout
+power=1
+toughness=1
 [/card]
 [card]
 name=Radha, Heart of Keld
@@ -37069,6 +37414,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Reckless Rage
+target=creature|opponentbattlefield
+auto=damage:4
+auto=name(Deals 2 damages to your creature) name(Deals 2 damages to your creature) damage:2 target(creature|mybattlefield)
+text=Reckless Rage deals 4 damage to target creature you don't control and 2 damage to target creature you control.
+mana={R}
+type=Instant
+[/card]
+[card]
 name=Reclaim the Wastes
 aicode=activate target(<upto:2>land[basic]|myLibrary) moveTo(myHand)
 kicker={3}
@@ -37280,6 +37634,17 @@ auto={T}:add{G}
 auto={T}:add{U}
 text=Rejuvenating Springs enters the battlefield tapped unless you have two or more opponents. -- {T}: Add {G} or {U}.
 type=Land
+[/card]
+[card]
+name=Rekindling Phoenix
+abilities=flying
+auto=@movedTo(this|mygraveyard) from(Battlefield):token(Elemental Phoenix)
+text=Flying -- When Rekindling Phoenix dies, create a 0/1 red Elemental creature token with "At the beginning of your upkeep, sacrifice this creature and return target card named Rekindling Phoenix from your graveyard to the battlefield. It gains haste until end of turn."
+mana={2}{R}{R}
+type=Creature
+subtype=Phoenix
+power=4
+toughness=3
 [/card]
 [card]
 name=Release the Dogs
@@ -39665,6 +40030,19 @@ type=Legendary Enchantment
 subtype=Shrine
 [/card]
 [card]
+name=Sanctum of the Sun
+auto=untap
+auto=life:5 controller
+auto=all(*|myexile) removeallcounters(0/0,1,AzorExiled)
+auto={T}:name(Add white mana) name(Add white mana) thisforeach(variable{lifetotal}) add{W}
+auto={T}:name(Add green mana) name(Add green mana) thisforeach(variable{lifetotal}) add{G}
+auto={T}:name(Add black mana) name(Add black mana) thisforeach(variable{lifetotal}) add{B}
+auto={T}:name(Add blue mana) name(Add blue mana) thisforeach(variable{lifetotal}) add{U}
+auto={T}:name(Add red mana) name(Add red mana) thisforeach(variable{lifetotal}) add{R}
+text=(Transforms from Azor's Gateway.) -- {T}: Add X mana of any one color, where X is your life total.
+type=Legendary Land
+[/card]
+[card]
 name=Sanctum of Tranquil Light
 auto={5}{W}:name({5}{W}:tap target creature) tap target(creature)
 auto={4}{W} restriction{type(*[shrine]|myBattlefield)~morethan~0}:name({4}{W}:tap target creature) tap target(creature)
@@ -40778,6 +41156,17 @@ mana={4}{W}
 type=Sorcery
 [/card]
 [card]
+name=See Red
+target=creature
+auto=2/1
+auto=first strike
+auto=@each my combatends restriction{type(creature[attacking]|mybattlefield)~equalto~0}:phaseaction[endofturn once] sacrifice all(this)
+text=Enchant creature -- Enchanted creature gets +2/+1 and has first strike. -- At the beginning of your end step, if you didn't attack with a creature this turn, sacrifice See Red.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=See the Truth
 aicode=activate target(*[zpos<=3]|mylibrary) moveto(myhand)
 auto=name(look) reveal:3 optionone name(Get a card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
@@ -40808,7 +41197,7 @@ toughness=3
 [/card]
 [card]
 name=Seekers' Squire
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Seekers' Squire enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{B}
 type=Creature
@@ -41384,6 +41773,18 @@ auto=moveTo(exile) all(planeswalker[manacost<=3]|Graveyard)
 text=Exile all creatures and planeswalkers with converted mana cost 3 or less from the battlefield and all creature and planeswalker cards with converted mana cost 3 or less from all graveyards.
 mana={3}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Shadowed Caravel
+auto=@explored(creature|mybattlefield):all(this) counter(1/1)
+auto={crew(other creature[power>=2]|myBattlefield)}:name(crew 2 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~1}
+auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}:name(crew 2 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~1}
+text=Whenever a creature you control explores, put a +1/+1 counter on Shadowed Caravel. -- Crew 2 (Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)
+mana={2}
+type=Artifact
+subtype=Vehicle
+power=2
+toughness=2
 [/card]
 [card]
 name=Shadowspear
@@ -42330,6 +42731,7 @@ name=Sigiled Sword of Valeron
 auto=teach(creature) +2/+0
 auto=teach(creature) vigilance
 auto=transforms((Knight))
+auto=@combat(attacking) source(mytgt):token(Knight,Knight Creature,2/2,white,vigilance,battleready)
 auto={3}:equip
 text=Equipped creature gets +2/+0, has vigilance, and is a Knight in addition to its other types. -- Whenever equipped creature attacks, create a 2/2 white Knight creature token with vigilance that's attacking. -- Equip {3}
 mana={3}
@@ -42710,7 +43112,7 @@ toughness=2
 [card]
 name=Siren Lookout
 abilities=flying
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Flying -- When Siren Lookout enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{U}
 type=Creature
@@ -44707,6 +45109,13 @@ mana={4}{W}
 type=Enchantment
 [/card]
 [card]
+name=Sphinx's Decree
+auto=phaseaction[upkeep once] maxCast(*[instant;sorcery])0 opponent ueot
+text=Each opponent can't cast instant or sorcery spells during that player's next turn.
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
 name=Sphinx Mindbreaker
 abilities=Flying
 auto=deplete:10 opponent
@@ -45488,6 +45897,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Stalking Leonin
+auto={0}:name(reveal the opponent) this(counter{0/0.1.StalkingEffect}<1) name(reveal the opponent) transforms((,newability[name(Move to exile) name(Move to exile) target(creature[attacking]|opponentbattlefield) moveto(exile)],newability[counter(0/0.1.StalkingEffect)])) oneshot
+text=When Stalking Leonin enters the battlefield, secretly choose an opponent. -- Reveal the player you chose: Exile target creature that's attacking you if it's controlled by the chosen player. Activate this ability only once.
+mana={2}{W}
+type=Creature
+subtype=Cat Archer
+power=3
+toughness=3
+[/card]
+[card]
 name=Stampede Rider
 abilities=trample
 auto=@each combatbegins:if type(creature[power>=4]|mybattlefield)~morethan~0 then 1/1 ueot
@@ -45844,6 +46263,17 @@ auto=overload all(creature|myBattlefield) 2/2 ueot
 text=Target creature you control gets +2/+2 until end of turn. -- Overload {5}{W} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Stitcher's Graft
+auto={2}:equip
+auto=teach(creature) 3/3
+auto=teach(creature) transforms((,newability[counter(0/0.1.Hooked)],newability[@combat(attacking) source(this):all(this) frozen]))
+auto=lord(*[counter{0/0.1.Hooked}]|mybattlefield) transforms((,newability[this(gear < 1) destroy]))
+text=Equipped creature gets +3/+3. -- Whenever equipped creature attacks, it doesn't untap during its controller's next untap step. -- Whenever Stitcher's Graft becomes unattached from a permanent, sacrifice that permanent. -- Equip {2}
+mana={1}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Stitcher's Supplier
@@ -46614,7 +47044,7 @@ toughness=3
 [card]
 name=Sunrise Seeker
 abilities=vigilance
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Vigilance -- When Sunrise Seeker enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={4}{W}
 type=Creature
@@ -47119,6 +47549,21 @@ type=Legendary Creature
 subtype=Human Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Sylvok Explorer
+auto=this(variable{olandg}>0) {t}:out{g}
+auto=this(variable{olandu}>0) {t}:out{u}
+auto=this(variable{olandr}>0) {t}:out{r}
+auto=this(variable{olandb}>0) {t}:out{b}
+auto=this(variable{olandw}>0) {t}:out{w}
+auto=this(variable{olandc}>0) {t}:out{1}
+text={T}: Add one mana of any color that a land an opponent controls could produce.
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
 [/card]
 [card]
 name=Synchronized Spellcraft
@@ -48149,6 +48594,18 @@ type=Legendary Creature
 subtype=Human Rogue
 power=1
 toughness=3
+[/card]
+[card]
+name=Tetzimoc, Primal Death
+abilities=deathtouch
+autohand={B} restriction{myturnonly}:name(Put a prey counter on target creature) name(Put a prey counter on target creature) target(creature) counter(0/0,1,Prey)
+auto=all(creature[counter{0/0.1.Prey}]|battlefield) destroy
+text=Deathtouch -- {B}, Reveal Tetzimoc, Primal Death from your hand: Put a prey counter on target creature. Activate this ability only during your turn. -- When Tetzimoc enters the battlefield, destroy each creature your opponents control with a prey counter on it.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Elder Dinosaur
+power=6
+toughness=6
 [/card]
 [card]
 name=Teyo's Lightshield
@@ -49368,6 +49825,19 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Tilonalli's Summoner
+auto=_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:_ASCEND_
+auto=@combat(attacking) source(this):may pay({X}{R}) name(Create X elemental tokens) token(Elemental,Creature Elemental Tilonalli,1/1,red,battleready)*x
+auto=@each my endstep restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:moveto(exile) all(Tilonalli[token;fresh]|myBattlefield)
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Tilonalli's Summoner attacks, you may pay {X}{R}. If you do, create X 1/1 red Elemental creature tokens that are tapped and attacking. At the beginning of the next end step, exile those tokens unless you have the city's blessing.
+mana={1}{R}
+type=Creature
+subtype=Human Shaman
+power=1
+toughness=1
+[/card]
+[card]
 name=Timbercrown Pathway
 auto={T}:add{G}
 text={T}: Add {G}.
@@ -49508,7 +49978,7 @@ toughness=2
 [/card]
 [card]
 name=Tishana's Wayfinder
-auto=reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Tishana's Wayfinder enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{G}
 type=Creature
@@ -49707,6 +50177,17 @@ auto={2}{W}{B}{T}:name(Return a creature from exile) name(Return a creature from
 text=(Transforms from Profane Procession.) -- {T}: Add one mana of any color. -- {2}{W}{B}, {T}: Put a creature card exiled with this permanent onto the battlefield under your control.
 mana={1}{W}{B}
 type=Legendary Land
+[/card]
+[card]
+name=Tomb Robber
+abilities=menace
+auto={1}{D(*|myhand)}:name(Explores) explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
+text=Menace -- {1}, Discard a card: Tomb Robber explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
+mana={2}{B}
+type=Creature
+subtype=Human Pirate
+power=1
+toughness=1
 [/card]
 [card]
 name=Tombfire
@@ -52602,6 +53083,16 @@ mana={X}{B}{G}{U}
 type=Sorcery
 [/card]
 [card]
+name=Vindictive Lich
+auto=@movedto(this|graveyard) from(battlefield):name(Choose one) name(Choose one) emblem transforms((,newability[choice name(Opponent sacrifices a creature) ability$!name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent],newability[choice name(Opponent discards 2 cards) ability$!name(Discards 2 cards) notatarget(<2>*|myhand) reject!$ opponent],newability[choice name(Opponent looses 5 life) life:-5 opponent])) ueot
+text=When Vindictive Lich dies, choose one or more. Each mode must target a different player. -- • Target opponent sacrifices a creature. -- • Target opponent discards two cards. -- • Target opponent loses 5 life.
+mana={3}{B}
+type=Creature
+subtype=Zombie Wizard
+power=4
+toughness=1
+[/card]
+[card]
 name=Vindictive Vampire
 auto=@movedTo(other creature|graveyard) from(mybattlefield):ability$!choice damage:1 opponent && life:1 controller!$ controller
 text=Whenever another creature you control dies, Vindictive Vampire deals 1 damage to each opponent and you gain 1 life.
@@ -53167,6 +53658,17 @@ mana={2}{B}{B}
 type=Instant
 [/card]
 [card]
+name=Vraska's Conquistador
+auto=@combat(attacking) source(this) restriction{type(planeswalker[vraska]|myBattlefield)~morethan~0}:life:-2 opponent && life:2 controller
+auto=@combat(blocking) source(this) restriction{type(planeswalker[vraska]|myBattlefield)~morethan~0}:life:-2 opponent && life:2 controller
+text=Whenever Vraska's Conquistador attacks or blocks, if you control a Vraska planeswalker, target opponent loses 2 life and you gain 2 life.
+mana={1}{B}
+type=Creature
+subtype=Vampire Soldier
+power=2
+toughness=1
+[/card]
+[card]
 name=Vraska's Finisher
 auto=destroy target(*[creature;planeswalker;damaged]|opponentBattlefield)
 text=When Vraska's Finisher enters the battlefield, destroy target creature or planeswalker an opponent controls that was dealt damage this turn.
@@ -53175,6 +53677,14 @@ type=Creature
 subtype=Gorgon Assassin
 power=3
 toughness=2
+[/card]
+[card]
+name=Vraska's Scorn
+auto=life:-4 opponent
+auto=may name(Move Vraska, Scheming Gorgon to hand) name(Move Vraska, Scheming Gorgon to hand) moveto(myhand) target(Vraska, Scheming Gorgon|mylibrary,mygraveyard) && shuffle
+text=Target opponent loses 4 life. You may search your library and/or graveyard for a card named Vraska, Scheming Gorgon, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={2}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Vraska's Stoneglare
@@ -54130,18 +54640,7 @@ toughness=4
 [/card]
 [card]
 name=Wildgrowth Walker
-auto=@movedTo(creature[Brazen Buccaneers]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Sunrise Seeker]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Emissary of Sunrise]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Siren Lookout]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Fleet Interloper]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Queen's Agent]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Seekers' Squire]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Ixalli's Diviner]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Merfolk Branchwalker]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Tishana's Wayfinder]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@movedTo(creature[Seekers' Squire]|mybattlefield):counter(1/1,1) && life:3 controller
-auto=@combatdamaged(player) from(creature[Emperor's Vanguard]):counter(1/1,1) && life:3 controller
+auto=@explored(creature|mybattlefield):counter(1/1,1) && life:3 controller
 text=Whenever a creature you control explores, put a +1/+1 counter on Wildgrowth Walker and you gain 3 life.
 mana={1}{G}
 type=Creature
@@ -54338,6 +54837,17 @@ type=Creature
 subtype=Angel
 power=3
 toughness=3
+[/card]
+[card]
+name=Winged Temple of Orazca
+auto={T}:add{W}
+auto={T}:add{G}
+auto={T}:add{R}
+auto={T}:add{U}
+auto={T}:add{B}
+auto={1}{G}{U}{T}:name(Target creature gains flying and X/X) name(Target creature gains flying and X/X) target(creature|mybattlefield) transforms((,newability[flying],newability[power/power])) ueot
+text=(Transforms from Hadana's Climb.) -- {T}: Add one mana of any color. -- {1}{G}{U}, {T}: Target creature you control gains flying and gets +X/+X until end of turn, where X is its power.
+type=Legendary Land
 [/card]
 [card]
 name=Winged Words
