@@ -1222,6 +1222,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "surveiled", card))
         return NEW TrCardSurveiled(observer, id, card, tc, once, limitOnceATurn);
 
+    //Esplores has been performed from controller
+    if (TargetChooser * tc = parseSimpleTC(s, "explored", card))
+        return NEW TrCardExplored(observer, id, card, tc, once, limitOnceATurn);
+
     //Roll die has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "dierolled", card)){
         int rollresult = 0;
@@ -3470,6 +3474,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AASurveilEvent(observer, id, card, t, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //perform explores
+    found = s.find("explores");
+    if (found != string::npos)
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAExploresEvent(observer, id, card, t, NULL, who);
         a->oneShot = 1;
         return a;
     }

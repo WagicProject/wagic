@@ -297,6 +297,11 @@ WEventCardSurveiled::WEventCardSurveiled(MTGCardInstance * card) :
 {
 }
 
+WEventCardExplored::WEventCardExplored(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardRollDie::WEventCardRollDie(MTGCardInstance * card, string playerName) :
     WEventCardUpdate(card), playerName(playerName)
 {
@@ -521,6 +526,12 @@ Targetable * WEventCardMutated::getTarget(int target)
 }
 
 Targetable * WEventCardSurveiled::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardExplored::getTarget(int target)
 {
     if (target) return card;
     return NULL;

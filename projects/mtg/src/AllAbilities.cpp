@@ -1023,6 +1023,42 @@ AAAlterPoison::~AAAlterPoison()
 {
 }
 
+//AA Explores Event
+AAExploresEvent::AAExploresEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), card(_source)
+{
+}
+
+int AAExploresEvent::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            WEvent * e = NEW WEventCardExplored(card);
+            game->receiveEvent(e);
+        }
+    }
+    return 0;
+}
+
+const string AAExploresEvent::getMenuText()
+{
+    return "Explores event called";
+}
+
+AAExploresEvent * AAExploresEvent::clone() const
+{
+    return NEW AAExploresEvent(*this);
+}
+
+AAExploresEvent::~AAExploresEvent()
+{
+}
+
 //AA Surveil Event
 AASurveilEvent::AASurveilEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
         int who) :
