@@ -249,6 +249,7 @@ public:
     void copy(MTGCardInstance * card);
 
     void setUntapping();
+    void resetUntapping(); // Fix to avoid the untap on frozen card by clicking on them after the untap phase.
     int isUntapping();
     int isTapped();
     void untap();

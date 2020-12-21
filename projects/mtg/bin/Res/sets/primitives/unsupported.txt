@@ -231,12 +231,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Aladdin's Lamp
-text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, put all but one of them on the bottom of your library in a random order, then draw a card. X can't be 0.
-mana={10}
-type=Artifact
-[/card]
-[card]
 name=Alexander Clamilton
 text=Whenever you cast a wordy spell, scry 2. (A spell is wordy if it has four or more lines of rules text.) -- {1}{R}, {T}: Choose target creature you don't control. Reveal the top card of your library. Alexander Clamilton gets +X/+0 until end of turn, where X is the number of lines of rules text of the revealed card. Alexander Clamilton fights that creature.
 mana={2}{U}
@@ -10769,12 +10763,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Ring of Ma'ruf
-text={5}, {T}, Exile Ring of Ma'ruf: The next time you would draw a card this turn, instead choose a card you own from outside the game and put it into your hand.
-mana={5}
-type=Artifact
-[/card]
-[card]
 name=Rings a Bell
 text=As Rings a Bell enters the battlefield, choose a word with four or more letters. -- After you say the chosen word for the first time each turn, an opponent may ring or imitate a bell within five seconds. When no opponent does, draw a card.
 mana={2}{U}{U}
@@ -10795,30 +10783,6 @@ type=Creature
 subtype=Faerie Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Riptide Mangler
-text={1}{U}: Change Riptide Mangler's power to target creature's power. (This effect lasts indefinitely.)
-mana={1}{U}
-type=Creature
-subtype=Beast
-power=0
-toughness=3
-[/card]
-[card]
-name=Riptide Shapeshifter
-text={2}{U}{U}, Sacrifice Riptide Shapeshifter: Choose a creature type. Reveal cards from the top of your library until you reveal a creature card of that type. Put that card onto the battlefield and shuffle the rest into your library.
-mana={3}{U}{U}
-type=Creature
-subtype=Shapeshifter
-power=3
-toughness=3
-[/card]
-[card]
-name=Rise // Fall
-text=Return target creature card from a graveyard and target creature on the battlefield to their owners' hands. // Target player reveals two cards at random from his or her hand, then discards each nonland card revealed this way.
-mana={U}{B} // {B}{R}
-type=Sorcery // Sorcery
 [/card]
 [card]
 name=Risky Move
@@ -10870,15 +10834,6 @@ type=Artifact Creature
 subtype=Construct
 power=+1
 toughness=+1
-[/card]
-[card]
-name=Rock Jockey
-text=You can't cast Rock Jockey if you've played a land this turn. -- You can't play lands if you've cast Rock Jockey this turn.
-mana={2}{R}
-type=Creature
-subtype=Goblin
-power=3
-toughness=3
 [/card]
 [card]
 name=Rocket-Powered Turbo Slug
@@ -14665,36 +14620,6 @@ mana={W}
 type=Enchant Creature
 power=
 toughness=
-[/card]
-[card]
-name=Words of War
-text={1}: The next time you would draw a card this turn, Words of War deals 2 damage to target creature or player instead.
-mana={2}{R}
-type=Enchantment
-[/card]
-[card]
-name=Words of Waste
-text={1}: The next time you would draw a card this turn, each opponent discards a card instead.
-mana={2}{B}
-type=Enchantment
-[/card]
-[card]
-name=Words of Wilding
-text={1}: The next time you would draw a card this turn, put a 2/2 green Bear creature token onto the battlefield instead.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
-name=Words of Wind
-text={1}: The next time you would draw a card this turn, each player returns a permanent he or she controls to its owner's hand instead.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
-name=Words of Worship
-text={1}: The next time you would draw a card this turn, you gain 5 life instead.
-mana={2}{W}
-type=Enchantment
 [/card]
 [card]
 name=Work a Double

@@ -1260,6 +1260,7 @@ void MTGInPlay::untapAll()
                 if (card->frozen >= 1)
                 {
                     card->frozen = 0;
+                    card->resetUntapping(); // Fix to avoid the untap on frozen card by clicking on them after the untap phase.
                 }
             }
             else
@@ -1272,6 +1273,7 @@ void MTGInPlay::untapAll()
                 if (card->frozen >= 1)
                 {
                     card->frozen = 0;
+                    card->resetUntapping(); // Fix to avoid the untap on frozen card by clicking on them after the untap phase.
                 }
             }
         }
