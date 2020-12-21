@@ -787,6 +787,33 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Aladdin
+auto={1}{R}{R}{T}:name(Gain control of target artifact) name(Gain control of target artifact) target(artifact) moveto(mybattlefield) and!( counter(0/0,1,AladdinCounter) )!
+auto=@movedto(this|nonbattlezone) from(mybattlefield):all(artifact[counter{0/0.1.AladdinCounter}]|mybattlefield) moveto(ownerbattlefield) and!( removeallcounters(0/0,1,AladdinCounter) )!
+text={1}{R}{R}, {T}: Gain control of target artifact for as long as you control Aladdin.
+mana={2}{R}{R}
+type=Creature
+subtype=Human Rogue
+power=1
+toughness=1
+[/card]
+[card]
+name=Aladdin's Lamp
+auto={1}{T}:name(X=1) name(X=1) donothing
+auto={2}{T}:name(X=2) name(X=2) transforms((,newability[replacedraw reveal:2 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=1]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={3}{T}:name(X=3) name(X=3) transforms((,newability[replacedraw reveal:3 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=2]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={4}{T}:name(X=4) name(X=4) transforms((,newability[replacedraw reveal:4 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={5}{T}:name(X=5) name(X=5) transforms((,newability[replacedraw reveal:5 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=4]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={6}{T}:name(X=6) name(X=6) transforms((,newability[replacedraw reveal:6 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=5]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={7}{T}:name(X=7) name(X=7) transforms((,newability[replacedraw reveal:7 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=6]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={8}{T}:name(X=8) name(X=8) transforms((,newability[replacedraw reveal:8 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=7]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={9}{T}:name(X=9) name(X=9) transforms((,newability[replacedraw reveal:9 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=8]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={10}{T}:name(X=10) name(X=10) transforms((,newability[replacedraw reveal:10 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=9]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend afterreveal all(*[zpos<=10]) moveto(myhand) afterrevealend revealend])) ueot
+text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, put all but one of them on the bottom of your library in a random order, then draw a card. X can't be 0.
+mana={10}
+type=Artifact
+[/card]
+[card]
 name=Alchemist's Gift
 target=creature
 auto=1/1 ueot
@@ -3634,6 +3661,19 @@ type=Creature
 subtype=Giant
 power=*
 toughness=*
+[/card]
+[card]
+name=Bearer of Overwhelming Truths
+abilities=prowess
+auto=@movedTo(*[-creature]|mystack):1/1 ueot
+auto=@combatdamagefoeof(player) from(this):token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
+auto=@combatdamageof(player) from(this):token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
+text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Bearer of Overwhelming Truths deals combat damage to a player, investigate. (Create a colorless Clue artifact token with “{2}, Sacrifice this artifact: Draw a card.”)
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+color=blue
 [/card]
 [card]
 name=Bearer of Silence
@@ -10413,6 +10453,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Daring Sleuth
+auto=@sacrificed(Clue|mybattlefield):flip(Bearer of Overwhelming Truths)
+text=When you sacrifice a Clue, transform Daring Sleuth.
+mana={1}{U}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=1
+[/card]
+[card]
 name=Dark Bargain
 auto=damage:2
 auto=Look at the top three cards of your library Put two of them into your hand
@@ -16551,10 +16601,10 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Fissure Ventù
-target=artifact,land[-basic]
-auto=choice name(Choose one) destroy
-auto=choice name(Choose both) destroy && destroy target(artifact,land[-basic])
+name=Fissure Vent
+auto=choice name(Destroy non-basic land) destroy target(land[-basic])
+auto=choice name(Destroy artifact) destroy target(artifact)
+auto=choice name(Destroy non-basic land and artifact) destroy target(land[-basic]) && ability$!name(Destroy artifact) name(Destroy artifact) destroy target(artifact)!$ controller
 text=Choose one or both — -- • Destroy target artifact. -- • Destroy target nonbasic land.
 mana={3}{R}{R}
 type=Sorcery
@@ -37871,6 +37921,16 @@ mana={GU}{GU}
 type=Instant
 [/card]
 [card]
+name=Rescind
+abilities=cycling
+target=*
+auto=moveTo(ownerHand)
+autohand=__CYCLING__({2})
+text=Return target permanent to its owner's hand. -- Cycling 2 ( 2 , Discard this card: Draw a card.)
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Rescue from the Underworld
 target=creature|mygraveyard
 auto=phaseaction[my upkeep once]:moveto(mybattlefield) && moveTo(mybattlefield) target(creature|mygraveyard)
@@ -37893,8 +37953,7 @@ toughness=2
 [card]
 name=Research // Development
 other={3}{U}{R} name(Development)
-auto=ifnot paid(alternative) then choice name(Search sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose 4 cards) target(<upto:4>*|reveal) moveto(mylibrary) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend afterrevealed shuffle controller afterrevealedend revealend
-auto=ifnot paid(alternative) then choice name(Search exile) moveto(mylibrary) target(<upto:4>*|myexile) && shuffle controller
+auto=ifnot paid(alternative) then name(Search sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose 4 cards) target(<upto:4>*|reveal) moveto(mylibrary) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend afterrevealed shuffle controller afterrevealedend revealend
 auto=if paid(alternative) then ability$!name(Choose one) choice name(Create Elemental) create(Elemental:creature Elemental:3/1:red)*2 opponent _ choice name(Draw cards) draw:2 opponent!$ opponent
 text=Choose up to four cards you own from outside the game and shuffle them into your library. // Put a 3/1 red Elemental creature token onto the battlefield unless any opponent has you draw a card. Repeat this process two more times.
 mana={G}{U}
@@ -38510,6 +38569,13 @@ mana={5}
 type=Artifact
 [/card]
 [card]
+name=Ring of Ma'ruf
+auto={5}{T}{E}:transforms((,newability[replacedraw target(*|mysideboard) moveto(myhand)])) ueot
+text={5}, {T}, Exile Ring of Ma'ruf: The next time you would draw a card this turn, instead choose a card you own from outside the game and put it into your hand.
+mana={5}
+type=Artifact
+[/card]
+[card]
 name=Ripjaw Raptor
 auto=@damaged(this):draw:1 controller
 text=Enrage — Whenever Ripjaw Raptor is dealt damage, draw a card.
@@ -38520,6 +38586,46 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Riptide Mangler
+auto={1}{U} restriction{type(creature[power=0]|battlefield)~morethan~0}:name(Set power to 0) name(Set power to 0) transforms((,setpower=0)) forever
+auto={1}{U} restriction{type(creature[power=1]|battlefield)~morethan~0}:name(Set power to 1) name(Set power to 1) transforms((,setpower=1)) forever
+auto={1}{U} restriction{type(creature[power=2]|battlefield)~morethan~0}:name(Set power to 2) name(Set power to 2) transforms((,setpower=2)) forever
+auto={1}{U} restriction{type(creature[power=3]|battlefield)~morethan~0}:name(Set power to 3) name(Set power to 3) transforms((,setpower=3)) forever
+auto={1}{U} restriction{type(creature[power=4]|battlefield)~morethan~0}:name(Set power to 4) name(Set power to 4) transforms((,setpower=4)) forever
+auto={1}{U} restriction{type(creature[power=5]|battlefield)~morethan~0}:name(Set power to 5) name(Set power to 5) transforms((,setpower=5)) forever
+auto={1}{U} restriction{type(creature[power=6]|battlefield)~morethan~0}:name(Set power to 6) name(Set power to 6) transforms((,setpower=6)) forever
+auto={1}{U} restriction{type(creature[power=7]|battlefield)~morethan~0}:name(Set power to 7) name(Set power to 7) transforms((,setpower=7)) forever
+auto={1}{U} restriction{type(creature[power=8]|battlefield)~morethan~0}:name(Set power to 8) name(Set power to 8) transforms((,setpower=8)) forever
+auto={1}{U} restriction{type(creature[power=9]|battlefield)~morethan~0}:name(Set power to 9) name(Set power to 9) transforms((,setpower=9)) forever
+auto={1}{U} restriction{type(creature[power=10]|battlefield)~morethan~0}:name(Set power to 10) name(Set power to 10) transforms((,setpower=10)) forever
+auto={1}{U} restriction{type(creature[power=11]|battlefield)~morethan~0}:name(Set power to 11) name(Set power to 11) transforms((,setpower=11)) forever
+auto={1}{U} restriction{type(creature[power=12]|battlefield)~morethan~0}:name(Set power to 12) name(Set power to 12) transforms((,setpower=12)) forever
+auto={1}{U} restriction{type(creature[power=13]|battlefield)~morethan~0}:name(Set power to 13) name(Set power to 13) transforms((,setpower=13)) forever
+auto={1}{U} restriction{type(creature[power=14]|battlefield)~morethan~0}:name(Set power to 14) name(Set power to 14) transforms((,setpower=14)) forever
+auto={1}{U} restriction{type(creature[power=15]|battlefield)~morethan~0}:name(Set power to 15) name(Set power to 15) transforms((,setpower=15)) forever
+auto={1}{U} restriction{type(creature[power=16]|battlefield)~morethan~0}:name(Set power to 16) name(Set power to 16) transforms((,setpower=16)) forever
+auto={1}{U} restriction{type(creature[power=17]|battlefield)~morethan~0}:name(Set power to 17) name(Set power to 17) transforms((,setpower=17)) forever
+auto={1}{U} restriction{type(creature[power=18]|battlefield)~morethan~0}:name(Set power to 18) name(Set power to 18) transforms((,setpower=18)) forever
+auto={1}{U} restriction{type(creature[power=19]|battlefield)~morethan~0}:name(Set power to 19) name(Set power to 19) transforms((,setpower=19)) forever
+auto={1}{U} restriction{type(creature[power>=20]|battlefield)~morethan~0}:name(Set power to 20) name(Set power to 20) transforms((,setpower=20)) forever
+text={1}{U}: Change Riptide Mangler's power to target creature's power. (This effect lasts indefinitely.)
+mana={1}{U}
+type=Creature
+subtype=Beast
+power=0
+toughness=3
+[/card]
+[card]
+name=Riptide Shapeshifter
+auto=chooseatype transforms((,newability[{2}{U}{U}{S}:moveTo(mybattlefield) target(creature[chosentype]|mylibrary)])) chooseend
+text={2}{U}{U}, Sacrifice Riptide Shapeshifter: Choose a creature type. Reveal cards from the top of your library until you reveal a creature card of that type. Put that card onto the battlefield and shuffle the rest into your library.
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
 name=Riptide Turtle
 abilities=flash,defender
 text=Flash -- Defender
@@ -38528,6 +38634,16 @@ type=Creature
 subtype=Turtle
 power=0
 toughness=5
+[/card]
+[card]
+name=Rise // Fall
+other={B}{R} name(Fail)
+auto=if paid(alternative) then target(player) ability$!name(Discard 2 nonland cards at random) name(Discard 2 nonland cards at random) all(*[-land;zpos<=2]|myhand) moveto(mygraveyard)!$ targetedplayer
+auto=ifnot paid(alternative) then ability$!name(Return creature from graveyard) name(Return creature from graveyard) target(creature|graveyard) moveto(ownerhand)!$ controller
+auto=ifnot paid(alternative) then ability$!name(Return creature from battlefield) name(Return creature from battlefield) target(creature|battlefield) moveto(ownerhand)!$ controller
+text=Return target creature card from a graveyard and target creature on the battlefield to their owners' hands. // Target player reveals two cards at random from his or her hand, then discards each nonland card revealed this way.
+mana={U}{B}
+type=Sorcery
 [/card]
 [card]
 name=Rise Again
@@ -38944,6 +39060,18 @@ auto=teach(creature) {1}{T}{S(Rock Equipment|myBattlefield)}:name(Damage any tar
 text=Equiped creature has "{1}, {T}, Sacrifice Rock: This creature deals 2 damage to any target" --  Equip {1}.
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Rock Jockey
+restriction=type(land[fresh]|myBattlefield)~equalto~0
+auto=maxPlay(land)-99 controller ueot
+auto=phaseaction[upkeep once] maxPlay(land)+99 controller
+text=You can't cast Rock Jockey if you've played a land this turn. -- You can't play lands if you've cast Rock Jockey this turn.
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=3
+toughness=3
 [/card]
 [card]
 name=Rock Lobster
@@ -55182,6 +55310,41 @@ type=Creature
 subtype=Elf Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Words of War
+auto={1}:transforms((,newability[replacedraw ability$!name(Damage player or creatur) choice name(Damage creature) target(creature|battlefield) damage:2 _ choice name(Damage opponent) damage:2 opponent _ choice name(Damage yourself) damage:2 controller!$ controller])) ueot
+text={1}: The next time you would draw a card this turn, Words of War deals 2 damage to target creature or player instead.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Words of Waste
+auto={1}:transforms((,newability[replacedraw ability$!name(Discard a card) notatarget(*|myhand) reject!$ opponent])) ueot
+text={1}: The next time you would draw a card this turn, each opponent discards a card instead.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Words of Wilding
+auto={1}:transforms((,newability[replacedraw create(Bear:Creature Bear:2/2:green)])) ueot
+text={1}: The next time you would draw a card this turn, put a 2/2 green Bear creature token onto the battlefield instead.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Words of Wind
+auto={1}:transforms((,newability[replacedraw target(*|mybattlefield) moveto(ownerhand) and!( ability$!name(Return a permanent) notatarget(*|mybattlefield) moveto(ownerhand)!$ opponent )!])) ueot
+text={1}: The next time you would draw a card this turn, each player returns a permanent he or she controls to its owner's hand instead.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Words of Worship
+auto={1}:transforms((,newability[replacedraw life:5 controller])) ueot
+text={1}: The next time you would draw a card this turn, you gain 5 life instead.
+mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 name=Workshop Elders

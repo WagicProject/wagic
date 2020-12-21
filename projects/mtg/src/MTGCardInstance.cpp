@@ -636,6 +636,11 @@ void MTGCardInstance::setUntapping()
     untapping = 1;
 }
 
+void MTGCardInstance::resetUntapping()
+{
+    untapping = 0; // Fix to avoid the untap on frozen card by clicking on them after the untap phase.
+}
+
 int MTGCardInstance::isUntapping()
 {
     return untapping;
