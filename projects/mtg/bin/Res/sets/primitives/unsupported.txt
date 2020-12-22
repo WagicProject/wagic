@@ -1854,44 +1854,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Cast Through Time
-text=Instant and sorcery spells you control have rebound. (Exile the spell as it resolves if you cast it from your hand. At the beginning of your next upkeep, you may cast that card from exile without paying its mana cost.)
-mana={4}{U}{U}{U}
-type=Enchantment
-[/card]
-[card]
-name=Cataclysm
-text=Each player chooses from the permanents he or she controls an artifact, a creature, an enchantment, and a land, then sacrifices the rest.
-mana={2}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Catalyst Stone
 text=Flashback costs you pay cost up to {2} less. -- Flashback costs your opponents pay cost {2} more.
 mana={2}
 type=Artifact
 [/card]
 [card]
-name=Catch // Release
-text=Gain control of target permanent until end of turn. Untap it. It gains haste until end of turn. --  //  -- Each player sacrifices an artifact, a creature, an enchantment, a land, and a planeswalker. --  -- Fuse (You may cast one or both halves of this card from your hand.)
-mana={1}{U}{R} // {4}{R}{W}
-type=Sorcery // Sorcery
-[/card]
-[card]
 name=Cathedral of Serra
 text=White legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 type=Land
-[/card]
-[card]
-name=Cavern of Souls
-text=As Cavern of Souls enters the battlefield, choose a creature type. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell of the chosen type, and that spell can't be countered.
-type=Land
-[/card]
-[card]
-name=Caverns of Despair
-text=No more than two creatures can attack each combat. -- No more than two creatures can block each combat.
-mana={2}{R}{R}
-type=World Enchantment
 [/card]
 [card]
 name=Ceaseless Searblades
@@ -13885,12 +13856,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Veiled Sentry
-text=When an opponent casts a spell, if Veiled Sentry is an enchantment, Veiled Sentry becomes an Illusion creature with power and toughness each equal to that spell's converted mana cost.
-mana={U}
-type=Enchantment
-[/card]
-[card]
 name=Vengeful Archon
 abilities=flying
 text=Flying -- {X}: Prevent the next X damage that would be dealt to you this turn. If damage is prevented this way, Vengeful Archon deals that much damage to target player.
@@ -13985,15 +13950,6 @@ power=2{1/2}
 toughness=2{1/2}
 [/card]
 [card]
-name=Vile Manifestation
-text=Vile Manifestation gets +1/+0 for each card with cycling in your graveyard. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{B}
-type=Creature
-subtype=Horror
-power=0
-toughness=4
-[/card]
-[card]
 name=Vision Charm
 text=Choose one — Target player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
@@ -14043,12 +13999,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Voidslime
-text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
-mana={U}{U}{G}
-type=Instant
 [/card]
 [card]
 name=Voidstone Gargoyle
@@ -14755,16 +14705,6 @@ name=Yet Another Aether Vortex
 text=All creatures have haste. -- Players play with the top card of their libraries revealed. -- Noninstant, nonsorcery cards on top of a library are on the battlefield under their owner's control in addition to being in that library.
 mana={3}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Yosei, the Morning Star
-abilities=flying
-text=Flying -- When Yosei, the Morning Star dies, target player skips his or her next untap step. Tap up to five target permanents that player controls.
-mana={4}{W}{W}
-type=Legendary Creature
-subtype=Dragon Spirit
-power=5
-toughness=5
 [/card]
 [card]
 name=Your Fate Is Thrice Sealed

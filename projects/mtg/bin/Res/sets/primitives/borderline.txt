@@ -6819,6 +6819,60 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Catch // Release
+other={4}{R}{W} name(Release)
+kicker={4}{R}{W}
+auto=if paid(alternative) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ controller
+auto=if paid(alternative) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ controller
+auto=if paid(alternative) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ controller
+auto=if paid(alternative) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ controller
+auto=if paid(alternative) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ controller
+auto=if paid(alternative) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ opponent
+auto=if paid(alternative) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=if paid(alternative) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ opponent
+auto=if paid(alternative) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
+auto=if paid(alternative) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ opponent
+auto=ifnot paid(alternative) then target(*|battlefield) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ controller
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ controller
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ controller
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ controller
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ controller
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ opponent
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ opponent
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
+auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ opponent
+text=kicker Gain control of target permanent until end of turn. Untap it. It gains haste until end of turn. // Each player sacrifices an artifact, a creature, an enchantment, a land, and a planeswalker. --  -- Fuse (You may cast one or both halves of this card from your hand.)
+mana={1}{U}{R}
+type=Sorcery
+[/card]
+[card]
+name=Cast Through Time
+auto=@movedTo(*[instant;sorcery]|myStack):all(trigger[to]) transforms((,newability[gainedexiledeath],newability[phaseaction[my upkeep once] counter(0/0.1.PlayExile)])) ueot
+auto=@each my upkeep:all(*[instant;sorcery]|myexile) removeallcounters(0/0,-1,PlayExile)
+auto=@each my upkeep:foreach(*[counter{0/0.1.PlayExile}]|myexile) ability$!name(Choose one) choice name(Cast card from exile) activate castcard(normal) target(*[instant;sorcery;counter{0/0.1.PlayExile}]|myexile) _ choice name(Don't cast card from exile) donothing!$ controller
+text=Instant and sorcery spells you control have rebound. (Exile the spell as it resolves if you cast it from your hand. At the beginning of your next upkeep, you may cast that card from exile without paying its mana cost.)
+mana={4}{U}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Cataclysm
+auto=if type(artifact[|mybattlefield)~morethan~1 then ability$!name(Sacrifice artifact) name(Sacrifice artifact) sacrifice notatarget(<type:artifact:mybattlefieldminus1minusend>artifact|mybattlefield)!$ controller
+auto=if type(artifact|opponentbattlefield)~morethan~1 then ability$!name(Sacrifice artifact) name(Sacrifice artifact) sacrifice notatarget(<type:artifact:mybattlefieldminus1minusend>artifact|mybattlefield)!$ opponent
+auto=if type(creature|mybattlefield)~morethan~1 then ability$!name(Sacrifice creature) name(Sacrifice creature) sacrifice notatarget(<type:creature:mybattlefieldminus1minusend>creature|mybattlefield)!$ controller
+auto=if type(creature|opponentbattlefield)~morethan~1 then ability$!name(Sacrifice creature) name(Sacrifice creature) sacrifice notatarget(<type:creature:mybattlefieldminus1minusend>creature|mybattlefield)!$ opponent
+auto=if type(enchantment|mybattlefield)~morethan~1 then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) sacrifice notatarget(<type:enchantment:mybattlefieldminus1minusend>enchantment|mybattlefield)!$ controller
+auto=if type(enchantment|opponentbattlefield)~morethan~1 then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) sacrifice notatarget(<type:enchantment:mybattlefieldminus1minusend>enchantment|mybattlefield)!$ opponent
+auto=if type(land|mybattlefield)~morethan~1 then ability$!name(Sacrifice land) name(Sacrifice land) sacrifice notatarget(<type:land:mybattlefieldminus1minusend>land|mybattlefield)!$ controller
+auto=if type(land|opponentbattlefield)~morethan~1 then ability$!name(Sacrifice land) name(Sacrifice land) sacrifice notatarget(<type:land:mybattlefieldminus1minusend>land|mybattlefield)!$ opponent
+auto=if type(planeswalker|mybattlefield)~morethan~0 then ability$!name(Sacrifice planeswalkers) name(Sacrifice planeswalkers) sacrifice notatarget(<type:planeswalker:mybattlefield>planeswalker|mybattlefield)!$ controller
+auto=if type(planeswalker|opponentbattlefield)~morethan~0 then ability$!name(Sacrifice planeswalkers) name(Sacrifice planeswalkers) sacrifice notatarget(<type:planeswalker:mybattlefield>planeswalker|mybattlefield)!$ opponent
+text=Each player chooses from the permanents he or she controls an artifact, a creature, an enchantment, and a land, then sacrifices the rest.
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Cathedral Membrane
 abilities=defender
 other={1}{L:2} name(Pay 2 Life)
@@ -6947,6 +7001,27 @@ auto={1}{T}:Add{G}
 auto={4}{T}{S}:target(creature|myBattlefield) counter(1/1,2) asSorcery
 text={T}: Add {1}. -- {1}, {T}: Add one mana of any color. -- {4}, {T}, Sacrifice Cave of Temptation: Put two +1/+1 counters on target creature. Activate this ability only any time you could cast a sorcery.
 type=Land
+[/card]
+[card]
+name=Cavern of Souls
+auto={T}:add{C}
+auto=chooseatype transforms((,newability[@targeted(creature[chosentype]|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle],newability[{T}:add{W} restriction{type(creature[chosentype]|myhand)~morethan~0}],newability[{T}:add{U} restriction{type(creature[chosentype]|myhand)~morethan~0}],newability[{T}:add{R} restriction{type(creature[chosentype]|myhand)~morethan~0}],newability[{T}:add{G} restriction{type(creature[chosentype]|myhand)~morethan~0}],newability[{T}:add{B} restriction{type(creature[chosentype]|myhand)~morethan~0}])) chooseend
+text=As Cavern of Souls enters the battlefield, choose a creature type. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell of the chosen type, and that spell can't be countered.
+type=Land
+[/card]
+[card]
+name=Caverns of Despair
+auto=lord(creature[-counter{0/0.1.CanAttack}]|battlefield) cantattack
+auto=lord(creature[-counter{0/0.1.CanBlock}]|battlefield) cantblock
+auto=@each my combatbegins:ability$!name(Choose 2 attacking creature) name(Choose 2 attacking creature) target(<2>creature|mybattlefield) counter(0/0,1,CanAttack)!$ controller
+auto=@each my combatbegins:ability$!name(Choose 2 blocking creature) name(Choose 2 blocking creature) target(<2>creature|mybattlefield) counter(0/0,1,CanBlock)!$ opponent
+auto=@each opponent combatbegins:ability$!name(Choose 2 attacking creature) name(Choose 2 attacking creature) target(<2>creature|mybattlefield) counter(0/0,1,CanAttack)!$ opponent
+auto=@each opponent combatbegins:ability$!name(Choose 2 blocking creature) name(Choose 2 blocking creature) target(<2>creature|mybattlefield) counter(0/0,1,CanBlock)!$ controller
+auto=@each combatends:all(creature|battlefield) removeallcounters(0/0.1.CanAttack)
+auto=@each combatends:all(creature|battlefield) removeallcounters(0/0.1.CanBlock)
+text=No more than two creatures can attack each combat. -- No more than two creatures can block each combat.
+mana={2}{R}{R}
+type=World Enchantment
 [/card]
 [card]
 name=Cavern Whisperer
@@ -52740,6 +52815,33 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
+name=Veiled Sentry
+auto=@movedto(*[manacost=0]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=0,settoughness=0)) forever
+auto=@movedto(*[manacost=1]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=1,settoughness=1)) forever
+auto=@movedto(*[manacost=2]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=2,settoughness=2)) forever
+auto=@movedto(*[manacost=3]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=3,settoughness=3)) forever
+auto=@movedto(*[manacost=4]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=4,settoughness=4)) forever
+auto=@movedto(*[manacost=5]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=5,settoughness=5)) forever
+auto=@movedto(*[manacost=6]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=6,settoughness=6)) forever
+auto=@movedto(*[manacost=7]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=7,settoughness=7)) forever
+auto=@movedto(*[manacost=8]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=8,settoughness=8)) forever
+auto=@movedto(*[manacost=9]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=9,settoughness=9)) forever
+auto=@movedto(*[manacost=10]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=10,settoughness=10)) forever
+auto=@movedto(*[manacost=11]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=11,settoughness=11)) forever
+auto=@movedto(*[manacost=12]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=12,settoughness=12)) forever
+auto=@movedto(*[manacost=13]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=13,settoughness=13)) forever
+auto=@movedto(*[manacost=14]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=14,settoughness=14)) forever
+auto=@movedto(*[manacost=15]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=15,settoughness=15)) forever
+auto=@movedto(*[manacost=16]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=16,settoughness=16)) forever
+auto=@movedto(*[manacost=17]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=17,settoughness=17)) forever
+auto=@movedto(*[manacost=18]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=18,settoughness=18)) forever
+auto=@movedto(*[manacost=19]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=19,settoughness=19)) forever
+auto=@movedto(*[manacost=20]|opponentstack) once:this(counter{0/0.1.VeiledTransformed}=0) transforms((removetypes,newability[counter(0/0.1.VeiledTransformed)])) forever && transforms((Creature Illusion,setpower=20,settoughness=20)) forever
+text=When an opponent casts a spell, if Veiled Sentry is an enchantment, Veiled Sentry becomes an Illusion creature with power and toughness each equal to that spell's converted mana cost.
+mana={U}
+type=Enchantment
+[/card]]
+[card]
 name=Veiled Shade
 auto={1}{B}:1/1 ueot
 text={1}{B}: Veiled Shade gets +1/+1 until end of turn.
@@ -53261,6 +53363,18 @@ power=6
 toughness=4
 [/card]
 [card]
+name=Vile Manifestation
+abilities=cycling
+autohand=__CYCLING__({2})
+auto=foreach(*[cycling]|mygraveyard) 1/0
+text=Vile Manifestation gets +1/+0 for each card with cycling in your graveyard. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{B}
+type=Creature
+subtype=Horror
+power=0
+toughness=4
+[/card]
+[card]
 name=Vilis, Broker of Blood
 abilities=flying
 auto={B}{L:2}:-1/-1 target(creature) ueot
@@ -53640,6 +53754,14 @@ type=Creature
 subtype=Horror
 power=4
 toughness=5
+[/card]
+[card]
+name=Voidslime
+target=*|stack
+auto=fizzle
+text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
+mana={U}{U}{G}
+type=Instant
 [/card]
 [card]
 name=Volatile Claws
@@ -55731,6 +55853,18 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Yosei, the Morning Star
+abilities=flying
+auto=@movedto(this|graveyard) from(mybattlefield):all(*|opponentbattlefield) frozen
+auto=@movedto(this|graveyard) from(mybattlefield):name(Tap up to 5 permanents) name(Tap up to 5 permanents) target(<upto:5>*|opponentbattlefield) tap(noevent)
+text=Flying -- When Yosei, the Morning Star dies, target player skips his or her next untap step. Tap up to five target permanents that player controls.
+mana={4}{W}{W}
+type=Legendary Creature
+subtype=Dragon Spirit
+power=5
+toughness=5
+[/card]
+[card]
 name=Yuriko, the Tiger's Shadow
 autohand={U}{B}{N}:ninjutsu
 autocommandzone={U}{B}{N}:ninjutsu
@@ -55788,6 +55922,15 @@ type=Creature
 subtype=Nightmare Snake
 power=1
 toughness=1
+[/card]
+[card]
+name=Zagoth Triome
+abilities=cycling
+auto=tap(noevent)
+autohand=__CYCLING__({3})
+text=({T}: Add {B}, {G}, or {U}.) -- Zagoth Triome enters the battlefield tapped. -- Cycling {3} ({3}, Discard this card: Draw a card.)
+type=Land
+subtype=Swamp Forest Island
 [/card]
 [card]
 name=Zagras, Thief of Heartbeats
