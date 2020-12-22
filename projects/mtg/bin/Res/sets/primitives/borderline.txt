@@ -800,15 +800,15 @@ toughness=1
 [card]
 name=Aladdin's Lamp
 auto={1}{T}:name(X=1) name(X=1) donothing
-auto={2}{T}:name(X=2) name(X=2) transforms((,newability[replacedraw reveal:2 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=1]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
-auto={3}{T}:name(X=3) name(X=3) transforms((,newability[replacedraw reveal:3 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=2]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
-auto={4}{T}:name(X=4) name(X=4) transforms((,newability[replacedraw reveal:4 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
-auto={5}{T}:name(X=5) name(X=5) transforms((,newability[replacedraw reveal:5 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=4]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
-auto={6}{T}:name(X=6) name(X=6) transforms((,newability[replacedraw reveal:6 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=5]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
-auto={7}{T}:name(X=7) name(X=7) transforms((,newability[replacedraw reveal:7 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=6]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
-auto={8}{T}:name(X=8) name(X=8) transforms((,newability[replacedraw reveal:8 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=7]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
-auto={9}{T}:name(X=9) name(X=9) transforms((,newability[replacedraw reveal:9 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=8]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
-auto={10}{T}:name(X=10) name(X=10) transforms((,newability[replacedraw reveal:10 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=9]|mylibrary) moveto(myhand) )! forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend afterreveal all(*[zpos<=10]) moveto(myhand) afterrevealend revealend])) ueot
+auto={2}{T}:name(X=2) name(X=2) transforms((,newability[replacedraw reveal:2 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=1]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={3}{T}:name(X=3) name(X=3) transforms((,newability[replacedraw reveal:3 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=2]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={4}{T}:name(X=4) name(X=4) transforms((,newability[replacedraw reveal:4 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={5}{T}:name(X=5) name(X=5) transforms((,newability[replacedraw reveal:5 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=4]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={6}{T}:name(X=6) name(X=6) transforms((,newability[replacedraw reveal:6 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=5]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={7}{T}:name(X=7) name(X=7) transforms((,newability[replacedraw reveal:7 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=6]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={8}{T}:name(X=8) name(X=8) transforms((,newability[replacedraw reveal:8 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=7]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={9}{T}:name(X=9) name(X=9) transforms((,newability[replacedraw reveal:9 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=8]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
+auto={10}{T}:name(X=10) name(X=10) transforms((,newability[replacedraw reveal:10 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=9]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend afterreveal all(*[zpos<=10]) moveto(myhand) afterrevealend revealend])) ueot
 text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, put all but one of them on the bottom of your library in a random order, then draw a card. X can't be 0.
 mana={10}
 type=Artifact
@@ -12533,7 +12533,30 @@ subtype=Equipment
 [card]
 name=Draco
 abilities=flying
-anyzone=changecost(colorless:twicepbasiclandtypes) forcedalive
+autoexile=this(variable{pbasiclandtypes}=1) changecost(colorless:-2) forcedalive
+autoexile=this(variable{pbasiclandtypes}=2) changecost(colorless:-4) forcedalive
+autoexile=this(variable{pbasiclandtypes}=3) changecost(colorless:-6) forcedalive
+autoexile=this(variable{pbasiclandtypes}=4) changecost(colorless:-8) forcedalive
+autoexile=this(variable{pbasiclandtypes}=5) changecost(colorless:-10) forcedalive
+autoexile=this(variable{pbasiclandtypes}=6) changecost(colorless:-12) forcedalive
+autoexile=this(variable{pbasiclandtypes}=7) changecost(colorless:-14) forcedalive
+autoexile=this(variable{pbasiclandtypes}>=8) changecost(colorless:-16) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=1) changecost(colorless:-2) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=2) changecost(colorless:-4) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=3) changecost(colorless:-6) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=4) changecost(colorless:-8) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=5) changecost(colorless:-10) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=6) changecost(colorless:-12) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=7) changecost(colorless:-14) forcedalive
+autograveyard=this(variable{pbasiclandtypes}>=8) changecost(colorless:-16) forcedalive
+autohand={9}:restriction{compare(pbasiclandtypes)~equalto~1} name(2 less to cast) name(1 less to cast) activate castcard(restricted) target(Draco|myhand)
+autohand={8}:restriction{compare(pbasiclandtypes)~equalto~2} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Draco|myhand)
+autohand={7}:restriction{compare(pbasiclandtypes)~equalto~3} name(6 less to cast) name(6 less to cast) activate castcard(restricted) target(Draco|myhand)
+autohand={6}:restriction{compare(pbasiclandtypes)~equalto~4} name(8 less to cast) name(8 less to cast) activate castcard(restricted) target(Draco|myhand)
+autohand={5}:restriction{compare(pbasiclandtypes)~equalto~5} name(10 less to cast) name(10 less to cast) activate castcard(restricted) target(Draco|myhand)
+autohand={4}:restriction{compare(pbasiclandtypes)~equalto~6} name(12 less to cast) name(12 less to cast) activate castcard(restricted) target(Draco|myhand)
+autohand={3}:restriction{compare(pbasiclandtypes)~equalto~7} name(14 less to cast) name(14 less to cast) activate castcard(restricted) target(Draco|myhand)
+autohand={2}:restriction{compare(pbasiclandtypes)~morethan~7} name(16 less to cast) name(16 less to cast) activate castcard(restricted) target(Draco|myhand)
 auto=this(pbasiclandtypes=0) upcost[{10}] sacrifice
 auto=this(pbasiclandtypes=1) upcost[{8}] sacrifice
 auto=this(pbasiclandtypes=2) upcost[{6}] sacrifice
@@ -14840,7 +14863,26 @@ toughness=2
 [card]
 name=Evasive Action
 target=*|stack
-auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{pbasiclandtypes}]] name(pay {pbasiclandtypes} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{pbasiclandtypes}]] name(pay {pbasiclandtypes} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~1 then transforms((,newability[pay[[{1}]] name(pay {1} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~2 then transforms((,newability[pay[[{2}]] name(pay {2} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~3 then transforms((,newability[pay[[{3}]] name(pay {3} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~4 then transforms((,newability[pay[[{4}]] name(pay {4} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~5 then transforms((,newability[pay[[{5}]] name(pay {5} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~6 then transforms((,newability[pay[[{6}]] name(pay {6} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~7 then transforms((,newability[pay[[{7}]] name(pay {7} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~8 then transforms((,newability[pay[[{8}]] name(pay {8} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~9 then transforms((,newability[pay[[{9}]] name(pay {9} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~10 then transforms((,newability[pay[[{10}]] name(pay {10} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~11 then transforms((,newability[pay[[{11}]] name(pay {11} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~12 then transforms((,newability[pay[[{12}]] name(pay {12} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~13 then transforms((,newability[pay[[{13}]] name(pay {13} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~14 then transforms((,newability[pay[[{14}]] name(pay {14} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~15 then transforms((,newability[pay[[{15}]] name(pay {15} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~16 then transforms((,newability[pay[[{16}]] name(pay {16} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~17 then transforms((,newability[pay[[{17}]] name(pay {17} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~18 then transforms((,newability[pay[[{18}]] name(pay {18} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~equalto~19 then transforms((,newability[pay[[{19}]] name(pay {19} mana) donothing?fizzle])) forever
+auto=if compare(pbasiclandtypes)~morethan~19 then transforms((,newability[pay[[{29}]] name(pay {20} mana) donothing?fizzle])) forever
 text=Domain — Counter target spell unless its controller pays {1} for each basic land type among lands you control.
 mana={1}{U}
 type=Instant
@@ -24426,7 +24468,8 @@ type=Sorcery
 [/card]
 [card]
 name=Jace, Vryn's Prodigy
-auto={T}:draw:1 controller && ability$!name(Discard a card) reject notAtarget(*|myhand)!$ controller && ability$!(Transform Jace) if type(*|myGraveyard)~morethan~4 then all(Jace, Vryn's Prodigy) moveto(ownerBattlefield)!$ controller && && ability$!(Transform Jace) if type(*|myGraveyard)~morethan~4 then all(Jace, Vryn's Prodigy) flip(Jace, Telepath Unbound)$! controller
+auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller restriction{type(*|mygraveyard)~lessthan~4}
+auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller && moveto(exile) and!( moveto(mybattlefield) and!( haste && counter(0/0,5,Loyalty) && flip(Jace, Telepath Unbound) )! )! restriction{type(*|mygraveyard)~morethan~3}
 text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
 mana={1}{U}
 type=Legendary Creature
@@ -46732,7 +46775,36 @@ type=Instant
 [card]
 name=Stratadon
 abilities=trample
-anyzone=foreach(land[basic]|mybattlefield) changecost(colorless:-1) forcedalive
+autoexile=this(variable{pbasiclandtypes}=1) changecost(colorless:-1) forcedalive
+autoexile=this(variable{pbasiclandtypes}=2) changecost(colorless:-2) forcedalive
+autoexile=this(variable{pbasiclandtypes}=3) changecost(colorless:-3) forcedalive
+autoexile=this(variable{pbasiclandtypes}=4) changecost(colorless:-4) forcedalive
+autoexile=this(variable{pbasiclandtypes}=5) changecost(colorless:-5) forcedalive
+autoexile=this(variable{pbasiclandtypes}=6) changecost(colorless:-6) forcedalive
+autoexile=this(variable{pbasiclandtypes}=7) changecost(colorless:-7) forcedalive
+autoexile=this(variable{pbasiclandtypes}=8) changecost(colorless:-8) forcedalive
+autoexile=this(variable{pbasiclandtypes}=9) changecost(colorless:-9) forcedalive
+autoexile=this(variable{pbasiclandtypes}=10) changecost(colorless:-10) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=1) changecost(colorless:-1) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=2) changecost(colorless:-2) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=3) changecost(colorless:-3) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=4) changecost(colorless:-4) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=5) changecost(colorless:-5) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=6) changecost(colorless:-6) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=7) changecost(colorless:-7) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=8) changecost(colorless:-8) forcedalive
+autograveyard=this(variable{pbasiclandtypes}=9) changecost(colorless:-9) forcedalive
+autograveyard=this(variable{pbasiclandtypes}>=10) changecost(colorless:-10) forcedalive
+autohand={9}:restriction{compare(pbasiclandtypes)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={8}:restriction{compare(pbasiclandtypes)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={7}:restriction{compare(pbasiclandtypes)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={6}:restriction{compare(pbasiclandtypes)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={5}:restriction{compare(pbasiclandtypes)~equalto~5} name(5 less to cast) name(5 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={4}:restriction{compare(pbasiclandtypes)~equalto~6} name(6 less to cast) name(6 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={3}:restriction{compare(pbasiclandtypes)~equalto~7} name(7 less to cast) name(7 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={2}:restriction{compare(pbasiclandtypes)~equalto~8} name(8 less to cast) name(8 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={1}:restriction{compare(pbasiclandtypes)~equalto~9} name(9 less to cast) name(9 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autohand={0}:restriction{compare(pbasiclandtypes)~morethan~9} name(10 less to cast) name(10 less to cast) activate castcard(restricted) target(Stratadon|myhand)
 text=Domain — Stratadon costs {1} less to cast for each basic land type among lands you control. -- Trample
 mana={10}
 type=Artifact Creature
@@ -48313,6 +48385,10 @@ autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
 autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
 autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
 autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
+autocommandzone=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
+autocommandzone=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
+autocommandzone=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
+autocommandzone=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
 autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
 autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
 autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
@@ -55313,7 +55389,7 @@ toughness=1
 [/card]
 [card]
 name=Words of War
-auto={1}:transforms((,newability[replacedraw ability$!name(Damage player or creatur) choice name(Damage creature) target(creature|battlefield) damage:2 _ choice name(Damage opponent) damage:2 opponent _ choice name(Damage yourself) damage:2 controller!$ controller])) ueot
+auto={1}:transforms((,newability[replacedraw ability$!name(Damage player or creature) choice name(Damage creature) target(creature|battlefield) damage:2 _ choice name(Damage opponent) damage:2 opponent _ choice name(Damage yourself) damage:2 controller!$ controller])) ueot
 text={1}: The next time you would draw a card this turn, Words of War deals 2 damage to target creature or player instead.
 mana={2}{R}
 type=Enchantment
@@ -55720,6 +55796,10 @@ autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
 autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
 autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
 autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
+autocommandzone=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
+autocommandzone=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
+autocommandzone=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
+autocommandzone=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
 autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
 autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
 autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
