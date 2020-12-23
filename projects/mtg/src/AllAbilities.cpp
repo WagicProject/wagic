@@ -3995,8 +3995,8 @@ AAMeld * AAMeld::clone() const
 }
 
 // flip a card
-AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy, string forcetype) :
-InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy),forcetype(forcetype)
+AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy, string forcetype, bool backfromcopy) :
+InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy),forcetype(forcetype),backfromcopy(backfromcopy)
 {
     target = _target;
 }
@@ -4016,7 +4016,7 @@ int AAFlip::resolve()
     if (_target)
     {
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be flipped, they will follow the fate of top-card
-        if(((_target->isACopier||_target->isToken) && !isflipcard) || _target->has(Constants::CANTTRANSFORM))
+        if(((_target->isACopier||_target->isToken) && !isflipcard && !backfromcopy) || _target->has(Constants::CANTTRANSFORM))
         {
             game->removeObserver(this);
             return 0;
@@ -4166,7 +4166,7 @@ int AAFlip::resolve()
             }
             SAFE_DELETE(myFlip);
             _target->mPropertiesChangedSinceLastUpdate = true;
-            if(!isflipcard)
+            if(!isflipcard && !backfromcopy)
             {
                 if(_target->isFacedown)
                     _target->isFacedown = false;

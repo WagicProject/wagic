@@ -409,6 +409,28 @@ private:
         {
             size_t begins = s.find("type:");
             string theType = s.substr(begins + 5);
+            size_t typepos = theType.find("chosentype");
+            if(typepos != string::npos && card->chooseasubtype != "")
+                theType.replace(typepos, 10, card->chooseasubtype);
+            size_t colpos = theType.find("chosencolor");
+            if(colpos != string::npos && card->chooseacolor >= 0){
+                if(card->chooseacolor == Constants::MTG_COLOR_ARTIFACT)
+                    theType.replace(colpos, 11, "artifact");
+                else if(card->chooseacolor == Constants::MTG_COLOR_GREEN)
+                    theType.replace(colpos, 11, "green");
+                else if(card->chooseacolor == Constants::MTG_COLOR_BLUE)
+                    theType.replace(colpos, 11, "blue");
+                else if(card->chooseacolor == Constants::MTG_COLOR_RED)
+                    theType.replace(colpos, 11, "red");
+                else if(card->chooseacolor == Constants::MTG_COLOR_BLACK)
+                    theType.replace(colpos, 11, "black");
+                else if(card->chooseacolor == Constants::MTG_COLOR_WHITE)
+                    theType.replace(colpos, 11, "white");
+                else if(card->chooseacolor == Constants::MTG_COLOR_WASTE)
+                    theType.replace(colpos, 11, "waste");
+                else if(card->chooseacolor == Constants::MTG_COLOR_LAND)
+                    theType.replace(colpos, 11, "land");
+            }
             size_t zoned = theType.find(":");
             if(zoned == string::npos)
             {
@@ -5260,7 +5282,8 @@ public:
     bool isflipcard;
     bool forcedcopy;
     string forcetype;
-    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, string flipStats, bool isflipcard = false, bool forcedcopy = false, string forcetype = "");
+    bool backfromcopy;
+    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, string flipStats, bool isflipcard = false, bool forcedcopy = false, string forcetype = "", bool backfromcopy = false);
     int resolve();
     int testDestroy();
     const string getMenuText();

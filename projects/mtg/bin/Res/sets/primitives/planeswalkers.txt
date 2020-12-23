@@ -1727,7 +1727,7 @@ subtype=Nahiri
 [card]
 name=Narset of the Ancient Way
 auto=counter(0/0,4,Loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Gain 2 life and produce mana) life:2 controller && ability$!choice add{U} _ choice add{R} _ choice add{W}!$ controller
+auto={C(0/0,1,Loyalty)}:name(+1: Gain 2 life and produce mana) life:2 controller && if type(*[-creature]|myhand)~morethan~0 then ability$!choice add{U} _ choice add{R} _ choice add{W}!$ controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Draw and may discard land) draw:1 controller && ability$!name(May discard a land) may target(*[land]|myhand) reject!$ controller
 auto={C(0/0,-2,Loyalty)}{D(*[-land]|myhand)}:name(-2: Draw, discard nonland and damage) draw:1 controller && damage:storedmanacost target(creature;planeswalker)
 auto={C(0/0,-6,Loyalty)}:name(-6: Emblem: Cast a noncreature spell and deals 2 damage) emblem transforms((,newability[@movedTo(*[-creature]|mystack):damage:2 target(player,creature,planeswalker)])) forever dontremove
@@ -2126,7 +2126,7 @@ subtype=Sarkhan
 name=Sarkhan, Fireblood
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Discard and draw) ability$!may reject notatarget(*|myhand) and!(draw:1)! !$ controller
-auto={C(0/0,1,Loyalty)}:name(+1: Add two mana in any combination of colors) ability$!name(add mana) choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W}!$ controller && ability$!name(add mana) choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller
+auto={C(0/0,1,Loyalty)}:name(+1: Add two mana in any combination of colors) if type(dragon|myhand,mycommandzone)~morethan~0 then thisforeach(variable{2}) ability$!name(add mana) choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W}!$ controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Create four 5/5 Dragons) token(Dragon,Creature Dragon,5/5,red,flying)*4
 text=+1: You may discard a card. If you do, draw a card. -- +1: Add two mana in any combination of colors. Spend this mana only to cast Dragon spells. -- −7: Create four 5/5 red Dragon creature tokens with flying.
 mana={1}{R}{R}

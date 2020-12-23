@@ -834,8 +834,6 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 card->addType("Land");
             if (observer->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, observer->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
                 canplay = false;
-            if (!card->StackIsEmptyandSorcerySpeed())
-                canplay = false;
             if(!isLand)
                 card->removeType("Land");
             if(!canplay)
@@ -4167,6 +4165,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = true;
         return a;
     }
+
     //flip
     vector<string> splitFlipStat = parseBetween(s, "flip(", ")", true);
     if(splitFlipStat.size())
@@ -4183,8 +4182,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             forcetype = splitType[1];
         }
+        bool backfromcopy = (s.find("undocpy") != string::npos)?true:false; // Added to undo the copy effect at end of turn (es. Scion of the Ur-Dragon).
         bool transmode = card->getdoubleFaced() == "kamiflip"?true:false;
-        MTGAbility * a = NEW AAFlip(observer, id, card, target, flipStats, transmode, false, forcetype);
+        MTGAbility * a = NEW AAFlip(observer, id, card, target, flipStats, transmode, false, forcetype, backfromcopy);
         return a;
     }
 

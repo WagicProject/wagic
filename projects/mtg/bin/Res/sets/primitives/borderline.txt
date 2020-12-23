@@ -519,8 +519,7 @@ type=Sorcery
 [/card]
 [card]
 name=Agadeem, the Undercrypt
-auto=noactivatedability ueot
-auto=pay({L:3}) name(pay 3 life and untap it) donothing name(pay 3 life and untap) && -noactivatedability all(this)?tap(noevent) && -noactivatedability all(this)
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
 auto={T}:add{B}
 text=As Agadeem, the Undercrypt enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {B}.
 type=Land
@@ -933,11 +932,11 @@ toughness=1
 [card]
 name=Ally Encampment
 auto={T}:add{C}
-auto={T} restriction{type(ally|myhand)~morethan~0}:add{B}
-auto={T} restriction{type(ally|myhand)~morethan~0}:add{R}
-auto={T} restriction{type(ally|myhand)~morethan~0}:add{G}
-auto={T} restriction{type(ally|myhand)~morethan~0}:add{W}
-auto={T} restriction{type(ally|myhand)~morethan~0}:add{U}
+auto=this(variable{type:ally:myrestrictedcastingzone}>0) {T}:add{B}
+auto=this(variable{type:ally:myrestrictedcastingzone}>0) {T}:add{R}
+auto=this(variable{type:ally:myrestrictedcastingzone}>0) {T}:add{G}
+auto=this(variable{type:ally:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:ally:myrestrictedcastingzone}>0) {T}:add{U}
 auto={1}{T}{S}:target(ally|myBattlefield) moveTo(ownerhand)
 text={T}: Add {C} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast an Ally spell. -- {1}, {T}, Sacrifice Ally Encampment: Return target Ally you control to its owner's hand.
 type=Land
@@ -1027,16 +1026,16 @@ type=Artifact
 [card]
 name=Altar of the Lost
 auto=tap(noevent)
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{W}{B}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{W}{R}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{W}{G}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{W}{U}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{B}{R}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{B}{G}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{B}{U}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{R}{G}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{R}{U}
-auto={T} restriction{type(*[flashback]|mygraveyard)~morethan~0}:add{U}{G}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{W}{B}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{W}{R}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{W}{G}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{W}{U}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{B}{R}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{B}{G}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{B}{U}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{R}{G}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{R}{U}
+auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{U}{G}
 text=Altar of the Lost enters the battlefield tapped. -- {T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast spells with flashback from a graveyard.
 mana={3}
 type=Artifact
@@ -1215,11 +1214,11 @@ toughness=12
 [/card]
 [card]
 name=Ancient Ziggurat
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{B}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{R}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{G}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{U}
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell.
 type=Land
 [/card]
@@ -3464,11 +3463,16 @@ toughness=1
 name=Base Camp
 auto=tap(noevent)
 auto={T}:add{C}
-auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{B}
-auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{R}
-auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{G}
-auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{W}
-auto={T} restriction{type(creature[cleric;rogue;warrior;wizard]|myhand,myBattlefield)~morethan~0}:add{U}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:myrestrictedcastingzone}>0) {T}:add{B}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:mybattlefield}>0) {T}:add{B}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:mybattlefield}>0) {T}:add{W}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:myrestrictedcastingzone}>0) {T}:add{R}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:mybattlefield}>0) {T}:add{R}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:myrestrictedcastingzone}>0) {T}:add{U}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:mybattlefield}>0) {T}:add{U}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:myrestrictedcastingzone}>0) {T}:add{G}
+auto=this(variable{type:creature[cleric;rogue;warrior;wizard]:mybattlefield}>0) {T}:add{G}
 text={T}: Add {C}. -- {T}: Add one mana of any color. Spend this mana only to cast a Cleric, Rogue, Warrior, or Wizard spell, or to activate an ability of a Cleric, Rogue, Warrior, or Wizard.
 type=Land
 [/card]
@@ -3780,11 +3784,11 @@ toughness=4
 [card]
 name=Beastcaller Savant
 abilities=haste
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{B}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{R}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{G}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{U}
 text=Haste -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell.
 mana={1}{G}
 type=Creature
@@ -5907,7 +5911,8 @@ type=Sorcery
 [card]
 name=Brudiclad, Telchor Engineer
 auto=lord(creature[token]|myBattlefield) haste
-auto=@each my combatbegins:token(Myr,Artifact Creature Myr,1/1) && lord(other creature[token]|myBattlefield) transforms((,newability[becomes clone target(Creature[token]|myBattlefield)]))
+auto=@each my combatbegins:may all(creature[token]|myBattlefield) transforms((,newability[copy target(other creature[token]|myBattlefield)])) forever
+auto=@each my combatbegins:token(Myr,Artifact Creature Myr,2/1,blue)
 text=Creature tokens you control have haste. -- At the beginning of combat on your turn, create a 2/1 blue Myr artifact creature token. Then you may choose a token you control. If you do, each other token you control becomes a copy of that token.
 mana={4}{U}{R}
 type=Legendary Creature
@@ -6722,7 +6727,8 @@ type=Land
 name=Castle Garenbrig
 auto={T}:add{G}
 auto=aslongas(land[forest]|myBattlefield) tap(noevent) <1 oneshot
-auto={2}{G}{G}{T} restriction{type(creature|myhand,mybattlefield)~morethan~0}:add{G}{G}{G}{G}{G}{G}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {2}{G}{G}{T}:add{G}{G}{G}{G}{G}{G}
+auto=this(variable{type:creature:mybattlefield}>0) {2}{G}{G}{T}:add{G}{G}{G}{G}{G}{G}
 text=Castle Garenbrig enters the battlefield tapped unless you control a Forest. -- {T}: Add {G}. -- {2}{G}{G}, {T}: Add six {G}. Spend this mana only to cast creature spells or activate abilities of creatures.
 type=Land
 [/card]
@@ -7005,7 +7011,7 @@ type=Land
 [card]
 name=Cavern of Souls
 auto={T}:add{C}
-auto=chooseatype transforms((,newability[@targeted(creature[chosentype]|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle],newability[{T}:add{W} restriction{type(creature[chosentype]|myhand)~morethan~0}],newability[{T}:add{U} restriction{type(creature[chosentype]|myhand)~morethan~0}],newability[{T}:add{R} restriction{type(creature[chosentype]|myhand)~morethan~0}],newability[{T}:add{G} restriction{type(creature[chosentype]|myhand)~morethan~0}],newability[{T}:add{B} restriction{type(creature[chosentype]|myhand)~morethan~0}])) chooseend
+auto=chooseatype transforms((,newability[@targeted(creature[chosentype]|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{W}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{U}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{R}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{G}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{B}])) chooseend
 text=As Cavern of Souls enters the battlefield, choose a creature type. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell of the chosen type, and that spell can't be countered.
 type=Land
 [/card]
@@ -7383,8 +7389,8 @@ type=Instant
 [/card]
 [card]
 name=Chandra's Embercat
-auto={T} restriction{type(creature[elemental]|myhand)~morethan~0}:add{R}
-auto={T} restriction{type(planeswalker[chandra]|myhand)~morethan~0}:add{R}
+auto=this(variable{type:creature[elemental]:myrestrictedcastingzone}>0) {T}:add{R}
+auto=this(variable{type:planeswalker[chandra]:myrestrictedcastingzone}>0) {T}:add{R}
 text={T}: Add {R}. Spend this mana only to cast an Elemental spell or a Chandra planeswalker spell.
 mana={1}{R}
 type=Creature
@@ -9456,11 +9462,11 @@ toughness=2
 [card]
 name=Corrupted Crossroads
 auto={T}:add{C}
-auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{W}
-auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{B}
-auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{R}
-auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{U}
-auto={T}{L:1} restriction{type(*[devoid]|myhand)~morethan~0}:add{G}
+auto=this(variable{type:*[devoid]:myrestrictedcastingzone}>0) {T}{L:1}:add{W}
+auto=this(variable{type:*[devoid]:myrestrictedcastingzone}>0) {T}{L:1}:add{B}
+auto=this(variable{type:*[devoid]:myrestrictedcastingzone}>0) {T}{L:1}:add{R}
+auto=this(variable{type:*[devoid]:myrestrictedcastingzone}>0) {T}{L:1}:add{U}
+auto=this(variable{type:*[devoid]:myrestrictedcastingzone}>0) {T}{L:1}:add{G}
 text={T}: Add {C} to your mana pool. ({C} represents colorless mana.) -- {T}, Pay 1 life: Add one mana of any color to your mana pool. Spend this mana only to cast a spell with devoid.
 type=Land
 [/card]
@@ -10190,8 +10196,8 @@ type=Instant
 [/card]
 [card]
 name=Curious Homunculus
-auto={T} restriction{type(*[instant;sorcery]|myhand)~morethan~0}:add{C}
-auto=@each my upkeep:aslongas(*[instant;sorcery]|myBattlefield) flip(Voracious Reader) >2
+auto=this(variable{type:*[instant;sorcery]:myrestrictedcastingzone}>0) {T}:add{C}
+auto=@each my upkeep:aslongas(*[instant;sorcery]|mygraveyard) flip(Voracious Reader) >2
 text={T}: Add {C} to your mana pool. Spend this mana only to cast an instant or sorcery spell. -- At the beginning of your upkeep, if there are three or more instant and/or sorcery cards in your graveyard, transform Curious Homunculus.
 mana={1}{U}
 type=Creature
@@ -10428,7 +10434,8 @@ toughness=0
 [/card]
 [card]
 name=Dalakos, Crafter of Wonders
-auto={T} restriction{type(*[artifact]|myhand,myBattlefield)~morethan~0}:add{C}{C}
+auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{C}{C}
+auto=this(variable{type:artifact:mybattlefield}>0) {T}:add{C}{C}
 auto=lord(creature[geared]|mybattlefield) flying
 auto=lord(creature[geared]|mybattlefield) haste
 text={T}: Add {C}{C}. Spend this mana only to cast artifact spells or activate abilities of artifacts. -- Equipped creatures you control have flying and haste.
@@ -13752,8 +13759,9 @@ toughness=1
 [/card]
 [card]
 name=Eldrazi Temple
-auto={T}:add{1}
-auto={T} restriction{type(eldrazi[-black;-blue;-red;-green;-white]|myhand,myBattlefield)~morethan~0}:add{C}{C}
+auto={T}:add{C}
+auto=this(variable{type:eldrazi[-black;-blue;-red;-green;-white]:myrestrictedcastingzone}>0) {T}:add{C}{C}
+auto=this(variable{type:eldrazi[-black;-blue;-red;-green;-white]:mybattlefield}>0) {T}:add{C}{C}
 text={T}: Add {1} to your mana pool. -- {T}: Add {2} to your mana pool. Spend this mana only to cast colorless Eldrazi spells or activate abilities of colorless Eldrazi.
 type=Land
 [/card]
@@ -13853,7 +13861,7 @@ toughness=1
 [card]
 name=Elfhame Druid
 auto={T}:add{G}
-auto={T} restriction{type(*[haskicker]|myhand)~morethan~0}:add{G}{G}
+auto=this(variable{type:*[haskicker]:myrestrictedcastingzone}>0) {T}:add{G}{G}
 text={T}: Add{G}. -- {T}: Add {G}{G}. Spend this mana only to cast kicked spells.
 mana={1}{G}
 type=Creature
@@ -14231,8 +14239,7 @@ type=Sorcery
 [/card]
 [card]
 name=Emeria, Shattered Skyclave
-auto=noactivatedability ueot
-auto=pay({L:3}) name(pay 3 life and untap it) donothing name(pay 3 life and untap) && -noactivatedability all(this)?tap(noevent) && -noactivatedability all(this)
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
 auto={T}:add{W}
 text=As Emeria, Shattered Skyclave enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {W}.
 type=Land
@@ -14418,7 +14425,7 @@ type=Enchantment
 [card]
 name=Enduring Scalelord
 abilities=flying
-auto=@<anyamount>counter(1/1,1) target(creature|myBattlefield):may counter(1/1,1)
+auto=@counteradded(1/1) from(other creature|mybattlefield):may counter(1/1,1)
 text=Flying -- Whenever one or more +1/+1 counters are placed on another creature you control, you may put a +1/+1 counter on Enduring Scalelord.
 mana={4}{G}{W}
 type=Creature
@@ -18359,7 +18366,7 @@ type=Sorcery
 [/card]
 [card]
 name=Geosurge
-auto={T} restriction{type(*[artifact;creature]|myhand)~morethan~0}:add{R}{R}{R}{R}{R}{R}{R}
+auto=this(variable{type:*[creature;artifact]:myrestrictedcastingzone}>0) {T}:add{R}{R}{R}{R}{R}{R}{R}
 text=Add {R}{R}{R}{R}{R}{R}{R} to your mana pool. Spend this mana only to cast artifact or creature spells.
 mana={R}{R}{R}{R}
 type=Sorcery
@@ -19188,7 +19195,7 @@ toughness=2
 [/card]
 [card]
 name=Gnarlroot Trapper
-auto={T}{L:1} restriction{type(creature[elf]|myhand)~morethan~0}:add{G}
+auto={this(variable{type:elf:myrestrictedcastingzone}>0) T}{L:1}:add{G}
 auto={T}:target(elf[attacking]|mybattlefield) transforms((,newability[deathtouch])) ueot
 text={T}, Pay 1 life: Add {G} to your mana pool. Spend this mana only to cast an Elf creature spell. -- {T}: Target attacking Elf you control gains deathtouch until end of turn. (Any amount of damage it deals to a creature is enough to destroy it.)
 mana={B}
@@ -21330,11 +21337,11 @@ type=Sorcery
 [card]
 name=Haven of the Spirit Dragon
 auto={T}:add{1}
-auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{W}
-auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{U}
-auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{R}
-auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{G}
-auto={T} restriction{type(creature[dragon]|myhand)~morethan~0}:add{B}
+auto=this(variable{type:dragon:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:dragon:myrestrictedcastingzone}>0) {T}:add{U}
+auto=this(variable{type:dragon:myrestrictedcastingzone}>0) {T}:add{R}
+auto=this(variable{type:dragon:myrestrictedcastingzone}>0) {T}:add{G}
+auto=this(variable{type:dragon:myrestrictedcastingzone}>0) {T}:add{B}
 auto={2}{T}{S}:name(Move dragon) moveto(myhand) target(creature[dragon]|mygraveyard)
 auto={2}{T}{S}:name(Move Ugin, the Ineffable) moveto(myhand) target(Ugin, the Ineffable|mygraveyard)
 auto={2}{T}{S}:name(Move Ugin, the Spirit Dragon) moveto(myhand) target(Ugin, the Spirit Dragon|mygraveyard)
@@ -22596,11 +22603,11 @@ color=white
 [/card]
 [card]
 name=Humble Naturalist
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{G}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{U}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{B}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{R}
 text={T}: Add one mana of any color. Spend this mana only to cast a creature spell.
 mana={1}{G}
 type=Creature
@@ -24059,16 +24066,16 @@ type=Instant
 name=Interplanar Beacon
 auto=@movedTo(planeswalker|mystack):life:1
 auto={T}:Add{C}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{W}{U}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{W}{B}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{W}{R}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{W}{G}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{U}{B}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{U}{R}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{U}{G}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{B}{R}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{B}{G}
-auto={1}{T} restriction{type(planeswalker|myhand)~morethan~0}:add{R}{G}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{W}{U}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{W}{B}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{W}{R}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{W}{G}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{U}{B}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{U}{R}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{U}{G}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{B}{R}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{B}{G}
+auto=this(variable{type:planeswalker:myrestrictedcastingzone}>0) {1}{T}:add{R}{G}
 text=Whenever you cast a planeswalker spell, you gain 1 life. -- {T}: Add {C}. -- {1}, {T}: Add two mana of different colors. Spend this mana only to cast planeswalker spells.
 type=Land
 [/card]
@@ -24732,7 +24739,7 @@ type=Artifact
 [/card]
 [card]
 name=Jeweled Lotus
-auto={T}{S} restriction{type(*[iscommander]|mycommandzone)~morethan~0}:ability$!name(Choose one) choice name(Add 3 white mana) add{W}{W}{W} _ choice name(Add 3 black mana) add{B}{B}{B} _ choice name(Add 3 green mana) add{G}{G}{G} _ choice name(Add 3 red mana) add{R}{R}{R} _ choice name(Add 3 blue mana) add{U}{U}{U}!$ controller
+auto=this(variable{type:*[iscommander]:myrestrictedcastingzone}>0) {T}{S}:ability$!name(Choose one) choice name(Add 3 white mana) add{W}{W}{W} _ choice name(Add 3 black mana) add{B}{B}{B} _ choice name(Add 3 green mana) add{G}{G}{G} _ choice name(Add 3 red mana) add{R}{R}{R} _ choice name(Add 3 blue mana) add{U}{U}{U}!$ controller
 text={T}, Sacrifice Jeweled Lotus: Add three mana of any one color. Spend this mana only to cast your commander.
 mana={0}
 type=Artifact
@@ -29386,8 +29393,7 @@ toughness=4
 [/card]
 [card]
 name=Masterful Replication
-auto=choice token(Golem,Artifact Creature Golem,3/3)*2
-auto=choice all(other artifact) transforms((,newability[copy target(*[artifact]|mybattlefield)]))
+auto=token(Golem,Artifact Creature Golem,3/3)*2
 text=Choose one — -- • Create two 3/3 colorless Golem artifact creature tokens. -- • Choose target artifact you control. Each other artifact you control becomes a copy of that artifact until end of turn.
 mana={5}{U}
 type=Instant
@@ -30142,7 +30148,7 @@ toughness=1
 [/card]
 [card]
 name=Mirage Mirror
-auto={2}:copy target(artifact,creature,enchantment,land) ueot
+auto={2}:target(*[artifact;creature;enchantment;land]|battlefield) copy and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(Mirage Mirror) undocpy])) forever )!
 text={2}: Mirage Mirror becomes a copy of target artifact, creature, enchantment, or land until end of turn.
 mana={3}
 type=Artifact
@@ -30279,7 +30285,7 @@ toughness=2
 [/card]
 [card]
 name=Mishra's Workshop
-auto={T} restriction{ype(artifact|myhand)~morethan~0}:add{C}{C}{C}
+auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{C}{C}{C}
 text={T}: Add {3}. Spend this mana only to cast artifact spells.
 type=Land
 [/card]
@@ -30964,7 +30970,8 @@ type=Artifact
 [/card]
 [card]
 name=Myr Reservoir
-auto={T} restriction{type(myr|myhand,myBattlefield)~morethan~0}:add{C}{C}
+auto=this(variable{type:myr:myrestrictedcastingzone}>0) {T}:add{C}{C}
+auto=this(variable{type:myr:mybattlefield}>0) {T}:add{C}{C}
 auto={3}{T}:moveto(myhand) target(Myr|mygraveyard)
 text={T}: Add {2} to your mana pool. Spend this mana only to cast Myr spells or activate abilities of Myr. -- {3}, {T}: Return target Myr card from your graveyard to your hand.
 mana={3}
@@ -34995,18 +35002,18 @@ toughness=1
 [/card]
 [card]
 name=Pillar of Origins
-auto=chooseatype transforms((,newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{B}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{U}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{G}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{R}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{W}])) forever chooseend
+auto=chooseatype transforms((,newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{W}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{U}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{R}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{G}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{B}])) chooseend
 text=As Pillar of Origins enters the battlefield, choose a creature type. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell of the chosen type.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Pillar of the Paruns
-auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{W}
-auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{R}
-auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{G}
-auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{U}
-auto={T} restriction{type(*[multicolor]|myhand)~morethan~0}:add{B}
+auto=this(variable{type:*[multicolor]:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:*[multicolor]:myrestrictedcastingzone}>0) {T}:add{R}
+auto=this(variable{type:*[multicolor]:myrestrictedcastingzone}>0) {T}:add{G}
+auto=this(variable{type:*[multicolor]:myrestrictedcastingzone}>0) {T}:add{U}
+auto=this(variable{type:*[multicolor]:myrestrictedcastingzone}>0) {T}:add{B}
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a multicolored spell.
 type=Land
 [/card]
@@ -35744,7 +35751,8 @@ type=Artifact
 name=Primal Beyond
 auto=aslongas(Elemental|myhand) tap(noevent) <1 oneshot
 auto={T}:add{1}
-auto={T}:if type(*[elemental]|myhand,myBattlefield)~morethan~0 then ability$!choice add{W} _ choice add{G} _ choice add{R} _choice add{U} _choice add{B}!$ controller
+auto=this(variable{type:elemental:myrestrictedcastingzone}>0) {T}:ability$!choice add{W} _ choice add{G} _ choice add{R} _choice add{U} _choice add{B}!$ controller
+auto=this(variable{type:elemental:mybattlefield}>0) {T}:ability$!choice add{W} _ choice add{G} _ choice add{R} _choice add{U} _choice add{B}!$ controller
 text=As Primal Beyond enters the battlefield, you may reveal an Elemental card from your hand. If you don't, Primal Beyond enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast an Elemental spell or activate an ability of an Elemental.
 type=Land
 [/card]
@@ -36398,7 +36406,7 @@ type=Sorcery
 [/card]
 [card]
 name=Qarsi Deceiver
-auto={T}:add{1}
+auto={T}:add{C}
 text={T}: Add {1} to your mana pool. Spend this mana only to cast a face-down creature spell, pay a mana cost to turn a manifested creature face up, or pay a morph cost. (A megamorph cost is a morph cost.)
 mana={1}{U}
 type=Creature
@@ -37980,7 +37988,8 @@ toughness=2
 [/card]
 [card]
 name=Renowned Weaponsmith
-auto={T}:if type(artifact|myhand,mybattlefield)~morethan~0 then add{C}{C}
+auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{C}{C}
+auto=this(variable{type:artifact:mybattlefield}>0) {T}:add{C}{C}
 aicode=activate moveTo(myBattlefield) target(*[Vial of Dragonfire;Heart-Piercer Bow]|myLibrary)
 auto={U}{T}:name(search card) reveal:plibrarycount revealzone(mylibrary) optionone name(choose card) target(<1>*[Vial of Dragonfire;Heart-Piercer Bow]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 text={T}: Add {2} to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts. -- {U}, {T}: Search your library for a card named Heart-Piercer Bow or Vial of Dragonfire, reveal it, put it into your hand, then shuffle your library.
@@ -40951,7 +40960,7 @@ toughness=3
 [card]
 name=Scion of the Ur-Dragon
 abilities=flying
-auto={2}:moveto(mygraveyard) target(*[dragon]|mylibrary) && copy ueot && shuffle controller
+auto={2}:moveto(mygraveyard) target(*[dragon]|mylibrary) && shuffle controller && copy and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(Scion of the Ur-Dragon) undocpy])) forever )!
 text=Flying -- {2}: Search your library for a Dragon permanent card and put it into your graveyard. If you do, Scion of the Ur-Dragon becomes a copy of that card until end of turn. Then shuffle your library.
 mana={W}{U}{B}{R}{G}
 type=Legendary Creature
@@ -41215,8 +41224,7 @@ toughness=1
 [/card]
 [card]
 name=Sea Gate, Reborn
-auto=noactivatedability ueot
-auto=pay({L:3}) name(pay 3 life and untap it) donothing name(pay 3 life and untap) && -noactivatedability all(this)?tap(noevent) && -noactivatedability all(this)
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
 auto={T}:add{U}
 text=As Sea Gate, Reborn enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {U}.
 type=Land
@@ -41374,7 +41382,7 @@ type=Instant
 [/card]
 [card]
 name=Secret Base
-auto={T}:add{1}
+auto={T}:add{C}
 auto={T}:add{G}
 auto={T}:add{U}
 auto={T}:add{R}
@@ -42096,31 +42104,7 @@ type=Instant
 [/card]
 [card]
 name=Shaman of Forgotten Ways
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{G}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{R}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{B}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{U}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{B}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{R}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{U}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{G}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{R}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{G}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{B}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{U}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{U}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{B}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{R}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{G}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{U}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{B}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{R}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{G}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:thisforeach(variable{2}) ability$!name(Choose one) choice name(Add white) add{W} _ choice name(Add blue) add{U} _ choice name(Add red) add{R} _ choice name(Add green) add{G} _ choice name(Add black) add{B}!$ controller
 auto={9}{G}{G}{T}:lifeset:type:creature:myBattlefield controller && lifeset:type:creature:opponentBattlefield opponent restriction{compare(powertotalinplay)~morethan~7}
 text={T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast creature spells. -- Formidable — {9}{G}{G}, {T}: Each player's life total becomes the number of creatures he or she controls. Activate this ability only if creatures you control have total power 8 or greater.
 mana={2}{G}
@@ -42326,8 +42310,7 @@ type=Sorcery
 [/card]
 [card]
 name=Shatterskull, the Hammer Pass
-auto=noactivatedability ueot
-auto=pay({L:3}) name(pay 3 life and untap it) donothing name(pay 3 life and untap) && -noactivatedability all(this)?tap(noevent) && -noactivatedability all(this)
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
 auto={T}:add{R}
 text=As Shatterskull, the Hammer Pass enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {R}.
 type=Land
@@ -42759,7 +42742,7 @@ toughness=2
 [card]
 name=Shrine of the Forsaken Gods
 auto={T}:add{C}
-auto={T}:if type(land|mybattlefield)~morethan~6 then add{C}{C}
+auto=this(variable{type:*[-red;-black;-blue;-green;-white]:myrestrictedcastingzone}>0) {T}:if type(land|mybattlefield)~morethan~6 then add{C}{C}
 text={T}: Add {C} to your mana pool. -- {T}: Add {C}{C} to your mana pool. Spend this mana only to cast colorless spells. Activate this ability only if you control seven or more lands.
 type=Land
 [/card]
@@ -44143,11 +44126,11 @@ toughness=2
 [card]
 name=Sliver Hive
 auto={T}:add{C}
-auto={T} restriction{type(sliver|myhand)~morethan~0}:add{W}
-auto={T} restriction{type(sliver|myhand)~morethan~0}:add{U}
-auto={T} restriction{type(sliver|myhand)~morethan~0}:add{B}
-auto={T} restriction{type(sliver|myhand)~morethan~0}:add{G}
-auto={T} restriction{type(sliver|myhand)~morethan~0}:add{R}
+auto=this(variable{type:sliver:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:sliver:myrestrictedcastingzone}>0) {T}:add{U}
+auto=this(variable{type:sliver:myrestrictedcastingzone}>0) {T}:add{B}
+auto=this(variable{type:sliver:myrestrictedcastingzone}>0) {T}:add{G}
+auto=this(variable{type:sliver:myrestrictedcastingzone}>0) {T}:add{R}
 auto={5}{T} restriction{type(sliver|mybattlefield)~morethan~0}:token(Sliver,Creature Sliver,1/1)
 text={T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a Sliver spell. -- {5}, {T}: Put a 1/1 colorless Sliver creature token onto the battlefield. Activate this ability only if you control a Sliver.
 type=Land
@@ -44229,31 +44212,8 @@ subtype=Aura
 [/card]
 [card]
 name=Smokebraider
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{G}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{W}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{R}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{B}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{G}{U}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{B}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{W}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{R}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{U}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{B}{G}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{R}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{G}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{W}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{B}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{R}{U}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{U}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{B}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{W}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{R}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{U}{G}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{W}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{U}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{B}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{R}
-auto={T} restriction{type(elemental|myhand,mybattlefield)~morethan~0}:add{W}{G}
+auto=this(variable{type:elemental:myrestrictedcastingzone}>0) {T}:thisforeach(variable{2}) ability$!name(Choose one) choice name(Add white) add{W} _ choice name(Add blue) add{U} _ choice name(Add red) add{R} _ choice name(Add green) add{G} _ choice name(Add black) add{B}!$ controller
+auto=this(variable{type:elemental:mybattlefield}>0) {T}:thisforeach(variable{2}) ability$!name(Choose one) choice name(Add white) add{W} _ choice name(Add blue) add{U} _ choice name(Add red) add{R} _ choice name(Add green) add{G} _ choice name(Add black) add{B}!$ controller
 text={T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast Elemental spells or activate abilities of Elementals.
 mana={1}{R}
 type=Creature
@@ -44557,11 +44517,11 @@ toughness=2
 [/card]
 [card]
 name=Somberwald Sage
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{W}{W}{W}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{G}{G}{G}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{R}{R}{R}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{U}{U}{U}
-auto={T} restriction{type(creature|myhand)~morethan~0}:add{B}{B}{B}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{W}{W}{W}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{G}{G}{G}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{R}{R}{R}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{U}{U}{U}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{B}{B}{B}
 text={T}: Add three mana of any one color to your mana pool. Spend this mana only to cast creature spells.
 mana={2}{G}
 type=Creature
@@ -49795,11 +49755,11 @@ toughness=2
 name=Throne of Makindi
 auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Charge)
-auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{B}{B}
-auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{R}{R}
-auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{G}{G}
-auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{W}{W}
-auto={T}{C(0/0,-1,Charge)} restriction{type(*[haskicker]|myhand)~morethan~0}:add{U}{U}
+auto=this(variable{type:*[haskicker]:myrestrictedcastingzone}>0) {T}{C(0/0,-1,Charge)}:add{B}{B}
+auto=this(variable{type:*[haskicker]:myrestrictedcastingzone}>0) {T}{C(0/0,-1,Charge)}:add{R}{R}
+auto=this(variable{type:*[haskicker]:myrestrictedcastingzone}>0) {T}{C(0/0,-1,Charge)}:add{G}{G}
+auto=this(variable{type:*[haskicker]:myrestrictedcastingzone}>0) {T}{C(0/0,-1,Charge)}:add{W}{W}
+auto=this(variable{type:*[haskicker]:myrestrictedcastingzone}>0) {T}{C(0/0,-1,Charge)}:add{U}{U}
 text={T}: Add {C}. -- {1}, {T}: Put a charge counter on Throne of Makindi -- {T}, remove a charge counter from Throne of Makindi: Add two mana of any color. Use this mana only to cast kicker spells.
 type=Land
 [/card]
@@ -50095,7 +50055,7 @@ toughness=2
 [card]
 name=Tilonalli's Skinshifter
 abilities=haste
-auto=@combat(attacking) source(this):clone target(creature[-legendary;attacking])
+auto=@combat(attacking) source(this):target(creature[-legendary;attacking]) copy and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(Tilonalli's Skinshifter) undocpy])) forever )!
 text=Haste -- Whenever Tilonalli's Skinshifter attacks, it becomes a copy of another target nonlegendary attacking creature until end of turn.
 mana={2}{R}
 type=Creature
@@ -50666,9 +50626,9 @@ type=Instant
 [card]
 name=Tournament Grounds
 auto={T}:add{C}
-auto={T} restriction{type(*[knight;equipment]|myhand)~morethan~0}:add{R}
-auto={T} restriction{type(*[knight;equipment]|myhand)~morethan~0}:add{W}
-auto={T} restriction{type(*[knight;equipment]|myhand)~morethan~0}:add{B}
+auto=this(variable{type:*[knight;equipment]:myrestrictedcastingzone}>0) {T}:add{R}
+auto=this(variable{type:*[knight;equipment]:myrestrictedcastingzone}>0) {T}:add{W}
+auto=this(variable{type:*[knight;equipment]:myrestrictedcastingzone}>0) {T}:add{B}
 text={T}: Add {1}. -- {T}: Add {R}, {W}, or {B}. Spend this mana only to cast a Knight or Equipment spell.
 type=Land
 [/card]
@@ -51464,8 +51424,7 @@ type=Sorcery
 [/card]
 [card]
 name=Turntimber, Serpentine Wood
-auto=noactivatedability ueot
-auto=pay({L:3}) name(pay 3 life and untap it) donothing name(pay 3 life and untap) && -noactivatedability all(this)?tap(noevent) && -noactivatedability all(this)
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
 auto={T}:add{G}
 text=As Turntimber, Serpentine Wood enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {G}.
 type=Land
@@ -51850,7 +51809,8 @@ toughness=1
 [/card]
 [card]
 name=Unclaimed Territory
-auto=chooseatype transforms((,newability[{T}:add{C}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{B}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{U}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{G}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{R}],newability[{T} restriction{type(creature[chosentype]|myhand)~morethan~0}:add{W}])) forever chooseend
+auto={T}:add{C}
+auto=chooseatype transforms((,newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{W}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{U}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{R}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{G}],newability[this(variable{type:chosentype:myrestrictedcastingzone}>0) {T}:add{B}])) chooseend
 text=As Unclaimed Territory enters the battlefield, choose a creature type. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell of the chosen type.
 type=Land
 [/card]
@@ -52220,7 +52180,7 @@ type=Instant
 [card]
 name=Untaidake, the Cloud Keeper
 auto=tap(noevent)
-auto={T}{L:2} restriction{type(*[legendary]|myhand)~morethan~0}:add{C}{C}
+auto=this(variable{type:*[legendary]:myrestrictedcastingzone}>0) {T}{L:2}:add{C}{C}
 text=Untaidake, the Cloud Keeper enters the battlefield tapped. -- {T}, Pay 2 life: Add {2} to your mana pool. Spend this mana only to cast legendary spells.
 type=Legendary Land
 [/card]
@@ -52755,11 +52715,16 @@ type=Land
 [/card]
 [card]
 name=Vedalken Engineer
-auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{W}{W}
-auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{G}{G}
-auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{B}{B}
-auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{R}{R}
-auto={T} restriction{type(artifact|myhand,mybattlefield)~morethan~0}:add{U}{U}
+auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{W}{W}
+auto=this(variable{type:artifact:myBattlefield}>0) {T}:add{W}{W}
+auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{G}{G}
+auto=this(variable{type:artifact:myBattlefield}>0) {T}:add{G}{G}
+auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{B}{B}
+auto=this(variable{type:artifact:myBattlefield}>0) {T}:add{B}{B}
+auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{R}{R}
+auto=this(variable{type:artifact:myBattlefield}>0) {T}:add{R}{R}
+auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{U}{U}
+auto=this(variable{type:artifact:myBattlefield}>0) {T}:add{U}{U}
 text={T}: Add two mana of any one color to your mana pool. Spend this mana only to cast artifact spells or activate abilities of artifacts.
 mana={1}{U}
 type=Creature
@@ -53712,7 +53677,7 @@ toughness=1
 [/card]
 [card]
 name=Vodalian Arcanist
-auto={T}:Add{C}
+auto=this(variable{type:*[instant;sorcery]:myhand}>0) {T}:Add{C}
 text={T}: Add Colorless . Spend this mana only to cast an instant or sorcery spell.
 mana={1}{U}
 type=Creature

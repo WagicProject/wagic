@@ -253,6 +253,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
                 zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
             }
+            else if (zoneName.compare("myrestrictedcastingzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+            }
             else if (zoneName.compare("opponentcastingzone") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
@@ -260,6 +265,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
                 zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
+            }
+            else if (zoneName.compare("opponentrestrictedcastingzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else if (zoneName.compare("mynonplaynonexile") == 0)
