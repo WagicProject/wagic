@@ -8395,8 +8395,8 @@ toughness=3
 [card]
 name=Clone Shell
 aicode=activate target(*[zpos<=4]|mylibrary) moveTo(myExile)
-auto=may name(look) reveal:4 optionone choice name(put in exile) target(*|reveal) moveTo(ownerExile) optiononeend optiontwo choice name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
-auto=@movedTo(this|Graveyard) from(myBattlefield):castcard(normal) target(*|myExile)
+auto=name(look) reveal:4 optionone name(put in exile) target(*|reveal) transforms((,newability[moveTo(ownerExile) and!( counter(0/0.1.ClnImp) )!])) forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=@movedTo(this|graveyard) from(myBattlefield):name(Take back from exile) name(Take back from exile) moveto(mybattlefield) target(creature[counter{0/0.1.ClnImp}]|myExile)
 text=Imprint — When Clone Shell enters the battlefield, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library in any order. -- When Clone Shell dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
 mana={5}
 type=Artifact Creature
@@ -24122,7 +24122,8 @@ type=Sorcery
 [/card]
 [card]
 name=Invader Parasite
-auto=may moveto(exile) target(land) and!( transforms((,newability[@movedTo(land[share!name!]|opponentBattlefield) damage:2 opponent])) forever )!
+auto=if type(land|myBattlefield)~morethan~0 then choice name(Imprint your land) name(Imprint your land) target(land|mybattlefield) moveto(exile) and!( transforms((,newability[@movedto(land[share!name!]|opponentbattlefield):damage:2 opponent])) forever )!
+auto=if type(land|opponentBattlefield)~morethan~0 then choice name(Imprint opponent's land) name(Imprint opponent's land) target(land|opponentbattlefield) moveto(exile) and!( transforms((,newability[@movedto(land[share!name!]|mybattlefield):damage:2 controller])) forever )!
 text=Imprint — When Invader Parasite enters the battlefield, exile target land. -- Whenever a land with the same name as the exiled card enters the battlefield under an opponent's control, Invader Parasite deals 2 damage to that player.
 mana={3}{R}{R}
 type=Creature
@@ -29994,8 +29995,8 @@ toughness=3
 [/card]
 [card]
 name=Mimic Vat
-auto=@movedto(nonbattlezone) from(creature|battlefield): may imprint notatarget(creature|graveyard) && moveTo(ownerGraveyard) all(other creature|exile)
-auto={3}{T}:activate castcard(copied noevent named!:imprintedcard:!) with (haste,treason)
+auto=@movedto(creature[-token]|nonbattlezone) from(battlefield):may name(Imprint card) name(Imprint card) all(trigger[to]) transforms((,newability[moveTo(ownerGraveyard) all(other creature[counter{0/0.1.MimicImprinted}]|exile)],newability[moveto(exile) and!( counter(0/0.1.MimicImprinted) )!])) forever
+auto={3}{T}:target(creature[counter{0/0.1.MimicImprinted}]|exile) clone with(haste,treason)
 text=Imprint — Whenever a nontoken creature dies, you may exile that card. If you do, return each other card exiled with Mimic Vat to its owner’s graveyard. -- {3}, {T}: Create a token that’s a copy of a card exiled with Mimic Vat. It gains haste. Exile it at the beginning of the next end step.
 mana={3}
 type=Artifact
