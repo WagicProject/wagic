@@ -13662,7 +13662,8 @@ type=Sorcery
 [card]
 name=Edgar Markov
 abilities=first strike,haste
-auto=@movedTo(nother Vampire|mystack):create(vampire:creature vampire:1/1:black)
+auto=@movedTo(other *[vampire]|mystack):token(Vampire,Creature Vampire,1/1,black)
+autocommandzone=@movedTo(other *[vampire]|mystack):token(Vampire,Creature Vampire,1/1,black)
 auto=@combat(attacking) source(this):counter(1/1) all(vampire|myBattlefield)
 text=Eminence — Whenever you cast another Vampire spell, if Edgar Markov is in the command zone or on the battlefield, create a 1/1 black Vampire creature token. -- First strike, haste -- Whenever Edgar Markov attacks, put a +1/+1 counter on each Vampire you control.
 mana={3}{R}{W}{B}
