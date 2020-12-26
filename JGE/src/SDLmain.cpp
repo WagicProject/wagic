@@ -18,6 +18,9 @@
 #include <stdexcept>
 #include <iostream>
 #include <math.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #if (defined FORCE_GLES)
 #undef GL_ES_VERSION_2_0
