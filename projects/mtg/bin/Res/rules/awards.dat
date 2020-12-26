@@ -95,6 +95,6 @@ id=prx_commander
 unlock_img=commander_unlocked.jpg
 unlock_text=Commander Format Unlocked
 teaser=Do you think you can dominate over other commanders? Take a big challenge in the commander format.
-trophyroom_text=Win a game with 40 or more life and with less creatures in your graveyard than your opponent.
+trophyroom_text=Win a game with 40 or more life and with less cards in your graveyard than your opponent.
 unlock_condition=type(*|mygraveyard)~lessthan~type(*|opponentgraveyard),this(controllerlife > 39)
 [/award]

@@ -1514,7 +1514,7 @@ Hermit Druid Mode=Modo Druida ermitano
 Won with less than 10 lands.=Gana con menos de 10 tierras.
 Do you think you can dominate over other commanders? Take a big challenge in the commander format.=¿Crees que puedes dominar a otros comandantes? Acepta un gran desafío en el formato de comandante.
 Commander Format Unlocked=Modo Comandante desbloqueado
-Win a game with 40 or more life and with less creatures in your graveyard than your opponent.=Gana con 40 vidas o más y con menos criaturas en tu cementerio que tu oponente.
+Win a game with 40 or more life and with less cards in your graveyard than your opponent.=Gana con 40 vidas o más y con menos cartas en tu cementerio que tu oponente.
 
 Valuable Collection=El valor de la coleccion
 Collection valued over 10,000c.=La coleccion esta valuada en mas de 10,000 creditos.

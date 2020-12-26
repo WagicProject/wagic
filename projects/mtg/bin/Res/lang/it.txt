@@ -1030,7 +1030,7 @@ Back to Main Menu=Indietro al menu' principale
 Cancel=Annulla
 Do you think you can dominate over other commanders? Take a big challenge in the commander format.=Pensi di poter dominare gli altri comandanti? Raccogli la sfida con la modalilta' Comandante.
 Commander Format Unlocked=Modalita' Comandante sbloccata
-Win a game with 40 or more life and with less creatures in your graveyard than your opponent.=Vinci una partita con 40 o più punti vita e con meno creature nel cimitero rispetto al tuo avversario.
+Win a game with 40 or more life and with less cards in your graveyard than your opponent.=Vinci una partita con 40 o più punti vita e con meno carte nel cimitero rispetto al tuo avversario.
 
 Wagic Team (%s%%): %i%% : %s%%/%s%% cards=Team Wagic (%s%%): %i%% : %s%%/%s%% carte
 %i cards=%i carte.
