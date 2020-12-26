@@ -774,6 +774,8 @@ Commander Anthology Volume II=Antologia del Comandante: Volumen II
 Commander 2018=Comandante 2018
 Commander 2019=Comandante 2019
 Commander 2020=Comandante 2020
+Commander Collection: Green=Coleccion del Comandante: Verde
+Commander Legends=Leyendas del Comandante
 
 -Core Sets-
 Limited Edition Alpha=Edicion limitada: Alfa
@@ -978,6 +980,7 @@ Duels of the Planeswalkers 2013=Duelo promocional de los Caminaplanos 2013
 Duels of the Planeswalkers 2014=Duelo promocional de los Caminaplanos 2014
 Zendikar Expeditions=Expediciones de Zendikar
 Kaladesh Inventions=Invenciones de Kaladesh
+Kaladesh Remastered=Kaladesh Remasterizado
 Amonkhet Invocations=Invocaciones de Amonkhet
 Arena New Player Experience=Experiencia de nuevos jugadores de ARENA
 Heroes of the Realm 2016=Heroes del Reino 2016

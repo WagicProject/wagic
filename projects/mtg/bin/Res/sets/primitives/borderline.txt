@@ -392,10 +392,7 @@ toughness=2
 [/card]
 [card]
 name=Aerial Volley
-target=creature[flying]
-auto=damage:1
-auto=damage:1 target(creature[flying])
-auto=ability$!name(damage) choice target(creature[flying]) damage:1!$ controller
+auto=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature[flying]) damage:1!$ controller
 text=Aerial Volley deals 3 damage divided as you choose among one, two, or three target creatures with flying.
 mana={G}
 type=Instant
@@ -2350,13 +2347,9 @@ type=Sorcery
 [/card]
 [card]
 name=Arrow Volley Trap
-other={1}{W}
-target=creature[attacking]|battlefield
-auto=damage:1
-auto=damage:1 target(creature[attacking]|battlefield)
-auto=ability$!name(damage) choice target(creature[attacking]|battlefield) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature[attacking]|battlefield) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature[attacking]|battlefield) damage:1!$ controller
+restriction=type(creature[attacking]|battlefield)~morethan~0
+auto=thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature[attacking]|battlefield) damage:1!$ controller
+other={1}{W} name(Pay 1W)
 otherrestriction=type(creature[attacking]|battlefield)~morethan~3
 text=If four or more creatures are attacking, you may pay {1}{W} rather than pay Arrow Volley Trap's mana cost. -- Arrow Volley Trap deals 5 damage divided as you choose among any number of target attacking creatures.
 mana={3}{W}{W}
@@ -2715,6 +2708,13 @@ power=2
 toughness=5
 [/card]
 [card]
+name=Aurelia's Fury
+auto=thisforeach(X) ability$!name(Choose one) choice name(Damage creature) target(creature) damage:1 && tap(noevent) _ choice name(Damage opponent) damage:1 opponent && maxCast(*[-creature])0 opponent ueot _ choice name(Damage yourself) damage:1 controller && maxCast(*[-creature])0 controller ueot _ choice name(Damage planeswalker) target(planeswalker) damage:1!$ controller
+text=Aurelia's Fury deals X damage divided as you choose among any number of targets. Tap each creature dealt damage this way. Players dealt damage this way can't cast noncreature spells this turn.
+mana={X}{R}{W}
+type=Instant
+[/card]
+[card]
 name=Auriok Siege Sled
 auto={1}:setblocker target(creature[artifact])
 auto={1}:target(creature) cantbeblockerof(this) ueot
@@ -2781,6 +2781,16 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Autumn-Tail, Kitsune Sage
+auto={1}:target(aura|battlefield) activate castcard(normal)
+text={1}: Attach target Aura attached to a creature to another creature.
+type=Legendary Creature
+subtype=Fox Wizard
+power=4
+toughness=5
+color=white
+[/card]
+[card]
 name=Autumn Willow
 abilities=opponentshroud,shroud
 auto={G}:-shroud
@@ -2791,6 +2801,15 @@ type=Legendary Creature
 subtype=Avatar
 power=4
 toughness=4
+[/card]
+[card]
+name=Avacyn's Judgment
+abilities=madness
+auto=thisforeach(variable{2}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker]) damage:1!$ controller
+autoexile=restriction{discarded} pay({X}{R}) name(pay XR to cast) name(pay XR to cast) thisforeach(X) ability$!name(Deal X damages) name(Deal X damages) target(player,creature,planeswalker]) damage:1!$ controller
+text=Madness {X}{R} (If you discard this card, discard it into exile. When you do, cast it for it madness cost or put into your graveyard.) Avacyn's Judgment deals 2 damage divided as you choose among any number of targets. If Avacyn's Judgment's madness cost was paid, it deals X damage divided as you choose among those permanents and/or players instead.
+mana={1}{R}
+type=Sorcery
 [/card]
 [card]
 name=Avalanche Tusker
@@ -4988,7 +5007,7 @@ toughness=2
 [card]
 name=Bogardan Hellkite
 abilities=flash,flying
-auto=ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller
+auto=thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 text=Flash -- Flying -- When Bogardan Hellkite enters the battlefield, it deals 5 damage divided as you choose among any number of targets.
 mana={6}{R}{R}
 type=Creature
@@ -11283,10 +11302,8 @@ type=Instant
 [/card]
 [card]
 name=Deft Dismissal
-target=creature[attacking;blocking]
-auto=damage:1
-auto=damage:1 target(creature[attacking;blocking])
-auto=ability$!name(damage) choice target(creature[attacking;blocking]) damage:1!$ controller
+restriction=type(creature[attacking;blocking]|battlefield)~morethan~0
+auto=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature[attacking;blocking]) damage:1!$ controller
 text=Deft Dismissal deals 3 damage divided as you choose among one, two, or three target attacking or blocking creatures.
 mana={3}{W}
 type=Instant
@@ -12723,11 +12740,7 @@ type=Instant
 [card]
 name=Dragonlord Atarka
 abilities=flying,trample
-auto=damage:1 target(creature,planeswalker|opponentbattlefield)
-auto=ability$!name(damage) choice target(creature,planeswalker|opponentbattlefield) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature,planeswalker|opponentbattlefield) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature,planeswalker|opponentbattlefield) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature,planeswalker|opponentbattlefield) damage:1!$ controller
+auto=thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature;planeswalker|opponentBattlefield) damage:1!$ controller
 text=Flying, trample -- When Dragonlord Atarka enters the battlefield, it deals 5 damage divided as you choose among any number of target creatures and/or planeswalkers your opponents control.
 mana={5}{R}{G}
 type=Legendary Creature
@@ -16259,13 +16272,8 @@ type=Land
 [/card]
 [card]
 name=Fiery Justice
-target=planeswalker,player
+auto=thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 auto=life:5 opponent
-auto=damage:1
-auto=damage:1 target(planeswalker,player)
-auto=ability$!name(damage) choice target(planeswalker,player) damage:1!$ controller
-auto=ability$!name(damage) choice target(planeswalker,player) damage:1!$ controller
-auto=ability$!name(damage) choice target(planeswalker,player) damage:1!$ controller
 text=Fiery Justice deals 5 damage divided as you choose among any number of target creatures and/or players. Target opponent gains 5 life.
 mana={R}{G}{W}
 type=Sorcery
@@ -16284,9 +16292,8 @@ type=Instant
 [card]
 name=Fight with Fire
 kicker={5}{R}
-target=creature
-auto=damage:5
-auto=Kicker damage:10
+auto=ifnot paid(kicker) then damage:5 target(creature)
+auto=if paid(kicker) then thisforeach(variable{10}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planewsalker) damage:1!$ controller
 text=Kicker {5}{R} (You may pay an additional {5}{R} as you cast this spell.) -- Fight with Fire deals 5 damage to target creature. If this spell was kicked, it deals 10 damage divided as you choose among any number of targets instead. (Those targets can include players and planeswalkers.)
 mana={2}{R}
 type=Sorcery
@@ -16887,12 +16894,8 @@ type=Instant
 [/card]
 [card]
 name=Flameshot
-abilities=trample
-other={D(mountain|myHand)}{D(mountain|myHand)}{D(mountain|myHand)} name(Discard three mountains)
-target=creature
-auto=damage:1
-auto=damage:1 target(creature)
-auto=ability$!name(damage) choice target(creature) damage:1!$ controller
+other={D(mountain|myHand)} name(Discard a Mountain)
+auto=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature) damage:1!$ controller
 text=You may discard a Mountain card rather than pay this spell’s mana cost. -- Flameshot deals 3 damage divided as you choose among one, two, or three target creatures.
 mana={3}{R}
 type=Sorcery
@@ -17329,7 +17332,9 @@ type=Artifact
 [/card]
 [card]
 name=Forked Lightning
-auto=thisforeach(variable{4}) ability$!name(1 damage to target creature) choice target(creature) damage:1!$ controller
+target=creature
+auto=damage:2
+auto=thisforeach(variable{2}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature) damage:1!$ controller
 text=Forked Lightning deals 4 damage divided as you choose among one, two, or three target creatures.
 mana={3}{R}
 type=Sorcery
@@ -17942,9 +17947,7 @@ type=Instant
 [/card]
 [card]
 name=Gang of Devils
-auto=@movedTo(this|graveyard) from(battlefield):damage:1 target(player,creature)
-auto=@movedTo(this|graveyard) from(battlefield):ability$!name(damage) choice target(creature,player) damage:1!$ controller
-auto=@movedTo(this|graveyard) from(battlefield):ability$!name(damage) choice target(creature,player) damage:1!$ controller
+auto=@movedTo(this|graveyard) from(battlefield):thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 text=When Gang of Devils dies, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
 mana={5}{R}
 type=Creature
@@ -18453,6 +18456,13 @@ type=Legendary Creature
 subtype=Human Shaman
 power=2
 toughness=5
+[/card]
+[card]
+name=Ghired's Belligerence
+auto=thisforeach(X) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature) damage:1!$ controller
+text=Ghired's Belligerence deals X damage divided as you choose among any number of target creatures. Whenever a creature dealt damage this way dies this turn, populate. (Create a token that's a copy of a creature token you control.)
+mana={X}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Ghitu Chronicler
@@ -22996,10 +23006,7 @@ toughness=3
 [/card]
 [card]
 name=Ignite Disorder
-target=creature[white;blue]
-auto=damage:1
-auto=damage:1 target(creature[white;blue])
-auto=ability$!name(damage) choice target(creature[white;blue]) damage:1!$ controller
+auto=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature[white;blue]) damage:1!$ controller
 text=Ignite Disorder deals 3 damage divided as you choose among one, two, or three target white and/or blue creatures.
 mana={1}{R}
 type=Instant
@@ -23703,8 +23710,8 @@ type=Sorcery
 [card]
 name=Inferno Titan
 auto={R}:1/0 ueot
-auto=ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller !$
-auto=@combat(attacking) source(this): ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller && ability$!damage:1 target(creature,player)!$ controller !$
+auto=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
+auto=@combat(attacking) source(this):thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three targets.
 mana={4}{R}{R}
 type=Creature
@@ -26010,6 +26017,17 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Kitsune Mystic
+auto=this(auras >= 2) phaseaction[endofturn once] flip(Autumn-Tail, Kitsune Sage) limit:1
+text=At the beginning of the end step, if Kitsune Mystic is enchanted by two or more Auras, flip it.
+mana={3}{W}
+type=Creature
+subtype=Fox Wizard
+power=2
+toughness=3
+color=white
+[/card]
+[card]
 name=Kjeldoran Elite Guard
 auto={T}:target(creature) transforms((,newability[2/2 ueot],newability[@movedTo(this|mygraveyard):target(Kjeldoran Elite Guard|mybattlefield) sacrifice])) ueot restriction{during battle}
 text={T}: Target creature gets +2/+2 until end of turn. When that creature leaves the battlefield this turn, sacrifice Kjeldoran Elite Guard. Activate this ability only during combat.
@@ -26506,6 +26524,35 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Kresh the Bloodbraided
+auto=@movedTo(other creature[power=1]|graveyard) from(battlefield):may counter(1/1) all(this)
+auto=@movedTo(other creature[power=2]|graveyard) from(battlefield):may counter(1/1,2) all(this)
+auto=@movedTo(other creature[power=3]|graveyard) from(battlefield):may counter(1/1,3) all(this)
+auto=@movedTo(other creature[power=4]|graveyard) from(battlefield):may counter(1/1,4) all(this)
+auto=@movedTo(other creature[power=5]|graveyard) from(battlefield):may counter(1/1,5) all(this)
+auto=@movedTo(other creature[power=6]|graveyard) from(battlefield):may counter(1/1,6) all(this)
+auto=@movedTo(other creature[power=7]|graveyard) from(battlefield):may counter(1/1,7) all(this)
+auto=@movedTo(other creature[power=8]|graveyard) from(battlefield):may counter(1/1,8) all(this)
+auto=@movedTo(other creature[power=9]|graveyard) from(battlefield):may counter(1/1,9) all(this)
+auto=@movedTo(other creature[power=10]|graveyard) from(battlefield):may counter(1/1,10) all(this)
+auto=@movedTo(other creature[power=11]|graveyard) from(battlefield):may counter(1/1,11) all(this)
+auto=@movedTo(other creature[power=12]|graveyard) from(battlefield):may counter(1/1,12) all(this)
+auto=@movedTo(other creature[power=13]|graveyard) from(battlefield):may counter(1/1,13) all(this)
+auto=@movedTo(other creature[power=14]|graveyard) from(battlefield):may counter(1/1,14) all(this)
+auto=@movedTo(other creature[power=15]|graveyard) from(battlefield):may counter(1/1,15) all(this)
+auto=@movedTo(other creature[power=16]|graveyard) from(battlefield):may counter(1/1,16) all(this)
+auto=@movedTo(other creature[power=17]|graveyard) from(battlefield):may counter(1/1,17) all(this)
+auto=@movedTo(other creature[power=18]|graveyard) from(battlefield):may counter(1/1,18) all(this)
+auto=@movedTo(other creature[power=19]|graveyard) from(battlefield):may counter(1/1,19) all(this)
+auto=@movedTo(other creature[power>=20]|graveyard) from(battlefield):may counter(1/1,20) all(this)
+text=Whenever another creature dies, you may put X +1/+1 counters on Kresh the Bloodbraided, where X is that creature's power.
+mana={2}{B}{R}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=3
+toughness=3
+[/card]
+[card]
 name=Kronch Wrangler
 abilities=trample
 auto=@movedTo(creature[power>=4]|myBattlefield):counter(1/1)
@@ -26530,10 +26577,7 @@ toughness=3
 [card]
 name=Kuldotha Flamefiend
 other={4}{R}{R}{S(*[artifact]|mybattlefield)} name(Sacrifice artifact)
-auto=if paid(alternative) then damage:1 target(creature,player)
-auto=if paid(alternative) then ability$!name(deal 1 damage) choice target(creature,player) damage:1!$ controller
-auto=if paid(alternative) then ability$!name(deal 1 damage) choice target(creature,player) damage:1!$ controller
-auto=if paid(alternative) then ability$!name(deal 1 damage) choice target(creature,player) damage:1!$ controller
+auto=if paid(alternative) then thisforeach(variable{4}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 text=When Kuldotha Flamefiend enters the battlefield, you may sacrifice an artifact. If you do, Kuldotha Flamefiend deals 4 damage divided as you choose among any number of target creatures and/or players.
 mana={4}{R}{R}
 type=Creature
@@ -27891,6 +27935,37 @@ auto=life:manacost controller
 text=As an additional cost to cast Living Destiny, reveal a creature card from your hand. -- You gain life equal to the revealed card's converted mana cost.
 mana={3}{G}
 type=Instant
+[/card]
+[card]
+name=Living Inferno
+auto={T}:thisforeach(power>=1) counter(0/0,1,LivingEffect) all(this) 
+auto={C(0/0,-1,LivingEffect)}:name(Deal 1 damage to opponent's creature) name(Deal 1 damage to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:1],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-2,LivingEffect)}:name(Deal 2 damages to opponent's creature) name(Deal 2 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:2],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-3,LivingEffect)}:name(Deal 3 damages to opponent's creature) name(Deal 3 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:3],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-4,LivingEffect)}:name(Deal 4 damages to opponent's creature) name(Deal 4 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:4],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-5,LivingEffect)}:name(Deal 5 damages to opponent's creature) name(Deal 5 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:5],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-6,LivingEffect)}:name(Deal 6 damages to opponent's creature) name(Deal 6 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:6],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-7,LivingEffect)}:name(Deal 7 damages to opponent's creature) name(Deal 7 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:7],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-8,LivingEffect)}:name(Deal 8 damages to opponent's creature) name(Deal 8 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:8],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-9,LivingEffect)}:name(Deal 9 damages to opponent's creature) name(Deal 9 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:9],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-10,LivingEffect)}:name(Deal 10 damages to opponent's creature) name(Deal 10 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:10],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-1,LivingEffect)}:name(Deal 1 damage to your creature) name(Deal 1 damage to your creature) target(creature|myBattlefield) transforms((,newability[damage:1],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-2,LivingEffect)}:name(Deal 2 damages to your creature) name(Deal 2 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:2],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-3,LivingEffect)}:name(Deal 3 damages to your creature) name(Deal 3 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:3],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-4,LivingEffect)}:name(Deal 4 damages to your creature) name(Deal 4 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:4],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-5,LivingEffect)}:name(Deal 5 damages to your creature) name(Deal 5 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:5],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-6,LivingEffect)}:name(Deal 6 damages to your creature) name(Deal 6 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:6],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-7,LivingEffect)}:name(Deal 7 damages to your creature) name(Deal 7 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:7],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-8,LivingEffect)}:name(Deal 8 damages to your creature) name(Deal 8 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:8],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-9,LivingEffect)}:name(Deal 9 damages to your creature) name(Deal 9 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:9],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-10,LivingEffect)}:name(Deal 10 damages to your creature) name(Deal 10 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:10],newability[dynamicability<!powerstrike!> target(Living Inferno[counter{0/0.1.LivingEffect}]|myBattlefield)])) oneshot
+auto=@each endofturn:removeallcounters(0/0,1,LivingEffect)
+text={T}: Living Inferno deals damage equal to its power divided as you choose among any number of target creatures. Each of those creatures deals damage equal to its power to Living Inferno.
+mana={6}{R}{R}
+type=Creature
+subtype=Elemental
+power=8
+toughness=5
 [/card]
 [card]
 name=Living Lightning
@@ -29865,6 +29940,13 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Meteor Shower
+auto=thisforeach(variable{halfpaidplus1plusend}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
+text=Meteor Shower deals X plus 1 damage divided as you choose among any number of targets.
+mana={X}{X}{R}
+type=Sorcery
+[/card]
+[card]
 name=Meteoric Mace
 autostack=if casted(this) then cascade:plibrarycount
 auto=teach(creature) trample
@@ -31134,18 +31216,9 @@ type=Instant
 [/card]
 [card]
 name=Mythos of Vadrok
-target=creature,planeswalker
 other={W}{U}{R}{R} name(Spend W and U)
-auto=ifnot paid(alternative) then damage:1
-auto=ifnot paid(alternative) then damage:1 target(creature,planeswalker)
-auto=ifnot paid(alternative) then ability$!name(damage) choice target(creature,planeswalker) damage:1!$ controller
-auto=ifnot paid(alternative) then ability$!name(damage) choice target(creature,planeswalker) damage:1!$ controller
-auto=ifnot paid(alternative) then ability$!name(damage) choice target(creature,planeswalker) damage:1!$ controller
-auto=if paid(alternative) then damage:1 && cantattack uynt && cantblock uynt
-auto=if paid(alternative) then damage:1 target(creature,planeswalker) && cantattack uynt && cantblock uynt
-auto=if paid(alternative) then ability$!name(damage) choice target(creature,planeswalker) damage:1 && cantattack uynt && cantblock uynt!$ controller
-auto=if paid(alternative) then ability$!name(damage) choice target(creature,planeswalker) damage:1 && cantattack uynt && cantblock uynt!$ controller
-auto=if paid(alternative) then ability$!name(damage) choice target(creature,planeswalker) damage:1 && cantattack uynt && cantblock uynt!$ controller
+auto=ifnot paid(alternative) then thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) damage:1!$ controller
+auto=if paid(alternative) then thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) damage:1 && cantattack uynt && cantblock uynt!$ controller
 text=Mythos of Vadrok deals 5 damage divided as you choose among any number of target creatures and/or planeswalkers. If {W}{U} was spent to cast this spell, until your next turn, those permanents can't attack or block and their activated abilities can't be activated.
 mana={2}{R}{R}
 type=Sorcery
@@ -35368,6 +35441,37 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Polukranos, World Eater
+auto=this(cantargetcard(*[-monstrous]) {X}{X}{G}:becomes(monstrous) forever && counter(1/1,halfpaid) && counter(0/0,halfpaid,PolukranosEffect)
+auto={C(0/0,-1,PolukranosEffect)}:name(Deal 1 damage to opponent's creature) name(Deal 1 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:1],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-2,PolukranosEffect)}:name(Deal 2 damages to opponent's creature) name(Deal 2 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:2],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-3,PolukranosEffect)}:name(Deal 3 damages to opponent's creature) name(Deal 3 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:3],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-4,PolukranosEffect)}:name(Deal 4 damages to opponent's creature) name(Deal 4 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:4],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-5,PolukranosEffect)}:name(Deal 5 damages to opponent's creature) name(Deal 5 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:5],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-6,PolukranosEffect)}:name(Deal 6 damages to opponent's creature) name(Deal 6 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:6],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-7,PolukranosEffect)}:name(Deal 7 damages to opponent's creature) name(Deal 7 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:7],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-8,PolukranosEffect)}:name(Deal 8 damages to opponent's creature) name(Deal 8 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:8],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-9,PolukranosEffect)}:name(Deal 9 damages to opponent's creature) name(Deal 9 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:9],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-10,PolukranosEffect)}:name(Deal 10 damages to opponent's creature) name(Deal 10 damages to opponent's creature) target(creature|opponentBattlefield) transforms((,newability[damage:10],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|opponentBattlefield)])) oneshot
+auto={C(0/0,-1,PolukranosEffect)}:name(Deal 1 damage to your creature) name(Deal 1 damage to your creature) target(creature|myBattlefield) transforms((,newability[damage:1],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-2,PolukranosEffect)}:name(Deal 2 damages to your creature) name(Deal 2 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:2],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-3,PolukranosEffect)}:name(Deal 3 damages to your creature) name(Deal 3 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:3],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-4,PolukranosEffect)}:name(Deal 4 damages to your creature) name(Deal 4 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:4],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-5,PolukranosEffect)}:name(Deal 5 damages to your creature) name(Deal 5 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:5],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-6,PolukranosEffect)}:name(Deal 6 damages to your creature) name(Deal 6 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:6],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-7,PolukranosEffect)}:name(Deal 7 damages to your creature) name(Deal 7 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:7],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-8,PolukranosEffect)}:name(Deal 8 damages to your creature) name(Deal 8 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:8],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-9,PolukranosEffect)}:name(Deal 9 damages to your creature) name(Deal 9 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:9],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto={C(0/0,-10,PolukranosEffect)}:name(Deal 10 damages to your creature) name(Deal 10 damages to your creature) target(creature|myBattlefield) transforms((,newability[damage:10],newability[dynamicability<!powerstrike!> target(*[counter{0/0.1.PolukranosEffect}]|myBattlefield)])) oneshot
+auto=@each endofturn:removeallcounters(0/0,1,PolukranosEffect)
+text={X}{X}{G}: Monstrosity X. (If this creature isn't monstrous, put X +1/+1 counters on it and it becomes monstrous.) -- When Polukranos, World Eater becomes monstrous, it deals X damage divided as you choose among any number of target creatures your opponents control. Each of those creatures deals damage equal to its power to Polukranos.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Hydra
+power=5
+toughness=5
+[/card]
+[card]
 name=Polymorphist's Jest
 other={1}{U}{U} name(Target Controller)
 auto=if paid(alternative) then all(creature|mybattlefield) loseabilities ueot
@@ -36345,12 +36449,8 @@ toughness=5
 [/card]
 [card]
 name=Pyrokinesis
-target=creature
 other={E(*[red]|myhand)} name(Exile red card)
-auto=damage:1
-auto=damage:1 target(creature)
-auto=ability$!name(1 damage to target creature) choice target(creature) damage:1!$ controller
-auto=ability$!name(1 damage to target creature) choice target(creature) damage:1!$ controller
+auto=thisforeach(variable{4}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature) damage:1!$ controller
 text=You may exile a red card from your hand rather than pay Pyrokinesis's mana cost. -- Pyrokinesis deals 4 damage divided as you choose among any number of target creatures.
 mana={4}{R}{R}
 type=Instant
@@ -36401,7 +36501,7 @@ type=Sorcery
 [/card]
 [card]
 name=Pyrotechnics
-auto=thisforeach(variable{4}) ability$!name(1 damage to target creature or player) name(1 damage to target creature or player) choice target(creature,player) damage:1!$ controller
+auto=thisforeach(variable{4}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
 mana={4}{R}
 type=Sorcery
@@ -43439,7 +43539,7 @@ name=Skarrgan Hellkite
 abilities=flying
 auto=choice counter(1/1)
 auto=choice aslongas(creature|mybattlefield) haste
-auto=this(counter{1/1}) {3}{R}:damage:1 target(creature,player) && activate damage:1 target(creature,player)
+auto=this(counter{1/1}) {3}{R}:thisforeach(variable{2}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planewsalker) damage:1!$ controller
 text=Riot (This creature enters the battlefield with your choice of a +1/+1 counter or haste.) -- Flying -- {3}{R}: Skarrgan Hellkite deals 2 damage divided as you choose among one or two targets. Activate this ability only if Skarrgan Hellkite has a +1/+1 counter on it.
 mana={3}{R}{R}
 type=Creature
@@ -43534,6 +43634,18 @@ mana={1}{G}
 type=Creature
 subtype=Human Shaman
 power=1
+toughness=1
+[/card]
+[card]
+name=Skirk Volcanist
+autofacedown={S(land[mountain]|myBattlefield)}{S(land[mountain]|myBattlefield)}:morph
+autofaceup=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature) damage:1!$ controller
+facedown={3}
+text=Morph -- Sacrifice two Mountains. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Skirk Volcanist is turned face up, it deals 3 amage divided as you choose among one, two, or three target creatures.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=3
 toughness=1
 [/card]
 [card]
@@ -45823,13 +45935,7 @@ type=Enchantment
 [/card]
 [card]
 name=Spreading Flames
-target=creature
-auto=damage:1
-auto=damage:1 target(creature)
-auto=ability$!name(damage) choice target(creature) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature) damage:1!$ controller
+auto=thisforeach(variable{6}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature) damage:1!$ controller
 text=Spreading Flames deals 6 damage divided as you choose among any number of target creatures.
 mana={6}{R}
 type=Instant
@@ -47207,8 +47313,9 @@ toughness=5
 [card]
 name=Sundering Stroke
 other={R}{R}{R}{R}{R}{R}{R} name(Adamant)
-auto=if paid(alternative) then ability$!damage:7 target(creature,player,planeswalker)!$ controller && ability$!damage:7 target(creature,player,planeswalker)!$ controller && ability$!damage:7 target(creature,player,planeswalker)!$ controller
-auto=ifnot paid(alternative) then ability$!damage:3 target(creature,player,planeswalker)!$ controller && ability$!damage:2 target(creature,player,planeswalker)!$ controller && ability$!damage:2 target(creature,player,planeswalker)!$ controller
+auto=if paid(alternative) then damage:7 target(<upto:3>player,creature,planeswalker)
+auto=ifnot paid(alternative) then ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planewsalker) damage:2!$ controller
+auto=ifnot paid(alternative) then thisforeach(variable{3}) ability$!name(Deal 2 damage) name(Deal 2 damage) target(player,creature,planewsalker) damage:2!$ controller
 text=Sundering Stroke deals 7 damage divided as you choose among one, two, or three targets. If at least seven red mana was spent to cast this spell, instead Sundering Stroke deals 7 damage to each of those permanents and/or players.
 mana={6}{R}
 type=Sorcery
@@ -53433,13 +53540,9 @@ toughness=3
 [/card]
 [card]
 name=Violent Eruption
-target=creature,player
-auto=damage:1
-auto=damage:1 target(creature,player)
-auto=ability$!name(damage) choice target(creature,player) damage:1!$ controller
-auto=ability$!name(damage) choice target(creature,player) damage:1!$ controller
 abilities=madness
-autoexile=restriction{discarded} pay({1}{R}{R}) name(pay 1RR to cast) activate name(pay 1RR to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=thisforeach(variable{4}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
+autoexile=restriction{discarded} pay({1}{R}{R}) name(pay {1}{R}{R} to cast) activate name(pay {1}{R}{R} to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
 text=Violent Eruption deals 4 damage divided as you choose among any number of target creatures and/or players. -- Madness {1}{R}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={1}{R}{R}{R}
 type=Instant
@@ -53783,14 +53886,8 @@ toughness=2
 [/card]
 [card]
 name=Volley of Boulders
-target=creature,player
+auto=thisforeach(variable{6}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 flashback={R}{R}{R}{R}{R}{R}
-auto=damage:1
-auto=damage:1 target(creature,player)
-auto=ability$!name(Damage) damage:1 target(creature,player)!$ controller
-auto=ability$!name(Damage) damage:1 target(creature,player)!$ controller
-auto=ability$!name(Damage) damage:1 target(creature,player)!$ controller
-auto=ability$!name(Damage) damage:1 target(creature,player)!$ controller
 text=Volley of Boulders deals 6 damage divided as you choose among any number of target creatures and/or players. -- Flashback {R}{R}{R}{R}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={8}{R}
 type=Sorcery

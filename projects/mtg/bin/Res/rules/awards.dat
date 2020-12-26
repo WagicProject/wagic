@@ -55,7 +55,7 @@ unlock_text=Morinfen Mode Unlocked
 teaser="I looked into its eyes, and its soul was so empty I saw no reflection, no light there." — Crovax
 At the beginning of your upkeep, you lose 1 life for each permanent you control.
 trophyroom_text=Won with less than 5 life.
-unlock_condition=this(controllerlife<=6)
+unlock_condition=this(controllerlife < 5)
 [/award]
 
 [award]
@@ -65,7 +65,7 @@ unlock_img=
 unlock_text=Tribal Horde Mode Unlocked
 teaser="From shards and splinters I call forth my living horde." -Molimo, maro-sorcerer
 trophyroom_text=Won with more than 25 life.
-unlock_condition=this(controllerlife>=26)
+unlock_condition=this(controllerlife > 25)
 [/award]
 
 [award]
@@ -89,3 +89,12 @@ trophyroom_text=Devotion to green more than 7.
 unlock_condition=this(variable{type:manag}>7)
 [/award]
 
+[award]
+name=Commander Format
+id=prx_commander
+unlock_img=commander_unlocked.jpg
+unlock_text=Commander Format Unlocked
+teaser=Do you think you can dominate over other commanders? Take a big challenge in the commander format.
+trophyroom_text=Win a game with 40 or more life and with less creatures in your graveyard than your opponent.
+unlock_condition=type(*|mygraveyard)~lessthan~type(*|opponentgraveyard),this(controllerlife > 39)
+[/award]

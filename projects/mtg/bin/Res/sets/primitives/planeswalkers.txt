@@ -1991,9 +1991,9 @@ subtype=Oko
 [card]
 name=Ral, Caller of Storms
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Draw a card) draw:1
-auto={C(0/0,-2,Loyalty)}:name(-2: Deals 3 damage divided to any target) thisforeach(variable{3}) ability$!name(Deals 1 damage) name(Deals 1 damage) damage:1 target(player,creature,planeswalker)!$ controller
-auto={C(0/0,-7,Loyalty)}:name(-7: Draw 7 cards and deals 7 to each creature)  draw:7 controller && damage:7 all(creature|opponentBattlefield)
+auto={C(0/0,1,Loyalty)}:name(+1: Draw a card) draw:1 controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals 3 damage divided to any target) thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planewsalker) damage:1!$ controller
+auto={C(0/0,-7,Loyalty)}:name(-7: Draw 7 cards and deals 7 to each creature) draw:7 controller && damage:7 all(creature|opponentBattlefield)
 text=+1: Draw a card. -- -2: Ral, Caller of Storms deals 3 damage divided as you choose among one, two, or three targets. -- -7: Draw seven cards. Ral, Caller of Storms deals 7 damage to each creature your opponents control.
 mana={4}{U}{R}
 type=Legendary Planeswalker
@@ -2093,8 +2093,9 @@ subtype=Saheeli
 [card]
 name=Samut, the Tested
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Double strike) target(<upto:1>creature) double strike ueot
-auto={C(0/0,-2,Loyalty)}:name(-2: Divided 2 damage) damage:1 target(creature,player) && transforms((,newability[damage:1 target(creature,player)])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Don't target any creature) donothing
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gains double strike) target(creature) transforms((,newability[double strike])) ueot
+auto={C(0/0,-2,Loyalty)}:name(-2: Divided 2 damage) thisforeach(variable{2}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller ueot
 auto={C(0/0,-7,Loyalty)}:name(-7: Search two creature or planeswalker) moveto(mybattlefield) target(<upto:2>*[creature;planeswalker]|mylibrary)
 text=+1: Up to one target creature gains double strike until end of turn. -- -2: Samut, the Tested deals 2 damage divided as you choose among one or two target creatures and/or players. -- -7: Search your library for up to two creature and/or planeswalker cards, put them onto the battlefield, then shuffle your library.
 mana={2}{R}{G}
