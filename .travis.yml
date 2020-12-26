@@ -47,7 +47,7 @@ install:
     unzip android-ndk-r16-linux-x86_64.zip &&
     tar -zxf android-sdk_r24.4.1-linux.tgz &&
     $ANDROID list sdk --extended -a &&
-    echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-29.0.3,android-29 --no-ui --force --no-https;
+    echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-27.3.0,android-27 --no-ui --force --no-https;
   fi
 - sudo python -m easy_install --upgrade pyOpenSSL
 - sudo pip install pyjavaproperties
