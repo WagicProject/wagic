@@ -75,7 +75,7 @@ auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:draw:1
 auto=@each cleanup:all(*|myBattlefield) resetDamage
 
 #Commander put back rule
-auto=@movedTo(*[iscommander]|mygraveyard) from(battlefield):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|mygraveyard) moveto(mycommandzone)!$ controller
-auto=@movedTo(*[iscommander]|myexile) from(battlefield):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|myexile) moveto(mycommandzone)!$ controller
-auto=@movedTo(*[iscommander]|mylibrary) from(battlefield):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander]|mylibrary) moveto(mycommandzone)!$ controller
-auto=@movedTo(*[iscommander]|myhand) from(battlefield):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander]|myhand) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|mygraveyard):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|mygraveyard) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|myexile):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|myexile) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|mylibrary):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|mylibrary) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|myhand):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|myhand) moveto(mycommandzone)!$ controller

@@ -674,12 +674,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Aurelia's Fury
-text=Aurelia's Fury deals X damage divided as you choose among any number of target creatures and/or players. Tap each creature dealt damage this way. Players dealt damage this way can't cast noncreature spells this turn.
-mana={X}{R}{W}
-type=Instant
-[/card]
-[card]
 name=Auto-Key
 text=Whenever you crank Auto-Key, until end of turn, target creature becomes an artifact in addition to its other types and gains " {T}: You gain 3 life."
 type=Artifact
@@ -690,20 +684,6 @@ name=Autumn's Veil
 text=Spells you control can't be countered by blue or black spells this turn, and creatures you control can't be the targets of blue or black spells this turn.
 mana={G}
 type=Instant
-[/card]
-[card]
-name=Autumn-Tail, Kitsune Sage
-text={1}: Attach target Aura attached to a creature to another creature.
-type=Legendary Creature
-subtype=Fox Wizard
-power=4
-toughness=5
-[/card]
-[card]
-name=Avacyn's Judgment
-text=Madness {X}{R} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.) -- Avacyn's Judgment deals 2 damage divided as you choose among any number of target creatures and/or players. If Avacyn's Judgment's madness cost was paid, it deals X damage divided as you choose among those creatures and/or players instead.
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
 name=Avatar of Hope
@@ -6920,15 +6900,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Kitsune Mystic
-text=At the beginning of the end step, if Kitsune Mystic is enchanted by two or more Auras, flip it.
-mana={3}{W}
-type=Creature
-subtype=Fox Wizard
-power=2
-toughness=3
-[/card]
-[card]
 name=Kjeldoran Escort
 abilities=banding
 text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
@@ -7160,15 +7131,6 @@ name=Krark's Thumb
 text=If you would flip a coin, instead flip two coins and ignore one.
 mana={2}
 type=Legendary Artifact
-[/card]
-[card]
-name=Kresh the Bloodbraided
-text=Whenever another creature dies, you may put X +1/+1 counters on Kresh the Bloodbraided, where X is that creature's power.
-mana={2}{B}{R}{G}
-type=Legendary Creature
-subtype=Human Warrior
-power=3
-toughness=3
 [/card]
 [card]
 name=Krovikan Vampire
@@ -7554,15 +7516,6 @@ type=Legendary Creature
 subtype=Human Soldier
 power=2
 toughness=4
-[/card]
-[card]
-name=Living Inferno
-text={T}: Living Inferno deals damage equal to its power divided as you choose among any number of target creatures. Each of those creatures deals damage equal to its power to Living Inferno.
-mana={6}{R}{R}
-type=Creature
-subtype=Elemental
-power=8
-toughness=5
 [/card]
 [card]
 name=Living Lore
@@ -8129,12 +8082,6 @@ toughness=1
 name=Metamorphosis
 text=As an additional cost to cast Metamorphosis, sacrifice a creature. -- Add X mana of any one color to your mana pool, where X is one plus the sacrificed creature's converted mana cost. Spend this mana only to cast creature spells.
 mana={G}
-type=Sorcery
-[/card]
-[card]
-name=Meteor Shower
-text=Meteor Shower deals X plus 1 damage divided as you choose among any number of target creatures and/or players.
-mana={X}{X}{R}
 type=Sorcery
 [/card]
 [card]
@@ -9829,15 +9776,6 @@ name=Pollen Remedy
 text=Kicker—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Prevent the next 3 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose. If Pollen Remedy was kicked, prevent the next 6 damage this way instead.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Polukranos, World Eater
-text={X}{X}{G}: Monstrosity X. (If this creature isn't monstrous, put X +1/+1 counters on it and it becomes monstrous.) -- When Polukranos, World Eater becomes monstrous, it deals X damage divided as you choose among any number of target creatures your opponents control. Each of those creatures deals damage equal to its power to Polukranos.
-mana={2}{G}{G}
-type=Legendary Creature
-subtype=Hydra
-power=5
-toughness=5
 [/card]
 [card]
 name=Polymorphous Rush
@@ -11691,15 +11629,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=2
-[/card]
-[card]
-name=Skirk Volcanist
-text=Morph—Sacrifice two Mountains. (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Skirk Volcanist is turned face up, it deals 3 damage divided as you choose among one, two, or three target creatures.
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=3
-toughness=1
 [/card]
 [card]
 name=Skittish Valesk
