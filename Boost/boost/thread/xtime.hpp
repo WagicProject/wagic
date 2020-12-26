@@ -68,7 +68,7 @@ inline xtime get_xtime(boost::system_time const& abs_time)
 
 inline int xtime_get(struct xtime* xtp, int clock_type)
 {
-    if (clock_type == TIME_UTC_1)
+    if (clock_type == TIME_UTC_)
     {
         *xtp=get_xtime(get_system_time());
         return clock_type;
