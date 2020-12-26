@@ -480,6 +480,8 @@ Commander Anthology Volume II=Antologia del Comandante: Volume II
 Commander 2018=Comandante 2018
 Commander 2019=Comandante 2019
 Commander 2020=Comandante 2020
+Commander Collection: Green=Collezione del Comandante: Verde
+Commander Legends=Leggenda del Comandante
 
 -Core Sets-
 Limited Edition Alpha=Edizione Limitata: Alfa
@@ -1026,6 +1028,9 @@ Card Spoiler=Vedi carte
 Back to Trophies=Torna a Trofei
 Back to Main Menu=Indietro al menu' principale
 Cancel=Annulla
+Do you think you can dominate over other commanders? Take a big challenge in the commander format.=Pensi di poter dominare gli altri comandanti? Raccogli la sfida con la modalilta' Comandante.
+Commander Format Unlocked=Modalita' Comandante sbloccata
+Win a game with 40 or more life and with less creatures in your graveyard than your opponent.=Vinci una partita con 40 o più punti vita e con meno creature nel cimitero rispetto al tuo avversario.
 
 Wagic Team (%s%%): %i%% : %s%%/%s%% cards=Team Wagic (%s%%): %i%% : %s%%/%s%% carte
 %i cards=%i carte.
