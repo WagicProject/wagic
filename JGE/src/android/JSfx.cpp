@@ -184,7 +184,13 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
             const SLboolean req[2] = {SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE};
             result = (*engineEngine)->CreateAudioPlayer(engineEngine, &music->playerObject, &audioSrc, &audioSnk, 2, ids, req);
             DebugTrace("result " << result);
-
+            
+            if(result == SL_RESULT_MEMORY_FAILURE){
+                 delete music;
+                 mCurrentMusic = NULL;
+                 return NULL;
+            }
+            
             // realize the player
             result = (*music->playerObject)->Realize(music->playerObject, SL_BOOLEAN_FALSE);
             DebugTrace("result " << result);
@@ -302,6 +308,12 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
         result = (*engineEngine)->CreateAudioPlayer(engineEngine, &sample->playerObject, &audioSrc, &audioSnk,
               1, ids, req);
         DebugTrace("result " << result);
+
+        if(result == SL_RESULT_MEMORY_FAILURE){
+             delete sample;
+             mCurrentSample = NULL;
+             return NULL;
+        }
 
         // realize the player
         result = (*sample->playerObject)->Realize(sample->playerObject, SL_BOOLEAN_FALSE);
