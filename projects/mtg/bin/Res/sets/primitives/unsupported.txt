@@ -7142,32 +7142,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Kroxa, Titan of Death's Hunger
-text=When Kroxa enters the battlefield, sacrifice it unless it escaped. -- Whenever Kroxa enters the battlefield or attacks, each opponent discards a card, then each opponent who didn't discard a nonland card this way loses 3 life. -- Escape— {B}{B}{R}{R}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
-mana={B}{R}
-type=Legendary Creature
-subtype=Elder Giant
-power=6
-toughness=6
-[/card]
-[card]
-name=Kruphix, God of Horizons
-abilities=indestructible
-text=Indestructible -- As long as your devotion to green and blue is less than seven, Kruphix isn't a creature. -- You have no maximum hand size. -- If unused mana would empty from your mana pool, that mana becomes colorless instead.
-mana={3}{G}{U}
-type=Legendary Enchantment Creature
-subtype=God
-power=4
-toughness=7
-[/card]
-[card]
-name=Kumano's Blessing
-text=Flash -- Enchant creature -- If a creature dealt damage by enchanted creature this turn would die, exile it instead.
-mana={2}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Kurkesh, Onakke Ancient
 text=Whenever you activate an ability of an artifact, if it isn't a mana ability, you may pay {R}. If you do, copy that ability. You may choose new targets for the copy.
 mana={2}{R}{R}
@@ -7175,12 +7149,6 @@ type=Legendary Creature
 subtype=Ogre Spirit
 power=4
 toughness=3
-[/card]
-[card]
-name=Kyren Archive
-text=At the beginning of your upkeep, you may exile the top card of your library face down. -- {5}, Discard your hand, Sacrifice Kyren Archive: Put all cards exiled with Kyren Archive into their owner's hand.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Labro Bot
@@ -7274,12 +7242,6 @@ name=Lash Out
 text=Lash Out deals 3 damage to target creature. Clash with an opponent. If you win, Lash Out deals 3 damage to that creature's controller. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Last Rites
-text=Discard any number of cards. Target player reveals his or her hand, then you choose a nonland card from it for each card discarded this way. That player discards those cards.
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
 name=Last Thoughts

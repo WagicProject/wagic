@@ -5543,8 +5543,8 @@ AAMulligan * AAMulligan::clone() const
 }
 
 // Remove Mana From ManaPool
-AARemoveMana::AARemoveMana(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, string manaDesc, int who) :
-    ActivatedAbilityTP(observer, _id, card, _target, NULL, who)
+AARemoveMana::AARemoveMana(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, string manaDesc, int who, bool forceclean) :
+    ActivatedAbilityTP(observer, _id, card, _target, NULL, who), forceclean(forceclean)
 {
     if (!manaDesc.size())
     {
@@ -5577,7 +5577,7 @@ int AARemoveMana::resolve()
             }
             else //Remove all mana
             {
-                if(game->getCurrentGamePhase() != MTG_PHASE_ENDOFTURN)
+                if(game->getCurrentGamePhase() != MTG_PHASE_ENDOFTURN && !forceclean)
                 {
                     if (player->doesntEmpty->getConvertedCost() && !player->poolDoesntEmpty->getConvertedCost())
                     {
@@ -5624,7 +5624,8 @@ int AARemoveMana::resolve()
         }
         else //remove a "standard" mana Description
         {
-            ((ManaCost *)manaPool)->remove(mManaDesc); //why do I have to cast here?
+            manaPool->pay(mManaDesc); //Changed because the mana icons were not disappearing.
+            //((ManaCost *)manaPool)->remove(mManaDesc); //why do I have to cast here?
         }
     }
     return 1;

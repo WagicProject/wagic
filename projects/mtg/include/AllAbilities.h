@@ -7133,8 +7133,8 @@ class AARemoveMana: public ActivatedAbilityTP
 public:
     ManaCost * mManaDesc;
     bool mRemoveAll;
-
-    AARemoveMana(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, string ManaDesc, int who = TargetChooser::UNSET);
+    bool forceclean;
+    AARemoveMana(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, string ManaDesc, int who = TargetChooser::UNSET, bool forceclean = false);
     int resolve();
     const string getMenuText();
     AARemoveMana * clone() const;

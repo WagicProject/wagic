@@ -3675,7 +3675,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitRemove.size())
     {
         Targetable * t = spell? spell->getNextTarget() : NULL;
-        MTGAbility *a = NEW AARemoveMana(observer, id, card, t, splitRemove[1], who);
+        bool forceclean = false;
+        if(s.find("forceclean")!=string::npos)
+            forceclean = true;
+        MTGAbility *a = NEW AARemoveMana(observer, id, card, t, splitRemove[1], who, forceclean);
         a->oneShot = 1;
         return a;
     }

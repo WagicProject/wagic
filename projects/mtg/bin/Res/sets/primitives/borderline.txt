@@ -5268,7 +5268,7 @@ type=Sorcery
 [card]
 name=Boneyard Scourge
 abilities=flying
-autograveyard=@movedto(creature[Dragon]|mygraveyard) from (myBattlefield): aslongas(this|mygraveyard) may pay{1}{B}: moveTo(myBattlefield) target(Boneyard Scourge|mygraveyard)
+autograveyard=@movedto(creature[Dragon]|graveyard) from(myBattlefield):may pay({1}{B}):moveTo(myBattlefield) all(this)
 text=Flying -- Whenever a Dragon you control dies while Boneyard Scourge is in your graveyard, you may pay {1}{B}. If you do, return Boneyard Scourge from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Creature
@@ -22242,6 +22242,53 @@ auto=mypoolsave(white)
 auto=mypoolsave(black)
 auto=mypoolsave(green)
 auto=mypoolsave(blue)
+auto=mypoolsave(artifact)
+auto=mypoolsave(land)
+auto=@each untap restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each untap restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each untap restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each untap restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each untap restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each upkeep restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each upkeep restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each upkeep restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each upkeep restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each upkeep restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each draw restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each draw restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each draw restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each draw restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each draw restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each firstmain restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each firstmain restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each firstmain restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each firstmain restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each firstmain restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each combatbegins restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each combatbegins restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each combatbegins restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each combatbegins restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each combatbegins restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each combatends restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each combatends restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each combatends restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each combatends restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each combatends restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each secondmain restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each secondmain restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each secondmain restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each secondmain restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each secondmain restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each endofturn restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each endofturn restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each endofturn restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each endofturn restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each endofturn restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each cleanup restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each cleanup restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each cleanup restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each cleanup restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each cleanup restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
 text=If you would lose unspent mana, that mana becomes colorless instead.
 mana={5}
 type=Artifact
@@ -26575,6 +26622,89 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Kroxa, Titan of Death's Hunger
+auto=ifnot paid(alternative) then sacrifice
+auto=if type(*|opponenthand)~equalto~0 then life:-3 opponent
+auto=if type(*[-land]|opponenthand)~morethan~0 then if type(land|opponenthand)~equalto~0 then ability$!name(Discard non-land card) name(Discard non-land card) reject notatarget(*[-land]|myhand)!$ opponent
+auto=if type(*[-land]|opponenthand)~equalto~0 then if type(land|opponenthand)~morethan~0 then ability$!name(Discard land card) name(Discard land card) reject notatarget(land|myhand) and!(life:-3)! !$ opponent
+auto=if type(*[-land]|opponenthand)~morethan~0 then if type(land|opponenthand)~morethan~0 then ability$!name(Choose one) choice name(Discard non-land card) reject notatarget(*[-land]|myhand) _ choice name(Discard land card) reject notatarget(land|myhand) and!(life:-3)! !$ opponent
+auto=@combat(attacking) source(this) restriction{type(*|opponenthand)~equalto~0}:life:-3 opponent
+auto=@combat(attacking) source(this) restriction{type(*[-land]|opponenthand)~morethan~0,type(land|opponenthand)~equalto~0}:ability$!name(Discard non-land) card name(Discard non-land card) reject notatarget(*[-land]|myhand)!$ opponent
+auto=@combat(attacking) source(this) restriction{type(*[-land]|opponenthand)~equalto~0,type(land|opponenthand)~morethan~0}:ability$!name(Discard land card) name(Discard land card) reject notatarget(land|myhand) and!(life:-3)! $ opponent
+auto=@combat(attacking) source(this) restriction{type(*[-land]|opponenthand)~morethan~0,type(land|opponenthand)~morethan~0}:ability$!name(Choose one) choice name(Discard non-land card) reject notatarget(*[-land]|myhand) _ choice name(Discard land card) reject notatarget(land|myhand) and!(life:-3)! !$ opponent
+autograveyard={G}{G}{U}{U}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}:name(Escape-{B}{B}{R}{R},exile five) activate castcard(alternative)
+text=When Kroxa enters the battlefield, sacrifice it unless it escaped. -- Whenever Kroxa enters the battlefield or attacks, each opponent discards a card, then each opponent who didn't discard a nonland card this way loses 3 life. -- Escape — {B}{B}{R}{R}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+mana={B}{R}
+type=Legendary Creature
+subtype=Elder Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Kruphix, God of Horizons
+abilities=indestructible,nomaxhand
+auto=mypoolsave(red)
+auto=mypoolsave(white)
+auto=mypoolsave(black)
+auto=mypoolsave(green)
+auto=mypoolsave(blue)
+auto=mypoolsave(artifact)
+auto=mypoolsave(land)
+auto=@each untap restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each untap restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each untap restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each untap restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each untap restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each upkeep restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each upkeep restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each upkeep restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each upkeep restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each upkeep restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each draw restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each draw restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each draw restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each draw restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each draw restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each firstmain restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each firstmain restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each firstmain restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each firstmain restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each firstmain restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each combatbegins restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each combatbegins restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each combatbegins restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each combatbegins restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each combatbegins restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each combatends restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each combatends restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each combatends restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each combatends restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each combatends restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each secondmain restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each secondmain restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each secondmain restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each secondmain restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each secondmain restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each endofturn restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each endofturn restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each endofturn restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each endofturn restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each endofturn restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=@each cleanup restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
+auto=@each cleanup restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
+auto=@each cleanup restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
+auto=@each cleanup restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
+auto=@each cleanup restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
+auto=this(variable{type:managplustype:manauplusend}<7) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{type:managplustype:manauplusend}>6) transforms((Legendary Enchantment Creature))
+text=Indestructible -- As long as your devotion to green and blue is less than seven, Kruphix isn't a creature. -- You have no maximum hand size. -- If unused mana would empty from your mana pool, that mana becomes colorless instead.
+mana={3}{G}{U}
+type=Legendary Enchantment Creature
+subtype=God
+power=4
+toughness=7
+[/card]
+[card]
 name=Kuldotha Flamefiend
 other={4}{R}{R}{S(*[artifact]|mybattlefield)} name(Sacrifice artifact)
 auto=if paid(alternative) then thisforeach(variable{4}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
@@ -26586,8 +26716,38 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Kumano's Blessing
+target=creature
+abilities=flash
+auto=@damaged(creature[toughness=1]) from(mytgt):if compare(thatmuch)~morethan~0 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=1]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=2]) from(mytgt):if compare(thatmuch)~morethan~1 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=2]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=3]) from(mytgt):if compare(thatmuch)~morethan~2 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=3]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=4]) from(mytgt):if compare(thatmuch)~morethan~3 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=4]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=5]) from(mytgt):if compare(thatmuch)~morethan~4 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=5]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=6]) from(mytgt):if compare(thatmuch)~morethan~5 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=6]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=7]) from(mytgt):if compare(thatmuch)~morethan~6 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=7]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=8]) from(mytgt):if compare(thatmuch)~morethan~7 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=8]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=9]) from(mytgt):if compare(thatmuch)~morethan~8 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=9]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=10]) from(mytgt):if compare(thatmuch)~morethan~9 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=10]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=11]) from(mytgt):if compare(thatmuch)~morethan~10 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=11]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=12]) from(mytgt):if compare(thatmuch)~morethan~11 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=12]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=13]) from(mytgt):if compare(thatmuch)~morethan~12 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=13]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=14]) from(mytgt):if compare(thatmuch)~morethan~13 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=14]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=15]) from(mytgt):if compare(thatmuch)~morethan~14 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=15]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=16]) from(mytgt):if compare(thatmuch)~morethan~15 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=16]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=17]) from(mytgt):if compare(thatmuch)~morethan~16 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=17]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=18]) from(mytgt):if compare(thatmuch)~morethan~17 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=18]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=19]) from(mytgt):if compare(thatmuch)~morethan~18 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=19]|graveyard) moveto(exile)
+auto=@damaged(creature[toughness=20]) from(mytgt):if compare(thatmuch)~morethan~19 then name(Damaged creature goes to exile) name(Damaged creature goes to exile) target(creature[fresh;toughness=20]|graveyard) moveto(exile)
+auto=@damaged(creature) from(mytgt):all(trigger[to]) transforms((,newability[exiledeath])) ueot
+text=Flash -- Enchant creature -- If a creature dealt damage by enchanted creature this turn would die, exile it instead.
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Kumena's Speaker
-auto=aslongas(other merfolk,island|mybattlefield) 1/1
+auto=aslongas(other *[merfolk;island]|mybattlefield) 1/1
 text=Kumena's Speaker gets +1/+1 as long as you control another Merfolk or an Island.
 mana={G}
 type=Creature
@@ -26662,6 +26822,14 @@ type=Legendary Creature
 subtype=Bird Wizard
 power=3
 toughness=3
+[/card]
+[card]
+name=Kyren Archive
+auto=@each my upkeep:may name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( counter(0/0,1,KyrenExiled) )!
+auto={5}{S}:all(*|myhand) reject && ability$!name(Move back exiled cards) name(Move back exiled cards) all(*[counter{0/0.1.KyrenExiled}]|myexile) moveto(ownerhand)!$ controller
+text=At the beginning of your upkeep, you may exile the top card of your library face down. -- {5}, Discard your hand, Sacrifice Kyren Archive: Put all cards exiled with Kyren Archive into their owner's hand.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Kytheon, Hero of Akros
@@ -26768,6 +26936,13 @@ auto=if compare(countedamount)~lessthan~compare(countedbamount) then thisforeach
 auto=if compare(countedamount)~lessthan~compare(countedbamount) then all(creature|myBattlefield) destroy
 text=Choose a creature at random, then destroy the rest.
 mana={1}{B}{R}
+type=Sorcery
+[/card]
+[card]
+name=Last Rites
+auto=name(Discard cards) name(Discard cards) target(<anyamount>*|myhand) transforms((,newability[reject],newability[target(*[-land]|opponenthand) reject])) forever
+text=Discard any number of cards. Target player reveals his or her hand, then you choose a nonland card from it for each card discarded this way. That player discards those cards.
+mana={2}{B}
 type=Sorcery
 [/card]
 [card]
@@ -28508,7 +28683,7 @@ subtype=Aura
 [card]
 name=Luminous Broodmoth
 abilities=flying
-auto=@movedto(creature[-flying]|myGraveyard) from(myBattlefield):all(triger[to]) moveTo(myBattlefield) && transforms((,newability[counter(0/0,1,Flying],newability[this(counter{0/0.1.Flying}>=1) flying]))
+auto=@movedto(creature[-flying]|myGraveyard) from(myBattlefield):all(trigger[to]) moveTo(myBattlefield) && transforms((,newability[counter(0/0,1,Flying],newability[this(counter{0/0.1.Flying}>=1) flying]))
 text=Flying -- Whenever a creature you control without flying dies, return it to the battlefield under its owner's control with a flying counter on it.
 mana={2}{W}{W}
 type=Creature
@@ -47117,21 +47292,8 @@ toughness=3
 [/card]
 [card]
 name=Sublime Epiphany
-auto=choice name(Choose 1) target(*|stack) fizzle
-auto=choice name(Choose 3) target(*[-land]|battlefield) moveto(ownerhand)
-auto=choice name(Choose 4) clone notatarget(creature|mybattlefield)
-auto=choice name(Choose 5) target(player) draw:1
-auto=choice name(Choose 1,3) target(*|stack) fizzle && ability$!name(Return permanent) name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller
-auto=choice name(Choose 1,4) target(*|stack) fizzle && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller
-auto=choice name(Choose 1,5) target(*|stack) fizzle && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
-auto=choice name(Choose 3,4) target(*[-land]|battlefield) moveto(ownerhand) && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller
-auto=choice name(Choose 3,5) target(*[-land]|battlefield) moveto(ownerhand) && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
-auto=choice name(Choose 4,5) clone notatarget(creature|mybattlefield) && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
-auto=choice name(Choose 1,3,4) target(*|stack) fizzle && ability$!name(Return permanent) name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller
-auto=choice name(Choose 1,3,5) target(*|stack) fizzle && ability$!name(Return permanent) name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
-auto=choice name(Choose 1,4,5) target(*|stack) fizzle && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
-auto=choice name(Choose 3,4,5) target(*[-land]|battlefield) moveto(ownerhand) && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
-auto=choice name(Choose 1,3,4,5) target(*|stack) fizzle && ability$!name(Return permanent) name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller && ability$!name(Copy creature) name(Copy creature) clone notatarget(creature|mybattlefield)!$ controller && ability$!name(Target player draws card) name(Target player draws card) target(player) draw:1!$ controller
+auto=if type(*|stack)~morethan~1 then choice name(Counter target spell) name(Counter target spell) target(*|stack) transforms((,newability[fizzle],newability[ability$!name(Target player draws card) may name(Target player draws card) target(player) draw:1!$ opponent],newability[ability$!name(Return permanent) may name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ opponent],newability[ability$!name(Copy creature) may name(Copy creature) clone target(creature|mybattlefield)!$ opponent])) forever
+auto=choice name(Don't counter any spell) name(Don't counter any spell) transforms((,newability[ability$!name(Target player draws card) may name(Target player draws card) target(player) draw:1!$ controller],newability[ability$!name(Return permanent) may name(Return permanent) target(*[-land]|battlefield) moveto(ownerhand)!$ controller],newability[ability$!name(Copy creature) may name(Copy creature) clone target(creature|mybattlefield)!$ controller])) forever
 text=Choose one or more — • Counter target spell. -- • Counter target activated or triggered ability. -- • Return target nonland permanent to its owner's hand. -- • Create a token that's a copy of target creature you control. -- • Target player draws a card.
 mana={4}{U}{U}
 type=Instant
@@ -49690,7 +49852,7 @@ type=Artifact
 [card]
 name=Thrash // Threat
 other={2}{R}{G} name(Threat)
-otherrestricction=myturnonly
+otherrestriction=myturnonly
 auto=if paid(alternative) then token(Beast,Creature Beast,4/4,red,green,trample)
 auto=ifnot paid(alternative) then target(creature) transforms((,newability[dynamicability<!powerstrike!> target(*[creature;planeswalker]|opponentbattlefield)])) ueot
 text=Target creature you control deals damage equal to its power to target creature or planeswalker you don't control. -- Create a 4/4 red and green Beast creature token with trample.
