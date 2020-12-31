@@ -5065,6 +5065,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Bottled Cloister
+auto=@each opponent upkeep:all(*|myhand) moveto(ownerexile) and!( counter(0/0,1,BottledExiled) )!
+auto=@each my upkeep:draw:1 controller
+auto=@each my upkeep:all(*[counter{0/0.1.BottledExiled}]|myexile) moveto(myhand)
+text=At the beginning of each opponent's upkeep, exile all cards from your hand face down. -- At the beginning of your upkeep, return all cards you own exiled with Bottled Cloister to your hand, then draw a card.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Bombard
 target=creature
 auto=damage:4
@@ -5275,6 +5284,16 @@ type=Creature
 subtype=Zombie Dragon
 power=4
 toughness=3
+[/card]
+[card]
+name=Bonfire of the Damned
+target=player
+auto=ifnot paid(alternative) then thisforeach(variable{halfpaid}>0) damage:1 && damage:1 all(creature|targetedpersonsbattlefield)
+auto=if paid(alternative) then thisforeach(X>0) damage:1 && damage:1 all(creature|targetedpersonsbattlefield)
+autohand={X}{R} restriction{miracle,type(Bonfire of the Damned[fresh]|myhand)~morethan~0}:name(Miracle) target(Bonfire of the Damned[fresh]|myhand) activate name(Miracle) castcard(alternative restricted)
+text=Bonfire of the Damned deals X damage to target player and each creature he or she controls. -- Miracle {X}{R} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={X}{X}{R}
+type=Sorcery
 [/card]
 [card]
 name=Bontu the Glorified
@@ -5794,6 +5813,16 @@ type=Creature
 subtype=Giant
 power=5
 toughness=6
+[/card]
+[card]
+name=Brine Seer
+auto={2}{U}{T}:name(Counter spell) name(Counter spell) target(*|stack) transforms((,newability[thisforeach(variable{type:*[blue]:opponenthand}>0) pay[[{1}]] name(pay mana) donothing?fizzle])) oneshot
+text={2}{U}, {T}: Reveal any number of blue cards in your hand. Counter target spell unless its controller pays {1} for each card revealed this way.
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Brineborn Cutthroat
@@ -6580,6 +6609,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Carrion Rats
+auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mystored) fog from(this) _ choice name(Don't exile any card) donothing!$ opponent
+auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mystored) fog from(this) _ choice name(Don't exile any card) donothing!$ controller
+text=Whenever Carrion Rats attacks or blocks, any player may exile a card from his or her graveyard. If a player does, Carrion Rats assigns no combat damage this turn.
+mana={B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+[/card]
+[card]
 name=Carrion Screecher
 abilities=flying
 text=Flying
@@ -6588,6 +6628,17 @@ type=Creature
 subtype=Zombie Bird
 power=3
 toughness=1
+[/card]
+[card]
+name=Carrion Wurm
+auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mystored) fog from(this) _ choice name(Don't exile any card) donothing!$ opponent
+auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mystored) fog from(this) _ choice name(Don't exile any card) donothing!$ controller
+text=Whenever Carrion Wurm attacks or blocks, any player may exile three cards from his or her graveyard. If a player does, Carrion Wurm assigns no combat damage this turn.
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie Wurm
+power=6
+toughness=5
 [/card]
 [card]
 name=Carrionette
@@ -14639,9 +14690,9 @@ type=Sorcery
 [/card]
 [card]
 name=Entreat the Dead
-target=creature|mygraveyard
-auto=moveTo(myBattlefield)
-autohand=restriction{miracle} pay[[{X}{B}{B}]] name(Miracle) activate name(Miracle) castcard(restricted)
+auto=ifnot paid(alternative) then thisforeach(variable{halfpaid}>0) ability$!name(Return target creature) name(Return target creature) target(creature|mygraveyard) moveTo(myBattlefield)!$ controller
+auto=if paid(alternative) then thisforeach(X>0) ability$!name(Return target creature) name(Return target creature) target(creature|mygraveyard) moveTo(myBattlefield)!$ controller
+autohand={X}{B}{B} restriction{miracle,type(Entreat the Dead[fresh]|myhand)~morethan~0}:name(Miracle) target(Entreat the Dead[fresh]|myhand) activate name(Miracle) castcard(alternative restricted)
 text=Return X target creature cards from your graveyard to the battlefield. -- Miracle {X}{B}{B} (You may cast this card for its miracle cost when you draw it if it’s the first card you drew this turn.)
 mana={X}{X}{B}{B}{B}
 type=Sorcery
@@ -17096,7 +17147,7 @@ toughness=5
 [card]
 name=Folio of Fancies
 abilities=nomaxhand,oppnomaxhand
-auto={X}{X}{T}:draw:XX all(player)
+auto={X}{X}{T}:name(Each player draws cards) name(Each player draws cards) draw:XX all(player)
 auto={2}{U}{T}:deplete:type:*:opponenthand opponent
 text=Players have no maximum hand size. -- {X}{X}, {T}: Each player draws X cards. -- {2}{U}, {T}: Each opponent puts a number of cards equal to the number of cards in their hand from the top of their library into their graveyard.
 mana={1}{U}
@@ -17711,7 +17762,7 @@ type=Instant
 [/card]
 [card]
 name=Full Flowering
-auto=thisforeach(X) clone notatarget(creature[token]|mybattlefield) !$ controller
+auto=thisforeach(variable{halfpaid}) ability$!name(Clone target token) name(Clone target token) clone notatarget(creature[token]|mybattlefield)!$ controller
 text=Populate X times. (To populate, create a token that's a copy of a creature token you control. Do this X times.)
 mana={X}{X}{G}
 type=Sorcery
@@ -22371,7 +22422,7 @@ type=Sorcery
 [/card]
 [card]
 name=Hour of Eternity
-target=<upto:prex>creature|myGraveyard
+target=<prexx>creature|myGraveyard
 auto=clone and!( transforms((Zombie,removemc,setpower=4,settoughness=4,black)) forever )! 
 auto=moveto(exile)
 text=Exile X target creature cards from your graveyard. For each card exiled this way, create a token that's a copy of that card, except it's a 4/4 black Zombie.
@@ -37842,8 +37893,9 @@ type=Instant
 [/card]
 [card]
 name=Recall
-auto=name(discard) notatarget(<xx>*|myhand) transforms((,newability[reject],newability[moveto(ownerhand) notatarget(*|mygraveyard)]))
-auto=moveto(exile) all(this)
+target=<prexx>*|myhand
+abilities=exiledeath
+auto=transforms((,newability[reject],newability[name(Return a card from graveyard) name(Return a card from graveyard) moveto(ownerhand) target(*|mygraveyard)])) forever
 text=Discard X cards, then return a card from your graveyard to your hand for each card discarded this way. Exile Recall.
 mana={X}{X}{U}
 type=Sorcery
@@ -46135,8 +46187,8 @@ type=Sorcery
 [/card]
 [card]
 name=Springbloom Druid
-aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(<upto:2>land[basic]|myLibrary)
-auto={S(land|myBattlefield)}:name(search card) reveal:plibrarycount optionone name(choose card) target(<upto:2>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend limit:1
+aicode=may sacrifice target(land|myBattlefield) && activate moveTo(myBattlefield) and!(tap(noevent))! target(<upto:2>land[basic]|myLibrary)
+auto=may name(Sacrifice a land) sacrifice target(land|myBattlefield) && name(search card) reveal:plibrarycount optionone name(choose card) target(<upto:2>land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend limit:1
 text=When Springbloom Druid enters the battlefield, you may sacrifice a land. If you do, search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
 mana={2}{G}
 type=Creature

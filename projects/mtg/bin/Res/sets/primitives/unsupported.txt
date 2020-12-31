@@ -1293,12 +1293,6 @@ power=4
 toughness=2
 [/card]
 [card]
-name=Bonfire of the Damned
-text=Bonfire of the Damned deals X damage to target player and each creature he or she controls. -- Miracle {X}{R} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
-mana={X}{X}{R}
-type=Sorcery
-[/card]
-[card]
 name=Bonus Round
 text=Until end of turn, whenever a player casts an instant or sorcery spell, that player copies it and may choose new targets for the copy.
 mana={1}{R}{R}
@@ -1389,12 +1383,6 @@ power=1
 toughness=4
 [/card]
 [card]
-name=Bottled Cloister
-text=At the beginning of each opponent's upkeep, exile all cards from your hand face down. -- At the beginning of your upkeep, return all cards you own exiled with Bottled Cloister to your hand, then draw a card.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Bound // Determined
 text=Sacrifice a creature. Return up to X cards from your graveyard to your hand, where X is the number of colors that creature was. Exile this card. --  //  -- Other spells you control can't be countered by spells or abilities this turn. -- Draw a card.
 mana={3}{B}{G} // {G}{U}
@@ -1476,15 +1464,6 @@ type=Creature
 subtype=Hag
 power=2
 toughness=2
-[/card]
-[card]
-name=Brine Seer
-text={2}{U}, {T}: Reveal any number of blue cards in your hand. Counter target spell unless its controller pays {1} for each card revealed this way.
-mana={3}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Broken Ambitions
@@ -1807,24 +1786,6 @@ name=Carpet of Flowers
 text=At the beginning of each of your main phases, if you haven't added mana to your mana pool with this ability this turn, you may add up to X mana of any one color to your mana pool, where X is the number of Islands target opponent controls.
 mana={G}
 type=Enchantment
-[/card]
-[card]
-name=Carrion Rats
-text=Whenever Carrion Rats attacks or blocks, any player may exile a card from his or her graveyard. If a player does, Carrion Rats assigns no combat damage this turn.
-mana={B}
-type=Creature
-subtype=Rat
-power=2
-toughness=1
-[/card]
-[card]
-name=Carrion Wurm
-text=Whenever Carrion Wurm attacks or blocks, any player may exile three cards from his or her graveyard. If a player does, Carrion Wurm assigns no combat damage this turn.
-mana={3}{B}{B}
-type=Creature
-subtype=Zombie Wurm
-power=6
-toughness=5
 [/card]
 [card]
 name=Carry Away
