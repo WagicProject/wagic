@@ -39,7 +39,7 @@ unlock_condition=type(land|myBattlefield)~morethan~18
 [award]
 name=Paradise
 id=prx_paradise
-unlock_img=
+unlock_img=paradise_unlocked.png
 unlock_text=Birds of Paradise Mode Unlocked
 teaser=Utopia! Bring me down to the Paradise City. 
 Lands you control have "{T}: Add one mana of any color."
@@ -50,7 +50,7 @@ unlock_condition=type(Birds of Paradise|mybattlefield)~morethan~0
 [award]
 name=Morinfen Mode
 id=prx_morinfen
-unlock_img=
+unlock_img=morinfen_unlocked.png
 unlock_text=Morinfen Mode Unlocked
 teaser="I looked into its eyes, and its soul was so empty I saw no reflection, no light there." — Crovax
 At the beginning of your upkeep, you lose 1 life for each permanent you control.
@@ -61,7 +61,7 @@ unlock_condition=this(controllerlife < 5)
 [award]
 name=Horde
 id=prx_horde
-unlock_img=
+unlock_img=horde_unlocked.png
 unlock_text=Tribal Horde Mode Unlocked
 teaser="From shards and splinters I call forth my living horde." -Molimo, maro-sorcerer
 trophyroom_text=Won with more than 25 life.
@@ -71,7 +71,7 @@ unlock_condition=this(controllerlife > 25)
 [award]
 name=False God
 id=prx_karona
-unlock_img=
+unlock_img=falsegod_unlocked.png
 unlock_text=False God Mode Unlocked
 teaser=At the beginning of your upkeep, exchange control of a permanent you control chosen at random and a permanent target opponent controls chosen at random.
 trophyroom_text=Devotion to red more than 7.
@@ -81,7 +81,7 @@ unlock_condition=this(variable{type:manar}>7)
 [award]
 name=Titania Mode
 id=prx_titania
-unlock_img=
+unlock_img=titania_unlocked.png
 unlock_text=Titania Mode Unlocked
 teaser=Voice of the Argoth forest, defender of its creatures, and enforcer of its laws, Titania is literally an aspect of the forest itself. 
 You may play an additional land on each of your turns.
@@ -92,7 +92,7 @@ unlock_condition=this(variable{type:manag}>7)
 [award]
 name=Commander Format
 id=prx_commander
-unlock_img=commander_unlocked.jpg
+unlock_img=commander_unlocked.png
 unlock_text=Commander Format Unlocked
 teaser=Do you think you can dominate over other commanders? Take a big challenge in the commander format.
 trophyroom_text=Win a game with 40 or more life and with less cards in your graveyard than your opponent.

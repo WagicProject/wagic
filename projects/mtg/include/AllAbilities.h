@@ -322,7 +322,7 @@ private:
                 delete cX;
             }
         }
-        else if (s == "x" || s == "X")
+        else if (s == "x" || s == "X" || s == "fullpaid")
         {
             intValue = computeX(spell, card);
             if(intValue < 0)
@@ -334,25 +334,37 @@ private:
             if(intValue < 0)
                 intValue = 0;
         }
-        else if (s == "castx")
+        else if (s == "castx" || s == "Iroas")//calculate castx - devotion to red white
         {
-            intValue = card->castX;
+            intValue = (s == "castx")?card->castX:countDevotionTo(card, card->controller()->inPlay(), Constants::MTG_COLOR_RED, Constants::MTG_COLOR_WHITE);
         }
-        else if (s == "gear")
+        else if (s == "azorius" || s == "boros")//devotion blue white - devotion red white
         {
-            intValue = target->equipment;
+            intValue = (s == "azorius")?countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLUE,Constants::MTG_COLOR_WHITE):countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_WHITE,Constants::MTG_COLOR_RED);
         }
-        else if (s == "mutations")
+        else if (s == "dimir" || s == "golgari")//devotion blue black - devotion to green black
         {
-            intValue = target->mutation;
+            intValue = (s == "dimir")?countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLACK,Constants::MTG_COLOR_BLUE):countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLACK,Constants::MTG_COLOR_GREEN);
         }
-        else if (s == "colors")
+        else if (s == "gruul" || s == "izzet")//devotion to green red - devotion to red blue
         {
-            intValue = target->countColors();
+            intValue = (s == "gruul")?countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_GREEN,Constants::MTG_COLOR_RED):countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLUE,Constants::MTG_COLOR_RED);
         }
-        else if (s == "auras")
+        else if (s == "orzhov" || s == "rakdos")//devotion to white black - devotion to red black
         {
-            intValue = target->auras;
+            intValue = (s == "orzhov")?countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLACK,Constants::MTG_COLOR_WHITE):countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLACK,Constants::MTG_COLOR_RED);
+        }
+        else if (s == "selesnya" || s == "simic")//devotion to green white - devotion to green blue
+        {
+            intValue = (s == "selesnya")?countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_GREEN,Constants::MTG_COLOR_WHITE):countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLUE,Constants::MTG_COLOR_GREEN);
+        }
+        else if (s == "gear" || s == "auras")
+        {
+            intValue = (s == "gear")?target->equipment:target->auras;
+        }
+        else if (s == "mutations" || s == "colors")
+        {
+            intValue = (s == "mutations")?target->mutation:target->countColors();
         }
         else if (s == "manacost")
         {
@@ -360,50 +372,6 @@ private:
                 intValue = target->myconvertedcost + target->castX;
             else
                 intValue = target->myconvertedcost;
-        }
-        else if (s == "azorius")//devotion blue white
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLUE,Constants::MTG_COLOR_WHITE);
-        }
-        else if (s == "boros")//devotion red white
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_WHITE,Constants::MTG_COLOR_RED);
-        }
-        else if (s == "dimir")//devotion blue black
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLACK,Constants::MTG_COLOR_BLUE);
-        }
-        else if (s == "golgari")//devotion to green black
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLACK,Constants::MTG_COLOR_GREEN);
-        }
-        else if (s == "gruul")//devotion to green red
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_GREEN,Constants::MTG_COLOR_RED);
-        }
-        else if (s == "izzet")//devotion to red blue
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLUE,Constants::MTG_COLOR_RED);
-        }
-        else if (s == "orzhov")//devotion to white black
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLACK,Constants::MTG_COLOR_WHITE);
-        }
-        else if (s == "rakdos")//devotion to red black
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLACK,Constants::MTG_COLOR_RED);
-        }
-        else if (s == "selesnya")//devotion to green white
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_GREEN,Constants::MTG_COLOR_WHITE);
-        }
-        else if (s == "simic")//devotion to green blue
-        {
-            intValue = countDevotionTo(card,card->controller()->inPlay(),Constants::MTG_COLOR_BLUE,Constants::MTG_COLOR_GREEN);
-        }
-        else if (s == "Iroas")//devotion to red white
-        {
-            intValue = countDevotionTo(card, card->controller()->inPlay(), Constants::MTG_COLOR_RED, Constants::MTG_COLOR_WHITE);
         }
         else if (s.find("type:") != string::npos)
         {
@@ -620,57 +588,33 @@ private:
         {
             intValue = card->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + card->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
         }
-        else if (s == "countmycrespell")
+        else if (s == "countmycrespell" || s == "countmynoncrespell")
         {
-            intValue = card->controller()->game->stack->seenThisTurn("creature", Constants::CAST_ALL);
-        }
-        else if (s == "countmynoncrespell")
-        {
-            intValue = card->controller()->game->stack->seenThisTurn("*[-creature]", Constants::CAST_ALL);
+            intValue = (s == "countmycrespell")?card->controller()->game->stack->seenThisTurn("creature", Constants::CAST_ALL):card->controller()->game->stack->seenThisTurn("*[-creature]", Constants::CAST_ALL);
         }
         else if(s == "pnumofcommandcast" || s == "onumofcommandcast")
         {
             intValue = (s == "pnumofcommandcast")?card->controller()->numOfCommandCast:card->controller()->opponent()->numOfCommandCast;
         }
-        else if (s == "evictg")
+        else if (s == "evictg" || s == "evictu")
         {
-            intValue = card->imprintG;
+            intValue = (s == "evictg")?card->imprintG:card->imprintU;
         }
-        else if (s == "evictu")
+        else if (s == "evictr" || s == "evictb")
         {
-            intValue = card->imprintU;
+            intValue = (s == "evictr")?card->imprintR:card->imprintB;
         }
-        else if (s == "evictr")
+        else if (s == "evictw" || s == "commongreen")
         {
-            intValue = card->imprintR;
+            intValue = (s == "evictw")?card->imprintW:mostCommonColor(Constants::MTG_COLOR_GREEN, card);
         }
-        else if (s == "evictb")
+        else if (s == "commonblue" || s == "commonred")
         {
-            intValue = card->imprintB;
+            intValue = (s == "commonblue")?mostCommonColor(Constants::MTG_COLOR_BLUE, card):mostCommonColor(Constants::MTG_COLOR_RED, card);
         }
-        else if (s == "evictw")
+        else if (s == "commonblack" || s == "commonwhite")
         {
-            intValue = card->imprintW;
-        }
-        else if (s == "commongreen")
-        {
-            intValue = mostCommonColor(Constants::MTG_COLOR_GREEN, card);
-        }
-        else if (s == "commonblue")
-        {
-            intValue = mostCommonColor(Constants::MTG_COLOR_BLUE, card);
-        }
-        else if (s == "commonred")
-        {
-            intValue = mostCommonColor(Constants::MTG_COLOR_RED, card);
-        }
-        else if (s == "commonblack")
-        {
-            intValue = mostCommonColor(Constants::MTG_COLOR_BLACK, card);
-        }
-        else if (s == "commonwhite")
-        {
-            intValue = mostCommonColor(Constants::MTG_COLOR_WHITE, card);
+            intValue = (s == "commonblack")?mostCommonColor(Constants::MTG_COLOR_BLACK, card):mostCommonColor(Constants::MTG_COLOR_WHITE, card);
         }
         else if (s == "targetedcurses")
         {
@@ -827,67 +771,37 @@ private:
         {
             intValue = (s == "kicked")?target->kicked:target->controller()->handsize;
         }
-        else if (s == "olandg")
+        else if (s == "olandg" || s == "olandu")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller()->opponent());
+            intValue = (s == "olandg")?countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller()->opponent()):countManaProducedby(Constants::MTG_COLOR_BLUE, target, target->controller()->opponent());
         }
-        else if (s == "olandu")
+        else if (s == "olandr" || s == "olandb")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target, target->controller()->opponent());
+            intValue = (s == "olandr")?countManaProducedby(Constants::MTG_COLOR_RED, target, target->controller()->opponent()):countManaProducedby(Constants::MTG_COLOR_BLACK, target, target->controller()->opponent());
         }
-        else if (s == "olandr")
+        else if (s == "olandw" || s == "olandc")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target, target->controller()->opponent());
+            intValue = (s == "olandw")?countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller()->opponent()):(countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()->opponent()) + countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller()->opponent()));
         }
-        else if (s == "olandb")
+        else if (s == "plandg" || s == "plandu")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target, target->controller()->opponent());
+            intValue = (s == "plandg")?countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller()):countManaProducedby(Constants::MTG_COLOR_BLUE, target, target->controller());
         }
-        else if (s == "olandw")
+        else if (s == "plandr" || s == "plandb")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller()->opponent());
+            intValue = (s == "plandr")?countManaProducedby(Constants::MTG_COLOR_RED, target, target->controller()):countManaProducedby(Constants::MTG_COLOR_BLACK, target, target->controller());
         }
-        else if (s == "olandc")
+        else if (s == "plandw" || s == "plandc")
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()->opponent()) +
-                countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller()->opponent());
+            intValue = (s == "plandw")?countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller()):(countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()) + countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller()));
         }
-        else if (s == "plandg")
+        else if (s == "cantargetmycre" || s == "cantargetoppocre")// can target my creature - can target opponent creature
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_GREEN, target, target->controller());
+            intValue = (s == "cantargetmycre")?countCanTargetby("creature", card, card->controller()):countCanTargetby("creature", card, card->controller()->opponent());
         }
-        else if (s == "plandu")
+        else if (s == "cantargetcre" || s == "myname")// can target any creature - name of the card you control
         {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLUE, target, target->controller());
-        }
-        else if (s == "plandr")
-        {
-            intValue = countManaProducedby(Constants::MTG_COLOR_RED, target, target->controller());
-        }
-        else if (s == "plandb")
-        {
-            intValue = countManaProducedby(Constants::MTG_COLOR_BLACK, target, target->controller());
-        }
-        else if (s == "plandw")
-        {
-            intValue = countManaProducedby(Constants::MTG_COLOR_WHITE, target, target->controller());
-        }
-        else if (s == "plandc")
-        {
-            intValue = countManaProducedby(Constants::MTG_COLOR_ARTIFACT, target, target->controller()) +
-                countManaProducedby(Constants::MTG_COLOR_WASTE, target, target->controller());
-        }
-        else if (s == "cantargetmycre")// can target my creature
-        {
-            intValue = countCanTargetby("creature", card, card->controller());
-        }
-        else if (s == "cantargetoppocre")// can target opponent creature
-        {
-            intValue = countCanTargetby("creature", card, card->controller()->opponent());
-        }
-        else if (s == "cantargetcre")// can target any creature
-        {
-            intValue = countCanTargetby("creature", card, card->controller()) + countCanTargetby("creature", card, card->controller()->opponent());
+            intValue = (s == "cantargetcre")?countCanTargetby("creature", card, card->controller()) + countCanTargetby("creature", card, card->controller()->opponent()):countCardNameinZone(card->name,card->controller()->inPlay());
         }
         else if (s == "controllerturn")//intvalue = 1 if its your turn this(variable{controllerturn})
         {
@@ -976,10 +890,6 @@ private:
                 cardHasTypeinZone("swamp", checkZone) +
                 cardHasTypeinZone("island", checkZone) +
                 cardHasTypeinZone("mountain", checkZone);
-        }
-        else if (s == "myname")//Name of the card you control
-        {
-            intValue = countCardNameinZone(card->name,card->controller()->inPlay());
         }
         else if (s == "allmyname")//Plague Rats and others
         {

@@ -15343,7 +15343,7 @@ type=Instant
 [card]
 name=Exquisite Archangel
 abilities=flying,cantlifelose
-auto=this(variable{lifetotal}<1) all(this) moveTo(exile) && lifeset:startinglife controller
+auto=@damageof(player):if compare(lifetotal)~lessthan~1 then all(this) moveTo(exile) && lifeset:startinglife controller
 text=Flying -- If you would lose the game, instead exile Exquisite Archangel and your life total becomes equal to your starting life total.
 mana={5}{W}{W}
 type=Creature
