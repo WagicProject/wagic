@@ -1264,7 +1264,7 @@ name=Angel of Destiny
 abilities=flying,double strike
 auto=@combatdamaged(player) from(creature|myBattlefield):life:thatmuch controller
 auto=@combatdamaged(player) from(creature|myBattlefield):life:thatmuch opponent
-auto=@each my endofturn restriction{compare(lifetotal)~morethan~34,type(Angel of Destiny[attacking]|myBattlefield)~morethan~0}:winGame controller
+auto=@each my endofturn restriction{compare(lifetotalminusstartinglifeminusend)~morethan~14,type(Angel of Destiny[attacking]|myBattlefield)~morethan~0}:winGame controller
 text=Flying, double strike -- Whenever a creature you control deals combat damage to a player, you and that player each gain that much life. -- At the beginning of your end step, if you have at least 15 life more than your starting life total, each player Angel of Destiny attacked this turn loses the game.
 mana={3}{W}{W}
 type=Creature
@@ -15342,8 +15342,8 @@ type=Instant
 [/card]
 [card]
 name=Exquisite Archangel
-abilities=flying
-auto=@damageof(player):if compare(lifetotal)~lessthan~thatmuchplus1plusend then moveTo(exile) && lifeset:20
+abilities=flying,cantlifelose
+auto=this(variable{lifetotal}<1) all(this) moveTo(exile) && lifeset:startinglife controller
 text=Flying -- If you would lose the game, instead exile Exquisite Archangel and your life total becomes equal to your starting life total.
 mana={5}{W}{W}
 type=Creature
@@ -21161,7 +21161,7 @@ auto=draw:1 controller
 auto=draw:1 opponent
 auto=life:5 controller
 auto=life:5 opponent
-auto=@each my upkeep restriction{type(*[white]|myBattlefield)~morethan~0,type(*[black]|myBattlefield)~morethan~0,type(*[green]|myBattlefield)~morethan~0,type(*[blue]|myBattlefield)~morethan~0,type(*[red]|myBattlefield)~morethan~0,type(*[planeswalker]|mybattlefield,myGraveyard)~morethan~0,type(*[land]|mybattlefield,myGraveyard)~morethan~0,type(*[artifact]|mybattlefield,myGraveyard)~morethan~0,type(*[enchantment]|mybattlefield,myGraveyard)~morethan~0,type(*[creature]|mybattlefield,myGraveyard)~morethan~0,type(*[instant;sorcery]|mybattlefield,myGraveyard)~morethan~0,compare(lifetotal)~morethan~19}:winGame controller
+auto=@each my upkeep restriction{type(*[white]|myBattlefield)~morethan~0,type(*[black]|myBattlefield)~morethan~0,type(*[green]|myBattlefield)~morethan~0,type(*[blue]|myBattlefield)~morethan~0,type(*[red]|myBattlefield)~morethan~0,type(*[planeswalker]|mybattlefield,myGraveyard)~morethan~0,type(*[land]|mybattlefield,myGraveyard)~morethan~0,type(*[artifact]|mybattlefield,myGraveyard)~morethan~0,type(*[enchantment]|mybattlefield,myGraveyard)~morethan~0,type(*[creature]|mybattlefield,myGraveyard)~morethan~0,type(*[instant;sorcery]|mybattlefield,myGraveyard)~morethan~0,compare(abundantlife)~morethan~0}:winGame controller
 text=When Happily Ever After enters the battlefield, each player gains 5 life and draws a card. -- At the beginning of your upkeep, if there are five colors among permanents you control, there are six or more card types among permanents you control and/or cards in your graveyard, and your life total is greater than or equal to your starting life total, you win the game.
 mana={2}{W}
 type=Enchantment
@@ -45440,7 +45440,7 @@ toughness=4
 [card]
 name=Speaker of the Heavens
 abilities=vigilance,lifelink
-auto={T}:token(Angel Spe) restriction{compare(lifetotal)~morethan~26} asSorcery
+auto={T}:token(Angel Spe) restriction{compare(lifetotalminusstartinglifeminusend)~morethan~6} asSorcery
 text=Vigilance, lifelink -- {T}: Create a 4/4 white Angel creature token with flying. Activate this ability only if you have at least 7 life more than your starting life total and only any time you could cast a sorcery.
 mana={W}
 type=Creature
@@ -50875,11 +50875,10 @@ toughness=1
 [/card]
 [card]
 name=Torgaar, Famine Incarnate
-target=player
-auto=lifeset:10
-other={2}{B}{B}{S(creature|myBattlefield)} name(Sacrifice 1)
-other={1}{B}{B}{S(creature|myBattlefield)}{S(creature|myBattlefield)} name(Sacrifice 2)
-other={B}{B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)} name(Sacrifice 3)
+auto=may name(Set life of player) name(Set life of player) lifeset:halfdownstartinglife target(player)
+autohand={4}{B}{B}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~0}:name(Sacrifice 1) activate name(Sacrifice 1) castcard(restricted)
+autohand={2}{B}{B}{S(creature|myBattlefield)}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~1}:name(Sacrifice 2) activate name(Sacrifice 2) castcard(restricted)
+autohand={B}{B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~2}:name(Sacrifice 3) activate name(Sacrifice 3) castcard(restricted)
 text=As an additional cost to cast this spell, you may sacrifice any number of creatures. This spell costs {2} less to cast for each creature sacrificed this way. -- When Torgaar, Famine Incarnate enters the battlefield, up to one target player's life total becomes half their starting life total, rounded down.
 mana={6}{B}{B}
 type=Legendary Creature
