@@ -681,9 +681,21 @@ private:
         {
             intValue = (s == "lifetotal")?target->controller()->life:target->controller()->opponent()->life;
         }
-        else if (s == "startinglife")
+        else if (s == "startinglife" || s == "ostartinglife")
         {
-            intValue = target->controller()->initLife;
+            intValue = (s == "startinglife")?target->controller()->initLife:target->controller()->opponent()->initLife;
+        }
+        else if (s == "pdiffinitlife" || s == "odiffinitlife")
+        {
+            intValue = (s == "pdiffinitlife")?(target->controller()->life - target->controller()->initLife):(target->controller()->opponent()->life - target->controller()->opponent()->initLife);
+        }
+        else if (s == "phalfinitlife" || s == "ohalfinitlife")
+        {
+            if(s == "phalfinitlife"){
+                intValue = (target->controller()->initLife > 2*target->controller()->life)?1:0;
+            } else {
+                intValue = (target->controller()->opponent()->initLife > 2*target->controller()->opponent()->life)?1:0;
+            }
         }
         else if (s == "abundantlife")//current life is morethan or equal to starting life
         {
