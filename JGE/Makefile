@@ -84,7 +84,7 @@ OBJS = $(GENERIC_OBJS) $(LINUX_OBJS)
 TARGET_LIB = libjge.a
 TARGET_HGE = libhgetools.a
 INCDIR = $(shell freetype-config --cflags 2> /dev/null) -I/usr/X11/include -I/usr/include/boost -Isrc/zipFS -Iinclude/
-CXXFLAGS += -DLINUX $(FMOD)
+CXXFLAGS += -DLINUX -DNETWORK_SUPPORT $(FMOD)
 CXXFLAGS += $(INCDIR)
 LIBDIR = lib/linux
 endif
