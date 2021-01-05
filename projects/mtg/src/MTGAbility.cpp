@@ -834,6 +834,8 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 card->addType("Land");
             if (observer->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, observer->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
                 canplay = false;
+            if (!card->getObserver() || !card->StackIsEmptyandSorcerySpeed())
+                canplay = false;
             if(!isLand)
                 card->removeType("Land");
             if(!canplay)
