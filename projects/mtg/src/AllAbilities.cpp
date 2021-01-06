@@ -6677,7 +6677,8 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
         {
             stypes = source->chooseasubtype;
         }
-        PopulateSubtypesIndexVector(types, stypes);
+        if(stypes.find("evicttypes") == string::npos) // The imprinted types and subtypes will be replaced later.
+            PopulateSubtypesIndexVector(types, stypes);
     }
 
     menu = stypes;
@@ -6741,7 +6742,18 @@ int ATransformer::addToGame()
     }
     else
     {
-for (it = types.begin(); it != types.end(); it++)
+        if(menu.find("evicttypes") != string::npos)
+        {
+            menu = "";
+            if(source->imprintedCards.size() > 0){
+                for (int i = 0; i < ((int)source->imprintedCards.back()->types.size()); i++) // read all the types of the last imprinted card.
+                    menu = menu + MTGAllCards::findType(source->imprintedCards.back()->types[i]) + " ";
+                menu.erase(menu.find_last_not_of("\t\n\v\f\r ") + 1);
+                menu.erase(0, menu.find_first_not_of("\t\n\v\f\r "));
+                PopulateSubtypesIndexVector(types, menu);
+            }
+        }
+        for (it = types.begin(); it != types.end(); it++)
         {
 
             if(removeCreatureSubtypes)
