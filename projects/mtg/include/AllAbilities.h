@@ -596,6 +596,10 @@ private:
         {
             intValue = (s == "pnumofcommandcast")?card->controller()->numOfCommandCast:card->controller()->opponent()->numOfCommandCast;
         }
+        else if (s == "evictpw" || s == "evictth")
+        {
+            if(card->imprintedCards.size() > 0) intValue = (s == "evictpw")?card->imprintedCards.back()->getPower():card->imprintedCards.back()->getToughness();
+        }
         else if (s == "evictg" || s == "evictu")
         {
             intValue = (s == "evictg")?card->imprintG:card->imprintU;
