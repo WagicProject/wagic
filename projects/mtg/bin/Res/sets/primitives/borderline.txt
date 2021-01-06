@@ -13355,7 +13355,7 @@ subtype=Desert
 [/card]
 [card]
 name=Duplicant
-auto=if type(creature[-token]|battlefield)~morethan~0 then may name(Exile non-token creature) name(Exile non-token creature) imprint target(creature[-token]) && all(this) becomes(evicttypes,evictpw/evictth)
+auto=if type(creature[-token]|battlefield)~morethan~0 then may name(Exile non-token creature) name(Exile non-token creature) imprint target(creature[-token]) && all(this) becomes(evicttypes,evictpw/evictth) forever
 text=Imprint — When Duplicant enters the battlefield, you may exile target nontoken creature. -- As long as the exiled card is a creature card, Duplicant has that card's power, toughness, and creature types. It's still a Shapeshifter.
 mana={6}
 type=Artifact Creature
