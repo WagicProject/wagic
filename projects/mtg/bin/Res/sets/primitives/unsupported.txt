@@ -175,22 +175,6 @@ mana={B}
 type=Instant
 [/card]
 [card]
-name=Aetherborn Marauder
-abilities=flying,lifelink
-text=Flying, lifelink -- When Aetherborn Marauder enters the battlefield, move any number of +1/+1 counters from other permanents you control onto Aetherborn Marauder.
-mana={3}{B}
-type=Creature
-subtype=Aetherborn Rogue
-power=2
-toughness=2
-[/card]
-[card]
-name=Aethermage's Touch
-text=Reveal the top four cards of your library. You may put a creature card from among them onto the battlefield. It gains "At the beginning of your end step, return this creature to its owner's hand." Then put the rest of the cards revealed this way on the bottom of your library in any order.
-mana={2}{W}{U}
-type=Instant
-[/card]
-[card]
 name=Agent of Acquisitions
 text=Draft Agent of Acquisitions face up. -- Instead of drafting a card from a booster pack, you may draft each card in that booster pack, one at a time. If you do, turn Agent of Acquisitions face down and you can't draft cards for the rest of this draft round. (You may look at booster packs passed to you.)
 mana={2}
@@ -200,26 +184,10 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Aggression
-text=Enchant non-Wall creature -- Enchanted creature has first strike and trample. -- At the beginning of the end step of enchanted creature's controller, destroy that creature if it didn't attack this turn.
-mana={2}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Agyrem
 text=Whenever a white creature dies, return it to the battlefield under its owner's control at the beginning of the next end step. -- Whenever a nonwhite creature dies, return it to its owner's hand at the beginning of the next end step. -- Whenever you roll {C}, creatures can't attack you until a player planeswalks.
 type=Plane
 subtype=Ravnica
-[/card]
-[card]
-name=Ajani's Chosen
-text=Whenever an enchantment enters the battlefield under your control, put a 2/2 white Cat creature token onto the battlefield. If that enchantment is an Aura, you may attach it to the token.
-mana={2}{W}{W}
-type=Creature
-subtype=Cat Soldier
-power=3
-toughness=3
 [/card]
 [card]
 name=Akki Lavarunner
@@ -266,12 +234,6 @@ mana={W}
 type=Sorcery
 [/card]
 [card]
-name=Allure of the Unknown
-text=Reveal the top six cards of your library. An opponent exiles a nonland card from among them, then you put the rest into your hand. That opponent may cast the exiled card without paying its mana cost.
-mana={3}{B}{R}
-type=Sorcery
-[/card]
-[card]
 name=Alms Collector
 text=Flash -- If an opponent would draw two or more cards, instead you and that player each draw a card.
 mana={3}{W}
@@ -295,25 +257,10 @@ mana={R}
 type=Enchantment
 [/card]
 [card]
-name=Altar of the Pantheon
-text=Your devotion to each color and each combination of colors is increased by one. -- {T}: Add one mana of any color. If you control a God, a Demigod, or a legendary enchantment, you gain 1 life.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Alter Reality
 text=Change the text of target spell or permanent by replacing all instances of one color word with another. (This effect lasts indefinitely.) -- Flashback {1}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Amareth, the Lustrous
-text=Flying -- Whenever another permanent enters the battlefield under your control, look at the top card of your library. If it shares a card type with that permanent, you may reveal that card and put it into your hand.
-mana={3}{G}{W}{U}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
 [/card]
 [card]
 name=Ambiguity
@@ -349,31 +296,10 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Anavolver
-text=Kicker {1}{U} and/or {B} (You may pay an additional {1}{U} and/or {B} as you cast this spell.) -- If Anavolver was kicked with its {1}{U} kicker, it enters the battlefield with two +1/+1 counters on it and with flying. -- If Anavolver was kicked with its {B} kicker, it enters the battlefield with a +1/+1 counter on it and with "Pay 3 life: Regenerate Anavolver."
-mana={3}{G}
-type=Creature
-subtype=Volver
-power=3
-toughness=3
-[/card]
-[card]
 name=Angel's Grace
 text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- You can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Angel's Trumpet
-text=All creatures have vigilance. -- At the beginning of each player's end step, tap all untapped creatures that player controls that didn't attack this turn. Angel's Trumpet deals damage to the player equal to the number of creatures tapped this way.
-mana={3}
-type=Artifact
-[/card]
-[card]
-name=Animal Magnetism
-text=Reveal the top five cards of your library. An opponent chooses a creature card from among them. Put that card onto the battlefield and the rest into your graveyard.
-mana={4}{G}
-type=Sorcery
 [/card]
 [card]
 name=Animate Library
@@ -381,13 +307,6 @@ text=Enchant your library -- Enchanted library is an artifact creature on the ba
 mana={4}{U}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Animation Module
-auto=@<anyamount>counter(1/1,1) target(*|myBattlefield):pay({1}) create(Servo:Artifact Creature Servo:1/1)
-text=Whenever one or more +1/+1 counters are placed on a permanent you control, you may pay {1}. If you do, create a 1/1 colorless Servo artifact creature token. -- {3}, {T}: Choose a counter on target permanent or player. Give that permanent or player another counter of that kind.
-mana={1}
-type=Artifact
 [/card]
 [card]
 name=Animus of Predation

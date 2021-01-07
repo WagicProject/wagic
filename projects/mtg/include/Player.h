@@ -47,6 +47,7 @@ public:
     int numOfCommandCast;
     int monarch;
     int surveilOffset;
+    int devotionOffset;
     int epic;
     int forcefield;
     int dealsdamagebycombat;

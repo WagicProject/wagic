@@ -3488,13 +3488,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //set surveil offset controller (eg. Enhanced Surveillance)
+    //set surveil offset of a player (eg. Enhanced Surveillance)
     vector<string> splitSurveilOffset = parseBetween(s, "altersurvoffset:", " ", false);
     if (splitSurveilOffset.size())
     {
         int surveilOffset = atoi(splitSurveilOffset[1].c_str());
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AAAlterSurveilOffset(observer, id, card, t, surveilOffset, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //set devotion offset of a player (eg. Altar of the Pantheon)
+    vector<string> splitDevotionOffset = parseBetween(s, "alterdevoffset:", " ", false);
+    if (splitDevotionOffset.size())
+    {
+        int devotionOffset = atoi(splitDevotionOffset[1].c_str());
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterDevotionOffset(observer, id, card, t, devotionOffset, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -3916,6 +3927,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string counterString = splitDuplicateCounters[1];
         if(counterString.find("all") != string::npos)
             ((AADuplicateCounters*)a)->allcounters = true;
+        else if(counterString.find("single") != string::npos)
+            ((AADuplicateCounters*)a)->single = true;
         return a;
     }
     //remove single counter of any type

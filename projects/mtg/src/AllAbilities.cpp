@@ -1133,6 +1133,44 @@ AAAlterSurveilOffset::~AAAlterSurveilOffset()
 {
 }
 
+//AA Devotion Offset
+AAAlterDevotionOffset::AAAlterDevotionOffset(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int devotionOffset, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), devotionOffset(devotionOffset)
+{
+}
+
+int AAAlterDevotionOffset::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            pTarget->devotionOffset += devotionOffset;
+            if(pTarget->devotionOffset < 0)
+                pTarget->devotionOffset = 0;
+        }
+    }
+    return 0;
+}
+
+const string AAAlterDevotionOffset::getMenuText()
+{
+    WParsedInt parsedNum(devotionOffset);
+    return _(parsedNum.getStringValue() + " Devotion Offset ").c_str();
+}
+
+AAAlterDevotionOffset * AAAlterDevotionOffset::clone() const
+{
+    return NEW AAAlterDevotionOffset(*this);
+}
+
+AAAlterDevotionOffset::~AAAlterDevotionOffset()
+{
+}
+
 //AA Yidaro Count
 AAAlterYidaroCount::AAAlterYidaroCount(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int yidarocount, ManaCost * _cost,
         int who) :
@@ -2376,6 +2414,7 @@ ActivatedAbility(observer, id, source, cost, 0)
 {
     this->GetId();
     allcounters = false;
+    single = false;
 }
  
 int AADuplicateCounters::resolve()
@@ -2390,13 +2429,21 @@ int AADuplicateCounters::resolve()
 
     if(pTarget && pTarget->poisonCount)
     {
-        MTGAbility * a = NEW AAAlterPoison(game, game->mLayers->actionLayer()->getMaxId(), source, target, pTarget->poisonCount, NULL);
+        MTGAbility * a = NULL;
+        if(single)
+            a = NEW AAAlterPoison(game, game->mLayers->actionLayer()->getMaxId(), source, target, pTarget->poisonCount, NULL);
+        else
+            a = NEW AAAlterPoison(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
     else if(pTarget && pTarget->energyCount)
     {
-        MTGAbility * a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, pTarget->energyCount, NULL);
+        MTGAbility * a = NULL;
+        if(single)
+            a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
+        else
+            a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, pTarget->energyCount, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
@@ -2406,7 +2453,11 @@ int AADuplicateCounters::resolve()
         for(size_t i = 0; i < counters->counters.size(); ++i)
         {
             Counter * counter = counters->counters[i];
-            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, counter->nb, 0);
+            MTGAbility * a = NULL;
+            if(single)
+                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
+            else
+                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, counter->nb, 0);
             a->oneShot = true;
             pcounters.push_back(a);
         }
