@@ -22,6 +22,7 @@ CardDescriptor::CardDescriptor()
     zposComparisonMode = COMPARISON_NONE;
     zposition = -1;
     hasKickerCost = 0;
+    hasFlashbackCost = 0;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
@@ -60,6 +61,11 @@ void CardDescriptor::unsecureSetKicked(int k)
 void CardDescriptor::unsecureSetHasKickerCost(int k)
 {
     hasKickerCost = k;
+}
+
+void CardDescriptor::unsecureSetHasFlashbackCost(int k)
+{
+    hasFlashbackCost = k;
 }
 
 void CardDescriptor::unsecureSetTapped(int i)
@@ -237,6 +243,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         return NULL;
 
     if ((hasKickerCost == -1 && (card->getManaCost()->getKicker() || card->basicAbilities[Constants::HASOTHERKICKER])) || (hasKickerCost == 1 && (!card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASOTHERKICKER])))
+    {
+        match = NULL;
+    }
+
+    if ((hasFlashbackCost == -1 && card->getManaCost()->getFlashback()) || (hasFlashbackCost == 1 && !card->getManaCost()->getFlashback()))
     {
         match = NULL;
     }

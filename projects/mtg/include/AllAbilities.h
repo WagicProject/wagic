@@ -427,7 +427,7 @@ private:
                     {
                         if (color)
                         {
-                            intValue += zone->countTotalManaSymbols(tc, color);
+                            intValue += card->controller()->devotionOffset + zone->countTotalManaSymbols(tc, color); // Increase total devotion with an offset (e.g. Altar of the Pantheon)
                         }
                         else
                         {
@@ -575,6 +575,10 @@ private:
         else if (s == "psurveiloffset" || s == "osurveiloffset")
         {
             intValue = (s == "psurveiloffset")?card->controller()->surveilOffset:card->controller()->opponent()->surveilOffset;
+        }
+        else if (s == "pdevotionoffset" || s == "odevotionoffset")
+        {
+            intValue = (s == "pdevotionoffset")?card->controller()->devotionOffset:card->controller()->opponent()->devotionOffset;
         }
         else if (s == "praidcount" || s == "oraidcount")
         {
@@ -1115,7 +1119,7 @@ public:
             counthybrid += zone->countDevotion(dtc, color1, color2);
         }
         SAFE_DELETE(dtc);
-        return counthybrid;
+        return card->controller()->devotionOffset + counthybrid; // Increase total devotion with an offset (e.g. Altar of the Pantheon)
     }
 
     int countCardNameinZone(string name, MTGGameZone * zone)
@@ -2356,7 +2360,7 @@ public:
 class AADuplicateCounters: public ActivatedAbility
 {
 public:
-    bool allcounters;
+    bool allcounters, single;
     AADuplicateCounters(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
@@ -5045,6 +5049,19 @@ public:
     const string getMenuText();
     AAAlterSurveilOffset * clone() const;
     ~AAAlterSurveilOffset();
+};
+//Devotion Offset
+class AAAlterDevotionOffset: public ActivatedAbilityTP
+{
+public:
+    int devotionOffset;
+
+    AAAlterDevotionOffset(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int devotionOffset, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterDevotionOffset * clone() const;
+    ~AAAlterDevotionOffset();
 };
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager: public TargetAbility

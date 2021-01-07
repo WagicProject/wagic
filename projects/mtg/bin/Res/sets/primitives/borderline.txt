@@ -19,6 +19,17 @@ mana={X}{U}
 type=Sorcery
 [/card]
 [card]
+name=Aetherborn Marauder
+abilities=flying,lifelink
+auto=all(*[counter{1/1}|mybattlefield) transforms((,newability[thisforeach(counter{1/1.1}) may name(Move 1/1 counter) counter(1/1.-1) all(this) && counter(1/1) target(Aetherborn Marauder[fresh]|mybattlefield)])) oneshot
+text=Flying, lifelink -- When Aetherborn Marauder enters the battlefield, move any number of +1/+1 counters from other permanents you control onto Aetherborn Marauder.
+mana={3}{B}
+type=Creature
+subtype=Aetherborn Rogue
+power=2
+toughness=2
+[/card]
+[card]
 name=Abandon Hope
 auto=reject target(<prex>*|myhand)
 auto=reject target(<prex>*|opponenthand)
@@ -532,6 +543,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Aggression
+target=creature[-wall]
+auto=first strike
+auto=trample
+auto=teach(creature) transforms((,newability[@each my endofturn restriction{didntattack}:destroy]))
+text=Enchant non-Wall creature -- Enchanted creature has first strike and trample. -- At the beginning of the end step of enchanted creature's controller, destroy that creature if it didn't attack this turn.
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Aggressive Instinct
 target=creature|mybattlefield
 auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike!>])) forever
@@ -634,6 +656,17 @@ auto={S}:target(creature) preventAllCombatDamage to(mytgt) ueot
 text=When Ajani's Aid enters the battlefield, you may search your library and/or graveyard for a card named Ajani, Valiant Protector, reveal it, and put it into your hand. If you search your library this way, shuffle it. -- Sacrifice Ajani's Aid: Prevent all combat damage a creature of your choice would deal this turn.
 mana={2}{G}{W}
 type=Enchantment
+[/card]
+[card]
+name=Ajani's Chosen
+auto=@movedTo(enchantment[aura]|myBattlefield):all(trigger[to]) transforms((,newability[may name(Attach aura to cat) rehook target(cat[token;fresh]|mybattlefield)])) oneshot
+auto=@movedTo(enchantment|myBattlefield):token(Cat,Creature Cat,2/2,white)
+text=Whenever an enchantment enters the battlefield under your control, put a 2/2 white Cat creature token onto the battlefield. If that enchantment is an Aura, you may attach it to the token.
+mana={2}{W}{W}
+type=Creature
+subtype=Cat Soldier
+power=3
+toughness=3
 [/card]
 [card]
 name=Ajani's Influence
@@ -926,6 +959,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Allure of the Unknown
+auto=if type(*[-land;zpos<=6]|mylibrary)~morethan~0 then ability$!name(Reveal the top six cards) name(Reveal the top six cards) target(<6>*[zpos<=6]|opponentlibrary) donothing!$ opponent
+auto=if type(*[-land;zpos<=6]|mylibrary)~morethan~0 then ability$!name(Choose one) name(Exile and cast) target(*[-land;zpos<=6]|opponentlibrary) moveto(exile) and!( activate castcard(normal) and!( moveto(opponenthand) all(*[zpos<=6]|opponentlibrary) )! )! _ choice name(Exile and don't cast) target(*[-land;zpos<=6]|opponentlibrary) moveto(exile) and!( moveto(opponenthand) all(*[zpos<=6]|opponentlibrary) )! !$ opponent
+auto=if type(*[-land;zpos<=6]|mylibrary)~equalto~0 then ability$!name(Reveal the top six cards) name(Reveal the top six cards) target(<6>*[zpos<=6]|opponentlibrary) moveto(opponenthand)!$ opponent
+text=Reveal the top six cards of your library. An opponent exiles a nonland card from among them, then you put the rest into your hand. That opponent may cast the exiled card without paying its mana cost.
+mana={3}{B}{R}
+type=Sorcery
+[/card]
+[card]
 name=Ally Encampment
 auto={T}:add{C}
 auto=this(variable{type:ally:myrestrictedcastingzone}>0) {T}:add{B}
@@ -1022,17 +1064,27 @@ type=Artifact
 [card]
 name=Altar of the Lost
 auto=tap(noevent)
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{W}{B}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{W}{R}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{W}{G}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{W}{U}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{B}{R}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{B}{G}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{B}{U}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{R}{G}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{R}{U}
-auto=this(variable{type:*[flashback]:mygraveyard}>0) {T}:add{U}{G}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{W}{B}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{W}{R}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{W}{G}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{W}{U}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{B}{R}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{B}{G}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{B}{U}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{R}{G}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{R}{U}
+auto=this(variable{type:*[hasflashback]:mygraveyard}>0) {T}:add{U}{G}
 text=Altar of the Lost enters the battlefield tapped. -- {T}: Add two mana in any combination of colors to your mana pool. Spend this mana only to cast spells with flashback from a graveyard.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Altar of the Pantheon
+auto=alterdevoffset:1 controller
+auto=@movedto(this|nonbattlezone) from(battlefield):alterdevoffset:-1 controller
+auto=this(variable{type:*[god;demigod]:mybattlefieldplustype:enchantment[legendary]:mybattlefieldplusend}>0) {T}:ability$! name(choose a color) choice name(Add White) add{W} _ choice name(Add Blue) add{U} _ choice name(Add Black) add{B} _ choice name(Add Red) add{R} _ choice name(Add Green) add{G}!$ controller && life:1 controller
+auto=this(variable{type:*[god;demigod]:mybattlefieldplustype:enchantment[legendary]:mybattlefieldplusend}=0) {T}:ability$! name(choose a color) choice name(Add White) add{W} _ choice name(Add Blue) add{U} _ choice name(Add Black) add{B} _ choice name(Add Red) add{R} _ choice name(Add Green) add{G}!$ controller
+text=Your devotion to each color and each combination of colors is increased by one. -- {T}: Add one mana of any color. If you control a God, a Demigod, or a legendary enchantment, you gain 1 life.
 mana={3}
 type=Artifact
 [/card]
@@ -1045,6 +1097,21 @@ mana={4}
 type=Artifact Creature
 subtype=Wall
 power=0
+toughness=6
+[/card]
+[card]
+name=Amareth, the Lustrous
+abilities=flying
+auto=@movedTo(planeswalker|myBattlefield):all(trigger[to]) transforms((,newability[reveal:1 optionone name(May put in hand) target(<upto:1>planeswalker|reveal) moveto(myhand) optiononeend optiontwo name(Put back in library) target(*|reveal) moveto(mylibrary) optiontwoend revealend])) oneshot
+auto=@movedTo(creature|myBattlefield):all(trigger[to]) transforms((,newability[reveal:1 optionone name(May put in hand) target(<upto:1>creature|reveal) moveto(myhand) optiononeend optiontwo name(Put back in library) target(*|reveal) moveto(mylibrary) optiontwoend revealend])) oneshot
+auto=@movedTo(land[-creature]|myBattlefield):all(trigger[to]) transforms((,newability[reveal:1 optionone name(May put in hand) target(<upto:1>land|reveal) moveto(myhand) optiononeend optiontwo name(Put back in library) target(*|reveal) moveto(mylibrary) optiontwoend revealend])) oneshot
+auto=@movedTo(enchantment[-creature]|myBattlefield):all(trigger[to]) transforms((,newability[reveal:1 optionone name(May put in hand) target(<upto:1>enchantment|reveal) moveto(myhand) optiononeend optiontwo name(Put back in library) target(*|reveal) moveto(mylibrary) optiontwoend revealend])) oneshot
+auto=@movedTo(artifact[-creature;-land;-enchantment]|myBattlefield):all(trigger[to]) transforms((,newability[reveal:1 optionone name(May put in hand) target(<upto:1>artifact|reveal) moveto(myhand) optiononeend optiontwo name(Put back in library) target(*|reveal) moveto(mylibrary) optiontwoend revealend])) oneshot
+text=Flying -- Whenever another permanent enters the battlefield under your control, look at the top card of your library. If it shares a card type with that permanent, you may reveal that card and put it into your hand.
+mana={3}{G}{W}{U}
+type=Legendary Creature
+subtype=Dragon
+power=6
 toughness=6
 [/card]
 [card]
@@ -1122,6 +1189,19 @@ type=Legendary Creature
 subtype=Wolf Beast
 power=4
 toughness=4
+[/card]
+[card]
+name=Anavolver
+other={3}{G}{B} name(Kicker {B})
+auto=if paid(alternative) then transforms((,newability[counter(1/1.1)],newability[{L:3}:regenerate])) forever
+kicker={1}{U}
+auto=kicker ifnot paid(alternative) then transforms((,newability[counter(1/1.2)],newability[flying])) forever
+text=Kicker {1}{U} and/or {B} (You may pay an additional {1}{U} and/or {B} as you cast this spell.) -- If Anavolver was kicked with its {1}{U} kicker, it enters the battlefield with two +1/+1 counters on it and with flying. -- If Anavolver was kicked with its {B} kicker, it enters the battlefield with a +1/+1 counter on it and with "Pay 3 life: Regenerate Anavolver."
+mana={3}{G}
+type=Creature
+subtype=Volver
+power=3
+toughness=3
 [/card]
 [card]
 name=Anax, Hardened in the Forge
@@ -1217,6 +1297,13 @@ auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{W}
 auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{U}
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a creature spell.
 type=Land
+[/card]
+[card]
+name=Angel's Trumpet
+auto=lord(creature) transforms((,newability[vigilance],newability[@each my end restriction{didntattack}:tap(noevent) && damage:1 controller]))
+text=All creatures have vigilance. -- At the beginning of each player's end step, tap all untapped creatures that player controls that didn't attack this turn. Angel's Trumpet deals damage to the player equal to the number of creatures tapped this way.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Angel Ang
@@ -1487,6 +1574,14 @@ mana={B}{R}
 type=Sorcery
 [/card]
 [card]
+name=Animal Magnetism
+auto=if type(*[creature;zpos<=5]|mylibrary)~morethan~0 then ability$!name(Choose creature card) name(Choose creature card) target(creature[zpos<=5]|opponentlibrary) moveto(opponentBattlefield) and!( moveto(opponentgraveyard) all(*[zpos<=5]|opponentlibrary) )! !$ opponent
+auto=if type(*[creature;zpos<=5]|mylibrary)~equalto~0 then ability$!name(Reveal the top five cards) name(Reveal the top five cards) target(<5>*[zpos<=5]|opponentlibrary) moveto(opponentgraveyard)!$ opponent
+text=Reveal the top five cards of your library. An opponent chooses a creature card from among them. Put that card onto the battlefield and the rest into your graveyard.
+mana={4}{G}
+type=Sorcery
+[/card]
+[card]
 name=Animal Sanctuary
 auto={T}:add{C}
 auto={2}{T}:counter(1/1,1) target(creature[bird;cat;dog;goat;ox;snake])
@@ -1505,6 +1600,15 @@ type=Creature
 subtype=Faerie
 power=2
 toughness=2
+[/card]
+[card]
+name=Animation Module
+auto=@counteradded(1/1) from(*|mybattlefield):name(pay 1 for 1/1 Servo) pay[[{1}]] name(pay 1 for 1/1 Servo) token(Servo,Artifact Creature Servo,1/1)
+auto={3}{T}:name(Add counter to a permanent) name(Add counter to a permanent) target(*[counter{any}]|battlefield) duplicatecounters(single)
+auto={3}{T}:name(Add counter to a player) name(Add counter to a player) target(player) duplicatecounters(single)
+text=Whenever one or more +1/+1 counters are placed on a permanent you control, you may pay {1}. If you do, create a 1/1 colorless Servo artifact creature token. -- {3}, {T}: Choose a counter on target permanent or player. Give that permanent or player another counter of that kind.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Anje Falkenrath
@@ -5047,7 +5151,7 @@ target=*[instant;sorcery]|stack
 auto=fizzle
 auto=activate castcard(copied noevent)
 other={R} name(Reduced cast)
-otherestriction=type(creature[power>=4]|mybattlefield)~morethan~0
+otherrestriction=type(creature[power>=4]|mybattlefield)~morethan~0
 text=This spell costs {3} less to cast if you control a creature with power 4 or greater. -- Change the target of target spell or ability with a single target.
 mana={3}{R}
 type=Instant
@@ -26646,8 +26750,8 @@ auto=@each cleanup restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach
 auto=@each cleanup restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
 auto=@each cleanup restriction{compare(myblackpoolcount)~morethan~0}:thisforeach(variable{myblackpoolcount}) add{C} && removemana({B})
 auto=@each cleanup restriction{compare(mywhitepoolcount)~morethan~0}:thisforeach(variable{mywhitepoolcount}) add{C} && removemana({W})
-auto=this(variable{type:managplustype:manauplusend}<7) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
-auto=this(variable{type:managplustype:manauplusend}>6) transforms((Legendary Enchantment Creature))
+auto=this(variable{simic}<7) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{simic}>6) transforms((Legendary Enchantment Creature))
 text=Indestructible -- As long as your devotion to green and blue is less than seven, Kruphix isn't a creature. -- You have no maximum hand size. -- If unused mana would empty from your mana pool, that mana becomes colorless instead.
 mana={3}{G}{U}
 type=Legendary Enchantment Creature
@@ -36853,7 +36957,7 @@ toughness=6
 [card]
 name=Quiet Speculation
 target=player
-auto=Reveal:type:*:targetedpersonslibrary revealzone(targetedpersonslibrary) optionone name(Choose 3 cards with flashback) target(<upto:3>*[flashback]|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put back) all(*|reveal) moveto(ownerlibrary) optiontwoend revealend
+auto=Reveal:type:*:targetedpersonslibrary revealzone(targetedpersonslibrary) optionone name(Choose 3 cards with flashback) target(<upto:3>*[hasflashback]|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put back) all(*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
 mana={1}{U}
 type=Sorcery
@@ -40019,7 +40123,7 @@ type=Instant
 [/card]
 [card]
 name=Runic Repetition
-target=*[flashback]|myexile
+target=*[hasflashback]|myexile
 auto=moveto(myhand)
 text=Return target exiled card with flashback you own to your hand.
 mana={2}{U}
@@ -50673,7 +50777,7 @@ toughness=1
 [card]
 name=Tombfire
 target=player
-auto=ability$!name(Exile flashback cards) all(*[flashback]|mygraveyard) moveto(myexile)!$ targetedplayer
+auto=ability$!name(Exile flashback cards) all(*[hasflashback]|mygraveyard) moveto(myexile)!$ targetedplayer
 text=Target player exiles all cards with flashback from his or her graveyard.
 mana={B}
 type=Sorcery

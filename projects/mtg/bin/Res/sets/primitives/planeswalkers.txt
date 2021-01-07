@@ -1188,7 +1188,7 @@ auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && c
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-20,loyalty) restriction{type(*[manacost=20;zpos=1]|mylibrary)~morethan~0}
 text=Kicker {2} -- When Jace, Mirror Mage enters the battlefield, if Jace was kicked, create a token that's a copy of Jace, Mirror Mage except it's not legendary and its starting loyalty is 1. -- +1: Scry 2. -- 0: Draw a card and reveal it. Remove a number of loyalty counters equal to that card's converted mana cost from Jace, Mirror Mage.
 mana={1}{U}{U}
-type=Planeswalker
+type=Legendary Planeswalker
 subtype=Jace
 [/card]
 [card]
