@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
-name=Core Set 2019
+name=Core Set: Magic 2019
+orderindex=COR-I.M19
 year=2018-07-13
-total=314
+total=315
 [/meta]
 [card]
 primitive=Aegis of the Heavens

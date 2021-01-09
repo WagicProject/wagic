@@ -4608,12 +4608,6 @@ type=Summon
 subtype=Ogre
 [/card]
 [card]
-name=Ghired's Belligerence
-text=Ghired's Belligerence deals X damage divided as you choose among any number of target creatures. Whenever a creature dealt damage this way dies this turn, populate. (Create a token that's a copy of a creature token you control.)
-mana={X}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Ghostfire Blade
 text=Equipped creature gets +2/+2. -- Equip {3} -- Ghostfire Blade's equip ability costs {2} less to activate if it targets a colorless creature.
 mana={1}

@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Urza's Saga
 block=Urza
-year=1999
-total=350
+orderindex=EXP-G.USG
+year=1998-10-12
+total=351
 [/meta]
 [card]
 primitive=Absolute Grace

@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Duels of the Planeswalkers
+orderindex=PRO-L.DPA
 year=2010-06-04
-total=113
+total=118
 [/meta]
 [card]
 primitive=Saproling

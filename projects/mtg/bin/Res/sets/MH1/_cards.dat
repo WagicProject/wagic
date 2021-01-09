@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Modern Horizon
+orderindex=REP-D.MH1
 year=2019-06-14
-total=255
+total=256
 [/meta]
 [card]
 primitive=Construct

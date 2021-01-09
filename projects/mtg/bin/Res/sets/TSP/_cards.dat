@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Time Spiral
 block=Time Spiral
-year=2006
-total=301
+orderindex=EXP-Z5.TSP
+year=2006-10-06
+total=302
 [/meta]
 [card]
 primitive=AEther Web

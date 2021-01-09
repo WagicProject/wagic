@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Avacyn Restored
 block=Innistrad
-year=2012
-total=244
+orderindex=EXP-ZO.AVR
+year=2012-05-04
+total=246
 [/meta]
 [card]
 primitive=Abundant Growth

@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Explorers of Ixalan
+orderindex=COM-G.E02
 year=2017-11-24
-total=48
+total=47
 [/meta]
 [card]
 primitive=Beacon of Immortality

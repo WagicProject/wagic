@@ -1,9 +1,9 @@
 [meta]
 author=Wagic Team
-name=Magic 2013
-block=Core
-year=2012
-total=249
+name=Core Set: Magic 2013
+orderindex=COR-E.M13
+year=2012-07-13
+total=250
 [/meta]
 [card]
 primitive=Acidic Slime

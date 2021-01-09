@@ -1,9 +1,10 @@
 [meta]
 author=Wagic Team
 name=Ixalan
-year=2017
-total=289
 block=Ixalan
+orderindex=EXP-ZZ7.XLN
+year=2017-09-29
+total=300
 [/meta]
 [card]
 primitive=Adanto Vanguard

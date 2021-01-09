@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Secret Lair Drop Series
+orderindex=PRE-5.SLD
 year=2019-12-02
-total=32
+total=35
 [/meta]
 [card]
 primitive=Cat

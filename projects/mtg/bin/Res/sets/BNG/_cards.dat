@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Born of the Gods
 block=Theros
+orderindex=EXP-ZT.BNG
 year=2014-02-07
-total=165
+total=167
 [/meta]
 [card]
 primitive=Acolyte's Reward

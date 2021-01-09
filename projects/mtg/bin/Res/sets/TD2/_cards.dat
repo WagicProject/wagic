@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Mirrodin Pure vs. New Phyrexia
+orderindex=DUE-8.TD2
 year=2011-05-12
-total=88
+total=95
 [/meta]
 [card]
 primitive=Platinum Angel

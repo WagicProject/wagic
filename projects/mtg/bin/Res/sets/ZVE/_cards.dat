@@ -1,9 +1,9 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Zendikar vs. Eldrazi
-block=Duel
-year=2015
-total=80
+orderindex=DUE-H.DDP
+year=2015-08-28
+total=77
 [/meta]
 [card]
 primitive=Affa Guard Hound

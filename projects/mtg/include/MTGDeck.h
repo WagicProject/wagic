@@ -23,8 +23,10 @@ public:
     string id; //Short name: 10E, RAV, etc. Automatic from folder.
     string author; //Author of set, for crediting mod makers, etc.
     string name; //Long name: Tenth Edition
-    int block; //For future use by tournament mode, etc.
+    string orderindex; //Order index for sorting sets: BEG-1.POR
+    string date; //The full release date of the set.
     int year; //The year the set was released.
+    int block; //For future use by tournament mode, etc.
     int total;//total cards
     //TODO Way to group cards by name, rather than mtgid.
 
@@ -32,6 +34,8 @@ public:
 
     int totalCards();
     string getName();
+    string getOrderIndex();
+    string getDate();
     string getBlock();
     void processConfLine(string line);
 

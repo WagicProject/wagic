@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Scars of Mirrodin
 block=Scars of Mirrodin
-year=2010
-total=249
+orderindex=EXP-ZJ.SOM
+year=2010-10-01
+total=251
 [/meta]
 [card]
 primitive=Abuna Acolyte

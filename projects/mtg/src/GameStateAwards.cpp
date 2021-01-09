@@ -99,7 +99,7 @@ void GameStateAwards::Start()
     vector<pair<string, string> > orderedSet;
     for(int i = 0; i < setlist.size(); i++){
         sprintf(buf, "%s", setlist[i].c_str());
-        orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getName(), buf));
+        orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getOrderIndex(), buf)); // Now sets are sorted by new Order Index tag.
     }
     sort(orderedSet.begin(),orderedSet.end());
     for (unsigned int i = 0; i < orderedSet.size(); i++)

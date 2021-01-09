@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Ultimate Masters
+orderindex=REP-C.UMA
 year=2018-12-07
-total=254
+total=255
 [/meta]
 [card]
 primitive=All Is Dust
