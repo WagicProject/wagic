@@ -870,6 +870,10 @@ Enable Prefetching=Abilita la pre-elaborazione
 #Gioco:
 Game=Gioco
 Interface Options=Opzioni dell'interfaccia
+Sort sets by=Ordina le espansioni per
+Sector=Settore
+Name=Nome
+Date=Data
 Language=linguaggio
 Closed hand=Carte in mano
 visible=Visible

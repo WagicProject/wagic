@@ -1342,6 +1342,10 @@ Enable Prefetching=Habilitar captura previa
 #Juego:
 Game=Juego
 Interface Options=Opciones de Interfaz
+Sort sets by=Solicitar ediciones por
+Sector=Sector
+Name=Nombre
+Date=Fecha
 Language=Idioma
 Closed hand=Cartas en mano
 visible=Visible

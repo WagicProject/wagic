@@ -99,7 +99,12 @@ void GameStateAwards::Start()
     vector<pair<string, string> > orderedSet;
     for(int i = 0; i < setlist.size(); i++){
         sprintf(buf, "%s", setlist[i].c_str());
-        orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getOrderIndex(), buf)); // Now sets are sorted by new Order Index tag.
+        if (options[Options::SORTINGSETS].number == 2) // Now sets can be sorted by sector(orderindex) or name or release date.
+            orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getDate(), buf));
+        else if (options[Options::SORTINGSETS].number == 1)
+            orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getName(), buf));
+        else
+            orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getOrderIndex(), buf));
     }
     sort(orderedSet.begin(),orderedSet.end());
     for (unsigned int i = 0; i < orderedSet.size(); i++)

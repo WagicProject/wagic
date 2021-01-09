@@ -73,6 +73,8 @@ void GameStateOptions::Start()
 
     optionsList = NEW WGuiList("Game");
     optionsList->Add(NEW WGuiHeader("Interface Options"));
+    optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::SORTINGSETS, "Sort sets by", Constants::BY_DATE, 1,
+                    Constants::BY_NAME, "", Constants::BY_SECTOR))); // Now sets can be sorted by sector(orderindex) or name or release date.
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::CLOSEDHAND, "Closed hand", 1, 1, 0)));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::HANDDIRECTION, "Hand direction", 1, 1, 0)));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MANADISPLAY, "Mana display", 3, 1, 0)));
