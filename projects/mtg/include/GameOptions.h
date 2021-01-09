@@ -47,6 +47,7 @@ public:
         SHOWBORDER,
         BLKBORDER,
         SHOWTOKENS,
+        SORTINGSETS,
         GDVLARGEIMAGE,
         CARDPREFETCHING,
         OSD,
@@ -272,6 +273,19 @@ public:
 private:
     OptionASkipPhase();
     static OptionASkipPhase mDef;
+};
+
+class OptionASortingSets : public EnumDefinition
+{
+public:
+    static EnumDefinition * getInstance()
+    {
+        return &mDef;
+    }
+
+private:
+    OptionASortingSets();
+    static OptionASortingSets mDef;
 };
 
 class OptionWhosFirst : public EnumDefinition

@@ -2221,7 +2221,12 @@ void WGuiFilterItem::updateValue()
             vector<pair<string, string> > orderedSet;
             for(int i = 0; i < setlist.size(); i++){
                 if (options[Options::optionSet(i)].number == 0) continue;
-                orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getOrderIndex(), setlist[i].c_str())); // Now sets are sorted by new Order Index tag.
+                if (options[Options::SORTINGSETS].number == Constants::BY_DATE) // Now sets can be sorted by sector(orderindex) or name or release date.
+                    orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getDate(), setlist[i].c_str())); 
+                else if (options[Options::SORTINGSETS].number == Constants::BY_NAME)
+                    orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getName(), setlist[i].c_str()));
+                else
+                    orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getOrderIndex(), setlist[i].c_str()));
             }
             sort(orderedSet.begin(),orderedSet.end());
             for (unsigned int i = 0; i < orderedSet.size(); i++){

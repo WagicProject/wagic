@@ -335,6 +335,10 @@ class Constants
     GRADE_UNSUPPORTED = 4,
     GRADE_DANGEROUS = 5,
 
+    BY_SECTOR=0,
+    BY_NAME=1,
+    BY_DATE=2,
+
     ASKIP_NONE=0,
     ASKIP_SAFE=1,
     ASKIP_FULL=2,

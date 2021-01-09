@@ -23,6 +23,7 @@ const string Options::optionNames[] = {
   "ShowBorder",
   "BlackBorder",
   "ShowTokens",
+  "SortingSets",
   "GDVLargeImages",
   "CardPrefetching",
   "displayOSD",
@@ -493,6 +494,11 @@ GameOption * GameOptions::get(int optionID)
             goEnum->def = OptionMaxGrade::getInstance();
             go = goEnum;
             break;
+        case Options::SORTINGSETS:
+            goEnum = NEW GameOptionEnum();
+            goEnum->def = OptionASortingSets::getInstance();
+            go = goEnum;
+            break;
         case Options::ASPHASES:
             goEnum = NEW GameOptionEnum();
             goEnum->def = OptionASkipPhase::getInstance();
@@ -958,6 +964,17 @@ OptionMaxGrade::OptionMaxGrade()
 
 }
 ;
+// MARK:  - 
+
+// MARK:  OptionASortingSets
+
+OptionASortingSets OptionASortingSets::mDef = OptionASortingSets();
+OptionASortingSets::OptionASortingSets()
+{
+    mDef.values.push_back(EnumDefinition::assoc(Constants::BY_SECTOR, "Sector"));
+    mDef.values.push_back(EnumDefinition::assoc(Constants::BY_NAME, "Name"));
+    mDef.values.push_back(EnumDefinition::assoc(Constants::BY_DATE, "Date"));
+}
 // MARK:  - 
 
 // MARK:  OptionASkipPhase
