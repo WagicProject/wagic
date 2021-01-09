@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Dissension
 block=Ravnica
-year=2006
-total=180
+orderindex=EXP-Z4.DIS
+year=2006-05-05
+total=182
 [/meta]
 [card]
 primitive=AEthermage's Touch

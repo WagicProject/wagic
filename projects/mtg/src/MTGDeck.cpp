@@ -1607,6 +1607,18 @@ string MTGSetInfo::getName()
     return id; //Ugly name as well.
 }
 
+string MTGSetInfo::getDate()
+{
+    if (date.size()) return date; //Return the set release date.
+    return "..."; //Fallback if no date has been specified.
+}
+
+string MTGSetInfo::getOrderIndex()
+{
+    if (orderindex.size()) return orderindex; //Order Index for sorting sets.
+    return getName(); // Fallback to name if Order Index is empty.
+}
+
 string MTGSetInfo::getBlock()
 {
     if (block < 0 || block >= (int) setlist.blocks.size()) return "None";
@@ -1629,8 +1641,11 @@ void MTGSetInfo::processConfLine(string line)
         author = value;
     else if (key.compare("block") == 0)
         block = setlist.findBlock(value.c_str());
-    else if (key.compare("year") == 0) 
-        year = atoi(value.c_str());
-    else if (key.compare("total") == 0) 
+    else if (key.compare("year") == 0){ 
+        date = value; // Added to read the full release date of sets.
+        year = atoi(value.substr(0,4).c_str());
+    } else if (key.compare("total") == 0) 
         total = atoi(value.c_str());
+    else if (key.compare("orderindex") == 0) 
+        orderindex = value; // Added new tag for different sorting of sets.
 }

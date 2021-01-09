@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Tenth Edition
-year=2007
-total=383
+orderindex=COR-A.10E
+year=2007-07-13
+total=384
 [/meta]
 [card]
 primitive=Abundance

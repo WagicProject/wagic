@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
-name=Magic 2012
-year=2011
-total=249
+name=Core Set: Magic 2012
+orderindex=COR-D.M12
+year=2011-07-15
+total=251
 [/meta]
 [card]
 primitive=AEther Adept

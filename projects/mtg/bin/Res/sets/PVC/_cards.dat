@@ -1,9 +1,9 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Phyrexia vs. the Coalition
-block=Duel
-year=2010
-total=71
+orderindex=DUE-5.DDE
+year=2010-03-19
+total=74
 [/meta]
 [card]
 primitive=Allied Strategies

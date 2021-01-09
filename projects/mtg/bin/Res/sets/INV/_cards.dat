@@ -2,7 +2,8 @@
 author=Wagic Team
 name=Invasion
 block=Invasion
-year=2000
+orderindex=EXP-M.INV
+year=2000-10-02
 total=350
 [/meta]
 [card]

@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Betrayers of Kamigawa
 block=Kamigawa
-year=2005
-total=165
+orderindex=EXP-Z.BOK
+year=2005-02-04
+total=170
 [/meta]
 [card]
 primitive=Akki Blizzard-Herder

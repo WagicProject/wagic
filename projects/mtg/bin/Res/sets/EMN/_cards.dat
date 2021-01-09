@@ -1,8 +1,10 @@
 [meta]
 author=Wagic Team
 name=Eldritch Moon
-year=2016
-total=223
+block=Shadows over Innistrad
+orderindex=EXP-ZZ2.EMN
+year=2016-07-22
+total=224
 [/meta]
 [card]
 primitive=Abandon Reason

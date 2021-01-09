@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Planar Chaos
 block=Time Spiral
-year=2007
-total=165
+orderindex=EXP-Z7.PLC
+year=2007-02-02
+total=166
 [/meta]
 [card]
 primitive=AEther Membrane

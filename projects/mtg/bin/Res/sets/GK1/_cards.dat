@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=GRN Guild Kit
+orderindex=OTH-1.GK1
 year=2018-11-02
-total=127
+total=128
 [/meta]
 [card]
 primitive=Etrata, the Silencer

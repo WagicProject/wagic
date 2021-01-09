@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Darksteel
 block=Mirrodin
-year=2004
-total=165
+orderindex=EXP-W.DST
+year=2004-02-06
+total=167
 [/meta]
 [card]
 primitive=AEther Snap

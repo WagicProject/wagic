@@ -2218,16 +2218,14 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_SET)
         {
-            char buf[512];
             vector<pair<string, string> > orderedSet;
             for(int i = 0; i < setlist.size(); i++){
                 if (options[Options::optionSet(i)].number == 0) continue;
-                sprintf(buf, "s:%s;", setlist[i].c_str());
-                orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getName(), buf));
+                orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getOrderIndex(), setlist[i].c_str())); // Now sets are sorted by new Order Index tag.
             }
             sort(orderedSet.begin(),orderedSet.end());
             for (unsigned int i = 0; i < orderedSet.size(); i++){
-                mParent->addArg(orderedSet.at(i).first, orderedSet.at(i).second);
+                mParent->addArg(setlist.getInfo(setlist.findSet(orderedSet.at(i).second))->getName(), "s:" + orderedSet.at(i).second + ";");
             }
         }
         else if (filterType == FILTER_ALPHA)

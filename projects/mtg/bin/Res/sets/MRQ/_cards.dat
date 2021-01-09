@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Mercadian Masques
 block=Masque
-year=1999
-total=350
+orderindex=EXP-J.MMQ
+year=1999-10-04
+total=351
 [/meta]
 [card]
 primitive=Aerial Caravan

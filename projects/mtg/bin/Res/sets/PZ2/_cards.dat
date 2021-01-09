@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Treasure Chest
+orderindex=ONL-A.PZ2
 year=2016-11-16
-total=282
+total=315
 [/meta]
 [card]
 primitive=Hound

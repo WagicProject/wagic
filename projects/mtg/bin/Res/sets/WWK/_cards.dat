@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Worldwake
 block=Zendikar
-year=2010
-total=145
+orderindex=EXP-ZH.WWK
+year=2010-02-05
+total=150
 [/meta]
 [card]
 primitive=AEther Tradewinds

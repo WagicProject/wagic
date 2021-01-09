@@ -1,8 +1,8 @@
 [meta]
 author=Wagic Team
-name=Planechase 2012 Edition
-block=Planechase
-year=2012
+name=Planechase 2012
+orderindex=COM-4.PC2
+year=2012-06-01
 total=156
 [/meta]
 [card]

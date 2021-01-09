@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Prophecy
 block=Masque
-year=2000
-total=143
+orderindex=EXP-L.PCY
+year=2000-06-05
+total=144
 [/meta]
 [card]
 primitive=Abolish

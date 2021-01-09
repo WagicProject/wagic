@@ -1,8 +1,8 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Venser vs. Koth
-block=Duel
-year=2012
+orderindex=DUE-A.DDI
+year=2012-03-30
 total=77
 [/meta]
 [card]

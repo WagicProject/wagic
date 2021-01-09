@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Commander 2019
+orderindex=COM-K.C19
 year=2019-08-23
-total=302
+total=305
 [/meta]
 [card]
 primitive=Cliffside Rescuer
