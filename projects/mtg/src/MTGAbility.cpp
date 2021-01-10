@@ -3927,7 +3927,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string counterString = splitDuplicateCounters[1];
         if(counterString.find("all") != string::npos)
             ((AADuplicateCounters*)a)->allcounters = true;
-        else if(counterString.find("single") != string::npos)
+        if(counterString.find("single") != string::npos)
             ((AADuplicateCounters*)a)->single = true;
         return a;
     }
@@ -3935,7 +3935,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitRemoveSpecificCounters = parseBetween(s, "removesinglecountertype(", ")");
     if (splitRemoveSpecificCounters.size())
     {
-        int nb = atoi(splitRemoveSpecificCounters[1].c_str());
+        WParsedInt* parser = NEW WParsedInt(splitRemoveSpecificCounters[1], card);
+        int nb = parser->intValue;
         MTGAbility * a = NEW AARemoveSingleCounter(observer, id, card, target, NULL, nb);
         a->oneShot = 1;
         a->canBeInterrupted = false;

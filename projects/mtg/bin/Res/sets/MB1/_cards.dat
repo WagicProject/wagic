@@ -3,7 +3,7 @@ author=Wagic Team
 name=Mystery Booster
 orderindex=REP-E.MB1
 year=2019-11-07
-total=1798
+total=1800
 [/meta]
 [card]
 primitive=Goat
@@ -481,7 +481,7 @@ id=-293107
 rarity=T
 [/card]
 [card]
-primitive=a
+primitive=Bird
 id=-293087
 rarity=T
 [/card]
@@ -524,6 +524,11 @@ rarity=T
 primitive=Eldrazi
 id=-292988
 rarity=T
+[/card]
+[card]
+primitive=Abian, Luvion Usurper
+id=476217
+rarity=R
 [/card]
 [card]
 primitive=All Is Dust
@@ -4164,6 +4169,11 @@ rarity=C
 primitive=Perish
 id=293712
 rarity=U
+[/card]
+[card]
+primitive=Personal Decoy
+id=476226
+rarity=R
 [/card]
 [card]
 primitive=Pestilence

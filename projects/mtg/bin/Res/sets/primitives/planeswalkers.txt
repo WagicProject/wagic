@@ -3,40 +3,33 @@ grade=borderline
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 #We sorted this in alphabetical order - Luruz & Vitty85 30-11-2020
 [card]
-primitive=Abian, Luvion Usurper
-id=476217
-rarity=R
-[/card]
-[card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
-auto=lifeset:type:counter(0/0,Loyalty):this:myBattlefield
-auto=@counterremoved(0/0,1,Loyalty) from(planeswalker[Abian]|myBattlefield):life:-thatmuch controller
-auto=@counteradded(0/0,1,Loyalty) from(planeswalker[Abian]|myBattlefield):life:thatmuch controller
-auto=@lifelostof(player):removesinglecountertype(thatmuch) from(planeswalker[Abian]|myBattlefield)
-auto=@lifeof(player):counter(0/0,thatmuch,Loyalty) all(this)
-auto={C(0/0,2,Loyalty)}:name(+3: Discard your hand and draw a card equal to highest power) reject all(*|myhand) && draw:power:highest:creature:mybattlefield controller
-auto={C(0/0,-3,Loyalty)}:name(+1: Create a 3/2 Spirit) token(Spirit,Creature Spirit,3/2,red,green)
-auto={C(0/0,-1,Loyalty)}:name(-1: Deals 1 damage to any target) damage:1 target(player,creature,planeswalker)
-auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damage to any target) damage:2 target(player,creature,planeswalker)
-auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damage to any target) damage:3 target(player,creature,planeswalker)
-auto={C(0/0,-4,Loyalty)}:name(-4: Deals 4 damage to any target) damage:4 target(player,creature,planeswalker)
-auto={C(0/0,-5,Loyalty)}:name(-5: Deals 5 damage to any target) damage:5 target(player,creature,planeswalker)
-auto={C(0/0,-6,Loyalty)}:name(-6: Deals 6 damage to any target) damage:6 target(player,creature,planeswalker)
-auto={C(0/0,-7,Loyalty)}:name(-7: Deals 7 damage to any target) damage:7 target(player,creature,planeswalker)
-auto={C(0/0,-8,Loyalty)}:name(-8: Deals 8 damage to any target) damage:8 target(player,creature,planeswalker)
-auto={C(0/0,-9,Loyalty)}:name(-9: Deals 9 damage to any target) damage:9 target(player,creature,planeswalker)
-auto={C(0/0,-10,Loyalty)}:name(-10: Deals 10 damage to any target) damage:10 target(player,creature,planeswalker)
-auto={C(0/0,-11,Loyalty)}:name(-11: Deals 11 damage to any target) damage:11 target(player,creature,planeswalker)
-auto={C(0/0,-12,Loyalty)}:name(-12: Deals 12 damage to any target) damage:12 target(player,creature,planeswalker)
-auto={C(0/0,-13,Loyalty)}:name(-13: Deals 13 damage to any target) damage:13 target(player,creature,planeswalker)
-auto={C(0/0,-14,Loyalty)}:name(-14: Deals 14 damage to any target) damage:14 target(player,creature,planeswalker)
-auto={C(0/0,-15,Loyalty)}:name(-15: Deals 15 damage to any target) damage:15 target(player,creature,planeswalker)
-auto={C(0/0,-16,Loyalty)}:name(-16: Deals 16 damage to any target) damage:16 target(player,creature,planeswalker)
-auto={C(0/0,-17,Loyalty)}:name(-17: Deals 17 damage to any target) damage:17 target(player,creature,planeswalker)
-auto={C(0/0,-18,Loyalty)}:name(-18: Deals 18 damage to any target) damage:18 target(player,creature,planeswalker)
-auto={C(0/0,-19,Loyalty)}:name(-19: Deals 19 damage to any target) damage:19 target(player,creature,planeswalker)
-auto={C(0/0,-20,Loyalty)}:name(-20: Deals 20 damage to any target) damage:20 target(player,creature,planeswalker)
+auto=lifeset:5 controller
+auto=@lifelostof(player) from(*[-Abian]):counter(0/0,-thatmuch,Loyalty) all(this)
+auto=@lifeof(player) from(*[-Abian]):counter(0/0,thatmuch,Loyalty) all(this)
+auto={C(0/0,3,Loyalty)}:name(+3: Discard your hand and draw a card equal to highest power) reject all(*|myhand) && draw:power:highest:creature:mybattlefield controller && life:3 controller
+auto={C(0/0,1,Loyalty)}:name(+1: Create a 3/2 Spirit) token(Spirit,Creature Spirit,3/2,red,green) && life:1 controller
+auto={C(0/0,-1,Loyalty)}{L:1}:name(-1: Deals 1 damage to any target) damage:1 target(player,creature,planeswalker)
+auto={C(0/0,-2,Loyalty)}{L:2}:name(-2: Deals 2 damage to any target) damage:2 target(player,creature,planeswalker)
+auto={C(0/0,-3,Loyalty)}{L:3}:name(-3: Deals 3 damage to any target) damage:3 target(player,creature,planeswalker)
+auto={C(0/0,-4,Loyalty)}{L:4}:name(-4: Deals 4 damage to any target) damage:4 target(player,creature,planeswalker)
+auto={C(0/0,-5,Loyalty)}{L:5}:name(-5: Deals 5 damage to any target) damage:5 target(player,creature,planeswalker)
+auto={C(0/0,-6,Loyalty)}{L:6}:name(-6: Deals 6 damage to any target) damage:6 target(player,creature,planeswalker)
+auto={C(0/0,-7,Loyalty)}{L:7}:name(-7: Deals 7 damage to any target) damage:7 target(player,creature,planeswalker)
+auto={C(0/0,-8,Loyalty)}{L:8}:name(-8: Deals 8 damage to any target) damage:8 target(player,creature,planeswalker)
+auto={C(0/0,-9,Loyalty)}{L:9}:name(-9: Deals 9 damage to any target) damage:9 target(player,creature,planeswalker)
+auto={C(0/0,-10,Loyalty)}{L:10}:name(-10: Deals 10 damage to any target) damage:10 target(player,creature,planeswalker)
+auto={C(0/0,-11,Loyalty)}{L:11}:name(-11: Deals 11 damage to any target) damage:11 target(player,creature,planeswalker)
+auto={C(0/0,-12,Loyalty)}{L:12}:name(-12: Deals 12 damage to any target) damage:12 target(player,creature,planeswalker)
+auto={C(0/0,-13,Loyalty)}{L:13}:name(-13: Deals 13 damage to any target) damage:13 target(player,creature,planeswalker)
+auto={C(0/0,-14,Loyalty)}{L:14}:name(-14: Deals 14 damage to any target) damage:14 target(player,creature,planeswalker)
+auto={C(0/0,-15,Loyalty)}{L:15}:name(-15: Deals 15 damage to any target) damage:15 target(player,creature,planeswalker)
+auto={C(0/0,-16,Loyalty)}{L:16}:name(-16: Deals 16 damage to any target) damage:16 target(player,creature,planeswalker)
+auto={C(0/0,-17,Loyalty)}{L:17}:name(-17: Deals 17 damage to any target) damage:17 target(player,creature,planeswalker)
+auto={C(0/0,-18,Loyalty)}{L:18}:name(-18: Deals 18 damage to any target) damage:18 target(player,creature,planeswalker)
+auto={C(0/0,-19,Loyalty)}{L:19}:name(-19: Deals 19 damage to any target) damage:19 target(player,creature,planeswalker)
+auto={C(0/0,-20,Loyalty)}{L:20}:name(-20: Deals 20 damage to any target) damage:20 target(player,creature,planeswalker)
 text=As Abian, Luvion Usurper enters the battlefield, you become Abian. (Your life total becomes equal to their loyalty. You can activate the loyalty abilities by spending or gaining life.) -- +3: Discard your hand, then draw cards equal to the greatest power among creatures you control. -- +1: Create a 3/2 red and green Spirit creature token. -- −X: You deal X damage to any target.
 mana={5}{R}{G}
 type=Legendary Planeswalker
@@ -320,15 +313,12 @@ type=Legendary Planeswalker
 subtype=Ashiok
 [/card]
 [card]
-primitive=B.O.B. (Bevy of Beebles)
-id=479414
-rarity=M
-[/card]
-[card]
 name=B.O.B. (Bevy of Beebles)
-auto=counter(0/0,type:creature[Beebles]:myBattlefield,Loyalty) cdaactive
+auto=counter(0/0,4,Loyalty)
 auto=token(Beeble,Creature Beeble,1/1,blue)*4
-auto={C(0/0,1,Loyalty)}:name(+1: X Beebles can't be blocked) target(<type:*:myHand>creature[Beeble]|myBattlefield) unblockable ueot
+auto=@counteradded(0/0,1,Loyalty) from(this):token(Beeble,Creature Beeble,1/1,blue)
+auto=@counterremoved(0/0,1,Loyalty) from(this):sacrifice target(beeble|myBattlefield)
+auto={C(0/0,1,Loyalty)}:name(+1: X Beebles can't be blocked) target(<type:*:myHand>creature[Beeble]|myBattlefield) transforms((,newability[unblockable])) ueot
 auto={C(0/0,-1,Loyalty)}:name(-1: Draw a card) draw:1 controller
 text=As B.O.B. enters the battlefield, create four 1/1 blue Beeble creature tokens. -- The number of loyalty counters on B.O.B. is equal to the number of Beebles you control. (Create or sacrifice Beebles whenever B.O.B. gains or loses loyalty.) -- +1: Up to X target Beebles can't be blocked this turn, where X is the number of cards in your hand. -- -1: Draw a card.
 mana={3}{U}{U}
@@ -735,18 +725,9 @@ type=Legendary Planeswalker
 subtype=Dovin
 [/card]
 [card]
-primitive=Personal Decoy
-id=476226
-rarity=R
-[/card]
-[card]
 name=Personal Decoy
-abilities=cantlose
+abilities=exiledeath
 auto=counter(0/0,lifetotal,loyalty)
-auto=@damaged(player) from(*|stack,battlefield,graveyard): if compare(lifetotal)~lessthan~0 then lifeset:1 controller && moveTo(exile) all(this)
-auto=@lifelostof(player): if compare(lifetotal)~lessthan~0 then lifeset:1 controller && moveTo(exile) all(this)
-auto=@drawof(player): if compare(library)~lessthan~0 then moveTo(myLibrary) notAtarget(*|myHand) && moveTo(exile) all(this)
-auto=@movedTo(*[Coalition Victori;Approach of the Second Sun]|opponentStack):all(trigger[to]) fizzleto(ownerHand) && moveTo(exile) all(this)
 auto=lord(creature|opponentBattlefield) cantattack
 auto={C(0/0,1,Loyalty)}:name(+1: Gain 1 life) life:1 controller
 auto={C(0/0,-4,Loyalty)}:name(-4: Draw a card) draw:1 controller
