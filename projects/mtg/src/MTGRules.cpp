@@ -1511,9 +1511,8 @@ int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (!card->has(Constants::PAYZERO))
         return 0;
     Player * player = game->currentlyActing();
-    if (card->isLand() || (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card)))
+    if (card->isLand() || (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card) && !player->game->commandzone->hasCard(card)))
     {
-        //only allowed to pay zero for cards in library??? above is "if you dont have it in hand, grave, or exile"
         return 0;
     }
     if ((!card->canPlayFromLibrary() && player->game->library->hasCard(card))||(!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))

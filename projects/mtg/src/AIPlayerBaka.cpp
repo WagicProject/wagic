@@ -3429,7 +3429,7 @@ int AIPlayerBaka::computeActions()
                         CardDescriptor cd;
                         if (game->hand->hasAbility(Constants::PAYZERO))
                         {
-                            //Attempt to put free cards into play
+                            //Attempt to put free cards into play from hand
                             cd.init();
                             cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
                             MTGCardInstance *freecard = cd.match(game->hand);
@@ -3444,7 +3444,7 @@ int AIPlayerBaka::computeActions()
                         }
                         if (game->graveyard->hasAbility(Constants::PAYZERO) && game->graveyard->hasAbility(Constants::CANPLAYFROMGRAVEYARD))
                         {
-                            //Attempt to put free cards into play
+                            //Attempt to put free cards into play from graveyard
                             cd.init();
                             cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
                             MTGCardInstance *freecard = cd.match(game->graveyard);
@@ -3459,12 +3459,27 @@ int AIPlayerBaka::computeActions()
                         }
                         if (game->exile->hasAbility(Constants::PAYZERO) && game->exile->hasAbility(Constants::CANPLAYFROMEXILE))
                         {
-                            //Attempt to put free cards into play
+                            //Attempt to put free cards into play from exile
                             cd.init();
                             cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
                             MTGCardInstance *freecard = cd.match(game->exile);
                             int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
                             if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMEXILE) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (!freecard->isCDA))
+                            {
+                                MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
+                                AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
+                                clickstream.push(aa);
+                                break;
+                            }
+                        }
+                        if (game->commandzone->hasAbility(Constants::PAYZERO))
+                        {
+                            //Attempt to put free cards into play from commandzone
+                            cd.init();
+                            cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
+                            MTGCardInstance *freecard = cd.match(game->commandzone);
+                            int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (!freecard->isCDA))
                             {
                                 MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
                                 AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
