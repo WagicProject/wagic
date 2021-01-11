@@ -25289,6 +25289,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Jodah, Archmage Eternal
+abilities=flying
+auto={W}{U}{B}{R}{G}:target(*|myrestrictedcastingzone) activate castcard(normal)
+text=Flying -- You may pay {W}{U}{B}{R}{G} rather than pay the mana cost for spells that you cast.
+mana={1}{U}{R}{W}
+type=Legendary Creature
+subtype=Human Wizard
+power=4
+toughness=3
+[/card]
+[card]
 name=Johnny, Combo Player
 auto={4}:name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>*|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 text={4}: Search your library for a card and put that card into your hand. Then shuffle your library.
@@ -50106,8 +50117,9 @@ subtype=Saga
 [card]
 name=The Ur-Dragon
 abilities=flying
-auto=lord(dragon|mycastingzone) altercost( colorless,-1)
-auto=@combat(attacking[dragon]|myBattlefield):draw:type:creature(dragon[attacking]):mybattlefield controller && moveTo(myBattlefield) target(*|myhand)
+auto=lord(dragon|mycastingzone) altercost(colorless,-1)
+autocommandzone=lord(dragon|mycastingzone) altercost(colorless,-1)
+auto=@combat(attacking) source(dragon|myBattlefield):draw:1 && transforms((,newability[moveTo(myBattlefield) target(*[-sorcery;-instant]|myhand)])) forever
 text=Eminence — As long as The Ur-Dragon is in the command zone or on the battlefield, other Dragon spells you cast cost {1} less to cast. -- Flying -- Whenever one or more Dragons you control attack, draw that many cards, then you may put a permanent card from your hand onto the battlefield.
 mana={4}{W}{U}{B}{R}{G}
 type=Legendary Creature
