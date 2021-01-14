@@ -391,6 +391,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         }
 
         //Advanced cards caracteristics ?
+        replace(typeName.begin(), typeName.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. target card with ',' char in name)
         found = typeName.find("[");
         if (found != string::npos)
         {

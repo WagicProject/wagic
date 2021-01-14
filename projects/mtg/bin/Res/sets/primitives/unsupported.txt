@@ -9184,7 +9184,7 @@ toughness=2
 [/card]
 [card]
 name=Pir, Imaginative Rascal
-auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(Toothy, Imaginary Friend|mylibrary)
+auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(Toothy^ Imaginary Friend|mylibrary)
 text=Partner with Toothy, Imaginary Friend (When this creature enters the battlefield, target player may put Toothy into their hand from their library, then shuffle.) -- If one or more counters would be put on a permanent your team controls, that many plus one of each of those kinds of counters are put on that permanent instead.
 mana={2}{G}
 type=Legendary Creature
