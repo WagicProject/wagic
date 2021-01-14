@@ -2874,6 +2874,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         
         string tokenDesc = splitToken[1];
+        replace(tokenDesc.begin(), tokenDesc.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using token keyword inside transforms)
         vector<string> tokenParameters = split(tokenDesc, ',');
         //lets try finding a token by card name.
         if (splitToken[1].size() && (tokenParameters.size() ==1||tokenParameters.size() ==2))
@@ -3800,6 +3801,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitRampage = parseBetween(s, "rampage(", ")");
     if (splitRampage.size())
     {
+        replace(splitRampage[1].begin(), splitRampage[1].end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using rampage keyword inside transforms)
         vector<string> rampageParameters = split(splitRampage[1], ',');
         int power, toughness;
         if (!parsePowerToughness(rampageParameters[0], &power, &toughness))
@@ -3885,6 +3887,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitPhaseAlter.size())
     {
         string power, toughness;
+        replace(splitPhaseAlter[1].begin(), splitPhaseAlter[1].end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using phasealter keyword inside transforms)
         vector<string>splitPhaseAlter2 = split(splitPhaseAlter[1],',');
         if(splitPhaseAlter2.size() < 3)
             return NULL;
@@ -4025,6 +4028,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitBecomes = parseBetween(s, "becomes(", ")");
     if (splitBecomes.size())
     {
+        replace(splitBecomes[1].begin(), splitBecomes[1].end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using becomes keyword inside transforms)
         vector<string> becomesParameters = split(splitBecomes[1], ',');
         string stypes = becomesParameters[0];
         string newPower = "";
@@ -4253,6 +4257,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             /*vector<string>FlipStats = split(splitFlipStat[1],'%');*/
             flipStats = splitFlipStat[1];
+            replace(flipStats.begin(), flipStats.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using flip keyword inside transforms)
         }
         vector<string> splitType = parseBetween(s, "forcetype(", ")", true); // Added to flip instants and sorceries as permanents (es. Zendikar Rising Modal Double Faced cards).
         string forcetype = "";

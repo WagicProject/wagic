@@ -706,7 +706,7 @@ subtype=Dovin
 name=Dovin, Grand Arbiter
 auto=counter(0/0,3,loyalty)
 aicode=activate target(*[zpos<=10]|mylibrary) moveto(myhand)
-auto={C(0/0,1,Loyalty)}:name(+1: Whenever a creature combat damage, put loyalty counter) all(creature|myBattlefield) transforms((,newability[@combatdamaged(player) from(this):counter(0/0,1,Loyalty) notAtarget(Dovin, Grand Arbiter|myBattlefield)])) ueot oneshot
+auto={C(0/0,1,Loyalty)}:name(+1: Whenever a creature combat damage, put loyalty counter) all(creature|myBattlefield) transforms((,newability[@combatdamaged(player) from(this):counter(0/0,1,Loyalty) notAtarget(Dovin^ Grand Arbiter|myBattlefield)])) ueot oneshot
 auto={C(0/0,-1,Loyalty)}:name(-1: Create a 1/1 Thopter and gain 1 life) token(Thopter,Artifact Creature Thopter,1/1,flying) && life:1 controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Look at the top ten and put three in your hand) name(Look ten cards from top of your Library) reveal:10 optionone name(Get three cards) target(<3>*|reveal) moveto(hand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
 text=+1: Until end of turn, whenever a creature you control deals combat damage to a player, put a loyalty counter on Dovin, Grand Arbiter. -- −1: Create a 1/1 colorless Thopter artifact creature token with flying. You gain 1 life. -- −7: Look at the top ten cards of your library. Put three of them into your hand and the rest on the bottom of your library in a random order.

@@ -131,7 +131,7 @@ toughness=2
 [/card]
 [card]
 name=Acclaimed Contender
-auto=restriction type(other creature[knight]|mybattlefield)~morethan~0:reveal:5 optionone name(Get card) target(aura,knight,equipment,legenday artifact|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
+auto=restriction type(other creature[knight]|mybattlefield)~morethan~0:reveal:5 optionone name(Get card) target(*[aura;knight;equipment;legenday artifact]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
 text=When Acclaimed Contender enters the battlefield, if you control another Knight, look at the top five cards of your library. You may reveal a Knight, Aura, Equipment, or legendary artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={2}{W}
 type=Creature
@@ -151,7 +151,7 @@ toughness=3
 [/card]
 [card]
 name=Acolyte of Affliction
-auto=deplete:2 controller && may moveTo(myHand) target(*[-sorcery,-instant,-land]|myGraveyard) oneshot
+auto=deplete:2 controller && may moveTo(myHand) target(*[-sorcery;-instant]|myGraveyard) oneshot
 text=When Acolyte of Affliction enters the battlefield, put the top two cards of your library into your graveyard, then you may return a permanent card from your graveyard to your hand.
 mana={2}{B}{G}
 type=Creature
@@ -650,8 +650,8 @@ type=Sorcery
 [/card]
 [card]
 name=Ajani's Aid
-auto=moveto(myhand) target(Ajani, Valiant Protector|mylibrary)
-auto=moveto(myhand) target(Ajani, Valiant Protector|mygraveyard)
+auto=moveto(myhand) target(Ajani^ Valiant Protector|mylibrary)
+auto=moveto(myhand) target(Ajani^ Valiant Protector|mygraveyard)
 auto={S}:target(creature) preventAllCombatDamage to(mytgt) ueot
 text=When Ajani's Aid enters the battlefield, you may search your library and/or graveyard for a card named Ajani, Valiant Protector, reveal it, and put it into your hand. If you search your library this way, shuffle it. -- Sacrifice Ajani's Aid: Prevent all combat damage a creature of your choice would deal this turn.
 mana={2}{G}{W}
@@ -1556,7 +1556,7 @@ name=Angrath's Fury
 target=creature
 auto=destroy
 auto=ability$!name(Deal 3 damages) name(Deal 3 damages) damage:3 target(player,planeswalker)!$ controller
-auto=may name(Move Angrath, Minotaur Pirate to hand) name(Move Angrath, Minotaur Pirate to hand) moveto(myhand) target(Angrath, Minotaur Pirate|mylibrary,mygraveyard)
+auto=may name(Move Angrath, Minotaur Pirate to hand) name(Move Angrath, Minotaur Pirate to hand) moveto(myhand) target(Angrath^ Minotaur Pirate|mylibrary,mygraveyard)
 text=Destroy target creature. Angrath's Fury deals 3 damage to target player or planeswalker. You may search your library and/or graveyard for a card named Angrath, Minotaur Pirate, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{B}{R}
 type=Sorcery
@@ -2588,7 +2588,7 @@ type=Enchantment
 [/card]
 [card]
 name=Ashiok's Forerunner
-auto=may moveto(myHand) target(Ashiok, Sculptor of Fears|mylibrary,mygraveyard) && shuffle
+auto=may moveto(myHand) target(Ashiok^ Sculptor of Fears|mylibrary,mygraveyard) && shuffle
 text=Flash -- When Ashiok's Forerunner enters the battlefield, you may search your library and/or graveyard for a card named Ashiok, Sculptor of Fears, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{U}{B}
 type=Creature
@@ -3639,8 +3639,8 @@ toughness=3
 name=Basri's Aegis
 target=<upto:2>creature
 auto=counter(1/1,1)
-auto=choice name(Search Library) may moveto(myhand) target(Basri, Devoted Paladin|myLibrary) && shuffle
-auto=choice name(Search Graveyard) may moveto(myhand) target(Basri, Devoted Paladin|myGraveyard)
+auto=choice name(Search Library) may moveto(myhand) target(Basri^ Devoted Paladin|myLibrary) && shuffle
+auto=choice name(Search Graveyard) may moveto(myhand) target(Basri^ Devoted Paladin|myGraveyard)
 text=Put a +1/+1 counter on each of up to two target creatures. You may search your library and/or graveyard for a card named Basri, Devoted Paladin, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={2}{W}{W}
 type=Sorcery
@@ -5643,8 +5643,8 @@ type=Sorcery
 [card]
 name=Brallin, Skyshark Rider
 abilities=hiddenface,partner
-aicode=activate moveTo(myhand) target(Shabraz, the Skyshark|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Shabraz, the Skyshark|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Shabraz, the Skyshark|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate moveTo(myhand) target(Shabraz^ the Skyshark|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Shabraz^ the Skyshark|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Shabraz^ the Skyshark|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@discarded(*|myHand):all(this) counter(1/1,1) && damage:1 opponent
 auto={R}:target(creature[Shark]) trample ueot
 text=Partner with Shabraz, the Skyshark (When this creature enters the battlefield, target player may put Shabraz into their hand from their library, then shuffle.) -- Whenever you discard a card, put a +1/+1 counter on Brallin, Skyshark Rider and it deals 1 damage to each opponent. -- {R}: Target Shark gains trample until end of turn.
@@ -7241,8 +7241,8 @@ toughness=4
 [card]
 name=Cazur, Ruthless Stalker
 abilities=hiddenface,partner
-aicode=activate moveTo(myhand) target(Ukkima, Stalking Shadow|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Ukkima, Stalking Shadow|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Ukkima, Stalking Shadow|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate moveTo(myhand) target(Ukkima^ Stalking Shadow|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Ukkima^ Stalking Shadow|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Ukkima^ Stalking Shadow|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@combatdamaged(player) from(creature|myBattlefield):all(trigger[from]) counter(1/1)
 text=Partner with Ukkima, Stalking Shadow (When this creature enters the battlefield, target player may put Ukkima into their hand from their library, then shuffle.) -- Whenever a creature you control deals combat damage to a player, put a +1/+1 counter on that creature.
 mana={3}{G}
@@ -7589,8 +7589,8 @@ toughness=2
 [card]
 name=Chandra's Firemaw
 abilities=haste
-auto=choice name(Search Library) may moveto(myhand) target(Chandra, Flame's Catalyst|myLibrary) && shuffle
-auto=choice name(Search Graveyard) may moveto(myhand) target(Chandra, Flame's Catalyst|myGraveyard)
+auto=choice name(Search Library) may moveto(myhand) target(Chandra^ Flame's Catalyst|myLibrary) && shuffle
+auto=choice name(Search Graveyard) may moveto(myhand) target(Chandra^ Flame's Catalyst|myGraveyard)
 text=Haste -- When Chandra's Firemaw enters the battlefield, you may search your library and/or graveyard for a card named Chandra, Flame's Catalyst, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{R}{R}
 type=Creature
@@ -12638,7 +12638,7 @@ type=Sorcery
 [card]
 name=Domri's Nodorog
 abilities=trample
-auto=may moveTo(myhand) target(Domri, City Smasher|myLibrary,myGraveyard)
+auto=may moveTo(myhand) target(Domri^ City Smasher|myLibrary,myGraveyard)
 text=Trample -- When Domri's Nodorog enters the battlefield, you may search your library and/or graveyard for a card named Domri, City Smasher, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{R}{G}
 type=Creature
@@ -12763,7 +12763,7 @@ toughness=3
 [card]
 name=Dovin's Dismissal
 auto=may target(creature[tapped]) moveto(ownerlibrary)
-auto=ability$!name(Choose one) choice name(Don't search) donothing _ choice name(Search library) moveto(myhand) target(Dovin, Architect of Law|mylibrary) _ choice name(Search graveyard) moveto(myhand) target(Dovin, Architect of Law|mygraveyard)!$ controller
+auto=ability$!name(Choose one) choice name(Don't search) donothing _ choice name(Search library) moveto(myhand) target(Dovin^ Architect of Law|mylibrary) _ choice name(Search graveyard) moveto(myhand) target(Dovin^ Architect of Law|mygraveyard)!$ controller
 text=Put up to one target tapped creature on top of its owner's library. You may search your library and/or graveyard for a card named Dovin, Architect of Law, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={2}{W}{U}
 type=Instant
@@ -14064,7 +14064,7 @@ subtype=Saga
 [/card]
 [card]
 name=Elspeth's Devotee
-auto=may moveto(myHand) target(Elspeth, Undaunted Hero|mylibrary,mygraveyard) && shuffle
+auto=may moveto(myHand) target(Elspeth^ Undaunted Hero|mylibrary,mygraveyard) && shuffle
 text=When Elspeth's Devotee enters the battlefield, you may search your library and/or graveyard for a card named Elspeth, Undaunted Hero, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={2}{W}{W}
 type=Creature
@@ -14987,8 +14987,8 @@ type=Enchantment
 [card]
 name=Ethereal Elk
 abilities=trample
-auto=may moveto(myhand) target(Vivien, Nature's Avenger|mylibrary)
-auto=may moveto(myhand) target(Vivien, Nature's Avenger|mygraveyard)
+auto=may moveto(myhand) target(Vivien^ Nature's Avenger|mylibrary)
+auto=may moveto(myhand) target(Vivien^ Nature's Avenger|mygraveyard)
 text=Trample -- When Ethereal Elk enters the battlefield, you may search your library and/or graveyard for a card named Vivien, Nature's Avenger, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{G}{G}
 type=Creature
@@ -18170,8 +18170,8 @@ type=Enchantment
 [card]
 name=Garruk's Warsteed
 abilities=vigilance
-auto=choice name(Search Library) may moveto(myhand) target(Garruk, Savage Herald|myLibrary) && shuffle
-auto=choice name(Search Graveyard) may moveto(myhand) target(Garruk, Savage Herald|myGraveyard)
+auto=choice name(Search Library) may moveto(myhand) target(Garruk^ Savage Herald|myLibrary) && shuffle
+auto=choice name(Search Graveyard) may moveto(myhand) target(Garruk^ Savage Herald|myGraveyard)
 text=Vigilance -- When Garruk's Warsteed enters the battlefield, you may search your library and/or graveyard for a card named Garruk, Savage Herald, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{G}{G}
 type=Creature
@@ -18717,7 +18717,7 @@ type=Instant
 [/card]
 [card]
 name=Gideon's Resolve
-auto=may moveto(myhand) target(Gideon, Martial Paragon|mylibrary)
+auto=may moveto(myhand) target(Gideon^ Martial Paragon|mylibrary)
 auto=lord(creature|mybattlefield) 1/1
 text=When Gideon's Resolve enters the battlefield, you may search your library and/or graveyard for a card named Gideon, Martial Paragon, reveal it, and put it into your hand. If you search your library this way, shuffle it. -- Creatures you control get +1/+1.
 mana={4}{W}
@@ -19910,8 +19910,8 @@ toughness=4
 [card]
 name=Goldmane Griffin
 abilities=flying,vigilance
-auto=moveto(myhand) target(Ajani, Inspiring Leader|mylibrary)
-auto=moveto(myhand) target(Ajani, Inspiring Leader|mygraveyard)
+auto=moveto(myhand) target(Ajani^ Inspiring Leader|mylibrary)
+auto=moveto(myhand) target(Ajani^ Inspiring Leader|mygraveyard)
 text=Flying, vigilance -- When Goldmane Griffin enters the battlefield, you may search your library and/or graveyard for a card named Ajani, Inspiring Leader, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{W}{W}
 type=Creature
@@ -20225,7 +20225,7 @@ type=Enchantment
 name=Grasping Current
 target=<upto:2>creature
 auto=moveto(ownerhand)
-auto=moveto(myhand) target(Jace, Ingenious Mind-Mage|mylibrary)
+auto=moveto(myhand) target(Jace^ Ingenious Mind-Mage|mylibrary)
 text=Return up to two target creatures to their owner's hand. -- Search your library and/or graveyard for a card named Jace, Ingenious Mind-Mage, reveal it, and put it into your hand. If you searched your library this way, shuffle it.
 mana={4}{U}
 type=Sorcery
@@ -21111,8 +21111,8 @@ toughness=4
 [card]
 name=Haldan, Avid Arcanist
 abilities=hiddenface,canplayfromexile,partner
-aicode=activate moveTo(myhand) target(Pako, Arcane Retriever|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Pako, Arcane Retriever|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Pako, Arcane Retriever|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate moveTo(myhand) target(Pako^ Arcane Retriever|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Pako^ Arcane Retriever|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Pako^ Arcane Retriever|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=lord(*[-creature]|mycastingzone) transforms((,newability[anytypeofmana]))
 text=Partner with Pako, Arcane Retriever (When this creature enters the battlefield, target player may put Pako into their hand from their library, then shuffle.) -- You may play noncreature cards from exile with fetch counters on them if you exiled them, and you may spend mana as though it were mana of any color to cast those spells.
 mana={2}{U}
@@ -21598,8 +21598,8 @@ auto=this(variable{type:dragon:myrestrictedcastingzone}>0) {T}:add{R}
 auto=this(variable{type:dragon:myrestrictedcastingzone}>0) {T}:add{G}
 auto=this(variable{type:dragon:myrestrictedcastingzone}>0) {T}:add{B}
 auto={2}{T}{S}:name(Move dragon) moveto(myhand) target(creature[dragon]|mygraveyard)
-auto={2}{T}{S}:name(Move Ugin, the Ineffable) moveto(myhand) target(Ugin, the Ineffable|mygraveyard)
-auto={2}{T}{S}:name(Move Ugin, the Spirit Dragon) moveto(myhand) target(Ugin, the Spirit Dragon|mygraveyard)
+auto={2}{T}{S}:name(Move Ugin, the Ineffable) moveto(myhand) target(Ugin^ the Ineffable|mygraveyard)
+auto={2}{T}{S}:name(Move Ugin, the Spirit Dragon) moveto(myhand) target(Ugin^ the Spirit Dragon|mygraveyard)
 text={T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast a Dragon creature spell. -- {2}, {T}, Sacrifice Haven of the Spirit Dragon: Return target Dragon creature card or Ugin planeswalker card from your graveyard to your hand.
 type=Land
 [/card]
@@ -25095,7 +25095,7 @@ type=Sorcery
 [card]
 name=Jace, Vryn's Prodigy
 auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller restriction{type(*|mygraveyard)~lessthan~4}
-auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller && moveto(exile) and!( moveto(mybattlefield) and!( haste && counter(0/0,5,Loyalty) && flip(Jace, Telepath Unbound) )! )! restriction{type(*|mygraveyard)~morethan~3}
+auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller && moveto(exile) and!( moveto(mybattlefield) and!( haste && counter(0/0,5,Loyalty) && flip(Jace^ Telepath Unbound) )! )! restriction{type(*|mygraveyard)~morethan~3}
 text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
 mana={1}{U}
 type=Legendary Creature
@@ -27087,7 +27087,7 @@ toughness=4
 [/card]
 [card]
 name=Krav, the Unredeemed
-auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(Regna, the Redeemer|mylibrary)
+auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(Regna^ the Redeemer|mylibrary)
 auto={B}{S(creature|myBattlefield)}:name(Sacrifice 1 creature and target yourself) name(Sacrifice 1 creature and target yourself) all(this) counter(1/1,1) && life:1 controller && draw:1 controller
 auto={B}{S(creature|myBattlefield)}:name(Sacrifice 1 creature and target opponent) name(Sacrifice 1 creature and target opponent) all(this) counter(1/1,1) && life:1 opponent && draw:1 opponent
 auto={B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:name(Sacrifice 2 creatures and target yourself) name(Sacrifice 2 creatures and target yourself) all(this) counter(1/1,2) && life:2 controller && draw:2 controller
@@ -28160,8 +28160,8 @@ type=Enchantment
 name=Liberating Combustion
 target=creature
 auto=damage:6
-auto=moveto(myhand) target(Chandra, Pyrogenius|mylibrary) && shuffle controller
-auto=moveto(myhand) target(Chandra, Pyrogenius|mygraveyard)
+auto=moveto(myhand) target(Chandra^ Pyrogenius|mylibrary) && shuffle controller
+auto=moveto(myhand) target(Chandra^ Pyrogenius|mygraveyard)
 text=Liberating Combustion deals 6 damage to target creature. You may search your library and/or graveyard for a card named Chandra, Pyrogenius, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={4}{R}
 type=Sorcery
@@ -28451,7 +28451,7 @@ toughness=3
 [card]
 name=Liliana's Influence
 auto=counter(-1/-1,1) all(creature|opponentbattlefield)
-auto=may moveto(myhand) target(Liliana, Death Wielder|mylibrary)
+auto=may moveto(myhand) target(Liliana^ Death Wielder|mylibrary,mygraveyard)
 text=Put a -1/-1 counter on each creature you don't control. You may search your library and/or graveyard for a card named Liliana, Death Wielder, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={4}{B}{B}
 type=Sorcery
@@ -28468,8 +28468,8 @@ type=Enchantment
 name=Liliana's Scorn
 target=creature
 auto=destroy
-auto=choice name(Search Library) may moveto(myhand) target(Liliana, Death Mage|myLibrary) && shuffle
-auto=choice name(Search Graveyard) may moveto(myhand) target(Liliana, Death Mage|myGraveyard)
+auto=choice name(Search Library) may moveto(myhand) target(Liliana^ Death Mage|myLibrary) && shuffle
+auto=choice name(Search Graveyard) may moveto(myhand) target(Liliana^ Death Mage|myGraveyard)
 text=Destroy target creature. You may search your library and/or graveyard for a card named Liliana, Death Mage, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{B}{B}
 type=Sorcery
@@ -30318,8 +30318,8 @@ toughness=3
 name=Maze's End
 auto=tap(noevent)
 auto={T}:Add {1}
-aicode=activate moveTo(myBattlefield) target(land[Gate]|myLibrary)
-auto={H(this|mybattlefield)}{3}{T}:=name(search a gate) reveal:plibrarycount optionone name(choose gate) target(land[Gate]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend then aslongas(Selesnya Guildgate,Izzet Guildgate,Golgari Guildgate, Dimir Guildgate,Boros Guildgate,Simic Guildgate,Rakdos Guildgate,Orzhov Guildgate,Gruul Guildgate,Azorius Guildgate|myBattlefield) while wingame
+aicode=activate 
+auto={3}{T}{H(this|mybattlefield)}{3}{T}:name(search a gate) target(land[Gate]|myLibrary) moveTo(myBattlefield) and!( if compare(diffcardcounttypegate)~morethan~9 then wingame controller )!
 text=Maze’s End enters the battlefield tapped. -- {T}:Add {C}. -- {3},{T},Return Maze’s End to its owner’s hand: Search your library for a Gate card, put it onto the battlefield, then shuffle your library. If you control ten or more Gates with different names, you win the game.
 type=Land
 [/card]
@@ -32917,7 +32917,7 @@ toughness=2
 [card]
 name=Nikara, Lair Scavenger
 abilities=menace,partner
-auto=may moveto(myhand) target(Yannik, Scavenging Sentinel|mylibrary)
+auto=may moveto(myhand) target(Yannik^ Scavenging Sentinel|mylibrary)
 auto=@movedTo(other creature[counter{1/1<anyamount>}]|nonbattlezone) from(mybattlefield):draw:1 && life:-1 controller
 text=Partner with Yannik, Scavenging Sentinel (When this creature enters the battlefield, target player may put Yannik into their hand from their library, then shuffle.) -- Menace -- Whenever another creature you control leaves the battlefield, if it had one or more counters on it, you draw a card and you lose 1 life.
 mana={2}{B}
@@ -33872,8 +33872,8 @@ toughness=3
 [card]
 name=Oko's Hospitality
 auto=lord(creature|battlefield) transforms((,setpower=3,settoughness=3)) ueot
-auto=moveto(myhand) target(Oko, the Trickster|mylibrary)
-auto=moveto(myhand) target(Oko, the Trickster|mygraveyard)
+auto=moveto(myhand) target(Oko^ the Trickster|mylibrary)
+auto=moveto(myhand) target(Oko^ the Trickster|mygraveyard)
 text=Creatures you control have base power and toughness 3/3 until end of turn. You may search your library and/or graveyard for a card named Oko, the Trickster, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{G}{U}
 type=Instant
@@ -34899,8 +34899,8 @@ toughness=2
 [card]
 name=Pako, Arcane Retriever
 abilities=hiddenface,haste,partner
-aicode=activate moveTo(myhand) target(Haldan, Avid Arcanist|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Haldan, Avid Arcanist|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Haldan, Avid Arcanist|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate moveTo(myhand) target(Haldan^ Avid Arcanist|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Haldan^ Avid Arcanist|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Haldan^ Avid Arcanist|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@combat(attacking) source(this):NOTCODED
 text=Partner with Haldan, Avid Arcanist -- Haste -- Whenever Pako, Arcane Retriever attacks, exile the top card of each player’s library and put a fetch counter on each of them. Put a +1/+1 counter on Pako for each noncreature card exiled this way.
 mana={3}{R}{G}
@@ -38620,12 +38620,12 @@ type=Sorcery
 [card]
 name=Regna, the Redeemer
 abilities=flying,partner
-auto=may moveto(myhand) notatarget(krav, the unredeemed|mylibrary)
+auto=may moveto(myhand) notatarget(krav^ the unredeemed|mylibrary)
 auto=@each endofturn restriction{compare(lifegain)~morethan~0}:create(warrior:creature warrior:1/1:white:)*2
 text=Partner with Krav, the Unredeemed (When this creature enters the battlefield, target player may put Krav into their hand from their library, then shuffle.) -- Flying -- At the beginning of each end step, if your team gained life this turn, create two 1/1 white Warrior creature tokens.
 mana={5}{W}
 type=Legendary Creature
-subtype=Angel Regna
+subtype=Angel
 power=4
 toughness=4
 [/card]
@@ -40395,8 +40395,8 @@ toughness=3
 [/card]
 [card]
 name=Rowan's Stalwarts
-auto=moveto(myhand) target(Rowan, Fearless Sparkmage|mylibrary)
-auto=moveto(myhand) target(Rowan, Fearless Sparkmage|mygraveyard)
+auto=moveto(myhand) target(Rowan^ Fearless Sparkmage|mylibrary)
+auto=moveto(myhand) target(Rowan^ Fearless Sparkmage|mygraveyard)
 text=When Rowan's Stalwarts enters the battlefield, you may search your library and/or graveyard for a card named Rowan, Fearless Sparkmage, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={4}{R}
 type=Creature
@@ -42831,8 +42831,8 @@ toughness=2
 [card]
 name=Shabraz, the Skyshark
 abilities=hiddenface,partner
-aicode=activate moveTo(myhand) target(Brallin, Skyshark Rider|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Brallin, Skyshark Rider|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Brallin, Skyshark Rider|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate moveTo(myhand) target(Brallin^ Skyshark Rider|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Brallin^ Skyshark Rider|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Brallin^ Skyshark Rider|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@drawof(player:all(this) counter(1/1,1) && life:1 controller
 auto={WU}:target(creature[Human]) flying ueot
 text=Partner with Shabraz, the Skyshark (When this creature enters the battlefield, target player may put Shabraz into their hand from their library, then shuffle.) -- Whenever you discard a card, put a +1/+1 counter on Brallin, Skyshark Rider and it deals 1 damage to each opponent. -- {R}: Target Shark gains trample until end of turn.
@@ -43952,8 +43952,8 @@ type=Instant
 [card]
 name=Silvar, Devourer of the Free
 abilities=hiddenface,menace,partner
-aicode=activate moveTo(myhand) target(Trynn, Champion of Freedom|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Trynn, Champion of Freedom|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Trynn, Champion of Freedom|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate moveTo(myhand) target(Trynn^ Champion of Freedom|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Trynn^ Champion of Freedom|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Trynn^ Champion of Freedom|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto={S(Human|myBattlefield)}:all(this) counter(1/1) && indestructible ueot
 text=Partner with Trynn, Champion of Freedom (When this creature enters the battlefield, target player may put Trynn into their hand from their library, then shuffle.) -- Menace -- Sacrifice a Human: Put a +1/+1 counter on Silvar, Devourer of the Free. It gains indestructible until end of turn.
 mana={3}{B}{R}
@@ -45508,8 +45508,8 @@ subtype=Equipment
 [/card]
 [card]
 name=Sorin's Guide
-auto=may moveto(myhand) target(Sorin, Vampire Lord|mylibrary)
-auto=may moveto(myhand) target(Sorin, Vampire Lord|mygraveyard)
+auto=may moveto(myhand) target(Sorin^ Vampire Lord|mylibrary)
+auto=may moveto(myhand) target(Sorin^ Vampire Lord|mygraveyard)
 text=When Sorin's Guide enters the battlefield, you may search your library and/or graveyard for a card named Sorin, Vampire Lord, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{B}{B}
 type=Creature
@@ -47992,7 +47992,7 @@ toughness=2
 [/card]
 [card]
 name=Sun-Blessed Mount
-auto=may moveto(myhand) target(Huatli, Dinosaur Knight|mylibrary,mygraveyard)
+auto=may moveto(myhand) target(Huatli^ Dinosaur Knight|mylibrary,mygraveyard)
 text=When Sun-Blessed Mount enters the battlefield, you may search your library and/or graveyard for a card named Huatli, Dinosaur Knight, reveal it, then put it into your hand. If you searched your library this way, shuffle it.
 mana={3}{R}{W}
 type=Creature
@@ -49412,8 +49412,8 @@ type=Enchantment
 [card]
 name=Teferi's Wavecaster
 abilities=flash
-auto=choice name(Search Library) may moveto(myHand) target(Teferi, Timeless Voyager|myLibrary) && shuffle
-auto=choice name(Search Graveyard) may moveto(myHand) target(Teferi, Timeless Voyager|myGraveyard)
+auto=choice name(Search Library) may moveto(myHand) target(Teferi^ Timeless Voyager|myLibrary) && shuffle
+auto=choice name(Search Graveyard) may moveto(myHand) target(Teferi^ Timeless Voyager|myGraveyard)
 text=Flash -- When Teferi's Wavecaster enters the battlefield, you may search your library and/or graveyard for a card named Teferi, Timeless Voyager, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{U}{U}
 type=Creature
@@ -49749,8 +49749,8 @@ toughness=4
 name=Tezzeret's Betrayal
 target=creature
 auto=destroy
-auto=choice name(Search Library) may moveto(myhand) target(Tezzeret, Master of Metal|myLibrary) && shuffle
-auto=choice name(Search Graveyard) may moveto(myhand) target(Tezzeret, Master of Metal|myGraveyard)
+auto=choice name(Search Library) may moveto(myhand) target(Tezzeret^ Master of Metal|myLibrary) && shuffle
+auto=choice name(Search Graveyard) may moveto(myhand) target(Tezzeret^ Master of Metal|myGraveyard)
 text=Destroy target creature. You may search your library and/or graveyard for a card named Tezzeret, Master of Metal, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{U}{B}
 type=Sorcery
@@ -51385,7 +51385,7 @@ toughness=3
 [card]
 name=Toothy, Imaginary Friend
 abilities=partner
-auto=may moveto(myhand) notatarget(pir, imaginative rascal|mylibrary)
+auto=may moveto(myhand) notatarget(pir^ imaginative rascal|mylibrary)
 auto=@drawof(player):counter(1/1)
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):thisforeach(counter{1/1,1}) draw:1 controller
 text=Partner with Pir, Imaginative Rascal (When this creature enters the battlefield, target player may put Pir into their hand from their library, then shuffle.) -- Whenever you draw a card, put a +1/+1 counter on Toothy, Imaginary Friend. -- When Toothy leaves the battlefield, draw a card for each +1/+1 counter on it.
@@ -52169,8 +52169,8 @@ toughness=3
 [card]
 name=Trynn, Champion of Freedom
 abilities=hiddenface,partner
-aicode=activate moveTo(myhand) target(Silvar, Devourer of the Free|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Silvar, Devourer of the Free|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Silvar, Devourer of the Free|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate moveTo(myhand) target(Silvar^ Devourer of the Free|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Silvar^ Devourer of the Free|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Silvar^ Devourer of the Free|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@each my endofturn:if raid then token(Soldier Try)
 text=Partner with Silvar, Devourer of the Free (When this creature enters the battlefield, target player may put Silvar into their hand from their library, then shuffle.) -- At the beginning of your end step, if you attacked this turn, create a 1/1 white Human Soldier creature token.
 mana={3}{W}
@@ -52567,8 +52567,8 @@ toughness=0
 [card]
 name=Ukkima, Stalking Shadow
 abilities=hiddenface,unblockable,partner
-aicode=activate moveTo(myhand) target(Cazur, Ruthless Stalker|mylibrary)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Cazur, Ruthless Stalker|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Cazur, Ruthless Stalker|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate moveTo(myhand) target(Cazur^ Ruthless Stalker|mylibrary)
+auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(Cazur^ Ruthless Stalker|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(Cazur^ Ruthless Stalker|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 auto=@movedto(this|nonbattlezone):damage:storedpower target(opponent) && life:storedpower controller
 text=Partner with Cazur, Ruthless Stalker (When this creature enters the battlefield, target player may put Cazur into their hand from their library, then shuffle.) -- Ukkima, Stalking Shadow can’t be blocked. -- When Ukkima leaves the battlefield, it deals X damage to target player and you gain X life, where X is its power.
 mana={1}{U}{B}
@@ -53901,8 +53901,8 @@ type=Sorcery
 [/card]
 [card]
 name=Verdant Crescendo
-aicode=activate target(Nissa, Nature's Artisan|mylibrary,mygraveyard) moveto(myhand) && shuffle
-auto=reveal:plibrarycount optionone name(choose card) target(land[basic]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend && ability$!name(Search Nissa, Nature's Artisan) moveto(myhand) target(Nissa, Nature's Artisan|mylibrary,mygraveyard) && shuffle!$ controller
+auto=target(land[basic]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!
+auto=ability$!name(Search Nissa, Nature's Artisan) name(Search Nissa, Nature's Artisan) target(Nissa^ Nature's Artisan|mylibrary,mygraveyard) moveto(myhand) and!( shuffle )! !$ controller
 text=Search your library for a basic land card and put it onto the battlefield tapped. Search your library and graveyard for a card named Nissa, Nature's Artisan, reveal it, and put it into your hand. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
@@ -54357,7 +54357,7 @@ type=Instant
 [/card]
 [card]
 name=Visage of Bolas
-auto=may moveto(myhand) target(Nicol Bolas, the Deceiver|mylibrary)
+auto=may moveto(myhand) target(Nicol Bolas^ the Deceiver|mylibrary,mygraveyard) and!( shuffle )!
 auto={T}:Add{U}
 auto={T}:Add{B}
 auto={T}:Add{R}
@@ -54839,7 +54839,7 @@ toughness=2
 [card]
 name=Vraska's Scorn
 auto=life:-4 opponent
-auto=may name(Move Vraska, Scheming Gorgon to hand) name(Move Vraska, Scheming Gorgon to hand) moveto(myhand) target(Vraska, Scheming Gorgon|mylibrary,mygraveyard) && shuffle
+auto=may name(Move Vraska, Scheming Gorgon to hand) name(Move Vraska, Scheming Gorgon to hand) target(Vraska^ Scheming Gorgon|mylibrary,mygraveyard) moveto(myhand) and!( shuffle )!
 text=Target opponent loses 4 life. You may search your library and/or graveyard for a card named Vraska, Scheming Gorgon, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={2}{B}{B}
 type=Sorcery
@@ -56537,8 +56537,7 @@ toughness=5
 [card]
 name=Yanling's Harbinger
 abilities=flying
-auto=moveto(myhand) target(Mu Yanling, Celestial Wind|mylibrary)
-auto=moveto(myhand) target(Mu Yanling, Celestial Wind|mygraveyard)
+auto=target(Mu Yanling^ Celestial Wind|mylibrary,mygraveyard) moveto(myhand)  and!( shuffle )!
 text=Flying -- When Yanling's Harbinger enters the battlefield, you may search your library and/or graveyard for a card named Mu Yanling, Celestial Wind, reveal it, and put it into your hand. If you search your library this way, shuffle it.
 mana={3}{U}{U}
 type=Creature
@@ -56549,8 +56548,28 @@ toughness=4
 [card]
 name=Yannik, Scavenging Sentinel
 abilities=vigilance,partner
-auto=may moveto(myhand) target(Nikara, Lair Scavenger|mylibrary)
-auto=(blink)forsrc target(other creature|mybattlefield) && target(creature) counter(1/1,storedpower)
+auto=may moveto(myhand) target(Nikara^ Lair Scavenger|mylibrary)
+auto=if type(creature[power=0]|myBattlefield)~morethan~0 then choice name(Exile creature with power 0) name(Exile creature with power 0) (blink)forsrc target(other creature[power=0]|mybattlefield)
+auto=if type(creature[power=1]|myBattlefield)~morethan~0 then choice name(Exile creature with power 1) name(Exile creature with power 1) (blink)forsrc target(other creature[power=1]|mybattlefield) && ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=2]|myBattlefield)~morethan~0 then choice name(Exile creature with power 2) name(Exile creature with power 2) (blink)forsrc target(other creature[power=2]|mybattlefield) && thisforeach(variable{2}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=3]|myBattlefield)~morethan~0 then choice name(Exile creature with power 3) name(Exile creature with power 3) (blink)forsrc target(other creature[power=3]|mybattlefield) && thisforeach(variable{3}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=4]|myBattlefield)~morethan~0 then choice name(Exile creature with power 4) name(Exile creature with power 4) (blink)forsrc target(other creature[power=4]|mybattlefield) && thisforeach(variable{4}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=5]|myBattlefield)~morethan~0 then choice name(Exile creature with power 5) name(Exile creature with power 5) (blink)forsrc target(other creature[power=5]|mybattlefield) && thisforeach(variable{5}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=6]|myBattlefield)~morethan~0 then choice name(Exile creature with power 6) name(Exile creature with power 6) (blink)forsrc target(other creature[power=6]|mybattlefield) && thisforeach(variable{6}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=7]|myBattlefield)~morethan~0 then choice name(Exile creature with power 7) name(Exile creature with power 7) (blink)forsrc target(other creature[power=7]|mybattlefield) && thisforeach(variable{7}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=8]|myBattlefield)~morethan~0 then choice name(Exile creature with power 8) name(Exile creature with power 8) (blink)forsrc target(other creature[power=8]|mybattlefield) && thisforeach(variable{8}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=9]|myBattlefield)~morethan~0 then choice name(Exile creature with power 9) name(Exile creature with power 9) (blink)forsrc target(other creature[power=9]|mybattlefield) && thisforeach(variable{9}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=10]|myBattlefield)~morethan~0 then choice name(Exile creature with power 10) name(Exile creature with power 10) (blink)forsrc target(other creature[power=10]|mybattlefield) && thisforeach(variable{10}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=11]|myBattlefield)~morethan~0 then choice name(Exile creature with power 11) name(Exile creature with power 11) (blink)forsrc target(other creature[power=11]|mybattlefield) && thisforeach(variable{11}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=12]|myBattlefield)~morethan~0 then choice name(Exile creature with power 12) name(Exile creature with power 12) (blink)forsrc target(other creature[power=12]|mybattlefield) && thisforeach(variable{12}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=13]|myBattlefield)~morethan~0 then choice name(Exile creature with power 13) name(Exile creature with power 13) (blink)forsrc target(other creature[power=13]|mybattlefield) && thisforeach(variable{13}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=14]|myBattlefield)~morethan~0 then choice name(Exile creature with power 14) name(Exile creature with power 14) (blink)forsrc target(other creature[power=14]|mybattlefield) && thisforeach(variable{14}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=15]|myBattlefield)~morethan~0 then choice name(Exile creature with power 15) name(Exile creature with power 15) (blink)forsrc target(other creature[power=15]|mybattlefield) && thisforeach(variable{15}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=16]|myBattlefield)~morethan~0 then choice name(Exile creature with power 16) name(Exile creature with power 16) (blink)forsrc target(other creature[power=16]|mybattlefield) && thisforeach(variable{16}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=17]|myBattlefield)~morethan~0 then choice name(Exile creature with power 17) name(Exile creature with power 17) (blink)forsrc target(other creature[power=17]|mybattlefield) && thisforeach(variable{17}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=18]|myBattlefield)~morethan~0 then choice name(Exile creature with power 18) name(Exile creature with power 18) (blink)forsrc target(other creature[power=18]|mybattlefield) && thisforeach(variable{18}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power=19]|myBattlefield)~morethan~0 then choice name(Exile creature with power 19) name(Exile creature with power 19) (blink)forsrc target(other creature[power=19]|mybattlefield) && thisforeach(variable{19}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
+auto=if type(creature[power>=20]|myBattlefield)~morethan~0 then choice name(Exile creature with power 20) name(Exile creature with power 20) (blink)forsrc target(other creature[power>=20]|mybattlefield) && thisforeach(variable{20}) ability$!name(Assign 1/1 counter) name(Assign 1/1 counter) target(creature) counter(1/1)!$ controller
 text=Partner with Nikara, Lair Scavenger -- Vigilance -- When Yannik, Scavenging Sentinel enters the battlefield, exile another creature you control until Yannik leaves the battlefield. When you do, distribute X +1/+1 counters among any number of target creatures, where X is the exiled creature's power.
 mana={2}{G}{W}
 type=Legendary Creature
