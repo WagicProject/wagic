@@ -651,44 +651,35 @@ private:
         }
         else if (s == "abundantlife")//current life is morethan or equal to starting life
         {
-            intValue = 0;
-            if (target->controller()->life >= target->controller()->initLife)
-                intValue = 1;
+            intValue = (target->controller()->life >= target->controller()->initLife)?1:0;
         }
         else if (s == "plibrarycount")
         {
-            intValue = 0;
-            if (target->controller()->game->library->nb_cards)
-                intValue = target->controller()->game->library->nb_cards;
+            intValue = (target->controller()->game->library->nb_cards)?target->controller()->game->library->nb_cards:0;
         }
         else if (s == "olibrarycount")
         {
-            intValue = 0;
-            if (target->controller()->opponent()->game->library->nb_cards)
-                intValue = target->controller()->opponent()->game->library->nb_cards;
+            intValue = (target->controller()->opponent()->game->library->nb_cards)?target->controller()->opponent()->game->library->nb_cards:0;
         }
         else if (s == "highestlifetotal")
         {
-            intValue = target->controller()->life <= target->controller()->opponent()->life? target->controller()->opponent()->life:target->controller()->life;
+            intValue = target->controller()->life <= target->controller()->opponent()->life?target->controller()->opponent()->life:target->controller()->life;
         }
         else if (s == "lowestlifetotal")
         {
-            intValue = target->controller()->life <= target->controller()->opponent()->life? target->controller()->life:target->controller()->opponent()->life;
+            intValue = target->controller()->life <= target->controller()->opponent()->life?target->controller()->life:target->controller()->opponent()->life;
         }
         else if (s == "thatmuch")
         {
             //the value that much is a variable to be used with triggered abilities.
             //ie:when ever you gain life, draw that many cards. when used in a trigger draw:thatmuch, will return the value
             //that the triggered event stored in the card for "that much".
-            intValue = 0;
             intValue = target->thatmuch;
             int checkagain = 0;
-            if(target->hasSubtype(Subtypes::TYPE_AURA) || target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
-            {
-            if(target->target)
-            {
-            checkagain = target->target->thatmuch;
-            }
+            if(target->hasSubtype(Subtypes::TYPE_AURA) || target->hasSubtype(Subtypes::TYPE_EQUIPMENT)){
+                if(target->target){
+                    checkagain = target->target->thatmuch;
+                }
             }
             if(checkagain > intValue)
                 intValue = checkagain;
@@ -727,16 +718,20 @@ private:
         {
             intValue = (s == "pdrewcount")?target->controller()->drawCounter:target->controller()->opponent()->drawCounter;
         }
-        else if (s == "epicactivated")
+        else if (s == "epicactivated" || s == "currentturn")
         {
-            intValue = target->controller()->epic;
+            intValue = (s == "epicactivated")?target->controller()->epic:target->getObserver()->turn;
         }
-        else if (s == "snowcount")
-        {//this is just to count the number of snow mana produced ... just for debugging purposes...
-            intValue = target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
+        else if (s == "canforetellcast")
+        {
+            intValue = (target->foretellTurn < 0)?0:(target->getObserver()->turn-target->foretellTurn); // Check if you can use the foretell cost from exile (CurrentTurn > ForetellTurn).
         }
-        else if (s == "mypoolcount" || s == "opponentpoolcount")
-        {//manapool
+        else if (s == "isflipped" || s == "snowcount") // Return 1 if card has been flipped -- // Snowcount is just to count the number of snow mana produced ... just for debugging purposes...
+        {
+            intValue = (s == "isflipped")?card->isFlipped:target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
+        }
+        else if (s == "mypoolcount" || s == "opponentpoolcount") // total manapool
+        {
             intValue = (s == "mypoolcount")?target->controller()->getManaPool()->getConvertedCost():target->controller()->opponent()->getManaPool()->getConvertedCost();
         }
         else if (s == "mygreenpoolcount" || s == "opponentgreenpoolcount")
@@ -1046,13 +1041,9 @@ private:
                 unique_cards.clear();
             }
         }
-        else if (s == "mypos")
-        {//hand,exile,grave & library only (library zpos is inverted so the recent one is always the top)
-            intValue = card->zpos;
-        }
-        else if (s == "bushidopoints")
-        {//bushido point
-            intValue = card->bushidoPoints;
+        else if (s == "mypos" || s == "bushidopoints")//hand,exile,grave & library only (library zpos is inverted so the recent one is always the top) -- bushido point
+        {
+            intValue = (s == "mypos")?card->zpos:card->bushidoPoints;
         }
         else if (s == "revealedp")
         {
@@ -2460,6 +2451,15 @@ public:
     int resolve();
     const string getMenuText();
     AAImprint * clone() const;
+};
+//AAForetell
+class AAForetell: public ActivatedAbility
+{
+public:
+    AAForetell(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    int resolve();
+    const string getMenuText();
+    AAForetell * clone() const;
 };
 //cloning...this makes a token thats a copy of the target.
 class AACloner: public ActivatedAbility
@@ -7332,7 +7332,8 @@ public:
     bool asNormalMadness;
     bool alternative;
     int kicked;
-    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false,int kicked = 0);
+    bool flipped;
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false,int kicked = 0,bool flipped = false);
 
     int testDestroy(){return 0;};
     void Update(float dt);

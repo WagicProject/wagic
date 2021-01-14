@@ -2025,6 +2025,44 @@ AAImprint * AAImprint::clone() const
     return NEW AAImprint(*this);
 }
 
+//AAForetell
+AAForetell::AAForetell(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+}
+
+int AAForetell::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be foretell, they will follow the fate of top-card
+        Player * p = _target->controller();
+        if(p){
+            MTGCardInstance * tmp = p->game->putInExile(_target);
+            if(tmp) 
+                tmp->foretellTurn = source->getObserver()->turn;
+        }
+
+        while(_target->next)
+            _target = _target->next;
+
+        return 1;
+    }
+    return 0;
+}
+
+const string AAForetell::getMenuText()
+{
+    return "Foretell";
+}
+
+AAForetell * AAForetell::clone() const
+{
+    return NEW AAForetell(*this);
+}
+
 //Counters
 AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness,
         int nb,int maxNb, ManaCost * cost) :
@@ -4076,7 +4114,7 @@ int AAFlip::resolve()
         while (_target->next)
             _target = _target->next; 
 
-        if(forcetype != "" && _target) // Added to flip Zendikar Rising Modal Double Faced cards.
+        if(forcetype != "" && _target) // Added to flip Modal Double Faced cards (e.g. Zendikar Rising).
         {
             for (int i = ((int)_target->types.size())-1; i >= 0; --i)
                 _target->removeType(_target->types[i]);
@@ -4224,7 +4262,7 @@ int AAFlip::resolve()
                 else
                     _target->isFacedown = true;
 
-                if(forcetype != "" && _target) // Added to flip Zendikar Rising Modal Double Faced cards.
+                if(forcetype != "" && _target && _target->isPermanent()) // Added to flip Modal Double Faced cards (e.g. Zendikar Rising).
                 {
                     _target->castMethod = Constants::CAST_NORMALLY;
                     _target->controller()->game->battlefield->addCard(_target);
@@ -8849,8 +8887,8 @@ AEquip * AEquip::clone() const
 }
 
 // casting a card for free, or casting a copy of a card.
-AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative, int kicked) :
-   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked)
+AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative, int kicked, bool flipped) :
+   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked), flipped(flipped)
 {
     target = _target;
     andAbility = NULL;
@@ -9148,7 +9186,7 @@ int AACastCard::resolveSpell()
                 spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
                 spell->resolve();
             }
-            else
+            else if(!flipped)
                 spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
         }
 

@@ -173,7 +173,7 @@ toughness=2
 [card]
 name=Act of Authority
 auto=may name(Exile artifact or enchantment) target(*[artifact;enchantment]|battlefield) moveTo(ownerExile)
-auto=@each my upkeep:ability$!name(Choose one) choice name(Exile opponent's artifact or enchantment) target(*[artifact;enchantment]|opponentbattlefield) moveTo(ownerExile) && all(mystored) moveto(opponentBattlefield) _ choice name(Exile your artifact or enchantment) target(*[artifact;enchantment]|mybattlefield) moveTo(ownerExile) _ choice name(Don't exile any artifact or enchantment) donothing!$ controller
+auto=@each my upkeep:ability$!name(Choose one) choice name(Exile opponent's artifact or enchantment) target(*[artifact;enchantment]|opponentbattlefield) moveTo(ownerExile) && all(mysource) moveto(opponentBattlefield) _ choice name(Exile your artifact or enchantment) target(*[artifact;enchantment]|mybattlefield) moveTo(ownerExile) _ choice name(Don't exile any artifact or enchantment) donothing!$ controller
 text=When Act of Authority enters the battlefield, you may exile target artifact or enchantment. -- At the beginning of your upkeep, you may exile target artifact or enchantment. If you do, its controller gains control of Act of Authority.
 mana={1}{W}{W}
 type=Enchantment
@@ -526,7 +526,7 @@ type=Sorcery
 [/card]
 [card]
 name=Agadeem, the Undercrypt
-auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{B}
 text=As Agadeem, the Undercrypt enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {B}.
 type=Land
@@ -1038,6 +1038,21 @@ type=Creature
 subtype=Dog
 power=2
 toughness=2
+[/card]
+[card]
+name=Alrund, God of the Cosmos
+other={1}{U} name(Hakka, Whispering Raven)
+otherrestriction=can play creature
+autostack=if paid(alternative) then name(Hakka, Whispering Raven) name(Hakka, Whispering Raven) flip(Hakka, Whispering Raven) forcetype(Legendary Creature)
+auto=this(variable{isflipped}<1) foreach(*[foretold]|myexile) 1/1
+auto=@each my endofturn restriction{compare(isflipped)~equalto~0}:transforms((,newability[choice name(Creature) reveal:2 optionone name(Get Creature) target(<2>Creature|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Artifact) reveal:2 optionone name(Get Artifact) target(<2>artifact|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Enchantment) reveal:2 optionone name(Get Enchantment) target(<2>enchantment|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Instant) reveal:2 optionone name(Get Instant) target(<2>instant|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) name(Bottom of library) bottomoflibrary optiontwoend revealend],newability[choice name(Land) reveal:2 optionone name(Get Land) target(<2>land|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Planeswalker) reveal:2 optionone name(Get Planeswalker) target(<2>planeswalker|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Sorcery) reveal:2 optionone name(Get Sorcery) target(<2>sorcery|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Tribal) reveal:2 optionone name(Get Tribal) target(<2>tribal|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend])) oneshot
+aicode=@each my endofturn restriction{compare(isflipped)~equalto~0}:ability$!name(Choose one) choice name(Creature) all(*[creature;zpos<=2]|mylibrary) moveto(myhand) && all(*[-creature;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Artifact) all(*[artifact;zpos<=2]|mylibrary) moveto(myhand) && all(*[-artifact;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Enchantment) all(*[enchantment;zpos<=2]|mylibrary) moveto(myhand) && all(*[-enchantment;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Instant) all(*[instant;zpos<=2]|mylibrary) moveto(myhand) && all(*[-instant;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Land) all(*[land;zpos<=2]|mylibrary) moveto(myhand) && all(*[-land;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Planeswalker) all(*[planeswalker;zpos<=2]|mylibrary) moveto(myhand) && all(*[-planeswalker;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Sorcery) all(*[sorcery;zpos<=2]|mylibrary) moveto(myhand) && all(*[-sorcery;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Tribal) all(*[tribal;zpos<=2]|mylibrary) moveto(myhand) && all(*[-tribal;zpos<=2]|mylibrary) bottomoflibrary!$ controller
+text=Alrund gets +1/+1 for each card in your hand and each foretold card you own in exile. -- At the beginning of your end step, choose a card type, then reveal the top two cards of your library. Put all cards of the chosen type into your hand and the rest on the bottom of your library in any order.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=God
+power=1
+toughness=1
 [/card]
 [card]
 name=Alseid of Life's Bounty
@@ -6713,8 +6728,8 @@ toughness=3
 [/card]
 [card]
 name=Carrion Rats
-auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mystored) fog from(this) _ choice name(Don't exile any card) donothing!$ opponent
-auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mystored) fog from(this) _ choice name(Don't exile any card) donothing!$ controller
+auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mysource) fog from(this) _ choice name(Don't exile any card) donothing!$ opponent
+auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mysource) fog from(this) _ choice name(Don't exile any card) donothing!$ controller
 text=Whenever Carrion Rats attacks or blocks, any player may exile a card from his or her graveyard. If a player does, Carrion Rats assigns no combat damage this turn.
 mana={B}
 type=Creature
@@ -6734,8 +6749,8 @@ toughness=1
 [/card]
 [card]
 name=Carrion Wurm
-auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mystored) fog from(this) _ choice name(Don't exile any card) donothing!$ opponent
-auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mystored) fog from(this) _ choice name(Don't exile any card) donothing!$ controller
+auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mysource) fog from(this) _ choice name(Don't exile any card) donothing!$ opponent
+auto=@combat(attacking,blocking) source(this):ability$!name(Choose one) choice name(Exile a card) moveto(exile) target(*|mygraveyard) && all(mysource) fog from(this) _ choice name(Don't exile any card) donothing!$ controller
 text=Whenever Carrion Wurm attacks or blocks, any player may exile three cards from his or her graveyard. If a player does, Carrion Wurm assigns no combat damage this turn.
 mana={3}{B}{B}
 type=Creature
@@ -11091,7 +11106,7 @@ toughness=2
 [/card]
 [card]
 name=Deadeye Tracker
-auto={1}{B}{T}:moveto(exile) target(<2>*|opponentgraveyard) && explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
+auto={1}{B}{T}{E(*|opponentgraveyard)} restriction{type(*|opponentgraveyard)~morethan~1}:moveto(exile) target(*|opponentgraveyard) && explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text={1}{B}, {T}: Exile two target cards from an opponent's graveyard. Deadeye Tracker explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={B}
 type=Creature
@@ -14308,7 +14323,7 @@ type=Sorcery
 [/card]
 [card]
 name=Emeria, Shattered Skyclave
-auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{W}
 text=As Emeria, Shattered Skyclave enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {W}.
 type=Land
@@ -21071,6 +21086,18 @@ mana={X}{W}
 type=Instant
 [/card]
 [card]
+name=Hakka, Whispering Raven
+abilities=flying
+auto=@combatdamagefoeof(player) from(this):name(Return to hand and scry 2) name(Return to hand and scry 2) moveTo(ownerhand) and!( scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
+auto=@combatdamageof(player) from(this):name(Return to hand and scry 2) name(Return to hand and scry 2) moveTo(ownerhand) and!( scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
+text=Flying -- Whenever Hakka, Whispering Raven deals combat damage to a player, return it to its owner’s hand, then scry 2.
+mana={1}{U}
+type=Legendary Creature
+subtype=Bird
+power=2
+toughness=3
+[/card]
+[card]
 name=Halana, Kessig Ranger
 abilities=reach,partner
 auto=@movedTo(other creature|mybattlefield):may pay({2}) name(Pay 2) all(trigger[to]) transforms((,newability[name(Damage creature) dynamicability<!powerstrike!> target(creature)])) oneshot
@@ -21147,6 +21174,22 @@ auto=@each opponent combatends:all(creature[attacking]|opponentbattlefield)) tra
 auto=lord(creature[counter{0/0.1.MistEffect}]) cantattack
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Creatures that attacked during their controller's last turn can't attack.
 type=Land
+[/card]
+[card]
+name=Halvar, God of Battle
+other={1}{W} name(Sword of the Realms)
+otherrestriction=can play equipment
+autostack=if paid(alternative) then flip(Sword of the Realms) forcetype(Legendary Artifact)
+auto=this(variable{isflipped}<1) lord(creature[geared;enchanted]|myBattlefield) double strike
+auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~morethan~0,type(creature[enchanted]|mybattlefield)~equalto~0}:may name(Re-attach target equipment) target(*[equipment]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
+auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~equalto~0,type(creature[enchanted]|mybattlefield)~morethan~0}:may name(Re-attach target aura) target(*[aura]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
+auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~morethan~0,type(creature[enchanted]|mybattlefield)~morethan~0}:may name(Re-attach target equipment or aura) target(*[aura;equipment]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
+text=Creatures you control that are enchanted or equipped have double strike. -- At the beginning of each combat, you may attach target Aura or Equipment attached to a creature you control to target creature you control.
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=God
+power=4
+toughness=4
 [/card]
 [card]
 name=Hammer Dropper
@@ -23020,7 +23063,7 @@ type=Instant
 [/card]
 [card]
 name=Hungry Hungry Heifer
-auto=@each my upkeep:if type(*[counter{any}]|mybattlefield)~equalto~0 then sacrifice all(this) else ability!$name(Choose one) choice name(Remove a counter) removesinglecountertype(1) target(*[counter{any}]|mybattlefield) _ choice name(Sacrifice) sacrifice all(mystored)!$ controller
+auto=@each my upkeep:if type(*[counter{any}]|mybattlefield)~equalto~0 then sacrifice all(this) else ability!$name(Choose one) choice name(Remove a counter) removesinglecountertype(1) target(*[counter{any}]|mybattlefield) _ choice name(Sacrifice) sacrifice all(mysource)!$ controller
 text=During your upkeep, remove a counter from any card you control or sacrifice Hungry Hungry Heifer.
 mana={2}{G}
 type=Summon
@@ -25356,6 +25399,19 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Jorn, God of Winter
+other={1}{U}{B} name(Kaldring, the Rimestaff)
+otherrestriction=can play artifact
+autostack=if paid(alternative) then flip(Kaldring, the Rimestaff) forcetype(Legendary Snow Artifact)
+auto=@combat(attacking) source(this) restriction{compare(isflipped)~equalto~0}:all(*[snow]|mybattlefield) untap
+text=Whenever Jorn attacks, untap each snow permanent you control.
+mana={2}{G}
+type=Legendary Snow Creature
+subtype=God
+power=4
+toughness=4
+[/card]
+[card]
 name=Josu Vess, Lich Knight
 abilities=menace
 kicker={5}{B}
@@ -25686,6 +25742,18 @@ type=Legendary Creature
 subtype=Giant Soldier
 power=3
 toughness=3
+[/card]
+[card]
+name=Kaldring, the Rimestaff
+auto={T}:name(Choose snow permanent) name(Choose snow permanent) target(*[snow]|mygraveyard) transforms((,newability[canplayfromgraveyard])) ueot && counter(0/0,1,KaldEffect) all(this)
+auto=@movedto(*[snow]|mybattlefield) from(mygraveyard):this(counter{0/0.1.KaldEffect}>0) all(trigger[to]) tap(noevent) && ability$!counter(0/0,-1,KaldEffect) all(mysource)!$ controller
+auto=@movedto(*[snow]|mystack) from(mygraveyard):this(counter{0/0.1.KaldEffect}>0) counter(0/0,1,KaldEffect2) && ability$!counter(0/0,-1,KaldEffect) all(mysource)!$ controller
+auto=@movedto(*[snow]|mybattlefield):this(counter{0/0.1.KaldEffect2}>0) all(trigger[to]) tap(noevent) && ability$!counter(0/0,-1,KaldEffect2) all(mysource)!$ controller
+auto=@each endofturn:this(counter{0/0.1.KaldEffect}>0) counter(0/0,-1,KaldEffect)
+auto=@each endofturn:this(counter{0/0.1.KaldEffect2}>0) counter(0/0,-1,KaldEffect2)
+text={T}: You may play target snow permanent card from your graveyard this turn. If you do, it enters the battlefield tapped.
+mana={1}{U}{B} 
+type=Legendary Snow Artifact
 [/card]
 [card]
 name=Kalitas, Traitor of Ghet
@@ -32438,7 +32506,7 @@ toughness=3
 [card]
 name=Nessian Wilds Ravager
 abilities=flying
-auto=ability$!choice name(Tribute 6) all(mystored) counter(1/1,6) _ choice name(May fight another target creature) may transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot opponent !$ opponent
+auto=ability$!choice name(Tribute 6) all(mysource) counter(1/1,6) _ choice name(May fight another target creature) may transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot opponent !$ opponent
 text=Tribute 6 (As this creature enters the battlefield, an opponent of your choice may put six +1/+1 counters on it.) -- When Nessian Wilds Ravager enters the battlefield, if tribute wasn’t paid, you may have Nessian Wilds Ravager fight another target creature. (Each deals damage equal to its power to the other.)
 mana={4}{G}{G}
 type=Creature
@@ -33689,7 +33757,7 @@ toughness=4
 [card]
 name=Ogre Marauder
 text=Whenever Ogre Marauder attacks, it gains "Ogre Marauder can't be blocked" until end of turn unless defending player sacrifices a creature.
-auto=@combat(attacking) source(this):ability$!name(choose one) if type(creature|mybattlefield)~morethan~0 then choice sacrifice notatarget(creature|mybattlefield) _ choice all(mystored) unblockable ueot!$ opponent
+auto=@combat(attacking) source(this):ability$!name(choose one) if type(creature|mybattlefield)~morethan~0 then choice sacrifice notatarget(creature|mybattlefield) _ choice all(mysource) unblockable ueot!$ opponent
 mana={1}{B}{B}
 type=Creature
 subtype=Ogre Warrior
@@ -41468,6 +41536,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Saw It Coming
+abilities=foretell
+target=*|stack
+auto=fizzle
+autohand={2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) foretell myturnonly
+autoexile={1}{U} restriction{compare(canforetellcast)~morethan~0,type(*|stack)~morethan~0}:name(Cast with foretell) name(Cast with foretell) activate castcard(alternative)
+text=Counter target spell. -- Foretell {1}{U} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)
+mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Sawtusk Demolisher
 abilities=trample,mutate
 otherrestriction=type(creature[-human]|mybattlefield)~morethan~0
@@ -41999,7 +42078,7 @@ toughness=1
 [/card]
 [card]
 name=Sea Gate, Reborn
-auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{U}
 text=As Sea Gate, Reborn enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {U}.
 type=Land
@@ -43085,7 +43164,7 @@ type=Sorcery
 [/card]
 [card]
 name=Shatterskull, the Hammer Pass
-auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{R}
 text=As Shatterskull, the Hammer Pass enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {R}.
 type=Land
@@ -43532,7 +43611,7 @@ type=Instant
 [/card]
 [card]
 name=Shrouded Serpent
-auto=@combat(attacking) source(this):ability$!name(pay 4 mana) pay[[{4}]] donothing?unblockable all(mystored) ueot!$ opponent
+auto=@combat(attacking) source(this):ability$!name(pay 4 mana) pay[[{4}]] donothing?unblockable all(mysource) ueot!$ opponent
 text=Whenever Shrouded Serpent attacks, defending player may pay {4}. If he or she doesn't, Shrouded Serpent is unblockable this turn.
 mana={4}{U}{U}{U}
 type=Creature
@@ -48491,6 +48570,17 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Sword of the Realms
+auto={1}{W}:equip
+auto=teach(creature) 2/0
+auto=teach(creature) vigilance
+auto=teach(creature) handdeath
+text=Equipped creature gets +2/+0 and has vigilance. -- Whenever equipped creature dies, return it to its owner’s hand. -- Equip {1}{W}
+mana={1}{W}
+type=Legendary Artifact
+subttype=Equipment
+[/card]
+[card]
 name=Sword of Truth and Justice
 auto={2}:equip
 auto=teach(creature) protection from white
@@ -52212,7 +52302,7 @@ type=Sorcery
 [/card]
 [card]
 name=Turntimber, Serpentine Wood
-auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mystored)!$ controller
+auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{G}
 text=As Turntimber, Serpentine Wood enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {G}.
 type=Land

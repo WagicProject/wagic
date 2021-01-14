@@ -957,8 +957,10 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/1/f/1fe2b76f-ddb7-49d5-933b-ccb06be5d46f.jpg?1562875903";
         else if (id.equals("376399"))
             cardurl = "https://img.scryfall.com/cards/large/front/c/e/cec89c38-0b72-44b0-ac6c-7eb9503e1256.jpg?1562938742";
-        else if (id.equals("451089"))
+        else if (id.equals("451089") || id.equals("45108910t"))
             cardurl = "https://img.scryfall.com/cards/large/front/5/8/58164521-aeec-43fc-9db9-d595432dea6f.jpg?1564694999";
+        else if (id.equals("451089t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/5/c5ad13b4-bbf5-4c98-868f-4d105eaf8833.jpg?1592710082";
         else if (id.equals("470745"))
             cardurl = "https://img.scryfall.com/cards/large/front/c/a/ca4caa4e-6b8f-4be8-b177-de2ebe2c9201.jpg?1567044873";
         else if (id.equals("470609"))

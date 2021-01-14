@@ -287,6 +287,7 @@ void MTGCardInstance::initMTGCI()
     imprintR = 0;
     imprintB = 0;
     imprintW = 0;
+    foretellTurn = -1;
     bushidoPoints = 0;
     modularPoints = 0;
     entersBattlefield = 0;

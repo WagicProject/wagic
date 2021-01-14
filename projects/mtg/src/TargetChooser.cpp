@@ -524,6 +524,12 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecureSetTapped(1);
                     }
                 }
+                //Has been foretold
+                else if (attribute.find("foretold") != string::npos)
+                {
+                    cd->foretellTurn = comparisonCriterion;
+                    cd->foretoldComparisonMode = comparisonMode;
+                }
                 //Has been kicked
                 else if (attribute.find("kicked") != string::npos)
                 {
@@ -589,7 +595,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecuresetrecent(1);
                     }
                 }
-                else if (attribute.find("geared") != string::npos)
+                else if (attribute.find("geared") != string::npos || attribute.find("equipped") != string::npos)
                 {
                     if (minus)
                     {
@@ -1002,7 +1008,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     ctc->setAllZones();
                     return ctc;
                 }
-                else if (typeName.compare("mystored") == 0)
+                else if (typeName.compare("mysource") == 0)
                 {
                     return NEW CardTargetChooser(observer, card->storedSourceCard, card, zones, nbzones);
                 }
