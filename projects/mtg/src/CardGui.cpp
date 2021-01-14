@@ -257,7 +257,8 @@ void CardGui::Render()
             if(game)
             {
                 if((card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))||
-                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)))
+                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)) ||
+                (card->has(Constants::FORETELL) && card->foretellTurn > -1 && game->turn > card->foretellTurn  && game->isInExile(card)))
                     fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
                 else
                     fakeborder->SetColor(ARGB((int)(actA),15,15,15));
@@ -1485,6 +1486,12 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecureSetTapped(1);
                     }
                 }
+                //Has been foretold
+                else if (attribute.find("foretold") != string::npos)
+                {
+                    cd.foretellTurn = comparisonCriterion;
+                    cd.foretoldComparisonMode = comparisonMode;
+                }
                 //Has been kicked
                 else if (attribute.find("kicked") != string::npos)
                 {
@@ -1550,7 +1557,7 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecuresetrecent(1);
                     }
                 }
-                else if (attribute.find("geared") != string::npos)
+                else if (attribute.find("geared") != string::npos || attribute.find("equipped") != string::npos)
                 {
                     if (minus)
                     {

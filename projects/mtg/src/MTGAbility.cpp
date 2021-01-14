@@ -825,19 +825,25 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!found)
                 return 0;
         }
-        check = restriction[i].find("can play land");
+        check = restriction[i].find("can play");
         if(check != string::npos)
         {
-            bool isLand = card->hasType("Land");
+            if(!card->getId())
+                return 0; //Fixed a crash when AI plays.
+            string type = restriction[i];
+            type = type.replace(0,9,"");
+            MTGCardInstance* cardDummy = card->clone();
+            for (int i = ((int)cardDummy->types.size())-1; i >= 0; --i)
+                cardDummy->removeType(cardDummy->types[i]);
+            cardDummy->addType(type);
             bool canplay = true;
-            if(!isLand)
-                card->addType("Land");
-            if (observer->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, observer->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
+            if (cardDummy->isLand() && observer->currentActionPlayer->game->playRestrictions->canPutIntoZone(cardDummy, observer->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
                 canplay = false;
-            if (!card->getObserver() || !card->StackIsEmptyandSorcerySpeed())
+            if (!cardDummy->isLand() && observer->currentActionPlayer->game->playRestrictions->canPutIntoZone(cardDummy, observer->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
                 canplay = false;
-            if(!isLand)
-                card->removeType("Land");
+            if (!cardDummy->hasType(Subtypes::TYPE_INSTANT) && !cardDummy->StackIsEmptyandSorcerySpeed())
+                canplay = false;
+            SAFE_DELETE(cardDummy);
             if(!canplay)
                 return 0;
         }
@@ -1780,56 +1786,93 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string>transfound = parseBetween(s,"newability[reveal:"," ");//if we are using reveal inside a newability, let transforms remove the string instead.    
     vector<string>abilfound = parseBetween(s, "ability$!name(reveal) reveal:", " ");
     if(!abilfound.size())
-    abilfound = parseBetween(s, "ability$!reveal:", " ");//see above. this allows us to nest reveals inside these 2 other master classes. while also allowing us to nest them inside reveals.
+        abilfound = parseBetween(s, "ability$!reveal:", " ");//see above. this allows us to nest reveals inside these 2 other master classes. while also allowing us to nest them inside reveals.
     
     found = s.find("pay(");
     if (found != string::npos && storedPayString.empty() && !transPayfound.size())
     {
+        size_t pos1 = s.find("transforms(("); // Try to handle pay ability inside ability$! or transforms keywords.
+        size_t pos2 = s.find("ability$!");
         vector<string> splitMayPaystr = parseBetween(s, "pay(", ")", true);
-        if (splitMayPaystr.size())
-        {
-            storedPayString.append(splitMayPaystr[2]);
-            s = splitMayPaystr[0];
-            s.append("pay(");
-            s.append(splitMayPaystr[1]);
-            s.append(")");
-        }
+        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && found < pos1 && found < pos2) || 
+            (pos2 == string::npos && pos1 != string::npos && found < pos1) || (pos1 == string::npos && pos2 != string::npos && found < pos2)){
+            if (splitMayPaystr.size()){
+                storedPayString.append(splitMayPaystr[2]);
+                s = splitMayPaystr[0];
+                s.append("pay(");
+                s.append(splitMayPaystr[1]);
+                s.append(")");
+            } 
+        } else 
+              storedPayString.clear();
     }
 
     vector<string> splitGrant = parseBetween(s, "grant ", " grantend", false);
     if (splitGrant.size() && storedAbilityString.empty())
     {
         storedAbilityString = splitGrant[1];
-        s = splitGrant[0];
-        s.append("grant ");
-        s.append(splitGrant[2]);
+        size_t pos1 = s.find("transforms(("); // Try to handle grant ability inside ability$! or transforms keywords.
+        size_t pos2 = s.find("ability$!");
+        size_t pos3 = s.find(splitGrant[1]);
+        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 < pos1 && pos3 < pos2) || 
+            (pos2 == string::npos && pos1 != string::npos && pos3 < pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 < pos2)){
+            s = splitGrant[0];
+            s.append("grant ");
+            s.append(splitGrant[2]);
+        } else 
+            storedAbilityString.clear();
     }
 
     vector<string> splitRevealx = parseBetween(s, "reveal:", " revealend", false);
     if (!abilfound.size() && !transfound.size() && splitRevealx.size() && storedAbilityString.empty())
     {
         storedAbilityString = splitRevealx[1];
-        s = splitRevealx[0];
-        s.append("reveal: ");
-        s.append(splitRevealx[2]);
+        size_t pos1 = s.find("transforms(("); // Try to handle reveal ability inside ability$! or transforms keywords.
+        size_t pos2 = s.find("ability$!");
+        size_t pos3 = s.find(splitRevealx[1]);
+        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 < pos1 && pos3 < pos2) || 
+            (pos2 == string::npos && pos1 != string::npos && pos3 < pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 < pos2)){
+            s = splitRevealx[0];
+            s.append("reveal: ");
+            s.append(splitRevealx[2]);
+        } else 
+            storedAbilityString.clear();
     }
 
     vector<string> splitScryx = parseBetween(s, "scry:", " scryend", false);
     if (splitScryx.size() && storedAbilityString.empty())
     {
         storedAbilityString = splitScryx[1];
-        s = splitScryx[0];
-        s.append("scry: ");
-        s.append(splitScryx[2]);
+        size_t pos1 = s.find("transforms(("); // Try to handle scry ability inside ability$! or transforms keywords.
+        size_t pos2 = s.find("ability$!");
+        size_t pos3 = s.find(splitScryx[1]);
+        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 < pos1 && pos3 < pos2) || 
+            (pos2 == string::npos && pos1 != string::npos && pos3 < pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 < pos2)){
+            s = splitScryx[0];
+            s.append("scry: ");
+            s.append(splitScryx[2]);
+        } else 
+            storedAbilityString.clear();
     }
 
     found = s.find("transforms((");
     if (found != string::npos && storedString.empty())
     {
-        size_t real_end = s.find("))", found);
-        size_t stypesStartIndex = found + 12;
-        storedString.append(s.substr(stypesStartIndex, real_end - stypesStartIndex).c_str());
-        s.erase(stypesStartIndex, real_end - stypesStartIndex);
+        size_t pos1 = s.find("ability$!"); // Try to handle transforms ability inside ability$! keyword.
+        if(pos1 == string::npos || found < pos1){
+            size_t real_end = s.find("))", found);
+            size_t stypesStartIndex = found + 12;
+            for(unsigned int i = stypesStartIndex; i < s.size(); i++){
+                size_t pos2 = s.find("transforms((", i); // Try to handle transforms ability inside transforms keyword.
+                if(pos2 != string::npos && pos2 < real_end){
+                    i = pos2 + 11;
+                    real_end = s.find("))", real_end + 2);
+                } else
+                    break;
+            }
+            storedString.append(s.substr(stypesStartIndex, real_end - stypesStartIndex).c_str());
+            s.erase(stypesStartIndex, real_end - stypesStartIndex);
+        }
     }
 
     found = s.find("ability$!");
@@ -3099,6 +3142,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
     }
 
+    //foretell
+    found = s.find("foretell");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AAForetell(observer, id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
     //phaseout
     found = s.find("phaseout");
     if (found != string::npos)
@@ -3267,6 +3319,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool sendNoEvent = splitCastCard[1].find("noevent") != string::npos;
         bool putinplay = splitCastCard[1].find("putinplay") != string::npos;
         bool alternative = splitCastCard[1].find("alternative") != string::npos;
+        bool flipped = splitCastCard[1].find("flipped") != string::npos;
         string nameCard = "";
         if(splitCastCard[1].find("named!:") != string::npos)
         {
@@ -3285,7 +3338,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 kicked = atoi(splitCastKicked[1].c_str());
             }
         }
-        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness, alternative, kicked);
+        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness, alternative, kicked, flipped);
         a->oneShot = false;
         if(splitCastCard[1].find("trigger[to]") != string::npos)
         {
@@ -4074,7 +4127,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string transformsParamsString = "";
         transformsParamsString.append(storedString);//the string between found and real end is removed at start.
         
-        found = transformsParamsString.find("transforms((");
+        found = transformsParamsString.find("transforms(("); // Try to handle transforms ability inside transforms keyword.
         if (found != string::npos && extraTransforms.empty())
         {
             size_t real_end = transformsParamsString.find("))", found);
@@ -4120,10 +4173,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 size_t NewSkill = abilities[j].find("newability[");
                 size_t NewSkillEnd = abilities[j].find_last_of("]");
                 string newAbilities = abilities[j].substr(NewSkill + 11,NewSkillEnd - NewSkill - 11);
+                size_t pos = newAbilities.find("transforms(())"); // Try to handle transforms ability inside transforms keyword.
+                if(pos != string::npos)
+                    newAbilities.replace(pos, 14, "transforms((" + storedString + "))");
                 newAbilitiesList.push_back(newAbilities);
                 newAbilityFound = true;
             }
         }
+        size_t pos = sabilities.find("transforms(())"); // Try to handle transforms ability inside transforms keyword.
+        if(pos != string::npos)
+            sabilities.replace(pos, 14, "transforms((" + storedString + "))");
 
         if (oneShot || forceUEOT || forceForever)
             return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever,untilYourNextTurn,newName);

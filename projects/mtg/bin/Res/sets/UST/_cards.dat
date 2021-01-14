@@ -3,7 +3,7 @@ author=Wagic Team
 name=Unstable
 orderindex=UN-3.UST
 year=2017-12-08
-total=269
+total=268
 [/meta]
 [card]
 primitive=Adorable Kitten
@@ -1344,9 +1344,4 @@ rarity=C
 primitive=Enraged Killbot
 id=439657
 rarity=C
-[/card]
-[card]
-primitive=Baffling End
-id=439658
-rarity=U
 [/card]

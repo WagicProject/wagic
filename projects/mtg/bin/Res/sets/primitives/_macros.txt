@@ -12,9 +12,6 @@
 # Basic Landcycling
 #AUTO_DEFINE __BASIC_LANDCYCLING__($cost) $cost{cycle}:name(basic landcycling) moveTo(myhand) target(land[basic]|mylibrary)
 
-# Fabricate
-#AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
-
 # Dies, Evergreen
 #AUTO_DEFINE _DIES_ @movedTo(this|mygraveyard) from(battlefield):
 

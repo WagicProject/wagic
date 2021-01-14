@@ -4,7 +4,7 @@ name=War of the Spark
 block=Guilds of Ravnica
 orderindex=EXP-ZZC.WAR
 year=2019-05-03
-total=311
+total=275
 [/meta]
 [card]
 primitive=Ahn-Crop Invader
@@ -27,11 +27,6 @@ id=461111
 rarity=R
 [/card]
 [card]
-primitive=Ajani, the Greathearted
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Angrath's Rampage
 id=461112
 rarity=U
@@ -39,11 +34,6 @@ rarity=U
 [card]
 primitive=Angrath, Captain of Chaos
 id=461154
-rarity=U
-[/card]
-[card]
-primitive=Angrath, Captain of Chaos
-id=null
 rarity=U
 [/card]
 [card]
@@ -62,11 +52,6 @@ id=461077
 rarity=U
 [/card]
 [card]
-primitive=Arlinn, Voice of the Pack
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Ashiok's Skulker
 id=460967
 rarity=C
@@ -74,11 +59,6 @@ rarity=C
 [card]
 primitive=Ashiok, Dream Render
 id=461155
-rarity=U
-[/card]
-[card]
-primitive=Ashiok, Dream Render
-id=null
 rarity=U
 [/card]
 [card]
@@ -222,11 +202,6 @@ id=461046
 rarity=R
 [/card]
 [card]
-primitive=Chandra, Fire Artisan
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Charity Extractor
 id=461008
 rarity=C
@@ -282,11 +257,6 @@ id=461010
 rarity=U
 [/card]
 [card]
-primitive=Davriel, Rogue Shadowmage
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Deathsprout
 id=461116
 rarity=U
@@ -337,11 +307,6 @@ id=461118
 rarity=R
 [/card]
 [card]
-primitive=Domri, Anarch of Bolas
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Dovin's Veto
 id=461120
 rarity=U
@@ -349,11 +314,6 @@ rarity=U
 [card]
 primitive=Dovin, Hand of Control
 id=461156
-rarity=U
-[/card]
-[card]
-primitive=Dovin, Hand of Control
-id=null
 rarity=U
 [/card]
 [card]
@@ -507,11 +467,6 @@ id=460940
 rarity=M
 [/card]
 [card]
-primitive=Gideon Blackblade
-id=null
-rarity=M
-[/card]
-[card]
 primitive=Gideon's Battle Cry
 id=463834
 rarity=R
@@ -627,11 +582,6 @@ id=461157
 rarity=U
 [/card]
 [card]
-primitive=Huatli, the Sun's Heart
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Ignite the Beacon
 id=460945
 rarity=R
@@ -707,11 +657,6 @@ id=460981
 rarity=R
 [/card]
 [card]
-primitive=Jace, Wielder of Mysteries
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Jaya's Greeting
 id=461063
 rarity=C
@@ -722,18 +667,8 @@ id=461062
 rarity=U
 [/card]
 [card]
-primitive=Jaya, Venerated Firemage
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Jiang Yanggu, Wildcrafter
 id=461091
-rarity=U
-[/card]
-[card]
-primitive=Jiang Yanggu, Wildcrafter
-id=null
 rarity=U
 [/card]
 [card]
@@ -747,11 +682,6 @@ id=460928
 rarity=R
 [/card]
 [card]
-primitive=Karn, the Great Creator
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Kasmina's Transmutation
 id=460984
 rarity=C
@@ -759,11 +689,6 @@ rarity=C
 [card]
 primitive=Kasmina, Enigmatic Mentor
 id=460983
-rarity=U
-[/card]
-[card]
-primitive=Kasmina, Enigmatic Mentor
-id=null
 rarity=U
 [/card]
 [card]
@@ -777,11 +702,6 @@ id=461158
 rarity=U
 [/card]
 [card]
-primitive=Kaya, Bane of the Dead
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Kiora's Dambreaker
 id=460985
 rarity=C
@@ -789,11 +709,6 @@ rarity=C
 [card]
 primitive=Kiora, Behemoth Beckoner
 id=461159
-rarity=U
-[/card]
-[card]
-primitive=Kiora, Behemoth Beckoner
-id=null
 rarity=U
 [/card]
 [card]
@@ -844,11 +759,6 @@ rarity=U
 [card]
 primitive=Liliana, Dreadhorde General
 id=461024
-rarity=M
-[/card]
-[card]
-primitive=Liliana, Dreadhorde General
-id=null
 rarity=M
 [/card]
 [card]
@@ -937,11 +847,6 @@ id=461160
 rarity=U
 [/card]
 [card]
-primitive=Nahiri, Storm of Stone
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Narset's Reversal
 id=460989
 rarity=R
@@ -949,11 +854,6 @@ rarity=R
 [card]
 primitive=Narset, Parter of Veils
 id=460988
-rarity=U
-[/card]
-[card]
-primitive=Narset, Parter of Veils
-id=null
 rarity=U
 [/card]
 [card]
@@ -977,11 +877,6 @@ id=461134
 rarity=M
 [/card]
 [card]
-primitive=Nicol Bolas, Dragon-God
-id=null
-rarity=M
-[/card]
-[card]
 primitive=Nissa's Triumph
 id=461097
 rarity=U
@@ -989,11 +884,6 @@ rarity=U
 [card]
 primitive=Nissa, Who Shakes the World
 id=461096
-rarity=R
-[/card]
-[card]
-primitive=Nissa, Who Shakes the World
-id=null
 rarity=R
 [/card]
 [card]
@@ -1019,11 +909,6 @@ rarity=C
 [card]
 primitive=Ob Nixilis, the Hate-Twisted
 id=461027
-rarity=U
-[/card]
-[card]
-primitive=Ob Nixilis, the Hate-Twisted
-id=null
 rarity=U
 [/card]
 [card]
@@ -1112,11 +997,6 @@ id=461138
 rarity=R
 [/card]
 [card]
-primitive=Ral, Storm Conduit
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Rally of Wings
 id=460954
 rarity=U
@@ -1172,11 +1052,6 @@ id=461161
 rarity=U
 [/card]
 [card]
-primitive=Saheeli, Sublime Artificer
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Samut's Sprint
 id=461069
 rarity=C
@@ -1187,18 +1062,8 @@ id=461162
 rarity=U
 [/card]
 [card]
-primitive=Samut, Tyrant Smasher
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Sarkhan the Masterless
 id=461070
-rarity=R
-[/card]
-[card]
-primitive=Sarkhan the Masterless
-id=null
 rarity=R
 [/card]
 [card]
@@ -1249,11 +1114,6 @@ rarity=C
 [card]
 primitive=Sorin, Vengeful Bloodlord
 id=461144
-rarity=R
-[/card]
-[card]
-primitive=Sorin, Vengeful Bloodlord
-id=null
 rarity=R
 [/card]
 [card]
@@ -1337,11 +1197,6 @@ id=461147
 rarity=R
 [/card]
 [card]
-primitive=Tamiyo, Collector of Tales
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Teferi's Time Twist
 id=460999
 rarity=C
@@ -1349,11 +1204,6 @@ rarity=C
 [card]
 primitive=Teferi, Time Raveler
 id=461148
-rarity=R
-[/card]
-[card]
-primitive=Teferi, Time Raveler
-id=null
 rarity=R
 [/card]
 [card]
@@ -1372,11 +1222,6 @@ id=460959
 rarity=U
 [/card]
 [card]
-primitive=Teyo, the Shieldmage
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Tezzeret, Master of the Bridge
 id=463842
 rarity=M
@@ -1389,11 +1234,6 @@ rarity=R
 [card]
 primitive=The Wanderer
 id=460964
-rarity=U
-[/card]
-[card]
-primitive=The Wanderer
-id=null
 rarity=U
 [/card]
 [card]
@@ -1414,11 +1254,6 @@ rarity=U
 [card]
 primitive=Tibalt, Rakish Instigator
 id=461073
-rarity=U
-[/card]
-[card]
-primitive=Tibalt, Rakish Instigator
-id=null
 rarity=U
 [/card]
 [card]
@@ -1482,11 +1317,6 @@ id=460929
 rarity=R
 [/card]
 [card]
-primitive=Ugin, the Ineffable
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Unlikely Aid
 id=461036
 rarity=C
@@ -1512,11 +1342,6 @@ id=461107
 rarity=R
 [/card]
 [card]
-primitive=Vivien, Champion of the Wilds
-id=null
-rarity=R
-[/card]
-[card]
 primitive=Vizier of the Scorpion
 id=461038
 rarity=U
@@ -1529,11 +1354,6 @@ rarity=C
 [card]
 primitive=Vraska, Swarm's Eminence
 id=461163
-rarity=U
-[/card]
-[card]
-primitive=Vraska, Swarm's Eminence
-id=null
 rarity=U
 [/card]
 [card]

@@ -13,6 +13,7 @@ CardDescriptor::CardDescriptor()
     counterToughness = 0;
     counterNB = 0;
     mode = CD_AND;
+    foretoldComparisonMode = COMPARISON_NONE;
     kickedComparisonMode = COMPARISON_NONE;
     powerComparisonMode = COMPARISON_NONE;
     toughnessComparisonMode = COMPARISON_NONE;
@@ -159,6 +160,8 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     }
 
     // Quantified restrictions are always AND-ed:
+    if (foretoldComparisonMode && !valueInRange(foretoldComparisonMode, card->foretellTurn, foretellTurn))
+        return NULL;
     if (kickedComparisonMode && !valueInRange(kickedComparisonMode, card->kicked, kicked))
         return NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
@@ -204,6 +207,8 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
             match = NULL;
     }
 
+    if (foretoldComparisonMode && !valueInRange(foretoldComparisonMode, card->foretellTurn, foretellTurn))
+        match = NULL;
     if (kickedComparisonMode && !valueInRange(kickedComparisonMode, card->kicked, kicked))
         match = NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))

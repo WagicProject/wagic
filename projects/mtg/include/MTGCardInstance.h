@@ -306,6 +306,7 @@ public:
     int imprintR;
     int imprintB;
     int imprintW;
+    int foretellTurn;
     int bushidoPoints;
     int modularPoints;
     int canproduceMana(int color = -1);
