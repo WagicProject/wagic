@@ -376,14 +376,14 @@ void TestSuiteGame::assertGame()
                             endState.players[i]->poisonCount, p->poisonCount);
             Log(result);
             error++;
-        }        if (!p->getManaPool()->canAfford(endState.players[i]->getManaPool()))
+        }        if (!p->getManaPool()->canAfford(endState.players[i]->getManaPool(),0))
         {
             sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",
                             endState.players[i]->getManaPool()->getConvertedCost(), p->getManaPool()->getConvertedCost(), i);
             Log(result);
             error++;
         }
-        if (!endState.players[i]->getManaPool()->canAfford(p->getManaPool()))
+        if (!endState.players[i]->getManaPool()->canAfford(p->getManaPool(),0))
         {
             sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",
                             endState.players[i]->getManaPool()->getConvertedCost(), p->getManaPool()->getConvertedCost(), i);

@@ -560,7 +560,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             {
                 ManaCost * costToCheck = ManaCost::parseManaCost(restriction[i]);
                 ManaCost * spent = card->getManaCost()->getManaUsedToCast();
-                if(spent && costToCheck && !spent->canAfford(costToCheck))
+                if(spent && costToCheck && !spent->canAfford(costToCheck,0))
                 {
                     SAFE_DELETE(costToCheck);
                     return 0;
@@ -6196,7 +6196,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 
         if (!mana)
             mana = player->getManaPool();
-        if (!mana->canAfford(cost))
+        if (!mana->canAfford(cost,card->has(Constants::ANYTYPEOFMANAABILITY)))
             return 0;
         if (!cost->canPayExtra())
             return 0;
@@ -7106,7 +7106,7 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
                 if (!source->isPhased)
                 {
                     ManaCost * cost = getCost();
-                    if (!cost || (mana->canAfford(cost) && (!cost->extraCosts || cost->extraCosts->canPay())))/*counter cost bypass react to click*/
+                    if (!cost || (mana->canAfford(cost,_card->has(Constants::ANYTYPEOFMANAABILITY)) && (!cost->extraCosts || cost->extraCosts->canPay())))/*counter cost bypass react to click*/
                     {
                         result = 1;
                     }

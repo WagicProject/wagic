@@ -20,9 +20,9 @@ MTGCardInstance * AIPlayerBakaB::chooseCard(TargetChooser * tc, MTGCardInstance 
     return AIPlayerBaka::chooseCard(tc, source, random);
 }
 
-bool AIPlayerBakaB::payTheManaCost(ManaCost * cost, MTGCardInstance * target, vector<MTGAbility*>gotPayments)
+bool AIPlayerBakaB::payTheManaCost(ManaCost * cost, int anytypeofmana, MTGCardInstance * target, vector<MTGAbility*>gotPayments)
 {
-    return AIPlayerBaka::payTheManaCost(cost, target, gotPayments);
+    return AIPlayerBaka::payTheManaCost(cost, anytypeofmana, target, gotPayments);
 }
 
 int AIPlayerBakaB::getEfficiency(OrderedAIAction * action)

@@ -4127,12 +4127,6 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
-name=Five-Finger Discount
-text=Put target nonland permanent into your hand. You may spend mana as though it were mana of any color the next time you cast that card.
-mana={4}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Flames of the Blood Hand
 text=Flames of the Blood Hand deals 4 damage to target player. The damage can't be prevented. If that player would gain life this turn, that player gains no life instead.
 mana={2}{R}

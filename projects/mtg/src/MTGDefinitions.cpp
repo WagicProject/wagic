@@ -205,7 +205,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "gainedexiledeath", //It goes to exile after death (use just to give add ability to instants and sorceries which originally have not, e.g. with transforms keyword)
     "gainedhanddeath", //It goes to hand after death (use just to give add ability to instants and sorceries which originally have not, e.g. with transforms keyword)
     "cycling", //It has cycling ability
-    "foretell" //It has foretell cost
+    "foretell", //It has foretell cost
+    "anytypeofmanaability" //It allows to spend mana as it were of any color to activate abilities.
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

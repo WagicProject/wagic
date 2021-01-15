@@ -1360,7 +1360,7 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
     return NULL;
 }
 
-bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vector<MTGAbility*>gotPayments)
+bool AIPlayerBaka::payTheManaCost(ManaCost * cost, int anytypeofmana, MTGCardInstance * target,vector<MTGAbility*>gotPayments)
 {
      DebugTrace("AIPlayerBaka: AI attempting to pay a mana cost." << endl
             << "-  Target: " << (target ? target->name : "None" ) << endl
@@ -1437,7 +1437,7 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
             }
             if(k == gotPayments.size()-1)//only add it once, and at the end.
             paid->add(this->getManaPool());//incase some of our payments were mana already in the pool/.
-            if(paid->canAfford(cost))
+            if(paid->canAfford(cost, anytypeofmana))
             {
                 if((!cost->hasX() && !cost->hasAnotherCost()) || k == gotPayments.size()-1)
                 {
@@ -1471,7 +1471,7 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
         cost = pMana;//{x}:effect, set x to max.
     }
 
-    if(!pMana->canAfford(cost))
+    if(!pMana->canAfford(cost, 0))
     {
         delete pMana;
         return false;
@@ -1556,17 +1556,19 @@ ManaCost * AIPlayerBaka::getPotentialMana(MTGCardInstance * target)
     return result;
 }
 
-vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost)
+vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target, ManaCost * cost, int anytypeofmana)
 {
     if(!cost || (cost && !cost->getConvertedCost()) || !target)
         return vector<MTGAbility*>();
     map<MTGCardInstance*, bool> usedCards;
  
-    return canPayMana(target, cost, usedCards);
+    return canPayMana(target, cost, anytypeofmana, usedCards);
 }
 
-vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost, map<MTGCardInstance*,bool> &used ,bool searchingAgain)
+vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target, ManaCost * _cost, int anytypeofmana, map<MTGCardInstance*,bool> &used ,bool searchingAgain)
 {
+    ManaCost * cost = _cost;
+
     if(!cost->getConvertedCost())
         return vector<MTGAbility*>();
     ManaCost * result = NEW ManaCost();
@@ -1577,6 +1579,14 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         //adding the current manapool if any.
         result->add(this->getManaPool());
     }
+
+    if(anytypeofmana){
+        int convertedC = cost->getConvertedCost();
+        cost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, target));
+        for (int jj = 0; jj < convertedC; jj++)
+            cost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+    }
+
     int needColorConverted = cost->getConvertedCost() - int(cost->getCost(0)+cost->getCost(7));
     int fullColor = 0;
     for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
@@ -1589,7 +1599,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         {
             if(cost->hasColor(0) && amp)//find colorless after color mana.
             {
-                if(result->canAfford(cost))
+                if(result->canAfford(cost,0))
                     continue;
                 if (canHandleCost(amp))
                 {
@@ -1598,7 +1608,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                         used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
                     if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
                     {
-                        if(!(result->canAfford(cost)))//if we got to this point we should be filling colorless mana requirements.
+                        if(!(result->canAfford(cost,0)))//if we got to this point we should be filling colorless mana requirements.
                         {
                             payments.push_back(amp);
                             result->add(amp->output);
@@ -1653,7 +1663,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                         check->add(k,cost->getCost(k));
                         ManaCost * checkResult = NEW ManaCost();
                         checkResult->add(k,result->getCost(k));
-                        if(!(checkResult->canAfford(check)))
+                        if(!(checkResult->canAfford(check,0)))
                         {
                             payments.push_back(amp);
                             result->add(k,amp->output->getCost(k));
@@ -1698,7 +1708,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                             check->add(foundColor1?hybridCost->color1:hybridCost->color2,foundColor1?hybridCost->value1:hybridCost->value2);
                             ManaCost * checkResult = NEW ManaCost();
                             checkResult->add(foundColor1?hybridCost->color1:hybridCost->color2,result->getCost(foundColor1?hybridCost->color1:hybridCost->color2));
-                            if(((foundColor1 && !foundColor2)||(!foundColor1 && foundColor2)) &&!(checkResult->canAfford(check)))
+                            if(((foundColor1 && !foundColor2)||(!foundColor1 && foundColor2)) &&!(checkResult->canAfford(check,0)))
                             {
                                 payments.push_back(amp);
                                 result->add(foundColor1?hybridCost->color1:hybridCost->color2,amp->output->getCost(foundColor1?hybridCost->color1:hybridCost->color2));
@@ -1722,7 +1732,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         {
             check->add(k,cost->getCost(k));
             checkResult->add(k,result->getCost(k));
-            if(!(checkResult->canAfford(check)))
+            if(!(checkResult->canAfford(check,0)))
             {
                 SAFE_DELETE(check);
                 SAFE_DELETE(checkResult);
@@ -1739,7 +1749,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
             bool keepLooking = true;
             while(keepLooking)
             {
-                kickerPayment = canPayMana(target, withKickerCost, used,true);
+                kickerPayment = canPayMana(target, withKickerCost, target->has(Constants::ANYTYPEOFMANA), used, true);
                 if(kickerPayment.size())
                 {
                     for(unsigned int w = 0;w < kickerPayment.size();++w)
@@ -1776,9 +1786,11 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
             }
         }
     }
-    if(!result->canAfford(cost))
+    if(!result->canAfford(cost,0))
         payments.clear();
     SAFE_DELETE(result);
+    if(anytypeofmana)
+        SAFE_DELETE(cost);
     return payments;
 }
 
@@ -1817,7 +1829,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
                         check->add(k,1);
                         ManaCost * checkResult = NEW ManaCost();
                         checkResult->add(k,result->getCost(k));
-                        if(!(checkResult->canAfford(check)))
+                        if(!(checkResult->canAfford(check,card->has(Constants::ANYTYPEOFMANA))))
                         {
                             payments.push_back(amp);
                             result->add(k,amp->output->getCost(k));
@@ -1843,7 +1855,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
                 MTGCardInstance * card = amp->source;
                 if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
                 {
-                    if(!(result->canAfford(cost)))//if we got to this point we should be filling colorless mana requirements.
+                    if(!(result->canAfford(cost,card->has(Constants::ANYTYPEOFMANA))))//if we got to this point we should be filling colorless mana requirements.
                     {
                         payments.push_back(amp);
                         result->add(amp->output);
@@ -1853,7 +1865,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
             }
         }
     }
-    if(!result->canAfford(cost))
+    if(!result->canAfford(cost,0))
         payments.clear();
     SAFE_DELETE(result);
     return payments;
@@ -2024,7 +2036,7 @@ int AIPlayerBaka::selectHintAbility()
         if (!clickstream.size())
         {
             DebugTrace("AIPlayer:Using Activated ability");
-            if (payTheManaCost(action->ability->getCost(), action->click))
+            if (payTheManaCost(action->ability->getCost(), action->click->has(Constants::ANYTYPEOFMANAABILITY), action->click))
             {
                 clickstream.push(action);
                 SAFE_DELETE(totalPotentialMana);
@@ -2045,10 +2057,10 @@ int AIPlayerBaka::selectAbility()
         check = dynamic_cast<ExtraManaCost*>(observer->mExtraPayment->costs[0]);
         if(check)
         {
-            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay);
+            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay,check->source->has(Constants::ANYTYPEOFMANAABILITY));
             if(CostToPay.size())
             {
-                payTheManaCost(check->costToPay,check->source,CostToPay);
+                payTheManaCost(check->costToPay,check->source->has(Constants::ANYTYPEOFMANAABILITY),check->source,CostToPay);
             }
             else
             {
@@ -2087,7 +2099,7 @@ int AIPlayerBaka::selectAbility()
             MTGCardInstance * card = game->inPlay->cards[j];
             if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
             {
-                abilityPayment = canPayMana(card,a->getCost());
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
             }
             if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
             { //This test is to avoid the huge call to getPotentialManaCost after that
@@ -2139,7 +2151,7 @@ int AIPlayerBaka::selectAbility()
                     DebugTrace(" Ai knows exactly what mana to use for this ability.");
                 }
                 DebugTrace("AIPlayer:Using Activated ability");
-                if (payTheManaCost(action.ability->getCost(), action.click,abilityPayment))
+                if (payTheManaCost(action.ability->getCost(),action.click->has(Constants::ANYTYPEOFMANAABILITY),action.click,abilityPayment))
                     clickstream.push(NEW AIAction(action));
             }
         }
@@ -2157,10 +2169,10 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
         check = dynamic_cast<ExtraManaCost*>(observer->mExtraPayment->costs[0]);
         if (check)
         {
-            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source, check->costToPay);
+            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source, check->costToPay, check->source->has(Constants::ANYTYPEOFMANAABILITY));
             if (CostToPay.size())
             {
-                payTheManaCost(check->costToPay, check->source, CostToPay);
+                payTheManaCost(check->costToPay, check->source->has(Constants::ANYTYPEOFMANAABILITY), check->source, CostToPay);
             }
             else
             {
@@ -2188,7 +2200,7 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
         //Make sure we can use the ability
         if (a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
         {
-            abilityPayment = canPayMana(card, a->getCost());
+            abilityPayment = canPayMana(card, a->getCost(), card->has(Constants::ANYTYPEOFMANAABILITY));
         }
         if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
         { //This test is to avoid the huge call to getPotentialManaCost after that
@@ -2223,14 +2235,14 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
                         {
                             ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
                             specificCost->add(0, card->attackCostBackup);
-                            abilityPayment = canPayMana(card, specificCost);
+                            abilityPayment = canPayMana(card, specificCost, card->has(Constants::ANYTYPEOFMANAABILITY));
                             SAFE_DELETE(specificCost);
                         }
                         else if (a->aType == MTGAbility::BLOCK_COST)
                         {
                             ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
                             specificCost->add(0, card->blockCostBackup);
-                            abilityPayment = canPayMana(card, specificCost);
+                            abilityPayment = canPayMana(card, specificCost, card->has(Constants::ANYTYPEOFMANAABILITY));
                             SAFE_DELETE(specificCost);
                         }
                     }
@@ -2266,7 +2278,7 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
                     {
                         ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
                         specificCost->add(0, action.click->attackCostBackup);
-                        if (payTheManaCost(specificCost, action.click, abilityPayment))
+                        if (payTheManaCost(specificCost, action.click->has(Constants::ANYTYPEOFMANAABILITY), action.click, abilityPayment))
                             clickstream.push(NEW AIAction(action));
                         SAFE_DELETE(specificCost);
                     }
@@ -2274,14 +2286,14 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
                     {
                         ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
                         specificCost->add(0, action.click->blockCostBackup);
-                        if (payTheManaCost(specificCost, action.click, abilityPayment))
+                        if (payTheManaCost(specificCost, action.click->has(Constants::ANYTYPEOFMANAABILITY), action.click, abilityPayment))
                             clickstream.push(NEW AIAction(action));
                         SAFE_DELETE(specificCost);
                     }
                 }
                 else
                 {
-                    if (payTheManaCost(action.ability->getCost(), action.click, abilityPayment))
+                    if (payTheManaCost(action.ability->getCost(), action.click->has(Constants::ANYTYPEOFMANAABILITY), action.click, abilityPayment))
                         clickstream.push(NEW AIAction(action));
                 }
             }
@@ -2560,8 +2572,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     {
         nextCardToPlay = comboCards.back();
         gotPayments.clear();
-         if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker() || nextCardToPlay->getManaCost()->getBestow()))
-            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+        if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker() || nextCardToPlay->getManaCost()->getBestow()))
+            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
         DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
         comboCards.pop_back();
         if(!comboHint->cardTargets.size() && !comboCards.size())
@@ -2628,8 +2640,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                         continue;
                     nextCardToPlay = card;
                     gotPayments.clear();
-                    if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
-                        gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                    if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker()))
+                        gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
                     return activateCombo();
                 }
                 else
@@ -2641,10 +2653,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             int currentCost = card->getManaCost()->getConvertedCost();
             int hasX = card->getManaCost()->hasX();
             gotPayments.clear();
-            if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
-                gotPayments = canPayMana(card,card->getManaCost());
+            if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
+                gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
                 //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
-            if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+            if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA))))
             {
                 TargetChooserFactory tcf(observer);
                 TargetChooser * tc = tcf.createTargetChooser(card);
@@ -2785,8 +2797,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     continue;
                 nextCardToPlay = card;
                 gotPayments.clear();
-                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
-                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
                 return activateCombo();
             }
             else
@@ -2798,10 +2810,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
-        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
-            gotPayments = canPayMana(card,card->getManaCost());
+        if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
             //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
-        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA))))
         {
             TargetChooserFactory tcf(observer);
             TargetChooser * tc = tcf.createTargetChooser(card);
@@ -2923,8 +2935,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     continue;
                 nextCardToPlay = card;
                 gotPayments.clear();
-                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
-                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
                 return activateCombo();
             }
             else
@@ -2936,10 +2948,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
-        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
-            gotPayments = canPayMana(card,card->getManaCost());
+        if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
             //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
-        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA))))
         {
             TargetChooserFactory tcf(observer);
             TargetChooser * tc = tcf.createTargetChooser(card);
@@ -3072,8 +3084,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     continue;
                 nextCardToPlay = card;
                 gotPayments.clear();
-                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
-                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
                 return activateCombo();
             }
             else
@@ -3085,10 +3097,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
-        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
-            gotPayments = canPayMana(card,card->getManaCost());
+        if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
             //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
-        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA))))
         {
             TargetChooserFactory tcf(observer);
             TargetChooser * tc = tcf.createTargetChooser(card);
@@ -3189,8 +3201,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     }
     if(nextCardToPlay)
     {
-        if(!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker())
-            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+        if(!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker())
+            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
         DebugTrace(" AI wants to play card." << endl
             << "- Next card to play: " << (nextCardToPlay ? nextCardToPlay->name : "None" ) << endl );
 
@@ -3226,7 +3238,7 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
         }
         SAFE_DELETE(hintTc);
     }
-    if(payTheManaCost(totalCost,nextCardToPlay,gotPayments))
+    if(payTheManaCost(totalCost,nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
     {
         if(comboCards.size())
         {
@@ -3350,7 +3362,7 @@ int AIPlayerBaka::computeActions()
         {
             if (ipotential)
             {
-                if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay,gotPayments))
+                if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANAABILITY),nextCardToPlay,gotPayments))
                 {
                     AIAction * a = NEW AIAction(this, nextCardToPlay);
                     clickstream.push(a);
@@ -3499,7 +3511,7 @@ int AIPlayerBaka::computeActions()
                         //this does not teach it to use manaproducer more effectively, it simply allow it to 
                         //use the manaproducers it does understand better on sunburst by force.
                         vector<MTGAbility*>checking = canPaySunBurst(nextCardToPlay->getManaCost());
-                        if(payTheManaCost(nextCardToPlay->getManaCost(),NULL,checking))
+                        if(payTheManaCost(nextCardToPlay->getManaCost(),0,NULL,checking))
                         {
                             AIAction * a = NEW AIAction(this, nextCardToPlay);
                             clickstream.push(a);
@@ -3509,7 +3521,7 @@ int AIPlayerBaka::computeActions()
                         gotPayments.clear();//if any.
                         return 1;
                     }
-                    if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay,gotPayments))
+                    if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
                     {
                         AIAction * a = NEW AIAction(this, nextCardToPlay);
                         clickstream.push(a);
@@ -3978,10 +3990,10 @@ int AIPlayerBaka::Act(float dt)
                 check = dynamic_cast<ExtraManaCost*>(observer->mExtraPayment->costs[0]);
                 if(check)
                 {
-                    vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay);
+                    vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay,check->source->has(Constants::ANYTYPEOFMANAABILITY));
                     if(CostToPay.size())
                     {
-                        payTheManaCost(check->costToPay,check->source,CostToPay);
+                        payTheManaCost(check->costToPay,check->source->has(Constants::ANYTYPEOFMANAABILITY),check->source,CostToPay);
                     }
                     else
                     {

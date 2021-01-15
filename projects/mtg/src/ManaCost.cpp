@@ -1020,6 +1020,19 @@ int ManaCost::pay(ManaCost * _cost)
     {
         cost[i] = diff->getCost(i);
     }
+    for (unsigned int i = 0; i < cost.size(); i++){ // Added to avoid negative values in Manapool (e.g. anytypeofmana)
+        while(cost[i] < 0){
+            for (int j = 0; j < Constants::NB_Colors; j++){
+                if((unsigned int)j != i && cost[j] > 0 && cost[j] <= abs(cost[i])){
+                    cost[i] += cost[j];
+                    cost[j] = 0;
+                } else if((unsigned int)j != i && cost[j] > 0 && cost[j] > abs(cost[i])){
+                    cost[j] += cost[i];
+                    cost[i] = 0;
+                }
+            }
+        }
+    }
     delete diff;
     delete toPay;
     return result;
@@ -1027,9 +1040,17 @@ int ManaCost::pay(ManaCost * _cost)
 }
 
 //return 1 if _cost can be paid with current data, 0 otherwise
-int ManaCost::canAfford(ManaCost * _cost)
+int ManaCost::canAfford(ManaCost * _cost, int anytypeofmana)
 {
     ManaCost * diff = Diff(_cost);
+    if(anytypeofmana > 0){
+        int convertedC = _cost->getConvertedCost();
+        ManaCost * tmp = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
+        for (int jj = 0; jj < convertedC; jj++)
+            tmp->add(Constants::MTG_COLOR_ARTIFACT, 1);
+        diff = Diff(tmp);
+        delete tmp;
+    }
     int positive = diff->isPositive();
     delete diff;
     if (positive)

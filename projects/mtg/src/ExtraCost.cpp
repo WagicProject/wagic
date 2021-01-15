@@ -81,7 +81,7 @@ int ExtraCost::setPayment(MTGCardInstance * card)
             target = card;
         }
     }
-    if (costToPay && source->controller()->getManaPool()->canAfford(costToPay))
+    if (costToPay && source->controller()->getManaPool()->canAfford(costToPay,card->has(Constants::ANYTYPEOFMANAABILITY)))
     {
         result = 1;
     }
@@ -106,7 +106,7 @@ int ExtraManaCost::tryToSetPayment(MTGCardInstance * card)
 
 int ExtraManaCost::isPaymentSet()
 {
-    if (!source->controller()->getManaPool()->canAfford(costToPay))
+    if (!source->controller()->getManaPool()->canAfford(costToPay,source->has(Constants::ANYTYPEOFMANAABILITY)))
     {
         return 0;
     }
@@ -115,7 +115,7 @@ int ExtraManaCost::isPaymentSet()
 
 int ExtraManaCost::canPay()
 {
-    if(!source->controller()->getManaPool()->canAfford(costToPay))
+    if(!source->controller()->getManaPool()->canAfford(costToPay,source->has(Constants::ANYTYPEOFMANAABILITY)))
     {
         return 0;
     }
@@ -124,7 +124,7 @@ int ExtraManaCost::canPay()
 
 int ExtraManaCost::doPay()
 {
-    if (!source->controller()->getManaPool()->canAfford(costToPay))
+    if (!source->controller()->getManaPool()->canAfford(costToPay,source->has(Constants::ANYTYPEOFMANAABILITY)))
         return 0;
 
     source->controller()->getManaPool()->pay(costToPay);
@@ -156,13 +156,13 @@ int SnowCost::isPaymentSet()
         result += source->controller()->snowManaC;
         if (result)
         {
-            if ((source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source))) ||
-               (source->controller()->snowManaG && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{g}",NULL,source))) ||
-               (source->controller()->snowManaU && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{u}",NULL,source))) ||
-               (source->controller()->snowManaR && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{r}",NULL,source))) ||
-               (source->controller()->snowManaB && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{b}",NULL,source))) ||
-               (source->controller()->snowManaW && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{w}",NULL,source))) ||
-               (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{c}",NULL,source))))
+            if ((source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY))) ||
+               (source->controller()->snowManaG && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{g}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY))) ||
+               (source->controller()->snowManaU && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{u}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY))) ||
+               (source->controller()->snowManaR && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{r}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY))) ||
+               (source->controller()->snowManaB && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{b}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY))) ||
+               (source->controller()->snowManaW && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{w}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY))) ||
+               (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{c}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY))))
                 return 1;
             else
                 return 0;
@@ -190,37 +190,37 @@ int SnowCost::doPay()
         if (result)
         {
             // Avoided double payments for Snow Mana cost
-            if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source)))
+            if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{1}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{1}",NULL,source));
                 source->controller()->snowManaC -= 1;
             }
-            else if (source->controller()->snowManaG && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{g}",NULL,source)))
+            else if (source->controller()->snowManaG && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{g}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{g}",NULL,source));
                 source->controller()->snowManaG -= 1;
             }
-            else if (source->controller()->snowManaU && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{u}",NULL,source)))
+            else if (source->controller()->snowManaU && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{u}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{u}",NULL,source));
                 source->controller()->snowManaU -= 1;
             }
-            else if (source->controller()->snowManaR && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{r}",NULL,source)))
+            else if (source->controller()->snowManaR && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{r}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{r}",NULL,source));
                 source->controller()->snowManaR -= 1;
             }
-            else if (source->controller()->snowManaB && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{b}",NULL,source)))
+            else if (source->controller()->snowManaB && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{b}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{b}",NULL,source));
                 source->controller()->snowManaB -= 1;
             }
-            else if (source->controller()->snowManaW && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{w}",NULL,source)))
+            else if (source->controller()->snowManaW && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{w}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{w}",NULL,source));
                 source->controller()->snowManaW -= 1;
             }
-            else if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{c}",NULL,source)))
+            else if (source->controller()->snowManaC && source->controller()->getManaPool()->canAfford(ManaCost::parseManaCost("{c}",NULL,source),source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 //source->controller()->getManaPool()->pay(ManaCost::parseManaCost("{c}",NULL,source));
                 source->controller()->snowManaC -= 1;
@@ -383,9 +383,9 @@ int LifeorManaCost::canPay()
        _target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) ||
        _target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE))
     {
-        return _target->controller()->getManaPool()->canAfford(getManaCost());
+        return _target->controller()->getManaPool()->canAfford(getManaCost(),_target->has(Constants::ANYTYPEOFMANAABILITY));
     }
-    else if((_target->controller()->life > 1 || _target->controller()->getManaPool()->canAfford(getManaCost())) && 
+    else if((_target->controller()->life > 1 || _target->controller()->getManaPool()->canAfford(getManaCost(),_target->has(Constants::ANYTYPEOFMANAABILITY))) && 
         (!_target->controller()->inPlay()->hasAbility(Constants::CANTCHANGELIFE) &&
         !_target->controller()->opponent()->game->battlefield->hasAbility(Constants::CANTPAYLIFE) &&
         !_target->controller()->game->battlefield->hasAbility(Constants::CANTPAYLIFE)))
@@ -401,7 +401,7 @@ int LifeorManaCost::doPay()
         return 0;
 
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (_target->controller()->getManaPool()->canAfford(&manaCost))
+    if (_target->controller()->getManaPool()->canAfford(&manaCost,_target->has(Constants::ANYTYPEOFMANAABILITY)))
     {
         _target->controller()->getManaPool()->pay(&manaCost);
     }
@@ -1056,13 +1056,13 @@ int Convoke::isPaymentSet()
         return 0;
     }
     ManaCost * toReduce = getReduction();
-    if (target && (!source->controller()->getManaPool()->canAfford(toReduce)))
+    if (target && (!source->controller()->getManaPool()->canAfford(toReduce,target->has(Constants::ANYTYPEOFMANAABILITY))))
     {
         target = NULL;
         SAFE_DELETE(toReduce);
         return 0;
     }
-    if (target && (source->controller()->getManaPool()->canAfford(toReduce)))
+    if (target && (source->controller()->getManaPool()->canAfford(toReduce,target->has(Constants::ANYTYPEOFMANAABILITY))))
     {
         SAFE_DELETE(toReduce);
         return 1;
@@ -1099,7 +1099,7 @@ ManaCost * Convoke::getReduction()
             }
         }
         //if we didnt find it payable one way, lets try again backwards.
-        if (!source->controller()->getManaPool()->canAfford(toReduce))
+        if (!source->controller()->getManaPool()->canAfford(toReduce,source->has(Constants::ANYTYPEOFMANAABILITY)))
         {
             SAFE_DELETE(toReduce);
             toReduce = NEW ManaCost(source->getManaCost());
@@ -1176,13 +1176,13 @@ int Delve::isPaymentSet()
     {
         toReduce->remove(Constants::MTG_COLOR_ARTIFACT, tc->getNbTargets());
     }
-    if (target && (!source->controller()->getManaPool()->canAfford(toReduce)))
+    if (target && (!source->controller()->getManaPool()->canAfford(toReduce,source->has(Constants::ANYTYPEOFMANAABILITY))))
     {
         target = NULL;
         SAFE_DELETE(toReduce);
         return 0;
     }
-    if (target && (source->controller()->getManaPool()->canAfford(toReduce)))
+    if (target && (source->controller()->getManaPool()->canAfford(toReduce,source->has(Constants::ANYTYPEOFMANAABILITY))))
     {
         if (target->getObserver()->guiOpenDisplay)
             target->getObserver()->ButtonPressed(target->getObserver()->guiOpenDisplay);
@@ -1244,13 +1244,13 @@ int Improvise::isPaymentSet()
     {
         toReduce->remove(Constants::MTG_COLOR_ARTIFACT, tc->getNbTargets());
     }
-    if (target && (!source->controller()->getManaPool()->canAfford(toReduce)))
+    if (target && (!source->controller()->getManaPool()->canAfford(toReduce,target->has(Constants::ANYTYPEOFMANAABILITY))))
     {
         target = NULL;
         SAFE_DELETE(toReduce);
         return 0;
     }
-    if (target && (source->controller()->getManaPool()->canAfford(toReduce)))
+    if (target && (source->controller()->getManaPool()->canAfford(toReduce,target->has(Constants::ANYTYPEOFMANAABILITY))))
     {
         /*if (target->getObserver()->guiOpenDisplay)
             target->getObserver()->ButtonPressed(target->getObserver()->guiOpenDisplay);*/
@@ -1312,14 +1312,14 @@ int Offering::canPay()
             reduced->extraCosts = NULL;
             reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
 
-            if (target && (!source->controller()->getManaPool()->canAfford(reduced)))
+            if (target && (!source->controller()->getManaPool()->canAfford(reduced,source->has(Constants::ANYTYPEOFMANAABILITY))))
             {
                 tc->removeTarget(target);
                 target = NULL;
                 SAFE_DELETE(reduced);
                 return 0;
             }
-            if (target && source->controller()->getManaPool()->canAfford(reduced))
+            if (target && source->controller()->getManaPool()->canAfford(reduced,source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 SAFE_DELETE(reduced);
                 return 1;
@@ -1332,14 +1332,14 @@ int Offering::canPay()
         if (target)
         {
             ManaCost * diff = source->getManaCost()->Diff(target->getManaCost());
-            if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+            if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()),source->has(Constants::ANYTYPEOFMANAABILITY))))
             {
                 SAFE_DELETE(diff);
                 tc->removeTarget(target);
                 target = NULL;
                 return 0;
             }
-            if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+            if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()),source->has(Constants::ANYTYPEOFMANAABILITY))))
             {
                 SAFE_DELETE(diff);
                 return 1;
@@ -1359,14 +1359,14 @@ int Offering::isPaymentSet()
             reduced->extraCosts = NULL;
             reduced->remove(Constants::MTG_COLOR_ARTIFACT, target->getManaCost()->getConvertedCost());
 
-            if (target && (!source->controller()->getManaPool()->canAfford(reduced)))
+            if (target && (!source->controller()->getManaPool()->canAfford(reduced,source->has(Constants::ANYTYPEOFMANAABILITY))))
             {
                 tc->removeTarget(target);
                 target = NULL;
                 SAFE_DELETE(reduced);
                 return 0;
             }
-            if (target && source->controller()->getManaPool()->canAfford(reduced))
+            if (target && source->controller()->getManaPool()->canAfford(reduced,source->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 SAFE_DELETE(reduced);
                 return 1;
@@ -1379,14 +1379,14 @@ int Offering::isPaymentSet()
         if (target)
         {
             ManaCost * diff = source->getManaCost()->Diff(target->getManaCost());
-            if (target && (!source->controller()->getManaPool()->canAfford(diff)))
+            if (target && (!source->controller()->getManaPool()->canAfford(diff,source->has(Constants::ANYTYPEOFMANAABILITY))))
             {
                 SAFE_DELETE(diff);
                 tc->removeTarget(target);
                 target = NULL;
                 return 0;
             }
-            if (target && (source->controller()->getManaPool()->canAfford(diff)))
+            if (target && (source->controller()->getManaPool()->canAfford(diff,source->has(Constants::ANYTYPEOFMANAABILITY))))
             {
                 SAFE_DELETE(diff);
                 return 1;

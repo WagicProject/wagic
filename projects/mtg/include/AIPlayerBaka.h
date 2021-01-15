@@ -84,8 +84,8 @@ class AIPlayerBaka: public AIPlayer{
     //Tries to play an ability recommended by the deck creator
     virtual int selectHintAbility();
 
-    virtual vector<MTGAbility*> canPayMana(MTGCardInstance * card = NULL, ManaCost * mCost = NULL);
-    virtual vector<MTGAbility*> canPayMana(MTGCardInstance * card, ManaCost * mCost, map<MTGCardInstance*, bool> &usedCards, bool searchingAgain = false);
+    virtual vector<MTGAbility*> canPayMana(MTGCardInstance * card, ManaCost * mCost, int anytypeofmana);
+    virtual vector<MTGAbility*> canPayMana(MTGCardInstance * card, ManaCost * mCost, int anytypeofmana, map<MTGCardInstance*, bool> &usedCards, bool searchingAgain = false);
     virtual vector<MTGAbility*> canPaySunBurst(ManaCost * mCost = NULL);
 
     virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
@@ -106,7 +106,7 @@ class AIPlayerBaka: public AIPlayer{
     //used by MomirPlayer, hence protected instead of private
     virtual int getEfficiency(OrderedAIAction * action);
     virtual int getEfficiency(MTGAbility * ability);
-    virtual bool payTheManaCost(ManaCost * cost, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
+    virtual bool payTheManaCost(ManaCost * cost, int anytypeofmana, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
     virtual int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
     virtual ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
     virtual int selectAbility();
@@ -134,7 +134,7 @@ class AIPlayerBaka: public AIPlayer{
     virtual int affectCombatDamages(CombatStep step);
     virtual int canHandleCost(MTGAbility * ability);
     virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget = NULL,MTGCardInstance * Chosencard = NULL,bool checkonly = false);
-    virtual vector<MTGAbility*> canPayManaCost(MTGCardInstance * card = NULL, ManaCost * mCost = NULL){ return canPayMana(card, mCost);};
+    virtual vector<MTGAbility*> canPayManaCost(MTGCardInstance * card = NULL, ManaCost * mCost = NULL, int anytypeofmana = 0){ return canPayMana(card, mCost, anytypeofmana);};
 
     //used by AIHInts, therefore public instead of private :/
     virtual int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingContainer& ranking);

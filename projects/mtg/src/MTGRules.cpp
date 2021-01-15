@@ -349,11 +349,17 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (playerMana->canAfford(cost))
+        if (playerMana->canAfford(cost,card->has(Constants::ANYTYPEOFMANA)))
         {
             //-------
             if (card->has(Constants::SUNBURST))
             {
+                if(card->has(Constants::ANYTYPEOFMANA) > 0 && card->sunburst == 0){
+                    int convertedC = card->getManaCost()->getConvertedCost();
+                    card->getManaCost()->changeCostTo( NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, card)) );
+                    for (int jj = 0; jj < convertedC; jj++)
+                        card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                }
                 for (int i = 1; i != 6; i++)
                 {
                     if (player->getManaPool()->hasColor(i))
@@ -450,7 +456,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         Xcost->copy(cost);
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
         Xcost->remove(7, 1);
-        if (playerMana->canAfford(Xcost))
+        if (playerMana->canAfford(Xcost,card->has(Constants::ANYTYPEOFMANA)))
         {
             cost->copy(Xcost);
             SAFE_DELETE(Xcost);
@@ -490,7 +496,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         card->kicked = 0;
         if (card->getManaCost()->getKicker()->isMulti)
         {
-            while(previousManaPool->canAfford(withKickerCost))
+            while(previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             {
                 withKickerCost->add(withKickerCost->getKicker());
                 card->kicked += 1;
@@ -500,7 +506,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
             card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
-        else if (previousManaPool->canAfford(withKickerCost))
+        else if (previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
@@ -515,7 +521,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         withBestowCost->add(withBestowCost->getBestow());
         
         DebugTrace("AltCost BESTOW " << withBestowCost);
-        if (previousManaPool->canAfford(withBestowCost))
+        if (previousManaPool->canAfford(withBestowCost,card->has(Constants::ANYTYPEOFMANA)))
         {
             player->getManaPool()->pay(card->getManaCost()->getBestow());
             payResult = ManaCost::MANA_PAID_WITH_BESTOW;
@@ -618,7 +624,7 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 #ifdef WIN32
         withKickerCost->Dump();
 #endif
-        if (playerMana->canAfford(withKickerCost))
+        if (playerMana->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             return 1;
     }
     return 0;
@@ -657,7 +663,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         card->kicked = 0;
         if (card->getManaCost()->getKicker()->isMulti)
         {
-            while(previousManaPool->canAfford(withKickerCost))
+            while(previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             {
                 withKickerCost->add(withKickerCost->getKicker());
                 card->kicked += 1;
@@ -667,7 +673,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
             card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
-        else if (previousManaPool->canAfford(withKickerCost))
+        else if (previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
@@ -682,7 +688,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         ManaCost * withBestowCost= NEW ManaCost(card->getManaCost());
         withBestowCost->add(withBestowCost->getBestow());
         
-        if (previousManaPool->canAfford(withBestowCost))
+        if (previousManaPool->canAfford(withBestowCost,card->has(Constants::ANYTYPEOFMANA)))
         {
             player->getManaPool()->pay(card->getManaCost()->getBestow());
             payResult = ManaCost::MANA_PAID_WITH_BESTOW;
@@ -827,7 +833,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
-        if (alternateManaCost->extraCosts && !playerMana->canAfford(card->getManaCost()))
+        if (alternateManaCost->extraCosts && !playerMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA)))
         {
             //offerings handle thier own casting and cost payments.
             //we add this condiational here because offering can also have a completely different 
@@ -851,7 +857,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
             }
         }
 
-        if (playerMana->canAfford(alternateManaCost))
+        if (playerMana->canAfford(alternateManaCost,card->has(Constants::ANYTYPEOFMANA)))
         {
             return 1;
         }
@@ -921,7 +927,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
         card->X = card->setX; // Fix to don't loose X value on alternative cast
         Xcost->remove(7, 1);//remove the X
-        if (playerMana->canAfford(Xcost))
+        if (playerMana->canAfford(Xcost,card->has(Constants::ANYTYPEOFMANA)))
         {
             alternateCost->copy(Xcost);
             SAFE_DELETE(Xcost);
@@ -1294,13 +1300,13 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
     ManaCost * playerMana = player->getManaPool();
     ManaCost * alternateCost = card->getManaCost()->getSuspend();
     //this handles extra cost payments at the moment a card is played.
-    if (playerMana->canAfford(alternateCost))
+    if (playerMana->canAfford(alternateCost,card->has(Constants::ANYTYPEOFMANA)))
     {
         if(alternateCost->hasX())
         {
             ManaCost * checkXnotZero = NEW ManaCost(alternateCost);//suspend cards with x cost, x can not be zero.
             checkXnotZero->add(0,1);
-            if (!playerMana->canAfford(checkXnotZero))
+            if (!playerMana->canAfford(checkXnotZero,card->has(Constants::ANYTYPEOFMANA)))
             {
                 SAFE_DELETE(checkXnotZero);
                 return 0;
@@ -1402,7 +1408,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 #endif
         
         //cost of card.
-        if (playerMana->canAfford(morph))
+        if (playerMana->canAfford(morph,card->has(Constants::ANYTYPEOFMANA)))
         {
             return 1;
         }
@@ -1425,7 +1431,7 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
                 morph->extraCosts->costs[i]->setSource(card);
             }
     //this handles extra cost payments at the moment a card is played.
-    if (playerMana->canAfford(morph))
+    if (playerMana->canAfford(morph,card->has(Constants::ANYTYPEOFMANA)))
     {
         if (cost->getMorph()->isExtraPaymentSet())
         {
@@ -1720,7 +1726,7 @@ int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiCh
             {
                 attackcost->extraCosts->costs[i]->setSource(card);
             }
-        if ((aiCheck && aiCheck->canAfford(attackcost)) || playerMana->canAfford(attackcost))
+        if ((aiCheck && aiCheck->canAfford(attackcost,card->has(Constants::ANYTYPEOFMANAABILITY))) || playerMana->canAfford(attackcost,card->has(Constants::ANYTYPEOFMANAABILITY)))
         {
             SAFE_DELETE(attackcost);
             return 1;
@@ -1800,7 +1806,7 @@ int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiChe
             {
                 blockcost->extraCosts->costs[i]->setSource(card);
             }
-        if ((aiCheck && aiCheck->canAfford(blockcost)) || playerMana->canAfford(blockcost))
+        if ((aiCheck && aiCheck->canAfford(blockcost,card->has(Constants::ANYTYPEOFMANAABILITY))) || playerMana->canAfford(blockcost,card->has(Constants::ANYTYPEOFMANAABILITY)))
         {
             SAFE_DELETE(blockcost);
             return 1;
