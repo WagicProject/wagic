@@ -2921,7 +2921,7 @@ public:
     {
         if (_card == source && game->currentlyActing()->game->inPlay->hasCard(source))
         {
-            if (game->currentlyActing()->getManaPool()->canAfford(cost))
+            if (game->currentlyActing()->getManaPool()->canAfford(cost,_card->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 Interruptible * laststackitem = game->mLayers->stackLayer()->getAt(-1);
                 if (laststackitem && laststackitem->type == ACTION_SPELL)
@@ -2982,7 +2982,7 @@ public:
     {
         if (_card == target && game->currentlyActing()->game->inPlay->hasCard(source) && _card->isTapped())
         {
-            if (game->currentlyActing()->getManaPool()->canAfford(cost))
+            if (game->currentlyActing()->getManaPool()->canAfford(cost,_card->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 return 1;
             }
@@ -6231,7 +6231,7 @@ public:
     {
         if (counters > 0 && _card == source && currentPhase == MTG_PHASE_UPKEEP)
         {
-            if (game->currentlyActing()->getManaPool()->canAfford(&cost))
+            if (game->currentlyActing()->getManaPool()->canAfford(&cost,_card->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 return 1;
             }
@@ -6327,7 +6327,7 @@ public:
     {
         if (_card == source && game->currentlyActing()->game->inPlay->hasCard(source) && !_card->isTapped())
         {
-            if (game->currentlyActing()->getManaPool()->canAfford(&cost))
+            if (game->currentlyActing()->getManaPool()->canAfford(&cost,_card->has(Constants::ANYTYPEOFMANAABILITY)))
             {
                 return 1;
             }
@@ -6642,7 +6642,7 @@ public:
         if (damagesToDealThisTurn && currentPhase == MTG_PHASE_UPKEEP && card == source && _target->controller()
                 == game->currentPlayer)
         {
-            if (game->currentPlayer->getManaPool()->canAfford(&cost)) return 1;
+            if (game->currentPlayer->getManaPool()->canAfford(&cost,card->has(Constants::ANYTYPEOFMANAABILITY))) return 1;
         }
         return 0;
     }

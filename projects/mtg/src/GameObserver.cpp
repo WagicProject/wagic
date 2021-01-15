@@ -532,11 +532,11 @@ bool GameObserver::operator==(const GameObserver& aGame)
         {
             error++;
         }
-        if (!p->getManaPool()->canAfford(players[i]->getManaPool()))
+        if (!p->getManaPool()->canAfford(players[i]->getManaPool(),0))
         {
             error++;
         }
-        if (!players[i]->getManaPool()->canAfford(p->getManaPool()))
+        if (!players[i]->getManaPool()->canAfford(p->getManaPool(),0))
         {
             error++;
         }
@@ -1196,8 +1196,8 @@ void GameObserver::Affinity()
                         if(card->model->data->getManaCost()->getBestow())
                             checkAuraP = true;
 
-                    //change cost to colorless for anytypeofmana ability
-                    if(card->has(Constants::ANYTYPEOFMANA))
+                    //change cost to colorless for anytypeofmana ability (Obsolete code)
+                    /*if(card->has(Constants::ANYTYPEOFMANA))
                     {
                         card->anymanareplacement = true;
                         int convertedC = card->getManaCost()->getConvertedCost();
@@ -1214,7 +1214,7 @@ void GameObserver::Affinity()
                             card->getManaCost()->changeCostTo( card->model->data->getManaCost() );
                             card->anymanareplacement = false;
                         }
-                    }
+                    }*/
 
                     if (card->has(Constants::TRINISPHERE))
                     {

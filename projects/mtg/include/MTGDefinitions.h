@@ -299,7 +299,8 @@ class Constants
       GAINEDHANDDEATH = 172,
       CYCLING = 173,
       FORETELL = 174,
-      NB_BASIC_ABILITIES = 175,
+      ANYTYPEOFMANAABILITY = 175,
+      NB_BASIC_ABILITIES = 176,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

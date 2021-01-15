@@ -5800,28 +5800,7 @@ type=Instant
 [card]
 name=Breeches, Brazen Plunderer
 abilities=menace,partner
-auto=@combatdamagefoeof(player) from(*[pirate]|myBattlefield):moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|opponentlibrary)
-auto={0}:name(Cast creature from exile with manacost 0) activate castcard(normal) target(*[manacost=0;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=0;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={1}:name(Cast creature from exile with manacost 1) activate castcard(normal) target(*[manacost=1;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=1;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={2}:name(Cast creature from exile with manacost 2) activate castcard(normal) target(*[manacost=2;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=2;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={3}:name(Cast creature from exile with manacost 3) activate castcard(normal) target(*[manacost=3;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=3;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={4}:name(Cast creature from exile with manacost 4) activate castcard(normal) target(*[manacost=4;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=4;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={5}:name(Cast creature from exile with manacost 5) activate castcard(normal) target(*[manacost=5;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=5;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={6}:name(Cast creature from exile with manacost 6) activate castcard(normal) target(*[manacost=6;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=6;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={7}:name(Cast creature from exile with manacost 7) activate castcard(normal) target(*[manacost=7;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=7;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={8}:name(Cast creature from exile with manacost 8) activate castcard(normal) target(*[manacost=8;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=8;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={9}:name(Cast creature from exile with manacost 9) activate castcard(normal) target(*[manacost=9;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=9;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={10}:name(Cast creature from exile with manacost 10) activate castcard(normal) target(*[manacost=10;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=10;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={11}:name(Cast creature from exile with manacost 11) activate castcard(normal) target(*[manacost=11;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=11;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={12}:name(Cast creature from exile with manacost 12) activate castcard(normal) target(*[manacost=12;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=12;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={13}:name(Cast creature from exile with manacost 13) activate castcard(normal) target(*[manacost=13;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=13;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={14}:name(Cast creature from exile with manacost 14) activate castcard(normal) target(*[manacost=14;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=14;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={15}:name(Cast creature from exile with manacost 15) activate castcard(normal) target(*[manacost=15;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=15;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={16}:name(Cast creature from exile with manacost 16) activate castcard(normal) target(*[manacost=16;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=16;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={17}:name(Cast creature from exile with manacost 17) activate castcard(normal) target(*[manacost=17;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=17;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={18}:name(Cast creature from exile with manacost 18) activate castcard(normal) target(*[manacost=18;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=18;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={19}:name(Cast creature from exile with manacost 19) activate castcard(normal) target(*[manacost=19;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost=19;canplayfromexile;fresh]|opponentexile)~morethan~0}
-auto={20}:name(Cast creature from exile with manacost 20 or more) activate castcard(normal) target(*[manacost>19;canplayfromexile;fresh]|opponentexile) restriction{type(*[manacost>19;canplayfromexile;fresh]|opponentexile)~morethan~0}
+auto=@combatdamagefoeof(player) from(*[pirate]|myBattlefield):all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once] moveTo(ownerexile)])) ueot )!
 text=Menace -- Whenever one or more Pirates you control deal damage to your opponents, exile the top card of each of those opponents' libraries. You may play those cards this turn, and you may spend mana as though it were mana of any color to cast those spells. -- Partner (You can have two commanders if both have partner.)
 mana={3}{R}
 type=Legendary Creature
@@ -8159,6 +8138,7 @@ toughness=8
 [card]
 name=Chromatic Orrery
 auto=lord(*|mycastingzone) anytypeofmana
+auto=lord(*|myzones) anytypeofmanaability
 auto={T}:add{C}{C}{C}{C}{C}
 auto={5}{T}:transforms((,newability[aslongas(*[white]|myBattlefield) draw:1 controller],newability[aslongas(*[blue]|myBattlefield) draw:1 controller],newability[aslongas(*[black]|myBattlefield) draw:1 controller],newability[aslongas(*[red]|myBattlefield) draw:1 controller],newability[aslongas(*[green]|myBattlefield) draw:1 controller])) oneshot
 text=You may spend mana as though it were mana of any color. -- {T}: Add {C}{C}{C}{C}{C}. -- {5}, {T}: Draw a card for each color among permanents you control.
@@ -16831,6 +16811,14 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Five-Finger Discount
+target=*[-land]|battlefield
+auto=moveto(myhand) and!( transforms((,newability[anytypeofmana])) forever)!
+text=Put target nonland permanent into your hand. You may spend mana as though it were mana of any color the next time you cast that card.
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+[card]
 name=Flaccify
 target=*|stack
 auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
@@ -22659,7 +22647,7 @@ toughness=4
 [/card]
 [card]
 name=Hostage Taker
-auto=moveto(myhand) target(creature,artifact) forsrc
+auto=(blink)forsrc target(creature,artifact)
 text=When Hostage Taker enters the battlefield, exile another target creature or artifact until Hostage Taker leaves the battlefield. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast that spell.
 mana={2}{U}{B}
 type=Creature
@@ -31788,6 +31776,9 @@ auto=lord(*|graveyard) devoid
 auto=lord(*|exile) devoid
 auto=lord(*|sideboard) devoid
 auto=lord(*|mycastingzone) anytypeofmana
+auto=lord(*|opponentcastingzone) anytypeofmana
+auto=lord(*|myzones) anytypeofmanaability
+auto=lord(*|opponentzones) anytypeofmanaability
 text=All permanents are artifacts in addition to their other types. -- All cards that aren't on the battlefield, spells, and permanents are colorless. -- Players may spend mana as though it were mana of any color.
 mana={6}
 type=Artifact
@@ -33198,7 +33189,7 @@ toughness=2
 [/card]
 [card]
 name=North Star
-auto={4}{T}:target(*|mycastingzone) anytypeofmana
+auto={4}{T}:target(*|mycastingzone) transforms((,newability[anytypeofmana])) ueot
 text={4}, {T}: For one spell this turn, you may spend mana as though it were mana of any color to pay that spell's mana cost. (Additional costs are still paid normally.)
 mana={4}
 type=Artifact
@@ -47395,9 +47386,7 @@ type=Sorcery
 [/card]
 [card]
 name=Stolen Strategy
-auto=@each my upkeep:all(*[zpos=1]|opponentlibrary) moveto(exile) and!( transforms((,newability[counter(0/0.1.StolenExiled)])) forever )!
-auto={0}:name(Cast instants exiled with Stolen Strategy) name(Cast instants exiled with Stolen Strategy) target(<anyamount>instant[fresh;counter{0/0.1.StolenExiled}]|opponentexile) activate castcard(normal)
-auto={0}:name(Cast sorceries exiled with Stolen Strategy) name(Cast sorceries exiled with Stolen Strategy) target(<anyamount>sorcery[fresh;counter{0/0.1.StolenExiled}]|opponentexile) activate castcard(normal)
+auto=@each my upkeep:all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once] moveTo(ownerexile)])) ueot )!
 text=At the beginning of your upkeep, exile the top card of each opponent's library. Until end of turn, you may cast spells from among those exiled cards, and you may spend mana as though it were mana of any color to cast those spells.
 mana={4}{R}
 type=Enchantment
@@ -55667,8 +55656,8 @@ toughness=3
 name=Whispersteel Dagger
 auto={3}:equip
 auto=teach(creature) 2/0
-auto=teach(creature) transforms((,newability[@combatdamageof(player) from(this):may activate castcard(normal) target(creature|mygraveyard)]))
-auto=teach(creature) transforms((,newability[@combatdamagefoeof(player) from(this):may activate castcard(normal) target(creature|opponentgraveyard)]))
+auto=@combatdamageof(player) from(mytgt):may name(Cast creature from graveyard) target(*[creature]|mygraveyard) transforms((,newability[canplayfromgraveyard],newability[anytypeofmana])) ueot
+auto=@combatdamagefoeof(player) from(mytgt):may name(Cast creature from graveyard) target(*[creature]|opponentgraveyard) moveto(mygraveyard) and!( transforms((,newability[canplayfromgraveyard],newability[anytypeofmana],newability[phaseaction[endofturn once] moveTo(ownergraveyard)])) ueot )!
 text=Equipped creature gets +2/+0. -- Whenever equipped creature deals combat damage to a player, you may cast a creature spell from that player's graveyard this turn, and you may spend mana as though it were mana of any color to cast that spell. -- Equip 3
 mana={2}{B}
 type=Artifact
