@@ -457,8 +457,14 @@ type=Artifact
 name=Aether Storm
 auto=maxCast(creature)0 opponent
 auto=maxCast(creature)0 controller
-auto={L:4}:bury(this) opponent
-auto={L:4}:bury(this) controller
+auto={L:4}:bury all(this)
+auto=@each opponent upkeep:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent untap:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent draw:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent combatbegins:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent blockers:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent firstmain:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
+auto=@each opponent endofturn:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
 text=Creature spells can’t be cast. -- Pay 4 life: Destroy Aether Storm. It can’t be regenerated. Any player may activate this ability.
 mana={3}{U}
 type=Enchantment
@@ -1849,8 +1855,7 @@ type=Instant
 [/card]
 [card]
 name=Approach of the Second Sun
-auto=if compare(oyidarocount)~morethan~0 then winGame else alteryidarocount:1 opponent && life:7 controller
-auto=@movedto(this|mygraveyard):ability$!name(Put back in your library) moveto(mylibrary) and!(shuffle)! target(Approach of the Second Sun|mygraveyard)!$ controller
+auto=if compare(oyidarocount)~morethan~0 then winGame else alteryidarocount:1 opponent && life:7 controller && all(this) placefromthetop(7)
 text=If this spell was cast from your hand and you've cast another spell named Approach of the Second Sun this game, you win the game. Otherwise, put Approach of the Second Sun into its owner's library seventh from the top and you gain 7 life.
 mana={6}{W}
 type=Sorcery
@@ -8169,7 +8174,7 @@ toughness=7
 [card]
 name=Chronostutter
 target=creature
-auto=moveto(ownerlibrary) && ability$!moverandom(*) from(mylibrary) to(mylibrary)!$ controller
+auto=placefromthetop(2)
 text=Put target creature into its owner's library second from the top.
 mana={5}{U}
 type=Instant
@@ -9061,7 +9066,7 @@ type=Instant
 [card]
 name=Commit // Memory
 target=*[-land]
-auto=moveto(ownerlibrary) && ability$!moverandom(*) from(mylibrary) to(mylibrary)!$ controller
+auto=placefromthetop(2)
 autograveyard={4}{U}{U}{E}:moveto(opponentgraveyard) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle && draw:7 opponent && moveto(mygraveyard) all(*|myhand) && moveto(mylibrary) all(*|mygraveyard) && shuffle && draw:7 controller asSorcery
 text=Put target spell or nonland permanent into its owner's library second from the top. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) each player shuffles their hand and graveyard into their library and draws seven cards
 mana={3}{U}
@@ -16959,6 +16964,16 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+name=Flamespeaker Adept
+auto=@scryed(*|mybattlefield,mystack):all(this) transforms((,newability[2/0],newability[first strike])) ueot
+text=Whenever you scry, Flamespeaker Adept gets +2/+0 and gains first strike until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=3
+[/card]
+[card]
 name=Flash Foliage
 restriction=blockersonly
 auto=token(Saproling,Creature Saproling,1/1,green) and!(transforms((,newability[mustblock])) ueot)!
@@ -19758,7 +19773,9 @@ type=Sorcery
 [card]
 name=God-Eternal Bontu
 abilities=menace
-auto=may notatarget(<anyamount>other *|mybattlefield) sacrifice && draw:1
+auto=may name(Sacrifice permanents) target(<anyamount>other *|mybattlefield) sacrifice && draw:1 controller
+auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(God-Eternal Bontu[fresh]|graveyard) placefromthetop(3)
+auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(God-Eternal Bontu[fresh]|exile) placefromthetop(3)
 text=Menace -- When God-Eternal Bontu enters the battlefield, sacrifice any number of other permanents, then draw that many cards. -- When God-Eternal Bontu dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={3}{B}{B}
 type=Legendary Creature
@@ -19769,9 +19786,9 @@ toughness=6
 [card]
 name=God-Eternal Kefnet
 abilities=flying
-auto=@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(mylibrary) and!( moverandom(*) from(mylibrary) to(mylibrary) and!(moverandom(*) from(mylibrary) to(mylibrary))! )!
-auto=@movedTo(this|exile) from(battlefield):all(trigger[to]) moveTo(mylibrary) and!( moverandom(*) from(mylibrary) to(mylibrary) and!(moverandom(*) from(mylibrary) to(mylibrary))! )!
-auto=@drawof(player):may activate castcard(copied noevent) target(*[sorcery;instant]|myhand) limit:1
+auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(God-Eternal Kefnet[fresh]|graveyard) placefromthetop(3)
+auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(God-Eternal Kefnet[fresh]|exile) placefromthetop(3)
+auto=@drawof(player) turnlimited:may activate castcard(copied noevent) target(*[sorcery;instant;fresh]|myhand) limit:1
 text=Flying -- You may reveal the first card you draw each turn as you draw it. Whenever you reveal an instant or sorcery card this way, copy that card and you may cast the copy. That copy costs {2} less to cast. -- When God-Eternal Kefnet dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={2}{U}{U}
 type=Legendary Creature
@@ -19783,6 +19800,8 @@ toughness=5
 name=God-Eternal Oketra
 abilities=double strike
 auto=@movedTo(creature|mystack):create(zombie warrior:creature zombie warrior:4/4:black:vigilance)
+auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(God-Eternal Oketra[fresh]|graveyard) placefromthetop(3)
+auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(God-Eternal Oketra[fresh]|exile) placefromthetop(3)
 text=Double strike -- Whenever you cast a creature spell, create a 4/4 black Zombie Warrior creature token with vigilance. -- When God-Eternal Oketra dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={3}{W}{W}
 type=Legendary Creature
@@ -19795,6 +19814,8 @@ name=God-Eternal Rhonas
 abilities=deathtouch
 auto=all(other creature|myBattlefield) dynamicability<!mytgt powerpumppow!> ueot
 auto=all(other creature|myBattlefield) vigilance ueot
+auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(God-Eternal Rhonas[fresh]|graveyard) placefromthetop(3)
+auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(God-Eternal Rhonas[fresh]|exile) placefromthetop(3)
 text=Deathtouch -- When God-Eternal Rhonas enters the battlefield, double the power of each other creature you control until end of turn. Those creatures gain vigilance until end of turn. -- When God-Eternal Rhonas dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={3}{G}{G}
 type=Legendary Creature
@@ -23421,6 +23442,8 @@ toughness=7
 name=Ilharg, the Raze-Boar
 abilities=trample
 auto=@combat(attacking) source(this):target(creature|myhand) transforms((,newability[phaseaction[endofturn once] moveTo(hand)],newability[ninjutsu])) forever
+auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(Ilharg^ the Raze-Boar[fresh]|graveyard) placefromthetop(3)
+auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(Ilharg^ the Raze-Boar[fresh]|exile) placefromthetop(3)
 text=Trample -- Whenever Ilharg, the Raze-Boar attacks, you may put a creature card from your hand onto the battlefield tapped and attacking. Return that creature to your hand at the beginning of the next end step. -- When Ilharg, the Raze-Boar dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={3}{R}{R}
 type=Legendary Creature
@@ -26842,6 +26865,13 @@ mana={1}{W}{B}
 type=Enchantment
 [/card]
 [card]
+name=Knowledge and Power
+auto=@scryed(*|mybattlefield,mystack):name(Pay 2) pay({2}) name(Deal 2 damages) target(creature,player) damage:2
+text=Whenever you scry, you may pay {2}. If you do, Knowledge and Power deals 2 damage to target creature or player.
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
 name=Kodama of the Center Tree
 anyzone=type:spirit:myBattlefield/type:spirit:myBattlefield cdaactive
 auto=@movedto(this|mygraveyard):moveto(mybattlefield) target(spirit[manacost<=type:spirit:myBattlefield]|mygraveyard)
@@ -28069,6 +28099,21 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Lethal Vapors
+auto=@movedto(creature|battlefield):all(trigger[to]) destroy
+auto={0}:destroy && turns:-1 controller
+auto=@each opponent upkeep:ability$!name(Pay 0) pay[[{0}]] name(Pay 0) destroy notatarget(Lethal Vapors|opponentBattlefield) && turns:-1 controller?donothing!$ opponent
+auto=@each opponent untap:ability$!name(Pay 0) pay[[{0}]] name(Pay 0) destroy notatarget(Lethal Vapors|opponentBattlefield) && turns:-1 controller?donothing!$ opponent
+auto=@each opponent draw:ability$!name(Pay 0) pay[[{0}]] name(Pay 0) destroy notatarget(Lethal Vapors|opponentBattlefield) && turns:-1 controller?donothing!$ opponent
+auto=@each opponent combatbegins:ability$!name(Pay 0) pay[[{0}]] name(Pay 0) destroy notatarget(Lethal Vapors|opponentBattlefield) && turns:-1 controller?donothing!$ opponent
+auto=@each opponent blockers:ability$!name(Pay 0) pay[[{0}]] name(Pay 0) destroy notatarget(Lethal Vapors|opponentBattlefield) && turns:-1 controller?donothing!$ opponent
+auto=@each opponent firstmain:ability$!name(Pay 0) pay[[{0}]] name(Pay 0) destroy notatarget(Lethal Vapors|opponentBattlefield) && turns:-1 controller?donothing!$ opponent
+auto=@each opponent endofturn:ability$!name(Pay 0) pay[[{0}]] name(Pay 0) destroy notatarget(Lethal Vapors|opponentBattlefield) && turns:-1 controller?donothing!$ opponent
+text=Whenever a creature enters the battlefield, destroy it. -- {0}: Destroy Lethal Vapors. You skip your next turn. Any player may activate this ability.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Ley Weaver
 abilities=partner
 auto=may moveto(myhand) notatarget(lore weaver|mylibrary)
@@ -28903,7 +28948,7 @@ toughness=3
 [/card]
 [card]
 name=Long-Term Plans
-auto=name(search card) reveal:plibrarycount optionone name(choose card) target(*|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(mylibrary) and!( moverandom(*) from(mylibrary) to(mylibrary) and!(moverandom(*) from(mylibrary) to(mylibrary))! )! afterrevealedend revealend
+auto=name(search card) reveal:plibrarycount optionone name(choose card) target(*|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) placefromthetop(3) afterrevealedend revealend
 text=Search your library for a card, shuffle your library, then put that card third from the top.
 mana={2}{U}
 type=Instant
@@ -28982,8 +29027,8 @@ toughness=2
 [card]
 name=Lost Hours
 target=player
-aicode=activate moveto(library) notatarget(*[-land]|targetedpersonshand)
-auto=reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone target(*[-land]|reveal) moveto(ownerlibrary) optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend afterrevealed moverandom(*) from(mylibrary) to(mylibrary) and!( moverandom(*) from(mylibrary) to(mylibrary) )! afterrevealedend revealend
+aicode=activate placefromthetop(3) notatarget(*[-land]|targetedpersonshand)
+auto=reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone target(*[-land]|reveal) placefromthetop(3) optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )! optiontwoend revealend
 text=Target player reveals his or her hand. You choose a nonland card from it. That player puts that card into his or her library third from the top.
 mana={1}{B}
 type=Sorcery
@@ -34639,7 +34684,7 @@ toughness=6
 [card]
 name=Oust
 target=creature
-auto=moveto(ownerlibrary) && ability$!moverandom(*) from(mylibrary) to(mylibrary)!$ controller
+auto=placefromthetop(2)
 auto=life:3 targetController
 text=Put target creature into its owner's library second from the top. Its controller gains 3 life.
 mana={W}

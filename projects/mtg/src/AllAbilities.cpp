@@ -892,6 +892,8 @@ int GenericScryAbility::resolve()
 {
     MTGAbility * ability = NEW MTGScryCards(game, this->GetId(), source, howMany);
     ability->addToGame();
+    WEvent * e = NEW WEventCardScryed(source);
+    game->receiveEvent(e);
     return 1;
 }
 
@@ -1716,6 +1718,77 @@ AAModTurn::AAModTurn(GameObserver* observer, int _id, MTGCardInstance * card, Ta
 AAModTurn * AAModTurn::clone() const
 {
     return NEW AAModTurn(*this);
+}
+
+//move target to specifc position of owners library from the top
+AALibraryPosition::AALibraryPosition(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, unsigned int _position) :
+ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+    andAbility = NULL;
+    position = _position;
+}
+
+int AALibraryPosition::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    _target = _target->owner->game->putInLibrary(_target);
+    if (_target)
+    {
+        MTGLibrary * library = _target->owner->game->library;
+        vector<MTGCardInstance *>oldOrder = library->cards;
+        vector<MTGCardInstance *>newOrder;
+        if(position > oldOrder.size())
+            position = oldOrder.size(); //Avoid to exceed the library dimension.
+        for(unsigned int k = 0; k < oldOrder.size() - position; ++k)
+        {
+            MTGCardInstance * rearranged = oldOrder[k];
+            if(rearranged != _target)
+                newOrder.push_back(rearranged);
+        }
+        newOrder.push_back(_target);
+        for(unsigned int k = oldOrder.size() - position ; k < oldOrder.size(); ++k)
+        {
+            MTGCardInstance * rearranged = oldOrder[k];
+            if(rearranged != _target)
+                newOrder.push_back(rearranged);
+        }
+        library->cards = newOrder;
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const string AALibraryPosition::getMenuText()
+{
+    return "Put in Library in a specific position from the top";
+}
+
+AALibraryPosition * AALibraryPosition::clone() const
+{
+    AALibraryPosition * a = NEW AALibraryPosition(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AALibraryPosition::~AALibraryPosition()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //move target to bottom of owners library
