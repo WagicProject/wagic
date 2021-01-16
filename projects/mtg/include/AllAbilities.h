@@ -1654,15 +1654,20 @@ class TrcardDrawn: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventcardDraw * e = dynamic_cast<WEventcardDraw *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->player)) return 0;
         if(thiscontroller)
             if(e->player != source->controller())
@@ -1670,6 +1675,7 @@ public:
         if(thisopponent)
             if(e->player == source->controller())
                 return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -1758,6 +1764,33 @@ public:
     TrCardSurveiled * clone() const
     {
         return NEW TrCardSurveiled(*this);
+    }
+};
+
+class TrCardScryed: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardScryed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardScryed * e = dynamic_cast<WEventCardScryed *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardScryed * clone() const
+    {
+        return NEW TrCardScryed(*this);
     }
 };
 
@@ -2407,6 +2440,19 @@ public:
     GenericActivatedAbility * clone() const;
     ~GenericActivatedAbility();
 
+};
+
+//place a card in a specifc position of owners library from the top
+class AALibraryPosition: public ActivatedAbility
+{
+public:
+    AALibraryPosition(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, unsigned int _position = 1);
+    MTGAbility * andAbility;
+    int resolve();
+    unsigned int position;
+    const string getMenuText();
+    AALibraryPosition * clone() const;
+    ~AALibraryPosition();
 };
 
 //place a card on the bottom of owners library

@@ -1210,11 +1210,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //drawn player - controller of card - dynamic version drawof(player) -> returns current controller even with exchange of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "drawof", card))
-        return NEW TrcardDrawn(observer, id, card, tc,once,true,false);
+        return NEW TrcardDrawn(observer, id, card, tc,once,true,false,limitOnceATurn);
 
     //drawn player - opponent of card controller - dynamic version drawfoeof(player) -> returns current opponent even with exchange of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "drawfoeof", card))
-        return NEW TrcardDrawn(observer, id, card, tc,once,false,true);
+        return NEW TrcardDrawn(observer, id, card, tc,once,false,true,limitOnceATurn);
 
     //Card card is drawn - static version - drawn(player) - any player; drawn(controller) - owner forever; drawn(opponent) - opponent forever
     if (TargetChooser * tc = parseSimpleTC(s, "drawn", card))
@@ -1224,11 +1224,15 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "mutated", card))
         return NEW TrCardMutated(observer, id, card, tc, once, limitOnceATurn);
 
-    //Surveil has been performed from controller
+    //Surveil has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "surveiled", card))
         return NEW TrCardSurveiled(observer, id, card, tc, once, limitOnceATurn);
 
-    //Esplores has been performed from controller
+    //Scry has been performed from a card
+    if (TargetChooser * tc = parseSimpleTC(s, "scryed", card))
+        return NEW TrCardScryed(observer, id, card, tc, once, limitOnceATurn);
+
+    //Esplores has been performed from a cardr
     if (TargetChooser * tc = parseSimpleTC(s, "explored", card))
         return NEW TrCardExplored(observer, id, card, tc, once, limitOnceATurn);
 
@@ -3095,6 +3099,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
          MTGAbility * a = NEW AARandomMover(observer, id, card, target, splitRandomMove[1],splitfrom[1],splitto[1]);
          a->oneShot = true;
          return a;
+    }
+
+    //put a card in a specifc position of owners library from the top
+    vector<string> splitPlaceFromTop = parseBetween(s, "placefromthetop(", ")");
+    if (splitPlaceFromTop.size())
+    {
+        WParsedInt* parser = NEW WParsedInt(splitPlaceFromTop[1], card);
+        int position = parser->intValue;
+        MTGAbility * a = NEW AALibraryPosition(observer, id, card, target, NULL, position);
+        a->oneShot = 1;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AALibraryBottom*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return a;
     }
 
     //put a card on bottom of library
