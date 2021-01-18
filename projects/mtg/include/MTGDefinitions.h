@@ -300,7 +300,8 @@ class Constants
       CYCLING = 173,
       FORETELL = 174,
       ANYTYPEOFMANAABILITY = 175,
-      NB_BASIC_ABILITIES = 176,
+      BOAST = 176,
+      NB_BASIC_ABILITIES = 177,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

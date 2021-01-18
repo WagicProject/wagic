@@ -133,6 +133,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/WFilter.cpp \
         $(MTG_PATH)/src/WFont.cpp \
         $(MTG_PATH)/src/WGui.cpp \
+        $(MTG_PATH)/src/WParsedInt.cpp \
         $(MTG_PATH)/src/WResourceManager.cpp \
         $(MTG_PATH)/src/DeckView.cpp \
         $(MTG_PATH)/src/CarouselDeckView.cpp \

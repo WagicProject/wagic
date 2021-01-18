@@ -340,6 +340,9 @@
     <ClCompile Include="src\GridDeckView.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\WParsedInt.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -697,6 +700,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\GridDeckView.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WParsedInt.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
