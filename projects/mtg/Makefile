@@ -27,7 +27,7 @@ OBJS	= objs/InteractiveButton.o objs/AbilityParser.o objs/ActionElement.o\
 	objs/ThisDescriptor.o objs/Token.o objs/Translate.o objs/TranslateKeys.o\
 	objs/Trash.o objs/utils.o objs/WEvent.o objs/WResourceManager.o\
 	objs/WCachedResource.o objs/WDataSrc.o objs/WGui.o objs/WFilter.o objs/Tasks.o\
-	objs/WFont.o objs/CarouselDeckView.o objs/GridDeckView.o objs/DeckView.o
+	objs/WFont.o objs/WParsedInt.o objs/CarouselDeckView.o objs/GridDeckView.o objs/DeckView.o
 DEPS = $(patsubst objs/%.o, deps/%.d, $(OBJS))
 
 RESULT = $(shell psp-config --psp-prefix 2> Makefile.cache)
