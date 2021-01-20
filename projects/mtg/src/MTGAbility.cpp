@@ -6240,9 +6240,21 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card)
             game->mExtraPayment = cost->extraCosts;
             return 0;
         }
+        if(cost->extraCosts){ // Added to check if the snow mana amount is enough to pay all the snow cost.
+            int countSnow = 0;
+            for(unsigned int i = 0; i < cost->extraCosts->costs.size(); i++){
+                if(dynamic_cast<SnowCost*> (cost->extraCosts->costs[i]))
+                    countSnow++;
+            }
+            if((source->controller()->snowManaG + source->controller()->snowManaU + source->controller()->snowManaR + 
+                source->controller()->snowManaB + source->controller()->snowManaW + source->controller()->snowManaC) < countSnow){
+                game->mExtraPayment = cost->extraCosts;
+                return 0;
+            }
+        }
         ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+        cost->doPayExtra(); // Bring here brefore the normal payment to solve Snow Mana payment bug.
         game->currentlyActing()->getManaPool()->pay(cost);
-        cost->doPayExtra();
         SAFE_DELETE(abilityCost);
         abilityCost = previousManaPool->Diff(player->getManaPool());
         delete previousManaPool;
@@ -6265,9 +6277,21 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
             game->mExtraPayment = cost->extraCosts;
             return 0;
         }
+        if(cost->extraCosts){ // Added to check if the snow mana amount is enough to pay all the snow cost.
+            int countSnow = 0;
+            for(unsigned int i = 0; i < cost->extraCosts->costs.size(); i++){
+                if(dynamic_cast<SnowCost*> (cost->extraCosts->costs[i]))
+                    countSnow++;
+            }
+            if((source->controller()->snowManaG + source->controller()->snowManaU + source->controller()->snowManaR + 
+                source->controller()->snowManaB + source->controller()->snowManaW + source->controller()->snowManaC) < countSnow){
+                game->mExtraPayment = cost->extraCosts;
+                return 0;
+            }
+        }
         ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+        cost->doPayExtra(); // Bring here brefore the normal payment to solve Snow Mana payment bug.
         game->currentlyActing()->getManaPool()->pay(cost);
-        cost->doPayExtra();
         SAFE_DELETE(abilityCost);
         abilityCost = previousManaPool->Diff(player->getManaPool());
         delete previousManaPool;
@@ -7182,8 +7206,20 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
             game->mExtraPayment = cost->extraCosts;
             return 0;
         }
+        if(cost->extraCosts){ // Added to check if the snow mana amount is enough to pay all the snow cost.
+            int countSnow = 0;
+            for(unsigned int i = 0; i < cost->extraCosts->costs.size(); i++){
+                if(dynamic_cast<SnowCost*> (cost->extraCosts->costs[i]))
+                    countSnow++;
+            }
+            if((source->controller()->snowManaG + source->controller()->snowManaU + source->controller()->snowManaR + 
+                source->controller()->snowManaB + source->controller()->snowManaW + source->controller()->snowManaC) < countSnow){
+                game->mExtraPayment = cost->extraCosts;
+                return 0;
+            }
+        }
+        cost->doPayExtra(); // Bring here brefore the normal payment to solve Snow Mana payment bug.
         game->currentlyActing()->getManaPool()->pay(cost);
-        cost->doPayExtra();
     }
 
     if (options[Options::SFXVOLUME].number > 0)

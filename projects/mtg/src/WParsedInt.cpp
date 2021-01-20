@@ -567,9 +567,37 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (target->foretellTurn < 0)?0:(target->getObserver()->turn-target->foretellTurn); // Check if you can use the foretell cost from exile (CurrentTurn > ForetellTurn).
     }
-    else if (s == "isflipped" || s == "snowcount") // Return 1 if card has been flipped -- // Snowcount is just to count the number of snow mana produced ... just for debugging purposes...
+    else if (s == "isflipped") // Return 1 if card has been flipped
     {
-        intValue = (s == "isflipped")?card->isFlipped:target->controller()->snowManaG + target->controller()->snowManaU +target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
+        intValue = card->isFlipped;
+    }
+    else if (s == "mysnowpoolcount" || s == "opponentsnowpoolcount") // snowpoolcount is just to count the number of snow mana produced ...
+    {
+        intValue = (s == "mysnowpoolcount")?(target->controller()->snowManaG + target->controller()->snowManaU + target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC):(target->controller()->opponent()->snowManaG + target->controller()->opponent()->snowManaU + target->controller()->opponent()->snowManaR + target->controller()->opponent()->snowManaB + target->controller()->opponent()->snowManaW + target->controller()->opponent()->snowManaC);
+    }
+    else if (s == "mysnowgreenpoolcount" || s == "opponentsnowgreenpoolcount")
+    {
+        intValue = (s == "mysnowgreenpoolcount")?target->controller()->snowManaG:target->controller()->opponent()->snowManaG;
+    }
+    else if (s == "mysnowredpoolcount" || s == "opponentsnowredpoolcount")
+    {
+        intValue = (s == "mysnowredpoolcount")?target->controller()->snowManaR:target->controller()->opponent()->snowManaR;
+    }
+    else if (s == "mysnowbluepoolcount" || s == "opponentsnowbluepoolcount")
+    {
+        intValue = (s == "mysnowbluepoolcount")?target->controller()->snowManaU:target->controller()->opponent()->snowManaU;
+    }
+    else if (s == "mysnowwhitepoolcount" || s == "opponentsnowwhitepoolcount")
+    {
+        intValue = (s == "mysnowwhitepoolcount")?target->controller()->snowManaW:target->controller()->opponent()->snowManaW;
+    }
+    else if (s == "mysnowblackpoolcount" || s == "opponentsnowblackpoolcount")
+    {
+        intValue = (s == "mysnowblackpoolcount")?target->controller()->snowManaB:target->controller()->opponent()->snowManaB;
+    }
+    else if (s == "mysnowcolorlesspoolcount" || s == "opponentsnowcolorlesspoolcount")
+    {
+        intValue = (s == "mysnowcolorlesspoolcount")?target->controller()->snowManaC:target->controller()->opponent()->snowManaC;
     }
     else if (s == "mypoolcount" || s == "opponentpoolcount") // total manapool
     {
