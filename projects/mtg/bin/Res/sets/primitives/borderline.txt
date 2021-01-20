@@ -457,14 +457,8 @@ type=Artifact
 name=Aether Storm
 auto=maxCast(creature)0 opponent
 auto=maxCast(creature)0 controller
-auto={L:4}:bury all(this)
-auto=@each opponent upkeep:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
-auto=@each opponent untap:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
-auto=@each opponent draw:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
-auto=@each opponent combatbegins:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
-auto=@each opponent blockers:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
-auto=@each opponent firstmain:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
-auto=@each opponent endofturn:ability$!name(Pay 4 life) pay[[{L:4}]] name(Pay 4 life) bury notatarget(Aether Storm|opponentBattlefield)?donothing!$ opponent
+auto={L:4}:bury(this) opponent
+auto={L:4}:bury(this) controller
 text=Creature spells can’t be cast. -- Pay 4 life: Destroy Aether Storm. It can’t be regenerated. Any player may activate this ability.
 mana={3}{U}
 type=Enchantment
@@ -1044,21 +1038,6 @@ type=Creature
 subtype=Dog
 power=2
 toughness=2
-[/card]
-[card]
-name=Alrund, God of the Cosmos
-other={1}{U} name(Hakka, Whispering Raven)
-otherrestriction=can play creature
-autostack=if paid(alternative) then name(Hakka, Whispering Raven) name(Hakka, Whispering Raven) flip(Hakka, Whispering Raven) forcetype(Legendary Creature)
-auto=this(variable{isflipped}<1) foreach(*[foretold]|myexile) 1/1
-auto=@each my endofturn restriction{compare(isflipped)~equalto~0}:transforms((,newability[choice name(Creature) reveal:2 optionone name(Get Creature) target(<2>Creature|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Artifact) reveal:2 optionone name(Get Artifact) target(<2>artifact|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Enchantment) reveal:2 optionone name(Get Enchantment) target(<2>enchantment|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Instant) reveal:2 optionone name(Get Instant) target(<2>instant|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) name(Bottom of library) bottomoflibrary optiontwoend revealend],newability[choice name(Land) reveal:2 optionone name(Get Land) target(<2>land|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Planeswalker) reveal:2 optionone name(Get Planeswalker) target(<2>planeswalker|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Sorcery) reveal:2 optionone name(Get Sorcery) target(<2>sorcery|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Tribal) reveal:2 optionone name(Get Tribal) target(<2>tribal|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend])) oneshot
-aicode=@each my endofturn restriction{compare(isflipped)~equalto~0}:ability$!name(Choose one) choice name(Creature) all(*[creature;zpos<=2]|mylibrary) moveto(myhand) && all(*[-creature;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Artifact) all(*[artifact;zpos<=2]|mylibrary) moveto(myhand) && all(*[-artifact;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Enchantment) all(*[enchantment;zpos<=2]|mylibrary) moveto(myhand) && all(*[-enchantment;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Instant) all(*[instant;zpos<=2]|mylibrary) moveto(myhand) && all(*[-instant;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Land) all(*[land;zpos<=2]|mylibrary) moveto(myhand) && all(*[-land;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Planeswalker) all(*[planeswalker;zpos<=2]|mylibrary) moveto(myhand) && all(*[-planeswalker;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Sorcery) all(*[sorcery;zpos<=2]|mylibrary) moveto(myhand) && all(*[-sorcery;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Tribal) all(*[tribal;zpos<=2]|mylibrary) moveto(myhand) && all(*[-tribal;zpos<=2]|mylibrary) bottomoflibrary!$ controller
-text=Alrund gets +1/+1 for each card in your hand and each foretold card you own in exile. -- At the beginning of your end step, choose a card type, then reveal the top two cards of your library. Put all cards of the chosen type into your hand and the rest on the bottom of your library in any order.
-mana={3}{U}{U}
-type=Legendary Creature
-subtype=God
-power=1
-toughness=1
 [/card]
 [card]
 name=Alseid of Life's Bounty
@@ -2265,7 +2244,7 @@ auto={1}{T}:Add{U}
 auto={1}{T}:Add{B}
 auto={1}{T}:Add{R}
 auto={1}{T}:Add{G}
-text=(Snow can be paid with one mana from a snow permanent.) -- When Arcum's Astrolabe enters the battlefield, draw a card. -- {1}, {T}: Add one mana of any color.
+text=({S}i} can be paid with one mana from a snow permanent.) -- When Arcum's Astrolabe enters the battlefield, draw a card. -- {1}, {T}: Add one mana of any color.
 mana={1}
 type=Snow Artifact
 [/card]
@@ -8041,7 +8020,7 @@ toughness=3
 [card]
 name=Chillerpillar
 auto=this(cantargetcard(*[-monstrous]) {4}{i}{i}:becomes(monstrous) forever && counter(1/1,2) && transforms((,newability[flying])) forever
-text={4}{S{i}{S{i}: Monstrosity 2. (If this creature isn't monstrous, put two +1/+1 counters on it and it becomes monstrous. Snow can be paid with one mana from a snow permanent.) -- As long as Chillerpillar is monstrous, it has flying.
+text={4}{S{i}{S{i}: Monstrosity 2. (If this creature isn't monstrous, put two +1/+1 counters on it and it becomes monstrous. {S}i} can be paid with one mana from a snow permanent.) -- As long as Chillerpillar is monstrous, it has flying.
 mana={3}{U}
 type=Snow Creature
 subtype=Insect
@@ -17738,13 +17717,13 @@ type=Instant
 name=Frostwalk Bastion
 auto={T}:add{1}
 auto={1}{i}:becomes(Creature Construct,2/3) ueot
-text={T}: Add {1}. -- {1} {Snow}: Until end of turn, Frostwalk Bastion becomes a 2/3 Construct artifact creature. It's still a land. ( Snow can be paid with one mana from a snow permanent.) -- Whenever Frostwalk Bastion deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
+text={T}: Add {1}. -- {1}{S}i}: Until end of turn, Frostwalk Bastion becomes a 2/3 Construct artifact creature. It's still a land. ({S}i} can be paid with one mana from a snow permanent.) -- Whenever Frostwalk Bastion deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 type=Snow Land
 [/card]
 [card]
 name=Frostwalla
 auto={i}:2/2 ueot limit:1
-text={S{i}: Frostwalla gets +2/+2 until end of turn. Activate this ability only once each turn. ( Snow can be paid with one mana from a snow permanent.)
+text={S{i}: Frostwalla gets +2/+2 until end of turn. Activate this ability only once each turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={2}{G}
 type=Snow Creature
 subtype=Lizard
@@ -21095,18 +21074,6 @@ mana={X}{W}
 type=Instant
 [/card]
 [card]
-name=Hakka, Whispering Raven
-abilities=flying
-auto=@combatdamagefoeof(player) from(this):name(Return to hand and scry 2) name(Return to hand and scry 2) moveTo(ownerhand) and!( scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
-auto=@combatdamageof(player) from(this):name(Return to hand and scry 2) name(Return to hand and scry 2) moveTo(ownerhand) and!( scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
-text=Flying -- Whenever Hakka, Whispering Raven deals combat damage to a player, return it to its owner’s hand, then scry 2.
-mana={1}{U}
-type=Legendary Creature
-subtype=Bird
-power=2
-toughness=3
-[/card]
-[card]
 name=Halana, Kessig Ranger
 abilities=reach,partner
 auto=@movedTo(other creature|mybattlefield):may pay({2}) name(Pay 2) all(trigger[to]) transforms((,newability[name(Damage creature) dynamicability<!powerstrike!> target(creature)])) oneshot
@@ -21183,22 +21150,6 @@ auto=@each opponent combatends:all(creature[attacking]|opponentbattlefield)) tra
 auto=lord(creature[counter{0/0.1.MistEffect}]) cantattack
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Creatures that attacked during their controller's last turn can't attack.
 type=Land
-[/card]
-[card]
-name=Halvar, God of Battle
-other={1}{W} name(Sword of the Realms)
-otherrestriction=can play equipment
-autostack=if paid(alternative) then flip(Sword of the Realms) forcetype(Legendary Artifact)
-auto=this(variable{isflipped}<1) lord(creature[geared;enchanted]|myBattlefield) double strike
-auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~morethan~0,type(creature[enchanted]|mybattlefield)~equalto~0}:may name(Re-attach target equipment) target(*[equipment]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
-auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~equalto~0,type(creature[enchanted]|mybattlefield)~morethan~0}:may name(Re-attach target aura) target(*[aura]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
-auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~morethan~0,type(creature[enchanted]|mybattlefield)~morethan~0}:may name(Re-attach target equipment or aura) target(*[aura;equipment]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
-text=Creatures you control that are enchanted or equipped have double strike. -- At the beginning of each combat, you may attach target Aura or Equipment attached to a creature you control to target creature you control.
-mana={2}{W}{W}
-type=Legendary Creature
-subtype=God
-power=4
-toughness=4
 [/card]
 [card]
 name=Hammer Dropper
@@ -23296,7 +23247,7 @@ toughness=4
 name=Icehide Golem
 other={i}
 restriction=type(*|myHand)~morethan~9999
-text=(Snow can be paid with one mana from a snow permanent.)
+text=({S}i} can be paid with one mana from a snow permanent.)
 mana={1}
 type=Snow Artifact Creature
 subtype=Golem
@@ -24717,7 +24668,7 @@ type=Instant
 name=Invoke the Divine
 target=artifact,enchantment
 auto=destroy
-auto=life:4
+auto=life:4 controller
 text=Destroy target artifact or enchantment. You gain 4 life.
 mana={2}{W}
 type=Instant
@@ -25410,19 +25361,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Jorn, God of Winter
-other={1}{U}{B} name(Kaldring, the Rimestaff)
-otherrestriction=can play artifact
-autostack=if paid(alternative) then flip(Kaldring, the Rimestaff) forcetype(Legendary Snow Artifact)
-auto=@combat(attacking) source(this) restriction{compare(isflipped)~equalto~0}:all(*[snow]|mybattlefield) untap
-text=Whenever Jorn attacks, untap each snow permanent you control.
-mana={2}{G}
-type=Legendary Snow Creature
-subtype=God
-power=4
-toughness=4
-[/card]
-[card]
 name=Josu Vess, Lich Knight
 abilities=menace
 kicker={5}{B}
@@ -25753,18 +25691,6 @@ type=Legendary Creature
 subtype=Giant Soldier
 power=3
 toughness=3
-[/card]
-[card]
-name=Kaldring, the Rimestaff
-auto={T}:name(Choose snow permanent) name(Choose snow permanent) target(*[snow]|mygraveyard) transforms((,newability[canplayfromgraveyard])) ueot && counter(0/0,1,KaldEffect) all(this)
-auto=@movedto(*[snow]|mybattlefield) from(mygraveyard):this(counter{0/0.1.KaldEffect}>0) all(trigger[to]) tap(noevent) && ability$!counter(0/0,-1,KaldEffect) all(mysource)!$ controller
-auto=@movedto(*[snow]|mystack) from(mygraveyard):this(counter{0/0.1.KaldEffect}>0) counter(0/0,1,KaldEffect2) && ability$!counter(0/0,-1,KaldEffect) all(mysource)!$ controller
-auto=@movedto(*[snow]|mybattlefield):this(counter{0/0.1.KaldEffect2}>0) all(trigger[to]) tap(noevent) && ability$!counter(0/0,-1,KaldEffect2) all(mysource)!$ controller
-auto=@each endofturn:this(counter{0/0.1.KaldEffect}>0) counter(0/0,-1,KaldEffect)
-auto=@each endofturn:this(counter{0/0.1.KaldEffect2}>0) counter(0/0,-1,KaldEffect2)
-text={T}: You may play target snow permanent card from your graveyard this turn. If you do, it enters the battlefield tapped.
-mana={1}{U}{B} 
-type=Legendary Snow Artifact
 [/card]
 [card]
 name=Kalitas, Traitor of Ghet
@@ -41572,17 +41498,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Saw It Coming
-abilities=foretell
-target=*|stack
-auto=fizzle
-autohand={2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) foretell myturnonly
-autoexile={1}{U} restriction{compare(canforetellcast)~morethan~0,type(*|stack)~morethan~0}:name(Cast with foretell) name(Cast with foretell) activate castcard(alternative)
-text=Counter target spell. -- Foretell {1}{U} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)
-mana={1}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Sawtusk Demolisher
 abilities=trample,mutate
 otherrestriction=type(creature[-human]|mybattlefield)~morethan~0
@@ -48602,17 +48517,6 @@ text=Equipped creature gets +2/+2 and has protection from black and from red. --
 mana={3}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Sword of the Realms
-auto={1}{W}:equip
-auto=teach(creature) 2/0
-auto=teach(creature) vigilance
-auto=teach(creature) handdeath
-text=Equipped creature gets +2/+0 and has vigilance. -- Whenever equipped creature dies, return it to its owner’s hand. -- Equip {1}{W}
-mana={1}{W}
-type=Legendary Artifact
-subttype=Equipment
 [/card]
 [card]
 name=Sword of Truth and Justice
