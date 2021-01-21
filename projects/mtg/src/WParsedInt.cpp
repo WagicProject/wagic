@@ -853,7 +853,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
-    else if (s.find("cardcounttype") != string::npos)//Count Total Creatures of specific type
+    else if (s.find("cardcounttype") != string::npos)//Count Total cards of specific type
     {
         intValue = 0;
         bool different_names = (s.find("diffcardcounttype")!=string::npos)?true:false;
@@ -876,6 +876,31 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
                     }
                 }
             }
+        }
+    }
+    else if (s.find("sametypecreatures") != string::npos)//Count the greatest number creatures that share same subtype (creatures with changeling counts as +1 for all creature types)
+    {
+        intValue = 0;
+        bool opponent = (s.find("oppsametypecreatures")!=string::npos)?true:false;
+        vector<int> list;
+        vector<string> values = MTGAllCards::getCreatureValuesById();
+        for (size_t i = 0; i < values.size(); ++i){
+            list.push_back(0);
+            if(opponent){
+                for (int j = card->controller()->opponent()->game->inPlay->nb_cards - 1; j >= 0; --j){
+                    if (card->controller()->opponent()->game->inPlay->cards[j]->hasType(values[i]) || card->controller()->opponent()->game->inPlay->cards[j]->has(Constants::CHANGELING)){
+                        list[i]++;
+                    }
+                }
+            } else {
+                for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
+                    if (card->controller()->game->inPlay->cards[j]->hasType(values[i]) || card->controller()->game->inPlay->cards[j]->has(Constants::CHANGELING)){
+                        list[i]++;
+                    }
+                }
+            }
+            if (list[i] > intValue)
+                intValue = list[i];
         }
     }
     else if (s == "cursedscrollresult")//Return 1 if the cursed scroll has to give damage (calculated randomly basing on the number of unique cards in the player hand)...

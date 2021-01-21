@@ -16795,6 +16795,13 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Fist of Suns
+auto=lord(*|myrestrictedcastingzone) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay with 5 colors mana) name(Pay with 5 colors mana) activate castcard(normal)]))
+text=You may pay {W}{U}{B}{R}{G} rather than pay the mana cost for spells that you cast.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Five-Finger Discount
 target=*[-land]|battlefield
 auto=moveto(myhand) and!( transforms((,newability[anytypeofmana])) forever)!
@@ -19347,7 +19354,7 @@ toughness=2
 [/card]
 [card]
 name=Gnarlroot Trapper
-auto={this(variable{type:elf:myrestrictedcastingzone}>0) T}{L:1}:add{G}
+auto=this(variable{type:elf:myrestrictedcastingzone}>0) {T}{L:1}:add{G}
 auto={T}:target(elf[attacking]|mybattlefield) transforms((,newability[deathtouch])) ueot
 text={T}, Pay 1 life: Add {G} to your mana pool. Spend this mana only to cast an Elf creature spell. -- {T}: Target attacking Elf you control gains deathtouch until end of turn. (Any amount of damage it deals to a creature is enough to destroy it.)
 mana={B}
@@ -20358,6 +20365,16 @@ flashback={3}{R}{D(*|myhand)}
 text=Target creature you control deals damage equal to its power to target player. -- Jump-start (You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile this card.)
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Graxiplon
+auto=this(variable{oppsametypecreatures}<3) unblockable
+text=Graxiplon is unblockable unless defending player controls three or more creatures that share a creature type.
+mana={5}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=4
 [/card]
 [card]
 name=Grazing Whiptail
@@ -25296,7 +25313,7 @@ toughness=3
 [card]
 name=Jodah, Archmage Eternal
 abilities=flying
-auto={W}{U}{B}{R}{G}:target(*|myrestrictedcastingzone) activate castcard(normal)
+auto=lord(*|myrestrictedcastingzone) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay with 5 colors mana) name(Pay with 5 colors mana) activate castcard(normal)]))
 text=Flying -- You may pay {W}{U}{B}{R}{G} rather than pay the mana cost for spells that you cast.
 mana={1}{U}{R}{W}
 type=Legendary Creature
