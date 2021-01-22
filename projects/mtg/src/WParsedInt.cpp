@@ -211,10 +211,6 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "mutations")?target->mutation:target->countColors();
     }
-    else if (s == "manacost")
-    {
-        intValue = (target->currentZone == target->controller()->game->stack)?(target->myconvertedcost + target->castX):target->myconvertedcost;//X is 0 except if it's on the stack
-    }
     else if (s.find("type:") != string::npos)
     {
         size_t begins = s.find("type:");
@@ -570,6 +566,16 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     else if (s == "isflipped") // Return 1 if card has been flipped
     {
         intValue = card->isFlipped;
+    }
+    else if (s == "manacost") //Return the converted manacost
+    {
+        intValue = (target->currentZone == target->controller()->game->stack)?(target->myconvertedcost + target->castX):target->myconvertedcost;//X is 0 except if it's on the stack
+    }
+    else if(s == "snowdiffmana") //Return 1 if the difference between snowpool and converted manacost is more than 0
+    {
+        int snowpool = target->controller()->snowManaG + target->controller()->snowManaU + target->controller()->snowManaR + target->controller()->snowManaB + target->controller()->snowManaW + target->controller()->snowManaC;
+        int manacost = (target->currentZone == target->controller()->game->stack)?(target->myconvertedcost + target->castX):target->myconvertedcost;//X is 0 except if it's on the stack
+        intValue = (snowpool >= manacost)?1:0;
     }
     else if (s == "mysnowpoolcount" || s == "opponentsnowpoolcount") // snowpoolcount is just to count the number of snow mana produced ...
     {

@@ -2110,12 +2110,15 @@ int AAForetell::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be foretell, they will follow the fate of top-card
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be foretold, they will follow the fate of top-card
         Player * p = _target->controller();
         if(p){
             MTGCardInstance * tmp = p->game->putInExile(_target);
-            if(tmp) 
+            if(tmp){
                 tmp->foretellTurn = source->getObserver()->turn;
+                WEvent * e = NEW WEventCardForetold(tmp);
+                game->receiveEvent(e);
+            }
         }
 
         while(_target->next)
@@ -7847,7 +7850,8 @@ void APhaseAction::Update(float dt)
 {
     if(checkexile)
     {
-        if(((MTGCardInstance *)target)->next->getCurrentZone() != ((MTGCardInstance *)target)->owner->game->exile)
+        MTGCardInstance* tocheck = (((MTGCardInstance *)target)->next)?((MTGCardInstance *)target)->next:((MTGCardInstance *)target);
+        if((tocheck->getCurrentZone() != ((MTGCardInstance *)target)->owner->game->exile) && (tocheck->getCurrentZone() != ((MTGCardInstance *)target)->owner->opponent()->game->exile))
         {
             this->forceDestroy = 1;
             return;
