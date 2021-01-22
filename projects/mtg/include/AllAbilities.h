@@ -646,6 +646,33 @@ public:
     }
 };
 
+class TrCardForetold: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardForetold(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardForetold * e = dynamic_cast<WEventCardForetold *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardForetold * clone() const
+    {
+        return NEW TrCardForetold(*this);
+    }
+};
+
 class TrCardScryed: public Trigger
 {
 public:

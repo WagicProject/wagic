@@ -297,6 +297,11 @@ WEventCardSurveiled::WEventCardSurveiled(MTGCardInstance * card) :
 {
 }
 
+WEventCardForetold::WEventCardForetold(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardScryed::WEventCardScryed(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -531,6 +536,12 @@ Targetable * WEventCardMutated::getTarget(int target)
 }
 
 Targetable * WEventCardSurveiled::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardForetold::getTarget(int target)
 {
     if (target) return card;
     return NULL;

@@ -1228,6 +1228,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "surveiled", card))
         return NEW TrCardSurveiled(observer, id, card, tc, once, limitOnceATurn);
 
+    //Foretell has been performed from a card
+    if (TargetChooser * tc = parseSimpleTC(s, "foretold", card))
+        return NEW TrCardForetold(observer, id, card, tc, once, limitOnceATurn);
+
     //Scry has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "scryed", card))
         return NEW TrCardScryed(observer, id, card, tc, once, limitOnceATurn);
@@ -3166,7 +3170,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //foretell
-    found = s.find("foretell");
+    found = s.find("doforetell");
     if (found != string::npos)
     {
         MTGAbility * a = NEW AAForetell(observer, id, card, target);
