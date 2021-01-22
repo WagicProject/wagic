@@ -816,7 +816,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         else
                             cd->compareName = card->name;
 
-                        cd->nameComparisonMode = COMPARISON_EQUAL;
+                        if (attribute.find("notshare!") != string::npos)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
                     }
                     else if( CDtype.find("color") != string::npos )
                     {
@@ -824,8 +827,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                             cd->colors = card->target->colors;
                         else
                             cd->colors = card->colors;
-                       
-                        cd->mode = CardDescriptor::CD_OR;
+
+                        if (attribute.find("notshare!") != string::npos)                       
+                            cd->mode = CardDescriptor::CD_NOR;
+                        else
+                            cd->mode = CardDescriptor::CD_OR;
                     }
                     else if( CDtype.find("types") != string::npos )
                     {
@@ -853,7 +859,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                             subt << card->getName() << "_DummyType_" << i;
                             cd->setSubtype(subt.str()); // Fix to avoid type vector size is 0 causing the always true match issue.
                         }
-                        cd->mode = CardDescriptor::CD_OR;
+
+                        if (attribute.find("notshare!") != string::npos)                       
+                            cd->mode = CardDescriptor::CD_NOR;
+                        else
+                            cd->mode = CardDescriptor::CD_OR;
                     }
                 }
                 else if (attribute.find("counter") != string::npos)

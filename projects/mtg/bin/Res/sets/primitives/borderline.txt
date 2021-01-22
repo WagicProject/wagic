@@ -43015,8 +43015,9 @@ type=Enchantment
 [/card]
 [card]
 name=Shared Summons
-aicode=activate target(<upto:2>creature[-share!name!]|mylibrary) moveto(myhand)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<upto:2>creature[-share!name!]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=if type(creature|mylibrary)~morethan~1 then choice name(Search 2 creatures) name(Search 2 creatures) target(creature|mylibrary) moveto(myreveal) and!( moveto(mylibrary) and!( transforms((,newability[name(Search second creature) target(creature[notshare!name!]|mylibrary) moveto(myreveal) and!( moveto(mylibrary) and!( ability$!name(Put in hand from library) name(Put in hand from library) target(<2>creature[fresh]|opponentlibrary) moveto(opponenthand) and!( shuffle opponent )! !$ opponent )! )!])) oneshot )! )!
+auto=if type(creature|mylibrary)~morethan~0 then choice name(Search 1 creature) name(Search 1 creature) target(creature|mylibrary) moveto(myreveal) and!( moveto(mylibrary) and!( transforms((,newability[ability$!name(Put in hand from library) name(Put in hand from library) target(creature[fresh]|opponentlibrary) moveto(opponenthand) and!( shuffle opponent )! !$ opponent])) oneshot )! )!
+auto=if type(creature|mylibrary)~morethan~0 then choice name(Don't search) name(Don't search) donothing
 text=Search your library for up to two creature cards with different names, reveal them, put them into your hand, then shuffle your library.
 mana={3}{G}{G}
 type=Instant

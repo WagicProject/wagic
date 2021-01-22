@@ -30,7 +30,9 @@ class CardDescriptor: public MTGCardInstance
  public:
   enum Operator{
       CD_OR = 1,
-      CD_AND = 2
+      CD_AND = 2,
+      CD_NOR = 3,
+      CD_NAND = 4
   };
 
   Operator mode;

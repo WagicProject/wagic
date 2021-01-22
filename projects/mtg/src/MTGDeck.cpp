@@ -825,6 +825,7 @@ MTGDeck::MTGDeck(MTGAllCards * _allcards)
     database = _allcards;
     filename = "";
     meta_name = "";
+    meta_commander = false;
 }
 
 int MTGDeck::totalPrice()
@@ -850,6 +851,7 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
     size_t dot = filename.find(".");
     meta_name = filename.substr(slash + 1, dot - slash - 1);
     meta_id = atoi(meta_name.substr(4).c_str());
+    meta_commander = false;
     std::string contents;
     if (JFileSystem::GetInstance()->readIntoString(config_file, contents))
     {
@@ -888,7 +890,7 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                     continue;
                 }
                 found = s.find("SB:"); // Now it's possible to add cards to Sideboard even using their Name instead of ID such as normal deck cards.
-                if (found != string::npos)
+                if (found != string::npos && database)
                 {
                     s = s.substr(found + 3);
                     s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);
@@ -920,6 +922,8 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                 found = s.find("CMD:"); // Now it's possible to add a card to Command Zone even using their Name instead of ID such as normal deck cards.
                 if (found != string::npos)
                 {
+                    meta_commander = true; //Added to read the command tag in metafile.
+                    if(!database) continue;
                     s = s.substr(found + 4);
                     s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);
                     s.erase(0, s.find_first_not_of("\t\n\v\f\r "));
@@ -961,7 +965,7 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                 }
                 continue;
             }
-            if (meta_only) break;
+            if (meta_only) continue; //Changed from break in order to read the command tag in metafile.
             int numberOfCopies = 1;
             size_t found = s.find(" *");
             if (found != string::npos)

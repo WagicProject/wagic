@@ -240,7 +240,7 @@ void GameStateDuel::Start()
                 GameStateDuel::selectedPlayerDeckId, true);
             deckmenu->enableDisplayDetailsOverride();
             DeckManager *deckManager = DeckManager::GetInstance();
-            vector<DeckMetaData *> playerDeckList = BuildDeckList(options.profileFile());
+            vector<DeckMetaData *> playerDeckList = BuildDeckList(options.profileFile(), "", NULL, 0, mParent->gameType);
             int nbDecks = playerDeckList.size();
 
             if (nbDecks)
@@ -425,7 +425,7 @@ void GameStateDuel::ConstructOpponentMenu()
         DeckManager * deckManager = DeckManager::GetInstance();
         vector<DeckMetaData*> opponentDeckList;
 
-        opponentDeckList = fillDeckMenu(opponentMenu, "ai/baka", "ai_baka", game->getPlayer(0), nbUnlockedDecks);
+        opponentDeckList = fillDeckMenu(opponentMenu, "ai/baka", "ai_baka", game->getPlayer(0), nbUnlockedDecks, mParent->gameType);
         deckManager->updateMetaDataList(&opponentDeckList, true);
         tournament->setAvailableDecks(opponentDeckList.size());
         opponentMenu->Add(MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());

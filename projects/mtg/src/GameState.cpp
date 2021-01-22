@@ -14,27 +14,17 @@
 // TODO: revise sorting strategy to allow other types of sorting.  Currently, it is hardwired to use
 //    sortByName to do the sorting.  This was done since the menu item display is done in insertion order.
 
-vector<DeckMetaData *> GameState::fillDeckMenu(SimpleMenu * _menu, const string& path, const string& smallDeckPrefix,
-                Player * statsPlayer)
-{
-
-    vector<DeckMetaData *> deckMetaDataVector = BuildDeckList(path, smallDeckPrefix, statsPlayer);
-    renderDeckMenu(_menu, deckMetaDataVector);
-
-    return deckMetaDataVector;
-}
-
 vector<DeckMetaData *> GameState::fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix,
-                Player * statsPlayer, int maxDecks)
+                Player * statsPlayer, int maxDecks, GameType type)
 {
 
-    vector<DeckMetaData *> deckMetaDataVector = BuildDeckList(path, smallDeckPrefix, statsPlayer, maxDecks);
+    vector<DeckMetaData *> deckMetaDataVector = BuildDeckList(path, smallDeckPrefix, statsPlayer, maxDecks, type);
     renderDeckMenu(_menu, deckMetaDataVector);
 
     return deckMetaDataVector;
 }
 
-vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string& smallDeckPrefix, Player * statsPlayer, int maxDecks)
+vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string& smallDeckPrefix, Player * statsPlayer, int maxDecks, GameType type)
 {
     vector<DeckMetaData*> retList;
 
@@ -52,6 +42,11 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
         if (meta)
         {
             found = 1;
+            if((meta->isCommanderDeck && type != GAME_TYPE_COMMANDER) || (!meta->isCommanderDeck && type == GAME_TYPE_COMMANDER)){
+                meta = NULL; // It will show commander decks only in commander mode and it will hide them in other modes.
+                nbDecks++;
+                continue;
+            }
             //Check if the deck is unlocked based on sets etc...
             bool unlocked = true;
             vector<int> unlockRequirements = meta->getUnlockRequirements();
