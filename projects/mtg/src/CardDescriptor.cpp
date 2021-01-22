@@ -172,8 +172,9 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         return NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
         return NULL;
-    if (nameComparisonMode && compareName != card->name)
+    if ((nameComparisonMode == COMPARISON_UNEQUAL && compareName == card->name) || (nameComparisonMode && nameComparisonMode != COMPARISON_UNEQUAL && compareName != card->name))
         return NULL;
+
     return card;
 }
 
@@ -219,7 +220,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
         match = NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
         match = NULL;
-    if(nameComparisonMode && compareName != card->name)
+    if ((nameComparisonMode == COMPARISON_UNEQUAL && compareName == card->name) || (nameComparisonMode && nameComparisonMode != COMPARISON_UNEQUAL && compareName != card->name))
         match = NULL;
 
     return match;
@@ -233,9 +234,25 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = match_and(card);
     }
+    else if (mode == CD_NAND)
+    {
+        match = match_and(card);
+        if(!match)
+            match = card;
+        else
+            match = NULL;
+    }
     else if (mode == CD_OR)
     {
         match = match_or(card);
+    }
+    else if (mode == CD_NOR)
+    {
+        match = match_or(card);
+        if(!match)
+            match = card;
+        else
+            match = NULL;
     }
 
     //Abilities

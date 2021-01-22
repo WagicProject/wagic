@@ -24,7 +24,7 @@ private:
     int mDeckId;
     string mAvatarFilename;
     string  mColorIndex;
-    
+
     // statistical information
     int mGamesPlayed, mVictories, mPercentVictories, mDifficulty;
     int getAvatarId();
@@ -33,7 +33,7 @@ private:
 
 public:
 
-
+    bool isCommanderDeck; //Added to read the command tag in deck's metafile.
     DeckMetaData(const string& filename, bool isAI = false);
     void LoadDeck();
     void LoadStats();

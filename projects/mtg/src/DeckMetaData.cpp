@@ -30,6 +30,7 @@ void DeckMetaData::LoadDeck()
         mName = trim(deck.meta_name);
         mDescription = trim(deck.meta_desc);
         mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
+        isCommanderDeck = deck.meta_commander; //Added to read the command tag in deck's metafile.
 
         vector<string> requirements = split(deck.meta_unlockRequirements, ',');
         for(size_t i = 0; i < requirements.size(); ++i)
@@ -64,6 +65,7 @@ void DeckMetaData::LoadStats()
             mGamesPlayed = 0;
             mColorIndex = "";
             mDifficulty = 0;
+            isCommanderDeck = false;
 
             stats->load(mPlayerDeck);
             DeckStat * opponentDeckStats = stats->getDeckStat(mStatsFilename);

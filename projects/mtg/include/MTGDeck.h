@@ -217,6 +217,7 @@ public:
     map<int, int> cards;
     string meta_desc;
     string meta_name;
+    bool meta_commander;
     vector<string> meta_AIHints;
     vector<string> Sideboard;
     vector<string> CommandZone;
