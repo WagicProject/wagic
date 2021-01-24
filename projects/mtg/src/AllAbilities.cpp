@@ -2048,6 +2048,7 @@ AAImprint::AAImprint(GameObserver* observer, int _id, MTGCardInstance * _source,
     ActivatedAbility(observer, _id, _source, _cost, 0)
 {
     target = _target;
+    andAbility = NULL;
 }
 
 int AAImprint::resolve()
@@ -2081,6 +2082,20 @@ int AAImprint::resolve()
             {
                 source->currentimprintName = source->imprintedCards.back()->getName();
                 source->imprintedNames.push_back(source->imprintedCards.back()->getName());
+            }
+        }
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
             }
         }
         return 1;
