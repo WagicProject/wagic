@@ -1061,6 +1061,42 @@ AAExploresEvent::~AAExploresEvent()
 {
 }
 
+//AA Boast Event
+AABoastEvent::AABoastEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), card(_source)
+{
+}
+
+int AABoastEvent::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            WEvent * e = NEW WEventCardBoasted(card);
+            game->receiveEvent(e);
+        }
+    }
+    return 0;
+}
+
+const string AABoastEvent::getMenuText()
+{
+    return "Boast event called";
+}
+
+AABoastEvent * AABoastEvent::clone() const
+{
+    return NEW AABoastEvent(*this);
+}
+
+AABoastEvent::~AABoastEvent()
+{
+}
+
 //AA Surveil Event
 AASurveilEvent::AASurveilEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
         int who) :
