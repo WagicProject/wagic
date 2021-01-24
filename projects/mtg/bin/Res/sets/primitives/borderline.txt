@@ -5707,7 +5707,7 @@ toughness=1
 [/card]
 [card]
 name=Brass's Bounty
-auto=foreach(land|mybattlefield) token(Treasure,Artifact) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!
+auto=foreach(land|mybattlefield) token(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!
 text=For each land you control, create a Treasure token. (It’s an artifact with “{T}, Sacrifice this artifact: Add one mana of any color.”)
 mana={6}{R}
 type=Sorcery
@@ -12039,7 +12039,7 @@ type=Enchantment
 [card]
 name=Diabolical Salvation
 abilities=split second
-auto=token(Devil,Creature Devil,4/4,red,unreath) with((,newability ((@movedto(this|graveyard) from(battlefield):token(Treasure,Artifact) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!))
+auto=token(Devil,Creature Devil,4/4,red,unreath) with((,newability ((@movedto(this|graveyard) from(battlefield):token(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!))
 text=Split second Create four 4/4 red Devil creature tokens with haste and “When this creature dies, create a colorless Treasure artifact token with ‘{T}, Sacrifice this artifact: Add one mana of any color.’” Sacrifice the Devil tokens at the beginning of the next end step.
 mana={2}{R}{R}{R}{R}
 type=Instant
@@ -51693,7 +51693,7 @@ auto={T}{S}:add{B}
 auto={T}{S}:add{R}
 auto={T}{S}:add{G}
 text={T}, Sacrifice this artifact: Add one mana of any color.
-type=Artifact
+type=Artifact Treasure
 [/card]
 [card]
 name=Treasure Map
@@ -51721,7 +51721,7 @@ auto={T}{S}:add{B}
 auto={T}{S}:add{R}
 auto={T}{S}:add{G}
 text={T}, Sacrifice this artifact: Add one mana of any color.
-type=Artifact
+type=Artifact Treasure
 [/card]
 [card]
 name=Treasure Sur
@@ -51731,7 +51731,7 @@ auto={T}{S}:add{B}
 auto={T}{S}:add{R}
 auto={T}{S}:add{G}
 text={T}, Sacrifice this artifact: Add one mana of any color.
-type=Artifact
+type=Artifact Treasure
 [/card]
 [card]
 name=TreasureArtifactToken
@@ -51741,7 +51741,7 @@ auto={T}{S}:add{B}
 auto={T}{S}:add{R}
 auto={T}{S}:add{G}
 text={T}, Sacrifice this artifact: Add one mana of any color.
-type=Artifact
+type=Artifact Treasure
 [/card]
 [card]
 name=Treefolk Umbra

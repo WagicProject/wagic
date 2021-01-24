@@ -578,6 +578,20 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             if(Constants::MTGBasicAbilities[i] == s.substr(10))
                 intValue = card->basicAbilities[i];
     }
+    else if (s.find("hascnt") != string::npos) //Return the amount of specific counters on card
+    {
+        intValue = 0;
+        if (card->counters){
+            Counters * counters = card->counters;
+            for(size_t i = 0; i < counters->counters.size(); ++i){
+                Counter * counter = counters->counters[i];
+                if(counter->name ==  s.substr(6)){
+                    intValue = counter->nb;
+                    break;
+                }
+            }
+        }
+    }
     else if (s == "manacost") //Return the converted manacost
     {
         intValue = (target->currentZone == target->controller()->game->stack)?(target->myconvertedcost + target->castX):target->myconvertedcost;//X is 0 except if it's on the stack

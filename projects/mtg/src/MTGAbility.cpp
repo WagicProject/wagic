@@ -1224,6 +1224,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "mutated", card))
         return NEW TrCardMutated(observer, id, card, tc, once, limitOnceATurn);
 
+    //boast has been performed from a card
+    if (TargetChooser * tc = parseSimpleTC(s, "boasted", card))
+        return NEW TrCardBoasted(observer, id, card, tc, once, limitOnceATurn);
+
     //Surveil has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "surveiled", card))
         return NEW TrCardSurveiled(observer, id, card, tc, once, limitOnceATurn);
@@ -3553,6 +3557,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitMutatedUnder.size())
     {
         card->mutation += atoi(splitMutatedUnder[1].c_str());
+    }
+
+    //perform boast
+    found = s.find("doboast");
+    if (found != string::npos)
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AABoastEvent(observer, id, card, t, NULL, who);
+        a->oneShot = 1;
+        return a;
     }
 
     //perform surveil

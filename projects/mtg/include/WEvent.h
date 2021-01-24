@@ -360,6 +360,12 @@ struct WEventplayerMonarch : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//boast event
+struct WEventCardBoasted : public WEventCardUpdate {
+    WEventCardBoasted(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 //surveil event
 struct WEventCardSurveiled : public WEventCardUpdate {
     WEventCardSurveiled(MTGCardInstance * card);

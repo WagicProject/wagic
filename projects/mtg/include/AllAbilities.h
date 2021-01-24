@@ -619,6 +619,33 @@ public:
     }
 };
 
+class TrCardBoasted: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardBoasted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardBoasted * e = dynamic_cast<WEventCardBoasted *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardBoasted * clone() const
+    {
+        return NEW TrCardBoasted(*this);
+    }
+};
+
 class TrCardSurveiled: public Trigger
 {
 public:
@@ -3938,6 +3965,19 @@ public:
     const string getMenuText();
     AAAlterEnergy * clone() const;
     ~AAAlterEnergy();
+};
+//Boast Event
+class AABoastEvent: public ActivatedAbilityTP
+{
+public:
+    MTGCardInstance * card;
+
+    AABoastEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AABoastEvent * clone() const;
+    ~AABoastEvent();
 };
 //Surveil Event
 class AASurveilEvent: public ActivatedAbilityTP
