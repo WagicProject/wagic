@@ -1399,6 +1399,7 @@ public:
 class AAImprint: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     AAImprint(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();

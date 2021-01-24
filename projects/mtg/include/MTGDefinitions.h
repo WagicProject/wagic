@@ -301,7 +301,8 @@ class Constants
       FORETELL = 174,
       ANYTYPEOFMANAABILITY = 175,
       BOAST = 176,
-      NB_BASIC_ABILITIES = 177,
+      TWOBOAST = 177,
+      NB_BASIC_ABILITIES = 178,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

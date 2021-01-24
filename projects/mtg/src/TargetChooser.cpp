@@ -953,6 +953,16 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         }
                     }
 
+                    if (attribute.find("evictname") != string::npos && card->imprintedCards.size())
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->currentimprintName;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
                     if (!attributefound)
                     {
                         //Abilities

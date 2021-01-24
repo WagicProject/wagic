@@ -3165,6 +3165,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             MTGAbility * a = NEW AAImprint(observer, id, card, target);
             a->oneShot = 1;
+            //andability
+            if(storedAndAbility.size())
+            {
+                string stored = storedAndAbility;
+                storedAndAbility.clear();
+                ((AAImprint*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+            }
             return a;
         }
     }

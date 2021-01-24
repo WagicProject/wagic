@@ -438,6 +438,14 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "pnumofcommandcast")?card->controller()->numOfCommandCast:card->controller()->opponent()->numOfCommandCast;
     }
+    else if (s == "isflipped" || s == "iscopied") // Return 1 if card has been flipped -- Return 1 if card has copied another card
+    {
+        intValue = (s == "isflipped")?card->isFlipped:card->isACopier;
+    }
+    else if (s == "evictmc" || s == "hasevict")
+    {
+        if(card->imprintedCards.size() > 0) intValue = (s == "evictmc")?card->imprintedCards.back()->getManaCost()->getConvertedCost():card->imprintedCards.size();
+    }
     else if (s == "evictpw" || s == "evictth")
     {
         if(card->imprintedCards.size() > 0) intValue = (s == "evictpw")?card->imprintedCards.back()->getPower():card->imprintedCards.back()->getToughness();
@@ -563,9 +571,12 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (target->foretellTurn < 0)?0:(target->getObserver()->turn-target->foretellTurn); // Check if you can use the foretell cost from exile (CurrentTurn > ForetellTurn).
     }
-    else if (s == "isflipped") // Return 1 if card has been flipped
+    else if (s.find("hasability") != string::npos) //Return 1 if card has the specified ability
     {
-        intValue = card->isFlipped;
+        intValue = 0;
+        for(size_t i = 0; i < Constants::NB_BASIC_ABILITIES; i++)
+            if(Constants::MTGBasicAbilities[i] == s.substr(10))
+                intValue = card->basicAbilities[i];
     }
     else if (s == "manacost") //Return the converted manacost
     {
