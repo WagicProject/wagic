@@ -53,6 +53,7 @@ public:
     vector<string> formattedText;
     string text;
     string name;
+    string nameOrig;
     int init();
 
     uint8_t colors;

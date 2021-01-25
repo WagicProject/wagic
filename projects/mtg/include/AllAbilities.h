@@ -926,6 +926,11 @@ public:
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;
+        if(e->damage->target->life < 0){
+            e->damage->target->exceededDamage = e->damage->target->life;
+            e->damage->source->exceededDamage = e->damage->target->life;
+            this->source->exceededDamage = e->damage->target->life;
+        }
         triggeredTurn = game->turn;
 
         return 1;

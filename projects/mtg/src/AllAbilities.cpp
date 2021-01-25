@@ -1935,6 +1935,7 @@ int AACopier::resolve()
         }
         else
         {
+            source->nameOrig = source->name; // Saves the orignal card name before become a copy
             source->copy(_target);
         }
         source->isACopier = true;
@@ -4258,6 +4259,8 @@ int AAFlip::resolve()
         GameObserver * game = _target->getObserver();
         if(flipStats.size())
         {
+            if(flipStats == "myorigname" && _target->nameOrig != "") 
+                flipStats = _target->nameOrig; // Added to undo the copy effect at end of turn for a generic card (es. Shapeshifter transformations).
             MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
             if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
