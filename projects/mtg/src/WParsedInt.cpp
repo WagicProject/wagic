@@ -531,6 +531,24 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         if(card && card->thatmuch > intValue)
             intValue = card->thatmuch;
     }
+    else if (s == "excessdamage") // Return the amount of exceeded damage of a target
+    {
+        if(target->exceededDamage < 0)
+            intValue = target->exceededDamage;
+        int checkagain = 0;
+        if(target->hasSubtype(Subtypes::TYPE_AURA) || target->hasSubtype(Subtypes::TYPE_EQUIPMENT)){
+            if(target->target){
+                if(target->target->exceededDamage < 0)
+                    checkagain = target->target->exceededDamage;
+            }
+        }
+        if(checkagain < intValue)
+            intValue = checkagain;
+        if(card && card->exceededDamage < intValue)
+            intValue = card->exceededDamage;
+        if(intValue < 0)
+            intValue = abs(intValue);
+    }
     else if (s == "lifelost" || s == "oplifelost")
     {
         intValue = (s == "lifelost")?target->controller()->lifeLostThisTurn:target->controller()->opponent()->lifeLostThisTurn;
@@ -591,6 +609,10 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
                 }
             }
         }
+    }
+    else if (s.find("genrand") != string::npos) //Return a random value between 0 and a specific number (minus 1);
+    {
+        intValue = std::rand() % atoi(s.substr(7).c_str());
     }
     else if (s == "manacost") //Return the converted manacost
     {

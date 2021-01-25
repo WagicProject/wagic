@@ -278,6 +278,18 @@ int Damage::resolve()
         }
     }
 
+	if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix life calculation for planeswalker damage.
+        if (((MTGCardInstance*)target)->counters){
+            Counters * counters = ((MTGCardInstance*)target)->counters;
+            for(size_t i = 0; i < counters->counters.size(); ++i){
+                Counter * counter = counters->counters[i];
+                if(counter->name ==  "loyalty"){
+                    target->life = counter->nb - target->damageCount;
+                    break;
+                }
+            }
+        }
+    }
     //Send (Damage/Replaced effect) event to listeners
     observer->receiveEvent(e);
     return a;
