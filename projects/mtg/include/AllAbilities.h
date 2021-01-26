@@ -6469,19 +6469,37 @@ public:
     AASetTypeChosen * clone() const;
     ~AASetTypeChosen();
 };
-class GenericChooseTypeColor: public ActivatedAbility
+class AASetNameChosen: public InstantAbility
+{
+public:
+    string name;
+    string abilityToAlter;
+    string menutext;
+    MTGAbility * abilityAltered;
+    AASetNameChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string _name = "",string menu = "error" ,string toAdd = "");
+    int resolve();
+    const string getMenuText();
+    AASetNameChosen * clone() const;
+    ~AASetNameChosen();
+};
+class GenericChooseTypeColorName: public ActivatedAbility
 {
 public:
     string baseAbility;
     bool chooseColor;
+    bool chooseName;
+    bool chooseOppName;
     AASetColorChosen * setColor;
     AASetTypeChosen * setType;
+    AASetNameChosen * setName;
     bool ANonWall;
-    GenericChooseTypeColor(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "",bool chooseColor = false,bool nonwall = false, ManaCost * cost = NULL);
+    bool ANonBasicLand;
+    bool ANonLand;
+    GenericChooseTypeColorName(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", bool chooseColor = false,bool chooseName = false, bool chooseOppName = false, bool nonwall = false, bool nonbasicland = false, bool nonland = false, ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
-    GenericChooseTypeColor * clone() const;
-    ~GenericChooseTypeColor();
+    GenericChooseTypeColorName * clone() const;
+    ~GenericChooseTypeColorName();
 
 };
 //------------------------------------------------

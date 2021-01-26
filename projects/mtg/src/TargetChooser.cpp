@@ -607,6 +607,17 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->CDgeared = 1;
                     }
                 }
+                else if (attribute.find("attached") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDattached = -1;
+                    }
+                    else
+                    {
+                        cd->CDattached = 1;
+                    }
+                }
                 //creature is a level up creature
                 else if (attribute.find("leveler") != string::npos)
                 {
@@ -951,6 +962,26 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         {
                             cd->setSubtype(card->chooseasubtype);
                         }
+                    }
+
+                    if (attribute.find("chosenname") != string::npos && card->chooseaname != "")
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->chooseaname;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("lastnamechosen") != string::npos && card->controller()->lastChosenName != "")
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->controller()->lastChosenName;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
                     }
 
                     if (attribute.find("evictname") != string::npos && card->imprintedCards.size())

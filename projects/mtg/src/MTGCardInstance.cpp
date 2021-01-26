@@ -261,6 +261,7 @@ void MTGCardInstance::initMTGCI()
     zpos = 0;
     chooseacolor = -1;
     chooseasubtype = "";
+    chooseaname = "";
     coinSide = -1;
     lastFlipResult = -1;
     dieSide = 0;

@@ -278,7 +278,7 @@ int Damage::resolve()
         }
     }
 
-	if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix life calculation for planeswalker damage.
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix life calculation for planeswalker damage.
         if (((MTGCardInstance*)target)->counters){
             Counters * counters = ((MTGCardInstance*)target)->counters;
             for(size_t i = 0; i < counters->counters.size(); ++i){

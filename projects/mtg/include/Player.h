@@ -60,6 +60,7 @@ public:
     int snowManaU;
     int snowManaW;
     int snowManaC;
+    string lastChosenName;
     vector<string> prowledTypes;
     vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);

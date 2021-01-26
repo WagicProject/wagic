@@ -249,14 +249,6 @@ mana={6}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Alpine Moon
-auto=may counter(0/0,1,Alpine) target(land[-basic]|opponentBattlefield)
-auto=lord(land[counter{0/0,1,Alpine};share!name!]|opponentBattlefield) loseabilities && losesubtypesof(land) && transforms((newability[{T}:add{G}],newability[{T}:add{R}],newability[{T}:add{U}],newability[{T}:add{B}],newability[{T}:add{W}])) forever
-text=As Alpine Moon enters the battlefield, choose a nonbasic land card name. -- Lands your opponents control with the chosen name lose all land types and abilities, and they gain “{T}: Add one mana of any color.”
-mana={R}
-type=Enchantment
-[/card]
-[card]
 name=Alter Reality
 text=Change the text of target spell or permanent by replacing all instances of one color word with another. (This effect lasts indefinitely.) -- Flashback {1}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{U}
@@ -1530,15 +1522,6 @@ name=By Gnome Means
 text={1}{W}, Remove a counter from a permanent you control: Create a 1/1 colorless Gnome artifact creature token. -- {1}{W}, Sacrifice an artifact: Choose any kind of counter a printed card refers to, then put one of that counter on target permanent.
 mana={2}{W}
 type=Enchantment
-[/card]
-[card]
-name=Cabal Therapist
-text=Menace -- At the beginning of your precombat main phase, you may sacrifice a creature. When you do, choose a nonland card name, then target player reveals their hand and discards all cards with that name.
-mana={B}
-type=Creature
-subtype=Horror
-power=1
-toughness=1
 [/card]
 [card]
 name=Cabal Therapy
@@ -3061,12 +3044,6 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
-name=Dispossess
-text=Choose an artifact card name. Search target opponent's graveyard, hand, and library for any number of cards with the chosen name and exile them. Then that player shuffles their library.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
 name=Disruption Aura
 text=Enchant artifact -- Enchanted artifact has "At the beginning of your upkeep, sacrifice this artifact unless you pay its mana cost."
 mana={2}{U}
@@ -3114,12 +3091,6 @@ name=Divine Reckoning
 text=Each player chooses a creature he or she controls. Destroy the rest. -- Flashback {5}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Diviner's Lockbox
-text={1}, {T}: Choose a card name, then reveal the top card of your library. If that card has the chosen name, sacrifice Diviner's Lockbox and draw three cards. Activate this ability only any time you could cast a sorcery.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Divining Witch
@@ -3885,12 +3856,6 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
-name=Failure // Comply
-text=Return target spell to its owner's hand. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Choose a card name. Until your next turn, your opponents can't cast spells with the chosen name.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Faith's Shield
 auto=this(controllerlife > 5) ability$! choice name(protection from white) target(*|myBattlefield) protection from white ueot _ choice name(protection from blue) target(*|myBattlefield) protection from blue ueot _ choice name(protection from black) target(*|myBattlefield) protection from black ueot _ choice name(protection from red) target(*|myBattlefield) protection from red ueot _ choice name(protection from green) target(*|myBattlefield) protection from green ueot !$ controller
 auto=this(controllerlife < 6) ability$! choice name(protection from white) all(*|myBattlefield) protection from white ueot _ choice name(protection from blue) all(*|myBattlefield) protection from blue ueot _ choice name(protection from black) all(*|myBattlefield) protection from black ueot _ choice name(protection from red) all(*|myBattlefield) protection from red ueot _ choice name(protection from green) all(*|myBattlefield) protection from green ueot !$ controller
@@ -4625,12 +4590,6 @@ type=Creature
 subtype=Oyster
 power=0
 toughness=3
-[/card]
-[card]
-name=Gideon's Intervention
-text=As Gideon's Intervention enters the battlefield, choose a card name. -- Your opponents can't cast spells with the chosen name. -- Prevent all damage that would be dealt to you and permanents you control by sources with the chosen name.
-mana={2}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Gideon's Sacrifice
@@ -7439,13 +7398,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Medomai's Prophecy
-text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.) -- I — Scry 2. -- II — Choose a card name. -- III — When you cast a spell with the chosen name for the first time this turn, draw two cards. -- IV — Look at the top card of each player's library.
-mana={1}{U}
-type=Enchantment
-subtype=Saga
-[/card]
-[card]
 name=Melee
 text=Cast Melee only during your turn and only during combat before blockers are declared. -- You choose which creatures block this combat and how those creatures block. -- Whenever a creature attacks and isn't blocked this combat, untap it and remove it from combat.
 mana={4}{R}
@@ -8238,12 +8190,6 @@ name=Necromancy
 text=You may cast Necromancy as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- When Necromancy enters the battlefield, if it's on the battlefield, it becomes an Aura with "enchant creature put onto the battlefield with Necromancy." Put target creature card from a graveyard onto the battlefield under your control and attach Necromancy to it. When Necromancy leaves the battlefield, that creature's controller sacrifices it.
 mana={2}{B}
 type=Enchantment
-[/card]
-[card]
-name=Necromentia
-text=Choose a card name other than a basic land card name. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles their library, then creates a 2/2 black Zombie creature token for each card exiled from their hand this way.
-mana={1}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Necrotic Ooze
@@ -11328,12 +11274,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Sorcerous Spyglass
-text=As Sorcerous Spyglass enters the battlefield, look at an opponent's hand, then choose any card name. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Sorrow's Path
 text={T}: Choose two target blocking creatures an opponent controls. If each of those creatures could block all creatures that the other is blocking, remove both of them from combat. Each one then blocks all creatures the other was blocking.  -- Whenever Sorrow's Path becomes tapped, it deals 2 damage to you and each creature you control.
 type=Land
@@ -13158,12 +13098,6 @@ type=Conspiracy
 name=Unholy Citadel
 text=Black legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 type=Land
-[/card]
-[card]
-name=Unmoored Ego
-text=Choose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles their library, then draws a card for each card exiled from their hand this way.
-mana={1}{U}{B}
-type=Sorcery
 [/card]
 [card]
 name=Unpredictable Cyclone
