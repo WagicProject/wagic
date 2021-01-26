@@ -1030,6 +1030,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Alpine Moon
+auto=chooseaname transforms((,newability[lord(land[chosenname]|opponentbattlefield) loseabilities],newability[lord(land[chosenname]|opponentbattlefield) losesubtypesof(land)],newability[lord(land[chosenname]|opponentbattlefield) transforms((,newability[{T}:add{G}],newability[{T}:add{R}],newability[{T}:add{U}],newability[{T}:add{B}],newability[{T}:add{W}]))])) forever chooseend nonbasicland
+text=As Alpine Moon enters the battlefield, choose a nonbasic land card name. -- Lands your opponents control with the chosen name lose all land types and abilities, and they gain "{T}: Add one mana of any color."
+mana={R}
+type=Enchantment
+[/card]
+[card]
 name=Alpine Watchdog
 abilities=vigilance
 text=Vigilance (Attacking doesn't cause this creature to tap.)
@@ -6296,6 +6303,17 @@ auto={3}{T}:foreach(swamp[basic]|myBattlefield) Add{B}
 auto={T}:Add{C}
 text={T}: Add {C}. -- {3}, {T}: Add {B} for each basic Swamp you control.
 type=Land
+[/card]
+[card]
+name=Cabal Therapist
+abilities=menace
+auto=@each my firstmain:may name(Sacrifice a creature) target(creature|mybattlefield) transforms((,newability[sacrifice],newability[chooseanameopp name(Look hand) target(*|opponenthand) moveto(opponenthand) and!( all(*[chosenname]|opponenthand) reject)! chooseend nonland])) oneshot
+text=Menace -- At the beginning of your precombat main phase, you may sacrifice a creature. When you do, choose a nonland card name, then target player reveals their hand and discards all cards with that name.
+mana={B}
+type=Creature
+subtype=Horror
+power=1
+toughness=1
 [/card]
 [card]
 name=Cacophodon
@@ -12435,6 +12453,13 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Dispossess
+auto=chooseanameopp name(Search that artifact) target(<anyamount>artifact[chosenname]|opponentgraveyard,opponentlibrary,opponenthand) moveto(exile) and!( shuffle opponent )! chooseend
+text=Choose an artifact card name. Search target opponent's graveyard, hand, and library for any number of cards with the chosen name and exile them. Then that player shuffles their library.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=Disrupt Decorum
 auto=mustattack all(creature|opponentBattlefield) uynt
 text=Goad all creatures you don't control. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
@@ -12511,6 +12536,13 @@ auto=@movedto(creature[token]|mybattlefield):all(trigger) destroy && token(Angel
 text=If one or more creature tokens would be created under your control, that many 4/4 white Angel creature tokens with flying and vigilance are created instead.
 mana={3}{W}{W}
 type=Enchantment
+[/card]
+[card]
+name=Diviner's Lockbox
+auto={1}{T}:ability$!chooseaname transforms((,newability[name(Look top card) if type(*[chosenname;zpos=1]|mylibrary)~equalto~0 then reveal:1 optionone name(Look top card) target(*|reveal) donothing optiononeend optiontwo all(*|reveal) placefromthetop(1) optiontwoend revealend],newability[if type(*[chosenname;zpos=1]|mylibrary)~morethan~0 then reveal:1 optionone name(Look top card) target(*|reveal) moveto(myhand) and!( draw:2 controller)! optiononeend afterrevealed sacrifice all(mysource) afterrevealedend revealend])) oneshot chooseend!$ controller asSorcery
+text={1}, {T}: Choose a card name, then reveal the top card of your library. If that card has the chosen name, sacrifice Diviner's Lockbox and draw three cards. Activate this ability only any time you could cast a sorcery.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Djeru's Renunciation
@@ -14892,7 +14924,7 @@ toughness=6
 [/card]
 [card]
 name=Etchings of the Chosen
-auto=chooseatype lord(creature[chosentype]) 1/1 && transforms((,newability[{1}{S(creature[chosentype]|mybattlefield)}:name(creature) indestructible ueot target(creature)])) chooseend
+auto=chooseatype transforms((,newability[lord(creature[chosentype]|mybattlefield) 1/1],newability[{1}{S(creature[chosentype]|mybattlefield)}:name(Creature gains indestructible) target(creature) indestructible ueot])) chooseend
 text=As Etchings of the Chosen enters the battlefield, choose a creature type. -- Creatures you control of the chosen type get +1/+1. -- {1}, Sacrifice a creature of the chosen type: Target creature you control gains indestructible until end of turn.
 mana={1}{W}{B}
 type=Enchantment
@@ -15567,6 +15599,15 @@ type=Creature
 subtype=Faerie Rogue
 power=1
 toughness=2
+[/card]
+[card]
+name=Failure // Comply
+auto=ifnot paid(alternative) then target(*|stack) fizzleto(hand)
+auto=if paid(alternative) then chooseanameopp maxcast(*[chosenname])0 opponent ueot && phaseaction[upkeep once] maxcast(*[lastnamechosen])0 opponent ueot chooseend nonland
+autograveyard={W}{E}:name(Comply) activate castcard(alternative) asSorcery
+text=Return target spell to its owner's hand. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Choose a card name. Until your next turn, your opponents can't cast spells with the chosen name.
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=Fairgrounds Trumpeter
@@ -18703,6 +18744,13 @@ auto=if casted(this) then if type(gideon|opponentbattlefield)~morethan~0 life:5 
 text=Exile target white creature that's attacking or blocking. If it was a Gideon planeswalker, you gain 5 life.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Gideon's Intervention
+auto=chooseanameopp lord(*|mybattlefield) transforms((,newability[maxcast(*[chosenname])0 opponent],newability[protection from (*[chosenname])],newability[preventalldamage to(controller) from(*[chosenname])])) chooseend nonland
+text=As Gideon's Intervention enters the battlefield, choose a card name. -- Your opponents can't cast spells with the chosen name. -- Prevent all damage that would be dealt to you and permanents you control by sources with the chosen name.
+mana={2}{W}{W}
+type=Enchantment
 [/card]
 [card]
 name=Gideon's Resolve
@@ -30318,6 +30366,21 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Medomai's Prophecy
+auto=counter(0/0,1,Lore)
+auto=@each my firstmain:counter(0/0,1,Lore)
+auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) chooseaname donothing chooseend
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) transforms((,newability[@movedto(*[lastnamechosen]|mystack) once:draw:1 controller])) ueot
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.4.Lore}) name(Look your top card) reveal:1 optionone name(Look your top card) target(*|reveal) doNothing optiononeend optiontwo all(*|reveal) moveto(mylibrary) optiontwoend revealend
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.4.Lore}) name(Look opponent's top card) reveal:1 revealzone(opponentlibrary) optionone name(Look opponent's top card) target(*|reveal) doNothing optiononeend optiontwo all(*|reveal) moveto(opponentlibrary) optiontwoend revealend
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.4.Lore}) sacrifice(this)
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.) -- I — Scry 2. -- II — Choose a card name. -- III — When you cast a spell with the chosen name for the first time this turn, draw two cards. -- IV — Look at the top card of each player's library.
+mana={1}{U}
+type=Enchantment
+subtype=Saga
+[/card]
+[card]
 name=Melting
 auto=all(land[snow]|battlefield) transforms((removetypes,newability[becomes(Land)])) forever
 text=All lands are no longer snow.
@@ -32260,6 +32323,13 @@ auto=destroy all(creature|battlefield)
 auto=moveto(mybattlefield) target(creature[fresh]|graveyard) and!(transforms((Zombie,newcolors[black])) forever)!
 text=Destroy all creatures, then return a creature card put into a graveyard this way to the battlefield under your control. It's a black Zombie in addition to its other colors and types. Exile Necromantic Selection.
 mana={4}{B}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Necromentia
+auto=chooseanameopp name(Search that cards) target(<anyamount>*[chosenname]|opponentgraveyard,opponentlibrary,opponenthand) moveto(exile) and!( token(Zombie,Creature Zombie,2/2,black) opponent and!( shuffle opponent )! )! chooseend nonbasicland
+text=Choose a card name other than a basic land card name. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles their library, then creates a 2/2 black Zombie creature token for each card exiled from their hand this way.
+mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -45476,6 +45546,13 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Sorcerous Spyglass
+auto=name(Look opponent hand) target(*|opponenthand) moveto(opponenthand) and!( chooseanameopp lord(*[chosenname]) noactivatedability chooseend )!
+text=As Sorcerous Spyglass enters the battlefield, look at an opponent's hand, then choose any card name. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Sorin's Guide
 auto=may moveto(myhand) target(Sorin^ Vampire Lord|mylibrary)
 auto=may moveto(myhand) target(Sorin^ Vampire Lord|mygraveyard)
@@ -52952,6 +53029,13 @@ type=Creature
 subtype=Zombie Assassin
 power=0
 toughness=4
+[/card]
+[card]
+name=Unmoored Ego
+auto=chooseanameopp name(Search that cards) target(<upto:4>*[chosenname]|opponentgraveyard,opponentlibrary,opponenthand) moveto(exile) and!( draw:1 opponent and!( shuffle opponent )! )! chooseend
+text=Choose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles their library, then draws a card for each card exiled from their hand this way.
+mana={1}{U}{B}
+type=Sorcery
 [/card]
 [card]
 name=Unnatural Aggression

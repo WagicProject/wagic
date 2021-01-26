@@ -1778,7 +1778,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     
-    if (StartsWith(s, "chooseacolor ") || StartsWith(s, "chooseatype "))
+    if (StartsWith(s, "chooseacolor ") || StartsWith(s, "chooseatype ") || StartsWith(s, "chooseaname"))
     {
         MTGAbility * choose = parseChooseActionAbility(s,card,spell,target,0,id);
         choose = NEW GenericActivatedAbility(observer, "","",id, card,choose,NULL);
@@ -4807,7 +4807,7 @@ MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance *
     if (splitChooseAColor2.size())
     {
         string a1 = splitChooseAColor2[1];
-        MTGAbility * a = NEW GenericChooseTypeColor(observer, id, card, target,a1,true);
+        MTGAbility * a = NEW GenericChooseTypeColorName(observer, id, card, target,a1,true);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
@@ -4817,7 +4817,7 @@ MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance *
     if (splitChooseAType2.size())
     {
         string a1 = splitChooseAType2[1];
-        MTGAbility * a = NEW GenericChooseTypeColor(observer, id, card, target,a1,false,s.find("nonwall")!=string::npos);
+        MTGAbility * a = NEW GenericChooseTypeColorName(observer, id, card, target,a1,false,false,false,s.find("nonwall")!=string::npos);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
@@ -4827,7 +4827,7 @@ MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance *
     if (splitChooseAColor.size())
     {
         string a1 = splitChooseAColor[1];
-        MTGAbility * a = NEW GenericChooseTypeColor(observer, id, card, target,a1,true);
+        MTGAbility * a = NEW GenericChooseTypeColorName(observer, id, card, target,a1,true);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
@@ -4837,7 +4837,19 @@ MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance *
     if (splitChooseAType.size())
     {
         string a1 = splitChooseAType[1];
-        MTGAbility * a = NEW GenericChooseTypeColor(observer, id, card, target,a1,false,s.find("nonwall")!=string::npos);
+        MTGAbility * a = NEW GenericChooseTypeColorName(observer, id, card, target,a1,false,false,false,s.find("nonwall")!=string::npos);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+    //choose a name
+    vector<string> splitChooseAName = parseBetween(s, "chooseaname ", " chooseend");
+    vector<string> splitChooseAOppName = parseBetween(s, "chooseanameopp ", " chooseend");
+    if (splitChooseAName.size() || splitChooseAOppName.size())
+    {
+        bool oppName = (splitChooseAOppName.size() > 0);
+        string a1 = oppName?splitChooseAOppName[1]:splitChooseAName[1];
+        MTGAbility * a = NEW GenericChooseTypeColorName(observer, id, card, target,a1,false,!oppName,oppName,false,s.find("nonbasicland")!=string::npos,s.find("nonland")!=string::npos);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;

@@ -51,6 +51,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     snowManaU = 0;
     snowManaW = 0;
     snowManaC = 0;
+    lastChosenName = "";
     prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();

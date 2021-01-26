@@ -512,6 +512,16 @@ void CardGui::Render()
         mFont->DrawString(buffer, actX - 10 * actZ, actY - (25.3f * actZ));
         mFont->SetScale(1);
     }
+    if(card->chooseaname.size() && !alternate && game)
+    {
+        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+        char buffer[200];
+        sprintf(buffer, "%s", card->chooseaname.c_str());
+        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,215,0));//Gold indicator
+        mFont->SetScale(0.8f);
+        mFont->DrawString(buffer, actX - 10 * actZ, actY - (25.3f * actZ));
+        mFont->SetScale(1);
+    }
     if(!alternate && buff != "" && game)
     {
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
@@ -1566,6 +1576,17 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     else
                     {
                         cd.CDgeared = 1;
+                    }
+                }
+                else if (attribute.find("attached") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDattached = -1;
+                    }
+                    else
+                    {
+                        cd.CDattached = 1;
                     }
                 }
                 //creature is a level up creature

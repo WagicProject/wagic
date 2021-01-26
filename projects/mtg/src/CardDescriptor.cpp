@@ -31,6 +31,7 @@ CardDescriptor::CardDescriptor()
     CDcontrollerDamaged = 0;
     CDdamager = 0;
     CDgeared = 0;
+    CDattached = 0;
     CDblocked = 0;
     CDcanProduceC = 0;
     CDcanProduceG = 0;
@@ -293,7 +294,12 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = NULL;
     }
-    
+ 
+    if ((CDattached == -1 && card->parentCards.size() > 0) || (CDattached == 1 && card->parentCards.size() < 1))
+    {
+        match = NULL;
+    }
+
     if (CDblocked == -1)
     {
         if(!card->isAttacker())

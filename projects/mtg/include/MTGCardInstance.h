@@ -112,6 +112,7 @@ public:
     bool isFacedown;
     int chooseacolor;
     string chooseasubtype;
+    string chooseaname;
     int coinSide;//1 = tails
     int lastFlipResult;
     int dieSide;

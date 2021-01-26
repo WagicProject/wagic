@@ -607,6 +607,7 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         p->monarch = initState.playerData[i].player->monarch;
         p->surveilOffset = initState.playerData[i].player->surveilOffset;
         p->devotionOffset = initState.playerData[i].player->devotionOffset;
+        p->lastChosenName = initState.playerData[i].player->lastChosenName;
         if (initState.playerData[i].player->mAvatarName.size())
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;

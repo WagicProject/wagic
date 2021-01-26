@@ -2739,14 +2739,15 @@ AAProliferate::~AAProliferate()
 {
 }
 //
-//choosing a type or color
-GenericChooseTypeColor::GenericChooseTypeColor(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd,bool chooseColor,bool nonwall, ManaCost * cost) :
-ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(chooseColor),ANonWall(nonwall)
+//choosing a type or color or name
+GenericChooseTypeColorName::GenericChooseTypeColorName(GameObserver* observer, int id, MTGCardInstance * source, Targetable *, string _toAdd, bool chooseColor, bool chooseName, bool chooseOppName, bool nonwall, bool nonbasicland, bool nonland, ManaCost * cost) :
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(chooseColor),chooseName(chooseName),chooseOppName(chooseOppName),ANonWall(nonwall),ANonBasicLand(nonbasicland),ANonLand(nonland)
 {
     this->GetId();
     setColor = NULL;
+    setName = NULL;
 }
-int GenericChooseTypeColor::resolve()
+int GenericChooseTypeColorName::resolve()
 {
     if (!target)
         return 0;
@@ -2760,6 +2761,33 @@ int GenericChooseTypeColor::resolve()
             set->oneShot = true;
             selection.push_back(set);
             SAFE_DELETE(setColor);
+        }
+    }
+    else if(chooseName || chooseOppName)
+    {
+        vector<string> names;
+        Player* p = (chooseName)?source->controller():source->controller()->opponent();
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
+        for (int k = 0; k < 9; k++){
+            MTGGameZone * zone = zones[k];
+            for (int j = zone->nb_cards - 1; j >= 0; --j){
+                if ((!ANonBasicLand || (!zone->cards[j]->hasType(Subtypes::TYPE_BASIC) && !zone->cards[j]->hasType(Subtypes::TYPE_LAND))) && (!ANonLand || !zone->cards[j]->hasType(Subtypes::TYPE_LAND))){
+                     bool added = false;
+                     for (int i = names.size() - 1; i >= 0; --i)
+                         if(names[i] == zone->cards[j]->name)
+                             added = true;
+                     if(!added)
+                         names.push_back(zone->cards[j]->name);
+                }
+            }
+        }
+        for (size_t i = 0; i < names.size(); ++i){
+            string menu = names[i];
+            setName = NEW AASetNameChosen(game, game->mLayers->actionLayer()->getMaxId(), source, (MTGCardInstance*)target, names[i], menu, baseAbility);
+            MTGAbility * set = setName->clone();
+            set->oneShot = true;
+            selection.push_back(set);
+            SAFE_DELETE(setName);
         }
     }
     else
@@ -2789,21 +2817,23 @@ int GenericChooseTypeColor::resolve()
 
 }
 
-const string GenericChooseTypeColor::getMenuText()
+const string GenericChooseTypeColorName::getMenuText()
 {
     if(chooseColor)
         return "Choose a color";
+    if(chooseName || chooseOppName)
+        return "Choose a name";
     else
         return "Choose a type";
 }
 
-GenericChooseTypeColor * GenericChooseTypeColor::clone() const
+GenericChooseTypeColorName * GenericChooseTypeColorName::clone() const
 {
-    GenericChooseTypeColor * a = NEW GenericChooseTypeColor(*this);
+    GenericChooseTypeColorName * a = NEW GenericChooseTypeColorName(*this);
     return a;
 }
 
-GenericChooseTypeColor::~GenericChooseTypeColor()
+GenericChooseTypeColorName::~GenericChooseTypeColorName()
 {
 }
 
@@ -2919,6 +2949,64 @@ AASetTypeChosen * AASetTypeChosen::clone() const
 }
 
 AASetTypeChosen::~AASetTypeChosen()
+{
+}
+
+//set name choosen
+ AASetNameChosen::AASetNameChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target,string _name ,string _menu,string toAlter):
+    InstantAbility(observer, id, source),name(_name), abilityToAlter(toAlter), menutext(_menu)
+{
+    this->target = _target;
+    abilityAltered = NULL;
+}
+int AASetNameChosen::resolve()
+{
+    MTGCardInstance * _target =  (MTGCardInstance *)target; 
+    string nameChoosen = menutext;
+    _target->chooseaname = nameChoosen;
+    _target->controller()->lastChosenName = nameChoosen;
+
+    if(abilityToAlter.size())
+    {
+        AbilityFactory af(game);
+        abilityAltered = af.parseMagicLine(abilityToAlter, 0, NULL, _target);
+        if(abilityAltered->oneShot)
+        {
+            abilityAltered->resolve();
+            SAFE_DELETE(abilityAltered);
+        }
+        else
+        {
+            abilityAltered->target = _target;
+            MayAbility * dontAdd = dynamic_cast<MayAbility*>(abilityAltered);
+            if (!dontAdd)
+            {
+                _target->cardsAbilities.push_back(abilityAltered);
+                for(unsigned int j = 0;j < _target->cardsAbilities.size();++j)
+                {
+                    if(_target->cardsAbilities[j] == this)
+                        _target->cardsAbilities.erase(_target->cardsAbilities.begin() + j);
+                }
+            }
+
+            abilityAltered->addToGame();
+        }
+         _target->skipDamageTestOnce = true;//some cards rely on this ability updating before damage test are run. otherwise they die before toughnes bonus applies.
+    }
+    return 1;
+}
+
+const string AASetNameChosen::getMenuText()
+{
+    return menutext.c_str();
+}
+
+AASetNameChosen * AASetNameChosen::clone() const
+{
+    return NEW AASetNameChosen(*this);
+}
+
+AASetNameChosen::~AASetNameChosen()
 {
 }
 
@@ -4261,6 +4349,8 @@ int AAFlip::resolve()
         {
             if(flipStats == "myorigname" && _target->nameOrig != "") 
                 flipStats = _target->nameOrig; // Added to undo the copy effect at end of turn for a generic card (es. Shapeshifter transformations).
+            else if(flipStats == "chosenname" && _target->chooseaname != "") 
+                flipStats = _target->chooseaname; // Added to allow the transformation of a card in a choosen name.
             MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
             if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
