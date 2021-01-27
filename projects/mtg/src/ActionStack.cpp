@@ -877,7 +877,7 @@ int ActionStack::has(MTGAbility * ability)
 {
     for (size_t i = 0; i < mObjects.size(); i++)
     {
-        if (((Interruptible *) mObjects[i])->type == ACTION_ABILITY)
+        if (mObjects[i] && (((Interruptible *) mObjects[i])->type == ACTION_ABILITY)) // Fixed a random crash occurring when mObjects[i] is null...
         {
             StackAbility * action = ((StackAbility *) mObjects[i]);
             if (action->state == NOT_RESOLVED && action->ability == ability)

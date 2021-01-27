@@ -303,7 +303,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             SAFE_DELETE(counter);
         }
     }
-    else if (s.find("convertedcost:") != string::npos || s.find("power:") != string::npos || s.find("toughness:") != string::npos)
+    else if (s.find("convertedcost:") != string::npos || s.find("power:") != string::npos || s.find("pwr:") != string::npos || s.find("toughness:") != string::npos || s.find("ths:") != string::npos)
     {
         bool powerCheck = false;
         bool toughnessCheck = false;
@@ -314,11 +314,18 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             costCheck = true;
         else
         {
+            size_t pos = s.find("pwr:");
+            if(pos != string::npos)
+                s.replace(pos, 4, "power:");
             convertedType = parseBetween(s,"power:",":");
-            if(convertedType.size())
+            if(convertedType.size()){
                 powerCheck = true;
+            }
             else
             {
+                size_t pos = s.find("ths:");
+                if(pos != string::npos)
+                    s.replace(pos, 4, "toughness:");
                 convertedType = parseBetween(s,"toughness:",":");
                 if(convertedType.size())
                     toughnessCheck = true;
