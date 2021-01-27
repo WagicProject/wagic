@@ -327,8 +327,9 @@ string GameStateMenu::loadRandomWallpaper()
 
     vector<string> wallpapers;
     izfstream file;
-    if (! JFileSystem::GetInstance()->openForRead(file, "graphics/wallpapers.txt"))
-        return wallpaper;
+    if (! JFileSystem::GetInstance()->openForRead(file, "themes/" + options[Options::ACTIVE_THEME].str + "/wallpapers.txt")) // Added to search wallpaers in theme folder before default folder.
+        if (! JFileSystem::GetInstance()->openForRead(file, "graphics/wallpapers.txt"))
+            return wallpaper;
 
     string s;
     while (std::getline(file, s))

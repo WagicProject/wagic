@@ -9768,18 +9768,9 @@ toughness=4
 name=Coveted Prize
 abilities=hiddenface
 aicode=activate moveTo(myHand) target(*|myLibrary)
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={3}{B}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Coveted Prize|myhand)
-autohand={2}{B}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Coveted Prize|myhand)
-autohand={1}{B}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Coveted Prize|myhand)
-autohand={B}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Coveted Prize|myhand)
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 auto=name(Reveal) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>*|reveal) moveto(myhand) and!(shuffle)! optiononeend optiontwo name(Put back) all(*|reveal) moveto(ownerlibrary) and!(shuffle)! optiontwoend afterrevealed if compare(calculateparty)~equalto~4 then may name(cast card with mana cost less than 4) activate name(cast card with mana cost less than 4) castcard(normal) target(*[-land;manacost<=4]|myHand) afterrevealedend revealend
 text=This spell costs {1} less to cast for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.) -- Search your library for a card, put it into your hand, then shuffle your library. If you have a full party, you may cast a spell with converted mana cost 4 or less from your hand without paying its mana cost.
 mana={4}{B}
@@ -11099,18 +11090,9 @@ toughness=1
 [card]
 name=Deadly Alliance
 target=creature,planeswalker
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={3}{B}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Deadly Alliance|myhand)
-autohand={2}{B}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Deadly Alliance|myhand)
-autohand={1}{B}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Deadly Alliance|myhand)
-autohand={B}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Deadly Alliance|myhand)
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 auto=destroy
 text=This spell costs {1} less to cast for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.) -- Destroy target creature or planeswalker.
 mana={4}{B}
@@ -12798,30 +12780,9 @@ subtype=Equipment
 [card]
 name=Draco
 abilities=flying
-autoexile=this(variable{pbasiclandtypes}=1) changecost(colorless:-2) forcedalive
-autoexile=this(variable{pbasiclandtypes}=2) changecost(colorless:-4) forcedalive
-autoexile=this(variable{pbasiclandtypes}=3) changecost(colorless:-6) forcedalive
-autoexile=this(variable{pbasiclandtypes}=4) changecost(colorless:-8) forcedalive
-autoexile=this(variable{pbasiclandtypes}=5) changecost(colorless:-10) forcedalive
-autoexile=this(variable{pbasiclandtypes}=6) changecost(colorless:-12) forcedalive
-autoexile=this(variable{pbasiclandtypes}=7) changecost(colorless:-14) forcedalive
-autoexile=this(variable{pbasiclandtypes}>=8) changecost(colorless:-16) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=1) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=2) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=3) changecost(colorless:-6) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=4) changecost(colorless:-8) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=5) changecost(colorless:-10) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=6) changecost(colorless:-12) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=7) changecost(colorless:-14) forcedalive
-autograveyard=this(variable{pbasiclandtypes}>=8) changecost(colorless:-16) forcedalive
-autohand={9}:restriction{compare(pbasiclandtypes)~equalto~1} name(2 less to cast) name(1 less to cast) activate castcard(restricted) target(Draco|myhand)
-autohand={8}:restriction{compare(pbasiclandtypes)~equalto~2} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Draco|myhand)
-autohand={7}:restriction{compare(pbasiclandtypes)~equalto~3} name(6 less to cast) name(6 less to cast) activate castcard(restricted) target(Draco|myhand)
-autohand={6}:restriction{compare(pbasiclandtypes)~equalto~4} name(8 less to cast) name(8 less to cast) activate castcard(restricted) target(Draco|myhand)
-autohand={5}:restriction{compare(pbasiclandtypes)~equalto~5} name(10 less to cast) name(10 less to cast) activate castcard(restricted) target(Draco|myhand)
-autohand={4}:restriction{compare(pbasiclandtypes)~equalto~6} name(12 less to cast) name(12 less to cast) activate castcard(restricted) target(Draco|myhand)
-autohand={3}:restriction{compare(pbasiclandtypes)~equalto~7} name(14 less to cast) name(14 less to cast) activate castcard(restricted) target(Draco|myhand)
-autohand={2}:restriction{compare(pbasiclandtypes)~morethan~7} name(16 less to cast) name(16 less to cast) activate castcard(restricted) target(Draco|myhand)
+autoexile=thisforeach(variable{pbasiclandtypes}>0) changecost(colorless:-2) forcedalive
+autograveyard=thisforeach(variable{pbasiclandtypes}>0) changecost(colorless:-2) forcedalive
+autohand=thisforeach(variable{pbasiclandtypes}>0) changecost(colorless:-2) forcedalive
 auto=this(pbasiclandtypes=0) upcost[{10}] sacrifice
 auto=this(pbasiclandtypes=1) upcost[{8}] sacrifice
 auto=this(pbasiclandtypes=2) upcost[{6}] sacrifice
@@ -25459,18 +25420,9 @@ subtype=Aura
 [/card]
 [card]
 name=Journey to Oblivion
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={3}{W}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Journey to Oblivion|myhand)
-autohand={2}{W}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Journey to Oblivion|myhand)
-autohand={1}{W}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Journey to Oblivion|myhand)
-autohand={W}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Journey to Oblivion|myhand)
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 auto=target(*[-land]|opponentBattlefield) (blink)forsrc
 text=This spell cost {1} less to cast for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.) When Journey to Oblivion enters the battlefield, exile target nonland permanent an opponent controls until Journey to Oblivion leaves the battlefield.
 mana={4}{W}
@@ -42074,18 +42026,9 @@ toughness=2
 [/card]
 [card]
 name=Sea Gate Colossus
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={6}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Sea Gate Colossus|myhand)
-autohand={5}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Sea Gate Colossus|myhand)
-autohand={4}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Sea Gate Colossus|myhand)
-autohand={3}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Sea Gate Colossus|myhand)
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 text=This spell costs {1} less for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.)
 mana={7}
 type=Artifact Creature
@@ -43173,18 +43116,9 @@ toughness=3
 [card]
 name=Shatterskull Minotaur
 abilities=haste
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={3}{R}{R}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Shatterskull Minotaur|myhand)
-autohand={2}{R}{R}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Shatterskull Minotaur|myhand)
-autohand={1}{R}{R}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Shatterskull Minotaur|myhand)
-autohand={R}{R}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Shatterskull Minotaur|myhand)
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 text=This spell costs {1} less to cast for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.) -- Haste 
 mana={4}{R}{R}
 type=Creature
@@ -46650,18 +46584,9 @@ toughness=3
 [/card]
 [card]
 name=Spoils of Adventure
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={3}{W}{U}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Spoils of Adventurer|myhand)
-autohand={2}{W}{U}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Spoils of Adventure|myhand)
-autohand={1}{W}{U}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Spoils of Adventure|myhand)
-autohand={W}{U}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Spoils of Adventure|myhand)
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 auto=life:3 controller
 auto=draw:3 controller
 text=This spell costs {1} less to cast for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.) -- You gain 3 life and draw three cards.
@@ -47734,36 +47659,9 @@ type=Instant
 [card]
 name=Stratadon
 abilities=trample
-autoexile=this(variable{pbasiclandtypes}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{pbasiclandtypes}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{pbasiclandtypes}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{pbasiclandtypes}=4) changecost(colorless:-4) forcedalive
-autoexile=this(variable{pbasiclandtypes}=5) changecost(colorless:-5) forcedalive
-autoexile=this(variable{pbasiclandtypes}=6) changecost(colorless:-6) forcedalive
-autoexile=this(variable{pbasiclandtypes}=7) changecost(colorless:-7) forcedalive
-autoexile=this(variable{pbasiclandtypes}=8) changecost(colorless:-8) forcedalive
-autoexile=this(variable{pbasiclandtypes}=9) changecost(colorless:-9) forcedalive
-autoexile=this(variable{pbasiclandtypes}=10) changecost(colorless:-10) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=5) changecost(colorless:-5) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=6) changecost(colorless:-6) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=7) changecost(colorless:-7) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=8) changecost(colorless:-8) forcedalive
-autograveyard=this(variable{pbasiclandtypes}=9) changecost(colorless:-9) forcedalive
-autograveyard=this(variable{pbasiclandtypes}>=10) changecost(colorless:-10) forcedalive
-autohand={9}:restriction{compare(pbasiclandtypes)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={8}:restriction{compare(pbasiclandtypes)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={7}:restriction{compare(pbasiclandtypes)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={6}:restriction{compare(pbasiclandtypes)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={5}:restriction{compare(pbasiclandtypes)~equalto~5} name(5 less to cast) name(5 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={4}:restriction{compare(pbasiclandtypes)~equalto~6} name(6 less to cast) name(6 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={3}:restriction{compare(pbasiclandtypes)~equalto~7} name(7 less to cast) name(7 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={2}:restriction{compare(pbasiclandtypes)~equalto~8} name(8 less to cast) name(8 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={1}:restriction{compare(pbasiclandtypes)~equalto~9} name(9 less to cast) name(9 less to cast) activate castcard(restricted) target(Stratadon|myhand)
-autohand={0}:restriction{compare(pbasiclandtypes)~morethan~9} name(10 less to cast) name(10 less to cast) activate castcard(restricted) target(Stratadon|myhand)
+autoexile=thisforeach(variable{pbasiclandtypes}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{pbasiclandtypes}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{pbasiclandtypes}>0) changecost(colorless:-1) forcedalive
 text=Domain — Stratadon costs {1} less to cast for each basic land type among lands you control. -- Trample
 mana={10}
 type=Artifact Creature
@@ -49328,22 +49226,10 @@ toughness=1
 [card]
 name=Tazri, Beacon of Unity
 aicode=activate moveTo(myHand) target(<upto:2>creature[ally;cleric;rogue;warrior;wizard;zpos<=6]|myLibrary)
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autocommandzone=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autocommandzone=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autocommandzone=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autocommandzone=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={3}{W}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(warrior[legendary;white;manacost=5]|myhand)
-autohand={2}{W}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(warrior[legendary;white;manacost=5]|myhand)
-autohand={1}{W}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(warrior[legendary;white;manacost=5]|myhand)
-autohand={W}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(warrior[legendary;white;manacost=5]|myhand)
+autocommandzone=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 auto={2U}{2B}{2R}{2G}:name(Reveal six cards from top) reveal:6 optionone name(Get cards) target(<upto:2>creature[ally;cleric;rogue;warrior;wizard]|reveal) moveTo(myHand) optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
 text=This spell costs {1} less to cast for each creature in your party. -- {2/U}{2/B}{2/R}{2/G}: Look at the top six cards of your library. You may reveal up to two Cleric, Rogue, Warrior, Wizard, and/or Ally cards from among them and put them into your hand. Put the rest on the bottom of your library in a random order.
 mana={4}{W}
@@ -50089,27 +49975,9 @@ subtype=Saga
 [/card]
 [card]
 name=The Great Henge
-autoexile=if compare(power:highest:creature:mybattlefield)~equalto~1 then changecost(colorless:-1) forcedalive
-autoexile=if compare(power:highest:creature:mybattlefield)~equalto~2 then changecost(colorless:-2) forcedalive
-autoexile=if compare(power:highest:creature:mybattlefield)~equalto~3 then changecost(colorless:-3) forcedalive
-autoexile=if compare(power:highest:creature:mybattlefield)~equalto~4 then changecost(colorless:-4) forcedalive
-autoexile=if compare(power:highest:creature:mybattlefield)~equalto~5 then changecost(colorless:-5) forcedalive
-autoexile=if compare(power:highest:creature:mybattlefield)~equalto~6 then changecost(colorless:-6) forcedalive
-autoexile=if compare(power:highest:creature:mybattlefield)~morethan~6 then changecost(colorless:-7) forcedalive
-autograveyard=if compare(power:highest:creature:mybattlefield)~equalto~1 then changecost(colorless:-1) forcedalive
-autograveyard=if compare(power:highest:creature:mybattlefield)~equalto~2 then changecost(colorless:-2) forcedalive
-autograveyard=if compare(power:highest:creature:mybattlefield)~equalto~3 then changecost(colorless:-3) forcedalive
-autograveyard=if compare(power:highest:creature:mybattlefield)~equalto~4 then changecost(colorless:-4) forcedalive
-autograveyard=if compare(power:highest:creature:mybattlefield)~equalto~5 then changecost(colorless:-5) forcedalive
-autograveyard=if compare(power:highest:creature:mybattlefield)~equalto~6 then changecost(colorless:-6) forcedalive
-autograveyard=if compare(power:highest:creature:mybattlefield)~morethan~6 then changecost(colorless:-7) forcedalive
-autohand={6}{G}{G}:restriction{compare(power:highest:creature:mybattlefield)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(The Great Henge|myhand)
-autohand={5}{G}{G}:restriction{compare(power:highest:creature:mybattlefield)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(The Great Henge|myhand)
-autohand={4}{G}{G}:restriction{compare(power:highest:creature:mybattlefield)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(The Great Henge|myhand)
-autohand={3}{G}{G}:restriction{compare(power:highest:creature:mybattlefield)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(The Great Henge|myhand)
-autohand={2}{G}{G}:restriction{compare(power:highest:creature:mybattlefield)~equalto~5} name(5 less to cast) name(5 less to cast) activate castcard(restricted) target(The Great Henge|myhand)
-autohand={1}{G}{G}:restriction{compare(power:highest:creature:mybattlefield)~equalto~6} name(6 less to cast) name(6 less to cast) activate castcard(restricted) target(The Great Henge|myhand)
-autohand={G}{G}:restriction{compare(power:highest:creature:mybattlefield)~morethan~6} name(7 less to cast) name(7 less to cast) activate castcard(restricted) target(The Great Henge|myhand)
+autoexile=thisforeach(variable{pwr:highest:creature:mybattlefield}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{pwr:highest:creature:mybattlefield}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{pwr:highest:creature:mybattlefield}>0) changecost(colorless:-1) forcedalive
 auto={T}:add{G}{G} && life:2 controller
 auto=@movedto(creature[-token]|mybattlefield):all(trigger[to]) counter(1/1,1) && draw:1 controller
 text=This spell costs {X} less to cast, where X is the greatest power among creatures you control. -- {T}: Add {G}{G}. You gain 2 life. -- Whenever a nontoken creature enters the battlefield under your control, put a +1/+1 counter on it and draw a card.
@@ -50883,18 +50751,9 @@ type=Instant
 [/card]
 [card]
 name=Thwart the Grave
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={3}{B}{B}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Thwart the Grave|myhand)
-autohand={2}{B}{B}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Thwart the Grave|myhand)
-autohand={1}{B}{B}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Thwart the Grave|myhand)
-autohand={B}{B}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Thwart the Grave|myhand)
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 auto=moveto(myBattlefield) target(creature|myGraveyard) && ability$!name(Choose a Cleric,Rogue,Warrior or Wizard) moveTo(myBattlefield) name(Choose a Cleric,Rogue,Warrior or Wizard) moveTo(myBattlefield) target(creature[cleric;rogue;warrior;wizard]|myGraveyard)!$ controller
 text=This spell costs {1} less to cast for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.) -- Return target creature card and up to one target Cleric, Rogue, Warrior, or Wizard creature card from your graveyard to the battlefield.
 mana={4}{B}{B}
@@ -54023,18 +53882,9 @@ toughness=1
 [card]
 name=Veteran Adventurer
 abilities=vigilance
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={4}{G}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(Veteran Adventurer|myhand)
-autohand={3}{G}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(Veteran Adventurer|myhand)
-autohand={2}{G}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(Veteran Adventurer|myhand)
-autohand={1}{G}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(Veteran Adventurer|myhand)
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 auto=becomes(Cleric Rogue Warrior Wizard)
 text=Veteran Adventurer is also a Cleric, Rogue, Warrior, and Wizard. -- This spell costs {1} less to cast for each creature in your party. -- Vigilance
 mana={5}{G}
@@ -56825,22 +56675,10 @@ subtype=Swamp Forest Island
 [card]
 name=Zagras, Thief of Heartbeats
 abilities=flying,deathtouch,haste
-autoexile=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autoexile=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autoexile=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autoexile=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autocommandzone=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autocommandzone=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autocommandzone=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autocommandzone=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autograveyard=this(variable{calculateparty}=1) changecost(colorless:-1) forcedalive
-autograveyard=this(variable{calculateparty}=2) changecost(colorless:-2) forcedalive
-autograveyard=this(variable{calculateparty}=3) changecost(colorless:-3) forcedalive
-autograveyard=this(variable{calculateparty}=4) changecost(colorless:-4) forcedalive
-autohand={3}{B}{R}:restriction{compare(calculateparty)~equalto~1} name(1 less to cast) name(1 less to cast) activate castcard(restricted) target(rogue[legendary;red;manacost=6]|myhand)
-autohand={2}{B}{R}:restriction{compare(calculateparty)~equalto~2} name(2 less to cast) name(2 less to cast) activate castcard(restricted) target(rogue[legendary;red;manacost=6]|myhand)
-autohand={1}{B}{R}:restriction{compare(calculateparty)~equalto~3} name(3 less to cast) name(3 less to cast) activate castcard(restricted) target(rogue[legendary;red;manacost=6]|myhand)
-autohand={B}{R}:restriction{compare(calculateparty)~equalto~4} name(4 less to cast) name(4 less to cast) activate castcard(restricted) target(rogue[legendary;red;manacost=6]|myhand)
+autocommandzone=thisforeach(variable{calculateparty}>0) changecost(colorless:-1)  forcedalive
+autoexile=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autograveyard=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
+autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forcedalive
 auto=lord(other creature|myBattlefield) deathtouch
 auto=@combatdamaged(planeswalker) from(creature|myBattlefield):all(trigger[to]) destroy
 text=This spell costs {1} less to cast for each creature in your party. -- Flying, deathtouch, haste -- Other creatures you control have deathtouch. -- Whenever a creature you control deals combat damage to a planeswalker, destroy that planeswalker.
