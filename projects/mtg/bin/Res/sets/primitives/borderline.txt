@@ -18142,7 +18142,8 @@ toughness=3
 [card]
 name=Garruk's Harbinger
 auto=cantbetargetof(*[black])
-auto=@damaged(player,planeswalker) from(this):reveal:power optionone name(Get a creature or a Garruk) target(<upto:1>*[creature;Garruk]|reveal) moveto(myHand) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=@combatdamaged(player) from(this):name(Reveal cards) reveal:thatmuch optionone name(Get a creature or a garruk) target(<upto:1>*[creature;garruk]|reveal) moveto(myHand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
+auto=@combatdamaged(planeswalker) from(this):name(Reveal cards) reveal:thatmuch optionone name(Get a creature or a garruk) target(<upto:1>*[creature;garruk]|reveal) moveto(myHand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text=Hexproof from black -- Whenever Garruk's Harbinger deals combat damage to a player or planeswalker, look at that many cards from the top of your library. You may reveal a creature card or Garruk planeswalker card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={1}{G}{G}
 type=Creature
@@ -18916,8 +18917,8 @@ type=Sorcery
 [/card]
 [card]
 name=Gishath, Sun's Avatar
-abilities=vigilance, trample, haste
-auto=@combatdamaged(player) from(this):
+abilities=vigilance,trample,haste
+auto=@combatdamaged(player) from(this):name(Reveal cards) reveal:thatmuch optionone name(Get dinosaurs) target(<anyamount>creature[dinosaur]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend
 text=Trample, vigilance, haste -- Whenever Gishath, Sun's Avatar deals combat damage to a player, reveal that many cards from the top of your library. Put any number of Dinosaur creature cards from among them onto the battlefield and the rest on the bottom of your library in a random order.
 mana={5}{R}{G}{W}
 type=Legendary Creature
