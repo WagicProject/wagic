@@ -938,7 +938,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
-    else if (s.find("sametypecreatures") != string::npos)//Count the greatest number creatures that share same subtype (creatures with changeling counts as +1 for all creature types)
+    else if (s.find("sametypecreatures") != string::npos)//Count the greatest number creatures that share same subtype
     {
         intValue = 0;
         bool opponent = (s.find("oppsametypecreatures")!=string::npos)?true:false;
@@ -948,13 +948,13 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             list.push_back(0);
             if(opponent){
                 for (int j = card->controller()->opponent()->game->inPlay->nb_cards - 1; j >= 0; --j){
-                    if (card->controller()->opponent()->game->inPlay->cards[j]->hasType(values[i]) || card->controller()->opponent()->game->inPlay->cards[j]->has(Constants::CHANGELING)){
+                    if (card->controller()->opponent()->game->inPlay->cards[j]->hasType(values[i])){
                         list[i]++;
                     }
                 }
             } else {
                 for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
-                    if (card->controller()->game->inPlay->cards[j]->hasType(values[i]) || card->controller()->game->inPlay->cards[j]->has(Constants::CHANGELING)){
+                    if (card->controller()->game->inPlay->cards[j]->hasType(values[i])){
                         list[i]++;
                     }
                 }

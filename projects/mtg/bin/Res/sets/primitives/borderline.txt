@@ -16926,7 +16926,8 @@ toughness=2
 [card]
 name=Flamerush Rider
 other={2}{R}{R} name(Dash)
-auto=@combat(attacking) source(this):clone((other creature[attacking;tapped]) with(unearth,haste[attacking]))
+auto=if paid(alternative) then transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveto(ownerhand)]))ueot
+auto=@combat(attacking) source(this):target(other creature[attacking]) clone with(unearth,battleready)
 text=Whenever Flamerush Rider attacks, create a token that’s a copy of another target attacking creature and that’s tapped and attacking. Exile the token at end of combat. -- Dash {2}{R}{R} (You may cast this spell for its dash cost. If you do, it gains haste, and it’s returned from the battlefield to its owner’s hand at the beginning of the next end step.)
 mana={4}{R}
 type=Creature

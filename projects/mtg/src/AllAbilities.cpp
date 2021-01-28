@@ -5153,6 +5153,7 @@ AACloner::AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, M
     target = _target;
     source = _source;
     options = optionsList;
+    battleReady = (abilitiesStringList.find("battleready") != string::npos)?true:false;
     if (abilitiesStringList.size() > 0)
     {
         PopulateAbilityIndexVector(awith, abilitiesStringList);
@@ -5264,6 +5265,12 @@ int AACloner::resolve()
             {
                 TokenandAbilityClone->addToGame();
             }
+        }
+        if(battleReady)
+        {
+            spell->source->summoningSickness = 0;
+            spell->source->tap();
+            spell->source->setAttacker(1);
         }
         if(andAbility)
         {
