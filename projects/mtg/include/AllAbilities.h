@@ -1454,6 +1454,7 @@ public:
     string with;
     string types;
     string options;
+    bool battleReady;
     list<int> awith;
     list<int> colors;
     list<int> typesToAdd;
