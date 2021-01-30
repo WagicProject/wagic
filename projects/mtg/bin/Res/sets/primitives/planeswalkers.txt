@@ -1394,6 +1394,18 @@ type=Legendary Planeswalker
 subtype=Kaya
 [/card]
 [card]
+name=Kaya the Inexorable
+auto=counter(0/0,5,Loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Don't target any creature) donothing
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets ghostform) target(creature[-token]|mybattlefield) transforms((,newability[counter(0/0.1.Ghostform)],newability[@movedto(this|graveyard) from(battlefield) restriction{compare(hascntghostform)~morethan~0}:name(Put back to hand) all(creature[fresh;counter{0/0.1.Ghostform}]|mygraveyard) moveto(myhand) and!( token(Spirit Cai) )!],newability[@movedto(this|graveyard) from(battlefield) restriction{compare(hascntghostform)~morethan~0}:counter(0/0.1.Ghostform)],newability[@movedto(this|exile) from(battlefield) restriction{compare(hascntghostform)~morethan~0}:name(Put back to hand) all(creature[fresh;counter{0/0.1.Ghostform}]|myexile) moveto(myhand) and!( token(Spirit Cai) )!],newability[@movedto(this|exile) from(battlefield) restriction{compare(hascntghostform)~morethan~0}:counter(0/0.1.Ghostform)])) forever
+auto={C(0/0,-3,Loyalty)}:name(-3: Exile non-land permanent) target(*[-land]|battlefield) moveto(exile)
+auto={C(0/0,-7,Loyalty)}:name(-7: Emblem cast during upkeep) emblem transforms((,newability[@each my upkeep:may name(Cast legendary spell) target(*[legendary]|myhandexilegrave) activate castcard(normal)])) forever dontremove
+text=+1: Put a ghostform counter on up to one target nontoken creature. It gains "When this creature dies or is put into exile, return it to its owner's hand and create a 1/1 white Spirit creature token with flying." -- -3: Exile target nonland permanent. -- -7: You get an emblem with "At the beginning of your upkeep, you may cast a legendary spell from your hand, from your graveyard, or from among cards you own in exile without paying its mana cost."
+mana={3}{W}{B}
+type=Legendary Planeswalker
+subtype=Kaya
+[/card]
+[card]
 name=Kiora, Behemoth Beckoner
 auto=counter(0/0,7,loyalty)
 auto=@movedTo(creature[power>=4]|myBattlefield):draw:1
@@ -1798,6 +1810,19 @@ text=+2: Draw two cards. -- -3: Nicol Bolas, the Arisen deals 10 damage to targe
 type=Legendary Planeswalker
 subtype=Bolas
 color=blue,black,red
+[/card]
+[card]
+name=Niko Aris
+auto=token(Shard)*x
+auto=counter(0/0,3,Loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Don't target creature) donothing
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gains unblockable) target(creature|mybattlefield) transforms((,newability[unblockable],newability[@damaged(player) from(this):moveto(ownerhand)],newability[@damaged(*[creature;planeswalker]|battlefield) from(this):moveto(ownerhand)])) ueot
+auto={C(0/0,-1,Loyalty)}:name(-1: Create a shard) token(Shard)
+auto={C(0/0,-1,Loyalty)}:name(-1: Deals 2 damage) target(creature[tapped]) damage:twicepdrewcount
+text=When Niko Aris enters the battlefield, create X Shard tokens. (They're enchantments with "{2}, Sacrifice this enchantment: Scry 1, then draw a card.") -- +1: Up to one target creature you control can't be blocked this turn. Whenever that creature deals damage this turn, return it to its owner's hand. -- -1: Niko Aris deals 2 damage to target tapped creature for each card you've drawn this turn. -- -1: Create a Shard token.
+mana={X}{W}{U}{U}
+type=Legendary Planeswalker
+subtype=Niko
 [/card]
 [card]
 name=Nissa, Genesis Mage
@@ -2545,6 +2570,18 @@ mana={3}{W}
 type=Legendary Planeswalker
 [/card]
 [card]
+name=Tibalt, Cosmic Impostor
+auto=counter(0/0,5,Loyalty)
+auto=create(TibaltEmblem:TibaltEmblem:0/0:shroud:indestructible)])) and!( transforms((,newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) canplayfromexile],newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) anytypeofmana],newability[{0}:name(Cast from opponent exile) target(*[counter{0/0.1.TibaltExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.TibaltExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.TibaltExiled)])) ueot )!])) forever )!
+auto={C(0/0,2,Loyalty)}:name(+2: Exile the top card) all(*[zpos=1]|library) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
+auto={C(0/0,-3,Loyalty)}:name(-3: Exile target artifact or creature) target(*[artifact;creature]|battlefield) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
+auto={C(0/0,-8,Loyalty)}:name(-8: Exile all cards from all graveyards) all(*|graveyard) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
+text=As Tibalt enters the battlefield, you get an emblem with "You may play cards exiled with Tibalt, Cosmic Impostor, and you may spend mana as though it were mana of any color to cast those spells." -- +2: Exile the top card of each player’s library. -- -3: Exile target artifact or creature. -- -8: Exile all cards from all graveyards. Add {R}{R}{R}.
+mana={5}{B}{R}
+type=Legendary Planeswalker
+subtype=Tibalt
+[/card]
+[card]
 name=Tibalt, Rakish Instigator
 auto=counter(0/0,5,loyalty)
 abilities=nolifegainopponent
@@ -2564,6 +2601,18 @@ text=+1: Draw a card, then discard a card at random. -- -4: Tibalt, the Fiend-Bl
 mana={R}{R}
 type=Legendary Planeswalker
 subtype=Tibalt
+[/card]
+[card]
+name=Tyvar Kell
+auto=counter(0/0,3,Loyalty)
+auto=lord(elf|mybattlefield) transforms((,newability[{T}:add{B}]))
+auto={C(0/0,1,Loyalty)}:name(+1: Put +1/+1 counter) target(elf|mybattlefield) transforms((,newability[counter(1/1)],newability[deathtouch],newability[untap])) ueot
+auto={C(0/0,0,Loyalty)}:name(0: Create 1/1 Elf) token(Warrior,Creature Elf Warrior,1/1,green)
+auto={C(0/0,-6,Loyalty)}:name(-6: Emblem cast elf) emblem transforms((,newability[@movedTo(elf|mybattlefield):all(trigger[to]) transforms((,newability[haste],newability[draw:2 controller])) ueot])) forever dontremove
+text=Elves you control have “{T}: Add {B}.” -- +1: Put a +1/+1 counter on up to one target Elf. Untap it. It gains deathtouch until end of turn. -- 0: Create a 1/1 green Elf Warrior creature token. -- -6: You get an emblem with “Whenever you cast an Elf spell, it gains haste until end of turn and you draw two cards.”
+mana={2}{G}{G}
+type=Legendary Planeswalker
+subtype=Tyvar
 [/card]
 [card]
 name=Ugin, the Ineffable

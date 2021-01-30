@@ -137,6 +137,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
         found = s.find("planeswalker,creature");
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        found = s.find("creature^planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        found = s.find("planeswalker^creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
         found = s.find("creature");
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other); //2 Damageable target (player, creature)
         found = s.find("planeswalker");
@@ -285,6 +289,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
+            }
+            else if (zoneName.compare("myhandexilegrave") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+            }
+            else if (zoneName.compare("opponenthandexilegrave") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
             }
             else if (zoneName.compare("myzones") == 0)
             {
