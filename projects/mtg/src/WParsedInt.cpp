@@ -610,7 +610,12 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             Counters * counters = card->counters;
             for(size_t i = 0; i < counters->counters.size(); ++i){
                 Counter * counter = counters->counters[i];
-                if(counter->name ==  s.substr(6)){
+               if(counter->name == "" && (s.substr(6) == "11" || s.substr(6) == "-1-1")){
+                    if((counter->power == 1 && counter->toughness == 1 && s.substr(6) == "11") || (counter->power == -1 && counter->toughness == -1 && s.substr(6) == "-1-1")){
+                        intValue = counter->nb;
+                        break;
+                    }
+                } else if(counter->name ==  s.substr(6)){
                     intValue = counter->nb;
                     break;
                 }
