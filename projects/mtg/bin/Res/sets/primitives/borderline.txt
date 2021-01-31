@@ -11465,6 +11465,7 @@ toughness=3
 [card]
 name=Darkbore Pathway
 autohand={0}:restriction{can play land} name(Slitherbore Pathway) name(Slitherbore Pathway) flip(Slitherbore Pathway) forcetype(land)
+auto={T}:add{B}
 text={T}: Add {B}.
 type=Land
 [/card]
@@ -47725,6 +47726,7 @@ toughness=2
 [/card]
 [card]
 name=Slitherbore Pathway
+auto={T}:add{G}
 text={T}: Add {G}.
 type=Land
 [/card]
@@ -53977,6 +53979,7 @@ toughness=3
 [/card]
 [card]
 name=Tidechannel Pathway
+auto={T}:add{U}
 text={T}: Add {U}.
 type=Land
 [/card]
