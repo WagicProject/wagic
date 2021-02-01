@@ -4,8 +4,16 @@ grade=borderline
 #I sorted this programatically - Vitty85 30-01-2021
 [card]
 name=AEther Rift
-auto=@each my upkeep:moverandom(*) from(myHand) to(myGraveyard) 
-auto=@movedTo(creature|myGraveyard) from(myHand) turnlimited:name(Pay life or put in play) pay[[{L:5}]] opponent donothing?moveTo(myBattlefield) target(creature[fresh]|myGraveyard)]))
+auto=@each my upkeep restriction{compare(phandcount)~equalto~1}:all(*|myhand) moveto(mygraveyard) and!( counter(0/0,1,RiftEffect) )!
+auto=@each my upkeep restriction{compare(phandcount)~equalto~2}:transforms((,newability[all(*[zpos=genrand2plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
+auto=@each my upkeep restriction{compare(phandcount)~equalto~3}:transforms((,newability[all(*[zpos=genrand3plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
+auto=@each my upkeep restriction{compare(phandcount)~equalto~4}:transforms((,newability[all(*[zpos=genrand4plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
+auto=@each my upkeep restriction{compare(phandcount)~equalto~5}:transforms((,newability[all(*[zpos=genrand5plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
+auto=@each my upkeep restriction{compare(phandcount)~equalto~6}:transforms((,newability[all(*[zpos=genrand6plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
+auto=@each my upkeep restriction{compare(phandcount)~equalto~7}:transforms((,newability[all(*[zpos=genrand7plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
+auto=@each my upkeep restriction{compare(phandcount)~morethan~7}:transforms((,newability[all(*[zpos=genrand8plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
+auto=@counteradded(0/0.1.RiftEffect) from(*[-creature]|myGraveyard):all(*[counter{0/0.1.RiftEffect}]|mygraveyard) counter(0/0.-1.RiftEffect)
+auto=@counteradded(0/0.1.RiftEffect) from(creature|myGraveyard):all(*[counter{0/0.1.RiftEffect}]|mygraveyard) transforms((,newability[counter(0/0.-1.RiftEffect)],newability[flipacoin winability life:-5 opponent winabilityend loseability moveto(myBattlefield) loseabilityend flipend])) oneshot
 text=At the beginning of your upkeep, discard a card at random. If you discard a creature card this way, return it from your graveyard to the battlefield unless any player pays 5 life.
 mana={1}{R}{G}
 type=Enchantment
@@ -13,15 +21,15 @@ type=Enchantment
 [card]
 name=AEther Tide
 target=<prex>creature|myhand
-auto=reject && target(<prex>creature|battlefield) moveTo(ownerhand)
+auto=reject && ability$!name(Return a creature) name(Return a creature) moveTo(ownerhand) target(creature|battlefield)!$ controller
 text=As an additional cost to cast AEther Tide, discard X creature cards. -- Return X target creatures to their owners' hands.
 mana={X}{U}
 type=Sorcery
 [/card]
 [card]
 name=Abandon Hope
-auto=reject target(<prex>*|myhand)
-auto=reject target(<prex>*|opponenthand)
+target=<prex>*|myhand
+auto=reject && ability$!name(Choose a card) name(Choose a card) reject notatarget(*|opponenthand)!$ controller
 text=As an additional cost to cast Abandon Hope, discard X cards. -- Look at target opponent's hand and choose X cards from it. That player discards those cards.
 mana={X}{1}{B}
 type=Sorcery
@@ -2612,8 +2620,8 @@ toughness=1
 [/card]
 [card]
 name=Artisan of Forms
-auto=@targeted(this) from(*|myzones):may name(Copy creature) target(creature) copy and!( counter(0/0,1,ArtisanEffect) )!
-auto=emblem transforms((,newability[@targeted(creature[counter{0/0.1.ArtisanEffect}]|mybattlefield) from(*|myzones):all(trigger[to]) transforms((,newability[may name(Becomes a copy) target(creature) copy and!( counter(0/0,1,ArtisanEffect) )!])) forever])) forever dontremove
+auto=counter(0/0,1,ArtisanEffect)
+auto=emblem transforms((,newability[@targeted(creature[counter{0/0.1.ArtisanEffect}]|mybattlefield) from(*|myzones):all(trigger[to]) transforms((,newability[may name(Becomes a copy) target(creature) copy])) forever])) forever dontremove
 text=Heroic — Whenever you cast a spell that targets Artisan of Forms, you may have Artisan of Forms become a copy of target creature and gain this ability.
 mana={1}{U}
 type=Creature
@@ -29648,9 +29656,10 @@ subtype=Aura
 [/card]
 [card]
 name=Lazav, the Multifarious
-aicode=surveil && name(surveil) activate name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
+aicode=activate surveil && name(surveil) transforms((,newability[foreach(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) moverandom(*[zpos<=psurveiloffsetplus1plusend]) from(mylibrary) to(mylibrary)])) ueot
 auto=surveil && name(surveil) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend revealend
-auto={X}:target(creature[manacost<=X]|mygraveyard) copy and!( transforms((Legendary)) forever )!
+auto=counter(0/0,1,LazavEffect)
+auto=emblem transforms((,newability[lord(creature[counter{0/0.1.LazavEffect}]|mybattlefield) transforms((,newability[{X}:name(Copy creature) transforms((,newability[name(Copy creature) target(creature[manacost=x]|mygraveyard) copy and!( transforms((Legendary Lazav)) forever )!])) forever])) forever])) forever dontremove
 text=When Lazav, the Multifarious enters the battlefield, surveil 1. (Look at the top card of your library. You may put it into your graveyard.) -- {X}: Lazav, the Multifarious becomes a copy of target creature card in your graveyard with converted mana cost X, except its name is Lazav, the Multifarious, it's legendary in addition to its other types, and it has this ability.
 mana={U}{B}
 type=Legendary Creature
@@ -52636,7 +52645,7 @@ toughness=5
 name=Terror of the Peaks
 abilities=flying
 auto=@targeted(this) from(*|opponentzones):life:-3 opponent
-auto=@movedTo(creature|mybattlefield):all(trigger[to]) transforms((,newability[name(Deals damages to any target)  name(Deals damages to any target) target(player,creature,planeswalker) dynamicability<!powerstrike!>])) oneshot
+auto=@movedTo(creature|mybattlefield):all(trigger[to]) transforms((,newability[name(Deals damages to any target)  name(Deals damages to any target) target(player^creature^planeswalker) dynamicability<!powerstrike!>])) oneshot
 text=Flying -- Spells your opponents cast that target Terror of the Peaks cost an additional 3 life to cast. -- Whenever another creature enters the battlefield under your control, Terror of the Peaks deals damage equal to that creature's power to any target.
 mana={3}{R}{R}
 type=Creature
