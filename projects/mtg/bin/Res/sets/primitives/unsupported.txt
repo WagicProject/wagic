@@ -536,22 +536,6 @@ type=Plane
 subtype=Kolbahan
 [/card]
 [card]
-name=Atarka's Command
-text=Choose two — -- • Your opponents can't gain life this turn. -- • Atarka's Command deals 3 damage to each opponent. -- • You may put a land card from your hand onto the battlefield. -- • Creatures you control get +1/+1 and gain reach until end of turn.
-mana={R}{G}
-type=Instant
-[/card]
-[card]
-name=Athreos, God of Passage
-abilities=indestructible
-text=Indestructible -- As long as your devotion to white and black is less than seven, Athreos isn't a creature. -- Whenever another creature you own dies, return it to your hand unless target opponent pays 3 life.
-mana={1}{W}{B}
-type=Legendary Enchantment Creature
-subtype=God
-power=5
-toughness=4
-[/card]
-[card]
 name=Atinlay Igpay
 text=Oubleday ikestray -- Eneverwhay Atinlay Igpay's ontrollercay eaksspay ay onnay-Igpay-Atinlay ordway, acrificesay Atinlay Igpay.
 mana={5}{W}
@@ -566,12 +550,6 @@ type=Legendary Creature
 subtype=Human Advisor
 power=3
 toughness=2
-[/card]
-[card]
-name=Aura Graft
-text=Gain control of target Aura that's attached to a permanent. Attach it to another permanent it can enchant.
-mana={1}{U}
-type=Instant
 [/card]
 [card]
 name=Auratouched Mage
@@ -595,17 +573,6 @@ mana={G}
 type=Instant
 [/card]
 [card]
-name=Avatar of Hope
-abilities=flying
-anyzone=while(controllerlife < 4) changecost(colorless:-6)
-text=If you have 3 or less life, Avatar of Hope costs {6} less to cast. -- Flying -- Avatar of Hope can block any number of creatures.
-mana={6}{W}{W}
-type=Creature
-subtype=Avatar
-power=4
-toughness=9
-[/card]
-[card]
 name=Avatar of Me
 text=Avatar of Me costs {1} more to play for each ten years you've been alive. -- Avatar of Me's power is equal to your height in feet and its toughness is equal to your American shoe size. Round to the nearest ½. -- Avatar of Me's color is the color of your eyes.
 mana={2}{U}{U}
@@ -622,16 +589,6 @@ mana={1}{W}
 type=Creature
 subtype=Bird Soldier
 power=1
-toughness=1
-[/card]
-[card]
-name=Aven Mimeomancer
-abilities=flying
-text=Flying -- At the beginning of your upkeep, you may put a feather counter on target creature. If you do, that creature is 3/1 and has flying for as long as it has a feather counter on it.
-mana={1}{W}{U}
-type=Creature
-subtype=Bird Wizard
-power=3
 toughness=1
 [/card]
 [card]
@@ -745,12 +702,6 @@ power=3{1/2}
 toughness=1
 [/card]
 [card]
-name=Bag of Holding
-text=Whenever you discard a card, exile that card from your graveyard. {2}, {T}: Draw a card, then discard a card. -- {4}, {T}, Sacrifice Bag of Holding: Return all cards exiled with Bag of Holding to their owner's hand.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Balduvian Fallen
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever Balduvian Fallen's cumulative upkeep is paid, it gets +1/+0 until end of turn for each {B} or {R} spent this way.
 mana={3}{B}
@@ -787,15 +738,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Bane Alley Broker
-text={T}: Draw a card, then exile a card from your hand face down. -- You may look at cards exiled with Bane Alley Broker. -- {U}{B}, {T}: Return a card exiled with Bane Alley Broker to its owner's hand.
-mana={1}{U}{B}
-type=Creature
-subtype=Human Rogue
-power=0
-toughness=3
-[/card]
-[card]
 name=Banshee of the Dread Choir
 text=Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Whenever Banshee of the Dread Choir deals combat damage to a player, that player discards a card.
 mana={3}{B}{B}
@@ -814,15 +756,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Barbarian Bully
-text=Discard a card at random: Barbarian Bully gets +2/+2 until end of turn unless a player has Barbarian Bully deal 4 damage to him or her. Activate this ability only once each turn.
-mana={2}{R}
-type=Creature
-subtype=Human Barbarian
-power=2
-toughness=2
-[/card]
-[card]
 name=Baron Von Count
 text=Baron Von Count enters the battlefield with a doom counter on "5." -- Whenever you cast a spell with the indicated numeral in its mana cost, text box, power, or toughness, move the doom counter one numeral to the left. -- When the doom counter moves from "1," destroy target player and put that doom counter on "5."
 mana={1}{B}{R}
@@ -830,13 +763,6 @@ type=Legendary Creature
 subtype=Human Villain
 power=3
 toughness=3
-[/card]
-[card]
-name=Barrel Down Sokenzan
-text=Sweep — Return any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
-mana={2}{R}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
 name=Barrin's Unmaking
@@ -902,16 +828,6 @@ subtype=Contraption
 name=Behold the Power of Destruction
 text=When you set this scheme in motion, destroy all nonland permanents target opponent controls.
 type=Scheme
-[/card]
-[card]
-name=Belfry Spirit
-abilities=flying
-text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Belfry Spirit enters the battlefield or the creature it haunts dies, put two 1/1 black Bat creature tokens with flying onto the battlefield.
-mana={3}{W}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
 [/card]
 [card]
 name=Bell Borca, Spectral Sergeant
