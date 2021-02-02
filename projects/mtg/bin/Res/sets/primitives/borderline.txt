@@ -13,7 +13,8 @@ auto=@each my upkeep restriction{compare(phandcount)~equalto~6}:transforms((,new
 auto=@each my upkeep restriction{compare(phandcount)~equalto~7}:transforms((,newability[all(*[zpos=genrand7plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
 auto=@each my upkeep restriction{compare(phandcount)~morethan~7}:transforms((,newability[all(*[zpos=genrand8plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
 auto=@counteradded(0/0.1.RiftEffect) from(*[-creature]|myGraveyard):all(*[counter{0/0.1.RiftEffect}]|mygraveyard) counter(0/0.-1.RiftEffect)
-auto=@counteradded(0/0.1.RiftEffect) from(creature|myGraveyard):all(*[counter{0/0.1.RiftEffect}]|mygraveyard) transforms((,newability[counter(0/0.-1.RiftEffect)],newability[flipacoin winability life:-5 opponent winabilityend loseability moveto(myBattlefield) loseabilityend flipend])) oneshot
+auto=@counteradded(0/0.1.RiftEffect) from(creature|myGraveyard) restriction{compare(opponentlifetotal)~lessthan~6}:all(*[counter{0/0.1.RiftEffect}]|mygraveyard) transforms((,newability[counter(0/0.-1.RiftEffect)],newability[moveto(myBattlefield)])) oneshot
+auto=@counteradded(0/0.1.RiftEffect) from(creature|myGraveyard) restriction{compare(opponentlifetotal)~morethan~5}:all(*[counter{0/0.1.RiftEffect}]|mygraveyard) transforms((,newability[counter(0/0.-1.RiftEffect)],newability[if compare(genrand2)~equalto~0 then moveto(myBattlefield) else life:-5 opponent])) oneshot
 text=At the beginning of your upkeep, discard a card at random. If you discard a creature card this way, return it from your graveyard to the battlefield unless any player pays 5 life.
 mana={1}{R}{G}
 type=Enchantment
@@ -2826,6 +2827,21 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
+name=Atarka's Command
+auto=choice name(Opponent can't gain life and deal damage) name(Opponent can't gain life and deal damage) ability$!name(Can't gain life) name(Can't gain life) all(*|mybattlefield) transforms((,newability[nolifegainopponent])) ueot!$ controller && ability$!name(Can't gain life) name(Can't gain life) all(*|opponentbattlefield) transforms((,newability[nolifegain])) ueot!$ controller && ability$!name(Deals 3 damage) name(Deals 3 damage) damage:3 opponent!$ controller
+auto=if type(land|myhand)~morethan~0 then choice name(Opponent can't gain life and put land in play) name(Opponent can't gain life and put land in play) target(land|myhand) moveto(myBattlefield) && ability$!name(Can't gain life) name(Can't gain life) all(*|mybattlefield) transforms((,newability[nolifegainopponent])) ueot!$ controller && ability$!name(Can't gain life) name(Can't gain life) all(*|opponentbattlefield) transforms((,newability[nolifegain])) ueot!$ controller
+auto=choice name(Opponent can't gain life and don't put land in play) name(Opponent can't gain life and don't put land in play) ability$!name(Can't gain life) name(Can't gain life) all(*|mybattlefield) transforms((,newability[nolifegainopponent])) ueot!$ controller && ability$!name(Can't gain life) name(Can't gain life) all(*|opponentbattlefield) transforms((,newability[nolifegain])) ueot!$ controller
+auto=choice name(Opponent can't gain life and creatures get 1/1) name(Opponent can't gain life and creatures get 1/1) ability$!name(Can't gain life) name(Can't gain life) all(*|opponentbattlefield) transforms((,newability[nolifegain])) ueot!$ controller && ability$!name(Creatures gain 1/1 and reach) name(Creatures gain 1/1 and reach) all(creature|mybattlefield) transforms((,newability[nolifegainopponent],newability[1/1],newability[reach])) ueot!$ controller
+auto=if type(land|myhand)~morethan~0 then choice name(Deal damage and put land in play) name(Deal damage and put land in play) transforms((,newability[damage:3 opponent],newability[may name(Put land in play) target(land|myhand) moveto(mybattlefield)])) oneshot
+auto=choice name(Deal damage and don't put land in play) name(Deal damage and don't put land in play) damage:3 opponent
+auto=choice name(Deal damage and creatures get 1/1) name(Deal damage and creatures get 1/1) transforms((,newability[damage:3 opponent],newability[all(creature|mybattlefield) transforms((,newability[1/1],newability[reach])) ueot])) oneshot
+auto=if type(land|myhand)~morethan~0 then choice name(Creatures get 1/1 and put land in play) name(Creatures get 1/1 and put land in play) target(land|myhand) moveto(myBattlefield) && ability$!name(Creatures gain 1/1 and reach) name(Creatures gain 1/1 and reach) all(creature|mybattlefield) transforms((,newability[1/1],newability[reach])) ueot!$ controller
+auto=then choice name(Creatures get 1/1 and don't put land in play) name(Creatures get 1/1 and don't put land in play) all(creature|mybattlefield) transforms((,newability[1/1],newability[reach])) ueot
+text=Choose two — -- • Your opponents can't gain life this turn. -- • Atarka's Command deals 3 damage to each opponent. -- • You may put a land card from your hand onto the battlefield. -- • Creatures you control get +1/+1 and gain reach until end of turn.
+mana={R}{G}
+type=Instant
+[/card]
+[card]
 name=Atemsis, All-Seeing
 abilities=flying
 auto={2}{U}{T}:draw:2 && transforms((,newability[target(*|myhand) reject])) forever
@@ -2835,6 +2851,20 @@ type=Legendary Creature
 subtype=Sphinx
 power=4
 toughness=5
+[/card]
+[card]
+name=Athreos, God of Passage
+abilities=indestructible
+auto=this(variable{orzhov}<7) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
+auto=this(variable{orzhov}>6) transforms((Legendary Enchantment Creature))
+auto=@movedto(other creature|graveyard) from(mybattlefield) restriction{compare(opponentlifetotal)~lessthan~4}:all(trigger[to]) transforms((,newability[moveto(myhand)])) oneshot
+auto=@movedto(other creature|graveyard) from(mybattlefield) restriction{compare(opponentlifetotal)~morethan~3}:all(trigger[to]) transforms((,newability[if compare(genrand2)~equalto~0 then moveto(myhand) else life:-3 opponent])) oneshot
+text=Indestructible -- As long as your devotion to white and black is less than seven, Athreos isn't a creature. -- Whenever another creature you own dies, return it to your hand unless target opponent pays 3 life.
+mana={1}{W}{B}
+type=Legendary Enchantment Creature
+subtype=God
+power=5
+toughness=4
 [/card]
 [card]
 name=Athreos, Shroud-Veiled
@@ -2941,6 +2971,14 @@ type=Creature
 subtype=Bird
 power=3
 toughness=3
+[/card]
+[card]
+name=Aura Graft
+target=aura|battlefield
+auto=moveto(myreveal) and!( transforms((,newability[name(Change target) activate castcard(normal)])) oneshot )!
+text=Gain control of target Aura that's attached to a permanent. Attach it to another permanent it can enchant.
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=Aurelia's Fury
@@ -3113,6 +3151,19 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Avatar of Hope
+abilities=flying
+other={W}{W} name(Cast with 3 or less life)
+otherrestriction=compare(lifetotal)~lessthan~4
+restriction=compare(lifetotal)~morethan~3
+text=If you have 3 or less life, Avatar of Hope costs {6} less to cast. -- Flying -- Avatar of Hope can block any number of creatures.
+mana={6}{W}{W}
+type=Creature
+subtype=Avatar
+power=4
+toughness=9
+[/card]
+[card]
 name=Aven Eternal
 abilities=flying
 auto=_AMASS_(1)
@@ -3144,6 +3195,17 @@ type=Creature
 subtype=Bird Warrior
 power=3
 toughness=2
+[/card]
+[card]
+name=Aven Mimeomancer
+abilities=flying
+auto=@each my upkeep:may name(Put feather counter) target(creature) transforms((,newability[counter(0/0.1.feather)],newability[this(counter{0/0.1.feather}>0) transforms((,setpower=3,settoughness=1,newability[flying]))])) forever
+text=Flying -- At the beginning of your upkeep, you may put a feather counter on target creature. If you do, that creature is 3/1 and has flying for as long as it has a feather counter on it.
+mana={1}{W}{U}
+type=Creature
+subtype=Bird Wizard
+power=3
+toughness=1
 [/card]
 [card]
 name=Aven Reedstalker
@@ -3503,6 +3565,15 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
+name=Bag of Holding
+auto=@discarded(*|myhand):name(Move to exile) transforms((,newability[all(*[zpos=type:*:mygraveyard]|mygraveyard) moveto(myexile) and!( counter(0/0.1.BagExiled) )!])) oneshot
+auto={2}{T}:name(Draw and discard) draw:1 controller && transforms((,newability[name(Discard a card) reject notatarget(*|myhand)])) oneshot
+auto={4}{T}{S}:name(Return all exiled card) all(*[counter{0/0.1.BagExiled}]|myexile) moveto(ownerhand)
+text=Whenever you discard a card, exile that card from your graveyard. -- {2}, {T}: Draw a card, then discard a card. -- {4}, {T}, Sacrifice Bag of Holding: Return all cards exiled with Bag of Holding to their owner's hand.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Baird, Steward of Argive
 abilities=vigilance
 auto=lord(creature|opponentbattlefield) transforms((,newability[attackcost:1]))
@@ -3590,6 +3661,17 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
+name=Bane Alley Broker
+auto={T}:name(Draw and exile) draw:1 controller && transforms((,newability[name(Exile a card) notatarget(*|myhand) moveto(exile) and!( counter(0/0.1.BaneExiled) )!])) oneshot
+auto={U}{B}{T}:name(Return exiled card) target(*[counter{0/0.1.BaneExiled}]|myexile) moveto(ownerhand)
+text={T}: Draw a card, then exile a card from your hand face down. -- You may look at cards exiled with Bane Alley Broker. -- {U}{B}, {T}: Return a card exiled with Bane Alley Broker to its owner's hand.
+mana={1}{U}{B}
+type=Creature
+subtype=Human Rogue
+power=0
+toughness=3
+[/card]
+[card]
 name=Banefire
 target=creature,player
 auto=this(X>4) nofizzle
@@ -3634,6 +3716,17 @@ auto=draw:3
 text=As an additional cost to cast this spell, sacrifice two creatures. -- Draw three cards.
 mana={S(creature|myBattlefield)}{S(creature|myBattlefield)}{1}{B}
 type=Sorcery
+[/card]
+[card]
+name=Barbarian Bully
+auto={0} restriction{compare(opponentlifetotal)~lessthan~5}:name(Discard a random card) discard:1 && all(this) 2/2 ueot
+auto={0} restriction{compare(opponentlifetotal)~morethan~4}:name(Discard a random card) transforms((,newability[discard:1 controller],newability[if compare(genrand2)~equalto~0 then 2/2 ueot else damage:4 opponent])) oneshot
+text=Discard a card at random: Barbarian Bully gets +2/+2 until end of turn unless a player has Barbarian Bully deal 4 damage to him or her. Activate this ability only once each turn.
+mana={2}{R}
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
 [/card]
 [card]
 name=Barbed Lightning
@@ -3722,6 +3815,33 @@ type=Creature
 subtype=Troll
 power=2
 toughness=2
+[/card]
+[card]
+name=Barrel Down Sokenzan
+auto=if type(mountain|mybattlefield)~morethan~0 then choice name(Return 1 mountain) name(Return 1 mountain) target(creature) damage:2 && ability$!name(Return 1 mountain) name(Return 1 mountain) target(mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~1 then choice name(Return 2 mountains) name(Return 2 mountains) target(creature) damage:4 && ability$!name(Return 2 mountains) name(Return 2 mountains) target(<2>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~2 then choice name(Return 3 mountains) name(Return 3 mountains) target(creature) damage:6 && ability$!name(Return 3 mountains) name(Return 3 mountains) target(<3>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~3 then choice name(Return 4 mountains) name(Return 4 mountains) target(creature) damage:8 && ability$!name(Return 4 mountains) name(Return 4 mountains) target(<4>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~4 then choice name(Return 5 mountains) name(Return 5 mountains) target(creature) damage:10 && ability$!name(Return 5 mountains) name(Return 5 mountains) target(<5>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~5 then choice name(Return 6 mountains) name(Return 6 mountains) target(creature) damage:12 && ability$!name(Return 6 mountains) name(Return 6 mountains) target(<6>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~6 then choice name(Return 7 mountains) name(Return 7 mountains) target(creature) damage:14 && ability$!name(Return 7 mountains) name(Return 7 mountains) target(<7>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~7 then choice name(Return 8 mountains) name(Return 8 mountains) target(creature) damage:16 && ability$!name(Return 8 mountains) name(Return 8 mountains) target(<8>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~8 then choice name(Return 9 mountains) name(Return 9 mountains) target(creature) damage:18 && ability$!name(Return 9 mountains) name(Return 9 mountains) target(<9>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~9 then choice name(Return 10 mountains) name(Return 10 mountains) target(creature) damage:20 && ability$!name(Return 10 mountains) name(Return 10 mountains) target(<10>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~10 then choice name(Return 11 mountains) name(Return 11 mountains) target(creature) damage:22 && ability$!name(Return 11 mountains) name(Return 11 mountains) target(<11>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~11 then choice name(Return 12 mountains) name(Return 12 mountains) target(creature) damage:24 && ability$!name(Return 12 mountains) name(Return 12 mountains) target(<12>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~12 then choice name(Return 13 mountains) name(Return 13 mountains) target(creature) damage:26 && ability$!name(Return 13 mountains) name(Return 13 mountains) target(<13>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~13 then choice name(Return 14 mountains) name(Return 14 mountains) target(creature) damage:28 && ability$!name(Return 14 mountains) name(Return 14 mountains) target(<14>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~14 then choice name(Return 15 mountains) name(Return 15 mountains) target(creature) damage:30 && ability$!name(Return 15 mountains) name(Return 15 mountains) target(<15>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~15 then choice name(Return 16 mountains) name(Return 16 mountains) target(creature) damage:32 && ability$!name(Return 16 mountains) name(Return 16 mountains) target(<16>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~16 then choice name(Return 17 mountains) name(Return 17 mountains) target(creature) damage:34 && ability$!name(Return 17 mountains) name(Return 17 mountains) target(<17>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~17 then choice name(Return 18 mountains) name(Return 18 mountains) target(creature) damage:36 && ability$!name(Return 18 mountains) name(Return 18 mountains) target(<18>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~18 then choice name(Return 19 mountains) name(Return 19 mountains) target(creature) damage:38 && ability$!name(Return 19 mountains) name(Return 19 mountains) target(<19>mountain|mybattlefield) moveto(myhand)!$ controller
+auto=if type(mountain|mybattlefield)~morethan~19 then choice name(Return 20 mountains) name(Return 20 mountains) target(creature) damage:40 && ability$!name(Return 20 mountains) name(Return 20 mountains) target(<20>mountain|mybattlefield) moveto(myhand)!$ controller
+text=Sweep — Return any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
+mana={2}{R}
+type=Instant
+subtype=Arcane
 [/card]
 [card]
 name=Barrier Breach
@@ -4272,6 +4392,19 @@ type=Legendary Creature
 subtype=Zombie Elf
 power=2
 toughness=2
+[/card]
+[card]
+name=Belfry Spirit
+abilities=flying
+auto=token(Bat,Creature Bat,1/1,black,flying)*2
+auto=@movedto(this|graveyard) from(mybattlefield):all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.BelfryHaunted)])) oneshot )!])) oneshot
+autoexile=@movedto(creature[counter{0/0.1.BelfryHaunted}]|graveyard) from(battlefield):token(Bat,Creature Bat,1/1,black,flying)*2
+text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Belfry Spirit enters the battlefield or the creature it haunts dies, put two 1/1 black Bat creature tokens with flying onto the battlefield.
+mana={3}{W}{W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
 [/card]
 [card]
 name=Belle of the Brawl
