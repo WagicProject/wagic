@@ -60400,8 +60400,7 @@ toughness=3
 [/card]
 [card]
 name=Zegana, Utopian Speaker
-abilities=trample
-auto=if type(creature[(counter{1/1})]|mybattlefield)~morethan~0 then draw:1
+auto=if type(creature[counter{1/1}]|mybattlefield)~morethan~0 then draw:1 controller
 auto={4}{G}{U}:this(counter{1/1.1}<1) transforms((,newability[counter(1/1.4)])) forever
 auto=lord(creature[counter{1/1}]|myBattlefield) trample
 text=When Zegana, Utopian Speaker enters the battlefield, if you control another creature with a +1/+1 counter on it, draw a card. -- {4}{G}{U}: Adapt 4. (If this creature has no +1/+1 counters on it, put four +1/+1 counters on it.) -- Each creature you control with a +1/+1 counter on it has trample.
@@ -60414,7 +60413,7 @@ toughness=4
 [card]
 name=Zenith Flare
 target=player,creature,planeswalker
-auto=damage:type:*[cycling]|myGraveyard && life:type:*[cycling]|myGraveyard controller
+auto=damage:type:*[cycling]:myGraveyard && life:type:*[cycling]:myGraveyard controller
 text=Zenith Flare deals X damage to any target and you gain X life, where X is the number of cards with a cycling ability in your graveyard.
 mana={2}{R}{W}
 type=Instant
@@ -60453,7 +60452,7 @@ toughness=3
 [/card]
 [card]
 name=Zetalpa, Primal Dawn
-abilities=flying, double strike, indestructible, vigilance, trample
+abilities=flying,double strike,indestructible,vigilance,trample
 text=Flying, double strike, vigilance, trample, indestructible
 mana={6}{W}{W}
 type=Legendary Creature
@@ -60463,7 +60462,7 @@ toughness=8
 [/card]
 [card]
 name=Zhalfirin Decoy
-auto={T}:tap(noevent) restriction{thisturn(other creature|mybattlefield)~morethan~0} target(creature)
+auto={T}:restriction{thisturn(creature|mybattlefield)~morethan~0} tap(noevent) target(creature)
 text={T}: Tap target creature. Activate this ability only if you had a creature enter the battlefield under your control this turn.
 mana={1}{W}
 type=Creature
