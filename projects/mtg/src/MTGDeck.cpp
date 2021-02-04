@@ -106,6 +106,9 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             primitive->addMagicText(val,"graveyard");
             primitive->addMagicText(val,"stack");
             primitive->addMagicText(val,"exile");
+            primitive->addMagicText(val,"commandzone");
+            primitive->addMagicText(val,"reveal");
+            primitive->addMagicText(val,"sideboard");
             primitive->addMagicText(val);
         }
         break;
