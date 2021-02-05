@@ -15,16 +15,16 @@
 //    sortByName to do the sorting.  This was done since the menu item display is done in insertion order.
 
 vector<DeckMetaData *> GameState::fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix,
-                Player * statsPlayer, int maxDecks, GameType type)
+                Player * statsPlayer, int maxDecks, GameType type, bool showall)
 {
 
-    vector<DeckMetaData *> deckMetaDataVector = BuildDeckList(path, smallDeckPrefix, statsPlayer, maxDecks, type);
+    vector<DeckMetaData *> deckMetaDataVector = BuildDeckList(path, smallDeckPrefix, statsPlayer, maxDecks, type, showall);
     renderDeckMenu(_menu, deckMetaDataVector);
 
     return deckMetaDataVector;
 }
 
-vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string& smallDeckPrefix, Player * statsPlayer, int maxDecks, GameType type)
+vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string& smallDeckPrefix, Player * statsPlayer, int maxDecks, GameType type, bool showall)
 {
     vector<DeckMetaData*> retList;
 
@@ -42,7 +42,7 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
         if (meta)
         {
             found = 1;
-            if((meta->isCommanderDeck && type != GAME_TYPE_COMMANDER) || (!meta->isCommanderDeck && type == GAME_TYPE_COMMANDER)){
+            if(!showall && ((meta->isCommanderDeck && type != GAME_TYPE_COMMANDER) || (!meta->isCommanderDeck && type == GAME_TYPE_COMMANDER))){
                 meta = NULL; // It will show commander decks only in commander mode and it will hide them in other modes.
                 nbDecks++;
                 continue;

@@ -274,7 +274,7 @@ void GameStateDuel::Start()
                 deckmenu->Add(MENUITEM_NEW_DECK, _("Create your Deck!").c_str(), desc);
             }
             premadeDeck = true;
-            fillDeckMenu(deckmenu, _("player/premade").c_str());
+            fillDeckMenu(deckmenu, _("player/premade").c_str(), "", NULL, 0, mParent->gameType);
         }
         else if (gModRules.general.hasDeckEditor())
         {
@@ -299,9 +299,9 @@ void GameStateDuel::Start()
         DeckManager *deckManager = DeckManager::GetInstance();
         vector<DeckMetaData *> playerDeckList;
 
-        playerDeckList = fillDeckMenu(deckmenu, "ai/baka","ai_baka",NULL,nmbDecks);
+        playerDeckList = fillDeckMenu(deckmenu, "ai/baka", "ai_baka", NULL, nmbDecks, mParent->gameType);
         //printf("nmbDecks %i\n",playerDeckList.size());
-        renderDeckMenu(deckmenu, playerDeckList);
+        //renderDeckMenu(deckmenu, playerDeckList);
         // save the changes to the player deck list maintained in DeckManager
         deckManager->updateMetaDataList(&playerDeckList, true);
         //save the real number of available decks

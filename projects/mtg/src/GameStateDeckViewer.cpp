@@ -172,7 +172,7 @@ void GameStateDeckViewer::updateDecks()
 {
     SAFE_DELETE(welcome_menu);
     welcome_menu = NEW DeckEditorMenu(MENU_DECK_SELECTION, this, Fonts::OPTION_FONT, "Choose Deck To Edit");
-    vector<DeckMetaData *> playerDeckList = fillDeckMenu(welcome_menu, options.profileFile());
+    vector<DeckMetaData *> playerDeckList = fillDeckMenu(welcome_menu, options.profileFile(), "", NULL, 0, GAME_TYPE_CLASSIC, true); // Show all decks in deck editor menu...
 
     newDeckname = "";
     welcome_menu->Add(MENU_ITEM_NEW_DECK, "--NEW--");

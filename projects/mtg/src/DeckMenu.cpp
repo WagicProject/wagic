@@ -445,7 +445,10 @@ void DeckMenu::Add(int id, const string& text, const string& desc, bool forceFoc
         deckDescription = it->second;
     else
         deckDescription = deckMetaData ? deckMetaData->getDescription() : desc;
-    
+
+    if(deckMetaData && deckMetaData->isCommanderDeck)
+        deckDescription = deckDescription + " (" + _("CMD") + ")"; // It will show a CMD suffix for Commander Decks.
+
     menuItem->setDescription(deckDescription);
 
     JGuiController::Add(menuItem);
