@@ -10685,7 +10685,7 @@ name=Crashing Footfalls
 auto=token(Rhino,creature Rhino,4/4,green,trample)*2
 text=Suspend {4} — G} (Rather than cast this card from your hand, pay {G} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Create two 4/4 green Rhino creature tokens with trample.
 color=green
-restriction=turn:100
+restriction=turn:200
 mana={0}
 suspend(4)={G}
 type=Sorcery
@@ -33807,6 +33807,8 @@ type=Artifact
 [card]
 name=Mox Tantalite
 suspend(3)={0}
+restriction=turn:200
+mana={0}
 auto={T}:Add{W}
 auto={T}:Add{U}
 auto={T}:Add{B}
