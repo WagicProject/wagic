@@ -419,11 +419,11 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         else
             colorlessx -= costcx;
         int options = cost->hasSpecificX() ? amountx + 1 +colorlessx : (playerMana->getConvertedCost() - cost->getConvertedCost()) + 1;
+        options += card->getReducedManaCost()->getConvertedCost();//Try to Apply cost reduction to X.
         //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
         //give me the correct amount sorry.
         for (int i = 0; i < options; ++i)
         {
-
             MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
             MTGAbility * setCardX = setX->clone();
             setCardX->oneShot = true;
@@ -456,6 +456,8 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         Xcost->copy(cost);
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
         Xcost->remove(7, 1);
+        if(card->getReducedManaCost()->getConvertedCost() > 0)//Try to Apply cost reduction to X.
+            Xcost->remove(Constants::MTG_COLOR_ARTIFACT, card->getReducedManaCost()->getConvertedCost());
         if (playerMana->canAfford(Xcost,card->has(Constants::ANYTYPEOFMANA)))
         {
             cost->copy(Xcost);
@@ -568,6 +570,8 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         if (!card->has(Constants::STORM))
         {
             copy->X = spell->computeX(copy);
+            if(card->setX > -1 && (card->getReducedManaCost()->getConvertedCost() > 0 || card->getIncreasedManaCost()->getConvertedCost() > 0)) //Try to Apply cost reduction/increasement to X.
+                copy->X = card->setX;
             copy->castX = copy->X;
         }
     }
@@ -889,11 +893,11 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     {
         vector<MTGAbility*>selection;
         int options = alternateCost->hasSpecificX()? 20 : (playerMana->getConvertedCost() - alternateCost->getConvertedCost()) + 1;
+        options += card->getReducedManaCost()->getConvertedCost();//Try to Apply cost reduction to X.
         //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
         //give me the correct amount sorry.
         for (int i = 0; i < options; ++i)
         {
-
             MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
             MTGAbility * setCardX = setX->clone();
             setCardX->oneShot = true;
@@ -927,6 +931,8 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
         card->X = card->setX; // Fix to don't loose X value on alternative cast
         Xcost->remove(7, 1);//remove the X
+        if(card->getReducedManaCost()->getConvertedCost() > 0)//Try to Apply cost reduction to X.
+            Xcost->remove(Constants::MTG_COLOR_ARTIFACT, card->getReducedManaCost()->getConvertedCost());
         if (playerMana->canAfford(Xcost,card->has(Constants::ANYTYPEOFMANA)))
         {
             alternateCost->copy(Xcost);
