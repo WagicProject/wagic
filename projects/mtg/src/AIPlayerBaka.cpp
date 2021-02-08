@@ -652,14 +652,24 @@ int OrderedAIAction::getEfficiency()
         if(grA->source->getAICustomCode().size() && grA->source->alias != 185709)//Sphinx of Jwar Isle so the ai will ignore it
         {
             //efficiency = 45 + (owner->getRandomGenerator()->random() % 50);
-            
             AbilityFactory af(g);
             MTGAbility * parsedAICC = af.parseMagicLine(cReplaceString(grA->source->getAICustomCode(),"activate",""),0,NULL,grA->source);
             efficiency = getRevealedEfficiency(parsedAICC);
             SAFE_DELETE(parsedAICC);
-
         }
         else // this is why the AI never chooses any card at all? reveal is used to get cards so it should be at better value
+            efficiency = 60;
+    }
+    else if (GenericScryAbility * grA = dynamic_cast<GenericScryAbility *>(a))
+    {
+        if(grA->source->getAICustomCode().size())
+        {           
+            AbilityFactory af(g);
+            MTGAbility * parsedAICC = af.parseMagicLine(cReplaceString(grA->source->getAICustomCode(),"activate",""),0,NULL,grA->source);
+            efficiency = getRevealedEfficiency(parsedAICC);
+            SAFE_DELETE(parsedAICC);
+        }
+        else // this is why the AI never chooses any card at all? scry is used to get cards so it should be at better value
             efficiency = 60;
     }
     //At this point the "basic" efficiency is computed, we further tweak it depending on general decisions, independent of theAbility type

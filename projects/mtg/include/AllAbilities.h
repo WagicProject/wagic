@@ -718,6 +718,8 @@ public:
             return 0;
         if (!tc->canTarget(e->card)) return 0;
         triggeredTurn = game->turn;
+        if(source)
+            source->scryedCards = e->card->scryedCards;
         return 1;
     }
 

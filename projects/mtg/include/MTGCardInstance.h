@@ -117,6 +117,7 @@ public:
     int lastFlipResult;
     int dieSide;
     int lastRollResult;
+    int scryedCards;
 
     int stillInUse();
     int didattacked;

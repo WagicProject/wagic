@@ -852,10 +852,9 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         {
             vector<string>getPaid = parseBetween(restriction[i].c_str(),"paid(",")");
             string paid = getPaid[1];
-
             for (size_t j = 0; j < sizeof(kAlternateCostIds)/sizeof(kAlternateCostIds[0]); ++j)
             {
-                 string keyword = kAlternateCostKeywords[j];
+                string keyword = kAlternateCostKeywords[j];
                 if (paid.find(keyword) != string::npos)
                 {
                     if (!(card->alternateCostPaid[j] > 0 ))
@@ -864,8 +863,10 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                     }
                 }
             }
-
         }
+        check = restriction[i].find("never");
+        if(check != string::npos)
+            return 0;
     }
     return 1;
 }
