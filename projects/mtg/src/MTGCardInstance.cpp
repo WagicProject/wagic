@@ -266,6 +266,7 @@ void MTGCardInstance::initMTGCI()
     lastFlipResult = -1;
     dieSide = 0;
     lastRollResult = 0;
+    scryedCards = 0;
     isAttacking = NULL;
     storedCard = NULL;
     storedSourceCard = NULL;

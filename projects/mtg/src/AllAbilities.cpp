@@ -56,15 +56,15 @@ int GenericRevealAbility::resolve()
 {
     if(source->lastController->isAI() && source->getAICustomCode().size())
     {
-            string abi = source->getAICustomCode();
-            std::transform(abi.begin(), abi.end(), abi.begin(), ::tolower);//fix crash
-            AbilityFactory af(game);
-            MTGAbility * a3 = af.parseMagicLine(abi, this->GetId(), NULL, source);
-            a3->oneShot = 1;
-            a3->canBeInterrupted = false;
-            a3->resolve();
-            SAFE_DELETE(a3);
-            return 1;
+        string abi = source->getAICustomCode();
+        std::transform(abi.begin(), abi.end(), abi.begin(), ::tolower);//fix crash
+        AbilityFactory af(game);
+        MTGAbility * a3 = af.parseMagicLine(abi, this->GetId(), NULL, source);
+        a3->oneShot = 1;
+        a3->canBeInterrupted = false;
+        a3->resolve();
+        SAFE_DELETE(a3);
+        return 1;
     }
     MTGAbility * ability = NEW MTGRevealingCards(game, this->GetId(), source, howMany);
     ability->addToGame();
@@ -580,7 +580,7 @@ MTGScryCards::MTGScryCards(GameObserver* observer, int _id, MTGCardInstance * ca
     delayed = coreAbility.find("delayed") != string::npos;
     dontRevealAfter = coreAbility.find("dontshow") != string::npos;
     if(dontRevealAfter)
-    revealTopAmount = 0;
+        revealTopAmount = 0;
     vector<string>second = parseBetween(coreAbility, "scrycore ", " scrycoreend");
     if (second.size())
     {
@@ -757,12 +757,23 @@ bool MTGScryCards::CheckUserInput(JButton key)
                 source->getObserver()->mLayers->stackLayer()->Remove(abilityFirst);
                 game->removeObserver(abilityFirst);
                 if (!this->source->controller()->isAI())
-                game->Update(0);
+                    game->Update(0);
                 if (zone->cards.size())
                 {
                     initDisplay(revealTopAmount);
                     abilitySecond = contructAbility(abilityTwo);
                     game->addObserver(abilitySecond);
+                    if (revealTopAmount == 0 && dontRevealAfter && delayed) // Execute delayed action even if dontshow option is active.
+                    {
+                        MTGAbility * delayedA = contructAbility(delayedAbilityString);
+                        if (delayedA->oneShot)
+                        {
+                            delayedA->resolve();
+                            SAFE_DELETE(delayedA);
+                        }
+                        else
+                            delayedA->addToGame();
+                    }
                 }
             }
             else if (tc->source)
@@ -784,7 +795,7 @@ bool MTGScryCards::CheckUserInput(JButton key)
             source->getObserver()->mLayers->stackLayer()->Remove(abilityFirst);
             game->removeObserver(abilityFirst);
             if (!this->source->controller()->isAI())
-            game->Update(1);
+                game->Update(1);
 
             if (zone->cards.size() || (revealDisplay && !zone->cards.size()))
             {
@@ -792,19 +803,17 @@ bool MTGScryCards::CheckUserInput(JButton key)
                 abilitySecond = contructAbility(abilityTwo);
                 game->addObserver(abilitySecond);
                 if(revealTopAmount == 0 && dontRevealAfter && delayed)
+                {
+                    MTGAbility * delayedA = contructAbility(delayedAbilityString);
+                    if (delayedA->oneShot)
                     {
-                        MTGAbility * delayedA = contructAbility(delayedAbilityString);
-                        if (delayedA->oneShot)
-                        {
-                            delayedA->resolve();
-                            SAFE_DELETE(delayedA);
-                        }
-                        else
-                            delayedA->addToGame();
-
+                        delayedA->resolve();
+                        SAFE_DELETE(delayedA);
                     }
+                    else
+                        delayedA->addToGame();
+                }
             }
-
         }
         if (!tc && abilitySecond && abilitySecond->testDestroy())
         {    
@@ -833,7 +842,6 @@ bool MTGScryCards::CheckUserInput(JButton key)
                 }
                 else
                 delayedA->addToGame();
-                    
             }
         }
     }
@@ -890,8 +898,31 @@ GenericScryAbility::GenericScryAbility(GameObserver* observer, int id, MTGCardIn
 
 int GenericScryAbility::resolve()
 {
-    MTGAbility * ability = NEW MTGScryCards(game, this->GetId(), source, howMany);
-    ability->addToGame();
+    bool replaceScry = false;
+    for(int i = 0; i < source->lastController->game->battlefield->nb_cards; i ++){
+        if(source->lastController->game->battlefield->cards[i]->has(Constants::REPLACESCRY))
+            replaceScry = true;
+    }
+    if(!replaceScry && source->lastController->isAI() && source->getAICustomCode().size())
+    {
+        string abi = source->getAICustomCode();
+        std::transform(abi.begin(), abi.end(), abi.begin(), ::tolower);//fix crash
+        AbilityFactory af(game);
+        MTGAbility * a3 = af.parseMagicLine(abi, this->GetId(), NULL, source);
+        a3->oneShot = 1;
+        a3->canBeInterrupted = false;
+        a3->resolve();
+        SAFE_DELETE(a3);
+    } else if(!replaceScry) {
+        MTGAbility * ability = NEW MTGScryCards(game, this->GetId(), source, howMany);
+        ability->addToGame();
+    }
+    string number = "0";
+    vector<string> amount = parseBetween(howMany, "", " ");
+    if (amount.size())
+        number = amount[1];
+    WParsedInt nbCardP(number, NULL, source);
+    source->scryedCards = nbCardP.getValue();
     WEvent * e = NEW WEventCardScryed(source);
     game->receiveEvent(e);
     return 1;

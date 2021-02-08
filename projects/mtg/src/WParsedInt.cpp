@@ -1001,6 +1001,10 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         else
             intValue = card->revealedLast->getManaCost()->getConvertedCost();
     }
+    else if (s == "scryedcards")//returns how many card have been scryed from current card
+    {
+        intValue = card->scryedCards;
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());

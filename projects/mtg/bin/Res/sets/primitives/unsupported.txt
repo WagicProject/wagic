@@ -3323,16 +3323,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Eligeth, Crossroads Augur
-abilities=flying,partner
-text=Flying -- If you would scry a number of cards, draw that many cards instead. -- Partner (You can have two commanders if both have partner.)
-mana={4}{U}{U}
-type=Legendary Creature
-subtype=Sphinx
-power=5
-toughness=6
-[/card]
-[card]
 name=Elite Arcanist
 text=When Elite Arcanist enters the battlefield, you may exile an instant card from your hand. -- {X}, {T}: Copy the exiled card. You may cast the copy without paying its mana cost. X is the converted mana cost of the exiled card.
 mana={3}{U}
@@ -8807,12 +8797,6 @@ name=Pentagram of the Ages
 text={4}, {T}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Peregrination
-text=Search your library for up to two basic land cards, reveal those cards, and put one onto the battlefield tapped and the other into your hand. Shuffle your library, then scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
 name=Perplex

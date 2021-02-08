@@ -302,7 +302,8 @@ class Constants
       ANYTYPEOFMANAABILITY = 175,
       BOAST = 176,
       TWOBOAST = 177,
-      NB_BASIC_ABILITIES = 178,
+      REPLACESCRY = 178,
+      NB_BASIC_ABILITIES = 179,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

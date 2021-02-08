@@ -208,7 +208,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "foretell", //It has foretell cost
     "anytypeofmanaability", //It allows to spend mana as it were of any color to activate abilities.
     "boast", //It has boast ability
-    "twoboast" //It has boast twice ability (e.g. Birgi, God of Storytelling)
+    "twoboast", //It has boast twice ability (e.g. Birgi, God of Storytelling)
+    "replacescry" //It has scry replacement ability
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

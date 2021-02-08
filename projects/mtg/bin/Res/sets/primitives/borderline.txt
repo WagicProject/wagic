@@ -2335,7 +2335,7 @@ subtype=Forest Plains
 [card]
 name=Arcum's Astrolabe
 other={i}
-restriction=type(*|myHand)~morethan~9999
+restriction=never
 auto=draw:1 controller
 auto={1}{T}:Add{W}
 auto={1}{T}:Add{U}
@@ -4376,8 +4376,8 @@ name=Behold the Multiverse
 abilities=foretell
 autohand={2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
 autoexile={1}{U} restriction{compare(canforetellcast)~morethan~0}:name(Cast with foretell) name(Cast with foretell) activate castcard(alternative)
-aicode=activate draw:2 controller
-auto=scry:2 scrycore choice name(Draw cards) draw:2 controller scrycoreend scryend
+aicode=activate transforms((,newability[draw:2 controller])) oneshot
+auto=scry:2 scrycore delayed draw:2 controller scrycoreend scryend
 text=Scry 2, then draw two cards. -- Foretell {1}{U} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)
 mana={3}{U}
 type=Instant
@@ -5977,10 +5977,10 @@ type=Sorcery
 [/card]
 [card]
 name=Bontu the Glorified
-abilities=menace, indestructible, cantattack, cantblock
-auto=@movedto(creature|mygraveyard) from(mybattlefield): -cantattack ueot
-auto=@movedto(creature|mygraveyard) from(mybattlefield): -cantblock ueot
-auto={1}{B}{S(other creature|mybattlefield)}:life:-1 opponent && life:1 controller
+abilities=menace,indestructible,cantattack,cantblock
+auto=@movedto(creature|mygraveyard) from(mybattlefield):-cantattack ueot
+auto=@movedto(creature|mygraveyard) from(mybattlefield):-cantblock ueot
+auto={1}{B}{S(other creature|mybattlefield)}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend && life:-1 opponent && life:1 controller
 text=Menace, indestructible -- Bontu the Glorified can't attack or block unless a creature died under your control this turn. -- {1}{B}, Sacrifice another creature: Scry 1. Each opponent loses 1 life and you gain 1 life.
 mana={2}{B}
 type=Legendary Creature
@@ -6374,6 +6374,7 @@ toughness=1
 [card]
 name=Brazen Buccaneers
 abilities=haste
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Haste -- When Brazen Buccaneers enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{R}
@@ -7801,7 +7802,7 @@ toughness=5
 name=Cavalier of Gales
 abilities=flying
 auto=draw:3 controller && transforms((,newability[target(<2>*|myhand) moveto(mylibrary)])) oneshot
-autograveyard=moveTo(ownerlibrary) && shuffle then scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+auto=@movedTo(this|graveyard) from(myBattlefield):all(trigger[to]) moveTo(mylibrary) and!( transforms((,newability[scry:2 scrycore delayed dontshow donothing scrycoreend scryend],newability[shuffle])) oneshot )!
 text=Flying -- When Cavalier of Gales enters the battlefield, draw three cards, then put two cards from your hand on top of your library in any order. -- When Cavalier of Gales dies, shuffle it into its owner's library, then scry 2.
 mana={2}{U}{U}{U}
 type=Creature
@@ -9795,7 +9796,7 @@ name=Commanding Presence
 target=creature
 auto=first strike
 auto=2/2
-auto=@combatdamaged(player) from(mytgt):token(Human,Com)
+auto=@combatdamaged(player) from(mytgt):token(Soldier,Creature Human Soldier,1/1,white)
 text=Enchant creature -- Enchanted creature gets +2/+2 and has first strike and “Whenever this creature deals combat damage to a player, create a 1/1 white Human Soldier creature token.”
 mana={3}{W}
 type=Enchantment
@@ -10685,7 +10686,7 @@ name=Crashing Footfalls
 auto=token(Rhino,creature Rhino,4/4,green,trample)*2
 text=Suspend {4} — G} (Rather than cast this card from your hand, pay {G} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Create two 4/4 green Rhino creature tokens with trample.
 color=green
-restriction=turn:200
+restriction=never
 mana={0}
 suspend(4)={G}
 type=Sorcery
@@ -10983,8 +10984,8 @@ type=Land
 [card]
 name=Cryptic Annelid
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
-auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 auto=scry:3 scrycore delayed dontshow donothing scrycoreend scryend
+auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Cryptic Annelid enters the battlefield, scry 1, then scry 2, then scry 3. (To scry X, look at the top X cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={3}{U}
 type=Creature
@@ -10995,7 +10996,7 @@ toughness=4
 [card]
 name=Cryptic Caves
 auto={T}:add {1}
-auto=aslongas(land|myBattlefield){1}{T}{S}:draw:1 >4
+auto=aslongas(land|myBattlefield) {1}{T}{S}:draw:1 >4
 text={T}: Add {1}. -- {1}, {T}, Sacrifice Cryptic Caves: Draw a card. Activate this ability only if you control five or more lands.
 type=Land
 [/card]
@@ -11929,6 +11930,7 @@ toughness=2
 [/card]
 [card]
 name=Deadeye Tracker
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto={1}{B}{T}{E(*|opponentgraveyard)} restriction{type(*|opponentgraveyard)~morethan~1}:moveto(exile) target(*|opponentgraveyard) && explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text={1}{B}, {T}: Exile two target cards from an opponent's graveyard. Deadeye Tracker explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={B}
@@ -12304,8 +12306,8 @@ type=Instant
 [/card]
 [card]
 name=Deliberate
-auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
-auto=draw:1 controller
+auto=scry:2 scrycore delayed draw:1 controller scrycoreend scryend
+aicode=activate transforms((,newability[draw:1 controller])) oneshot
 text=Scry 2, then draw a card.
 mana={1}{U}
 type=Instant
@@ -13138,6 +13140,7 @@ toughness=1
 [card]
 name=Dire Fleet Interloper
 abilities=menace
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Menace -- When Dire Fleet Interloper enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{B}
@@ -14686,8 +14689,8 @@ toughness=2
 [/card]
 [card]
 name=Eager Construct
-auto=may scry:1 scrycore delayed dontshow donothing scrycoreend scryend
-auto=may scry:1 scrycore delayed dontshow donothing scrycoreend scryend opponent
+auto=may name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto=ability$!name(Scry 1) may name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend!$ opponent
 text=When Eager Construct enters the battlefield, each player may scry 1.
 mana={2}
 type=Artifact Creature
@@ -15038,6 +15041,17 @@ type=Creature
 subtype=Elf Druid
 power=0
 toughness=2
+[/card]
+[card]
+name=Eligeth, Crossroads Augur
+abilities=flying,partner,replacescry
+auto=@scryed(*|mybattlefield,mystack):name(Draw cards instead of scry) draw:scryedcards controller
+text=Flying -- If you would scry a number of cards, draw that many cards instead. -- Partner (You can have two commanders if both have partner.)
+mana={4}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=5
+toughness=6
 [/card]
 [card]
 name=Eliminate
@@ -15457,6 +15471,7 @@ toughness=4
 [card]
 name=Emissary of Sunrise
 abilities=first strike
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=First strike -- When Emissary of Sunrise enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{W}
@@ -15477,6 +15492,7 @@ toughness=2
 [/card]
 [card]
 name=Emperor's Vanguard
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=@combatdamaged(player) from(this):explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Whenever Emperor's Vanguard deals combat damage to a player, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={3}{G}
@@ -15765,6 +15781,7 @@ type=Sorcery
 [card]
 name=Enter the Unknown
 target=creature|mybattlefield
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=maxPlay(land)+1
 auto=choice name(Target creature you control explores) name(Target creature you control explores) explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Target creature you control explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on the creature, then put the card back or put it into your graveyard.) -- You may play an additional land this turn.
@@ -16617,8 +16634,8 @@ toughness=2
 [/card]
 [card]
 name=Eyes Everywhere
-auto={5}{U}:moveto(mybattlefield) target(*[-land]|opponentbattlefield) && moveto(opponentbattlefield) all(this)
-auto=@each my upkeep:scrycore delayed dontshow donothing scrycoreend scryend
+auto={5}{U}:moveto(mybattlefield) target(*[-land]|opponentbattlefield) and!( moveto(opponentbattlefield) all(this) )! asSorcery
+auto=@each my upkeep:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=At the beginning of your upkeep, scry 1. -- {5}{U}: Exchange control of Eyes Everywhere and target nonland permanent. Activate this ability only any time you could cast a sorcery.
 mana={2}{U}
 type=Enchantment
@@ -19471,7 +19488,7 @@ toughness=2
 [card]
 name=Gargos, Vicious Watcher
 abilities=vigilance
-auto=lord(*[hydra]|mycastingzone) altercost(colorless, -4)
+auto=lord(hydra|mycastingzone) altercost(colorless, -4)
 auto=@targeted(creature|mybattlefield):transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>]))
 text=Vigilance -- Hydra spells you cast cost {4} less to cast. -- Whenever a creature you control becomes the target of a spell, Gargos, Vicious Watcher fights up to one target creature you don't control.
 mana={3}{G}{G}{G}
@@ -22626,7 +22643,7 @@ toughness=0
 [card]
 name=Haakon, Stromgald Scourge
 autograveyard={1}{B}{B}:activate castcard(normal)
-restriction=type(land|mygraveyard)~morethan~9999
+restriction=never
 auto=lord(knight|mygraveyard) canPlayFromGraveyard
 auto=@movedTo(this|graveyard) from(battlefield):life:-2 controller
 text=You may cast Haakon, Stromgald Scourge from your graveyard, but not from anywhere else. -- As long as Haakon is on the battlefield, you may play Knight cards from your graveyard. -- When Haakon dies, you lose 2 life.
@@ -23861,7 +23878,7 @@ toughness=2
 [/card]
 [card]
 name=Hero of the Nyxborn
-auto=token(Human,Her)
+auto=token(Soldier,Creature Human Soldier,1/1,white)
 auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
 text=When Hero of the Nyxborn enters the battlefield, create a 1/1 white Human Soldier creature token. -- Whenever you cast a spell that targets Hero of the Nyxborn, creatures you control get +1/+0 until end of turn.
 mana={1}{R}{W}
@@ -24672,62 +24689,6 @@ toughness=1
 color=white
 [/card]
 [card]
-name=Human,Com
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-color=white
-[/card]
-[card]
-name=Human,Els
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-color=white
-[/card]
-[card]
-name=Human,Her
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-color=white
-[/card]
-[card]
-name=Human,Ome
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-color=white
-[/card]
-[card]
-name=Human,Rev
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-color=white
-[/card]
-[card]
-name=Human,Sio
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-color=white
-[/card]
-[card]
-name=Human,The
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-color=white
-[/card]
-[card]
 name=Humble Naturalist
 auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{G}
 auto=this(variable{type:creature:myrestrictedcastingzone}>0) {T}:add{W}
@@ -24963,7 +24924,7 @@ toughness=4
 [card]
 name=Hypergenesis
 color=green
-restriction=turn:200
+restriction=never
 mana={0}
 suspend(3)={1}{g}{g}
 auto=ability$! moveto(ownerbattlefield) notatarget(<anyamount>artifact,creature,enchantment,land|myhand) !$ controller
@@ -25057,7 +25018,7 @@ toughness=8
 [card]
 name=Icehide Golem
 other={i}
-restriction=type(*|myHand)~morethan~9999
+restriction=never
 text=({S}i} can be paid with one mana from a snow permanent.)
 mana={1}
 type=Snow Artifact Creature
@@ -26228,9 +26189,9 @@ toughness=3
 [card]
 name=Inscription of Abundance
 kicker={2}{G}
-auto=if paid(kicker) then ability$!name(Put two +1/+1 counters) name(Put two +1/+1 counters) counter(1/1,2) target(creature)!$ controller
-auto=if paid(kicker) then ability$!name(Gain life equal to power) name(Gain life equal to power) target(player) life:power:highest:*:targetedpersonsbattlefield!$ controller
-auto=if paid(kicker) then name(Target creature fights) name(Target creature fights) target(creature|myBattlefield) transforms((,newability[target(creature|opponentBattlefield) dynamicability<!powerstrike eachother!>])) ueot
+auto=if paid(kicker) then ability$!name(Target creature fights) may name(Target creature fights) target(creature|myBattlefield) transforms((,newability[target(creature|opponentBattlefield) dynamicability<!powerstrike eachother!>])) ueot!$ controller
+auto=if paid(kicker) then ability$!name(Gain life equal to power) may name(Gain life equal to power) target(player) life:power:highest:*:targetedpersonsbattlefield!$ controller
+auto=if paid(kicker) then ability$!name(Put two +1/+1 counters) may name(Put two +1/+1 counters) counter(1/1,2) target(creature)!$ controller
 auto=ifnot paid(kicker) then choice name(Put two +1/+1 counters) name(Put two +1/+1 counters) counter(1/1,2) target(creature)
 auto=ifnot paid(kicker) then choice name(Gain life equal to power) name(Gain life equal to power) target(player) life:power:highest:*:targetedpersonsbattlefield
 auto=ifnot paid(kicker) then choice name(Target creature fights) name(Target creature fights) target(creature|myBattlefield) transforms((,newability[target(creature|opponentBattlefield) dynamicability<!powerstrike eachother!>])) ueot
@@ -26241,12 +26202,15 @@ type=Instant
 [card]
 name=Inscription of Insight
 kicker={2}{U}{U}
-auto=if paid(kicker) then ability$!name(Reveal) reveal:2 optionone name(Put On Top) target(<upto:2>*|reveal) moveto(mylibrary) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend afterrevealed name(Return 2 creatures to owner hand) moveTo(ownerHand) target(<upto:2>creature) afterrevealedend revealend !$ controller
-auto=if paid(kicker) then ability$!name(Choose one) choice name(You create an X/X Illusion) name(You create an X/X Illusion) token(Illusion,Creature Illusion,phandcount/phandcount,blue) && draw:2 controller _ choice name(Opponent creates an X/X Illusion) name(Opponent creates an X/X Illusion) token(Illusion,Creature Illusion,ohandcount/ohandcount,blue) opponent && draw:2 controller!$ controller
-auto=ifnot paid(kicker) then choice name(Return 2 creatures to owner hand) name(Return 2 creatures to owner hand) moveTo(ownerHand) target(<upto:2>creature)
-auto=ifnot paid(kicker) then choice name(Scry 2 and draw 2 cards) name(Scry 2 and draw 2 cards) reveal:2 optionone name(Put On Top) target(<upto:2>*|reveal) moveto(mylibrary) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend afterrevealed transforms((,newability[draw:2 controller])) oneshot afterrevealedend revealend
-auto=ifnot paid(kicker) then choice name(You create an X/X Illusion) name(You create an X/X Illusion) token(Illusion,Creature Illusion,phandcount/phandcount,blue)
-auto=ifnot paid(kicker) then choice name(Opponent creates an X/X Illusion) name(Opponent creates an X/X Illusion) token(Illusion,Creature Illusion,ohandcount/ohandcount,blue) opponent
+aicode=activate transforms((,newability[draw:2 controller])) oneshot
+auto=if paid(kicker) then ability$!name(Scry 2 and draw) may name(Scry 2 and draw) scry:2 scrycore delayed draw:2 controller scrycoreend scryend!$ controller
+auto=if paid(kicker) then ability$!name(Choose one) choice name(Return 1 creature) target(creature|battlefield) moveto(ownerhand) _ choice name(Return 2 creatures) target(<upto:2>creature|battlefield) moveto(ownerhand) _ choice name(Don't return any creature) donothing!$ controller
+auto=if paid(kicker) then ability$!name(Choose one) choice name(You create an X/X illusion) token(Illusion,Creature Illusion,phandcount/phandcount,blue) _ choice name(Opponent creates an X/X illusion) token(Illusion,Creature Illusion,ohandcount/ohandcount,blue) opponent _ choice name(Don't creates illusion) donothing!$ controller
+auto=ifnot paid(kicker) then choice name(Return 1 creature to owner hand) name(Return 1 creature to owner hand) moveTo(ownerHand) target(creature|battlefield)
+auto=ifnot paid(kicker) then choice name(Return 2 creatures to owner hand) name(Return 2 creatures to owner hand) moveTo(ownerHand) target(<2>creature|battlefield)
+auto=ifnot paid(kicker) then choice name(Scry 2 and draw) name(Scry 2 and draw) scry:2 scrycore delayed draw:2 controller scrycoreend scryend
+auto=ifnot paid(kicker) then choice name(You create an X/X illusion) name(You create an X/X illusion) token(Illusion,Creature Illusion,phandcount/phandcount,blue)
+auto=ifnot paid(kicker) then choice name(Opponent creates an X/X illusion) name(Opponent creates an X/X illusion) token(Illusion,Creature Illusion,ohandcount/ohandcount,blue) opponent
 text=Kicker {2}{U}{U} -- Choose one. If this spell was kicked, choose any number instead. -- • Return up to two target creatures to their owners' hands. -- • Scry 2, then draw two cards. -- • Target player creates an X/X blue Illusion creature token, where X is the number of cards in their hand.
 mana={3}{U}
 type=Sorcery
@@ -26254,9 +26218,9 @@ type=Sorcery
 [card]
 name=Inscription of Ruin
 kicker={2}{B}{B}
-auto=if paid(kicker) then ability$!name(Opponent discards 2 cards) name(Opponent discards 2 cards) notatarget(<2>*|myhand) reject!$ opponent
-auto=if paid(kicker) then ability$!name(Return a creature with mana cost 2 or less) name(Return a creature with mana cost 2 or less) moveTo(mybattlefield) target(creature[manacost<=2]|myGraveyard)!$ controller
-auto=if paid(kicker) then ability$!name(Destroy target creature with mana cost 3 or less) name(Destroy target creature with mana cost 3 or less) destroy target(creature[manacost<=3])!$ controller
+auto=if paid(kicker) then ability$!name(Opponent discards 2 cards) may name(Opponent discards 2 cards) notatarget(<2>*|myhand) reject!$ opponent
+auto=if paid(kicker) then ability$!name(Return a creature with mana cost 2 or less) may name(Return a creature with mana cost 2 or less) moveTo(mybattlefield) target(creature[manacost<=2]|myGraveyard)!$ controller
+auto=if paid(kicker) then ability$!name(Destroy target creature with mana cost 3 or less) may name(Destroy target creature with mana cost 3 or less) destroy target(creature[manacost<=3])!$ controller
 auto=ifnot paid(kicker) then choice name(Opponent discards 2 cards) name(Opponent discards 2 cards) ability$!name(Opponent discards 2 cards) notatarget(<2>*|myhand) reject!$ opponent
 auto=ifnot paid(kicker) then choice name(Return a creature with mana cost 2 or less) name(Return a creature with mana cost 2 or less) moveTo(mybattlefield) target(creature[manacost<=2]|myGraveyard)
 auto=ifnot paid(kicker) then choice name(Destroy target creature with mana cost 3 or less) name(Destroy target creature with mana cost 3 or less) destroy target(creature[manacost<=3])
@@ -26311,7 +26275,7 @@ type=Instant
 [/card]
 [card]
 name=Inspire Awe
-auto=preventAllcombatDamage(-creature[aura>=1],-Enchantment Creature) ueot
+auto=preventallcombatdamage from(creature[-enchantment;-enchanted]|battlefield) ueot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Prevent all combat damage that would be dealt this turn except by enchanted creatures and enchantment creatures. Scry 2.
 mana={3}{G}
@@ -26786,7 +26750,8 @@ type=Instant
 [card]
 name=Isolated Watchtower
 auto={T}:add{C}
-auto={2}{T}:scry:1 scrycore delayed target(land[zpos<=1]|mylibrary) moveto(mybattlefield) and!(tap(noevent))! scrycoreend scryend restriction{type(land|opponentbattlefield)~morethan~1}
+aicode=activate target(land[zpos<=1]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!
+auto={2}{T} restriction{compare(type:land:opponentbattlefield)~morethan~compare(type:land:mybattlefieldplus1plusend)}:name(Scry 1) scry:1 scrycore delayed target(land[zpos<=1]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! scrycoreend scryend
 text={T}: Add {C}. -- {2}, {T}: Scry 1, then you may reveal the top card of your library. If a basic land card is revealed this way, put it onto the battlefield tapped. Activate this ability only if an opponent controls at least two more lands than you.
 type=Land
 [/card]
@@ -26816,6 +26781,7 @@ type=Enchantment
 [/card]
 [card]
 name=Ixalli's Diviner
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Ixalli's Diviner enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{G}
@@ -27051,6 +27017,7 @@ type=Instant
 [/card]
 [card]
 name=Jadelight Ranger
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Jadelight Ranger enters the battlefield, it explores, then it explores again. (Reveal the top card of your library. Put that card into your hand if it’s a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard. Then repeat this process.)
@@ -32480,8 +32447,9 @@ type=Land
 [/card]
 [card]
 name=Mazemind Tome
-auto={T}{C(0/0,1,Page):scry:1 scrycore delayed dontshow donothing scrycoreend scryend && aslongas(Mazemind Tome[counter{0/0.4.Page}]|myBattlefield) life:4 controller && aslongas(Mazemind Tome[counter{0/0.4.Page}]|myBattlefield) moveTo(myExile) all(this)
-auto={2}{T}{C(0/0,1,Page)}:draw:1 controller && aslongas(Mazemind Tome[counter{0/0.4.Page}]|myBattlefield) life:4 controller && aslongas(Mazemind Tome[counter{0/0.4.Page}]|myBattlefield) moveTo(myExile) all(this)
+auto={T}{C(0/0,1,Page)}:name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend 
+auto={2}{T}{C(0/0,1,Page)}:name(Draw 1) draw:1 controller
+auto=@counteradded(0/0,1,Page) from(this):this(counter{0/0.1.Page}>=4) moveTo(myExile) all(this) && life:4 controller
 text={T}, Put a page counter on Mazemind Tome: Scry 1. -- {2], {T}, Put a page counter on Mazemind Tome: Draw a card. -- When there are four or more page counters on Mazemind Tome, exile it. If you do, you gain 4 life.
 mana={2}
 type=Artifact
@@ -32500,6 +32468,7 @@ toughness=1
 name=Medomai's Prophecy
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
+aicode=activate donothing
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) chooseaname donothing chooseend
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) transforms((,newability[@movedto(*[lastnamechosen]|mystack) once:draw:1 controller])) ueot
@@ -32694,6 +32663,7 @@ toughness=2
 [/card]
 [card]
 name=Merfolk Branchwalker
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Merfolk Branchwalker enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{G}
@@ -33249,7 +33219,7 @@ type=Instant
 [card]
 name=Mischievous Chimera
 abilities=flying
-auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:damage:1 target(opponent) && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:damage:1 opponent && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- Whenever you cast your first spell during each opponent's turn, Mischievous Chimera deals 1 damage to each opponent. Scry 1.
 mana={U}{R}
 type=Enchantment Creature
@@ -33807,7 +33777,7 @@ type=Artifact
 [card]
 name=Mox Tantalite
 suspend(3)={0}
-restriction=turn:200
+restriction=never
 mana={0}
 auto={T}:Add{W}
 auto={T}:Add{U}
@@ -35415,7 +35385,7 @@ type=Land
 [/card]
 [card]
 name=No Escape
-target=creature,planeswalker|stack
+target=*[creature;planeswalker]|stack
 auto=fizzleto(exile)
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Counter target creature or planeswalker spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. -- Scry 1.
@@ -36203,7 +36173,8 @@ type=Enchantment
 [card]
 name=Omen of the Sea
 abilities=flash
-auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend && draw: 1 controller
+aicode=activate transforms((,newability[draw:1 controller])) oneshot
+auto=scry:2 scrycore delayed draw:1 controller scrycoreend scryend
 auto={2}{U}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flash -- When Omen of the Sea enters the battlefield, scry 2, then draw a card. -- {2}{U}, Sacrifice Omen of the Sea: Scry 2.
 mana={1}{U}
@@ -36212,7 +36183,8 @@ type=Enchantment
 [card]
 name=Omen of the Sun
 abilities=flash
-auto=token(Human,Ome)*2 && life:2 controller
+auto=token(Soldier,Creature Human Soldier,1/1,white)*2
+auto=life:2 controller
 auto={2}{W}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flash -- When Omen of the Sun enters the battlefield, create two 1/1 white Human Soldier creature tokens and you gain 2 life. -- {2}{W}, Sacrifice Omen of the Sun: Scry 2.
 mana={2}{W}
@@ -37566,7 +37538,8 @@ type=Land
 [/card]
 [card]
 name=Path of Discovery
-auto=@movedTo(creature|myBattlefield):explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
+auto=@movedTo(creature|myBattlefield):all(trigger[to]) explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Whenever a creature enters the battlefield under your control, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on the creature, then put the card back or put it into your graveyard.)
 mana={3}{G}
 type=Enchantment
@@ -37783,10 +37756,18 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Peregrination
+auto=if type(land|myLibrary)~morethan~1 then choice name(Search two lands) name(Search two lands) target(land[basic]|mylibrary) moveto(mybattlefield) and!( transforms((,newability[tap(noevent)],newability[name(Search another land) target(land[basic]|mylibrary) moveto(myhand) and!( transforms((,newability[name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) oneshot )!])) oneshot )!
+auto=if type(land|myLibrary)~morethan~0 then choice name(Search one land) name(Search one land) target(land[basic]|mylibrary) moveto(mybattlefield) and!( tap(noevent) && scry:1 scrycore delayed dontshow donothing scrycoreend scryend )!
+auto=choice name(Don't search any land) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+text=Search your library for up to two basic land cards, reveal those cards, and put one onto the battlefield tapped and the other into your hand. Shuffle your library, then scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
 name=Perilous Voyage
-target=*[-land]|opponentBattlefield
-auto=moveto(ownerhand)
-auto=if targeted(*[manacost<=2]) then _SCRY_(2)
+auto=if type(*[-land;manacost<=2]|opponentBattlefield)~morethan~0 then choice name(Return permanent with manacost 2 or less) name(Return permanent with manacost 2 or less) target(*[-land;manacost<=2]|opponentBattlefield) moveto(ownerhand) && scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+auto=choice name(Return permanent with manacost 3 or more) target(*[-land;manacost>=3]|opponentBattlefield) moveto(ownerhand)
 text=Return target nonland permanent you don't control to its owner's hand. If its converted mana cost was 2 or less, scry 2.
 mana={1}{U}
 type=Instant
@@ -38782,8 +38763,8 @@ type=Enchantment
 [/card]
 [card]
 name=Precognitive Perception
-auto=if compare(restriction{assorcery}~morethan~0) then scry:3 scrycore delayed dontshow donothing scrycoreend scryend else 
-auto=draw:3
+aicode=activate transforms((,newability[draw:3 controller])) oneshot
+auto=if compare(restriction{assorcery}~morethan~0) then scry:3 scrycore delayed draw:3 controller scrycoreend scryend else draw:3 controller
 text=Draw three cards. -- Addendum — If you cast this spell during your main phase, instead scry 3, then draw three cards.
 mana={3}{U}{U}
 type=Instant
@@ -39036,6 +39017,7 @@ toughness=1
 [card]
 name=Prison Realm
 auto=(blink)forsrc target(*[creature;planeswalker]|opponentbattlefield)
+auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Prison Realm enters the battlefield, exile target creature or planeswalker an opponent controls until Prison Realm leaves the battlefield. -- When Prison Realm enters the battlefield, scry 1.
 mana={2}{W}
 type=Enchantment
@@ -39327,7 +39309,7 @@ type=Instant
 [/card]
 [card]
 name=Psychic Corrosion
-auto=@draw:deplete:2 opponent
+auto=@drawof(player):deplete:2 opponent
 text=Whenever you draw a card, each opponent puts the top two cards of their library into their graveyard.
 mana={2}{U}
 type=Enchantment
@@ -39766,6 +39748,7 @@ toughness=3
 [card]
 name=Queen's Agent
 abilities=lifelink
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Lifelink -- When Queen's Agent enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={5}{B}
@@ -40824,8 +40807,9 @@ toughness=5
 [/card]
 [card]
 name=Reason // Believe
-auto=deplete:3 controller && transforms((,newability[may moveto(mylibrary) target(<upto:3>*|mygraveyard)])) ueot
-autograveyard={4}{G}{E}:flipacoin winability moverandom(creature) from(mylibrary) to(mybattlefield) winabilityend loseability moverandom(*[-creature]) from(mylibrary) to(myhand) loseabilityend flipend assorcery
+auto=scry:3 scrycore delayed dontshow donothing scrycoreend scryend
+autograveyard={4}{G}{E} restriction{type(creature[zpos=1]|mylibrary)~morethan~0}:name(Look top card) all(creature[zpos=1]|mylibrary) moveTo(myhand) and!( transforms((,newability[may name(Put on battlefield) moveto(myBattlefield)])) oneshot )!
+autograveyard={4}{G}{E} restriction{type(creature[zpos=1]|mylibrary)~equalto~0}:name(Look top card) all(*[zpos=1]|mylibrary) moveTo(myhand)
 text=Scry 3. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Look at the top card of your library. You may put it onto the battlefield if it's a creature card. If you don't, put it into your hand.
 mana={U}
 type=Sorcery
@@ -41680,7 +41664,7 @@ type=Enchantment
 [/card]
 [card]
 name=Reverent Hoplite
-auto=token(Human,Rev)*type:manaW
+auto=token(Soldier,Creature Human Soldier,1/1,white)*type:manaW
 text=When Reverent Hoplite enters the battlefield, create a number of 1/1 white Human Soldier creature tokens equal to your devotion to white. (Each {W} in the mana costs of permanents you control counts toward your devotion to white.)
 mana={4}{W}
 type=Creature
@@ -44673,8 +44657,8 @@ toughness=3
 [/card]
 [card]
 name=Scour All Possibilities
-aicode=activate draw:1
-auto=name(Scry) reveal:2 optionone name(Put On Top) target(<upto:2>*|reveal) moveto(mylibrary) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend afterrevealed transforms((,newability[draw:1 controller])) oneshot afterrevealedend revealend
+aicode=activate transforms((,newability[draw:1 controller])) oneshot
+auto=scry:2 scrycore delayed draw:1 controller scrycoreend scryend
 flashback={4}{U}
 text=Scry 2, then draw a card. -- Flashback {4}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{U}
@@ -44986,8 +44970,8 @@ type=Land
 [card]
 name=Season of Growth
 auto=@movedto(creature|mybattlefield):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
-auto=@targeted(creature|myBattlefield) from(instant,sorcery|mystack):draw:1
-auto=@targeted(creature|mybattlefield) from(*[instant;sorcery]|nonbattlezone,stack):draw:1
+auto=@targeted(creature|myBattlefield) from(instant,sorcery|mystack):draw:1 controller
+auto=@targeted(creature|mybattlefield) from(*[instant;sorcery]|nonbattlezone,stack):draw:1 controller
 text=Whenever a creature enters the battlefield under your control, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.) -- Whenever you cast a spell that targets a creature you control, draw a card.
 mana={1}{G}
 type=Enchantment
@@ -45098,6 +45082,7 @@ toughness=3
 [/card]
 [card]
 name=Seekers' Squire
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Seekers' Squire enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={1}{B}
@@ -45847,7 +45832,8 @@ type=Enchantment
 [/card]
 [card]
 name=Shard
-auto={2}{S}:scry:1 scrycore dontshow delayed draw:1 scrycoreend scryend
+aicode=activate transforms((,newability[draw:1 controller])) oneshot
+auto={2}{S}:scry:1 scrycore delayed draw:1 controller scrycoreend scryend
 text={2}, Sacrifice this enchantment: Scry 1, then draw a card.
 type=Enchantment
 [/card]
@@ -46630,6 +46616,7 @@ toughness=2
 [card]
 name=Sifter Wurm
 abilities=trample
+aicode=activate transforms((,newability[all(*[zpos=1]|mylibrary) transforms((,newability[life:manacost controller])) oneshot])) oneshot
 auto=scry:3 scrycore delayed life:revealedmana scrycoreend scryend
 text=Trample -- When Sifter Wurm enters the battlefield, scry 3, then reveal the top card of your library. You gain life equal to that card's converted mana cost.
 mana={5}{G}{G}
@@ -47042,9 +47029,9 @@ toughness=2
 [card]
 name=Siona, Captain of the Pyleas
 abilities=hiddenface
-aicode=activate target(*[zpos<=7]|mylibrary) moveto(ownerhand)
-auto=reveal:7 optionone name(Look at the top four cards) target(enchantment[aura]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<7>*|reveal) bottomoflibrary optiontwoend revealend
-auto=@targeted(creature|myBattlefield) from(aura):token(Human,Sio)
+aicode=activate target(aura[zpos<=7]|mylibrary) moveto(ownerhand)
+auto=reveal:7 optionone name(Look at the top seven cards) target(aura|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<7>*|reveal) bottomoflibrary optiontwoend revealend
+auto=@targeted(creature|myBattlefield) from(aura|myzones):token(Soldier,Creature Human Soldier,1/1,white)
 text=When Siona, Captain of the Pyleas enters the battlefield, look at the top seven cards of your library. You may reveal an Aura card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. -- Whenever an Aura you control becomes attached to a creature you control, create a 1/1 white Human Soldier creature token.
 mana={1}{G}{W}
 type=Legendary Creature
@@ -47055,6 +47042,7 @@ toughness=2
 [card]
 name=Siren Lookout
 abilities=flying
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Flying -- When Siren Lookout enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{U}
@@ -51175,6 +51163,7 @@ toughness=3
 [card]
 name=Sunrise Seeker
 abilities=vigilance
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Vigilance -- When Sunrise Seeker enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={4}{W}
@@ -51219,8 +51208,8 @@ toughness=3
 [card]
 name=Sunset Pyramid
 auto=counter(0/0,3,brick)
-auto={2}{T}{counter(0/0,-1,brick)}:draw:1
-auto={2}{T}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto={2}{T}{counter(0/0,-1,brick)}:name(Draw 1) draw:1 controller
+auto={2}{T}:name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Sunset Pyramid enters the battlefield with three brick counters on it. -- {2}, {T}, Remove a brick counter from Sunset Pyramid: Draw a card. -- {2}, {T}: Scry 1.
 mana={2}
 type=Artifact
@@ -52199,8 +52188,8 @@ toughness=3
 [/card]
 [card]
 name=Tamiyo's Epiphany
-aicode=activate draw:2 controller
-auto=name(Scry) reveal:4 optionone name(Put On Top) target(<upto:4>*|reveal) moveto(mylibrary) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend afterrevealed transforms((,newability[draw:2 controller])) oneshot afterrevealedend revealend
+aicode=activate transforms((,newability[draw:2 controller])) oneshot
+auto=scry:4 scrycore delayed draw:2 controller scrycoreend scryend
 text=Scry 4, then draw two cards.
 mana={3}{U}
 type=Sorcery
@@ -53158,7 +53147,7 @@ subtype=Saga
 [/card]
 [card]
 name=The First Iroan Games
-auto=token(Human,The)
+auto=token(Soldier,Creature Human Soldier,1/1,white)
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) counter(1/1,3) target(creature|myBattlefield)
@@ -53326,8 +53315,8 @@ type=Legendary Artifact
 [card]
 name=The Scarab God
 auto={2}{U}{B}:target(creature|graveyard) clone and!( transforms((Zombie,setpower=4,settoughness=4,black)) forever )! && moveTo(exile)
-auto=@each my upkeep:foreach(zombie|mybattlefield) life:-1 opponent
-auto=@each my upkeep:reveal:type:zombie:mybattlefield optionone name(Scry) target(<60>*|reveal) moveto(mylibrary) optiononeend revealend
+auto=@each my upkeep:name(Opponent looses life) foreach(zombie|mybattlefield) life:-1 opponent
+auto=@each my upkeep:name(Scry cards) scry:type:zombie:mybattlefield scrycore delayed scrycoreend scryend
 auto=@movedTo(this|graveyard) from(battlefield):phaseaction[endofturn once] moveTo(ownerhand) ueot
 text=At the beginning of your upkeep, each opponent loses X life and you scry X, where X is the number of Zombies you control. -- {2}{U}{B}: Exile target creature card from a graveyard. Create a token that's a copy of it, except it's a 4/4 black Zombie. -- When The Scarab God dies, return it to its owner's hand at the beginning of the next end step.
 mana={3}{U}{B}
@@ -53706,9 +53695,8 @@ toughness=4
 [card]
 name=Thrasios, Triton Hero
 abilities=partner
-aicode=activate may bottomoflibrary all(*[zpos=1]|mylibrary)
-aicode=activate target(<1>*[zpos=1]|mylibrary) name(revealed card) moveto(myhand) name(revealed card) and!(if cantargetcard(land|*) then moveto(mybattlefield) tap(noevent))!
-auto={4}:name(Scry 1) reveal:1 optionone name(Put On Top) target(*|reveal) moveto(mylibrary) optiononeend optiontwo name(put on bottom) target(<1>*|reveal) bottomoflibrary optiontwoend revealend && reveal:1 optionone target(land|reveal) moveto(mybattlefield) tap(noevent) optiononeend optiontwo name(Put in hand) target(<1>*|reveal) moveto(myhand) optiontwoend revealend
+aicode=activate if type(land[zpos=1]|mylibrary)~equalto~0 then draw:1 controller else all(land[zpos=1]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!
+auto={4}:scry:1 scrycore delayed dontshow transforms((,newability[if type(land[zpos=1]|mylibrary)~equalto~0 then all(*[zpos=1]|mylibrary) moveto(myhand) else all(land[zpos=1]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!])) oneshot scrycoreend scryend
 text={4}: Scry 1, then reveal the top card of your library. If it’s a land card, put it onto the battlefield tapped. Otherwise, draw a card. -- Partner (You can have two commanders if both have partner.)
 mana={G}{U}
 type=Legendary Creature
@@ -54313,6 +54301,7 @@ toughness=2
 [/card]
 [card]
 name=Tishana's Wayfinder
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto=explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=When Tishana's Wayfinder enters the battlefield, it explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{G}
@@ -54504,6 +54493,7 @@ toughness=3
 [card]
 name=Tomb Robber
 abilities=menace
+aicode=activate if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)
 auto={1}{D(*|myhand)}:name(Explores) explores && reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend revealend limit:1
 text=Menace -- {1}, Discard a card: Tomb Robber explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)
 mana={2}{B}
@@ -54831,8 +54821,8 @@ type=Instant
 [/card]
 [card]
 name=Track Down
-auto=scry:3 scrycore delayed dontshow donothing scrycoreend scryend
-auto=reveal:1 optionone if type(*[land;creature]|reveal)~morethan~0 then draw:1 controller optiononeend optiontwo name(back to library) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend
+aicode=activate if type(*[creature;land;zpos=1]|mylibrary)~morethan~0 then draw:1 controller
+auto=scry:3 scrycore delayed dontshow transforms((,newability[if type(*[creature;land;zpos=1]|mylibrary)~morethan~0 then all(*[zpos=1]|mylibrary) moveto(myhand) else target(*[zpos=1]|mylibrary) moveto(myreveal) and!( placefromthetop(1) )!])) oneshot scrycoreend scryend
 text=Scry 3, then reveal the top card of your library. If it's a creature or land card, draw a card. (To scry 3, look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={1}{G}
 type=Sorcery
@@ -55778,11 +55768,13 @@ toughness=2
 [/card]
 [card]
 name=Tymaret Calls the Dead
-auto=deplete:3 controller && may moveto(exile) target(creature,enchantment|myGraveyard) && token(Zombie,Creature Zombie,2/2,black)
+auto=transforms((,newability[deplete:3 controller],newability[may name(Exile card and create zombie) moveto(exile) target(*[creature;enchantment]|myGraveyard) && token(Zombie^Creature Zombie^2/2^black)])) oneshot
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) deplete:3 controller && may moveto(exile) target(creature,enchantment|myGraveyard) && token(Zombie,Creature Zombie,2/2,black)
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) :life:type:zombie:mybattlefield controller && scry:type:zombie:mybattlefield scrycore delayed dontshow donothing scrycoreend scryend && sacrifice(this)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}):transforms((,newability[deplete:3 controller],newability[may name(Exile card and create zombie) moveto(exile) target(*[creature;enchantment]|myGraveyard) && token(Zombie^Creature Zombie^2/2^black)])) oneshot
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}):life:type:zombie:mybattlefield controller
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}):scry:type:zombie:mybattlefield scrycore delayed dontshow donothing scrycoreend scryend
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}):sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Put the top three cards of your library into your graveyard. Then you may exile a creature or enchantment card from your graveyard. If you do, create a 2/2 black Zombie creature token. -- III — You gain X life and scry X, where X is the number of Zombies you control.
 mana={2}{B}
 type=Enchantment
@@ -58722,7 +58714,7 @@ toughness=1
 [/card]
 [card]
 name=Warteye Witch
-auto=@movedTo(creature|graveyard) from(mybattlefield:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto=@movedTo(creature|graveyard) from(mybattlefield):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Whenever Warteye Witch or another creature you control dies, scry 1.
 mana={2}{B}
 type=Creature
@@ -59701,6 +59693,7 @@ type=Sorcery
 [card]
 name=Witching Well
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+auto={3}{U}{S}:draw:2 controller
 text=When Witching Well enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.) -- {3}{U}, Sacrifice Witching Well: Draw two cards.
 mana={U}
 type=Artifact
