@@ -419,7 +419,20 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         else
             colorlessx -= costcx;
         int options = cost->hasSpecificX() ? amountx + 1 +colorlessx : (playerMana->getConvertedCost() - cost->getConvertedCost()) + 1;
-        options += card->getReducedManaCost()->getConvertedCost();//Try to Apply cost reduction to X.
+        int discountx = 0; //Try to calculate the correct cost reduction for X.
+        if(card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) > 0){
+            MTGCard * tmpcard = MTGCollection()->getCardByName(card->name);
+            if(tmpcard){
+                MTGCardInstance * tmpinst = NEW MTGCardInstance(tmpcard, card->controller()->game);
+                if(tmpinst){
+                    ManaCost * origcost = tmpinst->getManaCost();
+                    discountx = card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) - origcost->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
+                    SAFE_DELETE(tmpinst);
+                    if(discountx < 0) discountx = 0;
+                }
+            }
+        }
+        options += discountx;
         //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
         //give me the correct amount sorry.
         for (int i = 0; i < options; ++i)
@@ -455,9 +468,21 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         ManaCost * Xcost = NEW ManaCost();
         Xcost->copy(cost);
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
-        Xcost->remove(7, 1);
-        if(card->getReducedManaCost()->getConvertedCost() > 0)//Try to Apply cost reduction to X.
-            Xcost->remove(Constants::MTG_COLOR_ARTIFACT, card->getReducedManaCost()->getConvertedCost());
+        Xcost->remove(7, 1); //remove the X
+        int discountx = 0; //Try to calculate the correct cost reduction for X.
+        if(card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) > 0){
+            MTGCard * tmpcard = MTGCollection()->getCardByName(card->name);
+            if(tmpcard){
+                MTGCardInstance * tmpinst = NEW MTGCardInstance(tmpcard, card->controller()->game);
+                if(tmpinst){
+                    ManaCost * origcost = tmpinst->getManaCost();
+                    discountx = card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) - origcost->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
+                    SAFE_DELETE(tmpinst);
+                    if(discountx < 0) discountx = 0;
+                }
+            }
+        }
+        Xcost->remove(Constants::MTG_COLOR_ARTIFACT, discountx); //Try to Apply cost reduction to X.
         if (playerMana->canAfford(Xcost,card->has(Constants::ANYTYPEOFMANA)))
         {
             cost->copy(Xcost);
@@ -570,7 +595,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         if (!card->has(Constants::STORM))
         {
             copy->X = spell->computeX(copy);
-            if(card->setX > -1 && (card->getReducedManaCost()->getConvertedCost() > 0 || card->getIncreasedManaCost()->getConvertedCost() > 0)) //Try to Apply cost reduction/increasement to X.
+            if(card->setX > -1 && (card->getReducedManaCost()->getConvertedCost() > 0 || card->getIncreasedManaCost()->getConvertedCost() > 0)) //Try to Apply the correct X value due to cost reduction/increasement.
                 copy->X = card->setX;
             copy->castX = copy->X;
         }
@@ -893,7 +918,20 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     {
         vector<MTGAbility*>selection;
         int options = alternateCost->hasSpecificX()? 20 : (playerMana->getConvertedCost() - alternateCost->getConvertedCost()) + 1;
-        options += card->getReducedManaCost()->getConvertedCost();//Try to Apply cost reduction to X.
+        int discountx = 0; //Try to calculate the correct cost reduction for X.
+        if(card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) > 0){ 
+            MTGCard * tmpcard = MTGCollection()->getCardByName(card->name);
+            if(tmpcard){
+                MTGCardInstance * tmpinst = NEW MTGCardInstance(tmpcard, card->controller()->game);
+                if(tmpinst){
+                    ManaCost * origcost = tmpinst->getManaCost()->getAlternative();
+                    discountx = card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) - origcost->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
+                    SAFE_DELETE(tmpinst);
+                    if(discountx < 0) discountx = 0;
+                }
+            }
+        }
+        options += discountx;
         //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
         //give me the correct amount sorry.
         for (int i = 0; i < options; ++i)
@@ -930,9 +968,21 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         Xcost->copy(alternateCost);
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
         card->X = card->setX; // Fix to don't loose X value on alternative cast
-        Xcost->remove(7, 1);//remove the X
-        if(card->getReducedManaCost()->getConvertedCost() > 0)//Try to Apply cost reduction to X.
-            Xcost->remove(Constants::MTG_COLOR_ARTIFACT, card->getReducedManaCost()->getConvertedCost());
+        Xcost->remove(7, 1); //remove the X
+        int discountx = 0; //Try to calculate the correct cost reduction for X.
+        if(card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) > 0){ 
+            MTGCard * tmpcard = MTGCollection()->getCardByName(card->name);
+            if(tmpcard){
+                MTGCardInstance * tmpinst = NEW MTGCardInstance(tmpcard, card->controller()->game);
+                if(tmpinst){
+                    ManaCost * origcost = tmpinst->getManaCost()->getAlternative();
+                    discountx = card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) - origcost->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
+                    SAFE_DELETE(tmpinst);
+                    if(discountx < 0) discountx = 0;
+                }
+            }
+        }
+        Xcost->remove(Constants::MTG_COLOR_ARTIFACT, discountx); //Try to Apply cost reduction to X.
         if (playerMana->canAfford(Xcost,card->has(Constants::ANYTYPEOFMANA)))
         {
             alternateCost->copy(Xcost);
