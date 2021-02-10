@@ -1145,6 +1145,7 @@ auto=counter(0/0,1,loyalty)
 auto=if paid(kicker) then clone
 auto=if casted(this) then counter(0/0,3,loyalty)
 auto=if casted(this) then becomes(Legendary) all(this)
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Scry 2) scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 restriction{type(*[manacost=0;zpos=1]|mylibrary)~morethan~0}
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-1,loyalty) restriction{type(*[manacost=1;zpos=1]|mylibrary)~morethan~0}
@@ -1874,9 +1875,12 @@ subtype=Nissa
 [card]
 name=Nissa, Steward of Elements
 auto=counter(0/0,X,loyalty)
+aicode=activate transforms((,newability[if type(creature[manacost<=hascntloyalty;zpos=1]|mylibrary)~morethan~0 then all(*[zpos<=1]|mylibrary) name(Put on battlefield) moveto(mybattlefield)],newability[if type(land[zpos=1]|mylibrary)~morethan~0 then all(*[zpos<=1]|mylibrary) name(Put on battlefield) moveto(mybattlefield)])) oneshot
 auto={C(0/0,2,Loyalty)}:name(+2: Scry 2) scry:2 scrycore delayed dontshow donothing scrycoreend scryend
-auto={C(0/0,0,Loyalty)}:name(+0: Put a creature or land from library) flipacoin winability moverandom(creature,land[convertedmanacost<=counter(loyalty)]) from(mylibrary) to(mybattleifeld) winabilityend flipend
-auto={C(0/0,-6,Loyalty)}:name(-6: Two lands become creatures 5/5 with flying) untap target(<upto:2>land|mybattlefield) && transforms((,creature,setpower=5,settoughness=5,newability[haste],newability[flying])) ueot
+auto={C(0/0,0,Loyalty)}: restriction{type(land[zpos=1]|mylibrary)~morethan~0} name(+0: Look top card) reveal:1 optionone name(Put on battlefield) target(<upto:1>land|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put back) target(*|reveal) moveto(mylibrary) optiontwoend revealend
+auto={C(0/0,0,Loyalty)}: restriction{type(creature[zpos=1]|mylibrary)~morethan~0} name(+0: Look top card) reveal:1 optionone name(Put on battlefield) target(<upto:1>creature[manacost<=hascntloyalty]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put back) target(*|reveal) moveto(mylibrary) optiontwoend revealend
+auto={C(0/0,0,Loyalty)}: restriction{type(*[-creature;-land;zpos=1]|mylibrary)~morethan~0} name(+0: Look top card)) reveal:1 optionone name(Put back) target(*|reveal) moveto(mylibrary) optiononeend optiontwo name(Put back) all(*|reveal) moveto(mylibrary) optiontwoend revealend
+auto={C(0/0,-6,Loyalty)}:name(-6: Two lands become creatures 5/5 with flying) target(<upto:2>land|mybattlefield) transforms((Creature Elemental,setpower=5,settoughness=5,newability[haste],newability[flying],newability[untap])) ueot
 text=+2: Scry 2. -- 0: Look at the top card of your library. If it's a land card or a creature card with converted mana cost less than or equal to the number of loyalty counters on Nissa, Steward of Elements, you may put that card onto the battlefield. -- -6: Untap up to two target lands you control. They become 5/5 Elemental creatures with flying and haste until end of turn. They're still lands.
 mana={X}{G}{U}
 type=Legendary Planeswalker
@@ -2020,6 +2024,7 @@ subtype=Ral
 [card]
 name=Ral, Storm Conduit
 auto=counter(0/0,4,loyalty)
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
 auto=@movedTo(*[instant;sorcery]|myStack):ability$!name(Choose one) choice name(Damage opponent) damage:1 target(opponent) _ choice name(Damage Planeswalker) damage:1 target(planeswalker)!$ controller
 auto={C(0/0,2,Loyalty)}:name(+2: Scry: 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto={C(0/0,-2,Loyalty)}:name(-2: Whenever cast instant or sorcery copy spell) emblem transforms((,newability[@movedTo(*[instant;sorcery]|myStack):castcard(copied noevent) target(*[instant;sorcery]|mystack)])) ueot oneshot
@@ -2066,6 +2071,7 @@ subtype=Rowan
 [card]
 name=Saheeli Rai
 auto=counter(0/0,3,loyalty)
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Scry and deals 1 damage) scry:1 scrycore delayed dontshow donothing scrycoreend scryend && damage:1 opponent
 auto={C(0/0,-2,Loyalty)}:name(-2: Create a copy of artifact or creature) target(*[creature;artifact]|myBattlefield) clone with(treason,haste) addtype(artifact)
 auto={C(0/0,-7,Loyalty)}:name(-7: Search three different artifacts) reveal:plibrarycount optionone name(choose cards) target(<upto:3>artifact|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend
@@ -2112,6 +2118,7 @@ subtype=Samut
 name=Samut, Tyrant Smasher
 auto=counter(0/0,5,loyalty)
 auto=lord(other creature|myBattlefield) haste
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
 auto={C(0/0,-1,Loyalty)}:name(-1: Creature gains +2/+1, haste and scry 1) target(creature) transforms((,newability[2/1],newability[haste])) ueot && _SCRY_(1)
 text=Creatures you control have haste. -- -1: Target creature gets +2/+1 and gains haste until end of turn. Scry 1.
 mana={2}{RG}{RG}
