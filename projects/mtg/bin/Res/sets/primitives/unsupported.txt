@@ -4405,11 +4405,6 @@ mana={3}{BG}
 type=Instant
 [/card]
 [card]
-name=Gemstone Caverns
-text=If Gemstone Caverns is in your opening hand and you're not playing first, you may begin the game with Gemstone Caverns on the battlefield with a luck counter on it. If you do, exile a card from your hand. -- {T}: Add {1} to your mana pool. If Gemstone Caverns has a luck counter on it, instead add one mana of any color to your mana pool.
-type=Legendary Land
-[/card]
-[card]
 name=General Jarkeld
 text={T}: Switch the blocking creatures of two target attacking creatures. Activate this ability only during the declare blockers step.
 mana={3}{W}
@@ -6927,13 +6922,10 @@ mana={3}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Lullmage Mentor
-text=Whenever a spell or ability you control counters a spell, you may put a 1/1 blue Merfolk creature token onto the battlefield. -- Tap seven untapped Merfolk you control: Counter target spell.
-mana={1}{U}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=2
-toughness=2
+name=Lucky Clover
+text=Whenever you cast an Adventure instant or sorcery spell, copy it. You may choose new targets for the copy.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Luminous Guardian
