@@ -138,7 +138,7 @@ toughness=2
 [/card]
 [card]
 name=Acclaimed Contender
-auto=activate transforms((,newability[if type(knight|mybattlefield)~morethan~1 then target(*[aura;knight;equipment;legendary artifact;zpos<=5]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+auto=activate transforms((,newability[if type(knight|mybattlefield)~morethan~1 then target(*[aura;knight;equipment;legendary artifact;zpos<=5]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto=if type(knight|mybattlefield)~morethan~1 then name(Look 5 cards) reveal:5 optionone name(Get a card) target(<upto:1>*[aura;knight;equipment;legendary artifact]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text=When Acclaimed Contender enters the battlefield, if you control another Knight, look at the top five cards of your library. You may reveal a Knight, Aura, Equipment, or legendary artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={2}{W}
@@ -332,7 +332,7 @@ toughness=4
 [/card]
 [card]
 name=Adventure Awaits
-auto=activate transforms((,newability[if type(creature[zpos<=5]|myLibrary)~morethan~0 then target(creature[zpos<=5]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )! else all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary and!( draw:1 controller)! )! ])) oneshot
+auto=activate transforms((,newability[if type(creature[zpos<=5]|myLibrary)~morethan~0 then target(creature[zpos<=5]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )! else all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary and!( draw:1 controller)! )! ])) oneshot
 auto=if type(creature[zpos<=5]|myLibrary)~morethan~0 then name(Look 5 cards) reveal:5 optionone name(Get a creature) target(creature|reveal) transforms((,newability[choice name(Put in hand) moveTo(myHand)],newability[choice name(Put on bottom and draw) bottomoflibrary and!( draw:1 controller )!])) oneshot optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend 
 auto=if type(creature[zpos<=5]|myLibrary)~equalto~0 then name(Look 5 cards) reveal:5 optionone name(Put on bottom) target(*|reveal) bottomoflibrary and!( draw:1 controller )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend 
 text=Look at the top five cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. If you didn't put a card into your hand this way, draw a card.
@@ -341,7 +341,7 @@ type=Sorcery
 [/card]
 [card]
 name=Adventurous Impulse
-auto=activate transforms((,newability[target(*[creature;land;zpos<=3]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=2]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+auto=activate transforms((,newability[target(*[creature;land;zpos<=3]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=3]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto=name(Look top 3 cards) reveal:3 optionone name(Get creature or land) target(<upto:1>*[creature;land]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
 text=Look at the top three cards of your library. You may reveal a creature or land card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
 mana={G}
@@ -716,7 +716,7 @@ toughness=3
 name=Ajani's Influence
 target=creature
 auto=counter(1/1,2)
-aicode=activate transforms((,newability[target(*[white;zpos<=5]|mylibrary) moveto(myhand) and!( all(*[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+aicode=activate transforms((,newability[target(*[white;zpos<=5]|mylibrary) moveto(myhand) and!( all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto=name(Look top 5 cards) reveal:5 revealzone(mylibrary) optionone name(Get white card) target(<upto:1>*[white]|reveal) moveto(myhand) optiononeend optiontwo name(Put bottomoflibrary) target(<1>*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text=Put two +1/+1 counters on target creature. -- Look at the top five cards of your library. You may reveal a white card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={2}{W}{W}
@@ -871,7 +871,7 @@ toughness=1
 [/card]
 [card]
 name=Aladdin's Lamp
-aicode=activate transforms((,newability[target(*[zpos<=fullpaid]|mylibrary) moveto(myhand) and!( all(*[zpos<=fullpaidminus1minusend]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+aicode=activate transforms((,newability[target(*[zpos<=fullpaid]|mylibrary) moveto(myhand) and!( all(*[zpos<=fullpaid]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={1}{T}:name(X=1) name(X=1) donothing
 auto={2}{T}:name(X=2) name(X=2) transforms((,newability[replacedraw reveal:2 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=1]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
 auto={3}{T}:name(X=3) name(X=3) transforms((,newability[replacedraw reveal:3 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=2]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
@@ -1121,7 +1121,7 @@ autostack=if paid(alternative) then name(Hakka, Whispering Raven) name(Hakka, Wh
 auto=this(variable{isflipped}<1) foreach(*[foretold]|myexile) 1/1
 auto=this(variable{isflipped}<1) foreach(*|myhand) 1/1
 auto=@each my endofturn restriction{compare(isflipped)~equalto~0}:transforms((,newability[choice name(Creature) reveal:2 optionone name(Get Creature) target(<2>Creature|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Artifact) reveal:2 optionone name(Get Artifact) target(<2>artifact|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Enchantment) reveal:2 optionone name(Get Enchantment) target(<2>enchantment|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Instant) reveal:2 optionone name(Get Instant) target(<2>instant|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) name(Bottom of library) bottomoflibrary optiontwoend revealend],newability[choice name(Land) reveal:2 optionone name(Get Land) target(<2>land|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Planeswalker) reveal:2 optionone name(Get Planeswalker) target(<2>planeswalker|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Sorcery) reveal:2 optionone name(Get Sorcery) target(<2>sorcery|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Tribal) reveal:2 optionone name(Get Tribal) target(<2>tribal|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend])) oneshot
-aicode=activate transforms((,newability[all(*[creature;zpos<=2]|mylibrary) moveto(myhand)],newability[all(*[-creature;zpos<=2]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot
+aicode=activate transforms((,newability[if type(*[creature;zpos<=2]|mylibrary)~equalto~0 then all(*[zpos<=2]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! else all(*[creature;zpos<=2]|mylibrary) moveto(myhand) and!( all(*[-creature;zpos<=2]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 text=Alrund gets +1/+1 for each card in your hand and each foretold card you own in exile. -- At the beginning of your end step, choose a card type, then reveal the top two cards of your library. Put all cards of the chosen type into your hand and the rest on the bottom of your library in any order.
 mana={3}{U}{U}
 type=Legendary Creature
@@ -1836,7 +1836,7 @@ subtype=Aura
 [card]
 name=Anticognition
 target=*[creature;planeswalker]|stack
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever 
 auto=if type(*|opponentGraveyard)~morethan~7 then scry:2 scrycore delayed dontshow donothing scrycoreend scryend 
 text=Counter target creature or planeswalker spell unless its controller pays {2}. If an opponent has eight or more cards in their graveyard, instead counter that spell, then scry 2.
@@ -2108,7 +2108,7 @@ type=Artifact
 [card]
 name=Arcanist's Owl
 abilities=flying
-aicode=activate transforms((,newability[may name(Get artifact or enchantment) target(*[artifact;enchantment;zpos<=4]|mylibrary) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+aicode=activate transforms((,newability[may name(Get artifact or enchantment) target(*[artifact;enchantment;zpos<=4]|mylibrary) moveto(myhand) and!( all(*[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto=name(Look top 4 cards) reveal:4 optionone name(Get artifact or enchantment) target(<upto:1>*[artifact;enchantment]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text=Flying -- When Arcanist's Owl enters the battlefield, look at the top four cards of your library. You may reveal an artifact or enchantment card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={WU}{WU}{WU}{WU}
@@ -2627,7 +2627,7 @@ type=Instant
 [card]
 name=Artificer's Assistant
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedTo(*[artifact;legendary;saga]|mystack):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- Whenever you cast a historic spell, scry 1. (Artifacts, legendaries, and Sagas are historic. To scry 1, look at the top card of your library, then you may put that card on the bottom of your library.)
 mana={U}
@@ -2900,7 +2900,7 @@ toughness=7
 [/card]
 [card]
 name=Atla Palani, Nest Tender
-aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myBattlefield) and!( all(*[zpos<=findfirsttypecreatureminus1minusend]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myBattlefield) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={2}{T}:token(Egg,Creature Egg,0/1,green,defender)
 auto=@movedTo(egg|graveyard) from(mybattlefield):Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal) moveto(myhand) optiononeend optiontwo choice name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text={2}, {T}: Create a 0/1 green Egg creature token with defender. -- Whenever an Egg you control dies, reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield and the rest on the bottom of your library in a random order.
@@ -3093,7 +3093,7 @@ auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
 auto={9999}:equip
 other={5}{G} name(Mutate)
-aicode=activate transforms((,newability[target(*[zpos=findfirsttypepermanent]|mylibrary) moveto(myexile) and!( moveto(myBattlefield) and!( all(*[zpos<=findfirsttypepermanentminus1minusend]|mylibrary) moveto(myexile) )! )!])) oneshot
+aicode=activate transforms((,newability[target(*[zpos=findfirsttypepermanent]|mylibrary) moveto(myexile) and!( moveto(myBattlefield) and!( all(*[zpos<=findfirsttypepermanent]|mylibrary) moveto(myexile) )! )!])) oneshot
 auto=transforms((,newability[@mutated(this):thisforeach(mutations) ability$!name(Reveal) reveal:1 revealuntil(*[-instant;-sorcery]|mylibrary) optionone name(Exile permanent and play) target(*[-sorcery;-instant]|myreveal) moveto(myexile) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Exile all non permanents) target(*[sorcery;instant]|myreveal) moveto(myexile) and!( all(*[sorcery;instant]|myreveal) moveto(myexile) )! optiontwoend afterrevealed all(tobecast|myexile) moveTo(myBattlefield) afterrevealedend revealend!$ controller]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,green)])) forever all(this)
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green)])) forever
@@ -3448,7 +3448,7 @@ toughness=2
 [card]
 name=Azcanta, the Sunken Ruin
 auto={T}:Add{U}
-aicode=activate transforms((,newability[target(*[-land;-creature;zpos<=4]|mylibrary) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+aicode=activate transforms((,newability[target(*[-land;-creature;zpos<=4]|mylibrary) moveto(myhand) and!( all(*[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={2}{U}{T}:name(Look top 4 cards) reveal:4 optionone name(Get a card) target(<upto:1>*[-land;-creature]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 text=(Transforms from Search for Azcanta.) -- {T}: Add {U} to your mana pool. -- {2}{U}, {T}: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
 type=Legendary Land
@@ -4095,7 +4095,7 @@ subtype=Saga
 [card]
 name=Battle of Frost and Fire
 auto=counter(0/0,1,Lore)
-aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=all(creature[-giant]|battlefield) damage:3
 auto=all(planeswalker|battlefield) damage:3
@@ -4518,7 +4518,11 @@ type=Sorcery
 [/card]
 [card]
 name=Benefaction of Rhonas
-auto=reveal:5 optionone name(get creature) notatarget(<upto:1>creature|reveal) moveto(myhand) optiononeend optiontwo name(get enchantment) notatarget(<upto:1>enchantment|reveal) moveto(myhand) and!(all(*|reveal) moveto(mygraveyard))! optiontwoend revealend
+aicode=activate transforms((,newability[if type(*[creature;enchantment;zpos<=5]|mylibrary)~equalto~0 then all(*[zpos<=5]|mylibrary) moveto(mygraveyard) else target(*[zpos<=1]|mylibrary) transforms((,newability[target(*[creature;enchantment;zpos<=5]|mylibrary) moveto(myhand) and!( all(*[zpos<=5]|mylibrary) moveto(mygraveyard) )!])) oneshot])) oneshot
+auto=if type(creature[zpos<=5]|mylibrary)~morethan~0 then if type(enchantment[zpos<=5]|mylibrary)~morethan~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Choose creature) target(creature|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Choose enchantment) target(enchantment|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot && all(*|reveal) moveto(mygraveyard) )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[if cantargetcard(*[creature]|*) then choice name(Put creature in hand) name(Put creature in hand) moveto(myhand)],newability[if cantargetcard(*[creature]|*) then choice name(Put creature in graveyard) name(Put creature in graveyard) donothing],newability[if cantargetcard(*[enchantment]|*) then choice name(Put enchantment in hand) name(Put enchantment in hand) moveto(myhand)],newability[if cantargetcard(*[enchantment]|*) then choice name(Put enchantment in graveyard) name(Put enchantment in graveyard) moveto(mygraveyard)])) oneshot afterrevealedend revealend
+auto=if type(creature[zpos<=5]|mylibrary)~morethan~0 then if type(enchantment[zpos<=5]|mylibrary)~equalto~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Choose creature) target(<upto:1>creature|reveal) moveto(myhand) optiononeend optiontwo name(Put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto=if type(creature[zpos<=5]|mylibrary)~equalto~0 then if type(enchantment[zpos<=5]|mylibrary)~morethan~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Choose enchantment) target(<upto:1>enchantment|reveal) moveto(myhand) optiononeend optiontwo name(Put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto=if type(creature[zpos<=5]|mylibrary)~equalto~0 then if type(enchantment[zpos<=5]|mylibrary)~equalto~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Put in graveyard) target(*|reveal) moveto(mygraveyard) optiononeend optiontwo name(Put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
 text=Reveal the top five cards of your library. You may put a creature card and/or an enchantment card from among them into your hand. Put the rest into your graveyard.
 mana={2}{G}
 type=Sorcery
@@ -5998,7 +6002,7 @@ type=Sorcery
 [card]
 name=Bontu the Glorified
 abilities=menace,indestructible,cantattack,cantblock
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedto(creature|mygraveyard) from(mybattlefield):-cantattack ueot
 auto=@movedto(creature|mygraveyard) from(mybattlefield):-cantblock ueot
 auto={1}{B}{S(other creature|mybattlefield)}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend && life:-1 opponent && life:1 controller
@@ -6852,7 +6856,7 @@ type=Instant
 [/card]
 [card]
 name=Burning Prophet
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedTo(*[-creature]|mystack):1/0 ueot
 auto=@movedTo(*[-creature]|mystack):_SCRY_(1)
 text=Whenever you cast a noncreature spell, Burning Prophet gets +1/+0 until end of turn, then scry 1.
@@ -7054,7 +7058,7 @@ type=Land
 [card]
 name=Calculated Dismissal
 target=*|stack
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Counter target spell unless its controller pays {3}. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
@@ -7517,7 +7521,7 @@ subtype=Aura Cartouche
 [/card]
 [card]
 name=Cascade Seer
-aicode=activate transforms((,newability[all(*[zpos<=calculateparty]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=calculateparty]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:calculateparty scrycore delayed dontshow donothing scrycoreend scryend
 text=When Cascade Seer enters the battlefield, scry X, where X is the number of creatures in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.)
 mana={3}{U}
@@ -7620,7 +7624,7 @@ type=Land
 [/card]
 [card]
 name=Castle Vantress
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={T}:add{U}
 auto=aslongas(land[island]|myBattlefield) tap(noevent) <1 oneshot
 auto={2}{U}{U}{T}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
@@ -7826,7 +7830,7 @@ toughness=5
 [card]
 name=Cavalier of Gales
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=draw:3 controller && transforms((,newability[target(<2>*|myhand) moveto(mylibrary)])) oneshot
 auto=@movedTo(this|graveyard) from(myBattlefield):all(trigger[to]) moveTo(mylibrary) and!( transforms((,newability[scry:2 scrycore delayed dontshow donothing scrycoreend scryend],newability[shuffle])) oneshot )!
 text=Flying -- When Cavalier of Gales enters the battlefield, draw three cards, then put two cards from your hand on top of your library in any order. -- When Cavalier of Gales dies, shuffle it into its owner's library, then scry 2.
@@ -8050,7 +8054,7 @@ type=Instant
 [card]
 name=Chain to Memory
 target=creature
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=-4/-0
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Target creature gets -4/-0 until end of turn. Scry 2.
@@ -8583,7 +8587,7 @@ toughness=1
 [/card]
 [card]
 name=Charming Prince
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=choice name(Scry 2) scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 auto=choice name(Gain 3 life) life:3
 auto=choice name(Exile your creature) (blink)ueot target(other *[creature]|mybattlefield)
@@ -9356,7 +9360,7 @@ toughness=4
 [card]
 name=Cloudreader Sphinx
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- When Cloudreader Sphinx enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={4}{U}
@@ -11012,7 +11016,7 @@ type=Land
 [/card]
 [card]
 name=Cryptic Annelid
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto=scry:3 scrycore delayed dontshow donothing scrycoreend scryend
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
@@ -11194,7 +11198,7 @@ toughness=3
 [card]
 name=Curator of Mysteries
 abilities=flying,cycling
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedto(*|mygraveyard) from(myhand):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 autohand=__CYCLING__({U})
 text=Flying -- Whenever you cycle or discard another card, scry 1. -- Cycling {U} ({U}, Discard this card: Draw a card.)
@@ -12935,7 +12939,7 @@ subtype=Arcane
 [card]
 name=Devout Decree
 target=creature[red,black],planeswalker[red,black]
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=moveTo(exile)
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Exile target creature or planeswalker that's black or red. Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
@@ -14723,7 +14727,7 @@ toughness=2
 [/card]
 [card]
 name=Eager Construct
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=may name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto=ability$!name(Scry 1) may name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend!$ opponent
 text=When Eager Construct enters the battlefield, each player may scry 1.
@@ -16580,7 +16584,7 @@ type=Sorcery
 name=Expose to Daylight
 target=artifact,enchantment
 auto=destroy
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Destroy target artifact or enchantment. Scry 1.
 mana={2}{W}
@@ -16672,7 +16676,7 @@ toughness=2
 [/card]
 [card]
 name=Eyes Everywhere
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={5}{U}:moveto(mybattlefield) target(*[-land]|opponentbattlefield) and!( moveto(opponentbattlefield) all(this) )! asSorcery
 auto=@each my upkeep:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=At the beginning of your upkeep, scry 1. -- {5}{U}: Exchange control of Eyes Everywhere and target nonland permanent. Activate this ability only any time you could cast a sorcery.
@@ -16821,7 +16825,7 @@ toughness=1
 [card]
 name=Faerie Seer
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- When Faerie Seer enters the battlefield, scry 2.
 mana={U}
@@ -17058,7 +17062,7 @@ toughness=3
 name=Fateful End
 target=player,creature,plansewalker
 auto=damage:3
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Fateful End deals 3 damage to any target. Scry 1.
 mana={2}{R}
@@ -19926,7 +19930,7 @@ toughness=3
 name=Get the Point
 target=creature
 auto=destroy
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Destroy target creature. Scry 1.
 mana={3}{B}{R}
@@ -20956,7 +20960,7 @@ toughness=2
 [/card]
 [card]
 name=Gnostro, Voice of the Crags
-aicode=activate transforms((,newability[all(*[zpos<=pstormcount]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=pstormcount]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={T}:name(Scry) name(Scry) scry:pstormcount scrycore delayed dontshow donothing scrycoreend scryend
 auto={T}:name(Damage creature) name(Damage creature) damage:pstormcount target(creature)
 auto={T}:name(Gain life) name(Gain life) life:pstormcount controller
@@ -21974,7 +21978,7 @@ toughness=1
 [card]
 name=Graven Lore
 restriction=compare(mysnowpoolcount)~equalto~0
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 autohand={2}{i}{U}{U} restriction{compare(mysnowpoolcount)~equalto~1}:name(Cast with 1 snow mana) name(Cast with 1 snow mana) scry:1 scrycore delayed dontshow donothing scrycoreend scryend && activate castcard(alternative)
 autohand={1}{i}{i}{U}{U} restriction{compare(mysnowpoolcount)~equalto~2}:name(Cast with 2 snow mana) name(Cast with 2 snow mana) scry:2 scrycore delayed dontshow donothing scrycoreend scryend && activate castcard(alternative)
 autohand={i}{i}{i}{U}{U} restriction{compare(mysnowpoolcount)~morethan~2}:name(Cast with 3 snow mana) name(Cast with 3 snow mana) scry:3 scrycore delayed dontshow donothing scrycoreend scryend && activate castcard(alternative)
@@ -22813,7 +22817,7 @@ toughness=2
 [card]
 name=Hakka, Whispering Raven
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@combatdamagefoeof(player) from(this):name(Return to hand and scry 2) name(Return to hand and scry 2) moveTo(ownerhand) and!( scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
 auto=@combatdamageof(player) from(this):name(Return to hand and scry 2) name(Return to hand and scry 2) moveTo(ownerhand) and!( scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
 text=Flying -- Whenever Hakka, Whispering Raven deals combat damage to a player, return it to its owner’s hand, then scry 2.
@@ -25702,7 +25706,7 @@ type=Instant
 [/card]
 [card]
 name=In Search of Greatness
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@each my upkeep restriction{type(*[-instant;-sorcery;manacost=convertedcost:highest:*:mybattlefieldplus1plusend]|myhand)~morethan~0}:ability$!name(Choose one) choice name(Cast permanent) target(*[-instant;-sorcery;manacost=convertedcost:highest:*:mybattlefieldplus1plusend]|myhand) activate castcard(normal) _ choice name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend!$ controller
 auto=@each my upkeep restriction{type(*[-instant;-sorcery;manacost=convertedcost:highest:*:mybattlefieldplus1plusend]|myhand)~equalto~0}:name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=At the beginning of your upkeep, you may cast a permanent spell from your hand with converted mana cost equal to 1 plus the highest converted mana cost among other permanents you control without paying its mana cost. If you don’t, scry 1.
@@ -26094,7 +26098,7 @@ type=Instant
 [/card]
 [card]
 name=Inga Rune-Eyes
-aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:3 scrycore delayed dontshow donothing scrycoreend scryend
 auto=@movedto(creature|graveyard) from(battlefield):counter(0/0,1,IngaEffect)
 auto=@movedto(this|graveyard) from(mybattlefield):this(counter{0/0.1.IngaEffect}>=3) draw:3 controller
@@ -26189,7 +26193,7 @@ toughness=4
 name=Inordinate Rage
 target=creature
 auto=3/2 ueot
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Target creature gets +3/+2 until end of turn. Scry 1.
 mana={1}{R}
@@ -26197,7 +26201,7 @@ type=Instant
 [/card]
 [card]
 name=Inquisitive Puppet
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto={E}:create(Human:creature Human:1/1:white)
 text=When Inquisitive Puppet enters the battlefield, scry 1. -- Exile Inquisitive Puppet: Create a 1/1 white Human creature token.
@@ -26340,7 +26344,7 @@ type=Instant
 [card]
 name=Inspire Awe
 auto=preventallcombatdamage from(creature[-enchantment;-enchanted]|battlefield) ueot
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Prevent all combat damage that would be dealt this turn except by enchanted creatures and enchantment creatures. Scry 2.
 mana={3}{G}
@@ -26564,7 +26568,7 @@ toughness=5
 name=Invasion of the Giants
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) transforms((,newability[draw:1 controller],newability[if type(giant|myhand)~morethan~0 then damage:2 target(player^planeswalker)])) oneshot
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) name(Next giant costs 2 less) target(giant|mycastingzone) transforms((,newability[changecost(colorless:-2)])) ueot
@@ -26948,7 +26952,7 @@ type=Instant
 name=Jace's Defeat
 target=*[blue]|stack
 auto=fizzle
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=if casted(this) then if type(jace|opponentstack)~morethan~0 then scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Counter target blue spell. If it was a Jace planeswalker spell, scry 2.
 mana={1}{U}
@@ -27188,7 +27192,7 @@ type=Sorcery
 name=Jaya's Greeting
 target=creature
 auto=damage:3
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=_SCRY_(1)
 text=Jaya's Greeting deals 3 damage to target creature. Scry 1.
 mana={1}{R}
@@ -30769,7 +30773,7 @@ toughness=3
 [card]
 name=Littjara Kinseekers
 abilities=changeling
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=if compare(variable{sametypecreatures})~morethan~2 then counter(1/1) && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Changeling (This card is every creature type.) -- When Littjara Kinseekers enters the battlefield, if you control three or more creatures that share a creature type, put a +1/+1 counter on Littjara Kinseekers, then scry 1.
 mana={3}{U}
@@ -31131,7 +31135,7 @@ type=Sorcery
 [/card]
 [card]
 name=Lost Legion
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Lost Legion enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={1}{B}{B}
@@ -31915,7 +31919,7 @@ type=Instant
 [/card]
 [card]
 name=Mana Geode
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=_SCRY_(1)
 auto={T}:Add{W}
 auto={T}:Add{U}
@@ -32181,7 +32185,7 @@ toughness=5
 [/card]
 [card]
 name=Marit Lage's Slumber
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto=@movedTo(*[snow]|mybattlefield):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto=@each my upkeep restriction{type(*[snow]|myBattlefield)~morethan~9}:may sacrifice all(this) && token(Avatar,creature Avatar,20/20,black,flying,indestructible) controller
@@ -32566,7 +32570,7 @@ type=Land
 [/card]
 [card]
 name=Mazemind Tome
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={T}{C(0/0,1,Page)}:name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend 
 auto={2}{T}{C(0/0,1,Page)}:name(Draw 1) draw:1 controller
 auto=@counteradded(0/0,1,Page) from(this):this(counter{0/0.1.Page}>=4) moveTo(myExile) all(this) && life:4 controller
@@ -32651,7 +32655,7 @@ type=Land
 name=Memory Drain
 target=*|stack
 auto=fizzle
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Counter target spell. Scry 2.
 mana={2}{U}{U}
@@ -32797,7 +32801,7 @@ toughness=1
 [card]
 name=Merfolk Falconer
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedTo(*[kicked>=1]|myStack):scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- Whenever you cast a kicked spell, scry 2.
 mana={3}{U}{U}
@@ -33343,7 +33347,7 @@ type=Instant
 [card]
 name=Mischievous Chimera
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:damage:1 opponent && scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- Whenever you cast your first spell during each opponent's turn, Mischievous Chimera deals 1 damage to each opponent. Scry 1.
 mana={U}{R}
@@ -35512,7 +35516,7 @@ type=Land
 name=No Escape
 target=*[creature;planeswalker]|stack
 auto=fizzleto(exile)
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Counter target creature or planeswalker spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. -- Scry 1.
 mana={2}{U}
@@ -36040,7 +36044,7 @@ toughness=1
 [/card]
 [card]
 name=Octoprophet
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Octoprophet enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={3}{U}
@@ -36271,7 +36275,7 @@ type=Instant
 name=Omen of the Dead
 abilities=flash
 auto=moveto(myHand) target(creature|myGraveyard)
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={2}{W}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flash -- When Omen of the Dead enters the battlefield, return target creature card from your graveyard to your hand. -- {2}{B}, Sacrifice Omen of the Dead: Scry 2.
 mana={B}
@@ -36280,7 +36284,7 @@ type=Enchantment
 [card]
 name=Omen of the Forge
 abilities=flash
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=damage:2 target(player,creature,planeswalker)
 auto={2}{R}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flash -- When Omen of the Forge enters the battlefield, it deals 2 damage to any target. -- {2}{R}, Sacrifice Omen of the Forge: Scry 2.
@@ -36290,7 +36294,7 @@ type=Enchantment
 [card]
 name=Omen of the Hunt
 abilities=flash
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=may name(Search a basic land) target(land[basic]|mylibrary) moveto(myBattlefield) and!( transforms((,newability[tap(noevent)],newability[shuffle])) oneshot )!
 auto={2}{G}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flash -- When Omen of the Hunt enters the battlefield, you may search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- {2}{G}, Sacrifice Omen of the Hunt: Scry 2.
@@ -36312,7 +36316,7 @@ name=Omen of the Sun
 abilities=flash
 auto=token(Soldier,Creature Human Soldier,1/1,white)*2
 auto=life:2 controller
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={2}{W}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flash -- When Omen of the Sun enters the battlefield, create two 1/1 white Human Soldier creature tokens and you gain 2 life. -- {2}{W}, Sacrifice Omen of the Sun: Scry 2.
 mana={2}{W}
@@ -37165,7 +37169,7 @@ type=Instant
 [card]
 name=Overwhelmed Apprentice
 auto=deplete:2 opponent
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Overwhelmed Apprentice enters the battlefield, each opponent puts the top two cards of their library into their graveyard. Then you scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={U}
@@ -37656,7 +37660,7 @@ toughness=4
 [card]
 name=Path of Ancestry
 auto=tap(noevent)
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
 auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend}])) forever
 auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
@@ -37896,7 +37900,7 @@ type=Sorcery
 [/card]
 [card]
 name=Perilous Voyage
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=if type(*[-land;manacost<=2]|opponentBattlefield)~morethan~0 then choice name(Return permanent with manacost 2 or less) name(Return permanent with manacost 2 or less) target(*[-land;manacost<=2]|opponentBattlefield) moveto(ownerhand) && scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 auto=choice name(Return permanent with manacost 3 or more) target(*[-land;manacost>=3]|opponentBattlefield) moveto(ownerhand)
 text=Return target nonland permanent you don't control to its owner's hand. If its converted mana cost was 2 or less, scry 2.
@@ -38556,7 +38560,7 @@ subtype=Arcane
 name=Poison the Cup
 target=creature
 abilities=foretell
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 autohand={2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
 autoexile={1}{B} restriction{compare(canforetellcast)~morethan~0}:name(Cast with foretell) name(Cast with foretell) activate castcard(alternative)
 auto=destroy
@@ -39150,7 +39154,7 @@ toughness=1
 [card]
 name=Prison Realm
 auto=(blink)forsrc target(*[creature;planeswalker]|opponentbattlefield)
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Prison Realm enters the battlefield, exile target creature or planeswalker an opponent controls until Prison Realm leaves the battlefield. -- When Prison Realm enters the battlefield, scry 1.
 mana={2}{W}
@@ -39234,7 +39238,7 @@ type=Enchantment
 [/card]
 [card]
 name=Prophet of the Peak
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Prophet of the Peak enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={6}
@@ -39454,7 +39458,7 @@ name=Psychic Impetus
 target=creature
 auto=mustattack
 auto=2/2
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@combat(attacking) source(this):scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, you scry 2.
 mana={2}{U}
@@ -40945,7 +40949,7 @@ toughness=5
 [/card]
 [card]
 name=Reason // Believe
-aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:3 scrycore delayed dontshow donothing scrycoreend scryend
 autograveyard={4}{G}{E} restriction{type(creature[zpos=1]|mylibrary)~morethan~0}:name(Look top card) all(creature[zpos=1]|mylibrary) moveTo(myhand) and!( transforms((,newability[may name(Put on battlefield) moveto(myBattlefield)])) oneshot )!
 autograveyard={4}{G}{E} restriction{type(creature[zpos=1]|mylibrary)~equalto~0}:name(Look top card) all(*[zpos=1]|mylibrary) moveTo(myhand)
@@ -42064,7 +42068,7 @@ toughness=3
 [/card]
 [card]
 name=Riddleform
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedTo(*[-creature]|mystack):may transforms((Sphinx Creature,setpower=3,settoughness=3,flying)) ueot					    
 auto={2}{U}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Whenever you cast a noncreature spell, you may have Riddleform become a 3/3 Sphinx creature with flying in addition to its other types until end of turn. -- {2}{U}: Scry 1.
@@ -43146,7 +43150,7 @@ toughness=3
 name=Rubble Reading
 target=land
 auto=destroy
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Destroy target land. Scry 2.
 mana={3}{R}
@@ -43290,7 +43294,7 @@ toughness=6
 [/card]
 [card]
 name=Rumbling Sentry
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Rumbling Sentry enters the battlefield, scry 1.
 mana={3}{W}{W}
@@ -43687,7 +43691,7 @@ toughness=5
 [/card]
 [card]
 name=Sage's Row Savant
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=When Sage's Row Savant enters the battlefield, scry 2.
 mana={1}{U}
@@ -43857,7 +43861,7 @@ name=Samut's Sprint
 target=creature
 auto=+2/+1
 auto=haste
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=_SCRY_(1)
 text=Target creature gets +2/+1 and gains haste until end of turn. Scry 1.
 mana={R}
@@ -45114,7 +45118,7 @@ type=Land
 [/card]
 [card]
 name=Season of Growth
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedto(creature|mybattlefield):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto=@targeted(creature|myBattlefield) from(instant,sorcery|mystack):draw:1 controller
 auto=@targeted(creature|mybattlefield) from(*[instant;sorcery]|nonbattlezone,stack):draw:1 controller
@@ -45436,7 +45440,7 @@ toughness=4
 [card]
 name=Senate Griffin
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- When Senate Griffin enters the battlefield, scry 1.
 mana={2}{WU}{WU}
@@ -45469,7 +45473,7 @@ toughness=4
 [/card]
 [card]
 name=Sentinel Totem
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=_SCRY_(1)
 text=When Sentinel Totem enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.) -- {T}, Exile Sentinel Totem: Exile all cards from all graveyards.
 mana={1}
@@ -46170,7 +46174,7 @@ subtype=Mountain Forest
 name=Sheltering Light
 target=creature
 auto=indestructible
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=_SCRY_(1)
 text=Target creature gains indestructible until end of turn. Scry 1. (Damage and effects that say "destroy" don't destroy the creature.)
 mana={W}
@@ -46613,7 +46617,7 @@ type=Instant
 [card]
 name=Siani, Eye of the Storm
 abilities=flying,partner
-aicode=activate transforms((,newability[all(*[zpos<=type:creature[attacking;flying]:battlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=type:creature[attacking;flying]:battlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@combat(attacking) source(this):scry:type:creature[attacking;flying]:battlefield scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- Whenever Siani, Eye of the Storm attacks, scry X, where X is the number of attacking creatures with flying. -- Partner (You can have two commanders if both have partner.)
 mana={3}{U}
@@ -49321,7 +49325,7 @@ toughness=5
 [card]
 name=Sphinx of Foresight
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@each my upkeep:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=You may reveal this card from your opening hand. If you do, scry 3 at the beginning of your first upkeep. -- Flying -- At the beginning of your upkeep, scry 1.
 mana={2}{U}{U}
@@ -49471,7 +49475,7 @@ toughness=-1
 [card]
 name=Spined Megalodon
 abilities=opponentshroud
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@combat(attacking) source(this):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Hexproof (This creature can't be the target of spells or abilities your opponents control.) -- Whenever Spined Megalodon attacks, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
 mana={5}{U}{U}
@@ -50734,7 +50738,7 @@ name=Storm Strike
 target=creature
 auto=first strike
 auto=+1/+0
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Target creature gets +1/+0 and gains first strike until end of turn. Scry 1.
 mana={R}
@@ -50826,7 +50830,7 @@ toughness=3
 [card]
 name=Stormwing Entity
 abilities=flying,prowess
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 anyzone=@movedTo(*[instant;sorcery]|mystack) once:changecost(colorless:-2) ueot forcedalive
 anyzone=@movedTo(*[instant;sorcery]|mystack) once:altercost(blue:-1) ueot forcedalive
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
@@ -51362,7 +51366,7 @@ toughness=3
 [/card]
 [card]
 name=Sunset Pyramid
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=counter(0/0,3,brick)
 auto={2}{T}{counter(0/0,-1,brick)}:name(Draw 1) draw:1 controller
 auto={2}{T}:name(Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
@@ -51539,7 +51543,7 @@ toughness=6
 name=Surtland Frostpyre
 auto=tap(noevent)
 auto={T}:add{R}
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={2}{U}{U}{R}{T}{S}:scry:2 scrycore delayed dontshow donothing scrycoreend scryend && damage:2 all(creature|battlefield) asSorcery
 text=Surtland Frostpyre enters the battlefield tapped. -- {T}: Add {R}. -- {2}{U}{U}{R}, {T}, Sacrifice Surtland Frostpyre: Scry 2. Surtland Frostpyre deals 2 damage to each creature. Activate this ability only any time you could cast a sorcery.
 type=Land
@@ -52802,7 +52806,7 @@ toughness=2
 [card]
 name=Tenth District Legionnaire
 abilities=haste
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@targeted(this):counter(1/1) && _SCRY_(1)
 text=Haste -- Whenever you cast a spell that targets Tenth District Legionnaire, put a +1/+1 counter on Tenth District Legionnaire, then scry 1.
 mana={R}{W}
@@ -53130,7 +53134,7 @@ type=Artifact
 [card]
 name=Thaumaturge's Familiar
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- When Thaumaturge's Familiar enters the battlefield, scry 1.
 mana={3}
@@ -53473,7 +53477,7 @@ type=Legendary Artifact
 [/card]
 [card]
 name=The Scarab God
-aicode=activate transforms((,newability[all(*[zpos<=type:zombie:mybattlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=type:zombie:mybattlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={2}{U}{B}:target(creature|graveyard) clone and!( transforms((Zombie,setpower=4,settoughness=4,black)) forever )! && moveTo(exile)
 auto=@each my upkeep:name(Opponent looses life) foreach(zombie|mybattlefield) life:-1 opponent
 auto=@each my upkeep:name(Scry cards) scry:type:zombie:mybattlefield scrycore delayed scrycoreend scryend
@@ -54533,7 +54537,7 @@ toughness=11
 [/card]
 [card]
 name=Titans' Nest
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@each my upkeep:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto={E(*|myGraveyard)}:Add{C}
 text=At the beginning of your upkeep, look at the top card of your library. You may put that card into your graveyard. -- Exile a card from your graveyard: Add Colorless . Spend this mana only to cast a colored spell without Variable Colorless in its mana cost.
@@ -55151,7 +55155,7 @@ type=Artifact Treasure
 [/card]
 [card]
 name=Treasure Map
-aicode=activate transforms((,newability[all(*[zpos<=type:zombie:mybattlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=type:zombie:mybattlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={1}{T}:_SCRY_(1) && counter(0/0,1,landmark)
 auto=@counteradded(0/0,1,landmark) from(this):this(counter{0/0.3.landmark}=) removeallcounters(0/0.1.landmark) && flip(Treasure Cove) && _TREASURE_*3
 text={1}, {T}: Scry 1. Put a landmark counter on Treasure Map. Then if there are three or more landmark counters on it, remove those counters, transform Treasure Map, and create three colorless Treasure artifact tokens with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
@@ -55930,7 +55934,7 @@ toughness=2
 name=Tymaret Calls the Dead
 auto=transforms((,newability[deplete:3 controller],newability[may name(Exile card and create zombie) moveto(exile) target(*[creature;enchantment]|myGraveyard) && token(Zombie^Creature Zombie^2/2^black)])) oneshot
 auto=counter(0/0,1,Lore)
-aicode=activate transforms((,newability[all(*[zpos<=type:zombie:mybattlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=type:zombie:mybattlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}):transforms((,newability[deplete:3 controller],newability[may name(Exile card and create zombie) moveto(exile) target(*[creature;enchantment]|myGraveyard) && token(Zombie^Creature Zombie^2/2^black)])) oneshot
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}):life:type:zombie:mybattlefield controller
@@ -56179,7 +56183,7 @@ toughness=3
 [/card]
 [card]
 name=Undercity Scavenger
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=may name(Sacrifice Creature) sacrifice notatarget(other creature|mybattlefield) and!( all(this) counter(1/1,2) && scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
 text=When Undercity Scavenger enters the battlefield, you may sacrifice another creature. If you do, put two +1/+1 counters on Undercity Scavenger, then scry 2.
 mana={3}{B}
@@ -56357,7 +56361,7 @@ type=Instant
 [card]
 name=Unexplained Vision
 other={2}{U}{U}{U} name(Adamant)
-aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=if paid(alternative) then scry:3 scrycore delayed dontshow donothing scrycoreend scryend
 auto=draw:3 controller
 text=Draw three cards. -- Adamant — If at least three blue mana was spent to cast this spell, scry 3.
@@ -58607,7 +58611,7 @@ toughness=5
 [card]
 name=Wall of Runes
 abilities=defender
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=_SCRY_(1)
 text=Defender -- When Wall of Runes enters the battlefield, scry 1.
 mana={U}
@@ -58868,7 +58872,7 @@ toughness=1
 [/card]
 [card]
 name=Warteye Witch
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedTo(creature|graveyard) from(mybattlefield):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Whenever Warteye Witch or another creature you control dies, scry 1.
 mana={2}{B}
@@ -59847,7 +59851,7 @@ type=Sorcery
 [/card]
 [card]
 name=Witching Well
-aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 auto={3}{U}{S}:draw:2 controller
 text=When Witching Well enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.) -- {3}{U}, Sacrifice Witching Well: Draw two cards.
@@ -59884,7 +59888,7 @@ type=Instant
 [card]
 name=Witness of Tomorrows
 abilities=flying
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={3}{U}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- {3}{U}: Scry 1.
 mana={4}{U}
@@ -59918,7 +59922,7 @@ type=Instant
 [card]
 name=Woe Strider
 auto=token(Goat,Creature Goat,0/1,white)
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={S(other creature|myBattlefield}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 autograveyard={3}{B}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{3}{B}{B},exile four) activate castcard(alternative)
 auto=if paid(alternative) then counter(1/1,2)
@@ -60625,7 +60629,7 @@ toughness=3
 [/card]
 [card]
 name=Zhalfirin Void
-aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) bottomoflibrary])) oneshot])) oneshot
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 auto={T}:Add{C}
 text=When Zhalfirin Void enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.) -- {T}: Add {C}.
