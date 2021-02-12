@@ -149,6 +149,13 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
 
 MTGPlayerCards::~MTGPlayerCards()
 {
+    if(temp->cards.size() > 0){
+        for(size_t i = 0; i < library->placeOnTop.size(); i++){
+            if(temp->hasCard(library->placeOnTop[i])){
+                temp->removeCard(library->placeOnTop[i]); // Fix crash when temp zone contains library place on top cards.
+            }
+        }
+    }
     SAFE_DELETE(library);
     SAFE_DELETE(graveyard);
     SAFE_DELETE(hand);
