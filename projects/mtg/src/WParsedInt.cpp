@@ -1005,6 +1005,35 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = card->scryedCards;
     }
+    else if (s.find("findfirsttype") != string::npos)//find the index of first card with specified type in target player library
+    {
+        intValue = 0;
+        bool opponent = (s.find("oppofindfirsttype")!=string::npos)?true:false;
+        string type = (s.find("oppofindfirsttype")!=string::npos)?s.substr(17):s.substr(13);
+        bool negate = (type.find("non")!=string::npos)?true:false;
+        type = negate?type.substr(3):type;
+        Player* p = card->controller();
+        if (opponent)
+            p = card->controller()->opponent();
+        for (int j = p->game->library->nb_cards - 1; j >= 0; --j){
+            if (type == "permanent" && !negate && !p->game->library->cards[j]->hasType(Subtypes::TYPE_INSTANT) && !p->game->library->cards[j]->hasType(Subtypes::TYPE_SORCERY)){
+                intValue = p->game->library->nb_cards - j;
+                break;
+            }
+            else if (type == "permanent" && negate && (p->game->library->cards[j]->hasType(Subtypes::TYPE_INSTANT) || p->game->library->cards[j]->hasType(Subtypes::TYPE_SORCERY))){
+                intValue = p->game->library->nb_cards - j;
+                break;
+            }
+            else if (type != "permanent" && !negate && p->game->library->cards[j]->hasType(type)){
+                intValue = p->game->library->nb_cards - j;
+                break;
+            }
+            else if (type != "permanent" && negate && !p->game->library->cards[j]->hasType(type)){
+                intValue = p->game->library->nb_cards - j;
+                break;
+            }
+        }
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());

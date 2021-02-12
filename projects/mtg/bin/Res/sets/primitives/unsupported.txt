@@ -6928,15 +6928,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Luminous Guardian
-text={W}: Luminous Guardian gets +0/+1 until end of turn. -- {2}: Luminous Guardian can block an additional creature this turn.
-mana={3}{W}
-type=Creature
-subtype=Human Nomad
-power=1
-toughness=4
-[/card]
-[card]
 name=Lurking Automaton
 text=Reveal Lurking Automaton as you draft it and note how many cards you've drafted this draft round, including Lurking Automaton. -- Lurking Automaton enters the battlefield with X +1/+1 counters on it, where X is the highest number you noted for cards named Lurking Automaton.
 mana={5}
@@ -6944,15 +6935,6 @@ type=Artifact Creature
 subtype=Construct
 power=0
 toughness=0
-[/card]
-[card]
-name=Lurrus of the Dream-Den
-text=Companion — Each permanent card in your starting deck has converted mana cost 2 or less. (If this card is your chosen companion, you may cast it once from outside the game.) -- Lifelink -- During each of your turns, you may cast one permanent spell with converted mana cost 2 or less from your graveyard.
-mana={1}{WB}{WB}
-type=Legendary Creature
-subtype=Cat Nightmare
-power=3
-toughness=2
 [/card]
 [card]
 name=Lutri, the Spellchaser
@@ -7027,15 +7009,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Magus of the Scroll
-text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Magus of the Scroll deals 2 damage to target creature or player.
-mana={R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Mairsil, the Pretender
 text=When Mairsil, the Pretender enters the battlefield, you may exile an artifact or creature card from your hand or graveyard and put a cage counter on it. -- Mairsil, the Pretender has all activated abilities of all cards you own in exile with cage counters on them. You may activate each of those abilities only once each turn.
 mana={1}{U}{B}{R}
@@ -7043,15 +7016,6 @@ type=Legendary Creature
 subtype=Human Wizard
 power=4
 toughness=4
-[/card]
-[card]
-name=Malignus
-text=Malignus's power and toughness are each equal to half the highest life total among your opponents, rounded up. -- Damage that would be dealt by Malignus can't be prevented.
-mana={3}{R}{R}
-type=Creature
-subtype=Elemental Spirit
-power=*
-toughness=*
 [/card]
 [card]
 name=Man of Measure

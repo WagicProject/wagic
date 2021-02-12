@@ -138,7 +138,8 @@ toughness=2
 [/card]
 [card]
 name=Acclaimed Contender
-auto=restriction type(other creature[knight]|mybattlefield)~morethan~0:reveal:5 optionone name(Get card) target(*[aura;knight;equipment;legenday artifact]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
+auto=activate transforms((,newability[if type(knight|mybattlefield)~morethan~1 then target(*[aura;knight;equipment;legendary artifact;zpos<=5]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+auto=if type(knight|mybattlefield)~morethan~1 then name(Look 5 cards) reveal:5 optionone name(Get a card) target(<upto:1>*[aura;knight;equipment;legendary artifact]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text=When Acclaimed Contender enters the battlefield, if you control another Knight, look at the top five cards of your library. You may reveal a Knight, Aura, Equipment, or legendary artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={2}{W}
 type=Creature
@@ -331,14 +332,17 @@ toughness=4
 [/card]
 [card]
 name=Adventure Awaits
-auto=if type(creature[zpos<=5]|myLibrary)~morethan~0 then name(Look 5 cards) reveal:5 optionone name(Get card) target(creature|reveal) moveTo(myHand) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend else draw:1 controller
+auto=activate transforms((,newability[if type(creature[zpos<=5]|myLibrary)~morethan~0 then target(creature[zpos<=5]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )! else all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary and!( draw:1 controller)! )! ])) oneshot
+auto=if type(creature[zpos<=5]|myLibrary)~morethan~0 then name(Look 5 cards) reveal:5 optionone name(Get a creature) target(creature|reveal) transforms((,newability[choice name(Put in hand) moveTo(myHand)],newability[choice name(Put on bottom and draw) bottomoflibrary and!( draw:1 controller )!])) oneshot optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend 
+auto=if type(creature[zpos<=5]|myLibrary)~equalto~0 then name(Look 5 cards) reveal:5 optionone name(Put on bottom) target(*|reveal) bottomoflibrary and!( draw:1 controller )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend 
 text=Look at the top five cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. If you didn't put a card into your hand this way, draw a card.
 mana={1}{G}
 type=Sorcery
 [/card]
 [card]
 name=Adventurous Impulse
-auto=reveal:3 optionone name(Get Cards) target(<upto:1>*[creature;land]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
+auto=activate transforms((,newability[target(*[creature;land;zpos<=3]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=2]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+auto=name(Look top 3 cards) reveal:3 optionone name(Get creature or land) target(<upto:1>*[creature;land]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
 text=Look at the top three cards of your library. You may reveal a creature or land card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
 mana={G}
 type=Sorcery
@@ -625,7 +629,7 @@ toughness=2
 [card]
 name=Agonizing Remorse
 aicode=activate moveto(exile) notatarget(*[-land]|opponenthand,opponentGraveyard)
-auto=choice name(reveal from hand) reveal:type:*:opponenthand revealzone(opponenthand) optionone name(choose to exile) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(exile)])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend && life:-1 controller
+auto=choice name(reveal from hand) reveal:type:*:opponenthand revealzone(opponenthand) optionone name(choose to exile) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(exile)])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )! optiontwoend revealend && life:-1 controller
 auto=choice name(reveal from graveyard) moveto(exile) target(*[-land]|opponentGraveyard) && life:-1 controller
 text=Target opponent reveals their hand. You choose a nonland card from it or a card from their graveyard. Exile that card. You lose 1 life.
 mana={1}{B}
@@ -674,7 +678,8 @@ toughness=2
 [/card]
 [card]
 name=Aid from the Cowl
-auto=@each my endofturn:if revolt then reveal:1 optionone if type(*[-instant;-sorcery]|reveal)~morethan~0 then may moveto(mybattlefield) optiononeend optiontwo name(Put Back On Bottom) target(<1>*|reveal) may bottomoflibrary optiontwoend revealend
+aicode=activate transforms((,newability[may name(Put on battlefield) target(*[-instant;-sorcery;zpos<=1]|mylibrary) moveto(myBattlefield)])) oneshot
+auto=@each my endofturn:if revolt then name(Look top card) name(Look top card) reveal:1 optionone target(*[-instant;-sorcery]|reveal) transforms((,newability[choice name(Put on battlefield) moveto(mybattlefield)],newability[choice name(Put on bottom) bottomoflibrary],newability[choice name(Put back) moveto(mylibrary)])) oneshot optiononeend optiontwo name(Put Back On Bottom) target(*|reveal) transforms((,newability[choice name(Put back) moveto(mylibrary)],newability[choice name(Put on bottom) bottomoflibrary])) oneshot optiontwoend revealend
 text=Revolt — At the beginning of your end step, if a permanent you controlled left the battlefield this turn, reveal the top card of your library. If it's a permanent card, you may put it onto the battlefield. Otherwise, you may put it on the bottom of your library.
 mana={3}{G}{G}
 type=Enchantment
@@ -711,8 +716,8 @@ toughness=3
 name=Ajani's Influence
 target=creature
 auto=counter(1/1,2)
-aicode=activate target(*[white;zpos<=5]|mylibrary) moveto(myhand)
-auto=name(Get white card) Reveal:5 revealzone(mylibrary) optionone name(choose white card) target(<1>*[white]|reveal) moveto(myhand) optiononeend optiontwo name(Put bottomoflibrary) target(<1>*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
+aicode=activate transforms((,newability[target(*[white;zpos<=5]|mylibrary) moveto(myhand) and!( all(*[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+auto=name(Look top 5 cards) reveal:5 revealzone(mylibrary) optionone name(Get white card) target(<upto:1>*[white]|reveal) moveto(myhand) optiononeend optiontwo name(Put bottomoflibrary) target(<1>*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text=Put two +1/+1 counters on target creature. -- Look at the top five cards of your library. You may reveal a white card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={2}{W}{W}
 type=Sorcery
@@ -866,6 +871,7 @@ toughness=1
 [/card]
 [card]
 name=Aladdin's Lamp
+aicode=activate transforms((,newability[target(*[zpos<=fullpaid]|mylibrary) moveto(myhand) and!( all(*[zpos<=fullpaidminus1minusend]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={1}{T}:name(X=1) name(X=1) donothing
 auto={2}{T}:name(X=2) name(X=2) transforms((,newability[replacedraw reveal:2 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=1]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
 auto={3}{T}:name(X=3) name(X=3) transforms((,newability[replacedraw reveal:3 optionone name(Choose a card) target(*|reveal) moveto(myhand) and!( all(*[zpos<=2]|mylibrary) moveto(myhand) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend])) ueot
@@ -1058,8 +1064,12 @@ toughness=3
 [/card]
 [card]
 name=Alpine Houndmaster
-aicode=activate target(Alpine Watchdog|mylibrary) moveto(myhand) && target(Igneous Cur|mylibrary) moveto(myhand)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<upto:2>*[Alpine Watchdog;Igneous Cur]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<2>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=if type(Alpine Watchdog|mylibrary)~morethan~0 then if type(Igneous Cur|mylibrary)~morethan~0 then choice name(Search Alpine and Igneous) name(Search Alpine and Igneous) name(Search Alpine and Igneous) target(Alpine Watchdog|mylibrary) moveto(myhand) and!( transforms((,newability[name(Search Igneous Cur) target(Igneous Cur|mylibrary) moveto(myhand) and!( shuffle )! ])) oneshot )!
+auto=if type(Alpine Watchdog|mylibrary)~morethan~0 then if type(Igneous Cur|mylibrary)~morethan~0 then choice name(Search Alpine Watchdog) name(Search Alpine Watchdog) name(Search Alpine Watchdog) target(Alpine Watchdog|mylibrary) moveto(myhand) and!( shuffle )!
+auto=if type(Alpine Watchdog|mylibrary)~morethan~0 then if type(Igneous Cur|mylibrary)~morethan~0 then choice name(Search Igneous Cur) name(Search Igneous Cur) name(Search Igneous Cur) target(Igneous Cur|mylibrary) moveto(myhand) and!( shuffle )!
+auto=if type(Alpine Watchdog|mylibrary)~morethan~0 then if type(Igneous Cur|mylibrary)~equalto~0 then choice name(Search Alpine Watchdog) name(Search Alpine Watchdog) name(Search Alpine Watchdog) target(Alpine Watchdog|mylibrary) moveto(myhand) and!( shuffle )!
+auto=if type(Alpine Watchdog|mylibrary)~equalto~0 then if type(Igneous Cur|mylibrary)~morethan~0 then choice name(Search Igneous Cur) may name(Search Igneous Cur) target(Igneous Cur|mylibrary) moveto(myhand) and!( shuffle )!
+auto=choice name(Don's search library) name(Don's search library) donothing
 auto=@combat(attacking) source(this):type:creature[attacking]:myBattlefield/0 ueot
 text=When Alpine Houndmaster enters the battlefield, you may search your library for a card named Alpine Watchdog and/or a card named Igneous Cur, reveal them, put them into your hand, then shuffle your library. -- Whenever Alpine Houndmaster attacks, it gets +X/+0 until end of turn, where X is the number of other attacking creatures.
 mana={R}{W}
@@ -1111,7 +1121,7 @@ autostack=if paid(alternative) then name(Hakka, Whispering Raven) name(Hakka, Wh
 auto=this(variable{isflipped}<1) foreach(*[foretold]|myexile) 1/1
 auto=this(variable{isflipped}<1) foreach(*|myhand) 1/1
 auto=@each my endofturn restriction{compare(isflipped)~equalto~0}:transforms((,newability[choice name(Creature) reveal:2 optionone name(Get Creature) target(<2>Creature|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Artifact) reveal:2 optionone name(Get Artifact) target(<2>artifact|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Enchantment) reveal:2 optionone name(Get Enchantment) target(<2>enchantment|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Instant) reveal:2 optionone name(Get Instant) target(<2>instant|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) name(Bottom of library) bottomoflibrary optiontwoend revealend],newability[choice name(Land) reveal:2 optionone name(Get Land) target(<2>land|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Planeswalker) reveal:2 optionone name(Get Planeswalker) target(<2>planeswalker|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Sorcery) reveal:2 optionone name(Get Sorcery) target(<2>sorcery|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Tribal) reveal:2 optionone name(Get Tribal) target(<2>tribal|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend])) oneshot
-aicode=@each my endofturn restriction{compare(isflipped)~equalto~0}:ability$!name(Choose one) choice name(Creature) all(*[creature;zpos<=2]|mylibrary) moveto(myhand) && all(*[-creature;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Artifact) all(*[artifact;zpos<=2]|mylibrary) moveto(myhand) && all(*[-artifact;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Enchantment) all(*[enchantment;zpos<=2]|mylibrary) moveto(myhand) && all(*[-enchantment;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Instant) all(*[instant;zpos<=2]|mylibrary) moveto(myhand) && all(*[-instant;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Land) all(*[land;zpos<=2]|mylibrary) moveto(myhand) && all(*[-land;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Planeswalker) all(*[planeswalker;zpos<=2]|mylibrary) moveto(myhand) && all(*[-planeswalker;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Sorcery) all(*[sorcery;zpos<=2]|mylibrary) moveto(myhand) && all(*[-sorcery;zpos<=2]|mylibrary) bottomoflibrary _ choice name(Tribal) all(*[tribal;zpos<=2]|mylibrary) moveto(myhand) && all(*[-tribal;zpos<=2]|mylibrary) bottomoflibrary!$ controller
+aicode=activate transforms((,newability[all(*[creature;zpos<=2]|mylibrary) moveto(myhand)],newability[all(*[-creature;zpos<=2]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot
 text=Alrund gets +1/+1 for each card in your hand and each foretold card you own in exile. -- At the beginning of your end step, choose a card type, then reveal the top two cards of your library. Put all cards of the chosen type into your hand and the rest on the bottom of your library in any order.
 mana={3}{U}{U}
 type=Legendary Creature
@@ -1182,6 +1192,7 @@ toughness=6
 [card]
 name=Amareth, the Lustrous
 abilities=flying
+aicode=activate transforms((,newability[may name(Put in hand) target(*[zpos<=1;share!types!]|mylibrary) moveto(myhand)])) oneshot
 auto=@movedTo(planeswalker|myBattlefield):all(trigger[to]) transforms((,newability[reveal:1 optionone name(May put in hand) target(<upto:1>planeswalker|reveal) moveto(myhand) optiononeend optiontwo name(Put back in library) target(*|reveal) moveto(mylibrary) optiontwoend revealend])) oneshot
 auto=@movedTo(creature|myBattlefield):all(trigger[to]) transforms((,newability[reveal:1 optionone name(May put in hand) target(<upto:1>creature|reveal) moveto(myhand) optiononeend optiontwo name(Put back in library) target(*|reveal) moveto(mylibrary) optiontwoend revealend])) oneshot
 auto=@movedTo(land[-creature]|myBattlefield):all(trigger[to]) transforms((,newability[reveal:1 optionone name(May put in hand) target(<upto:1>land|reveal) moveto(myhand) optiononeend optiontwo name(Put back in library) target(*|reveal) moveto(mylibrary) optiontwoend revealend])) oneshot
@@ -1251,6 +1262,7 @@ toughness=3
 [/card]
 [card]
 name=Amplifire
+aicode=activate transforms((,newability[target(*[zpos=findfirsttypecreature]|mylibrary) transforms((,newability[all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!],newability[thisforeach(variable{power}) all(Amplifire[counter{0/0.1.Effect}]|mybattlefield) 2/2 uynt],newability[all(Amplifire[counter{0/0.1.Effect}]|mybattlefield) -1/-1 uynt],newability[all(Amplifire[counter{0/0.1.Effect}]|mybattlefield) counter(0/0.-1.Effect)])) forever])) oneshot
 auto=@each my upkeep:counter(0/0,1,Effect) && name(Reveal cards) Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Choose creature) target(creature|reveal) transforms((,newability[thisforeach(variable{power}) all(Amplifire[counter{0/0.1.Effect}]|mybattlefield) 2/2 uynt],newability[all(Amplifire[counter{0/0.1.Effect}]|mybattlefield) -1/-1 uynt])) forever optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend afterrevealed all(Amplifire[counter{0/0.1.Effect}]|mybattlefield) counter(0/0,-1,Effect) afterrevealedend revealend
 text=At the beginning of your upkeep, reveal cards from the top of your library until you reveal a creature card. Until your next turn, Amplifire's base power becomes twice that card's power and its base toughness becomes twice that card's toughness. Put the revealed cards on the bottom of your library in a random order.
 mana={2}{R}{R}
@@ -1337,9 +1349,9 @@ toughness=9
 [/card]
 [card]
 name=Ancient Excavation
-auto=foreach(*|myHand) draw:1 && reject:1
-aicode=activate target(land[basic]|mylibrary) moveto(myhand)
-autohand={1}{B}{cycle}:name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>land[basic]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=count(type:*:myhand) && draw:countedamount && transforms((,newability[reject target(<countedamount>*|myhand)])) oneshot
+autohand={1}{B}{cycle}:restriction{type(land[basic]|mylibrary)~morethan~0} name(Search basic land) target(land[basic]|mylibrary) moveto(myhand) and!( shuffle )!
+autohand={1}{B}{cycle}:restriction{type(land[basic]|mylibrary)~equalto~0} name(Search library) target(*|mylibrary) moveto(myreveal) and!( moveto(mylibrary) and!( shuffle )! )!
 text=Draw cards equal to the number of cards in your hand, then discard a card for each card drawn this way. -- Basic landcycling {2} ({2}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library.)
 mana={2}{U}{B}
 type=Instant
@@ -1942,8 +1954,7 @@ subtype=Aura
 [card]
 name=Arachnus Spinner
 abilities=reach
-aicode=activate moveTo(myBattlefield) target(Arachnus Web|myLibrary)
-auto={T(spider|myBattlefield)}:name(search card) reveal:plibrarycount optionone name(choose card) target(Arachnus Web|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(activate castcard(putinplay))! afterrevealedend revealend
+auto={T(spider|myBattlefield)}:name(Search Arachnus Web) target(Arachnus Web|myLibrary,mygraveyard) transforms((,newability[name(Attach to creature) activate castcard(normal)])) oneshot
 text=Reach (This creature can block creatures with flying.) -- Tap an untapped Spider you control: Search your graveyard and/or library for a card named Arachnus Web and put it onto the battlefield attached to target creature. If you search your library this way, shuffle it.
 mana={5}{G}
 type=Creature
@@ -1958,7 +1969,7 @@ auto=cantattack
 auto=cantpwattack
 auto=cantblock
 auto=noactivatedability
-auto=@each endofturn restriction{compare(power)~morethan~4}:destroy(Arachnus Web)
+auto=@each endofturn restriction{compare(power)~morethan~3}:destroy target(Arachnus Web|myBattlefield)
 text=Enchant creature -- Enchanted creature can’t attack or block, and its activated abilities can’t be activated. -- At the beginning of the end step, if enchanted creature’s power is 4 or greater, destroy Arachnus Web.
 mana={2}{G}
 type=Enchantment
@@ -2097,7 +2108,8 @@ type=Artifact
 [card]
 name=Arcanist's Owl
 abilities=flying
-auto=name(look) reveal:4 optionone name(Get an artifact card) target(<1>*[artifact;enchantment]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
+aicode=activate transforms((,newability[may name(Get artifact or enchantment) target(*[artifact;enchantment;zpos<=4]|mylibrary) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+auto=name(Look top 4 cards) reveal:4 optionone name(Get artifact or enchantment) target(<upto:1>*[artifact;enchantment]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text=Flying -- When Arcanist's Owl enters the battlefield, look at the top four cards of your library. You may reveal an artifact or enchantment card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={WU}{WU}{WU}{WU}
 type=Artifact Creature
@@ -2513,7 +2525,8 @@ toughness=2
 [card]
 name=Armored Skyhunter
 abilities=flying
-auto=@combat(attacking) source(this):may name(Look) reveal:6 optionone name(Get aura or equipment) target(*[aura;equipment]|reveal) moveto(mybattlefield) and!(rehook)! optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
+aicode=activate target(*[aura;equipment;zpos<=6]|mylibrary) moveto(myBattlefield) and!( transforms((,newability[if cantargetcard(*[equipment]|*) then name(Attach to creature) rehook target(creature|mybattlefield)],newability[all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot )!
+auto=@combat(attacking) source(this):name(Look top 6 cards) reveal:6 optionone name(Get aura or equipment) target(<upto:1>*[aura;equipment]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[choice name(Put in play) moveto(myBattlefield)],newability[if cantargetcard(*[equipment]|*) then choice name(Put in play and attach) name(Put in play and attach) moveto(myBattlefield) and!( transforms((,newability[name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot )!])) oneshot afterrevealedend revealend
 text=Flying -- Whenever Armored Skyhunter attacks, look at the top six cards of your library. You may put an Aura or Equipment card from among them onto the battlefield. If an Equipment is put onto the battlefield this way, you may attach it to a creature you control. Put the rest of those cards on the bottom of your library in a random order.
 mana={3}{W}
 type=Creature
@@ -2887,8 +2900,9 @@ toughness=7
 [/card]
 [card]
 name=Atla Palani, Nest Tender
+aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myBattlefield) and!( all(*[zpos<=findfirsttypecreatureminus1minusend]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={2}{T}:token(Egg,Creature Egg,0/1,green,defender)
-auto=@movedTo(creature[egg]|graveyard) from(mybattlefield):Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal)  moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=@movedTo(egg|graveyard) from(mybattlefield):Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal) moveto(myhand) optiononeend optiontwo choice name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text={2}, {T}: Create a 0/1 green Egg creature token with defender. -- Whenever an Egg you control dies, reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield and the rest on the bottom of your library in a random order.
 mana={1}{R}{G}{W}
 type=Legendary Creature
@@ -3079,7 +3093,8 @@ auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
 auto={9999}:equip
 other={5}{G} name(Mutate)
-auto=transforms((,newability[@mutated(this):thisforeach(mutations) ability$!name(Reveal) reveal:1 optionone name(Exile top card) target(<1>*[sorcery;instant]|myreveal) moveto(myexile) optiononeend optiontwo name(Play exiled card) target(<1>*[-sorcery;-instant]|myreveal) activate castcard(normal) optiontwoend revealend!$ controller]))
+aicode=activate transforms((,newability[target(*[zpos=findfirsttypepermanent]|mylibrary) moveto(myexile) and!( moveto(myBattlefield) and!( all(*[zpos<=findfirsttypepermanentminus1minusend]|mylibrary) moveto(myexile) )! )!])) oneshot
+auto=transforms((,newability[@mutated(this):thisforeach(mutations) ability$!name(Reveal) reveal:1 revealuntil(*[-instant;-sorcery]|mylibrary) optionone name(Exile permanent and play) target(*[-sorcery;-instant]|myreveal) moveto(myexile) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Exile all non permanents) target(*[sorcery;instant]|myreveal) moveto(myexile) and!( all(*[sorcery;instant]|myreveal) moveto(myexile) )! optiontwoend afterrevealed all(tobecast|myexile) moveTo(myBattlefield) afterrevealedend revealend!$ controller]))
 auto=ifnot paid(alternative) then transforms((,newability[becomes(,,green)])) forever all(this)
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) && mutateover target(other creature[-human]|mybattlefield) && transforms((,newability[becomes(,,green)])) forever
 auto=if paid(alternative) then name(Mutate Under) this(mutations<1) name(Mutate Under) choice name(Mutate Under)&& mutateunder target(other creature[-human]|mybattlefield) 
@@ -3433,7 +3448,7 @@ toughness=2
 [card]
 name=Azcanta, the Sunken Ruin
 auto={T}:Add{U}
-aicode={2}{U}{T}:activate target(*[-land;-human;zpos<=4]|mylibrary) moveto(myhand)
+aicode=activate transforms((,newability[target(*[-land;-creature;zpos<=4]|mylibrary) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={2}{U}{T}:name(Look top 4 cards) reveal:4 optionone name(Get a card) target(<upto:1>*[-land;-creature]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 text=(Transforms from Search for Azcanta.) -- {T}: Add {U} to your mana pool. -- {2}{U}, {T}: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
 type=Legendary Land
@@ -31377,6 +31392,16 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Luminous Guardian
+auto={W}:0/1 ueot
+text={W}: Luminous Guardian gets +0/+1 until end of turn. -- {2}: Luminous Guardian can block an additional creature this turn.
+mana={3}{W}
+type=Creature
+subtype=Human Nomad
+power=1
+toughness=4
+[/card]
+[card]
 name=Lurching Rotbeast
 abilities=cycling
 autohand=__CYCLING__({B})
@@ -31416,6 +31441,16 @@ mana={3}{B}
 type=Creature
 subtype=Human Assassin
 power=4
+toughness=2
+[/card]
+[card]
+name=Lurrus of the Dream-Den
+auto=@each my upkeep:may name(Choose a permanent in graveyard) target(*[-instant;-sorcery]|mygraveyard) transforms((,newability[canplayfromgraveyard],newability[{2}:name(Cast from graveyard for 2) activate castcard(alternative)])) ueot
+text=Companion — Each permanent card in your starting deck has converted mana cost 2 or less. (If this card is your chosen companion, you may cast it once from outside the game.) -- Lifelink -- During each of your turns, you may cast one permanent spell with converted mana cost 2 or less from your graveyard.
+mana={1}{WB}{WB}
+type=Legendary Creature
+subtype=Cat Nightmare
+power=3
 toughness=2
 [/card]
 [card]
@@ -31633,6 +31668,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Magus of the Scroll
+auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Reveal a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(Deals 2 damages) name(Deals 2 damages) damage:2 target(player,creature)!$ controller
+text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Magus of the Scroll deals 2 damage to target creature or player.
+mana={R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Maja, Bretagard Protector
 auto=lord(other creature|mybattlefield) 1/1
 auto=_LANDFALL_token(Warrior,Creature Human Warrior,1/1,white)
@@ -31807,6 +31852,17 @@ auto=if morbid then destroy target(creature[-black])
 text=Morbid — When you cast Malicious Affliction, if a creature died this turn, you may copy Malicious Affliction and may choose a new target for the copy. -- Destroy target nonblack creature.
 mana={B}{B}
 type=Instant
+[/card]
+[card]
+name=Malignus
+#MISSING: Damage can't be prevented
+anyzone=halfupopponentlifetotal/halfupopponentlifetotal cdaactive
+text=Malignus's power and toughness are each equal to half the highest life total among your opponents, rounded up. -- Damage that would be dealt by Malignus can't be prevented.
+mana={3}{R}{R}
+type=Creature
+subtype=Elemental Spirit
+power=*
+toughness=*
 [/card]
 [card]
 name=Mammoth Growth
@@ -45078,8 +45134,7 @@ toughness=1
 [/card]
 [card]
 name=Seasoned Pyromancer
-#auto=draw:2 &&2ability$! reject notatarget(<2>*|myhand) and!( if cantargetcard(*[-land]|*) then token(Elemental,creature Elemental,1/1,red) all(abilitycontroller) oneshot )! !$ targetedplayer
-auto=ability$! reject notatarget(<2>*|myhand) reject and!(draw:1)!!$ controller
+auto=ability$!name(Discard and draw) name(Discard and draw) target(<2>*|myhand) reject and!( transforms((,newability[draw:1 controller],newability[if cantargetcard(*[-land]|*) then token(Elemental^Creature Elemental^1/1^red)])) oneshot )! !$ controller
 autograveyard={3}{R}{R}{E}:token(Elemental,creature Elemental,1/1,red)*2
 text=When Seasoned Pyromancer enters the battlefield, discard two cards, then draw two cards. For each nonland card discarded this way, create a 1/1 red Elemental creature token. -- {3}{R}{R}, Exile Seasoned Pyromancer from your graveyard: Create two 1/1 red Elemental creature tokens.
 mana={1}{R}{R}
