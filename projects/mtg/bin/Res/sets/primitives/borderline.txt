@@ -5078,7 +5078,7 @@ type=Instant
 [card]
 name=Blessed Reincarnation
 target=creature|opponentbattlefield
-auto=moveto(exile) and!( transforms((,newability[Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone all(creature|reveal) moveto(mybattlefield) optiononeend optiontwo all(*|myreveal) bottomoflibrary optiontwoend revealend])) oneshot )!
+auto=moveto(exile) && ability$!name(Put first creature in play) name(Put first creature in play) target(*[zpos=findfirsttypecreature]|mylibrary) moveto(myBattlefield) and!( shuffle controller )! !$ opponent
 auto=if rebound then ability$!moveto(exile) all(Blessed Reincarnation|mystack)!$ controller
 autoexile=@rebounded:may activate castcard(normal)
 text=Exile target creature an opponent controls. That player reveals cards from the top of his or her library until a creature card is revealed. The player puts that card onto the battlefield, then shuffles the rest into his or her library. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
@@ -28938,12 +28938,12 @@ toughness=6
 [/card]
 [card]
 name=Kolaghan's Command
-auto=choice name(Choose 1 and 2) moveto(myhand) target(creature|mygraveyard) && ability$!notatarget(*|myhand) reject!$ opponent
-auto=choice name(Choose 1 and 3) moveto(myhand) target(creature|mygraveyard) && destroy target(artifact) 
-auto=choice name(Choose 1 and 4) moveto(myhand) target(creature|mygraveyard) && damage:2 opponent
-auto=choice name(Choose 2 and 3) ability$!notatarget(*|myhand) reject!$ opponent && destroy target(artifact)
-auto=choice name(Choose 2 and 4) ability$!notatarget(*|myhand) reject!$ opponent && damage:2 target(creature,player)
-auto=choice name(Choose 3 and 4) destroy target(artifact) && damage:2 opponent
+auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature and discard card) name(Return creature and discard card) moveto(myhand) target(creature|mygraveyard) && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent
+auto=if type(creature|mygraveyard)~morethan~0 then if type(artifact|battlefield)~morethan~0 then choice name(Return creature and destroy artifact) name(Return creature and destroy artifact) name(Return creature and destroy artifact) moveto(myhand) target(creature|mygraveyard) && ability$!name(Destroy artifact) name(Destroy artifact) destroy target(artifact)!$ controller 
+auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature and deals damage) name(Return creature and deals damage) moveto(myhand) target(creature|mygraveyard) && ability$!name(Deals 2 damage) name(Deals 2 damage) damage:2 target(creature,player)!$ controller
+auto=if type(artifact|battlefield)~morethan~0 then choice name(Discard card and destroy artifact) name(Discard card and destroy artifact) ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent && destroy target(artifact)
+auto=choice name(Discard card and deals damage) ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent && damage:2 target(creature,player)
+auto=if type(artifact|battlefield)~morethan~0 then choice name(Destroy artifact and deals damage) name(Destroy artifact and deals damage) destroy target(artifact) && ability$!name(Deals 2 damage) name(Deals 2 damage) damage:2 target(creature,player)!$ controller
 text=Choose two — -- • Return target creature card from your graveyard to your hand. -- • Target player discards a card. -- • Destroy target artifact. -- • Kolaghan's Command deals 2 damage to target creature or player.
 mana={1}{B}{R}
 type=Instant
