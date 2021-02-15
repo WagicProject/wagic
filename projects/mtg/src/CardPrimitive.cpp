@@ -51,6 +51,10 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     //increasedCost.copy(source->getIncreasedManaCost());
     if(source->getManaCost()->getAlternative())
         manaCost.getAlternative()->alternativeName = source->getManaCost()->getAlternative()->alternativeName;
+    if(source->getManaCost()->getKicker())
+        manaCost.getKicker()->alternativeName = source->getManaCost()->getKicker()->alternativeName;
+    if(source->getManaCost()->getRetrace())
+        manaCost.getRetrace()->alternativeName = source->getManaCost()->getRetrace()->alternativeName;
 
     text = source->text;
     formattedText = source->formattedText;
