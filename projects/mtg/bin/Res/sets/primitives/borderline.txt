@@ -965,10 +965,10 @@ toughness=3
 [card]
 name=Alive // Well
 other={W} name(Well)
-kicker={W}
-auto=if paid (alternative) then life:twicetype:creature:mybattlefield
+kicker={W} name(Fuse)
+auto=if paid(alternative) then life:twicetype:creature:mybattlefield
 auto=ifnot paid(alternative) then token(Centaur,Creature Centaur,3/3,green)
-auto=kicker ifnot paid(alternative) then life:twicetype:creature:mybattlefield
+auto=if paid(kicker) then ability$!name(Gain life) name(Gain life) life:twicetype:creature:mybattlefield!$ controller
 text=Put a 3/3 green Centaur creature token onto the battlefield. //  You gain 2 life for each creature you control. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={3}{G}
 type=Sorcery
@@ -2495,10 +2495,10 @@ toughness=2
 name=Armed // Dangerous
 target=creature
 other={3}{G} name(Dangerous)
-kicker={3}{G}
-auto=if paid (alternative) then lure ueot
-auto=ifnot paid(alternative) then 1/1 ueot && first strike ueot
-auto=kicker ifnot paid(alternative) then lure ueot
+kicker={3}{G} name(Fuse)
+auto=if paid(alternative) then transforms((,newability[lure])) ueot
+auto=ifnot paid(alternative) then transforms((,newability[1/1],newability[double strike])) ueot
+auto=if paid(kicker) then ability$!name(Creature blocked by all) name(Creature blocked by all) target(creature|battlefield) transforms((,newability[lure])) ueot!$ controller
 text=Target creature gets +1/+1 and gains double strike until end of turn. // All creatures able to block target creature this turn do so. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{R}
 type=Sorcery
@@ -2805,7 +2805,7 @@ type=Instant
 [card]
 name=Assault // Battery
 other={3}{G} name(Battery)
-auto=if paid (alternative) then token(Elephant,creature elephant, 3/3,green)
+auto=if paid(alternative) then token(Elephant,Creature Elephant,3/3,green)
 auto=ifnot paid(alternative) then damage:2 target(creature,player)
 text=Assault deals 2 damage to target creature or player. // Put a 3/3 green Elephant creature token onto the battlefield.
 mana={R}
@@ -4357,10 +4357,10 @@ toughness=1
 [card]
 name=Beck // Call
 other={4}{W}{U} name(Call)
-kicker={4}{W}{U}
-auto=if paid (alternative) then create(Bird:Creature Bird:1/1:white:flying)*4
-auto=ifnot paid(alternative) then may draw:1
-auto=kicker ifnot paid(alternative) then create(Bird:Creature Bird:1/1:white:flying)*4
+kicker={4}{W}{U} name(Fuse)
+auto=if paid(alternative) then token(Bird,Creature Bird,1/1,white,flying)*4
+auto=if paid(kicker) then ability$!name(Create 4 birds) name(Create 4 birds) token(Bird,Creature Bird,1/1,white,flying)*4!$ controller
+auto=ifnot paid(alternative) then emblem transforms((,newability[@movedto(creature|battlefield):may name(Draw 1 card) draw:1 controller])) ueot
 text=Whenever a creature enters the battlefield this turn, you may draw a card. // Put four 1/1 white Bird creature tokens with flying onto the battlefield. --  -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={G}{U}
 type=Sorcery
@@ -6420,11 +6420,13 @@ toughness=3
 [/card]
 [card]
 name=Breaking // Entering
-auto=choice {U}{B}:deplete:8 target(player)
-auto=choice {4}{B}{R}:target(creature|graveyard) moveTo(mybattlefield) && transforms((,newability,haste)) ueot
-auto=choice {U}{B}{4}{B}{R}:deplete:8 target(player) then target(creature|graveyard) moveTo(mybattlefield) && transforms((,newability,haste)) ueot
+other={4}{B}{R} name(Entering)
+kicker={4}{B}{R} name(Fuse)
+auto=if paid(alternative) then ability$!name(Put in play) name(Put in play) target(creature|graveyard) moveTo(mybattlefield) and!( transforms((,newability[haste])) ueot )! !$ controller
+auto=ifnot paid(alternative) then ability$!name(Choose one) choice name(Opponent mills 8 cards) deplete:8 opponent _ choice name(You mill 8 cards) deplete:8 controller !$ controller
+auto=if paid(kicker) then ability$!name(Put in play) name(Put in play) target(creature|graveyard) moveTo(mybattlefield) and!( transforms((,newability[haste])) ueot )! !$ controller
 text=Target player puts the top eight cards of their library into their graveyard. -- Put a creature card from a graveyard onto the battlefield under your control. It gains haste until end of turn. -- Fuse (You may cast one or both halves of this card from your hand.)
-mana={0}
+mana={U}{B}
 type=Sorcery
 [/card]
 [card]
@@ -7730,7 +7732,7 @@ toughness=2
 [card]
 name=Catch // Release
 other={4}{R}{W} name(Release)
-kicker={4}{R}{W}
+kicker={4}{R}{W} name(Fuse)
 auto=if paid(alternative) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ controller
 auto=if paid(alternative) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ controller
 auto=if paid(alternative) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ controller
@@ -7741,18 +7743,18 @@ auto=if paid(alternative) then ability$!name(Sacrifice creature) name(Sacrifice 
 auto=if paid(alternative) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ opponent
 auto=if paid(alternative) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
 auto=if paid(alternative) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ opponent
-auto=ifnot paid(alternative) then target(*|battlefield) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ controller
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ controller
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ controller
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ controller
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ controller
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ opponent
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ opponent
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
-auto=kicker ifnot paid(alternative) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ opponent
-text=kicker Gain control of target permanent until end of turn. Untap it. It gains haste until end of turn. // Each player sacrifices an artifact, a creature, an enchantment, a land, and a planeswalker. --  -- Fuse (You may cast one or both halves of this card from your hand.)
+auto=ifnot paid(alternative) then target(*|battlefield) moveto(mybattlefield) and!( transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],newability[haste])) ueot )!
+auto=if paid(kicker) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ controller
+auto=if paid(kicker) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ controller
+auto=if paid(kicker) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ controller
+auto=if paid(kicker) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ controller
+auto=if paid(kicker) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ controller
+auto=if paid(kicker) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ opponent
+auto=if paid(kicker) then ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=if paid(kicker) then ability$!name(Sacrifice enchantment) name(Sacrifice enchantment) notatarget(enchantment|mybattlefield) sacrifice!$ opponent
+auto=if paid(kicker) then ability$!name(Sacrifice land) name(Sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
+auto=if paid(kicker) then ability$!name(Sacrifice planeswalker) name(Sacrifice planeswalker) notatarget(planeswalker|mybattlefield) sacrifice!$ opponent
+text=Gain control of target permanent until end of turn. Untap it. It gains haste until end of turn. // Each player sacrifices an artifact, a creature, an enchantment, a land, and a planeswalker. --  -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{U}{R}
 type=Sorcery
 [/card]
@@ -8088,9 +8090,9 @@ subtype=Saga
 [card]
 name=Chainweb Aracnir
 abilities=reach
-auto=if paid(alternative) then counter(1/1,3)
+retrace={3}{G}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
+auto=if paid(retrace) then counter(1/1,3)
 auto=target(creature[flying]|opponentBattlefield) name(Deals damage to a creature) dynamicability<!powerstrike!>
-autograveyard={3}{G}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{3}{G}{G},exile four) activate castcard(alternative)
 text=Reach -- When Chainweb Aracnir enters the battlefield, it deals damage equal to its power to target creature with flying an opponent controls. -- Escape—{3}{G}{G}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Chainweb Aracnir escapes with three +1/+1 counters on it.
 mana={G}
 type=Creature
@@ -9291,9 +9293,9 @@ toughness=2
 [/card]
 [card]
 name=Cling to Dust
-auto=choice name(exile non-creature card) moveTo(exile) target(*[-creature]|Graveyard) && draw:1 controller
-auto=choice name(exile creature card) moveTo(exile) target(creature|Graveyard) && life:3 controller
-autograveyard={3}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{3}{B},exile five) activate castcard(normal)
+auto=if type(*[-creature]|graveyard)~morethan~0 then choice name(exile non-creature card) name(exile non-creature card) moveTo(exile) target(*[-creature]|graveyard) && draw:1 controller
+auto=if type(*[creature]|graveyard)~morethan~0 then choice name(exile creature card) name(exile creature card) moveTo(exile) target(creature|graveyard) && life:3 controller
+retrace={3}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Exile target card from a graveyard. If it was a creature card, you gain 3 life. Otherwise, you draw a card. -- Escape—{3}{B}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={B}
 type=Instant
@@ -13740,10 +13742,11 @@ type=Instant
 [card]
 name=Down // Dirty
 other={2}{G} name(Dirty)
-kicker={2}{G}
-auto=if paid(alternative) then moveTo(myhand) target(*|mygraveyard)
-auto=ifnot paid(alternative) then target(player) ability$!name(discard) target(<2>*|myhand) reject!$ targetedplayer
-auto=kicker ifnot paid(alternative) then moveTo(myhand) target(*|mygraveyard)
+kicker={2}{G} name(Fuse)
+otherrestriction=type(*|mygraveyard)~morethan~0
+auto=if paid(alternative) then ability$!name(Return to hand) name(Return to hand) moveTo(myhand) target(*|mygraveyard)!$ controller
+auto=ifnot paid(alternative) then target(player) ability$!name(Discard 2 cards) name(Discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+auto=if paid(kicker) then ability$!name(Return to hand) name(Return to hand) moveTo(myhand) target(*|mygraveyard)!$ controller
 text=Target player discards two cards. // Return target card from your graveyard to your hand. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={3}{B}
 type=Sorcery
@@ -16049,7 +16052,7 @@ name=Escape Velocity
 target=creature
 auto=haste
 auto=1/0
-autograveyard={1}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{1}{R},exile two) activate castcard(normal)
+retrace={1}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Enchant creature -- Enchanted creature gets +1/+0 and has haste. -- Escape—{1}{R}, Exile two other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={R}
 type=Enchantment
@@ -17007,10 +17010,11 @@ toughness=3
 [card]
 name=Far // Away
 other={2}{B} name(Away)
-kicker={2}{B}
-auto=if paid(alternative) then target(player) ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
-auto=ifnot paid(alternative) then moveto(ownerhand) target(creature)
-auto=kicker ifnot paid(alternative) then target(player) ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
+kicker={2}{B} name(Fuse)
+restriction=type(creature|battlefield)~morethan~0
+auto=if paid(alternative) then target(player) ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
+auto=ifnot paid(alternative) then ability$!name(Return to hand) name(Return to hand) moveto(ownerhand) target(creature|battlefield)!$ controller
+auto=if paid(kicker) then target(player) ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
 text=Return target creature to its owner's hand. // Target player sacrifices a creature. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{U}
 type=Instant
@@ -18156,7 +18160,9 @@ toughness=1
 [/card]
 [card]
 name=Fist of Suns
-auto=lord(*|myrestrictedcastingzone) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay with 5 colors mana) name(Pay with 5 colors mana) activate castcard(normal)]))
+auto=lord(*|myrestrictedcastingzone) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay 5 colors and zerocast) name(Pay 5 colors and zerocast) zerocast]))
+auto=lord(*[canplayfromgraveyard]|mygraveyard) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay 5 colors and zerocast) name(Pay 5 colors and zerocast) zerocast]))
+auto=lord(*[canplayfromexile]|myexile) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay 5 colors and zerocast) name(Pay 5 colors and zerocast) zerocast]))
 text=You may pay {W}{U}{B}{R}{G} rather than pay the mana cost for spells that you cast.
 mana={3}
 type=Artifact
@@ -18373,14 +18379,14 @@ toughness=6
 [/card]
 [card]
 name=Flesh // Blood
-target=creature|mybattlefield
+target=creature
 other={R}{G} name(Blood)
-kicker={R}{G}
-auto=if paid(alternative) then transforms((,newability[target(player,creature|opponentbattlefield) dynamicability<!powerstrike!>])) forever
-auto=kicker ifnot paid(alternative) then transforms((,newability[target(player,creature|opponentbattlefield) dynamicability<!powerstrike!>])) forever
-auto=ifnot paid(alternative) then counter(1/1,storedpower) target(creature)
-text=Exile target creature card from a graveyard. Put X +1/+1 counters on target creature, where X is the power of the card you exiled. --  //  -- Target creature you control deals damage equal to its power to target creature or player. -- Fuse (You may cast one or both halves of this card from your hand.)
-mana={3}{B}{G}{E(*[creature]|graveyard)}
+kicker={R}{G} name(Fuse)
+auto=if paid(alternative) then transforms((,newability[name(Deal damage) damage:power target(player^creature)])) forever
+auto=if paid(kicker) then ability$!name(Creature deals damage) name(Creature deals damage) target(creature|myBattlefield) transforms((,newability[name(Deal damage) damage:power target(player^creature)])) forever!$ controller
+auto=ifnot paid(alternative) then counter(1/1,storedpower)
+text=Exile target creature card from a graveyard. Put X +1/+1 counters on target creature, where X is the power of the card you exiled. // Target creature you control deals damage equal to its power to target creature or player. -- Fuse (You may cast one or both halves of this card from your hand.)
+mana={3}{B}{G}{E(creature|graveyard)}
 type=Sorcery
 [/card]
 [card]
@@ -19179,7 +19185,7 @@ toughness=2
 name=Fruit of Tizerus
 target=player
 auto=life:-2
-autograveyard={3}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{3}{B},exile three) activate castcard(normal)
+retrace={3}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Target player loses 2 life. Escape—{3}{B}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={B}
 type=Instant
@@ -20452,10 +20458,11 @@ toughness=6
 name=Give // Take
 target=creature
 other={2}{U} name(Take)
-kicker={2}{U}
-auto=if paid (alternative) then foreach(counter{1/1.1}) draw:1 && removeallcounters(1/1)
+kicker={2}{U} name(Fuse)
+otherrestriction=type(creature|mybattlefield)~morethan~0
+auto=if paid(alternative) then transforms((,newability[thisforeach(counter{1/1}>0) draw:1 controller],newability[thisforeach(counter{1/1}>0) counter(1/1.-1)])) oneshot
 auto=ifnot paid(alternative) then counter(1/1,3)
-auto=kicker ifnot paid(alternative) then foreach(counter{1/1.1}) draw:1 && removeallcounters(1/1)
+auto=if paid(kicker) then ability$!name(Remove all 1/1 counters) name(Remove all 1/1 counters) target(creature|mybattlefield) transforms((,newability[thisforeach(counter{1/1}>0) draw:1 controller],newability[thisforeach(counter{1/1}>0) counter(1/1.-1)])) oneshot!$ controller
 text=Put three +1/+1 counters on target creature. //  Remove all +1/+1 counters from target creature you control. Draw that many cards. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={2}{G}
 type=Sorcery
@@ -20470,12 +20477,12 @@ type=Instant
 [/card]
 [card]
 name=Giver of Runes
-auto=choice name(protection from white) {T}:target(creature|myBattlefield) protection from white
-auto=choice name(protection from blue) {T}:target(creature|myBattlefield) protection from blue
-auto=choice name(protection from black) {T}:target(creature|myBattlefield) protection from black
-auto=choice name(protection from red) {T}:target(creature|myBattlefield) protection from red
-auto=choice name(protection from green) {T}:target(creature|myBattlefield) protection from green
-auto=choice name(protection from colorless) {T}:target(creature|myBattlefield) protection from colorless
+auto={T}:name(protection from white) target(creature|myBattlefield) protection from white
+auto={T}:name(protection from blue) target(creature|myBattlefield) protection from blue
+auto={T}:name(protection from black) target(creature|myBattlefield) protection from black
+auto={T}:name(protection from red) target(creature|myBattlefield) protection from red
+auto={T}:name(protection from green) target(creature|myBattlefield) protection from green
+auto={T}:name(protection from colorless)target(creature|myBattlefield) protection from colorless
 text={T}: Another target creature you control gains protection from colorless or from the color of your choice until end of turn.
 mana={W}
 type=Creature
@@ -20670,8 +20677,8 @@ toughness=3
 [/card]
 [card]
 name=Glimpse of Freedom
-auto=draw:1
-autograveyard={2}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{2}{U},exile five) activate castcard(normal)
+auto=draw:1 controller
+retrace={2}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Draw a card. -- Escape—{2}{U}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={1}{U}
 type=Instant
@@ -21625,9 +21632,8 @@ toughness=0
 [/card]
 [card]
 name=Golos, Tireless Pilgrim
-aicode=activate moveTo(myBattlefield) and!(tap(noevent))! target(<upto:1>*[land]|myLibrary)
-auto=name(search land) reveal:plibrarycount optionone name(choose card) target(<upto:1>*[land]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield) and!(tap(noevent))!)! afterrevealedend revealend
-auto={2}{W}{U}{B}{R}{G}:moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos<=3]|mylibrary) castcard(normal)
+auto=may name(Search land) target(land|myLibrary) moveTo(myBattlefield) and!( transforms((,newability[tap(noevent)],newability[shuffle])) oneshot )! 
+auto={2}{W}{U}{B}{R}{G}:name(Exile top 3 cards) all(*[zpos<=3]|mylibrary) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot )! 
 text=When Golos, Tireless Pilgrim enters the battlefield, you may search your library for a land card, put that card onto the battlefield tapped, then shuffle your library. -- {2}{W}{U}{B}{R}{G}: Exile the top three cards of your library. You may play them this turn without paying their mana costs.
 mana={5}
 type=Legendary Artifact Creature
@@ -22761,7 +22767,7 @@ type=Legendary Enchantment
 name=Hagi Mob
 abilities=boast
 auto={1}{R} restriction{didattack,compare(hascntbstreduce)~equalto~0}:doboast && target(player,creature,planeswalker) damage:1 limit:hasabilitytwoboastplus1plusend
-auto={R} restriction{didattack,compare(hascntbstreduce)~mortethan~0}:doboast && target(player,creature,planeswalker) damage:1 limit:hasabilitytwoboastplus1plusend
+auto={R} restriction{didattack,compare(hascntbstreduce)~morethan~0}:doboast && target(player,creature,planeswalker) damage:1 limit:hasabilitytwoboastplus1plusend
 text=Boast — {1}{R}: Hagi Mob deals 1 damage to any target. (Activate this ability only if this creature attacked this turn and only once each turn.)
 mana={4}{R}
 type=Creature
@@ -26902,7 +26908,7 @@ type=Instant
 [card]
 name=Izoni, Thousand-Eyed
 auto=foreach(creature|mygraveyard) create(insect:creature insect:1/1:black,green:)
-auto={B}{G}{S(othercreature|mybattlefield)}:life:1 && draw:1
+auto={B}{G}{S(other creature|mybattlefield)}:life:1 && draw:1
 text=Undergrowth — When Izoni, Thousand-Eyed enters the battlefield, create a 1/1 black and green Insect creature token for each creature card in your graveyard. -- {B}{G}, Sacrifice another creature: You gain 1 life and draw a card.
 mana={2}{B}{B}{G}{G}
 type=Legendary Creature
@@ -27276,7 +27282,9 @@ toughness=3
 [card]
 name=Jodah, Archmage Eternal
 abilities=flying
-auto=lord(*|myrestrictedcastingzone) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay with 5 colors mana) name(Pay with 5 colors mana) activate castcard(normal)]))
+auto=lord(*|myrestrictedcastingzone) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay 5 colors and zerocast) name(Pay 5 colors and zerocast) zerocast]))
+auto=lord(*[canplayfromgraveyard]|mygraveyard) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay 5 colors and zerocast) name(Pay 5 colors and zerocast) zerocast]))
+auto=lord(*[canplayfromexile]|myexile) transforms((,newability[{W}{U}{B}{R}{G}:name(Pay 5 colors and zerocast) name(Pay 5 colors and zerocast) zerocast]))
 text=Flying -- You may pay {W}{U}{B}{R}{G} rather than pay the mana cost for spells that you cast.
 mana={1}{U}{R}{W}
 type=Legendary Creature
@@ -29262,7 +29270,7 @@ toughness=3
 [/card]
 [card]
 name=Kroxa, Titan of Death's Hunger
-auto=ifnot paid(alternative) then sacrifice
+auto=ifnot paid(retrace) then sacrifice
 auto=if type(*|opponenthand)~equalto~0 then life:-3 opponent
 auto=if type(*[-land]|opponenthand)~morethan~0 then if type(land|opponenthand)~equalto~0 then ability$!name(Discard non-land card) name(Discard non-land card) reject notatarget(*[-land]|myhand)!$ opponent
 auto=if type(*[-land]|opponenthand)~equalto~0 then if type(land|opponenthand)~morethan~0 then ability$!name(Discard land card) name(Discard land card) reject notatarget(land|myhand) and!(life:-3)! !$ opponent
@@ -29271,7 +29279,7 @@ auto=@combat(attacking) source(this) restriction{type(*|opponenthand)~equalto~0}
 auto=@combat(attacking) source(this) restriction{type(*[-land]|opponenthand)~morethan~0,type(land|opponenthand)~equalto~0}:ability$!name(Discard non-land) card name(Discard non-land card) reject notatarget(*[-land]|myhand)!$ opponent
 auto=@combat(attacking) source(this) restriction{type(*[-land]|opponenthand)~equalto~0,type(land|opponenthand)~morethan~0}:ability$!name(Discard land card) name(Discard land card) reject notatarget(land|myhand) and!(life:-3)! $ opponent
 auto=@combat(attacking) source(this) restriction{type(*[-land]|opponenthand)~morethan~0,type(land|opponenthand)~morethan~0}:ability$!name(Choose one) choice name(Discard non-land card) reject notatarget(*[-land]|myhand) _ choice name(Discard land card) reject notatarget(land|myhand) and!(life:-3)! !$ opponent
-autograveyard={G}{G}{U}{U}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}:name(Escape-{B}{B}{R}{R},exile five) activate castcard(alternative)
+retrace={B}{B}{R}{R}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)} name(Escape)
 text=When Kroxa enters the battlefield, sacrifice it unless it escaped. -- Whenever Kroxa enters the battlefield or attacks, each opponent discards a card, then each opponent who didn't discard a nonland card this way loses 3 life. -- Escape — {B}{B}{R}{R}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={B}{R}
 type=Legendary Creature
@@ -30950,8 +30958,8 @@ toughness=3
 [/card]
 [card]
 name=Loathsome Chimera
-auto=if paid(alternative) then counter(1/1,1)
-autograveyard={4}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{4}{G},three) activate castcard(alternative)
+auto=if paid(retrace) then counter(1/1,1)
+retrace={4}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Escape—{4}{G}, exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Loathsome Chimera escapes with a +1/+1 counter on it.
 mana={2}{G}
 type=Creature
@@ -33567,7 +33575,7 @@ text=Destroy all creatures target player controls. For each creature that died t
 name=Mogis's Favor
 target=creature
 auto=2/-1
-autograveyard={2}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{2}{B},exile two) activate castcard(normal)
+retrace={2}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Enchant creature -- Enchanted creature gets +2/-1. -- Escape—{2}{B}, Exile two other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={B}
 type=Enchantment
@@ -33771,7 +33779,7 @@ toughness=0
 [card]
 name=Morophon, the Boundless
 abilities=changeling
-auto=chooseatype lord(other creature[chosentype]|mybattlefield) 1/1 && lord(*[chosentype]|mycastingzone) altercost(white, -1) forever && lord(*[chosentype]|mycastingzone) altercost(green, -1) forever && lord(*[chosentype]|mycastingzone) altercost(red, -1) forever && lord(*[chosentype]|mycastingzone) altercost(blue, -1) forever && lord(*[chosentype]|mycastingzone) altercost(black, -1) forever chooseend
+auto=chooseatype transforms((,newability[lord(other creature[chosentype]|mybattlefield) 1/1],newability[lord(*[chosentype]|mycastingzone) changecost(white:-1)],newability[lord(*[chosentype]|mycastingzone) changecost(green:-1)],newability[lord(*[chosentype]|mycastingzone) changecost(red:-1)],newability[lord(*[chosentype]|mycastingzone) changecost(blue:-1)],newability[lord(*[chosentype]|mycastingzone) changecost(black:-1)])) forever chooseend
 text=Changeling (This card is every creature type.) -- As Morophon, the Boundless enters the battlefield, choose a creature type. -- Spells of the chosen type you cast cost {W}{U}{B}{R}{G} less to cast. This effect reduces only the amount of colored mana you pay. -- Other creatures you control of the chosen type get +1/+1.
 mana={7}
 type=Legendary Creature
@@ -35425,8 +35433,8 @@ toughness=3
 [/card]
 [card]
 name=Nira, Hellkite Duelist
-abilities=flash, flying, trample, haste
-auto=cantlose && lifeset:5 && draw:3 controller ueot
+abilities=flash,flying,trample,haste
+auto=transforms((,newability[cantlose],newability[@lifelostof(player) once:if compare(lifetotal)~lessthan~5 then lifeset:5 controller && draw:3 controller])) ueot
 text=Flash -- Flying, trample, haste -- When Nira, Hellkite Duelist enters the battlefield, the next time you would lose the game this turn, instead draw three cards and your life total becomes 5.
 mana={W}{U}{B}{R}{G}
 type=Legendary Creature
@@ -37191,8 +37199,8 @@ subtype=Aura Curse
 [card]
 name=Ox of Agonas
 auto=reject all(*|myhand) && draw:3 controller
-auto=if paid(alternative) then counter(1/1,1)
-autograveyard={R}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{R}{R},exile eight) activate castcard(alternative)
+auto=if paid(retrace) then counter(1/1,1)
+retrace={R}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=When Ox of Agonas enters the battlefield, discard your hand, then draw three cards. -- Escape—{R}{R}, Exile eight other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Ox of Agonas escapes with a +1/+1 counter on it.
 mana={3}{R}{R}
 type=Creature
@@ -38035,9 +38043,9 @@ type=Instant
 [/card]
 [card]
 name=Pharika's Spawn
-auto=if paid(alternative) then counter(1/1,2)
-auto=if paid(alternative) then ability$!name(sacrifice non-gorgon) notatarget(creature[-Gorgon]|mybattlefield) sacrifice!$ opponent
-autograveyard={5}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{5}{B},exile three) activate castcard(alternative)
+auto=if paid(retrace) then counter(1/1,2)
+auto=if paid(retrace) then ability$!name(sacrifice non-gorgon) name(sacrifice non-gorgon) notatarget(creature[-Gorgon]|mybattlefield) sacrifice!$ opponent
+retrace={5}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Escape—{5}{B}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Pharika’s Spawn escapes with two +1/+1 counters on it. When it enters the battlefield this way, each opponent sacrifices a non-Gorgon creature.
 mana={3}{B}
 type=Creature
@@ -38069,8 +38077,8 @@ toughness=4
 name=Phoenix of Ash
 abilities=flying,haste
 auto={2}{R}:2/0 ueot
-autograveyard={2}{R}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{2}{R}{R},exile three) activate castcard(alternative)
-auto=if paid(alternative) then counter(1/1,1)
+retrace={2}{R}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
+auto=if paid(retrace) then counter(1/1,1)
 text=Flying, haste -- {2}{R}: Phoenix of Ash gets +2/+0 until end of turn. -- Escape—{2}{R}{R}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Phoenix of Ash escapes with a +1/+1 counter on it.
 mana={1}{R}{R}
 type=Creature
@@ -38615,9 +38623,9 @@ toughness=3
 name=Polukranos, Unchained
 abilities=hydra
 auto=counter(1/1,6)
-auto=if paid(alternative) then counter(1/1,6)
+auto=if paid(retrace) then counter(1/1,6)
 auto={1}{B}{G}:name(Fight) transforms((,newability[target(other creature) dynamicability<!powerstrike eachother!>])) oneshot
-autograveyard={4}{B}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{4}{B}{G},exile six) activate castcard(alternative)
+retrace={4}{B}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Polukranos enters the battlefield with six +1/+1 counters on it. It escapes with twelve +1/+1 counters on it instead. -- If damage would be dealt to Polukranos while it has a +1/+1 counter on it, prevent that damage and remove that many +1/+1 counters from it. -- {1}{B}{G}: Polukranos fights another target creature. -- Escape—{4}{B}{G}, Exile six other cards from your graveyard.
 mana={2}{B}{G}
 type=Legendary Creature
@@ -39211,9 +39219,9 @@ type=Sorcery
 [card]
 name=Profit // Loss
 other={2}{B} name(Loss)
+kicker={2}{B} name(Fuse)
 auto=if paid(alternative) then all(creature|opponentbattlefield) -1/-1 ueot
-kicker={2}{B}
-auto=kicker ifnot paid(alternative) then all(creature|opponentbattlefield) -1/-1 ueot
+auto=if paid(kicker) then all(creature|opponentbattlefield) -1/-1 ueot
 auto=ifnot paid(alternative) then all(creature|mybattlefield) 1/1 ueot
 text=Creatures you control get +1/+1 until end of turn. // Creatures your opponents control get -1/-1 until end of turn. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{W}
@@ -39281,9 +39289,9 @@ toughness=2
 [card]
 name=Protect // Serve
 other={1}{U} name(Serve)
+kicker={1}{U} name(Fuse)
 auto=if paid(alternative) then target(creature) -6/0 ueot
-kicker={1}{U}
-auto=kicker ifnot paid(alternative) then target(creature) -6/0 ueot
+auto=if paid(kicker) then target(creature) -6/0 ueot
 auto=ifnot paid(alternative) then target(creature) 2/4 ueot
 text=Target creature gets +2/+4 until end of turn. // Target creature gets -6/-0 until end of turn. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={2}{W}
@@ -40742,7 +40750,7 @@ toughness=3
 [card]
 name=Ravenous Harpy
 abilities=flying
-auto={1}{S(othercreature|mybattlefield)}:counter(1/1)
+auto={1}{S(other creature|mybattlefield)}:counter(1/1)
 text=Flying -- {1}, Sacrifice another creature: Put a +1/+1 counter on Ravenous Harpy.
 mana={2}{B}
 type=Creature
@@ -40851,10 +40859,10 @@ type=Sorcery
 [card]
 name=Ready // Willing
 other={1}{W}{B} name(Willing)
-auto=if paid(alternative) then all(creature|mybattlefield) transforms((,newability[lifelink ueot],newability[deathtouch ueot])) ueot
-kicker={1}{W}{B}
-auto=kicker ifnot paid(alternative) then all(creature|mybattlefield) transforms((,newability[lifelink ueot],newability[deathtouch ueot],newability[indestructible ueot],newability[untap])) ueot
-auto=ifnot paid(alternative) then all(creature|mybattlefield) transforms((,newability[indestructible ueot],newability[untap])) ueot
+kicker={1}{W}{B} name(Fuse)
+auto=if paid(alternative) then all(creature|mybattlefield) transforms((,newability[lifelink],newability[deathtouch])) ueot
+auto=if paid(kicker) then all(creature|mybattlefield) transforms((,newability[lifelink],newability[deathtouch])) ueot
+auto=ifnot paid(alternative) then all(creature|mybattlefield) transforms((,newability[indestructible],newability[untap])) ueot
 text=Creatures you control are indestructible this turn. Untap each creature you control. // Creatures you control gain deathtouch and lifelink until end of turn. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{G}{W}
 type=Instant
@@ -44267,7 +44275,7 @@ toughness=1
 [card]
 name=Satyr's Cunning
 auto=token(Satyr,Creature Satyr,1/1,red,cantblock)
-autograveyard={2}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{2}{R},exile two) activate castcard(normal)
+retrace={2}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Create a 1/1 red Satyr creature token with “This creature can’t block.” -- Escape—{2}{R}, Exile two other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={R}
 type=Sorcery
@@ -45502,7 +45510,7 @@ name=Sentinel's Eyes
 target=creature
 auto=vigilance
 auto=1/1
-autograveyard={W}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{W}, exile two) activate castcard(normal)
+retrace={W}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Enchant creature -- Enchanted creature gets +1/+1 and has vigilance. -- Escape—{W}, Exile two other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={W}
 type=Enchantment
@@ -47929,9 +47937,8 @@ toughness=3
 [card]
 name=Sleep of the Dead
 target=creature|battlefield
-auto=tap
-auto=frozen
-autograveyard={2}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{2}{U},exile three) activate castcard(normal)
+auto=freeze
+retrace={2}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Tap target creature. It doesn’t untap during its controller’s next untap step. -- Escape—{2}{U}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={U}
 type=Sorcery
@@ -50045,8 +50052,7 @@ toughness=1
 [/card]
 [card]
 name=Squee, the Immortal
-abilities=canplayfromexile
-autograveyard=CanPlayFromGraveyard
+abilities=canplayfromexile,CanPlayFromGraveyard
 text=You may cast Squee, the Immortal from your graveyard or from exile.
 mana={1}{R}{R}
 type=Legendary Creature
@@ -51672,8 +51678,9 @@ toughness=5
 [/card]
 [card]
 name=Sweet Oblivion
-auto=deplete:4 target(player)
-autograveyard={3}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{3}{U},exile four) activate castcard(normal)
+target=player
+auto=deplete:4
+retrace={3}{U}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=Target player puts the top four cards of their library into their graveyard. -- Escape—{3}{U}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={1}{U}
 type=Sorcery
@@ -53969,7 +53976,7 @@ toughness=2
 [card]
 name=Throes of Chaos
 autostack=if casted(this) then cascade:plibrarycount
-retrace={3}{R}{S(land|myhand)}
+retrace={3}{R}{D(land|myhand)}
 text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={3}{R}
 type=Sorcery
@@ -54596,11 +54603,12 @@ toughness=2
 [/card]
 [card]
 name=Toil // Trouble
+target=player
 other={2}{R} name(Trouble)
-auto=if paid(alternative) then ability$!name(Choose one) choice name(Damage opponent) damage:type:*:opponenthand opponent _ choice name(Damage controller) damage:type:*:myhand controller!$ controller
-kicker={2}{R}
-auto=kicked ifnot paid(alternative) then ability$!name(Choose one) choice name(Damage opponent) damage:type:*:opponenthand opponent _ choice name(Damage controller) damage:type:*:myhand controller!$ controller
-auto=ifnot paid(alternative) then target(player) draw:2 targetedplayer && life:-2 targetedplayer
+kicker={2}{R} name(Fuse)
+auto=if paid(alternative) then damage:type:*:targetedpersonshand targetedplayer
+auto=if paid(kicker) then ability$!name(Deal damage) name(Deal damage) target(player) damage:type:*:targetedpersonshand targetedplayer!$ controller
+auto=ifnot paid(alternative) then draw:2 targetedplayer && life:-2 targetedplayer
 text=Target player draws two cards and loses 2 life. // Trouble deals damage to target player equal to the number of cards in that player's hand. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={2}{B}
 type=Sorcery
@@ -55670,10 +55678,10 @@ type=Sorcery
 [card]
 name=Turn // Burn
 other={1}{R} name(Burn)
-auto=if paid(alternative) then damage:2 target(player,creature)
-kicker={1}{R}
-auto=kicker ifnot paid(alternative) then ability$!name(Damage) damage:2 target(player,creature)!$ controller
-auto=ifnot paid(alternative) then target(creature) loseabilities ueot && transforms((,setpower=0,settoughness=1)) ueot && transforms((Weird,red)) ueot
+kicker={1}{R} name(Fuse)
+auto=if paid(alternative) then ability$!name(Deal Damage) name(Deal Damage) damage:2 target(player,creature)!$ controller
+auto=if paid(kicker) then ability$!name(Deal Damage) name(Deal Damage) damage:2 target(player,creature)!$ controller
+auto=ifnot paid(alternative) then target(creature) transforms((Weird,red,setpower=0,settoughness=1,newability[loseabilities])) ueot
 text=Target creature loses all abilities and becomes a 0/1 red Weird until end of turn. // Burn deals 2 damage to target creature or player. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={2}{U}
 type=Instant
@@ -56243,8 +56251,8 @@ toughness=6
 [/card]
 [card]
 name=Underworld Breach
-auto=lord(*[-land]|myGraveyard) newability[{storedmanacost}{S(other *|myGraveyard)}{S(other *|myGraveyard)}{S(other *|myGraveyard)}:castcard(normal)]
-auto=@each my endofturn:sacrifice(this)
+auto=lord(*[-land]|myGraveyard) transforms((,newability[{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Exile 3 and gain escape) canplayfromgraveyard limit:1]))
+auto=@each my endofturn:sacrifice all(this)
 text=Each nonland card in your graveyard has escape. The escape cost is equal to the card’s mana cost plus exile three other cards from your graveyard. (You may cast cards from your graveyard for their escape cost.) -- At the beginning of the end step, sacrifice Underworld Breach.
 mana={1}{R}
 type=Enchantment
@@ -56267,8 +56275,8 @@ toughness=6
 [card]
 name=Underworld Charger
 abilities=cantblock
-autograveyard={4}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{4}{B},exile three) activate castcard(alternative)
-auto=if paid(alternative) then counter(1/1,2)
+retrace={4}{B}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)} name(Escape)
+auto=if paid(retrace) then counter(1/1,2)
 text=Underworld Charger can’t block. -- Escape—{4}{B}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Underworld Charger escapes with two +1/+1 counters on it.
 mana={2}{B}
 type=Creature
@@ -56289,8 +56297,8 @@ type=Sorcery
 [card]
 name=Underworld Rage-Hound
 abilities=mustattack
-autograveyard={3}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{3}{R},exile three) activate castcard(alternative)
-auto=if paid(alternative) then counter(1/1,1)
+retrace={3}{R}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
+auto=if paid(retrace) then counter(1/1,1)
 text=Underworld Rage-Hound attacks each combat if able. -- Escape—{3}{R}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Underworld Rage-Hound escapes with a +1/+1 counter on it.
 mana={1}{R}
 type=Creature
@@ -56594,12 +56602,12 @@ toughness=3
 [/card]
 [card]
 name=Uro, Titan of Nature's Wrath
-auto=ifnot paid(alternative) then sacrifice
+auto=ifnot paid(retrace) then sacrifice
 auto=life:3 controller && draw:1 controller
-auto=may moveto(mybattlefield) target(land|myhand)
+auto=may name(Put land in play) moveto(mybattlefield) target(land|myhand)
 auto=@combat(attacking) source(this):life:3 controller && draw:1 controller
 auto=@combat(attacking) source(this):may moveto(mybattlefield) target(land|myhand)
-autograveyard={G}{G}{U}{U}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}{E(*|mygraveyard)}:name(Escape-{G}{G}{U}{U},exile five) activate castcard(alternative)
+retrace={G}{G}{U}{U}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)} name(Escape))
 text=When Uro enters the battlefield, sacrifice it unless it escaped. -- Whenever Uro enters the battlefield or attacks, you gain 3 life and draw a card, then you may put a land card from your hand onto the battlefield. -- Escape — {G}{G}{U}{U}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={1}{G}{U}
 type=Legendary Creature
@@ -58349,8 +58357,8 @@ toughness=4
 [/card]
 [card]
 name=Voracious Typhon
-autograveyard={5}{G}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{5}{G}{G},exile four) activate castcard(alternative)
-auto=if paid(alternative) then counter(1/1,3)
+retrace={5}{G}{G}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
+auto=if paid(retrace) then counter(1/1,3)
 text=Escape—{5}{G}{G}, Exile four other cards from your graveyard. (You may cast this spell from your graveyard for its escape cost.) -- Voracious Typhon escapes with three +1/+1 counters on it.
 mana={2}{G}{G}
 type=Creature
@@ -59114,9 +59122,10 @@ type=Enchantment
 [card]
 name=Wear // Tear
 other={W} name(Tear)
+kicker={W} name(Fuse)
+otherrestriction=type(enchantment|battlefield)~morethan~0
 auto=if paid(alternative) then destroy target(enchantment)
-kicker={W}
-auto=kicker ifnot paid(alternative) then destroy target(enchantment)
+auto=if paid(kicker) then ability$!name(Destroy enchantment) name(Destroy enchantment) destroy target(enchantment)!$ controller
 auto=ifnot paid(alternative) then destroy target(artifact)
 text=Destroy target artifact. // Destroy target enchantment. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{R}
@@ -59924,8 +59933,8 @@ name=Woe Strider
 auto=token(Goat,Creature Goat,0/1,white)
 aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={S(other creature|myBattlefield}:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
-autograveyard={3}{B}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:name(Escape-{3}{B}{B},exile four) activate castcard(alternative)
-auto=if paid(alternative) then counter(1/1,2)
+retrace={3}{B}{B}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
+auto=if paid(retrace) then counter(1/1,2)
 text=When Woe Strider enters the battlefield, create a 0/1 white Goat creature token. -- Sacrifice another creature: Scry 1. -- Escape—{3}{B}{B}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Woe Strider escapes with two +1/+1 counters on it.
 mana={2}{B}
 type=Creature

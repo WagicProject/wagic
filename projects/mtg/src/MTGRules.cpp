@@ -636,6 +636,9 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(!card->getManaCost()->getKicker())
         return 0;
 
+    if(card->model->data->getManaCost()->getKicker() && card->model->data->getManaCost()->getKicker()->alternativeName.size())
+        alternativeName = card->model->data->getManaCost()->getKicker()->alternativeName;
+
     if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::ASFLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
         if(card->controller()->epic)
@@ -1264,7 +1267,11 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         for(unsigned int i = 0; i < retraceCost->extraCosts->costs.size();i++)
         {
             retraceCost->extraCosts->costs[i]->setSource(card);
-        }      
+        }
+
+    if(card->model->data->getManaCost()->getRetrace() && card->model->data->getManaCost()->getRetrace()->alternativeName.size())
+        alternativeName = card->model->data->getManaCost()->getRetrace()->alternativeName;
+
     return MTGAlternativeCostRule::isReactingToClick( card, mana, retraceCost);
 }
 

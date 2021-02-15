@@ -218,9 +218,19 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 size_t endK = value.find("{",multikick);
                 value.erase(multikick, endK - multikick);
                 isMultikicker = true;
-        }
+            }
             cost->setKicker(ManaCost::parseManaCost(value));  
             cost->getKicker()->isMulti = isMultikicker;
+            size_t name = value.find("name(");
+            string theName = "";
+            if(name != string::npos)
+            {
+                size_t endName = value.find(")",name);
+                theName = value.substr(name + 5,endName - name - 5);
+                value.erase(name, endName - name + 1);
+            }
+            if(theName.size())
+                cost->getKicker()->alternativeName.append(theName);
         }
         break;
 
@@ -310,6 +320,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 string value = val;
                 std::transform(value.begin(), value.end(), value.begin(), ::tolower);
                 cost->setRetrace(ManaCost::parseManaCost(value));
+                size_t name = value.find("name(");
+                string theName = "";
+                if(name != string::npos)
+                {
+                    size_t endName = value.find(")",name);
+                    theName = value.substr(name + 5,endName - name - 5);
+                    value.erase(name, endName - name + 1);
+                }
+                if(theName.size())
+                    cost->getRetrace()->alternativeName.append(theName);
             }
         }
         else if (s.find("rar") != string::npos)

@@ -84,6 +84,7 @@ subtype=Ajani
 [card]
 name=Ajani, Mentor of Heroes
 auto=counter(0/0,4,loyalty)
+auto=activate transforms((,newability[if type(*[creature;aura;planeswalker;zpos<=4]|myLibrary)~morethan~0 then target(*[creature;aura;planeswalker;zpos<=4]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )! else all(*[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! ])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Distribute three +1/+1 counters) ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
 auto={C(0/0,1,Loyalty)}:name(+1: Look 4 cards for creature, aura or planeswalker) reveal:4 optionone name(Get a card) target(<1>*[creature;planeswalker;aura]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-8,Loyalty)}:name(-8: Gain 100 life) life:100 controller
@@ -141,6 +142,7 @@ subtype=Ajani
 [card]
 name=Ajani, Valiant Protector
 auto=counter(0/0,4,loyalty)
+aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myhand) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={C(0/0,2,Loyalty)}:name(+2: Put a loyalty counter) donothing restriction{compare(cantargetcre)~lessthan~1}
 auto={C(0/0,2,Loyalty)}:name(+2: Put two +1/+1 counters) target(creature|battlefield) counter(1/1,2) restriction{compare(cantargetcre)~morethan~0}
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal until a creature and put it in hand) Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal)  moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
@@ -764,7 +766,7 @@ auto=counter(0/0,5,loyalty)
 auto={C(0/0,-1,Loyalty)}:name(-1: Up to two creature gets +2/+1) target (<upto:2>creature|myBattlefield) 2/1 ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Create two human soldiers) token(Human Soldier,Creature Human Soldier,1/1,white)*2
 auto={C(0/0,-6,Loyalty)}:name(-6: Gain 5 life) life:5 controller
-autograveyard=name(Escape-{4}{W}{W}, exile four) {4}{W}{W}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}:castcard(normal)
+retrace={4}{W}{W}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
 text=-1: Up to two target creatures you control each get +2/+1 until end of turn. -- -2: Create two 1/1 white Human Soldier creature tokens. -- -3: You gain 5 life. -- Escape—{4}{W}{W}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={2}{W}{W}
 type=Legendary Planeswalker
@@ -1622,6 +1624,7 @@ subtype=Windgrace
 [card]
 name=Lukka, Coppercoat Outcast
 auto=counter(0/0,5,Loyalty)
+aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myBattlefield) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Exile 3 crads) moveto(exile) and!( transforms((,canplayfromexile)) )! all(*[zpos<=3]|mylibrary)
 auto={C(0/0,-2,Loyalty)}{E(*[creature]|myBattlefield)}:name(-2: Exile and reveal) reveal:1 revealzone(mylibrary) revealuntil(creature[manacost>storedmanacost]|mylibrary) optionone choice name(Get Card) target(creature[manacost>storedmanacost]|reveal)  moveto(myBattlefield) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-7,Loyalty)}:name(-7: Each creature deals damage) lord(creature|myBattlefield) transforms((,newability[all(opponent) dynamicability<!powerstrike!>])) oneshot
@@ -2493,7 +2496,8 @@ subtype=Tezzeret
 [card]
 name=Tezzeret, Master of Metal
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Reveal the top until artifact and put on hand) Reveal:1 revealzone(mylibrary) revealuntil(artifact|mylibrary) optionone choice name(Get Artifact) target(artifact|reveal) moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+aicode=activate transforms((,newability[all(*[zpos=findfirsttypeartifact]|mylibrary) moveto(myhand) and!( all(*[zpos<=findfirsttypeartifact]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+auto={C(0/0,1,Loyalty)}:name(+1: Reveal the top until artifact and put on hand) reveal:1 revealzone(mylibrary) revealuntil(artifact|mylibrary) optionone choice name(Get Artifact) target(artifact|reveal) moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-3,Loyalty)}:name(-3: Target opponent loses life for each artifact) target(opponent) life:-type:artifact:mybattlefield
 auto={C(0/0,-8,Loyalty)}:name(-8: Gain control of all artifacts and creatures) moveto(mybattlefield) all(*[artifact;creature]|opponentbattlefield)
 text=+1: Reveal cards from the top of your library until you reveal an artifact card. Put that card into your hand and the rest on the bottom of your library in a random order. -- -3: Target opponent loses life equal to the number of artifacts you control. -- -8: Gain control of all artifacts and creatures target opponent controls.
@@ -2709,8 +2713,9 @@ subtype=Vivien
 [card]
 name=Vivien, Nature's Avenger
 auto=counter(0/0,3,loyalty)
+aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myhand) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Put three +1/+1 counters on target creature) target(creature) counter(1/1,3)
-auto={C(0/0,-1,Loyalty)}:name(-1: Reveal a creature from top and put into your hand) Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal)  moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,-1,Loyalty)}:name(-1: Reveal a creature from top and put into your hand) reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal)  moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-6,Loyalty)}:name(-6: Target creature gets +10/+10 and trample) target(creature) 10/10 && trample ueot
 text=+1: Put three +1/+1 counters on up to one target creature. -- -1: Reveal cards from the top of your library until you reveal a creature card. Put that card into your hand and the rest on the bottom of your library in a random order. -- -6: Target creature gets +10/+10 and gains trample until end of turn.
 mana={4}{G}{G}
@@ -2825,7 +2830,7 @@ auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:restriction{type(land|mygraveyard)~morethan~0} name(+1: Return target land from graveyard) moveTo(myHand) target(land|myGraveyard)
 auto={C(0/0,1,Loyalty)}:name(+1: Don't return any land) donothing
 auto={C(0/0,-1,Loyalty)}:name(-1: Deals 1 damage to any target) damage:1 target(player,creature,planeswalker)
-auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Instants and Sorceries have Retrace) emblem transforms((,newability[lord(*[instant;sorcery]|myGraveyard) transforms((,newability[{D(land|myhand)}:name(Discard land) canplayfromgraveyard limit:1]))])) forever dontremove
+auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Instants and Sorceries have Retrace) emblem transforms((,newability[lord(*[instant;sorcery]|myGraveyard) transforms((,newability[{D(land|myhand)}:name(Discard land and gain retrace) canplayfromgraveyard limit:1]))])) forever dontremove
 text=+1: Return up to one target land card from your graveyard to your hand. -- -1: Wrenn and Six deals 1 damage to any target. -- -7: You get an emblem with "Instant and sorcery cards in your graveyard have retrace." (You may cast instant and sorcery cards from your graveyard by discarding a land card in addition to paying their other costs.)
 mana={R}{G}
 type=Legendary Planeswalker
