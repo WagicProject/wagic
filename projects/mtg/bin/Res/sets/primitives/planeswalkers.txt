@@ -1624,10 +1624,11 @@ subtype=Windgrace
 [card]
 name=Lukka, Coppercoat Outcast
 auto=counter(0/0,5,Loyalty)
-aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myBattlefield) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
-auto={C(0/0,1,Loyalty)}:name(+1: Exile 3 crads) moveto(exile) and!( transforms((,canplayfromexile)) )! all(*[zpos<=3]|mylibrary)
-auto={C(0/0,-2,Loyalty)}{E(*[creature]|myBattlefield)}:name(-2: Exile and reveal) reveal:1 revealzone(mylibrary) revealuntil(creature[manacost>storedmanacost]|mylibrary) optionone choice name(Get Card) target(creature[manacost>storedmanacost]|reveal)  moveto(myBattlefield) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-7,Loyalty)}:name(-7: Each creature deals damage) lord(creature|myBattlefield) transforms((,newability[all(opponent) dynamicability<!powerstrike!>])) oneshot
+aicode=activate transforms((,newability[target(creature[manacost>=storedmanacostplus1plusend]|mylibrary) moveto(myBattlefield) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
+auto=lord(creature[counter{0/0.1.LukkaExiled}]|myexile) transforms((,newability[canplayfromexile]))
+auto={C(0/0,1,Loyalty)}:name(+1: Exile 3 crads) moveto(exile) and!( counter(0/0,1,LukkaExiled) )! all(*[zpos<=3]|mylibrary)
+auto={C(0/0,-2,Loyalty)}{E(creature|myBattlefield)}:name(-2: Exile and reveal) reveal:1 revealzone(mylibrary) revealuntil(creature[manacost>=storedmanacostplus1plusend]|mylibrary) optionone choice name(Get Card) target(creature[manacost>=storedmanacostplus1plusend]|reveal) moveto(myBattlefield) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,-7,Loyalty)}:name(-7: Each creature deals damage) all(creature|myBattlefield) transforms((,newability[damage:power opponent])) oneshot
 text=+1: Exile the top three cards of your library. Creature cards exiled this way gain "You may cast this card from exile as long as you control a Lukka planeswalker." -- -2: Exile target creature you control, then reveal cards from the top of your library until you reveal a creature card with higher converted mana cost. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- -7: Each creature you control deals damage equal to its power to each opponent.
 mana={3}{R}{R}
 type=Legendary Planeswalker
