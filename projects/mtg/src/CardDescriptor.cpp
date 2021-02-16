@@ -265,9 +265,9 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if (excludedSet.any())
         return NULL;
 
-    if ((hasKickerCost == -1 && (card->getManaCost()->getKicker() || card->basicAbilities[Constants::HASOTHERKICKER])) || (hasKickerCost == 1 && (!card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASOTHERKICKER])))
+    if ((hasKickerCost == -1 && ((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))) || (hasKickerCost == 1 && !((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))))
     {
-        match = NULL;
+        match = NULL; //Some kicker costs are not a real kicker (e.g. Fuse cost).
     }
 
     if ((hasFlashbackCost == -1 && card->getManaCost()->getFlashback()) || (hasFlashbackCost == 1 && !card->getManaCost()->getFlashback()))

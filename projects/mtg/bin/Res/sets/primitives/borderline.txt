@@ -964,6 +964,7 @@ toughness=3
 [/card]
 [card]
 name=Alive // Well
+abilities=hasnokicker
 other={W} name(Well)
 kicker={W} name(Fuse)
 auto=if paid(alternative) then life:twicetype:creature:mybattlefield
@@ -1284,10 +1285,12 @@ toughness=4
 [/card]
 [card]
 name=Anavolver
-other={3}{G}{B} name(Kicker {B})
-auto=if paid(alternative) then transforms((,newability[counter(1/1.1)],newability[{L:3}:regenerate])) forever
-kicker={1}{U}
-auto=kicker ifnot paid(alternative) then transforms((,newability[counter(1/1.2)],newability[flying])) forever
+abilities=hasotherkicker
+other={3}{G}{B} name(Kicker Black)
+kicker={1}{U} name(Kicker Blue or Both)
+auto=if paid(alternative) then transforms((,newability[counter(1/1)],newability[{L:3}:regenerate])) forever
+auto=if paid(kicker) then transforms((,newability[counter(1/1.2)],newability[flying])) forever
+auto=if paid(kicker) then pay({B}) name(Pay also kicker black) transforms((,newability[counter(1/1)],newability[{L:3}:regenerate])) forever
 text=Kicker {1}{U} and/or {B} (You may pay an additional {1}{U} and/or {B} as you cast this spell.) -- If Anavolver was kicked with its {1}{U} kicker, it enters the battlefield with two +1/+1 counters on it and with flying. -- If Anavolver was kicked with its {B} kicker, it enters the battlefield with a +1/+1 counter on it and with "Pay 3 life: Regenerate Anavolver."
 mana={3}{G}
 type=Creature
@@ -2395,8 +2398,7 @@ toughness=2
 [/card]
 [card]
 name=Ardenvale Paladin
-other={1}{W}{W}{W} name(Adamant)
-auto=if paid(alternative) then counter(1/1,1)
+auto=if casted(this) then if spent({W}{W}{W}) then counter(1/1,1)
 text=Adamant — If at least three white mana was spent to cast this spell, Ardenvale Paladin enters the battlefield with a +1/+1 counter on it.
 mana={3}{W}
 type=Creature
@@ -2494,6 +2496,7 @@ toughness=2
 [card]
 name=Armed // Dangerous
 target=creature
+abilities=hasnokicker
 other={3}{G} name(Dangerous)
 kicker={3}{G} name(Fuse)
 auto=if paid(alternative) then transforms((,newability[lure])) ueot
@@ -4356,6 +4359,7 @@ toughness=1
 [/card]
 [card]
 name=Beck // Call
+abilities=hasnokicker
 other={4}{W}{U} name(Call)
 kicker={4}{W}{U} name(Fuse)
 auto=if paid(alternative) then token(Bird,Creature Bird,1/1,white,flying)*4
@@ -6420,6 +6424,7 @@ toughness=3
 [/card]
 [card]
 name=Breaking // Entering
+abilities=hasnokicker
 other={4}{B}{R} name(Entering)
 kicker={4}{B}{R} name(Fuse)
 auto=if paid(alternative) then ability$!name(Put in play) name(Put in play) target(creature|graveyard) moveTo(mybattlefield) and!( transforms((,newability[haste])) ueot )! !$ controller
@@ -7731,6 +7736,7 @@ toughness=2
 [/card]
 [card]
 name=Catch // Release
+abilities=hasnokicker
 other={4}{R}{W} name(Release)
 kicker={4}{R}{W} name(Fuse)
 auto=if paid(alternative) then ability$!name(Sacrifice artifact) name(Sacrifice artifact) notatarget(artifact|mybattlefield) sacrifice!$ controller
@@ -7788,10 +7794,8 @@ toughness=1
 [/card]
 [card]
 name=Cauldron's Gift
-target=creature|myGraveyard
-other={2}{B}{B}{B} name(Adamant)
-auto=if paid(alternative) then deplete:4 controller
-auto=may moveto(mybattlefield) && counter(1/1,1)
+auto=if casted(this) then if spent({B}{B}{B}) then deplete:4 controller
+auto=may name(Return creature in play) target(creature|myGraveyard) moveto(mybattlefield) and!( transforms((,newability[counter(1/1)])) oneshot )!
 text=Adamant — If at least three black mana was spent to cast this spell, put the top four cards of your library into your graveyard. -- You may choose a creature card in your graveyard. If you do, return it to the battlefield with an additional +1/+1 counter on it.
 mana={4}{B}
 type=Sorcery
@@ -9302,12 +9306,11 @@ type=Instant
 [/card]
 [card]
 name=Clockwork Servant
-other={W}{W}{W} name(Adamant White)
-other={U}{U}{U} name(Adamant Blue)
-other={R}{R}{R} name(Adamant Red)
-other={G}{G}{G} name(Adamant Green)
-other={B}{B}{B} name(Adamant Black)
-auto=if paid(alternative) then draw:1 controller
+auto=if casted(this) then if spent({G}{G}{G}) then draw:1 controller
+auto=if casted(this) then if spent({W}{W}{W}) then draw:1 controller
+auto=if casted(this) then if spent({U}{U}{U}) then draw:1 controller
+auto=if casted(this) then if spent({R}{R}{R}) then draw:1 controller
+auto=if casted(this) then if spent({B}{B}{B}) then draw:1 controller
 text=Adamant — When Clockwork Servant enters the battlefield, if at least three mana of the same color was spent to cast it, draw a card.
 mana={3}
 type=Artifact Creature
@@ -9731,26 +9734,28 @@ type=Sorcery
 [card]
 name=Comet Storm
 abilities=hasotherkicker
-auto=this(X>0) choice name(kicker = 0) name(kicker = 0) target(player,creature,planeswalker) damage:X
-auto=this(X>1) choice name(kicker = 1) name(kicker = 1) target(<2>player,creature,planeswalker) damage:Xminus1minusend
-auto=this(X>2) choice name(kicker = 2) name(kicker = 2) target(<3>player,creature,planeswalker) damage:Xminus2minusend
-auto=this(X>3) choice name(kicker = 3) name(kicker = 3) target(<4>player,creature,planeswalker) damage:Xminus3minusend
-auto=this(X>4) choice name(kicker = 4) name(kicker = 4) target(<5>player,creature,planeswalker) damage:Xminus4minusend
-auto=this(X>5) choice name(kicker = 5) name(kicker = 5) target(<6>player,creature,planeswalker) damage:Xminus5minusend
-auto=this(X>6) choice name(kicker = 6) name(kicker = 6) target(<7>player,creature,planeswalker) damage:Xminus6minusend
-auto=this(X>7) choice name(kicker = 7) name(kicker = 7) target(<8>player,creature,planeswalker) damage:Xminus7minusend
-auto=this(X>8) choice name(kicker = 8) name(kicker = 8) target(<9>player,creature,planeswalker) damage:Xminus8minusend
-auto=this(X>9) choice name(kicker = 9) name(kicker = 9) target(<10>player,creature,planeswalker) damage:Xminus9minusend
-auto=this(X>10) choice name(kicker = 10) name(kicker = 10) target(<11>player,creature,planeswalker) damage:Xminus10minusend
-auto=this(X>11) choice name(kicker = 11) name(kicker = 11) target(<12>player,creature,planeswalker) damage:Xminus11minusend
-auto=this(X>12) choice name(kicker = 12) name(kicker = 12) target(<13>player,creature,planeswalker) damage:Xminus12minusend
-auto=this(X>13) choice name(kicker = 13) name(kicker = 13) target(<14>player,creature,planeswalker) damage:Xminus13minusend
-auto=this(X>14) choice name(kicker = 14) name(kicker = 14) target(<15>player,creature,planeswalker) damage:Xminus14minusend
-auto=this(X>15) choice name(kicker = 15) name(kicker = 15) target(<16>player,creature,planeswalker) damage:Xminus15minusend
-auto=this(X>16) choice name(kicker = 16) name(kicker = 16) target(<17>player,creature,planeswalker) damage:Xminus16minusend
-auto=this(X>17) choice name(kicker = 17) name(kicker = 17) target(<18>player,creature,planeswalker) damage:Xminus17minusend
-auto=this(X>18) choice name(kicker = 18) name(kicker = 18) target(<19>player,creature,planeswalker) damage:Xminus18minusend
-auto=this(X>19) choice name(kicker = 19) name(kicker = 19) target(<20>player,creature,planeswalker) damage:Xminus19minusend
+other={X}{R}{R} name(Pay kicker)
+auto=this(X>0) ifnot paid(alternative) then target(player,creature,planeswalker) damage:X
+auto=this(X>0) if paid(alternative) then choice name(kicker = 0) name(kicker = 0) name(kicker = 0) target(player,creature,planeswalker) damage:X
+auto=this(X>1) if paid(alternative) then choice name(kicker = 1) name(kicker = 1) name(kicker = 1) target(<2>player,creature,planeswalker) damage:Xminus1minusend
+auto=this(X>2) if paid(alternative) then choice name(kicker = 2) name(kicker = 2) name(kicker = 2) target(<3>player,creature,planeswalker) damage:Xminus2minusend
+auto=this(X>3) if paid(alternative) then choice name(kicker = 3) name(kicker = 3) name(kicker = 3) target(<4>player,creature,planeswalker) damage:Xminus3minusend
+auto=this(X>4) if paid(alternative) then choice name(kicker = 4) name(kicker = 4) name(kicker = 4) target(<5>player,creature,planeswalker) damage:Xminus4minusend
+auto=this(X>5) if paid(alternative) then choice name(kicker = 5) name(kicker = 5) name(kicker = 5) target(<6>player,creature,planeswalker) damage:Xminus5minusend
+auto=this(X>6) if paid(alternative) then choice name(kicker = 6) name(kicker = 6) name(kicker = 6) target(<7>player,creature,planeswalker) damage:Xminus6minusend
+auto=this(X>7) if paid(alternative) then choice name(kicker = 7) name(kicker = 7) name(kicker = 7) target(<8>player,creature,planeswalker) damage:Xminus7minusend
+auto=this(X>8) if paid(alternative) then choice name(kicker = 8) name(kicker = 8) name(kicker = 8) target(<9>player,creature,planeswalker) damage:Xminus8minusend
+auto=this(X>9) if paid(alternative) then choice name(kicker = 9) name(kicker = 9) name(kicker = 9) target(<10>player,creature,planeswalker) damage:Xminus9minusend
+auto=this(X>10) if paid(alternative) then choice name(kicker = 10) name(kicker = 10) name(kicker = 10) target(<11>player,creature,planeswalker) damage:Xminus10minusend
+auto=this(X>11) if paid(alternative) then choice name(kicker = 11) name(kicker = 11) name(kicker = 11) target(<12>player,creature,planeswalker) damage:Xminus11minusend
+auto=this(X>12) if paid(alternative) then choice name(kicker = 12) name(kicker = 12) name(kicker = 12) target(<13>player,creature,planeswalker) damage:Xminus12minusend
+auto=this(X>13) if paid(alternative) then choice name(kicker = 13) name(kicker = 13) name(kicker = 13) target(<14>player,creature,planeswalker) damage:Xminus13minusend
+auto=this(X>14) if paid(alternative) then choice name(kicker = 14) name(kicker = 14) name(kicker = 14) target(<15>player,creature,planeswalker) damage:Xminus14minusend
+auto=this(X>15) if paid(alternative) then choice name(kicker = 15) name(kicker = 15) name(kicker = 15) target(<16>player,creature,planeswalker) damage:Xminus15minusend
+auto=this(X>16) if paid(alternative) then choice name(kicker = 16) name(kicker = 16) name(kicker = 16) target(<17>player,creature,planeswalker) damage:Xminus16minusend
+auto=this(X>17) if paid(alternative) then choice name(kicker = 17) name(kicker = 17) name(kicker = 17) target(<18>player,creature,planeswalker) damage:Xminus17minusend
+auto=this(X>18) if paid(alternative) then choice name(kicker = 18) name(kicker = 18) name(kicker = 18) target(<19>player,creature,planeswalker) damage:Xminus18minusend
+auto=this(X>19) if paid(alternative) then choice name(kicker = 19) name(kicker = 19) name(kicker = 19) target(<20>player,creature,planeswalker) damage:Xminus19minusend
 text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose any target, then choose another target for each time this spell was kicked. Comet Storm deals X damage to each of them.
 mana={X}{R}{R}
 type=Instant
@@ -11468,7 +11473,7 @@ toughness=2
 name=Daghatar the Adamant
 abilities=vigilance
 auto=counter(1/1,4)
-auto={1}{BG}{BG}:target(creature) counter(1/1,-1) && transforms((,newability[target(another creature) counter(1/1,1)]))
+auto={1}{BG}{BG}:name(Move 1/1 counter) target(creature[counter{1/1}]|battlefield) transforms((,newability[name(Put 1/1 counter) target(other creature|battlefield) counter(1/1)],newability[counter(1/1.-1)])) oneshot
 text=Vigilance -- Daghatar the Adamant enters the battlefield with four +1/+1 counters on it. -- {1}{BG}{BG}: Move a +1/+1 counter from target creature onto a second target creature.
 mana={3}{W}
 type=Legendary Creature
@@ -13741,6 +13746,7 @@ type=Instant
 [/card]
 [card]
 name=Down // Dirty
+abilities=hasnokicker
 other={2}{G} name(Dirty)
 kicker={2}{G} name(Fuse)
 otherrestriction=type(*|mygraveyard)~morethan~0
@@ -15348,8 +15354,7 @@ subtype=Equipment
 [card]
 name=Embereth Paladin
 abilities=haste
-other={1}{R}{R}{R} name(Adamant)
-auto=if paid(alternative) then counter(1/1,1)
+auto=if casted(this) then if spent({R}{R}{R}) then counter(1/1)
 text=Haste -- Adamant — If at least three red mana was spent to cast this spell, Embereth Paladin enters the battlefield with a +1/+1 counter on it.
 mana={3}{R}
 type=Creature
@@ -17009,6 +17014,7 @@ toughness=3
 [/card]
 [card]
 name=Far // Away
+abilities=hasnokicker
 other={2}{B} name(Away)
 kicker={2}{B} name(Fuse)
 restriction=type(creature|battlefield)~morethan~0
@@ -18380,8 +18386,10 @@ toughness=6
 [card]
 name=Flesh // Blood
 target=creature
+abilities=hasnokicker
 other={R}{G} name(Blood)
 kicker={R}{G} name(Fuse)
+otherrestriction=type(creature|myBattlefield)~morethan~0
 auto=if paid(alternative) then transforms((,newability[name(Deal damage) damage:power target(player^creature)])) forever
 auto=if paid(kicker) then ability$!name(Creature deals damage) name(Creature deals damage) target(creature|myBattlefield) transforms((,newability[name(Deal damage) damage:power target(player^creature)])) forever!$ controller
 auto=ifnot paid(alternative) then counter(1/1,storedpower)
@@ -18658,11 +18666,9 @@ subtype=Equipment
 [/card]
 [card]
 name=Foreboding Fruit
-other={B}{B}{B} name(Adamant)
-auto=if paid(alternative) then token(-473141)
 target=player
-auto=draw:2
-auto=life:-2
+auto=draw:2 && life:-2
+auto=if casted(this) then if spent({B}{B}{B}) then token(-473141) controller
 text=Target player draws two cards and loses 2 life. -- Adamant — If at least three black mana was spent to cast this spell, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={2}{B}
 type=Sorcery
@@ -19519,8 +19525,7 @@ toughness=2
 [/card]
 [card]
 name=Garenbrig Paladin
-other={2}{G}{G}{G} name(Adamant)
-auto=if paid(alternative) then counter(1/1,1)
+auto=if casted(this) then if spent({G}{G}{G}) then counter(1/1)
 auto=cantbeblockedby(creature[power<=2])
 text=Adamant — If at least three green mana was spent to cast this spell, Garenbrig Paladin enters the battlefield with a +1/+1 counter on it. -- Garenbrig Paladin can't be blocked by creatures with power 2 or less.
 mana={4}{G}
@@ -20457,6 +20462,7 @@ toughness=6
 [card]
 name=Give // Take
 target=creature
+abilities=hasnokicker
 other={2}{U} name(Take)
 kicker={2}{U} name(Fuse)
 otherrestriction=type(creature|mybattlefield)~morethan~0
@@ -23804,12 +23810,11 @@ type=Legendary Artifact
 [/card]
 [card]
 name=Henge Walker
-other={W}{W}{W} name(Adamant White)
-other={U}{U}{U} name(Adamant Blue)
-other={R}{R}{R} name(Adamant Red)
-other={G}{G}{G} name(Adamant Green)
-other={B}{B}{B} name(Adamant Black)
-auto=if paid(alternative) then counter(1/1,1)
+auto=if casted(this) then if spent({G}{G}{G}) then counter(1/1)
+auto=if casted(this) then if spent({W}{W}{W}) then counter(1/1)
+auto=if casted(this) then if spent({U}{U}{U}) then counter(1/1)
+auto=if casted(this) then if spent({R}{R}{R}) then counter(1/1)
+auto=if casted(this) then if spent({B}{B}{B}) then counter(1/1)
 text=Adamant — If at least three mana of the same color was spent to cast this spell, Henge Walker enters the battlefield with a +1/+1 counter on it.
 mana={3}
 type=Artifact Creature
@@ -25274,12 +25279,14 @@ type=Enchantment
 [/card]
 [card]
 name=Illuminate
+abilities=hasotherkicker
 target=creature
+other={X}{2}{R}{R} name(Kicker Red)
+kicker={3}{U} name(Kicker Blue or both)
 auto=damage:X
-other={X}{2}{R}{R} name(Kicker {2}{R})
 auto=if paid(alternative) then damage:X targetcontroller
-kicker={3}{U}
-auto=kicker ifnot paid(alternative) then draw:X controller
+auto=if paid(kicker) then draw:X controller
+auto=if paid(kicker) then pay({2}{R}) name(Pay also kicker red) damage:castx targetcontroller
 text=Kicker {2}{R} and/or {3}{U} (You may pay an additional {2}{R} and/or {3}{U} as you cast this spell.) -- Illuminate deals X damage to target creature. If Illuminate was kicked with its {2}{R} kicker, it deals X damage to that creature's controller. If Illuminate was kicked with its {3}{U} kicker, you draw X cards.
 mana={X}{R}
 type=Sorcery
@@ -31014,8 +31021,7 @@ toughness=3
 [card]
 name=Locthwain Paladin
 abilities=menace
-other={1}{B}{B}{B} name(Adamant)
-auto=if paid(alternative) then counter(1/1,1)
+auto=if casted(this) then if spent({B}{B}{B}) then counter(1/1)
 text=Menace (This creature can't be blocked except by two or more creatures.) -- Adamant — If at least three black mana was spent to cast this spell, Locthwain Paladin enters the battlefield with a +1/+1 counter on it.
 mana={3}{B}
 type=Creature
@@ -34259,11 +34265,8 @@ type=Enchantment
 [/card]
 [card]
 name=Mythos of Brokkos
-abilities=hiddenface
-aicode=activate moveto(myGraveyard) target(*|mylibrary)
-other={U}{B}{G} name(Spend U and B)
-auto=if paid(alternative) then (search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>*|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend && moveTo(myHand) target(<upto:2>artifact,enchantment,land,creature,planeswalker|myGraveyard)
-auto=ifnot paid(alternative) then moveTo(myHand) target(<upto:2>artifact,enchantment,land,creature,planeswalker|myGraveyard)
+auto=if casted(this) then if spent({U}{B}) then name(Search library) target(*|mylibrary) moveto(myGraveyard) and!( transforms((,newability[name(Return to hand) moveTo(myHand) target(<upto:2>*[-instant;-sorcery]|myGraveyard)],newability[shuffle])) oneshot )!
+auto=if casted(this) then ifnot spent({U}{B}) then name(Return to hand) moveTo(myHand) target(<upto:2>*[-instant;-sorcery]|myGraveyard)
 text=If {U}{B} -- was spent to cast this spell, search your library for a card, put that card into your graveyard, then shuffle your library. -- Return up to two permanent cards from your graveyard to your hand.
 mana={2}{G}{G}
 type=Sorcery
@@ -34271,27 +34274,24 @@ type=Sorcery
 [card]
 name=Mythos of Illuna
 target=*[-instant;-sorcery]
-other={R}{G}{U}{U} name(Spend B and G)
-auto=ifnot paid(alternative) then clone
-auto=if paid(alternative) then clone and!( transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot )!
+auto=if casted(this) then ifnot spent({R}{G}) then clone
+auto=if casted(this) then if spent({R}{G}) then clone and!( if cantargetcard(creature|*) then transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) oneshot )!
 text=Create a token that's a copy of target permanent. If {R}{G} was spent to cast this spell, instead create a token that's a copy of that permanent, except the token has "When this permanent enters the battlefield, if it's a creature, it fights up to one target creature you don't control."
 mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
 name=Mythos of Nethroi
-other={G}{W}{B} name(Spend G and W)
-auto=if paid(alternative) then destroy target(*[-land]|battlefield)
-auto=ifnot paid(alternative) then destroy target(creature|battlefield)
+auto=if casted(this) then if spent({G}{W}) then destroy target(*[-land]|battlefield)
+auto=if casted(this) then ifnot spent({G}{W}) then destroy target(creature|battlefield)
 text=Destroy target nonland permanent if it's a creature or if {G}{W} was spent to cast this spell.
 mana={2}{B}
 type=Instant
 [/card]
 [card]
 name=Mythos of Vadrok
-other={W}{U}{R}{R} name(Spend W and U)
-auto=ifnot paid(alternative) then thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) damage:1!$ controller
-auto=if paid(alternative) then thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) damage:1 && cantattack uynt && cantblock uynt!$ controller
+auto=if casted(this) then ifnot spent({W}{U}) then thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) damage:1!$ controller
+auto=if casted(this) then if spent({W}{U}) then  thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) transforms((,newability[damage:1],newability[cantattack],newability[cantblock],newability[noactivatedability])) uynt!$ controller
 text=Mythos of Vadrok deals 5 damage divided as you choose among any number of target creatures and/or planeswalkers. If {W}{U} was spent to cast this spell, until your next turn, those permanents can't attack or block and their activated abilities can't be activated.
 mana={2}{R}{R}
 type=Sorcery
@@ -34578,12 +34578,12 @@ toughness=2
 [/card]
 [card]
 name=Necravolver
-other={2}{B}{W} name(Kicker W)
-auto=if paid(alternative) then counter(1/1)
-auto=if paid(alternative) then transforms((,newability[lifelink])) forever
-kicker={1}{G}
-auto=kicker ifnot paid(alternative) then counter(1/1,2)
-auto=kicker ifnot paid(alternative) then transforms((,newability[trample])) forever
+abilities=hasotherkicker
+other={2}{B}{W} name(Kicker White)
+kicker={1}{G} name(Kicker Green or both)
+auto=if paid(alternative) then transforms((,newability[counter(1/1)],newability[lifelink])) forever
+auto=if paid(kicker) then transforms((,newability[counter(1/1.2)],newability[trample])) forever
+auto=if paid(kicker) then pay({W}) name(Pay also kicker white) transforms((,newability[counter(1/1)],newability[lifelink])) forever
 text=Kicker {1}{G} and/or {W} (You may pay an additional {1}{G} and/or {W} as you cast this spell.) -- If Necravolver was kicked with its {1}{G} kicker, it enters the battlefield with two +1/+1 counters on it and with trample. -- If Necravolver was kicked with its {W} kicker, it enters the battlefield with a +1/+1 counter on it and with "Whenever Necravolver deals damage, you gain that much life."
 mana={2}{B}
 type=Creature
@@ -35178,10 +35178,12 @@ toughness=4
 [/card]
 [card]
 name=Nightscape Battlemage
-other={4}{B}{R} name(Kicker 2R)
+abilities=hasotherkicker
+other={4}{B}{R} name(Kicker Red)
+kicker={2}{U} name(Kicker Blue or both)
 auto=if paid(alternative) then destroy target(land)
-kicker={2}{U}
-auto=kicker ifnot paid(alternative) then target(<upto:2>creature[-black]) moveto(ownerhand)
+auto=if paid(kicker) then ability$!name(Return creatures) name(Return creatures) target(<upto:2>creature[-black]) moveto(ownerhand)!$ controller
+auto=if paid(kicker) then pay({2}{R}) name(Pay also kicker red) destroy target(land|battlefield)
 text=Kicker {2}{U} and/or {2}{R} (You may pay an additional {2}{U} and/or {2}{R} as you cast this spell.) -- When Nightscape Battlemage enters the battlefield, if it was kicked with its {2}{U} kicker, return up to two target nonblack creatures to their owners' hands. -- When Nightscape Battlemage enters the battlefield, if it was kicked with its {2}{R} kicker, destroy target land.
 mana={2}{B}
 type=Creature
@@ -36438,9 +36440,9 @@ type=Instant
 [/card]
 [card]
 name=Once and Future
-other={1}{G}{G}{G} name(Adamant)
-auto=ifnot paid(alternative) then moveto(myHand) target(*|myGraveyard) && moveto(myLibrary) target(*|myGraveyard) && moveto(exile) all(this)
-auto=if paid(alternative) then moveto(myHand) target(<upto:2>*|mygraveyard) && moveto(exile) all(this)
+abilities=exiledeath
+auto=if casted(this) then ifnot spent({G}{G}{G}) then target(*|myGraveyard) moveto(myHand) and!( transforms((,newability[name(Return to library) target(*|myGraveyard) moveto(myLibrary)])) oneshot )!
+auto=if casted(this) then if spent({G}{G}{G}) then target(<upto:2>*|mygraveyard) moveto(myHand)
 text=Return target card from your graveyard to your hand. Put up to one other target card from your graveyard on top of your library. Exile Once and Future. -- Adamant — If at least three green mana was spent to cast this spell, instead return those cards to your hand and exile Once and Future.
 mana={3}{G}
 type=Instant
@@ -37091,10 +37093,9 @@ type=Instant
 [/card]
 [card]
 name=Outmuscle
-other={1}{G}{G}{G} name(Adamant)
 target=creature|myBattlefield
 auto=counter(1/1,1)
-auto=if paid(alternative) then indestructible ueot
+auto=if casted(this) then if spent({G}{G}{G}) then transforms((,newability[indestructible])) ueot
 auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
 text=Put a +1/+1 counter on target creature you control, then it fights target creature you don't control. (Each deals damage equal to its power to the other.) -- Adamant — If at least three green mana was spent to cast this spell, the creature you control gains indestructible until end of turn.
 mana={3}{G}
@@ -39218,6 +39219,7 @@ type=Sorcery
 [/card]
 [card]
 name=Profit // Loss
+abilities=hasnokicker
 other={2}{B} name(Loss)
 kicker={2}{B} name(Fuse)
 auto=if paid(alternative) then all(creature|opponentbattlefield) -1/-1 ueot
@@ -39288,6 +39290,7 @@ toughness=2
 [/card]
 [card]
 name=Protect // Serve
+abilities=hasnokicker
 other={1}{U} name(Serve)
 kicker={1}{U} name(Fuse)
 auto=if paid(alternative) then target(creature) -6/0 ueot
@@ -40210,11 +40213,12 @@ toughness=3
 [/card]
 [card]
 name=Rakavolver
-other={2}{R}{U} name(Kicker blu mana}
-auto=if paid(alternative) then counter(1/1) && flying
-kicker={1}{W}
-auto=kicker ifnot paid(alternative) then counter(1/1,2) && lifelink
-auto=kicker if paid(alternative) then counter(1/1,3) && lifelink && flying
+abilities=hasotherkicker
+other={2}{R}{U} name(Kicker Blue)
+kicker={1}{W} name(Kicker White or both)
+auto=if paid(alternative) then transforms((,newability[counter(1/1)],newability[flying])) forever
+auto=if paid(kicker) then transforms((,newability[counter(1/1.2)],newability[lifelink])) forever
+auto=if paid(kicker) then pay({U}) name(Pay also kicker blue) transforms((,newability[counter(1/1)],newability[flying])) forever
 text=Kicker {1}{W} and/or {U} (You may pay an additional {1}{W} and/or {U} as you cast this spell.) -- If Rakavolver was kicked with its {1}{W} kicker, it enters the battlefield with two +1/+1 counters on it and with "Whenever Rakavolver deals damage, you gain that much life." -- If Rakavolver was kicked with its {U} kicker, it enters the battlefield with a +1/+1 counter on it and with flying.
 mana={2}{R}
 type=Creature
@@ -40336,9 +40340,8 @@ toughness=3
 [/card]
 [card]
 name=Rally for the Throne
-auto=create(Human:creature Human:1/1:white)*2
-other={W}{W}{W} name(Adamant)
-auto=if paid(alternative) then life:type:creature:mybattlefield controller
+auto=token(Human,Creature Human,1/1,white)*2
+auto=if casted(this) then if spent({W}{W}{W}) then life:type:creature:mybattlefield controller
 text=Create two 1/1 white Human creature tokens. -- Adamant — If at least three white mana was spent to cast this spell, you gain 1 life for each creature you control.
 mana={2}{W}
 type=Instant
@@ -40858,6 +40861,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ready // Willing
+abilities=hasnokicker
 other={1}{W}{B} name(Willing)
 kicker={1}{W}{B} name(Fuse)
 auto=if paid(alternative) then all(creature|mybattlefield) transforms((,newability[lifelink],newability[deathtouch])) ueot
@@ -42638,14 +42642,11 @@ subtype=Aura
 [/card]
 [card]
 name=River's Grasp
-aicode=activate reject notatarget(*[-land]|opponenthand)
-other={3}{B} name(Spend black mana)
-auto=if paid(alternative) then reveal:type:*:opponenthand revealzone(opponenthand) optionone name(choose discards) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
-auto=ifnot paid(alternative) then target(creature|battlefield) moveto(ownerhand)
-kicker={B}
-auto=kicker ifnot paid(alternative) then reveal:type:*:opponenthand revealzone(opponenthand) optionone name(choose discards) notatarget(<1>*[-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
+auto=if casted(this) then if spent({B}) then if type(*[-land]|opponenthand)~morethan~0 then ability$!name(Discard non-land card) name(Discard non-land card) name(Discard non-land card) reject target(*[-land]|opponenthand)!$ controller
+auto=if casted(this) then if spent({B}) then if type(*[-land]|opponenthand)~equalto~0 then ability$!name(Look opponent's hand) name(Look opponent's hand) name(Look opponent's hand) target(*|opponenthand) moveto(opponenthand)!$ controller
+auto=if casted(this) then if spent({U}) then ability$!name(Return creature to hand) name(Return creature to hand) target(creature|battlefield) moveto(ownerhand)!$ controller
 text=If {U} was spent to cast River's Grasp, return up to one target creature to its owner's hand. If {B} was spent to cast River's Grasp, target player reveals his or her hand, you choose a nonland card from it, then that player discards that card. (Do both if {U}{B} was spent.)
-mana={3}{U}
+mana={3}{UB}
 type=Sorcery
 [/card]
 [card]
@@ -45102,9 +45103,8 @@ type=Snow Sorcery
 [card]
 name=Searing Barrage
 target=creature
-other={2}{R}{R}{R} name(Adamant)
 auto=damage:5
-auto=if paid(alternative) then damage:3 targetController
+auto=if casted(this) then if spent({R}{R}{R}) then damage:3 targetController
 text=Searing Barrage deals 5 damage to target creature. -- Adamant — If at least three red mana was spent to cast this spell, Searing Barrage deals 3 damage to that creature's controller.
 mana={4}{R}
 type=Instant
@@ -47003,9 +47003,8 @@ toughness=5
 [/card]
 [card]
 name=Silverflame Ritual
-other={1}{W}{W}{W} name(Adamant)
-auto=all(creature|mybattlefield) counter(1/1,1)
-auto=if paid(alternative) then all(creature|mybattlefield) vigilance
+auto=all(creature|mybattlefield) counter(1/1)
+auto=if casted(this) then if spent({W}{W}{W}) then all(creature|mybattlefield) transforms((,newability[vigilance])) ueot
 text=Put a +1/+1 counter on each creature you control. -- Adamant — If at least three white mana was spent to cast this spell, creatures you control gain vigilance until end of turn.
 mana={3}{W}
 type=Sorcery
@@ -47917,9 +47916,8 @@ toughness=2
 [card]
 name=Slaying Fire
 target=creature,player,planeswalker
-other={R}{R}{R} name(Adamant)
-auto=if paid(alternative) then name(Deals 4 damages) name(Deals 4 damages) damage:4 target(player,creature,planeswalker)
-auto=ifnot paid(alternative) then name(Deals 3 damages) name(Deals 3 damages) damage:3 target(player,creature,planeswalker)
+auto=if casted(this) then if spent({R}{R}{R}) then name(Deals 4 damages) name(Deals 4 damages) damage:4
+auto=if casted(this) then ifnot spent({R}{R}{R}) then name(Deals 3 damages) name(Deals 3 damages) damage:3
 text=Slaying Fire deals 3 damage to any target. -- Adamant — If at least three red mana was spent to cast this spell, it deals 4 damage instead.
 mana={2}{R}
 type=Instant
@@ -50799,10 +50797,12 @@ toughness=2
 [/card]
 [card]
 name=Stormscape Battlemage
+abilities=hasotherkicker
 other={2}{U}{W} name(Kicker white)
+kicker={2}{B} name(Kicker black or both)
 auto=if paid(alternative) then life:3 controller
-kicker={2}{B}
-auto=kicker ifnot paid(alternative) then bury target(creature[-black])
+auto=if paid(kicker) then bury target(creature[-black])
+auto=if paid(kicker) then pay({W}) name(Pay also kicker white) life:3 controller
 text=Kicker {W} and/or {2}{B}(You may pay an additional {W} and/or {2}{B} as you cast this spell.) -- When Stormscape Battlemage enters the battlefield, if it was kicked with its {W} kicker, you gain 3 life. -- When Stormscape Battlemage enters the battlefield, if it was kicked with its {2}{B} kicker, destroy target nonblack creature. That creature can't be regenerated.
 mana={2}{U}
 type=Creature
@@ -51253,9 +51253,9 @@ toughness=5
 [card]
 name=Sundering Stroke
 other={R}{R}{R}{R}{R}{R}{R} name(Adamant)
-auto=if paid(alternative) then damage:7 target(<upto:3>player,creature,planeswalker)
-auto=ifnot paid(alternative) then ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planewsalker) damage:2!$ controller
-auto=ifnot paid(alternative) then thisforeach(variable{3}) ability$!name(Deal 2 damage) name(Deal 2 damage) target(player,creature,planewsalker) damage:2!$ controller
+auto=if casted(this) then if spent({R}{R}{R}{R}{R}{R}{R}) then damage:7 target(<upto:3>player,creature,planeswalker)
+auto=if casted(this) then ifnot spent({R}{R}{R}{R}{R}{R}{R}) then ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planewsalker) damage:1!$ controller
+auto=if casted(this) then ifnot spent({R}{R}{R}{R}{R}{R}{R}) then thisforeach(variable{3}) ability$!name(Deal 2 damage) name(Deal 2 damage) target(player,creature,planewsalker) damage:2!$ controller
 text=Sundering Stroke deals 7 damage divided as you choose among one, two, or three targets. If at least seven red mana was spent to cast this spell, instead Sundering Stroke deals 7 damage to each of those permanents and/or players.
 mana={6}{R}
 type=Sorcery
@@ -51339,10 +51339,12 @@ toughness=3
 [/card]
 [card]
 name=Sunscape Battlemage
+abilities=hasotherkicker
 other={4}{W}{U} name(kicker Blue)
+kicker={1}{G} name(kicker Green or both)
 auto=if paid(alternative) then draw:2 controller
-kicker={1}{G}
-auto=kicker ifnot paid(alternative) then destroy target(creature[flying])
+auto=if paid(kicker) then destroy target(creature[flying])
+auto=if paid(kicker) then pay({2}{U}) name(Pay also kicker blue) draw:2 controller
 text=Kicker {1}{G} and/or {2}{U} (You may pay an additional {1}{G} and/or {2}{U} as you cast this spell.) -- When Sunscape Battlemage enters the battlefield, if it was kicked with its {1}{G} kicker, destroy target creature with flying. -- When Sunscape Battlemage enters the battlefield, if it was kicked with its {2}{U} kicker, draw two cards.
 mana={2}{W}
 type=Creature
@@ -53619,8 +53621,7 @@ toughness=2
 name=Thieving Skydiver
 abilities=flying,hasotherkicker
 other={X}{1}{U} name(Pay kicker)
-auto=if paid(alternative) then choice name(Choose equipment artifact) target(artifact[equipment;manacost<=X]) moveTo(myBattlefield) and!(rehook)!
-auto=if paid(alternative) then choice name(Choose non-equipment artifact) target(artifact[manacost<=X]) moveTo(myBattlefield)
+auto=this(X>0) if paid(alternative) then choice name(Choose artifact) name(Choose artifact) name(Choose artifact) target(artifact[manacost<=X]|battlefield) moveTo(myBattlefield) and!( transforms((,newability[if cantargetcard(equipment|*) then name(Attach to Thieving Skydiver) name(Attach to Thieving Skydiver) rehook target(creature|myBattlefield)])) forever )!
 text=Kicker {X}. X can't be 0. (You may pay an additional {X} as you cast this spell.) -- Flying -- When Thieving Skydiver enters the battlefield, if it was kicked, gain control of target artifact with converted mana cost X or less. If that artifact is an Equipment, attach it to Thieving Skydiver.
 mana={1}{U}
 type=Creature
@@ -53732,10 +53733,12 @@ toughness=3
 [/card]
 [card]
 name=Thornscape Battlemage
-other={2}{G}{W} name(Kicker white)
+abilities=hasotherkicker
+other={2}{G}{W} name(Kicker White)
+kicker={R} name(Kicker Red or both)
 auto=if paid(alternative) then destroy target(artifact)
-kicker={R}
-auto=kicker ifnot paid(alternative) then damage:2 target(creature,player)
+auto=if paid(kicker) then ability$!name(Deal 2 damage) name(Deal 2 damage) damage:2 target(creature,player)!$ controller
+auto=if paid(kicker) then pay({W}) name(Pay also kicker white) destroy target(artifact)
 text=Kicker {R} and/or {W} (You may pay an additional {R} and/or {W} as you cast this spell.) -- When Thornscape Battlemage enters the battlefield, if it was kicked with its {R} kicker, it deals 2 damage to target creature or player. -- When Thornscape Battlemage enters the battlefield, if it was kicked with its {W} kicker, destroy target artifact.
 mana={2}{G}
 type=Creature
@@ -54190,10 +54193,12 @@ toughness=4
 [/card]
 [card]
 name=Thunderscape Battlemage
-other={2}{R}{G} name(Kicker green)
+abilities=hasotherkicker
+other={2}{R}{G} name(Kicker Green)
+kicker={1}{B} name(Kicker Black or both)
 auto=if paid(alternative) then destroy target(enchantment)
-kicker={1}{B}
-auto=kicker ifnot paid(alternative) then target(player) ability$!name(Discard 2 cards) reject notatarget(<2>*|myhand)!$ targetedplayer
+auto=if paid(kicker) then target(player) ability$!name(Discard 2 cards) name(Discard 2 cards) reject notatarget(<2>*|myhand)!$ targetedplayer
+auto=if paid(kicker) then pay({G}) name(Pay also kicker green) destroy target(enchantment)
 text=Kicker {1}{B} and/or {G} (You may pay an additional {1}{B} and/or {G} as you cast this spell.) -- When Thunderscape Battlemage enters the battlefield, if it was kicked with its {1}{B} kicker, target player discards two cards. -- When Thunderscape Battlemage enters the battlefield, if it was kicked with its {G} kicker, destroy target enchantment.
 mana={2}{R}
 type=Creature
@@ -54604,6 +54609,7 @@ toughness=2
 [card]
 name=Toil // Trouble
 target=player
+abilities=hasnokicker
 other={2}{R} name(Trouble)
 kicker={2}{R} name(Fuse)
 auto=if paid(alternative) then damage:type:*:targetedpersonshand targetedplayer
@@ -55677,6 +55683,7 @@ type=Sorcery
 [/card]
 [card]
 name=Turn // Burn
+abilities=hasnokicker
 other={1}{R} name(Burn)
 kicker={1}{R} name(Fuse)
 auto=if paid(alternative) then ability$!name(Deal Damage) name(Deal Damage) damage:2 target(player,creature)!$ controller
@@ -55697,11 +55704,10 @@ type=Instant
 [/card]
 [card]
 name=Turn into a Pumpkin
-other={1}{U}{U}{U} name(Adamant)
-auto=if paid(alternative) then token(-473141)
 target=*[-land]
 auto=moveto(ownerhand)
 auto=draw:1 controller
+auto=if casted(this) then if spent({U}{U}{U}) then token(-473141)
 text=Return target nonland permanent to its owner's hand. Draw a card. -- Adamant — If at least three blue mana was spent to cast this spell, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={3}{U}
 type=Instant
@@ -56368,9 +56374,8 @@ type=Instant
 [/card]
 [card]
 name=Unexplained Vision
-other={2}{U}{U}{U} name(Adamant)
 aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
-auto=if paid(alternative) then scry:3 scrycore delayed dontshow donothing scrycoreend scryend
+auto=if casted(this) then if spent({U}{U}{U}) then scry:3 scrycore delayed dontshow donothing scrycoreend scryend
 auto=draw:3 controller
 text=Draw three cards. -- Adamant — If at least three blue mana was spent to cast this spell, scry 3.
 mana={4}{U}
@@ -57068,8 +57073,7 @@ toughness=4
 [card]
 name=Vantress Paladin
 abilities=flying
-other={1}{U}{U}{U} name(Adamant)
-auto=if paid(alternative) then counter(1/1,1)
+auto=if casted(this) then if spent({U}{U}{U}) then counter(1/1)
 text=Flying -- Adamant — If at least three blue mana was spent to cast this spell, Vantress Paladin enters the battlefield with a +1/+1 counter on it.
 mana={3}{U}
 type=Creature
@@ -59121,6 +59125,7 @@ type=Enchantment
 [/card]
 [card]
 name=Wear // Tear
+abilities=hasnokicker
 other={W} name(Tear)
 kicker={W} name(Fuse)
 otherrestriction=type(enchantment|battlefield)~morethan~0

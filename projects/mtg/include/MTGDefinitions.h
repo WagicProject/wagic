@@ -303,7 +303,8 @@ class Constants
       BOAST = 176,
       TWOBOAST = 177,
       REPLACESCRY = 178,
-      NB_BASIC_ABILITIES = 179,
+      HASNOKICKER = 179,
+      NB_BASIC_ABILITIES = 180,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

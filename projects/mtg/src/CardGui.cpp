@@ -256,9 +256,9 @@ void CardGui::Render()
         {
             if(game)
             {
-                if((card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))||
-                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)) ||
-                (card->has(Constants::FORETELL) && card->foretellTurn > -1 && game->turn > card->foretellTurn  && game->isInExile(card)))
+                if(card->has(Constants::PAYZERO) ||
+                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback() || card->getManaCost()->getRetrace()) && game->isInGrave(card)) ||
+                (((card->has(Constants::FORETELL) && card->foretellTurn > -1 && game->turn > card->foretellTurn) || card->has(Constants::CANPLAYFROMEXILE)) && game->isInExile(card)))
                     fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
                 else
                     fakeborder->SetColor(ARGB((int)(actA),15,15,15));
