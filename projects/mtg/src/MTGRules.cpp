@@ -526,7 +526,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             while(previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             {
                 withKickerCost->add(withKickerCost->getKicker());
-                card->kicked += 1;
+                if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked += 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
             }
             for(int i = 0;i < card->kicked;i++)
                 player->getManaPool()->pay(card->getManaCost()->getKicker());
@@ -537,7 +537,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
-            card->kicked = 1;
+            if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
             card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         delete withKickerCost;
@@ -595,7 +595,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         if (!card->has(Constants::STORM))
         {
             copy->X = spell->computeX(copy);
-            if(card->setX > -1 && (card->getReducedManaCost()->getConvertedCost() > 0 || card->getIncreasedManaCost()->getConvertedCost() > 0)) //Try to Apply the correct X value due to cost reduction/increasement.
+            if(card->setX > -1) //Try to Apply the correct X value due to cost reduction/increasement and or a kicker payment.
                 copy->X = card->setX;
             copy->castX = copy->X;
         }
@@ -638,6 +638,8 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 
     if(card->model->data->getManaCost()->getKicker() && card->model->data->getManaCost()->getKicker()->alternativeName.size())
         alternativeName = card->model->data->getManaCost()->getKicker()->alternativeName;
+    else 
+        alternativeName = "";
 
     if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::ASFLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
@@ -675,7 +677,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     {
         if (!game->targetListIsSet(card))
         {
-            card->kicked = 1;
+            if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
             return 0;
         }
     }
@@ -698,7 +700,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
             while(previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             {
                 withKickerCost->add(withKickerCost->getKicker());
-                card->kicked += 1;
+                if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked += 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
             }
             for(int i = 0;i < card->kicked;i++)
                 player->getManaPool()->pay(card->getManaCost()->getKicker());
@@ -709,7 +711,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
-            card->kicked = 1;
+            if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
             card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         delete withKickerCost;
@@ -1027,19 +1029,19 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     SAFE_DELETE(previousManaPool);
 
     card->alternateCostPaid[alternateCostType] = 1;
-
+    if(card->has(Constants::HASOTHERKICKER)) //Fix for cards which have kicker cost implemented with other cost.
+        card->kicked = 1;
+   
     if (card->isLand())
     {
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
         Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, alternateCostType);
-        copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
         SAFE_DELETE(spell);
     }
     else
     {   
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
-        copy->alternateCostPaid[alternateCostType] = 1;
         game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
         game->targetChooser = NULL;
         if(alternateCostType == ManaCost::MANA_PAID_WITH_BESTOW)
@@ -1271,6 +1273,8 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 
     if(card->model->data->getManaCost()->getRetrace() && card->model->data->getManaCost()->getRetrace()->alternativeName.size())
         alternativeName = card->model->data->getManaCost()->getRetrace()->alternativeName;
+    else 
+        alternativeName = "";
 
     return MTGAlternativeCostRule::isReactingToClick( card, mana, retraceCost);
 }
