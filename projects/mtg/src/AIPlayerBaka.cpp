@@ -2103,10 +2103,162 @@ int AIPlayerBaka::selectAbility()
         //Skip mana abilities for performance
         if (dynamic_cast<AManaProducer*> (a))
             continue;
-        //Make sure we can use the ability
+        //Make sure we can use the ability with card in play
         for (int j = 0; j < game->inPlay->nb_cards; j++)
         {
             MTGCardInstance * card = game->inPlay->cards[j];
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
+            {
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
+            }
+            if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
+            { //This test is to avoid the huge call to getPotentialManaCost after that
+                if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
+                    continue;
+                //don't even bother to play an ability with {x} if you can't even afford x=1.
+                if (abilityPayment.size())
+                {
+                    ManaCost *fullPayment = NEW ManaCost();
+                    for(int ch = 0; ch < int(abilityPayment.size());ch++)
+                    {
+                        AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
+                        if(ampp)
+                            fullPayment->add(ampp->output);
+                    }
+                    if (fullPayment && a->isReactingToClick(card, fullPayment))
+                        createAbilityTargets(a, card, ranking);
+                    delete fullPayment;
+                }
+                else
+                {
+                    ManaCost * pMana = getPotentialMana(card);
+                    pMana->add(this->getManaPool());
+                    if (a->isReactingToClick(card, pMana))
+                    {
+                        createAbilityTargets(a, card, ranking);
+                    }
+                    delete (pMana);
+                }     
+            }
+        }
+        //Make sure we can use the ability with card in commandzone
+        for (int j = 0; j < game->commandzone->nb_cards; j++)
+        {
+            MTGCardInstance * card = game->commandzone->cards[j];
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
+            {
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
+            }
+            if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
+            { //This test is to avoid the huge call to getPotentialManaCost after that
+                if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
+                    continue;
+                //don't even bother to play an ability with {x} if you can't even afford x=1.
+                if (abilityPayment.size())
+                {
+                    ManaCost *fullPayment = NEW ManaCost();
+                    for(int ch = 0; ch < int(abilityPayment.size());ch++)
+                    {
+                        AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
+                        if(ampp)
+                            fullPayment->add(ampp->output);
+                    }
+                    if (fullPayment && a->isReactingToClick(card, fullPayment))
+                        createAbilityTargets(a, card, ranking);
+                    delete fullPayment;
+                }
+                else
+                {
+                    ManaCost * pMana = getPotentialMana(card);
+                    pMana->add(this->getManaPool());
+                    if (a->isReactingToClick(card, pMana))
+                    {
+                        createAbilityTargets(a, card, ranking);
+                    }
+                    delete (pMana);
+                }     
+            }
+        }
+        //Make sure we can use the ability with card in hand
+        for (int j = 0; j < game->hand->nb_cards; j++)
+        {
+            MTGCardInstance * card = game->hand->cards[j];
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
+            {
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
+            }
+            if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
+            { //This test is to avoid the huge call to getPotentialManaCost after that
+                if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
+                    continue;
+                //don't even bother to play an ability with {x} if you can't even afford x=1.
+                if (abilityPayment.size())
+                {
+                    ManaCost *fullPayment = NEW ManaCost();
+                    for(int ch = 0; ch < int(abilityPayment.size());ch++)
+                    {
+                        AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
+                        if(ampp)
+                            fullPayment->add(ampp->output);
+                    }
+                    if (fullPayment && a->isReactingToClick(card, fullPayment))
+                        createAbilityTargets(a, card, ranking);
+                    delete fullPayment;
+                }
+                else
+                {
+                    ManaCost * pMana = getPotentialMana(card);
+                    pMana->add(this->getManaPool());
+                    if (a->isReactingToClick(card, pMana))
+                    {
+                        createAbilityTargets(a, card, ranking);
+                    }
+                    delete (pMana);
+                }     
+            }
+        }
+        //Make sure we can use the ability with card in graveyard
+        for (int j = 0; j < game->graveyard->nb_cards; j++)
+        {
+            MTGCardInstance * card = game->graveyard->cards[j];
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
+            {
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
+            }
+            if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
+            { //This test is to avoid the huge call to getPotentialManaCost after that
+                if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
+                    continue;
+                //don't even bother to play an ability with {x} if you can't even afford x=1.
+                if (abilityPayment.size())
+                {
+                    ManaCost *fullPayment = NEW ManaCost();
+                    for(int ch = 0; ch < int(abilityPayment.size());ch++)
+                    {
+                        AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
+                        if(ampp)
+                            fullPayment->add(ampp->output);
+                    }
+                    if (fullPayment && a->isReactingToClick(card, fullPayment))
+                        createAbilityTargets(a, card, ranking);
+                    delete fullPayment;
+                }
+                else
+                {
+                    ManaCost * pMana = getPotentialMana(card);
+                    pMana->add(this->getManaPool());
+                    if (a->isReactingToClick(card, pMana))
+                    {
+                        createAbilityTargets(a, card, ranking);
+                    }
+                    delete (pMana);
+                }     
+            }
+        }
+        //Make sure we can use the ability with card in exile
+        for (int j = 0; j < game->exile->nb_cards; j++)
+        {
+            MTGCardInstance * card = game->exile->cards[j];
             if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
             {
                 abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
@@ -2604,7 +2756,13 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             if(card->getManaCost()->getFlashback())
                 hasFlashback = true;
 
-        if( card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || hasFlashback )
+        bool hasRetrace = false;
+
+        if(card->getManaCost())
+            if(card->getManaCost()->getRetrace())
+                hasRetrace = true;
+
+        if( card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || hasFlashback || hasRetrace)
         {
             if (!CanHandleCost(card->getManaCost(),card))
                 continue;
@@ -2613,7 +2771,14 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 continue;
 
             // Case were manacost is equal to flashback cost, if they are different the AI hangs
-            if (hasFlashback && (card->getManaCost() != card->getManaCost()->getFlashback()) )
+            if (hasFlashback && (card->getManaCost() != card->getManaCost()->getFlashback()))
+                continue;
+
+            if (hasRetrace && !CanHandleCost(card->getManaCost()->getRetrace(),card))
+                continue;
+
+            // Case were manacost is equal to retrace cost, if they are different the AI hangs
+            if (hasRetrace && (card->getManaCost() != card->getManaCost()->getRetrace()))
                 continue;
 
             if (card->hasType(Subtypes::TYPE_LAND))
