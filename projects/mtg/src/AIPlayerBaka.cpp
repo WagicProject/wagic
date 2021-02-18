@@ -2770,16 +2770,16 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             if (hasFlashback && !CanHandleCost(card->getManaCost()->getFlashback(),card))
                 continue;
 
-            // Case were manacost is equal to flashback cost, if they are different the AI hangs
-            if (hasFlashback && (card->getManaCost() != card->getManaCost()->getFlashback()))
+            if (hasRetrace && !CanHandleCost(card->getManaCost()->getRetrace(),card))
                 continue;
 
-            if (hasRetrace && !CanHandleCost(card->getManaCost()->getRetrace(),card))
+            /*// Case were manacost is equal to flashback cost, if they are different the AI hangs
+            if (hasFlashback && (card->getManaCost() != card->getManaCost()->getFlashback()))
                 continue;
 
             // Case were manacost is equal to retrace cost, if they are different the AI hangs
             if (hasRetrace && (card->getManaCost() != card->getManaCost()->getRetrace()))
-                continue;
+                continue;*/
 
             if (card->hasType(Subtypes::TYPE_LAND))
             {
@@ -3376,8 +3376,18 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     }
     if(nextCardToPlay)
     {
-        if(!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker())
-            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+        if(nextCardToPlay->currentZone == game->graveyard && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
+            if(nextCardToPlay->getManaCost()->getFlashback()){
+                if(!pMana->canAfford(nextCardToPlay->getManaCost()->getFlashback(),0))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getFlashback(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+            } else if(nextCardToPlay->getManaCost()->getRetrace()){
+                if(!pMana->canAfford(nextCardToPlay->getManaCost()->getRetrace(),0))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getRetrace(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+            }
+        } else {
+            if(!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker())
+                gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+        }
         DebugTrace(" AI wants to play card." << endl
             << "- Next card to play: " << (nextCardToPlay ? nextCardToPlay->name : "None" ) << endl );
 
@@ -3696,11 +3706,29 @@ int AIPlayerBaka::computeActions()
                         gotPayments.clear();//if any.
                         return 1;
                     }
-                    if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
-                    {
-                        AIAction * a = NEW AIAction(this, nextCardToPlay);
-                        clickstream.push(a);
-                        gotPayments.clear();
+                    if(nextCardToPlay->currentZone == game->graveyard && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
+                        if(nextCardToPlay->getManaCost()->getFlashback()){
+                            if(payTheManaCost(nextCardToPlay->getManaCost()->getFlashback(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                            {
+                                AIAction * a = NEW AIAction(this, nextCardToPlay);
+                                clickstream.push(a);
+                                gotPayments.clear();
+                            }
+                        } else if(nextCardToPlay->getManaCost()->getRetrace()){
+                            if(payTheManaCost(nextCardToPlay->getManaCost()->getRetrace(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                            {
+                                AIAction * a = NEW AIAction(this, nextCardToPlay);
+                                clickstream.push(a);
+                                gotPayments.clear();
+                            }
+                        }
+                    } else {
+                        if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                        {
+                            AIAction * a = NEW AIAction(this, nextCardToPlay);
+                            clickstream.push(a);
+                            gotPayments.clear();
+                        }
                     }
                     return 1;
                 }
