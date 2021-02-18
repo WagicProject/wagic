@@ -9151,7 +9151,8 @@ type=Sorcery
 [/card]
 [card]
 name=Cleansing Meditation
-auto=aslongas(*|mygraveyard) destroy all(enchantment|opponentbattlefield) >6
+auto=aslongas(*|mygraveyard) all(enchantment|opponentBattlefield) destroy >6
+auto=aslongas(*|mygraveyard) all(enchantment|myBattlefield) destroy and!( moveto(myBattlefield) )! >6
 auto=aslongas(*|mygraveyard) destroy all(enchantment) <7
 text=Destroy all enchantments. -- Threshold — If seven or more cards are in your graveyard, instead destroy all enchantments, then return all cards in your graveyard destroyed this way to the battlefield.
 mana={1}{W}{W}
@@ -9159,17 +9160,16 @@ type=Sorcery
 [/card]
 [card]
 name=Cleansing Nova
-auto=alternative destroy all(creature)
-auto=alternative destroy all(artifacts,enchantment)
+auto=choice name(Destroy creatures) destroy all(creature)
+auto=choice name(Destroy artifacts and enchantments) destroy all(artifacts,enchantment)
 text=Choose one — -- • Destroy all creatures. -- • Destroy all artifacts and enchantments.
 mana={3}{W}{W}
 type=Sorcery
 [/card]
 [card]
 name=Cleansing Ray
-target=Vampire
-auto=choice destroy target(vampire)
-auto=choice destroy target(enchantment)
+auto=choice name(Destroy vampire) destroy target(vampire)
+auto=choice name(Destroy enchantment) destroy target(enchantment)
 text=Choose one — -- • Destroy target Vampire. -- • Destroy target enchantment.
 mana={1}{W}
 type=Sorcery
