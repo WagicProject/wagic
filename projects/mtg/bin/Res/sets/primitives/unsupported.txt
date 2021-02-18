@@ -765,6 +765,13 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Barrel Down Sokenzan
+text=Sweep — Return any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
+mana={2}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
 name=Barrin's Unmaking
 text=Return target permanent to its owner's hand if that permanent shares a color with the most common color among all permanents or a color tied for most common.
 mana={1}{U}
@@ -2381,7 +2388,7 @@ type=Artifact
 [/card]
 [card]
 name=Crucible of the Spirit Dragon
-auto={T}: Add {1}
+auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Storage)
 auto={T}{C(0/0,-1,Storage)}: ability$! _ choice add{U} _ choice add{B} _ choice add{G} _ choice add{R} _ choice add{W} !$ controller
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Crucible of the Spirit Dragon. -- {T}, Remove X storage counters from Crucible of the Spirit Dragon: Add X mana in any combination of colors to your mana pool. Spend this mana only to cast Dragon spells or activate abilities of Dragons.
@@ -12013,12 +12020,6 @@ name=Symbol Status
 text=Put a 1/1 colorless Expansion-Symbol creature token into play for each different expansion symbol among permanents you control.
 mana={2}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Synthetic Destiny
-text=Exile all creatures you control. At the beginning of the next end step, reveal cards from the top of your library until you reveal that many creature cards, put all creature cards revealed this way onto the battlefield, then shuffle the rest of the revealed cards into your library.
-mana={4}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Syr Cadian, Knight Owl

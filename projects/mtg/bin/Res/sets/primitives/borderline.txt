@@ -7056,7 +7056,7 @@ toughness=4
 [/card]
 [card]
 name=Calciform Pools
-auto={T}:add {1}
+auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Storage)
 auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{U} _ choice add{W} !$ controller
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Calciform Pools. -- {1}, Remove X storage counters from Calciform Pools: Add X mana in any combination of {W} and/or {U} to your mana pool.
@@ -7883,7 +7883,7 @@ toughness=1
 [/card]
 [card]
 name=Cave of Temptation
-auto={T}:add {1}
+auto={T}:add{C}
 auto={1}{T}:Add{W}
 auto={1}{T}:Add{U}
 auto={1}{T}:Add{B}
@@ -11036,7 +11036,7 @@ toughness=4
 [/card]
 [card]
 name=Cryptic Caves
-auto={T}:add {1}
+auto={T}:add{C}
 auto=aslongas(land|myBattlefield) {1}{T}{S}:draw:1 >4
 text={T}: Add {1}. -- {1}, {T}, Sacrifice Cryptic Caves: Draw a card. Activate this ability only if you control five or more lands.
 type=Land
@@ -14171,7 +14171,7 @@ toughness=1
 [/card]
 [card]
 name=Dreadship Reef
-auto={T}: Add {1}
+auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Storage)
 auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{U} _ choice add{B} !$ controller
 text={T}: Add {C}. -- {1}, {T}: Put a storage counter on Dreadship Reef. -- {1}, Remove X storage counters from Dreadship Reef: Add X mana in any combination of {U} and/or {B}.
@@ -17533,7 +17533,7 @@ type=Land
 [card]
 name=Field of the Dead
 auto=tap(noevent)
-auto={T}:add {1}
+auto={T}:add{C}
 auto=aslongas(land|myBattlefield) create(zombie:creature zombie:2/2:black) >7
 auto=aslongas(land|myBattlefield) @movedTo(land|myBattlefield):create(zombie:creature zombie:2/2:black) >7
 text=Field of the Dead enters the battlefield tapped. -- {T}: Add {1}. -- Whenever Field of the Dead or another land enters the battlefield under your control, if you control seven or more lands with different names, create a 2/2 black Zombie creature token.
@@ -19274,7 +19274,7 @@ type=Enchantment
 [/card]
 [card]
 name=Fungal Reaches
-auto={T}: Add {1}
+auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Storage)
 auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{R} _ choice add{G} !$ controller
 text={T}: Add {C}. -- {1}, {T}: Put a storage counter on Fungal Reaches. -- {1}, Remove X storage counters from Fungal Reaches: Add X mana in any combination of {R} and/or {G}.
@@ -22876,7 +22876,7 @@ toughness=3
 [/card]
 [card]
 name=Hall of Heliod's Generosity
-auto={T}:add {1}
+auto={T}:add{C}
 auto={1}{W}{T}:moveTo(mylibrary) target(enchantment|mygraveyard)
 text={T}: Add {1}. -- {1}{W}, {T}: Put target enchantment card from your graveyard on top of your library.
 type=Legendary Land
@@ -28286,7 +28286,7 @@ toughness=3
 [card]
 name=Kess, Dissident Mage
 abilities=flying
-auto={0}:target(instant,sorcery|mygraveyard) tempflashback ueot myTurnOnly limit:1
+auto={0}:ability$!name(Give flashback) name(Give flashback) target(*[instant;sorcery]|mygraveyard) tempflashback ueot!$ controller limit:1 myturnonly
 text=Flying -- During each of your turns, you may cast an instant or sorcery card from your graveyard. If a card cast this way would be put into your graveyard, exile it instead.
 mana={1}{U}{B}{R}
 type=Legendary Creature
@@ -29480,7 +29480,7 @@ toughness=3
 name=Kykar, Wind's Fury
 abilities=flying
 auto=@movedTo(*[-creature]|mystack):create(Spirit:creature Spirit:1/1:white:flying)
-auto=[S(Spirit|myBattlefield)}:add {R}
+auto=[S(Spirit|myBattlefield)}:add{R}
 text=Flying -- Whenever you cast a noncreature spell, create a 1/1 white Spirit creature token with flying. -- Sacrifice a Spirit: Add {R}.
 mana={1}{U}{R}{W}
 type=Legendary Creature
@@ -30923,7 +30923,7 @@ toughness=3
 [/card]
 [card]
 name=Llanowar Tribe
-auto={T}:add {G}{G}{G}
+auto={T}:add{G}{G}{G}
 text={T}: Add {G}{G}{G}.
 mana={G}{G}{G}
 type=Creature
@@ -32576,7 +32576,7 @@ toughness=3
 [card]
 name=Maze's End
 auto=tap(noevent)
-auto={T}:Add {1}
+auto={T}:add{C}
 aicode=activate 
 auto={3}{T}{H(this|mybattlefield)}{3}{T}:name(search a gate) target(land[Gate]|myLibrary) moveTo(myBattlefield) and!( if compare(diffcardcounttypegate)~morethan~9 then wingame controller )!
 text=Maze’s End enters the battlefield tapped. -- {T}:Add {C}. -- {3},{T},Return Maze’s End to its owner’s hand: Search your library for a Gate card, put it onto the battlefield, then shuffle your library. If you control ten or more Gates with different names, you win the game.
@@ -33638,7 +33638,7 @@ type=Instant
 [/card]
 [card]
 name=Molten Slagheap
-auto={T}: Add {1}
+auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Storage)
 auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{B} _ choice add{R} !$ controller
 text={T}: Add {C}. -- {1}, {T}: Put a storage counter on Molten Slagheap. -- {1}, Remove X storage counters from Molten Slagheap: Add X mana in any combination of {B} and/or {R}.
@@ -40403,7 +40403,7 @@ auto=@movedTo(*[blue]|mystack):counter(1/1)
 auto=@movedTo(*[black]|mystack):counter(1/1)
 auto=@movedTo(*[red]|mystack):counter(1/1)
 auto=@movedTo(*[green]|mystack):counter(1/1)
-auto={C(1/1,-5)}:Add {W}{W}{U}{U}{B}{B}{R}{R}{G}{G} limit:1
+auto={C(1/1,-5)}:add{W}{W}{U}{U}{B}{B}{R}{R}{G}{G} limit:1
 text=Flying -- Whenever you cast a spell, put a +1/+1 counter on Ramos, Dragon Engine for each of that spell's colors. -- Remove five +1/+1 counters from Ramos: Add {W}{W}{U}{U}{B}{B}{R}{R}{G}{G}. Activate this ability only once each turn.
 mana={6}
 type=Legendary Artifact Creature
@@ -43356,7 +43356,7 @@ type=Instant
 [card]
 name=Runaway Steam-Kin
 auto=@movedTo(*[red]|mystack) restriction{(counter(1/1))~lessthan~3}:counter(1/1)
-auto={C(1/1,-3)}:Add {R}{R}{R}
+auto={C(1/1,-3)}:add{R}{R}{R}
 text=Whenever you cast a red spell, if Runaway Steam-Kin has fewer than three +1/+1 counters on it, put a +1/+1 counter on Runaway Steam-Kin. -- Remove three +1/+1 counters from Runaway Steam-Kin: Add {R}{R}{R}.
 mana={1}{R}
 type=Creature
@@ -43821,7 +43821,7 @@ type=Sorcery
 [/card]
 [card]
 name=Saltcrusted Steppe
-auto={T}: Add {1}
+auto={T}:add{C}
 auto={1}{T}:counter(0/0,1,Storage)
 auto={1}{C(0/0,-1,Storage)}: ability$! _ choice add{G} _ choice add{W} !$ controller
 text={T}: Add {C}. -- {1}, {T}: Put a storage counter on Saltcrusted Steppe. -- {1}, Remove X storage counters from Saltcrusted Steppe: Add X mana in any combination of {G} and/or {W}.
@@ -51999,6 +51999,16 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Synthetic Destiny
+aicode=activate transforms((,newability[target(*[zpos=findfirsttypecreature]|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot])) oneshot
+auto=count(type:creature:mybattlefield)
+auto=all(creature|myBattlefield) moveto(exile)
+auto=thisforeach(variable{countedamount}) ability$!name(Reveal from top) name(Reveal from top) reveal:1 revealuntil(creature|mylibrary) optionone name(Choose creature to play end of turn) target(creature|myreveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put back) target(*|myreveal) moveto(mylibrary) and!( all(*|myreveal) moveto(mylibrary) )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot afterrevealedend revealend!$ controller
+text=Exile all creatures you control. At the beginning of the next end step, reveal cards from the top of your library until you reveal that many creature cards, put all creature cards revealed this way onto the battlefield, then shuffle the rest of the revealed cards into your library.
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Syr Alin, the Lion's Claw
 abilities=first strike
 auto=@combat(attacking) source(this):all(other creature|mybattlefield) 1/1 ueot
@@ -52281,45 +52291,45 @@ type=Sorcery
 [/card]
 [card]
 name=Talisman of Conviction
-auto={T}:add {1}
-auto={T}:add {R} and!( damage:1 controller )!
-auto={T}:add {W} and!( damage:1 controller )!
+auto={T}:add{C}
+auto={T}:add{R} and!( damage:1 controller )!
+auto={T}:add{W} and!( damage:1 controller )!
 text={T}: Add {1}. -- {T}: Add {R} or {W}. Talisman of Conviction deals 1 damage to you.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Talisman of Creativity
-auto={T}:add {1}
-auto={T}:add {R} and!( damage:1 controller )!
-auto={T}:add {U} and!( damage:1 controller )!
+auto={T}:add{1}
+auto={T}:add{R} and!( damage:1 controller )!
+auto={T}:add{U} and!( damage:1 controller )!
 text={T}: Add {1}. -- {T}: Add {U} or {R}. Talisman of Creativity deals 1 damage to you.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Talisman of Curiosity
-auto={T}:add {1}
-auto={T}:add {G} and!( damage:1 controller )!
-auto={T}:add {U} and!( damage:1 controller )!
-text={T}: Add  {1}. -- {T}: Add {G} or {U}. Talisman of Curiosity deals 1 damage to you.
+auto={T}:add{C}
+auto={T}:add{G} and!( damage:1 controller )!
+auto={T}:add{U} and!( damage:1 controller )!
+text={T}: Add {1}. -- {T}: Add {G} or {U}. Talisman of Curiosity deals 1 damage to you.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Talisman of Hierarchy
-auto={T}:add {1}
-auto={T}:add {B} and!( damage:1 controller )!
-auto={T}:add {W} and!( damage:1 controller )!
+auto={T}:add{C}
+auto={T}:add{B} and!( damage:1 controller )!
+auto={T}:add{W} and!( damage:1 controller )!
 text={T}: Add {1}. -- {T}: Add {W} or {B}. Talisman of Hierarchy deals 1 damage to you.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Talisman of Resilience
-auto={T}:add {1}
-auto={T}:add {G} and!( damage:1 controller )!
-auto={T}:add {B} and!( damage:1 controller )!
+auto={T}:add{C}
+auto={T}:add{G} and!( damage:1 controller )!
+auto={T}:add{B} and!( damage:1 controller )!
 text={T}: Add {1}. -- {T}: Add {B} or {G}. Talisman of Resilience deals 1 damage to you.
 mana={2}
 type=Artifact
@@ -54453,7 +54463,7 @@ toughness=1
 [card]
 name=Tinder Wall
 abilities=defender
-auto={S}:add {R}{R}
+auto={S}:add{R}{R}
 auto={R}{S}:damage:2 target(creature[blocked])
 text=Defender (This creature can’t attack.) -- Sacrifice Tinder Wall: Add {R}{R}. -- {R}, Sacrifice Tinder Wall: It deals 2 damage to target creature it’s blocking.
 mana={G}
@@ -56699,7 +56709,7 @@ type=Artifact
 [card]
 name=Urza, Lord High Artificer
 auto=token(-464024)
-auto={T(artifact|myBattlefield)}:add {U}
+auto={T(artifact|myBattlefield)}:add{U}
 auto={5}:name(Suffle and cast) shuffle && reveal:1 optionone name(Reveal)if type(*|reveal)~morethan~0 then name(Check to cast) target(*|reveal) transforms((,newability[if type(*|mybattlefield)~morethan~0 then castcard(putinplay)])) else name(not a creature) target(*|reveal) donothing optiononeend optiontwo choice all(*|reveal) bottomoflibrary optiontwoend revealend
 text=When Urza, Lord High Artificer enters the battlefield, create a 0/0 colorless Construct artifact creature token with "This creature gets +1/+1 for each artifact you control." -- Tap an untapped artifact you control: Add {U}. -- {5}: Shuffle your library, then exile the top card. Until end of turn, you may play that card without paying its mana cost.
 mana={2}{U}{U}
@@ -60048,7 +60058,7 @@ subtype=Swamp Forest
 [/card]
 [card]
 name=Woodland Mystic
-auto={T}:Add {G}
+auto={T}:add{G}
 text={T}: Add {G}.
 mana={1}{G}
 type=Creature
