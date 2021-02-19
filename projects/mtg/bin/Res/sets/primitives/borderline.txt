@@ -39077,10 +39077,13 @@ type=Land
 [/card]
 [card]
 name=Primal Command
-target=player
-auto=choice name(Choose 1 and 2) life:7 targetedplayer && target(player) moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)
-auto=choice name(Choose 1 and 3) life:7 targetedplayer && Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>creature|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=choice name(Choose 2 and 3) moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard) && Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>creature|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=choice name(Gain life and return non-creature) transforms((,newability[choice name(You gain life) life:7 controller && name(Return non-creature) target(*[-creature]|battlefield) moveTo(ownerlibrary)],newability[choice name(Opponent gains life) life:7 opponent && name(Return non-creature) target(*[-creature]|battlefield) moveTo(ownerlibrary)])) oneshot
+auto=choice name(Gain life and return graveyard) transforms((,newability[choice name(You gain life) life:7 controller && target(player) moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)],newability[choice name(Opponent gains life) life:7 opponent && target(player) moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)])) oneshot
+auto=choice name(Gain life and search creature) transforms((,newability[choice name(You gain life) life:7 controller && name(Search creature) target(creature|mylibrary) moveTo(myhand) and!( shuffle )!],newability[choice name(Opponent gains life) life:7 opponent && name(Search creature) target(creature|mylibrary) moveTo(myhand) and!( shuffle )!])) oneshot
+auto=choice name(Return non-creature and return graveyard) ability$!name(Player shuffles graveyard) name(Player shuffles graveyard) target(player) moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)!$ controller && ability$!name(Put non-creature on top) name(Put non-creature on top) target(*[-creature]|battlefield) transforms((,newability[moveTo(ownerlibrary)])) oneshot!$ controller
+auto=if type(creature|mylibrary)~equalto~0 then choice choice name(Return non-creature and search creature) name(Return non-creature and search creature) target(*[-creature]|battlefield) moveTo(ownerlibrary)
+auto=if type(creature|mylibrary)~morethan~0 then choice name(Search creature and return non-creature) name(Search creature and return non-creature) target(creature|mylibrary) moveTo(myhand) and!( transforms((,newability[name(Put non-creature on top) target(*[-creature]|battlefield) moveTo(ownerlibrary)])) oneshot )!
+auto=choice name(Return graveyard and search creature) ability$!name(Search creature) name(Search creature) target(creature|mylibrary) moveTo(myhand) and!( shuffle )! !$ controller && ability$!name(Player shuffles graveyard) name(Player shuffles graveyard) target(player) moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)!$ controller
 text=Choose two — Target player gains 7 life; or put target noncreature permanent on top of its owner's library; or target player shuffles his or her graveyard into his or her library; or search your library for a creature card, reveal it, put it into your hand, then shuffle your library.
 mana={3}{G}{G}
 type=Sorcery
@@ -41434,7 +41437,7 @@ type=Sorcery
 [card]
 name=Remorseful Cleric
 abilities=flying
-auto={S}:auto=moveTo(exile) all(*|targetedpersonsgraveyard) target(player)
+auto={S}:choice name(Exile cards in graveyard) moveTo(exile) all(*|targetedpersonsgraveyard) target(player)
 text=Flying -- Sacrifice Remorseful Cleric: Exile all cards from target player's graveyard.
 mana={1}{W}
 type=Creature
@@ -48847,7 +48850,7 @@ toughness=6
 [card]
 name=Soulherder
 auto=@movedto(creature|exile) from(battlefield):counter(1/1) all(this)
-auto=@each my end:may name(Move to exile) target(creature|mybattlefield) moveto(exile) and!(moveto(mybattlefield))!
+auto=@each my end:may name(Move to exile) target(other *[creature]|mybattlefield) moveto(exile) and!(moveto(mybattlefield))!
 text=Whenever a creature is exiled from the battlefield, put a +1/+1 counter on Soulherder. -- At the beginning of your end step, you may exile another target creature you control, then return that card to the battlefield under its owner's control.
 mana={1}{W}{U}
 type=Creature

@@ -452,7 +452,7 @@
     <ClCompile Include="src\WFilter.cpp" />
     <ClCompile Include="src\WFont.cpp" />
     <ClCompile Include="src\WGui.cpp" />
-    <ClInclude Include="src\WParsedInt.cpp" />
+    <ClCompile Include="src\WParsedInt.cpp" />
     <ClCompile Include="src\WResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
