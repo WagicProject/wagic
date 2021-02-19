@@ -23911,7 +23911,7 @@ type=Artifact
 [card]
 name=Hero of Bretagard
 auto=@movedto(*|exile) from(myhand):counter(1/1)
-auto=@movedto(*[-instant;-sorcery]|exile) from(mbattlefield):counter(1/1)
+auto=@movedto(*[-instant;-sorcery]|exile) from(mybattlefield):counter(1/1)
 auto=this(counter{1/1}>=5) transforms((Angel,newability[flying]))
 auto=this(counter{1/1}>=10) transforms((God,newability[indestructible]))
 text=Whenever you exile one or more cards from your hand and/or permanents from the battlefield, put that many +1/+1 counters on Hero of Bretagard. -- As long as Hero of Bretagard has five or more counters on it, it has flying and is an Angel in addition to its other types. -- As long as Hero of Bretagard has ten or more counters on it, it has indestructible and is a God in addition to its other types.
