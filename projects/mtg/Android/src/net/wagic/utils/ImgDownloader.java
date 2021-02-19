@@ -1742,6 +1742,10 @@ public class ImgDownloader {
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/5/4/54a1c6a9-3531-4432-9157-e4400dbc89fd.jpg?1611206522";
         else if(id.equals("503841t"))
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/d/f/df826c7d-5508-4e21-848c-91bc3e3f447a.jpg?1611206331";
+        else if(id.equals("473148"))
+            cardurl = "https://img.scryfall.com/cards/large/front/5/d/5dca90ef-1c17-4dcc-9fef-dab9ee92f590.jpg?1572490726";
+        else if(id.equals("473127t"))
+            cardurl = "https://img.scryfall.com/cards/large/front/9/4/94057dc6-e589-4a29-9bda-90f5bece96c4.jpg?1572489125";
 
         return cardurl;
     }

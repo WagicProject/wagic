@@ -3423,7 +3423,7 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
         }
         SAFE_DELETE(hintTc);
     }
-    if(payTheManaCost(totalCost,nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+    if(payTheManaCost(totalCost,(nextCardToPlay?nextCardToPlay->has(Constants::ANYTYPEOFMANA):0),nextCardToPlay,gotPayments)) //Fix crash when nextCardToPlay is null.
     {
         if(comboCards.size())
         {
