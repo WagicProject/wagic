@@ -4462,7 +4462,8 @@ toughness=5
 [/card]
 [card]
 name=Bellowing Elk
-auto=aslongas(other creature[fresh]|mybattlefield) trample && indestructible
+auto=if thisturn(creature|mybattlefield)~morethan~1 then transforms((,newability[trample],newability[indestructible])) ueot
+auto=@movedTo(other creature|myBattlefield):transforms((,newability[trample],newability[indestructible])) ueot
 text=As long as you had another creature enter the battlefield under your control this turn, Bellowing Elk has trample and indestructible.
 mana={3}{G}
 type=Creature
@@ -9218,7 +9219,7 @@ type=Land
 [card]
 name=Cleaving Reaper
 abilities=flying,trample
-autograveyard=@movedto(*[angel;berserker]|mybattlefield):transforms((,newability[{L:3}:name(Move back to hand) moveto(myhand)])) ueot
+autograveyard={L:3}:restriction{thisturn(*[angel;berserker]|mybattlefield)~morethan~0} name(Move back to hand) moveto(myhand) 
 text=Flying, trample -- Pay 3 life: Return Cleaving Reaper from your graveyard to your hand. Activate this ability only if you had an Angel or Berserker enter the battlefield under your control this turn.
 mana={3}{B}{B}
 type=Creature
@@ -10066,7 +10067,7 @@ type=Instant
 [card]
 name=Confounding Conundrum
 auto=draw:1 controller
-auto=@movedTo(land|opponentBattlefield) restriction{type(land[fresh]|opponentBattlefield)~morethan~1}:ability$!name(Move to hand) moveTo(ownerHand) notatarget(land|myBattlefield)!$ opponent
+auto=@movedTo(land|opponentBattlefield) restriction{thisturn(land|opponentbattlefield)~morethan~1}:ability$!name(Move to hand) moveTo(ownerHand) notatarget(land|myBattlefield)!$ opponent
 text=When Confounding Conundrum enters the battlefield, draw a card. -- Whenever a land enters the battlefield under an opponent's control, if that player had another land enter the battlefield under their control this turn, they return a land they control to its owner's hand.
 mana={1}{U}
 type=Enchantment
@@ -35371,6 +35372,7 @@ toughness=1
 [/card]
 [card]
 name=Nimble Trapfinder
+auto=if thisturn(creature[cleric;rogue;warrior;wizard]|mybattlefield)~morethan~1 then transforms((,newability[unblockable])) ueot
 auto=@movedTo(other creature[cleric;rogue;warrior;wizard]|myBattlefield):all(this) transforms((,newability[unblockable])) ueot
 auto=@each my combatbegins:if compare(calculateparty)~equalto~4 then name(creatures get draw card on damage) name(creatures get draw card on damage) all(creature|myBattlefield) transforms((,newability[@combatdamagefoeof(player) from(this):draw:1 controller],newability[@combatdamageof(player) from(this):draw:1 controller])) ueot
 text=Nimble Trapfinder can't be blocked if you had another Cleric, Rogue, Warrior, or Wizard enter the battlefield under your control this turn. -- At the beginning of combat on your turn, if you have a full party, creatures you control gain "Whenever this creature deals combat damage to a player, draw a card" until end of turn.
@@ -43605,7 +43607,8 @@ toughness=2
 [/card]
 [card]
 name=Saddled Rimestag
-auto=aslongas(creature[fresh]|mybattlefield) 2/2
+auto=if thisturn(creature|mybattlefield)~morethan~1 then 2/2 ueot
+auto=@movedto(other creature|myBattlefield):2/2 ueot
 text=Saddled Rimestag gets +2/+2 as long as you had another creature enter the battlefield under your control this turn.
 mana={1}{G}
 type=Snow Creature
@@ -45115,8 +45118,8 @@ type=Instant
 [card]
 name=Searing Blaze
 target=player
-auto=if type(land[fresh]|mybattlefield)~lessthan~1 then damage:1 && damage:1 target(creature|targetedpersonsBattlefield)
-auto=if type(land[fresh]|mybattlefield)~morethan~0 then damage:3 && damage:3 target(creature|targetedpersonsBattlefield)
+auto=if thisturn(land|mybattlefield)~lessthan~1 then damage:1 && damage:1 target(creature|targetedpersonsBattlefield)
+auto=if thisturn(land|mybattlefield)~morethan~0 then damage:3 && damage:3 target(creature|targetedpersonsBattlefield)
 text=Searing Blaze deals 1 damage to target player and 1 damage to target creature that player controls. -- Landfall — If you had a land enter the battlefield under your control this turn, Searing Blaze deals 3 damage to that player and 3 damage to that creature instead.
 mana={R}{R}
 type=Instant

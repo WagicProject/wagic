@@ -93,6 +93,7 @@ class AIPlayerBaka: public AIPlayer{
 
     virtual AIStats * getStats();
 
+    bool payAlternative;
     MTGCardInstance * nextCardToPlay;
     MTGCardInstance * activateCombo();
     TargetChooser * GetComboTc(GameObserver * observer, TargetChooser * tc = NULL);
