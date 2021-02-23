@@ -3420,7 +3420,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     }
     if(nextCardToPlay)
     {
-        if(nextCardToPlay->currentZone == game->graveyard && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
+        if(game->graveyard->hasCard(nextCardToPlay) && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
             if(nextCardToPlay->getManaCost()->getFlashback()){
                 if(!pMana->canAfford(nextCardToPlay->getManaCost()->getFlashback(),0))
                     gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getFlashback(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
@@ -3470,7 +3470,7 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
         }
         SAFE_DELETE(hintTc);
     }
-    if(payTheManaCost(totalCost,(nextCardToPlay?nextCardToPlay->has(Constants::ANYTYPEOFMANA):0),nextCardToPlay,gotPayments)) //Fix crash when nextCardToPlay is null.
+    if(payTheManaCost(totalCost,0,nextCardToPlay,gotPayments)) //Fix crash when nextCardToPlay is null.
     {
         if(comboCards.size())
         {
@@ -3566,7 +3566,8 @@ int AIPlayerBaka::computeActions()
         //am im not interupting my own spell, or the stack contains nothing.
     {
         bool ipotential = false;
-        if(p->game->hand->hasType("instant") || p->game->hand->hasAbility(Constants::FLASH))
+        if(p->game->hand->hasType("instant") || p->game->hand->hasAbility(Constants::FLASH) || p->game->graveyard->hasType("instant") || p->game->graveyard->hasAbility(Constants::FLASH) || 
+           p->game->exile->hasType("instant") || p->game->exile->hasAbility(Constants::FLASH) || p->game->commandzone->hasAbility(Constants::FLASH)) //Now AI will not search just for instant cards.
         {
 #ifndef AI_CHANGE_TESTING
             findingCard = true;
@@ -3580,8 +3581,30 @@ int AIPlayerBaka::computeActions()
             }
             if (!nextCardToPlay)
             {
-                nextCardToPlay = FindCardToPlay(icurrentMana, "instant");
-                if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                nextCardToPlay = FindCardToPlay(icurrentMana, ""); //Now AI will not search just for instant cards.
+                bool canPlay = false;
+                if(nextCardToPlay && p->game->hand->hasCard(nextCardToPlay)){
+                    if(nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH))
+                        canPlay = true;
+                } else if(nextCardToPlay && p->game->graveyard->hasCard(nextCardToPlay)){
+                    if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD))
+                        canPlay = true;
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->has(Constants::TEMPFLASHBACK))
+                        canPlay = true;
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->getManaCost()->getFlashback())
+                        canPlay = true;
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->getManaCost()->getRetrace())
+                        canPlay = true;
+                } else if(nextCardToPlay && p->game->exile->hasCard(nextCardToPlay)){
+                    if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->has(Constants::CANPLAYFROMEXILE))
+                        canPlay = true;
+                } else if(nextCardToPlay && p->game->commandzone->hasCard(nextCardToPlay)){
+                    if(nextCardToPlay->has(Constants::FLASH))
+                        canPlay = true;
+                }
+                if(!canPlay)
+                    nextCardToPlay = NULL;
+                if (nextCardToPlay && game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
                     nextCardToPlay = NULL;
             }
             SAFE_DELETE (icurrentMana);
@@ -3594,7 +3617,7 @@ int AIPlayerBaka::computeActions()
         {
             if (ipotential)
             {
-                if(nextCardToPlay->currentZone == game->graveyard && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
+                if(game->graveyard->hasCard(nextCardToPlay) && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
                     if(nextCardToPlay->getManaCost()->getFlashback()){
                         if(payTheManaCost(nextCardToPlay->getManaCost()->getFlashback(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
                         {
@@ -3778,7 +3801,7 @@ int AIPlayerBaka::computeActions()
                         gotPayments.clear();//if any.
                         return 1;
                     }
-                    if(nextCardToPlay->currentZone == game->graveyard && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
+                    if(game->graveyard->hasCard(nextCardToPlay) && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
                         if(nextCardToPlay->getManaCost()->getFlashback()){
                             if(payTheManaCost(nextCardToPlay->getManaCost()->getFlashback(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
                             {
