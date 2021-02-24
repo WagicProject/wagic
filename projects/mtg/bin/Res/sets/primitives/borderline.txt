@@ -52006,10 +52006,10 @@ toughness=2
 [/card]
 [card]
 name=Synthetic Destiny
-aicode=activate transforms((,newability[target(*[zpos=findfirsttypecreature]|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot])) oneshot
+aicode=activate transforms((,newability[target(*[zpos=findfirsttypecreature]|mylibrary) bottomoflibrary and!( transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot )!])) oneshot
 auto=count(type:creature:mybattlefield)
 auto=all(creature|myBattlefield) moveto(exile)
-auto=thisforeach(variable{countedamount}) ability$!name(Reveal from top) name(Reveal from top) reveal:1 revealuntil(creature|mylibrary) optionone name(Choose creature to play end of turn) target(creature|myreveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put back) target(*|myreveal) moveto(mylibrary) and!( all(*|myreveal) moveto(mylibrary) )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot afterrevealedend revealend!$ controller
+auto=thisforeach(variable{countedamount}) ability$!name(Reveal from top) name(Reveal from top) reveal:1 revealuntil(creature|mylibrary) optionone name(Choose creature to play end of turn) target(creature|myreveal) bottomoflibrary and!( transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot )! optiononeend optiontwo name(Put back) target(*|myreveal) moveto(mylibrary) and!( all(*|myreveal) moveto(mylibrary) )! optiontwoend revealend!$ controller
 text=Exile all creatures you control. At the beginning of the next end step, reveal cards from the top of your library until you reveal that many creature cards, put all creature cards revealed this way onto the battlefield, then shuffle the rest of the revealed cards into your library.
 mana={4}{U}{U}
 type=Instant
