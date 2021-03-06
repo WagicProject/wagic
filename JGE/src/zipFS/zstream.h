@@ -70,7 +70,7 @@ public:
 	virtual zbuffer * open(const char * Filename, std::streamoff Offset, std::streamoff Size) = 0;
 	virtual zbuffer * close() = 0;
 
-	bool is_open() const	{ return m_Opened; }
+	bool is_open() const	{ return this != NULL && m_Opened; }
     bool is_used() const {return m_Used;}
     void unuse() { m_Used = false;}
     bool use(std::streamoff Offset, std::streamoff Size);
