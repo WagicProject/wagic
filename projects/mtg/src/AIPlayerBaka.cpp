@@ -3289,11 +3289,21 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         ManaCost* manaToPay = card->getManaCost();
         if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
             gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
-        if(card->getManaCost()->getAlternative() && !gotPayments.size() && !pMana->canAfford(card->getManaCost(),0) && !card->getManaCost()->getKicker()){ // Now AI can cast cards using alternative cost.
-            localpayAlternative = true;
-            manaToPay = card->getManaCost()->getAlternative();
-            if(!pMana->canAfford(manaToPay,0))
-                gotPayments = canPayMana(card,card->getManaCost()->getAlternative(),card->has(Constants::ANYTYPEOFMANA));
+        if(card->getManaCost()->getAlternative() && !gotPayments.size() && !pMana->canAfford(card->getManaCost(),0) && !card->getManaCost()->getKicker()){ //Now AI can cast cards using alternative cost.
+            ManaCost * extra = card->getManaCost()->getAlternative(); //Fix a crash when AI try to pay convoke cost.
+            bool hasConvoke = false;
+            if(extra->extraCosts){
+                for(unsigned int i = 0; i < extra->extraCosts->costs.size() && !hasConvoke; i++){
+                    if(dynamic_cast<Convoke*> (extra->extraCosts->costs[i]))
+                        hasConvoke = true;
+                }
+            }
+            if(!hasConvoke){
+                localpayAlternative = true;
+                manaToPay = card->getManaCost()->getAlternative();
+                if(!pMana->canAfford(manaToPay,0))
+                    gotPayments = canPayMana(card,card->getManaCost()->getAlternative(),card->has(Constants::ANYTYPEOFMANA));
+            }
         } 
         //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
         if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(manaToPay,card->has(Constants::ANYTYPEOFMANA))))
