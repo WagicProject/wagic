@@ -6060,15 +6060,13 @@ int MTGAbility::removeFromGame()
 //returns 1 if this ability needs to be removed from the list of active abilities
 int MTGAbility::testDestroy()
 {
-    if (game->mLayers->stackLayer()->has(this))
+    if(waitingForAnswer)
         return 0;
-    if (waitingForAnswer)
-        return 0;
-    if (forceDestroy == 1)
+    if(forceDestroy == 1)
         return 1;
-    if (forceDestroy == -1)
+    if(forceDestroy == -1)
         return 0;
-    if (source->handEffects && game->isInHand(source))
+    if(source->handEffects && game->isInHand(source))
         return 0;
     if(source->graveEffects && game->isInGrave(source))
         return 0;
@@ -6076,11 +6074,13 @@ int MTGAbility::testDestroy()
         return 0;
     if(source->commandZoneEffects && game->isInCommandZone(source))
         return 0;
-    if(this->forcedAlive == 1)
+    if(forcedAlive == 1)
         return 0;
-    if (!game->isInPlay(source))
+    if(game->mLayers->stackLayer()->has(this)) //Moved here to avoid a random crash (e.g. blasphemous act)
+        return 0;
+    if(!game->isInPlay(source))
         return 1;
-    if (target && !dynamic_cast<Player*>(target) && !game->isInPlay((MTGCardInstance *) target))
+    if(target && !dynamic_cast<Player*>(target) && !game->isInPlay((MTGCardInstance *) target))
         return 1;
     return 0;
 }

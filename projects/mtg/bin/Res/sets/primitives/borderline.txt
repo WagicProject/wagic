@@ -1273,6 +1273,21 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Ana Battlemage
+abilities=hasotherkicker
+other={2}{U} name(Kicker blue)
+kicker={1}{B} name(Kicker black or both)
+auto=if paid(alternative) then target(player) ability$!name(Discard 3 cards) name(Discard 3 cards) target(<3>*|myhand) reject!$ targetedplayer
+auto=if paid(kicker) then ability$!name(Tap creature) name(Tap creature) target(creature[-tapped]|battlefield) transforms((,newability[tap],newability[damage:power controller])) oneshot!$ controller
+auto=if paid(kicker) then pay({2}{U}) name(Pay also kicker blue) target(player) ability$!name(Discard 3 cards) name(Discard 3 cards) target(<3>*|myhand) reject!$ targetedplayer
+text=Kicker {2}{U} and/or {1}{B} (You may pay an additional {2}{U} and/or {1}{B} as you cast this spell.) -- When Ana Battlemage enters the battlefield, if it was kicked with its {2}{U} kicker, target player discards three cards. -- When Ana Battlemage enters the battlefield, if it was kicked with its {1}{B} kicker, tap target untapped creature and that creature deals damage equal to its power to its controller.
+mana={2}{G}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Anara, Wolvid Familiar
 abilities=partner
 auto=this(variable{controllerturn}>0) lord(*[iscommander]|mybattlefield) indestructible
@@ -1448,8 +1463,8 @@ toughness=6
 [/card]
 [card]
 name=Angel of Grace
-abilities=flash, flying
-auto=this(controllerlife >= 1) transforms((,newability[reduceto:1])) ueot
+abilities=flash,flying
+auto=this(controllerlife >= 1) transforms((,newability[reduceto:1]))
 autograveyard={4}{W}{W}{E}:lifeset:10
 text=Flash -- Flying -- When Angel of Grace enters the battlefield, until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead. -- {4}{W}{W}, Exile Angel of Grace from your graveyard: Your life total becomes 10.
 mana={3}{W}{W}
@@ -1520,6 +1535,15 @@ type=Creature
 subtype=Angel
 power=4
 toughness=4
+[/card]
+[card]
+name=Angel's Grace
+abilities=split second
+auto=all(*|mybattlefield) transforms((,newability[this(controllerlife >= 1) transforms((,newability[reduceto:1]))],newability[cantlose])) ueot
+auto=all(*|opponentbattlefield) transforms((,newability[cantwin])) ueot
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- You can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Angel's Trumpet
@@ -4522,6 +4546,16 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
+name=Benediction of Moons
+abilities=exiledeath
+auto=life:2 controller
+auto=name(Haunt a creature) target(creature) counter(0/0.1.MoonsHaunted)
+autoexile=@movedto(creature[counter{0/0.1.MoonsHaunted}]|graveyard) from(battlefield):life:2 controller
+text=You gain 1 life for each player. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Benediction of Moons haunts dies, you gain 1 life for each player.
+mana={W}
+type=Sorcery
+[/card]
+[card]
 name=Benefaction of Rhonas
 aicode=activate transforms((,newability[if type(*[creature;enchantment;zpos<=5]|mylibrary)~equalto~0 then all(*[zpos<=5]|mylibrary) moveto(mygraveyard) else target(*[zpos<=1]|mylibrary) transforms((,newability[target(*[creature;enchantment;zpos<=5]|mylibrary) moveto(myhand) and!( all(*[zpos<=5]|mylibrary) moveto(mygraveyard) )!])) oneshot])) oneshot
 auto=if type(creature[zpos<=5]|mylibrary)~morethan~0 then if type(enchantment[zpos<=5]|mylibrary)~morethan~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Choose creature) target(creature|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Choose enchantment) target(enchantment|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot && all(*|reveal) moveto(mygraveyard) )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[if cantargetcard(*[creature]|*) then choice name(Put creature in hand) name(Put creature in hand) moveto(myhand)],newability[if cantargetcard(*[creature]|*) then choice name(Put creature in graveyard) name(Put creature in graveyard) donothing],newability[if cantargetcard(*[enchantment]|*) then choice name(Put enchantment in hand) name(Put enchantment in hand) moveto(myhand)],newability[if cantargetcard(*[enchantment]|*) then choice name(Put enchantment in graveyard) name(Put enchantment in graveyard) moveto(mygraveyard)])) oneshot afterrevealedend revealend
@@ -4704,6 +4738,13 @@ auto=if type(creature|battlefield)~morethan~2 then choice name(Give 1 counter to
 text=Distribute three +1/+1 counters among one, two, or three target creatures, then double the number of +1/+1 counters on each of those creatures.
 mana={4}{G}{G}
 type=Sorcery
+[/card]
+[card]
+name=Bioshift
+auto=target(creature[counter{1/1}|battlefield) transforms((,newability[thisforeach(counter{1/1.1}) may name(Move 1/1 counter) counter(1/1.-1) all(this) && counter(1/1) target(other creature|mybattlefield)])) oneshot
+text=Move any number of +1/+1 counters from target creature onto another target creature with the same controller.
+mana={GU}
+type=Instant
 [/card]
 [card]
 name=Biowaste Blob
@@ -46957,8 +46998,8 @@ type=Land
 [card]
 name=Silundi Vision
 autohand={0}:restriction{can play land} name(Silundi Isle) name(Silundi Isle) flip(Silundi Isle) forcetype(land)
-aicode=activate target(instant,sorcery[zpos<=6]|mylibrary) moveto(myhand)
-auto=name(Reveal 6 cards) reveal:6 optionone name(Get instant or sorcery) target(instant,sorcery|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
+aicode=activate target(*[instant;sorcery;zpos<=6]|mylibrary) moveto(myhand)
+auto=name(Reveal 6 cards) reveal:6 optionone name(Get instant or sorcery) target(<upto:1>*[instant;sorcery]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
 text=Look at the top six cards of your library. You may reveal an instant or sorcery card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
 mana={2}{U}
 type=Instant

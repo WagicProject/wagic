@@ -260,6 +260,7 @@ void JFileSystem::clearZipCache()
 
 bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
 {
+#ifndef WIN32
     if (mZipAvailable && mZipFile.is_open())
     {
         if (mZipFileName != zipfile)
@@ -267,7 +268,7 @@ bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL 
         else
             return true;
     }
-
+#endif
     mZipFileName = zipfile;
     mPassword = password;
 

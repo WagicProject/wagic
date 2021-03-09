@@ -279,21 +279,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Ana Battlemage
-text=Kicker {2}{U} and/or {1}{B} (You may pay an additional {2}{U} and/or {1}{B} as you cast this spell.) -- When Ana Battlemage enters the battlefield, if it was kicked with its {2}{U} kicker, target player discards three cards. -- When Ana Battlemage enters the battlefield, if it was kicked with its {1}{B} kicker, tap target untapped creature and that creature deals damage equal to its power to its controller.
-mana={2}{G}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-[/card]
-[card]
-name=Angel's Grace
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- You can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Animate Library
 text=Enchant your library -- Enchanted library is an artifact creature on the battlefield with power and toughness each equal to the number of cards in it. It's still a library. -- If enchanted library would leave the battlefield, exile Animate Library instead.
 mana={4}{U}{U}
@@ -765,13 +750,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Barrel Down Sokenzan
-text=Sweep — Return any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
-mana={2}{R}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
 name=Barrin's Unmaking
 text=Return target permanent to its owner's hand if that permanent shares a color with the most common color among all permanents or a color tied for most common.
 mana={1}{U}
@@ -872,12 +850,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=Benediction of Moons
-text=You gain 1 life for each player. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Benediction of Moons haunts dies, you gain 1 life for each player.
-mana={W}
-type=Sorcery
-[/card]
-[card]
 name=Benevolent Unicorn
 text=If a spell would deal damage to a creature or player, it deals that much damage minus 1 to that creature or player instead.
 mana={1}{W}
@@ -915,12 +887,6 @@ type=Creature
 subtype=Ooze
 power=4
 toughness=4
-[/card]
-[card]
-name=Bioshift
-text=Move any number of +1/+1 counters from target creature onto another target creature with the same controller.
-mana={GU}
-type=Instant
 [/card]
 [card]
 name=Bite of the Black Rose

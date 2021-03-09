@@ -1746,6 +1746,18 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/5/d/5dca90ef-1c17-4dcc-9fef-dab9ee92f590.jpg?1572490726";
         else if(id.equals("473127t"))
             cardurl = "https://img.scryfall.com/cards/large/front/9/4/94057dc6-e589-4a29-9bda-90f5bece96c4.jpg?1572489125";
+        else if(id.equals("295910t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/7/b/7b993828-e139-4cb6-a329-487accc1c515.jpg?1563073064";
+        else if(id.equals("296315t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/e/d/ed58cd8c-b11a-4109-b789-0eb92eaf0184.jpg?1614969127";
+        else if(id.equals("296247t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/0/7/07027a7c-5843-4d78-9b86-8799363c0b82.jpg?1591319174";
+        else if(id.equals("296217t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/e/7/e72daa68-0680-431c-a616-b3693fd58813.jpg?1614969153";
+        else if(id.equals("296145t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/b/cbcb0668-e88c-4462-b079-34f140c0277e.jpg?1614969101";
+        else if(id.equals("295986t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/4/a/4a2144f2-d4be-419e-bfca-116cedfdf18b.jpg?1614968857";
 
         return cardurl;
     }
@@ -2185,7 +2197,7 @@ public class ImgDownloader {
             tokenurl = "https://img.scryfall.com/cards/large/front/4/f/4f8107b3-8539-4b9c-8d0d-c512c940838f.jpg?1592324480";
         else if(id.equals("489403t") || id.equals("489358t") || id.equals("489372t"))
             tokenurl = "https://img.scryfall.com/cards/large/front/9/5/959ed4bf-b276-45ed-b44d-c757e9c25846.jpg";
-        else if(id.equals("489562t"))
+        else if(id.equals("489562t") || id.equals("296282t"))
             tokenurl="https://img.scryfall.com/cards/large/front/c/f/cf9a289f-cd3f-42a0-9296-8c7cc7d01a91.jpg?1561758108";
         else if(id.equals("489363t"))
             tokenurl="https://img.scryfall.com/cards/large/front/8/3/83dcacd3-8707-4354-a1a5-9863d677d67f.jpg?1562702177";
@@ -2239,6 +2251,8 @@ public class ImgDownloader {
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/e/f/ef775ad0-b1a9-4254-ab6f-304558bb77a1.jpg?1611247501";
         else if(id.equals("508147t") || id.equals("508338t") || id.equals("508160t") || id.equals("508357t") ||
                 id.equals("508354t") || id.equals("508349t") || id.equals("508343t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/1/1/118d0655-5719-4512-8bc1-fe759669811b.jpg?1611206824";
+        else if(id.equals("295919t"))
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/1/1/118d0655-5719-4512-8bc1-fe759669811b.jpg?1611206824";
 
         return tokenurl;
@@ -2851,7 +2865,7 @@ public class ImgDownloader {
                     || scryset.equals("PAL05") || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL") || scryset.equals("HA1")
                     || scryset.equals("SLD") || scryset.equals("MB1") || scryset.equals("HA2") || scryset.equals("HA3") || scryset.equals("SS3")
                     || scryset.equals("AKR") || scryset.equals("ANB") || scryset.equals("PLIST") || scryset.equals("KLR") || scryset.equals("CC1")
-                    || scryset.equals("ATH")){
+                    || scryset.equals("ATH") || scryset.equals("HA4") || scryset.equals("TSR")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -3042,7 +3056,7 @@ public class ImgDownloader {
                     && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL") && !scryset.equals("HA1")
                     && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2") && !scryset.equals("HA3") && !scryset.equals("SS3")
                     && !scryset.equals("AKR") && !scryset.equals("ANB") && !scryset.equals("PLIST") && !scryset.equals("KLR") && !scryset.equals("CC1")
-                    && !scryset.equals("ATH")){
+                    && !scryset.equals("ATH") && !scryset.equals("HA4") && !scryset.equals("TSR")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -3157,7 +3171,7 @@ public class ImgDownloader {
                     && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL") && !scryset.equals("HA1")
                     && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2") && !scryset.equals("HA3") && !scryset.equals("SS3")
                     && !scryset.equals("AKR") && !scryset.equals("ANB") && !scryset.equals("PLIST") && !scryset.equals("KLR") && !scryset.equals("CC1")
-                    && !scryset.equals("ATH")){
+                    && !scryset.equals("ATH") && !scryset.equals("HA4") && !scryset.equals("TSR")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -3323,7 +3337,8 @@ public class ImgDownloader {
                             || scryset.equals("PAL01") || scryset.equals("PAL02") || scryset.equals("PAL03") || scryset.equals("PAL04") || scryset.equals("PAL05")
                             || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL") || scryset.equals("HA1") || scryset.equals("SLD")
                             || scryset.equals("MB1") || scryset.equals("HA2") || scryset.equals("HA3") || scryset.equals("SS3") || scryset.equals("AKR")
-                            || scryset.equals("ANB") || scryset.equals("PLIST") || scryset.equals("KLR") || scryset.equals("CC1") || scryset.equals("ATH")){
+                            || scryset.equals("ANB") || scryset.equals("PLIST") || scryset.equals("KLR") || scryset.equals("CC1") || scryset.equals("ATH")
+                            || scryset.equals("HA4") || scryset.equals("TSR")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){

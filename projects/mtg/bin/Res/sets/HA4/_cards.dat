@@ -1,0 +1,157 @@
+[meta]
+author=Wagic Team
+name=Historic Anthology 4
+orderindex=PRO-ZA.HA4
+year=2021-03-11
+total=30
+[/meta]
+[card]
+primitive=Wolf
+id=-295928
+rarity=T
+[/card]
+[card]
+primitive=Spider
+id=-295921
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-295920
+rarity=T
+[/card]
+[card]
+primitive=Warrior
+id=-295919
+rarity=T
+[/card]
+[card]
+primitive=Avatar
+id=-295910
+rarity=T
+[/card]
+[card]
+primitive=Adorned Pouncer
+id=295905
+rarity=R
+[/card]
+[card]
+primitive=Declaration in Stone
+id=295906
+rarity=R
+[/card]
+[card]
+primitive=Thraben Inspector
+id=295907
+rarity=C
+[/card]
+[card]
+primitive=Triumphant Reckoning
+id=295908
+rarity=M
+[/card]
+[card]
+primitive=Iceberg Cancrix
+id=295909
+rarity=C
+[/card]
+[card]
+primitive=Marit Lage's Slumber
+id=295910
+rarity=R
+[/card]
+[card]
+primitive=Think Twice
+id=295911
+rarity=C
+[/card]
+[card]
+primitive=Ammit Eternal
+id=295912
+rarity=R
+[/card]
+[card]
+primitive=Death's Shadow
+id=295913
+rarity=R
+[/card]
+[card]
+primitive=Faith of the Devoted
+id=295914
+rarity=U
+[/card]
+[card]
+primitive=Torment of Scarabs
+id=295915
+rarity=U
+[/card]
+[card]
+primitive=Flameblade Adept
+id=295916
+rarity=U
+[/card]
+[card]
+primitive=Goblin Gaveleer
+id=295917
+rarity=C
+[/card]
+[card]
+primitive=Harmless Offering
+id=295918
+rarity=R
+[/card]
+[card]
+primitive=Lys Alana Huntmaster
+id=295919
+rarity=C
+[/card]
+[card]
+primitive=Sawtusk Demolisher
+id=295920
+rarity=R
+[/card]
+[card]
+primitive=Spider Spawning
+id=295921
+rarity=U
+[/card]
+[card]
+primitive=Hamza, Guardian of Arashin
+id=295922
+rarity=U
+[/card]
+[card]
+primitive=Collected Conjuring
+id=295923
+rarity=R
+[/card]
+[card]
+primitive=Abomination of Llanowar
+id=295924
+rarity=U
+[/card]
+[card]
+primitive=Bonesplitter
+id=295925
+rarity=C
+[/card]
+[card]
+primitive=Coldsteel Heart
+id=295926
+rarity=U
+[/card]
+[card]
+primitive=Inspiring Statuary
+id=295927
+rarity=R
+[/card]
+[card]
+primitive=Sword of Body and Mind
+id=295928
+rarity=M
+[/card]
+[card]
+primitive=Blinkmoth Nexus
+id=295929
+rarity=R
+[/card]
