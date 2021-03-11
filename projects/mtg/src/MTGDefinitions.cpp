@@ -210,7 +210,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "boast", //It has boast ability
     "twoboast", //It has boast twice ability (e.g. Birgi, God of Storytelling)
     "replacescry", //It has scry replacement ability
-    "hasnokicker" //Kicker cost is not a real kicker cost (eg. cards with Fuse cost)
+    "hasnokicker", //Kicker cost is not a real kicker cost (eg. cards with Fuse cost)
+    "undamageable" //It cannot be damaged by any source
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -304,7 +304,8 @@ class Constants
       TWOBOAST = 177,
       REPLACESCRY = 178,
       HASNOKICKER = 179,
-      NB_BASIC_ABILITIES = 180,
+      UNDAMAGEABLE = 180,
+      NB_BASIC_ABILITIES = 181,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
