@@ -2066,6 +2066,18 @@ power=7
 toughness=5
 [/card]
 [card]
+name=Arc Blade
+abilities=exiledeath
+other={2}{R} name(Suspend 3)
+auto=ifnot paid(alternative) then damage:2 target(creature,player)
+auto=moveto(myexile) and!( counter(0/0,3,Time) )!
+autoexile=@each my upkeep restriction{compare(hascnttime)~morethan~1}:counter(0/0,-1,Time)
+autoexile=@each my upkeep restriction{compare(hascnttime)~equalto~1}:activate castcard(normal)
+text=Arc Blade deals 2 damage to target creature or player. Exile Arc Blade with three time counters on it. -- Suspend 3—{2}{R} (Rather than cast this card from your hand, you may pay {2}{R} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Arcades, the Strategist
 abilities=flying, vigilance
 auto=@movedTo(creature[defender]|myBattlefield):draw:1
@@ -13986,6 +13998,18 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Dralnu, Lich Lord
+abilities=undamageable
+auto=@damaged(this):ability$!name(sacrifice) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ controller
+auto={T}:name(Instant or sorcery gains flashback) target(*[instant;sorcery]|myGraveyard) transforms((,newability[canplayfromgraveyard],newability[gainedexiledeath])) ueot
+text=If damage would be dealt to Dralnu, Lich Lord, sacrifice that many permanents instead.  -- {T}: Target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (You may cast that card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{U}{B}
+type=Legendary Creature
+subtype=Zombie Wizard
+power=3
+toughness=3
+[/card]
+[card]
 name=Drana's Silencer
 auto=target(creature|opponentBattlefield) -calculateparty/-calculateparty ueot
 text=When Drana's Silencer enters the battlefield, target creature an opponent controls gets -X/-X until end of turn, where X is the number of creatures in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.)
@@ -14670,6 +14694,14 @@ type=Creature
 subtype=Elf Berserker
 power=1
 toughness=2
+[/card]
+[card]
+name=Dust of Moments
+auto=choice name(Remove 2 time counters) all(*[counter{0/0.1.Time}]|battlefield,exile) counter(0/0,-2,Time)
+auto=choice name(Add 2 time counters) all(*[counter{0/0.1.Time}]|battlefield,exile) counter(0/0,2,Time)
+text=Choose one — Remove two time counters from each permanent and each suspended card; or put two time counters on each permanent with a time counter on it and each suspended card.
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Dutiful Servants
@@ -15691,6 +15723,14 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Endbringer's Revel
+auto={4}:moveto(ownerhand) target(creature|graveyard)
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 4) pay[[{4}]] name(Pay 4) notatarget(creature|graveyard) moveto(ownerhand)?donothing!$ opponent])) forever
+text={4}: Return target creature card from a graveyard to its owner's hand. Any player may activate this ability but only any time he or she could cast a sorcery.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
 name=Endless Atlas
 auto={2}{T}:draw:1 controller restriction{control three or more lands with same name}
 text={2}, {T}: Draw a card. Activate this ability only if you control three or more lands with the same name.
@@ -16165,6 +16205,16 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
+name=Essence of the Wild
+auto=@movedto(creature|mybattlefield):all(trigger[to]) transforms((,newability[copy all(Essence of the Wild)])) forever
+text=Creatures you control enter the battlefield as a copy of Essence of the Wild.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Avatar
+power=6
+toughness=6
+[/card]
+[card]
 name=Essence Symbiote
 auto=@mutated(creature|mybattlefield):all(trigger[to]) counter(1/1)
 auto=@mutated(creature|mybattlefield):life:2 controller
@@ -16509,6 +16559,18 @@ type=Creature
 subtype=Human Warrior
 power=4
 toughness=4
+[/card]
+[card]
+name=Exhumer Thrull
+auto=name(Return creature to hand) moveto(myhand) target(creature|mygraveyard)
+auto=@movedto(this|graveyard) from(mybattlefield):all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.ExhumerHaunted)])) oneshot )!])) oneshot
+autoexile=@movedto(creature[counter{0/0.1.ExhumerHaunted}]|graveyard) from(battlefield):name(Return creature to hand) moveto(myhand) target(creature|mygraveyard)
+text=Haunt (When this creature dies, exile it haunting target creature.) -- When Exhumer Thrull enters the battlefield or the creature it haunts dies, return target creature card from your graveyard to your hand.
+mana={5}{B}
+type=Creature
+subtype=Thrull
+power=3
+toughness=3
 [/card]
 [card]
 name=Exiled Doomsayer
@@ -22113,6 +22175,17 @@ text=Great Hall of Starnheim enters the battlefield tapped. -- {T}: Add {B}. -- 
 type=Land
 [/card]
 [card]
+name=Greater Gargadon
+suspend(10)={R}
+autoexile={S(*[creature;artifact;land]|mybattlefield)}:counter(0/0,-1,Time)
+text=Suspend 10—{R} -- Sacrifice an artifact, creature, or land: Remove a time counter from Greater Gargadon. Activate this ability only if Greater Gargadon is suspended.
+mana={9}{R}
+type=Creature
+subtype=Beast
+power=9
+toughness=7
+[/card]
+[card]
 name=Greater Sandwurm
 abilities=cycling
 auto=cantbeblockedby(creature[power<=2])
@@ -27297,14 +27370,36 @@ mana={0}
 type=Artifact
 [/card]
 [card]
+name=Jhoira of the Ghitu
+auto=this(variable{type:*[instant;sorcery]:myhand}>0) {2}:name(Exile instant or sorcery) name(Exile instant or sorcery) target(*[instant;sorcery]|myhand) moveto(myexile) and!( transforms((,newability[counter(0/0.4.Time)],newability[@each my upkeep restriction{compare(hascnttime)~equalto~1}:name(Cast card from exile) activate castcard(normal)],newability[@each my upkeep restriction{compare(hascnttime)~morethan~1}:counter(0/0.-1.Time)])) forever )!
+auto=this(variable{type:*[-instant;-sorcery;-land]:myhand}>0) {2}:name(Exile non-land permanent) name(Exile non-land permanent) target(*[-instant;-sorcery;-land]|myhand) moveto(myexile) and!( transforms((,newability[counter(0/0.4.Time)],newability[@each my upkeep restriction{compare(hascnttime)~equalto~1}:name(Cast card from exile) moveto(myReveal) and!( moveto(myBattlefield) and!( transforms((,newability[moveTo(myBattlefield) and!( if cantargetcard(creature|*) then transforms((,newability[haste])) forever )!])) forever )! )!],newability[@each my upkeep restriction{compare(hascnttime)~morethan~1}:counter(0/0.-1.Time)])) forever )!
+text={2}, Exile a nonland card from your hand: Put four time counters on the exiled card. If it doesn't have suspend, it gains suspend. (At the beginning of your upkeep, remove a time counter from that card. When the last is removed, cast it without paying its mana cost. If it's a creature, it has haste.)
+mana={1}{U}{R}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Jhoira's Familiar
 abilities=flying
-auto=lord(*[artifact;legendary;saga]|mystack|mycastingzone) altercost(colorless,-1)
+auto=lord(*[artifact;legendary;saga]|mycastingzone) altercost(colorless,-1)
 text=Flying -- Historic spells you cast cost {1} less to cast. (Artifacts, legendaries, and Sagas are historic.)
 mana={4}
 type=Artifact Creature
 subtype=Bird
 power=2
+toughness=2
+[/card]
+[card]
+name=Jhoira's Timebug
+auto={T}:name(Remove time counter) target(*[counter{0/0.1.Time}]|mybattlefield,myexile) counter(0/0,-1,Time)
+auto={T}:name(Add time counter) target(*[counter{0/0.1.Time}]|mybattlefield,myexile) counter(0/0,1,Time)
+text={T}: Choose target permanent you control or suspended card you own. If that permanent or card has a time counter on it, you may remove a time counter from it or put another time counter on it.
+mana={2}
+type=Artifact Creature
+subtype=Insect
+power=1
 toughness=2
 [/card]
 [card]
@@ -28861,6 +28956,18 @@ mana={B}
 type=Creature
 subtype=Vampire Knight
 power=1
+toughness=2
+[/card]
+[card]
+name=Knight of the Holy Nimbus
+abilities=flanking
+auto={0}:regenerate
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 2) pay[[{2}]] name(Pay 2) cantregen notatarget(Knight of the Holy Nimbus|opponentBattlefield) ueot?donothing!$ opponent])) forever
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- If Knight of the Holy Nimbus would be destroyed, regenerate it. -- {2}: Knight of the Holy Nimbus can't be regenerated this turn. Only any opponent may activate this ability.
+mana={W}{W}
+type=Creature
+subtype=Human Rebel Knight
+power=2
 toughness=2
 [/card]
 [card]
@@ -38987,6 +39094,14 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Premature Burial
+target=creature[-black]
+auto=destroy
+text=Destroy target nonblack creature that entered the battlefield since your last turn ended.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Prepare // Fight
 target=creature
 auto=untap
@@ -39148,6 +39263,15 @@ auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability
 text=Target creature you control gets +X/+X until end of turn. Then it fights up to one target creature you don't control.
 mana={X}{G}
 type=Sorcery
+[/card]
+[card]
+name=Primal Vigor
+auto=@tokencreated(*|myBattlefield):name(Double the token) all(trigger) clone options(notrigger)
+auto=@tokencreated(*|opponentBattlefield):name(Double the token) all(trigger) clone options(notrigger) clone and!( transforms((,newability[moveto(opponentBattlefield)])) forever )!
+auto=@counteradded(1/1) from(creature|battlefield) except(Primal Vigor):may counter(1/1) target(creature[counter{1/1.1}]|Battlefield)
+text=If one or more tokens would be put onto the battlefield, twice that many of those tokens are put onto the battlefield instead. -- If one or more +1/+1 counters would be placed on a creature, twice that many +1/+1 counters are placed on that creature instead.
+mana={4}{G}
+type=Enchantment
 [/card]
 [card]
 name=Primal Wellspring
@@ -39532,6 +39656,16 @@ type=Creature
 subtype=Nightmare Horror
 power=3
 toughness=3
+[/card]
+[card]
+name=Psychotic Episode
+abilities=madness
+auto=if type(*|opponenthand)~morethan~0 then choice name(Look opponent's hand) target(*|opponenthand) bottomoflibrary
+auto=if type(*|opponenthand)~equalto~0 then choice name(Look opponent's top library) target(*[zpos=1]|opponentlibrary) bottomoflibrary
+autoexile=restriction{discarded} pay({1}{B}) name(pay {1}{B} to cast) activate name(pay {1}{B} to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Target player reveals his or her hand and the top card of his or her library. You choose a card revealed this way. That player puts the chosen card on the bottom of his or her library. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Pteramander
@@ -40916,6 +41050,16 @@ auto=ifnot paid(alternative) then all(creature|mybattlefield) transforms((,newab
 text=Creatures you control are indestructible this turn. Untap each creature you control. // Creatures you control gain deathtouch and lifelink until end of turn. -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={1}{G}{W}
 type=Instant
+[/card]
+[card]
+name=Reality Acid
+target=artifact,creature,enchantment,land,planeswalker
+auto=vanishing:3
+auto=@movedTo(this|nonbattlezone) from(battlefield):sacrifice mytgt
+text=Enchant permanent -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Reality Acid leaves the battlefield, enchanted permanent's controller sacrifices it.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Reality Shift
@@ -46520,6 +46664,18 @@ auto=Shivan Fire deals 2 damage to target creature If this spell was kicked it d
 text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Shivan Fire deals 2 damage to target creature. If this spell was kicked, it deals 4 damage to that creature instead.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Shivan Sand-Mage
+suspend(4)={R}
+auto=choice name(Remove 2 time counters) target(*[counter{0/0.1.Time}]|battlefield,exile) counter(0/0,-2,Time)
+auto=choice name(Add 2 time counters) target(*[counter{0/0.1.Time}]|battlefield,exile) counter(0/0,2,Time)
+text=When Shivan Sand-Mage enters the battlefield, choose one — Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card. -- Suspend 4—{R} (Rather than cast this card from your hand, you may pay {R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={2}{R}{R}
+type=Creature
+subtype=Viashino Shaman
+power=3
+toughness=2
 [/card]
 [card]
 name=Shivan Wumpus

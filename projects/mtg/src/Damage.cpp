@@ -236,14 +236,17 @@ int Damage::resolve()
     {
         // "Normal" case,
         //return the left over amount after effects have been applied to them.
-        if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && ((Player *)target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+        if ((target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && ((Player *)target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE)) ||
+            (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->basicAbilities[Constants::UNDAMAGEABLE] == 1)))
             ;//do nothing
         else
             a = target->dealDamage(damage);
-        target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
-        if(typeOfDamage == 2)
-            target->nonCombatDamage += damage;
-        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE){
+        if (!(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->basicAbilities[Constants::UNDAMAGEABLE] == 1))){
+            target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
+            if(typeOfDamage == 2)
+                target->nonCombatDamage += damage;
+        }
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->basicAbilities[Constants::UNDAMAGEABLE] == 0)){
             ((MTGCardInstance*)target)->wasDealtDamage = true;
             ((MTGCardInstance*)source)->damageToCreature = true;
         }
