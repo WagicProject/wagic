@@ -1871,6 +1871,17 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Apex Altisaur
+auto=may name(Fights opponent's creature) target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
+auto=@damaged(this):may name(Fights opponent's creature) target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
+text=When Apex Altisaur enters the battlefield, it fights up to one target creature you don't control. -- Enrage — Whenever Apex Altisaur is dealt damage, it fights up to one target creature you don't control.
+mana={7}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=10
+toughness=10
+[/card]
+[card]
 name=Apex Devastator
 autostack=if casted(this) then activate choice cascade:plibrarycount && activate choice cascade:plibrarycount && activate choice cascade:plibrarycount && activate choice cascade:plibrarycount
 text=Cascade, cascade, cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order. Multiple instances of cascade each trigger separately.)
@@ -7198,6 +7209,17 @@ auto=_AMASS_(1)
 text=Return target nonland permanent to its owner's hand. -- Amass 1. (Put a +1/+1 counter on an Army you control. If you don't control one, create a 0/0 black Zombie army creature token first.)
 mana={1}{U}
 type=Sorcery
+[/card]
+[card]
+name=Callous Giant
+abilities=undamageable
+auto=@damaged(this):if compare(thatmuch)~morethan~3 then 0/-thatmuch ueot
+text=If a source would deal 3 or less damage to Callous Giant, prevent that damage.
+mana={4}{R}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=4
 [/card]
 [card]
 name=Camaraderie
@@ -15516,6 +15538,14 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Embolden
+auto=thisforeach(variable{4}) ability$!name(Prevent 1 damage) name(Prevent 1 damage) prevent:1 target(creature,player)!$ controller
+flashback={1}{W}
+text=Prevent the next 4 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose. -- Flashback {1}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 name=Emergence Zone
 auto={T}:Add{C}
 auto={1}{T}{S}:all(*|mycastingzone) asflash ueot
@@ -16399,6 +16429,15 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=2
+[/card]
+[card]
+name=Everlasting Torment
+#MISSING:Damage can't be prevented
+abilities=nolifegain,nolifegainopponent
+auto=lord(creature|battlefield) transforms((,newability[undamageable],newability[@damaged(this):counter(-1/-1.thatmuch)]))
+text=Players can't gain life. -- Damage can't be prevented. -- All damage is dealt as though its source had wither. (A source with wither deals damage to creatures in the form of -1/-1 counters.)
+mana={2}{BR}
+type=Enchantment
 [/card]
 [card]
 name=Everquill Phoenix
@@ -17451,6 +17490,32 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Fell the Mighty
+auto=if type(creature[power=0]|battlefield)~morethan~0 then choice name(Power more than 0) name(Power more than 0) destroy all(creature[power>=1]|battlefield)
+auto=if type(creature[power=1]|battlefield)~morethan~0 then choice name(Power more than 1) name(Power more than 1) destroy all(creature[power>=2]|battlefield)
+auto=if type(creature[power=2]|battlefield)~morethan~0 then choice name(Power more than 2) name(Power more than 2) destroy all(creature[power>=3]|battlefield)
+auto=if type(creature[power=3]|battlefield)~morethan~0 then choice name(Power more than 3) name(Power more than 3) destroy all(creature[power>=4]|battlefield)
+auto=if type(creature[power=4]|battlefield)~morethan~0 then choice name(Power more than 4) name(Power more than 4) destroy all(creature[power>=5]|battlefield)
+auto=if type(creature[power=5]|battlefield)~morethan~0 then choice name(Power more than 5) name(Power more than 5) destroy all(creature[power>=6]|battlefield)
+auto=if type(creature[power=6]|battlefield)~morethan~0 then choice name(Power more than 6) name(Power more than 6) destroy all(creature[power>=7]|battlefield)
+auto=if type(creature[power=7]|battlefield)~morethan~0 then choice name(Power more than 7) name(Power more than 7) destroy all(creature[power>=8]|battlefield)
+auto=if type(creature[power=8]|battlefield)~morethan~0 then choice name(Power more than 8) name(Power more than 8) destroy all(creature[power>=9]|battlefield)
+auto=if type(creature[power=9]|battlefield)~morethan~0 then choice name(Power more than 9) name(Power more than 9) destroy all(creature[power>=10]|battlefield)
+auto=if type(creature[power=10]|battlefield)~morethan~0 then choice name(Power more than 10) name(Power more than 10) destroy all(creature[power>=11]|battlefield)
+auto=if type(creature[power=11]|battlefield)~morethan~0 then choice name(Power more than 11) name(Power more than 11) destroy all(creature[power>=12]|battlefield)
+auto=if type(creature[power=12]|battlefield)~morethan~0 then choice name(Power more than 12) name(Power more than 12) destroy all(creature[power>=13]|battlefield)
+auto=if type(creature[power=13]|battlefield)~morethan~0 then choice name(Power more than 13) name(Power more than 13) destroy all(creature[power>=14]|battlefield)
+auto=if type(creature[power=14]|battlefield)~morethan~0 then choice name(Power more than 14) name(Power more than 14) destroy all(creature[power>=15]|battlefield)
+auto=if type(creature[power=15]|battlefield)~morethan~0 then choice name(Power more than 15) name(Power more than 15) destroy all(creature[power>=16]|battlefield)
+auto=if type(creature[power=16]|battlefield)~morethan~0 then choice name(Power more than 16) name(Power more than 16) destroy all(creature[power>=17]|battlefield)
+auto=if type(creature[power=17]|battlefield)~morethan~0 then choice name(Power more than 17) name(Power more than 17) destroy all(creature[power>=18]|battlefield)
+auto=if type(creature[power=18]|battlefield)~morethan~0 then choice name(Power more than 18) name(Power more than 18) destroy all(creature[power>=19]|battlefield)
+auto=if type(creature[power>=19]|battlefield)~morethan~0 then choice name(Power more than 19) name(Power more than 19) destroy all(creature[power>=20]|battlefield)
+text=Destroy all creatures with power greater than target creature's power.
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
 name=Fell the Pheasant
 target=creature[flying]
 auto=damage:5
@@ -17480,6 +17545,14 @@ type=Creature
 subtype=Thrull
 power=5
 toughness=5
+[/card]
+[card]
+name=Feral Contest
+target=creature|mybattlefield
+auto=transforms((,newability[counter(1/1)],newability[name(Another creature blocks it) target(other creature|battlefield) transforms((,newability[mustblock])) ueot])) ueot
+text=Put a +1/+1 counter on target creature you control. Another target creature blocks it this turn if able.
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 name=Feral Hydra
@@ -17559,6 +17632,17 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
+name=Ferropede
+abilities=unblockable
+auto=@combatdamaged(player) from(this):may name(Remove a counter) target(*[counter{any}]|battlefield) removesinglecountertype(1)
+text=Ferropede is unblockable. -- Whenever Ferropede deals combat damage to a player, you may remove a counter from target permanent.
+mana={3}
+type=Artifact Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
 name=Fervent Paincaster
 auto={T}:damage:1 target(player)
 auto=@exerted(this):damage:1 target(creature)
@@ -17579,6 +17663,18 @@ auto=haste
 text=Target creature gets +1/+0 and gains first strike and haste until end of turn.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Festering March
+abilities=exiledeath
+other={2}{B} name(Suspend 3)
+auto=ifnot paid(alternative) then all(creature|opponentbattlefield) -1/-1 ueot
+auto=moveto(myexile) and!( counter(0/0,3,Time) )!
+autoexile=@each my upkeep restriction{compare(hascnttime)~morethan~1}:counter(0/0,-1,Time)
+autoexile=@each my upkeep restriction{compare(hascnttime)~equalto~1}:activate castcard(normal)
+text=Creatures your opponents control get -1/-1 until end of turn. Exile Festering March with three time counters on it. -- Suspend 3—{2}{B} (Rather than cast this card from your hand, you may pay {2}{B} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Festering Mummy
@@ -17654,6 +17750,21 @@ type=Creature
 subtype=Nightmare
 power=1
 toughness=1
+[/card]
+[card]
+name=Fiend of the Shadows
+abilities=flying
+auto=@combatdamagefoeof(player) from(this):ability$!name(Exile a card) name(Exile a card) notatarget(*|myhand) moveto(myexile) and!( counter(0/0,1,FiendExiled) )! !$ opponent
+auto=@combatdamageof(player) from(this):name(Exile a card) target(*|myhand) moveto(myexile) and!( counter(0/0,1,FiendExiled) )!
+auto=lord(*[counter{0/0.1.FiendExiled}]|myexile) transforms((,newability[canplayfromexile]))
+auto={0}:name(Cast card from opponent's exile) name(Cast card from opponent's exile) target(*[counter{0/0.1.FiendExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.FiendExiled)],newability[canplayfromexile],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.FiendExiled)])) ueot )!
+auto={S(human|mybattlefield)}:regenerate
+text=Flying -- Whenever Fiend of the Shadows deals combat damage to a player, that player exiles a card from his or her hand. You may play that card for as long as it remains exiled. -- Sacrifice a Human: Regenerate Fiend of the Shadows.
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire Wizard
+power=3
+toughness=3
 [/card]
 [card]
 name=Fiendish Duo
@@ -18417,6 +18528,15 @@ type=Creature
 subtype=Human Warrior
 power=3
 toughness=3
+[/card]
+[card]
+name=Flames of the Blood Hand
+#MISSING:damage can't be prevented
+auto=choice name(Damage opponent) damage:4 opponent && all(*|mybattlefield) transforms((,newability[nolifegainopponent])) ueot && all(*|opponentbattlefield) transforms((,newability[nolifegain])) ueot
+auto=choice name(Damage yourself) damage:4 controller && all(*|mybattlefield) transforms((,newability[nolifegain])) ueot && all(*|opponentbattlefield) transforms((,newability[nolifegainopponent])) ueot
+text=Flames of the Blood Hand deals 4 damage to target player. The damage can't be prevented. If that player would gain life this turn, that player gains no life instead.
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 name=Flames of the Raze-Boar
@@ -20697,6 +20817,17 @@ text=Equipped creature gets +1/+0 for each Gate you control and has vigilance an
 mana={2}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Glarecaster
+abilities=flying
+auto={5}{W}:transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch target(player^creature)],newability[@damageof(player):life:thatmuch controller && damage:thatmuch target(player^creature)])) ueot
+text=Flying -- {5}{W}: The next time damage would be dealt to Glarecaster and/or you this turn, that damage is dealt to target creature or player instead.
+mana={4}{W}{W}
+type=Creature
+subtype=Bird Cleric
+power=3
+toughness=3
 [/card]
 [card]
 name=Glass Asp
@@ -33500,6 +33631,16 @@ mana={1}{U}{U}
 type=Enchantment
 [/card]
 [card]
+name=Mirrorwood Treefolk
+auto={2}{R}{W}:transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch target(player^creature)])) ueot
+text={2}{R}{W}: The next time damage would be dealt to Mirrorwood Treefolk this turn, that damage is dealt to target creature or player instead.
+mana={3}{G}
+type=Creature
+subtype=Treefolk
+power=2
+toughness=4
+[/card]
+[card]
 name=Miscast
 target=*[instant,sorcery]|stack
 auto=transforms((,newability[pay [[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
@@ -33530,8 +33671,15 @@ mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Mise
+auto=chooseaname if type(*[zpos=1;chosenname]|mylibrary)~morethan~0 then draw:3 controller else reveal:1 revealzone(mylibrary) optionone name(Put back) target(*|reveal) moveto(mylibrary) optiononeend revealend chooseend nonland
+text=Name a nonland card, then reveal the top card of your library. If that card is the named card, draw three cards.
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Mishra's Self-Replicator
-auto=@movedTo(*[artifact;legendary;saga]|mystack):may pay({1}):clone
+auto=@movedTo(*[artifact;legendary;saga]|mystack):may pay({1}) name(Pay 1 and clone) clone all(this)
 text=Whenever you cast a historic spell, you may pay {1}. If you do, create a token that's a copy of Mishra's Self-Replicator. (Artifacts, legendaries, and Sagas are historic.)
 mana={5}
 type=Artifact Creature
@@ -36810,6 +36958,17 @@ type=Creature
 subtype=Minotaur Shaman
 power=3
 toughness=1
+[/card]
+[card]
+name=Oracle's Attendants
+auto={T}:name(Target your creature) target(creature|mybattlefield) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch target(Oracle's Attendants|mybattlefield)])) ueot
+auto={T}:name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch target(Oracle's Attendants|opponentbattlefield)])) ueot
+text={T}: All damage that would be dealt to target creature this turn by a source of your choice is dealt to Oracle's Attendants instead.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=5
 [/card]
 [card]
 name=Oracle's Vault
@@ -43145,6 +43304,16 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
+name=Rootwater Shaman
+auto=lord(aura|mycastingzone) transforms((,newability[flash]))
+text=You may cast Aura cards with enchant creature as though they had flash.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Rootweaver Druid
 auto=ability$!name(fetch land) target(<upto:2>land[basic]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent
 auto=ability$!name(fetch land) target(land[basic]|mylibrary) moveto(opponentbattlefield) and!( tap(noevent) )! !$ opponent
@@ -43333,6 +43502,13 @@ type=Creature
 subtype=Human Knight
 power=5
 toughness=2
+[/card]
+[card]
+name=Rowen
+auto=@drawof(player) turnlimited:if type(land[basic;fresh]|myhand)~morethan~0 then draw:1 controller
+text=Reveal the first card you draw each turn. Whenever you reveal a basic land card this way, draw a card.
+mana={2}{G}{G}
+type=Enchantment
 [/card]
 [card]
 name=Rowdy Crew
@@ -47468,6 +47644,16 @@ type=Legendary Creature
 subtype=Gorgon
 power=7
 toughness=5
+[/card]
+[card]
+name=Sivvi's Valor
+other={T(creature[-tapped]|mybattlefield)} name(Tap a creature)
+otherrestriction=type(plains|mybattlefield)~morethan~0,type(creature[-tapped]|mybattlefield)~morethan~0
+auto=choice name(Target your creature) target(creature|mybattlefield) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch controller])) ueot
+auto=choice name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch opponent])) ueot
+text=If you control a Plains, you may tap an untapped creature you control rather than pay Sivvi's Valor's mana cost. -- All damage that would be dealt to target creature this turn is dealt to you instead.
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Sixth Sense
@@ -51831,6 +52017,18 @@ mana={W}{T(creature|myBattlefield}
 type=Sorcery
 [/card]
 [card]
+name=Swans of Bryn Argoll
+abilities=flying,undamageable
+auto=@damaged(this) from(*|opponentzones):draw:thatmuch opponent
+auto=@damaged(this) from(*|myzones):draw:thatmuch controller
+text=Flying -- If a source would deal damage to Swans of Bryn Argoll, prevent that damage. The source's controller draws cards equal to the damage prevented this way.
+mana={2}{WU}{WU}
+type=Creature
+subtype=Bird Spirit
+power=4
+toughness=3
+[/card]
+[card]
 name=Swarm Guildmage
 auto={4}{B}{T}:all(creature|myBattlefield)) 1/0 && menace ueot
 auto={1}{G}{T}:life:2
@@ -52927,6 +53125,16 @@ mana={U}{U}{U}
 type=Creature
 subtype=Djinn
 power=0
+toughness=4
+[/card]
+[card]
+name=Temple Altisaur
+auto=lord(other dinosaur|mybattlefield) transforms((,newability[undamageable],newability[@damaged(this):0/-1 ueot]))
+text=If a source would deal damage to another Dinosaur you control, prevent all but 1 of that damage.
+mana={4}{W}
+type=Creature
+subtype=Dinosaur
+power=3
 toughness=4
 [/card]
 [card]
@@ -55362,6 +55570,15 @@ auto=@targeted(this):sacrifice(this)
 text=When Treacherous Blessing enters the battlefield, draw three cards. Whenever you cast a spell, you lose 1 life. When Treacherous Blessing becomes the target of a spell or ability, sacrifice it.
 mana={2}{B}
 type=Enchantment
+[/card]
+[card]
+name=Treacherous Link
+target=creature
+auto=teach(creature) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch controller]))
+text=Enchant creature -- All damage that would be dealt to enchanted creature is dealt to its controller instead.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Treasure Cove
