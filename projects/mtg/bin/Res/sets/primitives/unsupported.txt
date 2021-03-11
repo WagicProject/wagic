@@ -305,15 +305,6 @@ power=1
 toughness=4
 [/card]
 [card]
-name=Apex Altisaur
-text=When Apex Altisaur enters the battlefield, it fights up to one target creature you don't control. -- Enrage — Whenever Apex Altisaur is dealt damage, it fights up to one target creature you don't control.
-mana={7}{G}{G}
-type=Creature
-subtype=Dinosaur
-power=10
-toughness=10
-[/card]
-[card]
 name=Aphetto Runecaster
 text=Whenever a permanent is turned face up, you may draw a card.
 mana={3}{U}
@@ -1446,15 +1437,6 @@ mana={3}{G}
 type=Creature
 subtype=Elf Shaman
 power=2
-toughness=4
-[/card]
-[card]
-name=Callous Giant
-text=If a source would deal 3 or less damage to Callous Giant, prevent that damage.
-mana={4}{R}{R}
-type=Creature
-subtype=Giant
-power=4
 toughness=4
 [/card]
 [card]
@@ -3323,12 +3305,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Embolden
-text=Prevent the next 4 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose. -- Flashback {1}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={2}{W}
-type=Instant
-[/card]
-[card]
 name=Embrace My Diabolical Vision
 text=When you set this scheme in motion, each player shuffles his or her hand and graveyard into his or her library. You draw seven cards, then each other player draws four cards.
 type=Scheme
@@ -3525,12 +3501,6 @@ name=Everdream
 text=Draw a card. -- Splice onto instant or sorcery {2}{U} (As you cast an instant or sorcery spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Everlasting Torment
-text=Players can't gain life. -- Damage can't be prevented. -- All damage is dealt as though its source had wither. (A source with wither deals damage to creatures in the form of -1/-1 counters.)
-mana={2}{BR}
-type=Enchantment
 [/card]
 [card]
 name=Evermind
@@ -3798,28 +3768,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Fell the Mighty
-text=Destroy all creatures with power greater than target creature's power.
-mana={4}{W}
-type=Sorcery
-[/card]
-[card]
-name=Feral Contest
-text=Put a +1/+1 counter on target creature you control. Another target creature blocks it this turn if able.
-mana={3}{G}
-type=Sorcery
-[/card]
-[card]
-name=Ferropede
-abilities=unblockable
-text=Ferropede is unblockable. -- Whenever Ferropede deals combat damage to a player, you may remove a counter from target permanent.
-mana={3}
-type=Artifact Creature
-subtype=Insect
-power=1
-toughness=1
-[/card]
-[card]
 name=Fervent Champion
 text=First strike, haste -- Whenever Fervent Champion attacks, another target attacking Knight you control gets +1/+0 until end of turn. -- Equip abilities you activate that target Fervent Champion cost 3 less to activate.
 mana={R}
@@ -3829,26 +3777,10 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Festering March
-text=Creatures your opponents control get -1/-1 until end of turn. Exile Festering March with three time counters on it. -- Suspend 3—{2}{B} (Rather than cast this card from your hand, you may pay {2}{B} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={3}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Fields of Summer
 text=Whenever a player casts a spell, that player may gain 2 life. -- Whenever you roll {C}, you may gain 10 life.
 type=Plane
 subtype=Moag
-[/card]
-[card]
-name=Fiend of the Shadows
-abilities=flying
-text=Flying -- Whenever Fiend of the Shadows deals combat damage to a player, that player exiles a card from his or her hand. You may play that card for as long as it remains exiled. -- Sacrifice a Human: Regenerate Fiend of the Shadows.
-mana={3}{B}{B}
-type=Creature
-subtype=Vampire Wizard
-power=3
-toughness=3
 [/card]
 [card]
 name=Fiery Bombardment
@@ -3915,12 +3847,6 @@ type=Instant
 name=Fistful of Force
 text=Target creature gets +2/+2 until end of turn. Clash with an opponent. If you win, that creature gets an additional +2/+2 and gains trample until end of turn. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{G}
-type=Instant
-[/card]
-[card]
-name=Flames of the Blood Hand
-text=Flames of the Blood Hand deals 4 damage to target player. The damage can't be prevented. If that player would gain life this turn, that player gains no life instead.
-mana={2}{R}
 type=Instant
 [/card]
 [card]
@@ -4504,16 +4430,6 @@ name=Glamerdye
 text=Change the text of target spell or permanent by replacing all instances of one color word with another. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Glarecaster
-abilities=flying
-text=Flying -- {5}{W}: The next time damage would be dealt to Glarecaster and/or you this turn, that damage is dealt to target creature or player instead.
-mana={4}{W}{W}
-type=Creature
-subtype=Bird Cleric
-power=3
-toughness=3
 [/card]
 [card]
 name=Gleam of Authority
@@ -7427,21 +7343,6 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Mirrorwood Treefolk
-text={2}{R}{W}: The next time damage would be dealt to Mirrorwood Treefolk this turn, that damage is dealt to target creature or player instead.
-mana={3}{G}
-type=Creature
-subtype=Treefolk
-power=2
-toughness=4
-[/card]
-[card]
-name=Mise
-text=Name a nonland card, then reveal the top card of your library. If that card is the named card, draw three cards.
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Mishra's War Machine
 abilities=banding
 text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- At the beginning of your upkeep, unless you discard a card, tap Mishra's War Machine and it deals 3 damage to you.
@@ -8388,15 +8289,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Oracle's Attendants
-text={T}: All damage that would be dealt to target creature this turn by a source of your choice is dealt to Oracle's Attendants instead.
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=5
 [/card]
 [card]
 name=Orchard Elemental
@@ -9918,24 +9810,9 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Rootwater Shaman
-text=You may cast Aura cards with enchant creature as though they had flash.
-mana={2}{U}
-type=Creature
-subtype=Merfolk Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Rotted Ones, Lay Siege
 text=When you set this scheme in motion, for each opponent, put a 2/2 black Zombie creature token onto the battlefield that attacks that player each combat if able.
 type=Scheme
-[/card]
-[card]
-name=Rowen
-text=Reveal the first card you draw each turn. Whenever you reveal a basic land card this way, draw a card.
-mana={2}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Rules Lawyer
@@ -10731,12 +10608,6 @@ type=Legendary Creature
 subtype=Human Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Sivvi's Valor
-text=If you control a Plains, you may tap an untapped creature you control rather than pay Sivvi's Valor's mana cost. -- All damage that would be dealt to target creature this turn is dealt to you instead.
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Six-y Beast
@@ -11829,16 +11700,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Swans of Bryn Argoll
-abilities=flying
-text=Flying -- If a source would deal damage to Swans of Bryn Argoll, prevent that damage. The source's controller draws cards equal to the damage prevented this way.
-mana={2}{WU}{WU}
-type=Creature
-subtype=Bird Spirit
-power=4
-toughness=3
-[/card]
-[card]
 name=Swirl the Mists
 text=As Swirl the Mists enters the battlefield, choose a color word. -- All instances of color words in the text of spells and permanents are changed to the chosen color word.
 mana={2}{U}{U}
@@ -12047,15 +11908,6 @@ type=Creature
 subtype=Efreet
 power=3
 toughness=3
-[/card]
-[card]
-name=Temple Altisaur
-text=If a source would deal damage to another Dinosaur you control, prevent all but 1 of that damage.
-mana={4}{W}
-type=Creature
-subtype=Dinosaur
-power=3
-toughness=4
 [/card]
 [card]
 name=Tempt with Discovery
@@ -12620,13 +12472,6 @@ type=Sorcery
 name=Traveling Plague
 text=Enchant creature -- At the beginning of each upkeep, put a plague counter on Traveling Plague. -- Enchanted creature gets -1/-1 for each plague counter on Traveling Plague. -- When enchanted creature leaves the battlefield, that creature's controller returns Traveling Plague from its owner's graveyard to the battlefield.
 mana={3}{B}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Treacherous Link
-text=Enchant creature -- All damage that would be dealt to enchanted creature is dealt to its controller instead.
-mana={1}{B}
 type=Enchantment
 subtype=Aura
 [/card]
