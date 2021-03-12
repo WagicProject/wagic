@@ -44225,6 +44225,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Samite Blessing
+target=creature
+auto=teach(creature) transforms((,newability[{T}:name(Prevent 1 damage) target(creature) prevent:1]))
+text=Enchant creature -- Enchanted creature has "{T}: The next time a source of your choice would deal damage to target creature this turn, prevent that damage."
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Samite Sanctuary
 auto={2}:target(creature) absorb ueot
 auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[ability$!name(Pay 2) pay[[{2}]] name(Pay 2) notatarget(creature) absorb ueot?donothing!$ opponent])) forever
@@ -44284,6 +44293,16 @@ mana={4}{R}{R}
 type=Creature
 subtype=Rhino Beast
 power=6
+toughness=4
+[/card]
+[card]
+name=Sanctum Guardian
+auto={S}:name(Prevent all damage) target(player,creature) prevent:20
+text=Sacrifice Sanctum Guardian: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
 toughness=4
 [/card]
 [card]
@@ -44392,6 +44411,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Sandals of Abdallah
+auto={2}{T}:name(Target your creature) target(creature|mybattlefield) transforms((,newability[islandwalk],newability[@movedto(this|mygraveyard) from(mybattlefield):destroy target(Sandals of Abdallah|mybattlefield)])) ueot
+auto={2}{T}:name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[islandwalk],newability[@movedto(this|mygraveyard) from(mybattlefield):destroy target(Sandals of Abdallah|opponentbattlefield)])) ueot
+text={2}, {T}: Target creature gains islandwalk until end of turn. When that creature dies this turn, destroy Sandals of Abdallah.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Sandstone Oracle
 abilities=flying
 auto=foreach(*|targetedpersonshand) if type(*|targetedpersonshand)~morethan~type(*|myhand) then draw:1
@@ -44465,12 +44492,38 @@ toughness=1
 color=green
 [/card]
 [card]
+name=Saproling Burst
+auto=fading:7
+auto={C(0/0,-1,Fade)}:name(Create Saproling) token(Saproling,Creature Saproling Fade,0/0,green)
+auto=thisforeach(variable{hascntfade}>=1) lord(saproling[fade]|mybattlefield) 1/1
+auto=@counterremoved(0/0,1,Fade) from(this) restriction{compare(hascntfade)~equalto~0}:all(saproling[fade]|mybattlefield) -1/-1
+auto=@movedto(this|nonbattlezone) from(mybattlefield) bury all(saproling[fade]|mybattlefield)
+text=Fading 7 (This enchantment enters the battlefield with seven fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Saproling Burst: Put a green Saproling creature token onto the battlefield. It has "This creature's power and toughness are each equal to the number of fade counters on Saproling Burst." -- When Saproling Burst leaves the battlefield, destroy all tokens put onto the battlefield with Saproling Burst. They can't be regenerated.
+mana={4}{G}
+type=Enchantment
+[/card]
+[card]
+name=Saproling Cluster
+auto={1}{D(*|myhand)}:token(Saproling,Creature Saproling,1/1,green)
+auto=foreach(land[-tapped]|opponentBattlefield) transforms((,newability[if type(*|myhand)~morethan~0 then ability$!name(Pay 1 and discard) pay[[{1}]] name(Pay 1 and discard) discard:1 && token(Saproling^Creature Saproling^1/1^green)?donothing!$ opponent])) forever
+text={1}, Discard a card: Put a 1/1 green Saproling creature token onto the battlefield. Any player may activate this ability.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 name=Saproling Fun
 type=Creature
 subtype=Saproling
 power=1
 toughness=1
 color=green
+[/card]
+[card]
+name=Saproling Infestation
+auto=@movedTo(*[kicked>=1]|stack):token(Saproling,Creature Saproling,1/1,green)
+text=Whenever a player kicks a spell, you put a 1/1 green Saproling creature token onto the battlefield.
+mana={1}{G}
+type=Enchantment
 [/card]
 [card]
 name=Saproling Migration
@@ -44909,6 +44962,17 @@ type=Creature
 subtype=Elemental
 power=1
 toughness=1
+[/card]
+[card]
+name=Scandalmonger
+auto={2}:target(player) ability$!name(Discard a card) name(Discard a card) reject notatarget(*|myhand)!$ targetedplayer asSorcery
+auto=lord(*|opponentbattlefield) transforms((,newability[{2}:target(player) ability$!name(Discard a card) name(Discard a card) reject notatarget(*|myhand)!$ targetedplayer asSorcery]))
+text={2}: Target player discards a card. Any player may activate this ability but only any time he or she could cast a sorcery.
+mana={3}{B}
+type=Creature
+subtype=Boar Monger
+power=3
+toughness=3
 [/card]
 [card]
 name=Scapeshift
@@ -45502,6 +45566,14 @@ mana={1}{G}
 type=Enchantment
 [/card]
 [card]
+name=Season's Beatings
+auto=choice name(Choose opponent) all(creature|opponentbattlefield) transforms((,newability[damage:p target(other creature|mybattlefield)])) oneshot
+auto=choice name(Choose yourself) all(creature|mybattlefield) transforms((,newability[damage:p target(other creature|mybattlefield)])) oneshot
+text=Family gathering - Each creature target player controls deals damage equal to its power to another random creature that player controls.
+mana={R}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Seasoned Hallowblade
 auto={D(*|myhand)}:tap(noevent) && indestructible ueot
 text=Discard a card: Tap Seasoned Hallowblade. It gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
@@ -45521,6 +45593,14 @@ type=Creature
 subtype=Human Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Seasons Past
+auto=bottomoflibrary
+auto=ability$!may name(Return card with cost 0) moveTo(myHand) target(*[manacost=0]|myGraveyard)!$ controller && ability$!may name(Return card with cost 1) moveTo(myHand) target(*[manacost=1]|myGraveyard)!$ controller && ability$!may name(Return card with cost 2) moveTo(myHand) target(*[manacost=2]|myGraveyard)!$ controller && ability$!may name(Return card with cost 3) moveTo(myHand) target(*[manacost=3]|myGraveyard)!$ controller && ability$!may name(Return card with cost 4) moveTo(myHand) target(*[manacost=4]|myGraveyard)!$ controller && ability$!may name(Return card with cost 5) moveTo(myHand) target(*[manacost=5]|myGraveyard)!$ controller && ability$!may name(Return card with cost 6) moveTo(myHand) target(*[manacost=6]|myGraveyard)!$ controller && ability$!may name(Return card with cost 7) moveTo(myHand) target(*[manacost=7]|myGraveyard)!$ controller && ability$!may name(Return card with cost 8) moveTo(myHand) target(*[manacost=8]|myGraveyard)!$ controller && ability$!may name(Return card with cost 9) moveTo(myHand) target(*[manacost=9]|myGraveyard)!$ controller && ability$!may name(Return card with cost 10) moveTo(myHand) target(*[manacost=10]|myGraveyard)!$ controller
+text=Return any number of cards with different converted mana costs from your graveyard to your hand. Put Seasons Past on the bottom of its owner's library.
+mana={4}{G}{G}
+type=Sorcery
 [/card]
 [card]
 name=Second Sight
@@ -45624,6 +45704,14 @@ type=Creature
 subtype=Naga Cleric
 power=1
 toughness=4
+[/card]
+[card]
+name=Seer's Vision
+auto={0}:name(Look opponent's hand) target(*|opponenthand) moveto(opponentreveal) and!( moveto(opponenthand) )!
+auto={S}:name(Look hand and discard) target(*|opponenthand) reject assorcery
+text=Your opponents play with their hands revealed. -- Sacrifice Seer's Vision: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
+mana={2}{U}{B}
+type=Enchantment
 [/card]
 [card]
 name=Segovian Angel

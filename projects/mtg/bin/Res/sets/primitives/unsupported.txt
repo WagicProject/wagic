@@ -9921,26 +9921,10 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Samite Blessing
-text=Enchant creature -- Enchanted creature has "{T}: The next time a source of your choice would deal damage to target creature this turn, prevent that damage."
-mana={W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Samite Ministration
 text=Prevent all damage that would be dealt to you this turn by a source of your choice. Whenever damage from a black or red source is prevented this way this turn, you gain that much life.
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Sanctum Guardian
-text=Sacrifice Sanctum Guardian: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=4
 [/card]
 [card]
 name=Sanctum Prelate
@@ -9956,12 +9940,6 @@ name=Sanctum of Serra
 text=When you planeswalk away from Sanctum of Serra, destroy all nonland permanents. -- Whenever you roll {C}, you may have your life total become 20.
 type=Plane
 subtype=Serra’s Realm
-[/card]
-[card]
-name=Sandals of Abdallah
-text={2}, {T}: Target creature gains islandwalk until end of turn. When that creature dies this turn, destroy Sandals of Abdallah.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Sands of Time
@@ -9982,24 +9960,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Saproling Burst
-text=Fading 7 (This enchantment enters the battlefield with seven fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Saproling Burst: Put a green Saproling creature token onto the battlefield. It has "This creature's power and toughness are each equal to the number of fade counters on Saproling Burst." -- When Saproling Burst leaves the battlefield, destroy all tokens put onto the battlefield with Saproling Burst. They can't be regenerated.
-mana={4}{G}
-type=Enchantment
-[/card]
-[card]
-name=Saproling Cluster
-text={1}, Discard a card: Put a 1/1 green Saproling creature token onto the battlefield. Any player may activate this ability.
-mana={1}{G}
-type=Enchantment
-[/card]
-[card]
-name=Saproling Infestation
-text=Whenever a player kicks a spell, you put a 1/1 green Saproling creature token onto the battlefield.
-mana={1}{G}
-type=Enchantment
-[/card]
-[card]
 name=Saute
 text=Saute deals 3½ damage to target creature or player.
 mana={1}{R}{R}
@@ -10016,15 +9976,6 @@ name=Save Life
 text=Choose one Target player gains 2½ life; or prevent the next 2½ damage that would be dealt to target creature this turn. -- Gotcha Whenever an opponent says "Save" or "Life," you may say "Gotcha" If you do, return Save Life from your graveyard to your hand.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Scandalmonger
-text={2}: Target player discards a card. Any player may activate this ability but only any time he or she could cast a sorcery.
-mana={3}{B}
-type=Creature
-subtype=Boar Monger
-power=3
-toughness=3
 [/card]
 [card]
 name=Scarab of the Unseen
@@ -10117,12 +10068,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Season's Beatings
-text=Family gathering - Each creature target player controls deals damage equal to its power to another random creature that player controls.
-mana={R}{R}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Seasoned Tactician
 text={3}, Exile the top four cards of your library: The next time a source of your choice would deal damage to you this turn, prevent that damage.
 mana={2}{W}
@@ -10130,12 +10075,6 @@ type=Creature
 subtype=Human Advisor
 power=1
 toughness=3
-[/card]
-[card]
-name=Seasons Past
-text=Return any number of cards with different converted mana costs from your graveyard to your hand. Put Seasons Past on the bottom of its owner's library.
-mana={4}{G}{G}
-type=Sorcery
 [/card]
 [card]
 name=Secret Plans
@@ -10152,12 +10091,6 @@ type=Conspiracy
 name=Secrets of Paradise
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "{T}: Add one mana of any color to your mana pool."
 type=Conspiracy
-[/card]
-[card]
-name=Seer's Vision
-text=Your opponents play with their hands revealed. -- Sacrifice Seer's Vision: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
-mana={2}{U}{B}
-type=Enchantment
 [/card]
 [card]
 name=Seize the Soul
