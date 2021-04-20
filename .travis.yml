@@ -13,7 +13,7 @@ before_install:
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
 #     export BUILD_MAC=YES;
 #   fi
-  - sudo apt-get update -qq
+#  - sudo apt-get update -qq
 # Building for PSP here
   - if [ "$BUILD_PSP" == "YES" ]; then
       export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
