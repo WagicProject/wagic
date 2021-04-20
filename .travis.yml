@@ -27,11 +27,11 @@ before_install:
       sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
-# Building for Android here
+# Building for Android here #sudo apt-get update &&
   - if [ "$BUILD_ANDROID" == "YES" ]; then
       export ANDROID="android-sdk-linux/tools/android" &&
       if [ `uname -m` = x86_64 ]; then 
-        sudo dpkg --add-architecture i386 && sudo apt-get update &&
+        sudo dpkg --add-architecture i386 &&
         sudo apt-get install -qq --force-yes libgd2-xpm-dev libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 jq ant; fi &&
         wget https://dl.google.com/android/repository/android-ndk-r22-linux-x86_64.zip -nv &&
         wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -nv;
