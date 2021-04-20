@@ -262,20 +262,21 @@ void StackAbility::Render()
                 Targetable * tt = ability->getActionTc()->getTargetsFrom()[i];
                 if(tt)
                 {
-                    if( ((Damageable *)(tt))->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE )
+                    MTGCardInstance* card = dynamic_cast<MTGCardInstance *>(tt);
+                    if(!card && dynamic_cast<Spell *>(tt)) card = dynamic_cast<Spell *>(tt)->source; //Fixed crash on targeting a spell on stack by correctly casting variable tt.
+                    if(((Damageable *)(tt))->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
                     {
-                        //fill vector
-                        myClones.push_back(((MTGCardInstance*)(tt)));
-
-                        if( source->has(Constants::HIDDENFACE) && !observer->isInLibrary(((MTGCardInstance *)(tt))) )
-                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
-                        else if ( !source->has(Constants::HIDDENFACE) )
-                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                        if(card)
+                            myClones.push_back(card); //fill vector
+                        if(source->has(Constants::HIDDENFACE) && card && !observer->isInLibrary(card))
+                            mytargetQuads.push_back(card->getIcon()); //Fixed crash on targeting a spell on stack by correctly casting variable tt.
+                        else if (!source->has(Constants::HIDDENFACE) && card)
+                            mytargetQuads.push_back(card->getIcon()); //Fixed crash on targeting a spell on stack by correctly casting variable tt.
                         else
                             fmLibrary++;
                     }
-                    //else // This was crashing the game when a permanent targeted a spell in the stack
-                        //mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                    else if(card)
+                        mytargetQuads.push_back(card->getIcon()); //Fixed crash on targeting a spell on stack by correctly casting variable tt.
                 }
             }
         }

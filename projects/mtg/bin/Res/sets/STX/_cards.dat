@@ -1,0 +1,1692 @@
+[meta]
+author=Wagic Team
+name=Strixhaven: School of Mages
+orderindex=EXP-ZZI.STX
+year=2021-04-23
+total=337
+[/meta]
+[card]
+primitive=Pest
+id=-513734
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-513728
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-513712
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513703
+rarity=T
+[/card]
+[card]
+primitive=Fractal
+id=-513697
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-513696
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-513695
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-513692
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-513691
+rarity=T
+[/card]
+[card]
+primitive=Fractal
+id=-513688
+rarity=T
+[/card]
+[card]
+primitive=Inkling
+id=-513687
+rarity=T
+[/card]
+[card]
+primitive=Fractal
+id=-513679
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-513675
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-513674
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-513673
+rarity=T
+[/card]
+[card]
+primitive=Inkling
+id=-513672
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-513663
+rarity=T
+[/card]
+[card]
+primitive=Fractal
+id=-513660
+rarity=T
+[/card]
+[card]
+primitive=Inkling
+id=-513659
+rarity=T
+[/card]
+[card]
+primitive=Fractal
+id=-513656
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513655
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513652
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513638
+rarity=T
+[/card]
+[card]
+primitive=Fractal
+id=-513634
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513617
+rarity=T
+[/card]
+[card]
+primitive=Fractal
+id=-513613
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513602
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-513586
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-513585
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513563
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513550
+rarity=T
+[/card]
+[card]
+primitive=Fractal
+id=-513529
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-513528
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-513525
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-513502
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-513481
+rarity=T
+[/card]
+[card]
+primitive=Environmental Sciences
+id=513477
+rarity=C
+[/card]
+[card]
+primitive=Expanded Anatomy
+id=513478
+rarity=C
+[/card]
+[card]
+primitive=Introduction to Annihilation
+id=513479
+rarity=C
+[/card]
+[card]
+primitive=Introduction to Prophecy
+id=513480
+rarity=C
+[/card]
+[card]
+primitive=Mascot Exhibition
+id=513481
+rarity=M
+[/card]
+[card]
+primitive=Wandering Archaic
+id=513482
+rarity=R
+[/card]
+[card]
+primitive=Explore the Vastlands
+id=513483
+rarity=R
+[/card]
+[card]
+primitive=Academic Probation
+id=513484
+rarity=R
+[/card]
+[card]
+primitive=Ageless Guardian
+id=513485
+rarity=C
+[/card]
+[card]
+primitive=Beaming Defiance
+id=513486
+rarity=C
+[/card]
+[card]
+primitive=Clever Lumimancer
+id=513487
+rarity=U
+[/card]
+[card]
+primitive=Combat Professor
+id=513488
+rarity=C
+[/card]
+[card]
+primitive=Defend the Campus
+id=513489
+rarity=C
+[/card]
+[card]
+primitive=Detention Vortex
+id=513490
+rarity=U
+[/card]
+[card]
+primitive=Devastating Mastery
+id=513491
+rarity=R
+[/card]
+[card]
+primitive=Dueling Coach
+id=513492
+rarity=U
+[/card]
+[card]
+primitive=Eager First-Year
+id=513493
+rarity=C
+[/card]
+[card]
+primitive=Elite Spellbinder
+id=513494
+rarity=R
+[/card]
+[card]
+primitive=Expel
+id=513495
+rarity=C
+[/card]
+[card]
+primitive=Guiding Voice
+id=513496
+rarity=C
+[/card]
+[card]
+primitive=Leonin Lightscribe
+id=513497
+rarity=R
+[/card]
+[card]
+primitive=Mavinda, Students' Advocate
+id=513498
+rarity=M
+[/card]
+[card]
+primitive=Pilgrim of the Ages
+id=513499
+rarity=C
+[/card]
+[card]
+primitive=Pillardrop Rescuer
+id=513500
+rarity=C
+[/card]
+[card]
+primitive=Professor of Symbology
+id=513501
+rarity=U
+[/card]
+[card]
+primitive=Reduce to Memory
+id=513502
+rarity=U
+[/card]
+[card]
+primitive=Secret Rendezvous
+id=513503
+rarity=U
+[/card]
+[card]
+primitive=Semester's End
+id=513504
+rarity=R
+[/card]
+[card]
+primitive=Show of Confidence
+id=513505
+rarity=U
+[/card]
+[card]
+primitive=Sparring Regimen
+id=513506
+rarity=R
+[/card]
+[card]
+primitive=Star Pupil
+id=513507
+rarity=C
+[/card]
+[card]
+primitive=Stonebinder's Familiar
+id=513508
+rarity=U
+[/card]
+[card]
+primitive=Stonerise Spirit
+id=513509
+rarity=C
+[/card]
+[card]
+primitive=Strict Proctor
+id=513510
+rarity=R
+[/card]
+[card]
+primitive=Study Break
+id=513511
+rarity=C
+[/card]
+[card]
+primitive=Thunderous Orator
+id=513512
+rarity=U
+[/card]
+[card]
+primitive=Arcane Subtraction
+id=513513
+rarity=C
+[/card]
+[card]
+primitive=Archmage Emeritus
+id=513514
+rarity=R
+[/card]
+[card]
+primitive=Burrog Befuddler
+id=513515
+rarity=C
+[/card]
+[card]
+primitive=Bury in Books
+id=513516
+rarity=C
+[/card]
+[card]
+primitive=Curate
+id=513517
+rarity=C
+[/card]
+[card]
+primitive=Divide by Zero
+id=513518
+rarity=U
+[/card]
+[card]
+primitive=Dream Strix
+id=513519
+rarity=R
+[/card]
+[card]
+primitive=Frost Trickster
+id=513520
+rarity=C
+[/card]
+[card]
+primitive=Ingenious Mastery
+id=513521
+rarity=R
+[/card]
+[card]
+primitive=Kelpie Guide
+id=513522
+rarity=U
+[/card]
+[card]
+primitive=Mentor's Guidance
+id=513523
+rarity=U
+[/card]
+[card]
+primitive=Mercurial Transformation
+id=513524
+rarity=U
+[/card]
+[card]
+primitive=Multiple Choice
+id=513525
+rarity=R
+[/card]
+[card]
+primitive=Pop Quiz
+id=513526
+rarity=C
+[/card]
+[card]
+primitive=Reject
+id=513527
+rarity=C
+[/card]
+[card]
+primitive=Resculpt
+id=513528
+rarity=C
+[/card]
+[card]
+primitive=Serpentine Curve
+id=513529
+rarity=C
+[/card]
+[card]
+primitive=Snow Day
+id=513530
+rarity=U
+[/card]
+[card]
+primitive=Solve the Equation
+id=513531
+rarity=U
+[/card]
+[card]
+primitive=Soothsayer Adept
+id=513532
+rarity=C
+[/card]
+[card]
+primitive=Symmetry Sage
+id=513533
+rarity=U
+[/card]
+[card]
+primitive=Teachings of the Archaics
+id=513534
+rarity=R
+[/card]
+[card]
+primitive=Tempted by the Oriq
+id=513535
+rarity=R
+[/card]
+[card]
+primitive=Test of Talents
+id=513536
+rarity=U
+[/card]
+[card]
+primitive=Vortex Runner
+id=513537
+rarity=C
+[/card]
+[card]
+primitive=Waterfall Aerialist
+id=513538
+rarity=C
+[/card]
+[card]
+primitive=Wormhole Serpent
+id=513539
+rarity=U
+[/card]
+[card]
+primitive=Arrogant Poet
+id=513540
+rarity=C
+[/card]
+[card]
+primitive=Baleful Mastery
+id=513541
+rarity=R
+[/card]
+[card]
+primitive=Brackish Trudge
+id=513542
+rarity=U
+[/card]
+[card]
+primitive=Callous Bloodmage
+id=513543
+rarity=R
+[/card]
+[card]
+primitive=Confront the Past
+id=513544
+rarity=R
+[/card]
+[card]
+primitive=Crushing Disappointment
+id=513545
+rarity=C
+[/card]
+[card]
+primitive=Essence Infusion
+id=513546
+rarity=C
+[/card]
+[card]
+primitive=Eyetwitch
+id=513547
+rarity=U
+[/card]
+[card]
+primitive=Flunk
+id=513548
+rarity=U
+[/card]
+[card]
+primitive=Go Blank
+id=513549
+rarity=U
+[/card]
+[card]
+primitive=Hunt for Specimens
+id=513550
+rarity=C
+[/card]
+[card]
+primitive=Lash of Malice
+id=513551
+rarity=C
+[/card]
+[card]
+primitive=Leech Fanatic
+id=513552
+rarity=C
+[/card]
+[card]
+primitive=Mage Hunter
+id=513553
+rarity=U
+[/card]
+[card]
+primitive=Mage Hunters' Onslaught
+id=513554
+rarity=C
+[/card]
+[card]
+primitive=Necrotic Fumes
+id=513555
+rarity=U
+[/card]
+[card]
+primitive=Novice Dissector
+id=513556
+rarity=C
+[/card]
+[card]
+primitive=Oriq Loremage
+id=513557
+rarity=R
+[/card]
+[card]
+primitive=Plumb the Forbidden
+id=513558
+rarity=U
+[/card]
+[card]
+primitive=Poet's Quill
+id=513559
+rarity=R
+[/card]
+[card]
+primitive=Professor Onyx
+id=513560
+rarity=M
+[/card]
+[card]
+primitive=Professor's Warning
+id=513561
+rarity=C
+[/card]
+[card]
+primitive=Promising Duskmage
+id=513562
+rarity=C
+[/card]
+[card]
+primitive=Sedgemoor Witch
+id=513563
+rarity=R
+[/card]
+[card]
+primitive=Specter of the Fens
+id=513564
+rarity=C
+[/card]
+[card]
+primitive=Tenured Inkcaster
+id=513565
+rarity=U
+[/card]
+[card]
+primitive=Umbral Juke
+id=513566
+rarity=U
+[/card]
+[card]
+primitive=Unwilling Ingredient
+id=513567
+rarity=C
+[/card]
+[card]
+primitive=Academic Dispute
+id=513568
+rarity=U
+[/card]
+[card]
+primitive=Ardent Dustspeaker
+id=513569
+rarity=U
+[/card]
+[card]
+primitive=Blood Age General
+id=513570
+rarity=C
+[/card]
+[card]
+primitive=Conspiracy Theorist
+id=513571
+rarity=R
+[/card]
+[card]
+primitive=Crackle with Power
+id=513572
+rarity=M
+[/card]
+[card]
+primitive=Draconic Intervention
+id=513573
+rarity=R
+[/card]
+[card]
+primitive=Dragon's Approach
+id=513574
+rarity=C
+[/card]
+[card]
+primitive=Efreet Flamepainter
+id=513575
+rarity=R
+[/card]
+[card]
+primitive=Enthusiastic Study
+id=513576
+rarity=C
+[/card]
+[card]
+primitive=Explosive Welcome
+id=513577
+rarity=U
+[/card]
+[card]
+primitive=Fervent Mastery
+id=513578
+rarity=R
+[/card]
+[card]
+primitive=First Day of Class
+id=513579
+rarity=C
+[/card]
+[card]
+primitive=Fuming Effigy
+id=513580
+rarity=C
+[/card]
+[card]
+primitive=Grinning Ignus
+id=513581
+rarity=U
+[/card]
+[card]
+primitive=Hall Monitor
+id=513582
+rarity=U
+[/card]
+[card]
+primitive=Heated Debate
+id=513583
+rarity=C
+[/card]
+[card]
+primitive=Igneous Inspiration
+id=513584
+rarity=U
+[/card]
+[card]
+primitive=Illuminate History
+id=513585
+rarity=R
+[/card]
+[card]
+primitive=Illustrious Historian
+id=513586
+rarity=C
+[/card]
+[card]
+primitive=Mascot Interception
+id=513587
+rarity=U
+[/card]
+[card]
+primitive=Pigment Storm
+id=513588
+rarity=C
+[/card]
+[card]
+primitive=Pillardrop Warden
+id=513589
+rarity=C
+[/card]
+[card]
+primitive=Retriever Phoenix
+id=513590
+rarity=R
+[/card]
+[card]
+primitive=Start from Scratch
+id=513591
+rarity=U
+[/card]
+[card]
+primitive=Storm-Kiln Artist
+id=513592
+rarity=U
+[/card]
+[card]
+primitive=Sudden Breakthrough
+id=513593
+rarity=C
+[/card]
+[card]
+primitive=Tome Shredder
+id=513594
+rarity=C
+[/card]
+[card]
+primitive=Twinscroll Shaman
+id=513595
+rarity=C
+[/card]
+[card]
+primitive=Accomplished Alchemist
+id=513596
+rarity=R
+[/card]
+[card]
+primitive=Basic Conjuration
+id=513597
+rarity=R
+[/card]
+[card]
+primitive=Bayou Groff
+id=513598
+rarity=C
+[/card]
+[card]
+primitive=Big Play
+id=513599
+rarity=C
+[/card]
+[card]
+primitive=Bookwurm
+id=513600
+rarity=U
+[/card]
+[card]
+primitive=Charge Through
+id=513601
+rarity=C
+[/card]
+[card]
+primitive=Containment Breach
+id=513602
+rarity=U
+[/card]
+[card]
+primitive=Devouring Tendrils
+id=513603
+rarity=U
+[/card]
+[card]
+primitive=Dragonsguard Elite
+id=513604
+rarity=R
+[/card]
+[card]
+primitive=Ecological Appreciation
+id=513605
+rarity=M
+[/card]
+[card]
+primitive=Emergent Sequence
+id=513606
+rarity=U
+[/card]
+[card]
+primitive=Exponential Growth
+id=513607
+rarity=R
+[/card]
+[card]
+primitive=Field Trip
+id=513608
+rarity=C
+[/card]
+[card]
+primitive=Fortifying Draught
+id=513609
+rarity=U
+[/card]
+[card]
+primitive=Gnarled Professor
+id=513610
+rarity=R
+[/card]
+[card]
+primitive=Honor Troll
+id=513611
+rarity=U
+[/card]
+[card]
+primitive=Karok Wrangler
+id=513612
+rarity=U
+[/card]
+[card]
+primitive=Leyline Invocation
+id=513613
+rarity=C
+[/card]
+[card]
+primitive=Mage Duel
+id=513614
+rarity=C
+[/card]
+[card]
+primitive=Master Symmetrist
+id=513615
+rarity=U
+[/card]
+[card]
+primitive=Overgrown Arch
+id=513616
+rarity=U
+[/card]
+[card]
+primitive=Professor of Zoomancy
+id=513617
+rarity=C
+[/card]
+[card]
+primitive=Reckless Amplimancer
+id=513618
+rarity=C
+[/card]
+[card]
+primitive=Scurrid Colony
+id=513619
+rarity=C
+[/card]
+[card]
+primitive=Spined Karok
+id=513620
+rarity=C
+[/card]
+[card]
+primitive=Springmane Cervin
+id=513621
+rarity=C
+[/card]
+[card]
+primitive=Tangletrap
+id=513622
+rarity=C
+[/card]
+[card]
+primitive=Verdant Mastery
+id=513623
+rarity=R
+[/card]
+[card]
+primitive=Augmenter Pugilist
+id=513624
+rarity=R
+[/card]
+[card]
+primitive=Echoing Equation
+id=513625
+rarity=R
+[/card]
+[card]
+primitive=Blex, Vexing Pest
+id=513626
+rarity=M
+[/card]
+[card]
+primitive=Search for Blex
+id=513627
+rarity=M
+[/card]
+[card]
+primitive=Extus, Oriq Overlord
+id=513628
+rarity=M
+[/card]
+[card]
+primitive=Awaken the Blood Avatar
+id=513629
+rarity=M
+[/card]
+[card]
+primitive=Flamescroll Celebrant
+id=513630
+rarity=R
+[/card]
+[card]
+primitive=Revel in Silence
+id=513631
+rarity=R
+[/card]
+[card]
+primitive=Jadzi, Oracle of Arcavios
+id=513632
+rarity=M
+[/card]
+[card]
+primitive=Journey to the Oracle
+id=513633
+rarity=M
+[/card]
+[card]
+primitive=Kianne, Dean of Substance
+id=513634
+rarity=R
+[/card]
+[card]
+primitive=Imbraham, Dean of Theory
+id=513635
+rarity=R
+[/card]
+[card]
+primitive=Mila, Crafty Companion
+id=513636
+rarity=M
+[/card]
+[card]
+primitive=Lukka, Wayward Bonder
+id=513637
+rarity=M
+[/card]
+[card]
+primitive=Pestilent Cauldron
+id=513638
+rarity=R
+[/card]
+[card]
+primitive=Restorative Burst
+id=513639
+rarity=R
+[/card]
+[card]
+primitive=Plargg, Dean of Chaos
+id=513640
+rarity=R
+[/card]
+[card]
+primitive=Augusta, Dean of Order
+id=513641
+rarity=R
+[/card]
+[card]
+primitive=Rowan, Scholar of Sparks
+id=513642
+rarity=M
+[/card]
+[card]
+primitive=Will, Scholar of Frost
+id=513643
+rarity=M
+[/card]
+[card]
+primitive=Selfless Glyphweaver
+id=513644
+rarity=R
+[/card]
+[card]
+primitive=Deadly Vanity
+id=513645
+rarity=R
+[/card]
+[card]
+primitive=Shaile, Dean of Radiance
+id=513646
+rarity=R
+[/card]
+[card]
+primitive=Embrose, Dean of Shadow
+id=513647
+rarity=R
+[/card]
+[card]
+primitive=Torrent Sculptor
+id=513648
+rarity=R
+[/card]
+[card]
+primitive=Flamethrower Sonata
+id=513649
+rarity=R
+[/card]
+[card]
+primitive=Uvilda, Dean of Perfection
+id=513650
+rarity=R
+[/card]
+[card]
+primitive=Nassari, Dean of Expression
+id=513651
+rarity=R
+[/card]
+[card]
+primitive=Valentin, Dean of the Vein
+id=513652
+rarity=R
+[/card]
+[card]
+primitive=Lisette, Dean of the Root
+id=513653
+rarity=R
+[/card]
+[card]
+primitive=Aether Helix
+id=513654
+rarity=U
+[/card]
+[card]
+primitive=Beledros Witherbloom
+id=513655
+rarity=M
+[/card]
+[card]
+primitive=Biomathematician
+id=513656
+rarity=C
+[/card]
+[card]
+primitive=Blade Historian
+id=513657
+rarity=R
+[/card]
+[card]
+primitive=Blood Researcher
+id=513658
+rarity=C
+[/card]
+[card]
+primitive=Blot Out the Sky
+id=513659
+rarity=M
+[/card]
+[card]
+primitive=Body of Research
+id=513660
+rarity=M
+[/card]
+[card]
+primitive=Closing Statement
+id=513661
+rarity=U
+[/card]
+[card]
+primitive=Cram Session
+id=513662
+rarity=C
+[/card]
+[card]
+primitive=Creative Outburst
+id=513663
+rarity=U
+[/card]
+[card]
+primitive=Culling Ritual
+id=513664
+rarity=R
+[/card]
+[card]
+primitive=Culmination of Studies
+id=513665
+rarity=R
+[/card]
+[card]
+primitive=Daemogoth Titan
+id=513666
+rarity=R
+[/card]
+[card]
+primitive=Daemogoth Woe-Eater
+id=513667
+rarity=U
+[/card]
+[card]
+primitive=Deadly Brew
+id=513668
+rarity=U
+[/card]
+[card]
+primitive=Decisive Denial
+id=513669
+rarity=U
+[/card]
+[card]
+primitive=Dina, Soul Steeper
+id=513670
+rarity=U
+[/card]
+[card]
+primitive=Double Major
+id=513671
+rarity=R
+[/card]
+[card]
+primitive=Dramatic Finale
+id=513672
+rarity=R
+[/card]
+[card]
+primitive=Elemental Expressionist
+id=513673
+rarity=R
+[/card]
+[card]
+primitive=Elemental Masterpiece
+id=513674
+rarity=C
+[/card]
+[card]
+primitive=Elemental Summoning
+id=513675
+rarity=C
+[/card]
+[card]
+primitive=Eureka Moment
+id=513676
+rarity=C
+[/card]
+[card]
+primitive=Exhilarating Elocution
+id=513677
+rarity=C
+[/card]
+[card]
+primitive=Expressive Iteration
+id=513678
+rarity=U
+[/card]
+[card]
+primitive=Fractal Summoning
+id=513679
+rarity=C
+[/card]
+[card]
+primitive=Fracture
+id=513680
+rarity=U
+[/card]
+[card]
+primitive=Galazeth Prismari
+id=513681
+rarity=M
+[/card]
+[card]
+primitive=Golden Ratio
+id=513682
+rarity=U
+[/card]
+[card]
+primitive=Harness Infinity
+id=513683
+rarity=M
+[/card]
+[card]
+primitive=Hofri Ghostforge
+id=513684
+rarity=M
+[/card]
+[card]
+primitive=Humiliate
+id=513685
+rarity=U
+[/card]
+[card]
+primitive=Infuse with Vitality
+id=513686
+rarity=C
+[/card]
+[card]
+primitive=Inkling Summoning
+id=513687
+rarity=C
+[/card]
+[card]
+primitive=Kasmina, Enigma Sage
+id=513688
+rarity=M
+[/card]
+[card]
+primitive=Killian, Ink Duelist
+id=513689
+rarity=U
+[/card]
+[card]
+primitive=Lorehold Apprentice
+id=513690
+rarity=U
+[/card]
+[card]
+primitive=Lorehold Command
+id=513691
+rarity=R
+[/card]
+[card]
+primitive=Lorehold Excavation
+id=513692
+rarity=U
+[/card]
+[card]
+primitive=Lorehold Pledgemage
+id=513693
+rarity=C
+[/card]
+[card]
+primitive=Maelstrom Muse
+id=513694
+rarity=U
+[/card]
+[card]
+primitive=Magma Opus
+id=513695
+rarity=M
+[/card]
+[card]
+primitive=Make Your Mark
+id=513696
+rarity=C
+[/card]
+[card]
+primitive=Manifestation Sage
+id=513697
+rarity=R
+[/card]
+[card]
+primitive=Moldering Karok
+id=513698
+rarity=C
+[/card]
+[card]
+primitive=Mortality Spear
+id=513699
+rarity=U
+[/card]
+[card]
+primitive=Needlethorn Drake
+id=513700
+rarity=C
+[/card]
+[card]
+primitive=Oggyar Battle-Seer
+id=513701
+rarity=C
+[/card]
+[card]
+primitive=Owlin Shieldmage
+id=513702
+rarity=C
+[/card]
+[card]
+primitive=Pest Summoning
+id=513703
+rarity=C
+[/card]
+[card]
+primitive=Practical Research
+id=513704
+rarity=U
+[/card]
+[card]
+primitive=Prismari Apprentice
+id=513705
+rarity=U
+[/card]
+[card]
+primitive=Prismari Command
+id=513706
+rarity=R
+[/card]
+[card]
+primitive=Prismari Pledgemage
+id=513707
+rarity=C
+[/card]
+[card]
+primitive=Quandrix Apprentice
+id=513708
+rarity=U
+[/card]
+[card]
+primitive=Quandrix Command
+id=513709
+rarity=R
+[/card]
+[card]
+primitive=Quandrix Cultivator
+id=513710
+rarity=U
+[/card]
+[card]
+primitive=Quandrix Pledgemage
+id=513711
+rarity=C
+[/card]
+[card]
+primitive=Quintorius, Field Historian
+id=513712
+rarity=U
+[/card]
+[card]
+primitive=Radiant Scrollwielder
+id=513713
+rarity=R
+[/card]
+[card]
+primitive=Reconstruct History
+id=513714
+rarity=U
+[/card]
+[card]
+primitive=Relic Sloth
+id=513715
+rarity=C
+[/card]
+[card]
+primitive=Returned Pastcaller
+id=513716
+rarity=U
+[/card]
+[card]
+primitive=Rip Apart
+id=513717
+rarity=U
+[/card]
+[card]
+primitive=Rise of Extus
+id=513718
+rarity=C
+[/card]
+[card]
+primitive=Rootha, Mercurial Artist
+id=513719
+rarity=U
+[/card]
+[card]
+primitive=Rushed Rebirth
+id=513720
+rarity=R
+[/card]
+[card]
+primitive=Shadewing Laureate
+id=513721
+rarity=U
+[/card]
+[card]
+primitive=Shadrix Silverquill
+id=513722
+rarity=M
+[/card]
+[card]
+primitive=Silverquill Apprentice
+id=513723
+rarity=U
+[/card]
+[card]
+primitive=Silverquill Command
+id=513724
+rarity=R
+[/card]
+[card]
+primitive=Silverquill Pledgemage
+id=513725
+rarity=C
+[/card]
+[card]
+primitive=Silverquill Silencer
+id=513726
+rarity=R
+[/card]
+[card]
+primitive=Spectacle Mage
+id=513727
+rarity=C
+[/card]
+[card]
+primitive=Spirit Summoning
+id=513728
+rarity=C
+[/card]
+[card]
+primitive=Spiteful Squad
+id=513729
+rarity=C
+[/card]
+[card]
+primitive=Square Up
+id=513730
+rarity=C
+[/card]
+[card]
+primitive=Stonebound Mentor
+id=513731
+rarity=C
+[/card]
+[card]
+primitive=Tanazir Quandrix
+id=513732
+rarity=M
+[/card]
+[card]
+primitive=Teach by Example
+id=513733
+rarity=C
+[/card]
+[card]
+primitive=Tend the Pests
+id=513734
+rarity=U
+[/card]
+[card]
+primitive=Thrilling Discovery
+id=513735
+rarity=C
+[/card]
+[card]
+primitive=Vanishing Verse
+id=513736
+rarity=R
+[/card]
+[card]
+primitive=Velomachus Lorehold
+id=513737
+rarity=M
+[/card]
+[card]
+primitive=Venerable Warsinger
+id=513738
+rarity=R
+[/card]
+[card]
+primitive=Witherbloom Apprentice
+id=513739
+rarity=U
+[/card]
+[card]
+primitive=Witherbloom Command
+id=513740
+rarity=R
+[/card]
+[card]
+primitive=Witherbloom Pledgemage
+id=513741
+rarity=C
+[/card]
+[card]
+primitive=Zimone, Quandrix Prodigy
+id=513742
+rarity=U
+[/card]
+[card]
+primitive=Biblioplex Assistant
+id=513743
+rarity=C
+[/card]
+[card]
+primitive=Campus Guide
+id=513744
+rarity=C
+[/card]
+[card]
+primitive=Codie, Vociferous Codex
+id=513745
+rarity=R
+[/card]
+[card]
+primitive=Cogwork Archivist
+id=513746
+rarity=C
+[/card]
+[card]
+primitive=Excavated Wall
+id=513747
+rarity=C
+[/card]
+[card]
+primitive=Letter of Acceptance
+id=513748
+rarity=C
+[/card]
+[card]
+primitive=Reflective Golem
+id=513749
+rarity=U
+[/card]
+[card]
+primitive=Spell Satchel
+id=513750
+rarity=U
+[/card]
+[card]
+primitive=Strixhaven Stadium
+id=513751
+rarity=R
+[/card]
+[card]
+primitive=Team Pennant
+id=513752
+rarity=U
+[/card]
+[card]
+primitive=Zephyr Boots
+id=513753
+rarity=U
+[/card]
+[card]
+primitive=Access Tunnel
+id=513754
+rarity=U
+[/card]
+[card]
+primitive=Archway Commons
+id=513755
+rarity=C
+[/card]
+[card]
+primitive=The Biblioplex
+id=513756
+rarity=R
+[/card]
+[card]
+primitive=Frostboil Snarl
+id=513757
+rarity=R
+[/card]
+[card]
+primitive=Furycalm Snarl
+id=513758
+rarity=R
+[/card]
+[card]
+primitive=Hall of Oracles
+id=513759
+rarity=R
+[/card]
+[card]
+primitive=Lorehold Campus
+id=513760
+rarity=C
+[/card]
+[card]
+primitive=Necroblossom Snarl
+id=513761
+rarity=R
+[/card]
+[card]
+primitive=Prismari Campus
+id=513762
+rarity=C
+[/card]
+[card]
+primitive=Quandrix Campus
+id=513763
+rarity=C
+[/card]
+[card]
+primitive=Shineshadow Snarl
+id=513764
+rarity=R
+[/card]
+[card]
+primitive=Silverquill Campus
+id=513765
+rarity=C
+[/card]
+[card]
+primitive=Vineglimmer Snarl
+id=513766
+rarity=R
+[/card]
+[card]
+primitive=Witherbloom Campus
+id=513767
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=516678
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=516679
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=516680
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=516681
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=516682
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=516683
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=516684
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=516685
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=516686
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=516687
+rarity=C
+[/card]

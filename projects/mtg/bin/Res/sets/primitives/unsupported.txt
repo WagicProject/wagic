@@ -764,6 +764,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Battlemage's Bracers
+text=Equipped creature has haste. -- Whenever an ability of equipped creature is activated, if it isn't a mana ability, you may pay {1}. If you do, copy that ability. You may choose new targets for the copy. -- Equip {2}
+mana={2}{R}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Bazaar of Wonders
 text=When Bazaar of Wonders enters the battlefield, exile all cards from all graveyards. -- Whenever a player casts a spell, counter it if a card with the same name is in a graveyard or a nontoken permanent with the same name is on the battlefield.
 mana={3}{U}{U}
@@ -5673,6 +5680,12 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
+name=Inkshield
+text=Prevent all combat damage that would be dealt to you this turn. For each 1 damage prevented this way, create a 2/1 white and black Inkling creature token with flying.
+mana={3}{W}{B}
+type=Instant
+[/card]
+[card]
 name=Ink-Treader Nephilim
 text=Whenever a player casts an instant or sorcery spell, if Ink-Treader Nephilim is the only target of that spell, copy the spell for each other creature that spell could target. Each copy targets a different one of those creatures.
 mana={R}{G}{W}{U}
@@ -9274,6 +9287,15 @@ text=Play cards as written. Ignore all errata. -- {T}: Add {1} to your mana pool
 type=Legendary Land
 [/card]
 [card]
+name=Radiant Performer
+text=Flash -- When Radiant Performer enters the battlefield, if you cast it from your hand, choose target spell or ability that targets only a single permanent or player. Copy that spell or ability for each other permanent or player the spell or ability could target. Each copy targets a different one of those permanents and players.
+mana={3}{R}{R}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Radiate
 text=Choose target instant or sorcery spell that targets only a single permanent or player. Copy that spell for each other permanent or player the spell could target. Each copy targets a different one of those permanents and players.
 mana={3}{R}{R}
@@ -9864,6 +9886,15 @@ name=Rust
 text=Counter target activated ability from an artifact source. (Mana abilities can't be targeted.)
 mana={G}
 type=Instant
+[/card]
+[card]
+name=Ruxa, Patient Professor
+text=Whenever Ruxa, Patient Professor enters the battlefield or attacks, return target creature card with no abilities from your graveyard to your hand. -- Creatures you control with no abilities get +1/+1. -- You may have creatures you control with no abilities assign their combat damage as though they weren't blocked.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Bear Druid
+power=4
+toughness=4
 [/card]
 [card]
 name=S.N.E.A.K. Dispatcher

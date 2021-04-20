@@ -3655,6 +3655,8 @@ int AAFizzler::resolve()
         }
     }
     stack->Fizzle(sTarget, fizzleMode);
+    if(!source->storedCard)
+        source->storedCard = sCard; // Store the fizzled card to retrive target information later (e.g. manacost for Reinterpret)
     return 1;
 }
 
@@ -5243,6 +5245,9 @@ int AACloner::resolve()
                 
         Spell * spell = NEW Spell(game, myClone);
         spell->source->isToken = 1;
+        if(spell->source->hasType(Subtypes::TYPE_LEGENDARY) && options.find("nolegend") != string::npos){ // check if the token has to be legendary or not. (e.g. Double Major)
+            spell->source->removeType(Subtypes::TYPE_LEGENDARY);
+        }
         spell->resolve();
         spell->source->owner = targetPlayer;
         spell->source->lastController = targetPlayer;

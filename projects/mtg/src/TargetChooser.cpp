@@ -589,6 +589,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->isToken = 1;
                     }
                 }
+                //Has x in cost
+                else if (attribute.find("hasx") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->hasXCost = -1;
+                    }
+                    else
+                    {
+                        cd->hasXCost = 1;
+                    }
+                }
                 //put in its zone this turn
                 else if (attribute.find("fresh") != string::npos)
                 {

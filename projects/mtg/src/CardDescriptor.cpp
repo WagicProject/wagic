@@ -24,6 +24,7 @@ CardDescriptor::CardDescriptor()
     zposition = -1;
     hasKickerCost = 0;
     hasFlashbackCost = 0;
+    hasXCost = 0;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
@@ -271,6 +272,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     if ((hasFlashbackCost == -1 && card->getManaCost()->getFlashback()) || (hasFlashbackCost == 1 && !card->getManaCost()->getFlashback()))
+    {
+        match = NULL;
+    }
+
+    if ((hasXCost == -1 && card->getManaCost()->hasX()) || (hasXCost == 1 && !card->getManaCost()->hasX()))
     {
         match = NULL;
     }

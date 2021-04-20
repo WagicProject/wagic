@@ -1,0 +1,322 @@
+[meta]
+author=Wagic Team
+name=Strixhaven Mystical Archive
+orderindex=EXP-ZZJ.STA
+year=2021-04-23
+total=63
+[/meta]
+[card]
+primitive=Approach of the Second Sun
+id=517551
+rarity=M
+[/card]
+[card]
+primitive=Day of Judgment
+id=517552
+rarity=M
+[/card]
+[card]
+primitive=Defiant Strike
+id=517553
+rarity=U
+[/card]
+[card]
+primitive=Divine Gambit
+id=517554
+rarity=U
+[/card]
+[card]
+primitive=Ephemerate
+id=517555
+rarity=R
+[/card]
+[card]
+primitive=Gift of Estates
+id=517556
+rarity=R
+[/card]
+[card]
+primitive=Gods Willing
+id=517557
+rarity=R
+[/card]
+[card]
+primitive=Mana Tithe
+id=517558
+rarity=R
+[/card]
+[card]
+primitive=Revitalize
+id=517559
+rarity=U
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=517560
+rarity=R
+[/card]
+[card]
+primitive=Teferi's Protection
+id=517561
+rarity=M
+[/card]
+[card]
+primitive=Blue Sun's Zenith
+id=517562
+rarity=M
+[/card]
+[card]
+primitive=Brainstorm
+id=517563
+rarity=R
+[/card]
+[card]
+primitive=Compulsive Research
+id=517564
+rarity=R
+[/card]
+[card]
+primitive=Counterspell
+id=517565
+rarity=R
+[/card]
+[card]
+primitive=Memory Lapse
+id=517566
+rarity=R
+[/card]
+[card]
+primitive=Mind's Desire
+id=517567
+rarity=M
+[/card]
+[card]
+primitive=Negate
+id=517568
+rarity=U
+[/card]
+[card]
+primitive=Opt
+id=517569
+rarity=U
+[/card]
+[card]
+primitive=Strategic Planning
+id=517570
+rarity=U
+[/card]
+[card]
+primitive=Tezzeret's Gambit
+id=517571
+rarity=R
+[/card]
+[card]
+primitive=Time Warp
+id=517572
+rarity=M
+[/card]
+[card]
+primitive=Whirlwind Denial
+id=517573
+rarity=U
+[/card]
+[card]
+primitive=Agonizing Remorse
+id=517574
+rarity=U
+[/card]
+[card]
+primitive=Crux of Fate
+id=517575
+rarity=M
+[/card]
+[card]
+primitive=Dark Ritual
+id=517576
+rarity=R
+[/card]
+[card]
+primitive=Demonic Tutor
+id=517577
+rarity=M
+[/card]
+[card]
+primitive=Doom Blade
+id=517578
+rarity=R
+[/card]
+[card]
+primitive=Duress
+id=517579
+rarity=U
+[/card]
+[card]
+primitive=Eliminate
+id=517580
+rarity=U
+[/card]
+[card]
+primitive=Inquisition of Kozilek
+id=517581
+rarity=R
+[/card]
+[card]
+primitive=Sign in Blood
+id=517582
+rarity=R
+[/card]
+[card]
+primitive=Tainted Pact
+id=517583
+rarity=M
+[/card]
+[card]
+primitive=Tendrils of Agony
+id=517584
+rarity=R
+[/card]
+[card]
+primitive=Village Rites
+id=517585
+rarity=U
+[/card]
+[card]
+primitive=Chaos Warp
+id=517586
+rarity=M
+[/card]
+[card]
+primitive=Claim the Firstborn
+id=517587
+rarity=U
+[/card]
+[card]
+primitive=Faithless Looting
+id=517588
+rarity=R
+[/card]
+[card]
+primitive=Grapeshot
+id=517589
+rarity=R
+[/card]
+[card]
+primitive=Increasing Vengeance
+id=517590
+rarity=M
+[/card]
+[card]
+primitive=Infuriate
+id=517591
+rarity=U
+[/card]
+[card]
+primitive=Lightning Bolt
+id=517592
+rarity=R
+[/card]
+[card]
+primitive=Mizzix's Mastery
+id=517593
+rarity=M
+[/card]
+[card]
+primitive=Shock
+id=517594
+rarity=U
+[/card]
+[card]
+primitive=Stone Rain
+id=517595
+rarity=R
+[/card]
+[card]
+primitive=Thrill of Possibility
+id=517596
+rarity=U
+[/card]
+[card]
+primitive=Urza's Rage
+id=517597
+rarity=R
+[/card]
+[card]
+primitive=Abundant Harvest
+id=517598
+rarity=R
+[/card]
+[card]
+primitive=Adventurous Impulse
+id=517599
+rarity=U
+[/card]
+[card]
+primitive=Channel
+id=517600
+rarity=M
+[/card]
+[card]
+primitive=Cultivate
+id=517601
+rarity=U
+[/card]
+[card]
+primitive=Harmonize
+id=517602
+rarity=R
+[/card]
+[card]
+primitive=Krosan Grip
+id=517603
+rarity=R
+[/card]
+[card]
+primitive=Natural Order
+id=517604
+rarity=M
+[/card]
+[card]
+primitive=Primal Command
+id=517605
+rarity=M
+[/card]
+[card]
+primitive=Regrowth
+id=517606
+rarity=R
+[/card]
+[card]
+primitive=Snakeskin Veil
+id=517607
+rarity=U
+[/card]
+[card]
+primitive=Weather the Storm
+id=517608
+rarity=R
+[/card]
+[card]
+primitive=Despark
+id=517609
+rarity=R
+[/card]
+[card]
+primitive=Electrolyze
+id=517610
+rarity=R
+[/card]
+[card]
+primitive=Growth Spiral
+id=517611
+rarity=R
+[/card]
+[card]
+primitive=Lightning Helix
+id=517612
+rarity=R
+[/card]
+[card]
+primitive=Putrefy
+id=517613
+rarity=R
+[/card]

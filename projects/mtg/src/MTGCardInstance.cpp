@@ -957,7 +957,8 @@ int MTGCardInstance::countDuplicateCardNames()
         for(int x = 0; x < nb_cards; x++)
         {
             if(controller()->game->battlefield->cards[x]->name == this->name && !(controller()->game->battlefield->cards[x]->mutation && controller()->game->battlefield->cards[x]->parentCards.size() > 0)) // Don't count Mutated down card
-                count+=1;
+                if(!(this->hasType(Subtypes::TYPE_LEGENDARY) && !(controller()->game->battlefield->cards[x]->hasType(Subtypes::TYPE_LEGENDARY)))) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
+                    count+=1;
         }
     }
     return count;

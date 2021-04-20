@@ -3601,7 +3601,7 @@ void MTGNewLegend::MoveLegend(MTGCardInstance * card)
     vector<MTGAbility*>selection;
     MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
     TargetChooserFactory tfL(game);
-    tcL = tfL.createTargetChooser("*[-Mutated;share!name!]|mybattlefield",myClone); // The Mutated down cards cannot be considered as Legendary card anymore
+    tcL = tfL.createTargetChooser("*[-mutated;legendary;share!name!]|mybattlefield",myClone); // The Mutated down cards cannot be considered as Legendary card anymore
     tcL->targetter = NULL;
     tcL->maxtargets = 1;
     Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
@@ -3718,7 +3718,7 @@ void MTGNewPlaneswalker::MovePW(MTGCardInstance * card)
     vector<MTGAbility*>selection;
     MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
     TargetChooserFactory tfL(game);
-    tcP = tfL.createTargetChooser("*[share!name!]|mybattlefield",myClone);
+    tcP = tfL.createTargetChooser("*[-mutated;legendary;share!name!]|mybattlefield",myClone); // The Mutated down cards cannot be considered as Legendary card anymore
     tcP->targetter = NULL;
     tcP->maxtargets = 1;
     PWrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
