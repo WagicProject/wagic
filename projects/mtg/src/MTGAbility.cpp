@@ -3267,6 +3267,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string with = "";
         string types = "";
         string options = "";
+        replace(s.begin(), s.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using clone keyword inside transforms)
         vector<string> splitWith = parseBetween(s, "with(", ")");
         if (splitWith.size())
         {

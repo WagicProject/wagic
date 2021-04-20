@@ -1684,7 +1684,6 @@ int GameObserver::isInPlay(MTGCardInstance * card)
 }
 int GameObserver::isInGrave(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * graveyard = players[i]->game->graveyard;
@@ -1695,7 +1694,6 @@ int GameObserver::isInGrave(MTGCardInstance * card)
 }
 int GameObserver::isInExile(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * exile = players[i]->game->exile;
@@ -1706,7 +1704,6 @@ int GameObserver::isInExile(MTGCardInstance * card)
 }
 int GameObserver::isInCommandZone(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * commandzone = players[i]->game->commandzone;
@@ -1717,7 +1714,6 @@ int GameObserver::isInCommandZone(MTGCardInstance * card)
 }
 int GameObserver::isInHand(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * hand = players[i]->game->hand;
@@ -1728,11 +1724,20 @@ int GameObserver::isInHand(MTGCardInstance * card)
 }
 int GameObserver::isInLibrary(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * library = players[i]->game->library;
         if (players[i]->game->isInZone(card, library))
+            return 1;
+    }
+    return 0;
+}
+int GameObserver::isInStack(MTGCardInstance * card)
+{
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * stack = players[i]->game->stack;
+        if (players[i]->game->isInZone(card, stack))
             return 1;
     }
     return 0;

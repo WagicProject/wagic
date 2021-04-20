@@ -588,9 +588,13 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "pdrewcount")?target->controller()->drawCounter:target->controller()->opponent()->drawCounter;
     }
-    else if (s == "epicactivated" || s == "currentturn")
+    else if (s == "epicactivated" || s == "hasstorecard")
     {
-        intValue = (s == "epicactivated")?target->controller()->epic:target->getObserver()->turn;
+        intValue = (s == "epicactivated")?target->controller()->epic:(target->storedCard != 0);
+    }
+    else if (s == "currentphase" || s == "currentturn" )
+    {
+        intValue =  (s == "currentphase")?target->getObserver()->getCurrentGamePhase():target->getObserver()->turn;
     }
     else if (s == "canforetellcast")
     {
@@ -603,14 +607,16 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             if(Constants::MTGBasicAbilities[i] == s.substr(10))
                 intValue = card->basicAbilities[i];
     }
-    else if (s.find("hascnt") != string::npos) //Return the amount of specific counters on card
+    else if (s.find("hascnt") != string::npos) //Return the amount of specific counters on card (use "anycnt" to count all of them e.g. Nils, Discipline Enforcer)
     {
         intValue = 0;
         if (card->counters){
             Counters * counters = card->counters;
             for(size_t i = 0; i < counters->counters.size(); ++i){
                 Counter * counter = counters->counters[i];
-               if(counter->name == "" && (s.substr(6) == "11" || s.substr(6) == "-1-1")){
+                if(s.substr(6) == "anycnt"){
+                    intValue += counter->nb;
+                } else if(counter->name == "" && (s.substr(6) == "11" || s.substr(6) == "-1-1")){
                     if((counter->power == 1 && counter->toughness == 1 && s.substr(6) == "11") || (counter->power == -1 && counter->toughness == -1 && s.substr(6) == "-1-1")){
                         intValue = counter->nb;
                         break;
@@ -841,6 +847,16 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             if (card->controller()->game->graveyard->cards[j]->hasType(Subtypes::TYPE_INSTANT)
                 ||card->controller()->game->graveyard->cards[j]->hasType(Subtypes::TYPE_SORCERY))
                 intValue += 1;
+        }
+    }
+    else if (s == "pgmanainstantsorcery")//Inferno Project
+    {
+        intValue = 0;
+        for (int j = card->controller()->game->graveyard->nb_cards - 1; j >= 0; --j)
+        {
+            if (card->controller()->game->graveyard->cards[j]->hasType(Subtypes::TYPE_INSTANT)
+                ||card->controller()->game->graveyard->cards[j]->hasType(Subtypes::TYPE_SORCERY))
+                intValue += card->controller()->game->graveyard->cards[j]->myconvertedcost;
         }
     }
     else if (s == "gravecardtypes")//Tarmogoyf

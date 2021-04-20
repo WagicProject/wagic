@@ -47,6 +47,7 @@ class CardDescriptor: public MTGCardInstance
   int zposition;
   int hasKickerCost;
   int hasFlashbackCost;
+  int hasXCost;
   int anyCounter;
   int init();
   CardDescriptor();

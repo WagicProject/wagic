@@ -519,6 +519,9 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (!(copy = from->removeCard(card, doCopy)))
         return NULL; //ERROR
 
+    if(!card->hasType(Subtypes::TYPE_LEGENDARY) && copy->hasType(Subtypes::TYPE_LEGENDARY)) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
+        copy->removeType(Subtypes::TYPE_LEGENDARY);
+
     // Copy all the counters of the original card... (solving the bug on comparison cards with counter before zone changing events)
     if(card->counters && doCopy && !asCopy && !inplaytoinplay){
         for (unsigned int i = 0; i < card->counters->counters.size(); i++){
