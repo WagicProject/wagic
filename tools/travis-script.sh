@@ -64,6 +64,7 @@ if [ "$BUILD_ANDROID" = "YES" ]; then
     android-ndk-r22/ndk-build -C projects/mtg/Android -j4
     $ANDROID list targets
     $ANDROID update project -t 1 -p projects/mtg/Android
+    sudo sed -i -e 's/1.5/1.6/g' android-sdk-linux/tools/ant/build.xml
     ant debug -f projects/mtg/Android/build.xml
 fi
 
