@@ -21,18 +21,19 @@ before_install:
       export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin" &&
       wget -O sdk.lzma http://downloads.sourceforge.net/project/minpspw/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma;
     fi
-# Building for Qt here # sudo apt-get -qq update &&
+# Building for Qt here
   - if [ "$BUILD_Qt" == "YES" ]; then
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
+      sudo apt-get -qq update &&
       sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
-# Building for Android here #sudo apt-get update &&
+# Building for Android here
   - if [ "$BUILD_ANDROID" == "YES" ]; then
       export ANDROID="android-sdk-linux/tools/android" &&
       if [ `uname -m` = x86_64 ]; then 
-        sudo dpkg --add-architecture i386 &&
+        sudo dpkg --add-architecture i386 && sudo apt-get update &&
         sudo apt-get install -qq --force-yes libgd2-xpm-dev libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 jq ant; fi &&
         wget https://dl.google.com/android/repository/android-ndk-r22-linux-x86_64.zip -nv &&
         wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -nv;
@@ -48,6 +49,7 @@ install:
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
+- sudo pip install --upgrade pip
 - sudo python -m easy_install --upgrade pyOpenSSL
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
