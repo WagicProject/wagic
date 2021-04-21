@@ -12,7 +12,8 @@ before_install:
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
 #     export BUILD_MAC=YES;
-#    - sudo apt-get update -qq
+#   fi
+  - sudo apt-get update -qq
 # Building for PSP here
   - if [ "$BUILD_PSP" == "YES" ]; then
       export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
@@ -22,8 +23,8 @@ before_install:
     fi
 # Building for Qt here
   - if [ "$BUILD_Qt" == "YES" ]; then
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial universe" &&
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial main" &&
       sudo apt-get -qq update &&
       sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev libqt5opengl5 libqt5opengl5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
@@ -51,7 +52,6 @@ install:
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64;
     export PATH=$JAVA_HOME/bin:$PATH;
   fi
-
 - sudo pip install --upgrade pip
 - sudo pip install setuptools-rust
 - sudo pip install pyOpenSSL

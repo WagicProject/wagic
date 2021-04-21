@@ -157,6 +157,25 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Accomplished Alchemist
+auto={T}:name(Add one white) add{W}
+auto={T}:name(Add one black) add{B}
+auto={T}:name(Add one blue) add{U}
+auto={T}:name(Add one green) add{G}
+auto={T}:name(Add one red) add{R}
+auto={T}:name(Add X white) thisforeach(variable{lifegain}>0) add{W}
+auto={T}:name(Add X black) thisforeach(variable{lifegain}>0) add{B}
+auto={T}:name(Add X blue) thisforeach(variable{lifegain}>0) add{U}
+auto={T}:name(Add X green) thisforeach(variable{lifegain}>0) add{G}
+auto={T}:name(Add X red) thisforeach(variable{lifegain}>0) add{R}
+text={T}: Add one mana of any color. -- {T}: Add X mana of any one color, where X is the amount of life you gained this turn.
+mana={3}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=5
+[/card]
+[card]
 name=Accursed Horde
 auto={1}{B}:target(creature[zombie;attacking]) indestructible
 text={1}{B}: Target attacking Zombie gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it. If its toughness is 0 or less, it's still put into its owner's graveyard.)
@@ -600,6 +619,14 @@ auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap
 auto={T}:add{B}
 text=As Agadeem, the Undercrypt enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {B}.
 type=Land
+[/card]
+[card]
+name=Ageless Guardian
+mana={1}{W}
+type=Creature
+subtype=Spirit Soldier
+power=1
+toughness=4
 [/card]
 [card]
 name=Agent of Treachery
@@ -4263,6 +4290,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Bayou Groff
+other={4}{G} name(Pay 3)
+restriction=type(creature|mybattlefield)~morethan~0
+text=As an additional cost to cast this spell, sacrifice a creature or pay 3 .
+mana={1}{G}{S(creature|mybattlefield)}
+type=Creature
+subtype=Plant Dog
+power=5
+toughness=4
+[/card]
+[card]
 name=Bazaar Trademage
 abilities=flying
 auto=draw:2 && transforms((,newability[target(<3>*|myhand) reject])) forever
@@ -4282,6 +4320,14 @@ flashback={1}{U}{R}{D(*|myhand)}
 text=Beacon Bolt deals damage to target creature equal to the total number of instant and sorcery cards you own in exile and in your graveyard. -- Jump-start (You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile this card.)
 mana={1}{U}{R}
 type=Sorcery
+[/card]
+[card]
+name=Beaming Defiance
+target=creature|mybattlefield
+auto=transforms((,newability[2/2],newability[opponentshroud])) ueot
+text=Target creature you control gets +2/+2 and gains hexproof until end of turn. (It can't be the target of spells or abilities your opponents control.)
+mana={1}{W}
+type=Instant
 [/card]
 [card]
 name=Beamsplitter Mage
@@ -4733,6 +4779,14 @@ type=Host Creature
 subtype=Snake
 power=1
 toughness=2
+[/card]
+[card]
+name=Big Play
+target=creature
+auto=transforms((,newability[2/2],newability[reach],newability[counter(1/1)])) ueot
+text=Target creature gets +2/+2 and gains reach until end of turn. Put a +1/+1 counter on it.
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 name=Bind the Monster
@@ -5390,6 +5444,16 @@ mana={4}{U}
 type=Snow Creature
 subtype=Bird
 power=3
+toughness=2
+[/card]
+[card]
+name=Blood Age General
+auto={T}:all(spirit[attacking]|battlefield) transforms((,newability[1/0])) ueot
+text={T}: Attacking Spirits get +1/+0 until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Spirit Warrior
+power=2
 toughness=2
 [/card]
 [card]
@@ -9443,6 +9507,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Clever Lumimancer
+auto=@movedto(*[instant;sorcery]|mystack):2/2 ueot
+text=Magecraft — Whenever you cast or copy an instant or sorcery spell, Clever Lumimancer gets +2/+2 until end of turn.
+mana={W}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=1
+[/card]
+[card]
 name=Cliffhaven Kitesail
 auto=rehook target(creature|myBattlefield)
 auto=teach(creature) flying
@@ -9900,6 +9974,17 @@ type=Creature
 subtype=Human Warrior
 power=4
 toughness=1
+[/card]
+[card]
+name=Combat Professor
+abilities=flying
+auto=@each my combatbegins:name(Creature gets 1/0 and vigilance) target(creature|mybattlefield) transforms((,newability[1/0],newability[vigilance])) ueot
+text=Flying -- At the beginning of combat on your turn, target creature you control gets +1/+0 and gains vigilance until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Bird Cleric
+power=2
+toughness=3
 [/card]
 [card]
 name=Combine Guildmage
@@ -10808,11 +10893,17 @@ mana={4}{B}
 type=Sorcery
 [/card]
 [card]
+name=Crackle with Power
+auto=target(<thirdpaid>player,creature,planeswalker) damage:fivetimesthirdpaid
+text=Crackle with Power deals five times X damage to each of up to X targets.
+mana={X}{X}{X}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Crackling Drake
 abilities=flying
 auto=draw:1
-anyzone=pginstantsorcery/4 cdaactive
-#anyzone=peinstantsorcery/4 cdaactive
+anyzone=type:*[instant;sorcery]:mygraveyardplustype:*[instant;sorcery]:myexileplusend/4 cdaactive
 text=Flying -- Crackling Drake's power is equal to the total number of instant and sorcery cards you own in exile and in your graveyard. -- When Crackling Drake enters the battlefield, draw a card.
 mana={U}{U}{R}{R}
 type=Creature
@@ -11673,6 +11764,17 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Daemogoth Woe-Eater
+auto=@each my upkeep:ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature|mybattlefield) sacrifice!$ controller
+auto=@sacrificed(this):life:2 controller && draw:1 controller && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent
+text=At the beginning of your upkeep, sacrifice a creature. -- When you sacrifice Daemogoth Woe-Eater, each opponent discards a card, you draw a card, and you gain 2 life.
+mana={1}{B}{BG}{G}
+type=Creature
+subtype=Demon
+power=7
+toughness=6
+[/card]
+[card]
 name=Dagger Caster
 auto=damage:1 opponent
 auto=damage:1 all(creature|opponentBattlefield)
@@ -12249,6 +12351,14 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+name=Deadly Brew
+auto=ability$!name(Sacrifice creature or planeswalker) name(Sacrifice creature or planeswalker) target(*[creature;planeswalker]|mybattlefield) transforms((,newability[sacrifice],newability[may name(Return permanent) target(other *[-instant;-sorcery]|mygraveyard) moveto(myhand)])) oneshot!$ controller
+auto=ability$!name(Sacrifice creature or planeswalker) name(Sacrifice creature or planeswalker) target(*[creature;planeswalker]|mybattlefield) transforms((,newability[sacrifice],newability[may name(Return permanent) target(other *[-instant;-sorcery]|mygraveyard) moveto(myhand)])) oneshot!$ opponent
+text=Each player sacrifices a creature or planeswalker. If you sacrificed a permanent this way, you may return another permanent card from your graveyard to your hand.
+mana={B}{G}
+type=Sorcery
+[/card]
+[card]
 name=Deadly Rollick
 target=creature
 auto=moveTo(exile)
@@ -12558,6 +12668,14 @@ auto=choice name(Destroy target creature with defender) destroy target(creature[
 text=Choose one — -- • Destroy target artifact. -- • Destroy target creature with defender.
 mana={R}
 type=Sorcery
+[/card]
+[card]
+name=Defend the Campus
+auto=choice name(Creatures get 1/1) all(creature|mybattlefield) transforms((,newability[1/1])) ueot
+auto=if type(creature[power>=4]|battlefield)~morethan~0 then choice name(Destroy creature) name(Destroy creature) target(creature[power>=4]|battlefield) destroy
+text=Choose one — -- • Creatures you control get +1/+1 until end of turn. -- • Destroy target creature with power 4 or greater.
+mana={3}{W}
+type=Instant
 [/card]
 [card]
 name=Defense Grid
@@ -15189,6 +15307,17 @@ mana={W}{W}{B}{B}{B}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Efreet Flamepainter
+abilities=double strike
+auto=@combatdamaged(player) from(this):may name(Cast instant or sorcery) target(*[instant;sorcery]|myhand) transforms((,newability[gainedexiledeath],newability[activate castcard(normal)])) oneshot
+text=Double strike -- Whenever Efreet Flamepainter deals combat damage to a player, you may cast target instant or sorcery card from your graveyard without paying its mana cost. If that spell would be put into your graveyard, exile it instead.
+mana={3}{R}
+type=Creature
+subtype=Efreet Shaman
+power=1
+toughness=4
+[/card]
+[card]
 name=Egon, God of Death
 abilities=deathtouch
 other={B} name(Throne of Death)
@@ -16214,6 +16343,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Enthusiastic Study
+target=creature
+auto=transforms((,newability[3/1],newability[trample])) ueot
+auto=name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[choice name(Don't learn) donothing])) oneshot
+text=Target creature gets +3/+1 and gains trample until end of turn. -- Learn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)
+mana={2}{R}
+type=Instant
+[/card]
+[card]
 name=Entourage of Trest
 auto=becomesmonarch controller
 text=When Entourage of Trest enters the battlefield, you become the monarch. -- Entourage of Trest can block an additional creature each combat as long as you're the monarch.
@@ -16263,6 +16401,15 @@ autohand={X}{B}{B} restriction{miracle,type(Entreat the Dead[fresh]|myhand)~more
 text=Return X target creature cards from your graveyard to the battlefield. -- Miracle {X}{B}{B} (You may cast this card for its miracle cost when you draw it if it’s the first card you drew this turn.)
 mana={X}{X}{B}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Environmental Sciences
+auto=life:2 controller
+auto=name(Search land) target(land[basic]|mylibrary) moveto(myhand) and!( shuffle )!
+text=Search your library for a basic land card, reveal it, put it into your hand, then shuffle. You gain 2 life.
+mana={2}
+type=Sorcery
+subtype=Lesson
 [/card]
 [card]
 name=Eon Frolicker
@@ -16940,6 +17087,15 @@ text={T}: Add one mana of any color that a land an opponent controls could produ
 type=Land
 [/card]
 [card]
+name=Expanded Anatomy
+target=creature
+auto=transforms((,newability[vigilance],newability[counter(1/1.2)])) ueot
+text=Put two +1/+1 counters on target creature. It gains vigilance until end of turn.
+mana={3}
+type=Sorcery
+subtype=Lesson
+[/card]
+[card]
 name=Expansion // Explosion
 other={X}{U}{U}{R}{R} name(Explosion)
 auto=if paid(alternative) then choice name(Damage any target and you draw) damage:X target(player,creature,planeswalker) && draw:X controller
@@ -17036,6 +17192,16 @@ auto=ability$!name(Choose one) choice name(Draw and loose life) life:-5 && draw:
 text=Draw a card, then each other player may draw a card. Whenever a card is drawn this way, Explosion of Riches deals 5 damage to target opponent chosen at random from among your opponents.
 mana={5}{R}
 type=Sorcery
+[/card]
+[card]
+name=Explosive Welcome
+target=player,creature,planeswalker
+auto=damage:5
+auto=target(player,creature,planeswalker) damage:3
+auto=add{R}{R}{R}
+text=Explosive Welcome deals 5 damage to any target and 3 damage to any other target. Add {R}{R}{R}.
+mana={7}{R}
+type=Instant
 [/card]
 [card]
 name=Expose to Daylight
@@ -17139,6 +17305,17 @@ auto=@each my upkeep:scry:1 scrycore delayed dontshow donothing scrycoreend scry
 text=At the beginning of your upkeep, scry 1. -- {5}{U}: Exchange control of Eyes Everywhere and target nonland permanent. Activate this ability only any time you could cast a sorcery.
 mana={2}{U}
 type=Enchantment
+[/card]
+[card]
+name=Eyetwitch
+abilities=flying
+auto=@movedto(this|graveyard) from(mybattlefield):name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[choice name(Don't learn) donothing])) oneshot
+text=Flying -- When Eyetwitch dies, learn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)
+mana={B}
+type=Creature
+subtype=Eye Bat
+power=1
+toughness=1
 [/card]
 [card]
 name=Ezuri's Predation
@@ -18006,6 +18183,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Fervent Mastery
+other={2}{R}{R} name(Cast for 1 less)
+aicode=activate transforms((,newability[target(<3>*|mylibrary) moveto(myhand) and!( discard:1 controller )!])) oneshot
+auto=name(Search up to 3 cards) reveal:plibrarycount optionone name(Choose up to 3 cards) target(<upto:3>*|reveal) moveto(myhand) optiononeend optiontwo name(Put back) all(*|reveal) moveto(ownerlibrary) and!( shuffle )! optiontwoend afterrevealed thisforeach(variable{3}) discard:1 controller afterrevealedend revealend
+auto=if paid(alternative) then ability$!name(Discard and draw) name(Discard and draw) target(<anyamount>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot!$ opponent
+text=You may pay {2}{R}{R} rather than pay this spell's mana cost. -- If the {2}{R}{R} cost was paid, an opponent discards any number of cards, then draws that many cards. -- Search your library for up to three cards, put them into your hand, shuffle, then discard three cards at random.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Fervent Paincaster
 auto={T}:damage:1 target(player)
 auto=@exerted(this):damage:1 target(creature)
@@ -18828,10 +19015,10 @@ toughness=2
 [card]
 name=Flame Spill
 target=creature
-auto=this(toughness=1) damage:1 && damage:3 targetController
-auto=this(toughness=2) damage:2 && damage:2 targetController
-auto=this(toughness=3) damage:3 && damage:1 targetController
-auto=this(toughness>=4) damage:4
+auto=transforms((,newability[this(toughness=1) damage:1 && damage:3 targetController])) oneshot
+auto=transforms((,newability[auto=this(toughness=2) damage:2 && damage:2 targetController])) oneshot
+auto=transforms((,newability[auto=this(toughness=3) damage:3 && damage:1 targetController])) oneshot
+auto=transforms((,newability[auto=this(toughness>=4) damage:4])) oneshot
 text=Flame Spill deals 4 damage to target creature. Excess damage is dealt to that creature's controller instead.
 mana={2}{R}
 type=Instant
@@ -19865,6 +20052,16 @@ auto=transforms((,newability[this(counter{0/0.1.Trample}>=1) trample]))
 text=Target creature gets +3/+3 until end of turn. Put a trample counter on it.
 mana={2}{G}
 type=Instant
+[/card]
+[card]
+name=Fuming Effigy
+auto=@movedto(*|mybattlefield,mystack,myhand,mylibrary,mysideboard,myexile,mycommandzone) from(mygraveyard):name(Deals 1 damage) damage:1 opponent
+text=Whenever one or more cards leave your graveyard, Fuming Effigy deals 1 damage to each opponent.
+mana={3}{R}
+type=Creature
+subtype=Spirit
+power=4
+toughness=3
 [/card]
 [card]
 name=Funeral Longboat
@@ -23624,6 +23821,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Hall Monitor
+abilities=haste
+auto={1}{R}{T}:name(Creature can't block) target(creature) transforms((,newability[cantblock])) ueot
+text=Haste -- {1}{R}, {T}: Target creature can't block this turn.
+mana={R}
+type=Creature
+subtype=Lizard Shaman
+power=1
+toughness=1
+[/card]
+[card]
 name=Hall of Heliod's Generosity
 auto={T}:add{C}
 auto={1}{W}{T}:moveTo(mylibrary) target(enchantment|mygraveyard)
@@ -24359,6 +24567,15 @@ auto=lord(creature[blue]|opponentbattlefield) transforms((,newability[cantblock]
 text=Cumulative upkeep {R} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Blue creatures can't block creatures you control. -- Nonblue creatures can't block creatures you control unless their controller pays 1 life for each blocking creature he or she controls.
 mana={2}{R}
 type=Enchantment
+[/card]
+[card]
+name=Heated Debate
+abilities=nofizzle
+target=creature,planeswalker
+auto=damage:4
+text=This spell can't be countered. (This includes by the ward ability.) -- Heated Debate deals 4 damage to target creature or planeswalker.
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 name=Heaven // Earth
@@ -25620,9 +25837,7 @@ type=Sorcery
 [card]
 name=Hunt for Specimens
 auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
-auto=if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)
-auto=if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!
-auto=choice name(Don't learn) donothing
+auto=name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[choice name(Don't learn) donothing])) oneshot
 text=Create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life." -- Learn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)
 mana={1}{B}
 type=Sorcery
@@ -25981,6 +26196,15 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Igneous Inspiration
+target=player,creature,planeswalker
+auto=damage:3
+auto=name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[choice name(Don't learn) donothing])) oneshot
+text=Igneous Inspiration deals 3 damage to any target. -- Learn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
 name=Ignite Disorder
 auto=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature[white;blue]) damage:1!$ controller
 text=Ignite Disorder deals 3 damage divided as you choose among one, two, or three target white and/or blue creatures.
@@ -26048,6 +26272,30 @@ auto=if paid(kicker) then pay({2}{R}) name(Pay also kicker red) damage:castx tar
 text=Kicker {2}{R} and/or {3}{U} (You may pay an additional {2}{R} and/or {3}{U} as you cast this spell.) -- Illuminate deals X damage to target creature. If Illuminate was kicked with its {2}{R} kicker, it deals X damage to that creature's controller. If Illuminate was kicked with its {3}{U} kicker, you draw X cards.
 mana={X}{R}
 type=Sorcery
+[/card]
+[card]
+name=Illuminate History
+auto=if type(*|mygraveyard)~morethan~5 then choice name(Discard 0 cards) name(Discard 0 cards) token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|mygraveyard)~lessthan~6 then choice name(Discard 0 cards) name(Discard 0 cards) donothing
+auto=if type(*|myhand)~morethan~0 then if type(*|mygraveyard)~morethan~4 then choice name(Discard 1 card) name(Discard 1 card) name(Discard 1 card) target(*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~0 then if type(*|mygraveyard)~lessthan~5 then choice name(Discard 1 card) name(Discard 1 card) name(Discard 1 card) target(*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot
+auto=if type(*|myhand)~morethan~1 then if type(*|mygraveyard)~morethan~3 then choice name(Discard 2 cards) name(Discard 2 cards) name(Discard 2 cards) target(<2>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~1 then if type(*|mygraveyard)~lessthan~4 then choice name(Discard 2 cards) name(Discard 2 cards) name(Discard 2 cards) target(<2>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot
+auto=if type(*|myhand)~morethan~2 then if type(*|mygraveyard)~morethan~2 then choice name(Discard 3 cards) name(Discard 3 cards) name(Discard 3 cards) target(<3>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~2 then if type(*|mygraveyard)~lessthan~3 then choice name(Discard 3 cards) name(Discard 3 cards) name(Discard 3 cards) target(<3>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot
+auto=if type(*|myhand)~morethan~3 then if type(*|mygraveyard)~morethan~1 then choice name(Discard 4 cards) name(Discard 4 cards) name(Discard 4 cards) target(<4>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~3 then if type(*|mygraveyard)~lessthan~2 then choice name(Discard 4 cards) name(Discard 4 cards) name(Discard 4 cards) target(<4>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot
+auto=if type(*|myhand)~morethan~4 then if type(*|mygraveyard)~morethan~0 then choice name(Discard 5 cards) name(Discard 5 cards) name(Discard 5 cards) target(<5>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~4 then if type(*|mygraveyard)~lessthan~1 then choice name(Discard 5 cards) name(Discard 5 cards) name(Discard 5 cards) target(<5>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot
+auto=if type(*|myhand)~morethan~5 then choice name(Discard 6 cards) name(Discard 6 cards) target(<6>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~6 then choice name(Discard 7 cards) name(Discard 7 cards) target(<7>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~7 then choice name(Discard 8 cards) name(Discard 8 cards) target(<8>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~8 then choice name(Discard 9 cards) name(Discard 9 cards) target(<9>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+auto=if type(*|myhand)~morethan~9 then choice name(Discard 10 cards) name(Discard 10 cards) target(<10>*|myhand) transforms((,newability[reject],newability[draw:1])) oneshot && token(Spirit^Creature Spirit^3/2^red^white)
+text=Discard any number of cards, then draw that many cards. Then if there are seven or more cards in your graveyard, create a 3/2 red and white Spirit creature token.
+mana={2}{R}{R}
+type=Sorcery
+subtype=Lesson
 [/card]
 [card]
 name=Illuminated Folio
@@ -26118,6 +26366,16 @@ text=Enchant creature -- Enchanted creature has base power and toughness 0/2.
 mana={2}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Illustrious Historian
+autograveyard={5}{E}:token(Spirit,Creature Spirit,3/2,red,white) and!( tap(noevent) )!
+text={5}, Exile Illustrious Historian from your graveyard: Create a tapped 3/2 red and white Spirit creature token.
+mana={1}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=1
 [/card]
 [card]
 name=Ilysian Caryatid
@@ -27328,6 +27586,24 @@ auto=@each my upkeep:reveal:1 optionone if type(land|reveal)~morethan~0 then tar
 text=At the beginning of your upkeep, look at the top card of your library. If it's a land card, you may put it onto the battlefield.
 mana={3}{G}
 type=Enchantment
+[/card]
+[card]
+name=Introduction to Annihilation
+target=*[-land]|battlefield
+auto=moveto(exile) and!( transforms((,newability[draw:1 controller])) oneshot )!
+text=Exile target nonland permanent. Its controller draws a card.
+mana={5}
+type=Sorcery
+subtype=Lesson
+[/card]
+[card]
+name=Introduction to Prophecy
+aicode=activate transforms((,newability[draw:1 controller])) oneshot
+auto=scry:2 scrycore delayed draw:1 controller scrycoreend scryend
+text=Scry 2, then draw a card.
+mana={3}
+type=Sorcery
+subtype=Lesson
 [/card]
 [card]
 name=Intrusive Packbeast
@@ -31971,6 +32247,48 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Lorehold Apprentice
+auto=@movedto(*[instant;sorcery]|mystack):all(spirit|mybattlefield) transforms((,newability[{T}:name(Damage opponent) damage:1 opponent])) ueot
+text=Magecraft — Whenever you cast or copy an instant or sorcery spell, until end of turn, Spirit creatures you control gain " {T}: This creature deals 1 damage to each opponent."
+mana={R}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Lorehold Command
+auto=choice name(Create Spirit and give 1/0 to creatures) token(Spirit,Creature Spirit,3/2,white,red) && all(creature|mybattlefield) transforms((,newability[1/0],newability[haste],newability[indestructible])) ueot
+auto=choice name(Create Spirit and deal 3 damage) token(Spirit,Creature Spirit,3/2,white,red) && target(player,creature,planeswalker) damage:3 && ability$!name(Target player gains 3 life) name(Target player gains 3 life) life:3 target(player)!$ controller
+auto=choice name(Create Spirit and sacrifice permanent) token(Spirit,Creature Spirit,3/2,white,red) && ability$!name(Sacrifice a permanent) name(Sacrifice a permanent) target(*|mybattlefield) sacrifice and!( draw:2 controller )! !$ controller
+auto=choice name(Give 1/0 to creatures and deal 3 damage) all(creature|mybattlefield) transforms((,newability[1/0],newability[haste],newability[indestructible])) ueot && target(player,creature,planeswalker) damage:3 && ability$!name(Target player gains 3 life) name(Target player gains 3 life) life:3 target(player)!$ controller
+auto=choice name(Give 1/0 to creatures and sacrifice permanent) all(creature|mybattlefield) transforms((,newability[1/0],newability[haste],newability[indestructible])) ueot && ability$!name(Sacrifice a permanent) name(Sacrifice a permanent) target(*|mybattlefield) sacrifice and!( draw:2 controller )! !$ controller
+auto=choice name(Deal 3 damage and sacrifice permanent) target(player,creature,planeswalker) damage:3 && ability$!name(Target player gains 3 life) name(Target player gains 3 life) life:3 target(player)!$ controller && ability$!name(Sacrifice a permanent) name(Sacrifice a permanent) name(Sacrifice a permanent) target(*|mybattlefield) transforms((,newability[sacrifice],newability[draw:2 controller])) oneshot !$ controller
+text=Choose two — -- • Create a 3/2 red and white Spirit creature token. -- • Creatures you control get +1/+0 and gain indestructible and haste until end of turn. -- • Lorehold Command deals 3 damage to any target. Target player gains 3 life. -- • Sacrifice a permanent, then draw two cards.
+mana={3}{R}{W}
+type=Instant
+[/card]
+[card]
+name=Lorehold Excavation
+auto=@each my end restriction{type(land[zpos=1]|mylibrary)~morethan~0}:deplete:1 controller && life:1 controller
+auto=@each my end restriction{type(land[zpos=1]|mylibrary)~equalto~0}:deplete:1 controller && damage:1 opponent
+auto={5}{E(creature|mygraveyard)}:token(Spirit,Creature Spirit,3/2,red,white) and!( tap(noevent) )!
+text=At the beginning of your end step, mill a card. If a land card was milled this way, you gain 1 life. Otherwise, Lorehold Excavation deals 1 damage to each opponent. (To mill a card, put the top card of your library into your graveyard.) -- {5}, Exile a creature card from your graveyard: Create a tapped 3/2 red and white Spirit creature token.
+mana={R}{W}
+type=Enchantment
+[/card]
+[card]
+name=Lorehold Pledgemage
+abilities=first strike
+auto=@movedto(*[instant;sorcery]|mystack):1/0 ueot
+text=First strike -- Magecraft — Whenever you cast or copy an instant or sorcery spell, Lorehold Pledgemage gets +1/+0 until end of turn.
+mana={1}{RW}{RW}
+type=Creature
+subtype=Kor Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Losheel, Clockwork Scholar
 auto=preventAllCombatDamage to(artifact[attacking]|myBattlefield)
 auto=@movedto(artifact[creature]|myBattlefield) restriction{type(artifact[fresh;creature]|mybattlefield)~equalto~1}:draw:1 controller
@@ -32623,6 +32941,14 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Make Your Mark
+target=creature
+auto=transforms((,newability[1/0],newability[@movedto(this|graveyard) from(mybattlefield):name(Create spirit) token(Spirit^Creature Spirit^3/2^red^white)])) ueot
+text=Target creature gets +1/+0 until end of turn. When that creature dies this turn, create a 3/2 red and white Spirit creature token.
+mana={RW}
+type=Instant
+[/card]
+[card]
 name=Makeshift Battalion
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:counter(1/1)
 text=Whenever Makeshift Battalion and at least two other creatures attack, put a +1/+1 counter on Makeshift Battalion.
@@ -32860,6 +33186,16 @@ text=When Manglehorn enters the battlefield, you may destroy target artifact. --
 mana={2}{G}
 type=Creature
 subtype=Beast
+power=2
+toughness=2
+[/card]
+[card]
+name=Manifestation Sage
+auto=token(Fractal,Creature Fractal,0/0,green,blue) and!( counter(1/1.phandcount) )!
+text=When Manifestation Sage enters the battlefield, create a 0/0 green and blue Fractal creature token. Put X +1/+1 counters on it, where X is the number of cards in your hand.
+mana={GU}{GU}{GU}{GU}
+type=Creature
+subtype=Human Wizard
 power=2
 toughness=2
 [/card]
@@ -33220,6 +33556,27 @@ type=Legendary Creature
 subtype=Elf Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Mascot Exhibition
+auto=token(Inkling,Creature Inkling,2/1,white,black,flying)
+auto=token(Spirit,Creature Spirit,3/2,red,white)
+auto=token(Elemental,Creature Elemental,4/4,blue,red)
+text=Create a 2/1 white and black Inkling creature token with flying, a 3/2 red and white Spirit creature token, and a 4/4 blue and red Elemental creature token.
+mana={7}
+type=Sorcery
+subtype=Lesson
+[/card]
+[card]
+name=Mascot Interception
+other={R} name(Target token creature)
+otherrestriction=type(creature[token]|battlefield)~morethan~0
+restriction=type(creature[-token]|battlefield)~morethan~0
+auto=if paid(alternative) then name(Gain control of creature) name(Gain control of creature) target(creature[token]|battlefield) moveto(mybattlefield) and!( transforms((,newability[untap],newability[2/0],newability[haste],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)])) ueot )!
+auto=ifnot paid(alternative) then name(Gain control of creature) name(Gain control of creature) target(creature[-token]|battlefield) moveto(mybattlefield) and!( transforms((,newability[untap],newability[2/0],newability[haste],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)])) ueot )!
+text=This spell costs {3} less to cast if it targets a creature token. -- Gain control of target creature until end of turn. Untap that creature. It gets +2/+0 and gains haste until end of turn.
+mana={3}{R}
+type=Sorcery
 [/card]
 [card]
 name=Mask Est
@@ -34489,6 +34846,16 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Moldering Karok
+abilities=trample,lifelink
+text=Trample, lifelink
+mana={2}{B}{G}
+type=Creature
+subtype=Zombie Crocodile
+power=3
+toughness=3
+[/card]
+[card]
 name=Moldervine Reclamation
 auto=@movedTo(creature|mygraveyard) from(battlefield):life:1 && draw:1
 text=Whenever a creature you control dies, you gain 1 life and draw a card.
@@ -34697,6 +35064,17 @@ auto={T}:Add{U}
 auto={T}:Add{B}
 text=Morphic Pool enters the battlefield tapped unless you have two or more opponents. -- {T}: Add {U} or {B}.
 type=Land
+[/card]
+[card]
+name=Mortality Spear
+target=*[-land]|battlefield
+other={B}{G} name(Life gained)
+otherrestriction=compare(lifegain)~morethan~0
+restriction=compare(lifegain)~equalto~0
+auto=destroy
+text=This spell costs {2} less to cast if you gained life this turn. -- Destroy target nonland permanent.
+mana={2}{B}{G}
+type=Instant
 [/card]
 [card]
 name=Moss Viper
@@ -39254,6 +39632,18 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Pigment Storm
+target=creature
+auto=transforms((,newability[this(toughness=1) damage:1 && damage:4 targetController])) oneshot
+auto=transforms((,newability[auto=this(toughness=2) damage:2 && damage:3 targetController])) oneshot
+auto=transforms((,newability[auto=this(toughness=3) damage:3 && damage:2 targetController])) oneshot
+auto=transforms((,newability[auto=this(toughness=4) damage:4 && damage:1 targetController])) oneshot
+auto=transforms((,newability[auto=this(toughness>=5) damage:5])) oneshot
+text=Pigment Storm deals 5 damage to target creature. Excess damage is dealt to that creature's controller instead.
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Pilfering Hawk
 abilities=flying
 auto={i}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
@@ -39291,6 +39681,17 @@ auto=this(variable{type:*[multicolor]:myrestrictedcastingzone}>0) {T}:add{U}
 auto=this(variable{type:*[multicolor]:myrestrictedcastingzone}>0) {T}:add{B}
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast a multicolored spell.
 type=Land
+[/card]
+[card]
+name=Pillardrop Warden
+abilities=reach
+auto={2}{T}{S}:name(Return instant or sorcery) target(*[instant;sorcery]|mygraveyard) moveto(myhand) asSorcery
+text=Reach -- {2}, {T}, Sacrifice Pillardrop Warden: Return target instant or sorcery card from your graveyard to your hand. Activate only as a sorcery.
+mana={3}{R}
+type=Creature
+subtype=Spirit Dwarf
+power=1
+toughness=5
 [/card]
 [card]
 name=Pillarverge Pathway
@@ -52472,6 +52873,15 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Sudden Breakthrough
+target=creature
+auto=transforms((,newability[2/0],newability[first strike])) ueot
+auto=token(Treasure Sur)
+text=Target creature gets +2/+0 and gains first strike until end of turn. -- Create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
+mana={1}{R}
+type=Instant
+[/card]
+[card]
 name=Sudden Demise
 auto=chooseacolor damage:X all (creature[chosencolor]|battlefield) chooseend
 text=Choose a color. Sudden Demise deals X damage to each creature of the chosen color.
@@ -56128,17 +56538,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Tome Raider
-abilities=flying
-auto=draw:1
-text=Flying -- When Tome Raider enters the battlefield, draw a card.
-mana={2}{U}
-type=Creature
-subtype=Faerie
-power=1
-toughness=1
-[/card]
-[card]
 name=Tome of Legends
 auto=counter(0/0,1,Page) all(this)
 auto=@movedto(*[iscommander]|myBattlefield):conunter(0/0,1,Page) all(this)
@@ -56159,6 +56558,28 @@ auto={T}:Add{G}
 text=Whenever you cast a multicolored spell, draw a card. -- {T}: Add one mana of any color.
 mana={5}
 type=Artifact
+[/card]
+[card]
+name=Tome Raider
+abilities=flying
+auto=draw:1
+text=Flying -- When Tome Raider enters the battlefield, draw a card.
+mana={2}{U}
+type=Creature
+subtype=Faerie
+power=1
+toughness=1
+[/card]
+[card]
+name=Tome Shredder
+abilities=haste
+auto={T}{E(*[instant;sorcery]|mygraveyard)}:counter(1/1)
+text=Haste -- {T}, Exile an instant or sorcery card from your graveyard: Put a +1/+1 counter on Tome Shredder.
+mana={2}{R}
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
 [/card]
 [card]
 name=Tomebound Lich
@@ -57319,6 +57740,16 @@ auto={7}{T}:name(copy target instant or sorcery) castcard(copied noevent) target
 text=If you would copy a spell one or more times, instead copy it that many times plus an additional time. You may choose new targets for the additional copy. -- {7}, {T}: Copy target instant or sorcery spell you control. You may choose new targets for the copy.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Twinscroll Shaman
+abilities=double strike
+text=Double strike
+mana={2}{R}
+type=Creature
+subtype=Dwarf Shaman
+power=1
+toughness=2
 [/card]
 [card]
 name=Twisted Reflection
@@ -60140,6 +60571,18 @@ auto=_PROLIFERATE_
 text=Exile target creature, then proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={4}{W}
 type=Sorcery
+[/card]
+[card]
+name=Wandering Archaic
+auto=@movedto(*[instant;sorcery]|opponentstack):all(trigger[to]) transforms((,newability[[pay[[{2}]] name(pay 2 mana) donothing?counter(0/0.1.WanderingEffect)])) oneshot
+auto=@counteradded(0/0,1,WanderingEffect) from(instant|opponentstack):may name(Copy spell) all(instant[counter{0/0.1.WanderingEffect}]|opponentstack) activate castcard(copied)
+auto=@counteradded(0/0,1,WanderingEffect) from(sorcery|opponentstack):may name(Copy spell) all(sorcery[counter{0/0.1.WanderingEffect}]|opponentstack) activate castcard(copied)
+text=Whenever an opponent casts an instant or sorcery spell, they may pay {2}. If they don't, you may copy that spell. You may choose new targets for the copy.
+mana={5}
+type=Creature
+subtype=Avatar
+power=4
+toughness=4
 [/card]
 [card]
 name=Wandering Eye
