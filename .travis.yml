@@ -6,9 +6,9 @@ branches:
     - latest-master
 
 before_install:
-  - export BUILD_PSP=NO
+  - export BUILD_PSP=YES
   - export BUILD_ANDROID=YES
-  - export BUILD_Qt=NO
+  - export BUILD_Qt=YES
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
@@ -51,6 +51,7 @@ install:
     sudo apt-get install openjdk-8-jdk;
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64;
     export PATH=$JAVA_HOME/bin:$PATH;
+    #sudo sed -i -e 's/1.5/1.6/g' android-sdk-linux/tools/ant/build.xml;
   fi
 
 - sudo pip install --upgrade pip
