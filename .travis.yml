@@ -6,9 +6,9 @@ branches:
     - latest-master
 
 before_install:
-  - export BUILD_PSP=YES
-  - export BUILD_ANDROID=YES
-  - export BUILD_Qt=YES
+  - export BUILD_PSP=NO
+  - export BUILD_ANDROID=NO
+  - export BUILD_Qt=NO
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
@@ -50,6 +50,7 @@ install:
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
 - sudo pip install --upgrade pip
+- sudo pip install setuptools-rust
 - sudo python -m easy_install --upgrade pyOpenSSL
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
