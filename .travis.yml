@@ -6,9 +6,9 @@ branches:
     - latest-master
 
 before_install:
-  - export BUILD_PSP=NO
-  - export BUILD_ANDROID=NO
-  - export BUILD_Qt=NO
+  - export BUILD_PSP=YES
+  - export BUILD_ANDROID=YES
+  - export BUILD_Qt=YES
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
