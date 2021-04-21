@@ -29,6 +29,8 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     bool thirddown = false;
     bool twice = false;
     bool thrice = false;
+    bool fourtimes = false;
+    bool fivetimes = false;
     bool other = false;//othertype:[subtype]
 
     if (!target) target = card;
@@ -91,7 +93,18 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         size_t tXXX = s.find("thrice");
         s.erase(tXXX,tXXX + 6);
     }
-
+    if(s.find("fourtimes") != string::npos)
+    {
+        fourtimes = true;
+        size_t tXXX = s.find("fourtimes");
+        s.erase(tXXX,tXXX + 9);
+    }
+    if(s.find("fivetimes") != string::npos)
+    {
+        fivetimes = true;
+        size_t tXXX = s.find("fivetimes");
+        s.erase(tXXX,tXXX + 9);
+    }
     if(s.find("othertype") != string::npos)
     {
         other = true;
@@ -177,6 +190,11 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     else if (s == "xx" || s == "XX" || s == "halfpaid")
     {
         intValue = computeX(spell, card) / 2;
+        if(intValue < 0) intValue = 0;
+    }
+    else if (s == "xxx" || s == "XXX" || s == "thirdpaid")
+    {
+        intValue = computeX(spell, card) / 3;
         if(intValue < 0) intValue = 0;
     }
     else if (s == "castx" || s == "Iroas")//calculate castx - devotion to red white
@@ -1079,6 +1097,10 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         intValue = intValue * 2;
     if (thrice)
         intValue = intValue * 3;
+    if (fourtimes)
+        intValue = intValue * 4;
+    if (fivetimes)
+        intValue = intValue * 5;
     if (intValue < 0)
     {
         //we remove "-" at the start and are parsing for real values.

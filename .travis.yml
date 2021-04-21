@@ -1,5 +1,5 @@
 language: cpp
-dist: trusty
+dist: xenial
 branches:
   except:
     - latest-master
@@ -23,10 +23,10 @@ before_install:
     fi
 # Building for Qt here
   - if [ "$BUILD_Qt" == "YES" ]; then
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial universe" &&
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial main" &&
       sudo apt-get -qq update &&
-      sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
+      sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev libqt5opengl5 libqt5opengl5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
 # Building for Android here
@@ -48,8 +48,13 @@ install:
     tar -zxf android-sdk_r24.4.1-linux.tgz &&
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
+    sudo apt-get install openjdk-8-jdk;
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64;
+    export PATH=$JAVA_HOME/bin:$PATH;
   fi
-- sudo python -m easy_install --upgrade pyOpenSSL
+- sudo pip install --upgrade pip
+- sudo pip install setuptools-rust
+- sudo pip install pyOpenSSL
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
 - sudo pip install cpp-coveralls
