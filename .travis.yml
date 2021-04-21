@@ -51,13 +51,12 @@ install:
     sudo apt-get install openjdk-8-jdk;
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64;
     export PATH=$JAVA_HOME/bin:$PATH;
-    #sudo sed -i -e 's/1.5/1.6/g' android-sdk-linux/tools/ant/build.xml;
   fi
 
 - sudo pip install --upgrade pip
 - sudo pip install setuptools-rust
 - sudo pip install pyOpenSSL
-# - sudo python -m easy_install --upgrade pyOpenSSL
+#- sudo python -m easy_install --upgrade pyOpenSSL
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
 - sudo pip install cpp-coveralls
