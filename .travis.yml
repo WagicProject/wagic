@@ -1,13 +1,12 @@
 language: cpp
-#dist: trusty
 dist: xenial
 branches:
   except:
     - latest-master
 
 before_install:
-  - export BUILD_PSP=NO
-  - export BUILD_ANDROID=NO
+  - export BUILD_PSP=YES
+  - export BUILD_ANDROID=YES
   - export BUILD_Qt=YES
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
@@ -56,7 +55,6 @@ install:
 - sudo pip install --upgrade pip
 - sudo pip install setuptools-rust
 - sudo pip install pyOpenSSL
-#- sudo python -m easy_install --upgrade pyOpenSSL
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
 - sudo pip install cpp-coveralls
