@@ -50,12 +50,10 @@ install:
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
 - sudo apt-get install openjdk-8-jdk
-- echo "JAVA_HOME=" $JAVA_HOME
-- echo "PATH=" $PATH
+- export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+- export PATH=$JAVA_HOME/bin:$PATH
 - which java
-- echo "JAVA_HOME=$(which java)" | sudo tee -a /etc/environment
-- source /etc/environment
-- echo "JAVA_HOME=" $JAVA_HOME
+- cat /etc/environment
 - sudo pip install --upgrade pip
 - sudo pip install setuptools-rust
 - sudo pip install pyOpenSSL
