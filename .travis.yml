@@ -57,7 +57,7 @@ install:
 - sudo pip install --upgrade pip
 - sudo pip install setuptools-rust
 - sudo pip install pyOpenSSL
-#- sudo python -m easy_install --upgrade pyOpenSSL
+# - sudo python -m easy_install --upgrade pyOpenSSL
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
 - sudo pip install cpp-coveralls
