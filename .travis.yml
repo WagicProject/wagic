@@ -50,6 +50,7 @@ install:
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
 - sudo apt-get install openjdk-8-jdk
+- java -version
 - sudo pip install --upgrade pip
 - sudo pip install setuptools-rust
 - sudo pip install pyOpenSSL
