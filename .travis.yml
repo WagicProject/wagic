@@ -1,6 +1,6 @@
 language: cpp
-dist: trusty
-#dist: xenial
+#dist: trusty
+dist: xenial
 branches:
   except:
     - latest-master
@@ -49,8 +49,9 @@ install:
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
   fi
+- sudo apt-get install openjdk-8-jdk
 - sudo pip install --upgrade pip
-#- sudo pip install setuptools-rust
+- sudo pip install setuptools-rust
 - sudo pip install pyOpenSSL
 #- sudo python -m easy_install --upgrade pyOpenSSL
 - sudo pip install pyjavaproperties
