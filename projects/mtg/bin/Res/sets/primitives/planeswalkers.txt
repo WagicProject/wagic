@@ -1,7 +1,7 @@
 grade=borderline
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 30-11-2020
+#We sorted this in alphabetical order - Luruz & Vitty85 25-04-2021
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -570,7 +570,7 @@ color=red
 name=Chandra, the Firebrand
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to any target) damage:1 target(player,creature,planeswalker)
-auto={C(0/0,-2,Loyalty)}:name(-2: When cast instant or sorcery, copy spell) emblem transforms((,newability[@moveTo(*[instant;sorcery]|myStack):castcard(copied noevent) target(*[instant;sorcery]|mystack)])) oneshot ueot
+auto={C(0/0,-2,Loyalty)}:name(-2: When cast instant or sorcery, copy spell) emblem transforms((,newability[@movedto(*[instant;sorcery]|myStack) turnlimited:all(trigger[to]) activate castcard(copied noevent)])) ueot
 auto={C(0/0,-6,Loyalty)}:name(-6: Deals 6 damage up to six targets) ability$!name(Choose one) choice name(Damage opponent and five creature) damage:6 opponent && damage:6 target(<upto:5>creature) _ choice name(Damage controller and five creature) damage:6 controller && damage:6 target(<upto:5>creature) _ choice name(Damage creature) damage:6 target(<upto:6>creature)!$ controller
 text=+1: Chandra, the Firebrand deals 1 damage to any target. -- -2: When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- -6: Chandra, the Firebrand deals 6 damage to each of up to six target creatures and/or players.
 mana={3}{R}
@@ -725,18 +725,6 @@ text=Artifact, instant, and sorcery spells your opponents cast cost {1} more to 
 mana={2}{WU}
 type=Legendary Planeswalker
 subtype=Dovin
-[/card]
-[card]
-name=Personal Decoy
-abilities=exiledeath
-auto=counter(0/0,lifetotal,loyalty)
-auto=lord(creature|opponentBattlefield) cantattack
-auto={C(0/0,1,Loyalty)}:name(+1: Gain 1 life) life:1 controller
-auto={C(0/0,-4,Loyalty)}:name(-4: Draw a card) draw:1 controller
-text=Personal Decoy enters the battlefield with a number of loyalty counters on it equal to your life total. If it would leave the battlefield, exile it instead of putting it anywhere else. You can’t be attacked. -- +1: You gain 1 life. -- −4: Draw a card.
-mana={5}{W}{U}
-type=Planeswalker
-subtype=Duck
 [/card]
 [card]
 name=Elspeth, Knight-Errant
@@ -1355,6 +1343,59 @@ type=Legendary Planeswalker
 subtype=Karn
 [/card]
 [card]
+name=Kasmina, Enigma Sage
+auto=counter(0/0,2,Loyalty)
+aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
+auto={C(0/0.2.Loyalty)}:limit:1 name(+2: Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto={C(0/0.-1.Loyalty)}:limit:1 name(-1: Create fractal with 1 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.1) )!
+auto={C(0/0.-2.Loyalty)}:limit:1 name(-2: Create fractal with 2 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.2) )!
+auto={C(0/0.-3.Loyalty)}:limit:1 name(-3: Create fractal with 3 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.3) )!
+auto={C(0/0.-4.Loyalty)}:limit:1 name(-4: Create fractal with 4 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.4) )!
+auto={C(0/0.-5.Loyalty)}:limit:1 name(-5: Create fractal with 5 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.5) )!
+auto={C(0/0.-6.Loyalty)}:limit:1 name(-6: Create fractal with 6 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.6) )!
+auto={C(0/0.-7.Loyalty)}:limit:1 name(-7: Create fractal with 7 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.7) )!
+auto={C(0/0.-8.Loyalty)}:limit:1 name(-8: Create fractal with 8 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.8) )!
+auto={C(0/0.-9.Loyalty)}:limit:1 name(-9: Create fractal with 9 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.9) )!
+auto={C(0/0.-10.Loyalty)}:limit:1 name(-10: Create fractal with 10 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.10) )!
+auto={C(0/0.-11.Loyalty)}:limit:1 name(-11: Create fractal with 11 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.11) )!
+auto={C(0/0.-12.Loyalty)}:limit:1 name(-12: Create fractal with 12 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.12) )!
+auto={C(0/0.-13.Loyalty)}:limit:1 name(-13: Create fractal with 13 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.13) )!
+auto={C(0/0.-14.Loyalty)}:limit:1 name(-14: Create fractal with 14 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.14) )!
+auto={C(0/0.-15.Loyalty)}:limit:1 name(-15: Create fractal with 15 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.15) )!
+auto={C(0/0.-16.Loyalty)}:limit:1 name(-16: Create fractal with 16 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.16) )!
+auto={C(0/0.-17.Loyalty)}:limit:1 name(-17: Create fractal with 17 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.17) )!
+auto={C(0/0.-18.Loyalty)}:limit:1 name(-18: Create fractal with 18 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.18) )!
+auto={C(0/0.-19.Loyalty)}:limit:1 name(-19: Create fractal with 19 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.19) )!
+auto={C(0/0.-20.Loyalty)}:limit:1 name(-20: Create fractal with 20 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.20) )!
+auto={C(0/0.-8.Loyalty)}:limit:1 name(-8: Search instant or sorcery) target(*[instant;sorcery;share!color!]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[zerocast],newability[@each untap:canplayfromexile],newability[@each untap:zerocast])) forever )!
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.2.Loyalty)}:limit:1 name(+2: Scry 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-1.Loyalty)}:limit:1 name(-1: Create fractal with 1 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.1) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-2.Loyalty)}:limit:1 name(-2: Create fractal with 2 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.2) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-3.Loyalty)}:limit:1 name(-3: Create fractal with 3 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.3) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-4.Loyalty)}:limit:1 name(-4: Create fractal with 4 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.4) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-5.Loyalty)}:limit:1 name(-5: Create fractal with 5 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.5) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-6.Loyalty)}:limit:1 name(-6: Create fractal with 6 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.6) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-7.Loyalty)}:limit:1 name(-7: Create fractal with 7 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.7) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-8.Loyalty)}:limit:1 name(-8: Create fractal with 8 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.8) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-9.Loyalty)}:limit:1 name(-9: Create fractal with 9 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.9) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-10.Loyalty)}:limit:1 name(-10: Create fractal with 10 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.10) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-11.Loyalty)}:limit:1 name(-11: Create fractal with 11 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.11) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-12.Loyalty)}:limit:1 name(-12: Create fractal with 12 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.12) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-13.Loyalty)}:limit:1 name(-13: Create fractal with 13 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.13) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-14.Loyalty)}:limit:1 name(-14: Create fractal with 14 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.14) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-15.Loyalty)}:limit:1 name(-15: Create fractal with 15 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.15) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-16.Loyalty)}:limit:1 name(-16: Create fractal with 16 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.16) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-17.Loyalty)}:limit:1 name(-17: Create fractal with 17 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.17) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-18.Loyalty)}:limit:1 name(-18: Create fractal with 18 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.18) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-19.Loyalty)}:limit:1 name(-19: Create fractal with 19 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.19) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-20.Loyalty)}:limit:1 name(-20: Create fractal with 20 counter) token(Fractal^Creature Fractal^0/0^green^blue) and!( counter(1/1.20) )!]))
+auto=lord(other planeswalker|mybattlefield) transforms((,newability[{C(0/0.-8.Loyalty)}:limit:1 name(-8: Search instant or sorcery) target(*[instant;sorcery;share!color!]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[zerocast],newability[@each untap:canplayfromexile],newability[@each untap:zerocast])) forever )!]))
+text=Each other planeswalker you control has the loyalty abilities of Kasmina, Enigma Sage. -- +2: Scry 1. -- −X: Create a 0/0 green and blue Fractal creature token. Put X +1/+1 counters on it. -- −8: Search your library for an instant or sorcery card that shares a color with this planeswalker, exile that card, then shuffle. You may cast that card without paying its mana cost.
+mana={1}{G}{U}
+type=Legendary Planeswalker
+subtype=Kasmina
+[/card]
+[card]
 name=Kasmina, Enigmatic Mentor
 auto=counter(0/0,5,loyalty)
 auto=@targeted(*[creature;planeswalker]|myBattlefield) from(*[instant;sorcery]|opponentzones):choice name(This spell costs 2 more) name(This spell costs 2 more) target(*[instant;sorcery]|opponentzones) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) oneshot
@@ -1630,6 +1671,18 @@ auto={C(0/0,-2,Loyalty)}{E(creature|myBattlefield)}:restriction{type(creature|my
 auto={C(0/0,-7,Loyalty)}:restriction{type(creature|myBattlefield)~morethan~0} name(-7: Each creature deals damage) all(creature|myBattlefield) transforms((,newability[damage:power opponent])) oneshot
 text=+1: Exile the top three cards of your library. Creature cards exiled this way gain "You may cast this card from exile as long as you control a Lukka planeswalker." -- -2: Exile target creature you control, then reveal cards from the top of your library until you reveal a creature card with higher converted mana cost. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- -7: Each creature you control deals damage equal to its power to each opponent.
 mana={3}{R}{R}
+type=Legendary Planeswalker
+subtype=Lukka
+[/card]
+[card]
+name=Lukka, Wayward Bonder
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Don't discard any card) donothing
+auto={C(0/0,1,Loyalty)}:name(+1: Discard and draw) target(*|myhand) transforms((,newability[reject],newability[if cantargetcard(*[creature]|*) then draw:2 else draw:1])) oneshot
+auto={C(0/0,-2,Loyalty)}:name(-2: Return creature from graveyard) target(creature|mygraveyard) moveto(mybattlefield) and!( transforms((,newability[unearth],newability[haste])) forever )!
+auto={C(0/0,-7,Loyalty)}:name(-7: Get emblem powerstrike) emblem transforms((,newability[@movedTo(creature|mybattlefield):name(Damage any target) all(trigger[to]) transforms((,newability[name(Damage any target) damage:power target(player^creature^planeswalker)])) oneshot])) forever dontremove
+text=+1: You may discard a card. If you do, draw a card. If a creature card was discarded this way, draw two cards instead. -- −2: Return target creature card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of your next upkeep. -- −7: You get an emblem with "Whenever a creature enters the battlefield under your control, it deals damage equal to its power to any target."
+mana={4}{R}{R}
 type=Legendary Planeswalker
 subtype=Lukka
 [/card]
@@ -2002,6 +2055,31 @@ type=Legendary Planeswalker
 subtype=Oko
 [/card]
 [card]
+name=Personal Decoy
+abilities=exiledeath
+auto=counter(0/0,lifetotal,loyalty)
+auto=lord(creature|opponentBattlefield) cantattack
+auto={C(0/0,1,Loyalty)}:name(+1: Gain 1 life) life:1 controller
+auto={C(0/0,-4,Loyalty)}:name(-4: Draw a card) draw:1 controller
+text=Personal Decoy enters the battlefield with a number of loyalty counters on it equal to your life total. If it would leave the battlefield, exile it instead of putting it anywhere else. You can’t be attacked. -- +1: You gain 1 life. -- −4: Draw a card.
+mana={5}{W}{U}
+type=Planeswalker
+subtype=Duck
+[/card]
+[card]
+name=Professor Onyx
+auto=counter(0/0,5,Loyalty)
+auto=@movedto(*[instant;sorcery]|mystack):name(Gain life) life:2 controller && life:-2 opponent
+aicode=activate transforms((,newability[target(*[zpos<=3]|mylibrary) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(mygraveyard) )!])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Lose life and look cards) life:-1 controller && name(Look top cards) reveal:3 optionone name(Get a Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={C(0/0,-3,Loyalty)}:name(-3: Sacrifice creature) ability$!name(Sacrifice creature) name(Sacrifice creature) sacrifice notatarget(creature[power=power:highest:creature:myBattlefield]|mybattlefield)!$ opponent
+auto={C(0/0,-8,Loyalty)}:name(-8: Discard or lose life) name(-8: Discard or lose life) life:-7minusohandcountminusend opponent && life:-7minusohandcountminusend opponent && life:-7minusohandcountminusend opponent && ability$!name(Choose cards) name(Choose cards) target(<7>*|myhand) transforms((,newability[choice name(Discard this card) reject],newability[choice name(Lose 3 life) life:-3 controller])) oneshot!$ opponent
+text=Magecraft — Whenever you cast or copy an instant or sorcery spell, each opponent loses 2 life and you gain 2 life. -- +1: You lose 1 life. Look at the top three cards of your library. Put one of them into your hand and the rest into your graveyard. -- −3: Each opponent sacrifices a creature with the greatest power among creatures that player controls. -- −8: Each opponent may discard a card. If they don't, they lose 3 life. Repeat this process six more times.
+mana={4}{B}{B}
+type=Legendary Planeswalker
+subtype=Liliana
+[/card]
+[card]
 name=Ral, Caller of Storms
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw a card) draw:1 controller
@@ -2030,7 +2108,7 @@ auto=counter(0/0,4,loyalty)
 aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedTo(*[instant;sorcery]|myStack):ability$!name(Choose one) choice name(Damage opponent) damage:1 target(opponent) _ choice name(Damage Planeswalker) damage:1 target(planeswalker)!$ controller
 auto={C(0/0,2,Loyalty)}:name(+2: Scry: 1) scry:1 scrycore delayed dontshow donothing scrycoreend scryend
-auto={C(0/0,-2,Loyalty)}:name(-2: Whenever cast instant or sorcery copy spell) emblem transforms((,newability[@movedTo(*[instant;sorcery]|myStack):castcard(copied noevent) target(*[instant;sorcery]|mystack)])) ueot oneshot
+auto={C(0/0,-2,Loyalty)}:name(-2: Whenever cast instant or sorcery copy spell) emblem transforms((,newability[@movedto(*[instant;sorcery]|myStack) turnlimited:all(trigger[to]) activate castcard(copied noevent)])) ueot
 text=Whenever you cast or copy an instant or sorcery spell, Ral, Storm Conduit deals 1 damage to target opponent or planeswalker. -- +2: Scry 1. -- −2: When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy.
 mana={3}{U}{R}
 type=Legendary Planeswalker
@@ -2068,6 +2146,20 @@ auto={C(0/0,-2,Loyalty)}:name(-2: Deals 3 damage to opponent tapped creatures) d
 auto={C(0/0,-2,Loyalty)}:name(-2: Deals 3 damage to your tapped creatures) damage:3 all(creature[tapped]|myBattlefield)
 text=+2: During target player’s next turn, each creature that player controls attacks if able. -- −2: Rowan Kenrith deals 3 damage to each tapped creature target player controls. -- −8: Target player gets an emblem with “Whenever you activate an ability that isn’t a mana ability, copy it. You may choose new targets for the copy.” -- Partner with Will Kenrith -- Rowan Kenrith can be your commander.
 mana={4}{R}{R}
+type=Legendary Planeswalker
+subtype=Rowan
+[/card]
+[card]
+name=Rowan, Scholar of Sparks
+other={4}{U} name(Will, Scholar of Frost)
+otherrestriction=can play planeswalker
+autostack=if paid(alternative) then name(Will, Scholar of Frost) name(Will, Scholar of Frost) flip(Will, Scholar of Frost) forcetype(Legendary Planeswalker)
+auto=if paid(alternative) then counter(0/0,4,Loyalty) else counter(0/0,2,loyalty)
+auto=this(variable{isflipped}<1) lord(instant,sorcery|mycastingzone) altercost(colorless,-1)
+auto=this(variable{isflipped}<1) {C(0/0,1,Loyalty)}:name(+1: Deals damage) name(+1: Deals damage) if compare(pdrewcount)~lessthan~3 then damage:1 opponent else damage:3 opponent
+auto=this(variable{isflipped}<1) {C(0/0,-4,Loyalty)}:name(-4: Emblem copy spells) name(-4: Emblem copy spells) emblem transforms((,newability[@movedto(*[instant;sorcery]|mystack):all(trigger[to]<1>) transforms((,newability[pay[[{2}]] name(copy spell) activate name(copy spell) castcard(copied noevent)])) forever])) forever dontremove
+text=Instant and sorcery spells you cast cost {1} less to cast. -- +1: Rowan, Scholar of Sparks deals 1 damage to each opponent. If you've drawn three or more cards this turn, she deals 3 damage to each opponent instead. -- −4: You get an emblem with "Whenever you cast an instant or sorcery spell, you may pay 2 . If you do, copy that spell. You may choose new targets for the copy."
+mana={2}{R}
 type=Legendary Planeswalker
 subtype=Rowan
 [/card]
@@ -2821,6 +2913,19 @@ auto={C(0/0,-2,Loyalty)}:name(-2: Draw two cards and cost {2} less) target(playe
 auto={C(0/0,-8,Loyalty)}:name(-8: Whenever cast instant or sorcery copy spell) emblem transforms((,newability[@movedTo(*[instant;sorcery]|myStack):may castcard(copied noevent) target(*[instant;sorcery]|mystack)])) forever dontremove
 text=+2: Until your next turn, up to two target creatures each have base power and toughness 0/3 and lose all abilities. -- −2: Target player draws two cards. Until your next turn, instant, sorcery, and planeswalker spells that player casts cost {2} less to cast. -- −8: Target player gets an emblem with "Whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy." -- Partner with Rowan Kenrith -- Will Kenrith can be your commander.
 mana={4}{U}{U}
+type=Legendary Planeswalker
+subtype=Will
+[/card]
+[card]
+name=Will, Scholar of Frost
+auto=counter(0/0,4,loyalty)
+auto=this(variable{isflipped}>0) lord(instant,sorcery|mycastingzone) altercost(colorless,-1)
+auto=this(variable{isflipped}>0) {C(0/0,1,Loyalty)}:name(+1: Dont't target any creature) name(+1: Dont't target any creature) donothing
+auto=this(variable{isflipped}>0) {C(0/0,1,Loyalty)}:name(+1: Target creature becomes 0/2) name(+1: Target creature becomes 0/2) target(creature) transforms((,setpower=0,settoughness=2)) uynt
+auto=this(variable{isflipped}>0) {C(0/0,-3,Loyalty)}:name(-3: Draw 2 cards) name(-3: Draw 2 cards) draw:2 controller
+auto=this(variable{isflipped}>0) {C(0/0,-7,Loyalty)}:name(-7: Exile 5 permanents) name(-7: Exile 5 permanents) target(<upto:5>*|battlefield) moveto(exile) and!( transforms((,newability[token(Elemental^Creature Elemental^4/4^blue^red)])) oneshot )!
+text=Instant and sorcery spells you cast cost {1} less to cast. -- +1: Up to one target creature has base power and toughness 0/2 until your next turn. -- −3: Draw two cards. -- −7: Exile up to five target permanents. For each permanent exiled this way, its controller creates a 4/4 blue and red Elemental creature token.
+mana={4}{U}
 type=Legendary Planeswalker
 subtype=Will
 [/card]

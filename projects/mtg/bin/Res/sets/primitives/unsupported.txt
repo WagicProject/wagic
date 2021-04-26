@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards up to Aether Revolt) as of 3/14/2017
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 30-11-2020
+#I sorted this programatically - Vitty85 25-04-2021
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -5200,12 +5200,6 @@ type=Enchantment
 name=Hired Heist
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever a creature you control with the chosen name deals combat damage to a player, you may pay {U}. If you do, draw a card.
 type=Conspiracy
-[/card]
-[card]
-name=Hive Mind
-text=Whenever a player casts an instant or sorcery spell, each other player copies that spell. Each of those players may choose new targets for his or her copy.
-mana={5}{U}
-type=Enchantment
 [/card]
 [card]
 name=Hixus, Prison Warden
