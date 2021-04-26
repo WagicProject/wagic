@@ -3,7 +3,7 @@ author=Wagic Team
 name=Strixhaven: School of Mages
 orderindex=EXP-ZZI.STX
 year=2021-04-23
-total=337
+total=340
 [/meta]
 [card]
 primitive=Pest
@@ -13,6 +13,11 @@ rarity=T
 [card]
 primitive=Spirit
 id=-513728
+rarity=T
+[/card]
+[card]
+primitive=Inkling
+id=-513722
 rarity=T
 [/card]
 [card]
@@ -151,6 +156,11 @@ id=-513585
 rarity=T
 [/card]
 [card]
+primitive=Inkling
+id=-513566
+rarity=T
+[/card]
+[card]
 primitive=Pest
 id=-513563
 rarity=T
@@ -158,6 +168,11 @@ rarity=T
 [card]
 primitive=Pest
 id=-513550
+rarity=T
+[/card]
+[card]
+primitive=Pest
+id=-513543
 rarity=T
 [/card]
 [card]
@@ -181,7 +196,7 @@ id=-513502
 rarity=T
 [/card]
 [card]
-primitive=Elemental
+primitive=Inkling
 id=-513481
 rarity=T
 [/card]
@@ -218,7 +233,7 @@ rarity=R
 [card]
 primitive=Explore the Vastlands
 id=513483
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Academic Probation
@@ -928,7 +943,7 @@ rarity=R
 [card]
 primitive=Echoing Equation
 id=513625
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Blex, Vexing Pest
@@ -938,7 +953,7 @@ rarity=M
 [card]
 primitive=Search for Blex
 id=513627
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Extus, Oriq Overlord
@@ -948,7 +963,7 @@ rarity=M
 [card]
 primitive=Awaken the Blood Avatar
 id=513629
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Flamescroll Celebrant
@@ -958,7 +973,7 @@ rarity=R
 [card]
 primitive=Revel in Silence
 id=513631
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Jadzi, Oracle of Arcavios
@@ -968,7 +983,7 @@ rarity=M
 [card]
 primitive=Journey to the Oracle
 id=513633
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Kianne, Dean of Substance
@@ -978,7 +993,7 @@ rarity=R
 [card]
 primitive=Imbraham, Dean of Theory
 id=513635
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Mila, Crafty Companion
@@ -988,7 +1003,7 @@ rarity=M
 [card]
 primitive=Lukka, Wayward Bonder
 id=513637
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Pestilent Cauldron
@@ -998,7 +1013,7 @@ rarity=R
 [card]
 primitive=Restorative Burst
 id=513639
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Plargg, Dean of Chaos
@@ -1008,7 +1023,7 @@ rarity=R
 [card]
 primitive=Augusta, Dean of Order
 id=513641
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Rowan, Scholar of Sparks
@@ -1018,7 +1033,7 @@ rarity=M
 [card]
 primitive=Will, Scholar of Frost
 id=513643
-rarity=M
+rarity=T
 [/card]
 [card]
 primitive=Selfless Glyphweaver
@@ -1028,7 +1043,7 @@ rarity=R
 [card]
 primitive=Deadly Vanity
 id=513645
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Shaile, Dean of Radiance
@@ -1038,7 +1053,7 @@ rarity=R
 [card]
 primitive=Embrose, Dean of Shadow
 id=513647
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Torrent Sculptor
@@ -1048,7 +1063,7 @@ rarity=R
 [card]
 primitive=Flamethrower Sonata
 id=513649
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Uvilda, Dean of Perfection
@@ -1058,7 +1073,7 @@ rarity=R
 [card]
 primitive=Nassari, Dean of Expression
 id=513651
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Valentin, Dean of the Vein
@@ -1068,7 +1083,7 @@ rarity=R
 [card]
 primitive=Lisette, Dean of the Root
 id=513653
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Aether Helix

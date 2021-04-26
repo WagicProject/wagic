@@ -6219,10 +6219,17 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             return 1;
         if(card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
-            for(unsigned int k = 0;k < card->cardsAbilities.size();++k)
+            /*for(unsigned int k = 0;k < card->cardsAbilities.size();++k)
             {
                 ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(card->cardsAbilities[k]);
                 if(check && check->counters)
+                    return 0;
+            }*/
+            // Improved the check to avoid the multiple triggers in case of abilities gained from other cards (e.g. Kasmina, Enigma Sage)
+            for(unsigned int k = 0;k < card->getObserver()->mLayers->actionLayer()->mObjects.size();++k)
+            {
+                ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(card->getObserver()->mLayers->actionLayer()->mObjects[k]);
+                if(check && check->source == card && check->counters)
                     return 0;
             }
             if (player != game->currentPlayer)

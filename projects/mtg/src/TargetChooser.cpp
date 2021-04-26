@@ -171,6 +171,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         s2 = s.substr(found + 1);
         while (s2.size())
         {
+            replace(s2.begin(), s2.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. target multiple zones within transforms keyword)
             found = s2.find(",");
             string zoneName;
             if (found != string::npos)

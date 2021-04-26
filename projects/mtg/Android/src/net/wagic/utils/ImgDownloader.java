@@ -1822,8 +1822,10 @@ public class ImgDownloader {
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/back/8/c/8cfd0887-0c83-4b33-a85e-8b8ec5bf758d.jpg?1617453475";
         else if(id.equals("513652"))
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/6/5/65008352-bc7e-40b2-a832-b46813e5dc4c.jpg?1617453527";
-        else if(id.equals("513653"))
-            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/back/6/5/65008352-bc7e-40b2-a832-b46813e5dc4c.jpg?1617453527";
+        else if(id.equals("513652t") || id.equals("513638t") || id.equals("513543t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/d/0/d0ddbe3e-4a66-494d-9304-7471232549bf.jpg?1617626099";
+        else if(id.equals("513634t"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/9/1/910f48ab-b04e-4874-b31d-a86a7bc5af14.jpg?1617626097";
 
         return cardurl;
     }
@@ -2702,7 +2704,8 @@ public class ImgDownloader {
             if (rarity == null || !rarity.equals("t") || set.equals("DKA") || set.equals("EMN") ||
                     set.equals("ISD") || set.equals("ORI") || set.equals("RIX") || set.equals("V17") ||
                     set.equals("UNH") || set.equals("XLN") || set.equals("SOI") || set.equals("SOK") ||
-                    set.equals("BOK") || set.equals("CHK") || set.equals("ZNR") || set.equals("KHM"))
+                    set.equals("BOK") || set.equals("CHK") || set.equals("ZNR") || set.equals("KHM") ||
+                    set.equals("STX"))
                 rarity = "";
             if(id != null && (id.equals("209162") || id.equals("209163") || id.equals("401721") || id.equals("401722") || id.equals("491633")))
                 rarity = "t";
@@ -2717,6 +2720,14 @@ public class ImgDownloader {
                 mappa.put("503837t", "Koma's Coil");
             if(id.equals("503841"))
                 mappa.put("503841t", "Shard");
+            if(id.equals("513652"))
+                mappa.put("513652t", "Pest");
+            if(id.equals("513638"))
+                mappa.put("513638t", "Pest");
+            if(id.equals("513543"))
+                mappa.put("513543t", "Pest");
+            if(id.equals("513634"))
+                mappa.put("513634t", "Fractal");
             if (id.equals("114921")) {
                 mappa.put("11492111t", "Citizen");
                 mappa.put("11492112t", "Camarid");
