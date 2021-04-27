@@ -632,6 +632,10 @@ int OrderedAIAction::getEfficiency()
             efficiency = 90;
         }
     }
+    else if (dynamic_cast<AATurnSide *>(a))
+    {
+        efficiency = 0; // AI does not have to use the doubleside ability to avoid loops.
+    }
     else if (ATokenCreator * atc = dynamic_cast<ATokenCreator *>(a))
     {
         efficiency = 80;
