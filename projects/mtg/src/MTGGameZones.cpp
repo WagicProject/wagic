@@ -404,6 +404,12 @@ MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card)
          ret->basicAbilities[(int)Constants::GAINEDHANDDEATH] = 0;
          return ret;
     }
+    else if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::DOUBLEFACEDEATH] || card->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH]))
+    {
+         MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->temp);
+         ret->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = 0;
+         return ret;
+    }
     else if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::INPLAYDEATH] || card->basicAbilities[(int)Constants::INPLAYTAPDEATH]))
     {
         MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->battlefield);
@@ -823,6 +829,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->basicAbilities[Constants::ISCOMMANDER] = card->basicAbilities[Constants::ISCOMMANDER];
                 copy->basicAbilities[Constants::GAINEDEXILEDEATH] = card->basicAbilities[Constants::GAINEDEXILEDEATH];
                 copy->basicAbilities[Constants::GAINEDHANDDEATH] = card->basicAbilities[Constants::GAINEDHANDDEATH];
+                copy->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH] = card->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH];
                 copy->damageInflictedAsCommander = card->damageInflictedAsCommander;
                 copy->numofcastfromcommandzone = card->numofcastfromcommandzone;
                 for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
@@ -1358,6 +1365,13 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     case COMMANDZONE:
         return p->game->commandzone;
 
+    case MY_TEMP:
+        return p->game->temp;
+    case OPPONENT_TEMP:
+        return p->opponent()->game->temp;
+    case TEMP:
+        return p->game->temp;
+
     }
     if (!p2) return NULL;
     switch (zoneId)
@@ -1388,6 +1402,9 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
 
     case TARGET_CONTROLLER_COMMANDZONE:
         return p2->game->commandzone;
+
+    case TARGET_CONTROLLER_TEMP:
+        return p2->game->temp;
 
     default:
         return NULL;
@@ -1520,6 +1537,17 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
             return source->playerTarget->game->commandzone;
         else return source->controller()->game->commandzone;
 
+    case TARGET_OWNER_TEMP:
+        return target->owner->game->temp;
+    case TEMP:
+        return target->owner->game->temp;
+    case OWNER_TEMP:
+        return target->owner->game->temp;
+    case TARGETED_PLAYER_TEMP:
+        if (source->playerTarget)
+            return source->playerTarget->game->temp;
+        else return source->controller()->game->temp;
+
     default:
         return NULL;
     }
@@ -1553,6 +1581,8 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     "mycommandzone", "opponentcommandzone", "targetownercommandzone", "targetcontrollercommandzone", "ownercommandzone", "commandzone","targetedpersonscommandzone",
 
+                    "mytemp", "opponenttemp", "targetownertemp", "targetcontrollertemp", "ownertemp", "temp","targetedpersonstemp",
+
     };
 
     int values[] = { MY_GRAVEYARD, OPPONENT_GRAVEYARD, TARGET_OWNER_GRAVEYARD, TARGET_CONTROLLER_GRAVEYARD, OWNER_GRAVEYARD,
@@ -1578,7 +1608,9 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     MY_SIDEBOARD, OPPONENT_SIDEBOARD, TARGET_OWNER_SIDEBOARD, TARGET_CONTROLLER_SIDEBOARD, OWNER_SIDEBOARD, SIDEBOARD,TARGETED_PLAYER_SIDEBOARD,
 
-                    MY_COMMANDZONE, OPPONENT_COMMANDZONE, TARGET_OWNER_COMMANDZONE, TARGET_CONTROLLER_COMMANDZONE, OWNER_COMMANDZONE, COMMANDZONE,TARGETED_PLAYER_COMMANDZONE };
+                    MY_COMMANDZONE, OPPONENT_COMMANDZONE, TARGET_OWNER_COMMANDZONE, TARGET_CONTROLLER_COMMANDZONE, OWNER_COMMANDZONE, COMMANDZONE,TARGETED_PLAYER_COMMANDZONE,
+
+                    MY_TEMP, OPPONENT_TEMP, TARGET_OWNER_TEMP, TARGET_CONTROLLER_TEMP, OWNER_TEMP, TEMP,TARGETED_PLAYER_TEMP };
 
     int max = sizeof(values) / sizeof *(values);
 

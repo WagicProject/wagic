@@ -211,7 +211,10 @@ const char* Constants::MTGBasicAbilities[] = {
     "twoboast", //It has boast twice ability (e.g. Birgi, God of Storytelling)
     "replacescry", //It has scry replacement ability
     "hasnokicker", //Kicker cost is not a real kicker cost (eg. cards with Fuse cost)
-    "undamageable" //It cannot be damaged by any source
+    "undamageable", //It cannot be damaged by any source
+    "lifefaker", //It's a card wich modify the life increasement when a @lifeof triggers occours (e.g. Angel of Vitality)
+    "doublefacedeath", //It goes to temp zone after death (e.g. Double face card)
+    "gaineddoublefacedeath" //It goes to temp after death (use just to give add ability to instants and sorceries which originally have not, e.g. with transforms keyword)
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

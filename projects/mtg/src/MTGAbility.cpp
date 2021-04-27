@@ -3148,7 +3148,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("copy");
     if (found != string::npos)
     {
-        MTGAbility * a = NEW AACopier(observer, id, card, target);
+        string options = "";
+        vector<string> splitOptions = parseBetween(s, "options(", ")");
+        if (splitOptions.size())
+        {
+            options = splitOptions[1];
+        }
+        MTGAbility * a = NEW AACopier(observer, id, card, target, NULL, options);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         ((AACopier*)a)->isactivated = activated;
@@ -4297,6 +4303,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //doubleside
+    vector<string> splitSide = parseBetween(s, "doubleside(", ")", true);
+    if (splitSide.size())
+    {
+        string splitSideName = "";
+        if (splitSide[1].size())
+        {
+            splitSideName = splitSide[1];
+            replace(splitSideName.begin(), splitSideName.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using doubleside keyword inside transforms)
+        }
+        MTGAbility * a = NEW AATurnSide(observer, id, card, target, splitSideName);
+        a->oneShot = true;
+        return a;
+    }
+
     //flip
     vector<string> splitFlipStat = parseBetween(s, "flip(", ")", true);
     if(splitFlipStat.size())
@@ -5088,6 +5109,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::GAINEDHANDDEATH] = true;
     badAbilities[(int)Constants::INPLAYDEATH] = true;
     badAbilities[(int)Constants::INPLAYTAPDEATH] = true;
+    badAbilities[(int)Constants::DOUBLEFACEDEATH] = true;
+    badAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = true;
     badAbilities[(int)Constants::WEAK] = true;
     badAbilities[(int)Constants::NOLIFEGAIN] = true;
     badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
@@ -5905,6 +5928,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         {
             card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
             card->controller()->game->putInZone(card, card->getCurrentZone(), card->owner->game->exile);
+        }
+        else if (card->basicAbilities[(int)Constants::DOUBLEFACEDEATH] || card->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH])
+        {
+            card->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = 0;
+            card->controller()->game->putInZone(card, card->getCurrentZone(), card->owner->game->temp);
         }
         else if (card->basicAbilities[(int)Constants::HANDDEATH] || card->basicAbilities[(int)Constants::GAINEDHANDDEATH])
         {
