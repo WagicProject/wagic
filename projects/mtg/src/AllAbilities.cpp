@@ -1921,11 +1921,12 @@ AALibraryBottom::~AALibraryBottom()
 }
 
 //AACopier
-AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+AACopier::AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, string optionsList) :
     ActivatedAbility(observer, _id, _source, _cost, 0)
 {
     target = _target;
     andAbility = NULL;
+    options = optionsList;
     isactivated = false;
 }
 
@@ -1942,9 +1943,10 @@ int AACopier::resolve()
         source->hasCopiedToken = tokencopied;
         /*since we look for the real card it will not copy granted haste ability however for token we copy all*/
         /*but how to do backup for token so we just copy the backup???*/
+        bool nolegend = options.find("nolegend") != string::npos; // Check if the copy has to be legendary or not. (e.g. Echoing Equation)
         if(tokencopied && !_target->isACopier && !_target->getMTGId())
         {
-            source->copy(_target->tokCard);
+            source->copy(_target->tokCard, nolegend);
             //if the token doesn't have cda/dynamic pt then allow this...
             if(!_target->isCDA)
             {
@@ -1967,7 +1969,7 @@ int AACopier::resolve()
         else
         {
             source->nameOrig = source->name; // Saves the orignal card name before become a copy
-            source->copy(_target);
+            source->copy(_target, nolegend);
         }
         source->isACopier = true;
         source->copiedID = _target->copiedID;
@@ -4332,6 +4334,70 @@ AAMeld * AAMeld::clone() const
     return NEW AAMeld(*this);
 }
 
+//Turn side of double faced cards
+AATurnSide::AATurnSide(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, string SideName) :
+    ActivatedAbility(observer, id, card, 0), _SideName(SideName)
+{
+    target = _target;
+}
+
+int AATurnSide::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    if (_target && _target->currentZone != _target->controller()->game->battlefield) // It's not allowed to turn side on battlefield.
+    {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be turned, they will follow the fate of top-card
+        MTGCard * fcard;
+        MTGCardInstance* sideCard;
+        if(!_target->isFlipped){
+            fcard = MTGCollection()->getCardByName(_SideName);
+            if(!fcard) return 0;
+            sideCard = NEW MTGCardInstance(fcard, _target->controller()->game);
+            _target->nameOrig = _target->name; 
+            _target->name = sideCard->name;
+            if(!sideCard) return 0;
+            if(sideCard->getManaCost()){
+                if(_target->getManaCost()->getAlternative()){
+                    sideCard->getManaCost()->setAlternative(NEW ManaCost());
+                    sideCard->getManaCost()->getAlternative()->copy(_target->getManaCost()->getAlternative()); // Keep orignal alternative cost to cast card with other.
+                }
+                _target->getManaCost()->copy(sideCard->getManaCost()); // Show the other side cost mana symbols.
+            }
+        } else {
+            fcard = MTGCollection()->getCardByName(_target->nameOrig);
+            if(!fcard) return 0;
+            _target->name = _target->nameOrig;
+            _target->nameOrig = "";
+            sideCard = NEW MTGCardInstance(fcard, _target->controller()->game);
+            if(!sideCard) return 0;
+            if(sideCard->getManaCost()){
+                _target->getManaCost()->resetCosts();
+                _target->getManaCost()->copy(sideCard->getManaCost()); // Restore the original side cost mana symbols.
+            }
+        }
+        for (int i = ((int)_target->types.size())-1; i >= 0; --i) // Load all the types from the current side
+            _target->removeType(_target->types[i]);
+        for (int i = 0; i < ((int)sideCard->types.size()); i++)
+            _target->addType(sideCard->types[i]);
+        _target->text = sideCard->text;
+        _target->formattedText = sideCard->formattedText;
+        _target->isFlipped = !_target->isFlipped;
+        SAFE_DELETE(sideCard);
+        return 1;
+    }
+    return 0;
+}
+
+const string AATurnSide::getMenuText()
+{
+    return "Flip Side";
+}
+
+AATurnSide * AATurnSide::clone() const
+{
+    return NEW AATurnSide(*this);
+}
+
 // flip a card
 AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats, bool isflipcard, bool forcedcopy, string forcetype, bool backfromcopy) :
 InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy),forcetype(forcetype),backfromcopy(backfromcopy)
@@ -4345,7 +4411,7 @@ int AAFlip::resolve()
     int activatedanyability = 0;
     MTGCardInstance * Flipper = (MTGCardInstance*)source;
     this->oneShot = true;
-    if(Flipper->isFlipped)
+    if(Flipper->isFlipped && forcetype == "")
     {
         game->removeObserver(this);
         return 0;

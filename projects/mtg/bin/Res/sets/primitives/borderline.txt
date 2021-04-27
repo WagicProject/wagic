@@ -631,7 +631,9 @@ toughness=4
 [/card]
 [card]
 name=Agadeem's Awakening
-autohand={0}:restriction{can play land} name(Agadeem, the Undercrypt) name(Agadeem, the Undercrypt) flip(Agadeem, the Undercrypt) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Agadeem, the Undercrypt)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Agadeem, the Undercrypt) name(Agadeem, the Undercrypt) flip(Agadeem, the Undercrypt) forcetype(land)
 auto=this(X=0) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard)
 auto=this(X=1) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller
 auto=this(X=2) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller
@@ -644,7 +646,7 @@ auto=this(X=8) name(Return any creatures from graveyard) moveTo(myBattlefield) t
 auto=this(X=9) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=5]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=6]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=7]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=8]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=9]|myGraveyard)!$ controller
 auto=this(X=10) name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=0]|myGraveyard) && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=1]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=2]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=3]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=4]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=5]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=6]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=7]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=8]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=9]|myGraveyard)!$ controller && ability$!name(Return any creatures from graveyard) moveTo(myBattlefield) target(creature[manacost=10]|myGraveyard)!$ controller
 auto=this(X>10) name(Return any creatures from graveyard) moveTo(myBattlefield) target(<anyamount>creature[manacost<=X]|myGraveyard) 
-text=Return from your graveyard to the battlefield any number of target creature cards that each have a different converted mana cost X or less.
+text=Return from your graveyard to the battlefield any number of target creature cards that each have a different converted mana cost X or less. // Agadeem, the Undercrypt
 mana={X}{B}{B}{B}
 type=Sorcery
 [/card]
@@ -652,7 +654,7 @@ type=Sorcery
 name=Agadeem, the Undercrypt
 auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{B}
-text=As Agadeem, the Undercrypt enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {B}.
+text=As Agadeem, the Undercrypt enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {B}. // {X}{B}{B}{B} Agadeem's Awakening
 type=Land
 [/card]
 [card]
@@ -901,14 +903,16 @@ toughness=1
 name=Akoum Teeth
 auto=tap(noevent)
 auto={T}:add{R}
-text=Akoum Teeth enters the battlefield tapped. -- {T}: Add {R}.
+text=Akoum Teeth enters the battlefield tapped. -- {T}: Add {R}. // {5}{R} Akoum Warrior
 type=Land
 [/card]
 [card]
 name=Akoum Warrior
 abilities=trample
-autohand={0}:restriction{can play land} name(Akoum Teeth) name(Akoum Teeth) flip(Akoum Teeth) forcetype(land)
-text=Trample
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Akoum Teeth)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Akoum Teeth) name(Akoum Teeth) flip(Akoum Teeth) forcetype(land)
+text=Trample // Akoum Teeth
 mana={5}{R}
 type=Creature
 subtype=Minotaur Warrior
@@ -1021,6 +1025,7 @@ toughness=4
 [/card]
 [card]
 name=Alhammarret's Archive
+abilities=lifefaker
 auto=@lifeof(player) from(*[-Alhammarret's Archive]):life:thatmuch
 auto=replacedraw draw:2 noreplace
 text=If you would gain life, you gain twice that much life instead. -- If you would draw a card except the first one you draw in each of your draw steps, draw two cards instead.
@@ -1219,13 +1224,15 @@ type=Sorcery
 [card]
 name=Alrund, God of the Cosmos
 other={1}{U} name(Hakka, Whispering Raven)
-otherrestriction=can play creature
+otherrestriction=can play creature,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Hakka, Whispering Raven)
 autostack=if paid(alternative) then name(Hakka, Whispering Raven) name(Hakka, Whispering Raven) flip(Hakka, Whispering Raven) forcetype(Legendary Creature)
 auto=this(variable{isflipped}<1) foreach(*[foretold]|myexile) 1/1
 auto=this(variable{isflipped}<1) foreach(*|myhand) 1/1
 auto=@each my endofturn restriction{compare(isflipped)~equalto~0}:transforms((,newability[choice name(Creature) reveal:2 optionone name(Get Creature) target(<2>Creature|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Artifact) reveal:2 optionone name(Get Artifact) target(<2>artifact|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Enchantment) reveal:2 optionone name(Get Enchantment) target(<2>enchantment|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Instant) reveal:2 optionone name(Get Instant) target(<2>instant|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) name(Bottom of library) bottomoflibrary optiontwoend revealend],newability[choice name(Land) reveal:2 optionone name(Get Land) target(<2>land|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Planeswalker) reveal:2 optionone name(Get Planeswalker) target(<2>planeswalker|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Sorcery) reveal:2 optionone name(Get Sorcery) target(<2>sorcery|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend],newability[choice name(Tribal) reveal:2 optionone name(Get Tribal) target(<2>tribal|reveal) moveto(myhand) optiononeend optiontwo name(Bottom of library) target(<2>*|reveal) bottomoflibrary optiontwoend revealend])) oneshot
 aicode=activate transforms((,newability[if type(*[creature;zpos<=2]|mylibrary)~equalto~0 then all(*[zpos<=2]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! else all(*[creature;zpos<=2]|mylibrary) moveto(myhand) and!( all(*[-creature;zpos<=2]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
-text=Alrund gets +1/+1 for each card in your hand and each foretold card you own in exile. -- At the beginning of your end step, choose a card type, then reveal the top two cards of your library. Put all cards of the chosen type into your hand and the rest on the bottom of your library in any order.
+text=Alrund gets +1/+1 for each card in your hand and each foretold card you own in exile. -- At the beginning of your end step, choose a card type, then reveal the top two cards of your library. Put all cards of the chosen type into your hand and the rest on the bottom of your library in any order. // {1}{U} Hakka, Whispering Raven
 mana={3}{U}{U}
 type=Legendary Creature
 subtype=God
@@ -1618,9 +1625,9 @@ toughness=7
 [/card]
 [card]
 name=Angel of Vitality
-abilities=flying
+abilities=flying,lifefaker
 auto=this(controllerlife > 24) 2/2
-auto=@lifeof(player) from(*[-Angel of Vitality]):life:1 controller
+auto=@lifeof(player) from(*[-lifefaker]):life:1 controller
 text=Flying -- If you would gain life, you gain that much life plus 1 instead. -- Angel of Vitality gets +2/+2 as long as you have 25 or more life.
 mana={2}{W}
 type=Creature
@@ -3218,10 +3225,12 @@ toughness=2
 name=Augmenter Pugilist
 abilities=trample
 other={2}{U}{U} name(Echoing Equation)
-otherrestriction=can play sorcery
+otherrestriction=can play sorcery,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Echoing Equation)
 autostack=if paid(alternative) then transforms((,newability[moveto(mygraveyard)],newability[activate castcard(named!:echoing equation:!)])) forever
 auto=aslongas(land|mybattlefield) 5/5 >7
-text=Trample -- As long as you control eight or more lands, Augmenter Pugilist gets +5/+5. // Choose target creature you control. Each other creature you control becomes a copy of it until end of turn, except those creatures aren't legendary if the chosen creature is legendary.
+text=Trample -- As long as you control eight or more lands, Augmenter Pugilist gets +5/+5. // Choose target creature you control. Each other creature you control becomes a copy of it until end of turn, except those creatures aren't legendary if the chosen creature is legendary. // {2}{U}{U} Echoing Equation
 mana={1}{G}{G}
 type=Creature
 subtype=Troll Druid
@@ -3246,7 +3255,7 @@ auto=lord(other creature[tapped]|mybattlefield) 1/0
 auto=lord(other creature[-tapped]|mybattlefield) 0/1
 auto=@each my blockers:may name(Tap creatures) target(<anyamount>creature|mybattlefield) tap
 auto=@each my blockers:name(Untap all creature) all(creature|mybattlefield) untap
-text=Other tapped creatures you control get +1/+0. -- Other untapped creatures you control get +0/+1. -- Whenever you attack, untap each creature you control, then tap any number of creatures you control.
+text=Other tapped creatures you control get +1/+0. -- Other untapped creatures you control get +0/+1. -- Whenever you attack, untap each creature you control, then tap any number of creatures you control. // {1}{R} Plargg, Dean of Chaos
 mana={2}{W}
 type=Legendary Creature
 subtype=Human Cleric
@@ -3588,10 +3597,10 @@ type=Instant
 [/card]
 [card]
 name=Awaken the Blood Avatar
+abilities=doublefacedeath
 auto=name(Create Avatar) name(Create Avatar) token(Avatar,Creature Avatar,3/6,black,red,haste) and!( transforms((,newability[@combat(attacking) source(this):damage:3 opponent])) forever )!
 auto=ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|myBattlefield) sacrifice!$ opponent
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=As an additional cost to cast this spell, you may sacrifice any number of creatures. This spell costs {2} less to cast for each creature sacrificed this way. -- Each opponent sacrifices a creature. Create a 3/6 black and red Avatar creature token with haste and "Whenever this creature attacks, it deals 3 damage to each opponent."
+text=As an additional cost to cast this spell, you may sacrifice any number of creatures. This spell costs {2} less to cast for each creature sacrificed this way. -- Each opponent sacrifices a creature. Create a 3/6 black and red Avatar creature token with haste and "Whenever this creature attacks, it deals 3 damage to each opponent." // {1}{W}{B}{B} Extus, Oriq Overlord
 mana={6}{B}{R}
 type=Sorcery
 [/card]
@@ -3876,9 +3885,11 @@ type=Instant
 [/card]
 [card]
 name=Bala Ged Recovery
-autohand={0}:restriction{can play land} name(Bala Ged Sanctuary) name(Bala Ged Sanctuary) flip(Bala Ged Sanctuary) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Bala Ged Sanctuary)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Bala Ged Sanctuary) name(Bala Ged Sanctuary) flip(Bala Ged Sanctuary) forcetype(land)
 auto=name(Return a card from graveyard) name(Return a card from graveyard) moveTo(myHand) target(*|myGraveyard)
-text=Return target card from your graveyard to your hand.
+text=Return target card from your graveyard to your hand. // Bala Ged Sanctuary
 mana={2}{G}
 type=Sorcery
 [/card]
@@ -3886,7 +3897,7 @@ type=Sorcery
 name=Bala Ged Sanctuary
 auto=tap(noevent)
 auto={T}:add{G}
-text=Bala Ged Sanctuary enters the battlefield tapped. -- {T}: Add {G}.
+text=Bala Ged Sanctuary enters the battlefield tapped. -- {T}: Add {G}. // {2}{G} Bala Ged Recovery
 type=Land
 [/card]
 [card]
@@ -4070,9 +4081,11 @@ toughness=2
 [/card]
 [card]
 name=Barkchannel Pathway
-autohand={0}:restriction{can play land} name(Tidechannel Pathway) name(Tidechannel Pathway) flip(Tidechannel Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Tidechannel Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Tidechannel Pathway) name(Tidechannel Pathway) flip(Tidechannel Pathway) forcetype(land)
 auto={T}:add{G}
-text={T}: Add {G}.
+text={T}: Add {G}. // Tidechannel Pathway
 type=Land
 [/card]
 [card]
@@ -4912,14 +4925,16 @@ type=Instant
 name=Beyeen Coast
 auto=tap(noevent)
 auto={T}:add{U}
-text=Beyeen Coast enters the battlefield tapped. -- {T}: Add {U}.
+text=Beyeen Coast enters the battlefield tapped. -- {T}: Add {U}. // {1}{U} Beyeen Veil
 type=Land
 [/card]
 [card]
 name=Beyeen Veil
-autohand={0}:restriction{can play land} name(Beyeen Coast) name(Beyeen Coast) flip(Beyeen Coast) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Beyeen Coast)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Beyeen Coast) name(Beyeen Coast) flip(Beyeen Coast) forcetype(land)
 auto=all(creature|opponentBattlefield) -2/0 ueot
-text=Creatures your opponents control get -2/-0 until end of turn.
+text=Creatures your opponents control get -2/-0 until end of turn. // Beyeen Coast
 mana={1}{U}
 type=Instant
 [/card]
@@ -5072,11 +5087,13 @@ color=white
 [card]
 name=Birgi, God of Storytelling
 other={4}{R} name(Harnfel, Horn of Bounty)
-otherrestriction=can play artifact
+otherrestriction=can play artifact,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Harnfel, Horn of Bounty)
 autostack=if paid(alternative) then flip(Harnfel, Horn of Bounty) forcetype(Legendary Artifact)
 auto=@movedto(*|mystack) restriction{compare(isflipped)~equalto~0}:add{R} doesntempty
 auto=this(variable{isflipped}<1) lord(creature[boast]|mybattlefield) twoboast
-text=Whenever you cast a spell, add {R}. Until end of turn, you don’t lose this mana as steps and phases end. -- Creatures you control can boast twice during each of your turns rather than once.
+text=Whenever you cast a spell, add {R}. Until end of turn, you don’t lose this mana as steps and phases end. -- Creatures you control can boast twice during each of your turns rather than once. // {4}{R} Harnfel, Horn of Bounty
 mana={2}{R}
 type=Legendary Creature
 subtype=God
@@ -5197,15 +5214,17 @@ subtype=Equipment
 name=Blackbloom Bog
 auto=tap(noevent)
 auto={T}:add{B}
-text=Blackbloom Bog enters the battlefield tapped. -- {T}: Add {B}.
+text=Blackbloom Bog enters the battlefield tapped. -- {T}: Add {B}. // {2}{B} Blackbloom Rogue
 type=Land
 [/card]
 [card]
 name=Blackbloom Rogue
 abilities=menace
-autohand={0}:restriction{can play land} name(Blackbloom Bog) name(Blackbloom Bog) flip(Blackbloom Bog) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Blackbloom Bog)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Blackbloom Bog) name(Blackbloom Bog) flip(Blackbloom Bog) forcetype(land)
 auto=aslongas(*|opponentGraveyard) 3/0 >7
-text=Menace (This creature can't be blocked except by two or more creatures.) -- Blackbloom Rogue gets +3/+0 as long as an opponent has eight or more cards in their graveyard.
+text=Menace (This creature can't be blocked except by two or more creatures.) -- Blackbloom Rogue gets +3/+0 as long as an opponent has eight or more cards in their graveyard. // Blackbloom Bog
 mana={2}{B}
 type=Creature
 subtype=Human Rogue
@@ -5447,11 +5466,13 @@ type=Snow Sorcery
 [card]
 name=Blex, Vexing Pest
 other={2}{B}{B} name(Search for Blex)
-otherrestriction=can play sorcery
+otherrestriction=can play sorcery,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Search for Blex)
 autostack=if paid(alternative) then transforms((,newability[moveto(mygraveyard)],newability[activate castcard(named!:search for blex:!)])) forever
 auto=lord(other *[pest;bat;insect;snake;spider]|mybattlefield) 1/1
 auto=@movedto(this|graveyard) from(mybattlefield):life:4 controller
-text=Other Pests, Bats, Insects, Snakes, and Spiders you control get +1/+1. -- When Blex, Vexing Pest dies, you gain 4 life. // Look at the top five cards of your library. You may put any number of them into your hand and the rest into your graveyard. You lose 3 life for each card you put into your hand this way.
+text=Other Pests, Bats, Insects, Snakes, and Spiders you control get +1/+1. -- When Blex, Vexing Pest dies, you gain 4 life. // Look at the top five cards of your library. You may put any number of them into your hand and the rest into your graveyard. You lose 3 life for each card you put into your hand this way. // {2}{B}{B} Search for Blex
 mana={2}{G}
 type=Legendary Creature
 subtype=Pest
@@ -5510,9 +5531,11 @@ toughness=1
 [/card]
 [card]
 name=Blightstep Pathway
-autohand={0}:restriction{can play land} name(Searstep Pathway) name(Searstep Pathway) flip(Searstep Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Searstep Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Searstep Pathway) name(Searstep Pathway) flip(Searstep Pathway) forcetype(land)
 auto={T}:add{B}
-text={T}: Add {B}.
+text={T}: Add {B}. // Searstep Pathway
 type=Land
 [/card]
 [card]
@@ -5735,7 +5758,7 @@ type=Sorcery
 [card]
 name=Blood Researcher
 abilities=menace
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):counter(1/1)
+auto=@lifeof(player) from(*[-lifefaker]):counter(1/1)
 text=Menace (This creature can't be blocked except by two or more creatures.) -- Whenever you gain life, put a +1/+1 counter on Blood Researcher.
 mana={1}{B}{G}
 type=Creature
@@ -5959,7 +5982,7 @@ type=Artifact
 [card]
 name=Bloodthirsty Aerialist
 abilities=flying
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):counter(1/1,1)
+auto=@lifeof(player) from(*[-lifefaker]):counter(1/1,1)
 text=Flying -- Whenever you gain life, put a +1/+1 counter on Bloodthirsty Aerialist.
 mana={1}{B}{B}
 type=Creature
@@ -6522,6 +6545,7 @@ type=Sorcery
 [/card]
 [card]
 name=Boon Reflection
+abilities=lifefaker
 auto=@lifeof(player) from(*[-Boon Reflection]):life:thatmuch
 text=If you would gain life, you gain twice that much life instead.
 mana={4}{W}
@@ -6645,7 +6669,7 @@ type=Artifact
 [card]
 name=Boulderloft Pathway
 auto={T}:add{W}
-text={T}: Add {W}.
+text={T}: Add {W}. // Branchloft Pathway
 type=Land
 [/card]
 [card]
@@ -6801,9 +6825,11 @@ type=Enchantment
 [/card]
 [card]
 name=Branchloft Pathway
-autohand={0}:restriction{can play land} name(Boulderloft Pathway) name(Boulderloft Pathway) flip(Boulderloft Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Boulderloft Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Boulderloft Pathway) name(Boulderloft Pathway) flip(Boulderloft Pathway) forcetype(land)
 auto={T}:add{G}
-text={T}: Add {G}.
+text={T}: Add {G}. // Boulderloft Pathway
 type=Land
 [/card]
 [card]
@@ -6959,9 +6985,11 @@ type=Instant
 [/card]
 [card]
 name=Brightclimb Pathway
-autohand={0}:restriction{can play land} name(Grimclimb Pathway) name(Grimclimb Pathway) flip(Grimclimb Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Grimclimb Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Grimclimb Pathway) name(Grimclimb Pathway) flip(Grimclimb Pathway) forcetype(land)
 auto={T}:add{W}
-text={T}: Add {W}.
+text={T}: Add {W}. // Grimclimb Pathway
 type=Land
 [/card]
 [card]
@@ -9752,9 +9780,11 @@ type=Instant
 [/card]
 [card]
 name=Clearwater Pathway
-autohand={0}:restriction{can play land} name(Murkwater Pathway) name(Murkwater Pathway) flip(Murkwater Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Murkwater Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Murkwater Pathway) name(Murkwater Pathway) flip(Murkwater Pathway) forcetype(land)
 auto={T}:add{U}
-text={T}: Add {U}.
+text={T}: Add {U}. // Murkwater Pathway
 type=Land
 [/card]
 [card]
@@ -11319,9 +11349,11 @@ toughness=2
 [/card]
 [card]
 name=Cragcrown Pathway
-autohand={0}:restriction{can play land} name(Timbercrown Pathway) name(Timbercrown Pathway) flip(Timbercrown Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Timbercrown Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Timbercrown Pathway) name(Timbercrown Pathway) flip(Timbercrown Pathway) forcetype(land)
 auto={T}:add{R}
-text={T}: Add {R}.
+text={T}: Add {R}. // Timbercrown Pathway
 type=Land
 [/card]
 [card]
@@ -12436,9 +12468,11 @@ toughness=3
 [/card]
 [card]
 name=Darkbore Pathway
-autohand={0}:restriction{can play land} name(Slitherbore Pathway) name(Slitherbore Pathway) flip(Slitherbore Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Slitherbore Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Slitherbore Pathway) name(Slitherbore Pathway) flip(Slitherbore Pathway) forcetype(land)
 auto={T}:add{B}
-text={T}: Add {B}.
+text={T}: Add {B}. // Slitherbore Pathway
 type=Land
 [/card]
 [card]
@@ -12529,7 +12563,7 @@ toughness=3
 [/card]
 [card]
 name=Dawn of Hope
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):pay({2}) draw:1
+auto=@lifeof(player) from(*[-lifefaker]):pay({2}) draw:1
 auto={3}{W}:create(soldier:creature soldier:1/1:white:lifelink)
 text=Whenever you gain life, you may pay {2}. If you do, draw a card. -- {3}{W}: Create a 1/1 white Soldier creature token with lifelink.
 mana={1}{W}
@@ -12821,9 +12855,9 @@ type=Instant
 [/card]
 [card]
 name=Deadly Vanity
+abilities=doublefacedeath
 auto=name(Choose creature or planeswalker) target(*[creature;planeswalker]|battlefield) transforms((,newability[all(other *[creature;planeswalker]|battlefield) destroy])) oneshot
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=Choose a creature or planeswalker, then destroy all other creatures and planeswalkers.
+text=Choose a creature or planeswalker, then destroy all other creatures and planeswalkers. // {2}{W} Selfless Glyphweaver
 mana={5}{B}{B}{B}
 type=Sorcery
 [/card]
@@ -14000,7 +14034,7 @@ toughness=1
 [/card]
 [card]
 name=Dina, Soul Steeper
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):life:-1 opponent
+auto=@lifeof(player) from(*[-lifefaker]):life:-1 opponent
 auto={1}{S(other creature[-Dina^ Soul Steeper]|mybattlefield)}:storedpower/0 ueot
 text=Whenever you gain life, each opponent loses 1 life. -- {1}, Sacrifice another creature: Dina, Soul Steeper gets +X/+0 until end of turn, where X is the sacrificed creature's power.
 mana={B}{G}
@@ -15831,9 +15865,9 @@ type=Sorcery
 [/card]
 [card]
 name=Echoing Equation
-auto=name(All creatures becomes copy) target(creature|myBattlefield) transforms((,newability[phaseaction[endofturn once] counter(0/0.-1.EchoingEffect)],newability[counter(0/0.1.EchoingEffect)],newability[all(other creature|myBattlefield) transforms((,newability[all(creature[counter{0/0.1.EchoingEffect}]|myBattlefield) copy and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(myorigname) undocpy])) forever )!])) ueot])) oneshot
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=Choose target creature you control. Each other creature you control becomes a copy of it until end of turn, except those creatures aren't legendary if the chosen creature is legendary.
+abilities=doublefacedeath
+auto=name(All creatures becomes copy) target(creature|myBattlefield) transforms((,newability[phaseaction[endofturn once] counter(0/0.-1.EchoingEffect)],newability[counter(0/0.1.EchoingEffect)],newability[all(other creature|myBattlefield) transforms((,newability[all(creature[counter{0/0.1.EchoingEffect}]|myBattlefield) copy options(nolegend) and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(myorigname) undocpy])) forever )!])) ueot])) oneshot
+text=Choose target creature you control. Each other creature you control becomes a copy of it until end of turn, except those creatures aren't legendary if the chosen creature is legendary. // {1}{G}{G} Augmenter Pugilist
 mana={2}{U}{U}
 type=Sorcery
 [/card]
@@ -15905,11 +15939,13 @@ toughness=4
 name=Egon, God of Death
 abilities=deathtouch
 other={B} name(Throne of Death)
-otherrestriction=can play artifact
+otherrestriction=can play artifact,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Throne of Death)
 autostack=if paid(alternative) then flip(Throne of Death) forcetype(Legendary Artifact)
 auto=@each my upkeep restriction{compare(isflipped)~equalto~0,type(*|mygraveyard)~morethan~1}:name(Exile two cards) name(Exile two cards) target(<2>*|mygraveyard) moveto(exile)
 auto=@each my upkeep restriction{compare(isflipped)~equalto~0,type(*|mygraveyard)~lessthan~2}:name(Sacrifice and draw) name(Sacrifice and draw) all(this) sacrifice && draw:1 controller
-text=Deathtouch -- At the beginning of your upkeep, exile two cards from your graveyard. If you can’t, sacrifice Egon and draw a card.
+text=Deathtouch -- At the beginning of your upkeep, exile two cards from your graveyard. If you can’t, sacrifice Egon and draw a card. // {B} Throne of Death
 mana={2}{B}
 type=Legendary Creature
 subtype=God
@@ -16539,7 +16575,7 @@ type=Instant
 name=Embrose, Dean of Shadow
 auto={T}:name(Put 1/1 counter) target(other creature|battlefield) transforms((,newability[counter(1/1)],newability[damage:2])) oneshot
 auto=@movedto(creature[counter{1/1}]|graveyard) from(mybattlefield):name(Draw card) draw:1 controller
-text={T}: Put a +1/+1 counter on another target creature, then Embrose, Dean of Shadow deals 2 damage to that creature. -- Whenever a creature you control with a +1/+1 counter on it dies, draw a card.
+text={T}: Put a +1/+1 counter on another target creature, then Embrose, Dean of Shadow deals 2 damage to that creature. -- Whenever a creature you control with a +1/+1 counter on it dies, draw a card. // {1}{W} Shaile, Dean of Radiance
 mana={2}{B}{B}
 type=Legendary Creature
 subtype=Human Warlock
@@ -16604,10 +16640,12 @@ toughness=1
 [/card]
 [card]
 name=Emeria's Call
-autohand={0}:restriction{can play land} name(Emeria, Shattered Skyclave) name(Emeria, Shattered Skyclave) flip(Emeria, Shattered Skyclave) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Emeria, Shattered Skyclave)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Emeria, Shattered Skyclave) name(Emeria, Shattered Skyclave) flip(Emeria, Shattered Skyclave) forcetype(land)
 auto=token(Angel,Creature Angel Warrior,4/4,flying,white)*2
 auto=all(creature[-angel]|myBattlefield) indestructible uynt
-text=Create two 4/4 white Angel Warrior creature tokens with flying. Non-Angel creatures you control gain indestructible until your next turn.
+text=Create two 4/4 white Angel Warrior creature tokens with flying. Non-Angel creatures you control gain indestructible until your next turn. // Emeria, Shattered Skyclave
 mana={4}{W}{W}{W}
 type=Sorcery
 [/card]
@@ -16615,7 +16653,7 @@ type=Sorcery
 name=Emeria, Shattered Skyclave
 auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{W}
-text=As Emeria, Shattered Skyclave enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {W}.
+text=As Emeria, Shattered Skyclave enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {W}. // {4}{W}{W}{W} Emeria's Call
 type=Land
 [/card]
 [card]
@@ -17065,7 +17103,7 @@ type=Sorcery
 [/card]
 [card]
 name=Epicure of Blood
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):life:-1 opponent
+auto=@lifeof(player) from(*[-lifefaker]):life:-1 opponent
 text=Whenever you gain life, each opponent loses 1 life.
 mana={4}{B}
 type=Creature
@@ -17229,11 +17267,13 @@ toughness=4
 name=Esika, God of the Tree
 abilities=vigilance
 other={W}{U}{B}{R}{G} name(The Prismatic Bridge)
-otherrestriction=can play enchantment
+otherrestriction=can play enchantment,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(The Prismatic Bridge)
 autostack=if paid(alternative) then flip(The Prismatic Bridge) forcetype(Legendary Enchantment)
 auto=this(variable{isflipped}<1) transforms((,newability[{T}:add{W}],newability[{T}:add{G}],newability[{T}:add{R}],newability[{T}:add{B}],newability[{T}:add{U}]))
 auto=this(variable{isflipped}<1) lord(other creature[legendary]|mybattlefield) transforms((,newability[vigilance],newability[{T}:add{W}],newability[{T}:add{G}],newability[{T}:add{R}],newability[{T}:add{B}],newability[{T}:add{U}]))
-text=Vigilance -- {T}: Add one mana of any color. -- Other legendary creatures you control have vigilance and "{T}: Add one mana of any color."
+text=Vigilance -- {T}: Add one mana of any color. -- Other legendary creatures you control have vigilance and "{T}: Add one mana of any color." // {W}{U}{B}{R}{G} The Prismatic Bridge
 mana={1}{G}{G}
 type=Legendary Creature
 subtype=God
@@ -17821,14 +17861,14 @@ type=Sorcery
 [/card]
 [card]
 name=Explore the Vastlands
+abilities=doublefacedeath
 aicode=activate transforms((,newability[if type(*[land;instant;sorcery;zpos<=5]|mylibrary)~equalto~0 then all(*[zpos<=5]|mylibrary) bottomoflibrary else target(*[zpos<=1]|mylibrary) transforms((,newability[target(*[land;instant;sorcery;zpos<=5]|mylibrary) moveto(myhand) and!( all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot])) oneshot
 auto=if type(land[zpos<=5]|mylibrary)~morethan~0 then if type(*[instant;sorcery;zpos<=5]|mylibrary)~morethan~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Choose land) target(land|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Choose instant or sorcery) target(*[instant;sorcery]|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot && all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[if cantargetcard(*[land]|*) then choice name(Put land in hand) name(Put land in hand) moveto(myhand)],newability[if cantargetcard(*[land]|*) then choice name(Put land back) name(Put land back) moveto(myreveal) and!( bottomoflibrary )!],newability[if cantargetcard(*[instant;sorcery]|*) then choice name(Put spell in hand) name(Put spell in hand) moveto(myhand)],newability[if cantargetcard(*[instant;sorcery]|*) then choice name(Put spell back) name(Put spell back) moveto(myreveal) and!( bottomoflibrary )!])) oneshot afterrevealedend revealend
 auto=if type(land[zpos<=5]|mylibrary)~morethan~0 then if type(*[instant;sorcery;zpos<=5]|mylibrary)~equalto~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Choose land) target(land|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put back) all(*|reveal) bottomoflibrary optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[choice name(Put land in hand) name(Put land in hand) moveto(myhand)],newability[choice name(Put land back) name(Put land back) moveto(myreveal) and!( bottomoflibrary )!])) oneshot afterrevealedend revealend
 auto=if type(land[zpos<=5]|mylibrary)~equalto~0 then if type(*[instant;sorcery;zpos<=5]|mylibrary)~morethan~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Choose instant or sorcery) target(*[instant;sorcery]|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put back) all(*|reveal) bottomoflibrary optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[choice name(Put spell in hand) name(Put spell in hand) moveto(myhand)],newability[choice name(Put spell back) name(Put spell back) moveto(myreveal) and!( bottomoflibrary )!])) oneshot afterrevealedend revealend
 auto=if type(land[zpos<=5]|mylibrary)~equalto~0 then if type(*[instant;sorcery;zpos<=5]|mylibrary)~equalto~0 then name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) name(Look top 5 cards) reveal:5 optionone name(Put back) target(*|reveal) bottomoflibrary optiononeend optiontwo name(Put back) all(*|reveal) bottomoflibrary optiontwoend revealend
 autostack=ability$!name(Look top 5 cards) transforms((,newability[if type(*[land;instant;sorcery;zpos<=5]|mylibrary)~equalto~0 then all(*[zpos<=5]|mylibrary) bottomoflibrary else target(*[zpos<=1]|mylibrary) transforms((,newability[target(*[land;instant;sorcery;zpos<=5]|mylibrary) moveto(myhand) and!( all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot])) oneshot!$ opponent
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=Each player looks at the top five cards of their library and may reveal a land card and/or an instant or sorcery card from among them. Each player puts the cards they revealed this way into their hand and the rest on the bottom of their library in a random order. Each player gains 3 life.
+text=Each player looks at the top five cards of their library and may reveal a land card and/or an instant or sorcery card from among them. Each player puts the cards they revealed this way into their hand and the rest on the bottom of their library in a random order. Each player gains 3 life. // {5} Wandering Archaic
 mana={3}
 type=Sorcery
 [/card]
@@ -17942,13 +17982,15 @@ toughness=2
 name=Extus, Oriq Overlord
 abilities=double strike
 other={6}{B}{R} name(Awaken the Blood Avatar)
-otherrestriction=can play sorcery
+otherrestriction=can play sorcery,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Awaken the Blood Avatar)
 autostack=if paid(alternative) then transforms((,newability[moveto(mygraveyard)],newability[activate castcard(named!:awaken the blood avatar:!)])) forever
-autohand={4}{B}{R}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~0,can play sorcery}:name(Sacrifice 1) transforms((,newability[activate castcard(named!:awaken the blood avatar:!)],newability[moveto(mygraveyard)])) forever
-autohand={2}{B}{R}{S(creature|myBattlefield)}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~1,can play sorcery}:name(Sacrifice 2) transforms((,newability[activate castcard(named!:awaken the blood avatar:!)],newability[moveto(mygraveyard)])) forever
-autohand={B}{R}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~2,can play sorcery}:name(Sacrifice 3) transforms((,newability[activate castcard(named!:awaken the blood avatar:!)],newability[moveto(mygraveyard)])) forever
+autohand={4}{B}{R}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~0,can play sorcery,compare(isflipped)~equalto~1}:name(Sacrifice 1) transforms((,newability[activate castcard(named!:awaken the blood avatar:!)],newability[moveto(mygraveyard)])) forever
+autohand={2}{B}{R}{S(creature|myBattlefield)}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~1,can play sorcery,compare(isflipped)~equalto~1}:name(Sacrifice 2) transforms((,newability[activate castcard(named!:awaken the blood avatar:!)],newability[moveto(mygraveyard)])) forever
+autohand={B}{R}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)} restriction{type(creature|mybattlefield)~morethan~2,can play sorcery,compare(isflipped)~equalto~1}:name(Sacrifice 3) transforms((,newability[activate castcard(named!:awaken the blood avatar:!)],newability[moveto(mygraveyard)])) forever
 auto=@movedto(*[instant;sorcery]|mystack):name(Return creature) target(creature[-legendary]|mygraveyard) moveto(myhand)
-text=Double strike -- Magecraft — Whenever you cast or copy an instant or sorcery spell, return target nonlegendary creature card from your graveyard to your hand. // As an additional cost to cast this spell, you may sacrifice any number of creatures. This spell costs {2} less to cast for each creature sacrificed this way. -- Each opponent sacrifices a creature. Create a 3/6 black and red Avatar creature token with haste and "Whenever this creature attacks, it deals 3 damage to each opponent."
+text=Double strike -- Magecraft — Whenever you cast or copy an instant or sorcery spell, return target nonlegendary creature card from your graveyard to your hand. // {6}{B}{R} Awaken the Blood Avatar
 mana={1}{W}{B}{B}
 type=Legendary Creature
 subtype=Human Warlock
@@ -18327,7 +18369,7 @@ toughness=2
 [card]
 name=Famished Paladin
 auto=doesnotuntap
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):untap(this)
+auto=@lifeof(player) from(*[-lifefaker]):untap(this)
 text=Famished Paladin doesn't untap during your untap step. -- Whenever you gain life, untap Famished Paladin.
 mana={1}{W}
 type=Creature
@@ -19838,10 +19880,12 @@ name=Flamescroll Celebrant
 #MISSING:opponent activates an ability
 abilities=flash
 other={W}{W} name(Revel in Silence)
-restriction=can play creature
+otherrestriction=compare(isflipped)~equalto~1
+restriction=can play creature,compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Revel in Silence)
 autostack=if paid(alternative) then transforms((,newability[moveto(myexile)],newability[activate castcard(named!:revel in silence:!)])) forever
 auto={1}{R}:2/0 ueot
-text=Whenever an opponent activates an ability that isn't a mana ability, Flamescroll Celebrant deals 1 damage to that player. -- {1}{R}: Flamescroll Celebrant gets +2/+0 until end of turn. // Your opponents can't cast spells or activate planeswalkers' loyalty abilities this turn. -- Exile Revel in Silence.
+text=Whenever an opponent activates an ability that isn't a mana ability, Flamescroll Celebrant deals 1 damage to that player. -- {1}{R}: Flamescroll Celebrant gets +2/+0 until end of turn. // {W}{W} Revel in Silence
 mana={1}{R}
 type=Creature
 subtype=Human Shaman
@@ -19868,9 +19912,9 @@ toughness=3
 [/card]
 [card]
 name=Flamethrower Sonata
+abilities=doublefacedeath
 auto=name(Discard and draw) target(*|myhand) transforms((,newability[reject],newability[draw:1 controller],newability[if cantargetcard(*[instant;sorcery]|*) then name(Damage creature or planeswalker) name(Damage creature or planeswalker) damage:manacost target(*[creature;planeswalker]|opponentbattlefield)])) oneshot
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=Discard a card, then draw a card. When you discard an instant or sorcery card this way, Flamethrower Sonata deals damage equal to that card's mana value to target creature or planeswalker you don't control.
+text=Discard a card, then draw a card. When you discard an instant or sorcery card this way, Flamethrower Sonata deals damage equal to that card's mana value to target creature or planeswalker you don't control. // {2}{U}{U} Torrent Sculptor
 mana={1}{R}
 type=Sorcery
 [/card]
@@ -20216,7 +20260,7 @@ type=Sorcery
 [/card]
 [card]
 name=Forerunner of the Coalition
-auto=name(Search your library for a Pirate) name(Search your library for a Pirate) target(pirate|mylibrary) moveto(mysideboard) and!( moveto(mylibrary) )!
+auto=name(Search your library for a Pirate) name(Search your library for a Pirate) target(pirate|mylibrary) moveto(myreveal) and!( moveto(mylibrary) )!
 auto=@movedTo(other pirate|myBattlefield):life:-1 opponent
 text=When Forerunner of the Coalition enters the battlefield, you may search your library for a Pirate card, reveal it, then shuffle your library and put that card on top of it. -- Whenever another Pirate enters the battlefield under your control, each opponent loses 1 life.
 mana={2}{B}
@@ -20227,7 +20271,7 @@ toughness=2
 [/card]
 [card]
 name=Forerunner of the Empire
-auto=name(Search your library for a Dinosaur) name(Search your library for a Dinosaur) target(dinosaur|mylibrary) moveto(mysideboard) and!( moveto(mylibrary) )!
+auto=name(Search your library for a Dinosaur) name(Search your library for a Dinosaur) target(dinosaur|mylibrary) moveto(myreveal) and!( moveto(mylibrary) )!
 auto=@movedTo(dinosaur|myBattlefield):may name(Damage all creatures) name(Damage all creatures) all(creature|battlefield) damage:1
 text=When Forerunner of the Empire enters the battlefield, you may search your library for a Dinosaur card, reveal it, then shuffle your library and put that card on top of it. -- Whenever a Dinosaur enters the battlefield under your control, you may have Forerunner of the Empire deal 1 damage to each creature.
 mana={3}{R}
@@ -20238,7 +20282,7 @@ toughness=3
 [/card]
 [card]
 name=Forerunner of the Heralds
-auto=name(Search your library for a Merfolk) name(Search your library for a Merfolk) target(merfolk|mylibrary) moveto(mysideboard) and!( moveto(mylibrary) )!
+auto=name(Search your library for a Merfolk) name(Search your library for a Merfolk) target(merfolk|mylibrary) moveto(myreveal) and!( moveto(mylibrary) )!
 auto=@movedTo(other merfolk|myBattlefield):counter(1/1)
 text=When Forerunner of the Heralds enters the battlefield, you may search your library for a Merfolk card, reveal it, then shuffle your library and put that card on top of it. -- Whenever another Merfolk enters the battlefield under your control, put a +1/+1 counter on Forerunner of the Heralds.
 mana={3}{G}
@@ -21862,7 +21906,7 @@ type=Sorcery
 [/card]
 [card]
 name=Gideon's Company
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):counter(1/1,2)
+auto=@lifeof(player) from(*[-lifefaker]):counter(1/1,2)
 auto={3}{W}:counter(0/0,1,Loyalty) target(planeswalker[gideon])
 text=Whenever you gain life, put two +1/+1 counters on Gideon's Company. -- {3}{W}: Put a loyalty counter on target Gideon planeswalker.
 mana={3}{W}
@@ -22283,9 +22327,11 @@ type=Artifact
 [/card]
 [card]
 name=Glasspool Mimic
-autohand={0}:restriction{can play land} name(Glasspool Shore) name(Glasspool Shore) flip(Glasspool Shore) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Glasspool Shore)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Glasspool Shore) name(Glasspool Shore) flip(Glasspool Shore) forcetype(land)
 auto=name(Clone a creature) name(Clone a creature) may notatarget(creature|myBattlefield) clone addtype(Shapeshifter Rogue)
-text=You may have Glasspool Mimic enter the battlefield as a copy of a creature you control, except it's a Shapeshifter Rogue in addition to its other types.
+text=You may have Glasspool Mimic enter the battlefield as a copy of a creature you control, except it's a Shapeshifter Rogue in addition to its other types. // Glasspool Shore
 mana={2}{U}
 type=Creature
 subtype=Shapeshifter Rogue
@@ -22296,7 +22342,7 @@ toughness=0
 name=Glasspool Shore
 auto=tap(noevent)
 auto={T}:add{U}
-text=Glasspool Shore enters the battlefield tapped. -- {T}: Add {U}.
+text=Glasspool Shore enters the battlefield tapped. -- {T}: Add {U}. // {2}{U} Glasspool Mimic
 type=Land
 [/card]
 [card]
@@ -23937,7 +23983,7 @@ toughness=6
 [card]
 name=Grimclimb Pathway
 auto={T}:add{B}
-text={T}: Add {B}.
+text={T}: Add {B}. // Brightclimb Pathway
 type=Land
 [/card]
 [card]
@@ -24548,7 +24594,7 @@ toughness=4
 name=Hagra Broodpit
 auto=tap(noevent)
 auto={T}:add{B}
-text=Hagra Broodpit enters the battlefield tapped. -- {T}: Add {B}.
+text=Hagra Broodpit enters the battlefield tapped. -- {T}: Add {B}. // {2}{B}{B} Hagra Mauling
 type=Land
 [/card]
 [card]
@@ -24564,10 +24610,12 @@ toughness=0
 [/card]
 [card]
 name=Hagra Mauling
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Hagra Broodpit)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Hagra Broodpit) name(Hagra Broodpit) flip(Hagra Broodpit) forcetype(land)
 anyzone=this(variable{type:land[basic]:opponenthand}<1) changecost(colorless:-1) forcedalive
-autohand={0}:restriction{can play land} name(Hagra Broodpit) name(Hagra Broodpit) flip(Hagra Broodpit) forcetype(land)
 auto=name(Destroy a creature) name(Destroy a creature) destroy target(creature)
-text=This spell costs {1} less if an opponent controls no basic lands. -- Destroy target creature.
+text=This spell costs {1} less if an opponent controls no basic lands. -- Destroy target creature. // Hagra Broodpit
 mana={2}{B}{B}
 type=Instant
 [/card]
@@ -24595,7 +24643,7 @@ abilities=flying
 aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@combatdamagefoeof(player) from(this):name(Return to hand and scry 2) name(Return to hand and scry 2) moveTo(ownerhand) and!( scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
 auto=@combatdamageof(player) from(this):name(Return to hand and scry 2) name(Return to hand and scry 2) moveTo(ownerhand) and!( scry:2 scrycore delayed dontshow donothing scrycoreend scryend )!
-text=Flying -- Whenever Hakka, Whispering Raven deals combat damage to a player, return it to its owner’s hand, then scry 2.
+text=Flying -- Whenever Hakka, Whispering Raven deals combat damage to a player, return it to its owner’s hand, then scry 2. // {3}{U}{U} Alrund, God of the Cosmos
 mana={1}{U}
 type=Legendary Creature
 subtype=Bird
@@ -24686,7 +24734,7 @@ toughness=3
 [/card]
 [card]
 name=Hallowed Priest
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):counter(1/1,1)
+auto=@lifeof(player) from(*[-lifefaker]):counter(1/1,1)
 text=Whenever you gain life, put a +1/+1 counter on Hallowed Priest
 mana={1}{W}
 type=Creature
@@ -24706,13 +24754,15 @@ type=Land
 [card]
 name=Halvar, God of Battle
 other={1}{W} name(Sword of the Realms)
-otherrestriction=can play equipment
+otherrestriction=can play equipment,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Sword of the Realms)
 autostack=if paid(alternative) then flip(Sword of the Realms) forcetype(Legendary Artifact)
 auto=this(variable{isflipped}<1) lord(creature[geared;enchanted]|myBattlefield) double strike
 auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~morethan~0,type(creature[enchanted]|mybattlefield)~equalto~0}:may name(Re-attach target equipment) target(*[equipment]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
 auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~equalto~0,type(creature[enchanted]|mybattlefield)~morethan~0}:may name(Re-attach target aura) target(*[aura]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
 auto=@each combatbegins restriction{compare(isflipped)~equalto~0,type(creature|mybattlefield)~morethan~1,type(creature[equipped]|mybattlefield)~morethan~0,type(creature[enchanted]|mybattlefield)~morethan~0}:may name(Re-attach target equipment or aura) target(*[aura;equipment]|mybattlefield) transforms((,newability[name(Attach to creature) name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot
-text=Creatures you control that are enchanted or equipped have double strike. -- At the beginning of each combat, you may attach target Aura or Equipment attached to a creature you control to target creature you control.
+text=Creatures you control that are enchanted or equipped have double strike. -- At the beginning of each combat, you may attach target Aura or Equipment attached to a creature you control to target creature you control. // {1}{W} Sword of the Realms
 mana={2}{W}{W}
 type=Legendary Creature
 subtype=God
@@ -25002,7 +25052,7 @@ type=Enchantment
 [card]
 name=Harnfel, Horn of Bounty
 auto={D(*|myhand)}:name(Exile top 2 cards) all(*[zpos<=2]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
-text=Discard a card: Exile the top two cards of your library. You may play those cards this turn.
+text=Discard a card: Exile the top two cards of your library. You may play those cards this turn. // {2}{R} Birgi, God of Storytelling
 mana={4}{R}
 type=Legendary Artifact
 [/card]
@@ -25522,7 +25572,7 @@ name=Heliod, Sun-Crowned
 abilities=indestructible
 auto=this(variable{type:manaw}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
 auto=this(variable{type:manaw}>4) transforms((Legendary Enchantment Creature))
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):counter(1/1,1) target(creature,enchantment|myBattlefield)
+auto=@lifeof(player) from(*[-lifefaker]):counter(1/1,1) target(creature,enchantment|myBattlefield)
 auto={1}{W}:lifelink target(other creature) ueot
 text=Indestructible -- As long as your devotion to white is less than five, Heliod isn’t a creature. -- Whenever you gain life, put a +1/+1 counter on target creature or enchantment you control. -- {1}{W}: Another target creature gains lifelink until end of turn.
 mana={2}{W}
@@ -25620,9 +25670,11 @@ toughness=2
 [/card]
 [card]
 name=Hengegate Pathway
-autohand={0}:restriction{can play land} name(Mistgate Pathway) name(Mistgate Pathway) flip(Mistgate Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Mistgate Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Mistgate Pathway) name(Mistgate Pathway) flip(Mistgate Pathway) forcetype(land)
 auto={T}:add{W}
-text={T}: Add {W}.
+text={T}: Add {W}. // Mistgate Pathway
 type=Land
 [/card]
 [card]
@@ -26034,8 +26086,8 @@ type=Instant
 [/card]
 [card]
 name=Hive Mind
-auto=@movedto(*[instant;sorcery]|mystack):ability$!name(Copy spell) name(Copy spell) target(*|opponentstack) activate castcard(copied noevent)!$ opponent
-auto=@movedto(*[instant;sorcery]|opponentstack):ability$!name(Copy spell) name(Copy spell) target(*|opponentstack) activate castcard(copied noevent)!$ controller
+auto=@movedto(*[instant;sorcery]|mystack):ability$!name(Copy spell) name(Copy spell) all(*[instant;sorcery]|opponentstack) activate castcard(copied noevent)!$ opponent
+auto=@movedto(*[instant;sorcery]|opponentstack):ability$!name(Copy spell) name(Copy spell) all(*[instant;sorcery]|opponentstack) activate castcard(copied noevent)!$ controller
 text=Whenever a player casts an instant or sorcery spell, each other player copies that spell. Each of those players may choose new targets for his or her copy.
 mana={5}{U}
 type=Enchantment
@@ -26134,9 +26186,9 @@ type=Sorcery
 [/card]
 [card]
 name=Honor Troll
-abilities=vigilance
+abilities=vigilance,lifefaker
 auto=this(controllerlife > 24) 2/1
-auto=@lifeof(player) from(*[-Honor Troll]):life:1 controller
+auto=@lifeof(player) from(*[-lifefaker]):life:1 controller
 text=Vigilance -- If you would gain life, you gain that much life plus 1 instead. -- Honor Troll gets +2/+1 as long as you have 25 or more life.
 mana={2}{G}
 type=Creature
@@ -27302,7 +27354,7 @@ auto={18}{U}{U}{T}:name(X=8) all(*[zpos<=18]|mylibrary) moveto(myexile) and!( tr
 auto={19}{U}{U}{T}:name(X=9) all(*[zpos<=19]|mylibrary) moveto(myexile) and!( transforms((,newability[counter(0/0.1.study)],newability[phaseaction[endofturn once checkex] counter(0/0.-1.study)])) oneshot )!
 auto={20}{U}{U}{T}:name(X=10) all(*[zpos<=20]|mylibrary) moveto(myexile) and!( transforms((,newability[counter(0/0.1.study)],newability[phaseaction[endofturn once checkex] counter(0/0.-1.study)])) oneshot )!
 auto={0}:name(Put exiled card in hand) target(*[counter{0/0.1.study}|myexile) moveto(myhand) limit:1
-text=Flying -- {X}{U}{U}, {T}: Exile the top X cards of your library and put a study counter on each of them. Then you may put a card you own in exile with a study counter on it into your hand.
+text=Flying -- {X}{U}{U}, {T}: Exile the top X cards of your library and put a study counter on each of them. Then you may put a card you own in exile with a study counter on it into your hand. // {2}{G} Kianne, Dean of Substance
 mana={2}{U}{U}
 type=Legendary Creature
 subtype=Bird Wizard
@@ -29112,11 +29164,13 @@ toughness=1
 [card]
 name=Jadzi, Oracle of Arcavios
 other={2}{G}{G} name(Journey to the Oracle)
-otherrestriction=can play sorcery
+otherrestriction=can play sorcery,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Journey to the Oracle)
 autostack=if paid(alternative) then transforms((,newability[moveto(mygraveyard)],newability[activate castcard(named!:journey to the oracle:!)])) forever
 auto={D(*|myhand)}:moveto(ownerhand)
 auto=@movedto(*[instant;sorcery]|mystack):name(Look top card) reveal:1 optionone target(land|reveal) moveto(mybattlefield) oneshot optiononeend optiontwo name(Cast for 1 or put back) target(*|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[pay({1}) name(Cast for 1) activate castcard(normal)])) oneshot afterrevealedend revealend
-text=Discard a card: Return Jadzi, Oracle of Arcavios to its owner's hand. -- Magecraft — Whenever you cast or copy an instant or sorcery spell, reveal the top card of your library. If it's a nonland card, you may cast it by paying 1 rather than paying its mana cost. If it's a land card, put it onto the battlefield. // You may put any number of land cards from your hand onto the battlefield. Then if you control eight or more lands, you may discard a card. If you do, return Journey to the Oracle to its owner's hand.
+text=Discard a card: Return Jadzi, Oracle of Arcavios to its owner's hand. -- Magecraft — Whenever you cast or copy an instant or sorcery spell, reveal the top card of your library. If it's a nonland card, you may cast it by paying 1 rather than paying its mana cost. If it's a land card, put it onto the battlefield. // {2}{G}{G} Journey to the Oracle
 mana={6}{U}{U}
 type=Legendary Creature
 subtype=Human Wizard
@@ -29392,10 +29446,12 @@ toughness=2
 [card]
 name=Jorn, God of Winter
 other={1}{U}{B} name(Kaldring, the Rimestaff)
-otherrestriction=can play artifact
+otherrestriction=can play artifact,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Kaldring, the Rimestaff)
 autostack=if paid(alternative) then flip(Kaldring, the Rimestaff) forcetype(Legendary Snow Artifact)
 auto=@combat(attacking) source(this) restriction{compare(isflipped)~equalto~0}:all(*[snow]|mybattlefield) untap
-text=Whenever Jorn attacks, untap each snow permanent you control.
+text=Whenever Jorn attacks, untap each snow permanent you control. // {1}{U}{B} Kaldring, the Rimestaff
 mana={2}{G}
 type=Legendary Snow Creature
 subtype=God
@@ -29446,9 +29502,9 @@ type=Enchantment
 [/card]
 [card]
 name=Journey to the Oracle
+abilities=doublefacedeath
 auto=target(<anyamount>land|myhand) moveto(myBattlefield) and!( if type(land|mybattlefield)~morethan~7 then may name(Discard and return jadzi) ability$!name(Discard and return jadzi) name(Discard and return jadzi) target(*|myhand) transforms((,newability[reject],newability[name(Discard and return jadzi) target(*[Jadzi^ Oracle of Arcavios;fresh]|mygraveyard) moveto(ownerhand)])) oneshot!$ controller )!
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=You may put any number of land cards from your hand onto the battlefield. Then if you control eight or more lands, you may discard a card. If you do, return Journey to the Oracle to its owner's hand.
+text=You may put any number of land cards from your hand onto the battlefield. Then if you control eight or more lands, you may discard a card. If you do, return Journey to the Oracle to its owner's hand. // {6}{U}{U} Jadzi, Oracle of Arcavios
 mana={2}{G}{G}
 type=Sorcery
 [/card]
@@ -29596,9 +29652,11 @@ type=Instant
 [/card]
 [card]
 name=Jwari Disruption
-autohand={0}:restriction{can play land} name(Jwari Ruins) name(Jwari Ruins) flip(Jwari Ruins) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Jwari Ruins)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Jwari Ruins) name(Jwari Ruins) flip(Jwari Ruins) forcetype(land)
 auto=name(Counter target spell) name(Counter target spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
-text=Counter target spell unless its controller pays {1}.
+text=Counter target spell unless its controller pays {1}. // Jwari Ruins
 mana={1}{U}
 type=Instant
 [/card]
@@ -29606,7 +29664,7 @@ type=Instant
 name=Jwari Ruins
 auto=tap(noevent)
 auto={T}:add{U}
-text=Jwari Ruins enters the battlefield tapped. -- {T}: Add {U}.
+text=Jwari Ruins enters the battlefield tapped. -- {T}: Add {U}. // {1}{U} Jwari Disruption
 type=Land
 [/card]
 [card]
@@ -29647,14 +29705,16 @@ toughness=3
 name=Kabira Plateau
 auto=tap(noevent)
 auto={T}:add{W}
-text=Kabira Plateau enters the battlefield tapped. -- {T}: Add {W}.
+text=Kabira Plateau enters the battlefield tapped. -- {T}: Add {W}. // {1}{W} Kabira Takedown
 type=Land
 [/card]
 [card]
 name=Kabira Takedown
-autohand={0}:restriction{can play land} name(Kabira Plateau) name(Kabira Plateau) flip(Kabira Plateau) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Kabira Plateau)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Kabira Plateau) name(Kabira Plateau) flip(Kabira Plateau) forcetype(land)
 auto=name(Damage creature or planeswalker) name(Damage creature or planeswalker) target(creature,planeswalker) damage:type:creature:myBattlefield
-text=Kabira Takedown deals damage equal to the number of creatures you control to target creature or planeswalker.
+text=Kabira Takedown deals damage equal to the number of creatures you control to target creature or planeswalker. // Kabira Plateau
 mana={1}{W}
 type=Instant
 [/card]
@@ -29729,7 +29789,7 @@ auto=@movedto(*[snow]|mystack) from(mygraveyard):this(counter{0/0.1.KaldEffect}>
 auto=@movedto(*[snow]|mybattlefield):this(counter{0/0.1.KaldEffect2}>0) all(trigger[to]) tap(noevent) && ability$!counter(0/0,-1,KaldEffect2) all(mysource)!$ controller
 auto=@each endofturn:this(counter{0/0.1.KaldEffect}>0) counter(0/0,-1,KaldEffect)
 auto=@each endofturn:this(counter{0/0.1.KaldEffect2}>0) counter(0/0,-1,KaldEffect2)
-text={T}: You may play target snow permanent card from your graveyard this turn. If you do, it enters the battlefield tapped.
+text={T}: You may play target snow permanent card from your graveyard this turn. If you do, it enters the battlefield tapped. // {2}{G} Jorn, God of Winter
 mana={1}{U}{B}
 type=Legendary Snow Artifact
 [/card]
@@ -30030,9 +30090,11 @@ toughness=2
 [/card]
 [card]
 name=Kazandu Mammoth
-autohand={0}:restriction{can play land} name(Kazandu Valley) name(Kazandu Valley) flip(Kazandu Valley) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Kazandu Valley)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Kazandu Valley) name(Kazandu Valley) flip(Kazandu Valley) forcetype(land)
 auto=_LANDFALL_2/2 ueot
-text=Landfall - Whenever a land enters the battlefield under your control, Kazandu Mammoth gains +2/+2 until end of turn.
+text=Landfall - Whenever a land enters the battlefield under your control, Kazandu Mammoth gains +2/+2 until end of turn. // Kazandu Valley
 mana={2}{G}
 type=Creature
 subtype=Elephant
@@ -30064,7 +30126,7 @@ toughness=5
 name=Kazandu Valley
 auto=tap(noevent)
 auto={T}:add{G}
-text=Kazandu Valley enters the battlefield tapped. -- {T}: Add {G}.
+text=Kazandu Valley enters the battlefield tapped. -- {T}: Add {G}. // {2}{G} Kazandu Mammoth
 type=Land
 [/card]
 [card]
@@ -30083,14 +30145,16 @@ toughness=4
 name=Kazuul's Cliffs
 auto=tap(noevent)
 auto={T}:add{R}
-text=Kazuul's Cliffs enters the battlefield tapped. -- {T}: Add {R}.
+text=Kazuul's Cliffs enters the battlefield tapped. -- {T}: Add {R}. // {2}{R}{Sacrifice Creature} Kazuul's Fury
 type=Land
 [/card]
 [card]
 name=Kazuul's Fury
-autohand={0}:restriction{can play land} name(Kazuul's Cliffs) name(Kazuul's Cliffs) flip(Kazuul's Cliffs) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Kazuul's Cliffs)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Kazuul's Cliffs) name(Kazuul's Cliffs) flip(Kazuul's Cliffs) forcetype(land)
 auto=choice name(damage:storedpower target(player,creature,planeswalker)
-text=As an additional cost to cast this spell, sacrifice a creature. -- Kazuul's Fury deals damage equal to the sacrificed creatures power to any target.
+text=As an additional cost to cast this spell, sacrifice a creature. -- Kazuul's Fury deals damage equal to the sacrificed creatures power to any target. // Kazuul's Cliffs
 mana={2}{R}{S(creature|myBattlefield)}
 type=Instant
 [/card]
@@ -30415,10 +30479,12 @@ subtype=Forest Island Mountain
 [/card]
 [card]
 name=Khalni Ambush
-autohand={0}:restriction{can play land} name(Khalni Territory) name(Khalni Territory) flip(Khalni Territory) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Khalni Territory)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Khalni Territory) name(Khalni Territory) flip(Khalni Territory) forcetype(land)
 restriction=type(creature|opponentbattlefield)~morethan~0,type(creature|myBattlefield)~morethan~0
 auto=name(fights target creature you don't control) name(fights target creature you don't control) target(creature|mybattlefield) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
-text=Target creature you control fights target creature you don't control. (Each deals damage equal to its power to the other.)
+text=Target creature you control fights target creature you don't control. (Each deals damage equal to its power to the other.) // Khalni Territory
 mana={2}{G}
 type=Instant
 [/card]
@@ -30426,7 +30492,7 @@ type=Instant
 name=Khalni Territory
 auto=tap(noevent)
 auto={T}:add{G}
-text=Khalni Territory enters the battlefield tapped. -- {T}: Add {G}.
+text=Khalni Territory enters the battlefield tapped. -- {T}: Add {G}. // {2}{G} Khalni Ambush
 type=Land
 [/card]
 [card]
@@ -30509,11 +30575,13 @@ type=Sorcery
 [card]
 name=Kianne, Dean of Substance
 other={2}{U}{U} name(Imbraham, Dean of Theory)
-otherrestriction=can play creature
+otherrestriction=can play creature,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Imbraham, Dean of Theory)
 autostack=if paid(alternative) then name(Imbraham, Dean of Theory) name(Imbraham, Dean of Theory) flip(Imbraham, Dean of Theory) forcetype(Legendary Creature)
 auto=this(variable{isflipped}<1) {T}:all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[this(cantargetcard(*[land]|*) moveto(myhand)],newability[this(cantargetcard(*[-land]|*) counter(0/0.1.study)])) oneshot )!
 auto=this(variable{isflipped}<1) {4}{G}:token(Fractal,Creature Fractal,0/0,green,blue) and!( transforms((,newability[if type(*[-land;red;counter{0/0.1.study}]|myexile)~morethan~0 then counter(1/1)],newability[if type(*[-land;black;counter{0/0.1.black}]|myexile)~morethan~0 then counter(1/1)],newability[if type(*[-land;green;counter{0/0.1.study}]|myexile)~morethan~0 then counter(1/1)],newability[if type(*[-land;white;counter{0/0.1.study}]|myexile)~morethan~0 then counter(1/1)],newability[if type(*[-land;blue;counter{0/0.1.blue}]|myexile)~morethan~0 then counter(1/1)])) oneshot )!
-text={T}: Exile the top card of your library. If it's a land card, put it into your hand. Otherwise, put a study counter on it. -- {4}{G}: Create a 0/0 green and blue Fractal creature token. Put a +1/+1 counter on it for each different mana value among nonland cards you own in exile with study counters on them.
+text={T}: Exile the top card of your library. If it's a land card, put it into your hand. Otherwise, put a study counter on it. -- {4}{G}: Create a 0/0 green and blue Fractal creature token. Put a +1/+1 counter on it for each different mana value among nonland cards you own in exile with study counters on them. // {2}{U}{U} name(Imbraham, Dean of Theory)
 mana={2}{G}
 type=Legendary Creature
 subtype=Elf Druid
@@ -31090,13 +31158,15 @@ toughness=2
 [card]
 name=Kolvori, God of Kinship
 other={1}{G} name(The Ringhart Crest)
-otherrestriction=can play artifact
+otherrestriction=can play artifact,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(The Ringhart Crest)
 autostack=if paid(alternative) then flip(The Ringhart Crest) forcetype(Legendary Artifact)
 auto=this(variable{isflipped}<1) aslongas(creature[legendary]|mybattlefield) 4/2 >2
 auto=this(variable{isflipped}<1) aslongas(creature[legendary]|mybattlefield) vigilance >2
 auto=this(variable{isflipped}<1) {1}{G}{T}:name(Reveal 6 cards) reveal:6 optionone name(Get legendary creature) target(creature[legendary]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
 aicode=activate target(creature[legendary;zpos<=6]|mylibrary) moveto(myhand)
-text=As long as you control three or more legendary creatures, Kolvori, God of Kinship gets +4/+2 and has vigilance. -- {1}{G}, {T}: Look at the top six cards of your library. You may reveal a legendary creature card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+text=As long as you control three or more legendary creatures, Kolvori, God of Kinship gets +4/+2 and has vigilance. -- {1}{G}, {T}: Look at the top six cards of your library. You may reveal a legendary creature card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. // {1}{G} The Ringhart Crest
 mana={2}{G}{G}
 type=Legendary Creature
 subtype=God
@@ -31903,7 +31973,7 @@ type=Artifact
 [card]
 name=Lavaglide Pathway
 auto={T}:add{R}
-text={T}: Add {R}.
+text={T}: Add {R}. // Riverglide Pathway
 type=Land
 [/card]
 [card]
@@ -32884,8 +32954,8 @@ type=Sorcery
 [/card]
 [card]
 name=Lisette, Dean of the Root
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):pay({1}) name(Put 1/1 counter) all(creature|mybattlefield) tansforms((,newability[counter(1/1)],newability[trample])) ueot
-text=Whenever you gain life, you may pay 1 . If you do, put a +1/+1 counter on each creature you control and those creatures gain trample until end of turn.
+auto=@lifeof(player) from(*[-lifefaker]):pay({1}) name(Put 1/1 counter) all(creature|mybattlefield) tansforms((,newability[counter(1/1)],newability[trample])) ueot
+text=Whenever you gain life, you may pay 1 . If you do, put a +1/+1 counter on each creature you control and those creatures gain trample until end of turn. // {B} Valentin, Dean of the Vein
 mana={2}{G}{G}
 type=Legendary Creature
 subtype=Human Druid
@@ -34060,7 +34130,7 @@ type=Enchantment
 name=Makindi Mesas
 auto=tap(noevent)
 auto={T}:add{W}
-text=Makindi Mesas enters the battlefield tapped. -- {T}: Add {W}.
+text=Makindi Mesas enters the battlefield tapped. -- {T}: Add {W}. // {3}{W}{W} Makindi Stampede
 type=Land
 [/card]
 [card]
@@ -34075,9 +34145,11 @@ toughness=4
 [/card]
 [card]
 name=Makindi Stampede
-autohand={0}:restriction{can play land} name(Makindi Stampede) name(Makindi Stampede) flip(Makindi Stampede) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Makindi Mesas)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Makindi Mesas) name(Makindi Mesas) flip(Makindi Mesas) forcetype(land)
 auto=all(creature|myBattlefield) 2/2 ueot
-text=Creatures you control get +2/+2 until end of turn.
+text=Creatures you control get +2/+2 until end of turn. // Makindi Mesas
 mana={3}{W}{W}
 type=Sorcery
 [/card]
@@ -34096,15 +34168,17 @@ toughness=1
 name=Malakir Mire
 auto=tap(noevent)
 auto={T}:add{B}
-text=Malakir Mire enters the battlefield tapped. -- {T}: Add {B}.
+text=Malakir Mire enters the battlefield tapped. -- {T}: Add {B}. // {B} Malakir Rebirth
 type=Land
 [/card]
 [card]
 name=Malakir Rebirth
-autohand={0}:restriction{can play land} name(Malakir Mire) name(Malakir Mire) flip(Malakir Mire) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Malakir Mire)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Malakir Mire) name(Malakir Mire) flip(Malakir Mire) forcetype(land)
 auto=life:-2 controller
 auto=name(Choose a creature) name(Choose a creature) target(creature) transforms((,newability[inplaytapdeath])) ueot
-text=Choose target creature. You lose 2 life. Until end of turn, that creature gains "When this creature dies, return it to the battlefield tapped under its owner's control."
+text=Choose target creature. You lose 2 life. Until end of turn, that creature gains "When this creature dies, return it to the battlefield tapped under its owner's control." // Malakir Mire
 mana={B}
 type=Instant
 [/card]
@@ -34386,7 +34460,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Marauding Blight-Priest
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):life:-1 opponent
+auto=@lifeof(player) from(*[-lifefaker]):life:-1 opponent
 text=Whenever you gain life, each opponent loses 1 life.
 mana={2}{B}
 type=Creature
@@ -35446,12 +35520,14 @@ toughness=4
 [card]
 name=Mila, Crafty Companion
 other={4}{R}{R} name(Lukka, Wayward Bonder)
-otherrestriction=can play planeswalker
+otherrestriction=can play planeswalker,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Lukka, Wayward Bonder)
 autostack=if paid(alternative) then name(Lukka, Wayward Bonder) name(Lukka, Wayward Bonder) flip(Lukka, Wayward Bonder) forcetype(Legendary Planeswalker)
 auto=if paid(alternative) then counter(0/0,5,Loyalty)
 auto=@each blockers restriction{compare(isflipped)~equalto~0,type(creature[attacking]|opponentbattlefield)~morethan~0}:may name(Opponent attacked planeswalker) all(*[planeswalker]|mybattlefield) counter(0/0,1,Loyalty)
 auto=@targeted(*|mybattlefield) from(*|opponentzones) restriction{compare(isflipped)~equalto~0}:may name(Draw a card) draw:1 controller
-text=Whenever an opponent attacks one or more planeswalkers you control, put a loyalty counter on each planeswalker you control. -- Whenever a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.
+text=Whenever an opponent attacks one or more planeswalkers you control, put a loyalty counter on each planeswalker you control. -- Whenever a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card. // {4}{R}{R} Lukka, Wayward Bonder
 mana={1}{W}{W}
 type=Legendary Creature
 subtype=Fox
@@ -35847,7 +35923,7 @@ toughness=5
 [card]
 name=Mistgate Pathway
 auto={T}:add{U}
-text={T}: Add {U}.
+text={T}: Add {U}. // Hengegate Pathway
 type=Land
 [/card]
 [card]
@@ -36486,7 +36562,7 @@ toughness=3
 [card]
 name=Murkwater Pathway
 auto={T}:add{B}
-text={T}: Add {B}.
+text={T}: Add {B}. // Clearwater Pathway
 type=Land
 [/card]
 [card]
@@ -36926,7 +37002,7 @@ toughness=1
 name=Nassari, Dean of Expression
 auto=@each my upkeep:name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( if cantargetcard(*[land]|*) then moveto(ownerexile) else transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)])) ueot )!
 auto=@movedto(*|mystack) from(myexile):counter(1/1)
-text=At the beginning of your upkeep, exile the top card of each opponent's library. Until end of turn, you may cast spells from among those exiled cards, and you may spend mana as though it were mana of any color to cast those spells. -- Whenever you cast a spell from exile, put a +1/+1 counter on Nassari, Dean of Expression.
+text=At the beginning of your upkeep, exile the top card of each opponent's library. Until end of turn, you may cast spells from among those exiled cards, and you may spend mana as though it were mana of any color to cast those spells. -- Whenever you cast a spell from exile, put a +1/+1 counter on Nassari, Dean of Expression. // {2}{U} Uvilda, Dean of Perfection
 mana={3}{R}{R}
 type=Legendary Creature
 subtype=Efreet Shaman
@@ -37211,9 +37287,11 @@ toughness=2
 [/card]
 [card]
 name=Needleverge Pathway
-autohand={0}:restriction{can play land} name(Pillarverge Pathway) name(Pillarverge Pathway) flip(Pillarverge Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Pillarverge Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Pillarverge Pathway) name(Pillarverge Pathway) flip(Pillarverge Pathway) forcetype(land)
 auto={T}:add{R}
-text={T}: Add {R}.
+text={T}: Add {R}. // Pillarverge Pathway
 type=Land
 [/card]
 [card]
@@ -38798,7 +38876,7 @@ toughness=4
 [card]
 name=Oloro, Ageless Ascetic
 auto=@each my upkeep:life:2 controller
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):pay({1}) draw:1 controller && life:-1 opponent
+auto=@lifeof(player) from(*[-lifefaker]):pay({1}) draw:1 controller && life:-1 opponent
 autocommandzone=@each my upkeep:life:2 controller
 text=At the beginning of your upkeep, you gain 2 life. -- Whenever you gain life, you may pay {1}. If you do, draw a card and each opponent loses 1 life. -- At the beginning of your upkeep, if Oloro, Ageless Ascetic is in the command zone, you gain 2 life.
 mana={3}{W}{U}{B}
@@ -38984,9 +39062,11 @@ type=Instant
 [/card]
 [card]
 name=Ondu Inversion
-autohand={0}:restriction{can play land} name(Ondu Skyruins) name(Ondu Skyruins) flip(Ondu Skyruins) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Ondu Skyruins)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Ondu Skyruins) name(Ondu Skyruins) flip(Ondu Skyruins) forcetype(land)
 auto=destroy all(*[-land])
-text=Destroy all nonland permanents.
+text=Destroy all nonland permanents. // Ondu Skyruins
 mana={6}{W}{W}
 type=Sorcery
 [/card]
@@ -38994,7 +39074,7 @@ type=Sorcery
 name=Ondu Skyruins
 auto=tap(noevent)
 auto={T}:add{W}
-text=Ondu Skyruins enters the battlefield tapped. -- {T}: Add {W}.
+text=Ondu Skyruins enters the battlefield tapped. -- {T}: Add {W}. // {6}{W}{W} Ondu Inversion
 type=Land
 [/card]
 [card]
@@ -40435,15 +40515,17 @@ toughness=3
 name=Pelakka Caverns
 auto=tap(noevent)
 auto={T}:add{B}
-text=Pelakka Caverns enters the battlefield tapped. -- {T}: Add {B}.
+text=Pelakka Caverns enters the battlefield tapped. -- {T}: Add {B}. // {2}{B} Pelakka Predation
 type=Land
 [/card]
 [card]
 name=Pelakka Predation
-autohand={0}:restriction{can play land} name(Pelakka Caverns) name(Pelakka Caverns) flip(Pelakka Caverns) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Pelakka Caverns)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Pelakka Caverns) name(Pelakka Caverns) flip(Pelakka Caverns) forcetype(land)
 aicode=activate reject notatarget(*[manacost>=3]|opponenthand)
 auto=name(reveal hand) reveal:type:*:opponenthand revealzone(opponenthand) optionone name(Choose a card) target(*[manacost>=3]|reveal) reject optiononeend optiontwo name(put back) all(*|reveal) moveto(ownerhand) optiontwoend revealend
-text=Target opponent reveals their hand. You may choose a card from it with converted mana cost 3 or greater. That player discards that card.
+text=Target opponent reveals their hand. You may choose a card from it with converted mana cost 3 or greater. That player discards that card. // Pelakka Caverns
 mana={2}{B}
 type=Sorcery
 [/card]
@@ -40575,13 +40657,15 @@ subtype=Lesson
 [card]
 name=Pestilent Cauldron
 other={3}{G}{G} name(Restorative Burst)
-otherrestriction=can play sorcery
+otherrestriction=can play sorcery,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Restorative Burst)
 autostack=if paid(alternative) then transforms((,newability[moveto(myexile)],newability[activate castcard(named!:restorative burst:!)])) forever
 auto={T}{D(*|myhand)}:name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
 auto={1}{T}:deplete:lifegain opponent
 auto={4}{T} restriction{type(*|mygraveyard)~morethan~3}:name(Exile from your graveyard) transforms((,newability[draw:1 controller],newability[name(Exile from your graveyard) target(<4>*|mygraveyard) moveto(exile)])) oneshot
 auto={4}{T} restriction{type(*|opponentgraveyard)~morethan~3}:name(Exile from opponent's graveyard) transforms((,newability[draw:1 controller],newability[name(Exile from opponent's graveyard) target(<4>*|opponentgraveyard) moveto(exile)])) oneshot
-text={T}, Discard a card: Create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life." -- {1}, {T}: Each opponent mills cards equal to the amount of life you gained this turn. -- {4}, {T}: Exile four target cards from a single graveyard. Draw a card. // Return up to two target creature, land, and/or planeswalker cards from your graveyard to your hand. Each player gains 4 life. Exile Restorative Burst.
+text={T}, Discard a card: Create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life." -- {1}, {T}: Each opponent mills cards equal to the amount of life you gained this turn. -- {4}, {T}: Exile four target cards from a single graveyard. Draw a card. // {3}{G}{G} Restorative Burst
 mana={2}{B}
 type=Artifact
 [/card]
@@ -40969,7 +41053,7 @@ toughness=5
 [card]
 name=Pillarverge Pathway
 auto={T}:add{W}
-text={T}: Add {W}.
+text={T}: Add {W}. // Needleverge Pathway
 type=Land
 [/card]
 [card]
@@ -41206,12 +41290,14 @@ type=Sorcery
 [card]
 name=Plargg, Dean of Chaos
 other={2}{W} name(Augusta, Dean of Order)
-otherrestriction=can play creature
+otherrestriction=can play creature,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Augusta, Dean of Order)
 autostack=if paid(alternative) then name(Augusta, Dean of Order) name(Augusta, Dean of Order) flip(Augusta, Dean of Order) forcetype(Legendary Creature)
 aicode=activate transforms((,newability[all(*[zpos<=findfirsttypenonland]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot
 auto=this(variable{isflipped}<1) {4}{R}{T}:name(Reveal cards) Reveal:1 revealzone(mylibrary) revealuntil(*[-land;-legendary;manacost<=3]|mylibrary) optionone choice name(Choose card) target(*[-land;-legendary;manacost<=3]|reveal) bottomoflibrary and!( becomes(tobecast) ueot)! optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend afterrevealed may name(Cast chosen card) all(tobecast|mylibrary) activate castcard(normal) afterrevealedend revealend
 auto=this(variable{isflipped}<1) {T}{D(*|myhand)}:name(Draw card) draw:1 controller
-text={T}, Discard a card: Draw a card. -- {4}{R}, {T}: Reveal cards from the top of your library until you reveal a nonlegendary, nonland card with mana value 3 or less. You may cast that card without paying its mana cost. Put all revealed cards not cast this way on the bottom of your library in a random order.
+text={T}, Discard a card: Draw a card. -- {4}{R}, {T}: Reveal cards from the top of your library until you reveal a nonlegendary, nonland card with mana value 3 or less. You may cast that card without paying its mana cost. Put all revealed cards not cast this way on the bottom of your library in a random order. // {2}{W} Augusta, Dean of Order
 mana={1}{R}
 type=Legendary Creature
 subtype=Orc Shaman
@@ -44265,11 +44351,13 @@ toughness=4
 name=Reidane, God of the Worthy
 abilities=flying,vigilance
 other={3}{W} name(Valkmira, Protector's Shield)
-otherrestriction=can play artifact
+otherrestriction=can play artifact,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Valkmira, Protector's Shield)
 autostack=if paid(alternative) then flip(Valkmira, Protector's Shield) forcetype(Legendary Artifact)
 auto=@movedto(*[snow]|opponentbattlefield) restriction{compare(isflipped)~equalto~0}:all(trigger[to]) tap(noevent)
 auto=this(variable{isflipped}<1) lord(*[-creature;manacost>=4]|opponentcastingzone]) altercost(colorless,+2)
-text=Flying, vigilance -- Snow lands your opponents control enter the battlefield tapped. -- Noncreature spells your opponents cast with converted mana cost 4 or more cost {2} more to cast.
+text=Flying, vigilance -- Snow lands your opponents control enter the battlefield tapped. -- Noncreature spells your opponents cast with converted mana cost 4 or more cost {2} more to cast. // {3}{W} Valkmira, Protector's Shield
 mana={2}{W}
 type=Legendary Creature
 subtype=God
@@ -44784,11 +44872,11 @@ type=Sorcery
 [/card]
 [card]
 name=Restorative Burst
+abilities=doublefacedeath
 auto=name(Return to hand) target(<upto:2>*[creature;land;planeswalker]|mygraveyard) moveto(myhand)
 auto=life:4 opponent
 auto=life:4 controller
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=Return up to two target creature, land, and/or planeswalker cards from your graveyard to your hand. Each player gains 4 life. Exile Restorative Burst.
+text=Return up to two target creature, land, and/or planeswalker cards from your graveyard to your hand. Each player gains 4 life. Exile Restorative Burst. // {2}{B} Pestilent Cauldron
 mana={3}{G}{G}
 type=Sorcery
 [/card]
@@ -44894,11 +44982,10 @@ type=Enchantment
 [/card]
 [card]
 name=Revel in Silence
-abilities=exiledeath
+abilities=doublefacedeath
 auto=maxCast(*)0 opponent
 auto=emblem transforms((,newability[lord(*[planeswalker]|opponentbattlefield) noactivatedability])) ueot
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=Your opponents can't cast spells or activate planeswalkers' loyalty abilities this turn. -- Exile Revel in Silence.
+text=Your opponents can't cast spells or activate planeswalkers' loyalty abilities this turn. -- Exile Revel in Silence. // {1}{R} Flamescroll Celebrant
 mana={W}{W}
 type=Instant
 [/card]
@@ -45810,9 +45897,11 @@ type=Sorcery
 [/card]
 [card]
 name=Riverglide Pathway
-autohand={0}:restriction{can play land} name(Lavaglide Pathway) name(Lavaglide Pathway) flip(Lavaglide Pathway) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Lavaglide Pathway)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Lavaglide Pathway) name(Lavaglide Pathway) flip(Lavaglide Pathway) forcetype(land)
 auto={T}:add{U}
-text={T}: Add {U}.
+text={T}: Add {U}. // Lavaglide Pathway
 type=Land
 [/card]
 [card]
@@ -48019,7 +48108,7 @@ toughness=3
 [card]
 name=Scion of the Swarm
 abilities=flying
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):counter(1/1,1)
+auto=@lifeof(player) from(*[-lifefaker]):counter(1/1,1)
 text=Flying -- Whenever you gain life, put a +1/+1 counter on Scion of the Swarm.
 mana={3}{B}{B}
 type=Creature
@@ -48297,10 +48386,12 @@ toughness=5
 [/card]
 [card]
 name=Sea Gate Restoration
-autohand={0}:restriction{can play land} name(Sea Gate, Reborn) name(Sea Gate, Reborn) flip(Sea Gate, Reborn) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Sea Gate, Reborn)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Sea Gate, Reborn) name(Sea Gate, Reborn) flip(Sea Gate, Reborn) forcetype(land)
 auto=emblem transforms((,newability[lord(*|myBattlefield) nomaxhand])) forever dontremove
 auto=draw:type:*:myHandplus1plusend controller
-text=Draw cards equal to the number of cards in your hand plus one. You have no maximum hand size for the rest of the game.
+text=Draw cards equal to the number of cards in your hand plus one. You have no maximum hand size for the rest of the game. // Sea Gate, Reborn
 mana={4}{U}{U}{U}
 type=Sorcery
 [/card]
@@ -48320,7 +48411,7 @@ toughness=1
 name=Sea Gate, Reborn
 auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{U}
-text=As Sea Gate, Reborn enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {U}.
+text=As Sea Gate, Reborn enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {U}. // {4}{U}{U}{U} Sea Gate Restoration
 type=Land
 [/card]
 [card]
@@ -48413,10 +48504,10 @@ type=Legendary Enchantment
 [/card]
 [card]
 name=Search for Blex
+abilities=doublefacedeath
 aicode=activate all(*[zpos<=1]|mylibrary) moveto(myhand) and!( transforms((,newability[life:-3 controller],newability[all(*[zpos<=5]|mylibrary) moveto(mygraveyard)])) oneshot )!
 auto=name(Look top 5 cards) reveal:5 optionone name(Get any card) target(<upto:5>*|reveal) moveto(myhand) and!( transforms((,newability[life:-3 controller])) oneshot )! optiononeend optiontwo name(put in graveyard) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
-auto=transforms((,newability[moveto(mysideboard) and!( transforms((,newablility[shroud],newability[protection from(*)],newability[cantbetargetof(*)])) forever])) forever
-text=Look at the top five cards of your library. You may put any number of them into your hand and the rest into your graveyard. You lose 3 life for each card you put into your hand this way.
+text=Look at the top five cards of your library. You may put any number of them into your hand and the rest into your graveyard. You lose 3 life for each card you put into your hand this way. // {2}{G} Blex, Vexing Pest
 mana={2}{B}{B}
 type=Sorcery
 [/card]
@@ -48453,7 +48544,7 @@ type=Instant
 [card]
 name=Searstep Pathway
 auto={T}:add{R}
-text={T}: Add {R}.
+text={T}: Add {R}. // Blightstep Pathway
 type=Land
 [/card]
 [card]
@@ -48689,14 +48780,16 @@ subtype=Aura
 name=Sejiri Glacier
 auto=tap(noevent)
 auto={T}:add{W}
-text=Sejiri Glacier enters the battlefield tapped. -- {T}: Add {W}.
+text=Sejiri Glacier enters the battlefield tapped. -- {T}: Add {W}. // {1}{W} Sejiri Shelter
 type=Land
 [/card]
 [card]
 name=Sejiri Shelter
-autohand={0}:restriction{can play land} name(Sejiri Glacier) name(Sejiri Glacier) flip(Sejiri Glacier) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Sejiri Glacier)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Sejiri Glacier) name(Sejiri Glacier) flip(Sejiri Glacier) forcetype(land)
 auto=name(Choose color) ability$!name(Choose color) choice name(White) protection from white target(creature|mybattlefield) ueot _ choice name(Blue) protection from blue target(creature|mybattlefield) ueot _ choice name(Black) protection from black target(creature|mybattlefield) ueot _ choice name(Red) protection from red target(creature|mybattlefield) ueot _ choice name(Green) protection from green target(creature|mybattlefield) ueot!$ controller
-text=Target creature you control gains protection from the color of your choice until end of turn.
+text=Target creature you control gains protection from the color of your choice until end of turn. // Sejiri Glacier
 mana={1}{W}
 type=Instant
 [/card]
@@ -48752,10 +48845,12 @@ toughness=5
 [card]
 name=Selfless Glyphweaver
 other={5}{B}{B}{B} name(Deadly Vanity)
-otherrestriction=can play sorcery
+otherrestriction=can play sorcery,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Deadly Vanity)
 autostack=if paid(alternative) then transforms((,newability[moveto(mygraveyard)],newability[activate castcard(named!:deadly vanity:!)])) forever
 auto={E}:name(All creatures gain indestructible) all(creature|mybattlefield) transforms((,newability[indestructible])) ueot
-text=Exile Selfless Glyphweaver: Creatures you control gain indestructible until end of turn. // Choose a creature or planeswalker, then destroy all other creatures and planeswalkers.
+text=Exile Selfless Glyphweaver: Creatures you control gain indestructible until end of turn. // Choose a creature or planeswalker, then destroy all other creatures and planeswalkers. // {5}{B}{B}{B} Deadly Vanity
 mana={2}{W}
 type=Creature
 subtype=Human Cleric
@@ -49345,10 +49440,12 @@ toughness=3
 name=Shaile, Dean of Radiance
 abilities=flying,vigilance
 other={2}{B}{B} name(Embrose, Dean of Shadow)
-otherrestriction=can play creature
+otherrestriction=can play creature,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Embrose, Dean of Shadow)
 autostack=if paid(alternative) then name(Embrose, Dean of Shadow) name(Embrose, Dean of Shadow) flip(Embrose, Dean of Shadow) forcetype(Legendary Creature)
 auto=this(variable{isflipped}<1) {T}:all(creature[fresh]|mybattlefield) counter(1/1)
-text=Flying, vigilance -- {T}: Put a +1/+1 counter on each creature that entered the battlefield under your control this turn.
+text=Flying, vigilance -- {T}: Put a +1/+1 counter on each creature that entered the battlefield under your control this turn. // {2}{B}{B} Embrose, Dean of Shadow
 mana={1}{W}
 type=Legendary Creature
 subtype=Bird Cleric
@@ -49582,10 +49679,12 @@ toughness=4
 [/card]
 [card]
 name=Shatterskull Smashing
-autohand={0}:restriction{can play land} name(Shatterskull, the Hammer Pass) name(Shatterskull, the Hammer Pass) flip(Shatterskull, the Hammer Pass) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Shatterskull, the Hammer Pass)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Shatterskull, the Hammer Pass) name(Shatterskull, the Hammer Pass) flip(Shatterskull, the Hammer Pass) forcetype(land)
 auto=this(X>5) thisforeach(X) ability$!name(Choose target) choice name(Damage to a creature) damage:2 target(creature) _ choice name(Damage to a planeswalker) damage:2 target(planeswalker)!$ controller
 auto=this(X<6) thisforeach(X) ability$!name(Choose target) choice name(Damage to a creature) damage:1 target(creature) _ choice name(Damage to a planeswalker) damage:1 target(planeswalker)!$ controller
-text=Shatterskull Smashing deals X damage divided as you choose among up to two target creatures and/or planeswalkers. If X is 6 or more, Shatterskull Smashing deals twice X damage divided as you choose among them instead.
+text=Shatterskull Smashing deals X damage divided as you choose among up to two target creatures and/or planeswalkers. If X is 6 or more, Shatterskull Smashing deals twice X damage divided as you choose among them instead. // Shatterskull, the Hammer Pass
 mana={X}{R}{R}
 type=Sorcery
 [/card]
@@ -49593,7 +49692,7 @@ type=Sorcery
 name=Shatterskull, the Hammer Pass
 auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{R}
-text=As Shatterskull, the Hammer Pass enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {R}.
+text=As Shatterskull, the Hammer Pass enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {R}. // {X}{R}{R} Shatterskull Smashing
 type=Land
 [/card]
 [card]
@@ -50458,15 +50557,17 @@ toughness=3
 name=Silundi Isle
 auto=tap(noevent)
 auto={T}:add{U}
-text=Silundi Isle enters the battlefield tapped. -- {T}: Add {U}.
+text=Silundi Isle enters the battlefield tapped. -- {T}: Add {U}. // {2}{U} Silundi Vision
 type=Land
 [/card]
 [card]
 name=Silundi Vision
-autohand={0}:restriction{can play land} name(Silundi Isle) name(Silundi Isle) flip(Silundi Isle) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Silundi Isle)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Silundi Isle) name(Silundi Isle) flip(Silundi Isle) forcetype(land)
 aicode=activate target(*[instant;sorcery;zpos<=6]|mylibrary) moveto(myhand)
 auto=name(Reveal 6 cards) reveal:6 optionone name(Get instant or sorcery) target(<upto:1>*[instant;sorcery]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<6>*|reveal) bottomoflibrary optiontwoend revealend
-text=Look at the top six cards of your library. You may reveal an instant or sorcery card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+text=Look at the top six cards of your library. You may reveal an instant or sorcery card from among them and put it into your hand. Put the rest on the bottom of your library in a random order. // Silundi Isle
 mana={2}{U}
 type=Instant
 [/card]
@@ -51240,14 +51341,16 @@ toughness=2
 name=Skyclave Basilica
 auto=tap(noevent)
 auto={T}:add{W}
-text=Skyclave Basilica enters the battlefield tapped. -- {T}: Add {W}.
+text=Skyclave Basilica enters the battlefield tapped. -- {T}: Add {W}. // {1}{W} Skyclave Cleric
 type=Land
 [/card]
 [card]
 name=Skyclave Cleric
-autohand={0}:restriction{can play land} name(Skyclave Basilica) name(Skyclave Basilica) flip(Skyclave Basilica) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Skyclave Basilica)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Skyclave Basilica) name(Skyclave Basilica) flip(Skyclave Basilica) forcetype(land)
 auto=life:2 controller
-text=When Skyclave Cleric enters the battlefield, you gain 2 life.
+text=When Skyclave Cleric enters the battlefield, you gain 2 life. // Skyclave Basilica
 mana={1}{W}
 type=Creature
 subtype=Kor Cleric
@@ -51595,7 +51698,7 @@ toughness=2
 [card]
 name=Slitherbore Pathway
 auto={T}:add{G}
-text={T}: Add {G}.
+text={T}: Add {G}. // Darkbore Pathway
 type=Land
 [/card]
 [card]
@@ -52127,14 +52230,16 @@ type=Enchantment
 name=Song-Mad Ruins
 auto=tap(noevent)
 auto={T}:add{R}
-text=Song-Mad Ruins enters the battlefield tapped. -- {T}: Add {R}.
+text=Song-Mad Ruins enters the battlefield tapped. -- {T}: Add {R}. // {3}{R}{R} Song-Mad Treachery
 type=Land
 [/card]
 [card]
 name=Song-Mad Treachery
-autohand={0}:restriction{can play land} name(Song-Mad Ruins) name(Song-Mad Ruins) flip(Song-Mad Ruins) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Song-Mad Ruins)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Song-Mad Ruins) name(Song-Mad Ruins) flip(Song-Mad Ruins) forcetype(land)
 auto=name(Gain control of target creature) name(Gain control of target creature) target(creature) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
-text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.
+text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. // Song-Mad Ruins
 mana={3}{R}{R}
 type=Sorcery
 [/card]
@@ -53095,16 +53200,18 @@ toughness=4
 name=Spikefield Cave
 auto=tap(noevent)
 auto={T}:add{R}
-text=Spikefield Cave enters the battlefield tapped. -- {T}: Add {R}.
+text=Spikefield Cave enters the battlefield tapped. -- {T}: Add {R}. // {R} Spikefield Hazard
 type=Land
 [/card]
 [card]
 name=Spikefield Hazard
-autohand={0}:restriction{can play land} name(Spikefield Cave) name(Spikefield Cave) flip(Spikefield Cave) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Spikefield Cave)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Spikefield Cave) name(Spikefield Cave) flip(Spikefield Cave) forcetype(land)
 auto=if type(creature|battlefield)~morethan~0 then choice name(Damage creature) name(Damage creature) target(creature) transforms((,newability[damage:1],newability[exiledeath])) ueot
 auto=if type(planeswalker|battlefield)~morethan~0 then choice name(Damage planeswalker) name(Damage planeswalker) target(planeswalker) transforms((,newability[damage:1],newability[exiledeath])) ueot
 auto=choice name(Damage player) name(Damage player) target(player) damage:1
-text=Spikefield Hazard deals 1 damage to any target. If a permanent dealt damage this way would die this turn, exile it instead.
+text=Spikefield Hazard deals 1 damage to any target. If a permanent dealt damage this way would die this turn, exile it instead. // Spikefield Cave
 mana={R}
 type=Sorcery
 [/card]
@@ -55701,7 +55808,7 @@ auto={1}{W}:equip
 auto=teach(creature) 2/0
 auto=teach(creature) vigilance
 auto=teach(creature) handdeath
-text=Equipped creature gets +2/+0 and has vigilance. -- Whenever equipped creature dies, return it to its owner’s hand. -- Equip {1}{W}
+text=Equipped creature gets +2/+0 and has vigilance. -- Whenever equipped creature dies, return it to its owner’s hand. -- Equip {1}{W} // {2}{W}{W} Halvar, God of Battle
 mana={1}{W}
 type=Legendary Artifact
 subttype=Equipment
@@ -56281,9 +56388,11 @@ toughness=4
 [/card]
 [card]
 name=Tangled Florahedron
-autohand={0}:restriction{can play land} name(Tangled Vale) name(Tangled Vale) flip(Tangled Vale) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Tangled Vale)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Tangled Vale) name(Tangled Vale) flip(Tangled Vale) forcetype(land)
 auto={T}:add{G}
-text={T}: Add {G}.
+text={T}: Add {G}. // Tangled Vale
 mana={1}{G}
 type=Creature
 subtype=Elemental
@@ -56294,7 +56403,7 @@ toughness=1
 name=Tangled Vale
 auto=tap(noevent)
 auto={T}:add{G}
-text=Tangle Vale enters the battlefield tapped. -- {T}: Add {G}.
+text=Tangle Vale enters the battlefield tapped. -- {T}: Add {G}. // {1}{G} Tangled Florahedron
 type=Land
 [/card]
 [card]
@@ -56812,7 +56921,7 @@ toughness=2
 name=Tergrid's Lantern
 auto={T}:target(player) ability$!name(Choose one) choice name(Loose 3 life) life:-3 controller _ choice name(Discard a card) reject notatarget(*|myhand) _ choice name(Sacrifice non-land permanent) sacrifice notatarget(*[-land]|mybattlefield)!$ targetedplayer
 auto={3}{B}:untap all(this)
-text={T}: Target player loses 3 life unless they sacrifice a nonland permanent or discard a card. -- {3}{B}: Untap Tergrid’s Lantern.
+text={T}: Target player loses 3 life unless they sacrifice a nonland permanent or discard a card. -- {3}{B}: Untap Tergrid’s Lantern. // {3}{B}{B} Tergrid, God of Fright
 mana={3}{B}
 type=Legendary Artifact
 [/card]
@@ -56831,11 +56940,13 @@ type=Instant
 name=Tergrid, God of Fright
 abilities=menace
 other={3}{B} name(Tergrid's Lantern)
-otherrestriction=can play artifact
+otherrestriction=can play artifact,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Tergrid's Lantern)
 autostack=if paid(alternative) then flip(Tergrid's Lantern) forcetype(Legendary Artifact)
 auto=@sacrificed(*[-instant;-sorcery;-token]|opponentbattlefield) restriction{compare(isflipped)~equalto~0}:may name(Put on battlefield) transforms((,newability[all(*[zpos=type:*:opponentgraveyard]|opponentgraveyard) moveto(mybattlefield)])) forever
 auto=@discarded(*[-instant;-sorcery]|opponenthand) restriction{compare(isflipped)~equalto~0}:may name(Put on battlefield) transforms((,newability[all(*[zpos=type:*:opponentgraveyard]|opponentgraveyard) moveto(mybattlefield)])) forever
-text=Menace -- Whenever an opponent sacrifices a nontoken permanent or discards a permanent card, you may put that card onto the battlefield under your control from their graveyard.
+text=Menace -- Whenever an opponent sacrifices a nontoken permanent or discards a permanent card, you may put that card onto the battlefield under your control from their graveyard. // {3}{B} Tergrid's Lantern
 mana={3}{B}{B}
 type=Legendary Creature
 subtype=God
@@ -57437,7 +57548,7 @@ toughness=3
 [card]
 name=The Prismatic Bridge
 auto=@each upkeep:name(Reveal cards) reveal:1 revealzone(mylibrary) revealuntil(*[creature;planeswalker]|mylibrary) optionone choice name(Put creature in play) target(*[creature;planeswalker]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo all(*|reveal) bottomoflibrary and!(shuffle)! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(myBattlefield))! afterrevealedend revealend
-text=At the beginning of your upkeep, reveal cards from the top of your library until you reveal a creature or planeswalker card. Put that card onto the battlefield and the rest on the bottom of your library in a random order.
+text=At the beginning of your upkeep, reveal cards from the top of your library until you reveal a creature or planeswalker card. Put that card onto the battlefield and the rest on the bottom of your library in a random order. // {1}{G}{G} Esika, God of the Tree
 mana={W}{U}{B}{R}{G}
 type=Legendary Enchantment
 [/card]
@@ -57468,7 +57579,7 @@ subtype=Saga
 [card]
 name=The Ringhart Crest
 auto=chooseatype transforms((,newability[this(variable{type:creature[legendary;chosentype]:myrestrictedcastingzone}>0) {T}:add{W}],newability[this(variable{type:creature[legendary;chosentype]:myrestrictedcastingzone}>0) {T}:add{U}],newability[this(variable{type:creature[legendary;chosentype]:myrestrictedcastingzone}>0) {T}:add{R}],newability[this(variable{type:creature[legendary;chosentype]:myrestrictedcastingzone}>0) {T}:add{G}],newability[this(variable{type:creature[legendary;chosentype]:myrestrictedcastingzone}>0) {T}:add{B}])) chooseend
-text=As The Ringhart Crest enters the battlefield, choose a creature type. -- {T}: Add {G}. Spend this mana only to cast a creature spell of the chosen type or a legendary creature spell.
+text=As The Ringhart Crest enters the battlefield, choose a creature type. -- {T}: Add {G}. Spend this mana only to cast a creature spell of the chosen type or a legendary creature spell. // {2}{G}{G} Kolvori, God of Kinship
 mana={1}{G}
 type=Legendary Artifact
 [/card]
@@ -58001,7 +58112,7 @@ toughness=2
 name=Throne of Death
 auto={2}{B}{T}{E(creature|mygraveyard)}:draw:1 controller
 auto=@each my upkeep:deplete:1 controller
-text=At the beginning of your upkeep, mill a card. -- {2}{B}, {T}, Exile a creature card from your graveyard: Draw a card.
+text=At the beginning of your upkeep, mill a card. -- {2}{B}, {T}, Exile a creature card from your graveyard: Draw a card. // {2}{B} Egon, God of Death
 mana={B}
 type=Legendary Artifact
 [/card]
@@ -58306,7 +58417,7 @@ toughness=3
 [card]
 name=Tidechannel Pathway
 auto={T}:add{U}
-text={T}: Add {U}.
+text={T}: Add {U}. // Barkchannel Pathway
 type=Land
 [/card]
 [card]
@@ -58357,7 +58468,7 @@ toughness=1
 [card]
 name=Timbercrown Pathway
 auto={T}:add{G}
-text={T}: Add {G}.
+text={T}: Add {G}. // Cragcrown Pathway
 type=Land
 [/card]
 [card]
@@ -58836,7 +58947,7 @@ name=Toralf's Hammer
 auto={1}{R}:equip
 auto=teach(legendary) 3/0
 auto=teach(creature) transforms((,newability[{1}{R}{T}:target(Toralf's Hammer[attached]|mybattlefield) moveTo(ownerhand) and!( transforms((,newability[choice name(Damage player) damage:3 target(player)],newability[choice name(Damage creature) damage:3 target(creature)],newability[choice name(Damage planeswalker) damage:3 target(planeswalker)])) oneshot )!]))
-text=Equipped creature has "{1}{R}, {T}, Unattach Toralf’s Hammer: It deals 3 damage to any target. Return Toralf’s Hammer to its owner’s hand." -- Equipped creature gets +3/+0 as long as it’s legendary. -- Equip {1}{R}
+text=Equipped creature has "{1}{R}, {T}, Unattach Toralf’s Hammer: It deals 3 damage to any target. Return Toralf’s Hammer to its owner’s hand." -- Equipped creature gets +3/+0 as long as it’s legendary. -- Equip {1}{R} // {2}{R}{R} Toralf, God of Fury
 mana={1}{R}
 type=Legendary Artifact
 subtype=Equipment
@@ -58845,10 +58956,12 @@ subtype=Equipment
 name=Toralf, God of Fury
 abilities=trample
 other={1}{R} name(Toralf's Hammer)
-otherrestriction=can play equipment
+otherrestriction=can play equipment,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Toralf's Hammer)
 autostack=if paid(alternative) then flip(Toralf's Hammer) forcetype(Legendary Artifact)
 auto=@noncombatdamaged(*[creature;planeswalker]|opponentbattlefield) restriction{compare(isflipped)~equalto~0}:name(Deals damage) target(player,creature,planeswalker) damage:excessdamage
-text=Trample -- Whenever a creature or planeswalker an opponent controls is dealt excess noncombat damage, Toralf, God of Fury deals damage equal to the excess to any target other than that permanent.
+text=Trample -- Whenever a creature or planeswalker an opponent controls is dealt excess noncombat damage, Toralf, God of Fury deals damage equal to the excess to any target other than that permanent. // {1}{R} Toralf's Hammer
 mana={2}{R}{R}
 type=Legendary Creature
 subtype=God
@@ -58954,7 +59067,9 @@ type=Sorcery
 [card]
 name=Torrent Sculptor
 other={1}{R} name(Flamethrower Sonata)
-otherrestriction=can play sorcery
+otherrestriction=can play sorcery,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Flamethrower Sonata)
 autostack=if paid(alternative) then transforms((,newability[moveto(mygraveyard)],newability[activate castcard(named!:flamethrower sonata:!)])) forever
 auto=@targeted(this|myBattlefield) from(*[instant;sorcery]|opponentzones):choice name(This spell costs 2 more) name(This spell costs 2 more) target(*[instant;sorcery]|opponentzones) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) oneshot
 auto=if type(*[instant;sorcery:manacost=0]|mygraveyard)~morethan~0 then choice name(Exile instant or sorcery with manacost 0) name(Exile instant or sorcery with manacost 0) target(*[instant;sorcery;manacost=0]|mygraveyard) moveto(myexile)
@@ -58978,7 +59093,7 @@ auto=if type(*[instant;sorcery:manacost=17]|mygraveyard)~morethan~0 then choice 
 auto=if type(*[instant;sorcery:manacost=18]|mygraveyard)~morethan~0 then choice name(Exile instant or sorcery with manacost 18) name(Exile instant or sorcery with manacost 18) target(*[instant;sorcery;manacost=18]|mygraveyard) moveto(myexile) and!( all(this) counter(1/1,9) )!
 auto=if type(*[instant;sorcery:manacost=19]|mygraveyard)~morethan~0 then choice name(Exile instant or sorcery with manacost 19) name(Exile instant or sorcery with manacost 19) target(*[instant;sorcery;manacost=19]|mygraveyard) moveto(myexile) and!( all(this) counter(1/1,10) )!
 auto=if type(*[instant;sorcery:manacost>=20]|mygraveyard)~morethan~0 then choice name(Exile instant or sorcery with manacost 20) name(Exile instant or sorcery with manacost 20) target(*[instant;sorcery;manacost=20]|mygraveyard) moveto(myexile) and!( all(this) counter(1/1,10) )!
-text=Ward {2} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.) -- When Torrent Sculptor enters the battlefield, exile an instant or sorcery card from your graveyard. Put a number of +1/+1 counters on Torrent Sculptor equal to half that card's mana value, rounded up. // Discard a card, then draw a card. When you discard an instant or sorcery card this way, Flamethrower Sonata deals damage equal to that card's mana value to target creature or planeswalker you don't control.
+text=Ward {2} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.) -- When Torrent Sculptor enters the battlefield, exile an instant or sorcery card from your graveyard. Put a number of +1/+1 counters on Torrent Sculptor equal to half that card's mana value, rounded up. // {1}{R} Flamethrower Sonata
 mana={2}{U}{U}
 type=Creature
 subtype=Merfolk Wizard
@@ -59539,7 +59654,7 @@ type=Enchantment
 [/card]
 [card]
 name=Trudge Garden
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):pay({2}) token(Fungus Beast,Creature Fungus Beast,4/4,trample,green)
+auto=@lifeof(player) from(*[-lifefaker]):pay({2}) token(Fungus Beast,Creature Fungus Beast,4/4,trample,green)
 text=Whenever you gain life, you may pay 2 . If you do, create a 4/4 green Fungus Beast creature token with trample.
 mana={2}{G}
 type=Enchantment
@@ -59819,10 +59934,12 @@ toughness=3
 [/card]
 [card]
 name=Turntimber Symbiosis
-autohand={0}:restriction{can play land} name(Turntimber, Serpentine Wood) name(Turntimber, Serpentine Wood) flip(Turntimber, Serpentine Wood) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Turntimber, Serpentine Wood)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Turntimber, Serpentine Wood) name(Turntimber, Serpentine Wood) flip(Turntimber, Serpentine Wood) forcetype(land)
 auto=choice name(Look seven and put creature with manacost 3 or less) name(Look seven and put creature with manacost 3 or less) reveal:7 optionone name(Get Creature) target(creature[manacost<=3]|reveal) moveTo(myBattlefield) and!( counter(1/1,3) )! optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend restriction{type(creature[manacost<=3;zpos<=7]|myLibrary)~morethan~0} 
 auto=choice name(Look seven and put creature with manacost 4 or more) name(Look seven and put creature with manacost 4 or more) reveal:7 optionone name(Get Creature) target(creature[manacost>=4]|reveal) moveTo(myBattlefield) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend restriction{type(creature[manacost>=4;zpos<=7]|myLibrary)~morethan~0}  
-text=Look at the top seven cards of your library. You may put a creature card from among them onto the battlefield. If that card has converted mana cost 3 or less, it enters with three additional +1/+1 counters on it. Put the rest on the bottom of your library in a random order.
+text=Look at the top seven cards of your library. You may put a creature card from among them onto the battlefield. If that card has converted mana cost 3 or less, it enters with three additional +1/+1 counters on it. Put the rest on the bottom of your library in a random order. // Turntimber, Serpentine Wood
 mana={4}{G}{G}{G}
 type=Sorcery
 [/card]
@@ -59830,7 +59947,7 @@ type=Sorcery
 name=Turntimber, Serpentine Wood
 auto=ability$!name(Choose one) choice name(Pay 3 life) life:-3 _ choice name(Tap) tap(noevent) all(mysource)!$ controller
 auto={T}:add{G}
-text=As Turntimber, Serpentine Wood enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {G}.
+text=As Turntimber, Serpentine Wood enters the battlefield, you may pay 3 life. If you don't, it enters the battlefield tapped. -- {T}: Add {G}. // {4}{G}{G}{G} Turntimber Symbiosis
 type=Land
 [/card]
 [card]
@@ -59934,7 +60051,7 @@ toughness=4
 [/card]
 [card]
 name=Twinblade Paladin
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):counter(1/1)
+auto=@lifeof(player) from(*[-lifefaker]):counter(1/1)
 auto=this(controllerlife > 24) double strike
 text=Whenever you gain life, put a +1/+1 counter on Twinblade Paladin. -- As long as you have 25 or more life, Twinblade Paladin has double strike. (It deals both first-strike and regular combat damage.)
 mana={3}{W}
@@ -60184,14 +60301,16 @@ toughness=3
 name=Umara Skyfalls
 auto=tap(noevent)
 auto={T}:add{U}
-text=Umara Skyfalls enters the battlefield tapped. -- {T}: Add {U}.
+text=Umara Skyfalls enters the battlefield tapped. -- {T}: Add {U}. // {4}{U} Umara Wizard
 type=Land
 [/card]
 [card]
 name=Umara Wizard
-autohand={0}:restriction{can play land} name(Umara Skyfalls) name(Umara Skyfalls) flip(Umara Skyfalls) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Umara Skyfalls)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Umara Skyfalls) name(Umara Skyfalls) flip(Umara Skyfalls) forcetype(land)
 auto=@movedTo(*[instant;sorcery;wizard]|myStack):flying ueot
-text=Whenever you cast an instant, sorcery, or Wizard spell, Umara Wizard gains flying until end of turn.
+text=Whenever you cast an instant, sorcery, or Wizard spell, Umara Wizard gains flying until end of turn. // Umara Skyfalls
 mana={4}{U}
 type=Creature
 subtype=Merfolk Wizard
@@ -60846,10 +60965,12 @@ subtype=Equipment
 [card]
 name=Uvilda, Dean of Perfection
 other={3}{R}{R} name(Nassari, Dean of Expression)
-otherrestriction=can play creature
+otherrestriction=can play creature,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Nassari, Dean of Expression)
 autostack=if paid(alternative) then name(Nassari, Dean of Expression) name(Nassari, Dean of Expression) flip(Nassari, Dean of Expression) forcetype(Legendary Creature)
 auto=this(variable{isflipped}<1) {T}:name(Exile instant or sorcery) target(*[instant;sorcery]|myhand) moveto(exile) and!( transforms((,newability[counter(0/0.3.hone)],newability[@each my upkeep restriction{compare(hascnthone)~morethan~0}:counter(0/0.-1.hone)],newability[@each my upkeep restriction{compare(hascnthone)~equalto~1}:changecost(colorless:-4)],newability[@each my upkeep restriction{compare(hascnthone)~lessthan~2}:canplayfromexile])) forever
-text={T}: You may exile an instant or sorcery card from your hand and put three hone counters on it. It gains "At the beginning of your upkeep, if this card is exiled, remove a hone counter from it" and "When the last hone counter is removed from this card, if it's exiled, you may cast it. It costs 4 less to cast this way."
+text={T}: You may exile an instant or sorcery card from your hand and put three hone counters on it. It gains "At the beginning of your upkeep, if this card is exiled, remove a hone counter from it" and "When the last hone counter is removed from this card, if it's exiled, you may cast it. It costs 4 less to cast this way." // {3}{R}{R} Nassari, Dean of Expression
 mana={2}{U}
 type=Legendary Creature
 subtype=Djinn Wizard
@@ -60917,9 +61038,11 @@ toughness=6
 [/card]
 [card]
 name=Valakut Awakening
-autohand={0}:restriction{can play land} name(Valakut Stoneforge) name(Valakut Stoneforge) flip(Valakut Stoneforge) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Valakut Stoneforge)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Valakut Stoneforge) name(Valakut Stoneforge) flip(Valakut Stoneforge) forcetype(land)
 auto=name(Put cards and draw that many) name(Put cards and draw that many) all(*|myhand) transforms((,newability[draw:1],newability[bottomoflibrary])])) && draw:1
-text=Put any number of cards from your hand on the bottom of your library, then draw that many cards plus one.
+text=Put any number of cards from your hand on the bottom of your library, then draw that many cards plus one. // Valakut Stoneforge
 mana={2}{R}
 type=Instant
 [/card]
@@ -60935,7 +61058,7 @@ type=Enchantment
 name=Valakut Stoneforge
 auto=tap(noevent)
 auto={T}:add{R}
-text=Valakut Stoneforge enters the battlefield tapped. -- {T}: Add {R}.
+text=Valakut Stoneforge enters the battlefield tapped. -- {T}: Add {R}. // {2}{R} Valakut Awakening
 type=Land
 [/card]
 [card]
@@ -60953,10 +61076,12 @@ toughness=2
 name=Valentin, Dean of the Vein
 abilities=menace,lifelink
 other={2}{G}{G} name(Lisette, Dean of the Root)
-otherrestriction=can play creature
+otherrestriction=can play creature,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Lisette, Dean of the Root)
 autostack=if paid(alternative) then name(Lisette, Dean of the Root) name(Lisette, Dean of the Root) flip(Lisette, Dean of the Root) forcetype(Legendary Creature)
 auto=@movedto(creature[-token]|graveyard) from(opponentbattlefield) restriction{compare(isflipped)~equalto~0}:transforms((,newability[all(creature[zpos=type:*:opponentgraveyard]|opponentgraveyard) moveto(opponentexile) and!( pay({2}) name(pay 2 and create pest) token(Pest^Creature Pest^1/1^green^blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )! )! ])) oneshot
-text=Menace, lifelink -- If a nontoken creature an opponent controls would die, exile it instead. When you do, you may pay {2}. If you do, create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life."
+text=Menace, lifelink -- If a nontoken creature an opponent controls would die, exile it instead. When you do, you may pay {2}. If you do, create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life." // {2}{G}{G} Lisette, Dean of the Root
 mana={B}
 type=Legendary Creature
 subtype=Vampire Warlock
@@ -60989,7 +61114,9 @@ toughness=1
 [card]
 name=Valki, God of Lies
 other={5}{B}{R} name(Tibalt, Cosmic Impostor)
-otherrestriction=can play planeswalker
+otherrestriction=can play planeswalker,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Tibalt, Cosmic Impostor)
 autostack=if paid(alternative) then flip(Tibalt, Cosmic Impostor) forcetype(Legendary Planeswalker)
 auto=ifnot paid(alternative) then if type(creature|opponenthand)~morethan~0 then name(Reveal hand and exile creature) name(Reveal hand and exile creature) name(Reveal hand and exile creature) target(creature|opponenthand) imprint and!( all(this) transforms((,newability[@movedto(this|nonbattlezone) from(battlefield):name(Put back exiled creature) target(creature[evictname]|opponentexile) moveTo(opponenthand)])) oneshot )!
 auto=ifnot paid(alternative) then if type(creature|opponenthand)~equalto~0 then name(Reveal hand) name(Reveal hand) name(Reveal hand) target(*|opponenthand) moveto(opponenthand)
@@ -61015,7 +61142,7 @@ auto=this(variable{hasevict}>0) this(variable{evictmc}=17) this(variable{iscopie
 auto=this(variable{hasevict}>0) this(variable{evictmc}=18) this(variable{iscopied}<1) {18}:name(Becomes copy of exiled creature) copy target(creature[evictname]|opponentexile)
 auto=this(variable{hasevict}>0) this(variable{evictmc}=19) this(variable{iscopied}<1) {19}:name(Becomes copy of exiled creature) copy target(creature[evictname]|opponentexile)
 auto=this(variable{hasevict}>0) this(variable{evictmc}>=20) this(variable{iscopied}<1) {20}:name(Becomes copy of exiled creature) copy target(creature[evictname]|opponentexile)
-text=When Valki enters the battlefield, each opponent reveals their hand. For each opponent, exile a creature card they revealed this way until Valki leaves the battlefield. -- {X}: Choose a creature card exiled with Valki with converted mana cost X. Valki becomes a copy of that card.
+text=When Valki enters the battlefield, each opponent reveals their hand. For each opponent, exile a creature card they revealed this way until Valki leaves the battlefield. -- {X}: Choose a creature card exiled with Valki with converted mana cost X. Valki becomes a copy of that card. // {5}{B}{R} Tibalt, Cosmic Impostor
 mana={1}{B}
 type=Legendary Creature
 subtype=God
@@ -61027,7 +61154,7 @@ name=Valkmira, Protector's Shield
 auto=lord(*|mybattlefield) absorb
 auto=@damageof(player):life:1 controller
 auto=@movedto(*|opponentstack):target(*|opponentstack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
-text=If a source an opponent controls would deal damage to you or a permanent you control, prevent 1 of that damage. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}.
+text=If a source an opponent controls would deal damage to you or a permanent you control, prevent 1 of that damage. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}. // {2}{W} Reidane, God of the Worthy
 mana={3}{W}
 type=Legendary Artifact
 [/card]
@@ -61268,9 +61395,11 @@ toughness=3
 [/card]
 [card]
 name=Vastwood Fortification
-autohand={0}:restriction{can play land} name(Vastwood Thicket) name(Vastwood Thicket) flip(Vastwood Thicket) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Vastwood Thicket)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Vastwood Thicket) name(Vastwood Thicket) flip(Vastwood Thicket) forcetype(land)
 auto=name(Choose a creature) name(Choose a creature) target(creature) counter(1/1,1)
-text=Put a +1/+1 counter on target creature.
+text=Put a +1/+1 counter on target creature. // Vastwood Thicket
 mana={G}
 type=Sorcery
 [/card]
@@ -61288,7 +61417,7 @@ type=Sorcery
 name=Vastwood Thicket
 auto=tap(noevent)
 auto={T}:add{G}
-text=Vastwood Thicket enters the battlefield tapped. -- {T}: Add {G}.
+text=Vastwood Thicket enters the battlefield tapped. -- {T}: Add {G}. // {G} Vastwood Fortification
 type=Land
 [/card]
 [card]
@@ -61442,7 +61571,7 @@ toughness=2
 [card]
 name=Veinwitch Coven
 abilities=menace
-auto=@lifeof(player) from(*[-Alhammarret's Archive;-Angel of Vitality;-Boon Reflection;-Honor Troll]):pay({B}) target(creature|mygraveyard) moveto(myhand)
+auto=@lifeof(player) from(*[-lifefaker]):pay({B}) target(creature|mygraveyard) moveto(myhand)
 text=Menace -- Whenever you gain life, you may pay {B}. If you do, return target creature card from your graveyard to your hand.
 mana={2}{B}
 type=Creature
@@ -62906,12 +63035,14 @@ type=Sorcery
 [card]
 name=Wandering Archaic
 other={3} name(Explore the Vastlands)
-otherrestriction=can play sorcery
+otherrestriction=can play sorcery,compare(isflipped)~equalto~1
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Explore the Vastlands)
 autostack=if paid(alternative) then transforms((,newability[moveto(mygraveyard)],newability[activate castcard(named!:explore the vastlands:!)])) forever
 auto=@movedto(*[instant;sorcery]|opponentstack):all(trigger[to]) transforms((,newability[[pay[[{2}]] name(pay 2 mana) donothing?counter(0/0.1.WanderingEffect)])) oneshot
 auto=@counteradded(0/0,1,WanderingEffect) from(instant|opponentstack):may name(Copy spell) all(instant[counter{0/0.1.WanderingEffect}]|opponentstack) activate castcard(copied)
 auto=@counteradded(0/0,1,WanderingEffect) from(sorcery|opponentstack):may name(Copy spell) all(sorcery[counter{0/0.1.WanderingEffect}]|opponentstack) activate castcard(copied)
-text=Whenever an opponent casts an instant or sorcery spell, they may pay {2}. If they don't, you may copy that spell. You may choose new targets for the copy. // Each player looks at the top five cards of their library and may reveal a land card and/or an instant or sorcery card from among them. Each player puts the cards they revealed this way into their hand and the rest on the bottom of their library in a random order. Each player gains 3 life.
+text=Whenever an opponent casts an instant or sorcery spell, they may pay {2}. If they don't, you may copy that spell. You may choose new targets for the copy. // {3} Explore the Vastlands
 mana={5}
 type=Creature
 subtype=Avatar
@@ -65031,15 +65162,17 @@ type=Sorcery
 name=Zof Bloodbog
 auto=tap(noevent)
 auto={T}:add{B}
-text=Zof Bloodbog enters the battlefield tapped. -- {T}: Add {B}.
+text=Zof Bloodbog enters the battlefield tapped. -- {T}: Add {B}. // {4}{B}{B} Zof Consumption
 type=Land
 [/card]
 [card]
 name=Zof Consumption
-autohand={0}:restriction{can play land} name(Zof Bloodbog) name(Zof Bloodbog) flip(Zof Bloodbog) forcetype(land)
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(Zof Bloodbog)
+autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Zof Bloodbog) name(Zof Bloodbog) flip(Zof Bloodbog) forcetype(land)
 auto=life:-4 opponent
 auto=life:4 controller
-text=Each opponent loses 4 life and you gain 4 life.
+text=Each opponent loses 4 life and you gain 4 life. // Zof Bloodbog
 mana={4}{B}{B}
 type=Sorcery
 [/card]

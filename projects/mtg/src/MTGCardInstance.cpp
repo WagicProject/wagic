@@ -97,7 +97,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
         return snapShot;
     }
 
-void MTGCardInstance::copy(MTGCardInstance * card)
+void MTGCardInstance::copy(MTGCardInstance * card, bool nolegend)
 {
     MTGCard * source = NULL;
     if(card->isACopier && card->copiedID)
@@ -130,7 +130,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     types.clear();//reset types.. fix copying man lands... the copier becomes an unanimated land...
     for (size_t i = 0; i < data->types.size(); i++)
     {
-        types.push_back(data->types[i]);
+        if(!(nolegend && data->types[i] == Subtypes::TYPE_LEGENDARY)) // Check if the copy has to be legendary or not. (e.g. Echoing Equation)
+            types.push_back(data->types[i]);
     }
 
     colors = data->colors;
@@ -512,6 +513,12 @@ int MTGCardInstance::toGrave( bool forced )
     {
         p->game->putInZone(this, p->game->inPlay, owner->game->exile);
         basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
+        return 1;
+    }
+    if (basicAbilities[(int)Constants::DOUBLEFACEDEATH] || basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH])
+    {
+        p->game->putInZone(this, p->game->inPlay, owner->game->temp);
+        basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = 0;
         return 1;
     }
     if (basicAbilities[(int)Constants::HANDDEATH] || basicAbilities[(int)Constants::GAINEDHANDDEATH])

@@ -1412,9 +1412,10 @@ class AACopier: public ActivatedAbility
 {
 public:
     bool isactivated;
+    string options;
     vector<MTGAbility *> currentAbilities;
     MTGAbility * andAbility;
-    AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, string optionsList = "");
     int resolve();
     const string getMenuText();
     AACopier * clone() const;
@@ -4215,6 +4216,18 @@ public:
 
     const string getMenuText();
     AAMeld * clone() const;
+};
+
+/* doubleside */
+class AATurnSide : public ActivatedAbility
+{
+public:
+    string _SideName;
+    AATurnSide(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, string SideName = "");
+    int resolve();
+
+    const string getMenuText();
+    AATurnSide * clone() const;
 };
 
 /* flip*/

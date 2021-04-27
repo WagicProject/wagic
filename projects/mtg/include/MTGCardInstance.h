@@ -248,7 +248,7 @@ public:
     int removeCantBeBlockerOfCard(MTGCardInstance * card, int erase = 0);
     int cantBeBlockerOfCard(MTGCardInstance * card);
 
-    void copy(MTGCardInstance * card);
+    void copy(MTGCardInstance * card, bool nolegend = false);
 
     void setUntapping();
     void resetUntapping(); // Fix to avoid the untap on frozen card by clicking on them after the untap phase.

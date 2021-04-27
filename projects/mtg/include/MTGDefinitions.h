@@ -305,7 +305,10 @@ class Constants
       REPLACESCRY = 178,
       HASNOKICKER = 179,
       UNDAMAGEABLE = 180,
-      NB_BASIC_ABILITIES = 181,
+      LIFEFAKER = 181,
+      DOUBLEFACEDEATH = 182,
+      GAINEDDOUBLEFACEDEATH = 183,
+      NB_BASIC_ABILITIES = 184,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

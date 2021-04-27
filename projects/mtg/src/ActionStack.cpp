@@ -591,6 +591,12 @@ int PutInGraveyard::resolve()
         card->controller()->game->putInZone(card, zone, card->owner->game->exile);
         return 1;
     }
+    if (card->basicAbilities[(int)Constants::DOUBLEFACEDEATH] || card->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH])
+    {
+        card->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = 0;
+        card->controller()->game->putInZone(card, zone, card->owner->game->temp);
+        return 1;
+    }
     if (card->basicAbilities[(int)Constants::HANDDEATH] || card->basicAbilities[(int)Constants::GAINEDHANDDEATH])
     {
         card->basicAbilities[(int)Constants::GAINEDHANDDEATH] = 0;
