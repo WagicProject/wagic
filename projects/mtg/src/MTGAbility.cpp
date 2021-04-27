@@ -4305,7 +4305,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     //doubleside
     vector<string> splitSide = parseBetween(s, "doubleside(", ")", true);
-    if (splitSide.size())
+    if (splitSide.size() && card->currentZone != card->controller()->game->battlefield) // It's not allowed to turn side on battlefield.
     {
         string splitSideName = "";
         if (splitSide[1].size())
