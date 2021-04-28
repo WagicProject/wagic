@@ -632,9 +632,11 @@ int OrderedAIAction::getEfficiency()
             efficiency = 90;
         }
     }
-    else if (dynamic_cast<AATurnSide *>(a))
+    else if (AATurnSide * ats = dynamic_cast<AATurnSide *>(a))
     {
-        efficiency = 0; // AI does not have to use the doubleside ability to avoid loops.
+        efficiency = 0; // AI does not have to use the doubleside ability to avoid loops but it can randomly choose to flip card and cast its back side.
+        if(std::rand() % 2)
+            ats->source->isFlipped = !ats->source->isFlipped;
     }
     else if (ATokenCreator * atc = dynamic_cast<ATokenCreator *>(a))
     {

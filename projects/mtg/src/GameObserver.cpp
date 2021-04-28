@@ -2125,8 +2125,9 @@ void GameObserver::logAction(Player* player, const string& s) {
 void GameObserver::logAction(MTGCardInstance* card, MTGGameZone* zone, size_t index, int result) {
     stringstream stream;
     if(zone == NULL) zone = card->currentZone;
+    string zoneName = (zone != NULL)?zone->getName():"UnknownZone"; // Fixed a crash when zone pointer was null.
     stream << "p" << ((card->controller()==players[0])?"1.":"2.")
-           << zone->getName()<< "[" << index << "] "
+           << zoneName << "[" << index << "] "
            << result << card->getLCName();
     logAction(stream.str());
 }
