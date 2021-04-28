@@ -45,14 +45,12 @@ auto=sethand:7
 auto=@each my draw:draw:1
 auto=maxPlay(land)1
 
-
 #Lands Mana Rules
 auto=lord(Plains[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{W}
 auto=lord(Island[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{U}
 auto=lord(Swamp[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{B}
 auto=lord(Mountain[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{R}
 auto=lord(Forest[-noactivatedability;-nomanaability;-notapability;land]|MyBattlefield) {T}:Add{G}
-
 
 #Mana Empties from manapool at the end of each phase
 auto=@each untap:removeMana(*)
@@ -67,6 +65,23 @@ auto=@each combatEnds:removeMana(*)
 auto=@each secondmain:removeMana(*)
 auto=@each end:removeMana(*)
 auto=@each cleanup:removeMana(*)
+
+#Modal dual face card flip back rule
+auto=@each untap restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each upkeep restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each draw restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each firstmain restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each combatbegins restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each attackers restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each blockers restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each combatdamage restriction{type(*[isflipped]|nonbattlezone))~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each combatEnds restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each secondmain restriction{type(*[isflipped]|nonbattlezone))~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each end restriction{compare(type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@each cleanup restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@movedto(other *|nonbattlezone) restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@movedto(other *|stack) restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
+auto=@movedto(other *|battlefield) restriction{type(*[isflipped]|nonbattlezone)~morethan~0}:ability$!all(*[isflipped]|nonbattlezone) doubleside()!$ controller
 
 #Monarch rule
 auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:draw:1

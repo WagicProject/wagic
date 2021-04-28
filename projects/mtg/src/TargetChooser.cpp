@@ -590,6 +590,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->isToken = 1;
                     }
                 }
+                //Has been flipped
+                else if (attribute.find("isflipped") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->isFlipped = false;
+                    }
+                    else
+                    {
+                        cd->isFlipped = true;
+                    }
+                }
                 //Has x in cost
                 else if (attribute.find("hasx") != string::npos)
                 {

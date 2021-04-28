@@ -281,6 +281,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         match = NULL;
     }
 
+    if (isFlipped != card->isFlipped)
+    {
+        match = NULL;
+    }
+
     if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped()))
     {
         match = NULL;

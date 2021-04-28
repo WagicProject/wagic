@@ -4349,12 +4349,15 @@ int AATurnSide::resolve()
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be turned, they will follow the fate of top-card
         MTGCard * fcard;
         MTGCardInstance* sideCard;
+        if(_target->controller()->isAI() && _target->isFlipped) _target->isFlipped = false; // If it's AI calling back we just have to reset isFLipped flag and then return.
+        if(!_target->isFlipped && _SideName == "") return 0; // No need to turn front if card has not been flipped before.
         if(!_target->isFlipped){
             fcard = MTGCollection()->getCardByName(_SideName);
             if(!fcard) return 0;
             sideCard = NEW MTGCardInstance(fcard, _target->controller()->game);
             _target->nameOrig = _target->name; 
             _target->name = sideCard->name;
+            _target->setName(sideCard->name);
             if(!sideCard) return 0;
             if(sideCard->getManaCost()){
                 if(_target->getManaCost()->getAlternative()){
@@ -4367,6 +4370,7 @@ int AATurnSide::resolve()
             fcard = MTGCollection()->getCardByName(_target->nameOrig);
             if(!fcard) return 0;
             _target->name = _target->nameOrig;
+            _target->setName(_target->nameOrig);
             _target->nameOrig = "";
             sideCard = NEW MTGCardInstance(fcard, _target->controller()->game);
             if(!sideCard) return 0;
@@ -4375,13 +4379,26 @@ int AATurnSide::resolve()
                 _target->getManaCost()->copy(sideCard->getManaCost()); // Restore the original side cost mana symbols.
             }
         }
-        for (int i = ((int)_target->types.size())-1; i >= 0; --i) // Load all the types from the current side
-            _target->removeType(_target->types[i]);
-        for (int i = 0; i < ((int)sideCard->types.size()); i++)
-            _target->addType(sideCard->types[i]);
+        if(_target->owner->playMode != Player::MODE_TEST_SUITE)
+        {
+            _target->setMTGId(sideCard->getMTGId());
+            _target->setId = sideCard->setId;
+        }
+        _target->power = sideCard->power;
+        _target->life = sideCard->life;
+        _target->toughness = sideCard->toughness;
+        _target->origpower = sideCard->origpower;
+        _target->origtoughness = sideCard->origtoughness;
+        _target->basepower = sideCard->basepower;
+        _target->basetoughness = sideCard->basetoughness;
+        _target->types = sideCard->types;
         _target->text = sideCard->text;
         _target->formattedText = sideCard->formattedText;
+        _target->magicText = sideCard->magicText;
+        _target->colors = sideCard->colors;
+        _target->basicAbilities = sideCard->basicAbilities;
         _target->isFlipped = !_target->isFlipped;
+        _target->mPropertiesChangedSinceLastUpdate = true;
         SAFE_DELETE(sideCard);
         return 1;
     }
