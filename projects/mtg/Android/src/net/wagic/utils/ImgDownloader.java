@@ -1876,7 +1876,8 @@ public class ImgDownloader {
                 id.equals("6164t") || id.equals("456522t") || id.equals("456545t") || id.equals("397624t") ||
                 id.equals("52637t") || id.equals("52945t") || id.equals("53460t") || id.equals("53473t") ||
                 id.equals("420600t") || id.equals("294436t") || id.equals("489333t") || id.equals("495977t") ||
-                id.equals("295775t") || id.equals("295714t") || id.equals("295698t") || id.equals("295635t"))
+                id.equals("295775t") || id.equals("295714t") || id.equals("295698t") || id.equals("295635t") ||
+                id.equals("296365t"))
             tokenurl = "https://deckmaster.info/images/cards/MBS/-216-hr.jpg";
         else if (id.equals("53057t") || id.equals("425825t"))
             tokenurl = "https://deckmaster.info/images/cards/SOM/-226-hr.jpg";
@@ -2953,7 +2954,7 @@ public class ImgDownloader {
                     || scryset.equals("PAL05") || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL") || scryset.equals("HA1")
                     || scryset.equals("SLD") || scryset.equals("MB1") || scryset.equals("HA2") || scryset.equals("HA3") || scryset.equals("SS3")
                     || scryset.equals("AKR") || scryset.equals("ANB") || scryset.equals("PLIST") || scryset.equals("KLR") || scryset.equals("CC1")
-                    || scryset.equals("ATH") || scryset.equals("HA4") || scryset.equals("TSR")){
+                    || scryset.equals("ATH") || scryset.equals("HA4") || scryset.equals("TSR") || scryset.equals("HA5")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -3144,7 +3145,7 @@ public class ImgDownloader {
                     && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL") && !scryset.equals("HA1")
                     && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2") && !scryset.equals("HA3") && !scryset.equals("SS3")
                     && !scryset.equals("AKR") && !scryset.equals("ANB") && !scryset.equals("PLIST") && !scryset.equals("KLR") && !scryset.equals("CC1")
-                    && !scryset.equals("ATH") && !scryset.equals("HA4") && !scryset.equals("TSR")){
+                    && !scryset.equals("ATH") && !scryset.equals("HA4") && !scryset.equals("TSR") && !scryset.equals("HA5")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -3259,7 +3260,7 @@ public class ImgDownloader {
                     && !scryset.equals("PAL05") && !scryset.equals("PAL06") && !scryset.equals("PAL99") && !scryset.equals("PARL") && !scryset.equals("HA1")
                     && !scryset.equals("SLD") && !scryset.equals("MB1") && !scryset.equals("HA2") && !scryset.equals("HA3") && !scryset.equals("SS3")
                     && !scryset.equals("AKR") && !scryset.equals("ANB") && !scryset.equals("PLIST") && !scryset.equals("KLR") && !scryset.equals("CC1")
-                    && !scryset.equals("ATH") && !scryset.equals("HA4") && !scryset.equals("TSR")){
+                    && !scryset.equals("ATH") && !scryset.equals("HA4") && !scryset.equals("TSR") && !scryset.equals("HA5")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -3426,7 +3427,7 @@ public class ImgDownloader {
                             || scryset.equals("PAL06") || scryset.equals("PAL99") || scryset.equals("PARL") || scryset.equals("HA1") || scryset.equals("SLD")
                             || scryset.equals("MB1") || scryset.equals("HA2") || scryset.equals("HA3") || scryset.equals("SS3") || scryset.equals("AKR")
                             || scryset.equals("ANB") || scryset.equals("PLIST") || scryset.equals("KLR") || scryset.equals("CC1") || scryset.equals("ATH")
-                            || scryset.equals("HA4") || scryset.equals("TSR")){
+                            || scryset.equals("HA4") || scryset.equals("TSR") || scryset.equals("HA5")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){

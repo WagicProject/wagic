@@ -1,0 +1,137 @@
+[meta]
+author=Wagic Team
+name=Historic Anthology 5
+orderindex=PRO-ZB.HA5
+year=2021-05-27
+total=26
+[/meta]
+[card]
+primitive=Thopter
+id=-296365
+rarity=T
+[/card]
+[card]
+primitive=Atarka's Command
+id=296341
+rarity=R
+[/card]
+[card]
+primitive=Ancient Grudge
+id=296342
+rarity=U
+[/card]
+[card]
+primitive=Court Homunculus
+id=296343
+rarity=C
+[/card]
+[card]
+primitive=Dromoka's Command
+id=296344
+rarity=R
+[/card]
+[card]
+primitive=Dragonstorm
+id=296345
+rarity=R
+[/card]
+[card]
+primitive=Elesh Norn, Grand Cenobite
+id=296346
+rarity=M
+[/card]
+[card]
+primitive=Grisly Salvage
+id=296347
+rarity=C
+[/card]
+[card]
+primitive=Into the North
+id=296348
+rarity=C
+[/card]
+[card]
+primitive=Intangible Virtue
+id=296349
+rarity=U
+[/card]
+[card]
+primitive=Ichor Wellspring
+id=296350
+rarity=C
+[/card]
+[card]
+primitive=Jin-Gitaxias, Core Augur
+id=296351
+rarity=M
+[/card]
+[card]
+primitive=Kolaghan's Command
+id=296352
+rarity=R
+[/card]
+[card]
+primitive=Merfolk Looter
+id=296353
+rarity=C
+[/card]
+[card]
+primitive=Ojutai's Command
+id=296354
+rarity=R
+[/card]
+[card]
+primitive=Reverse Engineer
+id=296355
+rarity=U
+[/card]
+[card]
+primitive=Relic of Progenitus
+id=296356
+rarity=C
+[/card]
+[card]
+primitive=Ray of Revelation
+id=296357
+rarity=C
+[/card]
+[card]
+primitive=Stifle
+id=296358
+rarity=R
+[/card]
+[card]
+primitive=Silumgar's Command
+id=296359
+rarity=R
+[/card]
+[card]
+primitive=Sheoldred, Whispering One
+id=296360
+rarity=M
+[/card]
+[card]
+primitive=Trash for Treasure
+id=296361
+rarity=U
+[/card]
+[card]
+primitive=Urabrask the Hidden
+id=296362
+rarity=M
+[/card]
+[card]
+primitive=Vault Skirge
+id=296363
+rarity=C
+[/card]
+[card]
+primitive=Vorinclex, Voice of Hunger
+id=296364
+rarity=M
+[/card]
+[card]
+primitive=Whirler Rogue
+id=296365
+rarity=U
+[/card]
