@@ -1270,6 +1270,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             flipresult = 0;
         } else if(res.size() && (res[1] == "tails" || res[1] == "tail")){
             flipresult = 1;
+        } else if(res.size() && res[1] == "won"){
+            flipresult = 2;
+        } else if(res.size() && res[1] == "lost"){
+            flipresult = 3;
         }
         string playerName = "";
         vector<string>from = parseBetween(s, "from(",")");
@@ -1452,9 +1456,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser * tc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
         if(exception)
-            return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate, exception->source);
+            return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate, limitOnceATurn, exception->source);
         else
-            return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate);
+            return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate, limitOnceATurn);
     }
 
     if (s.find("counterremoved(") != string::npos)
@@ -1469,9 +1473,23 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser * tc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
         if(exception)
-            return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate, exception->source);
+            return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate, limitOnceATurn, exception->source);
         else
-            return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate);
+            return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate, limitOnceATurn);
+    }
+
+    if (s.find("countermod(") != string::npos)
+    {
+        vector<string>splitCounter = parseBetween(s,"countermod(",")");
+        Counter * counter = NULL;
+        if(s.find("(any)") == string::npos)
+            counter = parseCounter(splitCounter[1],card,NULL);
+        TargetChooser * tc = parseSimpleTC(s, "from", card);
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
+        if(exception)
+            return NEW TrCounter(observer, id, card, counter, tc, 2, once, false, limitOnceATurn, exception->source);
+        else
+            return NEW TrCounter(observer, id, card, counter, tc, 2, once, false, limitOnceATurn);
     }
 
     int who = 0;
@@ -3353,8 +3371,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-        //cast a card without paying it's manacost
-     vector<string> splitCastCard = parseBetween(s, "castcard(", ")");
+    //cast a card without paying it's manacost
+    vector<string> splitCastCard = parseBetween(s, "castcard(", ")");
     if (splitCastCard.size())
     {
         string builtHow = splitCastCard[1];
@@ -3381,10 +3399,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             vector<string> splitCastKicked = parseBetween(splitCastCard[1], "kicked!:", ":!");
             if(splitCastKicked.size())
             {
-                kicked = atoi(splitCastKicked[1].c_str());
+                WParsedInt * val = NEW WParsedInt(splitCastKicked[1], NULL, card);
+                kicked = val->getValue();
             }
         }
-        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness, alternative, kicked, flipped);
+        int costx = 0;
+        if(splitCastCard[1].find("costx!:") != string::npos)
+        {
+            vector<string> splitCastCostX = parseBetween(splitCastCard[1], "costx!:", ":!");
+            if(splitCastCostX.size())
+            {
+                WParsedInt * val = NEW WParsedInt(splitCastCostX[1], NULL, card);
+                costx = val->getValue();
+            }
+        }
+        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness, alternative, kicked, costx, flipped);
         a->oneShot = false;
         if(splitCastCard[1].find("trigger[to]") != string::npos)
         {
@@ -4360,37 +4389,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
     }
 
-    //Change Power/Toughness
-    WParsedPT * wppt = NEW WParsedPT(s, spell, card);
-    bool nonstatic = false;
-    if (wppt->ok)
-    {
-        if(s.find("nonstatic") != string::npos)
-            nonstatic = true;
-        if (!activated)
-        {
-            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
-            {
-                return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);
-            }
-            else if(s.find("cdaactive") != string::npos)
-            {
-                MTGAbility * a = NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
-                a->forcedAlive = 1;
-                //a->forceDestroy = -1;
-                return a;
-                //return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
-            }
-            else
-                return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,nonstatic);
-        }
-        return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);
-    }
-    else
-    {
-        delete wppt;
-    }
-
     //Mana Producer
     found = s.find("add");
     if (found != string::npos)
@@ -4505,7 +4503,36 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NULL;
     }
     
-   
+    //Change Power/Toughness
+    WParsedPT * wppt = NEW WParsedPT(s, spell, card);
+    bool nonstatic = false;
+    if (wppt->ok)
+    {
+        if(s.find("nonstatic") != string::npos)
+            nonstatic = true;
+        if (!activated)
+        {
+            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
+            {
+                return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);
+            }
+            else if(s.find("cdaactive") != string::npos)
+            {
+                MTGAbility * a = NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
+                a->forcedAlive = 1;
+                //a->forceDestroy = -1;
+                return a;
+                //return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
+            }
+            else
+                return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,nonstatic);
+        }
+        return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);
+    }
+    else
+    {
+        delete wppt;
+    }   
 
     //affinity based on targetchooser
     vector<string> splitNewAffinity = parseBetween(s, "affinity(", ")");

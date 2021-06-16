@@ -1568,6 +1568,18 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.hasXCost = 1;
                     }
                 }
+                //has been discarded
+                else if (attribute.find("discarded") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDdiscarded = -1;
+                    }
+                    else
+                    {
+                        cd.CDdiscarded = 1;
+                    }
+                }
                 //put in its zone this turn
                 else if (attribute.find("fresh") != string::npos)
                 {

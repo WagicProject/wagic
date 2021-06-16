@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards up to Aether Revolt) as of 3/14/2017
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 25-04-2021
+#I sorted this programatically - Vitty85 16-06-2021
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -1793,6 +1793,12 @@ name=Checks and Balances
 text=Whenever any spell is played, counter that spell if each player, other than the caster and his or her teammates, agrees to choose and discard a card. Those players must discard those cards after agreeing. -- Checks and Balances may be played only in a game with three or more players.
 mana={2}{U}
 type=Enchantment
+[/card]
+[card]
+name=Chef's Kiss
+text=Gain control of target spell that targets only a single permanent or player. Copy it, then reselect the targets at random for the spell and the copy. The new targets can't be you or a permanent you control.
+mana={1}{R}{R}
+type=Instant
 [/card]
 [card]
 name=Chipper Chopper
@@ -8590,13 +8596,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Petrified Plating
-text=Enchant creature -- Enchanted creature gets +2/+2. -- Suspend 2—{G} (Rather than cast this card from your hand, you may pay {G} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Phantasmagorian
 text=When you cast Phantasmagorian, any player may discard three cards. If a player does, counter Phantasmagorian. -- Discard three cards: Return Phantasmagorian from your graveyard to your hand.
 mana={5}{B}{B}
@@ -9950,15 +9949,6 @@ name=Samite Ministration
 text=Prevent all damage that would be dealt to you this turn by a source of your choice. Whenever damage from a black or red source is prevented this way this turn, you gain that much life.
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Sanctum Prelate
-text=As Sanctum Prelate enters the battlefield, choose a number. -- Noncreature spells with converted mana cost equal to the chosen number can't be cast.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
 [/card]
 [card]
 name=Sanctum of Serra
@@ -13578,6 +13568,15 @@ type=Creature
 subtype=Ooze
 power=1
 toughness=1
+[/card]
+[card]
+name=Yusri, Fortune's Flame
+text=Flying -- Whenever Yusri, Fortune's Flame attacks, choose a number between 1 and 5. Flip that many coins. For each flip you win, draw a card. For each flip you lose, Yusri deals 2 damage to you. If you won five flips this way, you may cast spells from your hand this turn without paying their mana costs.
+mana={1}{U}{R}
+type=Legendary Creature
+subtype=Efreet
+power=2
+toughness=3
 [/card]
 [card]
 name=Zada, Hedron Grinder

@@ -9234,8 +9234,8 @@ AEquip * AEquip::clone() const
 }
 
 // casting a card for free, or casting a copy of a card.
-AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative, int kicked, bool flipped) :
-   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked), flipped(flipped)
+AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative, int kicked, int costx, bool flipped) :
+   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked), costx(costx), flipped(flipped)
 {
     target = _target;
     andAbility = NULL;
@@ -9441,6 +9441,18 @@ int AACastCard::resolveSpell()
             Spell * spell = NULL;
             MTGCardInstance * copy = source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack);
 
+            if(alternative)
+                copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
+            if(kicked > 0){
+                copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
+                copy->kicked = kicked;
+            }
+            if(costx > 0){
+                copy->castX = costx;
+                copy->setX = costx;
+                copy->X = costx;
+            }
+
             if (game->targetChooser)
             {
                 game->targetChooser->Owner = source->controller();
@@ -9464,8 +9476,10 @@ int AACastCard::resolveSpell()
             }
             if (!copy->has(Constants::STORM))
             {
-                copy->X = 0;
-                copy->castX = copy->X;
+                if(costx <= 0){
+                    copy->X = 0;
+                    copy->castX = copy->X;
+                }
             }
             if(andAbility)
             {
@@ -9514,6 +9528,11 @@ int AACastCard::resolveSpell()
             copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
             copy->kicked = kicked;
         }
+        if(costx > 0){
+            copy->castX = costx;
+            copy->setX = costx;
+            copy->X = costx;
+        }
         if (game->targetChooser)
         {
             game->targetChooser->Owner = source->controller();
@@ -9549,8 +9568,10 @@ int AACastCard::resolveSpell()
         }
         if (!copy->has(Constants::STORM))
         {
-            copy->X = _target->X;
-            copy->castX = copy->X;
+            if(costx <= 0){
+                copy->X = _target->X;
+                copy->castX = copy->X;
+            }
         }
         if(andAbility)
         {

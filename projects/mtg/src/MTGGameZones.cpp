@@ -525,6 +525,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (!(copy = from->removeCard(card, doCopy)))
         return NULL; //ERROR
 
+    // Set the mana value used to cast this spell
+    if((to == g->players[0]->game->stack || to == g->players[1]->game->stack) && card->getManaCost() && card->getManaCost()->getManaUsedToCast()){
+        copy->getManaCost()->setManaUsedToCast(NEW ManaCost());
+        copy->getManaCost()->getManaUsedToCast()->copy(card->getManaCost()->getManaUsedToCast());
+    }
+
     if(!card->hasType(Subtypes::TYPE_LEGENDARY) && copy->hasType(Subtypes::TYPE_LEGENDARY)) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
         copy->removeType(Subtypes::TYPE_LEGENDARY);
 

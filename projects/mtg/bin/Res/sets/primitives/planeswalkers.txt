@@ -1,7 +1,7 @@
 grade=borderline
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 25-04-2021
+#We sorted this in alphabetical order - Luruz & Vitty85 16-06-2021
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -601,6 +601,18 @@ type=Legendary Planeswalker
 subtype=Dack
 [/card]
 [card]
+name=Dakkon, Shadow Slayer
+auto=counter(0/0,type:land:myBattlefield,loyalty)
+aicode=activate transforms((,newability[surveil],newability[all(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) transforms((,newability[if compare(genrand2)~equalto~1 then moveto(mygraveyard)])) oneshot])) oneshot
+auto={C(0/0,1,Loyalty)}:name(+1: Surveil 1) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
+auto={C(0/0,-3,Loyalty)}:name(-3: Exile creature) target(creature|battlefield) moveto(exile)
+auto={C(0/0,-6,Loyalty)}:name(-6: Put artifact in play) target(artifact|myHand,myGraveyard) moveto(myBattlefield)
+text=Dakkon, Shadow Slayer enters the battlefield with a number of loyalty counters on him equal to the number of lands you control. -- +1: Surveil 2. -- -3: Exile target creature. -- -6: You may put an artifact card from your hand or graveyard onto the battlefield.
+mana={W}{U}{B}
+type=Legendary Planeswalker
+subtype=Dakkon
+[/card]
+[card]
 name=Daretti, Ingenious Iconoclast
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 colorless Construct) token(Construct,Artifact Creature Construct,1/1,defender)
@@ -909,6 +921,19 @@ type=Legendary Planeswalker
 subtype=Garruk
 [/card]
 [card]
+name=Geyadrone Dihada
+auto=counter(0/0,4,loyalty)
+auto=protection from(*[-instant;-sorcery;counter{0/0.1.corruption}])
+auto={C(0/0,1,Loyalty)}:name(+1: Gain 2 life) life:2 controller && life:-2 opponent
+auto={C(0/0,1,Loyalty)}:name(+1: Gain 2 life and put counter) target(*[creature;planeswalker]|battlefield) counter(0/0,1,corruption) && life:2 controller && life:-2 opponent
+auto={C(0/0,-3,Loyalty)}:name(-3: Gain control of creature or planeswalker) target(*[creature;planeswalker]|battlefield) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn once sourceinplay] moveTo(previousbattlefield)],newability[counter(0/0.1.corruption)],newability[untap],haste)) ueot)!
+auto={C(0/0,-7,Loyalty)}:name(-7: Gain control of all corrupted) all(*[counter{0/0.1.corruption}]|battlefield) moveto(mybattlefield)
+text=Protection from permanents with corruption counters on them -- +1: Each opponent loses 2 life and you gain 2 life. Put a corruption counter on up to one other target creature or planeswalker. -- −3: Gain control of target creature or planeswalker until end of turn. Untap it and put a corruption counter on it. It gains haste until end of turn. -- −7: Gain control of each permanent with a corruption counter on it.
+mana={1}{U}{B}{R}
+type=Legendary Planeswalker
+subtype=Dihada
+[/card]
+[card]
 name=Gideon, Ally of Zendikar
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Transforms Gideon 5/5 indestructible) transforms((Human Soldier Ally Creature Planeswalker,setpower=5,settoughness=5,indestructible)) ueot && transforms((,newability[preventAllDamage to(this)])) ueot
@@ -999,10 +1024,27 @@ subtype=Gideon
 color=white
 [/card]
 [card]
+name=Grist, the Hunger Tide
+auto=counter(0/0,3,loyalty)
+auto=transforms((removealltypes,newability[becomes(Legendary Planeswalker Grist)])) forever
+auto=@counteradded(0/0,1,GristEffect) from(insect|mygraveyard):name(Repeat process) name(Repeat process) all(this) counter(0/0,1,loyalty) && all(insect[counter{0/0.1.GristEffect}]|mygraveyard) removeallcounters(0/0,1,GristEffect) && token(Insect,Creature Insect,1/1,black,green) and!( transforms((,newability[all(*[zpos=1]|mylibrary) moveto(mygraveyard) and!( if cantargetcard(*[insect]|*) then counter(0/0.1.GristEffect) )!])) oneshot )!
+auto={C(0/0,1,Loyalty)}:name(+1: Create 1/1 insect) token(Insect,Creature Insect,1/1,black,green) and!( transforms((,newability[all(*[zpos=1]|mylibrary) moveto(mygraveyard) and!( if cantargetcard(*[insect]|*) then counter(0/0.1.GristEffect) )!])) oneshot )!
+auto={C(0/0,-2,Loyalty)}:name(-2: Sacrifice and destroy) target(creature|mybattlefield) sacrifice and!( transforms((,newability[name(Destroy creature or planeswalker) target(*[creature;planeswalker]|battlefield) destroy])) oneshot )!
+auto={C(0/0,-2,Loyalty)}:name(-2: Don't sacrifice any creature) donothing
+auto={C(0/0,-5,Loyalty)}:name(-5: Opponent lose life) life:-type:creature:mygraveyard opponent
+text=As long as Grist, the Hunger Tide isn't on the battlefield, it's a 1/1 Insect creature in addition to its other types. -- +1: Create a 1/1 black and green Insect creature token, then mill a card. If an Insect card was milled this way, put a loyalty counter on Grist and repeat this process. -- −2: You may sacrifice a creature. When you do, destroy target creature or planeswalker. -- −5: Each opponent loses life equal to the number of creature cards in your graveyard.
+mana={1}{B}{G}
+type=Legendary Planeswalker Creature
+subtype=Grist Insect
+power=1
+toughness=1
+[/card]
+[card]
 name=Huatli, Dinosaur Knight
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Put two +1/+1 counters on a Dinosaur) target(<upto:1>dinosaur|mybattlefield) counter(1/1,2)
-auto={C(0/0,-3,Loyalty)}:name(-3: Dinosaur deals damage) target(dinosaur|mybattlefield) transforms((,newability[dynamicability<!powerstrike!> target(creature|opponentbattlefield)
+auto={C(0/0,2,Loyalty)}:name(+2: Don't put counters) donothing
+auto={C(0/0,2,Loyalty)}:name(+2: Put two +1/+1 counters on a Dinosaur) target(dinosaur|mybattlefield) counter(1/1,2)
+auto={C(0/0,-3,Loyalty)}:name(-3: Dinosaur deals damage) target(dinosaur|mybattlefield) transforms((,newability[dynamicability<!powerstrike!> target(creature|opponentbattlefield)])) oneshot
 auto={C(0/0,-7,Loyalty)}:name(-7: Dinosaurs gets +4/+4) all(dinosaur|mybattlefield) 4/4 ueot
 text=+2: Put two +1/+1 counters on up to one target Dinosaur you control. -- -3: Target Dinosaur you control deals damage equal to its power to target creature you don't control. -- -7: Dinosaurs you control get +4/+4 until end of turn.
 mana={4}{R}{W}

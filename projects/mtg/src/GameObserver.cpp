@@ -1035,6 +1035,7 @@ void GameObserver::gameStateBasedEffects()
             {
                 MTGCardInstance * card = fg->cards[k];
                 card->fresh = 0; // Remove fresh attribute to cards put in graveyard last turn
+                card->discarded = false; // Remove discarded attribute to cards put in graveyard last turn
             }
             MTGGameZone * fe = p->game->exile;
             for (int k = 0; k < fe->nb_cards; k++)

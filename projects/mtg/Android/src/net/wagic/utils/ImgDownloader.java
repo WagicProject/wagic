@@ -2334,6 +2334,8 @@ public class ImgDownloader {
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/3/d/3d0b9b88-705e-4df0-8a93-3e240b81355b.jpg?1617626092";
         else if(id.equals("513663t"))
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/1/a/1a2d027f-8996-4761-a776-47cd428f6779.jpg?1618766925";
+        else if(id.equals("522245t"))
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/3/7/37e32ba6-108a-421f-9dad-3d03f7ebe239.jpg?1623113548";
 
         return tokenurl;
     }
@@ -2355,7 +2357,7 @@ public class ImgDownloader {
                 id.equals("293198") || id.equals("479634") || id.equals("479702") || id.equals("489837") || id.equals("489861") || id.equals("491359") ||
                 id.equals("294872") || id.equals("295110") || id.equals("294842") || id.equals("295067") || id.equals("491767") || id.equals("295386")  ||
                 id.equals("295229") || id.equals("295387") || id.equals("295206") || id.equals("295706") || id.equals("497549")  || id.equals("497666") ||
-                id.equals("503860"))
+                id.equals("503860") || id.equals("522280") || id.equals("522111"))
             return false;
         return true;
     }

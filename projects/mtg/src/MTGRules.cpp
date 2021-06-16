@@ -571,6 +571,10 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     else
     {
         Spell * spell = NULL;
+        if (spellCost && !card->getManaCost()->getManaUsedToCast()){
+            card->getManaCost()->setManaUsedToCast(NEW ManaCost());
+            card->getManaCost()->getManaUsedToCast()->copy(spellCost);
+        }
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         if (game->targetChooser)
         {
@@ -744,6 +748,10 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     else
     {
         Spell * spell = NULL;
+        if (spellCost && !card->getManaCost()->getManaUsedToCast()){
+            card->getManaCost()->setManaUsedToCast(NEW ManaCost());
+            card->getManaCost()->getManaUsedToCast()->copy(spellCost);
+        }
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         if (game->targetChooser)
         {
@@ -1040,7 +1048,11 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         SAFE_DELETE(spell);
     }
     else
-    {   
+    {
+        if (spellCost && !card->getManaCost()->getManaUsedToCast()){
+            card->getManaCost()->setManaUsedToCast(NEW ManaCost());
+            card->getManaCost()->getManaUsedToCast()->copy(spellCost);
+        }
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
         game->targetChooser = NULL;
@@ -1531,6 +1543,10 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     delete previousManaPool;
     card->morphed = true;
     card->isMorphed = true;
+    if (spellCost && !card->getManaCost()->getManaUsedToCast()){
+        card->getManaCost()->setManaUsedToCast(NEW ManaCost());
+        card->getManaCost()->getManaUsedToCast()->copy(spellCost);
+    }
     MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
     copy->getManaCost()->resetCosts();//Morph has no ManaCost on stack
     copy->setColor(0,1);

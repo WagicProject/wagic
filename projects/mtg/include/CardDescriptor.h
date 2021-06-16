@@ -79,6 +79,7 @@ class CardDescriptor: public MTGCardInstance
   int CDcontrollerDamaged;
   int CDdamager;
   int CDgeared;
+  int CDdiscarded;
   int CDattached;
   int CDblocked;
   int CDcanProduceC;
