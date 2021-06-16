@@ -488,7 +488,7 @@ int Spell::resolve()
         if(observer->getResourceManager())
             observer->getResourceManager()->PlaySample(source->getSample());
     }
-    if(this->cost)
+    if(this->cost && !source->getManaCost()->getManaUsedToCast())
     {
         source->getManaCost()->setManaUsedToCast(NEW ManaCost(this->cost));
     }

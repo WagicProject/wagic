@@ -780,7 +780,11 @@ public:
         if (!e) return 0;
         if (limitOnceATurn && triggeredTurn == game->turn)
             return 0;
-        if (flipresult > -1 && flipresult != e->card->lastFlipResult)
+        if ((flipresult == 0 || flipresult == 1) && flipresult != e->card->lastFlipResult)
+            return 0;
+        if (flipresult == 2 && e->card->coinSide != e->card->lastFlipResult)
+            return 0;
+        if (flipresult == 3 && e->card->coinSide == e->card->lastFlipResult)
             return 0;
         if (playerName != "" && playerName != e->playerName)
             return 0;
@@ -1079,16 +1083,21 @@ public:
     Counter * counter;
     int type;
     bool duplicate;
+    bool limitOnceATurn;
+    int triggeredTurn;
     MTGCardInstance * counterException; //added exception to avid a counter loop (eg. Doubling Season)
-    TrCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, MTGCardInstance * counterException = NULL) :
-    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), counterException(counterException)
+    TrCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool limitOnceATurn = false, MTGCardInstance * counterException = NULL) :
+    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), limitOnceATurn(limitOnceATurn), counterException(counterException)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCounters * e = dynamic_cast<WEventCounters *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (type == 0 && !e->removed) return 0;
         if (type == 1 && !e->added) return 0;
         if (counterException && e->source && !strcmp(counterException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of counter gain/loss it's the exception card it doesn't have effect (loop avoidance);        
@@ -1100,6 +1109,7 @@ public:
             else
                 e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
         }
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -3275,8 +3285,10 @@ public:
                     andAbilityClone->addToGame();
                 }
             }
-            WEvent * e = NEW WEventTokenCreated(myToken);
-            spell->getObserver()->receiveEvent(e); // triggers the @tokencreated event for any other listener.
+            if(sabilities.find("notrigger") == string::npos){ // check if the @tokencreated trigger has to be activated or not
+                WEvent * e = NEW WEventTokenCreated(myToken);
+                spell->getObserver()->receiveEvent(e); // triggers the @tokencreated event for any other listener.
+            }
             delete spell;
         }
         return 1;
@@ -6346,8 +6358,9 @@ public:
     bool asNormalMadness;
     bool alternative;
     int kicked;
+    int costx;
     bool flipped;
-    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false,int kicked = 0,bool flipped = false);
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false,int kicked = 0,int costx = 0,bool flipped = false);
 
     int testDestroy(){return 0;};
     void Update(float dt);

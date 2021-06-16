@@ -32,6 +32,7 @@ CardDescriptor::CardDescriptor()
     CDcontrollerDamaged = 0;
     CDdamager = 0;
     CDgeared = 0;
+    CDdiscarded = 0;
     CDattached = 0;
     CDblocked = 0;
     CDcanProduceC = 0;
@@ -287,6 +288,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped()))
+    {
+        match = NULL;
+    }
+
+    if ((CDdiscarded == -1 && card->discarded) || (CDdiscarded == 1 && !card->discarded))
     {
         match = NULL;
     }

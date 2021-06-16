@@ -374,8 +374,8 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         for (int i = 0; i < 2; i++)
         {
             Player * p = card->getObserver()->players[i];
-            MTGGameZone * zones[] = { p->game->battlefield, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
-            for (int k = 0; k < 5; k++)
+            MTGGameZone * zones[] = { p->game->battlefield, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->reveal };
+            for (int k = 0; k < 6; k++)
             {
                 MTGGameZone * zone = zones[k];
                 if(tc->targetsZone(zone,target))
@@ -877,32 +877,6 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
                 intValue += card->controller()->game->graveyard->cards[j]->myconvertedcost;
         }
     }
-    else if (s == "gravecardtypes")//Tarmogoyf
-    {
-        intValue = 0;
-        int pc = 0, tc = 0, sc = 0, lc = 0, ic = 0, ec = 0, cc = 0, ac = 0;
-        for (int j = 0; j < 2; j++)
-        {
-            MTGGameZone * checkZone = card->getObserver()->players[j]->game->graveyard;
-            if(cardHasTypeinZone("planeswalker",checkZone))
-                pc = 1;
-            if(cardHasTypeinZone("tribal",checkZone))
-                tc = 1;
-            if(cardHasTypeinZone("sorcery",checkZone))
-                sc = 1;
-            if(cardHasTypeinZone("land",checkZone))
-                lc = 1;
-            if(cardHasTypeinZone("instant",checkZone))
-                ic = 1;
-            if(cardHasTypeinZone("enchantment",checkZone))
-                ec = 1;
-            if(cardHasTypeinZone("creature",checkZone))
-                cc = 1;
-            if(cardHasTypeinZone("artifact",checkZone))
-                ac = 1;
-        }
-        intValue = pc+tc+sc+lc+ic+ec+cc+ac;
-    }
     else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
     {
         intValue = 0;
@@ -1035,10 +1009,6 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         else
             intValue = card->revealedLast->getManaCost()->getConvertedCost();
     }
-    else if (s == "scryedcards")//returns how many card have been scryed from current card
-    {
-        intValue = card->scryedCards;
-    }
     else if (s.find("findfirsttype") != string::npos)//find the index of first card with specified type in target player library
     {
         intValue = 0;
@@ -1068,9 +1038,33 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
-    else if(!intValue)//found nothing, try parsing a atoi
+    else if (s == "scryedcards" || s == "numoftypes")//returns how many card have been scryed from current card -- returns the number of types of the card
     {
-        intValue = atoi(s.c_str());
+        if(s == "scryedcards")
+            intValue = card->scryedCards;
+        else {
+            intValue = 0;
+            if(card->hasType(Subtypes::TYPE_PLANESWALKER))
+                intValue++;
+            if(card->hasType(Subtypes::TYPE_TRIBAL))
+                intValue++;
+            if(card->hasType(Subtypes::TYPE_SORCERY))
+                intValue++;
+            if(card->hasType(Subtypes::TYPE_LAND))
+                intValue++;
+            if(card->hasType(Subtypes::TYPE_INSTANT))
+                intValue++;
+            if(card->hasType(Subtypes::TYPE_ENCHANTMENT))
+                intValue++;
+            if(card->hasType(Subtypes::TYPE_CREATURE))
+                intValue++;
+            if(card->hasType(Subtypes::TYPE_ARTIFACT))
+                intValue++;
+        }
+    }
+    else //Continue parsing in another method to avoid compiler C1061 error.
+    {
+        extendedParse(s, spell, card);
     }
     if (intValue > 0)//dont divide by 0 the rest are valid.
     {
@@ -1109,6 +1103,129 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     }
 
     intValue *= multiplier;
+}
+
+void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
+{
+    if (s == "mybattlefieldcardtypes" || s == "oppbattlefieldcardtypes" || s == "allbattlefieldcardtypes")//Count number of card types on battlefield
+    {
+        intValue = 0;
+        int pc = 0, tc = 0, sc = 0, lc = 0, ic = 0, ec = 0, cc = 0, ac = 0;
+        if(s == "allbattlefieldcardtypes") {
+            for (int j = 0; j < 2; j++) {
+                MTGGameZone * checkZone = card->getObserver()->players[j]->game->inPlay;
+                if(cardHasTypeinZone("planeswalker",checkZone))
+                    pc = 1;
+                if(cardHasTypeinZone("tribal",checkZone))
+                    tc = 1;
+                if(cardHasTypeinZone("sorcery",checkZone))
+                    sc = 1;
+                if(cardHasTypeinZone("land",checkZone))
+                    lc = 1;
+                if(cardHasTypeinZone("instant",checkZone))
+                    ic = 1;
+                if(cardHasTypeinZone("enchantment",checkZone))
+                    ec = 1;
+                if(cardHasTypeinZone("creature",checkZone))
+                    cc = 1;
+                if(cardHasTypeinZone("artifact",checkZone))
+                    ac = 1;
+            }
+        } else {
+            MTGGameZone * checkZone = (s.find("oppbattlefieldcardtypes")!=string::npos)?card->getObserver()->opponent()->game->inPlay:card->controller()->game->inPlay;
+            if(cardHasTypeinZone("planeswalker",checkZone))
+                pc = 1;
+            if(cardHasTypeinZone("tribal",checkZone))
+                tc = 1;
+            if(cardHasTypeinZone("sorcery",checkZone))
+                sc = 1;
+            if(cardHasTypeinZone("land",checkZone))
+                lc = 1;
+            if(cardHasTypeinZone("instant",checkZone))
+                ic = 1;
+            if(cardHasTypeinZone("enchantment",checkZone))
+                ec = 1;
+            if(cardHasTypeinZone("creature",checkZone))
+                cc = 1;
+            if(cardHasTypeinZone("artifact",checkZone))
+                ac = 1;
+        }
+        intValue = pc+tc+sc+lc+ic+ec+cc+ac;
+    }
+    else if (s == "mygravecardtypes" || s == "oppgravecardtypes" || s == "allgravecardtypes")//Count number of card types in graveyards
+    {
+        intValue = 0;
+        int pc = 0, tc = 0, sc = 0, lc = 0, ic = 0, ec = 0, cc = 0, ac = 0;
+        if(s == "allgravecardtypes") {
+            for (int j = 0; j < 2; j++) {
+                MTGGameZone * checkZone = card->getObserver()->players[j]->game->graveyard;
+                if(cardHasTypeinZone("planeswalker",checkZone))
+                    pc = 1;
+                if(cardHasTypeinZone("tribal",checkZone))
+                    tc = 1;
+                if(cardHasTypeinZone("sorcery",checkZone))
+                    sc = 1;
+                if(cardHasTypeinZone("land",checkZone))
+                    lc = 1;
+                if(cardHasTypeinZone("instant",checkZone))
+                    ic = 1;
+                if(cardHasTypeinZone("enchantment",checkZone))
+                    ec = 1;
+                if(cardHasTypeinZone("creature",checkZone))
+                    cc = 1;
+                if(cardHasTypeinZone("artifact",checkZone))
+                    ac = 1;
+            }
+        } else {
+            MTGGameZone * checkZone = (s.find("oppgravecardtypes")!=string::npos)?card->getObserver()->opponent()->game->graveyard:card->controller()->game->graveyard;
+            if(cardHasTypeinZone("planeswalker",checkZone))
+                pc = 1;
+            if(cardHasTypeinZone("tribal",checkZone))
+                tc = 1;
+            if(cardHasTypeinZone("sorcery",checkZone))
+                sc = 1;
+            if(cardHasTypeinZone("land",checkZone))
+                lc = 1;
+            if(cardHasTypeinZone("instant",checkZone))
+                ic = 1;
+            if(cardHasTypeinZone("enchantment",checkZone))
+                ec = 1;
+            if(cardHasTypeinZone("creature",checkZone))
+                cc = 1;
+            if(cardHasTypeinZone("artifact",checkZone))
+                ac = 1;
+        }
+        intValue = pc+tc+sc+lc+ic+ec+cc+ac;
+    }
+    else if (s.find("totcnt") != string::npos) //Return the total amount of all specific counters on each card (use "anycnt" to count all of them e.g. Deepwood Denizen)
+    {
+        intValue = 0;
+        for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
+            if ((s.find("totcntcre") != string::npos || s.find("totcntall") != string::npos) && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE)){
+                if (card->controller()->game->inPlay->cards[j]->counters){
+                    Counters * counters = card->controller()->game->inPlay->cards[j]->counters;
+                    for(size_t i = 0; i < counters->counters.size(); ++i){
+                        Counter * counter = counters->counters[i];
+                        if(s.substr(9) == "anycnt"){
+                            intValue += counter->nb;
+                        } else if(counter->name == "" && (s.substr(9) == "11" || s.substr(9) == "-1-1")){
+                            if((counter->power == 1 && counter->toughness == 1 && s.substr(9) == "11") || (counter->power == -1 && counter->toughness == -1 && s.substr(9) == "-1-1")){
+                                intValue += counter->nb;
+                                break;
+                            }
+                        } else if(counter->name ==  s.substr(9)){
+                            intValue += counter->nb;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if(!intValue)//found nothing, try parsing a atoi
+    {
+        intValue = atoi(s.c_str());
+    }
 }
 
 int WParsedInt::countDevotionTo(MTGCardInstance * card, MTGGameZone * zone, int color1, int color2)

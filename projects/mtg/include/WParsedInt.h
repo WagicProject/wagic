@@ -2,6 +2,7 @@ class WParsedInt
 {
 private:
     void init(string s, Spell * spell, MTGCardInstance * card);
+    void extendedParse(string type, Spell * spell, MTGCardInstance * card);
 
 public:
     int intValue;
