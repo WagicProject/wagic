@@ -22161,7 +22161,7 @@ toughness=3
 [card]
 name=Garbage Elemental (c)
 auto=@combat(attacking) source(this):all(other creature[attacking]) 1/0 ueot
-suto=all(this) rolladie winability token(Goblin,Creature Goblin,1/1,red)*lastrollresultminuslastrollchoiceminusend winabilityend loseability token(Goblin,Creature Goblin,1/1,red)*lastrollresultminuslastrollchoiceminusend loseabilityend rollend
+auto=all(this) rolladie winability token(Goblin,Creature Goblin,1/1,red)*lastrollresultminuslastrollchoiceminusend winabilityend loseability token(Goblin,Creature Goblin,1/1,red)*lastrollresultminuslastrollchoiceminusend loseabilityend rollend
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- When Garbage Elemental enters the battlefield, roll two six-sided dice. Create a number of 1/1 red Goblin creature tokens equal to the difference between those results.
 mana={4}{R}
 type=Creature
@@ -53109,6 +53109,30 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Sirocco
+target=player
+aicode=activate transforms((,newability[all(instant[blue]|targetedpersonshand) transforms((,newability[pay[[{L:4}]] name(pay 4 life) donothing?reject])) forever])) oneshot
+auto=reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )! optiononeend afterrevealed all(instant[blue]|targetedpersonshand) transforms((,newability[pay[[{L:4}]] name(pay 4 life) donothing?reject])) forever afterrevealedend revealend
+text=Target player reveals his or her hand. For each blue instant card revealed this way, that player discards that card unless he or she pays 4 life.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Sisay, Weatherlight Captain
+auto=aslongas(other *[legendary;red]|mybattlefield) 1/1 >0
+auto=aslongas(other *[legendary;white]|mybattlefield) 1/1 >0
+auto=aslongas(other *[legendary;black]|mybattlefield) 1/1 >0
+auto=aslongas(other *[legendary;green]|mybattlefield) 1/1 >0
+auto=aslongas(other *[legendary;blue]|mybattlefield) 1/1 >0
+auto={W}{U}{B}{R}{G}:name(Search legendary) transforms((,newability[name(Search legendary) target(*[legendary;manacost<=power]|mylibrary) moveto(mybattlefield) and!( shuffle )!])) oneshot
+text=Sisay, Weatherlight Captain gets +1/+1 for each color among other legendary permanents you control. -- {W}{U}{B}{R}{G}: Search your library for a legendary permanent card with converted mana cost less than Sisay's power, put that card onto the battlefield, then shuffle your library.
+mana={2}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Sisters of Stone Death
 auto={G}:target(creature|opponentBattlefield) mustblock ueot
 auto={B}{G}:@combat(blocking,blocked) source(this):moveTo(exile) target (creature[blocking,blocked]) oneshot
@@ -53129,6 +53153,16 @@ auto=choice name(Target opponent's creature) target(creature|opponentbattlefield
 text=If you control a Plains, you may tap an untapped creature you control rather than pay Sivvi's Valor's mana cost. -- All damage that would be dealt to target creature this turn is dealt to you instead.
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+name=Six-y Beast
+auto=rolladie winability sacrifice winabilityend loseability counter(1/1,lastrollchoice) loseabilityend rollend
+text=As Six-y Beast comes into play, you secretly put six or fewer +1/+1 counters on it, then an opponent guesses the number of counters. If that player guesses right, sacrifice Six-y Beast.
+mana={3}{R}
+type=Creature
+subtype=Beast
+power=0
+toughness=0
 [/card]
 [card]
 name=Sixth Sense
@@ -53824,6 +53858,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Slayer's Cleaver
+auto={4}:equip
+auto=teach(creature) 3/1
+auto=@combat(attacking) source(mytgt):all(*[eldrazi]|opponentbattlefield) transforms((,newability[mustblock])) ueot
+text=Equipped creature gets +3/+1 and must be blocked by an Eldrazi if able. -- Equip {4}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Slaying Fire
 target=creature,player,planeswalker
 auto=if casted(this) then if spent({R}{R}{R}) then name(Deals 4 damages) name(Deals 4 damages) damage:4
@@ -54057,6 +54101,16 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=1
+[/card]
+[card]
+name=Smoke
+auto=all(creature|mybattlefield) doesnotuntap
+auto=all(creature|opponentbattlefield) doesnotuntap
+auto=@each my untap:untap target(creature[tapped]|mybattlefield)
+auto=@each opponent untap:ability$!name(untap creature) untap notatarget(creature[tapped]|mybattlefield)!$ opponent
+text=Players can't untap more than one creature during their untap steps.
+mana={R}{R}
+type=Enchantment
 [/card]
 [card]
 name=Smoke Shroud

@@ -10543,30 +10543,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Sirocco
-text=Target player reveals his or her hand. For each blue instant card revealed this way, that player discards that card unless he or she pays 4 life.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
-name=Sisay, Weatherlight Captain
-text=Sisay, Weatherlight Captain gets +1/+1 for each color among other legendary permanents you control. -- {W}{U}{B}{R}{G}: Search your library for a legendary permanent card with converted mana cost less than Sisay's power, put that card onto the battlefield, then shuffle your library.
-mana={2}{W}
-type=Legendary Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
-name=Six-y Beast
-text=As Six-y Beast comes into play, you secretly put six or fewer +1/+1 counters on it, then an opponent guesses the number of counters. If that player guesses right, sacrifice Six-y Beast.
-mana={3}{R}
-type=Creature
-subtype=Beast
-power=0
-toughness=0
-[/card]
-[card]
 name=Skill Borrower
 text=Play with the top card of your library revealed. -- As long as the top card of your library is an artifact or creature card, Skill Borrower has all activated abilities of that card. (If any of the abilities use that card's name, use this creature's name instead.)
 mana={2}{U}
@@ -10622,13 +10598,6 @@ name=Slaughter Games
 text=Slaughter Games can't be countered by spells or abilities. -- Name a nonland card. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
 mana={2}{B}{R}
 type=Sorcery
-[/card]
-[card]
-name=Slayer's Cleaver
-text=Equipped creature gets +3/+1 and must be blocked by an Eldrazi if able. -- Equip {4}
-mana={3}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Slaying Mantis
@@ -10709,12 +10678,6 @@ type=Creature
 subtype=Donkey Wizard
 power=2{1/2}
 toughness=1
-[/card]
-[card]
-name=Smoke
-text=Players can't untap more than one creature during their untap steps.
-mana={R}{R}
-type=Enchantment
 [/card]
 [card]
 name=Smoke Teller
