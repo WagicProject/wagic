@@ -1165,8 +1165,9 @@ public:
     int toughness;
     string name;
     string menu;
+    bool noevent;
 
-    AACounter(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness, int nb,int maxNb = 0,
+    AACounter(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness, int nb, int maxNb = 0, bool noevent = false,
             ManaCost * cost = NULL);
 
     int resolve();

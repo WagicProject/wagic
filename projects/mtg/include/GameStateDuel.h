@@ -5,6 +5,7 @@
 #include "SimpleMenu.h"
 #include "SimplePopup.h"
 #include "DeckMenu.h"
+#include "Tasks.h"
 #include "MTGDeck.h"
 #include "GameObserver.h"
 #ifdef AI_CHANGE_TESTING
@@ -186,6 +187,7 @@ private:
     DeckMenu * deckmenu;
     DeckMenu * opponentMenu;
     SimpleMenu * menu;
+    TaskList * taskList;
     SimplePopup * popupScreen; // used for informational screens, modal
     static int selectedPlayerDeckId;
     static int selectedAIDeckId;
@@ -280,6 +282,7 @@ public:
         MENUITEM_FILL_NEXT_STAGE = -31,
 /////// End Tournament Mod ///////////
         MENUITEM_TOGGLEATTACK_ALL_CREATURES = -32,
+        MENUITEM_TASKBOARD = -33,
         MENUITEM_MORE_INFO = kInfoMenuID
     };
 

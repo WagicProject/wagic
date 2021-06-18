@@ -1190,6 +1190,9 @@ Credits per minute: %i=Crediti al minuto: %i
 []:other cards=[]:altre carte
 See available tasks=Visualizza obiettivi disponibili
 Task Board=Bacheca obiettivi
+Check Task Board=Controlla Bacheca obiettivi
+Open Task Board=Apri Bacheca obiettivi
+Close Task Board=Chiudi Bacheca obiettivi
 
 Toggle Images=Immagini Si/No
 View Deck=Vedi Mazzo

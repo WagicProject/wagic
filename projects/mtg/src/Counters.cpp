@@ -112,7 +112,7 @@ int Counters::addCounter(const char * _name, int _power, int _toughness, bool _n
             {
                 counters[i]->added();
                 counters[i]->nb++;
-                if (!duplicated)
+                if (!_noevent && !duplicated)
                 {
                     WEvent * j = NEW WEventCounters(this,_name,_power,_toughness,true,false,_source);
                     dynamic_cast<WEventCounters*>(j)->targetCard = this->target;
