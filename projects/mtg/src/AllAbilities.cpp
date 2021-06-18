@@ -2226,8 +2226,8 @@ AAForetell * AAForetell::clone() const
 
 //Counters
 AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness,
-        int nb,int maxNb, ManaCost * cost) :
-    ActivatedAbility(observer, id, source, cost, 0),counterstring(counterstring), nb(nb),maxNb(maxNb), power(power), toughness(toughness), name(_name)
+        int nb, int maxNb, bool noevent, ManaCost * cost) :
+    ActivatedAbility(observer, id, source, cost, 0),counterstring(counterstring), nb(nb), maxNb(maxNb), power(power), toughness(toughness), name(_name), noevent(noevent)
 {
     this->target = target;
     if (name.find("Level") != string::npos || name.find("level") != string::npos)
@@ -2281,7 +2281,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     }
                     if(!maxNb || (maxNb && currentAmount < maxNb))
                     {
-                        _target->counters->addCounter(name.c_str(), power, toughness, false, false, source);
+                        _target->counters->addCounter(name.c_str(), power, toughness, noevent, false, source);
                     }
                 }
             }
@@ -2291,7 +2291,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                 {
                     while (_target->next)
                         _target = _target->next;
-                    _target->counters->removeCounter(name.c_str(), power, toughness, false, false, source);
+                    _target->counters->removeCounter(name.c_str(), power, toughness, noevent, false, source);
                 }
             }
 

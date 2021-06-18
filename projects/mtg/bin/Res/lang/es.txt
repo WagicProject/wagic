@@ -1167,6 +1167,9 @@ Credits: =Creditos:
 %s (%i)=%s (%i)
 : Other cards=: Otras cartas
 Check task board=Revisar las tareas en la  pizarra
+Open Task Board=Abrir las tareas en la  pizarra
+Close Task Board=Cerrar las tareas en la  pizarra
+
 Steal it=Robar
 Steal 1,000 credits=Robar 1,000 creditos
 Steal 2,000 credits=Robar 2,000 creditos

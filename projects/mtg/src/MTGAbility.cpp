@@ -4004,9 +4004,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             DebugTrace("MTGAbility: can't parse counter:" << s);
             return NULL;
         }
-
+        bool noevent = (s.find("notrg") != string::npos)?true:false; // Added a way to don't trigger @counter effect.
         MTGAbility * a =
-            NEW AACounter(observer, id, card, target,counterString, counter->name.c_str(), counter->power, counter->toughness, counter->nb,counter->maxNb);
+            NEW AACounter(observer, id, card, target,counterString, counter->name.c_str(), counter->power, counter->toughness, counter->nb, counter->maxNb, noevent);
         delete (counter);
         a->oneShot = 1;
         return a;
