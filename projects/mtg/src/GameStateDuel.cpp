@@ -1682,6 +1682,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 //          break;
         case MENUITEM_TASKBOARD:
             if(taskList->getState() != TaskList::TASKS_ACTIVE){
+                taskList->load(options.profileFile(PLAYER_TASKS).c_str());
                 taskList->Start();
             } else {
                 taskList->End();
