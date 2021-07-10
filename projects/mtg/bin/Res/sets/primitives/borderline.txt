@@ -14823,7 +14823,7 @@ toughness=3
 name=Dire Tactics
 target=creature
 auto=moveTo(exile) 
-auto=restriction{(creature[-human]|myBattlefield)~equalto~0}:dynamicability<!mytgt toughnesslifeloss srccontroller!>
+auto=restriction{(creature[human]|myBattlefield)~equalto~0}:dynamicability<!mytgt toughnesslifeloss srccontroller!>
 text=Exile target creature. If you don't control a Human, you lose life equal to that creature's toughness.
 mana={W}{B}
 type=Instant
@@ -16429,7 +16429,6 @@ toughness=4
 [/card]
 [card]
 name=Dwarven Mine
-auto={T}:add{R}
 auto=aslongas(other land[mountain]|myBattlefield) tap(noevent) <3 oneshot
 auto=if this(untapped) create(Dwarf:creature Dwarf:1/1:red) once 
 text={T}: Add {R}. -- Dwarven Mine enters the battlefield tapped unless you control three or more other Mountains. -- When Dwarven Mine enters the battlefield untapped, create a 1/1 red Dwarf creature token.
@@ -16521,7 +16520,8 @@ toughness=4
 [card]
 name=Earthshaker Giant
 abilities=Trample
-auto=(other creature|myBattlefield) 3/3 && trample ueot
+auto=all(other creature|myBattlefield) 3/3
+auto=all(other creature|myBattlefield) trample
 text=Trample -- When Earthshaker Giant enters the battlefield, other creatures you control get +3/+3 and gain trample until end of turn.
 mana={4}{G}{G}
 type=Creature
@@ -23198,7 +23198,6 @@ toughness=1
 [/card]
 [card]
 name=Gingerbread Cabin
-auto={T}:add{G}
 auto=aslongas(other land[forest]|myBattlefield) tap(noevent) <3 oneshot
 auto=if this(untapped) token(-473141) once 
 text={T}: Add {G}. -- Gingerbread Cabin enters the battlefield tapped unless you control three or more other Forests. -- When Gingerbread Cabin enters the battlefield untapped, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
@@ -26728,7 +26727,7 @@ auto=@combat(attacking) source(this):flying target(other creature|myBattlefield)
 text=Flying. (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Heavenly Qilin attacks, another target creature you control gains flying until end of turn.
 mana={2}{W}
 type=Creature
-subtype=Kiri
+subtype=Kirin
 power=2
 toughness=2
 [/card]
@@ -28321,7 +28320,6 @@ type=Artifact
 [/card]
 [card]
 name=Idyllic Grange
-auto={T}:add{W}
 auto=aslongas(other land[plain]|myBattlefield) tap(noevent) <3 oneshot
 auto=if this(untapped) target(creature|myBattlefield) counter(1/1) once 
 text={T}: Add {W}. -- Idyllic Grange enters the battlefield tapped unless you control three or more other Plains. -- When Idyllic Grange enters the battlefield untapped, put a +1/+1 counter on target creature you control.
@@ -30752,8 +30750,8 @@ text=Whenever Jorn attacks, untap each snow permanent you control. // {1}{U}{B} 
 mana={2}{G}
 type=Legendary Snow Creature
 subtype=God
-power=4
-toughness=4
+power=3
+toughness=3
 [/card]
 [card]
 name=Josu Vess, Lich Knight
@@ -38336,7 +38334,6 @@ type=Instant
 [/card]
 [card]
 name=Mystic Sanctuary
-auto={T}:add{U}
 auto=aslongas(other land[island]|myBattlefield) tap(noevent) <3 oneshot
 auto=if this(untapped) may (instant,sorcery|mygraveyard) moveTo(myLibrary) once 
 text={T}: Add {U}. -- Mystic Sanctuary enters the battlefield tapped unless you control three or more other Islands. -- When Mystic Sanctuary enters the battlefield untapped, you may put target instant or sorcery card from your graveyard on top of your library.
@@ -42712,7 +42709,7 @@ type=Instant
 name=Piercing Rays
 target=creature[tapped]
 auto=moveto(exile)
-autohand={1}{W}:name(Forecast) target(<2>creature[-tapped]) tap limit:1 myUpkeepOnly
+autohand={1}{W}:name(Forecast) target(creature[-tapped]) tap limit:1 myUpkeepOnly
 text=Exile target tapped creature. -- Forecast — {2}{W}, Reveal Piercing Rays from your hand: Tap target untapped creature. (Activate this ability only during your upkeep and only once each turn.)
 mana={1}{W}
 type=Sorcery
@@ -45454,7 +45451,7 @@ toughness=3
 [card]
 name=Ranger-Captain of Eos
 auto={S}:maxCast(*[-creature])0 target(opponent)
-auto=target(creature[manacost<=1]|mylibrary) moveto(mybattlefield)
+auto=target(creature[manacost<=1]|mylibrary) moveto(myhand)
 text=When Ranger-Captain of Eos enters the battlefield, you may search your library for a creature card with converted mana cost 1 or less, reveal it, put it into your hand, then shuffle your library. -- Sacrifice Ranger-Captain of Eos: Your opponents can't cast noncreature spells this turn.
 mana={1}{W}{W}
 type=Creature
@@ -55629,6 +55626,7 @@ toughness=3
 name=Spinerock Knoll
 abilities=hiddenface
 aicode=activate transforms((,newability[choice all(*[zpos=1]|mylibrary) moveto(myExile) and!(deplete:4)!])) ueot
+auto=tap(noevent) && name(look) reveal:4 optionone name(Exile a Card) target(<1>*|reveal) moveto(myExile) optiononeend optiontwo name(put in library) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={T}:Add{R}
 auto={R}{T}:if restriction{foelost(7)} then may castcard(normal) target(*|myExile)
 text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {R}. -- {R}, {T}: You may play the exiled card without paying its mana cost if an opponent was dealt 7 or more damage this turn.
@@ -55738,7 +55736,7 @@ auto=foreach(other snow|myBattlefield) 1/0
 text=When Spirit of the Aldergard enters the battlefield, search your library for a snow land card, reveal it, put it into your hand, then shuffle your library. -- Spirit of the Aldergard gets +1/+0 for each other snow permanent you control.
 mana={3}{G}
 type=Snow Creature
-subtype=Bear Spirite
+subtype=Bear Spirit
 power=0
 toughness=4
 [/card]
@@ -63672,7 +63670,7 @@ auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(th
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Urza's Saga gains "{T}: Add {C}." -- II — Urza's Saga gains "{2}, {T}: Create a 0/0 colorless Construct artifact creature token with 'This creature gets +1/+1 for each artifact you control.'" -- III — Search your library for an artifact card with mana cost {0} or {1}, put it onto the battlefield, then shuffle.
 mana={0}
 type=Enchantment Land
-subtype=Urza’s Saga
+subtype=Urza's Saga
 [/card]
 [card]
 name=Urza's Science Fair Project

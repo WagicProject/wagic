@@ -2427,7 +2427,7 @@ subtype=Sorin
 [card]
 name=Sorin, Vampire Lord
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Creature gets +2/+1) target(creature) 2/0 ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Creature gets +2/+0) target(creature) 2/0 ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Deals 4 damage and gains 4 life) life:4 controller && damage:4 target(player,creature,planeswalker)
 auto={C(0/0,-8,Loyalty)}:name(-8: Vampires gain: "Gain control of a creature") all(creature[vampire]|mybattlefield) transforms((,newability[{T}:moveTo(mybattlefield) target(creature)])) ueot
 text=+1: Up to one target creature gets +2/+0 until end of turn. -- -2: Sorin, Vampire Lord deals 4 damage to any target. You gain 4 life. -- -8: Until end of turn, each Vampire you control gains " {T}: Gain control of target creature."
