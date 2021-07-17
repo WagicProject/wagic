@@ -6623,7 +6623,7 @@ toughness=2
 [/card]
 [card]
 name=Bloom Hulk
-auto=name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=_PROLIFERATE_
 text=When Bloom Hulk enters the battlefield, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={3}{G}
 type=Creature
@@ -12154,7 +12154,7 @@ type=Enchantment
 [/card]
 [card]
 name=Contentious Plan
-auto=name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=_PROLIFERATE_
 auto=draw:1
 text=Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.) -- Draw a card.
 mana={1}{U}
@@ -12381,7 +12381,7 @@ type=Instant
 name=Courage in Crisis
 target=creature
 auto=counter(1/1)
-auto=name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=_PROLIFERATE_
 text=Put a +1/+1 counter on target creature, then proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{G}
 type=Sorcery
@@ -19547,7 +19547,7 @@ type=Sorcery
 [/card]
 [card]
 name=Evolution Sage
-auto=@movedTo(land|myBattlefield):name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=@movedTo(land|myBattlefield):_PROLIFERATE_
 text=Whenever a land enters the battlefield under your control, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{G}
 type=Creature
@@ -22348,7 +22348,7 @@ toughness=2
 [/card]
 [card]
 name=Flux Channeler
-auto=@movedTo(*[-creature]|mystack):name(Proliferate) NotATarget(<anyamount>) duplicatecounters(single)
+auto=@movedTo(*[-creature]|mystack):_PROLIFERATE_
 text=Whenever you cast a noncreature spell, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{U}
 type=Creature
@@ -26339,7 +26339,7 @@ toughness=3
 [card]
 name=Grateful Apparition
 abilities=flying
-auto=@combatdamaged(player,planeswalker) from(this):name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=@combatdamaged(player,planeswalker) from(this):_PROLIFERATE_
 text=Flying -- Whenever Grateful Apparition deals combat damage to a player or planeswalker, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={1}{W}
 type=Creature
@@ -27229,7 +27229,7 @@ type=Land
 [card]
 name=Guildpact Informant
 abilities=flying
-auto=@combatdamaged(player,planeswalker) from(this):name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=@combatdamaged(player,planeswalker) from(this):_PROLIFERATE_
 text=Flying -- Whenever Guildpact Informant deals combat damage to a player or planeswalker, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{U}
 type=Creature
@@ -29552,7 +29552,7 @@ toughness=3
 [card]
 name=Huatli's Raptor
 abilities=vigilance
-auto=name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=_PROLIFERATE_
 text=Vigilance -- When Huatli's Raptor enters the battlefield, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={G}{W}
 type=Creature
@@ -33293,7 +33293,7 @@ toughness=3
 [card]
 name=Karn's Bastion
 auto={T}:Add{C}
-auto={4}{T}:name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto={4}{T}:_PROLIFERATE_
 text={T}: Add {C}. -- {4}, {T}: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 type=Land
 [/card]
@@ -34138,7 +34138,7 @@ subtype=Saga
 [/card]
 [card]
 name=Kiora's Dambreaker
-auto=name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=_PROLIFERATE_
 text=When Kiora's Dambreaker enters the battlefield, proliferate. (Choose any number of permanents and/or players, then give each a counter of each kind already there.)
 mana={5}{U}
 type=Creature
@@ -38381,7 +38381,7 @@ subtype=Aura
 [/card]
 [card]
 name=Martyr for the Cause
-auto=@movedto(this|graveyard) from(battlefield):name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=@movedto(this|graveyard) from(battlefield):_PROLIFERATE_
 text=When Martyr for the Cause dies, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={1}{W}
 type=Creature
@@ -39091,7 +39091,7 @@ toughness=4
 name=Merfolk Skydiver
 abilities=flying
 auto=counter(1/1) target(creature|myBattlefield)
-auto={3}{G}{U}:name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto={3}{G}{U}:_PROLIFERATE_
 text=Flying -- When Merfolk Skydiver enters the battlefield, put a +1/+1 counter on target creature you control. -- {3}{G}{U}: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={G}{U}
 type=Creature
@@ -45693,7 +45693,7 @@ toughness=3
 [/card]
 [card]
 name=Planewide Celebration
-auto=thisforeach(variable{4}) ability$!name(Choose one) choice name(Create citizen) token(Citizen,Creature Citizen,2/2,white,blue,black,red,green) _ choice name(Return permanent) target(*[-instant;-sorcery]|mygraveyard) moveto(ownerhand) _ choice name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single) _choice name(Gain life) life:4 controller!$ controller
+auto=thisforeach(variable{4}) ability$!name(Choose one) choice name(Create citizen) token(Citizen,Creature Citizen,2/2,white,blue,black,red,green) _ choice name(Return permanent) target(*[-instant;-sorcery]|mygraveyard) moveto(ownerhand) _ choice name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) duplicatecounters(single) _choice name(Gain life) life:4 controller!$ controller
 text=Choose four. You may choose the same mode more than once. -- • Create a 2/2 Citizen creature token that's all colors. -- • Return target permanent card from your graveyard to your hand. -- • Proliferate. -- • You gain 4 life.
 mana={5}{G}{G}
 type=Sorcery
@@ -45850,7 +45850,7 @@ type=Sorcery
 [card]
 name=Pollenbright Druid
 auto=choice counter(1/1) target(creature)
-auto=choice name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=choice name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) duplicatecounters(single)
 text=When Pollenbright Druid enters the battlefield, choose one — -- • Put a +1/+1 counter on target creature. -- • Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={1}{G}
 type=Creature
@@ -47443,7 +47443,7 @@ toughness=6
 [/card]
 [card]
 name=Quarry Hauler
-auto=name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=_PROLIFERATE_
 text=When Quarry Hauler enters the battlefield, for each kind of counter on target permanent, put another counter of that kind on it or remove one from it.
 mana={3}{G}
 type=Creature
@@ -50791,7 +50791,7 @@ type=Sorcery
 name=Roalesk, Apex Hybrid
 abilities=flying,trample
 auto=counter(1/1,2) target(other creature|myBattlefield)
-auto=@movedto(this|graveyard) from(battlefield):name(Proliferate) NotATarget(<anyamount>*) transforms((,newability[duplicatecounters(single)],newability[duplicatecounters(single)])) oneshot
+auto=@movedto(this|graveyard) from(battlefield):name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) transforms((,newability[duplicatecounters(single)],newability[duplicatecounters(single)])) oneshot
 text=Flying, trample -- When Roalesk, Apex Hybrid enters the battlefield, put two +1/+1 counters on another target creature you control. -- When Roalesk dies, proliferate, then proliferate again. (Choose any number of permanents and/or players, then give each another counter of each kind already there. Then do it again.)
 mana={2}{G}{G}{U}
 type=Legendary Creature
@@ -57131,7 +57131,7 @@ type=Instant
 name=Smell Fear
 target=creature|myBattlefield
 auto=transforms((,newability[target(creature|opponentBattlefield) dynamicability<!powerstrike eachother!>])) oneshot
-auto=notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) proliferate
+auto=_PROLIFERATE_
 text=Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.) -- Target creature you control fights up to one target creature you don't control.
 mana={1}{G}
 type=Sorcery
@@ -61587,7 +61587,7 @@ auto={2}:equip
 auto=teach(creature) protection from white
 auto=teach(creature) protection from blue
 auto=teach(creature) 2/2
-auto=@combatdamaged(player) from(mytgt):name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=@combatdamaged(player) from(mytgt):_PROLIFERATE_
 auto=@combatdamaged(player) from(mytgt):target(creature|myBattlefield) counter(1/1)
 text=Equipped creature gets +2/+2 and has protection from white and from blue. -- Whenever equipped creature deals combat damage to a player, put a +1/+1 counter on a creature you control, then proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.) -- Equip {2}
 mana={3}
@@ -66616,9 +66616,9 @@ type=Instant
 name=Unbounded Potential
 other={3}{W} name(Entwine) 
 auto=ifnot paid(alternative) then if type(creature|battlefield)~morethan~0 then choice name(Put 1/1 counter)  name(Put 1/1 counter) name(Put 1/1 counter) target(<upto:2>creature|battlefield) counter(1/1)
-auto=ifnot paid(alternative) then choice name(Proliferate) name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) proliferate
+auto=ifnot paid(alternative) then choice name(Proliferate) name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) duplicatecounters(single)
 auto=if paid(alternative) then if type(creature|battlefield)~morethan~0 then name(Put 1/1 counter)  name(Put 1/1 counter) name(Put 1/1 counter) target(<upto:2>creature|battlefield) counter(1/1)
-auto=if paid(alternative) then ability$!name(Proliferate) name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) proliferate!$ controller
+auto=if paid(alternative) then ability$!name(Proliferate) name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) duplicatecounters(single)!$ controller
 text=Choose one — -- • Put a +1/+1 counter on each of up to two target creatures. -- • Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.) -- Entwine {3}{W} (Choose both if you pay the entwine cost.)
 mana={1}{W}
 type=Instant
@@ -67142,7 +67142,7 @@ type=Instant
 [card]
 name=Urban Daggertooth
 abilities=vigilance
-auto=@damaged(this):name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) proliferate
+auto=@damaged(this):_PROLIFERATE_
 text=Vigilance -- Enrage — Whenever Urban Daggertooth is dealt damage, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{G}{G}
 type=Creature
@@ -69581,7 +69581,7 @@ type=Sorcery
 name=Wanderer's Strike
 target=creature
 auto=moveto(exile)
-auto=name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto=_PROLIFERATE_
 text=Exile target creature, then proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={4}{W}
 type=Sorcery
@@ -69680,7 +69680,7 @@ auto=@each my firstmain:counter(0/0,1,Lore)
 auto=ability$!name(Choose one) choice name(Don't put anything) donothing _ choice name(Put from hand) target(*[zombie;planeswalker]|myhand) moveTo(myBattlefield) _ choice name(Put from graveyard) target(*[zombie;planeswalker]|myGraveyard) moveTo(myBattlefield)!$ controller
 auto=ability$!name(Choose one) choice name(Don't put anything) donothing _ choice name(Put from hand) target(*[zombie;planeswalker]|myhand) moveTo(myBattlefield) _ choice name(Put from graveyard) target(*[zombie;planeswalker]|myGraveyard) moveTo(myBattlefield)!$ opponent
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) target(<anyamount>*[creature;planeswalker]|myBattlefield) transforms((,newability[sacrifice],newability[ability$!name(Sacrifice creature or planeswalker) name(Sacrifice creature or planeswalker) notatarget(*[creature;planeswalker]|myBattlefield) sacrifice!$ opponent])) oneshot
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) target(*[Bolas]|battlefield) moveTo(exile) and!( transforms((,newability[notatarget(<anyamount>*) transforms((,newability[duplicatecounters(single)],newability[duplicatecounters(single)],newability[duplicatecounters(single)])) oneshot])) oneshot 
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) target(*[Bolas]|battlefield) moveTo(exile) and!( transforms((,newability[notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) transforms((,newability[duplicatecounters(single)],newability[duplicatecounters(single)],newability[duplicatecounters(single)])) oneshot])) oneshot 
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Each player may put a planeswalker or Zombie card from War of the Spark from their hand or graveyard onto the battlefield. -- II — Sacrifice any number of creatures and/or planeswalkers. Each opponent sacrifices that many creatures and/or planeswalkers. -- III — Exile up to one target Bolas. Proliferate three times.
 mana={3}{B}
@@ -71605,7 +71605,7 @@ type=Legendary Sorcery
 name=Yawgmoth, Thran Physician
 abilities=protection from humans
 auto={L:1}{S(other creature|mybattlefield)}:target(creature) counter(-1/-1) && draw:1 controller
-auto={B}{B}{discard(*|myhand)}:name(Proliferate) NotATarget(<anyamount>*) duplicatecounters(single)
+auto={B}{B}{discard(*|myhand)}:_PROLIFERATE_
 text=Protection from Humans -- Pay 1 life, Sacrifice another creature: Put a -1/-1 counter on up to one target creature and draw a card. -- {B}{B}, Discard a card: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{B}{B}
 type=Legendary Creature
