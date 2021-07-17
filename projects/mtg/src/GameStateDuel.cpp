@@ -147,7 +147,7 @@ GameState(parent, "duel")
     menu = NULL;
     popupScreen = NULL;
     mGamePhase = DUEL_STATE_UNSET;
-    taskList = NEW TaskList(options.profileFile(PLAYER_TASKS).c_str());
+    taskList = NEW TaskList();
 
 #ifdef TESTSUITE
     testSuite = NULL;
@@ -190,6 +190,8 @@ void GameStateDuel::Start()
     OpponentsDeckid = 0;
     bool createDeckMenu=true; // create only a deckmenu if not in tournament
 
+    SAFE_DELETE(taskList);
+    taskList = NEW TaskList();
 
 #ifdef NETWORK_SUPPORT
     if(!mParent->mpNetwork) {
@@ -358,6 +360,7 @@ void GameStateDuel::End()
     SAFE_DELETE(opponentMenu);
     SAFE_DELETE(deckmenu);
     SAFE_DELETE(popupScreen);
+    SAFE_DELETE(taskList);
 
     //reset player for next match (only if actual match is finished)
     tournament->End();
@@ -1682,7 +1685,6 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 //          break;
         case MENUITEM_TASKBOARD:
             if(taskList->getState() != TaskList::TASKS_ACTIVE){
-                taskList->load(options.profileFile(PLAYER_TASKS).c_str());
                 taskList->Start();
             } else {
                 taskList->End();

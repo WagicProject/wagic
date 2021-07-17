@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards up to Aether Revolt) as of 3/14/2017
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 16-06-2021
+#I sorted this programatically - Vitty85 16-07-2021
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -62,15 +62,6 @@ name=Abandoned Sarcophagus
 text=You may cast spells that have cycling from your graveyard. -- If a card with cycling would be put into your graveyard from anywhere and it wasn't cycled, exile it instead.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Absolver Thrull
-text=Haunt (When this creature dies, exile it haunting target creature.) -- When Absolver Thrull enters the battlefield or the creature it haunts dies, destroy target enchantment.
-mana={3}{W}
-type=Creature
-subtype=Thrull Cleric
-power=2
-toughness=3
 [/card]
 [card]
 name=Abstract Iguanart
@@ -4730,12 +4721,6 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
-name=Grave Betrayal
-text=Whenever a creature you don't control dies, return it to the battlefield under your control with an additional +1/+1 counter on it at the beginning of the next end step. That creature is a black Zombie in addition to its other colors and types.
-mana={5}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Grave Servitude
 text=You may cast Grave Servitude as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +3/-1 and is black.
 mana={1}{B}
@@ -4887,12 +4872,6 @@ name=Gustha's Scepter
 text={T}: Exile a card from your hand face down. You may look at it for as long as it remains exiled. -- {T}: Return a card you own exiled with Gustha's Scepter to your hand. -- When you lose control of Gustha's Scepter, put all cards exiled with Gustha's Scepter into their owner's graveyard.
 mana={0}
 type=Artifact
-[/card]
-[card]
-name=Gutter Grime
-text=Whenever a nontoken creature you control dies, put a slime counter on Gutter Grime, then put a green Ooze creature token onto the battlefield with "This creature's power and toughness are each equal to the number of slime counters on Gutter Grime."
-mana={4}{G}
-type=Enchantment
 [/card]
 [card]
 name=Gyruda, Doom of Depths

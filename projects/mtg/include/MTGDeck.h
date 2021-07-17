@@ -221,6 +221,7 @@ public:
     vector<string> meta_AIHints;
     vector<string> Sideboard;
     vector<string> CommandZone;
+    vector<string> DungeonZone;
     string meta_unlockRequirements;
 
     int meta_id;
@@ -239,6 +240,7 @@ public:
     int remove(MTGCard * card);
     void replaceSB(vector<string> newSB = vector<string>());
     void replaceCMD(vector<string> newCMD = vector<string>());
+    void replaceDNG(vector<string> newDNG = vector<string>());
     string getFilename();
     int save();
     int save(const string& destFileName, bool useExpandedDescriptions, const string& deckTitle, const string& deckDesc);

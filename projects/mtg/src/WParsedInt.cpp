@@ -594,9 +594,21 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "mypoisoncount")?target->controller()->poisonCount:target->controller()->opponent()->poisonCount;
     }
-    else if(s == "lastrollresult" || s == "lastrollchoice")
+    else if(s == "lastrollresult" || s == "lastrollchoice" || s == "lastdiefaces" || s == "srclastrollresult" || s == "srclastrollchoice" || s == "srclastdiefaces")
     {
-        intValue = (s == "lastrollresult")?target->lastRollResult:target->dieSide;
+        intValue = 0;
+        if(s == "lastrollresult")
+            intValue = target->lastRollResult;
+        else if(s == "srclastrollresult")
+            intValue = card->lastRollResult;
+        else if(s == "lastrollchoice")
+            intValue = target->dieSide;
+        else if(s == "srclastrollchoice")
+            intValue = card->dieSide;
+        else if(s == "lastdiefaces")
+            intValue = target->dieNumFaces;
+        else if(s == "srclastdiefaces")
+            intValue = card->dieNumFaces;
     }
     else if(s == "lastflipresult" || s == "lastflipchoice")
     {
@@ -926,6 +938,31 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
+    else if (s.find("cardcountabil") != string::npos)//Count Total cards with specific ability
+    {
+        intValue = 0;
+        bool different_names = (s.find("diffcardcountabil")!=string::npos)?true:false;
+        string ability = (s.find("diffcardcountabil")!=string::npos)?s.substr(17):s.substr(13);
+        vector<string> list;
+        for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+        {
+            if (card->controller()->game->inPlay->cards[j]->basicAbilities[Constants::GetBasicAbilityIndex(ability)] == 1){
+                if(!different_names)
+                    intValue += 1;
+                else{
+                    bool name_found = false;
+                    for(unsigned int i = 0; i < list.size() && !name_found; i++){
+                        if(list[i] == card->controller()->game->inPlay->cards[j]->name)
+                            name_found = true;
+                    }
+                    if(!name_found){
+                        list.push_back(card->controller()->game->inPlay->cards[j]->name);
+                        intValue += 1;
+                    }
+                }
+            }
+        }
+    }
     else if (s.find("cardcounttype") != string::npos)//Count Total cards of specific type
     {
         intValue = 0;
@@ -1219,6 +1256,50 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                         }
                     }
                 }
+            }
+        }
+    }
+    else if (s.find("totalmana") != string::npos)//find the cards with specified total mana in target player library
+    {
+        intValue = 0;
+        bool opponent = (s.find("oppototalmana")!=string::npos)?true:false;
+        int manavalue = atoi((s.find("oppototalmana")!=string::npos)?s.substr(13).c_str():s.substr(9).c_str());
+        int totalmana = 0;
+        Player* p = card->controller();
+        if (opponent)
+            p = card->controller()->opponent();
+        for (int j = p->game->library->nb_cards - 1; j >= 0  && totalmana < manavalue; --j){
+            totalmana += p->game->library->cards[j]->getManaCost()->getConvertedCost();
+            intValue = p->game->library->nb_cards - j;
+        }
+    }
+    else if (s == "pdungeoncompleted" || s == "odungeoncompleted")
+    {
+        intValue = (s == "pdungeoncompleted")?card->controller()->dungeonCompleted:card->controller()->opponent()->dungeonCompleted;
+    }
+    else if (s == "pwrtotatt" || s == "thstotatt")//count Total Power or toughness of attacking creatures (e.g. Battle Cry Goblin)
+    {
+        intValue = 0;
+        for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+        {
+            if (card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE) && card->controller()->game->inPlay->cards[j]->attacker){
+                if(s == "pwrtotatt")
+                    intValue += card->controller()->game->inPlay->cards[j]->getCurrentPower();
+                else
+                    intValue += card->controller()->game->inPlay->cards[j]->getCurrentToughness();
+            }
+        }
+    }
+    else if (s == "pwrtotblo" || s == "thstotblo")//count Total Power or toughness of blocking creatures
+    {
+        intValue = 0;
+        for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+        {
+            if (card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE) && card->controller()->game->inPlay->cards[j]->defenser){
+                if(s == "pwrtotblo")
+                    intValue += card->controller()->game->inPlay->cards[j]->getCurrentPower();
+                else
+                    intValue += card->controller()->game->inPlay->cards[j]->getCurrentToughness();
             }
         }
     }

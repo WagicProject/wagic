@@ -250,6 +250,7 @@ public:
     MTGCardInstance * putInExile(MTGCardInstance * card);
     MTGCardInstance * putInLibrary(MTGCardInstance * card);
     MTGCardInstance * putInHand(MTGCardInstance * card);
+    MTGCardInstance * putInSideboard(MTGCardInstance * card);
     MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to, bool asCopy = false);
     int isInPlay(MTGCardInstance * card);
     int isInGrave(MTGCardInstance * card);

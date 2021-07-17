@@ -390,6 +390,14 @@ struct WEventCardExplored : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//dungeon completed event
+struct WEventCardDungeonCompleted : public WEventCardUpdate {
+    int totaldng;
+    string playerName;
+    WEventCardDungeonCompleted(MTGCardInstance * card, int totaldng, string playerName);
+    virtual Targetable * getTarget(int target);
+};
+
 //roll die event
 struct WEventCardRollDie : public WEventCardUpdate {
     string playerName;

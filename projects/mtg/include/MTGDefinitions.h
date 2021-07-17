@@ -308,7 +308,13 @@ class Constants
       LIFEFAKER = 181,
       DOUBLEFACEDEATH = 182,
       GAINEDDOUBLEFACEDEATH = 183,
-      NB_BASIC_ABILITIES = 184,
+      TWODNGTRG = 184,
+      NODNGOPP = 185,
+      NODNGPLR = 186,
+      CANPLAYAURAEQUIPTOPLIBRARY = 187,//aurasequipment
+      COUNTERDEATH = 188,
+      DUNGEONCOMPLETED = 189,
+      NB_BASIC_ABILITIES = 190,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

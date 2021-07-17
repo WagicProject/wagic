@@ -1,0 +1,42 @@
+[meta]
+author=Wagic Team
+name=Heroes of the Realm 2019
+orderindex=PRO-Z9.HTR19
+year=2020-08-01
+total=7
+[/meta]
+[card]
+primitive=Collectigull // Only the Best
+id=296414
+rarity=M
+[/card]
+[card]
+primitive=Keeper of the Secret Lair
+id=296415
+rarity=M
+[/card]
+[card]
+primitive=War of the Spark
+id=296416
+rarity=M
+[/card]
+[card]
+primitive=Champions of Archery // Join the Group
+id=296417
+rarity=M
+[/card]
+[card]
+primitive=Myntasha, Honored One
+id=296418
+rarity=M
+[/card]
+[card]
+primitive=The Cinematic Phoenix
+id=296419
+rarity=M
+[/card]
+[card]
+primitive=Fabled Path of Searo Point
+id=296420
+rarity=M
+[/card]

@@ -61,10 +61,11 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _METALCRAFT_ aslongas(artifact|mybattlefield) >2
 
 # Proliferate
-#AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notAtarget(<anyamount>*) propagate
+#AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(<anyamount>*) duplicatecounters(single)
 
 # Proliferate, still need to target players since the old code doesn't work (*[artifact;creature;...;players]) just let you target creature and player
-#AUTO_DEFINE _OLDPROLIFERATE_ name(proliferate) notatarget(<anyamount>*) proliferate
+#AUTO_DEFINE _OLDPROLIFERATE_ name(Proliferate) notAtarget(<anyamount>*) propagate
+#AUTO_DEFINE _OLDOLDPROLIFERATE_ name(proliferate) notatarget(<anyamount>*) proliferate
 
 # Populate
 #AUTO_DEFINE _POPULATE_ name(Populate) clone notAtarget(creature[token]|myBattlefield)

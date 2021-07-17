@@ -438,17 +438,28 @@ Switch decks without saving=Cambia mazzo senza salvare
 Switch Decks=Cambia mazzo
 --UNLOCK CARDS--=-SBLOCCA CARTE-
 
-#Vista de la coleccion
+#Vista collezione
 Click on the card image=Clicca sull'immagine
 to add card to deck.=per aggiungere la carta al mazzo.
 Your Deck: =Il tuo mazzo: 
-Sideboard: =La panchina: 
-Remove Card=Rimuovi la carta
+Sideboard: =Panchina: 
+Commanders: =Comandanti: 
+Dungeons: =Dungeon: 
+Remove Card=Togli dal mazzo
 Add/Remove Cards=Aggiungi / Rimuovi carte
 Add to Deck=Aggiungi al mazzo
 Add to Sideboard=Aggiungi alla panchina
+Add to Dungeons=Aggiungi ai dungeon
+Choose as Commander=Scegli come comandante
+Remove from Sideboard=Togli dalla panchina
+Remove as Commander=Rimuovi come comandante
+Remove from Dungeons=Togli dai dungeon
+View SB=Vedi PA
+View CMD=Vedi CMZ
+View DNG=Vedi DNG
+View Coll.=Vedi Coll.
 
-#Ediciones:
+#Edizioni:
 
 -Beginners-
 Portal Second Age=Portale, la seconda era
