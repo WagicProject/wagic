@@ -267,6 +267,7 @@ void MTGCardInstance::initMTGCI()
     lastFlipResult = -1;
     dieSide = 0;
     lastRollResult = 0;
+    dieNumFaces = 0;
     scryedCards = 0;
     isAttacking = NULL;
     storedCard = NULL;
@@ -529,9 +530,14 @@ int MTGCardInstance::toGrave( bool forced )
     }
     if (basicAbilities[(int)Constants::INPLAYDEATH] || basicAbilities[(int)Constants::INPLAYTAPDEATH])
     {
-        p->game->putInZone(this, p->game->inPlay, owner->game->battlefield);
-        if(basicAbilities[(int)Constants::INPLAYTAPDEATH])
-            tap(true);
+        bool toTap = basicAbilities[(int)Constants::INPLAYTAPDEATH];
+        bool addCounter = basicAbilities[(int)Constants::COUNTERDEATH];
+        MTGCardInstance* ret = p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
+        ret = p->game->putInZone(ret, owner->game->graveyard, owner->game->battlefield);
+        if(toTap)
+            ret->tap(true);
+        if(addCounter)
+            ret->counters->addCounter(1, 1, false);
         return 1;
     }
     if (!basicAbilities[(int)Constants::INDESTRUCTIBLE])
@@ -1027,6 +1033,9 @@ bool MTGCardInstance::canPlayFromLibrary()
         found++;
     if(isSorceryorInstant() && (has(Constants::CANPLAYINSTANTSORCERYTOPLIBRARY)
         || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYINSTANTSORCERYTOPLIBRARY))))
+        found++;
+    if((hasSubtype(Subtypes::TYPE_EQUIPMENT) || hasSubtype(Subtypes::TYPE_AURA)) && (has(Constants::CANPLAYAURAEQUIPTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYAURAEQUIPTOPLIBRARY))))
         found++;
 
     if(found > 0)

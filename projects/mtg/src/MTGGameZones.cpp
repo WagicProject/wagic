@@ -145,6 +145,21 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
             }
         }
     }
+    //dungeon init
+    if(deck->DungeonZone.size())
+    {
+        for(unsigned int j = 0; j < deck->DungeonZone.size(); j++)
+        {
+            string cardID = deck->DungeonZone[j];
+            MTGCard * card = MTGCollection()->getCardById(atoi(cardID.c_str()));
+            if(card)
+            {
+                MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+                //Dungeons will be added to sideboard zone...
+                sideboard->addCard(newCard);
+            }
+        }
+    }
 }
 
 MTGPlayerCards::~MTGPlayerCards()
@@ -412,12 +427,23 @@ MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card)
     }
     else if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::INPLAYDEATH] || card->basicAbilities[(int)Constants::INPLAYTAPDEATH]))
     {
-        MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->battlefield);
-        if(card->basicAbilities[(int)Constants::INPLAYTAPDEATH])
+        bool toTap = card->basicAbilities[(int)Constants::INPLAYTAPDEATH];
+        bool addCounter = card->basicAbilities[(int)Constants::COUNTERDEATH];
+        MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->graveyard);
+        ret = putInZone(ret, ret->getCurrentZone(), ret->owner->game->battlefield);
+        if(toTap)
             ret->tap(true);
+        if(addCounter)
+            ret->counters->addCounter(1, 1, false);
         return ret;
     }
     return putInZone(card, card->currentZone, card->owner->game->graveyard);
+}
+
+// Moves a card to its owner's sideboard
+MTGCardInstance * MTGPlayerCards::putInSideboard(MTGCardInstance * card)
+{
+    return putInZone(card, card->currentZone, card->owner->game->sideboard);
 }
 
 // Moves a card to its owner's exile
@@ -836,6 +862,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->basicAbilities[Constants::GAINEDEXILEDEATH] = card->basicAbilities[Constants::GAINEDEXILEDEATH];
                 copy->basicAbilities[Constants::GAINEDHANDDEATH] = card->basicAbilities[Constants::GAINEDHANDDEATH];
                 copy->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH] = card->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH];
+                copy->basicAbilities[Constants::DUNGEONCOMPLETED] = card->basicAbilities[Constants::DUNGEONCOMPLETED];
                 copy->damageInflictedAsCommander = card->damageInflictedAsCommander;
                 copy->numofcastfromcommandzone = card->numofcastfromcommandzone;
                 for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)

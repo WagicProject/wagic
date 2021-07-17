@@ -1,7 +1,7 @@
 grade=borderline
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 16-06-2021
+#We sorted this in alphabetical order - Luruz & Vitty85 16-07-2021
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -84,7 +84,7 @@ subtype=Ajani
 [card]
 name=Ajani, Mentor of Heroes
 auto=counter(0/0,4,loyalty)
-auto=activate transforms((,newability[if type(*[creature;aura;planeswalker;zpos<=4]|myLibrary)~morethan~0 then target(*[creature;aura;planeswalker;zpos<=4]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )! else all(*[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! ])) oneshot
+aicode=activate transforms((,newability[if type(*[creature;aura;planeswalker;zpos<=4]|myLibrary)~morethan~0 then target(*[creature;aura;planeswalker;zpos<=4]|myLibrary) moveTo(myHand) and!( all(other *[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )! else all(*[zpos<=4]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! ])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Distribute three +1/+1 counters) ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
 auto={C(0/0,1,Loyalty)}:name(+1: Look 4 cards for creature, aura or planeswalker) reveal:4 optionone name(Get a card) target(<1>*[creature;planeswalker;aura]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-8,Loyalty)}:name(-8: Gain 100 life) life:100 controller
@@ -739,6 +739,18 @@ type=Legendary Planeswalker
 subtype=Dovin
 [/card]
 [card]
+name=Ellywick Tumblestrum
+aicode=activate transforms((,newability[target(creature[zpos<=6]|myLibrary) moveTo(myHand) and!( transforms((,newability[if cantargetcard(*[legendary]|*) then life:3 controller],newability[all(other *[zpos<=6]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot )!])) oneshot
+auto=counter(0/0,4,Loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Venture into the dungeon) if compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0 then name(Venture into dungeon) name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot asSorcery
+auto={C(0/0,-2,Loyalty)}:name(-2: Look top 6 cards) reveal:6 optionone name(Get a creature) target(<upto:1>creature|reveal) moveto(myhand) and!( transforms((,newability[if cantargetcard(*[legendary]|*) then life:3 controller])) oneshot )! optiononeend optiontwo name(Put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
+auto={C(0/0,-7,Loyalty)}:name(-7: Get emblem on your creatures) emblem transforms((,newability[lord(creature|mybattlefield) trample],newability[lord(creature|mybattlefield) foreach(*[dungeoncompleted]|myzones) 2/2])) forever dontremove
+text=+1: Venture into the dungeon. (Enter the first room or advance to the next room.) -- -2: Look at the top six cards of your library. You may reveal a creature card from among them and put it into your hand. If it’s legendary, you gain 3 life. Put the rest on the bottom of your library in a random order. -- -7: You get an emblem with "Creatures you control have trample and haste and get +2/+2 for each differently named dungeon you’ve completed."
+mana={2}{G}{G}
+type=Legendary Planeswalker
+subtype=Ellywick
+[/card]
+[card]
 name=Elspeth, Knight-Errant
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 soldier) create(Soldier:creature Soldier:1/1:white)
@@ -1024,6 +1036,18 @@ subtype=Gideon
 color=white
 [/card]
 [card]
+name=Grand Master of Flowers
+auto=counter(0/0,3,Loyalty)
+auto=this(counter{0/0.1.Loyalty}>=7) becomes(Creature Dragon God,7/7,flying,indestructible)
+auto={C(0/0,1,Loyalty)}:name(+1: Creature can't attack) target(creature[-first strike;-double strike;-vigilance]|battlefield) transforms((,newability[cantblock],newability[cantattack],newability[cantpwattack])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Search Monk in library) target(Monk of the Open Hand|mylibrary) moveto(myhand) and!( shuffle )!
+auto={C(0/0,1,Loyalty)}:name(+1: Search Monk in graveyard) target(Monk of the Open Hand|mygraveyard) moveto(myhand)
+text=As long as Grand Master of Flowers has seven or more loyalty counters on him, he’s a 7/7 Dragon God creature with flying and indestructible. -- +1: Target creature without first strike, double strike, or vigilance can’t attack or block until your next turn. -- +1: Search your library and/or graveyard for a card named Monk of the Open Hand, reveal it, and put it into your hand. If you search your library this way, shuffle it.
+mana={2}{U}{U}
+type=Legendary Planeswalker
+subtype=Bahamut
+[/card]
+[card]
 name=Grist, the Hunger Tide
 auto=counter(0/0,3,loyalty)
 auto=transforms((removealltypes,newability[becomes(Legendary Planeswalker Grist)])) forever
@@ -1105,6 +1129,18 @@ type=Legendary Planeswalker
 subtype=Huatli
 [/card]
 [card]
+name=Inzerva, Master of Insights
+aicode=activate target(*[zpos<=2]|opponentLibrary) moveto(opponentreveal) and!( bottomoflibrary )!
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,+2,Loyalty)}:name(+2: Draw 2 cards and discard) draw:2 && reject target(*|myhand)
+auto={C(0/0,-2,Loyalty)}:name(-2: Look at opponent library and scry 2) reveal:2 revealzone(opponentlibrary) optionone name(Put on top) target(<upto:2>*|reveal) moveto(ownerlibrary) optiononeend optiontwo name(Put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend afterrevealed name(Scry 2) scry:2 scrycore delayed dontshow donothing scrycoreend scryend afterrevealedend revealend
+auto={C(0/0,-4,Loyalty)}:name(-4: Emblem: Draw to deal damage) token(Inzerva Emblem,Inzerva Emblem,0/0,shroud,indestructible) and!( transforms((,newability[{0}:name(Look opponent hand) target(*|opponenthand) moveTo(myreveal) and!( moveto(opponenthand) )!],newability[@drawfoeof(player):damage:1 opponent] )) forever )!
+text=+2: Draw two cards, then discard a card. -- −2: Look at the top two cards of each other player’s library, then put any number of them on the bottom of that library and the rest on top in any order. Scry 2. -- −4: You get an emblem with "Your opponents play with their hands revealed" and "Whenever an opponent draws a card, this emblem deals 1 damage to them."
+mana={1}{2U}{2R}
+type=Legendary Planeswalker
+subtype=Inzerva
+[/card]
+[card]
 name=Jace, Arcane Strategist
 auto=counter(0/0,4,loyalty)
 auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:counter(1/1,1) target(creature|myBattlefield)])) ueot
@@ -1118,9 +1154,11 @@ subtype=Jace
 [card]
 name=Jace, Architect of Thought
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Attacking creatures get -1/-0) all(creature|opponentbattlefield) transforms((,newability[@combat(attacking) source(this):all(trigger[from]) -1/-0 ueot])) uynt oneshot
-auto={C(0/0,-2,Loyalty)}:name(-2: CANNOT BE CODED) donothing
-auto={C(0/0,-8,Loyalty)}:name(-8: Exile a card from library and cast it) moveto(exile) target(*|opponentLibrary) and!( transforms((,canplayfromexile,castcard(normal))) ueot )! 
+aicode=activate target(*[zpos<=3]|mylibrary) moveto(myhand) and!( transforms((,newability[all(*[zpos<=3]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot )!
+auto={C(0/0,1,Loyalty)}:name(+1: Attacking creatures get -1/-0) transforms((,newability[counter(0/0.1.JaceEffect)],newability[phaseaction[my untap once sourceinplay] counter(0/0.-1.JaceEffect)])) forever
+auto=this(counter{0/0.1.JaceEffect}>0) lord(creature|opponentbattlefield) transforms((,newability[@combat(attacking) source(this):-1/0 ueot]))
+auto={C(0/0,-2,Loyalty)}:name(-2: Look top 3 cards) reveal:3 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,-8,Loyalty)}:name(-8: Exile cards from libraries) target(*[-land]|mylibrary) moveto(exile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[name(Search opponent library) target(*[-land]|opponentlibrary) moveto(myexile) and!( transforms((,newability[choice name(Cast opponent exiled card) activate castcard(normal)],newability[choice name(Don't cast opponent exiled card) moveto(ownerExile)])) ueot )!])) ueot )! 
 text=+1: Until your next turn, whenever a creature an opponent controls attacks, it gets -1/-0 until end of turn. -- -2: Reveal the top three cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other on the bottom of your library in any order. -- -8: For each player, search that player’s library for a nonland card and exile it, then that player shuffles their library. You may cast those cards without paying their mana costs.
 mana={2}{U}{U}
 type=Legendary Planeswalker
@@ -1518,8 +1556,8 @@ name=Kiora, the Crashing Wave
 auto=counter(0/0,2,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Prevention all damamge dealt by and to) target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
 auto={C(0/0,-1,Loyalty)}:name(-1: Draw a card and may play additional land) draw:1 controller && maxPlay(land)+1 ueot
-auto={C(0/0,-5,Loyalty)}:name(-5: Emblem: "Each my end of turn create a 9/9 Kraken") emblem transforms((,newability[@each my endofturn:token(Kraken,Creature Kraken,9/9,blue) controller])) forever dontremove
-text=+1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls. -- -1: Draw a card. You may play an additional land this turn. -- -5: You get an emblem with "At the beginning of your end step, put a 9/9 blue Kraken creature token onto the battlefield." -- Starting Loyalty (2)
+auto={C(0/0,-5,Loyalty)}:name(-5: Emblem: "Each my end of turn create a 9/9 Kraken") emblem transforms((,newability[@each my endofturn:token(Kraken^Creature Kraken^9/9^blue) controller])) forever dontremove
+text=+1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls. -- -1: Draw a card. You may play an additional land this turn. -- -5: You get an emblem with "At the beginning of your end step, put a 9/9 blue Kraken creature token onto the battlefield."
 mana={2}{G}{U}
 type=Legendary Planeswalker
 subtype=Kiora
@@ -1693,6 +1731,18 @@ type=Legendary Planeswalker
 subtype=Liliana
 [/card]
 [card]
+name=Lolth, Spider Queen
+auto=counter(0/0,4,Loyalty)
+auto=@movedto(creature|graveyard) from(mybattlefield):name(Put loyalty counter) counter(0/0,1,Loyalty)
+auto={C(0/0,0,Loyalty)}:name(+0: Draw card and lose life) draw:1 controller && life:-1 controller
+auto={C(0/0,-3,Loyalty)}:name(-3: Create spiders) token(Spider,Creature Spider,2/1,black,reach,menace)*2
+auto={C(0/0,-8,Loyalty)}:name(-8: Get emblem on combat damage) emblem transforms((,newability[@combatdamagefoeof(player) from(creature|mybattlefield) restriction{compare(oplifelost)~lessthan~8} turnlimited:phaseaction[my combatdamage once] name(Damage opponent) damage:8minusoplifelostminusend opponent])) forever dontremove
+text=Whenever a creature you control dies, put a loyalty counter on Lolth, Spider Queen. -- 0: You draw a card and you lose 1 life. -- -3: Create two 2/1 black Spider creature tokens with menace and reach. -- -8: You get an emblem with "Whenever an opponent is dealt combat damage by one or more creatures you control, if that player lost less than 8 life this turn, they lose life equal to the difference."
+mana={3}{B}{B}
+type=Legendary Planeswalker
+subtype=Lolth
+[/card]
+[card]
 name=Lord Windgrace
 abilities=canbecommander
 auto=counter(0/0,5,Loyalty)
@@ -1727,6 +1777,17 @@ text=+1: You may discard a card. If you do, draw a card. If a creature card was 
 mana={4}{R}{R}
 type=Legendary Planeswalker
 subtype=Lukka
+[/card]
+[card]
+name=Mordenkainen
+auto=counter(0/0,5,Loyalty)
+auto={C(0/0,2,Loyalty)}:name(+2: Draw 2 cards) draw:2 && transforms((,newability[name(Put on bottom) target(*|myhand) bottomoflibrary])) forever
+auto={C(0/0,-2,Loyalty)}:name(-2: Create Dog Illusion) token(Dog Mor)
+auto={C(0/0,-10,Loyalty)}:name(-10: Exchange hand and library) token(Mordenkainen Emblem,Emblem,0/0,shroud,indestructible) and!( transforms((,newability[nomaxhand],newability[all(*|myhand) moveto(myreveal) and!( all(*|mylibrary) moveto(myhand) and!( all(*|myreveal) moveto(mylibrary) and!( shuffle )! )! )!])) forever
+text=+2: Draw two cards, then put a card from your hand on the bottom of your library. -- -2: Create a blue Dog Illusion creature token with "This creature’s power and toughness are each equal to twice the number of cards in your hand." -- -10: Exchange your hand and library, then shuffle. You get an emblem with "You have no maximum hand size."
+mana={4}{U}{U}
+type=Legendary Planeswalker
+subtype=Mordenkainen
 [/card]
 [card]
 name=Mu Yanling
@@ -1795,10 +1856,11 @@ subtype=Nahiri
 [card]
 name=Nahiri, the Harbinger
 auto=counter(0/0,4,loyalty)
-aicode=activate moveto(myBattlefield) notAtarget(artifact,creature|myLibrary) and!( transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveTo(ownerhand)])) forever )!
-auto={C(0/0,2,Loyalty)}:name(+2: May discard and draw a card) may notAtarget(*|myHand) transforms((,newability[reject and!(draw:1)!])) forever
+aicode=activate target(*[artifact;creature]|myLibrary) moveto(myBattlefield) and!( transforms((,newability[haste],newability[phaseaction[endofturn once sourceinplay] moveTo(ownerhand)])) ueot )!
+auto={C(0/0,2,Loyalty)}:name(+2: Don't discard any card) donothing
+auto={C(0/0,2,Loyalty)}:name(+2: Discard and draw a card) target(*|myHand) reject and!( draw:1 controller )!
 auto={C(0/0,-2,Loyalty)}:name(-2: Exile target enchantment, tapped Artifact or Creature) ability$!name(Choose one) choice name(Exile target enchantment) moveTo(exile) target(enchantment) _ choice name(Exile target tapped creature) moveTo(exile) target(creature[tapped]) _ choice name(Exile target tapped artifact) moveTo(exile) target(artifact[tapped])!$ controller
-auto={C(0/0,-8,Loyalty)}:name(-8: Search a creature or artifact) reveal:plibrarycount optionone name(choose a creature or artifact) target(artifact,creature|reveal) moveTo(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveTo(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveTo(ownerlibrary) and!(moveto(myBattlefield) and!( transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveTo(ownerhand)])) oneshot )!)! afterrevealedend revealend
+auto={C(0/0,-8,Loyalty)}:name(-8: Search a creature or artifact) reveal:plibrarycount optionone name(choose a creature or artifact) target(*[artifact;creature]|reveal) moveTo(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveTo(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!( shuffle )! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(myBattlefield) and!( transforms((,newability[haste],newability[phaseaction[endofturn once sourceinplay] moveTo(ownerhand)])) ueot )! afterrevealedend revealend
 text=+2: You may discard a card. If you do, draw a card. -- -2: Exile target enchantment, tapped artifact, or tapped creature. -- -8: Search your library for an artifact or creature card, put it onto the battlefield, then shuffle your library. It gains haste. Return it to your hand at the beginning of the next end step.
 mana={2}{R}{W}
 type=Legendary Planeswalker
@@ -2835,9 +2897,8 @@ subtype=Vivien
 [/card]
 [card]
 name=Vivien, Monsters' Advocate
-abilities=showfromtoplibrary
+abilities=showfromtoplibrary,canplaycreaturelibrarytop
 aicode=activate moveto(myBattlefield) target(creature[manacost<=storedmanacost]|mylibrary)
-auto=canplaycreaturelibrarytop
 auto=counter(0/0,3,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a Creature Beast 3/3) token(Beast Viv)
 auto={C(0/0,-2,Loyalty)}:name(-2: Cast a creature to search a lesser creature) emblem transforms((,newability[@movedTo(creature|myStak):moveTo(myBattlefield) target(creature[manacost<=storedmanacost]|myLibrary) && shuffle])) oneshot
@@ -2996,4 +3057,15 @@ text=+1: Add X mana in any combination of {R} and/or {G} to your mana pool, wher
 mana={2}{R}{G}
 type=Legendary Planeswalker
 subtype=Xenagos
+[/card]
+[card]
+name=Zariel, Archduke of Avernus
+auto=counter(0/0,4,Loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Creatures get 1/0 and haste) all(creature|myBattlefield) transforms((,newability[1/0],newability[haste])) ueot
+auto={C(0/0,0,Loyalty)}:name(+0: Create devil) token(Devil,Creature Devil,1/1,red) and!( transforms((,newability[@movedTo(this|graveyard) from(battlefield):name(Deal 1 damage) damage:1 target(player^creature^planeswalker)])) forever )!
+auto={C(0/0,-6,Loyalty)}:name(-6: Get emblem on combat phase) emblem transforms((,newability[@combat(attacking) source(creature|myBattlefield) turnlimited:name(Gain new combat phae) nextphasealter(add^combatphases^controller^after<combatends>)],newability[@combat(attacking) source(creature|myBattlefield) turnlimited:name(Untap all creatures after combat ends) all(creature[attacking]|myBattlefield) transforms((,newability[phaseaction[my combatends once sourceinplay] untap])) ueot])) forever dontremove
+text=+1: Creatures you control get +1/+0 and gain haste until end of turn. -- 0: Create a 1/1 red Devil creature token with "When this creature dies, it deals 1 damage to any target." -- -6: You get an emblem with "At the end of the first combat phase on your turn, untap target creature you control. After this phase, there is an additional combat phase."
+mana={2}{R}{R}
+type=Legendary Planeswalker
+subtype=Zariel
 [/card]

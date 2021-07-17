@@ -214,7 +214,13 @@ const char* Constants::MTGBasicAbilities[] = {
     "undamageable", //It cannot be damaged by any source
     "lifefaker", //It's a card wich modify the life increasement when a @lifeof triggers occours (e.g. Angel of Vitality)
     "doublefacedeath", //It goes to temp zone after death (e.g. Double face card)
-    "gaineddoublefacedeath" //It goes to temp after death (use just to give add ability to instants and sorceries which originally have not, e.g. with transforms keyword)
+    "gaineddoublefacedeath", //It goes to temp after death (use just to give add ability to instants and sorceries which originally have not, e.g. with transforms keyword)
+    "twodngtrg", //It makes rooms abilities trigger twice (e.g. Hama Pashar, Ruin Seeker)
+    "nodngopp", //Opponent can't venture (e.g. "Keen-Eared Sentry")
+    "nodngplr", //Controller can't venture
+    "canplayauraequiplibrarytop", //auras and equipment
+    "counterdeath", //It gains a 1/1 counter when it returns from graveyard (to use with inplaydeath and inplaytapdeath)"
+    "dungeoncompleted" //This dungeon has been completed
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

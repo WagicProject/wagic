@@ -317,6 +317,11 @@ WEventCardExplored::WEventCardExplored(MTGCardInstance * card) :
 {
 }
 
+WEventCardDungeonCompleted::WEventCardDungeonCompleted(MTGCardInstance * card, int totaldng, string playerName) :
+    WEventCardUpdate(card), totaldng(totaldng), playerName(playerName)
+{
+}
+
 WEventCardRollDie::WEventCardRollDie(MTGCardInstance * card, string playerName) :
     WEventCardUpdate(card), playerName(playerName)
 {
@@ -565,6 +570,12 @@ Targetable * WEventCardScryed::getTarget(int target)
 }
 
 Targetable * WEventCardExplored::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardDungeonCompleted::getTarget(int target)
 {
     if (target) return card;
     return NULL;

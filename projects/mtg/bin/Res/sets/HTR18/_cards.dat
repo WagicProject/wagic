@@ -1,0 +1,42 @@
+[meta]
+author=Wagic Team
+name=Heroes of the Realm 2018
+orderindex=PRO-Z5.HTR18
+year=2019-08-01
+total=6
+[/meta]
+[card]
+primitive=Human Wizard
+id=-296413
+rarity=T
+[/card]
+[card]
+primitive=Human
+id=-296410
+rarity=T
+[/card]
+[card]
+primitive=Kharis & the Beholder
+id=296410
+rarity=M
+[/card]
+[card]
+primitive=Kharis & the Beholder
+id=296410
+rarity=M
+[/card]
+[card]
+primitive=Optimus Prime, Inspiring Leader
+id=296411
+rarity=M
+[/card]
+[card]
+primitive=Sol, Advocate Eternal
+id=296412
+rarity=M
+[/card]
+[card]
+primitive=The Legend of Arena
+id=296413
+rarity=M
+[/card]

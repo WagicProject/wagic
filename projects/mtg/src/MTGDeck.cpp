@@ -920,9 +920,11 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                     s.erase(0, s.find_first_not_of("\t\n\v\f\r "));
                     std::string::const_iterator it = s.begin();
                     while (it != s.end() && std::isdigit(*it)) ++it;
-                    if(!s.empty() && it == s.end())
-                        Sideboard.push_back(s);
-                    else {
+                    if(!s.empty() && it == s.end()){
+                        MTGCard * card = database->getCardById(atoi(s.c_str()));
+                        if(card && !card->data->hasType("Dungeon")) // To add Dungeons in Sideboard you need to use #DNG tag.
+                            Sideboard.push_back(s);
+                    } else {
                         int numberOfCopies = 1;
                         size_t found = s.find(" *");
                         if (found != string::npos){
@@ -934,9 +936,10 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                             for (int i = 0; i < numberOfCopies; i++){
                                 std::stringstream str_id;
                                 str_id << card->getId();
-                                Sideboard.push_back(str_id.str());
+                                if(!card->data->hasType("Dungeon")) // To add Dungeons in Sideboard you need to use #DNG tag.
+                                    Sideboard.push_back(str_id.str());
                             }
-                        }else {
+                        } else {
                             DebugTrace("could not add to Sideboard any card with name: " << s);
                         }
                     }
@@ -963,7 +966,7 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                                     CommandZone.push_back(s);
                             }
                         }
-                    }else {
+                    } else {
                         size_t found = s.find(" *");
                         if (found != string::npos)
                             s = s.substr(0, found);
@@ -980,8 +983,57 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                                         CommandZone.push_back(str_id.str());
                                 }
                             }
-                        }else {
+                        } else {
                             DebugTrace("could not add to CommandZone any card with name: " << s);
+                        }
+                    }
+                    continue;
+                }
+                found = s.find("DNG:"); // Now it's possible to add Dungeons even using their Name instead of ID such as normal deck cards.
+                if (found != string::npos)
+                {
+                    if(!database) continue;
+                    s = s.substr(found + 4);
+                    s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);
+                    s.erase(0, s.find_first_not_of("\t\n\v\f\r "));
+                    std::string::const_iterator it = s.begin();
+                    while (it != s.end() && std::isdigit(*it)) ++it;
+                    if(!s.empty() && it == s.end()){
+                        MTGCard * newcard = database->getCardById(atoi(s.c_str()));
+                        if(!DungeonZone.size() && newcard && newcard->data->hasType("Dungeon") && newcard->getRarity() == Constants::RARITY_T) // If no dungeon has been added you can add one.
+                            DungeonZone.push_back(s);
+                        else if(DungeonZone.size() > 0 && newcard && newcard->data->hasType("Dungeon") && newcard->getRarity() == Constants::RARITY_T){ // Try to add the dungeon.
+                            bool found = false;
+                            for(unsigned int i = 0; i < DungeonZone.size(); i++){
+                                MTGCard * oldcard = database->getCardById(atoi((DungeonZone.at(i)).c_str()));
+                                if(oldcard && oldcard->data->name == newcard->data->name)
+                                    found = true;
+                            }
+                            if(!found)
+                                DungeonZone.push_back(s);
+                        }
+                    } else {
+                        size_t found = s.find(" *");
+                        if (found != string::npos)
+                            s = s.substr(0, found);
+                        MTGCard * newcard = database->getCardByName(s);
+                        if (newcard){
+                            std::stringstream str_id;
+                            str_id << newcard->getId();
+                            if(!DungeonZone.size() && newcard && newcard->data->hasType("Dungeon") && newcard->getRarity() == Constants::RARITY_T) // If no dungeon has been added you can add one.
+                                DungeonZone.push_back(str_id.str());
+                            else if(DungeonZone.size() > 0 && newcard && newcard->data->hasType("Dungeon") && newcard->getRarity() == Constants::RARITY_T){ // Try to add the dungeon.
+                                bool found = false;
+                                for(unsigned int i = 0; i < DungeonZone.size() && !found; i++){
+                                    MTGCard * oldcard = database->getCardById(atoi((DungeonZone.at(i)).c_str()));
+                                    if(oldcard && oldcard->data->name == newcard->data->name)
+                                        found = true;
+                                }
+                                if(!found)
+                                    DungeonZone.push_back(str_id.str());
+                            }
+                        } else {
+                            DebugTrace("could not add to Dungeons any card with name: " << s);
                         }
                     }
                     continue;
@@ -1227,6 +1279,16 @@ void MTGDeck::replaceCMD(vector<string> newCMD)
     return;
 }
 
+void MTGDeck::replaceDNG(vector<string> newDMG)
+{
+    if(newDMG.size())
+    {
+        DungeonZone.clear();
+        DungeonZone = newDMG;
+    }
+    return;
+}
+
 int MTGDeck::remove(int cardid)
 {
     if (cards.find(cardid) == cards.end() || cards[cardid] == 0) return 0;
@@ -1316,6 +1378,17 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
                 int checkID = atoi(CommandZone[k].c_str());
                 if(checkID)
                     file << "#CMD:" << checkID << "\n";
+            }
+        }
+        //save dungeons
+        if(DungeonZone.size())
+        {
+            sort(DungeonZone.begin(), DungeonZone.end());
+            for(unsigned int k = 0; k < DungeonZone.size(); k++)
+            {
+                int checkID = atoi(DungeonZone[k].c_str());
+                if(checkID)
+                    file << "#DNG:" << checkID << "\n";
             }
         }
 

@@ -1245,12 +1245,33 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "explored", card))
         return NEW TrCardExplored(observer, id, card, tc, once, limitOnceATurn);
 
+    //Dungeon has been completer from a card
+    if (TargetChooser * tc = parseSimpleTC(s, "dungeoncompleted", card)){
+        int totaldng = 0;
+        vector<string>res = parseBetween(s, "total(",")");
+        if(res.size()){
+            totaldng = atoi(res[1].c_str());
+        }
+        string playerName = "";
+        vector<string>from = parseBetween(s, "from(",")");
+        if(from.size() && from[1] == "opponent"){
+            playerName = card->controller()->opponent()->getDisplayName();
+        } else if(from.size() && from[1] == "controller"){
+            playerName = card->controller()->getDisplayName();
+        } 
+        return NEW TrCardDungeonCompleted(observer, id, card, tc, once, limitOnceATurn, totaldng, playerName);
+    }
+
     //Roll die has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "dierolled", card)){
         int rollresult = 0;
         vector<string>res = parseBetween(s, "result(",")");
         if(res.size()){
-            rollresult = atoi(res[1].c_str());
+            if(res[1] == "max"){
+                rollresult = -1;
+            } else {
+                rollresult = atoi(res[1].c_str());
+            }
         }
         string playerName = "";
         vector<string>from = parseBetween(s, "from(",")");
@@ -1824,6 +1845,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         size_t pos1 = s.find("transforms(("); // Try to handle pay ability inside ability$! or transforms keywords.
         size_t pos2 = s.find("ability$!");
+        if(pos2 == string::npos)
+            pos2 = s.find("winability"); // Try to handle pay ability inside winability or loseability keywords.
+        if(pos2 == string::npos)
+            pos2 = s.find("loseability");
         vector<string> splitMayPaystr = parseBetween(s, "pay(", ")", true);
         if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && found < pos1 && found < pos2) || 
             (pos2 == string::npos && pos1 != string::npos && found < pos1) || (pos1 == string::npos && pos2 != string::npos && found < pos2)){
@@ -1844,9 +1869,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         storedAbilityString = splitGrant[1];
         size_t pos1 = s.find("transforms(("); // Try to handle grant ability inside ability$! or transforms keywords.
         size_t pos2 = s.find("ability$!");
+        if(pos2 == string::npos)
+            pos2 = s.find("winability"); // Try to handle grant ability inside winability or loseability keywords.
+        if(pos2 == string::npos)
+            pos2 = s.find("loseability");
         size_t pos3 = s.find(splitGrant[1]);
-        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 < pos1 && pos3 < pos2) || 
-            (pos2 == string::npos && pos1 != string::npos && pos3 < pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 < pos2)){
+        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 <= pos1 && pos3 <= pos2) || 
+            (pos2 == string::npos && pos1 != string::npos && pos3 <= pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 <= pos2)){
             s = splitGrant[0];
             s.append("grant ");
             s.append(splitGrant[2]);
@@ -1860,9 +1889,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         storedAbilityString = splitRevealx[1];
         size_t pos1 = s.find("transforms(("); // Try to handle reveal ability inside ability$! or transforms keywords.
         size_t pos2 = s.find("ability$!");
+        if(pos2 == string::npos)
+            pos2 = s.find("winability"); // Try to handle reveal ability inside winability or loseability keywords.
+        if(pos2 == string::npos)
+            pos2 = s.find("loseability");
         size_t pos3 = s.find(splitRevealx[1]);
-        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 < pos1 && pos3 < pos2) || 
-            (pos2 == string::npos && pos1 != string::npos && pos3 < pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 < pos2)){
+        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 <= pos1 && pos3 <= pos2) || 
+            (pos2 == string::npos && pos1 != string::npos && pos3 <= pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 <= pos2)){
             s = splitRevealx[0];
             s.append("reveal: ");
             s.append(splitRevealx[2]);
@@ -1876,9 +1909,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         storedAbilityString = splitScryx[1];
         size_t pos1 = s.find("transforms(("); // Try to handle scry ability inside ability$! or transforms keywords.
         size_t pos2 = s.find("ability$!");
+        if(pos2 == string::npos)
+            pos2 = s.find("winability"); // Try to handle scry ability inside winability or loseability keywords.
+        if(pos2 == string::npos)
+            pos2 = s.find("loseability");
         size_t pos3 = s.find(splitScryx[1]);
-        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 < pos1 && pos3 < pos2) || 
-            (pos2 == string::npos && pos1 != string::npos && pos3 < pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 < pos2)){
+        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 <= pos1 && pos3 <= pos2) || 
+            (pos2 == string::npos && pos1 != string::npos && pos3 <= pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 <= pos2)){
             s = splitScryx[0];
             s.append("scry: ");
             s.append(splitScryx[2]);
@@ -1890,6 +1927,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (found != string::npos && storedString.empty())
     {
         size_t pos1 = s.find("ability$!"); // Try to handle transforms ability inside ability$! keyword.
+        if(pos1 == string::npos)
+            pos1 = s.find("winability"); // Try to handle transforms ability inside winability or loseability keywords.
+        if(pos1 == string::npos)
+            pos1 = s.find("loseability");
         if(pos1 == string::npos || found < pos1){
             size_t real_end = s.find("))", found);
             size_t stypesStartIndex = found + 12;
@@ -2687,13 +2728,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
    }
 
-    //Phase based actions  
-    found = s.find("phaseaction");
-    if (found != string::npos)
-    {
-        return parsePhaseActionAbility(s,card,spell,target,restrictions,id);
-    }
-
     //flip a coin
     vector<string> splitFlipCoin = parseBetween(s, "flipacoin ", " flipend");
     if (splitFlipCoin.size())
@@ -2705,20 +2739,122 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //roll a die
-    vector<string> splitRollDie = parseBetween(s, "rolladie ", " rollend");
-    if (splitRollDie.size())
+    //roll a d4 die
+    vector<string> splitRollD4 = parseBetween(s, "rolld4 ", " rolld4end");
+    if (splitRollD4.size())
     {
-        string a1 = splitRollDie[1];
+        string a1 = splitRollD4[1];
         int userchoice = 0;
         if(a1[0] >= 48 && a1[0] <= 57){
-            userchoice = a1[0] - 48;
+            userchoice = (a1[0] - 48);
             a1 = a1.substr(2);
         }
-        MTGAbility * a = NEW GenericRollDie(observer, id, card, target, a1, NULL, userchoice);
+        MTGAbility * a = NEW GenericRollDie(observer, id, card, target, a1, NULL, userchoice, 4);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
+    }
+
+    //roll a d6 die
+    vector<string> splitRollD6 = parseBetween(s, "rolld6 ", " rolld6end");
+    if (splitRollD6.size())
+    {
+        string a1 = splitRollD6[1];
+        int userchoice = 0;
+        if(a1[0] >= 48 && a1[0] <= 57){
+            userchoice = (a1[0] - 48);
+            a1 = a1.substr(2);
+        }
+        MTGAbility * a = NEW GenericRollDie(observer, id, card, target, a1, NULL, userchoice, 6);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+
+    //roll a d8 die
+    vector<string> splitRollD8 = parseBetween(s, "rolld8 ", " rolld8end");
+    if (splitRollD8.size())
+    {
+        string a1 = splitRollD8[1];
+        int userchoice = 0;
+        if(a1[0] >= 48 && a1[0] <= 57){
+            userchoice = (a1[0] - 48);
+            a1 = a1.substr(2);
+        }
+        MTGAbility * a = NEW GenericRollDie(observer, id, card, target, a1, NULL, userchoice, 8);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+
+    //roll a d10 die
+    vector<string> splitRollD10 = parseBetween(s, "rolld10 ", " rolld10end");
+    if (splitRollD10.size())
+    {
+        string a1 = splitRollD10[1];
+        int userchoice = 0;
+        if(a1[0] >= 48 && a1[0] <= 57){
+            if(a1[1] >= 48 && a1[1] <= 57){
+                userchoice = (a1[0] - 48)*10 + (a1[1] - 48);
+                a1 = a1.substr(3);
+            } else {
+                userchoice = (a1[0] - 48);
+                a1 = a1.substr(2);
+            }
+        }
+        MTGAbility * a = NEW GenericRollDie(observer, id, card, target, a1, NULL, userchoice, 10);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+
+    //roll a d12 die
+    vector<string> splitRollD12 = parseBetween(s, "rolld12 ", " rolld12end");
+    if (splitRollD12.size())
+    {
+        string a1 = splitRollD12[1];
+        int userchoice = 0;
+        if(a1[0] >= 48 && a1[0] <= 57){
+            if(a1[1] >= 48 && a1[1] <= 57){
+                userchoice = (a1[0] - 48)*10 + (a1[1] - 48);
+                a1 = a1.substr(3);
+            } else {
+                userchoice = (a1[0] - 48);
+                a1 = a1.substr(2);
+            }
+        }
+        MTGAbility * a = NEW GenericRollDie(observer, id, card, target, a1, NULL, userchoice, 12);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+
+    //roll a d20 die
+    vector<string> splitRollD20 = parseBetween(s, "rolld20 ", " rolld20end");
+    if (splitRollD20.size())
+    {
+        string a1 = splitRollD20[1];
+        int userchoice = 0;
+        if(a1[0] >= 48 && a1[0] <= 57){
+            if(a1[1] >= 48 && a1[1] <= 57){
+                userchoice = (a1[0] - 48)*10 + (a1[1] - 48);
+                a1 = a1.substr(3);
+            } else {
+                userchoice = (a1[0] - 48);
+                a1 = a1.substr(2);
+            }
+        }
+        MTGAbility * a = NEW GenericRollDie(observer, id, card, target, a1, NULL, userchoice, 20);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+
+    //Phase based actions  
+    found = s.find("phaseaction");
+    if (found != string::npos)
+    {
+        return parsePhaseActionAbility(s,card,spell,target,restrictions,id);
     }
 
     //may pay ability
@@ -3554,6 +3690,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //alter dungeon completed
+    vector<string> splitDungeonCompleted = parseBetween(s, "completedungeon:", " ", false);
+    if (splitDungeonCompleted.size())
+    {
+        int dungeoncompleted = atoi(splitDungeonCompleted[1].c_str());
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterDungeonCompleted(observer, id, card, t, dungeoncompleted, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
     //alter yidaro counter
     vector<string> splitYidaroCounter = parseBetween(s, "alteryidarocount:", " ", false);
     if (splitYidaroCounter.size())
@@ -4312,6 +4459,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (splitMeldFrom[1].size())
         {
             splitMeldNames = splitMeldFrom[1];
+            replace(splitMeldNames.begin(), splitMeldNames.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using meldfrom keyword inside transforms)
         }
         MTGAbility * a = NEW AAMeldFrom(observer, id, card, target, splitMeldNames);
         a->oneShot = true;
@@ -4326,6 +4474,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (splitMeld[1].size())
         {
             splitMeldName = splitMeld[1];
+            replace(splitMeldName.begin(), splitMeldName.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using meld keyword inside transforms)
         }
         MTGAbility * a = NEW AAMeld(observer, id, card, target, splitMeldName);
         a->oneShot = true;
@@ -5135,6 +5284,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::HANDDEATH] = true;
     badAbilities[(int)Constants::GAINEDHANDDEATH] = true;
     badAbilities[(int)Constants::INPLAYDEATH] = true;
+    badAbilities[(int)Constants::COUNTERDEATH] = true;
     badAbilities[(int)Constants::INPLAYTAPDEATH] = true;
     badAbilities[(int)Constants::DOUBLEFACEDEATH] = true;
     badAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = true;

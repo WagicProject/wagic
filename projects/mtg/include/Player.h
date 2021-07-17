@@ -44,6 +44,7 @@ public:
     int drawCounter;
     int energyCount;
     int yidaroCount;
+    int dungeonCompleted;
     int numOfCommandCast;
     int monarch;
     int surveilOffset;

@@ -1240,6 +1240,48 @@ AAAlterDevotionOffset::~AAAlterDevotionOffset()
 {
 }
 
+//AA Dungeon Completed
+AAAlterDungeonCompleted::AAAlterDungeonCompleted(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int dungeoncounter, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), dungeoncounter(dungeoncounter)
+{
+}
+
+int AAAlterDungeonCompleted::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            source = pTarget->game->putInSideboard(source);
+            source->basicAbilities[Constants::DUNGEONCOMPLETED] = 1;
+            pTarget->dungeonCompleted += dungeoncounter;
+            if(pTarget->dungeonCompleted < 0)
+                pTarget->dungeonCompleted = 0;
+            WEvent * e = NEW WEventCardDungeonCompleted(source, pTarget->dungeonCompleted, source->controller()->getDisplayName());
+            game->receiveEvent(e);
+        }
+    }
+    return 0;
+}
+
+const string AAAlterDungeonCompleted::getMenuText()
+{
+    WParsedInt parsedNum(dungeoncounter);
+    return _(parsedNum.getStringValue() + " Dungeon Completed Counter ").c_str();
+}
+
+AAAlterDungeonCompleted * AAAlterDungeonCompleted::clone() const
+{
+    return NEW AAAlterDungeonCompleted(*this);
+}
+
+AAAlterDungeonCompleted::~AAAlterDungeonCompleted()
+{
+}
+
 //AA Yidaro Count
 AAAlterYidaroCount::AAAlterYidaroCount(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int yidarocount, ManaCost * _cost,
         int who) :
@@ -3188,9 +3230,9 @@ AASetCoin::~AASetCoin()
 }
 
 //
-//rolling a 6 side die
-GenericRollDie::GenericRollDie(GameObserver* observer, int id, MTGCardInstance * source, Targetable *, string _toAdd, ManaCost * cost, int userchoice) :
-ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd), userchoice(userchoice)
+//rolling a generic die
+GenericRollDie::GenericRollDie(GameObserver* observer, int id, MTGCardInstance * source, Targetable *, string _toAdd, ManaCost * cost, int userchoice, int diefaces) :
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd), userchoice(userchoice), diefaces(diefaces)
 {
     this->GetId();
     setDie = NULL;
@@ -3201,17 +3243,17 @@ int GenericRollDie::resolve()
     if (!target)
         return 0;
     vector<MTGAbility*>selection;
-    if(userchoice > 0 && userchoice < 7){
-        setDie = NEW AASetDie(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, userchoice, baseAbility);
+    if(userchoice > 0 && userchoice <= diefaces){
+        setDie = NEW AASetDie(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, userchoice, diefaces, baseAbility);
         MTGAbility * set = setDie->clone();
         set->oneShot = true;
         game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
         set->resolve();
         SAFE_DELETE(setDie);
     } else{
-        for (int i = 1; i < 7; ++i)
+        for (int i = 1; i <= diefaces; ++i)
         {
-            setDie = NEW AASetDie(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, baseAbility);
+            setDie = NEW AASetDie(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, diefaces, baseAbility);
             MTGAbility * set = setDie->clone();
             set->oneShot = true;
             selection.push_back(set);
@@ -3230,7 +3272,9 @@ int GenericRollDie::resolve()
 
 const string GenericRollDie::getMenuText()
 {
-return "Roll a Die";
+    std::stringstream msg;
+    msg << "Roll a " << diefaces << " faced Die";
+    return msg.str();
 }
 
 GenericRollDie * GenericRollDie::clone() const
@@ -3243,9 +3287,9 @@ GenericRollDie::~GenericRollDie()
 {
 }
 
-//set color choosen
- AASetDie::AASetDie(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int _side, string toAlter):
-    InstantAbility(observer, id, source),side(_side), abilityToAlter(toAlter)
+//set die result
+ AASetDie::AASetDie(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int _side, int _diefaces, string toAlter):
+    InstantAbility(observer, id, source),side(_side), diefaces(_diefaces), abilityToAlter(toAlter)
 {
     this->target = _target;
     abilityAltered = NULL;
@@ -3256,8 +3300,9 @@ int AASetDie::resolve()
     MTGCardInstance * _target =  (MTGCardInstance *)target; 
     _target->dieSide = side;
 
-    int roll = 1 + game->getRandomGenerator()->random() % 6;
+    int roll = 1 + game->getRandomGenerator()->random() % diefaces;
     _target->lastRollResult = roll;
+    _target->dieNumFaces = diefaces;
     WEvent * e = NEW WEventCardRollDie(_target, source->controller()->getDisplayName());
     game->receiveEvent(e);
     vector<string>Win = parseBetween(abilityToAlter,"winability "," winabilityend");
@@ -4473,6 +4518,8 @@ int AAFlip::resolve()
             MTGCardInstance * myParent = NULL;
             if(_target->target)
                 myParent = _target->target;
+            if(_target->nameOrig == "")
+                _target->nameOrig = _target->name; // Saves the orignal card name before to flip the card.
             _target->name = myFlip->name;
             _target->setName(myFlip->name);
             if(!isflipcard)//transform card

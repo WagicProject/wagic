@@ -605,9 +605,14 @@ int PutInGraveyard::resolve()
     }
     if (card->basicAbilities[(int)Constants::INPLAYDEATH] || card->basicAbilities[(int)Constants::INPLAYTAPDEATH])
     {
-        card->controller()->game->putInZone(card, zone, card->owner->game->battlefield);
-        if(card->basicAbilities[(int)Constants::INPLAYTAPDEATH])
+        bool toTap = card->basicAbilities[(int)Constants::INPLAYTAPDEATH];
+        bool addCounter = card->basicAbilities[(int)Constants::COUNTERDEATH];
+        card = card->controller()->game->putInZone(card, zone, card->owner->game->graveyard);
+        card = card->controller()->game->putInZone(card, card->owner->game->graveyard, card->owner->game->battlefield);
+        if(toTap)
             card->tap(true);
+        if(addCounter)
+            card->counters->addCounter(1, 1, false);
         return 1;
     }
     if (zone == observer->players[0]->game->inPlay || zone == observer->players[1]->game->inPlay)

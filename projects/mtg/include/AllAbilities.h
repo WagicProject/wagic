@@ -729,6 +729,39 @@ public:
     }
 };
 
+class TrCardDungeonCompleted: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    int totaldng;
+    string playerName;
+    TrCardDungeonCompleted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, int totaldng = 0, string playerName = "") :
+    Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn), totaldng(totaldng), playerName(playerName)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardDungeonCompleted * e = dynamic_cast<WEventCardDungeonCompleted *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (totaldng > 0 && totaldng != e->totaldng)
+            return 0;
+        if (playerName != "" && playerName != e->playerName)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardDungeonCompleted * clone() const
+    {
+        return NEW TrCardDungeonCompleted(*this);
+    }
+};
+
 class TrCardRolledDie: public Trigger
 {
 public:
@@ -746,6 +779,8 @@ public:
         WEventCardRollDie * e = dynamic_cast<WEventCardRollDie *> (event);
         if (!e) return 0;
         if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (rollresult == -1 && e->card->dieNumFaces != e->card->lastRollResult)
             return 0;
         if (rollresult > 0 && rollresult != e->card->lastRollResult)
             return 0;
@@ -4027,6 +4062,19 @@ public:
     AAExploresEvent * clone() const;
     ~AAExploresEvent();
 };
+//Dungeon Completed
+class AAAlterDungeonCompleted: public ActivatedAbilityTP
+{
+public:
+    int dungeoncounter;
+
+    AAAlterDungeonCompleted(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int dungeoncounter, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterDungeonCompleted * clone() const;
+    ~AAAlterDungeonCompleted();
+};
 //Yidaro Counter
 class AAAlterYidaroCount: public ActivatedAbilityTP
 {
@@ -6566,11 +6614,12 @@ class AASetDie: public InstantAbility
 {
 public:
     int side;
+    int diefaces;
     string abilityToAlter;
     string abilityWin;
     string abilityLose;
     MTGAbility * abilityAltered;
-    AASetDie(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1,string toAdd = "");
+    AASetDie(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1, int diefaces = 6, string toAdd = "");
     int resolve();
     const string getMenuText();
     AASetDie * clone() const;
@@ -6582,7 +6631,8 @@ public:
     string baseAbility;
     AASetDie * setDie;
     int userchoice;
-    GenericRollDie(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL, int userchoice = 0);
+    int diefaces;
+    GenericRollDie(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL, int userchoice = 0, int diefaces = 6);
     int resolve();
     const string getMenuText();
     GenericRollDie * clone() const;
