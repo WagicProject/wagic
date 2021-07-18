@@ -2333,14 +2333,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Crucible of the Spirit Dragon
-auto={T}:add{C}
-auto={1}{T}:counter(0/0,1,Storage)
-auto={T}{C(0/0,-1,Storage)}: ability$! _ choice add{U} _ choice add{B} _ choice add{G} _ choice add{R} _ choice add{W} !$ controller
-text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Crucible of the Spirit Dragon. -- {T}, Remove X storage counters from Crucible of the Spirit Dragon: Add X mana in any combination of colors to your mana pool. Spend this mana only to cast Dragon spells or activate abilities of Dragons.
-type=Land
-[/card]
-[card]
 name=Cruel Entertainment
 text=Choose target player and another target player. The first player controls the second player during the second player's next turn, and the second player controls the first player during the first player's next turn.
 mana={6}{B}
@@ -4663,16 +4655,6 @@ mana={2}{U}
 type=Creature
 subtype=Jellyfish
 power=0
-toughness=3
-[/card]
-[card]
-name=Gonti, Lord of Luxury
-abilities=deathtouch
-text=Deathtouch -- When Gonti, Lord of Luxury enters the battlefield, look at the top four cards of target opponent's library, exile one of them face down, then put the rest on the bottom of that library in a random order. For as long as that card remains exiled, you may look at it, you may cast it, and you may spend mana as though it were mana of any type to cast it.
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Aetherborn Rogue
-power=2
 toughness=3
 [/card]
 [card]
@@ -7427,12 +7409,6 @@ power=7
 toughness=5
 [/card]
 [card]
-name=Molten Disaster
-text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- If Molten Disaster was kicked, it has split second. (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Molten Disaster deals X damage to each creature without flying and each player.
-mana={X}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Molten Psyche
 text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards. -- Metalcraft — If you control three or more artifacts, Molten Psyche deals damage to each opponent equal to the number of cards that player has drawn this turn.
 mana={1}{R}{R}
@@ -7530,11 +7506,6 @@ type=Creature
 subtype=Troll
 power=5
 toughness=5
-[/card]
-[card]
-name=Mosswort Bridge
-text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {G} to your mana pool. -- {G}, {T}: You may play the exiled card without paying its mana cost if creatures you control have total power 10 or greater.
-type=Land
 [/card]
 [card]
 name=Mother of Goons
