@@ -631,7 +631,7 @@ shock.txt
 shock2.txt
 Show_and_Tell.txt
 siege_gang_commander.txt
-simic_initiate.txt
+#simic_initiate.txt
 slate_of_ancestry.txt
 sleeper_agent.txt
 slith_bloodletter.txt

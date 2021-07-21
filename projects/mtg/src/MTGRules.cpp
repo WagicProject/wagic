@@ -1030,8 +1030,16 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         return 0;
     }
     //------------------------------------------------------------------------
-    ManaCost * previousManaPool = NEW ManaCost(playerMana); 
-    playerMana->pay(alternateCost);
+    ManaCost * previousManaPool = NEW ManaCost(playerMana);
+    bool hasOffering = card->basicAbilities[Constants::OFFERING]; //Fix a hang when try to pay emerge cost.
+    if(alternateCost->extraCosts){
+        for(unsigned int i = 0; i < alternateCost->extraCosts->costs.size(); i++){
+            if(dynamic_cast<Offering*> (alternateCost->extraCosts->costs[i]))
+                hasOffering = true;
+        }
+    }
+    if(!hasOffering)
+        playerMana->pay(alternateCost);
     alternateCost->doPayExtra();
     ManaCost *spellCost = previousManaPool->Diff(player->getManaPool());
     SAFE_DELETE(previousManaPool);

@@ -2473,33 +2473,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Cycle of Life
-text=Return Cycle of Life to its owner's hand: Target creature you cast this turn becomes 0/1 until your next upkeep. At the beginning of your next upkeep, put a +1/+1 counter on that creature.
-mana={1}{G}{G}
-type=Enchantment
-[/card]
-[card]
-name=Cyclical Evolution
-text=Target creature gets +3/+3 until end of turn. Exile Cyclical Evolution with three time counters on it. -- Suspend 3—{2}{G} (Rather than cast this card from your hand, you may pay {2}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={3}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Cyclone
-text=At the beginning of your upkeep, put a wind counter on Cyclone, then sacrifice Cyclone unless you pay {G} for each wind counter on it. If you pay, Cyclone deals damage equal to the number of wind counters on it to each creature and each player.
-mana={2}{G}{G}
-type=Enchantment
-[/card]
-[card]
-name=Cytoplast Manipulator
-text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {U}, {T}: Gain control of target creature with a +1/+1 counter on it for as long as Cytoplast Manipulator remains on the battlefield.
-mana={2}{U}{U}
-type=Creature
-subtype=Human Wizard Mutant
-power=0
-toughness=0
-[/card]
-[card]
 name=Cytoshape
 text=Choose a nonlegendary creature on the battlefield. Target creature becomes a copy of that creature until end of turn.
 mana={1}{G}{U}
@@ -2528,22 +2501,10 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Damping Field
-text=Players can't untap more than one artifact during their untap steps.
-mana={2}{W}
-type=Enchantment
-[/card]
-[card]
 name=Damping Sphere
 text=If a land is tapped for two or more mana, it produces {C} instead of any other type and amount. -- Each spell a player casts costs 1 more to cast for each other spell that player has cast this turn.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Dance of Many
-text=When Dance of Many enters the battlefield, put a token that's a copy of target nontoken creature onto the battlefield. -- When Dance of Many leaves the battlefield, exile the token. -- When the token leaves the battlefield, sacrifice Dance of Many. -- At the beginning of your upkeep, sacrifice Dance of Many unless you pay {U}{U}.
-mana={U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Dance, Pathetic Marionette
@@ -2608,12 +2569,6 @@ toughness=2
 name=Day's Undoing
 text=Each player shuffles his or her hand and graveyard into his or her library, then draws seven cards. If it's your turn, end the turn. (Exile all spells and abilities on the stack, including this card. Discard down to your maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
 mana={2}{U}
-type=Sorcery
-[/card]
-[card]
-name=Dead Ringers
-text=Destroy two target nonblack creatures unless either one is a color the other isn't. They can't be regenerated.
-mana={4}{B}
 type=Sorcery
 [/card]
 [card]
@@ -2685,18 +2640,6 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Declaration of Naught
-text=As Declaration of Naught enters the battlefield, name a card. -- {U}: Counter target spell with the chosen name.
-mana={U}{U}
-type=Enchantment
-[/card]
-[card]
-name=Deep Water
-text={U}: Until end of turn, if you tap a land you control for mana, it produces {U} instead of any other type.
-mana={U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Defective Detective
 text=Defective Detective can't be blocked. -- When Defective Detective enters the battlefield, a person outside the game looks at target opponent's hand and chooses a card from it. That player reveals that card.
 mana={2}{U}
@@ -2722,15 +2665,6 @@ name=Deflection
 text=Change the target of target spell with a single target.
 mana={3}{U}
 type=Instant
-[/card]
-[card]
-name=Degavolver
-text=Kicker {1}{B} and/or {R} (You may pay an additional {1}{B} and/or {R} as you cast this spell.) -- If Degavolver was kicked with its {1}{B} kicker, it enters the battlefield with two +1/+1 counters on it and with "Pay 3 life: Regenerate Degavolver." -- If Degavolver was kicked with its {R} kicker, it enters the battlefield with a +1/+1 counter on it and with first strike.
-mana={1}{W}
-type=Creature
-subtype=Volver
-power=1
-toughness=1
 [/card]
 [card]
 name=Delay
@@ -3006,16 +2940,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Domineering Will
-target=<upto:3>creature[-attacking]|opponentbattlefield
-auto=untap
-auto=moveto(mybattlefield) ueot
-auto=mustblock ueot
-text=Target player gains control of up to three target nonattacking creatures until end of turn. Untap those creatures. They block this turn if able.
-mana={3}{U}
-type=Instant
-[/card]
-[card]
 name=Doomsday
 text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
 mana={B}{B}{B}
@@ -3026,18 +2950,6 @@ name=Double Cross
 text=Choose another player. Look at that player's hand and choose one of those cards other than a basic land. He or she discards that card. At the beginning of the next game with the player, look at the player's hand and choose one of those cards other than a basic land. He or she discards that card.
 mana={3}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Double Deal
-text=Choose another player. Double Deal deals 3 damage to that player now and deals an additional 3 damage to the player at the beginning of the next game with the player.
-mana={4}{R}
-type=Sorcery
-[/card]
-[card]
-name=Double Dip
-text=Choose another player. Gain 5 life now and an additional 5 life at the beginning of the next game with that player.
-mana={4}{W}
-type=Instant
 [/card]
 [card]
 name=Double Header
@@ -3060,12 +2972,7 @@ name=Double Stroke
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell with the chosen name, you may copy it. You may choose new targets for the copy.
 type=Conspiracy
 [/card]
-[card]
-name=Double Take
-text=Choose another player. Draw two cards now and draw an additional two cards at the beginning of the next game with that player.
-mana={3}{U}{U}
-type=Instant
-[/card]
+
 [card]
 name=Doubling Chant
 text=For each creature you control, you may search your library for a creature card with the same name as that creature. Put those cards onto the battlefield, then shuffle your library.
@@ -3091,16 +2998,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Dragon Hunter
-auto=protection from(dragon)
-text=Protection from Dragons -- Dragon Hunter can block Dragons as though it had reach.
-mana={W}
-type=Creature
-subtype=Human Warrior
-power=2
-toughness=1
-[/card]
-[card]
 name=Dragonlord's Prerogative
 text=As an additional cost to cast Dragonlord's Prerogative, you may reveal a Dragon card from your hand. -- If you revealed a Dragon card or controlled a Dragon as you cast Dragonlord's Prerogative, Dragonlord's Prerogative can't be countered. -- Draw four cards.
 mana={4}{U}{U}
@@ -3123,12 +3020,6 @@ name=Dream Chisel
 text=Face-down creature spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Dream Salvage
-text=Draw cards equal to the number of cards target opponent discarded this turn.
-mana={UB}
-type=Instant
 [/card]
 [card]
 name=Dromoka's Command
@@ -3186,16 +3077,6 @@ name=Duplicity
 text=When Duplicity enters the battlefield, exile the top five cards of your library face down. -- At the beginning of your upkeep, you may exile all cards from your hand face down. If you do, put all other cards you own exiled with Duplicity into your hand. -- At the beginning of your end step, discard a card. -- When you lose control of Duplicity, put all cards exiled with Duplicity into their owner's graveyard.
 mana={3}{U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Duskmantle Seer
-abilities=flying
-text=Flying -- At the beginning of your upkeep, each player reveals the top card of his or her library, loses life equal to that card's converted mana cost, then puts it into his or her hand.
-mana={2}{U}{B}
-type=Creature
-subtype=Vampire Wizard
-power=4
-toughness=4
 [/card]
 [card]
 name=Dwarven Sea Clan
@@ -3338,12 +3219,6 @@ power=13
 toughness=13
 [/card]
 [card]
-name=Enchanter's Bane
-text=At the beginning of your end step, target enchantment deals damage equal to its converted mana cost to its controller unless that player sacrifices it.
-mana={1}{R}
-type=Enchantment
-[/card]
-[card]
 name=Enchantment Alteration
 text=Attach target Aura attached to a creature or land to another permanent of that type.
 mana={U}
@@ -3439,14 +3314,6 @@ name=Erase (Not the Urza's Legacy One)
 text=If you control two or more white permanents that share an artist, you may play Erase (Not the Urza's Legacy One) without paying its mana cost. -- Remove target enchantment from the game.
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-name=Erosion
-target=land
-text=Enchant land -- At the beginning of the upkeep of enchanted land's controller, destroy that land unless that player pays {1} or 1 life.
-mana={U}{U}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Errand of Duty
@@ -3570,14 +3437,6 @@ name=Evil Presents
 text=Put a creature card from your hand into play under starget opponent's control. That creature attacks each turn if able... and always attacks its controller.
 mana={2}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Excavation
-auto={1}{S(land|myBattlefield)}:draw:1 opponent
-auto={1}{S(land|myBattlefield)}:draw:1 controller
-text={1}, Sacrifice a land: Draw a card. Any player may activate this ability.
-mana={1}{U}
-type=Enchantment
 [/card]
 [card]
 name=Exclusion Ritual

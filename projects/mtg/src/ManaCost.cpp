@@ -1021,7 +1021,7 @@ int ManaCost::pay(ManaCost * _cost)
         cost[i] = diff->getCost(i);
     }
     for (unsigned int i = 0; i < cost.size(); i++){ // Added to avoid negative values in Manapool (e.g. anytypeofmana)
-        while(cost[i] < 0){
+        if(cost[i] < 0){
             for (int j = 0; j < Constants::NB_Colors; j++){
                 if((unsigned int)j != i && cost[j] > 0 && cost[j] <= abs(cost[i])){
                     cost[i] += cost[j];
